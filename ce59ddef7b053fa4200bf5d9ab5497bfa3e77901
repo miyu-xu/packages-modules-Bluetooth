@@ -16,6 +16,24 @@
       "message": "The fix doesn\u0027t seem to work for me. This is how I tested it --\n1. Connected BT headset to the phone and played audio.\n2. Observe audio plays on the headset.\n3. Connect wired earphones. \n4. Audio plays on the earphone(wired).\n5. Disconnect wired earphones.\n6. Expected audio to play on the BT headset but audio was playing from the phone speaker.\n\nShouldn\u0027t the fix ensure the audio is being played from the BT headphone?",
       "revId": "ce59ddef7b053fa4200bf5d9ab5497bfa3e77901",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1007882_e7858694",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1988982
+      },
+      "writtenOn": "2023-07-27T23:51:58Z",
+      "side": 1,
+      "message": "I have confirmed this solution and found this question too.The problem is because I  have removed AAudioStreamBuilder_setErrorCallback in BtifAvrcpAudioErrorHandle last time, it seems like AAudio just call ErrorCallback only once, we must setErrorCallback again if we want to it works.\n\nSo AAudioStreamBuilder_setErrorCallback must be set in the BtifAvrcpAudioErrorHandle, in order to AAudio will call ErrorCallback when error occur next time\n\n\n\nAnd the concern you mentioned last time, I have checked in my environment, the thread will be created only when the last BtifAvrcpAudioErrorHandle finished(if (s_AudioEngine.thread \u003d\u003d nullptr)), it will ensure the new thread won\u0027t be recreated",
+      "parentUuid": "5347e5e3_43506b16",
+      "revId": "ce59ddef7b053fa4200bf5d9ab5497bfa3e77901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
