@@ -34,6 +34,24 @@
       "parentUuid": "be481ee8_287d9b60",
       "revId": "09f96b3d866c83d06963e0e9c4b53f63cc84d960",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c8c0fe1_be9f5579",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-07-27T07:36:33Z",
+      "side": 1,
+      "message": "It looks like there is a lot of build errors around `GattService` and other files but not this. Of course I\u0027ve fixed mentioned issue.\n\nThanks for bringing this.",
+      "parentUuid": "70a4ecb0_8ef116fb",
+      "revId": "09f96b3d866c83d06963e0e9c4b53f63cc84d960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
