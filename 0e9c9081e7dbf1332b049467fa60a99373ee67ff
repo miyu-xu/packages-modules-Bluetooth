@@ -88,6 +88,24 @@
       "parentUuid": "85677f2f_6f8a1a7f",
       "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b8be31b_99284c4a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1890456
+      },
+      "writtenOn": "2023-07-27T20:58:23Z",
+      "side": 1,
+      "message": "My fault. I think my initial thought is to make it as address to compare.",
+      "parentUuid": "d426ae1b_98abc58b",
+      "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
