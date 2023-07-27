@@ -169,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "82c3d682_0fc747fc",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-27T21:59:52Z",
+      "side": 1,
+      "message": "Yes... but...\n\n`btm_scn` is defined like this: `uint8_t btm_scn[BTM_MAX_SCN_];`\nand `BTM_MAX_SCN_` is coming from \n`#define BTM_MAX_SCN_ 31  // PORT_MAX_RFC_PORTS packages/modules/Bluetooth/system/stack/include/rfcdefs.h`\nand finally `#define PORT_MAX_RFC_PORTS 31`\n\n\nIf the return value is now \"from 2 to PORT_MAX_RFC_PORTS - 1 included\", that mean that the max scn returned is `PORT_MAX_RFC_PORTS - 1`, and that mean the highest value of `scn_idx` is `PORT_MAX_RFC_PORTS - 2` so the last index of the array is not used.",
+      "parentUuid": "61d43a62_62212490",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "5f475be6084f80518834cdebfeb79e4025651e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c166b844_ef45908d",
         "filename": "system/stack/test/btm/btm_scn_test.cc",
         "patchSetId": 6
