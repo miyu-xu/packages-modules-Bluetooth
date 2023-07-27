@@ -120,7 +120,7 @@
         },
         "applicabilityExpression": {},
         "submittabilityExpression": {
-          "expressionString": "-label:Code-Review\u003dMIN AND (label:Code-Review\u003dMAX,user\u003dnon_uploader OR (label:Code-Review\u003dMAX AND (label:Exempt\u003d+1 OR (uploader:1474732 AND (project:platform/developers/docs OR project:platform/frameworks/support)))))"
+          "expressionString": "-label:Code-Review\u003dMIN AND (-is:android-cherry-pick_exemptedusers AND label:Code-Review\u003dMAX,user\u003dnon_uploader OR (is:android-cherry-pick_exemptedusers AND label:Code-Review\u003dMAX,count\u003e\u003d2) OR (label:Code-Review\u003dMAX AND (label:Exempt\u003d+1 OR (uploader:1474732 AND (project:platform/developers/docs OR project:platform/frameworks/support)))))"
         },
         "overrideExpression": {
           "value": {
@@ -131,7 +131,7 @@
       },
       "applicabilityExpressionResult": {},
       "submittabilityExpressionResult": {
-        "value": {"expression":{"expressionString":"-label:Code-Review=MIN AND (label:Code-Review=MAX,user=non_uploader OR (label:Code-Review=MAX AND (label:Exempt=+1 OR (uploader:1474732 AND (project:platform/developers/docs OR project:platform/frameworks/support)))))"},"status":"PASS","errorMessage":{"value":null},"passingAtoms":["label:Code-Review=MAX,user=non_uploader","label:Code-Review=MAX"],"failingAtoms":["label:Code-Review=MIN","label:Exempt=+1","uploader:1474732","project:platform/developers/docs","project:platform/frameworks/support"]}
+        "value": {"expression":{"expressionString":"-label:Code-Review=MIN AND (-is:android-cherry-pick_exemptedusers AND label:Code-Review=MAX,user=non_uploader OR (is:android-cherry-pick_exemptedusers AND label:Code-Review=MAX,count>=2) OR (label:Code-Review=MAX AND (label:Exempt=+1 OR (uploader:1474732 AND (project:platform/developers/docs OR project:platform/frameworks/support)))))"},"status":"PASS","errorMessage":{"value":null},"passingAtoms":["label:Code-Review=MAX,user=non_uploader","label:Code-Review=MAX"],"failingAtoms":["label:Code-Review=MIN","is:android-cherry-pick_exemptedusers","is:android-cherry-pick_exemptedusers","label:Code-Review=MAX,count>=2","label:Exempt=+1","uploader:1474732","project:platform/developers/docs","project:platform/frameworks/support"]}
       },
       "overrideExpressionResult": {
         "value": {"expression":{"expressionString":"is:android_exemptedusers OR uploader:1587862 OR (branch:\"^refs/heads/cherrypick-temp-.*\" AND is:android-cherry-pick_exemptedusers)"},"status":"FAIL","errorMessage":{"value":null},"passingAtoms":[],"failingAtoms":["is:android_exemptedusers","uploader:1587862","branch:\"^refs/heads/cherrypick-temp-.*\"","is:android-cherry-pick_exemptedusers"]}
