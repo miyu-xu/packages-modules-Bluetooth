@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8f2f42c_74789157",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-27T21:47:09Z",
+      "side": 1,
+      "message": "Funny, I learn exclusion like this `[1, PORT_MAX_RFC_PORTS[` so I thought the `)` was a mistake.\nMy bad",
+      "parentUuid": "4cb8162d_764ea9d6",
+      "range": {
+        "startLine": 48,
+        "startChar": 66,
+        "endLine": 48,
+        "endChar": 67
+      },
+      "revId": "5f475be6084f80518834cdebfeb79e4025651e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1867afc_07ffe46b",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "It is `\u003e\u003d`",
       "parentUuid": "f1867afc_07ffe46b",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "5f475be6084f80518834cdebfeb79e4025651e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95d9020f_6dc0020b",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-27T21:47:09Z",
+      "side": 1,
+      "message": "According to the comment of the function, the return value can be `[2,PORT_MAX_RFC_PORTS]`.\nThe `next_available_scn` initial value is `2`, and in this case `2` will be return.\n\nif you have `scn \u003d PORT_MAX_RFC_PORTS -1`, then at line 46 you increment it to be `scn \u003d PORT_MAX_RFC_PORTS`.\n\nSince `scn \u003d\u003d PORT_MAX_RFC_PORTS` you go into the if, reset scn to 2 and will never return `PORT_MAX_RFC_PORTS`.\n\n\nIn my opinion there is a mismatch between the code and the documentation.\n\nI expect one of the test that I have added to fail in this configuration.",
+      "parentUuid": "3f5729e7_b4056e9f",
       "range": {
         "startLine": 49,
         "startChar": 12,
