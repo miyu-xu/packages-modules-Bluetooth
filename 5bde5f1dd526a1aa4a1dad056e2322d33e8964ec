@@ -190,6 +190,30 @@
       },
       "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "497b2c03_516a2782",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-07-27T08:30:29Z",
+      "side": 1,
+      "message": "If don\u0027t add the above code, the PTS can also pass. \nWe already test this case before.\n\nDo you advice to remove this code?",
+      "parentUuid": "b0ceddeb_fa1600f0",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 7
+      },
+      "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
