@@ -166,6 +166,30 @@
       },
       "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0ceddeb_fa1600f0",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-27T08:13:57Z",
+      "side": 1,
+      "message": "Currently `L2CAP_LE_CREDIT_BASED_CONNECTION_REQ` doesn\u0027t go through `pL2CA_CreditBasedConnectInd_Cb` flow. It goes through the `pL2CA_ConnectInd_Cb` flow. Only `L2CAP_CREDIT_BASED_CONNECTION_REQ` go through `pL2CA_CreditBasedConnectInd_Cb` flow. Could you verify and let us know the outcome with PTS if we don\u0027t add the above.",
+      "parentUuid": "d099fb5e_e2189462",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 7
+      },
+      "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
