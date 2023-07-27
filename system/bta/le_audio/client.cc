@@ -4354,8 +4354,7 @@ class LeAudioClientImpl : public LeAudioClient {
     return true;
   }
 
-  void OnLocalAudioSourceMetadataUpdate(
-      std::vector<struct playback_track_metadata> source_metadata) {
+  void OnLocalAudioSourceMetadataUpdate(source_metadata_v7 source_metadata) {
     if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
       LOG(WARNING) << ", cannot start streaming if no active group set";
       return;
@@ -4504,8 +4503,7 @@ class LeAudioClientImpl : public LeAudioClient {
               ToString(contexts_pair.source).c_str());
   }
 
-  void OnLocalAudioSinkMetadataUpdate(
-      std::vector<struct record_track_metadata> sink_metadata) {
+  void OnLocalAudioSinkMetadataUpdate(sink_metadata_v7 sink_metadata) {
     if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
       LOG(WARNING) << ", cannot start streaming if no active group set";
       return;
@@ -5507,8 +5505,7 @@ class SourceCallbacksImpl : public LeAudioSourceAudioHalClient::Callbacks {
     if (instance) instance->OnLocalAudioSourceResume();
   }
 
-  void OnAudioMetadataUpdate(
-      std::vector<struct playback_track_metadata> source_metadata) override {
+  void OnAudioMetadataUpdate(source_metadata_v7 source_metadata) override {
     if (instance)
       instance->OnLocalAudioSourceMetadataUpdate(std::move(source_metadata));
   }
@@ -5523,8 +5520,7 @@ class SinkCallbacksImpl : public LeAudioSinkAudioHalClient::Callbacks {
     if (instance) instance->OnLocalAudioSinkResume();
   }
 
-  void OnAudioMetadataUpdate(
-      std::vector<struct record_track_metadata> sink_metadata) override {
+  void OnAudioMetadataUpdate(sink_metadata_v7 sink_metadata) override {
     if (instance)
       instance->OnLocalAudioSinkMetadataUpdate(std::move(sink_metadata));
   }
