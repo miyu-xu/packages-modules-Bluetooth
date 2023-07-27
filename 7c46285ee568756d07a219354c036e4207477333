@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89c7e1af_e7b64eb1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-27T01:33:44Z",
+      "side": 1,
+      "message": "Not related with this CL, but could you remove one empty line here?",
+      "revId": "7c46285ee568756d07a219354c036e4207477333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b25873d_d61a6d26",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-27T01:33:44Z",
+      "side": 1,
+      "message": "Where it can be null?",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 20
+      },
+      "revId": "7c46285ee568756d07a219354c036e4207477333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f2c5332_c264efc2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-07-27T01:33:44Z",
+      "side": 1,
+      "message": "Not related with this CL, but could you remove one empty line here?",
+      "revId": "7c46285ee568756d07a219354c036e4207477333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
