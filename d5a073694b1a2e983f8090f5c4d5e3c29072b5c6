@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d63feb25_5baa1e00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-07-27T07:08:49Z",
+      "side": 1,
+      "message": "Done. Thanks for the suggestion.",
+      "parentUuid": "1e59c1bd_4a4bde52",
+      "revId": "d5a073694b1a2e983f8090f5c4d5e3c29072b5c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c92019e_d1d7290e",
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d77b18b_116dd040",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-07-27T07:08:49Z",
+      "side": 1,
+      "message": "OK, will add that.",
+      "parentUuid": "5c92019e_d1d7290e",
+      "revId": "d5a073694b1a2e983f8090f5c4d5e3c29072b5c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cbb115ca_6a7465b4",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -48,6 +84,24 @@
       "writtenOn": "2023-07-26T17:26:54Z",
       "side": 1,
       "message": "is this called anywhere? Can\u0027t find it via ctrl+f here",
+      "revId": "d5a073694b1a2e983f8090f5c4d5e3c29072b5c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7ea77ca_2727d24d",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-07-27T07:08:49Z",
+      "side": 1,
+      "message": "No, it is not called anywhere yet. I just put it here for future profile addition.\nFor example, one can just track connection complete to PSM 0x11 for HID and call this function. \nHFP doesn\u0027t use this path since we need extra SCO handle -\u003e ACL handle mapping (For the other profiles, the ACL handle is given). I do wonder whether this can be refactored. Maybe we\u0027ll do that once we handle the other profiles.\n\nDo you think I can just let these be here, or it\u0027s better to remove them now?",
+      "parentUuid": "cbb115ca_6a7465b4",
       "revId": "d5a073694b1a2e983f8090f5c4d5e3c29072b5c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
