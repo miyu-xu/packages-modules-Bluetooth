@@ -52,6 +52,24 @@
       "parentUuid": "b7dab7c2_05d68be0",
       "revId": "99b56dd1ac990fdc2a940992f853913ac03bcf1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1119e6d_ee0e886d",
+        "filename": "system/btif/test/btif_rc_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-07-27T11:57:45Z",
+      "side": 1,
+      "message": "No. I was wrong about it. Let\u0027s wait for Etienne for the review.",
+      "parentUuid": "6e624e6c_ae98fce3",
+      "revId": "99b56dd1ac990fdc2a940992f853913ac03bcf1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
