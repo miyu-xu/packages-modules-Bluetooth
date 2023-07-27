@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5efa910c_37530cc9",
+        "filename": "system/btif/test/btif_rc_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-07-27T11:36:49Z",
+      "side": 1,
+      "message": "nit: Indent with 4 spaces.",
+      "revId": "99b56dd1ac990fdc2a940992f853913ac03bcf1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
