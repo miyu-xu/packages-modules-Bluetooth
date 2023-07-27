@@ -185,9 +185,14 @@ class LeAudioDevice {
       bool reuse_cis_id);
 
   inline types::AudioContexts GetSupportedContexts(
-      int direction = (types::kLeAudioDirectionSink |
-                       types::kLeAudioDirectionSource)) const {
-    return supp_contexts_.get(direction);
+      int direction = types::kLeAudioDirectionBoth) const {
+    ASSERT_LOG(direction <= (types::kLeAudioDirectionBoth),
+               "Invalid direction used.");
+
+    if (direction < types::kLeAudioDirectionBoth)
+      return supp_contexts_.get(direction);
+    else
+      return types::get_bidirectional(supp_contexts_);
   }
   inline void SetSupportedContexts(
       types::BidirectionalPair<types::AudioContexts> contexts) {
@@ -195,9 +200,14 @@ class LeAudioDevice {
   }
 
   inline types::AudioContexts GetAvailableContexts(
-      int direction = (types::kLeAudioDirectionSink |
-                       types::kLeAudioDirectionSource)) const {
-    return avail_contexts_.get(direction);
+      int direction = types::kLeAudioDirectionBoth) const {
+    ASSERT_LOG(direction <= (types::kLeAudioDirectionBoth),
+               "Invalid direction used.");
+
+    if (direction < types::kLeAudioDirectionBoth)
+      return avail_contexts_.get(direction);
+    else
+      return types::get_bidirectional(avail_contexts_);
   }
   types::AudioContexts SetAvailableContexts(
       types::BidirectionalPair<types::AudioContexts> cont_val);
@@ -468,15 +478,18 @@ class LeAudioDeviceGroup {
     group_available_contexts_ = new_contexts;
   }
 
-  inline types::AudioContexts GetAvailableContexts(
-      int direction = (types::kLeAudioDirectionSink |
-                       types::kLeAudioDirectionSource)) const {
-    return group_available_contexts_.get(direction);
+  types::AudioContexts GetAvailableContexts(
+      int direction = types::kLeAudioDirectionBoth) const {
+    ASSERT_LOG(direction <= (types::kLeAudioDirectionBoth),
+               "Invalid direction used.");
+    if (direction < types::kLeAudioDirectionBoth)
+      return group_available_contexts_.get(direction);
+    else
+      return types::get_bidirectional(group_available_contexts_);
   }
 
   types::AudioContexts GetSupportedContexts(
-      int direction = (types::kLeAudioDirectionSink |
-                       types::kLeAudioDirectionSource)) const;
+      int direction = types::kLeAudioDirectionBoth) const;
 
   types::BidirectionalPair<types::AudioContexts> GetLatestAvailableContexts(
       void) const;

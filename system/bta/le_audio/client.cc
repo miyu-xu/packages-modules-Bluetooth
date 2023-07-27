@@ -4369,7 +4369,7 @@ class LeAudioClientImpl : public LeAudioClient {
           "invalid/unknown %s context metadata, using 'UNSPECIFIED' instead",
           (remote_dir == le_audio::types::kLeAudioDirectionSink) ? "sink"
                                                                  : "source");
-      contexts_pair.get_ref(remote_dir) =
+      contexts_pair.get(remote_dir) =
           AudioContexts(LeAudioContextType::UNSPECIFIED);
     }
 
@@ -4397,13 +4397,13 @@ class LeAudioClientImpl : public LeAudioClient {
       }
 
       LOG_DEBUG("Checking contexts: %s, against the available contexts: %s",
-                ToString(contexts_pair.get_ref(dir)).c_str(),
+                ToString(contexts_pair.get(dir)).c_str(),
                 ToString(group_available_contexts).c_str());
       auto unavail_contexts =
-          contexts_pair.get_ref(dir) & ~group_available_contexts;
+          contexts_pair.get(dir) & ~group_available_contexts;
       if (unavail_contexts.none()) continue;
 
-      contexts_pair.get_ref(dir) &= group_available_contexts;
+      contexts_pair.get(dir) &= group_available_contexts;
       auto unavail_but_supported =
           (unavail_contexts & group->GetSupportedContexts(dir));
       if (unavail_but_supported.none() &&
@@ -4413,7 +4413,7 @@ class LeAudioClientImpl : public LeAudioClient {
         /* All unavailable are also unsupported - replace with UNSPECIFIED if
          * available
          */
-        contexts_pair.get_ref(dir).set(LeAudioContextType::UNSPECIFIED);
+        contexts_pair.get(dir).set(LeAudioContextType::UNSPECIFIED);
       } else {
         LOG_DEBUG("Some contexts are supported but currently unavailable: %s!",
                   ToString(unavail_but_supported).c_str());
@@ -4449,12 +4449,12 @@ class LeAudioClientImpl : public LeAudioClient {
                 "Other direction is streaming. Aligning other direction"
                 " metadata to match the current direciton context: %s",
                 ToString(contexts_pair.get(other_dir)).c_str());
-            contexts_pair.get_ref(dir) = contexts_pair.get(other_dir);
+            contexts_pair.get(dir) = contexts_pair.get(other_dir);
           }
         } else {
           LOG_DEBUG("Removing UNSPECIFIED from the remote sink context: %s",
                     ToString(contexts_pair.get(other_dir)).c_str());
-          contexts_pair.get_ref(dir).unset(LeAudioContextType::UNSPECIFIED);
+          contexts_pair.get(dir).unset(LeAudioContextType::UNSPECIFIED);
         }
       }
     }
@@ -4590,7 +4590,7 @@ class LeAudioClientImpl : public LeAudioClient {
       LOG_DEBUG(
           "The other direction is not streaming bidirectional, ignore that "
           "context.");
-      remote_metadata.get_ref(remote_other_direction).clear();
+      remote_metadata.get(remote_other_direction).clear();
     }
 
     /* Mixed contexts in the voiceback channel scenarios can confuse the remote
@@ -4604,13 +4604,13 @@ class LeAudioClientImpl : public LeAudioClient {
           "context");
       if (!is_streaming_other_direction) {
         // Do not take the obsolete metadata
-        remote_metadata.get_ref(remote_other_direction).clear();
+        remote_metadata.get(remote_other_direction).clear();
       }
-      remote_metadata.get_ref(remote_other_direction)
+      remote_metadata.get(remote_other_direction)
           .unset_all(kLeAudioContextAllBidir);
-      remote_metadata.get_ref(remote_other_direction)
+      remote_metadata.get(remote_other_direction)
           .unset_all(kLeAudioContextAllRemoteSinkOnly);
-      remote_metadata.get_ref(remote_other_direction)
+      remote_metadata.get(remote_other_direction)
           .set_all(remote_metadata.get(remote_direction) &
                    ~kLeAudioContextAllRemoteSinkOnly);
     }
@@ -4635,9 +4635,9 @@ class LeAudioClientImpl : public LeAudioClient {
         /* Turn off bidirectional contexts on this direction to avoid mixing
          * with the other direction bidirectional context
          */
-        remote_metadata.get_ref(remote_direction)
+        remote_metadata.get(remote_direction)
             .unset_all(kLeAudioContextAllBidir);
-        remote_metadata.get_ref(remote_direction)
+        remote_metadata.get(remote_direction)
             .set_all(remote_metadata.get(remote_other_direction));
       }
     }
