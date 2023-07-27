@@ -577,7 +577,7 @@ bool BluetoothAudioPortAidl::GetPresentationPosition(
 }
 
 void BluetoothAudioPortAidl::UpdateSourceMetadata(
-    const source_metadata* source_metadata) const {
+    const source_metadata_v7* source_metadata) const {
   if (!in_use()) {
     LOG(ERROR) << __func__ << ": BluetoothAudioPortAidl is not in use";
     return;
@@ -592,7 +592,7 @@ void BluetoothAudioPortAidl::UpdateSourceMetadata(
 }
 
 void BluetoothAudioPortAidl::UpdateSinkMetadata(
-    const sink_metadata* sink_metadata) const {
+    const sink_metadata_v7* sink_metadata) const {
   if (!in_use()) {
     LOG(ERROR) << __func__ << ": BluetoothAudioPortAidl is not in use";
     return;
