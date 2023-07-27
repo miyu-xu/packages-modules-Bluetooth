@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d43a62_62212490",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-27T21:51:36Z",
+      "side": 1,
+      "message": "oops sorry my bad. Wrong documentation 👍",
+      "parentUuid": "95d9020f_6dc0020b",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "5f475be6084f80518834cdebfeb79e4025651e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c166b844_ef45908d",
