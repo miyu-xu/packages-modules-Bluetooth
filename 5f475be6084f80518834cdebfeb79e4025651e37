@@ -191,6 +191,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f473248f_798d0600",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-27T22:15:04Z",
+      "side": 1,
+      "message": "That is true. The last index unfortunately is never used. It is on purpose 😞",
+      "parentUuid": "82c3d682_0fc747fc",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "5f475be6084f80518834cdebfeb79e4025651e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c166b844_ef45908d",
