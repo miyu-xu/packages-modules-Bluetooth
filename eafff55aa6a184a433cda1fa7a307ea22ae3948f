@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20520d97_96148aeb",
+        "filename": "system/bta/le_audio/codec_interface.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-27T09:07:24Z",
+      "side": 1,
+      "message": "I agree, let\u0027s do it step by step,\nIf we will be integrating any new opensource codec, we can extend LeAudioCodecConfiguration with new parameters and later CodecManager will be having API which you are thinking of.",
+      "parentUuid": "47676456_cd9ec302",
+      "range": {
+        "startLine": 43,
+        "startChar": 5,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "eafff55aa6a184a433cda1fa7a307ea22ae3948f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3aede428_e879b1a6",
         "filename": "system/bta/le_audio/codec_interface.h",
         "patchSetId": 1
