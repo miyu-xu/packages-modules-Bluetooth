@@ -52,6 +52,24 @@
       "parentUuid": "70a4ecb0_8ef116fb",
       "revId": "09f96b3d866c83d06963e0e9c4b53f63cc84d960",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f59acf0b_f5ea5a55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-27T16:46:05Z",
+      "side": 1,
+      "message": "somehow it got fixed in patch.2, but in patch.3 it was overwritten again to state.getBadCode() and caused the error. some local patch issue? \n\nthe message regarding GattService are all warnings, not error. if you open the full log, you will see the error as Jakub commented.",
+      "parentUuid": "3c8c0fe1_be9f5579",
+      "revId": "09f96b3d866c83d06963e0e9c4b53f63cc84d960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
