@@ -238,6 +238,30 @@
       },
       "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31a3e956_c7e14762",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-27T22:28:04Z",
+      "side": 1,
+      "message": "Also what happens if `pL2CA_ConnectInd_Cb` is NULL ??",
+      "parentUuid": "3260f9d7_7efdd67b",
+      "range": {
+        "startLine": 117,
+        "startChar": 6,
+        "endLine": 121,
+        "endChar": 7
+      },
+      "revId": "5bde5f1dd526a1aa4a1dad056e2322d33e8964ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
