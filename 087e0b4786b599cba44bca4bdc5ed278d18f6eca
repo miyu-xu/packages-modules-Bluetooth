@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09c0c3f5_d80d13ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-07-27T18:04:31Z",
+      "side": 1,
+      "message": "Please add topic \"metadata_v7\". The patch need to be built with the bluetooth audio HAL change.",
+      "revId": "087e0b4786b599cba44bca4bdc5ed278d18f6eca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
