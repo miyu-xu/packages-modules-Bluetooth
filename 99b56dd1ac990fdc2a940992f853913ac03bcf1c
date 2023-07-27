@@ -34,6 +34,24 @@
       "parentUuid": "5efa910c_37530cc9",
       "revId": "99b56dd1ac990fdc2a940992f853913ac03bcf1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e624e6c_ae98fce3",
+        "filename": "system/btif/test/btif_rc_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-07-27T11:53:30Z",
+      "side": 1,
+      "message": "Do I need change to 4 spaces？",
+      "parentUuid": "b7dab7c2_05d68be0",
+      "revId": "99b56dd1ac990fdc2a940992f853913ac03bcf1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
