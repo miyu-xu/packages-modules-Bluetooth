@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cfc82a4_4dd906b8",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 4635,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-27T14:07:17Z",
+      "side": 1,
+      "message": "this functions is called when `OnLocalAudioSourceMetadataUpdate` is called and also when `OnLocalAudioSourceResume` is called.\n\nThis will lead to clear VoipCall flag on `OnLocalAudioSourceResume`, which later leads to situation that GTBS CCID is in the `Enable cmd`",
+      "range": {
+        "startLine": 4635,
+        "startChar": 35,
+        "endLine": 4635,
+        "endChar": 74
+      },
+      "revId": "21799c10990bbcda395c0040f2635dddd9eb734f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
