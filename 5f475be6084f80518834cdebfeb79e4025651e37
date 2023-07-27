@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cb8162d_764ea9d6",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-27T21:41:20Z",
+      "side": 1,
+      "message": "Unfortunately it is `)`.",
+      "parentUuid": "4fcdbd2d_1f84da6a",
+      "range": {
+        "startLine": 48,
+        "startChar": 66,
+        "endLine": 48,
+        "endChar": 67
+      },
+      "revId": "5f475be6084f80518834cdebfeb79e4025651e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f1867afc_07ffe46b",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f5729e7_b4056e9f",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-27T21:41:20Z",
+      "side": 1,
+      "message": "It is `\u003e\u003d`",
+      "parentUuid": "f1867afc_07ffe46b",
+      "range": {
+        "startLine": 49,
+        "startChar": 12,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "5f475be6084f80518834cdebfeb79e4025651e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c166b844_ef45908d",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-07-27T20:59:12Z",
       "side": 1,
       "message": "```suggestion\n}\n\nTEST_F(BtmAllocateSCNTest, only_last_scn_available) {\n  btm_cb.next_available_scn \u003d 2;\n  // Fill all relevants SCN except the last\n  for (uint8_t scn \u003d 2; scn \u003c PORT_MAX_RFC_PORTS - 1; scn++) {\n    btm_cb.btm_scn[scn - 1] \u003d true;\n  }\n\n  EXPECT_EQ(BTM_AllocateSCN(), PORT_MAX_RFC_PORTS - 1);\n}\n\nTEST_F(BtmAllocateSCNTest, can_allocate_all_the_range) {\n  btm_cb.next_available_scn \u003d 2;\n  for (uint8_t scn \u003d 2; scn \u003c PORT_MAX_RFC_PORTS; scn++) {\n    EXPECT_EQ(BTM_AllocateSCN(), scn - 1);\n  }\n}\n```",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 1
+      },
+      "revId": "5f475be6084f80518834cdebfeb79e4025651e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd8e2ab2_cd9644c4",
+        "filename": "system/stack/test/btm/btm_scn_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-07-27T21:41:20Z",
+      "side": 1,
+      "message": "Thanks. These are good tests cases to add. 😎",
+      "parentUuid": "c166b844_ef45908d",
       "range": {
         "startLine": 82,
         "startChar": 0,
