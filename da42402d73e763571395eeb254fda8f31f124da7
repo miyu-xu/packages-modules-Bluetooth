@@ -22,6 +22,30 @@
       },
       "revId": "da42402d73e763571395eeb254fda8f31f124da7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aaaf4078_30c7cded",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-27T09:13:01Z",
+      "side": 1,
+      "message": "looks like this line should be also in line 84, and WARNING should be changed to INFO.",
+      "parentUuid": "22f4cf96_04354bac",
+      "range": {
+        "startLine": 99,
+        "startChar": 4,
+        "endLine": 99,
+        "endChar": 58
+      },
+      "revId": "da42402d73e763571395eeb254fda8f31f124da7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
