@@ -3048,14 +3048,16 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    for (auto [cis_handle, audio_location] : stream_conf->sink_streams) {
+    for (auto [cis_handle, audio_location] :
+         stream_conf->stream_params.sink.stream_locations) {
       if (audio_location & le_audio::codec_spec_conf::kLeAudioLocationAnyLeft)
         left_cis_handle = cis_handle;
       if (audio_location & le_audio::codec_spec_conf::kLeAudioLocationAnyRight)
         right_cis_handle = cis_handle;
     }
 
-    uint16_t byte_count = stream_conf->sink_octets_per_codec_frame;
+    uint16_t byte_count =
+        stream_conf->stream_params.sink.octets_per_codec_frame;
     bool mix_to_mono = (left_cis_handle == 0) || (right_cis_handle == 0);
     if (mix_to_mono) {
       std::vector<uint8_t> mono = mono_blend(
@@ -3091,8 +3093,9 @@ class LeAudioClientImpl : public LeAudioClient {
   void PrepareAndSendToSingleCis(
       const std::vector<uint8_t>& data,
       struct le_audio::stream_configuration* stream_conf) {
-    uint16_t num_channels = stream_conf->sink_num_of_channels;
-    uint16_t cis_handle = stream_conf->sink_streams.front().first;
+    uint16_t num_channels = stream_conf->stream_params.sink.num_of_channels;
+    uint16_t cis_handle =
+        stream_conf->stream_params.sink.stream_locations.front().first;
 
     uint16_t number_of_required_samples_per_channel =
         sw_enc_left->GetNumOfSamplesPerChannel();
@@ -3103,7 +3106,8 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    uint16_t byte_count = stream_conf->sink_octets_per_codec_frame;
+    uint16_t byte_count =
+        stream_conf->stream_params.sink.octets_per_codec_frame;
     bool mix_to_mono = (num_channels == 1);
     if (mix_to_mono) {
       /* Since we always get two channels from framework, lets make it mono here
@@ -3128,7 +3132,7 @@ class LeAudioClientImpl : public LeAudioClient {
     const struct le_audio::stream_configuration* stream_conf =
         &group->stream_conf;
     LOG_INFO("group_id: %d", group->group_id_);
-    if (stream_conf->sink_streams.size() == 0) {
+    if (stream_conf->stream_params.sink.stream_locations.size() == 0) {
       return nullptr;
     }
 
@@ -3148,15 +3152,15 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     auto stream_conf = group->stream_conf;
-    if ((stream_conf.sink_num_of_devices > 2) ||
-        (stream_conf.sink_num_of_devices == 0) ||
-        stream_conf.sink_streams.empty()) {
+    if ((stream_conf.stream_params.sink.num_of_devices > 2) ||
+        (stream_conf.stream_params.sink.num_of_devices == 0) ||
+        stream_conf.stream_params.sink.stream_locations.empty()) {
       LOG(ERROR) << __func__ << " Stream configufation is not valid.";
       return;
     }
 
-    if ((stream_conf.sink_num_of_devices == 2) ||
-        (stream_conf.sink_streams.size() == 2)) {
+    if ((stream_conf.stream_params.sink.num_of_devices == 2) ||
+        (stream_conf.stream_params.sink.stream_locations.size() == 2)) {
       /* Streaming to two devices or one device with 2 CISes */
       PrepareAndSendToTwoCises(data, &stream_conf);
     } else {
@@ -3188,7 +3192,7 @@ class LeAudioClientImpl : public LeAudioClient {
     uint16_t left_cis_handle = 0;
     uint16_t right_cis_handle = 0;
     for (auto [cis_handle, audio_location] :
-         group->stream_conf.source_streams) {
+         group->stream_conf.stream_params.source.stream_locations) {
       if (audio_location & le_audio::codec_spec_conf::kLeAudioLocationAnyLeft) {
         left_cis_handle = cis_handle;
       }
@@ -3345,14 +3349,16 @@ class LeAudioClientImpl : public LeAudioClient {
     }
 
     LOG_DEBUG("Sink stream config (#%d):\n",
-              static_cast<int>(stream_conf->sink_streams.size()));
-    for (auto stream : stream_conf->sink_streams) {
+              static_cast<int>(
+                  stream_conf->stream_params.sink.stream_locations.size()));
+    for (auto stream : stream_conf->stream_params.sink.stream_locations) {
       LOG_DEBUG("Cis handle: 0x%02x, allocation 0x%04x\n", stream.first,
                 stream.second);
     }
     LOG_DEBUG("Source stream config (#%d):\n",
-              static_cast<int>(stream_conf->source_streams.size()));
-    for (auto stream : stream_conf->source_streams) {
+              static_cast<int>(
+                  stream_conf->stream_params.source.stream_locations.size()));
+    for (auto stream : stream_conf->stream_params.source.stream_locations) {
       LOG_DEBUG("Cis handle: 0x%02x, allocation 0x%04x\n", stream.first,
                 stream.second);
     }
@@ -3402,7 +3408,7 @@ class LeAudioClientImpl : public LeAudioClient {
       LeAudioDeviceGroup* group) {
     const struct le_audio::stream_configuration* stream_conf =
         &group->stream_conf;
-    if (stream_conf->source_streams.size() == 0) {
+    if (stream_conf->stream_params.source.stream_locations.size() == 0) {
       return nullptr;
     }
     LOG_INFO("configuration: %s", stream_conf->conf->name.c_str());
@@ -5017,7 +5023,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
     const auto* stream_conf = &group->stream_conf;
 
-    if (stream_conf->sink_offloader_changed || stream_conf->sink_is_initial) {
+    if (stream_conf->offloader_config.sink.has_changed ||
+        stream_conf->offloader_config.sink.is_initial) {
       LOG_INFO("Update sink offloader streams");
       uint16_t remote_delay_ms =
           group->GetRemoteDelay(le_audio::types::kLeAudioDirectionSink);
@@ -5028,8 +5035,8 @@ class LeAudioClientImpl : public LeAudioClient {
       group->StreamOffloaderUpdated(le_audio::types::kLeAudioDirectionSink);
     }
 
-    if (stream_conf->source_offloader_changed ||
-        stream_conf->source_is_initial) {
+    if (stream_conf->offloader_config.source.has_changed ||
+        stream_conf->offloader_config.source.is_initial) {
       LOG_INFO("Update source offloader streams");
       uint16_t remote_delay_ms =
           group->GetRemoteDelay(le_audio::types::kLeAudioDirectionSource);

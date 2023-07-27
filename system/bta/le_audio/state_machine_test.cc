@@ -3296,14 +3296,12 @@ TEST_F(StateMachineTestAdsp, testStreamConfigurationAdspDownMix) {
       {.sink = types::AudioContexts(context_type),
        .source = types::AudioContexts(context_type)}));
 
-  ASSERT_EQ(
-      static_cast<int>(
-          group->stream_conf.sink_offloader_streams_target_allocation.size()),
-      2);
-  ASSERT_EQ(
-      static_cast<int>(
-          group->stream_conf.source_offloader_streams_target_allocation.size()),
-      2);
+  ASSERT_EQ(static_cast<int>(group->stream_conf.offloader_config.sink
+                                 .streams_target_allocation.size()),
+            2);
+  ASSERT_EQ(static_cast<int>(group->stream_conf.offloader_config.source
+                                 .streams_target_allocation.size()),
+            2);
 
   // Check if group has transitioned to a proper state
   ASSERT_EQ(group->GetState(),
@@ -3311,7 +3309,7 @@ TEST_F(StateMachineTestAdsp, testStreamConfigurationAdspDownMix) {
 
   uint32_t allocation = 0;
   for (const auto& s :
-       group->stream_conf.sink_offloader_streams_target_allocation) {
+       group->stream_conf.offloader_config.sink.streams_target_allocation) {
     allocation |= s.audio_channel_allocation;
     ASSERT_FALSE(allocation == 0);
   }
@@ -3319,21 +3317,21 @@ TEST_F(StateMachineTestAdsp, testStreamConfigurationAdspDownMix) {
 
   allocation = 0;
   for (const auto& s :
-       group->stream_conf.source_offloader_streams_target_allocation) {
+       group->stream_conf.offloader_config.source.streams_target_allocation) {
     allocation |= s.audio_channel_allocation;
     ASSERT_FALSE(allocation == 0);
   }
   ASSERT_TRUE(allocation == codec_spec_conf::kLeAudioLocationStereo);
 
   for (const auto& s :
-       group->stream_conf.sink_offloader_streams_target_allocation) {
+       group->stream_conf.offloader_config.sink.streams_target_allocation) {
     ASSERT_TRUE((s.audio_channel_allocation != 0) &&
                 (s.audio_channel_allocation !=
                  codec_spec_conf::kLeAudioLocationStereo));
   }
 
   for (const auto& s :
-       group->stream_conf.source_offloader_streams_target_allocation) {
+       group->stream_conf.offloader_config.source.streams_target_allocation) {
     ASSERT_TRUE((s.audio_channel_allocation != 0) &&
                 (s.audio_channel_allocation !=
                  codec_spec_conf::kLeAudioLocationStereo));
@@ -4957,8 +4955,8 @@ TEST_F(StateMachineTest, testAclDropWithoutApriorCisDisconnection) {
   testing::Mock::VerifyAndClearExpectations(&mock_iso_manager_);
 
   /* Separate CIS  for dual CIS device is treated as sink device */
-  ASSERT_EQ(group->stream_conf.sink_num_of_devices, 2);
-  ASSERT_EQ(group->stream_conf.sink_num_of_channels, 2);
+  ASSERT_EQ(group->stream_conf.stream_params.sink.num_of_devices, 2);
+  ASSERT_EQ(group->stream_conf.stream_params.sink.num_of_channels, 2);
 
   // Inject CIS and ACL disconnection of first device
   InjectAclDisconnected(group, firstDevice);
@@ -4966,8 +4964,8 @@ TEST_F(StateMachineTest, testAclDropWithoutApriorCisDisconnection) {
   InjectCisDisconnected(group, lastDevice, HCI_ERR_CONN_CAUSE_LOCAL_HOST);
   InjectAclDisconnected(group, lastDevice);
 
-  ASSERT_EQ(group->stream_conf.sink_num_of_devices, 0);
-  ASSERT_EQ(group->stream_conf.sink_num_of_channels, 0);
+  ASSERT_EQ(group->stream_conf.stream_params.sink.num_of_devices, 0);
+  ASSERT_EQ(group->stream_conf.stream_params.sink.num_of_channels, 0);
 }
 
 }  // namespace internal

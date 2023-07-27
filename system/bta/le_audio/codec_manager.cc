@@ -121,10 +121,10 @@ struct codec_manager_impl {
     if (stream_conf.sink_is_initial ||
         LeAudioHalVerifier::SupportsStreamActiveApi()) {
       sink_config.stream_map =
-          stream_conf.sink_offloader_streams_target_allocation;
+          stream_conf.offloader_config.sink.streams_target_allocation;
     } else {
       sink_config.stream_map =
-          stream_conf.sink_offloader_streams_current_allocation;
+          stream_conf.offloader_config.sink.streams_current_allocation;
     }
     // TODO: set the default value 16 for now, would change it if we support
     // mode bits_per_sample
@@ -146,10 +146,10 @@ struct codec_manager_impl {
     if (stream_conf.source_is_initial ||
         LeAudioHalVerifier::SupportsStreamActiveApi()) {
       source_config.stream_map =
-          stream_conf.source_offloader_streams_target_allocation;
+          stream_conf.offloader_config.source.streams_target_allocation;
     } else {
       source_config.stream_map =
-          stream_conf.source_offloader_streams_current_allocation;
+          stream_conf.offloader_config.source.streams_current_allocation;
     }
     // TODO: set the default value 16 for now, would change it if we support
     // mode bits_per_sample
