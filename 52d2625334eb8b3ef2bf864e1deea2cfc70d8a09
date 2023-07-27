@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb60bb58_767cdfb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-07-27T06:57:27Z",
+      "side": 1,
+      "message": "Lint is not applicable - overwrite with +2.",
+      "revId": "52d2625334eb8b3ef2bf864e1deea2cfc70d8a09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
