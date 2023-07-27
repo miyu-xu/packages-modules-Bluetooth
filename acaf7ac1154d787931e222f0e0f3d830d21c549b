@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd02e663_c65ffdd0",
+        "filename": "system/gd/rust/facade/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-07-27T22:49:21Z",
+      "side": 1,
+      "message": "nit: Remove the nested unsafe block (and move safety doc comment to the fn level)",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 10
+      },
+      "revId": "acaf7ac1154d787931e222f0e0f3d830d21c549b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
