@@ -22,6 +22,23 @@
       },
       "revId": "8fe21f284b74dc51f8ddbaae2f7553a66576df87",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cc8f466_0c956ac6",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-07-27T02:14:01Z",
+      "side": 1,
+      "message": "Function `processSubconfig()` check for the sample frequency is greater than or equal to 32k. The variable name `*cis_per_device_32k_*` seems mismatch with the operation.",
+      "revId": "8fe21f284b74dc51f8ddbaae2f7553a66576df87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
