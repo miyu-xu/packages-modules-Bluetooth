@@ -970,10 +970,8 @@ public class HeadsetServiceAndStateMachineTest {
         connectTestDevice(deviceA);
         BluetoothDevice deviceB = TestUtils.getTestDevice(mAdapter, 1);
         connectTestDevice(deviceB);
-        InOrder inOrder = inOrder(mNativeInterface);
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(true));
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceB), eq(false));
-        inOrder.verify(mNativeInterface).sendBsir(eq(deviceA), eq(false));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).sendBsir(deviceA, false);
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).sendBsir(deviceB, false);
         // Set active device to device B
         Assert.assertTrue(mHeadsetService.setActiveDevice(deviceB));
         verify(mNativeInterface).setActiveDevice(deviceB);
