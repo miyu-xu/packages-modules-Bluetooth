@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff3fade4_704f0c47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-07-27T17:13:21Z",
+      "side": 1,
+      "message": "Hi Hui,\n\nWilliam and I had a discussion about OWNERS files, and we like the example of OWNERS_automotive.  It\u0027s defined in one place, so it\u0027s easier to update, and it is included in folders, so there\u0027s no need for regular expressions or globs.\n\nThanks,\nMyles",
+      "revId": "50d94feadd4a77da32c15e41c2c35085bee86371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
