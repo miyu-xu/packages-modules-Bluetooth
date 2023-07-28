@@ -33,6 +33,24 @@
       "message": "Since `server` doesn\u0027t have a type, docstring here describing it would be useful.",
       "revId": "d44a935a63f7b6f65ab7c4e5fd1acdf5bde68033",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55cf3622_1056240a",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-07-28T04:18:22Z",
+      "side": 1,
+      "message": "Thanks, I have added the type annotation.",
+      "parentUuid": "9ada71b3_73730428",
+      "revId": "d44a935a63f7b6f65ab7c4e5fd1acdf5bde68033",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
