@@ -435,6 +435,7 @@ public class A2dpSinkService extends ProfileService {
     @VisibleForTesting
     public void removeStateMachine(A2dpSinkStateMachine stateMachine) {
         mDeviceStateMap.remove(stateMachine.getDevice());
+        stateMachine.quitNow();
     }
 
     public List<BluetoothDevice> getConnectedDevices() {
@@ -447,10 +448,16 @@ public class A2dpSinkService extends ProfileService {
         A2dpSinkStateMachine existingStateMachine =
                 mDeviceStateMap.putIfAbsent(device, newStateMachine);
         // Given null is not a valid value in our map, ConcurrentHashMap will return null if the
-        // key was absent and our new value was added. We should then start and return it.
+        // key was absent and our new value was added. We should then start and return it. Else
+        // we quit the new one so we don't leak a thread
         if (existingStateMachine == null) {
             newStateMachine.start();
             return newStateMachine;
+        } else {
+            // If you try to quit a StateMachine that hasn't been constructed yet, the StateMachine
+            // spits out an NPE trying to read a state stack array that only gets made on start().
+            // We can just quit the thread made explicitly
+            newStateMachine.getHandler().getLooper().quit();
         }
         return existingStateMachine;
     }
