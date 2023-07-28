@@ -22,6 +22,30 @@
       },
       "revId": "acaf7ac1154d787931e222f0e0f3d830d21c549b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20325875_ccbf769a",
+        "filename": "system/gd/rust/facade/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2023-07-28T10:00:32Z",
+      "side": 1,
+      "message": "An unsafe block and an unsafe function mean different things: an unsafe function means that the must meet guarantee certain preconditions for the function call to be safe, while an unsafe block is where the programmer makes those guarantees. In the case of an unsafe block inside an unsafe function, like here, it may assume the guarantees which the containing function requires (i.e. that the old signal handler was installed correctly), but may also need to prove further preconditions (in this case, that the `sig_action` function only makes system calls that are safe for signal handlers).\n\nTo avoid conflating the two, we are changing the default Rust compiler configuration to deny `unsafe_op_in_unsafe_fn` as well as `clippy::undocumented_unsafe_blocks` in https://r.android.com/2650139.",
+      "parentUuid": "dd02e663_c65ffdd0",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 10
+      },
+      "revId": "acaf7ac1154d787931e222f0e0f3d830d21c549b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
