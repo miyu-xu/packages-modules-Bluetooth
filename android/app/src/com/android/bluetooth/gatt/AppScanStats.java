@@ -561,12 +561,25 @@ import java.util.Objects;
     }
 
     synchronized boolean isScanningTooFrequently() {
+        if (isScanningTooIntensely()) {
+            return false;
+        }
+
         if (mLastScans.size() < mAdapterService.getScanQuotaCount()) {
             return false;
         }
 
         return (SystemClock.elapsedRealtime() - mLastScans.get(0).timestamp)
                 < mAdapterService.getScanQuotaWindowMillis();
+    }
+
+    synchronized boolean isScanningTooIntensely() {
+        long currentTime = SystemClock.elapsedRealtime();
+        return (computeLastScansDuration(currentTime) + computeOnGoingScansDuration(currentTime))
+                > (long)
+                        (mAdapterService.getScanQuotaWindowMillis()
+                                * mAdapterService.getScanQuotaWindowPercent()
+                                * 0.01);
     }
 
     synchronized boolean isScanningTooLong() {
@@ -584,6 +597,39 @@ import java.util.Objects;
         LastScan lastScan = mLastScans.get(mLastScans.size() - 1);
         return ((SystemClock.elapsedRealtime() - lastScan.duration - lastScan.timestamp)
                 < LARGE_SCAN_TIME_GAP_MS);
+    }
+
+    long computeLastScansDuration(long currentTime) {
+        long lastScanDuration = 0;
+        long startWindowTime = currentTime - mAdapterService.getScanQuotaWindowMillis();
+        for (LastScan scan : mLastScans) {
+            if (scan.timestamp + scan.duration < startWindowTime) {
+                continue;
+            }
+            long removeDuration =
+                    (scan.timestamp < startWindowTime)
+                            ? (startWindowTime - scan.timestamp)
+                            : scan.suspendDuration;
+            long activeDuration = scan.duration - removeDuration;
+            double scanWeight = getScanWeight(scan.scanMode) * 0.01;
+            long weightedActiveDuration = (long) (activeDuration * scanWeight);
+            lastScanDuration += weightedActiveDuration;
+        }
+        return lastScanDuration;
+    }
+
+    long computeOnGoingScansDuration(long currentTime) {
+        long onGoingScanDuration = 0;
+        if (!mOngoingScans.isEmpty()) {
+            for (Integer key : mOngoingScans.keySet()) {
+                LastScan scan = mOngoingScans.get(key);
+                long activeDuration = currentTime - scan.timestamp - scan.suspendDuration;
+                double scanWeight = getScanWeight(scan.scanMode) * 0.01;
+                long weightedActiveDuration = (long) (activeDuration * scanWeight);
+                onGoingScanDuration += weightedActiveDuration;
+            }
+        }
+        return onGoingScanDuration;
     }
 
     // This function truncates the app name for privacy reasons. Apps with

@@ -7287,6 +7287,9 @@ public class AdapterService extends Service {
     private long mScanQuotaWindowMillis = DeviceConfigListener.DEFAULT_SCAN_QUOTA_WINDOW_MILLIS;
 
     @GuardedBy("mDeviceConfigLock")
+    private int mScanQuotaWindowPercent = DeviceConfigListener.DEFAULT_SCAN_QUOTA_WINDOW_PERCENT;
+
+    @GuardedBy("mDeviceConfigLock")
     private long mScanTimeoutMillis = DeviceConfigListener.DEFAULT_SCAN_TIMEOUT_MILLIS;
 
     @GuardedBy("mDeviceConfigLock")
@@ -7348,6 +7351,13 @@ public class AdapterService extends Service {
         }
     }
 
+    /** Returns scan quota window ratio in percent. */
+    public int getScanQuotaWindowPercent() {
+        synchronized (mDeviceConfigLock) {
+            return mScanQuotaWindowPercent;
+        }
+    }
+
     /** Returns scan timeout in millis. */
     public long getScanTimeoutMillis() {
         synchronized (mDeviceConfigLock) {
@@ -7406,6 +7416,7 @@ public class AdapterService extends Service {
                 "location_denylist_advertising_data";
         private static final String SCAN_QUOTA_COUNT = "scan_quota_count";
         private static final String SCAN_QUOTA_WINDOW_MILLIS = "scan_quota_window_millis";
+        private static final String SCAN_QUOTA_WINDOW_PERCENT = "scan_quota_window_percent";
         private static final String SCAN_TIMEOUT_MILLIS = "scan_timeout_millis";
         private static final String SCAN_UPGRADE_DURATION_MILLIS = "scan_upgrade_duration_millis";
         private static final String SCAN_DOWNGRADE_DURATION_MILLIS =
@@ -7426,6 +7437,7 @@ public class AdapterService extends Service {
 
         private static final int DEFAULT_SCAN_QUOTA_COUNT = 5;
         private static final long DEFAULT_SCAN_QUOTA_WINDOW_MILLIS = 30 * SECOND_IN_MILLIS;
+        private static final int DEFAULT_SCAN_QUOTA_WINDOW_PERCENT = 25;
         private static final long DEFAULT_SCAN_TIMEOUT_MILLIS = 10 * MINUTE_IN_MILLIS;
         private static final int DEFAULT_SCAN_UPGRADE_DURATION_MILLIS = (int) SECOND_IN_MILLIS * 6;
         private static final int DEFAULT_SCAN_DOWNGRADE_DURATION_BT_CONNECTING_MILLIS =
@@ -7457,6 +7469,9 @@ public class AdapterService extends Service {
                 mScanQuotaWindowMillis =
                         properties.getLong(
                                 SCAN_QUOTA_WINDOW_MILLIS, DEFAULT_SCAN_QUOTA_WINDOW_MILLIS);
+                mScanQuotaWindowPercent =
+                        properties.getInt(
+                                SCAN_QUOTA_WINDOW_PERCENT, DEFAULT_SCAN_QUOTA_WINDOW_PERCENT);
                 mScanTimeoutMillis =
                         properties.getLong(SCAN_TIMEOUT_MILLIS, DEFAULT_SCAN_TIMEOUT_MILLIS);
                 mScanUpgradeDurationMillis =
