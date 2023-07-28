@@ -106,6 +106,41 @@
       "parentUuid": "d426ae1b_98abc58b",
       "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "896cd00e_98d81a20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2023-07-28T09:53:47Z",
+      "side": 1,
+      "message": "Can I get owners approval to submit this opting out the test from the new lint for now so I can get it in, then you can fix the test at your leisure?",
+      "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "166dc54b_2bd96284",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1380243
+      },
+      "writtenOn": "2023-07-28T09:53:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3b8be31b_99284c4a",
+      "revId": "0e9c9081e7dbf1332b049467fa60a99373ee67ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
