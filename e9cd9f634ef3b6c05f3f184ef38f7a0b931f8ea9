@@ -1,0 +1,464 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2adf5151_7ecb9f64",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "is swb only available for aptx and will it be forever only for aptx ?\n\nIs aptx voice codec being upstream too ?",
+      "range": {
+        "startLine": 982,
+        "startChar": 16,
+        "endLine": 982,
+        "endChar": 35
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b06f7acb_8da6a641",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 989,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "Before checking this variable you should take the interface mutex:\n```\n  std::shared_lock\u003cstd::shared_timed_mutex\u003e lock(interface_mutex);\n```\n\nPlease replicate this in `isAptXSwbEnabledNative`",
+      "range": {
+        "startLine": 989,
+        "startChar": 7,
+        "endLine": 989,
+        "endChar": 29
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58fc5c68_66b729bf",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "Remove else in case of early return\n\n```suggestion\n  if (ret !\u003d 0) {\n    ALOGE(\"%s: Failure\", __func__);\n    return JNI_FALSE;\n  }\n\n  ALOGV(\"%s: Success :%d\", __func__, enable);\n```\n\nAlso, do you want to log ret in order to know what is the error ? (and maybe `enable` too in the error message ? )\n\nAlso, should `ret !\u003d 0` be changed to check against the correct value ? I assumed it should be `BT_STATUS_SUCCESS` but I didn\u0027t checked",
+      "range": {
+        "startLine": 996,
+        "startChar": 1,
+        "endLine": 1001,
+        "endChar": 3
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b9c97ed_8c7b0379",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1010,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "if I am correct, the flag is already checked in `get_aptx_swb_codec_status` inside `GetAptXSwbCodecStatus`",
+      "range": {
+        "startLine": 1007,
+        "startChar": 2,
+        "endLine": 1010,
+        "endChar": 3
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08c806c0_9ea60462",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1021,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "nit:\nSince this is not an error check but a \"type conversion\" I have a preference for the ternary condition.\n\nWhat do you think ?\n\n```suggestion\n  return bluetooth::headset::GetAptXSwbCodecStatus() ? JNI_TRUE : JNI_FALSE;\n```",
+      "range": {
+        "startLine": 1017,
+        "startChar": 2,
+        "endLine": 1021,
+        "endChar": 19
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed12af5e_0a46cb62",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetHalConstants.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "I do not understand, there is already support for swb ? why do we need aptx specific constant ?",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68145dfe_97ea795d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1791,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "Do we want to call `enableAptXSwbCodec(false)` in `stopVoiceRecognition*` ?",
+      "range": {
+        "startLine": 1791,
+        "startChar": 0,
+        "endLine": 1791,
+        "endChar": 37
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9ab19df_7837db4e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "These check make me think that the sysprop and the flag are a lot lookalike",
+      "range": {
+        "startLine": 655,
+        "startChar": 24,
+        "endLine": 656,
+        "endChar": 67
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e869f52_f19b90fc",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1667,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "Nit: I like formatting the log in a key-value fashioon, what do you think ?\n\n```suggestion\n        Log.i(\n                TAG,\n                (\"setAudioParameters for \" + mDevice + \":\")\n                        + (\" Name\u003d\" + getCurrentDeviceName())\n                        + (\" hasNrecEnabled\u003d\" + mHasNrecEnabled)\n                        + (\" hasWbsEnabled\u003d\" + mHasWbsEnabled)\n                        + (\" hasSwbEnabled\u003d\" + mHasSwbEnabled)\n                        + (\" hasAptXSwbEnabled\u003d\" + mHasAptXSwbEnabled));\n```",
+      "range": {
+        "startLine": 1653,
+        "startChar": 11,
+        "endLine": 1667,
+        "endChar": 46
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ae5552a_457efa12",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1669,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "Where are these value coming from ? This doesn\u0027t looks a good idea compare to the clean `on : off` just above",
+      "range": {
+        "startLine": 1669,
+        "startChar": 7,
+        "endLine": 1669,
+        "endChar": 43
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "191e85dc_0997645f",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1842,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "Does that mean that in this situation we can override the sysprop ?",
+      "range": {
+        "startLine": 1842,
+        "startChar": 0,
+        "endLine": 1842,
+        "endChar": 42
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a11177d_6ba6e6a2",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetSystemInterface.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "Just complaining here that there is a else scope while doing an early return, but there is a lot of method in this file doing the same.\n\nI would have loved to do the opposite:\n```\nBluetoothInCallService bluetoothInCallService \u003d getBluetoothInCallServiceInstance();\nif (bluetoothInCallService \u003d\u003d null) {\n  Log.e(TAG, \"Handsfree phone proxy null\");   // The error is next to its condition check\n  return false;\n} // no need for else we just validate that all the path are good now\n\nreturn bluetoothInCallService.isHighDefCallInProgress();\n```",
+      "range": {
+        "startLine": 246,
+        "startChar": 8,
+        "endLine": 252,
+        "endChar": 21
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2687fcc7_6ba67202",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "Is it guarantee that only one of them can be non-null at the same time or can we have both a `ringingCall` and an `activeCall` ? and in this case, does the logic below still works ?\n\nor should we change it to something like: (Beware I removed a lot of check just to show the point I want to made)\n```\nreturn ringingCall.isHighDefAudio() || activeCall.isHighDefAudio() || dialingCall.isHighDefAudio()\n```",
+      "range": {
+        "startLine": 563,
+        "startChar": 8,
+        "endLine": 566,
+        "endChar": 0
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c4e288d_5eb7d617",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "If we have aptx_voice support, we drop lc3 ?\nCan\u0027t we keep both of them at the same time ?\n\nOr maybe since it check from the p_scb this is only for the current connection.\n\nBut I thought that lc3 was also a swb codec",
+      "range": {
+        "startLine": 1276,
+        "startChar": 13,
+        "endLine": 1276,
+        "endChar": 23
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b635018_d2437c70",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "unused parameter `p_scb`",
+      "range": {
+        "startLine": 111,
+        "startChar": 36,
+        "endLine": 111,
+        "endChar": 54
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db27af7b_d44a0a0a",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "typo: `integer`... but I don\u0027t understand what this comment mean",
+      "range": {
+        "startLine": 122,
+        "startChar": 11,
+        "endLine": 122,
+        "endChar": 18
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6adce12_e3c695bc",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "This can be moved after the switch to remove the need for the `cont` boolean. See suggestion\n\nAlso I do not think `*p \u003d 0;` is a good idea since we are only doing parsing.\nThis could be enforce by moving p_s to be a `const char *` as well as p",
+      "range": {
+        "startLine": 123,
+        "startChar": 3,
+        "endLine": 127,
+        "endChar": 19
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c31f4cb1_05701b91",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "```suggestion\ntBTA_AG_PEER_CODEC bta_ag_parse_qac(tBTA_AG_SCB* p_scb, char* p_s) {\n  tBTA_AG_PEER_CODEC retval \u003d BTM_SCO_CODEC_NONE;\n\n  while (p_s) {\n    uint16_t codec_modes \u003d utl_str2int(p_s);\n    switch (codec_modes) {\n      case BTA_AG_SCO_SWB_SETTINGS_Q0:\n        retval |\u003d BTA_AG_SCO_SWB_SETTINGS_Q0_MASK;\n        break;\n      case BTA_AG_SCO_SWB_SETTINGS_Q1:\n        retval |\u003d BTA_AG_SCO_SWB_SETTINGS_Q1_MASK;\n        break;\n      case BTA_AG_SCO_SWB_SETTINGS_Q2:\n        retval |\u003d BTA_AG_SCO_SWB_SETTINGS_Q2_MASK;\n        break;\n      case BTA_AG_SCO_SWB_SETTINGS_Q3:\n        retval |\u003d BTA_AG_SCO_SWB_SETTINGS_Q3_MASK;\n        break;\n      default:\n        APPL_TRACE_ERROR(\"Unknown Codec UUID(%d) received\", codec_modes);\n        break;\n    }\n\n    char* p;\n    /* skip to comma delimiter */\n    for (p \u003d p_s; *p !\u003d \u0027,\u0027 \u0026\u0026 *p !\u003d 0; p++)\n      ;\n    \n    if (*p \u003d\u003d 0) {\n      break;\n    }\n    *p \u003d 0;   /// useless and risky ?\n    p_s \u003d p + 1;\n  }\n\n  return (retval);\n}\n```",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 1
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a674fe2e_131c9aac",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 695,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "Open question:\nWould it be better to move this case to be just before the default and doing a falltrough to the default when aptx_voice_is_enabled is not supported ? (I think you have another switch case in this CL that do the same thing)",
+      "range": {
+        "startLine": 683,
+        "startChar": 3,
+        "endLine": 695,
+        "endChar": 12
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2743589e_0a911bf2",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T16:26:01Z",
+      "side": 1,
+      "message": "This check is only added when offload is true. it looks like a nasty bug for when the non-offload path will have more codec too.\n\n\nBut the more I think about this and the more I do not understand why this check is only necessary now.",
+      "range": {
+        "startLine": 330,
+        "startChar": 2,
+        "endLine": 332,
+        "endChar": 5
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
