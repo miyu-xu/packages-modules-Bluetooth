@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14da22a4_fa7e1c3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-07-28T07:19:30Z",
+      "side": 1,
+      "message": "Using the enums added in aosp/2648122 for adding counter metrics.",
+      "revId": "a718ea973ef57411f5759407ae43be3eeb417b7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
