@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c72cd7e7_c9aa48dc",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-07-28T07:28:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a5af977f_49b92b53",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 387,
+        "endChar": 47
+      },
+      "revId": "8fe21f284b74dc51f8ddbaae2f7553a66576df87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7cc8f466_0c956ac6",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-07-27T02:14:01Z",
       "side": 1,
       "message": "Function `processSubconfig()` check for the sample frequency is greater than or equal to 32k. The variable name `*cis_per_device_32k_*` seems mismatch with the operation.",
+      "revId": "8fe21f284b74dc51f8ddbaae2f7553a66576df87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b257fb71_4d1241bd",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-07-28T07:28:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cc8f466_0c956ac6",
       "revId": "8fe21f284b74dc51f8ddbaae2f7553a66576df87",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
