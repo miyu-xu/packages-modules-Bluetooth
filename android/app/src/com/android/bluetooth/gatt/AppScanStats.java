@@ -561,12 +561,20 @@ import java.util.Objects;
     }
 
     synchronized boolean isScanningTooFrequently() {
-        if (mLastScans.size() < mAdapterService.getScanQuotaCount()) {
+        if (mLastScans.size() < mAdapterService.getScanQuotaCount() && !isScanningTooIntense()) {
             return false;
         }
 
         return (SystemClock.elapsedRealtime() - mLastScans.get(0).timestamp)
                 < mAdapterService.getScanQuotaWindowMillis();
+    }
+
+    synchronized boolean isScanningTooIntense() {
+        return (computeLastScansDuration() + computeOnGoingScansDuration())
+                > (long)
+                        (mAdapterService.getScanQuotaWindowMillis()
+                                * mAdapterService.getScanQuotaWindowPercent()
+                                * 0.01);
     }
 
     synchronized boolean isScanningTooLong() {
@@ -584,6 +592,32 @@ import java.util.Objects;
         LastScan lastScan = mLastScans.get(mLastScans.size() - 1);
         return ((SystemClock.elapsedRealtime() - lastScan.duration - lastScan.timestamp)
                 < LARGE_SCAN_TIME_GAP_MS);
+    }
+
+    private long computeLastScansDuration() {
+        long lastScanDuration = 0;
+        for (LastScan scan : mLastScans) {
+            long activeDuration = scan.duration - scan.suspendDuration;
+            double scanWeight = getScanWeight(scan.scanMode) * 0.01;
+            long weightedActiveDuration = (long) (activeDuration * scanWeight);
+            lastScanDuration += weightedActiveDuration;
+        }
+        return lastScanDuration;
+    }
+
+    private long computeOnGoingScansDuration() {
+        long onGoingScanDuration = 0;
+        if (!mOngoingScans.isEmpty()) {
+            for (Integer key : mOngoingScans.keySet()) {
+                LastScan scan = mOngoingScans.get(key);
+                long currentTime = SystemClock.elapsedRealtime();
+                long activeDuration = currentTime - scan.timestamp - scan.suspendDuration;
+                double scanWeight = getScanWeight(scan.scanMode) * 0.01;
+                long weightedActiveDuration = (long) (activeDuration * scanWeight);
+                onGoingScanDuration += weightedActiveDuration;
+            }
+        }
+        return onGoingScanDuration;
     }
 
     // This function truncates the app name for privacy reasons. Apps with
