@@ -46,6 +46,30 @@
       },
       "revId": "acaf7ac1154d787931e222f0e0f3d830d21c549b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5438ed5e_afc62aea",
+        "filename": "system/gd/rust/facade/src/main.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-07-28T15:17:26Z",
+      "side": 1,
+      "message": "In that case, sgtm 👍",
+      "parentUuid": "20325875_ccbf769a",
+      "range": {
+        "startLine": 90,
+        "startChar": 4,
+        "endLine": 90,
+        "endChar": 10
+      },
+      "revId": "acaf7ac1154d787931e222f0e0f3d830d21c549b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
