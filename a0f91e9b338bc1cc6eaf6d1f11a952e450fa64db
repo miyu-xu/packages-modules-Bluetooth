@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67b3884a_ba86b9dc",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-28T15:46:58Z",
+      "side": 1,
+      "message": "What is the relation between `aptx_voice` flag and the aptx_swb_power_management sysprop ?\n\nI am asking since a flag is intended to be removed in a few months when we think the feature is stable enough, while the sysprop should stay forever and because of that need to have proper justification.\n\nAlso can you create a bug in this component: 1387432 to track the flag lifecycle and add the bug to this CL and all other CL related to this flag",
+      "range": {
+        "startLine": 405,
+        "startChar": 8,
+        "endLine": 405,
+        "endChar": 18
+      },
+      "revId": "a0f91e9b338bc1cc6eaf6d1f11a952e450fa64db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
