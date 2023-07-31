@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3ae79b6_345daa57",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1513,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-07-31T01:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28d18d2c_e58cb1c3",
+      "range": {
+        "startLine": 1513,
+        "startChar": 0,
+        "endLine": 1513,
+        "endChar": 73
+      },
+      "revId": "75ed1d693bfd48833bbd52a88291033d3466e5ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3690911_7d70cdbd",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-27T08:28:51Z",
       "side": 1,
       "message": "Can we use LOG_DEBUG instead here?",
+      "range": {
+        "startLine": 1547,
+        "startChar": 8,
+        "endLine": 1548,
+        "endChar": 72
+      },
+      "revId": "75ed1d693bfd48833bbd52a88291033d3466e5ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5a64db6_52997fd4",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1548,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-07-31T01:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3690911_7d70cdbd",
       "range": {
         "startLine": 1547,
         "startChar": 8,
