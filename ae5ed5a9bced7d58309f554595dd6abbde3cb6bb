@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6c40932_de68edd2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-07-31T09:22:29Z",
+      "side": 1,
+      "message": "Should you also update BassClientStateMachineTest.java ?",
+      "revId": "ae5ed5a9bced7d58309f554595dd6abbde3cb6bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
