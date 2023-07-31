@@ -16,6 +16,24 @@
       "message": "I am trying to understand why we have to wait for the device to be disconnected to remove the security record.\nCan we just remove the record straight away?",
       "revId": "5db08f20ea346f5f2145929ecf9da9fb897b19f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed53d3f_c672eb1a",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3100,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-07-31T20:54:57Z",
+      "side": 1,
+      "message": "Please see:\nhttps://source.corp.google.com/h/android/platform/superproject/+/android11-release:system/bt/bta/dm/bta_dm_act.cc;l\u003d2827\n\nThis code cleaning up GATT cache and security record was present since 2013, since initial LE support.\n\nIf we were to do all this cleanup before disconnection, you could end up with crashes if some app was to try to access GATT, or do some operations on device.",
+      "parentUuid": "05d6a375_a8d8e503",
+      "revId": "5db08f20ea346f5f2145929ecf9da9fb897b19f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
