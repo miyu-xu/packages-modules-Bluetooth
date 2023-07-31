@@ -22,6 +22,30 @@
       },
       "revId": "a0f91e9b338bc1cc6eaf6d1f11a952e450fa64db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe819595_cbe5f8a0",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-07-31T12:04:55Z",
+      "side": 1,
+      "message": "aptx_voice allows to set or reset Aptx SWB.\n```\nbt_status_t enable_aptx_swb_codec(bool enable) {\n  if (bluetooth::common::init_flags::aptx_voice_is_enabled()) {\n    LOG_INFO(\"%d\", enable);\n    aptx_swb_codec_status \u003d enable;\n    return BT_STATUS_SUCCESS;\n  }\n  return BT_STATUS_FAIL;\n}\n```\n\nAFAIK aptx_swb_power_management was supposed to manage enabling/disabling AptX SWB for calls:\n```\nHandle SWB codec selection based on network type\nand codecs selected over network during call\ninitiation.\n```\n\nWithout aptx_swb_power_management enabled, the AptX SWB can still be enabled/disabled for some scenarios (e.g. speech recognition).",
+      "parentUuid": "67b3884a_ba86b9dc",
+      "range": {
+        "startLine": 405,
+        "startChar": 8,
+        "endLine": 405,
+        "endChar": 18
+      },
+      "revId": "a0f91e9b338bc1cc6eaf6d1f11a952e450fa64db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
