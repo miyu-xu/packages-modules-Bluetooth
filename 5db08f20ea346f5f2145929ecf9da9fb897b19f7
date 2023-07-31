@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05d6a375_a8d8e503",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3100,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-07-31T20:19:52Z",
+      "side": 1,
+      "message": "I am trying to understand why we have to wait for the device to be disconnected to remove the security record.\nCan we just remove the record straight away?",
+      "revId": "5db08f20ea346f5f2145929ecf9da9fb897b19f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
