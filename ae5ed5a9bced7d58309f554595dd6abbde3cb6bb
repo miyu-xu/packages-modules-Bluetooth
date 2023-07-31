@@ -16,6 +16,24 @@
       "message": "Should you also update BassClientStateMachineTest.java ?",
       "revId": "ae5ed5a9bced7d58309f554595dd6abbde3cb6bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "566a2ec1_c8fe94bc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-07-31T17:12:24Z",
+      "side": 1,
+      "message": "good point, added some handle cleanup validation to the test case.",
+      "parentUuid": "f6c40932_de68edd2",
+      "revId": "ae5ed5a9bced7d58309f554595dd6abbde3cb6bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
