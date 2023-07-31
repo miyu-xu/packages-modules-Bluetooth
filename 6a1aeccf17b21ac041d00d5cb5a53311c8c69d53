@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "558c7a57_3c10aadd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-07-31T07:03:58Z",
+      "side": 1,
+      "message": "This part is quite unclear for me.\nIf device is being \"removed\" it will stop playing audio.\n\nDo you mean it\u0027s \"two device set\" and one of the devices disconnected ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 63,
+        "endLine": 10,
+        "endChar": 46
+      },
+      "revId": "6a1aeccf17b21ac041d00d5cb5a53311c8c69d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2cf1dafb_839dc812",
@@ -50,6 +73,29 @@
       "side": 1,
       "message": "I\u0027ve just tested the build that aosp/2508395 was first merged, and the log `setActiveDevice: Setting active Le Audio device` is printed.\n\nI used the media notification to change the output route.\n\nŁukasz, how do you change the output route to speaker?",
       "parentUuid": "613ec73c_c309c648",
+      "revId": "6a1aeccf17b21ac041d00d5cb5a53311c8c69d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab426fc4_a7b7b8e9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6080,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-07-31T07:03:58Z",
+      "side": 1,
+      "message": "by ?",
+      "range": {
+        "startLine": 6080,
+        "startChar": 29,
+        "endLine": 6080,
+        "endChar": 32
+      },
       "revId": "6a1aeccf17b21ac041d00d5cb5a53311c8c69d53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
