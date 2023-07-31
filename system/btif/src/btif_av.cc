@@ -2932,13 +2932,13 @@ static void btif_report_connection_state(const RawAddress& peer_address,
   if (btif_av_source.Enabled()) {
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(btif_av_source.Callbacks()->connection_state_cb,
+        base::BindOnce(btif_av_source.Callbacks()->connection_state_cb,
                    peer_address, state,
                    btav_error_t{.status = status, .error_code = error_code}));
   } else if (btif_av_sink.Enabled()) {
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(btif_av_sink.Callbacks()->connection_state_cb, peer_address,
+        base::BindOnce(btif_av_sink.Callbacks()->connection_state_cb, peer_address,
                    state,
                    btav_error_t{.status = status, .error_code = error_code}));
   }
@@ -2973,11 +2973,11 @@ static void btif_report_audio_state(const RawAddress& peer_address,
   }
   if (btif_av_source.Enabled()) {
     do_in_jni_thread(FROM_HERE,
-                     base::Bind(btif_av_source.Callbacks()->audio_state_cb,
+                     base::BindOnce(btif_av_source.Callbacks()->audio_state_cb,
                                 peer_address, state));
   } else if (btif_av_sink.Enabled()) {
     do_in_jni_thread(FROM_HERE,
-                     base::Bind(btif_av_sink.Callbacks()->audio_state_cb,
+                     base::BindOnce(btif_av_sink.Callbacks()->audio_state_cb,
                                 peer_address, state));
   }
 
@@ -3013,7 +3013,7 @@ void btif_av_report_source_codec_state(
   if (btif_av_source.Enabled()) {
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(btif_av_source.Callbacks()->audio_config_cb, peer_address,
+        base::BindOnce(btif_av_source.Callbacks()->audio_config_cb, peer_address,
                    codec_config, codecs_local_capabilities,
                    codecs_selectable_capabilities));
   }
@@ -3032,7 +3032,7 @@ static void btif_av_report_sink_audio_config_state(
            ADDRESS_TO_LOGGABLE_CSTR(peer_address), sample_rate, channel_count);
   if (btif_av_sink.Enabled()) {
     do_in_jni_thread(FROM_HERE,
-                     base::Bind(btif_av_sink.Callbacks()->audio_config_cb,
+                     base::BindOnce(btif_av_sink.Callbacks()->audio_config_cb,
                                 peer_address, sample_rate, channel_count));
   }
 }
@@ -3399,6 +3399,11 @@ static void bta_av_source_callback(tBTA_AV_EVT event, tBTA_AV* p_data) {
 
 static void bta_av_sink_callback(tBTA_AV_EVT event, tBTA_AV* p_data) {
   BtifAvEvent btif_av_event(event, p_data, sizeof(tBTA_AV));
+<<<<<<< PATCH SET (29e717 floss: Migrate base::Bind in do_in_(jni|main)_thread)
+  do_in_main_thread(FROM_HERE,
+                    base::BindOnce(&btif_av_handle_bta_av_event,
+                               AVDT_TSEP_SRC /* peer_sep */, btif_av_event));
+=======
   do_in_main_thread(
       FROM_HERE, base::BindOnce(&btif_av_handle_bta_av_event,
                                 AVDT_TSEP_SRC /* peer_sep */, btif_av_event));
@@ -3418,6 +3423,7 @@ static void bta_av_event_callback(tBTA_AV_EVT event, tBTA_AV* p_data) {
   }
 
   return bta_av_source_callback(event, p_data);
+>>>>>>> BASE      (e986f0 Merge "Increase connection timeout for phonepolicyTest" into)
 }
 
 // TODO: All processing should be done on the JNI thread

@@ -56,7 +56,7 @@ class ActivityAttributionInterfaceImpl
   void OnWakeup(const Activity activity,
                 const bluetooth::hci::Address& address) override {
     do_in_jni_thread(
-        FROM_HERE, base::Bind(&ActivityAttributionCallbacks::OnWakeup,
+        FROM_HERE, base::BindOnce(&ActivityAttributionCallbacks::OnWakeup,
                               base::Unretained(callbacks),
                               (ActivityAttributionCallbacks::Activity)activity,
                               bluetooth::ToRawAddress(address)));
@@ -75,7 +75,7 @@ class ActivityAttributionInterfaceImpl
     }
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(&ActivityAttributionCallbacks::OnActivityLogsReady,
+        base::BindOnce(&ActivityAttributionCallbacks::OnActivityLogsReady,
                    base::Unretained(callbacks), callback_logs));
   }
 

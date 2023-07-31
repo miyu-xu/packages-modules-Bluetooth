@@ -671,7 +671,7 @@ void handle_rc_ctrl_features(btif_rc_device_cb_t* p_dev) {
   }
 
   BTIF_TRACE_DEBUG("%s: Update rc features to CTRL: %d", __func__, rc_features);
-  do_in_jni_thread(FROM_HERE, base::Bind(bt_rc_ctrl_callbacks->getrcfeatures_cb,
+  do_in_jni_thread(FROM_HERE, base::BindOnce(bt_rc_ctrl_callbacks->getrcfeatures_cb,
                                          p_dev->rc_addr, rc_features));
 }
 void btif_rc_check_pending_cmd(const RawAddress& peer_address) {
@@ -714,12 +714,19 @@ void btif_rc_check_pending_cmd(const RawAddress& peer_address) {
 void handle_rc_ctrl_psm(btif_rc_device_cb_t* p_dev) {
   uint16_t cover_art_psm = p_dev->rc_cover_art_psm;
   BTIF_TRACE_DEBUG("%s: Update rc cover art psm to CTRL: %d", __func__,
+<<<<<<< PATCH SET (29e717 floss: Migrate base::Bind in do_in_(jni|main)_thread)
+      cover_art_psm);
+  do_in_jni_thread(FROM_HERE, base::BindOnce(
+      bt_rc_ctrl_callbacks->get_cover_art_psm_cb,
+      p_dev->rc_addr, cover_art_psm));
+=======
                    cover_art_psm);
   if (bt_rc_ctrl_callbacks != NULL) {
     do_in_jni_thread(FROM_HERE,
                      base::Bind(bt_rc_ctrl_callbacks->get_cover_art_psm_cb,
                                 p_dev->rc_addr, cover_art_psm));
   }
+>>>>>>> BASE      (e986f0 Merge "Increase connection timeout for phonepolicyTest" into)
 }
 
 void handle_rc_features(btif_rc_device_cb_t* p_dev) {
@@ -800,6 +807,10 @@ void handle_rc_browse_connect(tBTA_AV_RC_BROWSE_OPEN* p_rc_br_open) {
    * probably not preferred anyways. */
   if (p_rc_br_open->status == BTA_AV_SUCCESS) {
     p_dev->br_connected = true;
+<<<<<<< PATCH SET (29e717 floss: Migrate base::Bind in do_in_(jni|main)_thread)
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(bt_rc_ctrl_callbacks->connection_state_cb, true,
+=======
     if (btif_av_src_sink_coexist_enabled()) {
       if (btif_av_peer_is_connected_source(p_dev->rc_addr)) {
         if (bt_rc_ctrl_callbacks != NULL) {
@@ -814,6 +825,7 @@ void handle_rc_browse_connect(tBTA_AV_RC_BROWSE_OPEN* p_rc_br_open) {
     } else {
       do_in_jni_thread(
           FROM_HERE, base::Bind(bt_rc_ctrl_callbacks->connection_state_cb, true,
+>>>>>>> BASE      (e986f0 Merge "Increase connection timeout for phonepolicyTest" into)
                                 true, p_dev->rc_addr));
     }
   }
@@ -895,7 +907,7 @@ void handle_rc_connect(tBTA_AV_RC_OPEN* p_rc_open) {
   }
   if (bt_rc_ctrl_callbacks != NULL) {
     do_in_jni_thread(FROM_HERE,
-                     base::Bind(bt_rc_ctrl_callbacks->connection_state_cb, true,
+                     base::BindOnce(bt_rc_ctrl_callbacks->connection_state_cb, true,
                                 false, p_dev->rc_addr));
     /* report connection state if remote device is AVRCP target */
     handle_rc_ctrl_features(p_dev);
@@ -932,7 +944,7 @@ void handle_rc_disconnect(tBTA_AV_RC_CLOSE* p_rc_close) {
   /* Report connection state if device is AVRCP target */
   if (bt_rc_ctrl_callbacks != NULL) {
     do_in_jni_thread(
-        FROM_HERE, base::Bind(bt_rc_ctrl_callbacks->connection_state_cb, false,
+        FROM_HERE, base::BindOnce(bt_rc_ctrl_callbacks->connection_state_cb, false,
                               false, p_dev->rc_addr));
   }
 
@@ -1035,7 +1047,7 @@ void handle_rc_passthrough_rsp(tBTA_AV_REMOTE_RSP* p_remote_rsp) {
   if (bt_rc_ctrl_callbacks != NULL) {
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(bt_rc_ctrl_callbacks->passthrough_rsp_cb, p_dev->rc_addr,
+        base::BindOnce(bt_rc_ctrl_callbacks->passthrough_rsp_cb, p_dev->rc_addr,
                    p_remote_rsp->rc_id, p_remote_rsp->key_state));
   }
 }
@@ -1080,7 +1092,7 @@ void handle_rc_vendorunique_rsp(tBTA_AV_REMOTE_RSP* p_remote_rsp) {
 
     release_transaction(p_dev, p_remote_rsp->label);
     do_in_jni_thread(FROM_HERE,
-                     base::Bind(bt_rc_ctrl_callbacks->groupnavigation_rsp_cb,
+                     base::BindOnce(bt_rc_ctrl_callbacks->groupnavigation_rsp_cb,
                                 vendor_id, key_state));
   } else {
     BTIF_TRACE_ERROR("%s: Remote does not support AVRCP TG role", __func__);
@@ -1905,14 +1917,14 @@ static void btif_rc_ctrl_upstreams_rsp_cmd(uint8_t event,
     case AVRC_PDU_SET_ABSOLUTE_VOLUME:
       do_in_jni_thread(
           FROM_HERE,
-          base::Bind(bt_rc_ctrl_callbacks->setabsvol_cmd_cb, p_dev->rc_addr,
+          base::BindOnce(bt_rc_ctrl_callbacks->setabsvol_cmd_cb, p_dev->rc_addr,
                      pavrc_cmd->volume.volume, label));
       break;
     case AVRC_PDU_REGISTER_NOTIFICATION:
       if (pavrc_cmd->reg_notif.event_id == AVRC_EVT_VOLUME_CHANGE) {
         do_in_jni_thread(
             FROM_HERE,
-            base::Bind(bt_rc_ctrl_callbacks->registernotification_absvol_cb,
+            base::BindOnce(bt_rc_ctrl_callbacks->registernotification_absvol_cb,
                        p_dev->rc_addr, label));
       }
       break;
@@ -3319,7 +3331,7 @@ static void handle_notification_response(tBTA_AV_META_MSG* pmeta_msg,
         get_play_status_cmd(p_dev);
         do_in_jni_thread(
             FROM_HERE,
-            base::Bind(bt_rc_ctrl_callbacks->play_status_changed_cb,
+            base::BindOnce(bt_rc_ctrl_callbacks->play_status_changed_cb,
                        p_dev->rc_addr,
                        (btrc_play_status_t)p_rsp->param.play_status));
         break;
@@ -3342,7 +3354,7 @@ static void handle_notification_response(tBTA_AV_META_MSG* pmeta_msg,
       case AVRC_EVT_NOW_PLAYING_CHANGE:
         do_in_jni_thread(
             FROM_HERE,
-            base::Bind(bt_rc_ctrl_callbacks->now_playing_contents_changed_cb,
+            base::BindOnce(bt_rc_ctrl_callbacks->now_playing_contents_changed_cb,
                        p_dev->rc_addr));
         break;
 
@@ -3350,19 +3362,19 @@ static void handle_notification_response(tBTA_AV_META_MSG* pmeta_msg,
         BTIF_TRACE_DEBUG("%s: AVRC_EVT_AVAL_PLAYERS_CHANGE", __func__);
         do_in_jni_thread(
             FROM_HERE,
-            base::Bind(bt_rc_ctrl_callbacks->available_player_changed_cb,
+            base::BindOnce(bt_rc_ctrl_callbacks->available_player_changed_cb,
                        p_dev->rc_addr));
         break;
 
       case AVRC_EVT_ADDR_PLAYER_CHANGE:
         do_in_jni_thread(
             FROM_HERE,
-            base::Bind(bt_rc_ctrl_callbacks->addressed_player_changed_cb,
+            base::BindOnce(bt_rc_ctrl_callbacks->addressed_player_changed_cb,
                        p_dev->rc_addr, p_rsp->param.addr_player.player_id));
         break;
 
       case AVRC_EVT_PLAY_POS_CHANGED:
-        do_in_jni_thread(FROM_HERE, base::Bind(bt_rc_ctrl_callbacks->play_position_changed_cb, p_dev->rc_addr, 0,
+        do_in_jni_thread(FROM_HERE, base::BindOnce(bt_rc_ctrl_callbacks->play_position_changed_cb, p_dev->rc_addr, 0,
                                                p_rsp->param.play_pos));
 
         break;
@@ -3434,7 +3446,7 @@ static void handle_notification_response(tBTA_AV_META_MSG* pmeta_msg,
          */
         do_in_jni_thread(
             FROM_HERE,
-            base::Bind(bt_rc_ctrl_callbacks->play_status_changed_cb,
+            base::BindOnce(bt_rc_ctrl_callbacks->play_status_changed_cb,
                        p_dev->rc_addr,
                        (btrc_play_status_t)p_rsp->param.play_status));
 
@@ -3459,7 +3471,7 @@ static void handle_notification_response(tBTA_AV_META_MSG* pmeta_msg,
         }
         do_in_jni_thread(
             FROM_HERE,
-            base::Bind(
+            base::BindOnce(
                 bt_rc_ctrl_callbacks->playerapplicationsetting_changed_cb,
                 p_dev->rc_addr, app_settings));
       } break;
@@ -3592,7 +3604,7 @@ static void handle_app_val_response(tBTA_AV_META_MSG* pmeta_msg,
       get_player_app_setting_cmd(p_app_settings->num_attrs, attrs, p_dev);
       do_in_jni_thread(
           FROM_HERE,
-          base::Bind(bt_rc_ctrl_callbacks->playerapplicationsetting_cb,
+          base::BindOnce(bt_rc_ctrl_callbacks->playerapplicationsetting_cb,
                      p_dev->rc_addr, p_app_settings->num_attrs,
                      p_app_settings->attrs, 0, nullptr));
     }
@@ -3663,7 +3675,7 @@ static void handle_app_cur_val_response(tBTA_AV_META_MSG* pmeta_msg,
 
   do_in_jni_thread(
       FROM_HERE,
-      base::Bind(bt_rc_ctrl_callbacks->playerapplicationsetting_changed_cb,
+      base::BindOnce(bt_rc_ctrl_callbacks->playerapplicationsetting_changed_cb,
                  p_dev->rc_addr, app_settings));
   /* Application settings are fetched only once for initial values
    * initiate anything that follows after RC procedure.
@@ -3723,7 +3735,7 @@ static void handle_app_attr_txt_response(tBTA_AV_META_MSG* pmeta_msg,
     }
 
     do_in_jni_thread(
-        FROM_HERE, base::Bind(bt_rc_ctrl_callbacks->playerapplicationsetting_cb,
+        FROM_HERE, base::BindOnce(bt_rc_ctrl_callbacks->playerapplicationsetting_cb,
                               p_dev->rc_addr, p_app_settings->num_attrs,
                               p_app_settings->attrs, 0, nullptr));
     get_player_app_setting_cmd(xx, attrs, p_dev);
@@ -3807,7 +3819,7 @@ static void handle_app_attr_val_txt_response(
       attrs[xx] = p_app_settings->attrs[xx].attr_id;
     }
     do_in_jni_thread(
-        FROM_HERE, base::Bind(bt_rc_ctrl_callbacks->playerapplicationsetting_cb,
+        FROM_HERE, base::BindOnce(bt_rc_ctrl_callbacks->playerapplicationsetting_cb,
                               p_dev->rc_addr, p_app_settings->num_attrs,
                               p_app_settings->attrs, 0, nullptr));
 
@@ -3853,7 +3865,7 @@ static void handle_app_attr_val_txt_response(
     }
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(bt_rc_ctrl_callbacks->playerapplicationsetting_cb,
+        base::BindOnce(bt_rc_ctrl_callbacks->playerapplicationsetting_cb,
                    p_dev->rc_addr, p_app_settings->num_attrs,
                    p_app_settings->attrs, p_app_settings->num_ext_attrs,
                    p_app_settings->ext_attrs));
@@ -3862,7 +3874,7 @@ static void handle_app_attr_val_txt_response(
     /* Free the application settings information after sending to
      * application.
      */
-    do_in_jni_thread(FROM_HERE, base::Bind(cleanup_app_attr_val_txt_response,
+    do_in_jni_thread(FROM_HERE, base::BindOnce(cleanup_app_attr_val_txt_response,
                                            p_app_settings));
     p_app_settings->num_attrs = 0;
   }
@@ -3919,7 +3931,7 @@ static void handle_set_app_attr_val_response(tBTA_AV_META_MSG* pmeta_msg,
     accepted = 1;
   }
   do_in_jni_thread(FROM_HERE,
-                   base::Bind(bt_rc_ctrl_callbacks->setplayerappsetting_rsp_cb,
+                   base::BindOnce(bt_rc_ctrl_callbacks->setplayerappsetting_rsp_cb,
                               p_dev->rc_addr, accepted));
 }
 
@@ -3958,9 +3970,9 @@ static void handle_get_metadata_attr_response(tBTA_AV_META_MSG* pmeta_msg,
       }
     }
     do_in_jni_thread(FROM_HERE,
-                     base::Bind(bt_rc_ctrl_callbacks->track_changed_cb,
+                     base::BindOnce(bt_rc_ctrl_callbacks->track_changed_cb,
                                 p_dev->rc_addr, p_rsp->num_attrs, p_attr));
-    do_in_jni_thread(FROM_HERE, base::Bind(osi_free, p_attr));
+    do_in_jni_thread(FROM_HERE, base::BindOnce(osi_free, p_attr));
   } else if (p_rsp->status == BTIF_RC_STS_TIMEOUT) {
     /* Retry for timeout case, this covers error handling
      * for continuation failure also.
@@ -3998,11 +4010,11 @@ static void handle_get_playstatus_response(tBTA_AV_META_MSG* pmeta_msg,
   if (p_rsp->status == AVRC_STS_NO_ERROR) {
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(bt_rc_ctrl_callbacks->play_status_changed_cb, p_dev->rc_addr,
+        base::BindOnce(bt_rc_ctrl_callbacks->play_status_changed_cb, p_dev->rc_addr,
                    (btrc_play_status_t)p_rsp->play_status));
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(bt_rc_ctrl_callbacks->play_position_changed_cb,
+        base::BindOnce(bt_rc_ctrl_callbacks->play_position_changed_cb,
                    p_dev->rc_addr, p_rsp->song_len, p_rsp->song_pos));
   } else {
     BTIF_TRACE_ERROR("%s: Error in get play status procedure: %d", __func__,
@@ -4033,7 +4045,7 @@ static void handle_set_addressed_player_response(tBTA_AV_META_MSG* pmeta_msg,
 
   if (p_rsp->status == AVRC_STS_NO_ERROR) {
     do_in_jni_thread(FROM_HERE,
-                     base::Bind(bt_rc_ctrl_callbacks->set_addressed_player_cb,
+                     base::BindOnce(bt_rc_ctrl_callbacks->set_addressed_player_cb,
                                 p_dev->rc_addr, p_rsp->status));
   } else {
     BTIF_TRACE_ERROR("%s: Error in get play status procedure %d", __func__,
@@ -4095,7 +4107,7 @@ static void handle_get_folder_items_response(tBTA_AV_META_MSG* pmeta_msg,
 
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(bt_rc_ctrl_callbacks->get_folder_items_cb, p_dev->rc_addr,
+        base::BindOnce(bt_rc_ctrl_callbacks->get_folder_items_cb, p_dev->rc_addr,
                    BTRC_STS_NO_ERROR,
                    /* We want to make the ownership explicit in native */
                    btrc_items, item_count));
@@ -4109,7 +4121,7 @@ static void handle_get_folder_items_response(tBTA_AV_META_MSG* pmeta_msg,
     /* Release the memory block for items and attributes allocated here.
      * Since the executor for do_in_jni_thread is a Single Thread Task Runner it
      * is okay to queue up the cleanup of btrc_items */
-    do_in_jni_thread(FROM_HERE, base::Bind(cleanup_btrc_folder_items,
+    do_in_jni_thread(FROM_HERE, base::BindOnce(cleanup_btrc_folder_items,
                                            btrc_items, item_count));
 
     BTIF_TRACE_DEBUG("%s get_folder_items_cb sent to JNI thread", __func__);
@@ -4117,7 +4129,7 @@ static void handle_get_folder_items_response(tBTA_AV_META_MSG* pmeta_msg,
     BTIF_TRACE_ERROR("%s: Error %d", __func__, p_rsp->status);
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(bt_rc_ctrl_callbacks->get_folder_items_cb, p_dev->rc_addr,
+        base::BindOnce(bt_rc_ctrl_callbacks->get_folder_items_cb, p_dev->rc_addr,
                    (btrc_status_t)p_rsp->status, nullptr, 0));
   }
 }
@@ -4342,7 +4354,7 @@ static void handle_change_path_response(tBTA_AV_META_MSG* pmeta_msg,
 
   if (p_rsp->status == AVRC_STS_NO_ERROR) {
     do_in_jni_thread(FROM_HERE,
-                     base::Bind(bt_rc_ctrl_callbacks->change_folder_path_cb,
+                     base::BindOnce(bt_rc_ctrl_callbacks->change_folder_path_cb,
                                 p_dev->rc_addr, p_rsp->num_items));
   } else {
     BTIF_TRACE_ERROR("%s error in handle_change_path_response %d", __func__,
@@ -4372,7 +4384,7 @@ static void handle_set_browsed_player_response(tBTA_AV_META_MSG* pmeta_msg,
   if (p_rsp->status == AVRC_STS_NO_ERROR) {
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(bt_rc_ctrl_callbacks->set_browsed_player_cb, p_dev->rc_addr,
+        base::BindOnce(bt_rc_ctrl_callbacks->set_browsed_player_cb, p_dev->rc_addr,
                    p_rsp->num_items, p_rsp->folder_depth));
   } else {
     BTIF_TRACE_ERROR("%s error %d", __func__, p_rsp->status);
