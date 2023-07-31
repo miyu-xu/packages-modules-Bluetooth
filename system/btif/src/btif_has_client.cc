@@ -57,28 +57,34 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
 
     do_in_main_thread(
         FROM_HERE,
-        Bind(&HasClient::Initialize, this,
-             jni_thread_wrapper(
-                 FROM_HERE,
-                 Bind(&btif_storage_load_bonded_leaudio_has_devices))));
+        base::BindOnce(
+            &HasClient::Initialize, this,
+            jni_thread_wrapper(
+                FROM_HERE,
+                base::BindOnce(
+                    &btif_storage_load_bonded_leaudio_has_devices))));
   }
 
   void Connect(const RawAddress& addr) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_main_thread(FROM_HERE, Bind(&HasClient::Connect,
-                                      Unretained(HasClient::Get()), addr));
+    do_in_main_thread(FROM_HERE,
+                      base::BindOnce(&HasClient::Connect,
+                                     Unretained(HasClient::Get()), addr));
 
     do_in_jni_thread(
-        FROM_HERE, Bind(&btif_storage_set_leaudio_has_acceptlist, addr, true));
+        FROM_HERE,
+        base::BindOnce(&btif_storage_set_leaudio_has_acceptlist, addr, true));
   }
 
   void Disconnect(const RawAddress& addr) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_main_thread(FROM_HERE, Bind(&HasClient::Disconnect,
-                                      Unretained(HasClient::Get()), addr));
+    do_in_main_thread(FROM_HERE,
+                      base::BindOnce(&HasClient::Disconnect,
+                                     Unretained(HasClient::Get()), addr));
 
     do_in_jni_thread(
-        FROM_HERE, Bind(&btif_storage_set_leaudio_has_acceptlist, addr, false));
+        FROM_HERE,
+        base::BindOnce(&btif_storage_set_leaudio_has_acceptlist, addr, false));
   }
 
   void SelectActivePreset(std::variant<RawAddress, int> addr_or_group_id,
@@ -86,36 +92,37 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
     DVLOG(2) << __func__ << " preset_index: " << preset_index;
 
     do_in_main_thread(
-        FROM_HERE,
-        Bind(&HasClient::SelectActivePreset, Unretained(HasClient::Get()),
-             std::move(addr_or_group_id), preset_index));
+        FROM_HERE, base::BindOnce(&HasClient::SelectActivePreset,
+                                  Unretained(HasClient::Get()),
+                                  std::move(addr_or_group_id), preset_index));
   }
 
   void NextActivePreset(
       std::variant<RawAddress, int> addr_or_group_id) override {
     DVLOG(2) << __func__;
 
-    do_in_main_thread(FROM_HERE, Bind(&HasClient::NextActivePreset,
-                                      Unretained(HasClient::Get()),
-                                      std::move(addr_or_group_id)));
+    do_in_main_thread(FROM_HERE, base::BindOnce(&HasClient::NextActivePreset,
+                                                Unretained(HasClient::Get()),
+                                                std::move(addr_or_group_id)));
   }
 
   void PreviousActivePreset(
       std::variant<RawAddress, int> addr_or_group_id) override {
     DVLOG(2) << __func__;
 
-    do_in_main_thread(FROM_HERE, Bind(&HasClient::PreviousActivePreset,
-                                      Unretained(HasClient::Get()),
-                                      std::move(addr_or_group_id)));
+    do_in_main_thread(FROM_HERE,
+                      base::BindOnce(&HasClient::PreviousActivePreset,
+                                     Unretained(HasClient::Get()),
+                                     std::move(addr_or_group_id)));
   }
 
   void GetPresetInfo(const RawAddress& addr, uint8_t preset_index) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
              << " preset_index: " << preset_index;
 
-    do_in_main_thread(
-        FROM_HERE, Bind(&HasClient::GetPresetInfo, Unretained(HasClient::Get()),
-                        addr, preset_index));
+    do_in_main_thread(FROM_HERE, base::BindOnce(&HasClient::GetPresetInfo,
+                                                Unretained(HasClient::Get()),
+                                                addr, preset_index));
   }
 
   void SetPresetName(std::variant<RawAddress, int> addr_or_group_id,
@@ -124,9 +131,10 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
              << " preset_name: " << preset_name;
 
     do_in_main_thread(
-        FROM_HERE, Bind(&HasClient::SetPresetName, Unretained(HasClient::Get()),
-                        std::move(addr_or_group_id), preset_index,
-                        std::move(preset_name)));
+        FROM_HERE,
+        base::BindOnce(&HasClient::SetPresetName, Unretained(HasClient::Get()),
+                       std::move(addr_or_group_id), preset_index,
+                       std::move(preset_name)));
   }
 
   void RemoveDevice(const RawAddress& addr) override {
@@ -134,39 +142,44 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
 
     /* RemoveDevice can be called on devices that don't have BAS enabled */
     if (HasClient::IsHasClientRunning()) {
-      do_in_main_thread(FROM_HERE, Bind(&HasClient::Disconnect,
-                                        Unretained(HasClient::Get()), addr));
+      do_in_main_thread(FROM_HERE,
+                        base::BindOnce(&HasClient::Disconnect,
+                                       Unretained(HasClient::Get()), addr));
     }
 
-    do_in_jni_thread(FROM_HERE, Bind(&btif_storage_remove_leaudio_has, addr));
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(&btif_storage_remove_leaudio_has, addr));
   }
 
   void Cleanup(void) override {
     DVLOG(2) << __func__;
-    do_in_main_thread(FROM_HERE, Bind(&HasClient::CleanUp));
+    do_in_main_thread(FROM_HERE, base::BindOnce(&HasClient::CleanUp));
   }
 
   void OnConnectionState(ConnectionState state,
                          const RawAddress& addr) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_jni_thread(FROM_HERE, Bind(&HasClientCallbacks::OnConnectionState,
-                                     Unretained(callbacks_), state, addr));
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(&HasClientCallbacks::OnConnectionState,
+                                    Unretained(callbacks_), state, addr));
   }
 
   void OnDeviceAvailable(const RawAddress& addr, uint8_t features) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
              << " features: " << features;
 
-    do_in_jni_thread(FROM_HERE, Bind(&HasClientCallbacks::OnDeviceAvailable,
-                                     Unretained(callbacks_), addr, features));
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(&HasClientCallbacks::OnDeviceAvailable,
+                                    Unretained(callbacks_), addr, features));
   }
 
   void OnFeaturesUpdate(const RawAddress& addr, uint8_t features) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
              << " ha_features: " << std::bitset<8>(features);
 
-    do_in_jni_thread(FROM_HERE, Bind(&HasClientCallbacks::OnFeaturesUpdate,
-                                     Unretained(callbacks_), addr, features));
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(&HasClientCallbacks::OnFeaturesUpdate,
+                                    Unretained(callbacks_), addr, features));
   }
 
   void OnActivePresetSelected(std::variant<RawAddress, int> addr_or_group_id,
@@ -174,9 +187,9 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
     DVLOG(2) << __func__ << " preset_index: " << preset_index;
 
     do_in_jni_thread(FROM_HERE,
-                     Bind(&HasClientCallbacks::OnActivePresetSelected,
-                          Unretained(callbacks_), std::move(addr_or_group_id),
-                          preset_index));
+                     base::BindOnce(&HasClientCallbacks::OnActivePresetSelected,
+                                    Unretained(callbacks_),
+                                    std::move(addr_or_group_id), preset_index));
   }
 
   void OnActivePresetSelectError(std::variant<RawAddress, int> addr_or_group_id,
@@ -186,8 +199,9 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
 
     do_in_jni_thread(
         FROM_HERE,
-        Bind(&HasClientCallbacks::OnActivePresetSelectError,
-             Unretained(callbacks_), std::move(addr_or_group_id), result_code));
+        base::BindOnce(&HasClientCallbacks::OnActivePresetSelectError,
+                       Unretained(callbacks_), std::move(addr_or_group_id),
+                       result_code));
   }
 
   void OnPresetInfo(std::variant<RawAddress, int> addr_or_group_id,
@@ -202,10 +216,11 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
                << ", name: " << rec.preset_name;
     }
 
-    do_in_jni_thread(FROM_HERE,
-                     Bind(&HasClientCallbacks::OnPresetInfo,
-                          Unretained(callbacks_), std::move(addr_or_group_id),
-                          change_id, std::move(detail_records)));
+    do_in_jni_thread(
+        FROM_HERE,
+        base::BindOnce(&HasClientCallbacks::OnPresetInfo,
+                       Unretained(callbacks_), std::move(addr_or_group_id),
+                       change_id, std::move(detail_records)));
   }
 
   void OnPresetInfoError(std::variant<RawAddress, int> addr_or_group_id,
@@ -215,8 +230,9 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
 
     do_in_jni_thread(
         FROM_HERE,
-        Bind(&HasClientCallbacks::OnPresetInfoError, Unretained(callbacks_),
-             std::move(addr_or_group_id), preset_index, result_code));
+        base::BindOnce(&HasClientCallbacks::OnPresetInfoError,
+                       Unretained(callbacks_), std::move(addr_or_group_id),
+                       preset_index, result_code));
   }
 
   void OnSetPresetNameError(std::variant<RawAddress, int> addr_or_group_id,
@@ -227,8 +243,9 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
 
     do_in_jni_thread(
         FROM_HERE,
-        Bind(&HasClientCallbacks::OnSetPresetNameError, Unretained(callbacks_),
-             std::move(addr_or_group_id), preset_index, result_code));
+        base::BindOnce(&HasClientCallbacks::OnSetPresetNameError,
+                       Unretained(callbacks_), std::move(addr_or_group_id),
+                       preset_index, result_code));
   }
 
  private:
