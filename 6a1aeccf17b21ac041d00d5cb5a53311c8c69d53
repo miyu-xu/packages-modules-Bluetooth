@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5220720_96306f63",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-31T08:17:41Z",
+      "side": 1,
+      "message": "When switching between active devices, the device which will stop to be active (in terms of api it will be removed (removeActiveDevice), should not stop audio, because there is another device which will take over playing it.",
+      "parentUuid": "558c7a57_3c10aadd",
+      "range": {
+        "startLine": 9,
+        "startChar": 63,
+        "endLine": 10,
+        "endChar": 46
+      },
+      "revId": "6a1aeccf17b21ac041d00d5cb5a53311c8c69d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2cf1dafb_839dc812",
@@ -108,6 +132,30 @@
       "writtenOn": "2023-07-31T07:03:58Z",
       "side": 1,
       "message": "by ?",
+      "range": {
+        "startLine": 6080,
+        "startChar": 29,
+        "endLine": 6080,
+        "endChar": 32
+      },
+      "revId": "6a1aeccf17b21ac041d00d5cb5a53311c8c69d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab690161_d62abff2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6080,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-31T08:17:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab426fc4_a7b7b8e9",
       "range": {
         "startLine": 6080,
         "startChar": 29,
