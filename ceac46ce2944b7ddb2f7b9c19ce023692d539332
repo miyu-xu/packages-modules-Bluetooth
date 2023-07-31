@@ -34,6 +34,24 @@
       "parentUuid": "c85ba571_7e0386dd",
       "revId": "ceac46ce2944b7ddb2f7b9c19ce023692d539332",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31220c5d_213e6c0a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-07-31T14:43:29Z",
+      "side": 1,
+      "message": "The above link accidentally contains a comma, here\u0027s the correct one: go/floss-mmc",
+      "parentUuid": "7fa30507_6325772e",
+      "revId": "ceac46ce2944b7ddb2f7b9c19ce023692d539332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
