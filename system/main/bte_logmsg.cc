@@ -111,7 +111,7 @@ void LogMsg(uint32_t trace_set_mask,
       break;
     case TRACE_TYPE_API:
     case TRACE_TYPE_EVENT:
-      LOG_INFO_INT(_LOG_SRC_FMT_STR "%s", filename, linenum, func, buffer);
+      LOG_DEBUG_INT(_LOG_SRC_FMT_STR "%s", filename, linenum, func, buffer);
       break;
     case TRACE_TYPE_DEBUG:
       LOG_DEBUG_INT(_LOG_SRC_FMT_STR "%s", filename, linenum, func, buffer);
