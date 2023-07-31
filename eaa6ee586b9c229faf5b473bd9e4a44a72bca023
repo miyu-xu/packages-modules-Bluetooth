@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c08468d_deed0711",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-07-31T22:11:58Z",
+      "side": 1,
+      "message": "Cover art is weird.\n\nThe new track we update to will include a (potentially) new image handle/URI. If it\u0027s new, the client will hit our provider with the URI, which will trigger the download from the remote device. Those images are cached, so long as they\u0027re needed by either the current metadata or the tree (if supported). So cover art is covered here.",
+      "parentUuid": "7e63cdb1_63550951",
+      "revId": "eaa6ee586b9c229faf5b473bd9e4a44a72bca023",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "591a9b21_7f067593",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-07-31T21:51:56Z",
       "side": 1,
       "message": "What\u0027s AOSP\u0027s guideline regarding java docs? Should it be updated to indicate the new return type?",
+      "revId": "eaa6ee586b9c229faf5b473bd9e4a44a72bca023",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "207146bb_927cca3f",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-07-31T22:11:58Z",
+      "side": 1,
+      "message": "Javadoc clearly isn\u0027t well enforced-- none of our public interfaces are perfectly defined 😞. This one didn\u0027t even have a return value to being with. Heck, we probably want this to be package private (But I\u0027d want to do a quick audit before doing that).\n\nI\u0027m happy to update with a return type, but perhaps its best as the scope of a bigger clean up change.",
+      "parentUuid": "591a9b21_7f067593",
       "revId": "eaa6ee586b9c229faf5b473bd9e4a44a72bca023",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
