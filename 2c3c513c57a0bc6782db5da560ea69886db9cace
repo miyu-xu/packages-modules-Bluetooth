@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee44c42b_bed1c62a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 503,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-07-31T18:20:57Z",
+      "side": 1,
+      "message": "tuple is confusing now that this is bigger. Let\u0027s use struct:\n```\nstruct SigData {\n  enabled: Mutex\u003cbool\u003e,\n  enabled_notify: Condvar,\n  \n  thread_attached: Mutex\u003cbool\u003e,\n  thread_notify: Condvar,\n}\n\n...\nsig_notifier: Arc\u003cSigData\u003e\n```",
+      "revId": "2c3c513c57a0bc6782db5da560ea69886db9cace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
