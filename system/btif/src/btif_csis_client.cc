@@ -52,9 +52,10 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
 
     do_in_main_thread(
         FROM_HERE,
-        Bind(&CsisClient::Initialize, this,
-             jni_thread_wrapper(FROM_HERE,
-                                Bind(&btif_storage_load_bonded_csis_devices))));
+        base::BindOnce(
+            &CsisClient::Initialize, this,
+            jni_thread_wrapper(FROM_HERE,
+                               Bind(&btif_storage_load_bonded_csis_devices))));
     /* It might be not yet initialized, but setting this flag here is safe,
      * because other calls will check this and the native instance
      */
@@ -70,8 +71,9 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
     }
 
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_main_thread(FROM_HERE, Bind(&CsisClient::Connect,
-                                      Unretained(CsisClient::Get()), addr));
+    do_in_main_thread(FROM_HERE,
+                      base::BindOnce(&CsisClient::Connect,
+                                     Unretained(CsisClient::Get()), addr));
   }
 
   void Disconnect(const RawAddress& addr) override {
@@ -83,8 +85,9 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
     }
 
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_main_thread(FROM_HERE, Bind(&CsisClient::Disconnect,
-                                      Unretained(CsisClient::Get()), addr));
+    do_in_main_thread(FROM_HERE,
+                      base::BindOnce(&CsisClient::Disconnect,
+                                     Unretained(CsisClient::Get()), addr));
   }
 
   void RemoveDevice(const RawAddress& addr) override {
@@ -94,15 +97,18 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
                   "service being not ready";
 
       /* Clear storage */
-      do_in_jni_thread(FROM_HERE, Bind(&btif_storage_remove_csis_device, addr));
+      do_in_jni_thread(FROM_HERE,
+                       base::BindOnce(&btif_storage_remove_csis_device, addr));
       return;
     }
 
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_main_thread(FROM_HERE, Bind(&CsisClient::RemoveDevice,
-                                      Unretained(CsisClient::Get()), addr));
+    do_in_main_thread(FROM_HERE,
+                      base::BindOnce(&CsisClient::RemoveDevice,
+                                     Unretained(CsisClient::Get()), addr));
     /* Clear storage */
-    do_in_jni_thread(FROM_HERE, Bind(&btif_storage_remove_csis_device, addr));
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(&btif_storage_remove_csis_device, addr));
   }
 
   void LockGroup(int group_id, bool lock) override {
@@ -115,8 +121,9 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
 
     DVLOG(2) << __func__ << " group id: " << group_id << " lock: " << lock;
     do_in_main_thread(
-        FROM_HERE, Bind(&CsisClient::LockGroup, Unretained(CsisClient::Get()),
-                        group_id, lock, base::DoNothing()));
+        FROM_HERE,
+        base::BindOnce(&CsisClient::LockGroup, Unretained(CsisClient::Get()),
+                       group_id, lock, base::DoNothing()));
   }
 
   void Cleanup(void) override {
@@ -129,14 +136,15 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
 
     DVLOG(2) << __func__;
     initialized = false;
-    do_in_main_thread(FROM_HERE, Bind(&CsisClient::CleanUp));
+    do_in_main_thread(FROM_HERE, base::BindOnce(&CsisClient::CleanUp));
   }
 
   void OnConnectionState(const RawAddress& addr,
                          ConnectionState state) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_jni_thread(FROM_HERE, Bind(&CsisClientCallbacks::OnConnectionState,
-                                     Unretained(callbacks_), addr, state));
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(&CsisClientCallbacks::OnConnectionState,
+                                    Unretained(callbacks_), addr, state));
   }
 
   void OnDeviceAvailable(const RawAddress& addr, int group_id, int group_size,
@@ -144,17 +152,19 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
              << " group_id: " << group_id;
 
-    do_in_jni_thread(FROM_HERE, Bind(&CsisClientCallbacks::OnDeviceAvailable,
-                                     Unretained(callbacks_), addr, group_id,
-                                     group_size, rank, uuid));
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(&CsisClientCallbacks::OnDeviceAvailable,
+                                    Unretained(callbacks_), addr, group_id,
+                                    group_size, rank, uuid));
   }
 
   void OnSetMemberAvailable(const RawAddress& addr, int group_id) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
              << " group id: " << group_id;
 
-    do_in_jni_thread(FROM_HERE, Bind(&CsisClientCallbacks::OnSetMemberAvailable,
-                                     Unretained(callbacks_), addr, group_id));
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(&CsisClientCallbacks::OnSetMemberAvailable,
+                                    Unretained(callbacks_), addr, group_id));
   }
 
   /* Callback for lock changed in the group */
@@ -163,9 +173,10 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
     DVLOG(2) << __func__ << " group id: " << group_id << " lock: " << locked
              << " status: " << int(status);
 
-    do_in_jni_thread(FROM_HERE,
-                     Bind(&CsisClientCallbacks::OnGroupLockChanged,
-                          Unretained(callbacks_), group_id, locked, status));
+    do_in_jni_thread(
+        FROM_HERE,
+        base::BindOnce(&CsisClientCallbacks::OnGroupLockChanged,
+                       Unretained(callbacks_), group_id, locked, status));
   }
 
  private:
