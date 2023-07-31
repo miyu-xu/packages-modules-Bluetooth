@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c340eab2_4639ad46",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-31T08:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d4a1421a_7646ec8a",
+      "range": {
+        "startLine": 19,
+        "startChar": 18,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83fa81c2_f0fee570",
@@ -84,6 +108,54 @@
       "writtenOn": "2023-07-20T07:23:50Z",
       "side": 1,
       "message": "For time-related objects, please add a time unit postfix(as you are using int64_t type)",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 24
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd4ed66f_c1d631dd",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-31T08:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83fa81c2_f0fee570",
+      "range": {
+        "startLine": 100,
+        "startChar": 10,
+        "endLine": 100,
+        "endChar": 24
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e69609ef_3a5e6286",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-31T08:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83fa81c2_f0fee570",
       "range": {
         "startLine": 100,
         "startChar": 10,
@@ -117,6 +189,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "780e1430_42f956de",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-31T08:46:08Z",
+      "side": 1,
+      "message": "scan_details \u0026 inq_scan_details. Have renamed them.",
+      "parentUuid": "09dd94a5_532f1dac",
+      "range": {
+        "startLine": 122,
+        "startChar": 14,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f8e9e7e_a4e40f35",
@@ -130,6 +226,30 @@
       "writtenOn": "2023-07-20T07:23:50Z",
       "side": 1,
       "message": "Doesn\u0027t `strftime` or `std::put_time` achieve this?",
+      "range": {
+        "startLine": 16,
+        "startChar": 12,
+        "endLine": 16,
+        "endChar": 25
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c044f6a1_3dd27273",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-31T08:46:08Z",
+      "side": 1,
+      "message": "`strftime` can achieve this. Use it instead.",
+      "parentUuid": "9f8e9e7e_a4e40f35",
       "range": {
         "startLine": 16,
         "startChar": 12,
@@ -163,6 +283,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f504e7b7_c9fc63e8",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-31T08:46:08Z",
+      "side": 1,
+      "message": "Get it. String is 24 bytes which is much bigger than time_t which is same as int64_t and it is 8 bytes.",
+      "parentUuid": "4ba62354_1651c2f8",
+      "range": {
+        "startLine": 141,
+        "startChar": 35,
+        "endLine": 141,
+        "endChar": 55
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7980001_9efc5c87",
@@ -176,6 +320,30 @@
       "writtenOn": "2023-07-20T07:23:50Z",
       "side": 1,
       "message": "nit:\n```\nfor (auto\u0026 channel_detail : ldc.channel_map[bdaddr]) {\n      if (channel_detail.src_id \u003d\u003d src_id \u0026\u0026 channel_detail.dst_id \u003d\u003d dst_id \u0026\u0026\n          channel_detail.channel_type \u003d\u003d channel_type) {\n        channel_detail.state \u003d STATE_DISCONNECTED;\n        channel_detail.disconn_time_stamp \u003d GetCurrentTimeString();\n        break;\n      }\n}\n```\nReduced additional copy and iterator. Similar to other blocks.",
+      "range": {
+        "startLine": 369,
+        "startChar": 4,
+        "endLine": 378,
+        "endChar": 5
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d17a1b8b_e3594cf0",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-31T08:46:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7980001_9efc5c87",
       "range": {
         "startLine": 369,
         "startChar": 4,
