@@ -77,6 +77,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71e6f42a_90e2523d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-31T07:20:00Z",
+      "side": 1,
+      "message": "I could not test the latest build\u0027s behavior since it failed to connect - it just repeats connecting \u003c-\u003e disconnecting. \n\nAnyway the CL itself seems reasonable.",
+      "parentUuid": "cd3a9bc3_d8ce4f82",
+      "revId": "6a1aeccf17b21ac041d00d5cb5a53311c8c69d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab426fc4_a7b7b8e9",
