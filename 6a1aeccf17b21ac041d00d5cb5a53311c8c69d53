@@ -34,6 +34,24 @@
       "parentUuid": "2cf1dafb_839dc812",
       "revId": "6a1aeccf17b21ac041d00d5cb5a53311c8c69d53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd3a9bc3_d8ce4f82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-31T06:46:38Z",
+      "side": 1,
+      "message": "I\u0027ve just tested the build that aosp/2508395 was first merged, and the log `setActiveDevice: Setting active Le Audio device` is printed.\n\nI used the media notification to change the output route.\n\nŁukasz, how do you change the output route to speaker?",
+      "parentUuid": "613ec73c_c309c648",
+      "revId": "6a1aeccf17b21ac041d00d5cb5a53311c8c69d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
