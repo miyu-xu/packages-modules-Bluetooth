@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba5fc65e_69e8421b",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-07-31T07:11:39Z",
+      "side": 1,
+      "message": "Done and rename to kAclTxPacket \u0026 kAclRxPacket.",
+      "parentUuid": "564a12fd_5ca69480",
+      "range": {
+        "startLine": 16,
+        "startChar": 18,
+        "endLine": 16,
+        "endChar": 28
+      },
+      "revId": "63d26559016ef6dcd772d692460dbfc4f4e11ca4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4a1421a_7646ec8a",
