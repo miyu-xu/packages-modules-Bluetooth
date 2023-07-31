@@ -46,6 +46,30 @@
       },
       "revId": "b89712732bcb35b43c6a0c87f2f6396773c505f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69106d93_f5dba029",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 6092,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-07-31T08:38:29Z",
+      "side": 1,
+      "message": "because boolean there is called `StopAudio` and `stopAudio` \u003d !`hasFallbackDevice`.\n\nI let Sungsoo team to sort it out later on as I agree that it looks bit odd that we have different parameters for A2DP, HearingAid and LeAudio",
+      "parentUuid": "5f95bc57_958ee842",
+      "range": {
+        "startLine": 6092,
+        "startChar": 48,
+        "endLine": 6092,
+        "endChar": 53
+      },
+      "revId": "b89712732bcb35b43c6a0c87f2f6396773c505f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
