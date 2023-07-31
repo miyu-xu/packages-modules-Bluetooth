@@ -769,7 +769,7 @@ class BluetoothQualityReportInterfaceImpl
 
     do_in_jni_thread(
         FROM_HERE,
-        base::Bind(&bluetooth::bqr::BluetoothQualityReportCallbacks::
+        base::BindOnce(&bluetooth::bqr::BluetoothQualityReportCallbacks::
                        bqr_delivery_callback,
                    base::Unretained(callbacks), bd_addr, lmp_ver, lmp_subver,
                    manufacturer_id, std::move(raw_data)));

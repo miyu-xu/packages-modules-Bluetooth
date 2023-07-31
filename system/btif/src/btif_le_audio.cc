@@ -45,33 +45,33 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
   ~LeAudioClientInterfaceImpl() = default;
 
   void OnInitialized(void) {
-    do_in_jni_thread(FROM_HERE, Bind(&LeAudioClientCallbacks::OnInitialized,
+    do_in_jni_thread(FROM_HERE, base::BindOnce(&LeAudioClientCallbacks::OnInitialized,
                                      Unretained(callbacks)));
   }
 
   void OnConnectionState(ConnectionState state,
                          const RawAddress& address) override {
-    do_in_jni_thread(FROM_HERE, Bind(&LeAudioClientCallbacks::OnConnectionState,
+    do_in_jni_thread(FROM_HERE, base::BindOnce(&LeAudioClientCallbacks::OnConnectionState,
                                      Unretained(callbacks), state, address));
   }
 
   void OnGroupStatus(int group_id, GroupStatus group_status) override {
     do_in_jni_thread(FROM_HERE,
-                     Bind(&LeAudioClientCallbacks::OnGroupStatus,
+                     base::BindOnce(&LeAudioClientCallbacks::OnGroupStatus,
                           Unretained(callbacks), group_id, group_status));
   }
 
   void OnGroupNodeStatus(const RawAddress& addr, int group_id,
                          GroupNodeStatus node_status) override {
     do_in_jni_thread(FROM_HERE,
-                     Bind(&LeAudioClientCallbacks::OnGroupNodeStatus,
+                     base::BindOnce(&LeAudioClientCallbacks::OnGroupNodeStatus,
                           Unretained(callbacks), addr, group_id, node_status));
   }
 
   void OnAudioConf(uint8_t direction, int group_id, uint32_t snk_audio_location,
                    uint32_t src_audio_location, uint16_t avail_cont) override {
     do_in_jni_thread(FROM_HERE,
-                     Bind(&LeAudioClientCallbacks::OnAudioConf,
+                     base::BindOnce(&LeAudioClientCallbacks::OnAudioConf,
                           Unretained(callbacks), direction, group_id,
                           snk_audio_location, src_audio_location, avail_cont));
   }
@@ -79,7 +79,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
   void OnSinkAudioLocationAvailable(const RawAddress& address,
                                     uint32_t snk_audio_location) override {
     do_in_jni_thread(FROM_HERE,
-                     Bind(&LeAudioClientCallbacks::OnSinkAudioLocationAvailable,
+                     base::BindOnce(&LeAudioClientCallbacks::OnSinkAudioLocationAvailable,
                           Unretained(callbacks), address, snk_audio_location));
   }
 
@@ -88,7 +88,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
       std::vector<btle_audio_codec_config_t> local_output_capa_codec_conf)
       override {
     do_in_jni_thread(
-        FROM_HERE, Bind(&LeAudioClientCallbacks::OnAudioLocalCodecCapabilities,
+        FROM_HERE, base::BindOnce(&LeAudioClientCallbacks::OnAudioLocalCodecCapabilities,
                         Unretained(callbacks), local_input_capa_codec_conf,
                         local_output_capa_codec_conf));
   }
@@ -100,7 +100,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
       std::vector<btle_audio_codec_config_t> output_selectable_codec_conf)
       override {
     do_in_jni_thread(FROM_HERE,
-                     Bind(&LeAudioClientCallbacks::OnAudioGroupCodecConf,
+                     base::BindOnce(&LeAudioClientCallbacks::OnAudioGroupCodecConf,
                           Unretained(callbacks), group_id, input_codec_conf,
                           output_codec_conf, input_selectable_codec_conf,
                           output_selectable_codec_conf));
@@ -135,7 +135,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
 
     LeAudioClient::InitializeAudioSetConfigurationProvider();
     do_in_main_thread(
-        FROM_HERE, Bind(&LeAudioClient::Initialize, this,
+        FROM_HERE, base::BindOnce(&LeAudioClient::Initialize, this,
                         jni_thread_wrapper(
                             FROM_HERE, Bind(&btif_storage_load_bonded_leaudio)),
                         base::Bind([]() -> bool {
@@ -162,7 +162,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
 
     do_in_main_thread(
         FROM_HERE,
-        Bind(&LeAudioClient::Cleanup,
+        base::BindOnce(&LeAudioClient::Cleanup,
              jni_thread_wrapper(
                  FROM_HERE,
                  Bind(&LeAudioClient::CleanupAudioSetConfigurationProvider))));
@@ -176,15 +176,15 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
                << " call ignored, due to already started cleanup procedure or "
                   "service being not read";
 
-      do_in_jni_thread(FROM_HERE, Bind(&btif_storage_remove_leaudio, address));
+      do_in_jni_thread(FROM_HERE, base::BindOnce(&btif_storage_remove_leaudio, address));
       return;
     }
 
     do_in_main_thread(FROM_HERE,
-                      Bind(&LeAudioClient::RemoveDevice,
+                      base::BindOnce(&LeAudioClient::RemoveDevice,
                            Unretained(LeAudioClient::Get()), address));
 
-    do_in_jni_thread(FROM_HERE, Bind(&btif_storage_remove_leaudio, address));
+    do_in_jni_thread(FROM_HERE, base::BindOnce(&btif_storage_remove_leaudio, address));
   }
 
   void Connect(const RawAddress& address) override {
@@ -198,7 +198,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     }
 
     do_in_main_thread(FROM_HERE,
-                      Bind(&LeAudioClient::Connect,
+                      base::BindOnce(&LeAudioClient::Connect,
                            Unretained(LeAudioClient::Get()), address));
   }
 
@@ -213,7 +213,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     }
 
     do_in_main_thread(FROM_HERE,
-                      Bind(&LeAudioClient::Disconnect,
+                      base::BindOnce(&LeAudioClient::Disconnect,
                            Unretained(LeAudioClient::Get()), address));
   }
 
@@ -228,7 +228,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     }
 
     do_in_main_thread(FROM_HERE,
-                      Bind(&LeAudioClient::SetEnableState,
+                      base::BindOnce(&LeAudioClient::SetEnableState,
                            Unretained(LeAudioClient::Get()), address, enabled));
   }
 
@@ -244,7 +244,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     }
 
     do_in_main_thread(
-        FROM_HERE, Bind(&LeAudioClient::GroupAddNode,
+        FROM_HERE, base::BindOnce(&LeAudioClient::GroupAddNode,
                         Unretained(LeAudioClient::Get()), group_id, address));
   }
 
@@ -259,7 +259,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     }
 
     do_in_main_thread(
-        FROM_HERE, Bind(&LeAudioClient::GroupRemoveNode,
+        FROM_HERE, base::BindOnce(&LeAudioClient::GroupRemoveNode,
                         Unretained(LeAudioClient::Get()), group_id, address));
   }
 
@@ -273,7 +273,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     }
 
     do_in_main_thread(FROM_HERE,
-                      Bind(&LeAudioClient::GroupSetActive,
+                      base::BindOnce(&LeAudioClient::GroupSetActive,
                            Unretained(LeAudioClient::Get()), group_id));
   }
 
@@ -288,7 +288,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
       return;
     }
     do_in_main_thread(FROM_HERE,
-                      Bind(&LeAudioClient::SetCodecConfigPreference,
+                      base::BindOnce(&LeAudioClient::SetCodecConfigPreference,
                            Unretained(LeAudioClient::Get()), group_id,
                            input_codec_config, output_codec_config));
   }
@@ -304,7 +304,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     }
 
     do_in_main_thread(
-        FROM_HERE, Bind(&LeAudioClient::SetCcidInformation,
+        FROM_HERE, base::BindOnce(&LeAudioClient::SetCcidInformation,
                         Unretained(LeAudioClient::Get()), ccid, context_type));
   }
 
@@ -318,7 +318,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     }
 
     do_in_main_thread(FROM_HERE,
-                      Bind(&LeAudioClient::SetInCall,
+                      base::BindOnce(&LeAudioClient::SetInCall,
                            Unretained(LeAudioClient::Get()), in_call));
   }
 
@@ -339,7 +339,7 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
 
     do_in_main_thread(
         FROM_HERE,
-        Bind(&LeAudioClient::SendAudioProfilePreferences,
+        base::BindOnce(&LeAudioClient::SendAudioProfilePreferences,
              Unretained(LeAudioClient::Get()), group_id,
              is_output_preference_le_audio, is_duplex_preference_le_audio));
   }

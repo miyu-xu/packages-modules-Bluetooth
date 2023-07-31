@@ -52,7 +52,7 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
 
     do_in_main_thread(
         FROM_HERE,
-        Bind(&CsisClient::Initialize, this,
+        base::BindOnce(&CsisClient::Initialize, this,
              jni_thread_wrapper(FROM_HERE,
                                 Bind(&btif_storage_load_bonded_csis_devices))));
     /* It might be not yet initialized, but setting this flag here is safe,
@@ -70,7 +70,7 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
     }
 
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_main_thread(FROM_HERE, Bind(&CsisClient::Connect,
+    do_in_main_thread(FROM_HERE, base::BindOnce(&CsisClient::Connect,
                                       Unretained(CsisClient::Get()), addr));
   }
 
@@ -83,7 +83,7 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
     }
 
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_main_thread(FROM_HERE, Bind(&CsisClient::Disconnect,
+    do_in_main_thread(FROM_HERE, base::BindOnce(&CsisClient::Disconnect,
                                       Unretained(CsisClient::Get()), addr));
   }
 
@@ -94,15 +94,15 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
                   "service being not ready";
 
       /* Clear storage */
-      do_in_jni_thread(FROM_HERE, Bind(&btif_storage_remove_csis_device, addr));
+      do_in_jni_thread(FROM_HERE, base::BindOnce(&btif_storage_remove_csis_device, addr));
       return;
     }
 
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_main_thread(FROM_HERE, Bind(&CsisClient::RemoveDevice,
+    do_in_main_thread(FROM_HERE, base::BindOnce(&CsisClient::RemoveDevice,
                                       Unretained(CsisClient::Get()), addr));
     /* Clear storage */
-    do_in_jni_thread(FROM_HERE, Bind(&btif_storage_remove_csis_device, addr));
+    do_in_jni_thread(FROM_HERE, base::BindOnce(&btif_storage_remove_csis_device, addr));
   }
 
   void LockGroup(int group_id, bool lock) override {
@@ -115,7 +115,7 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
 
     DVLOG(2) << __func__ << " group id: " << group_id << " lock: " << lock;
     do_in_main_thread(
-        FROM_HERE, Bind(&CsisClient::LockGroup, Unretained(CsisClient::Get()),
+        FROM_HERE, base::BindOnce(&CsisClient::LockGroup, Unretained(CsisClient::Get()),
                         group_id, lock, base::DoNothing()));
   }
 
@@ -129,13 +129,13 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
 
     DVLOG(2) << __func__;
     initialized = false;
-    do_in_main_thread(FROM_HERE, Bind(&CsisClient::CleanUp));
+    do_in_main_thread(FROM_HERE, base::BindOnce(&CsisClient::CleanUp));
   }
 
   void OnConnectionState(const RawAddress& addr,
                          ConnectionState state) override {
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr);
-    do_in_jni_thread(FROM_HERE, Bind(&CsisClientCallbacks::OnConnectionState,
+    do_in_jni_thread(FROM_HERE, base::BindOnce(&CsisClientCallbacks::OnConnectionState,
                                      Unretained(callbacks_), addr, state));
   }
 
@@ -144,7 +144,7 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
              << " group_id: " << group_id;
 
-    do_in_jni_thread(FROM_HERE, Bind(&CsisClientCallbacks::OnDeviceAvailable,
+    do_in_jni_thread(FROM_HERE, base::BindOnce(&CsisClientCallbacks::OnDeviceAvailable,
                                      Unretained(callbacks_), addr, group_id,
                                      group_size, rank, uuid));
   }
@@ -153,7 +153,7 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
     DVLOG(2) << __func__ << " addr: " << ADDRESS_TO_LOGGABLE_STR(addr)
              << " group id: " << group_id;
 
-    do_in_jni_thread(FROM_HERE, Bind(&CsisClientCallbacks::OnSetMemberAvailable,
+    do_in_jni_thread(FROM_HERE, base::BindOnce(&CsisClientCallbacks::OnSetMemberAvailable,
                                      Unretained(callbacks_), addr, group_id));
   }
 
@@ -164,7 +164,7 @@ class CsipSetCoordinatorServiceInterfaceImpl : public CsisClientInterface,
              << " status: " << int(status);
 
     do_in_jni_thread(FROM_HERE,
-                     Bind(&CsisClientCallbacks::OnGroupLockChanged,
+                     base::BindOnce(&CsisClientCallbacks::OnGroupLockChanged,
                           Unretained(callbacks_), group_id, locked, status));
   }
 

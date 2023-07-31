@@ -931,7 +931,7 @@ bt_status_t HeadsetInterface::ConnectAudio(RawAddress* bd_addr,
     << ADDRESS_TO_LOGGABLE_STR(*bd_addr);
     return BT_STATUS_NOT_READY;
   }
-  do_in_jni_thread(base::Bind(&Callbacks::AudioStateCallback,
+  do_in_jni_thread(base::BindOnce(&Callbacks::AudioStateCallback,
                               // Manual pointer management for now
                               base::Unretained(bt_hf_callbacks),
                               BTHF_AUDIO_STATE_CONNECTING,
@@ -1538,7 +1538,7 @@ void HeadsetInterface::Cleanup() {
     }
   }
 
-  do_in_jni_thread(FROM_HERE, base::Bind([]() { bt_hf_callbacks = nullptr; }));
+  do_in_jni_thread(FROM_HERE, base::BindOnce([]() { bt_hf_callbacks = nullptr; }));
 }
 
 bt_status_t HeadsetInterface::SetScoOffloadEnabled(bool value) {
