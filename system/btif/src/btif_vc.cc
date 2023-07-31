@@ -48,7 +48,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
     this->callbacks_ = callbacks;
     do_in_main_thread(
         FROM_HERE,
-        Bind(&VolumeControl::Initialize, this,
+        base::BindOnce(&VolumeControl::Initialize, this,
              jni_thread_wrapper(
                  FROM_HERE,
                  Bind(&btif_storage_load_bonded_volume_control_devices))));
@@ -62,7 +62,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
   void OnConnectionState(ConnectionState state,
                          const RawAddress& address) override {
     DVLOG(2) << __func__ << " address: " << address;
-    do_in_jni_thread(FROM_HERE, Bind(&VolumeControlCallbacks::OnConnectionState,
+    do_in_jni_thread(FROM_HERE, base::BindOnce(&VolumeControlCallbacks::OnConnectionState,
                                      Unretained(callbacks_), state, address));
   }
 
@@ -72,7 +72,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
              << " mute: " << mute << " isAutonomous: " << isAutonomous;
     do_in_jni_thread(
         FROM_HERE,
-        Bind(&VolumeControlCallbacks::OnVolumeStateChanged,
+        base::BindOnce(&VolumeControlCallbacks::OnVolumeStateChanged,
              Unretained(callbacks_), address, volume, mute, isAutonomous));
   }
 
@@ -82,7 +82,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
              << " mute: " << mute << " isAutonomous: " << isAutonomous;
     do_in_jni_thread(
         FROM_HERE,
-        Bind(&VolumeControlCallbacks::OnGroupVolumeStateChanged,
+        base::BindOnce(&VolumeControlCallbacks::OnGroupVolumeStateChanged,
              Unretained(callbacks_), group_id, volume, mute, isAutonomous));
   }
 
@@ -90,7 +90,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
                          uint8_t num_offset) override {
     DVLOG(2) << __func__ << " address: " << address;
     do_in_jni_thread(FROM_HERE,
-                     Bind(&VolumeControlCallbacks::OnDeviceAvailable,
+                     base::BindOnce(&VolumeControlCallbacks::OnDeviceAvailable,
                           Unretained(callbacks_), address, num_offset));
   }
 
@@ -105,7 +105,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
 
     do_in_jni_thread(
         FROM_HERE,
-        Bind(&VolumeControlCallbacks::OnExtAudioOutVolumeOffsetChanged,
+        base::BindOnce(&VolumeControlCallbacks::OnExtAudioOutVolumeOffsetChanged,
              Unretained(callbacks_), address, ext_output_id, offset));
   }
 
@@ -118,7 +118,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
 
     do_in_jni_thread(
         FROM_HERE,
-        Bind(&VolumeControlCallbacks::OnExtAudioOutLocationChanged,
+        base::BindOnce(&VolumeControlCallbacks::OnExtAudioOutLocationChanged,
              Unretained(callbacks_), address, ext_output_id, location));
   }
 
@@ -129,7 +129,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
              << "ext_output_id: " << ext_output_id << "descr:" << descr;
     do_in_jni_thread(
         FROM_HERE,
-        Bind(&VolumeControlCallbacks::OnExtAudioOutDescriptionChanged,
+        base::BindOnce(&VolumeControlCallbacks::OnExtAudioOutDescriptionChanged,
              Unretained(callbacks_), address, ext_output_id, descr));
   }
 
@@ -144,7 +144,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
     }
 
     do_in_main_thread(FROM_HERE,
-                      Bind(&VolumeControl::Connect,
+                      base::BindOnce(&VolumeControl::Connect,
                            Unretained(VolumeControl::Get()), address));
   }
 
@@ -158,7 +158,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
       return;
     }
     do_in_main_thread(FROM_HERE,
-                      Bind(&VolumeControl::Disconnect,
+                      base::BindOnce(&VolumeControl::Disconnect,
                            Unretained(VolumeControl::Get()), address));
   }
 
@@ -173,7 +173,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
       return;
     }
 
-    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::SetVolume,
+    do_in_main_thread(FROM_HERE, base::BindOnce(&VolumeControl::SetVolume,
                                       Unretained(VolumeControl::Get()),
                                       std::move(addr_or_group_id), volume));
   }
@@ -189,7 +189,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
     }
 
     do_in_main_thread(
-        FROM_HERE, Bind(&VolumeControl::Mute, Unretained(VolumeControl::Get()),
+        FROM_HERE, base::BindOnce(&VolumeControl::Mute, Unretained(VolumeControl::Get()),
                         std::move(addr_or_group_id)));
   }
 
@@ -203,7 +203,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
       return;
     }
 
-    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::UnMute,
+    do_in_main_thread(FROM_HERE, base::BindOnce(&VolumeControl::UnMute,
                                       Unretained(VolumeControl::Get()),
                                       std::move(addr_or_group_id)));
   }
@@ -221,7 +221,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
     /* RemoveDevice can be called on devices that don't have HA enabled */
     if (VolumeControl::IsVolumeControlRunning()) {
       do_in_main_thread(FROM_HERE,
-                        Bind(&VolumeControl::Remove,
+                        base::BindOnce(&VolumeControl::Remove,
                              Unretained(VolumeControl::Get()), address));
     }
   }
@@ -240,7 +240,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
 
     do_in_main_thread(
         FROM_HERE,
-        Bind(&VolumeControl::GetExtAudioOutVolumeOffset,
+        base::BindOnce(&VolumeControl::GetExtAudioOutVolumeOffset,
              Unretained(VolumeControl::Get()), address, ext_output_id));
   }
 
@@ -259,7 +259,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
     }
 
     do_in_main_thread(FROM_HERE,
-                      Bind(&VolumeControl::SetExtAudioOutVolumeOffset,
+                      base::BindOnce(&VolumeControl::SetExtAudioOutVolumeOffset,
                            Unretained(VolumeControl::Get()), address,
                            ext_output_id, offset_val));
   }
@@ -276,7 +276,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
       return;
     }
 
-    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::GetExtAudioOutLocation,
+    do_in_main_thread(FROM_HERE, base::BindOnce(&VolumeControl::GetExtAudioOutLocation,
                                       Unretained(VolumeControl::Get()), address,
                                       ext_output_id));
   }
@@ -294,7 +294,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
       return;
     }
 
-    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::SetExtAudioOutLocation,
+    do_in_main_thread(FROM_HERE, base::BindOnce(&VolumeControl::SetExtAudioOutLocation,
                                       Unretained(VolumeControl::Get()), address,
                                       ext_output_id, location));
   }
@@ -311,7 +311,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
       return;
     }
 
-    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::GetExtAudioOutDescription,
+    do_in_main_thread(FROM_HERE, base::BindOnce(&VolumeControl::GetExtAudioOutDescription,
                                       Unretained(VolumeControl::Get()), address,
                                       ext_output_id));
   }
@@ -329,7 +329,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
       return;
     }
 
-    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::SetExtAudioOutDescription,
+    do_in_main_thread(FROM_HERE, base::BindOnce(&VolumeControl::SetExtAudioOutDescription,
                                       Unretained(VolumeControl::Get()), address,
                                       ext_output_id, descr));
   }
@@ -344,7 +344,7 @@ class VolumeControlInterfaceImpl : public VolumeControlInterface,
     }
 
     initialized = false;
-    do_in_main_thread(FROM_HERE, Bind(&VolumeControl::CleanUp));
+    do_in_main_thread(FROM_HERE, base::BindOnce(&VolumeControl::CleanUp));
   }
 
  private:
