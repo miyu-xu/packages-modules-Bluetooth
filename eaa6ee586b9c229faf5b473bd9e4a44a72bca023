@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e63cdb1_63550951",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-07-31T21:51:56Z",
+      "side": 1,
+      "message": "Should the cover art also be updated on track change?",
+      "revId": "eaa6ee586b9c229faf5b473bd9e4a44a72bca023",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "591a9b21_7f067593",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-07-31T21:51:56Z",
+      "side": 1,
+      "message": "What\u0027s AOSP\u0027s guideline regarding java docs? Should it be updated to indicate the new return type?",
+      "revId": "eaa6ee586b9c229faf5b473bd9e4a44a72bca023",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
