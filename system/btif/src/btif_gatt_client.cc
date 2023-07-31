@@ -245,13 +245,13 @@ static bt_status_t btif_gattc_register_app(const Uuid& uuid,
                                            bool eatt_support) {
   CHECK_BTGATT_INIT();
 
-  return do_in_jni_thread(Bind(
+  return do_in_jni_thread(base::BindOnce(
       [](const Uuid& uuid, bool eatt_support) {
         BTA_GATTC_AppRegister(
             bta_gattc_cback,
             base::Bind(
                 [](const Uuid& uuid, uint8_t client_id, uint8_t status) {
-                  do_in_jni_thread(Bind(
+                  do_in_jni_thread(base::BindOnce(
                       [](const Uuid& uuid, uint8_t client_id, uint8_t status) {
                         HAL_CBACK(bt_gatt_callbacks, client->register_client_cb,
                                   status, client_id, uuid);
@@ -270,7 +270,8 @@ static void btif_gattc_unregister_app_impl(int client_if) {
 
 static bt_status_t btif_gattc_unregister_app(int client_if) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(Bind(&btif_gattc_unregister_app_impl, client_if));
+  return do_in_jni_thread(
+      base::BindOnce(&btif_gattc_unregister_app_impl, client_if));
 }
 
 void btif_gattc_open_impl(int client_if, RawAddress address,
@@ -350,9 +351,9 @@ static bt_status_t btif_gattc_open(int client_if, const RawAddress& bd_addr,
                                    int initiating_phys) {
   CHECK_BTGATT_INIT();
   // Closure will own this value and free it.
-  return do_in_jni_thread(Bind(&btif_gattc_open_impl, client_if, bd_addr,
-                               addr_type, is_direct, transport, opportunistic,
-                               initiating_phys));
+  return do_in_jni_thread(
+      base::BindOnce(&btif_gattc_open_impl, client_if, bd_addr, addr_type,
+                     is_direct, transport, opportunistic, initiating_phys));
 }
 
 void btif_gattc_close_impl(int client_if, RawAddress address, int conn_id) {
@@ -373,13 +374,13 @@ static bt_status_t btif_gattc_close(int client_if, const RawAddress& bd_addr,
                                     int conn_id) {
   CHECK_BTGATT_INIT();
   return do_in_jni_thread(
-      Bind(&btif_gattc_close_impl, client_if, bd_addr, conn_id));
+      base::BindOnce(&btif_gattc_close_impl, client_if, bd_addr, conn_id));
 }
 
 static bt_status_t btif_gattc_refresh(int client_if,
                                       const RawAddress& bd_addr) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(Bind(&BTA_GATTC_Refresh, bd_addr));
+  return do_in_jni_thread(base::BindOnce(&BTA_GATTC_Refresh, bd_addr));
 }
 
 static bt_status_t btif_gattc_search_service(int conn_id,
@@ -388,16 +389,17 @@ static bt_status_t btif_gattc_search_service(int conn_id,
 
   if (filter_uuid) {
     Uuid* uuid = new Uuid(*filter_uuid);
-    return do_in_jni_thread(
-        Bind(&BTA_GATTC_ServiceSearchRequest, conn_id, base::Owned(uuid)));
+    return do_in_jni_thread(base::BindOnce(&BTA_GATTC_ServiceSearchRequest,
+                                           conn_id, base::Owned(uuid)));
   } else {
     return do_in_jni_thread(
-        Bind(&BTA_GATTC_ServiceSearchRequest, conn_id, nullptr));
+        base::BindOnce(&BTA_GATTC_ServiceSearchRequest, conn_id, nullptr));
   }
 }
 
 static void btif_gattc_discover_service_by_uuid(int conn_id, const Uuid& uuid) {
-  do_in_jni_thread(Bind(&BTA_GATTC_DiscoverServiceByUuid, conn_id, uuid));
+  do_in_jni_thread(
+      base::BindOnce(&BTA_GATTC_DiscoverServiceByUuid, conn_id, uuid));
 }
 
 void btif_gattc_get_gatt_db_impl(int conn_id) {
@@ -411,7 +413,8 @@ void btif_gattc_get_gatt_db_impl(int conn_id) {
 
 static bt_status_t btif_gattc_get_gatt_db(int conn_id) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(Bind(&btif_gattc_get_gatt_db_impl, conn_id));
+  return do_in_jni_thread(
+      base::BindOnce(&btif_gattc_get_gatt_db_impl, conn_id));
 }
 
 void read_char_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
@@ -433,8 +436,9 @@ void read_char_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
 static bt_status_t btif_gattc_read_char(int conn_id, uint16_t handle,
                                         int auth_req) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(Bind(&BTA_GATTC_ReadCharacteristic, conn_id, handle,
-                               auth_req, read_char_cb, nullptr));
+  return do_in_jni_thread(base::BindOnce(&BTA_GATTC_ReadCharacteristic, conn_id,
+                                         handle, auth_req, read_char_cb,
+                                         nullptr));
 }
 
 void read_using_char_uuid_cb(uint16_t conn_id, tGATT_STATUS status,
@@ -460,9 +464,9 @@ static bt_status_t btif_gattc_read_using_char_uuid(int conn_id,
                                                    uint16_t e_handle,
                                                    int auth_req) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(Bind(&BTA_GATTC_ReadUsingCharUuid, conn_id, uuid,
-                               s_handle, e_handle, auth_req,
-                               read_using_char_uuid_cb, nullptr));
+  return do_in_jni_thread(base::BindOnce(&BTA_GATTC_ReadUsingCharUuid, conn_id,
+                                         uuid, s_handle, e_handle, auth_req,
+                                         read_using_char_uuid_cb, nullptr));
 }
 
 void read_desc_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
@@ -481,8 +485,9 @@ void read_desc_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
 static bt_status_t btif_gattc_read_char_descr(int conn_id, uint16_t handle,
                                               int auth_req) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(Bind(&BTA_GATTC_ReadCharDescr, conn_id, handle,
-                               auth_req, read_desc_cb, nullptr));
+  return do_in_jni_thread(base::BindOnce(&BTA_GATTC_ReadCharDescr, conn_id,
+                                         handle, auth_req, read_desc_cb,
+                                         nullptr));
 }
 
 void write_char_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
@@ -509,9 +514,9 @@ static bt_status_t btif_gattc_write_char(int conn_id, uint16_t handle,
 
   if (value.size() > BTGATT_MAX_ATTR_LEN) value.resize(BTGATT_MAX_ATTR_LEN);
 
-  return do_in_jni_thread(Bind(&BTA_GATTC_WriteCharValue, conn_id, handle,
-                               write_type, std::move(value), auth_req,
-                               write_char_cb, nullptr));
+  return do_in_jni_thread(base::BindOnce(&BTA_GATTC_WriteCharValue, conn_id,
+                                         handle, write_type, std::move(value),
+                                         auth_req, write_char_cb, nullptr));
 }
 
 void write_descr_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
@@ -539,15 +544,15 @@ static bt_status_t btif_gattc_write_char_descr(int conn_id, uint16_t handle,
 
   if (value.size() > BTGATT_MAX_ATTR_LEN) value.resize(BTGATT_MAX_ATTR_LEN);
 
-  return do_in_jni_thread(Bind(&BTA_GATTC_WriteCharDescr, conn_id, handle,
-                               std::move(value), auth_req, write_descr_cb,
-                               nullptr));
+  return do_in_jni_thread(base::BindOnce(&BTA_GATTC_WriteCharDescr, conn_id,
+                                         handle, std::move(value), auth_req,
+                                         write_descr_cb, nullptr));
 }
 
 static bt_status_t btif_gattc_execute_write(int conn_id, int execute) {
   CHECK_BTGATT_INIT();
   return do_in_jni_thread(
-      Bind(&BTA_GATTC_ExecuteWrite, conn_id, (uint8_t)execute));
+      base::BindOnce(&BTA_GATTC_ExecuteWrite, conn_id, (uint8_t)execute));
 }
 
 static void btif_gattc_reg_for_notification_impl(tGATT_IF client_if,
@@ -567,8 +572,8 @@ bt_status_t btif_gattc_reg_for_notification(int client_if,
   CHECK_BTGATT_INIT();
 
   return do_in_jni_thread(
-      Bind(base::IgnoreResult(&btif_gattc_reg_for_notification_impl), client_if,
-           bd_addr, handle));
+      base::BindOnce(base::IgnoreResult(&btif_gattc_reg_for_notification_impl),
+                     client_if, bd_addr, handle));
 }
 
 static void btif_gattc_dereg_for_notification_impl(tGATT_IF client_if,
@@ -587,9 +592,9 @@ bt_status_t btif_gattc_dereg_for_notification(int client_if,
                                               uint16_t handle) {
   CHECK_BTGATT_INIT();
 
-  return do_in_jni_thread(
-      Bind(base::IgnoreResult(&btif_gattc_dereg_for_notification_impl),
-           client_if, bd_addr, handle));
+  return do_in_jni_thread(base::BindOnce(
+      base::IgnoreResult(&btif_gattc_dereg_for_notification_impl), client_if,
+      bd_addr, handle));
 }
 
 static bt_status_t btif_gattc_read_remote_rssi(int client_if,
@@ -597,16 +602,16 @@ static bt_status_t btif_gattc_read_remote_rssi(int client_if,
   CHECK_BTGATT_INIT();
   rssi_request_client_if = client_if;
 
-  return do_in_jni_thread(
-      Bind(base::IgnoreResult(&BTM_ReadRSSI), bd_addr, btm_read_rssi_cb));
+  return do_in_jni_thread(base::BindOnce(base::IgnoreResult(&BTM_ReadRSSI),
+                                         bd_addr, btm_read_rssi_cb));
 }
 
 static bt_status_t btif_gattc_configure_mtu(int conn_id, int mtu) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(
-      Bind(base::IgnoreResult(
-        static_cast<void (*)(uint16_t,uint16_t)>(&BTA_GATTC_ConfigureMTU)),
-        conn_id, mtu));
+  return do_in_jni_thread(base::BindOnce(
+      base::IgnoreResult(
+          static_cast<void (*)(uint16_t, uint16_t)>(&BTA_GATTC_ConfigureMTU)),
+      conn_id, mtu));
 }
 
 static void btif_gattc_conn_parameter_update_impl(
@@ -626,7 +631,7 @@ bt_status_t btif_gattc_conn_parameter_update(const RawAddress& bd_addr,
                                              uint16_t min_ce_len,
                                              uint16_t max_ce_len) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(Bind(
+  return do_in_jni_thread(base::BindOnce(
       base::IgnoreResult(&btif_gattc_conn_parameter_update_impl), bd_addr,
       min_interval, max_interval, latency, timeout, min_ce_len, max_ce_len));
 }
@@ -635,8 +640,8 @@ static bt_status_t btif_gattc_set_preferred_phy(const RawAddress& bd_addr,
                                                 uint8_t tx_phy, uint8_t rx_phy,
                                                 uint16_t phy_options) {
   CHECK_BTGATT_INIT();
-  do_in_main_thread(FROM_HERE,
-                    Bind(&BTM_BleSetPhy, bd_addr, tx_phy, rx_phy, phy_options));
+  do_in_main_thread(FROM_HERE, base::BindOnce(&BTM_BleSetPhy, bd_addr, tx_phy,
+                                              rx_phy, phy_options));
   return BT_STATUS_SUCCESS;
 }
 
@@ -644,8 +649,9 @@ static bt_status_t btif_gattc_read_phy(
     const RawAddress& bd_addr,
     base::Callback<void(uint8_t tx_phy, uint8_t rx_phy, uint8_t status)> cb) {
   CHECK_BTGATT_INIT();
-  do_in_main_thread(FROM_HERE, Bind(&BTM_BleReadPhy, bd_addr,
-                                    jni_thread_wrapper(FROM_HERE, cb)));
+  do_in_main_thread(FROM_HERE,
+                    base::BindOnce(&BTM_BleReadPhy, bd_addr,
+                                   jni_thread_wrapper(FROM_HERE, cb)));
   return BT_STATUS_SUCCESS;
 }
 
@@ -676,9 +682,9 @@ static bt_status_t btif_gattc_subrate_request(const RawAddress& bd_addr,
                                               int max_latency, int cont_num,
                                               int sup_timeout) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(
-      Bind(base::IgnoreResult(&btif_gattc_subrate_request_impl), bd_addr,
-           subrate_min, subrate_max, max_latency, cont_num, sup_timeout));
+  return do_in_jni_thread(base::BindOnce(
+      base::IgnoreResult(&btif_gattc_subrate_request_impl), bd_addr,
+      subrate_min, subrate_max, max_latency, cont_num, sup_timeout));
 }
 
 }  // namespace

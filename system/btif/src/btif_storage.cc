@@ -1482,7 +1482,7 @@ bool btif_storage_get_remote_device_type(const RawAddress& remote_bd_addr,
 /** Stores information about GATT server supported features */
 void btif_storage_set_gatt_sr_supp_feat(const RawAddress& addr, uint8_t feat) {
   do_in_jni_thread(
-      FROM_HERE, Bind(
+      FROM_HERE, base::BindOnce(
                      [](const RawAddress& addr, uint8_t feat) {
                        std::string bdstr = addr.ToString();
                        VLOG(2) << "GATT server supported features for: "
@@ -1543,7 +1543,7 @@ bool btif_storage_get_stored_remote_name(const RawAddress& bd_addr,
 void btif_storage_set_gatt_cl_supp_feat(const RawAddress& bd_addr,
                                         uint8_t feat) {
   do_in_jni_thread(
-      FROM_HERE, Bind(
+      FROM_HERE, base::BindOnce(
                      [](const RawAddress& bd_addr, uint8_t feat) {
                        std::string bdstr = bd_addr.ToString();
                        VLOG(2) << "saving gatt client supported feat: "
@@ -1569,7 +1569,7 @@ uint8_t btif_storage_get_gatt_cl_supp_feat(const RawAddress& bd_addr) {
 /** Remove client supported features */
 void btif_storage_remove_gatt_cl_supp_feat(const RawAddress& bd_addr) {
   do_in_jni_thread(
-      FROM_HERE, Bind(
+      FROM_HERE, base::BindOnce(
                      [](const RawAddress& bd_addr) {
                        auto bdstr = bd_addr.ToString();
                        if (btif_config_exist(
@@ -1583,7 +1583,7 @@ void btif_storage_remove_gatt_cl_supp_feat(const RawAddress& bd_addr) {
 
 /** Store last server database hash for remote client */
 void btif_storage_set_gatt_cl_db_hash(const RawAddress& bd_addr, Octet16 hash) {
-  do_in_jni_thread(FROM_HERE, Bind(
+  do_in_jni_thread(FROM_HERE, base::BindOnce(
                                   [](const RawAddress& bd_addr, Octet16 hash) {
                                     auto bdstr = bd_addr.ToString();
                                     btif_config_set_bin(
@@ -1609,7 +1609,7 @@ Octet16 btif_storage_get_gatt_cl_db_hash(const RawAddress& bd_addr) {
 /** Remove las server database hash for remote client */
 void btif_storage_remove_gatt_cl_db_hash(const RawAddress& bd_addr) {
   do_in_jni_thread(FROM_HERE,
-                   Bind(
+                   base::BindOnce(
                        [](const RawAddress& bd_addr) {
                          auto bdstr = bd_addr.ToString();
                          if (btif_config_exist(
