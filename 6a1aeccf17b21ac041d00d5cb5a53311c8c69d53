@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2cf1dafb_839dc812",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-07-31T02:46:58Z",
+      "side": 1,
+      "message": "When I uploaded aosp/2508395, selecting phone speaker didn\u0027t stop the music. Was something changed?",
+      "revId": "6a1aeccf17b21ac041d00d5cb5a53311c8c69d53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
