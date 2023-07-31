@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0272ec70_cc1fda0a",
+        "filename": "system/AAC_ABR_Update_SoC_if_ABR_is_enabled.patch",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-31T14:19:57Z",
+      "side": 1,
+      "message": "`vendor` is a prefix reserved for the vendor partition, we should not use that here.\n\nAlso is there a way to detect support for this instead of using a system property?",
+      "range": {
+        "startLine": 25,
+        "startChar": 30,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "b50f24ad427da0909ea5c36c908b6594f595d9b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
