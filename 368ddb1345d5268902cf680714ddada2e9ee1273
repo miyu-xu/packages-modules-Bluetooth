@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5a8bd1c_1ead7bd9",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 894,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8864af38_64df1ead",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4f5e51de_31432703",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d427f3f0_757c3888",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4872,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4f5e51de_31432703",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cdf540be_44871fce",
@@ -65,6 +101,54 @@
       "writtenOn": "2023-07-24T18:30:55Z",
       "side": 1,
       "message": "max_consecutive_procedures_supported (to match spec)",
+      "range": {
+        "startLine": 4882,
+        "startChar": 2,
+        "endLine": 4882,
+        "endChar": 26
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84b43456_9e698c26",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4882,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdf540be_44871fce",
+      "range": {
+        "startLine": 4882,
+        "startChar": 2,
+        "endLine": 4882,
+        "endChar": 26
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "224df1eb_0688bdb3",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4882,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cdf540be_44871fce",
       "range": {
         "startLine": 4882,
         "startChar": 2,
@@ -98,6 +182,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8bde149_46a5b111",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4885,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14e56fde_5e74a356",
+      "range": {
+        "startLine": 4885,
+        "startChar": 20,
+        "endLine": 4885,
+        "endChar": 21
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4efd4090_b274d26c",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4885,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14e56fde_5e74a356",
+      "range": {
+        "startLine": 4885,
+        "startChar": 20,
+        "endLine": 4885,
+        "endChar": 21
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "587334d3_cff48041",
@@ -111,6 +243,24 @@
       "writtenOn": "2023-07-24T18:30:55Z",
       "side": 1,
       "message": "missing three fields here:\noptional_nadm_sounding_capability\noptional_nadm_random_capability\noptional_cs_sync_phys_supported",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b10f6009_9454face",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4891,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "587334d3_cff48041",
       "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -138,6 +288,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "345358fd_3536a355",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4901,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee1c242a_863f5daf",
+      "range": {
+        "startLine": 4901,
+        "startChar": 2,
+        "endLine": 4901,
+        "endChar": 19
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb40475b_99a8e2b8",
@@ -151,6 +325,24 @@
       "writtenOn": "2023-07-24T18:30:55Z",
       "side": 1,
       "message": "WriteCachedRemoteSupportedCapabilities command is missing",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "839e7f2b_323ef8e5",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4906,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bb40475b_99a8e2b8",
       "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -172,6 +364,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d092e63_3a4471b5",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4917,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b924693_1831eadc",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed43194e_48c41bb9",
@@ -189,6 +399,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c20c9e1d_5912a376",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4925,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed43194e_48c41bb9",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9fbfa0e3_e3bddbb5",
@@ -202,6 +430,30 @@
       "writtenOn": "2023-07-24T18:30:55Z",
       "side": 1,
       "message": "0-3 maybe restrict the bits?\nconfig_id : 2,\n_reserved_ : 6,",
+      "range": {
+        "startLine": 4928,
+        "startChar": 14,
+        "endLine": 4928,
+        "endChar": 15
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecc7cf68_7fe8195a",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4928,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9fbfa0e3_e3bddbb5",
       "range": {
         "startLine": 4928,
         "startChar": 14,
@@ -235,6 +487,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "324f3bbc_031563a6",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4929,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87c2539c_20ffdad3",
+      "range": {
+        "startLine": 4929,
+        "startChar": 19,
+        "endLine": 4929,
+        "endChar": 20
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c41d978_5b09843d",
@@ -248,6 +524,30 @@
       "writtenOn": "2023-07-24T18:30:55Z",
       "side": 1,
       "message": "enum?\n\nMODE_1 \u003d 1\nMODE_2 \u003d 2\nMODE_3 \u003d 3",
+      "range": {
+        "startLine": 4930,
+        "startChar": 19,
+        "endLine": 4930,
+        "endChar": 20
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49adbc69_aaa70b63",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4930,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c41d978_5b09843d",
       "range": {
         "startLine": 4930,
         "startChar": 19,
@@ -281,6 +581,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec3cb9ce_ed0b8251",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4934,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b54b201_0b8d2ef3",
+      "range": {
+        "startLine": 4934,
+        "startChar": 25,
+        "endLine": 4934,
+        "endChar": 26
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25db7a90_84a8e1a8",
@@ -294,6 +618,30 @@
       "writtenOn": "2023-07-24T18:30:55Z",
       "side": 1,
       "message": "role_reflector : 1,\n_reserved_ : 7,",
+      "range": {
+        "startLine": 4936,
+        "startChar": 9,
+        "endLine": 4936,
+        "endChar": 10
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a5471cf_54607393",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4936,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Let\u0027s use enums, thanks",
+      "parentUuid": "25db7a90_84a8e1a8",
       "range": {
         "startLine": 4936,
         "startChar": 9,
@@ -327,6 +675,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "58d08204_6ecd8a09",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4937,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d97d4ee8_a78d91b2",
+      "range": {
+        "startLine": 4937,
+        "startChar": 13,
+        "endLine": 4937,
+        "endChar": 14
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a25a182_f897cef2",
@@ -340,6 +712,30 @@
       "writtenOn": "2023-07-24T18:30:55Z",
       "side": 1,
       "message": "enum?\n\nToo bad PhyType won\u0027t work because it includes CODED",
+      "range": {
+        "startLine": 4938,
+        "startChar": 16,
+        "endLine": 4938,
+        "endChar": 17
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "244ce07c_6e7e101d",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4938,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a25a182_f897cef2",
       "range": {
         "startLine": 4938,
         "startChar": 16,
@@ -373,6 +769,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d4ed8fd_ee9674c0",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4941,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Let\u0027s use enums, thanks",
+      "parentUuid": "1c0dd754_f1881840",
+      "range": {
+        "startLine": 4941,
+        "startChar": 27,
+        "endLine": 4941,
+        "endChar": 28
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a178db8d_9bca7a1a",
@@ -386,6 +806,30 @@
       "writtenOn": "2023-07-24T18:30:55Z",
       "side": 1,
       "message": "enum",
+      "range": {
+        "startLine": 4942,
+        "startChar": 15,
+        "endLine": 4942,
+        "endChar": 16
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6989b530_6112fb7b",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4942,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a178db8d_9bca7a1a",
       "range": {
         "startLine": 4942,
         "startChar": 15,
@@ -419,6 +863,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eb55e41_6e9fc92e",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 4944,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26e215be_5a92c743",
+      "range": {
+        "startLine": 4944,
+        "startChar": 28,
+        "endLine": 4944,
+        "endChar": 29
+      },
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ffe758a_c53c2e7d",
@@ -432,6 +900,24 @@
       "writtenOn": "2023-07-24T18:30:55Z",
       "side": 1,
       "message": "Put after SetChannelClassifciation",
+      "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c52f3c0d_904246ac",
+        "filename": "system/gd/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 5021,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-07-31T15:38:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ffe758a_c53c2e7d",
       "revId": "368ddb1345d5268902cf680714ddada2e9ee1273",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
