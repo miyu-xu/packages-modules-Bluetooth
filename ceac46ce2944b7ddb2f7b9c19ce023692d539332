@@ -16,6 +16,24 @@
       "message": "Hi !\n\nBy any change do you have a design doc for this feature ?",
       "revId": "ceac46ce2944b7ddb2f7b9c19ce023692d539332",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7fa30507_6325772e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-07-31T14:40:00Z",
+      "side": 1,
+      "message": "Yes, the design doc is go/floss-mmc, and we\u0027re implementing proposal A. This interface would be used by Codec Client and Codec Server mentioned in the Detailed Design section.",
+      "parentUuid": "c85ba571_7e0386dd",
+      "revId": "ceac46ce2944b7ddb2f7b9c19ce023692d539332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
