@@ -1,5 +1,46 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8c0124b_d6797cb4",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-31T15:14:49Z",
+      "side": 1,
+      "message": "The flag should be the other way around (flag \u003d true should enable the new behavior).",
+      "revId": "394b5b8fbc46fa31535dd20c91677d0215d3cb32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b2446f6_59e69cef",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-31T15:14:49Z",
+      "side": 1,
+      "message": "Can you create a flag tracking bug for this flag ?",
+      "range": {
+        "startLine": 369,
+        "startChar": 8,
+        "endLine": 369,
+        "endChar": 46
+      },
+      "revId": "394b5b8fbc46fa31535dd20c91677d0215d3cb32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
