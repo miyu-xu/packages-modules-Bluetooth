@@ -40,7 +40,7 @@ cc_library {
     generated_headers: ["statslog_bt.h"],
     export_generated_headers: ["statslog_bt.h"],
     shared_libs: [
-        "libcutils",
+        "libbase",
     ],
     apex_available: [
         "com.android.btservices",
