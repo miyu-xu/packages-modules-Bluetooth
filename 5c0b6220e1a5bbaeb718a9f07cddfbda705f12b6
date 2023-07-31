@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "620ce8c5_5394f208",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-07-31T02:53:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89c897ad_539bb641",
+      "range": {
+        "startLine": 75,
+        "startChar": 27,
+        "endLine": 75,
+        "endChar": 69
+      },
+      "revId": "5c0b6220e1a5bbaeb718a9f07cddfbda705f12b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c5bb703_b2f69079",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-07-28T18:46:20Z",
       "side": 1,
       "message": "how about to change greater_or_eq_32k to swb?",
+      "range": {
+        "startLine": 389,
+        "startChar": 9,
+        "endLine": 389,
+        "endChar": 57
+      },
+      "revId": "5c0b6220e1a5bbaeb718a9f07cddfbda705f12b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "658e1d76_84df2aeb",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-07-31T02:53:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c5bb703_b2f69079",
       "range": {
         "startLine": 389,
         "startChar": 9,
