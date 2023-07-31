@@ -931,12 +931,21 @@ bt_status_t HeadsetInterface::ConnectAudio(RawAddress* bd_addr,
     << ADDRESS_TO_LOGGABLE_STR(*bd_addr);
     return BT_STATUS_NOT_READY;
   }
+<<<<<<< PATCH SET (ab88c8 floss: Migrate base::Bind in do_in_(jni|main)_thread)
+  do_in_jni_thread(base::BindOnce(&Callbacks::AudioStateCallback,
+                                  // Manual pointer management for now
+                                  base::Unretained(bt_hf_callbacks),
+                                  BTHF_AUDIO_STATE_CONNECTING,
+                                  &btif_hf_cb[idx].connected_bda));
+  BTA_AgAudioOpen(btif_hf_cb[idx].handle, force_cvsd);
+=======
   do_in_jni_thread(base::Bind(&Callbacks::AudioStateCallback,
                               // Manual pointer management for now
                               base::Unretained(bt_hf_callbacks),
                               BTHF_AUDIO_STATE_CONNECTING,
                               &btif_hf_cb[idx].connected_bda));
   BTA_AgAudioOpen(btif_hf_cb[idx].handle, disabled_codecs);
+>>>>>>> BASE      (e986f0 Merge "Increase connection timeout for phonepolicyTest" into)
 
   DEVICE_IOT_CONFIG_ADDR_INT_ADD_ONE(*bd_addr, IOT_CONF_KEY_HFP_SCO_CONN_COUNT);
 
@@ -1538,7 +1547,8 @@ void HeadsetInterface::Cleanup() {
     }
   }
 
-  do_in_jni_thread(FROM_HERE, base::Bind([]() { bt_hf_callbacks = nullptr; }));
+  do_in_jni_thread(FROM_HERE,
+                   base::BindOnce([]() { bt_hf_callbacks = nullptr; }));
 }
 
 bt_status_t HeadsetInterface::SetScoOffloadEnabled(bool value) {

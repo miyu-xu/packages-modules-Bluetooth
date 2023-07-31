@@ -1543,6 +1543,11 @@ class UnicastTestNoInit : public Test {
     EXPECT_CALL(mock_gatt_interface_, Close(conn_id)).Times(1);
 
     do_in_main_thread(
+<<<<<<< PATCH SET (ab88c8 floss: Migrate base::Bind in do_in_(jni|main)_thread)
+        FROM_HERE,
+        base::BindOnce(&LeAudioClient::Disconnect,
+                       base::Unretained(LeAudioClient::Get()), address));
+=======
         FROM_HERE, base::Bind(&LeAudioClient::Disconnect,
                               base::Unretained(LeAudioClient::Get()), address));
     SyncOnMainLoop();
@@ -1589,6 +1594,7 @@ class UnicastTestNoInit : public Test {
     SyncOnMainLoop();
     Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
     Mock::VerifyAndClearExpectations(&mock_btm_interface_);
+>>>>>>> BASE      (e986f0 Merge "Increase connection timeout for phonepolicyTest" into)
   }
 
   void ConnectCsisDevice(const RawAddress& addr, uint16_t conn_id,
@@ -3133,18 +3139,18 @@ TEST_F(UnicastTestNoInit, ConnectFailedDueToInvalidParameters) {
   EXPECT_CALL(mock_storage_load, Call()).WillOnce([&]() {
     do_in_main_thread(
         FROM_HERE,
-        base::Bind(&LeAudioClient::AddFromStorage, test_address0, autoconnect,
-                   codec_spec_conf::kLeAudioLocationFrontLeft,
-                   codec_spec_conf::kLeAudioLocationFrontLeft, 0xff, 0xff,
-                   std::move(handles), std::move(snk_pacs), std::move(src_pacs),
-                   std::move(ases)));
+        base::BindOnce(&LeAudioClient::AddFromStorage, test_address0,
+                       autoconnect, codec_spec_conf::kLeAudioLocationFrontLeft,
+                       codec_spec_conf::kLeAudioLocationFrontLeft, 0xff, 0xff,
+                       std::move(handles), std::move(snk_pacs),
+                       std::move(src_pacs), std::move(ases)));
     do_in_main_thread(
         FROM_HERE,
-        base::Bind(&LeAudioClient::AddFromStorage, test_address1, autoconnect,
-                   codec_spec_conf::kLeAudioLocationFrontRight,
-                   codec_spec_conf::kLeAudioLocationFrontRight, 0xff, 0xff,
-                   std::move(handles), std::move(snk_pacs), std::move(src_pacs),
-                   std::move(ases)));
+        base::BindOnce(&LeAudioClient::AddFromStorage, test_address1,
+                       autoconnect, codec_spec_conf::kLeAudioLocationFrontRight,
+                       codec_spec_conf::kLeAudioLocationFrontRight, 0xff, 0xff,
+                       std::move(handles), std::move(snk_pacs),
+                       std::move(src_pacs), std::move(ases)));
   });
 
   // Expect stored device0 to connect automatically (first directed connection )
