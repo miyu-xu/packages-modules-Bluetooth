@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a873d2d9_63dc2fe7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-07-31T07:43:57Z",
+      "side": 1,
+      "message": "Isn\u0027t lead device a connected device already? Isn\u0027t this in most part a duplicate code from `getLeadDeviceForTheGroup()`. Could this maybe be simplified to:\n```\n        if (getGroupId(mActiveAudioOutDevice) \u003d\u003d groupId) {\n            return mActiveAudioOutDevice;\n        }\n        return getLeadDeviceForTheGroup(groupId);\n```\n?",
+      "range": {
+        "startLine": 609,
+        "startChar": 9,
+        "endLine": 633,
+        "endChar": 20
+      },
+      "revId": "048f54ae1d2e61971d5d6f28d55da6cd7f809c7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
