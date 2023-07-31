@@ -5,8 +5,8 @@ TestBeds:
   Controllers:
     AndroidDevice: '*'
     BumbleDevice:
-    - transport: 'tcp-client:127.0.0.1:6211'
-    - transport: 'tcp-client:127.0.0.1:6211'
+    - transport: !ENV 'tcp-client:127.0.0.1:${ROOTCANAL_HCI_PORT}'
+    - transport: !ENV 'tcp-client:127.0.0.1:${ROOTCANAL_HCI_PORT}'
 - Name: bumble.bumbles
   Controllers:
     BumbleDevice:
