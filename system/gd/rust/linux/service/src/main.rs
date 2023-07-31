@@ -49,6 +49,8 @@ const ADMIN_SETTINGS_FILE_PATH: &str = "/var/lib/bluetooth/admin_policy.json";
 // The maximum ACL disconnect timeout is 3.5s defined by BTA_DM_DISABLE_TIMER_MS
 // and BTA_DM_DISABLE_TIMER_RETRIAL_MS
 const STACK_TURN_OFF_TIMEOUT_MS: Duration = Duration::from_millis(4000);
+// Time bt_stack_manager waits for cleanup
+const STACK_CLEANUP_TIMEOUT_MS: Duration = Duration::from_millis(1000);
 
 const VERBOSE_ONLY_LOG_TAGS: &[&str] = &[
     "bt_bta_av", // AV apis
@@ -135,7 +137,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     init_flags.push(String::from("INIT_classic_discovery_only=true"));
 
     let (tx, rx) = Stack::create_channel();
-    let sig_notifier = Arc::new((Mutex::new(false), Condvar::new()));
+    let sig_notifier =
+        Arc::new((Mutex::new(false), Condvar::new(), Mutex::new(false), Condvar::new()));
 
     let intf = Arc::new(Mutex::new(get_btinterface().unwrap()));
     let bluetooth_gatt =
@@ -424,7 +427,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 lazy_static! {
     /// Data needed for signal handling.
-    static ref SIG_DATA: Mutex<Option<(Sender<Message>, Arc<(Mutex<bool>, Condvar)>)>> = Mutex::new(None);
+    static ref SIG_DATA: Mutex<Option<(Sender<Message>, Arc<(Mutex<bool>, Condvar, Mutex<bool>, Condvar)>)>> = Mutex::new(None);
 }
 
 extern "C" fn handle_sigterm(_signum: i32) {
@@ -441,6 +444,19 @@ extern "C" fn handle_sigterm(_signum: i32) {
         if *guard {
             log::debug!("Waiting for stack to turn off for {:?}", STACK_TURN_OFF_TIMEOUT_MS);
             let _ = notifier.1.wait_timeout(guard, STACK_TURN_OFF_TIMEOUT_MS);
+        }
+
+        log::debug!("SIGTERM cleaning up the stack.");
+        let txl = tx.clone();
+        tokio::spawn(async move {
+            // Send the cleanup message here.
+            let _ = txl.send(Message::Cleanup).await;
+        });
+
+        let guard = notifier.2.lock().unwrap();
+        if *guard {
+            log::debug!("Waiting for stack to clean up for {:?}", STACK_CLEANUP_TIMEOUT_MS);
+            let _ = notifier.3.wait_timeout(guard, STACK_CLEANUP_TIMEOUT_MS);
         }
     }
 

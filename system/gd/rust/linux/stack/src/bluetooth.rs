@@ -4,8 +4,8 @@ use bt_topshim::btif::{
     BaseCallbacks, BaseCallbacksDispatcher, BluetoothInterface, BluetoothProperty, BtAclState,
     BtBondState, BtConnectionDirection, BtConnectionState, BtDeviceType, BtDiscMode,
     BtDiscoveryState, BtHciErrorCode, BtPinCode, BtPropertyType, BtScanMode, BtSspVariant, BtState,
-    BtStatus, BtTransport, BtVendorProductInfo, DisplayAddress, RawAddress, ToggleableProfile,
-    Uuid, Uuid128Bit,
+    BtStatus, BtThreadEvent, BtTransport, BtVendorProductInfo, DisplayAddress, RawAddress,
+    ToggleableProfile, Uuid, Uuid128Bit,
 };
 use bt_topshim::{
     metrics,
@@ -500,7 +500,7 @@ pub struct Bluetooth {
     discoverable_timeout: Option<JoinHandle<()>>,
 
     /// Used to notify signal handler that we have turned off the stack.
-    sig_notifier: Arc<(Mutex<bool>, Condvar)>,
+    sig_notifier: Arc<(Mutex<bool>, Condvar, Mutex<bool>, Condvar)>,
 }
 
 impl Bluetooth {
@@ -509,7 +509,7 @@ impl Bluetooth {
         adapter_index: i32,
         hci_index: i32,
         tx: Sender<Message>,
-        sig_notifier: Arc<(Mutex<bool>, Condvar)>,
+        sig_notifier: Arc<(Mutex<bool>, Condvar, Mutex<bool>, Condvar)>,
         intf: Arc<Mutex<BluetoothInterface>>,
         bluetooth_admin: Arc<Mutex<Box<BluetoothAdmin>>>,
         bluetooth_gatt: Arc<Mutex<Box<BluetoothGatt>>>,
@@ -1173,6 +1173,9 @@ pub(crate) trait BtifBluetoothCallbacks {
         min_16_digit: bool,
     ) {
     }
+
+    #[btif_callback(ThreadEvent)]
+    fn thread_event(&mut self, event: BtThreadEvent) {}
 }
 
 #[btif_callbacks_dispatcher(dispatch_hid_host_callbacks, HHCallbacks)]
@@ -1725,6 +1728,21 @@ impl BtifBluetoothCallbacks for Bluetooth {
             }
             None => (),
         };
+    }
+
+    fn thread_event(&mut self, event: BtThreadEvent) {
+        match event {
+            BtThreadEvent::Associate => {
+                // Let the signal notifier know stack is initialized.
+                *self.sig_notifier.2.lock().unwrap() = true;
+                self.sig_notifier.3.notify_all();
+            }
+            BtThreadEvent::Disassociate => {
+                // Let the signal notifier know stack is done.
+                *self.sig_notifier.2.lock().unwrap() = false;
+                self.sig_notifier.3.notify_all();
+            }
+        }
     }
 }
 
