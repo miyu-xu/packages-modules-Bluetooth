@@ -69,6 +69,24 @@
       "parentUuid": "591a9b21_7f067593",
       "revId": "eaa6ee586b9c229faf5b473bd9e4a44a72bca023",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd6f1f9a_8db2ada5",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/BluetoothMediaBrowserService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-07-31T23:42:24Z",
+      "side": 1,
+      "message": "Yeah, maybe in subsequent CLs, we should (at best-effort) update our docs. Obviously that might also be outdated as we don\u0027t have any bot to surface it out.",
+      "parentUuid": "207146bb_927cca3f",
+      "revId": "eaa6ee586b9c229faf5b473bd9e4a44a72bca023",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
