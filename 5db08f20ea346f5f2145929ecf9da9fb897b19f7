@@ -34,6 +34,24 @@
       "parentUuid": "05d6a375_a8d8e503",
       "revId": "5db08f20ea346f5f2145929ecf9da9fb897b19f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "facf8b8d_a8eb63f7",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3100,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-07-31T21:42:58Z",
+      "side": 1,
+      "message": "I understand that it was a preexisting logic. However I don\u0027t understand the necessity or why GATT access by apps would cause a crash.",
+      "parentUuid": "6ed53d3f_c672eb1a",
+      "revId": "5db08f20ea346f5f2145929ecf9da9fb897b19f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
