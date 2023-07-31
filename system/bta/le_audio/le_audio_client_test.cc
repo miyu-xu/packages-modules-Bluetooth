@@ -1500,7 +1500,7 @@ class UnicastTestNoInit : public Test {
                 OnConnectionState(ConnectionState::DISCONNECTED, address))
         .Times(1);
     do_in_main_thread(
-        FROM_HERE, base::Bind(&LeAudioClient::Disconnect,
+        FROM_HERE, base::BindOnce(&LeAudioClient::Disconnect,
                               base::Unretained(LeAudioClient::Get()), address));
   }
 
@@ -2666,14 +2666,14 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGrouped) {
   EXPECT_CALL(mock_storage_load, Call()).WillOnce([&]() {
     do_in_main_thread(
         FROM_HERE,
-        base::Bind(&LeAudioClient::AddFromStorage, test_address0, autoconnect,
+        base::BindOnce(&LeAudioClient::AddFromStorage, test_address0, autoconnect,
                    codec_spec_conf::kLeAudioLocationFrontLeft,
                    codec_spec_conf::kLeAudioLocationFrontLeft, 0xff, 0xff,
                    std::move(handles), std::move(snk_pacs), std::move(src_pacs),
                    std::move(ases)));
     do_in_main_thread(
         FROM_HERE,
-        base::Bind(&LeAudioClient::AddFromStorage, test_address1, autoconnect,
+        base::BindOnce(&LeAudioClient::AddFromStorage, test_address1, autoconnect,
                    codec_spec_conf::kLeAudioLocationFrontRight,
                    codec_spec_conf::kLeAudioLocationFrontRight, 0xff, 0xff,
                    std::move(handles), std::move(snk_pacs), std::move(src_pacs),
