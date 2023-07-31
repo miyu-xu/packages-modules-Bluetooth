@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71a4a217_b4da93e8",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-31T16:20:34Z",
+      "side": 1,
+      "message": "My comment is motivated by the fact that both method are doing the same job, but yet they are written completely differently, which make me nervous.\n\nA common method called `LogLinkDetails` could perfectly do do it.",
+      "parentUuid": "4223951c_223d916f",
+      "range": {
+        "startLine": 130,
+        "startChar": 38,
+        "endLine": 130,
+        "endChar": 55
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "90087bee_e8ae8122",
         "filename": "system/osi/src/stack_power_telemetry.cc",
         "patchSetId": 20
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "It would better to keep them. \\\nIn system/stack/acl/btm_acl.cc#2679. When the acl disconnects, there\u0027s no bdaddr. We still need to log for the handle information. \\\nFurthermore, I think it is better to take a reference to avoid copying the variable again.",
       "parentUuid": "90087bee_e8ae8122",
+      "range": {
+        "startLine": 131,
+        "startChar": 21,
+        "endLine": 131,
+        "endChar": 45
+      },
+      "revId": "b898d0f8189e00e5a4011faf0fa5eba5bdce45e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a761be2_97a9c13b",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-07-31T16:20:34Z",
+      "side": 1,
+      "message": "\u003e When the acl disconnects, there\u0027s no bdaddr. \n\nYou can use RawAddress::kEmpty to simulate the nullptr.\n\n\u003e  Furthermore, I think it is better to take a reference to avoid copying the variable again.\n\nThis is what I am asking to do, a cpp reference with `\u0026` and not a C pointeur to not have to check to null.\n\nThe copy is inevitable at the end since the initial variable may no longer be valid anymore. and this is what you are doing already:\n```\nif (bdaddr) {\n  link_details.bdaddr \u003d (*bdaddr);\n}\n```",
+      "parentUuid": "2d41f1d4_6b82c15c",
       "range": {
         "startLine": 131,
         "startChar": 21,
