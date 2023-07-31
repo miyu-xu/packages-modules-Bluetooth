@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85ba571_7e0386dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-31T14:04:17Z",
+      "side": 1,
+      "message": "Hi !\n\nBy any change do you have a design doc for this feature ?",
+      "revId": "ceac46ce2944b7ddb2f7b9c19ce023692d539332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
