@@ -46,6 +46,30 @@
       },
       "revId": "a0f91e9b338bc1cc6eaf6d1f11a952e450fa64db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6138e818_2e4297d1",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-07-31T12:06:45Z",
+      "side": 1,
+      "message": "@quic_skodisha@quicinc.com Please confirm, thank you.",
+      "parentUuid": "fe819595_cbe5f8a0",
+      "range": {
+        "startLine": 405,
+        "startChar": 8,
+        "endLine": 405,
+        "endChar": 18
+      },
+      "revId": "a0f91e9b338bc1cc6eaf6d1f11a952e450fa64db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
