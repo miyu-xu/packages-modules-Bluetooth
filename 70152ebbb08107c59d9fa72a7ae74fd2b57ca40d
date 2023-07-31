@@ -16,6 +16,24 @@
       "message": "Ooo nice finding !\nThanks you for the patch, LGTM.\n@licorne@google.com It looks like the removed if had a `!rust_is_enabled` at the start that we thought was a `rust_is_enabled`",
       "revId": "70152ebbb08107c59d9fa72a7ae74fd2b57ca40d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dbb3c03_061c59ca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-07-31T15:28:06Z",
+      "side": 1,
+      "message": "Indeed ! Sorry about that !",
+      "parentUuid": "35f0913a_0fe4d8e3",
+      "revId": "70152ebbb08107c59d9fa72a7ae74fd2b57ca40d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
