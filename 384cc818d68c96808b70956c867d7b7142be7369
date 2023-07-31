@@ -70,6 +70,23 @@
       "parentUuid": "9d9a95f3_d89d81c5",
       "revId": "384cc818d68c96808b70956c867d7b7142be7369",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2384599_c3a532f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-07-31T14:48:50Z",
+      "side": 1,
+      "message": "Etienne, can you help do owner review since Myles is OOO for the week?",
+      "revId": "384cc818d68c96808b70956c867d7b7142be7369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
