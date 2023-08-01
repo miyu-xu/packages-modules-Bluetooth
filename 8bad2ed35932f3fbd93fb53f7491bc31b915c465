@@ -88,6 +88,24 @@
       "parentUuid": "c7086fce_b5228ab0",
       "revId": "8bad2ed35932f3fbd93fb53f7491bc31b915c465",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d99f43ce_f204847d",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1326,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-01T07:00:25Z",
+      "side": 1,
+      "message": "We should try moving `if (p_lcb-\u003elink_state \u003d\u003d LST_CONNECTING)` inside `l2cu_initialize_fixed_ccb` . The idea is basically --\nChange \n```\n  alarm_cancel(p_lcb-\u003el2c_lcb_timer);\n```\nto \n```\nif (p_lcb-\u003elink_state \u003d\u003d LST_CONNECTED) {\n  alarm_cancel(p_lcb-\u003el2c_lcb_timer);\n} else {\n  LOG_WARN(\"Unable to cancel link control block for link connection to device %s\",\n               ADDRESS_TO_LOGGABLE_CSTR(p_lcb-\u003eremote_bd_addr));\n}\n```",
+      "parentUuid": "b3e31058_939e006e",
+      "revId": "8bad2ed35932f3fbd93fb53f7491bc31b915c465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
