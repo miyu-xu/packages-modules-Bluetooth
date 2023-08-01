@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e166ff77_a1ec3305",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-01T00:35:44Z",
+      "side": 1,
+      "message": "can we just add a `LOG_WARN` here if no ConnectInd_Cb is available (as an else condition).",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 5
+      },
+      "revId": "cfad729ee05a01d874c457c8610d3335069f051a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
