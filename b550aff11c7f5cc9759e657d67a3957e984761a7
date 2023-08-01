@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06adbd8a_ea43c25f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T16:15:16Z",
+      "side": 1,
+      "message": "Nit for follow-up\n\nI assume listening to the adapter state change can also be removed by a call from the onEnter method of the onState in [AdapterState](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterState.java;l\u003d219;drc\u003d5e02e78e0ec4660c328188909b03036421f938f6) (the method is not yet override)",
+      "range": {
+        "startLine": 163,
+        "startChar": 36,
+        "endLine": 163,
+        "endChar": 61
+      },
+      "revId": "b550aff11c7f5cc9759e657d67a3957e984761a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7214ea5d_00e98cd2",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
@@ -37,6 +60,30 @@
       "writtenOn": "2023-08-01T09:25:39Z",
       "side": 1,
       "message": "minor Q) Is this a suggested style by the git hook?",
+      "range": {
+        "startLine": 1140,
+        "startChar": 12,
+        "endLine": 1148,
+        "endChar": 35
+      },
+      "revId": "b550aff11c7f5cc9759e657d67a3957e984761a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d126332d_1b1d79ca",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T16:15:16Z",
+      "side": 1,
+      "message": "Yes, google-java-format is suggesting this, but it is possible to trick it with parenthesis, like this:\n```suggestion\n            Log.d(\n                    TAG,\n                    \"Notify connection state changed.\"\n                            + (\" Device: \" + device)\n                            + (\"(\" + prevState + \" -\u003e \" + newState + \")\"));\n```",
+      "parentUuid": "7214ea5d_00e98cd2",
       "range": {
         "startLine": 1140,
         "startChar": 12,
