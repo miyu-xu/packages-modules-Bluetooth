@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "33cb75ae_aa697e7e",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-08-01T22:55:23Z",
+      "side": 1,
+      "message": "It\u0027s a mix of 14 and 15 + tweak NotAccepted / PasskeyFailed, are you sure ?",
+      "parentUuid": "44c818a6_c970bcd8",
+      "range": {
+        "startLine": 1143,
+        "startChar": 35,
+        "endLine": 1143,
+        "endChar": 44
+      },
+      "revId": "942304e2617d42411d71042617effc4b938f5972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f17afa1a_a6e542b2",
         "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
         "patchSetId": 10
@@ -60,6 +84,30 @@
       "writtenOn": "2023-08-01T21:59:28Z",
       "side": 1,
       "message": "nit: `BV-14bis-C` to show it is derived from this test ?",
+      "range": {
+        "startLine": 1151,
+        "startChar": 35,
+        "endLine": 1151,
+        "endChar": 44
+      },
+      "revId": "942304e2617d42411d71042617effc4b938f5972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "066529d1_7e632760",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-08-01T22:55:23Z",
+      "side": 1,
+      "message": "It\u0027s a mix of 14 and 15 + tweak NotAccepted / PasskeyFailed, are you sure ?",
+      "parentUuid": "f17afa1a_a6e542b2",
       "range": {
         "startLine": 1151,
         "startChar": 35,
