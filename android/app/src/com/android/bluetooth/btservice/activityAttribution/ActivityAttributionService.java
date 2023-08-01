@@ -25,10 +25,8 @@ import java.util.Objects;
  * based activities.
  */
 public class ActivityAttributionService {
-    private boolean mCleaningUp;
-    private static ActivityAttributionService sActivityAttributionService;
-    private static final boolean DBG = false;
     private static final String TAG = "ActivityAttributionService";
+    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     private final ActivityAttributionNativeInterface mActivityAttributionNativeInterface =
             Objects.requireNonNull(
@@ -36,18 +34,7 @@ public class ActivityAttributionService {
                     "ActivityAttributionNativeInterface "
                             + "cannot be null when ActivityAttributionService starts");
 
-    /** Start and initialize the Activity Attribution service. */
-    public void start() {
-        debugLog("start()");
-
-        if (sActivityAttributionService != null) {
-            Log.e(TAG, "start() called twice");
-            return;
-        }
-
-        // Mark service as started
-        setActivityAttributionService(this);
-    }
+    private boolean mCleaningUp;
 
     /** Cleans up the Activity Attribution service. */
     public void cleanup() {
@@ -59,31 +46,8 @@ public class ActivityAttributionService {
 
         mCleaningUp = true;
 
-        if (sActivityAttributionService == null) {
-            debugLog("cleanup() called before start()");
-            return;
-        }
-
-        // Mark service as stopped
-        setActivityAttributionService(null);
-
         // Cleanup native interface
         mActivityAttributionNativeInterface.cleanup();
-        mActivityAttributionNativeInterface = null;
-    }
-
-    /** Get the ActivityAttributionService instance */
-    public static synchronized ActivityAttributionService getActivityAttributionService() {
-        if (sActivityAttributionService == null) {
-            Log.w(TAG, "getActivityAttributionService(): service is NULL");
-            return null;
-        }
-
-        if (!sActivityAttributionService.isAvailable()) {
-            Log.w(TAG, "getActivityAttributionService(): service is not available");
-            return null;
-        }
-        return sActivityAttributionService;
     }
 
     /** Init JNI */
@@ -105,12 +69,6 @@ public class ActivityAttributionService {
 
     private boolean isAvailable() {
         return !mCleaningUp;
-    }
-
-    private static synchronized void setActivityAttributionService(
-            ActivityAttributionService instance) {
-        debugLog("setActivityAttributionService(): set to: " + instance);
-        sActivityAttributionService = instance;
     }
 
     private static void debugLog(String msg) {
