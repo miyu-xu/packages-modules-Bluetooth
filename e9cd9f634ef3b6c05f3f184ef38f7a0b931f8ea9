@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f27feef5_bd6a6ab7",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 982,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T17:24:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0820b449_6cb5dbb5",
+      "range": {
+        "startLine": 982,
+        "startChar": 16,
+        "endLine": 982,
+        "endChar": 35
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b06f7acb_8da6a641",
@@ -227,6 +251,30 @@
       "side": 1,
       "message": "I fixed it, thank you. The error is not necessary here, it could fail only if the feature flag is not set.",
       "parentUuid": "58fc5c68_66b729bf",
+      "range": {
+        "startLine": 996,
+        "startChar": 1,
+        "endLine": 1001,
+        "endChar": 3
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "efbe51fa_5aca618e",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 1001,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T17:24:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2ac0ebfa_bca1081d",
       "range": {
         "startLine": 996,
         "startChar": 1,
@@ -368,6 +416,30 @@
       "side": 1,
       "message": "BTHF_SWB is LC3 SWB and yes - there was support for that already. But I needed to use the same SWB callback, and be able to distinguish between LC3 and AptX. Hence the naming, but I have nothing against renaming ; )",
       "parentUuid": "ed12af5e_0a46cb62",
+      "range": {
+        "startLine": 82,
+        "startChar": 21,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1063c1dd_5b2c1fe6",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetHalConstants.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T17:24:57Z",
+      "side": 1,
+      "message": "Acknowledged\nI like better your current way of listing the various codec.",
+      "parentUuid": "4331bc60_4db9c613",
       "range": {
         "startLine": 82,
         "startChar": 21,
@@ -835,6 +907,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45048747_3901cb1a",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T17:24:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b8c4e1e0_16908711",
+      "range": {
+        "startLine": 122,
+        "startChar": 11,
+        "endLine": 122,
+        "endChar": 18
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6adce12_e3c695bc",
@@ -895,6 +991,30 @@
       "side": 1,
       "message": "Your proposed version doesn\u0027t seem to work :(\n\nBut the initial version does, let\u0027s say this is our test string: \"0,1,2,3\"\nSo first we skip until a coma:\n\",1,2,3\"\nwe erase first coma, such that we write 0 in that place. *p \u003d 0 actually erases a coma in the string. \n\nThen we pass our original string, which has it\u0027s first coma zero-ed:\n\"0\\01,2,3\"\nand something like this we pass to utl_str2int. This function converts the first character(\u00270\u0027) and moves to the second (\u0027\\0\u0027). If that character is \\0 - it returns converted value.\n\nI\u0027ve seen similar approach in other BTA event but there is a possibility that I am wrong with something and it can be done better :D But that\u0027s my understanding until now ; )",
       "parentUuid": "c31f4cb1_05701b91",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 1
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b0d3347_78dfc095",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T17:24:57Z",
+      "side": 1,
+      "message": "Oh, my bad, you are 100% right. I didn\u0027t looked at `utl_str2int` and the fact it needed a null terminated string.\n\nI do not like this. For me, modifying the string we are parsing looks like a bad pattern and is error-prone\n\nShould we call `strtol` instead ? It is my understanding that it should stop on the comma and does not need the string to be null-terminated.\n\nAnd the loop can be replaced with a strchr of a comma",
+      "parentUuid": "4759de51_8b3d0a92",
       "range": {
         "startLine": 111,
         "startChar": 0,
@@ -989,6 +1109,30 @@
       "side": 1,
       "message": "I did it more explicit now. AFAIK the reason is that only ESCO_CODEC_SWB_Q0 is supported for now and has its default configuration, so if any other codec appears it should return the default for ESCO_CODEC_SWB_Q0.",
       "parentUuid": "2743589e_0a911bf2",
+      "range": {
+        "startLine": 330,
+        "startChar": 2,
+        "endLine": 332,
+        "endChar": 5
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4b90ba1_deba851f",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T17:24:57Z",
+      "side": 1,
+      "message": "Does that mean `codec` is always the correct value when `offload` is false ?\n\nShould we be worried about `return default_esco_parameters[codec];` ?",
+      "parentUuid": "c71040a8_55c87e5f",
       "range": {
         "startLine": 330,
         "startChar": 2,

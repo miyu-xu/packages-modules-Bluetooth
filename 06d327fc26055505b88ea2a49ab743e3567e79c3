@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9ac7f97_42a7dbf1",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetHalConstants.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T17:24:57Z",
+      "side": 1,
+      "message": "And now this make me **STRONGLY** feel like we should not do that unless the codec is actually upstream.\nWe need to have a product discussion on this.\n\nOr if the codec is not upstream maybe it should be `BTHF_SWB_CODEC_VENDOR` and we let the vendor do what they want.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 45
+      },
+      "revId": "06d327fc26055505b88ea2a49ab743e3567e79c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
