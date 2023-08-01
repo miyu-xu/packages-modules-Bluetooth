@@ -718,6 +718,11 @@ struct ase {
   uint8_t framing;
   uint8_t preferred_phy;
 
+  /* Whether the codec location is transparent to the controller */
+  bool is_codec_in_controller;
+  /* Datapath ID used to configure an ISO channel for these ASEs */
+  uint8_t data_path_id;
+
   /* Qos configuration */
   uint16_t max_sdu_size;
   uint8_t retrans_nb;
@@ -794,6 +799,12 @@ struct SetConfiguration {
   uint8_t direction;  /* Direction of set */
   uint8_t device_cnt; /* How many devices must be in set */
   uint8_t ase_cnt;    /* How many ASE we need in configuration */
+
+  /* Whether the codec location is transparent to the controller */
+  bool is_codec_in_controller = false;
+  /* Datapath ID used to configure an ISO channel for these ASEs */
+  uint8_t data_path_id = bluetooth::hci::iso_manager::kIsoDataPathHci;
+
   CodecCapabilitySetting codec;
   QosConfigSetting qos;
   types::LeAudioConfigurationStrategy strategy;
