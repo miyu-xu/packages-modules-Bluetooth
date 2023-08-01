@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e775209f_274f7d62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-01T00:52:41Z",
+      "side": 1,
+      "message": "It seems the next iteration of SCN should implement as a set of all possible available/used SCNs and move them back and forth as needed",
+      "revId": "22ed92e46aaa0481fa77d52d497b0cf2cf6339e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
