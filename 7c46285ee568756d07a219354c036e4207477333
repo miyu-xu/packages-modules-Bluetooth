@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "731d1427_e0c91042",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-08-01T06:29:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89c7e1af_e7b64eb1",
+      "revId": "7c46285ee568756d07a219354c036e4207477333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b25873d_d61a6d26",
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4bb48fe_ac6a10a3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-08-01T06:29:43Z",
+      "side": 1,
+      "message": "Actually it should not since in `setUp()` we already test if the service started sucessfully or not. Also this the failing test is `dump_shouldNotThrow()` test, which mean the test itself should not go wrong. \n\nSo my best guess is either somehow the system killed the service before the test complete.",
+      "parentUuid": "9b25873d_d61a6d26",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 20
+      },
+      "revId": "7c46285ee568756d07a219354c036e4207477333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f2c5332_c264efc2",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
         "patchSetId": 3
@@ -54,6 +96,24 @@
       "writtenOn": "2023-07-27T01:33:44Z",
       "side": 1,
       "message": "Not related with this CL, but could you remove one empty line here?",
+      "revId": "7c46285ee568756d07a219354c036e4207477333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee99935a_5af39bce",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-08-01T06:29:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7f2c5332_c264efc2",
       "revId": "7c46285ee568756d07a219354c036e4207477333",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
