@@ -47,13 +47,6 @@ class ActivityAttributionCallbacks {
   };
 
   virtual ~ActivityAttributionCallbacks() = default;
-
-  /** Callback when Bluetooth woke up the system */
-  virtual void OnWakeup(const Activity activity, const RawAddress& address) = 0;
-
-  /** Callback when Bluetooth activity logs are ready to be moved */
-  virtual void OnActivityLogsReady(
-      const std::vector<BtaaAggregationEntry> logs) = 0;
 };
 
 class ActivityAttributionInterface {
@@ -62,12 +55,6 @@ class ActivityAttributionInterface {
 
   /** Init the interface. */
   virtual void Init(void) = 0;
-
-  /** Register JNI callbacks with the interface. */
-  virtual void RegisterCallbacks(ActivityAttributionCallbacks* callbacks) = 0;
-
-  /** Closes the interface. */
-  virtual void Cleanup(void) = 0;
 
   /** Notify the UID and package name of the app, and the address of associated
    * active device */
