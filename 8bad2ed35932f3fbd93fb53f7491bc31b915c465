@@ -70,6 +70,24 @@
       "parentUuid": "5ea11187_03623db1",
       "revId": "8bad2ed35932f3fbd93fb53f7491bc31b915c465",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3e31058_939e006e",
+        "filename": "system/stack/l2cap/l2c_api.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1326,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-08-01T05:46:05Z",
+      "side": 1,
+      "message": "Sorry, we try to reproduce, but it is very difficult to reproduce.\nDo you have any other advice for accept both GATT and SMP connection.",
+      "parentUuid": "c7086fce_b5228ab0",
+      "revId": "8bad2ed35932f3fbd93fb53f7491bc31b915c465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
