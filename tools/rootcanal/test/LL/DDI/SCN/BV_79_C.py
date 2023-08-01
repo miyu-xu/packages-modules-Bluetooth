@@ -53,9 +53,9 @@ class Test(ControllerTest):
                                             scanning_filter_policy=hci.LeScanningFilterPolicy.ACCEPT_ALL,
                                             scanning_phys=0x1,
                                             parameters=[
-                                                hci.PhyScanParameters(le_scan_type=hci.LeScanType.PASSIVE,
-                                                                      le_scan_interval=0x0010,
-                                                                      le_scan_window=0x0010)
+                                                hci.ScanningPhyParameters(le_scan_type=hci.LeScanType.PASSIVE,
+                                                                          le_scan_interval=0x0010,
+                                                                          le_scan_window=0x0010)
                                             ]))
 
         await self.expect_evt(
