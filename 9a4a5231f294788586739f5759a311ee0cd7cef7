@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4565fba_d93a806c",
+        "filename": "tools/rootcanal/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-01T18:24:10Z",
+      "side": 1,
+      "message": "Are you sure you can safely remove this line ?\nisn\u0027t bpfmt complaining that the array is not sorted ?",
+      "range": {
+        "startLine": 21,
+        "startChar": 13,
+        "endLine": 22,
+        "endChar": 12
+      },
+      "revId": "9a4a5231f294788586739f5759a311ee0cd7cef7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
