@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fa561fb_b561ddf5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-08-01T09:29:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "af25b7cf_2eb40b25",
+      "range": {
+        "startLine": 183,
+        "startChar": 24,
+        "endLine": 183,
+        "endChar": 53
+      },
+      "revId": "2e30b99b939fa33d476b95473f60706167a7d78f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "46164d98_07d7bf95",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I was not aware of getLeadDevice() method - looks like added recently by Rahul.\nNot sure if we need it, I guess not. Still, this is topic for other change.",
       "parentUuid": "46164d98_07d7bf95",
+      "range": {
+        "startLine": 608,
+        "startChar": 20,
+        "endLine": 608,
+        "endChar": 47
+      },
+      "revId": "2e30b99b939fa33d476b95473f60706167a7d78f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00891bbe_3d035fa6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-08-01T09:29:36Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e25ad867_0edbb1b3",
       "range": {
         "startLine": 608,
         "startChar": 20,
