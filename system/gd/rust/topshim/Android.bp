@@ -110,7 +110,6 @@ rust_bindgen {
     wrapper_src: "bindings/wrapper.hpp",
     crate_name: "bt_topshim_wrapper_bindgen",
     source_stem: "bindings",
-    cpp_std: "c++17",
     host_supported: true,
     bindgen_flags: [
         "--allowlist-function=bt_.*",
