@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24859e96_70f4cac3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-01T11:16:49Z",
+      "side": 1,
+      "message": "Hi, please review this CL. More details on the bug. Thanks!",
+      "revId": "4e7f388e47b9e46a2c6c7b011a62af45350fa832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
