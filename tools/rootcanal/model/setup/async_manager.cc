@@ -388,6 +388,8 @@ class AsyncManager::AsyncTaskManager {
       return false;
     }
 
+    WARN("AsyncManager cancelling task for {}", async_task_id);
+
     // Now make sure we are not running this task.
     // 2 cases:
     // - This is called from thread_, this means a running
