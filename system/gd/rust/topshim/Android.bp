@@ -110,8 +110,11 @@ rust_bindgen {
     wrapper_src: "bindings/wrapper.hpp",
     crate_name: "bt_topshim_wrapper_bindgen",
     source_stem: "bindings",
+<<<<<<< PATCH SET (4e29b3 Move c_std and cpp_std to bluetooth_cflags)
+=======
     defaults: ["bluetooth_cflags"],
     cpp_std: "c++17",
+>>>>>>> BASE      (abfabd Merge "RootCanal: Move the sim bluetooth HAL from system/tes)
     host_supported: true,
     bindgen_flags: [
         "--allowlist-function=bt_.*",
