@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af25b7cf_2eb40b25",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-01T09:28:01Z",
+      "side": 1,
+      "message": "We could think of changing it to a boolean, but this I suggest to do in separate patch.",
+      "parentUuid": "227d9e93_f0c8972a",
+      "range": {
+        "startLine": 183,
+        "startChar": 24,
+        "endLine": 183,
+        "endChar": 53
+      },
+      "revId": "2e30b99b939fa33d476b95473f60706167a7d78f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "46164d98_07d7bf95",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-01T09:14:43Z",
       "side": 1,
       "message": "Do we need getConnectedGroupLeadDevice, getLeadDeviceForTheGroup, and getLeadDevice as three separate methods ?",
+      "range": {
+        "startLine": 608,
+        "startChar": 20,
+        "endLine": 608,
+        "endChar": 47
+      },
+      "revId": "2e30b99b939fa33d476b95473f60706167a7d78f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e25ad867_0edbb1b3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-01T09:28:01Z",
+      "side": 1,
+      "message": "I was not aware of getLeadDevice() method - looks like added recently by Rahul.\nNot sure if we need it, I guess not. Still, this is topic for other change.",
+      "parentUuid": "46164d98_07d7bf95",
       "range": {
         "startLine": 608,
         "startChar": 20,
