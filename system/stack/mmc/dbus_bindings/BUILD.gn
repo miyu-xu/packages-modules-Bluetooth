@@ -14,23 +14,21 @@
 #  limitations under the License.
 #
 
-import("//common-mk/proto_library.gni")
+import("//common-mk/generate-dbus-adaptors.gni")
+import("//common-mk/generate-dbus-proxies.gni")
 
-proto_library("mmc_config_proto") {
-  proto_in_dir = "./"
-  proto_out_dir = "include/mmc/proto"
+
+generate_dbus_adaptors("mmc_dbus_adaptors") {
+  dbus_adaptors_out_dir = "include/mmc/dbus_adaptors"
+  dbus_service_config = "dbus-service-config.json"
   sources = [
-    "${proto_in_dir}/mmc_config.proto",
+    "org.chromium.mmc.CodecManager.xml",
   ]
-  standalone=true
 }
 
-proto_library("mmc_service_proto") {
-  proto_in_dir = "./"
-  proto_out_dir = "include/mmc/proto"
+generate_dbus_proxies("mmc_dbus_proxies") {
+  proxy_output_file = "include/mmc/dbus-proxies.h"
   sources = [
-    "${proto_in_dir}/mmc_service.proto",
+    "org.chromium.mmc.CodecManager.xml",
   ]
-  deps = [ ":mmc_config_proto" ]
-  standalone=true
 }
