@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "227d9e93_f0c8972a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-08-01T09:14:43Z",
+      "side": 1,
+      "message": "Do we still need the mLostLeadDeviceWhileStreaming when mCurrentLeadDevice is now avaliable ?",
+      "range": {
+        "startLine": 183,
+        "startChar": 24,
+        "endLine": 183,
+        "endChar": 53
+      },
+      "revId": "2e30b99b939fa33d476b95473f60706167a7d78f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46164d98_07d7bf95",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-08-01T09:14:43Z",
+      "side": 1,
+      "message": "Do we need getConnectedGroupLeadDevice, getLeadDeviceForTheGroup, and getLeadDevice as three separate methods ?",
+      "range": {
+        "startLine": 608,
+        "startChar": 20,
+        "endLine": 608,
+        "endChar": 47
+      },
+      "revId": "2e30b99b939fa33d476b95473f60706167a7d78f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
