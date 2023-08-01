@@ -37,8 +37,6 @@ public final class ActivityAttributionServiceTest {
     public void setUp() {
         Assume.assumeTrue("Ignore test when the user is not primary.", isPrimaryUser());
         mActivityAttributionService = new ActivityAttributionService();
-        mActivityAttributionService.start();
-        assertThat(mActivityAttributionService).isNotNull();
     }
 
     @After
@@ -47,7 +45,6 @@ public final class ActivityAttributionServiceTest {
             return;
         }
         mActivityAttributionService.cleanup();
-        mActivityAttributionService = null;
     }
 
     private boolean isPrimaryUser() {
@@ -55,7 +52,11 @@ public final class ActivityAttributionServiceTest {
     }
 
     @Test
-    public void testSetUpAndTearDown() {}
+    public void testSetUpAndTearDown() {
+        assertThat(mActivityAttributionService.isAvailable()).isTrue();
+        mActivityAttributionService.cleanup();
+        assertThat(mActivityAttributionService.isAvailable()).isFalse();
+    }
 
     @Test
     public void testNotifyActivityAttributionInfo() {
