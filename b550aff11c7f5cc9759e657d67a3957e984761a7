@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dc806fb_d30934ed",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-08-01T09:25:39Z",
+      "side": 1,
+      "message": "adapter state change?",
+      "range": {
+        "startLine": 147,
+        "startChar": 30,
+        "endLine": 147,
+        "endChar": 41
+      },
+      "revId": "b550aff11c7f5cc9759e657d67a3957e984761a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7214ea5d_00e98cd2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-08-01T09:25:39Z",
+      "side": 1,
+      "message": "minor Q) Is this a suggested style by the git hook?",
+      "range": {
+        "startLine": 1140,
+        "startChar": 12,
+        "endLine": 1148,
+        "endChar": 35
+      },
+      "revId": "b550aff11c7f5cc9759e657d67a3957e984761a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
