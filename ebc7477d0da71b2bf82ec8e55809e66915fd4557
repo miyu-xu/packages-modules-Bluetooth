@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7cca46e3_05241cee",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-02T20:54:17Z",
+      "side": 1,
+      "message": "IIRC that\u0027s what the \"Test\" tag is asking when we want to add a built target for testing, maybe that changed or I was wrong but I\u0027m not aware of what should be put here instead.",
+      "parentUuid": "be0d9999_0c629cb1",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "21e5f7a3_f27e8932",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -37,6 +61,24 @@
       "writtenOn": "2023-08-02T18:20:56Z",
       "side": 1,
       "message": "If I understand the code correctly we are adding this random delay to the timeouts timers.\n\nWould it be possible to add this delay only in case of collisions (on the retry) ?",
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db737fea_c6874632",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-02T20:54:17Z",
+      "side": 1,
+      "message": "This will be done once we have a fix for the collisions yes... Right now almost all the connections lead to a collision when connecting to AA which results in no connection on browsing at all.\n\nThe fix on collisions will take some time and we took the decision to unlock the connections for now.",
+      "parentUuid": "21e5f7a3_f27e8932",
       "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -101,6 +143,30 @@
       "writtenOn": "2023-08-02T18:17:21Z",
       "side": 1,
       "message": "Since you are doing 3 time the same operation and it may not be obvious on why there is a rand, can you create a method that will do this operation and comment on the method that the rand is there to avoid collision ?\n\nI see that you are mentioning the collision in the define of `BTA_AV_RC_DISC_MAX_COL_DELAY`, but this is more related to osi_rand in my opinion.\n\nIs this random colision mecanisme part of the spec, if so, can you reference it in the function comment ?\n\n(Sorry I am asking a lot)",
+      "range": {
+        "startLine": 293,
+        "startChar": 10,
+        "endLine": 293,
+        "endChar": 77
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7138fb01_d21913c6",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-02T20:54:17Z",
+      "side": 1,
+      "message": "I can add a method for the rand, though that\u0027s local to this file and only used thrice so I decided not to. As the `BTA_AV_RC_DISC_MAX_COL_DELAY` is used every time the rand is present I think the comment on the define is enough.. I\u0027ll let other weigh in!\n\nAs for the spec, I\u0027ll add that if you think that\u0027s useful",
+      "parentUuid": "9d3518e7_1d848f8a",
       "range": {
         "startLine": 293,
         "startChar": 10,
