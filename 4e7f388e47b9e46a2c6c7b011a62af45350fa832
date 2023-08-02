@@ -34,6 +34,46 @@
       "parentUuid": "24859e96_70f4cac3",
       "revId": "4e7f388e47b9e46a2c6c7b011a62af45350fa832",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83a5cf2b_4bf9c31d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-08-02T07:01:40Z",
+      "side": 1,
+      "message": "Thanks for the fix! Have you considered rejecting the connection in libbluetooth so that there won\u0027t be a small period of time being connected by the unbonded devices?",
+      "revId": "4e7f388e47b9e46a2c6c7b011a62af45350fa832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4a30c65_c725e35f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1139,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-08-02T07:01:40Z",
+      "side": 1,
+      "message": "```suggestion\n        match \u0026self.adapter {\n        Some(adapter) \u003d\u003e BtBondState::Bonded \u003d\u003d ...\n        _ \u003d\u003e false\n        }\n```",
+      "range": {
+        "startLine": 1132,
+        "startChar": 8,
+        "endLine": 1139,
+        "endChar": 21
+      },
+      "revId": "4e7f388e47b9e46a2c6c7b011a62af45350fa832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
