@@ -16,6 +16,24 @@
       "message": "Could you please add the description of the interop here too?",
       "revId": "e10d6b89ecd3db0e8208b56e89c5b675a1816a3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c8f9de4_f98f43f3",
+        "filename": "system/device/include/interop.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-08-02T09:44:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df9fec2e_e5cd79c2",
+      "revId": "e10d6b89ecd3db0e8208b56e89c5b675a1816a3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
