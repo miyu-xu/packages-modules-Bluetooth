@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f398e9c2_fe4bce6a",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-02T09:33:17Z",
+      "side": 1,
+      "message": "This comments looks a bit confusing without the context. Maybe we don\u0027t need this now.",
+      "range": {
+        "startLine": 91,
+        "startChar": 25,
+        "endLine": 91,
+        "endChar": 29
+      },
+      "revId": "f9b0ef17df1e6e85c44c013b839ffe14c5088026",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
