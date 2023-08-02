@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb0c3c98_b0ee415d",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-08-02T16:52:27Z",
+      "side": 0,
+      "message": "Yup, for AIDL one, we need the source_metadata_v7 as input. For HIDL one, it should stay on source_metadata.",
+      "parentUuid": "032e0fa3_3a684465",
+      "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "708826ab_af54b573",
         "filename": "system/audio_bluetooth_hw/device_port_proxy_hidl.h",
         "patchSetId": 3
@@ -49,6 +67,24 @@
       "writtenOn": "2023-08-02T09:09:19Z",
       "side": 0,
       "message": "Is function changed in v7 of metadata from \"source_metadata\" to \"tracks_metadata\" ? Isn\u0027t this still only for sources only ?",
+      "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3677227_eb78108e",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy_hidl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-08-02T16:52:27Z",
+      "side": 0,
+      "message": "This proxy is used for the HIDL HAL. In the previous default implementation, HIDL use UpdateTracksMetadata as naming. So change the name to align the HIDL implementation is make more sense.\n\nhttps://cs.android.com/search?q\u003dUpdateTracksMetadata\u0026ss\u003dandroid%2Fplatform%2Fsuperproject\n\nIt would only for sources only. On the HIDL HAL, it doesn\u0027t support updateSinkMetadata.",
+      "parentUuid": "708826ab_af54b573",
       "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

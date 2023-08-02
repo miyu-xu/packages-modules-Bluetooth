@@ -51,6 +51,24 @@
       "message": "for HIDL is Tracks and AIDL it\u0027s Source metadata ?",
       "revId": "b80498c49198850a2dda990d03b9484b23b9913c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a40c4d2_e297954d",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-08-02T16:52:27Z",
+      "side": 1,
+      "message": "Yes.",
+      "parentUuid": "bc740512_7171f6d3",
+      "revId": "b80498c49198850a2dda990d03b9484b23b9913c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
