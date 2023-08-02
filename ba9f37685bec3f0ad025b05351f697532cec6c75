@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91481f58_308d3e58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-02T11:56:54Z",
+      "side": 1,
+      "message": "Bypass Lint for suggestion is not applicable",
+      "revId": "ba9f37685bec3f0ad025b05351f697532cec6c75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
