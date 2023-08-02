@@ -22,6 +22,30 @@
       },
       "revId": "b9f330660774bc5b8cb2a649f286da96a0c18007",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1f89849_6978928f",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-02T22:13:03Z",
+      "side": 1,
+      "message": "Unfortunately not.\n\nThere\u0027s no API (that I know of at least) that would allow them to send that info. At best we could use a custom action and bundle for it, but Media Center doesn\u0027t want that.\n\nThere _is_ a Bluetooth API used on the source side for active device, `BluetoothAdapter#setActiveDevice`. If Media Center was comfortable using a custom action, then I would rather pipe the sink side profiles through that API and have them use that instead.",
+      "parentUuid": "4f24416b_84d838b4",
+      "range": {
+        "startLine": 363,
+        "startChar": 0,
+        "endLine": 366,
+        "endChar": 9
+      },
+      "revId": "b9f330660774bc5b8cb2a649f286da96a0c18007",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
