@@ -140,6 +140,30 @@
       },
       "revId": "b550aff11c7f5cc9759e657d67a3957e984761a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "703f2085_e6828520",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1148,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-02T01:36:43Z",
+      "side": 1,
+      "message": "google-java-format fixup tool made this change :)",
+      "parentUuid": "d126332d_1b1d79ca",
+      "range": {
+        "startLine": 1140,
+        "startChar": 12,
+        "endLine": 1148,
+        "endChar": 35
+      },
+      "revId": "b550aff11c7f5cc9759e657d67a3957e984761a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
