@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48eb642f_ca2a5d11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-08-02T17:56:47Z",
+      "side": 1,
+      "message": "Note after merge: A potential test for this CL is `LL/CON/INI/BV-20-C [Device Privacy – Connection Establishment using resolving list,\nInitiator, Accept Identity Address]`",
+      "revId": "a1a2aac1ddb2b8e3068013122a37d1f831c89ab4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
