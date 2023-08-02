@@ -16,6 +16,24 @@
       "message": "The original reason we excluded LE audio from the build was that we were getting build breakages and we didn\u0027t have a pre-submit. Is there a compelling reason why we need to disable LE audio at build time? I would be ok just building everything in by default and removing ifdefs.",
       "revId": "a5e13a237f0a901426431d71c94db4d9e2870608",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eeefe6c_8d30dfd9",
+        "filename": "system/BUILD.gn",
+        "patchSetId": 13
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-02T04:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e1f0c23_4837c255",
+      "revId": "a5e13a237f0a901426431d71c94db4d9e2870608",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
