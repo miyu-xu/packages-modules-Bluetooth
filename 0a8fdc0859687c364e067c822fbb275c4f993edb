@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddf645af_5fae47e4",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 23
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-02T10:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4fedf48_0059501f",
+      "range": {
+        "startLine": 112,
+        "startChar": 57,
+        "endLine": 112,
+        "endChar": 64
+      },
+      "revId": "0a8fdc0859687c364e067c822fbb275c4f993edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6f828e4_f5270a04",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-07-31T22:24:37Z",
       "side": 1,
       "message": "I am wondering if there is a risk of keeping an already logged `l2c_data` (or `rfc_data`) in case there was no traffic changed since last log.\n\nAka, what if you update `l2c_data` once, log it, then update and there is only a change for `rfc_data`. At the next log, will you log the \"expired\" `l2c_data`\n\nThis question apply for a lot of element in this method",
+      "range": {
+        "startLine": 206,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 16
+      },
+      "revId": "0a8fdc0859687c364e067c822fbb275c4f993edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "966ab4f4_81682c7c",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-02T10:22:14Z",
+      "side": 1,
+      "message": "I think this is acceptable because we don\u0027t focus on short period of time. We want to get the variation in long period of time. If so, we\u0027ll get more data and this case becomes less-important. I think I am able to enhance this in the future. \\\nThanks William. I never think of it. Lesson Learn.",
+      "parentUuid": "e6f828e4_f5270a04",
       "range": {
         "startLine": 206,
         "startChar": 8,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cafea319_79f8aff1",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-02T10:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b315eb6_129ab77b",
+      "range": {
+        "startLine": 335,
+        "startChar": 60,
+        "endLine": 335,
+        "endChar": 66
+      },
+      "revId": "0a8fdc0859687c364e067c822fbb275c4f993edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b53184ee_3a8e7591",
@@ -110,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "003ba679_0fee8bbd",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-02T10:22:14Z",
+      "side": 1,
+      "message": "Forgot to remove it. Done.",
+      "parentUuid": "b53184ee_3a8e7591",
+      "range": {
+        "startLine": 351,
+        "startChar": 34,
+        "endLine": 351,
+        "endChar": 54
+      },
+      "revId": "0a8fdc0859687c364e067c822fbb275c4f993edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "127afb11_33c1c386",
@@ -123,6 +219,30 @@
       "writtenOn": "2023-07-31T22:24:37Z",
       "side": 1,
       "message": "Remove ?",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 1
+      },
+      "revId": "0a8fdc0859687c364e067c822fbb275c4f993edb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0af3fe44_7e94225e",
+        "filename": "system/test/mock/mock_osi_stack_power_telemetry.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-02T10:22:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "127afb11_33c1c386",
       "range": {
         "startLine": 73,
         "startChar": 0,
