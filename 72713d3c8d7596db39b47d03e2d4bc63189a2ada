@@ -16,6 +16,41 @@
       "message": "This is great analysis. So it\u0027s possible that an unbonded device can initiate connection, in which case the `available_profiles` can be empty, I was unaware of this.\n\nI think the current policy is not well-prepared for cases where `available_profiles` can be empty while connection occurs, and this fixes a subset of such issues.\n\nAs a side discussion, maybe not in this CL, could this fix be extended by checking `available_profiles.is_empty` instead of `is_bonded` as a means of resetting the states (and consider re-connection strategies if recoverable)?",
       "revId": "72713d3c8d7596db39b47d03e2d4bc63189a2ada",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17338cc0_2017b5a9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-02T10:55:11Z",
+      "side": 1,
+      "message": "My guess is, `available_profile.is_empty` doesn\u0027t equal to `!is_bonded`.\n\nLet\u0027s suppose we bonded to a device, but for some reason we fail to discover all the profiles. We potentially will now have a bonded device but empty available profiles.\n\nIf there is a reconnection:\n(a) initiated by the host: then we will try to re-discover the profiles again, so no problem I guess.\n(b) initiated by the peer: then we will not re-discover the profiles, and now it\u0027s up to the peer to actually connect the missing profiles.\n\nI suppose arriving at this state with empty available profiles does mean something bad happened so we potentially can work on a better strategy.",
+      "parentUuid": "b9658bfa_f27a76d0",
+      "revId": "72713d3c8d7596db39b47d03e2d4bc63189a2ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a789e4e_ecbd4ebc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-02T10:55:11Z",
+      "side": 1,
+      "message": "Thanks for the reviews!\n\nBtw I haven\u0027t test the states of the normal media connection, so I\u0027ll defer from submitting until I complete the some checks.",
+      "revId": "72713d3c8d7596db39b47d03e2d4bc63189a2ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
