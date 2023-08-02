@@ -52,6 +52,24 @@
       "parentUuid": "6ed53d3f_c672eb1a",
       "revId": "5db08f20ea346f5f2145929ecf9da9fb897b19f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94dafe92_eaaa82af",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3100,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-08-02T17:30:14Z",
+      "side": 1,
+      "message": "Discussed offline",
+      "parentUuid": "facf8b8d_a8eb63f7",
+      "revId": "5db08f20ea346f5f2145929ecf9da9fb897b19f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
