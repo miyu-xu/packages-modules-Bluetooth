@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb33e194_37dc9de7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T09:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee2700fa_f3067fb6",
+      "range": {
+        "startLine": 9,
+        "startChar": 62,
+        "endLine": 9,
+        "endChar": 67
+      },
+      "revId": "4b522e7252db086fe84a4e971029e11f62a8dd7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1caff8ee_5b1772e4",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada4416e_7966d55c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T09:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1caff8ee_5b1772e4",
+      "revId": "4b522e7252db086fe84a4e971029e11f62a8dd7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "66ed05b6_9a3de4ad",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-08-02T07:45:20Z",
       "side": 1,
       "message": "NIT: An abstract interface representing either an encoder or a decoder.",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 28,
+        "endChar": 13
+      },
+      "revId": "4b522e7252db086fe84a4e971029e11f62a8dd7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6efe27c7_dc70511f",
+        "filename": "system/stack/mmc/mmc_interface.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T09:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "66ed05b6_9a3de4ad",
       "range": {
         "startLine": 26,
         "startChar": 3,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b58ea18d_18130020",
+        "filename": "system/stack/mmc/mmc_interface.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T09:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b699b77_146c8723",
+      "range": {
+        "startLine": 33,
+        "startChar": 16,
+        "endLine": 33,
+        "endChar": 22
+      },
+      "revId": "4b522e7252db086fe84a4e971029e11f62a8dd7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f42415dd_a225f597",
@@ -100,6 +190,30 @@
       "writtenOn": "2023-08-02T07:45:20Z",
       "side": 1,
       "message": "NIT: errno",
+      "range": {
+        "startLine": 37,
+        "startChar": 29,
+        "endLine": 37,
+        "endChar": 34
+      },
+      "revId": "4b522e7252db086fe84a4e971029e11f62a8dd7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e13aa3f_51e1fb5d",
+        "filename": "system/stack/mmc/mmc_interface.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T09:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f42415dd_a225f597",
       "range": {
         "startLine": 37,
         "startChar": 29,
@@ -133,6 +247,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e51f361e_8724e564",
+        "filename": "system/stack/mmc/mmc_interface.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T09:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17bdcd32_d469ac04",
+      "range": {
+        "startLine": 43,
+        "startChar": 21,
+        "endLine": 43,
+        "endChar": 24
+      },
+      "revId": "4b522e7252db086fe84a4e971029e11f62a8dd7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19c29aa1_a7111e26",
@@ -150,6 +288,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eeb9e2f1_d4e56f0b",
+        "filename": "system/stack/mmc/mmc_interface.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T09:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19c29aa1_a7111e26",
+      "revId": "4b522e7252db086fe84a4e971029e11f62a8dd7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "751f9cac_9b132692",
@@ -163,6 +319,30 @@
       "writtenOn": "2023-08-02T07:45:20Z",
       "side": 1,
       "message": "Ditto",
+      "range": {
+        "startLine": 47,
+        "startChar": 29,
+        "endLine": 47,
+        "endChar": 34
+      },
+      "revId": "4b522e7252db086fe84a4e971029e11f62a8dd7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b19b1fd1_3600df7f",
+        "filename": "system/stack/mmc/mmc_interface.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T09:13:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "751f9cac_9b132692",
       "range": {
         "startLine": 47,
         "startChar": 29,
