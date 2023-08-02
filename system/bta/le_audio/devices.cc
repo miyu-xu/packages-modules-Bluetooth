@@ -2439,6 +2439,11 @@ void LeAudioDevice::ClearPACs(void) {
 
 LeAudioDevice::~LeAudioDevice(void) {
   alarm_free(link_quality_timer);
+  for (auto& ase : ases_) {
+    if (alarm_is_scheduled(ase.autonomous_operation_timer_)) {
+      alarm_free(ase.autonomous_operation_timer_);
+    }
+  }
   this->ClearPACs();
 }
 
