@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7cd1ffc_42d1add2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-02T16:07:52Z",
+      "side": 1,
+      "message": "This reduces the bta_dm::main module to common control blocks and common dumpsys launching",
+      "revId": "22377282d38463c0853788b738ef39b5fadbd8d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
