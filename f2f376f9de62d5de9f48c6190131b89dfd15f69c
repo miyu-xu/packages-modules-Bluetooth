@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a17e681_3c14070b",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-02T21:01:43Z",
+      "side": 1,
+      "message": "I found the name confusing (sorry)\n\nif the link is an acl link, I expect isAclOrSco to be true.\nif the link is an sco link, I expect isAclOrSco to be true too...\n\nCan you name it `is_acl_link` for example ? (I am fine with or without keeping a comment that otherwise it will be sco)",
+      "range": {
+        "startLine": 98,
+        "startChar": 58,
+        "endLine": 98,
+        "endChar": 68
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d69ca841_43bc3508",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-02T21:01:43Z",
+      "side": 1,
+      "message": "Can this be merged in the first part of the if below ? and the whole `LinkDetails link_details \u003d {}` too ?\n\nSomething like\n```\n  if (is_connected \u003d\u003d false \u0026\u0026 link_map.count(handle) !\u003d 0) {\n    LinkDetails link_details \u003d link_map[handle];\n    link_details.disconnected_ts \u003d time(0);\n    link_list.push_back(link_details);\n    link_map.erase(handle);\n```",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 36
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e9e368c_a3813f4e",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-02T21:01:43Z",
+      "side": 1,
+      "message": "I think this should be replaced with a ADDRESS_TO_LOGGABLE_CSTR. Can you ptal to any other location where the addr may be printed ?",
+      "range": {
+        "startLine": 445,
+        "startChar": 30,
+        "endLine": 445,
+        "endChar": 60
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
