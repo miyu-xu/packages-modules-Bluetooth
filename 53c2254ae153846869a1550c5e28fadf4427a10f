@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "032e0fa3_3a684465",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-02T16:40:50Z",
+      "side": 0,
+      "message": "Because Port is shared between AIDL and HIDL and we need different behavior for them",
+      "parentUuid": "436df4dc_e78ddd00",
+      "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "708826ab_af54b573",
         "filename": "system/audio_bluetooth_hw/device_port_proxy_hidl.h",
         "patchSetId": 3
@@ -65,6 +83,24 @@
       "writtenOn": "2023-08-02T09:09:19Z",
       "side": 0,
       "message": "Why not use here \u0027source_metadata_v7_t\u0027 ?",
+      "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2177d5ef_3336daaa",
+        "filename": "system/audio_hal_interface/hidl/le_audio_software_hidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-02T16:40:50Z",
+      "side": 0,
+      "message": "we are not changing HIDL, which is frozen.",
+      "parentUuid": "5c8446db_87068152",
       "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
