@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9658bfa_f27a76d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-02T10:43:45Z",
+      "side": 1,
+      "message": "This is great analysis. So it\u0027s possible that an unbonded device can initiate connection, in which case the `available_profiles` can be empty, I was unaware of this.\n\nI think the current policy is not well-prepared for cases where `available_profiles` can be empty while connection occurs, and this fixes a subset of such issues.\n\nAs a side discussion, maybe not in this CL, could this fix be extended by checking `available_profiles.is_empty` instead of `is_bonded` as a means of resetting the states (and consider re-connection strategies if recoverable)?",
+      "revId": "72713d3c8d7596db39b47d03e2d4bc63189a2ada",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
