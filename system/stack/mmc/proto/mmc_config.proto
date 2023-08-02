@@ -36,6 +36,51 @@ message Lc3Param {
   int32 stride = 5;
 }
 
+// corresponding to SBC_ENC_PARAMS
+message SbcEncoderParam {
+  // encoder config
+  enum SamplingFreq {
+    kSbcSf16000 = 0;
+    kSbcSf32000 = 1;
+    kSbcSf44100 = 2;
+    kSbcSf48000 = 3;
+  }
+
+  enum ChannelMode {
+    kSbcMono = 0;
+    kSbcDual = 1;
+    kSbcStereo = 2;
+    kSbcJointStereo = 3;
+  }
+
+  enum AllocationMethod {
+    kSbcLoudNess = 0;
+    kSbcSnr = 1;
+  }
+
+  enum Format {
+    kSbcFormatGeneral = 0;
+    kSbcFormatMsbc = 1;
+  }
+
+  int32 num_of_subbands = 1;
+  int32 num_of_channels = 2;
+  int32 num_of_blocks = 3;
+  int32 bit_pool = 4;
+  int32 bit_rate = 5;
+  SamplingFreq sampling_freq = 6;
+  ChannelMode channel_mode = 7;
+  AllocationMethod allocation_method = 8;
+  Format format = 9;
+}
+
+message SbcDecoderParam {
+  // decoder config
+  int32 max_channels = 1;
+  int32 stride = 2;
+  bool enhanced = 3;
+}
+
 // union of different codec parameters
 message ConfigParam {
   // This determines the codec type and whether it is an encoder or a decoder.
@@ -43,5 +88,8 @@ message ConfigParam {
     // HFP LC3 encoder and decoder has same parameter type.
     Lc3Param hfp_lc3_encoder_param = 1;
     Lc3Param hfp_lc3_decoder_param = 2;
+    // Both HFP MSBC and A2DP SBC use SBC parameters
+    SbcEncoderParam hfp_msbc_encoder_param = 3;
+    SbcDecoderParam hfp_msbc_decoder_param = 4;
   }
 }
