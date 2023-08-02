@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1283e640_7af2aa10",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-02T17:50:53Z",
+      "side": 1,
+      "message": "There is no longer the need for both p and p_s. I think we can merge them",
+      "range": {
+        "startLine": 114,
+        "startChar": 1,
+        "endLine": 115,
+        "endChar": 10
+      },
+      "revId": "4751b67fb63d91a6efbed394a1522840eec3e6ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50006844_83f5d1b6",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-02T17:50:53Z",
+      "side": 1,
+      "message": "Since we are now skipping before getting an int, we may change the behavior.\n\nbefore:\n```\nskip on p and null terminate p\nparse p_s\np_s \u003d p+1\n```\n\nnow:\n```\nskip on p\nparse p // NOT THE SAME !\np \u003d p+1\n```\n\nWhat do you think of simplifying a lot with :\n\n```suggestion\n  while (p \u0026\u0026 *p) {\n    // unconditionally parse as an int and advance p to the next char after it\n    uint16_t codec_modes \u003d strtol(p, \u0026p, 10);\n    // advance until next comma\n    p \u003d strchr(p, \u0027,\u0027)\n\n```",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 0
+      },
+      "revId": "4751b67fb63d91a6efbed394a1522840eec3e6ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0447d328_b596b956",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-02T17:50:53Z",
+      "side": 1,
+      "message": "I do not know how `printf` behave in android native code",
+      "range": {
+        "startLine": 143,
+        "startChar": 10,
+        "endLine": 143,
+        "endChar": 16
+      },
+      "revId": "4751b67fb63d91a6efbed394a1522840eec3e6ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
