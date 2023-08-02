@@ -956,6 +956,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7b75edf_81c2b365",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-02T13:49:44Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "b6adce12_e3c695bc",
+      "range": {
+        "startLine": 123,
+        "startChar": 3,
+        "endLine": 127,
+        "endChar": 19
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c31f4cb1_05701b91",
         "filename": "system/bta/ag/bta_ag_swb.cc",
         "patchSetId": 3
@@ -1015,6 +1039,30 @@
       "side": 1,
       "message": "Oh, my bad, you are 100% right. I didn\u0027t looked at `utl_str2int` and the fact it needed a null terminated string.\n\nI do not like this. For me, modifying the string we are parsing looks like a bad pattern and is error-prone\n\nShould we call `strtol` instead ? It is my understanding that it should stop on the comma and does not need the string to be null-terminated.\n\nAnd the loop can be replaced with a strchr of a comma",
       "parentUuid": "4759de51_8b3d0a92",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 1
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7764dfc4_2bb056e9",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-02T13:49:44Z",
+      "side": 1,
+      "message": "Please check current version and let me know if ok ; )",
+      "parentUuid": "5b0d3347_78dfc095",
       "range": {
         "startLine": 111,
         "startChar": 0,
@@ -1133,6 +1181,30 @@
       "side": 1,
       "message": "Does that mean `codec` is always the correct value when `offload` is false ?\n\nShould we be worried about `return default_esco_parameters[codec];` ?",
       "parentUuid": "c71040a8_55c87e5f",
+      "range": {
+        "startLine": 330,
+        "startChar": 2,
+        "endLine": 332,
+        "endChar": 5
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edce6f34_d0dccd6a",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-02T13:49:44Z",
+      "side": 1,
+      "message": "Yes, my bad. I\u0027ve added check.",
+      "parentUuid": "d4b90ba1_deba851f",
       "range": {
         "startLine": 330,
         "startChar": 2,
