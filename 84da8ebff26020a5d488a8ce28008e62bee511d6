@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "757840cd_33be7555",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2668,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-08-02T16:43:17Z",
+      "side": 1,
+      "message": "It should be connecting state.",
+      "revId": "84da8ebff26020a5d488a8ce28008e62bee511d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
