@@ -314,8 +314,14 @@ void a2dp_aac_encoder_init(const tA2DP_ENCODER_INIT_PEER_PARAMS* p_peer_params,
   tA2DP_BITS_PER_SAMPLE bits_per_sample =
       a2dp_codec_config->getAudioBitsPerSample();
 
-  uint32_t pcm_samples_per_frame =
+  int pcm_samples_per_frame =
       codec_intf.prepare_context(sample_rate, channel_count, bit_rate);
+
+  if (pcm_samples_per_frame < 0) {
+    LOG_ERROR("%s: Failed to prepare context: %d", __func__,
+              pcm_samples_per_frame);
+    return;  // TODO(b/294165759): need to return an error
+  }
 
   uint32_t encoder_interval_ms = pcm_samples_per_frame * 1000 / sample_rate;
 
