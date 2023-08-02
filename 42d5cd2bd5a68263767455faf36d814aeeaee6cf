@@ -45,6 +45,54 @@
       },
       "revId": "42d5cd2bd5a68263767455faf36d814aeeaee6cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "173a9140_56679e99",
+        "filename": "system/stack/mmc/mmc_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T06:59:23Z",
+      "side": 1,
+      "message": "We will modify `init` and `transcode` to return the negative error number on error, 0 on success.",
+      "parentUuid": "a54123d0_1ee1ba2c",
+      "range": {
+        "startLine": 32,
+        "startChar": 10,
+        "endLine": 32,
+        "endChar": 14
+      },
+      "revId": "42d5cd2bd5a68263767455faf36d814aeeaee6cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae79d7f0_d07d2bb1",
+        "filename": "system/stack/mmc/mmc_interface.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-02T06:59:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e2406f5c_b7242342",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 20
+      },
+      "revId": "42d5cd2bd5a68263767455faf36d814aeeaee6cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
