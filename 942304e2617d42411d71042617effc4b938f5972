@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed22b1c_c5242fa0",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 712,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-08-02T01:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a4b6aa7_facce984",
+      "range": {
+        "startLine": 712,
+        "startChar": 24,
+        "endLine": 712,
+        "endChar": 38
+      },
+      "revId": "942304e2617d42411d71042617effc4b938f5972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44c818a6_c970bcd8",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0e73c7c_d8457b76",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1143,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-08-02T01:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd97b687_ff1d9d61",
+      "range": {
+        "startLine": 1143,
+        "startChar": 35,
+        "endLine": 1143,
+        "endChar": 44
+      },
+      "revId": "942304e2617d42411d71042617effc4b938f5972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f17afa1a_a6e542b2",
@@ -142,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b379dca_2b59d0a6",
+        "filename": "tools/rootcanal/rust/src/lmp/procedure/secure_simple_pairing.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 1151,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-08-02T01:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "066529d1_7e632760",
+      "range": {
+        "startLine": 1151,
+        "startChar": 35,
+        "endLine": 1151,
+        "endChar": 44
+      },
+      "revId": "942304e2617d42411d71042617effc4b938f5972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13ae1a39_a9118019",
@@ -159,6 +231,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f562fc3a_366f9106",
+        "filename": "tools/rootcanal/rust/test/SP/CUSTOM-01.in",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-08-02T01:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "13ae1a39_a9118019",
+      "revId": "942304e2617d42411d71042617effc4b938f5972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24c48fc4_2294a143",
@@ -172,6 +262,24 @@
       "writtenOn": "2023-08-01T21:59:28Z",
       "side": 1,
       "message": "Can you expand on the following points to help with reading at a later point ?\n- Test case not present in LMP.TS, but other permutations are described in SP/BV-14-C, SP/BV-15-C\n- IUT is KeyboardOnly, responder\n- Lower Tester is Display, initiator\n- IUT fails passkey entry with User_Passkey_Request_NegativeReply, responds Not Accepted to the SimplePairingConfirm",
+      "revId": "942304e2617d42411d71042617effc4b938f5972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8be6aa1_b453b525",
+        "filename": "tools/rootcanal/rust/test/SP/CUSTOM-02.in",
+        "patchSetId": 10
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-08-02T01:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "24c48fc4_2294a143",
       "revId": "942304e2617d42411d71042617effc4b938f5972",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
