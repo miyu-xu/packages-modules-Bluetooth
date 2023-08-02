@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25f8ad71_0e73cdbf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-02T01:35:20Z",
+      "side": 1,
+      "message": "Removed the comment instead.",
+      "parentUuid": "9dc806fb_d30934ed",
+      "range": {
+        "startLine": 147,
+        "startChar": 30,
+        "endLine": 147,
+        "endChar": 41
+      },
+      "revId": "b550aff11c7f5cc9759e657d67a3957e984761a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06adbd8a_ea43c25f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-01T16:15:16Z",
       "side": 1,
       "message": "Nit for follow-up\n\nI assume listening to the adapter state change can also be removed by a call from the onEnter method of the onState in [AdapterState](https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterState.java;l\u003d219;drc\u003d5e02e78e0ec4660c328188909b03036421f938f6) (the method is not yet override)",
+      "range": {
+        "startLine": 163,
+        "startChar": 36,
+        "endLine": 163,
+        "endChar": 61
+      },
+      "revId": "b550aff11c7f5cc9759e657d67a3957e984761a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb772d77_9928a3f2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-02T01:35:20Z",
+      "side": 1,
+      "message": "Thanks for the info. Let me do it in the next CL.\nIt looks there are many other places that listen BluetoothAdapter.ACTION_STATE_CHANGED.\nhttps://source.corp.google.com/search?q\u003dBluetoothAdapter.ACTION_STATE_CHANGED\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Fmain:packages%2Fmodules%2FBluetooth%2F\u0026start\u003d1",
+      "parentUuid": "06adbd8a_ea43c25f",
       "range": {
         "startLine": 163,
         "startChar": 36,
