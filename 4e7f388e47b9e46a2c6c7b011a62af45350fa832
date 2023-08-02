@@ -154,6 +154,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cec24d4_6bbf9e1c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1101,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-02T08:41:44Z",
+      "side": 1,
+      "message": "That is not the fix for this problem.\n\nThe fix is adding a bonded check in line 1160 - 1173 instead of just returning. See comment5 of the bug for more details.\n\nThis part is just a refactor so we can just invoke this async function from three other places, rather than having them in three separate places.\n\n--- \n\nEdit: yes, that\u0027s correct.",
+      "parentUuid": "11d5c5c6_550c0907",
+      "range": {
+        "startLine": 1101,
+        "startChar": 13,
+        "endLine": 1101,
+        "endChar": 29
+      },
+      "revId": "4e7f388e47b9e46a2c6c7b011a62af45350fa832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4a30c65_c725e35f",
