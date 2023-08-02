@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42511977_6580eef8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-02T10:01:19Z",
+      "side": 1,
+      "message": "In BlueZ we set the \"security level\" for each profiles when listening to the sockets. So connection to profiles with low/no security won\u0027t be blocked, but connection to high security profile will be put to \"pending\" until the user space allows/disallows it.\n\nIn Floss, we don\u0027t set the security level, so we just mark the connection as successful, and it\u0027s up to the rust stack to close it if necessary.\n\nDoes that sounds about right?",
+      "parentUuid": "020a09dc_86463a1c",
+      "revId": "4e7f388e47b9e46a2c6c7b011a62af45350fa832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "11d5c5c6_550c0907",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
