@@ -72,6 +72,12 @@ constexpr char kBtmLogTag[] = "A2DP";
 #define BTA_AV_RC_DISC_TIME_VAL 3500
 #endif
 
+/* the max random delay added on top of BTA_AV_RC_DISC_TIME_VAL to avoid
+ * connection request collision */
+#ifndef BTA_AV_RC_DISC_MAX_COL_DELAY
+#define BTA_AV_RC_DISC_MAX_COL_DELAY 1000
+#endif
+
 /* the timer in milliseconds to guard against link busy and AVDT_CloseReq failed
  * to be sent */
 #ifndef BTA_AV_CLOSE_REQ_TIME_VAL
@@ -282,8 +288,10 @@ void bta_av_st_rc_timer(tBTA_AV_SCB* p_scb, UNUSED_ATTR tBTA_AV_DATA* p_data) {
       /* (bta_av_cb.features & BTA_AV_FEAT_RCCT) && */
       (p_scb->use_rc || (p_scb->role & BTA_AV_ROLE_AD_ACP))) {
     if ((p_scb->wait & BTA_AV_WAIT_ROLE_SW_BITS) == 0) {
-      bta_sys_start_timer(p_scb->avrc_ct_timer, BTA_AV_RC_DISC_TIME_VAL,
-                          BTA_AV_AVRC_TIMER_EVT, p_scb->hndl);
+      bta_sys_start_timer(
+          p_scb->avrc_ct_timer,
+          BTA_AV_RC_DISC_TIME_VAL + osi_rand() % BTA_AV_RC_DISC_MAX_COL_DELAY,
+          BTA_AV_AVRC_TIMER_EVT, p_scb->hndl);
     } else {
       p_scb->wait |= BTA_AV_WAIT_CHECK_RC;
     }
@@ -807,8 +815,10 @@ void bta_av_do_disc_a2dp(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
 
   if (p_scb->wait & BTA_AV_WAIT_CHECK_RC) {
     p_scb->wait &= ~BTA_AV_WAIT_CHECK_RC;
-    bta_sys_start_timer(p_scb->avrc_ct_timer, BTA_AV_RC_DISC_TIME_VAL,
-                        BTA_AV_AVRC_TIMER_EVT, p_scb->hndl);
+    bta_sys_start_timer(
+        p_scb->avrc_ct_timer,
+        BTA_AV_RC_DISC_TIME_VAL + osi_rand() % BTA_AV_RC_DISC_MAX_COL_DELAY,
+        BTA_AV_AVRC_TIMER_EVT, p_scb->hndl);
   }
 
   /* store peer addr other parameters */
@@ -3062,7 +3072,9 @@ void bta_av_open_rc(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
       if (p_scb->rc_handle == BTA_AV_RC_HANDLE_NONE) {
         /* AVRC channel is not connected. delay a little bit */
         if ((p_scb->wait & BTA_AV_WAIT_ROLE_SW_BITS) == 0) {
-          bta_sys_start_timer(p_scb->avrc_ct_timer, BTA_AV_RC_DISC_TIME_VAL,
+          bta_sys_start_timer(p_scb->avrc_ct_timer,
+                              BTA_AV_RC_DISC_TIME_VAL +
+                                  osi_rand() % BTA_AV_RC_DISC_MAX_COL_DELAY,
                               BTA_AV_AVRC_TIMER_EVT, p_scb->hndl);
         } else {
           p_scb->wait |= BTA_AV_WAIT_CHECK_RC;
