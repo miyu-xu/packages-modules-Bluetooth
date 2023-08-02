@@ -16,6 +16,24 @@
       "message": "The same change needs to be applied line 3708 (extended LE connection)",
       "revId": "45732f477f29596daae7531e57adcf470a8340c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3871ee53_c70bb246",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3292,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-08-02T15:43:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3763f64_c7766bfd",
+      "revId": "45732f477f29596daae7531e57adcf470a8340c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
