@@ -24,6 +24,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e5f7a3_f27e8932",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-02T18:20:56Z",
+      "side": 1,
+      "message": "If I understand the code correctly we are adding this random delay to the timeouts timers.\n\nWould it be possible to add this delay only in case of collisions (on the retry) ?",
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "028384d7_2d658729",
