@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56147aa5_94ef722d",
+        "filename": "system/bta/dm/bta_dm_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-02T17:06:25Z",
+      "side": 1,
+      "message": "I will check with the author on the intent",
+      "parentUuid": "d8c0124b_d6797cb4",
+      "revId": "394b5b8fbc46fa31535dd20c91677d0215d3cb32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b2446f6_59e69cef",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-07-31T15:14:49Z",
       "side": 1,
       "message": "Can you create a flag tracking bug for this flag ?",
+      "range": {
+        "startLine": 369,
+        "startChar": 8,
+        "endLine": 369,
+        "endChar": 46
+      },
+      "revId": "394b5b8fbc46fa31535dd20c91677d0215d3cb32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a131773_c126b817",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-02T17:06:25Z",
+      "side": 1,
+      "message": "b/294232915",
+      "parentUuid": "6b2446f6_59e69cef",
       "range": {
         "startLine": 369,
         "startChar": 8,
