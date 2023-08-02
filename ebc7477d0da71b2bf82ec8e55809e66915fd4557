@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d787f78d_2f68e72e",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-02T18:22:08Z",
+      "side": 1,
+      "message": "No it\u0027s indeed not needed, but I think for this CL it makes more sense to keep consistency with the other defines, we should do a pass to remove all such ifndef in all the code.",
+      "parentUuid": "028384d7_2d658729",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 6
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d3518e7_1d848f8a",
