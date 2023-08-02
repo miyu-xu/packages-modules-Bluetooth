@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be0d9999_0c629cb1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-02T18:17:21Z",
+      "side": 1,
+      "message": "```\n$\u003e  m aosp_bramble-userdebug\nFAILED: ninja: unknown target \u0027aosp_bramble-userdebug\u0027   \n```\n\n.... 😭",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "028384d7_2d658729",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-02T18:17:21Z",
+      "side": 1,
+      "message": "FYI, the ifndef pattern is here for historical reason as the code was overridable with a .h file.\n\nSince we are prebuilt, there is no such things :/\n\n\nIs there any necessity to have that as an overridable define ?  If so, this may need to be a sysprop...\nBut I know @licorne@google.com will not like having new sysprop for timer stuff.\n\nMaybe just making it a constante ?",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 6
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d3518e7_1d848f8a",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-02T18:17:21Z",
+      "side": 1,
+      "message": "Since you are doing 3 time the same operation and it may not be obvious on why there is a rand, can you create a method that will do this operation and comment on the method that the rand is there to avoid collision ?\n\nI see that you are mentioning the collision in the define of `BTA_AV_RC_DISC_MAX_COL_DELAY`, but this is more related to osi_rand in my opinion.\n\nIs this random colision mecanisme part of the spec, if so, can you reference it in the function comment ?\n\n(Sorry I am asking a lot)",
+      "range": {
+        "startLine": 293,
+        "startChar": 10,
+        "endLine": 293,
+        "endChar": 77
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
