@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e582b89a_fbb66304",
+        "filename": "system/common/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T18:29:57Z",
+      "side": 1,
+      "message": "I think we should stays as a library  and export the proto header as before. `whole_static` should not even be needed\n\nThere is no risk for giving too broad visibility as the header are not re-export unless we ask to.\n\nAlso can we shrink down the lib visibility to only the libbt-common ?",
+      "parentUuid": "0e792288_89668f3f",
+      "range": {
+        "startLine": 31,
+        "startChar": 3,
+        "endLine": 34,
+        "endChar": 6
+      },
+      "revId": "ffd5fa000e7644070fbf8228da5a0b49eae0b1a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8bbdaa5e_78e78143",
         "filename": "system/common/Android.bp",
         "patchSetId": 2
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Yes, but it\u0027s only used by metrics.cc, I can add it back for all targets, wdyt ?",
       "parentUuid": "8bbdaa5e_78e78143",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 43
+      },
+      "revId": "ffd5fa000e7644070fbf8228da5a0b49eae0b1a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64287fef_9a03aa2c",
+        "filename": "system/common/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T18:29:57Z",
+      "side": 1,
+      "message": "Sound good.\nAck",
+      "parentUuid": "dfdb9600_d0a5d75b",
       "range": {
         "startLine": 38,
         "startChar": 0,
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "We can delete them afterward, I plan to upload a CL to remove `bluetooth-protos-lite`.\n\nFor the last one this can be done as well but I didn\u0027t looked into it yet.\n\n\u003e I am trying to understand why we want a filegroup instead of moving the dependency \n\nBecause it\u0027s used in 3 different places: system/common, android/app and system/gd (with 3 different targets) whereas keystore.proto was only used in android/app.",
       "parentUuid": "e372f0c8_33639f57",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 44
+      },
+      "revId": "ffd5fa000e7644070fbf8228da5a0b49eae0b1a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a99d567e_187ee090",
+        "filename": "system/gd/proto/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T18:29:57Z",
+      "side": 1,
+      "message": "See other comment.\nAck",
+      "parentUuid": "d6cc522e_04317fa9",
       "range": {
         "startLine": 29,
         "startChar": 9,
