@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "980a87c7_42abd283",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1108,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T04:04:45Z",
+      "side": 1,
+      "message": "Nit:\n\nI am not a fan of looping on all service only for Sap (deprecated) and opp.\n\nAlternative could be for theses service to register callback, imo the callback is worse\nor we could directly call sap / opp here... but I am not sure if we can do it easily.\n\nIf you have better idea feel free to update, if not... `¯\\_(ツ)_/¯`",
+      "range": {
+        "startLine": 1106,
+        "startChar": 2,
+        "endLine": 1108,
+        "endChar": 9
+      },
+      "revId": "e82df3d3b1731239697f7472fa95b91479249ddb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
