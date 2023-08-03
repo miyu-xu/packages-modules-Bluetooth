@@ -93,9 +93,6 @@ cc_defaults {
         "//apex_available:platform",
         "com.android.btservices",
     ],
-    static_libs: [
-        "libprotobuf-cpp-lite",
-    ],
 }
 
 cc_defaults {
