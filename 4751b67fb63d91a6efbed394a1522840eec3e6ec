@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8cbe313_282156af",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-03T11:35:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1283e640_7af2aa10",
+      "range": {
+        "startLine": 114,
+        "startChar": 1,
+        "endLine": 115,
+        "endChar": 10
+      },
+      "revId": "4751b67fb63d91a6efbed394a1522840eec3e6ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50006844_83f5d1b6",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a69fee4_8ca2ab6f",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-03T11:35:25Z",
+      "side": 1,
+      "message": "We are skipping but until a numeric character not until a coma.\nI was not sure how does this AT event look like, if it comes like: \"something,0,1,2,3\" I wanted to handle that, but you are right, it probably comes like: \"0,1,2,3\".\n\nI changed to your version and modified a little bit:\n```\n  while (p_s \u0026\u0026 *p_s) {\n    // unconditionally parse as an int and advance p to the next char after it\n    uint16_t codec_modes \u003d strtol(p_s, \u0026p_s, 10);\n    // advance until next comma\n    if (*p_s !\u003d 0) {\n      p_s \u003d strchr(p_s, \u0027,\u0027);\n      p_s++;\n    }\n```\n\nThis seems to work, but IF something wrong is passed, e.g.: \"x,0,1,2\" strtol wil return 0 for \u0027x\u0027, and we handle 0 in switch case - so not very safe solution. The current version simply skips anything other than number. Please let me know what you think.",
+      "parentUuid": "50006844_83f5d1b6",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 0
+      },
+      "revId": "4751b67fb63d91a6efbed394a1522840eec3e6ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0447d328_b596b956",
         "filename": "system/bta/ag/bta_ag_swb.cc",
         "patchSetId": 6
@@ -60,6 +108,30 @@
       "writtenOn": "2023-08-02T17:50:53Z",
       "side": 1,
       "message": "I do not know how `printf` behave in android native code",
+      "range": {
+        "startLine": 143,
+        "startChar": 10,
+        "endLine": 143,
+        "endChar": 16
+      },
+      "revId": "4751b67fb63d91a6efbed394a1522840eec3e6ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c711bfce_4c5ec950",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-03T11:35:25Z",
+      "side": 1,
+      "message": "Leftover from tests, sorry 😄",
+      "parentUuid": "0447d328_b596b956",
       "range": {
         "startLine": 143,
         "startChar": 10,
