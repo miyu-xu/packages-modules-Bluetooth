@@ -978,6 +978,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90f9e2fa_8746e123",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T17:50:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f7b75edf_81c2b365",
+      "range": {
+        "startLine": 123,
+        "startChar": 3,
+        "endLine": 127,
+        "endChar": 19
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c31f4cb1_05701b91",
@@ -1063,6 +1087,30 @@
       "side": 1,
       "message": "Please check current version and let me know if ok ; )",
       "parentUuid": "5b0d3347_78dfc095",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 1
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f810a29_b9989fc2",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T17:50:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7764dfc4_2bb056e9",
       "range": {
         "startLine": 111,
         "startChar": 0,
@@ -1205,6 +1253,30 @@
       "side": 1,
       "message": "Yes, my bad. I\u0027ve added check.",
       "parentUuid": "d4b90ba1_deba851f",
+      "range": {
+        "startLine": 330,
+        "startChar": 2,
+        "endLine": 332,
+        "endChar": 5
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17b87110_645ec87a",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T17:50:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "edce6f34_d0dccd6a",
       "range": {
         "startLine": 330,
         "startChar": 2,
