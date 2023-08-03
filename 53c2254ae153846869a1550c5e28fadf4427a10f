@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc66d69a_1cc9b3a7",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-03T07:45:43Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "eb0c3c98_b0ee415d",
+      "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "708826ab_af54b573",
@@ -89,6 +107,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad17a88b_2f176ccd",
+        "filename": "system/audio_bluetooth_hw/device_port_proxy_hidl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-03T07:45:43Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "b3677227_eb78108e",
+      "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e0674955_80ea9906",
@@ -102,6 +138,24 @@
       "writtenOn": "2023-08-02T09:09:19Z",
       "side": 0,
       "message": "What was the motivation to change this behavior ?",
+      "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3387935f_9403caf3",
+        "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-03T07:45:43Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "e0674955_80ea9906",
       "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -137,6 +191,24 @@
       "side": 0,
       "message": "we are not changing HIDL, which is frozen.",
       "parentUuid": "5c8446db_87068152",
+      "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04c0db70_669e6c5e",
+        "filename": "system/audio_hal_interface/hidl/le_audio_software_hidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-03T07:45:43Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "2177d5ef_3336daaa",
       "revId": "53c2254ae153846869a1550c5e28fadf4427a10f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

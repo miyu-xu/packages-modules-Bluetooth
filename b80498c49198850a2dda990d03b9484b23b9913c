@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2435980d_c32c63a0",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-03T07:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b96649ce_357758a9",
+      "revId": "b80498c49198850a2dda990d03b9484b23b9913c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc740512_7171f6d3",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "Yes.",
       "parentUuid": "bc740512_7171f6d3",
+      "revId": "b80498c49198850a2dda990d03b9484b23b9913c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bfa6f8a_2a74ac58",
+        "filename": "system/audio_bluetooth_hw/stream_apis.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-03T07:45:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a40c4d2_e297954d",
       "revId": "b80498c49198850a2dda990d03b9484b23b9913c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
