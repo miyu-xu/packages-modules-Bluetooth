@@ -13,8 +13,9 @@ use bt_topshim::profiles::avrcp::{
     Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, PlayerMetadata,
 };
 use bt_topshim::profiles::hfp::{
-    BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallState, Hfp, HfpCallbacks,
-    HfpCallbacksDispatcher, HfpCodecCapability, HfpCodecId, PhoneState, TelephonyDeviceStatus,
+    BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallSource, CallState, Hfp,
+    HfpCallbacks, HfpCallbacksDispatcher, HfpCodecCapability, HfpCodecId, PhoneState,
+    TelephonyDeviceStatus,
 };
 use bt_topshim::profiles::ProfileConnectionState;
 use bt_topshim::{metrics, topstack};
@@ -726,18 +727,34 @@ impl BluetoothMedia {
 
                         self.hfp_audio_state.insert(addr, state);
 
-                        // Change the phone state only when it's currently managed by media stack
-                        // (I.e., phone operations are not enabled).
-                        if !self.phone_ops_enabled && self.phone_state.num_active != 1 {
-                            // This triggers a +CIEV command to set the call status for HFP devices.
-                            // It is required for some devices to provide sound.
-                            self.phone_state.num_active = 1;
-                            self.call_list = vec![CallInfo {
-                                index: 1,
+                        if !self.phone_ops_enabled {
+                            if self.phone_state.num_active != 1 {
+                                // This triggers a +CIEV command to set the call status for HFP devices.
+                                // It is required for some devices to provide sound.
+                                self.phone_state.num_active = 1;
+                                self.call_list = vec![CallInfo {
+                                    index: 1,
+                                    dir_incoming: false,
+                                    source: CallSource::CRAS,
+                                    state: CallState::Active,
+                                    number: "".into(),
+                                }];
+                                self.phone_state_change("".into());
+                            }
+                        } else {
+                            for c in self.call_list.iter_mut() {
+                                if c.source == CallSource::CRAS {
+                                    return;
+                                }
+                            }
+
+                            self.call_list.push(CallInfo {
+                                index: self.new_call_index(),
                                 dir_incoming: false,
+                                source: CallSource::CRAS,
                                 state: CallState::Active,
                                 number: "".into(),
-                            }];
+                            });
                             self.phone_state_change("".into());
                         }
                     }
@@ -753,11 +770,17 @@ impl BluetoothMedia {
                             });
                         }
 
-                        // Change the phone state only when it's currently managed by media stack
-                        // (I.e., phone operations are not enabled).
-                        if !self.phone_ops_enabled && self.phone_state.num_active != 0 {
-                            self.phone_state.num_active = 0;
-                            self.call_list = vec![];
+                        if !self.phone_ops_enabled {
+                            if self.phone_state.num_active != 0 {
+                                self.phone_state.num_active = 0;
+                                self.call_list = vec![];
+                                self.phone_state_change("".into());
+                            }
+                        } else {
+                            self.call_list.retain(|x| match x.source {
+                                CallSource::CRAS => false,
+                                _ => true,
+                            });
                             self.phone_state_change("".into());
                         }
 
@@ -1709,42 +1732,52 @@ impl BluetoothMedia {
         }
         // There must be exactly one incoming/dialing call in the list.
         for c in self.call_list.iter_mut() {
+            if c.source == CallSource::CRAS {
+                continue;
+            }
+
             match c.state {
                 CallState::Incoming | CallState::Dialing | CallState::Alerting => {
                     c.state = CallState::Active;
-                    break;
+                    self.phone_state.state = CallState::Idle;
+                    self.phone_state.num_active += 1;
+                    return true;
                 }
                 _ => {}
             }
         }
-        self.phone_state.state = CallState::Idle;
-        self.phone_state.num_active += 1;
-        true
+        false
     }
 
     fn hangup_call_impl(&mut self) -> bool {
         if !self.phone_ops_enabled {
             return false;
         }
-        match self.phone_state.state {
-            CallState::Idle if self.phone_state.num_active > 0 => {
-                self.phone_state.num_active -= 1;
+
+        for c in self.call_list.iter_mut() {
+            if c.source == CallSource::CRAS {
+                continue;
             }
-            CallState::Incoming | CallState::Dialing | CallState::Alerting => {
-                self.phone_state.state = CallState::Idle;
-            }
-            _ => {
-                return false;
+
+            match c.state {
+                CallState::Incoming | CallState::Dialing | CallState::Alerting => {
+                    c.state = CallState::Idle;
+                }
+                CallState::Active => {
+                    c.state = CallState::Idle;
+                    self.phone_state.num_active -= 1;
+                }
+                _ => {}
             }
         }
-        // At this point, there must be exactly one incoming/dialing/alerting/active call to be
-        // removed.
-        self.call_list.retain(|x| match x.state {
-            CallState::Active | CallState::Incoming | CallState::Dialing | CallState::Alerting => {
-                false
-            }
+
+        self.call_list.retain(|x| match x.source {
+            CallSource::HID => false,
             _ => true,
         });
+        if self.phone_state.num_active == 0 {
+            self.phone_state.state = CallState::Idle;
+        }
         true
     }
 
@@ -1758,6 +1791,7 @@ impl BluetoothMedia {
         self.call_list.push(CallInfo {
             index: self.new_call_index(),
             dir_incoming: false,
+            source: CallSource::HID,
             state: CallState::Dialing,
             number: number.clone(),
         });
@@ -2598,18 +2632,6 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.last_dialing_number = None;
         self.a2dp_has_interrupted_stream = false;
 
-        if !enable {
-            if self.hfp_states.values().any(|x| x == &BthfConnectionState::SlcConnected) {
-                self.call_list.push(CallInfo {
-                    index: 1,
-                    dir_incoming: false,
-                    state: CallState::Active,
-                    number: "".into(),
-                });
-                self.phone_state.num_active = 1;
-            }
-        }
-
         self.phone_ops_enabled = enable;
         self.phone_state_change("".into());
     }
@@ -2624,6 +2646,7 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.call_list.push(CallInfo {
             index: self.new_call_index(),
             dir_incoming: true,
+            source: CallSource::HID,
             state: CallState::Incoming,
             number: number.clone(),
         });
