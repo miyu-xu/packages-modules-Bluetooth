@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd25241f_ff9535e6",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-08-03T01:24:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "544c7b70_7edd151f",
+      "revId": "7c46285ee568756d07a219354c036e4207477333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9b25873d_d61a6d26",
@@ -125,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12315708_3227bf1a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-08-03T01:24:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f986acf_eb8a0aac",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 20
+      },
+      "revId": "7c46285ee568756d07a219354c036e4207477333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f2c5332_c264efc2",
@@ -174,6 +216,24 @@
       "side": 1,
       "message": "ditto",
       "parentUuid": "ee99935a_5af39bce",
+      "revId": "7c46285ee568756d07a219354c036e4207477333",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3de78545_9f3afdda",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1953983
+      },
+      "writtenOn": "2023-08-03T01:24:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41f254d2_cf6f0225",
       "revId": "7c46285ee568756d07a219354c036e4207477333",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
