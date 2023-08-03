@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d41a44f_e7beb5d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T18:08:03Z",
+      "side": 1,
+      "message": "I see.\n\nI meant not touching the timeout at all (I actually would like to delete some of them) and fix the code to be event driven (for most part)\n\nBut if the risc platform is in order of magnitude slower, that may not be possible as you said.\n\nBefore merging this change, were you able to actually test it ?\nIs there no timeout in the native stack that you need to change too ? or are you already tweaking some system properties to increase them ?",
+      "parentUuid": "24215a36_99fd9a01",
+      "revId": "2d235fc0bc019d387b4dbd0dc76911168cd82a00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f48f28e_0e80d544",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 2
