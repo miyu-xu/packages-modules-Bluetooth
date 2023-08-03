@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af129468_59b38bec",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4038,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-08-03T18:06:17Z",
+      "side": 1,
+      "message": "Verified on device, it does seem to print the function name in the log line. e.g. `btif_av.cc:4040 - btif_av_get_peer_sep: Peer xx:xx:xx:xx:03:29 SEP`",
+      "parentUuid": "0c910df5_dbec0f9e",
+      "range": {
+        "startLine": 4038,
+        "startChar": 2,
+        "endLine": 4038,
+        "endChar": 18
+      },
+      "revId": "8cb13d02b5700aadcf7c67f347f0a2cec67a38a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e6b0dc5_e2b9998d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-03T03:57:18Z",
       "side": 1,
       "message": "__func__ is not needed in LOG_INFO as the macro already include it 😊",
+      "range": {
+        "startLine": 54,
+        "startChar": 69,
+        "endLine": 54,
+        "endChar": 77
+      },
+      "revId": "8cb13d02b5700aadcf7c67f347f0a2cec67a38a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a01cf8c_5c420438",
+        "filename": "system/btif/src/btif_avrcp_audio_track.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-08-03T18:06:17Z",
+      "side": 1,
+      "message": "Leaving it to be consistent across this file. Probably, we can remove entire __func__ logging for across the file as a separate CL.",
+      "parentUuid": "0e6b0dc5_e2b9998d",
       "range": {
         "startLine": 54,
         "startChar": 69,
