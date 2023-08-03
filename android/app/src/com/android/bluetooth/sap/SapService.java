@@ -3,7 +3,6 @@ package com.android.bluetooth.sap;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
 import android.annotation.RequiresPermission;
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
@@ -19,7 +18,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelUuid;
@@ -680,7 +678,6 @@ public class SapService extends ProfileService {
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY);
-        filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
         filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED);
         filter.addAction(USER_CONFIRM_TIMEOUT_ACTION);
 
@@ -723,6 +720,22 @@ public class SapService extends ProfileService {
         closeService();
         if (mSessionStatusHandler != null) {
             mSessionStatusHandler.removeCallbacksAndMessages(null);
+        }
+    }
+
+    @Override
+    public void onAdapterStateChanged(int prevState, int newState) {
+        if (newState == BluetoothAdapter.STATE_TURNING_OFF) {
+            if (DEBUG) {
+                Log.d(TAG, "STATE_TURNING_OFF");
+            }
+            sendShutdownMessage();
+        } else if (newState == BluetoothAdapter.STATE_ON) {
+            if (DEBUG) {
+                Log.d(TAG, "STATE_ON");
+            }
+            // start RFCOMM listener
+            mSessionStatusHandler.sendMessage(mSessionStatusHandler.obtainMessage(START_LISTENER));
         }
     }
 
@@ -827,25 +840,6 @@ public class SapService extends ProfileService {
                 Log.v(TAG, "onReceive");
             }
             String action = intent.getAction();
-            if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) {
-                int state =
-                        intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR);
-                if (state == BluetoothAdapter.STATE_TURNING_OFF) {
-                    if (DEBUG) {
-                        Log.d(TAG, "STATE_TURNING_OFF");
-                    }
-                    sendShutdownMessage();
-                } else if (state == BluetoothAdapter.STATE_ON) {
-                    if (DEBUG) {
-                        Log.d(TAG, "STATE_ON");
-                    }
-                    // start RFCOMM listener
-                    mSessionStatusHandler.sendMessage(
-                            mSessionStatusHandler.obtainMessage(START_LISTENER));
-                }
-                return;
-            }
-
             if (action.equals(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY)) {
                 Log.v(TAG, " - Received BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY");
 

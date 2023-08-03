@@ -190,6 +190,9 @@ public abstract class ProfileService extends Service {
         return super.onUnbind(intent);
     }
 
+    /** Called when the AdapterState changed from AdapterService. */
+    public void onAdapterStateChanged(int prevState, int newState) {}
+
     /**
      * Set the availability of an owned/managed component (Service, Activity, Provider, etc.)
      * using a string class name assumed to be in the Bluetooth package.
