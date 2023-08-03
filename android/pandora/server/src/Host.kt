@@ -614,60 +614,62 @@ class Host(
                         override fun onScanResult(callbackType: Int, result: ScanResult) {
                             val bluetoothDevice = result.device
                             val scanRecord = result.scanRecord
-                            val scanData = scanRecord.getAdvertisingDataMap()
+                            val scanData = scanRecord?.getAdvertisingDataMap()
                             val serviceData = scanRecord?.serviceData!!
 
                             var dataTypesBuilder =
                                 DataTypes.newBuilder().setTxPowerLevel(scanRecord.getTxPowerLevel())
 
-                            scanData[ScanRecord.DATA_TYPE_LOCAL_NAME_SHORT]?.let {
+                            scanData?.get(ScanRecord.DATA_TYPE_LOCAL_NAME_SHORT)?.let {
                                 dataTypesBuilder.setShortenedLocalName(it.decodeToString())
                             }
                                 ?: run { dataTypesBuilder.setIncludeShortenedLocalName(false) }
 
-                            scanData[ScanRecord.DATA_TYPE_LOCAL_NAME_COMPLETE]?.let {
+                            scanData?.get(ScanRecord.DATA_TYPE_LOCAL_NAME_COMPLETE)?.let {
                                 dataTypesBuilder.setCompleteLocalName(it.decodeToString())
                             }
                                 ?: run { dataTypesBuilder.setIncludeCompleteLocalName(false) }
 
-                            scanData[ScanRecord.DATA_TYPE_ADVERTISING_INTERVAL]?.let {
+                            scanData?.get(ScanRecord.DATA_TYPE_ADVERTISING_INTERVAL)?.let {
                                 dataTypesBuilder.setAdvertisingInterval(
                                     ByteArrayOps.getShortAt(it, 0).toInt()
                                 )
                             }
 
-                            scanData[ScanRecord.DATA_TYPE_ADVERTISING_INTERVAL_LONG]?.let {
+                            scanData?.get(ScanRecord.DATA_TYPE_ADVERTISING_INTERVAL_LONG)?.let {
                                 dataTypesBuilder.setAdvertisingInterval(
                                     ByteArrayOps.getIntAt(it, 0)
                                 )
                             }
 
-                            scanData[ScanRecord.DATA_TYPE_APPEARANCE]?.let {
+                            scanData?.get(ScanRecord.DATA_TYPE_APPEARANCE)?.let {
                                 dataTypesBuilder.setAppearance(
                                     ByteArrayOps.getShortAt(it, 0).toInt()
                                 )
                             }
 
-                            scanData[ScanRecord.DATA_TYPE_CLASS_OF_DEVICE]?.let {
+                            scanData?.get(ScanRecord.DATA_TYPE_CLASS_OF_DEVICE)?.let {
                                 dataTypesBuilder.setClassOfDevice(ByteArrayOps.getInt24At(it, 0))
                             }
 
-                            scanData[ScanRecord.DATA_TYPE_URI]?.let {
+                            scanData?.get(ScanRecord.DATA_TYPE_URI)?.let {
                                 dataTypesBuilder.setUri(it.decodeToString())
                             }
 
-                            scanData[ScanRecord.DATA_TYPE_LE_SUPPORTED_FEATURES]?.let {
+                            scanData?.get(ScanRecord.DATA_TYPE_LE_SUPPORTED_FEATURES)?.let {
                                 dataTypesBuilder.setLeSupportedFeatures(ByteString.copyFrom(it))
                             }
 
-                            scanData[ScanRecord.DATA_TYPE_SLAVE_CONNECTION_INTERVAL_RANGE]?.let {
-                                dataTypesBuilder.setPeripheralConnectionIntervalMin(
-                                    ByteArrayOps.getShortAt(it, 0).toInt()
-                                )
-                                dataTypesBuilder.setPeripheralConnectionIntervalMax(
-                                    ByteArrayOps.getShortAt(it, 2).toInt()
-                                )
-                            }
+                            scanData
+                                ?.get(ScanRecord.DATA_TYPE_SLAVE_CONNECTION_INTERVAL_RANGE)
+                                ?.let {
+                                    dataTypesBuilder.setPeripheralConnectionIntervalMin(
+                                        ByteArrayOps.getShortAt(it, 0).toInt()
+                                    )
+                                    dataTypesBuilder.setPeripheralConnectionIntervalMax(
+                                        ByteArrayOps.getShortAt(it, 2).toInt()
+                                    )
+                                }
 
                             for (serviceDataEntry in serviceData) {
                                 val parcelUuid = serviceDataEntry.key
@@ -732,7 +734,7 @@ class Host(
 
                             // Flags DataTypes CSSv10 1.3 Flags
                             val mode: DiscoverabilityMode =
-                                when (result.scanRecord.advertiseFlags and 0b11) {
+                                when (result.scanRecord?.advertiseFlags?.and(0b11)) {
                                     0b01 -> DiscoverabilityMode.DISCOVERABLE_LIMITED
                                     0b10 -> DiscoverabilityMode.DISCOVERABLE_GENERAL
                                     else -> DiscoverabilityMode.NOT_DISCOVERABLE
