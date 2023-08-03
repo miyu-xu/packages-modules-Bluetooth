@@ -98,10 +98,17 @@ pub mod ffi {
         Held,   // Only used by CLCC response
     }
 
+    #[derive(Debug, Copy, Clone)]
+    pub enum CallSource {
+        CRAS,
+        HID,
+    }
+
     #[derive(Debug, Clone)]
     pub struct CallInfo {
         index: i32,
         dir_incoming: bool,
+        source: CallSource,
         state: CallState,
         number: String,
     }
@@ -210,6 +217,7 @@ impl TelephonyDeviceStatus {
 }
 
 pub type CallState = ffi::CallState;
+pub type CallSource = ffi::CallSource;
 pub type CallInfo = ffi::CallInfo;
 pub type PhoneState = ffi::PhoneState;
 pub type CallHoldCommand = ffi::CallHoldCommand;
