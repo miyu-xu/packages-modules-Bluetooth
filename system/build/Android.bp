@@ -87,8 +87,14 @@ cc_defaults {
     defaults: [
         "fluoride_defaults",
     ],
+<<<<<<< PATCH SET (23cbca Remove libprotobuf-cpp-lite from fluoride_basic_defaults)
+    apex_available: [
+        "//apex_available:platform",
+        "com.android.btservices",
+=======
     static_libs: [
         "libprotobuf-cpp-lite",
+>>>>>>> BASE      (07bfcc Merge "Make gd exports flatbuffers headers" into main)
     ],
 }
 
