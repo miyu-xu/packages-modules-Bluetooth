@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1ead11e_be9cd209",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 327,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T21:20:43Z",
+      "side": 1,
+      "message": "```\nprivate final Set\u003cBluetoothStateCallback\u003e mLocalCallbacks; \u003d new ArraySet\u003c\u003e(); \n```\n\nTo avoid checking for it being null",
+      "range": {
+        "startLine": 327,
+        "startChar": 40,
+        "endLine": 327,
+        "endChar": 55
+      },
+      "revId": "9d30f87b708625079380802cd8520172776ee5ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c006f2cc_9efc4fe4",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1110,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T21:20:43Z",
+      "side": 1,
+      "message": "all code executed in the callback will be run in the current handler of the adapterService.\n\nOpp has a `synchronized(this)` in it.\nShould we do \n\n```\n    @Override\n    public void onBluetoothStateChange(int prevState, int newState) {\n    mHandler.post(()-\u003e internalOnBluetoothStateChange(newState));\n    }\n    \n    private void internalOnBluetoothStateChange(int newState) {\n        switch (newState) {\n          ....\n        }\n    }\n```\n\nI didn\u0027t look deeply into the necessity of it yet.\n\n\nOr maybe we could do one better and not make the adapterService to rely on the client doing the thread jump, but registering the handler directly\nSomething like this ?\n\n```\nfor (BluetoothStateCallbackHandler handler : mLocalCallbacks) {\n  handler.obtainMessage(BLUETOOTH_STATE_CHANGE, prevState, newState).sendToTarget();\n}\n```\n\nI am not sure if it\u0027s a good idea thought.",
+      "range": {
+        "startLine": 1110,
+        "startChar": 25,
+        "endLine": 1110,
+        "endChar": 47
+      },
+      "revId": "9d30f87b708625079380802cd8520172776ee5ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
