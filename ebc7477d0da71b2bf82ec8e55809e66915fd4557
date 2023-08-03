@@ -198,6 +198,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "feffcb75_72af3586",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-03T14:21:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "597c1259_fa7fb927",
+      "range": {
+        "startLine": 409,
+        "startChar": 9,
+        "endLine": 409,
+        "endChar": 15
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "028384d7_2d658729",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 2
