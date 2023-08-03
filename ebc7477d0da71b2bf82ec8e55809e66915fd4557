@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99bbca68_a28f0e69",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-03T06:20:22Z",
+      "side": 1,
+      "message": "`bt_host_test_bta` doesn\u0027t test the collision though. That\u0027s why I think it\u0027s good to also have the manual test noted here.",
+      "parentUuid": "14a9c89b_349d5d3e",
+      "range": {
+        "startLine": 20,
+        "startChar": 6,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "21e5f7a3_f27e8932",
@@ -138,6 +162,30 @@
       "writtenOn": "2023-08-02T21:27:48Z",
       "side": 1,
       "message": "This surprise me...\nThe `bt_host_test_bta` is already linking with TestFakeOsi and OsiCompatSources.\nI am wondering if you should add libosi here or add the osi_rand in the fake / compat source or in your test.",
+      "range": {
+        "startLine": 409,
+        "startChar": 9,
+        "endLine": 409,
+        "endChar": 15
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "597c1259_fa7fb927",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-03T06:20:22Z",
+      "side": 1,
+      "message": "Should osi_rand be mocked then?",
+      "parentUuid": "5d8556a5_65c2fc0d",
       "range": {
         "startLine": 409,
         "startChar": 9,
@@ -232,6 +280,30 @@
       "side": 1,
       "message": "I can add a method for the rand, though that\u0027s local to this file and only used thrice so I decided not to. As the `BTA_AV_RC_DISC_MAX_COL_DELAY` is used every time the rand is present I think the comment on the define is enough.. I\u0027ll let other weigh in!\n\nAs for the spec, I\u0027ll add that if you think that\u0027s useful",
       "parentUuid": "9d3518e7_1d848f8a",
+      "range": {
+        "startLine": 293,
+        "startChar": 10,
+        "endLine": 293,
+        "endChar": 77
+      },
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9140b145_4c6ee34c",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-03T06:20:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7138fb01_d21913c6",
       "range": {
         "startLine": 293,
         "startChar": 10,
