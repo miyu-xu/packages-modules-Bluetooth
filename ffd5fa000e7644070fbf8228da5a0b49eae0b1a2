@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0e792288_89668f3f",
+        "filename": "system/common/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-03T18:12:46Z",
+      "side": 1,
+      "message": "Not really, this is specific to how the target want the code to be generated.\n\nWe need `lite` here because we are linking with the `lite` version of the runtime (`libprotobuf-cpp-lite`).\n\nIf you don\u0027t like the duplication I can also do a variable or a default local to this file.\n\nI\u0027m not opposed to the `whole_static` here, this was my first approach but I feel like listing the proto in the sources is simpler to understand (In the end it does almost the same thing: the object ends up in the library).\n\nOne way to avoid the duplication can also be to export the header in `libbt-common` so that I don\u0027t need to put the proto in the test as well.",
+      "parentUuid": "7e693ea9_cfb3d8c5",
+      "range": {
+        "startLine": 31,
+        "startChar": 3,
+        "endLine": 34,
+        "endChar": 6
+      },
+      "revId": "ffd5fa000e7644070fbf8228da5a0b49eae0b1a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8bbdaa5e_78e78143",
         "filename": "system/common/Android.bp",
         "patchSetId": 2
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dfdb9600_d0a5d75b",
+        "filename": "system/common/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-03T18:12:46Z",
+      "side": 1,
+      "message": "Yes, but it\u0027s only used by metrics.cc, I can add it back for all targets, wdyt ?",
+      "parentUuid": "8bbdaa5e_78e78143",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 43
+      },
+      "revId": "ffd5fa000e7644070fbf8228da5a0b49eae0b1a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e372f0c8_33639f57",
         "filename": "system/gd/proto/Android.bp",
         "patchSetId": 2
@@ -60,6 +108,30 @@
       "writtenOn": "2023-08-03T18:01:42Z",
       "side": 1,
       "message": "Do we need the 3 proto library in this file  or do you think we can delete them afterward ?\n\nI am trying to understand why we want a filegroup instead of moving the dependency (like you did for the keystore.proto) ?",
+      "range": {
+        "startLine": 29,
+        "startChar": 9,
+        "endLine": 29,
+        "endChar": 44
+      },
+      "revId": "ffd5fa000e7644070fbf8228da5a0b49eae0b1a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6cc522e_04317fa9",
+        "filename": "system/gd/proto/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-03T18:12:46Z",
+      "side": 1,
+      "message": "We can delete them afterward, I plan to upload a CL to remove `bluetooth-protos-lite`.\n\nFor the last one this can be done as well but I didn\u0027t looked into it yet.\n\n\u003e I am trying to understand why we want a filegroup instead of moving the dependency \n\nBecause it\u0027s used in 3 different places: system/common, android/app and system/gd (with 3 different targets) whereas keystore.proto was only used in android/app.",
+      "parentUuid": "e372f0c8_33639f57",
       "range": {
         "startLine": 29,
         "startChar": 9,
