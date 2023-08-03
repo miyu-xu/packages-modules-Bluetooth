@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d901a8ee_d11a4140",
+        "filename": "system/test/mock/mock_osi_stack_power_telemetry.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T17:53:53Z",
+      "side": 1,
+      "message": "Should be a reference.\nThis is making your current pre-submit failing",
+      "range": {
+        "startLine": 103,
+        "startChar": 69,
+        "endLine": 103,
+        "endChar": 70
+      },
+      "revId": "b02328b7455862b8fb15d51762211f57f4e58b1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
