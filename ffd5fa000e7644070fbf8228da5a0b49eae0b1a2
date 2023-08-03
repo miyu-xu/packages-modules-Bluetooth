@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9dfde15b_426dbfe9",
+        "filename": "system/common/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-03T18:34:54Z",
+      "side": 1,
+      "message": "Changed to export the header.\n\nI didn\u0027t updated the visibility of the filegroup as I might change it later while removing the other libraries so I\u0027ll look into it later.",
+      "parentUuid": "83436b7f_16b84e64",
+      "range": {
+        "startLine": 31,
+        "startChar": 3,
+        "endLine": 34,
+        "endChar": 6
+      },
+      "revId": "ffd5fa000e7644070fbf8228da5a0b49eae0b1a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8bbdaa5e_78e78143",
         "filename": "system/common/Android.bp",
         "patchSetId": 2
