@@ -39,7 +39,10 @@ use crate::battery_provider_manager::{
 };
 use crate::bluetooth::{Bluetooth, BluetoothDevice, IBluetooth};
 use crate::callbacks::Callbacks;
-use crate::uhid_hfp::{UHidHfp, UHID_ID, UHID_OUTPUT_OFF_HOOK, UHID_OUTPUT_RING};
+use crate::uhid_hfp::{
+    UHidHfp, UHID_ID, UHID_INOUT_PHONE_MUTE, UHID_INPUT_HOOK_SWITCH, UHID_OUTPUT_MUTE,
+    UHID_OUTPUT_OFF_HOOK, UHID_OUTPUT_RING,
+};
 use crate::uuid;
 use crate::uuid::Profile;
 use crate::{Message, RPCProxy};
@@ -260,6 +263,12 @@ enum DeviceConnectionStates {
     Disconnecting,         // Working towards disconnection of each connected profile
 }
 
+struct UHid {
+    pub handle: UHidHfp,
+    pub volume: u8,
+    pub muted: bool,
+}
+
 pub struct BluetoothMedia {
     intf: Arc<Mutex<BluetoothInterface>>,
     battery_provider_manager: Arc<Mutex<Box<BatteryProviderManager>>>,
@@ -292,7 +301,7 @@ pub struct BluetoothMedia {
     phone_ops_enabled: bool,
     memory_dialing_number: Option<String>,
     last_dialing_number: Option<String>,
-    uhid: HashMap<RawAddress, UHidHfp>,
+    uhid: HashMap<RawAddress, UHid>,
 }
 
 impl BluetoothMedia {
@@ -819,6 +828,31 @@ impl BluetoothMedia {
                     _ => {}
                 }
             }
+            HfpCallbacks::MicVolumeUpdate(volume, addr) => {
+                if !self.phone_ops_enabled {
+                    return;
+                }
+
+                if self.hfp_states.get(&addr).is_none()
+                    || BthfConnectionState::SlcConnected != *self.hfp_states.get(&addr).unwrap()
+                {
+                    warn!("[{}]: Unknown address hfp or slc not ready", addr.to_string());
+                    return;
+                }
+
+                if let Some(uhid) = self.uhid.get_mut(&addr) {
+                    if volume == 0 && !uhid.muted {
+                        uhid.muted = true;
+                        self.uhid_send_input_report(&addr);
+                    } else if volume > 0 {
+                        uhid.volume = volume;
+                        if uhid.muted {
+                            uhid.muted = false;
+                            self.uhid_send_input_report(&addr);
+                        }
+                    }
+                }
+            }
             HfpCallbacks::VendorSpecificAtCommand(at_string, addr) => {
                 let at_command = match parse_at_command_data(at_string) {
                     Ok(command) => command,
@@ -945,7 +979,7 @@ impl BluetoothMedia {
 
                 debug!("[{}]: Start SCO call due to ATA", DisplayAddress(&addr));
                 self.start_sco_call_impl(addr.to_string(), false, HfpCodecCapability::NONE);
-                self.uhid_send_hook_switch_status(&addr, true);
+                self.uhid_send_input_report(&addr);
             }
             HfpCallbacks::HangupCall(addr) => {
                 if !self.hangup_call_impl() {
@@ -953,7 +987,7 @@ impl BluetoothMedia {
                     return;
                 }
                 self.phone_state_change("".into());
-                self.uhid_send_hook_switch_status(&addr, false);
+                self.uhid_send_input_report(&addr);
 
                 // Try resume the A2DP stream (per MPS v1.0) on rejecting an incoming call or an
                 // outgoing call is rejected.
@@ -1072,19 +1106,23 @@ impl BluetoothMedia {
         };
         self.uhid.insert(
             addr,
-            UHidHfp::create(
-                adapter_addr,
-                addr.to_string(),
-                self.adapter_get_remote_name(addr),
-                self.tx.clone(),
-            ),
+            UHid {
+                handle: UHidHfp::create(
+                    adapter_addr,
+                    addr.to_string(),
+                    self.adapter_get_remote_name(addr),
+                    self.tx.clone(),
+                ),
+                volume: 15, // By default use maximum volume in case microphone gain has not been received
+                muted: false,
+            },
         );
     }
 
     fn uhid_destroy(&mut self, addr: &RawAddress) {
         if let Some(uhid) = self.uhid.get_mut(addr) {
             debug!("[{}]: WebHID destroy", DisplayAddress(&addr));
-            match uhid.destroy() {
+            match uhid.handle.destroy() {
                 Err(e) => log::error!(
                     "[{}]: WebHID destroy: Fail to destroy uhid {}",
                     DisplayAddress(&addr),
@@ -1098,17 +1136,24 @@ impl BluetoothMedia {
         }
     }
 
-    fn uhid_send_hook_switch_status(&mut self, addr: &RawAddress, status: bool) {
+    fn uhid_send_input_report(&mut self, addr: &RawAddress) {
         if !self.phone_ops_enabled {
             return;
         }
         if let Some(uhid) = self.uhid.get_mut(addr) {
-            debug!("[{}]: WebHID: Send 'Hook Switch': {}", DisplayAddress(&addr), status);
-            match uhid.send_input(status) {
+            let mut data = 0;
+            if self.phone_state.num_active > 0 {
+                data |= UHID_INPUT_HOOK_SWITCH;
+            }
+            if uhid.muted {
+                data |= UHID_INOUT_PHONE_MUTE;
+            }
+            debug!("[{}]: WebHID: Send input report: {}", DisplayAddress(&addr), data);
+            match uhid.handle.send_input(data) {
                 Err(e) => log::error!(
-                    "[{}]: WebHID: Fail to send 'Hook Switch={}' to uhid: {}",
+                    "[{}]: WebHID: Fail to send Input Report ({}) to uhid: {}",
                     DisplayAddress(&addr),
-                    status,
+                    data,
                     e
                 ),
                 Ok(_) => (),
@@ -1132,19 +1177,56 @@ impl BluetoothMedia {
             data
         );
 
-        if id == UHID_ID {
-            if data == 0 {
-                self.hangup_call();
-            } else if data == UHID_OUTPUT_RING {
-                self.incoming_call("".into());
-            } else if data == UHID_OUTPUT_OFF_HOOK {
-                if self.phone_state.num_active > 0 {
-                    return;
+        if let Some(uhid) = self.uhid.get_mut(&addr) {
+            if id == UHID_ID {
+                let saved_volume = uhid.volume;
+                let mute = data & UHID_OUTPUT_MUTE;
+                if mute == UHID_OUTPUT_MUTE && !uhid.muted {
+                    uhid.muted = true;
+                    self.set_hfp_mic_volume(0, addr);
+                } else if mute != UHID_OUTPUT_MUTE && uhid.muted {
+                    uhid.muted = false;
+                    self.set_hfp_mic_volume(saved_volume, addr);
                 }
-                self.dialing_call("".into());
-                self.answer_call();
+
+                let call_state = data & (UHID_OUTPUT_RING | UHID_OUTPUT_OFF_HOOK);
+                if call_state == 0 {
+                    self.hangup_call();
+                } else if call_state == UHID_OUTPUT_RING {
+                    self.incoming_call("".into());
+                } else if call_state == UHID_OUTPUT_OFF_HOOK {
+                    if self.phone_state.num_active == 0 {
+                        self.dialing_call("".into());
+                        self.answer_call();
+                    }
+                }
             }
         }
+    }
+
+    fn set_hfp_mic_volume(&mut self, volume: u8, addr: RawAddress) {
+        let vol = match i8::try_from(volume) {
+            Ok(val) if val <= 15 => val,
+            _ => {
+                warn!("[{}]: Ignore invalid mic volume {}", DisplayAddress(&addr), volume);
+                return;
+            }
+        };
+
+        if self.hfp_states.get(&addr).is_none() {
+            warn!(
+                "[{}]: Ignore mic volume event for unconnected or disconnected HFP device",
+                DisplayAddress(&addr)
+            );
+            return;
+        }
+
+        match self.hfp.as_mut() {
+            Some(hfp) => {
+                hfp.set_mic_volume(vol, addr);
+            }
+            None => warn!("Uninitialized HFP to set mic volume"),
+        };
     }
 
     fn notify_critical_profile_disconnected(&mut self, addr: RawAddress) {
