@@ -162,6 +162,7 @@ int waitHciDev(int hci_interface) {
               break;
             }
           }
+          LOG_ERROR("HCI interface(%d) not found in the MGMT lndex list", hci_interface);
         } else {
           // Unlikely event (probably developer error or driver shut down).
           LOG_ERROR("Failed to read index list: status(%d)", cc->status);
@@ -289,7 +290,16 @@ class HciHalHost : public HciHal {
     std::lock_guard<std::mutex> lock(api_mutex_);
     ASSERT(sock_fd_ == INVALID_FD);
     sock_fd_ = ConnectToSocket();
+#ifdef TARGET_FLOSS
+    // In Floss, we don't want to crash when the chipset is broken.
+    if (sock_fd_ == INVALID_FD) {
+      LOG_ERROR("Failed to connect to HCI socket. Aborting HAL initialization process.");
+      raise(SIGINT);
+      return;
+    }
+#else
     ASSERT(sock_fd_ != INVALID_FD);
+#endif
     reactable_ = hci_incoming_thread_.GetReactor()->Register(
         sock_fd_,
         common::Bind(&HciHalHost::incoming_packet_received, common::Unretained(this)),
@@ -370,7 +380,19 @@ class HciHalHost : public HciHal {
 
     ssize_t received_size;
     RUN_NO_INTR(received_size = read(sock_fd_, buf, kBufSize));
+
+#ifdef TARGET_FLOSS
+    // In Floss, we don't want crash when the chipset is broken.
+    if (errno) {
+      LOG_ERROR("Can't receive from socket: %s", strerror(errno));
+      close(sock_fd_);
+      raise(SIGINT);
+      return;
+    }
+#else
     ASSERT_LOG(received_size != -1, "Can't receive from socket: %s", strerror(errno));
+#endif
+
     if (received_size == 0) {
       LOG_WARN("Can't read H4 header. EOF received");
       // First close sock fd before raising sigint
