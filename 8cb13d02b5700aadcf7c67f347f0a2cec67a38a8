@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c910df5_dbec0f9e",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4038,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T03:57:18Z",
+      "side": 1,
+      "message": "Going from log info to trace debug, you are loosing the __func__ in the log",
+      "range": {
+        "startLine": 4038,
+        "startChar": 2,
+        "endLine": 4038,
+        "endChar": 18
+      },
+      "revId": "8cb13d02b5700aadcf7c67f347f0a2cec67a38a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e6b0dc5_e2b9998d",
+        "filename": "system/btif/src/btif_avrcp_audio_track.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T03:57:18Z",
+      "side": 1,
+      "message": "__func__ is not needed in LOG_INFO as the macro already include it 😊",
+      "range": {
+        "startLine": 54,
+        "startChar": 69,
+        "endLine": 54,
+        "endChar": 77
+      },
+      "revId": "8cb13d02b5700aadcf7c67f347f0a2cec67a38a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
