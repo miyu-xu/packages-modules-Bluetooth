@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24215a36_99fd9a01",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1279898
+      },
+      "writtenOn": "2023-08-03T17:57:22Z",
+      "side": 1,
+      "message": "Just to make sure - you\u0027re suggesting I only apply the scaling on the minimal set of timeouts to make this work? If so, ack, I can go figure this out.\n\nOn the off chance you mean that we need to find out what\u0027s taking so long and shorten the timeout, unfortunately I doubt that\u0027ll be possible here, the particular test I\u0027m running is on an riscv64 image on an ARM server - the cross-arch makes things incredibly slow and there\u0027s no easy way to get it to run faster.\n\nAssuming you mean the former, I\u0027ll start verifying the minimal set now.",
+      "parentUuid": "387a08dd_2e85d246",
+      "revId": "2d235fc0bc019d387b4dbd0dc76911168cd82a00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f48f28e_0e80d544",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 2
