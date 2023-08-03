@@ -1761,12 +1761,10 @@ class LeAudioClientImpl : public LeAudioClient {
             leAudioDevice->address_,
             leAudioDevice->snk_audio_locations_.to_ulong(),
             leAudioDevice->src_audio_locations_.to_ulong());
+        if (group && !group->IsInTransition() && !group->IsStreaming()) {
+          UpdateLocationsAndContextsAvailability(leAudioDevice->group_id_);
+        }
       }
-
-      /* Read of source audio locations during initial attribute discovery.
-       * Group would be assigned once service search is completed.
-       */
-      UpdateLocationsAndContextsAvailability(leAudioDevice->group_id_);
     } else if (hdl == leAudioDevice->src_audio_locations_hdls_.val_hdl) {
       AudioLocations src_audio_locations;
 
@@ -1791,12 +1789,10 @@ class LeAudioClientImpl : public LeAudioClient {
             leAudioDevice->address_,
             leAudioDevice->snk_audio_locations_.to_ulong(),
             leAudioDevice->src_audio_locations_.to_ulong());
+        if (group && !group->IsInTransition() && !group->IsStreaming()) {
+          UpdateLocationsAndContextsAvailability(leAudioDevice->group_id_);
+        }
       }
-
-      /* Read of source audio locations during initial attribute discovery.
-       * Group would be assigned once service search is completed.
-       */
-      UpdateLocationsAndContextsAvailability(leAudioDevice->group_id_);
     } else if (hdl == leAudioDevice->audio_avail_hdls_.val_hdl) {
       BidirectionalPair<AudioContexts> contexts;
       if (!le_audio::client_parser::pacs::ParseAvailableAudioContexts(
@@ -1810,8 +1806,16 @@ class LeAudioClientImpl : public LeAudioClient {
         return;
       }
 
-      /* Check if we should attach to stream this device */
-      if (group->IsInTransition() || !group->IsStreaming()) {
+      if (!group->IsStreaming()) {
+        /* Group is not streaming. Device does not have to be attach to the
+         * stream, and we can update context availability for the group
+         */
+        UpdateLocationsAndContextsAvailability(group);
+        return;
+      }
+
+      if (group->IsInTransition()) {
+        /* Group is in transition, do not take any actions now.*/
         return;
       }
 
@@ -2271,6 +2275,7 @@ class LeAudioClientImpl : public LeAudioClient {
     leAudioDevice->closing_stream_for_disconnection_ = false;
     leAudioDevice->encrypted_ = false;
 
+    UpdateLocationsAndContextsAvailability(leAudioDevice->group_id_);
     groupStateMachine_->ProcessHciNotifAclDisconnected(group, leAudioDevice);
 
     le_audio::MetricsCollector::Get()->OnConnectionStateChanged(
@@ -5331,6 +5336,7 @@ class LeAudioClientImpl : public LeAudioClient {
         stream_setup_start_timestamp_ = 0;
         CancelStreamingRequest();
         if (group) {
+          UpdateLocationsAndContextsAvailability(group->group_id_);
           NotifyUpperLayerGroupTurnedIdleDuringCall(group->group_id_);
           HandlePendingDeviceRemove(group);
           HandlePendingDeviceDisconnection(group);
