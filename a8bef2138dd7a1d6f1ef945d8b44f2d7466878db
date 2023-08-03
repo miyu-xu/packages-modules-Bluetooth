@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bca745f_805552a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T17:57:18Z",
+      "side": 1,
+      "message": "This is only used in BluetoothKeystoreService.\n\nI don\u0027t understand why it has ever been part of native gd stack.\n\nLGTM until we can totally remove keystore 😊",
+      "revId": "a8bef2138dd7a1d6f1ef945d8b44f2d7466878db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
