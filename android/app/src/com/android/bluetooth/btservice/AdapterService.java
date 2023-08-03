@@ -1101,6 +1101,14 @@ public class AdapterService extends Service {
     void updateAdapterState(int prevState, int newState) {
         mAdapterProperties.setState(newState);
         invalidateBluetoothGetStateCache();
+
+        // notify adapter state change to profile services {
+        mActiveDeviceManager.adapterStateChanged(newState);
+        for (ProfileService profile : mRunningProfiles) {
+            profile.onAdapterStateChanged(prevState, newState);
+        }
+        // } notify adapter state change to profile services
+
         if (mCallbacks != null) {
             int n = mCallbacks.beginBroadcast();
             debugLog(
