@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b011816_403e7c95",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-03T18:39:33Z",
+      "side": 1,
+      "message": "I see.\n\nThanks for the explanation.\nI still not like at lot having possibility for such big timeout but this looks required and I don\u0027t see an alternative.\n\nCan you fix the lines too long before  merging ?",
+      "parentUuid": "c9b33ba2_e15f4455",
+      "revId": "2d235fc0bc019d387b4dbd0dc76911168cd82a00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f48f28e_0e80d544",
