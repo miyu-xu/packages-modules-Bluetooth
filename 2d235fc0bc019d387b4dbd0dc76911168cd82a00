@@ -90,6 +90,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "227118a8_3056d2b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1279898
+      },
+      "writtenOn": "2023-08-03T18:49:57Z",
+      "side": 1,
+      "message": "Ack, I don\u0027t deny it\u0027s an unfortunate way of resolving things - the chances of us getting a riscv64-based server seem slim in the next several years.\n\nIn regards to the line-too-long, absolutely - this is now fixed in patchset 3.",
+      "parentUuid": "3b011816_403e7c95",
+      "revId": "2d235fc0bc019d387b4dbd0dc76911168cd82a00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f48f28e_0e80d544",
