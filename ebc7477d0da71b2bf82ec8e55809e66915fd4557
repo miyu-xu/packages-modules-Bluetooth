@@ -269,6 +269,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "90c269a6_c2d8ed8f",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-03T20:17:23Z",
+      "side": 1,
+      "message": "Does this time get invoked on connection *retries* in addition to initial connections?\n\nIn my testing, I\u0027m still able to get connection collisions that don\u0027t eventually resolve themselves, which is making me think this only applies to the initial connection.\n\nOtherwise, I\u0027d expect a collision to cause both sides to sleep for differing amounts, and eventually settle on a connection (even if it takes a few cycles of retries). I\u0027d also expect to see a waiting period of a couple of seconds before connection retry attempts, which I don\u0027t see when testing.",
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d3518e7_1d848f8a",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 2
