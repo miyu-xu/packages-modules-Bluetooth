@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b35f6dc9_5d6f378b",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-03T09:28:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a17e681_3c14070b",
+      "range": {
+        "startLine": 98,
+        "startChar": 58,
+        "endLine": 98,
+        "endChar": 68
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d69ca841_43bc3508",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-08-02T21:01:43Z",
       "side": 1,
       "message": "Can this be merged in the first part of the if below ? and the whole `LinkDetails link_details \u003d {}` too ?\n\nSomething like\n```\n  if (is_connected \u003d\u003d false \u0026\u0026 link_map.count(handle) !\u003d 0) {\n    LinkDetails link_details \u003d link_map[handle];\n    link_details.disconnected_ts \u003d time(0);\n    link_list.push_back(link_details);\n    link_map.erase(handle);\n```",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 36
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c727a59d_fdc78b62",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-03T09:28:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d69ca841_43bc3508",
       "range": {
         "startLine": 108,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42e08352_f06fd6d5",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-03T09:28:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e9e368c_a3813f4e",
+      "range": {
+        "startLine": 445,
+        "startChar": 30,
+        "endLine": 445,
+        "endChar": 60
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16d8531c_6f6a6068",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-08-02T21:21:13Z",
       "side": 1,
       "message": "ADDRESS_TO_LOGGABLE_CSTR",
+      "range": {
+        "startLine": 497,
+        "startChar": 14,
+        "endLine": 497,
+        "endChar": 49
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44c7288e_f34a90b4",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-03T09:28:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16d8531c_6f6a6068",
       "range": {
         "startLine": 497,
         "startChar": 14,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85cdccd9_0de212e7",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-03T09:28:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2b9ae0df_e203fd40",
+      "range": {
+        "startLine": 511,
+        "startChar": 14,
+        "endLine": 511,
+        "endChar": 43
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "437ca696_9db924cb",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-08-02T21:21:13Z",
       "side": 1,
       "message": "ADDRESS_TO_LOGGABLE_CSTR",
+      "range": {
+        "startLine": 518,
+        "startChar": 14,
+        "endLine": 518,
+        "endChar": 42
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d654a3b4_9e4fda69",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-03T09:28:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "437ca696_9db924cb",
       "range": {
         "startLine": 518,
         "startChar": 14,
@@ -179,6 +323,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c80849d6_02fdeb33",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-03T09:28:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "357b6d85_f39a5eaf",
+      "range": {
+        "startLine": 529,
+        "startChar": 14,
+        "endLine": 529,
+        "endChar": 42
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "81aeca24_5224a757",
@@ -192,6 +360,30 @@
       "writtenOn": "2023-08-02T21:21:13Z",
       "side": 1,
       "message": "```suggestion\n  power_telemetry::GetInstance().LogSniffActivity(hci_handle, p_cb-\u003ebda_,\n                                                  mode !\u003d BTM_PM_ST_ACTIVE);\n```",
+      "range": {
+        "startLine": 731,
+        "startChar": 2,
+        "endLine": 737,
+        "endChar": 3
+      },
+      "revId": "f2f376f9de62d5de9f48c6190131b89dfd15f69c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73b36162_fb5c3782",
+        "filename": "system/stack/acl/btm_pm.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-03T09:28:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81aeca24_5224a757",
       "range": {
         "startLine": 731,
         "startChar": 2,
