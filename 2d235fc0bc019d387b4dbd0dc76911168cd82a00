@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9b33ba2_e15f4455",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1279898
+      },
+      "writtenOn": "2023-08-03T18:18:11Z",
+      "side": 1,
+      "message": "\u003e But if the risc platform is in order of magnitude slower, that may not be possible as you said.\n\nTo be nitpicky here, the real issue is that the servers the tests run on just aren\u0027t that powerful, so the hosts take around ~20 minutes just to boot the emulator image (compared to around ~10 mins on an X86).\n\n\u003e Before merging this change, were you able to actually test it ?\n\nYes - in addition, I\u0027ve run a deflake on those servers to re-run the boot test so that I can confirm we don\u0027t timeout here. We reliably complete Bluetooth startup after this change.\n\n\u003e Is there no timeout in the native stack that you need to change too ? or are you already tweaking some system properties to increase them ?\n\nRight, no other changes - when Cuttlefish virtual devices are created, the virtual device assembler checks up front if the emulator is running in cross-arch mode, which is always slow (x86 on ARM hosts takes forever to boot as well). When this happens, the \u0027ro.hw_timeout_multiplier\u0027 is set to 50 to cover these cases, see: \n\nhttps://cs.android.com/android/platform/superproject/+/master:device/google/cuttlefish/host/commands/assemble_cvd/bootconfig_args.cpp;l\u003d175\n\nUnfortunately what I\u0027m doing here is the standard pattern I\u0027ve seen used to patch over these types of problems, this system property exists purely to perform this scaling on slow configurations.",
+      "parentUuid": "4d41a44f_e7beb5d1",
+      "revId": "2d235fc0bc019d387b4dbd0dc76911168cd82a00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f48f28e_0e80d544",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 2
