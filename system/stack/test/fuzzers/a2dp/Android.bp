@@ -9,7 +9,10 @@ package {
 
 cc_fuzz {
     name: "a2dp_fuzz",
-    static_libs: ["libchrome"],
+    static_libs: [
+        "libchrome",
+        "libstatslog_bt",
+    ],
     defaults: ["libbt-stack_fuzz_defaults"],
     srcs: [
         "fuzz_a2dp.cc",
