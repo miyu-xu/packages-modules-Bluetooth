@@ -139,6 +139,7 @@ public class LeAudioService extends ProfileService {
     AudioManager mAudioManager;
     LeAudioTmapGattServer mTmapGattServer;
     int mTmapRoleMask;
+    int mDeactivatedDueToPendingBroadcastGroupId = LE_AUDIO_GROUP_ID_INVALID;
     boolean mTmapStarted = false;
     boolean mPendingBroadcastCreate = false;
     private final Stack<BluetoothLeBroadcastSettings> mPendingBroadcastSettings = new Stack<>();
@@ -1900,6 +1901,28 @@ public class LeAudioService extends ProfileService {
         }
     }
 
+    void fallbackFromBroadcastToUnicast() {
+        BluetoothDevice fallbackDevice =
+                getLeadDeviceForTheGroup(mDeactivatedDueToPendingBroadcastGroupId);
+        if (fallbackDevice == null) {
+            Log.e(TAG, "EVENT_TYPE_BROADCAST_DESTROYED: invalid recovery device for "
+                    + "unicast, group ID: " + mDeactivatedDueToPendingBroadcastGroupId);
+            mDeactivatedDueToPendingBroadcastGroupId = LE_AUDIO_GROUP_ID_INVALID;
+            return;
+        }
+
+        if (DBG) {
+            Log.d(TAG, "Fallback to Unicast group: "
+                    + mDeactivatedDueToPendingBroadcastGroupId
+                    + ", with device: "
+                    + fallbackDevice);
+        }
+
+        mDeactivatedDueToPendingBroadcastGroupId = LE_AUDIO_GROUP_ID_INVALID;
+
+        setActiveDevice(fallbackDevice);
+    }
+
     // Suppressed since this is part of a local process
     @SuppressLint("AndroidFrameworkRequiresPermission")
     void messageFromNative(LeAudioStackEvent stackEvent) {
@@ -2144,6 +2167,11 @@ public class LeAudioService extends ProfileService {
                 return;
             }
             mBroadcastDescriptors.remove(broadcastId);
+
+            /* Unicast was disspossesd by pending Broadcast, let's fallback to Unicast stream */
+            if (mDeactivatedDueToPendingBroadcastGroupId != LE_AUDIO_GROUP_ID_INVALID) {
+                fallbackFromBroadcastToUnicast();
+            }
 
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE) {
             int broadcastId = stackEvent.valueInt1;
@@ -3923,6 +3951,8 @@ public class LeAudioService extends ProfileService {
         ProfileService.println(sb, "  currentlyActiveGroupId: " + getActiveGroupId());
         ProfileService.println(sb, "  mActiveAudioOutDevice: " + mActiveAudioOutDevice);
         ProfileService.println(sb, "  mActiveAudioInDevice: " + mActiveAudioInDevice);
+        ProfileService.println(sb, "  mDeactivatedDueToPendingBroadcastGroupId: "
+                + mDeactivatedDueToPendingBroadcastGroupId);
         ProfileService.println(sb, "  mExposedActiveDevice: " + mExposedActiveDevice);
         ProfileService.println(sb, "  mHfpHandoverDevice:" + mHfpHandoverDevice);
         ProfileService.println(sb, "  mLeAudioIsInbandRingtoneSupported:"
