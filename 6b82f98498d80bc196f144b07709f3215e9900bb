@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10d9afbb_732f808c",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3032,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-04T12:14:22Z",
+      "side": 1,
+      "message": "should we handle new timeout here as well?  It is called on ACL disconnection.\n\nCan we extend some test which would verify that timer is disabled when \n1) CIS Is disconnected\n2) One ASE moved to QOS configured\n3) ACL got disconnected in this point.",
+      "revId": "6b82f98498d80bc196f144b07709f3215e9900bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
