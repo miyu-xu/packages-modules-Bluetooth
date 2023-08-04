@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "667e6c2a_7111f6e2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1369,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-04T20:50:02Z",
+      "side": 1,
+      "message": "Could we pass the constructor as argument to avoid doing reflection here ?",
+      "range": {
+        "startLine": 1367,
+        "startChar": 0,
+        "endLine": 1369,
+        "endChar": 96
+      },
+      "revId": "f8aec4b77afdf0a988857912697eec89227cd010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
