@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "633cf21b_8174b7a4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3824,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-04T12:04:10Z",
+      "side": 1,
+      "message": "Do we want to do this only for the newly resumed streams?\n\nI thought that adding this check in GroupStream(), would allow us to handle this case also when the existing stream metadata is updated to an unwanted context, so we could stop the ongoing stream... that would mean adding code to handle the returned `false` from `ReconfigureOrUpdateRemote()`. At least that was my initial plan for future.",
+      "range": {
+        "startLine": 3821,
+        "startChar": 4,
+        "endLine": 3824,
+        "endChar": 5
+      },
+      "revId": "1ae69205b87c84391beda8bd9789dee3d005963f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
