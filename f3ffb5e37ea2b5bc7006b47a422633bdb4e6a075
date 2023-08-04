@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3af9a37c_aa2b30ce",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1765,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-04T11:54:13Z",
+      "side": 1,
+      "message": "Do I get it right, that this fixes a case when a joining device is not properly attached to the existing stream, due to group context availability change during the ongoing stream, followed by the locations change (which wrongly updated the context availability and invalidated the configuration cache)?\n\nBut what about the initial read, that the removed comment mentions? Shouldn\u0027t we be still updating that, but with no additional conditions?",
+      "range": {
+        "startLine": 1765,
+        "startChar": 10,
+        "endLine": 1765,
+        "endChar": 75
+      },
+      "revId": "f3ffb5e37ea2b5bc7006b47a422633bdb4e6a075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca833a31_8f947f5e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1794,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-04T11:54:13Z",
+      "side": 1,
+      "message": "as above",
+      "range": {
+        "startLine": 1792,
+        "startChar": 9,
+        "endLine": 1794,
+        "endChar": 9
+      },
+      "revId": "f3ffb5e37ea2b5bc7006b47a422633bdb4e6a075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c0a499_c924911b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2278,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-04T11:54:13Z",
+      "side": 1,
+      "message": "I think this is already being done by `ProcessHciNotifAclDisconnected()`. If you think the conditions checked in `ProcessHciNotifAclDisconnected()` are wrong and this should be done anyway, then maybe this should be comepletely removed from `ProcessHciNotifAclDisconnected()` Otherwise the overall image of when this should be done seems blurry.",
+      "range": {
+        "startLine": 2278,
+        "startChar": 4,
+        "endLine": 2278,
+        "endChar": 69
+      },
+      "revId": "f3ffb5e37ea2b5bc7006b47a422633bdb4e6a075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "321e9d6a_19ed8dfd",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 5339,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-04T11:54:13Z",
+      "side": 1,
+      "message": "It\u0027s overloaded, so you can pass the group pointer and avoid the additional lookup.\n\nBTW: Do you think we should update it also for the case checked at line #5316 ?",
+      "range": {
+        "startLine": 5339,
+        "startChar": 49,
+        "endLine": 5339,
+        "endChar": 65
+      },
+      "revId": "f3ffb5e37ea2b5bc7006b47a422633bdb4e6a075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "696abf49_1ff8b60e",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 842,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-04T11:54:13Z",
+      "side": 1,
+      "message": "Indeed. Thanks for noticing this.",
+      "range": {
+        "startLine": 842,
+        "startChar": 8,
+        "endLine": 842,
+        "endChar": 73
+      },
+      "revId": "f3ffb5e37ea2b5bc7006b47a422633bdb4e6a075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
