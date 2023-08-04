@@ -286,6 +286,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "027895b0_1ab90cc1",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-04T09:59:38Z",
+      "side": 1,
+      "message": "This happens only on initial connection. There is no retry on the phone side and the retries on the car side are refused because the phone avct isn\u0027t cleaned properly and still thinks there is a browsing channel open.\n\nAdding the delay to the retry wouldn\u0027t do anything right now unfortunately 😞\n\nI\u0027m currently trying to clean the \"allocated\" state properly so that the retry on the phone will happen, then add the delay to prevent further collisions.",
+      "parentUuid": "90c269a6_c2d8ed8f",
+      "revId": "ebc7477d0da71b2bf82ec8e55809e66915fd4557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9d3518e7_1d848f8a",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 2
