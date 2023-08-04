@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c988fd1_28ee7a1c",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2972,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-04T11:01:29Z",
+      "side": 1,
+      "message": "Please change the comment as well. Thanks.",
+      "range": {
+        "startLine": 2972,
+        "startChar": 0,
+        "endLine": 2972,
+        "endChar": 65
+      },
+      "revId": "24a920199db13f17fc815325dae206cee92cbadf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
