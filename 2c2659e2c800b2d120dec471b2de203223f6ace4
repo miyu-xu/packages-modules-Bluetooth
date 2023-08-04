@@ -170,6 +170,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1a51153_39a6c389",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-04T21:01:33Z",
+      "side": 1,
+      "message": "\u003e IIRC server supported features was introduced in 5.2 and some controllers don\u0027t respond to that correctly either, see b/281937405.\n\nServer Supported Features is handled in the Host not the Controller.\n\n---\n\n\u003e Thus I think the only option here would be to restrict to LL version \u003c 5.0, WDYT?\n\nYep, I saw that bug, `\u003c 5.0` is `4.2`\n\n\u003e  Looking at the bug it seems that the target device controller implements Bluetooth 4.2. So one step here could be to use this instead, even if IMO this is still too big, but is better.\n\n----\n\n\n\u003e also, EATT is currently only exposed to/used by LE Audio, so I don\u0027t think the impact here is large either ATM given not yet enabled. We will need to revisit it in general before opening up support more broadly\n\nIs it not exposed to the peer as well ? And are we not able to use EATT to access any GATT service exposed by Android ?\n\n\u003e not yet enabled\n\nEATT or LE Audio ?",
+      "parentUuid": "1b107162_f9fffaeb",
+      "range": {
+        "startLine": 11,
+        "startChar": 42,
+        "endLine": 11,
+        "endChar": 60
+      },
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "49ae8632_84b67eb0",
         "filename": "/COMMIT_MSG",
         "patchSetId": 6
