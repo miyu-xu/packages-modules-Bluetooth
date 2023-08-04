@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9075022c_6b4b9f88",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 4941,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-04T11:00:15Z",
+      "side": 1,
+      "message": "nit: No need for `0` as the default constructor should get you covered.",
+      "range": {
+        "startLine": 4941,
+        "startChar": 55,
+        "endLine": 4941,
+        "endChar": 78
+      },
+      "revId": "77b5b10f298574d165dacf8dca06e50ba40f3dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
