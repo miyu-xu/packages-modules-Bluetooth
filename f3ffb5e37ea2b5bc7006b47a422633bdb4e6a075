@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "bfb506ca_4522fceb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1765,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-04T12:14:10Z",
+      "side": 1,
+      "message": "Indeed there is a call in `connectionReady()`. Missed that one. Thanks.",
+      "parentUuid": "b474acad_ec351a13",
+      "range": {
+        "startLine": 1765,
+        "startChar": 10,
+        "endLine": 1765,
+        "endChar": 75
+      },
+      "revId": "f3ffb5e37ea2b5bc7006b47a422633bdb4e6a075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ca833a31_8f947f5e",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 2
