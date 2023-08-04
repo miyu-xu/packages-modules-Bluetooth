@@ -22,6 +22,30 @@
       },
       "revId": "60d2f32fdf325692cffc27bfe95455d628a29e75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a235a3bc_4705a4ab",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 5339,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-04T14:47:56Z",
+      "side": 1,
+      "message": "yeah. After update I think it\u0027s not needed since this stack synchronization part seems to be necessary.",
+      "parentUuid": "1bf9f7ce_1ecdb5df",
+      "range": {
+        "startLine": 5338,
+        "startChar": 71,
+        "endLine": 5339,
+        "endChar": 17
+      },
+      "revId": "60d2f32fdf325692cffc27bfe95455d628a29e75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
