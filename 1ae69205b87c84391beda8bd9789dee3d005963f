@@ -22,6 +22,30 @@
       },
       "revId": "1ae69205b87c84391beda8bd9789dee3d005963f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bb95cec_ab0b046c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3824,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-04T12:43:38Z",
+      "side": 1,
+      "message": "If remote removes MEDIA when Android started the MEDIA, we should keep in mind that MEDIA is still valid context.\n\nI see your point, but adding it into GroupStream would complicated it a lot, but I agree, this is something to consider.",
+      "parentUuid": "633cf21b_8174b7a4",
+      "range": {
+        "startLine": 3821,
+        "startChar": 4,
+        "endLine": 3824,
+        "endChar": 5
+      },
+      "revId": "1ae69205b87c84391beda8bd9789dee3d005963f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
