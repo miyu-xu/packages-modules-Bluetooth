@@ -140,6 +140,7 @@ public class LeAudioService extends ProfileService {
     AudioManager mAudioManager;
     LeAudioTmapGattServer mTmapGattServer;
     int mTmapRoleMask;
+    int mDeactivatedDueToPendingBroadcastGroupId = LE_AUDIO_GROUP_ID_INVALID;
     boolean mTmapStarted = false;
 
     @VisibleForTesting
@@ -2054,6 +2055,7 @@ public class LeAudioService extends ProfileService {
                     handleGroupTransitToInactive(groupId, false);
 
                     if (mPendingBroadcastSettings != null) {
+                        mDeactivatedDueToPendingBroadcastGroupId = groupId;
                         createBroadcast(mPendingBroadcastSettings);
                         mPendingBroadcastSettings = null;
                     }
@@ -2095,6 +2097,27 @@ public class LeAudioService extends ProfileService {
             mBroadcastsPlaybackMap.remove(broadcastId);
             mBroadcastStateMap.remove(broadcastId);
             mBroadcastMetadataList.remove(broadcastId);
+
+            /* Unicast was disspossesd by pending Broadcast, let's recover Unicast stream */
+            if (mDeactivatedDueToPendingBroadcastGroupId != LE_AUDIO_GROUP_ID_INVALID) {
+                BluetoothDevice recoveryDevice =
+                        getLeadDeviceForTheGroup(mDeactivatedDueToPendingBroadcastGroupId);
+                mDeactivatedDueToPendingBroadcastGroupId = LE_AUDIO_GROUP_ID_INVALID;
+                if (recoveryDevice == null) {
+                    Log.e(TAG, "EVENT_TYPE_BROADCAST_DESTROYED: invalid recovery device for "
+                            + "unicast");
+                    return;
+                }
+
+                if (DBG) {
+                    Log.d(TAG, "Recovering Unicast group: "
+                            + mDeactivatedDueToPendingBroadcastGroupId
+                            + ", with device: "
+                            + recoveryDevice);
+                }
+
+                setActiveDevice(recoveryDevice);
+            }
 
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE) {
             int broadcastId = stackEvent.valueInt1;
