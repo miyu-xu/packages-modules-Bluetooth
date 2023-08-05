@@ -24,6 +24,7 @@
 #include <optional>
 #include <type_traits>  // for remove_extent_t
 #include <utility>      // for move
+#include <optional>
 
 #include "include/phy.h"  // for Phy, Phy::Type
 #include "log.h"
@@ -204,7 +205,17 @@ void TestModel::AddRemote(const std::string& server, int port, Phy::Type type) {
 
 PhyDevice::Identifier TestModel::AddHciConnection(
     std::shared_ptr<HciDevice> device) {
-  device->SetAddress(GenerateBluetoothAddress());
+  AddHciConnectionWithAddress(device, std::nullopt);
+}
+
+PhyDevice::Identifier TestModel::AddHciConnectionWithAddress(
+    std::shared_ptr<HciDevice> device, std::optional<Address> address) {
+  // clients can specify BD_ADDR or have it set based on device_id.
+  if (address.has_value()) {
+    device->SetAddress(address.value());
+  } else {
+    device->SetAddress(GenerateBluetoothAddress());
+  }
   AddDevice(std::static_pointer_cast<Device>(device));
 
   INFO(device->id_, "Initialized device with address {}", device->GetAddress());
