@@ -104,7 +104,7 @@ void TestEnvironment::SetUpHciServer(
         transport = HciSniffer::Create(transport);
       }
       auto device = HciDevice::Create(transport, properties);
-      test_model_.AddHciConnection(device);
+      test_model_.AddHciConnection(device, std::nullopt);
 
       if (enable_hci_sniffer_) {
         auto filename = device->GetAddress().ToString() + ".pcap";
