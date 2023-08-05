@@ -52,6 +52,24 @@
       "parentUuid": "83229025_92aee433",
       "revId": "84da8ebff26020a5d488a8ce28008e62bee511d6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56fd33ad_6654d9f7",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2668,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-08-05T05:41:44Z",
+      "side": 1,
+      "message": "modify done",
+      "parentUuid": "6ffe18a3_99ee5892",
+      "revId": "84da8ebff26020a5d488a8ce28008e62bee511d6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
