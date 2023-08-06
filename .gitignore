@@ -11,4 +11,8 @@ compile_commands.json
 .cache/
 .vscode/
 *.profraw
-*.iml
+
+# IntelliJ project
+**/.idea
+**/*.iml
+**/*.ipr
