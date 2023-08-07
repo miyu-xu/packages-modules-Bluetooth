@@ -1,3 +1,5 @@
+<<<<<<< PATCH SET (67e4a4 Revert "Add AdapterServiceBinderTest")
+=======
 /*
  * Copyright 2023 The Android Open Source Project
  *
@@ -178,3 +180,4 @@ public class AdapterServiceBinderTest {
         verify(mService).stopRfcommListener(uuid, mAttributionSource);
     }
 }
+>>>>>>> BASE      (2ece3d Merge "Fix kotlin nullable errors in Bluetooth" into main)
