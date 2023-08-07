@@ -22,6 +22,53 @@
       },
       "revId": "d110715e713fea55db42b84630843af5f8fbe015",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf1548e7_e1aca3b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-07T18:21:06Z",
+      "side": 1,
+      "message": "This scenario should be unit testable, though I don\u0027t think there\u0027s currently unit tests written for this file.\n\nAlternatively we could look at adding Bumble BT test for this.",
+      "parentUuid": "e8f633e4_96443e21",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 8
+      },
+      "revId": "d110715e713fea55db42b84630843af5f8fbe015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00fdb4f0_73bb5345",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-07T18:21:06Z",
+      "side": 1,
+      "message": "The mDeviceBusy should be set back to false in onCharacteristicWrite or if timeout exception occurs - can you please provide more analysis/logs of how the state where mDeviceBusy is never set back to false occurs? \n\nPlease feel free to attach more information in the bug, thanks!",
+      "range": {
+        "startLine": 1487,
+        "startChar": 20,
+        "endLine": 1487,
+        "endChar": 40
+      },
+      "revId": "d110715e713fea55db42b84630843af5f8fbe015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
