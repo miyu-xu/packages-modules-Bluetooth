@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37dc1c24_d08d3c1a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-07T21:47:05Z",
+      "side": 1,
+      "message": "If we never expected a nullptr, can we make it a reference instead?",
+      "range": {
+        "startLine": 877,
+        "startChar": 2,
+        "endLine": 877,
+        "endChar": 29
+      },
+      "revId": "885cc0fadc867824b01b545145f8411d081f41e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
