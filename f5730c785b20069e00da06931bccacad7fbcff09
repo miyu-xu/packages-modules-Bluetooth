@@ -93,6 +93,30 @@
       },
       "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10efc1da_c5e2c7d1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-07T18:07:28Z",
+      "side": 1,
+      "message": "@aritrasen do you have another idea on how to address this?\n\nWould like your input before stamping this. I think this might be ok since link state is set to connected later in same method, but agree with your general opinion here re: not having L2CAP controlling link state much.",
+      "parentUuid": "25054966_13150f1c",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 52
+      },
+      "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
