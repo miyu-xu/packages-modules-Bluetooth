@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bd15356c_ed37c2e8",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-07T19:38:26Z",
+      "side": 1,
+      "message": "In your scheme, it\u0027s technically possible that two calls to getOrCreateStateMachine interleave their `get()` calls where one thinks the map is empty for the device, _starts_ to make a new one, then the other thinks the map is empty for the device because the first hasn\u0027t put its new state machine in yet. Then we end up with two state machines.\n\nIt looks overcomplicated, but the putIfAbsent call will atomically put an object in the map if the object is miss at that time, avoiding that race condition. I couldn\u0027t think of a better way to avoid that situation (besides fixing the calling code to just \"not do that\").",
+      "parentUuid": "2d9da9e7_c6e157c0",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 60
+      },
+      "revId": "44b6fc7568e1b911b44b1f8b327efaa3a303cefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abca5cc0_0b586ecf",
         "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-07T18:13:55Z",
       "side": 1,
       "message": "Since it\u0027s a public method, I believe there be a null check for the state machine (even though legacy wise it wasn\u0027t checking it earlier)",
+      "range": {
+        "startLine": 941,
+        "startChar": 0,
+        "endLine": 942,
+        "endChar": 58
+      },
+      "revId": "44b6fc7568e1b911b44b1f8b327efaa3a303cefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bfb4362_ac8ec352",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-07T19:38:26Z",
+      "side": 1,
+      "message": "Done, here and in A2dpSinkService too.",
+      "parentUuid": "abca5cc0_0b586ecf",
       "range": {
         "startLine": 941,
         "startChar": 0,
@@ -66,6 +114,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c650c754_efdf02c7",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-07T19:38:26Z",
+      "side": 1,
+      "message": "The goal was to make it consistent with A2DP and avoid the race condition mentioned in the other comment",
+      "parentUuid": "6610918e_f68dfc8b",
+      "revId": "44b6fc7568e1b911b44b1f8b327efaa3a303cefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a44dc8a8_484e9c88",
         "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
         "patchSetId": 4
@@ -77,6 +143,30 @@
       "writtenOn": "2023-08-07T18:13:55Z",
       "side": 1,
       "message": "Should it invoke doQuit() before adding a new state machine here? i.e.\n```\nStep 1: Get existing state machine for device.\nStep 2: If it\u0027s not null, invoke doQuite.\nStep 3: Add the new state machine as per the current logic \n```\nThis is to ensure to future proof `addDeviceToMapAndConnect`. In case any other caller invokes this method, the existing machine is quite before creating a new one.",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 5
+      },
+      "revId": "44b6fc7568e1b911b44b1f8b327efaa3a303cefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "391f816d_a4aaf3df",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-07T19:38:26Z",
+      "side": 1,
+      "message": "I think this function really should act like the other profiles\u0027 `getOrCreateStateMachine`, and probably shouldn\u0027t remove the existing device without discrimination if one already exists. As such, this isn\u0027t probably what I\u0027d suggest.\n\nThat said, FWIW, I think there\u0027s problems here too, like a similar race condition in A2DP and AVRCP, but the solution is a bit more structural in nature (i.e. creating a state machine in MAP also starts it, this function is super ugly and clearly has some hacks applied to it to solve one-off bugs instead of addressing structural things, etc.). The topic of another CL though I suppose!",
+      "parentUuid": "a44dc8a8_484e9c88",
       "range": {
         "startLine": 170,
         "startChar": 0,
