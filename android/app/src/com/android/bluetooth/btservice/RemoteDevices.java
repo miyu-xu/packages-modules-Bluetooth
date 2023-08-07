@@ -295,7 +295,9 @@ final class RemoteDevices {
             DeviceProperties pv = mDevices.put(key, prop);
 
             if (pv == null) {
-                mDeviceQueue.offer(key);
+                if (!mDeviceQueue.contains(key)) {
+		    mDeviceQueue.offer(key);
+		}
                 if (mDeviceQueue.size() > MAX_DEVICE_QUEUE_SIZE) {
                     String deleteKey = mDeviceQueue.poll();
                     for (BluetoothDevice device : mAdapterService.getBondedDevices()) {
