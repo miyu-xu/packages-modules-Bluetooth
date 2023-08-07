@@ -34,6 +34,24 @@
       "parentUuid": "d27cd37c_59ea638a",
       "revId": "367e424bf829cfa5557c415bfdfb59b09da68a1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58ef30c5_fd394278",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-07T23:27:20Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "9bb8bcf1_53825df5",
+      "revId": "367e424bf829cfa5557c415bfdfb59b09da68a1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
