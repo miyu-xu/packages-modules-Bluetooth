@@ -52,6 +52,24 @@
       "parentUuid": "e1007882_e7858694",
       "revId": "ce59ddef7b053fa4200bf5d9ab5497bfa3e77901",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be147442_eba6b028",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-08-07T01:24:51Z",
+      "side": 1,
+      "message": "I have update the change on Jul 28, plz reference patchset 7, tks a lot",
+      "parentUuid": "e17ed694_72a7ae59",
+      "revId": "ce59ddef7b053fa4200bf5d9ab5497bfa3e77901",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
