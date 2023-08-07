@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2ffe19c_bab58d28",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2026851
+      },
+      "writtenOn": "2023-08-07T07:07:48Z",
+      "side": 1,
+      "message": "Hi Rahul, Christine,\nThank you so much for reviewing the CL and sharing your thoughts. I\u0027ve shorten the change on Android 14 a little and suggested to check out DAC page for more information. Would you mind taking another look and let me know if it still needs some tuning?\nThank you so much!\n-hanrui",
+      "revId": "13ab67b3e6039783703376238930becb9a3d3a7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
