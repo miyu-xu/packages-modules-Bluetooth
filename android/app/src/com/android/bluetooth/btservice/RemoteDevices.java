@@ -269,6 +269,9 @@ public class RemoteDevices {
             DeviceProperties pv = mDevices.put(key, prop);
 
             if (pv == null) {
+                // a new device property has been added to mDevices
+                // remove entries in mDeviceQueue if there is an existing one
+                mDeviceQueue.remove(key);
                 mDeviceQueue.offer(key);
                 if (mDeviceQueue.size() > MAX_DEVICE_QUEUE_SIZE) {
                     String deleteKey = mDeviceQueue.poll();
