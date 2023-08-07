@@ -69,6 +69,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bff58888_fa9e27cd",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-08-07T13:35:32Z",
+      "side": 1,
+      "message": "Looks like the current code is correct, but my suggestion makes it more obviously correct.",
+      "parentUuid": "feb8b0f1_504b7203",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "155c92f9_55c5b5c7",
