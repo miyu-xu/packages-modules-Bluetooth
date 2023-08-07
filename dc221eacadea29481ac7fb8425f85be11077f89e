@@ -20,6 +20,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e283f41c_d3229aa3",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-08-07T13:19:55Z",
+      "side": 1,
+      "message": "```suggestion\nstatic int timer_running \u003d 0;\n```",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64eaf72_c5f27817",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 499,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-08-07T13:19:55Z",
+      "side": 1,
+      "message": "```suggestion\n      APPL_TRACE_WARNING(\"%s: sink timer handler is still running\", __func__);\n```",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "feb8b0f1_504b7203",
         "filename": "system/btif/src/btif_a2dp_sink.cc",
         "patchSetId": 6
@@ -31,6 +65,29 @@
       "writtenOn": "2023-08-07T13:00:30Z",
       "side": 1,
       "message": "This is called only from `btif_decode_alarm_cb`\n\nIf `btif_a2dp_sink_avk_handle_timer` is exited while `timer_running \u003d\u003d 1`, then `btif_a2dp_sink_avk_handle_timer` will never be called again.\n\nWe must always set `timer_running \u003d 0` in all code paths.",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "155c92f9_55c5b5c7",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-08-07T13:19:55Z",
+      "side": 1,
+      "message": "```suggestion\n  LockGuard lock(g_mutex);\n  /* Allow this function to be queued when we exit this lock */\n  timer_running \u003d 0;\n\n  BT_HDR* p_msg;\n  if (fixed_queue_is_empty(btif_a2dp_sink_cb.rx_audio_queue)) {\n    APPL_TRACE_DEBUG(\"%s: empty queue\", __func__);\n    return;\n  }\n\n  /* Don\u0027t do anything in case of focus not granted */\n  if (btif_a2dp_sink_cb.rx_focus_state \u003d\u003d BTIF_A2DP_SINK_FOCUS_NOT_GRANTED) {\n    APPL_TRACE_DEBUG(\"%s: skipping frames since focus is not present\",\n                     __func__);\n    return;\n  }\n  /* Play only in BTIF_A2DP_SINK_FOCUS_GRANTED case */\n  if (btif_a2dp_sink_cb.rx_flush) {\n    fixed_queue_flush(btif_a2dp_sink_cb.rx_audio_queue, osi_free);\n    return;\n  }\n\n  APPL_TRACE_DEBUG(\"%s: process frames begin\", __func__);\n  while (true) {\n    p_msg \u003d (BT_HDR*)fixed_queue_try_dequeue(btif_a2dp_sink_cb.rx_audio_queue);\n    if (p_msg \u003d\u003d NULL) {\n      break;\n    }\n    APPL_TRACE_DEBUG(\"%s: number of packets in queue %zu\", __func__,\n                     fixed_queue_length(btif_a2dp_sink_cb.rx_audio_queue));\n\n    /* Queue packet has less frames */\n    btif_a2dp_sink_handle_inc_media(p_msg);\n    osi_free(p_msg);\n  }\n  APPL_TRACE_DEBUG(\"%s: process frames end\", __func__);\n}\n```",
+      "range": {
+        "startLine": 560,
+        "startChar": 1,
+        "endLine": 598,
+        "endChar": 1
+      },
       "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
