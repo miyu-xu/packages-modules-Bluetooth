@@ -1260,6 +1260,10 @@ static int bta_jv_port_data_co_cback(uint16_t port_handle, uint8_t* buf,
   if (p_pcb != NULL) {
     switch (type) {
       case DATA_CO_CALLBACK_TYPE_INCOMING:
+        // Exit sniff mode due to receiving data by sysproxy
+        if (osi_property_get_bool("bluetooth.rfcomm.rx.exit_sniff", false)) {
+          bta_jv_pm_conn_busy(p_pcb->p_pm_cb);
+        }
         return bta_co_rfc_data_incoming(p_pcb->rfcomm_slot_id, (BT_HDR*)buf);
       case DATA_CO_CALLBACK_TYPE_OUTGOING_SIZE:
         return bta_co_rfc_data_outgoing_size(p_pcb->rfcomm_slot_id, (int*)buf);
@@ -1353,7 +1357,10 @@ static void bta_jv_port_event_cl_cback(uint32_t code, uint16_t port_handle) {
     p_cb->p_cback(BTA_JV_RFCOMM_CONG_EVT, &evt_data, p_pcb->rfcomm_slot_id);
   }
 
-  if (code & PORT_EV_TXEMPTY) {
+  // If received any char from remote, we expect that there're more data need to
+  // be received. So no need to enter sniff mode
+  if (!osi_property_get_bool("bluetooth.rfcomm.rx.exit_sniff", false) &&
+      (code & PORT_EV_TXEMPTY)) {
     bta_jv_pm_conn_idle(p_pcb->p_pm_cb);
   }
 }
