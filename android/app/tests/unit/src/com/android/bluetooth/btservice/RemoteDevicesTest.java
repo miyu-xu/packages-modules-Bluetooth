@@ -85,6 +85,42 @@ public class RemoteDevicesTest {
     }
 
     @Test
+    public void testAddDuplicateDevice() {
+        byte addrBytes[] = new byte[] {0x01, 0x02, 0x03, 0x04, 0x05, 0};
+        boolean last = false;
+
+        // RemoteDevices.MAX_DEVICE_QUEUE_SIZE == 200
+        int _MAX_DEVICE_QUEUE_SIZE = 200;
+        for (int i = 0; i <= _MAX_DEVICE_QUEUE_SIZE; i++) {
+            if (i == _MAX_DEVICE_QUEUE_SIZE) {
+                last = true;
+            }
+            i %= _MAX_DEVICE_QUEUE_SIZE;
+            addrBytes[5] = (byte) 0x06 + i;
+            String addrStr =
+                    String.format(
+                            "%02x:%02x:%02x:%02x:%02x:%02x",
+                            addrBytes[0],
+                            addrBytes[1],
+                            addrBytes[2],
+                            addrBytes[3],
+                            addrBytes[4],
+                            addrBytes[5]);
+            DeviceProperties prop1 = mRemoteDevices.addDeviceProperties(addrBytes);
+            Assert.assertNotNull(prop1);
+
+            BluetoothDevice dev = new BluetoothDevice(addrStr);
+            DeviceProperties prop2 = mRemoteDevices.getDeviceProperties(dev);
+
+            Assert.assertEquals(prop1, prop2);
+
+            if (last) {
+                break;
+            }
+        }
+    }
+
+    @Test
     public void testSendUuidIntent() {
         doNothing().when(mAdapterService).sendUuidsInternal(any(), any());
 
