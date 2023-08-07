@@ -33,7 +33,7 @@ cc_library_shared {
     header_libs: ["libhardware_headers"],
     shared_libs: [
         "android.hardware.audio.common-V2-ndk",
-        "android.hardware.bluetooth.audio-V3-ndk",
+        "android.hardware.bluetooth.audio-V4-ndk",
         "libaudioutils",
         "libbase",
         "libbinder_ndk",
