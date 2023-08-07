@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90071f8a_15541547",
+        "filename": "system/bta/BUILD.gn",
+        "patchSetId": 16
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-07T18:36:42Z",
+      "side": 1,
+      "message": "note -- you can remove this todo",
+      "revId": "15c814b37ec8d5f3d51061d8b8f795bd23be2458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32c33d10_083d869b",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-07T18:36:42Z",
+      "side": 1,
+      "message": "You can remove these #ifdef entirely.",
+      "revId": "15c814b37ec8d5f3d51061d8b8f795bd23be2458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
