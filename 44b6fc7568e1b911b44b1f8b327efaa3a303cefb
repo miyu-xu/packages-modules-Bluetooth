@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d9da9e7_c6e157c0",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-08-07T18:13:55Z",
+      "side": 1,
+      "message": "This can be probably simplified.\n```A2dpSSM existingSM \u003d mDeviceStateMap.get(device);\nif( existingSM \u003d\u003d null ) {\n   A2SSM newSM \u003d new A2SSM(device, this, mNativeInterface);\n   mDeviceStateMap.put(device, newSSM)\n} else {\n   return existingSSM;\n}```",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 60
+      },
+      "revId": "44b6fc7568e1b911b44b1f8b327efaa3a303cefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abca5cc0_0b586ecf",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 942,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-08-07T18:13:55Z",
+      "side": 1,
+      "message": "Since it\u0027s a public method, I believe there be a null check for the state machine (even though legacy wise it wasn\u0027t checking it earlier)",
+      "range": {
+        "startLine": 941,
+        "startChar": 0,
+        "endLine": 942,
+        "endChar": 58
+      },
+      "revId": "44b6fc7568e1b911b44b1f8b327efaa3a303cefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6610918e_f68dfc8b",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-08-07T18:13:55Z",
+      "side": 1,
+      "message": "what\u0027s the reason for replacing the old logic with the new logic?",
+      "revId": "44b6fc7568e1b911b44b1f8b327efaa3a303cefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a44dc8a8_484e9c88",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-08-07T18:13:55Z",
+      "side": 1,
+      "message": "Should it invoke doQuit() before adding a new state machine here? i.e.\n```\nStep 1: Get existing state machine for device.\nStep 2: If it\u0027s not null, invoke doQuite.\nStep 3: Add the new state machine as per the current logic \n```\nThis is to ensure to future proof `addDeviceToMapAndConnect`. In case any other caller invokes this method, the existing machine is quite before creating a new one.",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 5
+      },
+      "revId": "44b6fc7568e1b911b44b1f8b327efaa3a303cefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
