@@ -79,7 +79,7 @@ cc_library_shared {
     static_libs: [
         "android.hardware.audio.common-V2-ndk",
         "android.hardware.audio.common@5.0",
-        "android.hardware.bluetooth.audio-V3-ndk",
+        "android.hardware.bluetooth.audio-V4-ndk",
         "android.hardware.bluetooth.audio@2.0",
         "android.hardware.bluetooth.audio@2.1",
         "android.hardware.bluetooth@1.0",
