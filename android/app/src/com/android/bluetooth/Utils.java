@@ -83,9 +83,11 @@ import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @hide
@@ -978,6 +980,8 @@ public final class Utils {
         return (int) (TimeUnit.MILLISECONDS.toMicros(milliseconds) / MICROS_PER_UNIT);
     }
 
+    private static final Map<Boolean, Boolean> isInstrumentationTestModeCache = new ConcurrentHashMap<>();
+
     /**
      * Check if we are running in BluetoothInstrumentationTest context by trying to load
      * com.android.bluetooth.FileSystemWriteTest. If we are not in Instrumentation test mode, this
@@ -988,11 +992,13 @@ public final class Utils {
      * @return true if in BluetoothInstrumentationTest, false otherwise
      */
     public static boolean isInstrumentationTestMode() {
-        try {
-            return Class.forName("com.android.bluetooth.FileSystemWriteTest") != null;
-        } catch (ClassNotFoundException exception) {
-            return false;
-        }
+        return isInstrumentationTestModeCache.computeIfAbsent(true, key -> {
+            try {
+                return Class.forName("com.android.bluetooth.FileSystemWriteTest") != null;
+            } catch (ClassNotFoundException exception) {
+                return false;
+            }
+        });
     }
 
     /**
