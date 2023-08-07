@@ -33,7 +33,7 @@ cc_library_static {
     target: {
         android: {
             shared_libs: [
-                "android.hardware.bluetooth.audio-V3-ndk",
+                "android.hardware.bluetooth.audio-V4-ndk",
                 "libbinder_ndk",
                 "libfmq",
             ],
@@ -89,7 +89,7 @@ cc_test {
         "hidl/client_interface_hidl_unittest.cc",
     ],
     shared_libs: [
-        "android.hardware.bluetooth.audio-V3-ndk",
+        "android.hardware.bluetooth.audio-V4-ndk",
         "android.hardware.bluetooth.audio@2.0",
         "android.hardware.bluetooth.audio@2.1",
         "libbinder_ndk",
