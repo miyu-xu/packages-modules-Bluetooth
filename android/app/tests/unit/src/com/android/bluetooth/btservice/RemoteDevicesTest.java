@@ -85,6 +85,16 @@ public class RemoteDevicesTest {
     }
 
     @Test
+    public void testAddDuplicateDevice() {
+        String addrStr = "01:02:03:04:05:06";
+        byte[] addrBytes = Utils.getBytesFromAddress(addrStr);
+        DeviceProperties prop1 = mRemoteDevices.addDeviceProperties(addrBytes);
+        Assert.assertNotNull(prop1);
+        DeviceProperties prop2 = mRemoteDevices.addDeviceProperties(addrBytes);
+        Assert.assertNotNull(prop2);
+    }
+
+    @Test
     public void testSendUuidIntent() {
         doNothing().when(mAdapterService).sendUuidsInternal(any(), any());
 
