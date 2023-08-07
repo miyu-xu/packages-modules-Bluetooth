@@ -69,6 +69,30 @@
       },
       "revId": "d110715e713fea55db42b84630843af5f8fbe015",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a82391dc_9949b30a",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 2023666
+      },
+      "writtenOn": "2023-08-07T19:18:53Z",
+      "side": 1,
+      "message": "\u003e The mDeviceBusy should be set back to false in onCharacteristicWrite or if timeout exception occurs - can you please provide more analysis/logs of how the state where mDeviceBusy is never set back to false occurs? \n\u003e \n\u003e Please feel free to attach more information in the bug, thanks!\n\nThis can happen if getValue() continues returning ERROR_GATT_WRITE_REQUEST_BUSY until all the WRITE_CHARACTERISTIC_MAX_RETRIES attempts have been exhausted\n\nWhen requestStatus is ERROR_GATT_WRITE_REQUEST_BUSY, onCharacteristicWrite will not be called as this is a \"synchronous\" error that is directly returned from the GattService writeCharacteristic() function (https://android.googlesource.com/platform/packages/modules/Bluetooth/+/946eb3646c365f1719ad2f5f74890fa8c4b10df9/android/app/src/com/android/bluetooth/gatt/GattService.java#3899) before it has a chance to be sent to the Bluetooth stack.\n\nIn my case the issue was found in this situation:\n- A background service performs firmware update over a BLE connection (it creates its own connection to the Bluetooth system service and to the BLE device) and performs repeated write traffic.\n- Another part of the application has its own connection to the Bluetooth system service and occasionally does a writeCharacteristic on another characteristic but on the same BLE device.\n- If the application does a writeCharacteristic while the background service is already doing a write then it won\u0027t be able to use the connection anymore (ERROR_GATT_WRITE_REQUEST_BUSY will be returned every time even though all pending writes are finished)\n\n\nI was able to reproduce this using an API 34 System image and latest emulator from canary channel, using Bumble HCI bridge in controller mode with a real bluetooth dongle and my BLE device (which is proprietary, but any device with a writable characteristic should be able to exhibit the same problem).",
+      "parentUuid": "00fdb4f0_73bb5345",
+      "range": {
+        "startLine": 1487,
+        "startChar": 20,
+        "endLine": 1487,
+        "endChar": 40
+      },
+      "revId": "d110715e713fea55db42b84630843af5f8fbe015",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
