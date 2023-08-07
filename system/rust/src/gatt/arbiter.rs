@@ -81,6 +81,13 @@ fn try_parse_att_server_packet(
 }
 
 fn on_le_connect(tcb_idx: u8, advertiser: u8) {
+    // Disconnection events may be received after a FactoryReset
+    // is initiated for Bluetooth and the rust arbiter is taken
+    // down.
+    if !has_arbiter() {
+        return;
+    }
+
     let tcb_idx = TransportIndex(tcb_idx);
     let advertiser = AdvertiserId(advertiser);
     let is_isolated = with_arbiter(|arbiter| arbiter.is_advertiser_isolated(advertiser));
@@ -113,6 +120,13 @@ fn on_le_disconnect(tcb_idx: u8) {
 }
 
 fn intercept_packet(tcb_idx: u8, packet: Vec<u8>) -> InterceptAction {
+    // Disconnection events may be received after a FactoryReset
+    // is initiated for Bluetooth and the rust arbiter is taken
+    // down.
+    if !has_arbiter() {
+        return InterceptAction::Drop;
+    }
+
     let tcb_idx = TransportIndex(tcb_idx);
     if let Some(att) = with_arbiter(|arbiter| {
         try_parse_att_server_packet(arbiter, tcb_idx, packet.into_boxed_slice())
@@ -132,6 +146,13 @@ fn intercept_packet(tcb_idx: u8, packet: Vec<u8>) -> InterceptAction {
 }
 
 fn on_mtu_event(tcb_idx: TransportIndex, event: MtuEvent) {
+    // Disconnection events may be received after a FactoryReset
+    // is initiated for Bluetooth and the rust arbiter is taken
+    // down.
+    if !has_arbiter() {
+        return;
+    }
+
     if with_arbiter(|arbiter| arbiter.is_connection_isolated(tcb_idx)) {
         do_in_rust_thread(move |modules| {
             let Some(bearer) = modules.gatt_module.get_bearer(tcb_idx) else {
