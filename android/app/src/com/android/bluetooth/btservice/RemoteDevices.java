@@ -268,8 +268,12 @@ public class RemoteDevices {
             String key = Utils.getAddressStringFromByte(address);
             DeviceProperties pv = mDevices.put(key, prop);
 
+            // update mDeviceQueue and mark it as the least
+            // recently used by moving it to the tail
+            mDeviceQueue.remove(key);
+            mDeviceQueue.offer(key);
+
             if (pv == null) {
-                mDeviceQueue.offer(key);
                 if (mDeviceQueue.size() > MAX_DEVICE_QUEUE_SIZE) {
                     String deleteKey = mDeviceQueue.poll();
                     for (BluetoothDevice device : mAdapterService.getBondedDevices()) {
