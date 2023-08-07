@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "298bd31a_00f95bb5",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3401,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-08-07T22:18:30Z",
+      "side": 1,
+      "message": "I don\u0027t understand why we should set the device as authenticated here. should we set this flag right after the key is authenticated?  e.g., [here](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/refs/heads/main:packages/modules/Bluetooth/system/stack/btm/btm_ble.cc;drc\u003d86d6692c20903db2f1ba929611a4cacae59021f6;l\u003d1134)",
+      "revId": "92307976298883eb49e48fee0ddde9fba0950b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
