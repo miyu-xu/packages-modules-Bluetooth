@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c3158a0_453bbca3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-08-07T11:42:06Z",
+      "side": 1,
+      "message": "Rebased w/ conflicts in btif_a2dp_sink.cc",
+      "revId": "cd64158d7e0a1c3436b7218df791e63447297a66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
