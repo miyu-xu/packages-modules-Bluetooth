@@ -269,6 +269,9 @@ public class RemoteDevices {
             DeviceProperties pv = mDevices.put(key, prop);
 
             if (pv == null) {
+                if (!mDeviceQueue.contains(key)) {
+                    mDeviceQueue.remove(key);
+                }
                 mDeviceQueue.offer(key);
                 if (mDeviceQueue.size() > MAX_DEVICE_QUEUE_SIZE) {
                     String deleteKey = mDeviceQueue.poll();
