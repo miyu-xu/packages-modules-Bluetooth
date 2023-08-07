@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7af83e71_b28c02bf",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-08-07T13:00:30Z",
+      "side": 1,
+      "message": "This does not need to be `volatile`. All access to `timer_running` is under a mutex.",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "feb8b0f1_504b7203",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-08-07T13:00:30Z",
+      "side": 1,
+      "message": "This is called only from `btif_decode_alarm_cb`\n\nIf `btif_a2dp_sink_avk_handle_timer` is exited while `timer_running \u003d\u003d 1`, then `btif_a2dp_sink_avk_handle_timer` will never be called again.\n\nWe must always set `timer_running \u003d 0` in all code paths.",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
