@@ -22,6 +22,30 @@
       },
       "revId": "885cc0fadc867824b01b545145f8411d081f41e6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a279ac76_f1afe249",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-07T21:57:24Z",
+      "side": 1,
+      "message": "Sure.  The only entry point is here:\n\n```\nstatic int get_connection_state(const RawAddress* bd_addr) {\n  if (!interface_ready()) return 0;\n\n  return btif_dm_get_connection_state(bd_addr);\n}\n```",
+      "parentUuid": "37dc1c24_d08d3c1a",
+      "range": {
+        "startLine": 877,
+        "startChar": 2,
+        "endLine": 877,
+        "endChar": 29
+      },
+      "revId": "885cc0fadc867824b01b545145f8411d081f41e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
