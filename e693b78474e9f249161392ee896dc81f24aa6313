@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "2376cf44_0d10e223",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-07T19:41:40Z",
+      "side": 1,
+      "message": "FWIW, I did some local testing where I toggle BT a bunch. I\u0027m about 50 connections in with this patch on a phone and it seems to be handling the collisions well. So, besides the nit in logging, +1 from me 😊\n\nThis does beg the question still though (1) how far back can we put this on phones and (2) (depending on the answer to (1)) What can we do (probably on the car side) to help other older or non-Pixels Android phone not have the issue?",
+      "revId": "e693b78474e9f249161392ee896dc81f24aa6313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f528173b_dc4b417d",
         "filename": "system/stack/avct/avct_l2c_br.cc",
         "patchSetId": 1
@@ -42,6 +59,29 @@
         "startChar": 35,
         "endLine": 203,
         "endChar": 36
+      },
+      "revId": "e693b78474e9f249161392ee896dc81f24aa6313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d417d213_cbd7ed0d",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-07T19:41:40Z",
+      "side": 1,
+      "message": "nit: This doesn\u0027t format nicely when printed. It\u0027s still decimal and not hex",
+      "range": {
+        "startLine": 203,
+        "startChar": 66,
+        "endLine": 203,
+        "endChar": 77
       },
       "revId": "e693b78474e9f249161392ee896dc81f24aa6313",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
