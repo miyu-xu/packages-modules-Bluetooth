@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6047f762_654782e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-08-08T11:58:45Z",
+      "side": 1,
+      "message": "\u003e btif_a2dp_sink_avk_handle_timer will not return\n  if data queue is not empty.\nIf system has performance issue, data queue will keep not empty,\n  btif_a2dp_sink_avk_handle_timer can\u0027t return,\n  work thread will always run btif_a2dp_sink_avk_handle_timer.\n  \nI don\u0027t think your code or my code will solve this issue.\n\nIf the speed of removing from the queue (in the `btif_a2dp_sink_avk_handle_timer` `while` loop) is slower than the speed of adding the the queue, then we need code that throws away (flushes) the queue. That will lose audio, but let us catch up.\n\nIf the queue is very long (`btif_a2dp_sink_avk_handle_timer` was blocked from running for some time), we also must throw away (flush) the queue.\n\n-----\n\n\u003e But the sink timer will call DoInThread continuous.\n  These are some btif_a2dp_sink_avk_handle_timer wait to be executed.\n  \nBoth my code and your code solves this issue. We will have only one `btif_a2dp_sink_avk_handle_timer`. It will either be waiting to run, or already running.\n\n-----\n\n\u003e The previous btif_a2dp_sink_avk_handle_timer will run and\n  use aac_handle before codec init,\n  it will cause NULL pointer crash\n  \nThis code will not completely solve this problem. It is still possible that `btif_a2dp_sink_avk_handle_timer` runs before `aac_handle` is initialized.",
+      "revId": "3953cd6c0f7f7529a1f5bfa501f4026c237b8524",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
