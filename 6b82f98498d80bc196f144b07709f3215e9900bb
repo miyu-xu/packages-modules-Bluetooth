@@ -52,6 +52,24 @@
       "parentUuid": "620eab60_094e99bb",
       "revId": "6b82f98498d80bc196f144b07709f3215e9900bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c548c584_ff204846",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3032,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-08T14:57:03Z",
+      "side": 1,
+      "message": "For case 2)  I mean, we would like to test, that Moving one ASE to QoS will not trigger setting this timer.",
+      "parentUuid": "37916625_e2a328ab",
+      "revId": "6b82f98498d80bc196f144b07709f3215e9900bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
