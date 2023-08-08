@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c2fe6ac_1cc91357",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-08T01:04:25Z",
+      "side": 1,
+      "message": "Map looks heavy.\nWhat about just using a Boolean instance?\n\n```\nprivate static Boolean sIsInstrumentationTestModeCache \u003d null;\n\npublic static boolean isInstrumentationTestMode() {\n    if (sIsInstrumentationTestModeCache \u003d\u003d null) {\n        try {\n            sIsInstrumentationTestModeCache \u003d Class.forName(\"com.android.bluetooth.FileSystemWriteTest\") !\u003d null;\n        } catch (ClassNotFoundException exception) {\n            sIsInstrumentationTestModeCache \u003d false;\n        }\n    }\n    return sIsInstrumentationTestModeCache;\n}\n```",
+      "range": {
+        "startLine": 996,
+        "startChar": 0,
+        "endLine": 1004,
+        "endChar": 19
+      },
+      "revId": "2c8e3778b5d437f3809e42a6d6c2249906c4e813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
