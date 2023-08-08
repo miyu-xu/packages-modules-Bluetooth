@@ -107,19 +107,23 @@ void LeAudioClientInterface::Sink::Cleanup() {
     delete hidl::le_audio::LeAudioSinkTransport::instance;
     hidl::le_audio::LeAudioSinkTransport::instance = nullptr;
   }
-  if (aidl::le_audio::LeAudioSinkTransport::interface_unicast_) {
+  if (aidl::le_audio::LeAudioSinkTransport::interface_unicast_
+        && !IsBroadcaster()) {
     delete aidl::le_audio::LeAudioSinkTransport::interface_unicast_;
     aidl::le_audio::LeAudioSinkTransport::interface_unicast_ = nullptr;
   }
-  if (aidl::le_audio::LeAudioSinkTransport::interface_broadcast_) {
+  if (aidl::le_audio::LeAudioSinkTransport::interface_broadcast_
+        && IsBroadcaster()) {
     delete aidl::le_audio::LeAudioSinkTransport::interface_broadcast_;
     aidl::le_audio::LeAudioSinkTransport::interface_broadcast_ = nullptr;
   }
-  if (aidl::le_audio::LeAudioSinkTransport::instance_unicast_) {
+  if (aidl::le_audio::LeAudioSinkTransport::instance_unicast_
+        && !IsBroadcaster()) {
     delete aidl::le_audio::LeAudioSinkTransport::instance_unicast_;
     aidl::le_audio::LeAudioSinkTransport::instance_unicast_ = nullptr;
   }
-  if (aidl::le_audio::LeAudioSinkTransport::instance_broadcast_) {
+  if (aidl::le_audio::LeAudioSinkTransport::instance_broadcast_
+        && IsBroadcaster()) {
     delete aidl::le_audio::LeAudioSinkTransport::instance_broadcast_;
     aidl::le_audio::LeAudioSinkTransport::instance_broadcast_ = nullptr;
   }
