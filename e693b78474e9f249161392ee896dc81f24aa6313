@@ -87,6 +87,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f484f2c_506e0793",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-08T07:29:51Z",
+      "side": 1,
+      "message": "Replaced log with AVCT_TRACE which includes the function name with `:` by default ;)",
+      "parentUuid": "af511b2a_2af869c9",
+      "range": {
+        "startLine": 203,
+        "startChar": 35,
+        "endLine": 203,
+        "endChar": 36
+      },
+      "revId": "e693b78474e9f249161392ee896dc81f24aa6313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2035ac83_ce78beea",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-08T07:29:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d417d213_cbd7ed0d",
+      "range": {
+        "startLine": 203,
+        "startChar": 66,
+        "endLine": 203,
+        "endChar": 77
+      },
+      "revId": "e693b78474e9f249161392ee896dc81f24aa6313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac40675f_a3dd4bf7",
@@ -100,6 +148,30 @@
       "writtenOn": "2023-08-07T16:33:06Z",
       "side": 1,
       "message": "I would recommand to do early return on error, to reduce the number of nested if:\n\n```suggestion\n  if (p_bcb \u003d\u003d NULL) {\n    return;\n  }\n  /* if in correct state */\n  if (p_bcb-\u003ech_state \u003d\u003d AVCT_CH_CONN) {\n    /* if result successful */\n    if (result \u003d\u003d L2CAP_CONN_OK) {\n      /* set channel state */\n      p_bcb-\u003ech_state \u003d AVCT_CH_CFG;\n    }\n    /* else failure */\n    else {\n      LOG(ERROR) \u003c\u003c __func__ \u003c\u003c \": invoked with non OK status\";\n    }\n  } else if (p_bcb-\u003econflict_lcid \u003d\u003d lcid) {\n    /* we must be in AVCT_CH_CFG state for the ch_lcid channel */\n    if (result \u003d\u003d L2CAP_CONN_OK) {\n      /* just in case the peer also accepts our connection - Send L2CAP\n       * disconnect req */\n      LOG(ERROR) \u003c\u003c __func__ \u003c\u003c \" Disconnecting conflict lcid:0x%x\" \u003c\u003c lcid;\n      L2CA_DisconnectReq(lcid);\n    }\n    p_bcb-\u003econflict_lcid \u003d 0;\n  }\n```",
+      "range": {
+        "startLine": 186,
+        "startChar": 2,
+        "endLine": 208,
+        "endChar": 3
+      },
+      "revId": "e693b78474e9f249161392ee896dc81f24aa6313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b37e8cd_fc3c5d7b",
+        "filename": "system/stack/avct/avct_l2c_br.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-08T07:29:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ac40675f_a3dd4bf7",
       "range": {
         "startLine": 186,
         "startChar": 2,
