@@ -143,6 +143,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f03422d1_0f82adba",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-08-08T01:36:12Z",
+      "side": 1,
+      "message": "Sorry. I think the handler_running can\u0027t be set to 0 if the btif_a2dp_sink_cb.rx_audio_queue is not empty. \nThe root cause is that when loop dequeue from rx_audio_queue is running, handler_running is set to 0, stack will call more DoInThread() for btif_a2dp_sink_avk_handle_timer() if receive new packets. The handler_running is a flag to check btif_a2dp_sink_avk_handle_timer() is exit.",
+      "parentUuid": "bff58888_fa9e27cd",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "155c92f9_55c5b5c7",
         "filename": "system/btif/src/btif_a2dp_sink.cc",
         "patchSetId": 6
