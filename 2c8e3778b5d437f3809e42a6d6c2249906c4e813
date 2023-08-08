@@ -22,6 +22,30 @@
       },
       "revId": "2c8e3778b5d437f3809e42a6d6c2249906c4e813",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bed88a4_8879d362",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1004,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-08T01:37:34Z",
+      "side": 1,
+      "message": "I don\u0027t really like using the `Boolean` wrapper as a tri-state by using null.\n\nIt\u0027s why I over-thinked it and went with memoisation using a Map ...\n\nBut you are right let keep thing simple, I just used two static boolean, let me know wdyt.",
+      "parentUuid": "7c2fe6ac_1cc91357",
+      "range": {
+        "startLine": 996,
+        "startChar": 0,
+        "endLine": 1004,
+        "endChar": 19
+      },
+      "revId": "2c8e3778b5d437f3809e42a6d6c2249906c4e813",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
