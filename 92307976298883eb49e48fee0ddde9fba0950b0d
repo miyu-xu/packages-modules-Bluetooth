@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53ee568b_19dfcb18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-08-08T08:41:39Z",
+      "side": 1,
+      "message": "btw, it looks weird to me that we set the flag BTM_SEC_LE_AUTHENTICATED when we\nreply to the security request, for example:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/btm/btm_ble.cc;l\u003d288?q\u003dBTM_SEC_LE_AUTHENTICATED\n\nMaybe we should only set this flag after the link is encrypted?",
+      "parentUuid": "ec46b415_290863c7",
+      "revId": "92307976298883eb49e48fee0ddde9fba0950b0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "298bd31a_00f95bb5",
