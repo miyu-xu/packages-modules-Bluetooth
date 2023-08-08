@@ -31,7 +31,7 @@ class PhyDevice {
  public:
   using Identifier = uint32_t;
 
-  PhyDevice(std::string type, std::shared_ptr<Device> device);
+  PhyDevice(Identifier id, std::string type, std::shared_ptr<Device> device);
   PhyDevice(PhyDevice &&) = delete;
   ~PhyDevice() = default;
 
@@ -43,7 +43,6 @@ class PhyDevice {
   void Send(std::vector<uint8_t> const& packet, Phy::Type type,
             int8_t tx_power);
 
-  bluetooth::hci::Address GetAddress() const;
   void SetAddress(bluetooth::hci::Address address);
   std::string ToString();
 

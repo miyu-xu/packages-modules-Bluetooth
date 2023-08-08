@@ -22,8 +22,9 @@
 
 namespace rootcanal {
 
-PhyDevice::PhyDevice(std::string type, std::shared_ptr<Device> device)
-    : id(device->id_), type(std::move(type)), device_(std::move(device)) {
+PhyDevice::PhyDevice(Identifier id, std::string type,
+                     std::shared_ptr<Device> device)
+    : id(id), type(std::move(type)), device_(std::move(device)) {
   using namespace std::placeholders;
   ASSERT(device_ != nullptr);
   device_->RegisterLinkLayerChannel(
@@ -35,10 +36,6 @@ void PhyDevice::Register(PhyLayer* phy) { phy_layers_.insert(phy); }
 void PhyDevice::Unregister(PhyLayer* phy) { phy_layers_.erase(phy); }
 
 void PhyDevice::Tick() { device_->Tick(); }
-
-bluetooth::hci::Address PhyDevice::GetAddress() const {
-  return device_->GetAddress();
-}
 
 void PhyDevice::SetAddress(bluetooth::hci::Address address) {
   device_->SetAddress(std::move(address));

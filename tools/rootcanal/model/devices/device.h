@@ -35,9 +35,6 @@ using ::bluetooth::hci::Address;
 //  - Provide Get*() and Set*() functions for device attributes.
 class Device {
  public:
-  // Unique device identifier.
-  const uint32_t id_;
-
   Device();
   virtual ~Device() = default;
 
