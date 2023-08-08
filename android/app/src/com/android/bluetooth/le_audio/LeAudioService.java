@@ -800,6 +800,11 @@ public class LeAudioService extends ProfileService {
      * @param broadcastSettings broadcast settings for this broadcast source
      */
     public void createBroadcast(BluetoothLeBroadcastSettings broadcastSettings) {
+        if (mBroadcastStateMap.size() >= getMaximumNumberOfBroadcasts()) {
+            Log.w(TAG, "createBroadcast size reach maximum.");
+            notifyBroadcastStartFailed(null, BluetoothStatusCodes.ERROR_UNKNOWN);
+            return;
+        }
         if (mLeAudioBroadcasterNativeInterface == null) {
             Log.w(TAG, "Native interface not available.");
             return;
