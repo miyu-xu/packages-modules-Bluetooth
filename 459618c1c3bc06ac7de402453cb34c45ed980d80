@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "be4d3ba8_3957c4c8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2102,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-08T19:01:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1393a590_69a83f6e",
+      "revId": "459618c1c3bc06ac7de402453cb34c45ed980d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd8d2285_810f1a55",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-08-04T15:58:34Z",
       "side": 1,
       "message": "nit: maybe just device. \"recovery\" sounds not right.",
+      "range": {
+        "startLine": 2103,
+        "startChar": 32,
+        "endLine": 2103,
+        "endChar": 46
+      },
+      "revId": "459618c1c3bc06ac7de402453cb34c45ed980d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a493b665_29e83d13",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2103,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-08T19:01:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd8d2285_810f1a55",
       "range": {
         "startLine": 2103,
         "startChar": 32,
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6fdd21_ae4ee88e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2107,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-08T19:01:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f6c0e28_48581bf6",
+      "revId": "459618c1c3bc06ac7de402453cb34c45ed980d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5e5a6d38_3097de50",
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0668d97_9b31ac9e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2113,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-08T19:01:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e5a6d38_3097de50",
+      "range": {
+        "startLine": 2113,
+        "startChar": 32,
+        "endLine": 2113,
+        "endChar": 42
+      },
+      "revId": "459618c1c3bc06ac7de402453cb34c45ed980d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05564d4f_475f4f94",
@@ -94,6 +178,24 @@
       "writtenOn": "2023-08-04T15:58:34Z",
       "side": 1,
       "message": "lets add to dumpsys information about group which is stopped for the Broadcast purpose.",
+      "revId": "459618c1c3bc06ac7de402453cb34c45ed980d80",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adadf19d_9e99dea8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3885,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-08T19:01:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05564d4f_475f4f94",
       "revId": "459618c1c3bc06ac7de402453cb34c45ed980d80",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
