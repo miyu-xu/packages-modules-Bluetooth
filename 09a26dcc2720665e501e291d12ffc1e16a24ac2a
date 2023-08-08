@@ -16,6 +16,24 @@
       "message": "When this is called multiple times, the last settings are stored. This is expected?\n\nPreviously Native code would get the first one and would return error on following createBroadcast attempts.",
       "revId": "09a26dcc2720665e501e291d12ffc1e16a24ac2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc9df6bc_45a57a91",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-08T19:02:49Z",
+      "side": 1,
+      "message": "No - it was assumed that there would be single request to create broadcast. Changed behavior in new CL.",
+      "parentUuid": "a65d8139_0c90636a",
+      "revId": "09a26dcc2720665e501e291d12ffc1e16a24ac2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
