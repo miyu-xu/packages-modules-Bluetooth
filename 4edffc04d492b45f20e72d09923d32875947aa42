@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc18f2ce_cc614b66",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966846
+      },
+      "writtenOn": "2023-08-08T22:10:30Z",
+      "side": 1,
+      "message": "ABTD: https://android-build.googleplex.com/builds/abtd/run/L84300000962469427\n\nIf passed with no crashes, this CL will unblock us to enable netsim on cuttlefish.",
+      "revId": "4edffc04d492b45f20e72d09923d32875947aa42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
