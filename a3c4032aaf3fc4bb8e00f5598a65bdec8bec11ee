@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f88c296c_742e5961",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1905,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-09T13:47:11Z",
+      "side": 1,
+      "message": "`fallback` suggests this is an error situation, but it\u0027s not, I think. Could we maybe use \u0027transition\u0027 instead?",
+      "range": {
+        "startLine": 1905,
+        "startChar": 9,
+        "endLine": 1905,
+        "endChar": 17
+      },
+      "revId": "a3c4032aaf3fc4bb8e00f5598a65bdec8bec11ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcf0a41e_9257a8a1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1909,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-09T13:47:11Z",
+      "side": 1,
+      "message": "`recovery`? Is this an error situation that we try to recover from?",
+      "range": {
+        "startLine": 1909,
+        "startChar": 56,
+        "endLine": 1909,
+        "endChar": 72
+      },
+      "revId": "a3c4032aaf3fc4bb8e00f5598a65bdec8bec11ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
