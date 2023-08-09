@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26ae320e_f4d670c0",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-09T14:14:59Z",
+      "side": 1,
+      "message": "Could we push this improvement a bit further and remove the `mPlayback` completely, just to rely on the `mState \u003d\u003d LeAudioStackEvent.BROADCAST_STATE_STREAMING` check instead? I think this would simplify things.",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 33
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b29bfaba_a729bbea",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-09T14:14:59Z",
+      "side": 1,
+      "message": "This seems to be newly introduced. Could you please explain what issue this solves?",
+      "range": {
+        "startLine": 215,
+        "startChar": 8,
+        "endLine": 215,
+        "endChar": 44
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a50d535_98a7be2b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-09T14:14:59Z",
+      "side": 1,
+      "message": "In other places this is accessed without an `mGroupLock`. Why now it was put under the lock here?",
+      "range": {
+        "startLine": 291,
+        "startChar": 12,
+        "endLine": 291,
+        "endChar": 42
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28c58277_b3058732",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-09T14:14:59Z",
+      "side": 1,
+      "message": "Is there a reason this was moved under the `mGroupLock`?",
+      "range": {
+        "startLine": 402,
+        "startChar": 12,
+        "endLine": 402,
+        "endChar": 42
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a34d28bf_11eb8978",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2137,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-09T14:14:59Z",
+      "side": 1,
+      "message": "Could we check for the `mState` value here, and remove the `mPlayback` from the descriptor?",
+      "range": {
+        "startLine": 2137,
+        "startChar": 44,
+        "endLine": 2137,
+        "endChar": 63
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
