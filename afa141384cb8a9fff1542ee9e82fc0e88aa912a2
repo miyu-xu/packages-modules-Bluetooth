@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeff349a_f1b10c50",
+        "filename": "system/stack/acl/btm_pm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-09T02:16:37Z",
+      "side": 1,
+      "message": "```\n// Check if a given |addr| matches a known interoperability workaround as\n// identified by the |interop_feature_t| enum. This API is used for simple\n// address based lookups where more information is not available. No look-ups or\n// random address resolution are performed on |addr|. If address is matched, max\n// latency for SSR stored for particular remote device is returned.\n```\n\nA safer alternative would be to only update the `max_lat` if the function call returned `true`",
+      "revId": "afa141384cb8a9fff1542ee9e82fc0e88aa912a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
