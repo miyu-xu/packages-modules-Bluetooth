@@ -62,6 +62,10 @@ class IBluetoothTransportInstance {
       case AudioConfiguration::leAudioBroadcastConfig:
         audio_config_.set<AudioConfiguration::leAudioBroadcastConfig>(
             audio_config.get<AudioConfiguration::leAudioBroadcastConfig>());
+        break;
+      case AudioConfiguration::avdtpConfig:
+        audio_config_.set<AudioConfiguration::avdtpConfig>(
+            audio_config.get<AudioConfiguration::avdtpConfig>());
     }
   }
 
