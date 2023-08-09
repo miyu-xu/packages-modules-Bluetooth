@@ -46,11 +46,17 @@ public class A2dpNativeInterface {
     private AdapterService mAdapterService;
 
     @GuardedBy("INSTANCE_LOCK")
-    private static A2dpNativeInterface sInstance;
+    @VisibleForTesting
+    public static A2dpNativeInterface sInstance;
+
     private static final Object INSTANCE_LOCK = new Object();
 
     static {
-        classInitNative();
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(TAG, "App is instrumented. Skip loading the native");
+        } else {
+            classInitNative();
+        }
     }
 
     @VisibleForTesting
