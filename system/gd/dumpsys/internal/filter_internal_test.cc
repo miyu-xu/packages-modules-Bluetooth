@@ -14,20 +14,23 @@
  * limitations under the License.
  */
 
-#include "dumpsys/internal/filter_internal.h"
+
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "dumpsys/internal/test_data/float_bfbs.h"
-#include "dumpsys/internal/test_data/float_generated.h"
-#include "dumpsys/internal/test_data/integer_bfbs.h"
-#include "dumpsys/internal/test_data/integer_generated.h"
-#include "dumpsys/internal/test_data/string_bfbs.h"
-#include "dumpsys/internal/test_data/string_generated.h"
-#include "dumpsys/internal/test_data/struct_bfbs.h"
-#include "dumpsys/internal/test_data/struct_generated.h"
+#include "float_generated.h"
+#include "integer_generated.h"
+#include "string_generated.h"
+#include "struct_generated.h"
+
+#include "internal/test_data/integer_bfbs.h"
+#include "internal/test_data/string_bfbs.h"
+#include "internal/test_data/struct_bfbs.h"
+#include "internal/test_data/float_bfbs.h"
+
 #include "os/log.h"
+#include "dumpsys/internal/filter_internal.h"
 
 namespace testing {
 

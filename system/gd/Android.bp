@@ -554,6 +554,13 @@ filegroup {
     ],
 }
 
+filegroup {
+    name: "SadafTest",
+    srcs: [
+        "os/log.h",
+    ],
+}
+
 genrule {
     name: "BluetoothGeneratedPackets_h",
     tools: [
