@@ -179,6 +179,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b599f33c_1105f7fe",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-08-09T10:44:43Z",
+      "side": 1,
+      "message": "Yes. You\u0027re right. But MTK have another patch to reduce the area of lock(g_mutex) from line 565 to line 581 for other similar issue.\nSame as this issue, if these are some btif_a2dp_sink_avk_handle_timer wait to be executed and the queue of btif_a2dp_sink_cb.worker_thread.DoInThread is full. Other DoInThread will be failed. For example：btif_a2dp_sink_on_suspended.\nSo in btif_decode_alarm_cb, it can\u0027t lock DoInThread, only can return directly",
+      "parentUuid": "02b22a34_d7409e0e",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "155c92f9_55c5b5c7",
         "filename": "system/btif/src/btif_a2dp_sink.cc",
         "patchSetId": 6
