@@ -171,6 +171,40 @@ cc_library {
     ],
 }
 
+genrule_defaults {
+    name: "sadaf",
+    tools: ["flatc"],
+    cmd: "$(location flatc) --cpp -o $(genDir) $(in)",
+}
+
+genrule {
+    name: "FloatGenerated_h",
+    srcs: ["internal/test_data/float.fbs"],
+    out: ["float_generated.h"],
+    defaults: ["sadaf"],
+}
+
+genrule {
+    name: "StringGenerated_h",
+    srcs: ["internal/test_data/string.fbs"],
+    out: ["string_generated.h"],
+    defaults: ["sadaf"],
+}
+
+genrule {
+    name: "StructGenerated_h",
+    srcs: ["internal/test_data/struct.fbs"],
+    out: ["struct_generated.h"],
+    defaults: ["sadaf"],
+}
+
+genrule {
+    name: "IntegerGenerated_h",
+    srcs: ["internal/test_data/integer.fbs"],
+    out: ["integer_generated.h"],
+    defaults: ["sadaf"],
+}
+
 cc_test {
     name: "bluetooth_flatbuffer_tests",
     test_suites: ["device-tests"],
