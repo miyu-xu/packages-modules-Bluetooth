@@ -16,6 +16,24 @@
       "message": "maybe \n\n``` \nswitch (descriptor.mState) {\n}\n\n```\n\nit will also help linter warning to go away :)",
       "revId": "62c2d8743a9249f278b792cf4be5db49b080e96a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db265df6_6d057644",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2126,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-09T09:28:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86a06bb1_60e3495f",
+      "revId": "62c2d8743a9249f278b792cf4be5db49b080e96a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
