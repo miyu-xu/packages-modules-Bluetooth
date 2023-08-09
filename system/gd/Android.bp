@@ -372,6 +372,7 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedDumpsysTestData_h",
         "BluetoothGeneratedPackets_h",
+        "BluetoothGeneratedDumpsysInternalTestData_h",
     ],
     static_libs: [
         "libbluetooth-dumpsys",
