@@ -739,6 +739,8 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             )
             ref_left_dut = (await anext(aiter(advertisement_left))).connection
             advertisement_left.cancel()
+            # Disconnect the ref device to avoid b/294903880
+            await self.ref_left.aio.host.Disconnect(connection=ref_left_dut)
         else:
             await asyncio.gather(
                 self.ref_right.aio.host.Disconnect(connection=ref_right_dut),
@@ -751,6 +753,8 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             )
             ref_right_dut = (await anext(aiter(advertisement_right))).connection
             advertisement_right.cancel()
+            # Disconnect the ref device to avoid b/294903880
+            await self.ref_right.aio.host.Disconnect(connection=ref_right_dut)
 
     @asynchronous
     async def test_music_start(self) -> None:
