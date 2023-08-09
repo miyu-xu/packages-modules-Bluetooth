@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0d1735c_32e3773c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-09T08:40:01Z",
+      "side": 1,
+      "message": "Could you please add unit tests for createBroadcast ?",
+      "revId": "dfa8c9afdd63c9036b0a99ce4409cf0efbdcfed2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f06172b_f6cbcef5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-09T08:40:01Z",
+      "side": 1,
+      "message": "why we are using last-in-first-out here?\n\nDo we want to support here multiple createBroadcast calls?",
+      "range": {
+        "startLine": 144,
+        "startChar": 86,
+        "endLine": 144,
+        "endChar": 91
+      },
+      "revId": "dfa8c9afdd63c9036b0a99ce4409cf0efbdcfed2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd114b45_92c1c24f",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 2128,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-09T08:40:01Z",
+      "side": 1,
+      "message": "since this flag is cleared after `createBroadcast(settings);` call, I believe that it will end up pn the `mPendingBroadcastSettings` again due to logic in line 818",
+      "revId": "dfa8c9afdd63c9036b0a99ce4409cf0efbdcfed2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
