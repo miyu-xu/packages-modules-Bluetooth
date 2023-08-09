@@ -16,6 +16,24 @@
       "message": "shouldn\u0027t we set mDeactivatedDueToPendingBroadcastGroupId here?",
       "revId": "3531cf95f954f13cf3d5e3bc97b76616c0d5c5af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6532198_0bde769e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2113,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-09T09:29:20Z",
+      "side": 1,
+      "message": "Of course it should. Thank you for being watchful!",
+      "parentUuid": "90ffe6fb_7786fedb",
+      "revId": "3531cf95f954f13cf3d5e3bc97b76616c0d5c5af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
