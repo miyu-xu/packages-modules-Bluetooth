@@ -197,6 +197,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c44ffa0b_b18d2b9b",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1994610
+      },
+      "writtenOn": "2023-08-09T16:21:17Z",
+      "side": 1,
+      "message": "\u003e  But MTK have another patch to reduce the area of lock(g_mutex) from line 565 to line 581 for other similar issue.\n\nThat code sounds like a bug. `rx_audio_queue` is guarded by `g_mutex`. If you don\u0027t lock `g_mutex` for all of `btif_a2dp_sink_avk_handle_timer`, why lock it for the first part? You allow other threads to modify `rx_audio_queue`\n\n-----\n\n\u003e Same as this issue, if these are some btif_a2dp_sink_avk_handle_timer wait to be executed and the queue of btif_a2dp_sink_cb.worker_thread.DoInThread is full. Other DoInThread will be failed. For example：btif_a2dp_sink_on_suspended.\n\nI think this code solves this issue. The queue will have either 0 or 1 `btif_a2dp_sink_avk_handle_timer` call in it.\n\n-----\n\n\u003e So in btif_decode_alarm_cb, it can\u0027t lock DoInThread, only can return directly\n\nI don\u0027t think it makes a difference. `DoInThread` should not wait or block. It should return `false` if we can\u0027t enqueue.",
+      "parentUuid": "b599f33c_1105f7fe",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "155c92f9_55c5b5c7",
         "filename": "system/btif/src/btif_a2dp_sink.cc",
         "patchSetId": 6
