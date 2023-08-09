@@ -1075,11 +1075,11 @@ public class BassClientStateMachine extends StateMachine {
             mGattCallback = new GattCallback();
         }
 
-        BluetoothGatt gatt = mDevice.connectGatt(mService, autoConnect,
+        BluetoothGatt gatt = mDevice.connectGatt(mService, autoConnect, false,
                 mGattCallback, BluetoothDevice.TRANSPORT_LE,
                 (BluetoothDevice.PHY_LE_1M_MASK
                         | BluetoothDevice.PHY_LE_2M_MASK
-                        | BluetoothDevice.PHY_LE_CODED_MASK), null);
+                        | BluetoothDevice.PHY_LE_CODED_MASK), null, true);
 
         if (gatt != null) {
             mBluetoothGatt = new BluetoothGattTestableWrapper(gatt);
