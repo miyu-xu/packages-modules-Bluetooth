@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26fc557f_dafe4331",
+        "filename": "tools/rootcanal/model/setup/test_model.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2023-08-09T22:25:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5e99cf52_6fe59cdc",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 3
+      },
+      "revId": "0a8b215c73ed689c55f94eae4333015e23e445ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "276121d3_9bdde215",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-08-08T16:28:36Z",
       "side": 1,
       "message": "```\nPhyDevice::Identifier AddHciConnection(std::shared_ptr\u003cHciDevice\u003e dev, std::optional\u003cAddress\u003e address \u003d {});\n```",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 70
+      },
+      "revId": "0a8b215c73ed689c55f94eae4333015e23e445ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb505723_76b87f39",
+        "filename": "tools/rootcanal/model/setup/test_model.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1892435
+      },
+      "writtenOn": "2023-08-09T22:25:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "276121d3_9bdde215",
       "range": {
         "startLine": 88,
         "startChar": 0,
