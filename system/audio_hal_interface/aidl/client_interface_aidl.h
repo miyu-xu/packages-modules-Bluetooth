@@ -70,6 +70,12 @@ class BluetoothAudioClientInterface {
   std::vector<AudioCapabilities> GetAudioCapabilities() const;
   static std::vector<AudioCapabilities> GetAudioCapabilities(
       SessionType session_type);
+
+  std::optional<IBluetoothAudioProviderFactory::ProviderInfo> GetProviderInfo()
+      const;
+  static std::optional<IBluetoothAudioProviderFactory::ProviderInfo>
+  GetProviderInfo(SessionType session_type);
+
   void StreamStarted(const BluetoothAudioCtrlAck& ack);
 
   void StreamSuspended(const BluetoothAudioCtrlAck& ack);
@@ -121,6 +127,7 @@ class BluetoothAudioClientInterface {
  private:
   IBluetoothTransportInstance* transport_;
   std::vector<AudioCapabilities> capabilities_;
+  std::optional<IBluetoothAudioProviderFactory::ProviderInfo> provider_info_;
   bool is_low_latency_allowed_{false};
 };
 

@@ -28,6 +28,8 @@ namespace codec {
 
 using ::aidl::android::hardware::bluetooth::audio::ChannelMode;
 using ::aidl::android::hardware::bluetooth::audio::CodecConfiguration;
+using ::aidl::android::hardware::bluetooth::audio::
+    IBluetoothAudioProviderFactory;
 
 extern const CodecConfiguration kInvalidCodecConfiguration;
 
@@ -57,6 +59,13 @@ bool UpdateOffloadingCapabilities(
  * by prefernece of framework / Bluetooth SoC / runtime property.
  ***/
 bool IsCodecOffloadingEnabled(const CodecConfiguration& codec_config);
+
+/***
+ * Check whether this codec is supported by the audio HAL and is allowed to
+ * use by preferenece of framework / Bluetooth SoC / runtime property.
+ ***/
+bool IsCodecOffloadingEnabled(
+    const IBluetoothAudioProviderFactory::AvdtpConfiguration& codec_config);
 
 }  // namespace codec
 }  // namespace aidl

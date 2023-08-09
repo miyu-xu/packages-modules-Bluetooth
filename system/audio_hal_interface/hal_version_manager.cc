@@ -119,6 +119,8 @@ BluetoothAudioHalVersion GetAidlInterfaceVersion() {
       return BluetoothAudioHalVersion::VERSION_AIDL_V2;
     case 3:
       return BluetoothAudioHalVersion::VERSION_AIDL_V3;
+    case 4:
+      return BluetoothAudioHalVersion::VERSION_AIDL_V4;
     default:
       LOG_ERROR("Unknown AIDL version %d", aidl_version);
       return BluetoothAudioHalVersion::VERSION_UNAVAILABLE;

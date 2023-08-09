@@ -21,6 +21,7 @@
 #include "audio_aidl_interfaces.h"
 #include "btif/include/btif_common.h"
 #include "codec_status_aidl.h"
+#include "hal_version_manager.h"
 #include "transport_instance.h"
 
 namespace bluetooth {
@@ -453,8 +454,19 @@ bool setup_codec() {
     LOG(ERROR) << __func__ << ": Failed to get CodecConfiguration";
     return false;
   }
-  bool should_codec_offloading =
-      bluetooth::audio::aidl::codec::IsCodecOffloadingEnabled(codec_config);
+  IBluetoothAudioProviderFactory::AvdtpConfiguration avdtp_codec_config{};
+  bool should_codec_offloading = false;
+  if (!bluetooth::common::InitFlags::IsAvdtpOffloadExtensibilityEnabled() ||
+      (HalVersionManager::GetHalVersion() <
+       BluetoothAudioHalVersion::VERSION_AIDL_V4)) {
+    should_codec_offloading =
+        bluetooth::audio::aidl::codec::IsCodecOffloadingEnabled(codec_config);
+  } else {
+    should_codec_offloading =
+        bluetooth::audio::aidl::codec::IsCodecOffloadingEnabled(
+            avdtp_codec_config);
+  }
+
   if (should_codec_offloading && !is_hal_offloading()) {
     LOG(WARNING) << __func__ << ": Switching BluetoothAudio HAL to Hardware";
     end_session();
