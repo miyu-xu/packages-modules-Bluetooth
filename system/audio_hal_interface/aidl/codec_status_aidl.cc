@@ -27,6 +27,8 @@
 #include "a2dp_vendor_ldac_constants.h"
 #include "bta/av/bta_av_int.h"
 #include "client_interface_aidl.h"
+#include "gd/common/init_flags.h"
+#include "hal_version_manager.h"
 
 namespace bluetooth {
 namespace audio {
@@ -41,7 +43,13 @@ using ::aidl::android::hardware::bluetooth::audio::AptxConfiguration;
 using ::aidl::android::hardware::bluetooth::audio::AudioCapabilities;
 using ::aidl::android::hardware::bluetooth::audio::ChannelMode;
 using ::aidl::android::hardware::bluetooth::audio::CodecCapabilities;
+using ::aidl::android::hardware::bluetooth::audio::CodecFormat;
+using ::aidl::android::hardware::bluetooth::audio::CodecId;
+using ::aidl::android::hardware::bluetooth::audio::CodecInfo;
+using ::aidl::android::hardware::bluetooth::audio::CodecParameters;
 using ::aidl::android::hardware::bluetooth::audio::CodecType;
+using ::aidl::android::hardware::bluetooth::audio::
+    IBluetoothAudioProviderFactory;
 using ::aidl::android::hardware::bluetooth::audio::LdacCapabilities;
 using ::aidl::android::hardware::bluetooth::audio::LdacChannelMode;
 using ::aidl::android::hardware::bluetooth::audio::LdacConfiguration;
@@ -60,6 +68,11 @@ std::vector<AudioCapabilities> audio_hal_capabilities(0);
 // capabilities that audio HAL supports and frameworks / Bluetooth SoC / runtime
 // preference would like to use.
 std::vector<AudioCapabilities> offloading_preference(0);
+
+// provider info from
+// BluetoothAudioSinkClientInterface::GetProviderInfo(SessionType)
+std::optional<IBluetoothAudioProviderFactory::ProviderInfo>
+    audio_hal_provider_info;
 
 template <typename T>
 struct identity {
@@ -518,7 +531,7 @@ bool A2dpOpusToHalConfig(CodecConfiguration* codec_config,
   return true;
 }
 
-bool UpdateOffloadingCapabilities(
+bool LegacyUpdateOffloadingCapabilities(
     const std::vector<btav_a2dp_codec_config_t>& framework_preference) {
   audio_hal_capabilities =
       BluetoothAudioSinkClientInterface::GetAudioCapabilities(
@@ -581,6 +594,26 @@ bool UpdateOffloadingCapabilities(
     }
   }
   // TODO: Bluetooth SoC and runtime property
+  return true;
+}
+
+bool UpdateOffloadingCapabilities(
+    const std::vector<btav_a2dp_codec_config_t>& framework_preference) {
+  if (!bluetooth::common::InitFlags::IsAvdtpOffloadExtensibilityEnabled() ||
+      (HalVersionManager::GetHalVersion() <
+       BluetoothAudioHalVersion::VERSION_AIDL_V4)) {
+    return LegacyUpdateOffloadingCapabilities(framework_preference);
+  }
+
+  audio_hal_provider_info = BluetoothAudioSinkClientInterface::GetProviderInfo(
+      SessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH);
+  if (!audio_hal_provider_info.has_value()) {
+    LOG(WARNING) << __func__ << ": SessionType="
+                 << toString(
+                        SessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH)
+                 << " GetProviderInfo not supported by BluetoothAudioHal";
+    return false;
+  }
   return true;
 }
 
@@ -651,6 +684,58 @@ bool IsCodecOffloadingEnabled(const CodecConfiguration& codec_config) {
                    << toString(codec_capability.codecType);
         return false;
     }
+  }
+  LOG(INFO) << __func__ << ": software codec=" << codec_config.toString();
+  return false;
+}
+
+static bool codec_id_match(const CodecId& preferenceCodecId,
+                           const CodecId& offloadCodecId) {
+  if ((preferenceCodecId.format != offloadCodecId.format) ||
+      (preferenceCodecId.vendorId != offloadCodecId.vendorId) ||
+      (preferenceCodecId.vendorCodecId != offloadCodecId.vendorCodecId)) {
+    LOG(WARNING) << __func__
+                 << ": preferenced codec=" << preferenceCodecId.toString()
+                 << "does not match offload=" << offloadCodecId.toString();
+    return false;
+  }
+  LOG(INFO) << __func__
+            << ": preferenced codec=" << preferenceCodecId.toString()
+            << "matches offload=" << offloadCodecId.toString();
+  return true;
+}
+
+static bool codec_parameters_match(const CodecInfo& genericCodecInfo,
+                                   const CodecParameters& codecParameters) {
+  if (!ContainedInVector(genericCodecInfo.channelMode,
+                         codecParameters.channelMode) ||
+      !ContainedInVector(genericCodecInfo.samplingFrequencyHz,
+                         codecParameters.samplingFrequencyHz) ||
+      !ContainedInVector(genericCodecInfo.bitdepth, codecParameters.bitdepth) ||
+      !ContainedInVector(genericCodecInfo.channelMode,
+                         codecParameters.channelMode)) {
+    LOG(WARNING) << __func__
+                 << ": genericCodecInfo=" << genericCodecInfo.toString()
+                 << "does not contain codecParameters="
+                 << codecParameters.toString();
+    return false;
+  }
+  LOG(INFO) << __func__ << ": genericCodecInfo=" << genericCodecInfo.toString()
+            << "contains codecParameters=" << codecParameters.toString();
+  return true;
+}
+
+/***
+ * Check whether this codec is supported by the audio HAL and is allowed to
+ * use by preferenece of framework / Bluetooth SoC / runtime property.
+ ***/
+bool IsCodecOffloadingEnabled(
+    const IBluetoothAudioProviderFactory::AvdtpConfiguration& codec_config) {
+  for (auto codecInfo : audio_hal_provider_info->codecInfos) {
+    if (!codec_id_match(codec_config.id, codecInfo.id)) {
+      continue;
+    }
+    return codec_parameters_match(codecInfo, codec_config.parameters);
   }
   LOG(INFO) << __func__ << ": software codec=" << codec_config.toString();
   return false;
