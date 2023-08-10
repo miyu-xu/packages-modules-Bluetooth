@@ -166,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "823f1ea8_fe549f5e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2278,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-10T13:29:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cf79b06_ec3b920d",
+      "range": {
+        "startLine": 2278,
+        "startChar": 4,
+        "endLine": 2278,
+        "endChar": 69
+      },
+      "revId": "f3ffb5e37ea2b5bc7006b47a422633bdb4e6a075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "321e9d6a_19ed8dfd",
@@ -203,6 +227,30 @@
       "side": 1,
       "message": "good point. Maybe we should just call it always as a first thing in IDLE case.",
       "parentUuid": "321e9d6a_19ed8dfd",
+      "range": {
+        "startLine": 5339,
+        "startChar": 49,
+        "endLine": 5339,
+        "endChar": 65
+      },
+      "revId": "f3ffb5e37ea2b5bc7006b47a422633bdb4e6a075",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e50b9e6_2c060825",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 5339,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-10T13:29:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63fd5fba_89e443ff",
       "range": {
         "startLine": 5339,
         "startChar": 49,
