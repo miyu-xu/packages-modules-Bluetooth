@@ -46,6 +46,30 @@
       },
       "revId": "1ae69205b87c84391beda8bd9789dee3d005963f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c076a2fa_cc47be2c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3824,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-10T13:28:45Z",
+      "side": 1,
+      "message": "Agreed offline to keep it this way for now.",
+      "parentUuid": "7bb95cec_ab0b046c",
+      "range": {
+        "startLine": 3821,
+        "startChar": 4,
+        "endLine": 3824,
+        "endChar": 5
+      },
+      "revId": "1ae69205b87c84391beda8bd9789dee3d005963f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
