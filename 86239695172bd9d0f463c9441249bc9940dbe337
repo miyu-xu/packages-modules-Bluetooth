@@ -74,6 +74,30 @@
       },
       "revId": "86239695172bd9d0f463c9441249bc9940dbe337",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53aad44d_34383b7e",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 31
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-08-10T08:58:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64d696f4_370f5e65",
+      "range": {
+        "startLine": 388,
+        "startChar": 21,
+        "endLine": 388,
+        "endChar": 24
+      },
+      "revId": "86239695172bd9d0f463c9441249bc9940dbe337",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
