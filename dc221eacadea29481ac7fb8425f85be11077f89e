@@ -215,6 +215,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d0cdcc8_14017fce",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1983105
+      },
+      "writtenOn": "2023-08-10T06:38:23Z",
+      "side": 1,
+      "message": "But MTK have another patch to reduce the area of lock(g_mutex) from line 565 to line 581 for other similar issue.\n  ----\u003e I re-test with latest version and this issue can\u0027t be reproduced. So this patch is no need because it\u0027s used to fix side effect of reducing the area of lock(g_mutex). Thank you.",
+      "parentUuid": "c44ffa0b_b18d2b9b",
+      "revId": "dc221eacadea29481ac7fb8425f85be11077f89e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "155c92f9_55c5b5c7",
         "filename": "system/btif/src/btif_a2dp_sink.cc",
         "patchSetId": 6
