@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d252d5a_66b3e008",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2115,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-08-10T22:01:02Z",
+      "side": 1,
+      "message": "What if after we start the broadcast, we unbond the device and then bond another device that gets that group id? We might want to clean up in that case to ensure audio isn\u0027t routed to the newly bonded device.",
+      "revId": "c0a41e91de433205bf09f4bd1fe1c92b1dbf8db2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
