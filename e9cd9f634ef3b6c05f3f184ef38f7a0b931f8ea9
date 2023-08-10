@@ -640,6 +640,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75824642_e969f58c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1669,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-10T15:24:21Z",
+      "side": 1,
+      "message": "Thats correct Jakub. We need to have the same values(0, 65535) to maintain backwards compatibility for OS upgrades.",
+      "parentUuid": "89970b2c_7a46bb17",
+      "range": {
+        "startLine": 1669,
+        "startChar": 7,
+        "endLine": 1669,
+        "endChar": 43
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3be1b772_c7e298ec",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 3

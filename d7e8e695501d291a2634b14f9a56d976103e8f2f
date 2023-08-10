@@ -22,6 +22,127 @@
       },
       "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c14b3a17_ea31ead3",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-10T15:24:21Z",
+      "side": 1,
+      "message": "I meant AptX voice power management feature will not work without the property set for OTA upgrades.",
+      "parentUuid": "73733b59_597108f1",
+      "range": {
+        "startLine": 195,
+        "startChar": 87,
+        "endLine": 195,
+        "endChar": 88
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0c5e942_1e2728b0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-10T15:24:21Z",
+      "side": 1,
+      "message": "Lets also add check if call is active. This will be needed if headset gets connected during active call.\n\n(callState.mCallState \u003d\u003d HeadsetHalConstants.CALL_STATE_IDLE) \u0026\u0026 (callState.mNumActive \u003e 0)",
+      "range": {
+        "startLine": 663,
+        "startChar": 83,
+        "endLine": 663,
+        "endChar": 85
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d80135d_561766de",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-10T15:24:21Z",
+      "side": 1,
+      "message": "Please add \"mHasAptXSwbEnabled \u003d false\" here so that we set the right parameter to AudioManager once sSCO gets connected",
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8bc1881_cf292b6f",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-10T15:24:21Z",
+      "side": 1,
+      "message": "Please add \"mHasAptXSwbEnabled \u003d true\" here so that we set the right parameter to AudioManager once sSCO gets connected.",
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10055300_565e51bf",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1830,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-10T15:24:21Z",
+      "side": 1,
+      "message": "You might want to use camelCase variables so that it aligns with other variable names in this java file.",
+      "range": {
+        "startLine": 1830,
+        "startChar": 16,
+        "endLine": 1830,
+        "endChar": 30
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e3f2db0_ef833b33",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1838,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-10T15:24:21Z",
+      "side": 1,
+      "message": "Please add \"mHasWbsEnabled \u003d false;\" here too",
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
