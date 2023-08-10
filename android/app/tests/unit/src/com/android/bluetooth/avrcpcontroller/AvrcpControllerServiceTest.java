@@ -96,6 +96,7 @@ public class AvrcpControllerServiceTest {
     @After
     public void tearDown() throws Exception {
         TestUtils.stopService(mServiceRule, AvrcpControllerService.class);
+        AvrcpControllerNativeInterface.sInstance = null;
         mService = AvrcpControllerService.getAvrcpControllerService();
         assertThat(mService).isNull();
         TestUtils.clearAdapterService(mAdapterService);
