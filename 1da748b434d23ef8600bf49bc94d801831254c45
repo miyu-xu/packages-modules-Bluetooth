@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec8f0f5e_81b1d0a2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-10T14:09:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26ae320e_f4d670c0",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 33
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b29bfaba_a729bbea",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "209412ed_8b21b2f2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-10T14:09:00Z",
+      "side": 1,
+      "message": "I moved it back outside the group lock, just as it was before. If this is needed for some reason, then please to send an new patch, which explains why, in the commit message? Thanks.",
+      "parentUuid": "5a50d535_98a7be2b",
+      "range": {
+        "startLine": 291,
+        "startChar": 12,
+        "endLine": 291,
+        "endChar": 42
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28c58277_b3058732",
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "75d57308_fff63f90",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-10T14:09:00Z",
+      "side": 1,
+      "message": "Moved it back outside the lock as it was before. And also after the callbacks are killed, to make sure that any late arriving callback will not try to look for a descriptor that was just removed before the callbacks are killed.",
+      "parentUuid": "28c58277_b3058732",
+      "range": {
+        "startLine": 402,
+        "startChar": 12,
+        "endLine": 402,
+        "endChar": 42
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a34d28bf_11eb8978",
@@ -106,6 +178,30 @@
       "writtenOn": "2023-08-09T14:14:59Z",
       "side": 1,
       "message": "Could we check for the `mState` value here, and remove the `mPlayback` from the descriptor?",
+      "range": {
+        "startLine": 2137,
+        "startChar": 44,
+        "endLine": 2137,
+        "endChar": 63
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ff1ba8e_9d2e7749",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2137,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-10T14:09:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a34d28bf_11eb8978",
       "range": {
         "startLine": 2137,
         "startChar": 44,
