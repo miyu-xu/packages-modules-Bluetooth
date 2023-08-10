@@ -46,6 +46,30 @@
       },
       "revId": "381684c0160bf46cd5456bd8ba2c8c39cb39d622",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89c12256_602c0922",
+        "filename": "system/gd/hci/facade/le_advertising_manager_facade.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-10T23:06:16Z",
+      "side": 1,
+      "message": "In this case, what do you think about replacin 0xff with `kAdvertiserClientIdJni` directly ?",
+      "parentUuid": "0a285d15_3732b726",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 13
+      },
+      "revId": "381684c0160bf46cd5456bd8ba2c8c39cb39d622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
