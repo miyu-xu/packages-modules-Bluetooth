@@ -40,22 +40,9 @@ filegroup {
     ],
 }
 
-cc_binary {
-    name: "bt_headless",
-    defaults: [
-        "fluoride_defaults",
-    ],
-    cflags: [
-        "-Wall",
-        "-Werror",
-        "-Wextra",
-        "-Wno-date-time",
-    ],
-    generated_headers: [
-        "HeadlessBuildTimestamp",
-    ],
+filegroup {
+    name: "TestHeadlessCore",
     srcs: [
-        ":TestHeadlessModules",
         "bt_property.cc",
         "get_options.cc",
         "handler.cc",
@@ -66,77 +53,166 @@ cc_binary {
         "property.cc",
         "util.cc",
     ],
+}
+
+/// PDL packet base library
+pdl_packets_avrcp = "lib-bt-packets-avrcp"
+pdl_packets_base = "lib-bt-packets-base"
+
+/// AVRCP service profile
+profile_avrcp_service = "avrcp-target-service"
+
+/// Audio hw library
+audio_lib_hw_lib = "audio.a2dp.default"
+
+/// Audio hal interface
+audio_lib_hal_interface = "libbt-audio-hal-interface"
+
+/// stack::osi
+core_lib_osi = "libosi"
+
+/// Bluetooth execution environment and shim
+/// main::bte
+/// main::shim
+core_lib_main = "libbte"
+
+/// Controller, interop and esco
+core_lib_device = "libbtdevice"
+
+/// Everything in stack
+/// includes: libbt-hci
+///           libbt-stack-core
+core_lib_stack_base = "libbt-stack"
+
+/// Everything for btif core
+core_lib_btif_core = "libbtif-core"
+
+/// Everything for btif profiles
+core_lib_btif_profiles = "libbtif"
+
+/// Everything in bta
+core_lib_bta_profiles = "libbt-bta"
+core_lib_bta_core = "libbt-bta-core"
+
+/// Everything in common
+core_lib_common = "libbt-common"
+
+/// The SSL/key library
+ext_boringssl = "libcrypto"
+
+/// The chrome library
+ext_libchrome = "libchrome"
+
+/// The android base library
+sys_libbase = "libbase"
+
+/// Core rust libraries
+core_lib_rust = "libbluetooth_core_rs"
+
+/// IPC utility
+util_lib_uipc = "libudrv-uipc"
+
+/// HCI interface
+core_lib_hci = "libbt-hci"
+
+/// Module and stack management
+core_lib_stack_mgmt = "libbtcore"
+
+core_bluetooth_libs = [
+    audio_lib_hw_lib,
+    audio_lib_hal_interface,
+    core_lib_bta_core,
+    core_lib_bta_profiles,
+    core_lib_btif_core,
+    core_lib_btif_profiles,
+    core_lib_common,
+    core_lib_device,
+    core_lib_hci,
+    core_lib_main,
+    core_lib_osi,
+    core_lib_rust,
+    core_lib_stack_base,
+    core_lib_stack_mgmt,
+    util_lib_uipc,
+    profile_avrcp_service,
+    pdl_packets_avrcp,
+    pdl_packets_base,
+    // These may be stripped out so we need to link directly with them here too:
+    "libbt-hci",
+    "libbt-stack-core",
+]
+
+cc_binary {
+    name: "bt_headless",
+    defaults: [
+        "fluoride_defaults",
+    ],
+    cflags: [
+        "-DANDROID",
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-Wno-date-time",
+        "-Wno-unused-parameter",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+        "BluetoothGeneratedPackets_h",
+        "HeadlessBuildTimestamp",
+    ],
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/stack/include",
     ],
-    whole_static_libs: [
-        "libbtcore",
+    srcs: [
+        ":TestHeadlessCore",
+        ":TestHeadlessModules",
     ],
-    static_libs: [
-        "android.hardware.bluetooth.a2dp@1.0",
-        "android.system.suspend.control-V1-ndk",
-        "avrcp-target-service",
-        "lib-bt-packets",
-        "lib-bt-packets-avrcp",
-        "lib-bt-packets-base",
-        "libFraunhoferAAC",
-        "libaudio-a2dp-hw-utils",
-        "libbluetooth-dumpsys",
-        "libbluetooth_core_rs",
-        "libbluetooth_gd",
-        "libbluetooth_rust_interop",
-        "libbt-audio-hal-interface",
-        "libbt-bta",
-        "libbt-bta-core",
-        "libbt-common",
-        "libbt-hci",
-        "libbt-sbc-decoder",
-        "libbt-sbc-encoder",
-        "libbt-stack",
-        "libbt-stack-core",
-        "libbt_shim_bridge",
-        "libbt_shim_ffi",
-        "libbtdevice",
-        "libbte",
-        "libbtif",
-        "libbtif-core",
-        "libc++fs",
-        "libchrome",
-        "libevent",
-        "libflatbuffers-cpp",
-        "libg722codec",
-        "liblc3",
-        "libmodpb64",
-        "libopus",
-        "libosi",
-        "libprotobuf-cpp-lite",
-        "libstatslog_bt",
-        "libudrv-uipc",
-        "libz",
-    ],
+    static_libs: core_bluetooth_libs,
     shared_libs: [
-        "android.hardware.bluetooth.audio-V3-ndk",
-        "android.hardware.bluetooth.audio@2.0",
-        "android.hardware.bluetooth.audio@2.1",
-        "android.hardware.bluetooth@1.0",
-        "android.hardware.bluetooth@1.1",
-        "android.system.suspend-V1-ndk",
-        "libPlatformProperties",
-        "libaaudio",
-        "libbase",
-        "libbinder_ndk",
-        "libcrypto",
-        "libcutils", // property_get_bool
-        "libfmq",
-        "libhidlbase",
-        "libjsoncpp",
-        "liblog", // __android_log_print
-        "libstatssocket",
-        "libutils",
+        ext_boringssl,
+        ext_libchrome,
+        sys_libbase,
     ],
     ldflags: ["-rdynamic"],
+    target: {
+        linux: {
+            srcs: [
+                ":BluetoothBtaaSources_linux_generic",
+                ":BluetoothOsSources_linux_generic",
+            ],
+        },
+        host: {
+            srcs: [
+                ":BluetoothBtaaSources_host",
+                ":BluetoothHalSources_hci_host",
+                ":BluetoothOsSources_host",
+            ],
+        },
+        android: {
+            srcs: [
+                ":BluetoothBtaaSources_android",
+                ":BluetoothHalSources_hci_android_hidl",
+                ":BluetoothOsSources_android",
+            ],
+            shared_libs: [
+                "android.hardware.bluetooth.audio-V3-ndk", // Required BnBluetoothAudioPort
+                "android.hardware.bluetooth.audio@2.0", // Required by libbt-audio-hal-interface
+                "android.hardware.bluetooth.audio@2.1", // Required by libbt-audio-hal-interface
+                "android.hardware.bluetooth@1.0", // android/hardware/bluetooth/1.0/types.h
+                "android.hardware.bluetooth@1.1", // android/hardware/bluetooth/1.1/IBluetoothHci.h
+                "libbinder_ndk",
+                "libcutils",
+                "libhidlbase",
+                "libutils",
+            ],
+            whole_static_libs: [
+                "android.hardware.bluetooth-V1-ndk",
+                "libstatslog_bt",
+            ],
+        },
+    },
     sanitize: {
         cfi: false,
     },
