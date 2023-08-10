@@ -104,8 +104,8 @@ public class HearingAidServiceTest {
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
+        HearingAidNativeInterface.sInstance = mNativeInterface;
         startService();
-        mService.mHearingAidNativeInterface = mNativeInterface;
         mService.mAudioManager = mAudioManager;
         mServiceBinder = (HearingAidService.BluetoothHearingAidBinder) mService.initBinder();
         mServiceBinder.mIsTesting = true;
