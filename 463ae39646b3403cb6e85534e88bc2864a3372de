@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96d32684_490c9929",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-10T17:09:45Z",
+      "side": 1,
+      "message": "nit: Prefer to say what you fixed.  Something like:\n\nDon\u0027t depend on osi_malloc for oob regression tests ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 45
+      },
+      "revId": "463ae39646b3403cb6e85534e88bc2864a3372de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
