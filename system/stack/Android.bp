@@ -1445,7 +1445,6 @@ cc_test {
         "libgmock",
         "liblc3",
         "liblog",
-        "libosi",
         "libprotobuf-cpp-lite",
         "libudrv-uipc",
     ],
