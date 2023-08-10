@@ -22,6 +22,30 @@
       },
       "revId": "381684c0160bf46cd5456bd8ba2c8c39cb39d622",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a285d15_3732b726",
+        "filename": "system/gd/hci/facade/le_advertising_manager_facade.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-10T22:53:18Z",
+      "side": 1,
+      "message": "currently for the layers above HCI, the default client id is kAdvertiserClientIdJni. IMO it would be good to keep it aligned with that to use 0xff for this grpc module?",
+      "parentUuid": "16f7ec04_0a86fb22",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 13
+      },
+      "revId": "381684c0160bf46cd5456bd8ba2c8c39cb39d622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
