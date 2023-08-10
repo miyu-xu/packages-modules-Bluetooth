@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85aba073_fcfe7309",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-10T09:46:44Z",
+      "side": 1,
+      "message": "Looks like the ActiveDeviceManager isn\u0027t available when HeadsetService is init",
+      "revId": "970ba0d7498eef073e1dac0784db70ec65f25a4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
