@@ -73,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a8c2dc1_24ff4433",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-10T20:35:23Z",
+      "side": 1,
+      "message": "can i assume this has been resolved offline? as i understand from the code below, mRequestedForDetails is used to only call getMetadata if unknown?",
+      "parentUuid": "b29bfaba_a729bbea",
+      "range": {
+        "startLine": 215,
+        "startChar": 8,
+        "endLine": 215,
+        "endChar": 44
+      },
+      "revId": "1da748b434d23ef8600bf49bc94d801831254c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a50d535_98a7be2b",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
