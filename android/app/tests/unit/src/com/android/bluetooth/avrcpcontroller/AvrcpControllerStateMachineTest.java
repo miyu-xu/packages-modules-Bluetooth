@@ -82,6 +82,7 @@ public class AvrcpControllerStateMachineTest {
     @Mock private Resources mMockResources;
     private ArgumentCaptor<Intent> mIntentArgument = ArgumentCaptor.forClass(Intent.class);
     @Mock private AvrcpControllerService mAvrcpControllerService;
+    @Mock private AvrcpControllerNativeInterface mNativeInterface;
     @Mock private A2dpSinkNativeInterface mA2dpSinkNativeInterface;
     @Mock private AvrcpCoverArtManager mCoverArtManager;
 
@@ -110,6 +111,7 @@ public class AvrcpControllerStateMachineTest {
         // Start an AvrcpControllerService to get a real BluetoothMediaBrowserService up
         doReturn(true).when(mAvrcpAdapterService).isStartedProfile(anyString());
         TestUtils.setAdapterService(mAvrcpAdapterService);
+        AvrcpControllerNativeInterface.sInstance = mNativeInterface;
         TestUtils.startService(mAvrcpServiceRule, AvrcpControllerService.class);
 
         // Mock an AvrcpControllerService to give to all state machines
@@ -150,7 +152,7 @@ public class AvrcpControllerStateMachineTest {
      */
     private AvrcpControllerStateMachine makeStateMachine(BluetoothDevice device) {
         AvrcpControllerStateMachine sm =
-                 new AvrcpControllerStateMachine(device, mAvrcpControllerService);
+                new AvrcpControllerStateMachine(device, mAvrcpControllerService, mNativeInterface);
         sm.start();
         return sm;
     }
@@ -485,12 +487,16 @@ public class AvrcpControllerStateMachineTest {
 
         //Play
         transportControls.play();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_UP));
     }
 
     /**
@@ -504,12 +510,16 @@ public class AvrcpControllerStateMachineTest {
 
         //Pause
         transportControls.pause();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_UP));
     }
 
     /**
@@ -523,12 +533,16 @@ public class AvrcpControllerStateMachineTest {
 
         //Stop
         transportControls.stop();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_STOP), eq(KEY_DOWN));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_STOP), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_STOP),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_STOP),
+                        eq(KEY_UP));
     }
 
     /**
@@ -542,13 +556,16 @@ public class AvrcpControllerStateMachineTest {
 
         //Next
         transportControls.skipToNext();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_FORWARD),
-                eq(KEY_DOWN));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_FORWARD), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_FORWARD),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_FORWARD),
+                        eq(KEY_UP));
     }
 
     /**
@@ -562,13 +579,16 @@ public class AvrcpControllerStateMachineTest {
 
         //Previous
         transportControls.skipToPrevious();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_BACKWARD),
-                eq(KEY_DOWN));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_BACKWARD), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_BACKWARD),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_BACKWARD),
+                        eq(KEY_UP));
     }
 
     /**
@@ -583,14 +603,18 @@ public class AvrcpControllerStateMachineTest {
 
         //FastForward
         transportControls.fastForward();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_FF), eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_FF),
+                        eq(KEY_DOWN));
         //Finish FastForwarding
         transportControls.play();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_FF), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_FF),
+                        eq(KEY_UP));
     }
 
     /**
@@ -604,14 +628,18 @@ public class AvrcpControllerStateMachineTest {
 
         //Rewind
         transportControls.rewind();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_REWIND), eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_REWIND),
+                        eq(KEY_DOWN));
         //Finish Rewinding
         transportControls.play();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_REWIND), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_REWIND),
+                        eq(KEY_UP));
     }
 
     /**
@@ -628,15 +656,13 @@ public class AvrcpControllerStateMachineTest {
 
         //Play an invalid item below start
         transportControls.skipToQueueItem(minSize - 1);
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0)).playItemNative(
-                eq(mTestAddress), eq(scope), anyLong(), anyInt());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0))
+                .playItem(eq(mTestAddress), eq(scope), anyLong(), anyInt());
 
         //Play an invalid item beyond end
         transportControls.skipToQueueItem(maxSize + 1);
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0)).playItemNative(
-                eq(mTestAddress), eq(scope), anyLong(), anyInt());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0))
+                .playItem(eq(mTestAddress), eq(scope), anyLong(), anyInt());
     }
 
     /**
@@ -653,9 +679,9 @@ public class AvrcpControllerStateMachineTest {
 
         //Shuffle
         transportControls.setShuffleMode(1);
-        verify(mAvrcpControllerService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
-                .setPlayerApplicationSettingValuesNative(
-                eq(mTestAddress), eq((byte) 1), eq(shuffleSetting), eq(shuffleMode));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .setPlayerApplicationSettingValues(
+                        eq(mTestAddress), eq((byte) 1), eq(shuffleSetting), eq(shuffleMode));
     }
 
     /**
@@ -672,9 +698,9 @@ public class AvrcpControllerStateMachineTest {
 
         //Shuffle
         transportControls.setRepeatMode(2);
-        verify(mAvrcpControllerService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
-                .setPlayerApplicationSettingValuesNative(
-                eq(mTestAddress), eq((byte) 1), eq(repeatSetting), eq(repeatMode));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .setPlayerApplicationSettingValues(
+                        eq(mTestAddress), eq((byte) 1), eq(repeatSetting), eq(repeatMode));
     }
 
     /**
@@ -697,9 +723,8 @@ public class AvrcpControllerStateMachineTest {
         //Request fetch the list of players
         BrowseTree.BrowseNode playerNodes = mAvrcpStateMachine.findNode(results.getID());
         mAvrcpStateMachine.requestContents(results);
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getPlayerListNative(eq(mTestAddress),
-                eq(0), eq(19));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getPlayerList(eq(mTestAddress), eq(0), eq(19));
 
         //Provide back a player object
         byte[] playerFeatures =
@@ -721,13 +746,11 @@ public class AvrcpControllerStateMachineTest {
         BrowseTree.BrowseNode playerOneNode = mAvrcpStateMachine.findNode(
                 results.getChildren().get(0).getID());
         mAvrcpStateMachine.requestContents(playerOneNode);
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).setBrowsedPlayerNative(
-                eq(mTestAddress), eq(1));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .setBrowsedPlayer(eq(mTestAddress), eq(1));
         mAvrcpStateMachine.sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_FOLDER_PATH, 5);
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getFolderListNative(eq(mTestAddress),
-                eq(0), eq(4));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getFolderList(eq(mTestAddress), eq(0), eq(4));
     }
 
     /**
@@ -746,9 +769,8 @@ public class AvrcpControllerStateMachineTest {
 
         // Verify we've uncached our browse root and made the call to fetch new players
         Assert.assertFalse(mAvrcpStateMachine.findNode(rootName).isCached());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getPlayerListNative(eq(mTestAddress),
-                eq(0), eq(19));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getPlayerList(eq(mTestAddress), eq(0), eq(19));
     }
 
     /**
@@ -776,9 +798,8 @@ public class AvrcpControllerStateMachineTest {
 
         // Verify we've uncached our browse root and made the call to fetch new players
         Assert.assertFalse(mAvrcpStateMachine.findNode(rootName).isCached());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getPlayerListNative(eq(mTestAddress),
-                eq(0), eq(19));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getPlayerList(eq(mTestAddress), eq(0), eq(19));
 
         // Send available players set that contains our addressed player
         byte[] playerFeatures =
@@ -806,15 +827,12 @@ public class AvrcpControllerStateMachineTest {
 
         // Verify we request metadata, playback state and now playing list
         assertNowPlayingList(new ArrayList<AvrcpItem>());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getCurrentMetadataNative(
-                eq(mTestAddress));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getPlaybackStateNative(
-                eq(mTestAddress));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
+                .getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
+                .getCurrentMetadata(eq(mTestAddress));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
+                .getPlaybackState(eq(mTestAddress));
     }
 
     /**
@@ -832,9 +850,8 @@ public class AvrcpControllerStateMachineTest {
 
         // Verify we've uncached our browse root and made the call to fetch new players
         Assert.assertFalse(mAvrcpStateMachine.findNode(rootName).isCached());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getPlayerListNative(eq(mTestAddress),
-                eq(0), eq(19));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getPlayerList(eq(mTestAddress), eq(0), eq(19));
 
         // Send available players set that does not contain the addressed player
         byte[] playerFeatures =
@@ -863,13 +880,12 @@ public class AvrcpControllerStateMachineTest {
 
         // Verify we do not request metadata, playback state and now playing list because we're
         // sure the addressed player and metadata we have isn't impacted by the new players
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0)).getNowPlayingListNative(
-                any(), anyInt(), anyInt());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0)).getCurrentMetadataNative(any());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0)).getPlaybackStateNative(any());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0))
+                .getNowPlayingList(any(), anyInt(), anyInt());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0))
+                .getCurrentMetadata(any());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(0))
+                .getPlaybackState(any());
     }
 
     /**
@@ -888,9 +904,8 @@ public class AvrcpControllerStateMachineTest {
         //Request fetch the list of players
         BrowseTree.BrowseNode playerNodes = mAvrcpStateMachine.findNode(results.getID());
         mAvrcpStateMachine.requestContents(results);
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getPlayerListNative(eq(mTestAddress),
-                eq(0), eq(19));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getPlayerList(eq(mTestAddress), eq(0), eq(19));
 
         //Provide back two player objects, IDs 1 and 2
         byte[] playerFeatures =
@@ -923,18 +938,15 @@ public class AvrcpControllerStateMachineTest {
         //Make sure the Now Playing list is now cleared
         assertNowPlayingList(new ArrayList<AvrcpItem>());
 
-        //Verify that a player change to a player with Now Playing support causes a refresh.
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        // Verify that a player change to a player with Now Playing support causes a refresh.
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
+                .getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
 
-        //Verify we request metadata and playback state
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getCurrentMetadataNative(
-                eq(mTestAddress));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getPlaybackStateNative(
-                eq(mTestAddress));
+        // Verify we request metadata and playback state
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getCurrentMetadata(eq(mTestAddress));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getPlaybackState(eq(mTestAddress));
     }
 
     /**
@@ -977,12 +989,10 @@ public class AvrcpControllerStateMachineTest {
 
         //Make sure the Now Playing list is now cleared and we requested metadata
         assertNowPlayingList(new ArrayList<AvrcpItem>());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getCurrentMetadataNative(
-                eq(mTestAddress));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getPlaybackStateNative(
-                eq(mTestAddress));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getCurrentMetadata(eq(mTestAddress));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getPlaybackState(eq(mTestAddress));
     }
 
     /**
@@ -1039,15 +1049,12 @@ public class AvrcpControllerStateMachineTest {
 
         // Verify we make no assumptions about the player ID and still fetch metadata, play status
         // and now playing list (since player 1 supports it)
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getCurrentMetadataNative(
-                eq(mTestAddress));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getPlaybackStateNative(
-                eq(mTestAddress));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(3))
+                .getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(3))
+                .getCurrentMetadata(eq(mTestAddress));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(3))
+                .getPlaybackState(eq(mTestAddress));
     }
 
     /**
@@ -1057,9 +1064,8 @@ public class AvrcpControllerStateMachineTest {
     public void testNowPlaying() {
         setUpConnectedState(true, true);
         mAvrcpStateMachine.nowPlayingContentChanged();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
     }
 
     /**
@@ -1082,12 +1088,16 @@ public class AvrcpControllerStateMachineTest {
         MediaControllerCompat.TransportControls transportControls =
                 BluetoothMediaBrowserService.getTransportControls();
         transportControls.play();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1098,8 +1108,8 @@ public class AvrcpControllerStateMachineTest {
         setUpConnectedState(true, true);
         mAvrcpStateMachine.sendMessage(
                 AvrcpControllerStateMachine.MESSAGE_PROCESS_REGISTER_ABS_VOL_NOTIFICATION);
-        verify(mAvrcpControllerService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
-                .sendRegisterAbsVolRspNative(any(), anyByte(), eq(127), anyInt());
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendRegisterAbsVolRsp(any(), anyByte(), eq(127), anyInt());
     }
 
     /**
@@ -1116,9 +1126,11 @@ public class AvrcpControllerStateMachineTest {
                 AvrcpControllerStateMachine.MESSAGE_PROCESS_PLAY_STATUS_CHANGED,
                 PlaybackStateCompat.STATE_PLAYING);
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
         verify(mA2dpSinkService, never()).requestAudioFocus(mTestDevice, true);
     }
 
@@ -1151,9 +1163,11 @@ public class AvrcpControllerStateMachineTest {
                 AvrcpControllerStateMachine.MESSAGE_PROCESS_PLAY_STATUS_CHANGED,
                 PlaybackStateCompat.STATE_PLAYING);
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
         verify(mA2dpSinkService, never()).requestAudioFocus(mTestDevice, true);
     }
 
@@ -1171,8 +1185,11 @@ public class AvrcpControllerStateMachineTest {
                 AvrcpControllerStateMachine.MESSAGE_PROCESS_PLAY_STATUS_CHANGED,
                 PlaybackStateCompat.STATE_PLAYING);
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
         verify(mA2dpSinkService, never()).requestAudioFocus(mTestDevice, true);
     }
 
@@ -1265,9 +1282,11 @@ public class AvrcpControllerStateMachineTest {
         // becoming inactive
         setActiveDevice(null);
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
         Assert.assertFalse(mAvrcpStateMachine.isActive());
     }
 
@@ -1379,9 +1398,11 @@ public class AvrcpControllerStateMachineTest {
 
         // Verify we send a pause, never request audio focus, and the playback state on
         // BluetoothMediaBrowserService never updates.
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
         verify(mA2dpSinkService, never()).requestAudioFocus(mTestDevice, true);
         Assert.assertEquals(PlaybackStateCompat.STATE_ERROR,
                 BluetoothMediaBrowserService.getPlaybackState().getState());
@@ -1456,10 +1477,16 @@ public class AvrcpControllerStateMachineTest {
         setUpConnectedState(true, true);
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
-        verify(mAvrcpControllerService,never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_UP));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1476,10 +1503,16 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
-        verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_UP));
+        verify(mNativeInterface, times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1494,10 +1527,16 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS_TRANSIENT);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_UP));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1511,10 +1550,16 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
-        verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_UP));
+        verify(mNativeInterface, times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1528,10 +1573,16 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_LOSS);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, times(0)).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
-        verify(mAvrcpControllerService, times(0)).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_UP));
+        verify(mNativeInterface, times(0))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, times(0))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1546,10 +1597,16 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
-        verify(mAvrcpControllerService, times(1)).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_UP));
+        verify(mNativeInterface, times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1565,20 +1622,30 @@ public class AvrcpControllerStateMachineTest {
         MediaControllerCompat.TransportControls transportControls =
                 BluetoothMediaBrowserService.getTransportControls();
         transportControls.pause();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_DOWN));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
+                        eq(KEY_UP));
 
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
 
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_UP));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1595,20 +1662,30 @@ public class AvrcpControllerStateMachineTest {
         MediaControllerCompat.TransportControls transportControls =
                 BluetoothMediaBrowserService.getTransportControls();
         transportControls.stop();
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_STOP), eq(KEY_DOWN));
-        verify(mAvrcpControllerService,
-                timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1)).sendPassThroughCommandNative(
-                eq(mTestAddress), eq(AvrcpControllerService.PASS_THRU_CMD_ID_STOP), eq(KEY_UP));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_STOP),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_STOP),
+                        eq(KEY_UP));
 
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
 
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_UP));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1622,10 +1699,16 @@ public class AvrcpControllerStateMachineTest {
         sendAudioFocusUpdate(AudioManager.AUDIOFOCUS_GAIN);
 
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_DOWN));
-        verify(mAvrcpControllerService, never()).sendPassThroughCommandNative(eq(mTestAddress),
-                eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY), eq(KEY_UP));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_DOWN));
+        verify(mNativeInterface, never())
+                .sendPassThroughCommand(
+                        eq(mTestAddress),
+                        eq(AvrcpControllerService.PASS_THRU_CMD_ID_PLAY),
+                        eq(KEY_UP));
     }
 
     /**
@@ -1657,13 +1740,11 @@ public class AvrcpControllerStateMachineTest {
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
 
         // Verify download attempt and send some elements over, verify next set is requested
-        verify(mAvrcpControllerService, times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(1)).getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
         mAvrcpStateMachine.sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_GET_FOLDER_ITEMS,
                 new ArrayList<AvrcpItem>(nowPlayingList.subList(0, 20)));
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(20), eq(39));
+        verify(mNativeInterface, times(1)).getNowPlayingList(eq(mTestAddress), eq(20), eq(39));
 
         // Force a now playing content invalidation and verify attempted download
         mAvrcpStateMachine.nowPlayingContentChanged();
@@ -1675,8 +1756,7 @@ public class AvrcpControllerStateMachineTest {
                 new ArrayList<AvrcpItem>(nowPlayingList.subList(20, 25)));
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
 
-        verify(mAvrcpControllerService, times(2)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(2)).getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
 
         mAvrcpStateMachine.sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_GET_FOLDER_ITEMS,
                 new ArrayList<AvrcpItem>(updatedNowPlayingList.subList(0, 20)));
@@ -1723,8 +1803,7 @@ public class AvrcpControllerStateMachineTest {
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
 
         // Verify download attempt and send some elements over, verify next set is requested
-        verify(mAvrcpControllerService, times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(1)).getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
         mAvrcpStateMachine.nowPlayingContentChanged();
 
         mAvrcpStateMachine.sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_GET_FOLDER_ITEMS,
@@ -1733,8 +1812,7 @@ public class AvrcpControllerStateMachineTest {
 
         // Receiving the previous members should cause our fetch process to realize we're aborted
         // and a new (second) request should be triggered for the list from the beginning
-        verify(mAvrcpControllerService, times(2)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(2)).getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
 
         // Send whole list
         mAvrcpStateMachine.sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_GET_FOLDER_ITEMS,
@@ -1782,13 +1860,11 @@ public class AvrcpControllerStateMachineTest {
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
 
         // Verify download attempt and send some elements over, verify next set is requested
-        verify(mAvrcpControllerService, times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(1)).getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
         mAvrcpStateMachine.sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_GET_FOLDER_ITEMS,
                 new ArrayList<AvrcpItem>(nowPlayingList.subList(0, 20)));
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(20), eq(39));
+        verify(mNativeInterface, times(1)).getNowPlayingList(eq(mTestAddress), eq(20), eq(39));
 
         // Force a now playing content invalidation due to addressed player change
         mAvrcpStateMachine.sendMessage(
@@ -1801,8 +1877,7 @@ public class AvrcpControllerStateMachineTest {
                 new ArrayList<AvrcpItem>(nowPlayingList.subList(20, 25)));
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
 
-        verify(mAvrcpControllerService, times(2)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(2)).getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
 
         mAvrcpStateMachine.sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_GET_FOLDER_ITEMS,
                 new ArrayList<AvrcpItem>(updatedNowPlayingList.subList(0, 20)));
@@ -1849,8 +1924,7 @@ public class AvrcpControllerStateMachineTest {
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
 
         // Verify download attempt and send some elements over, verify next set is requested
-        verify(mAvrcpControllerService, times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(1)).getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
 
         // Force a now playing content invalidation due to addressed player change, happening
         // before we've received any items from the remote device.
@@ -1863,8 +1937,7 @@ public class AvrcpControllerStateMachineTest {
                 new ArrayList<AvrcpItem>(nowPlayingList.subList(0, 20)));
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
 
-        verify(mAvrcpControllerService, times(2)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(2)).getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
 
         // Send requested items, they're likely from the new list at this point, but it shouldn't
         // matter what they are because we should toss them out and restart our download next.
@@ -1905,8 +1978,7 @@ public class AvrcpControllerStateMachineTest {
         TestUtils.waitForLooperToFinishScheduledTask(mAvrcpStateMachine.getHandler().getLooper());
 
         // Request for new contents should be sent
-        verify(mAvrcpControllerService, times(1)).getNowPlayingListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(2)).getNowPlayingList(eq(mTestAddress), eq(0), eq(19));
         Assert.assertFalse(nowPlaying.isCached());
 
         // Send timeout on our own instead of waiting 10 seconds
@@ -1971,7 +2043,6 @@ public class AvrcpControllerStateMachineTest {
         // issues a player list fetch
         mAvrcpStateMachine.connect(StackEvent.connectionStateChanged(true, true));
         TestUtils.waitForLooperToBeIdle(mAvrcpStateMachine.getHandler().getLooper());
-        verify(mAvrcpControllerService, times(1)).getPlayerListNative(
-                eq(mTestAddress), eq(0), eq(19));
+        verify(mNativeInterface, times(1)).getPlayerList(eq(mTestAddress), eq(0), eq(19));
     }
 }
