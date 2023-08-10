@@ -103,8 +103,8 @@ public class CsipSetCoordinatorServiceTest {
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
 
+        CsipSetCoordinatorNativeInterface.sInstance = mCsipSetCoordinatorNativeInterface;
         startService();
-        mService.mCsipSetCoordinatorNativeInterface = mCsipSetCoordinatorNativeInterface;
         mService.mServiceFactory = mServiceFactory;
         when(mServiceFactory.getLeAudioService()).thenReturn(mLeAudioService);
 
