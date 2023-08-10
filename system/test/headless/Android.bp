@@ -24,22 +24,10 @@ genrule {
     ],
 }
 
-cc_binary {
-    name: "bt_headless",
-    defaults: [
-        "fluoride_defaults",
-        "latest_android_hardware_bluetooth_audio_ndk_shared",
-    ],
-    cflags: [
-        "-Wall",
-        "-Werror",
-        "-Wextra",
-        "-Wno-date-time",
-    ],
-    generated_headers: [
-        "HeadlessBuildTimestamp",
-    ],
+filegroup {
+    name: "BluetoothHeadlessSources",
     srcs: [
+        "android_namespace.cc",
         "bt_property.cc",
         "connect/connect.cc",
         "discovery/discovery.cc",
@@ -60,21 +48,40 @@ cc_binary {
         "sdp/sdp_db.cc",
         "util.cc",
     ],
+}
+
+cc_binary {
+    name: "bt_headless",
+    defaults: [
+        "fluoride_defaults",
+        "latest_android_hardware_bluetooth_audio_ndk_shared",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wextra",
+        "-Wno-date-time",
+    ],
+    generated_headers: [
+        "HeadlessBuildTimestamp",
+    ],
+    srcs: [":BluetoothHeadlessSources"],
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/stack/include",
     ],
     static_libs: [
-        "android.hardware.bluetooth.a2dp@1.0",
-        "android.system.suspend.control-V1-ndk",
         "avrcp-target-service",
         "lib-bt-packets",
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
         "libFraunhoferAAC",
+        "libPlatformProperties",
         "libaudio-a2dp-hw-utils",
+        "libbase",
         "libbluetooth-dumpsys",
+        "libbluetooth-protos",
         "libbluetooth-types",
         "libbluetooth_core_rs",
         "libbluetooth_crypto_toolbox",
@@ -101,37 +108,54 @@ cc_binary {
         "libbtif-core",
         "libc++fs",
         "libchrome",
+        "libcutils",
         "libevent",
         "libflatbuffers-cpp",
+        "libfmq",
         "libg722codec",
+        "libhidlbase",
+        "libjsoncpp",
         "liblc3",
+        "liblog",
         "libmodpb64",
         "libopus",
         "libosi",
         "libprotobuf-cpp-lite",
+        "libstatslog",
         "libstatslog_bt",
         "libudrv-uipc",
+        "libutils",
         "libz",
     ],
     shared_libs: [
-        "android.hardware.bluetooth.audio@2.0",
-        "android.hardware.bluetooth.audio@2.1",
-        "android.hardware.bluetooth@1.0",
-        "android.hardware.bluetooth@1.1",
-        "android.system.suspend-V1-ndk",
-        "libPlatformProperties",
-        "libaaudio",
-        "libbase",
         "libbinder_ndk",
         "libcrypto",
-        "libcutils", // property_get_bool
-        "libfmq",
-        "libhidlbase",
-        "libjsoncpp",
-        "liblog", // __android_log_print
         "libstatssocket",
-        "libutils",
         "server_configurable_flags",
     ],
+    host_supported: true,
+    target: {
+        android: {
+            shared_libs: [
+                "android.hardware.audio.common-V3-ndk",
+                "android.hardware.bluetooth.audio@2.0",
+                "android.hardware.bluetooth.audio@2.1",
+                "libPlatformProperties",
+                "libaaudio",
+                "libbinder_ndk",
+                "libstatssocket",
+            ],
+            static_libs: [
+                "android.hardware.bluetooth.a2dp@1.0",
+                "android.hardware.bluetooth@1.0",
+                "android.hardware.bluetooth@1.1",
+                "android.hardware.common-V2-ndk",
+                "android.hardware.common.fmq-V1-ndk",
+                "android.system.suspend-V1-ndk",
+                "android.system.suspend.control-V1-ndk",
+                "libvndksupport",
+            ],
+        },
+    },
     header_libs: ["libbluetooth_headers"],
 }
