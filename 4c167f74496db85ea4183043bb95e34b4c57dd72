@@ -16,6 +16,29 @@
       "message": "What happens if we call createBroadcast multiple times before the unicast group becomes inactive? It appears that all requests after the first one will be stuck in the queue.",
       "revId": "4c167f74496db85ea4183043bb95e34b4c57dd72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c78f63a4_2d2c5ca9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2122,
+      "author": {
+        "id": 1546552
+      },
+      "writtenOn": "2023-08-10T21:58:30Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we hold this as true until the queue is fully cleared? Otherwise you may get calls going out of order",
+      "range": {
+        "startLine": 2122,
+        "startChar": 16,
+        "endLine": 2122,
+        "endChar": 48
+      },
+      "revId": "4c167f74496db85ea4183043bb95e34b4c57dd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
