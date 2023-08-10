@@ -35,11 +35,18 @@ public class CsipSetCoordinatorNativeInterface {
     private static final boolean DBG = false;
     private BluetoothAdapter mAdapter;
 
-    @GuardedBy("INSTANCE_LOCK") private static CsipSetCoordinatorNativeInterface sInstance;
+    @GuardedBy("INSTANCE_LOCK")
+    @VisibleForTesting
+    public static CsipSetCoordinatorNativeInterface sInstance;
+
     private static final Object INSTANCE_LOCK = new Object();
 
     static {
-        classInitNative();
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(TAG, "App is instrumented. Skip loading the native");
+        } else {
+            classInitNative();
+        }
     }
 
     private CsipSetCoordinatorNativeInterface() {
