@@ -34,6 +34,24 @@
       "parentUuid": "e87fb4ee_f232673a",
       "revId": "09adc442d8e6702a261503b515400c6556088555",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6a9ab89_137739a6",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-10T23:15:32Z",
+      "side": 1,
+      "message": "We may want to investigate a bit more before merging, in order to be confident for not breaking anything ?",
+      "parentUuid": "b900bd47_a2b676f1",
+      "revId": "09adc442d8e6702a261503b515400c6556088555",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
