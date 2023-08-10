@@ -39,6 +39,7 @@ cc_binary {
         "HeadlessBuildTimestamp",
     ],
     srcs: [
+        "android_namespace.cc",
         "bt_property.cc",
         "connect/connect.cc",
         "discovery/discovery.cc",
@@ -64,69 +65,76 @@ cc_binary {
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/stack/include",
     ],
+    // The set of libraries and dependencies to build the Android
+    // bluetooth stack for a headless environment.
     static_libs: [
-        "android.hardware.bluetooth.a2dp@1.0",
-        "android.system.suspend.control-V1-ndk",
-        "avrcp-target-service",
-        "lib-bt-packets",
-        "lib-bt-packets-avrcp",
-        "lib-bt-packets-base",
-        "libFraunhoferAAC",
-        "libaudio-a2dp-hw-utils",
-        "libbluetooth-dumpsys",
-        "libbluetooth-types",
-        "libbluetooth_core_rs",
-        "libbluetooth_gd",
-        "libbluetooth_rust_interop",
-        "libbt-audio-hal-interface",
-        "libbt-bta",
-        "libbt-bta-core",
-        "libbt-common",
-        "libbt-hci",
-        "libbt-sbc-decoder",
-        "libbt-sbc-encoder",
-        "libbt-stack",
-        "libbt-stack-core",
-        "libbt_shim_bridge",
-        "libbt_shim_ffi",
-        "libbtcore",
-        "libbtdevice",
-        "libbte",
-        "libbtif",
-        "libbtif-core",
-        "libc++fs",
-        "libchrome",
-        "libevent",
-        "libflatbuffers-cpp",
-        "libg722codec",
-        "liblc3",
-        "libmodpb64",
-        "libopus",
-        "libosi",
-        "libprotobuf-cpp-lite",
-        "libstatslog_bt",
-        "libudrv-uipc",
-        "libz",
+        // Various android target hardware APIs
+        "android.hardware.audio.common-V2-ndk",
+        "android.hardware.bluetooth.audio-V3-ndk",
+        "android.hardware.common-V2-ndk",
+        "android.hardware.common.fmq-V1-ndk",
+        "android.media.audio.common.types-V2-ndk",
+        "avrcp-target-service", /// AVRCP service profile
+        "lib-bt-packets-avrcp", /// PDL avrcp packet base library
+        "lib-bt-packets-base", /// PDL base packet library
+        "libFraunhoferAAC", ///  Audio library to encode and decode in the Advanced Audio Coding (AAC) format
+        "libaudio-a2dp-hw-utils", /// system::audio_a2dp_hw audio hardware library
+        "libbluetooth-dumpsys", /// Bluetooth dumpsys library
+        "libbluetooth-protos", /// Generated protobuf type library
+        "libbluetooth-types", /// Bluetooth common data type library
+        "libbluetooth_core_rs", /// Core rust libraries
+        "libbluetooth_gd", /// Gd and all supporting code library
+        "libbluetooth_rust_interop", /// Rust C/Cpp bridge and interoperability
+        "libbt-audio-hal-interface", /// Audio hal interface
+        "libbt-bta", /// Bta profiles
+        "libbt-bta-core", /// Everything in bta
+        "libbt-common", /// Everything in common
+        "libbt-hci", /// HCI interface
+        "libbt-sbc-decoder", ///  Low-complexity subband decoder for the A2DP
+        "libbt-sbc-encoder", ///  Low-complexity subband encoder for the A2DP
+        "libbt-stack", /// Everything in core system::stack::
+        "libbt-stack-core", /// Profiles in system::stack::
+        "libbt_shim_bridge", /// cxx bridge library for rust
+        "libbt_shim_ffi", /// init flags for rust
+        "libbtcore", /// Module and stack management
+        "libbtdevice", /// Controller, interop and esco
+        "libbte", /// Bluetooth execution environment and main::bte main::shim
+        "libbtif", /// Everything for system::btif:: profiles
+        "libbtif-core", /// Everything for system::btif:: core
+        "libchrome", /// The Chrome library
+        "libcutils", /// Various C/Cpp utilities
+        "libevent", /// Event notification library
+        "libflatbuffers-cpp", /// Buffer de/serialization library
+        "libg722codec", ///  ITU-T standard wideband audio codec
+        "libhidlbase", /// HAL interface definition language (HIDL) base library
+        "liblc3", /// Low Complexity Communication Codec (LC3)
+        "liblog", // Android logging library
+        "libopus", /// A simple audio encoder, decoder and noise reduction library
+        "libosi", /// system::stack::osi
+        "libprotobuf-cpp-lite", /// Google protobuf library for Android
+        "libstatslog_bt", /// Bluetooth metrics logging library
+        "libudrv-uipc", /// IPC utility
+        "libutils", /// Various core C utilities
+        "libvndksupport", /// Vendor support library
     ],
     shared_libs: [
-        "android.hardware.bluetooth.audio-V3-ndk",
+        // Various android target hardware APIs
+        "android.hardware.audio.common@5.0-util",
+        "android.hardware.bluetooth.a2dp@1.0",
         "android.hardware.bluetooth.audio@2.0",
         "android.hardware.bluetooth.audio@2.1",
         "android.hardware.bluetooth@1.0",
         "android.hardware.bluetooth@1.1",
         "android.system.suspend-V1-ndk",
-        "libPlatformProperties",
-        "libaaudio",
-        "libbase",
-        "libbinder_ndk",
-        "libcrypto",
-        "libcutils", // property_get_bool
-        "libfmq",
-        "libhidlbase",
-        "libjsoncpp",
-        "liblog", // __android_log_print
-        "libstatssocket",
-        "libutils",
+        "android.system.suspend.control-V1-ndk",
+        "libaaudio", /// API for high-performance audio applications that require low latency
+        "libbase", /// The Android base library
+        "libbinder_ndk", /// The Android binder library
+        "libcrypto", /// The SSL/key library
+        "libdl", /// Dynamic library loading library
+        "libfmq", /// Fast message queue for HIDL RPC
+        "libstatslog", /// Statistics and metrics logging library
+        "libstatssocket", /// Statistic and metrics socket API
     ],
     header_libs: ["libbluetooth_headers"],
 }
