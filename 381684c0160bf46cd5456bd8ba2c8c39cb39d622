@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f7ec04_0a86fb22",
+        "filename": "system/gd/hci/facade/le_advertising_manager_facade.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-10T22:09:14Z",
+      "side": 1,
+      "message": "this will match with `kAdvertiserClientIdJni`, should we create another variable with a different value and use it here instead?",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 13
+      },
+      "revId": "381684c0160bf46cd5456bd8ba2c8c39cb39d622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
