@@ -378,6 +378,7 @@ cc_test {
     shared_libs: [
         "android.hardware.bluetooth.audio@2.0",
         "android.hardware.bluetooth.audio@2.1",
+        "libbase",
         "libcrypto",
         "libcutils",
         "liblog",
@@ -401,6 +402,7 @@ cc_test {
         "libchrome",
         "libosi",
         "libstatslog_bt",
+        "server_configurable_flags",
     ],
     cflags: ["-Wno-unused-parameter"],
 }
@@ -454,6 +456,7 @@ cc_test {
         "libcom.android.sysprop.bluetooth.wrapped",
         "libevent",
         "libgmock",
+        "server_configurable_flags",
     ],
     sanitize: {
         address: true,
