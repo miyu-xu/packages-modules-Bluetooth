@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e25135d5_ac6b79bc",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3820,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-11T11:17:06Z",
+      "side": 1,
+      "message": "FYI there\u0027s also `.none()` method 😄\n`bool any() const { return !none(); }`",
+      "range": {
+        "startLine": 3820,
+        "startChar": 8,
+        "endLine": 3820,
+        "endChar": 68
+      },
+      "revId": "a6ab41507db4da1c04775088338df73abd511f71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
