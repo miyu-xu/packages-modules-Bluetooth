@@ -18,7 +18,6 @@
 
 #include <arpa/inet.h>
 #include <gtest/gtest.h>
-#include "osi/test/AllocationTestHarness.h"
 
 #include "btcore/include/device_class.h"
 
@@ -41,7 +40,7 @@
                                        << " )";
 }
 
-class DeviceClassTest : public AllocationTestHarness {};
+class DeviceClassTest : public ::testing::Test {};
 
 TEST_F(DeviceClassTest, cod_sizeof) {
   uint8_t dc_stream[] = {0x00, 0x00, 0x00, 0x00};
