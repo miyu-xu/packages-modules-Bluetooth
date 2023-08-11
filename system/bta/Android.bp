@@ -198,6 +198,9 @@ cc_library_static {
         /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/
         "-fvisibility=default",
     ],
+    shared_libs: [
+        "server_configurable_flags",
+    ],
     static_libs: [
         "lib-bt-packets",
         "libbt-platform-protos-lite",
