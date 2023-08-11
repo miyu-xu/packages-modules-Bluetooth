@@ -201,10 +201,12 @@ cc_library_static {
         "-fvisibility=default",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "lib-bt-packets",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libcom.android.sysprop.bluetooth.wrapped",
+        "server_configurable_flags",
     ],
     apex_available: [
         "com.android.btservices",
@@ -369,6 +371,7 @@ cc_test {
     shared_libs: [
         "android.hardware.bluetooth.audio@2.0",
         "android.hardware.bluetooth.audio@2.1",
+        "libbase",
         "libcrypto",
         "libcutils",
         "liblog",
@@ -376,6 +379,7 @@ cc_test {
         "libstatssocket",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
@@ -390,6 +394,7 @@ cc_test {
         "libchrome",
         "libosi",
         "libstatslog_bt",
+        "server_configurable_flags",
     ],
     cflags: ["-Wno-unused-parameter"],
 }
@@ -430,6 +435,7 @@ cc_test {
         "liblog",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbluetooth-types",
         "libbt-common",
         "libbt-platform-protos-lite",
@@ -441,6 +447,7 @@ cc_test {
         "libcom.android.sysprop.bluetooth.wrapped",
         "libevent",
         "libgmock",
+        "server_configurable_flags",
     ],
     sanitize: {
         address: true,
