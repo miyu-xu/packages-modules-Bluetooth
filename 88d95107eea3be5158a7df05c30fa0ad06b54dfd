@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf015ebd_97fab7d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-11T13:03:23Z",
+      "side": 1,
+      "message": "Able to repro, can confirm fix is working.\n\nTest steps:\n- play music from phone to DUT over Bluetooth\n- Plug wired headset to DUT\n- Unplug wired headset\n\nBefore the patch:\n- Music continues playing but no sound from DUT\n\nAfter the patch:\n- Music continues playing and sound is heard from DUT",
+      "revId": "88d95107eea3be5158a7df05c30fa0ad06b54dfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
