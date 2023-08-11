@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e8d47dbe_bd431372",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 821,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-11T07:30:55Z",
+      "side": 1,
+      "message": "A case where unicast group is still active is handled at line #826, and indeed that queues the incoming requests as long as the unicast group is still active (after the deactivation request at line #831). Do you think it\u0027s bad? What should we do instead?\n\nHowever, `mAwaitingBroadcastCreateResponse` it is set to `true` after the unicast group has been already deactivated and create broadcast request was sent to the native bt stack. Then we are waiting for the native stack to respond, and if at that time another create broadcast request is received, it will be queued as well, and processed once we receive the previous request response from the native stack.",
+      "parentUuid": "a3967521_be219f8d",
+      "revId": "4c167f74496db85ea4183043bb95e34b4c57dd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c78f63a4_2d2c5ca9",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 11
