@@ -201,10 +201,12 @@ cc_library_static {
         "-fvisibility=default",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "lib-bt-packets",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libcom.android.sysprop.bluetooth.wrapped",
+        "server_configurable_flags",
     ],
     apex_available: [
         "com.android.btservices",
