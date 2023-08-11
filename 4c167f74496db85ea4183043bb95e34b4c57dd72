@@ -39,6 +39,30 @@
       },
       "revId": "4c167f74496db85ea4183043bb95e34b4c57dd72",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb10f53a_eec4ce2c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2122,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-11T06:43:27Z",
+      "side": 1,
+      "message": "I think in this design flag saying that there is Natice call ongoing for a single broadcast creation. If completed, next queued createBroadcast is done.\n\n\nHowever this code needs to be moved outside ` if (success) `, otherwise any failure of first broadcast create will actually block all the remaining requests.",
+      "parentUuid": "c78f63a4_2d2c5ca9",
+      "range": {
+        "startLine": 2122,
+        "startChar": 16,
+        "endLine": 2122,
+        "endChar": 48
+      },
+      "revId": "4c167f74496db85ea4183043bb95e34b4c57dd72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
