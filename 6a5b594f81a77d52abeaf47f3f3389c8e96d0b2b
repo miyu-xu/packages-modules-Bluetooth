@@ -16,6 +16,23 @@
       "message": "nice...much cleaner",
       "revId": "6a5b594f81a77d52abeaf47f3f3389c8e96d0b2b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2230b3b4_0ceccccb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-11T23:57:36Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "6a5b594f81a77d52abeaf47f3f3389c8e96d0b2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
