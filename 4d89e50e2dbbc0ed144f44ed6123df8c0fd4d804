@@ -16,6 +16,24 @@
       "message": "Please add additional tests here",
       "revId": "4d89e50e2dbbc0ed144f44ed6123df8c0fd4d804",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19043b36_2121d6d5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-11T06:35:18Z",
+      "side": 1,
+      "message": "Grzegorz will add test cases when he is back as a follow up patch. Is that ok?",
+      "parentUuid": "549b8299_0eea6574",
+      "revId": "4d89e50e2dbbc0ed144f44ed6123df8c0fd4d804",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
