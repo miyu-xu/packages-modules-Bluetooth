@@ -14,6 +14,7 @@ aconfig_declarations {
         "hap.aconfig",
         "hfp.aconfig",
         "leaudio.aconfig",
+        "sniff.aconfig",
         "system_service.aconfig",
     ],
 }
