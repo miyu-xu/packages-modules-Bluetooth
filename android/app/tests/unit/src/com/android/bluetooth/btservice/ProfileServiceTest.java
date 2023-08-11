@@ -40,6 +40,7 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.hearingaid.HearingAidNativeInterface;
 import com.android.bluetooth.hfp.HeadsetNativeInterface;
+import com.android.bluetooth.hid.HidHostNativeInterface;
 import com.android.bluetooth.pan.PanNativeInterface;
 
 import org.junit.After;
@@ -89,6 +90,7 @@ public class ProfileServiceTest {
     @Mock private A2dpNativeInterface mA2dpNativeInterface;
     @Mock private HeadsetNativeInterface mHeadsetNativeInterface;
     @Mock private HearingAidNativeInterface mHearingAidNativeInterface;
+    @Mock private HidHostNativeInterface mHidHostNativeInterface;
     @Mock private PanNativeInterface mPanNativeInterface;
 
     private void setAllProfilesState(int state, int invocationNumber) throws TimeoutException {
@@ -187,6 +189,7 @@ public class ProfileServiceTest {
         A2dpNativeInterface.sInstance = null;
         HeadsetNativeInterface.sInstance = null;
         HearingAidNativeInterface.sInstance = null;
+        HidHostNativeInterface.sInstance = null;
         PanNativeInterface.setInstance(null);
     }
 
