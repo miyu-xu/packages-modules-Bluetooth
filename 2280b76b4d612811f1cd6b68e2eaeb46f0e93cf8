@@ -16,6 +16,24 @@
       "message": "The CL LGTM but I\u0027m not sure the test coverage is sufficient - can you please look at covering added lines with at minimum unit test? Or other form of test if can\u0027t be covered with unit test?",
       "revId": "2280b76b4d612811f1cd6b68e2eaeb46f0e93cf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4be031c2_ab119e40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-11T18:45:56Z",
+      "side": 1,
+      "message": "yes, I did look into the options, but didn\u0027t find a good way to add unit test for this. the logic there is to trigger a timer for the address update. if you have any suggestion, I\u0027m happy to investigate further.\n\nI did some manual tests though to check for LEA broadcast not rotating the address. and logic remains the same for the rest of usage like nearby.",
+      "parentUuid": "f30e478a_5d987292",
+      "revId": "2280b76b4d612811f1cd6b68e2eaeb46f0e93cf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
