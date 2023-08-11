@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74dd57ea_1e833e4a",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-08-11T10:46:45Z",
+      "side": 1,
+      "message": "The return code was 134 (SIGABRT). I have added a handler in `service/src/main.rs` for `SIGNINT` to make it exit nicely.\n\nI\u0027ve also tried `SIGTERM` here as we already have handler for it. However, it always crashes in `tokio::spawn` because of no tokio::runtime. Even if I added a new runtime to avoid the error, there is another crash when libbluetooth tries to disable adapter. So I think reuse the `SIGTERM` handler might not be a good idea.",
+      "parentUuid": "ca1cf85d_27ad6e3d",
+      "revId": "461a3063856679c4878699e1b3eed794793c87b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d15af37b_61d23414",
         "filename": "system/gd/hal/hci_hal_host.cc",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2023-08-10T01:30:54Z",
       "side": 1,
       "message": "This should be checking `received_size \u003d\u003d -1`",
+      "revId": "461a3063856679c4878699e1b3eed794793c87b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "569fe509_6e2fbded",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-08-11T10:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d15af37b_61d23414",
       "revId": "461a3063856679c4878699e1b3eed794793c87b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
