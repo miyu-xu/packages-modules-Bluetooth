@@ -16,6 +16,74 @@
       "message": "Hi, please review. Thanks!",
       "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d60f3c68_6dc7b989",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-11T17:48:46Z",
+      "side": 1,
+      "message": "LGTM with some questions + nits",
+      "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a459c474_38365c64",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-11T17:48:46Z",
+      "side": 1,
+      "message": "Prefer `Disconnect(RawAddress)`  -- let the caller figure out whether the address is valid.",
+      "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45e28f36_afd080c9",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-11T17:48:46Z",
+      "side": 1,
+      "message": "Does JNI need any change to support this too?",
+      "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "873eccec_f9d3efab",
+        "filename": "system/include/hardware/bt_sock.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-11T17:48:46Z",
+      "side": 1,
+      "message": "nit: disconnect_all may be a better name.",
+      "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
