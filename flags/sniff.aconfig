@@ -1,0 +1,8 @@
+package: "com.android.bluetooth.flags"
+
+flag {
+    name: "reset_sniff_when_rx"
+    namespace: "bluetooth"
+    description: "Reset sniff timer when getting rx in order to avoid entering sniff mode during package transmission."
+    bug: "313567280"
+}
