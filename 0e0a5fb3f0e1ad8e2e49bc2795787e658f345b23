@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4ce922e_82d13581",
+        "filename": "system/bta/le_audio/state_machine.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-11T13:52:31Z",
+      "side": 1,
+      "message": "I believe this breaks compiling other unit tests due to `MockLeAudioGroupStateMachine` not implementing this pure virtual method. Please fix the mock.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 76
+      },
+      "revId": "0e0a5fb3f0e1ad8e2e49bc2795787e658f345b23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
