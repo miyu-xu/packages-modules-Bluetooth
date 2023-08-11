@@ -18,6 +18,7 @@ aconfig_declarations {
         "l2cap.aconfig",
         "leaudio.aconfig",
         "rfcomm.aconfig",
+        "sniff.aconfig",
         "system_service.aconfig",
     ],
 }
