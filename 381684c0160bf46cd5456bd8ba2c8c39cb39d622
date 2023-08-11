@@ -70,6 +70,30 @@
       },
       "revId": "381684c0160bf46cd5456bd8ba2c8c39cb39d622",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7683d815_94a2a42b",
+        "filename": "system/gd/hci/facade/le_advertising_manager_facade.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-11T16:54:40Z",
+      "side": 1,
+      "message": "currently ble_advertiser.h is not exposed to the test modules. I don\u0027t have strong preference here. but if you\u0027d suggest that, I can have an update version.",
+      "parentUuid": "89c12256_602c0922",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 237,
+        "endChar": 13
+      },
+      "revId": "381684c0160bf46cd5456bd8ba2c8c39cb39d622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
