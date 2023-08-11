@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a34664a_d7e195cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-11T00:50:35Z",
+      "side": 1,
+      "message": "Test result with patch set 3: https://android-build.googleplex.com/builds/abtd/run/L89800000962473299\n\nTest result with patch set 5 (in progress): https://android-build.googleplex.com/builds/abtd/run/L25500000962519144",
+      "revId": "54a0576543a160c173a2064560278d8b359258e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
