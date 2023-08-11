@@ -16,6 +16,24 @@
       "message": "Looks like the ActiveDeviceManager isn\u0027t available when HeadsetService is init",
       "revId": "970ba0d7498eef073e1dac0784db70ec65f25a4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "807ef31a_e70907a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-11T01:56:27Z",
+      "side": 1,
+      "message": "Interesting, both mDataBaseManager and mActiveDeviceManager are instantiated in AdapterService.onCreate().\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java;l\u003d697?q\u003dadapterservice\u0026ct\u003dos\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22",
+      "parentUuid": "85aba073_fcfe7309",
+      "revId": "970ba0d7498eef073e1dac0784db70ec65f25a4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
