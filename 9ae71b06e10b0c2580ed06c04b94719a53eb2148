@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eed4d3c_1bf94094",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-08-11T11:13:42Z",
+      "side": 1,
+      "message": "This would be useful to know where it panics. \n\nCurrently the crash trace only gives us\n```\n0x00005c7f42cae7a2 (btadapterd) _RNvNtCsgIKSgZbyEjo_4core9panicking9panic_fmt\n0x00005c7f42cae83c (btadapterd) _RNvNtCsgIKSgZbyEjo_4core9panicking5panic\n0x00005c7f42c78301 (btadapterd - suspend.rs: 0) \u003cbtstack::suspend::Suspend as btstack::suspend::ISuspend\u003e::resume\n0x00005c7f42b30e25 (btadapterd - iface_bluetooth.rs: 881) btadapterd::iface_bluetooth::export_suspend_dbus_intf::{{closure}}::{{closure}}\n```\nThis shall be merged after the crate is imported in this [CL](\nhttps://chromium-review.googlesource.com/c/chromiumos/third_party/rust_crates/+/4764561)",
+      "revId": "9ae71b06e10b0c2580ed06c04b94719a53eb2148",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
