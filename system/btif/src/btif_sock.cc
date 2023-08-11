@@ -65,6 +65,8 @@ static bt_status_t btsock_control_req(uint8_t dlci, const RawAddress& bd_addr,
 
 static void btsock_signaled(int fd, int type, int flags, uint32_t user_id);
 
+static bt_status_t btsock_disconnect(const RawAddress* bd_addr);
+
 static std::atomic_int thread_handle{-1};
 static thread_t* thread;
 
@@ -86,10 +88,12 @@ static SockConnectionEvent connection_logger[SOCK_LOGGER_SIZE_MAX];
 
 const btsock_interface_t* btif_sock_get_interface(void) {
   static btsock_interface_t interface = {
-      sizeof(interface), btsock_listen,  /* listen */
+      sizeof(interface),
+      btsock_listen,                     /* listen */
       btsock_connect,                    /* connect */
       btsock_request_max_tx_data_length, /* request_max_tx_data_length */
-      btsock_control_req                 /* send_control_req */
+      btsock_control_req,                /* send_control_req */
+      btsock_disconnect,
   };
 
   return &interface;
@@ -400,4 +404,16 @@ static void btsock_signaled(int fd, int type, int flags, uint32_t user_id) {
                  << " flags=" << flags << " user_id=" << user_id;
       break;
   }
+}
+
+static bt_status_t btsock_disconnect(const RawAddress* bd_addr) {
+  CHECK(bd_addr != NULL);
+
+  bt_status_t status = btsock_rfc_disconnect(bd_addr);
+  if (status == BT_STATUS_SUCCESS) {
+    status = btsock_l2cap_disconnect(bd_addr);
+  }
+  // SCO is disconnected via btif_hf, so is not handled here.
+
+  return status;
 }
