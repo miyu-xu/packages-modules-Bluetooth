@@ -17,18 +17,25 @@
 package com.android.bluetooth.gatt;
 
 import android.bluetooth.BluetoothStatusCodes;
+import android.util.Log;
 
+import com.android.bluetooth.Utils;
+import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 /**
  * Distance Measurement Native Interface to/from JNI.
- *
- * @hide
  */
 @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
 public class DistanceMeasurementNativeInterface {
-    private static DistanceMeasurementNativeInterface sInterface;
+    private static final String TAG = DistanceMeasurementNativeInterface.class.getSimpleName();
+
+    @GuardedBy("INSTANCE_LOCK")
+    @VisibleForTesting
+    public static DistanceMeasurementNativeInterface sInstance;
+
     private static final Object INSTANCE_LOCK = new Object();
+
     private DistanceMeasurementManager mDistanceMeasurementManager;
 
     /**
@@ -54,11 +61,11 @@ public class DistanceMeasurementNativeInterface {
      */
     public static DistanceMeasurementNativeInterface getInstance() {
         synchronized (INSTANCE_LOCK) {
-            if (sInterface == null) {
-                sInterface = new DistanceMeasurementNativeInterface();
+            if (sInstance == null) {
+                sInstance = new DistanceMeasurementNativeInterface();
             }
         }
-        return sInterface;
+        return sInstance;
     }
 
     void init(DistanceMeasurementManager manager) {
@@ -124,7 +131,11 @@ public class DistanceMeasurementNativeInterface {
     }
 
     static {
-        classInitNative();
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(TAG, "App is instrumented. Skip loading the native");
+        } else {
+            classInitNative();
+        }
     }
 
     private static native void classInitNative();
