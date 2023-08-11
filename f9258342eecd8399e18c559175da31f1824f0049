@@ -16,6 +16,92 @@
       "message": "Hi Christine, I tried to write a bumble BT test for b/291086449 with CALLBACK_TYPE_FIRST_MATCH | CALLBACK_TYPE_MATCH_LOST, but am facing some errors. I\u0027ll try to submit what I have succeeded until now, which is a working bumble BT test for scanning with CALLBACK_TYPE_ALL_MATCHES.",
       "revId": "f9258342eecd8399e18c559175da31f1824f0049",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3ed6e78_922704f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-11T21:16:16Z",
+      "side": 1,
+      "message": "Thanks for the work on adding a Bumble test Kihong!",
+      "revId": "f9258342eecd8399e18c559175da31f1824f0049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e092fc88_dcea34fa",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-11T21:16:16Z",
+      "side": 1,
+      "message": "Please add missing ```@After``` annotation.",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 24
+      },
+      "revId": "f9258342eecd8399e18c559175da31f1824f0049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "276d90c9_1cb5e9ed",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-11T21:16:16Z",
+      "side": 1,
+      "message": "nit: Test could use a more descriptive name related to what in specific is being tested.",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 25
+      },
+      "revId": "f9258342eecd8399e18c559175da31f1824f0049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2553c63b_6dac03fe",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-11T21:16:16Z",
+      "side": 1,
+      "message": "Can we validate for more than just result not null?\n\nPerhaps verify if 2 advertisement events are found to validate described behavior for CALLBACK_TYPE_ALL_MATCHES, checking that returned result object matches some necessary field: https://developer.android.com/reference/android/bluetooth/le/ScanSettings#CALLBACK_TYPE_ALL_MATCHES",
+      "range": {
+        "startLine": 103,
+        "startChar": 32,
+        "endLine": 103,
+        "endChar": 36
+      },
+      "revId": "f9258342eecd8399e18c559175da31f1824f0049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
