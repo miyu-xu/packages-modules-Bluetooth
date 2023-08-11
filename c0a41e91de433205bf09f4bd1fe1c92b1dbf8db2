@@ -16,6 +16,24 @@
       "message": "What if after we start the broadcast, we unbond the device and then bond another device that gets that group id? We might want to clean up in that case to ensure audio isn\u0027t routed to the newly bonded device.",
       "revId": "c0a41e91de433205bf09f4bd1fe1c92b1dbf8db2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c2e2669_2112d13c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2115,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-08-11T08:54:45Z",
+      "side": 1,
+      "message": "We might actually be missing `mUnicastGroupIdDeactivatedForBroadcastTransition` reset, when group descriptor is removed as the old group is destroyed once all the group members are removed. Fixed, thanks.",
+      "parentUuid": "7d252d5a_66b3e008",
+      "revId": "c0a41e91de433205bf09f4bd1fe1c92b1dbf8db2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
