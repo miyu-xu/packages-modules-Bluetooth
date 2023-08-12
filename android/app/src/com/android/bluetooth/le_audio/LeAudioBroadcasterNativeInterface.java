@@ -40,11 +40,17 @@ public class LeAudioBroadcasterNativeInterface {
     private BluetoothAdapter mAdapter;
 
     @GuardedBy("INSTANCE_LOCK")
-    private static LeAudioBroadcasterNativeInterface sInstance;
+    @VisibleForTesting
+    public static LeAudioBroadcasterNativeInterface sInstance;
+
     private static final Object INSTANCE_LOCK = new Object();
 
     static {
-        classInitNative();
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(TAG, "App is instrumented. Skip loading the native");
+        } else {
+            classInitNative();
+        }
     }
 
     private LeAudioBroadcasterNativeInterface() {
