@@ -18,13 +18,42 @@ package com.android.bluetooth.gatt;
 
 import android.bluetooth.le.AdvertisingSetParameters;
 import android.bluetooth.le.PeriodicAdvertisingParameters;
+import android.util.Log;
 
-import androidx.annotation.VisibleForTesting;
+import com.android.bluetooth.Utils;
+import com.android.internal.annotations.GuardedBy;
+import com.android.internal.annotations.VisibleForTesting;
 
 /** Native interface for AdvertiseManager */
 @VisibleForTesting
 public class AdvertiseManagerNativeInterface {
-    AdvertiseManager mManager;
+    private static final String TAG = AdvertiseManagerNativeInterface.class.getSimpleName();
+
+    @GuardedBy("INSTANCE_LOCK")
+    @VisibleForTesting
+    public static AdvertiseManagerNativeInterface sInstance;
+
+    private static final Object INSTANCE_LOCK = new Object();
+
+    private AdvertiseManager mManager;
+
+    static {
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(TAG, "App is instrumented. Skip loading the native");
+        } else {
+            classInitNative();
+        }
+    }
+
+    /** Get singleton instance. */
+    public static AdvertiseManagerNativeInterface getInstance() {
+        synchronized (INSTANCE_LOCK) {
+            if (sInstance == null) {
+                sInstance = new AdvertiseManagerNativeInterface();
+            }
+            return sInstance;
+        }
+    }
 
     void init(AdvertiseManager manager) {
         mManager = manager;
@@ -93,10 +122,6 @@ public class AdvertiseManagerNativeInterface {
 
     void setPeriodicAdvertisingEnable(int advertiserId, boolean enable) {
         setPeriodicAdvertisingEnableNative(advertiserId, enable);
-    }
-
-    static {
-        classInitNative();
     }
 
     void onAdvertisingSetStarted(int regId, int advertiserId, int txPower, int status)
