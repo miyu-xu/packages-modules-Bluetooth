@@ -23,7 +23,9 @@ package com.android.bluetooth.hfpclient;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
+import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.Objects;
@@ -39,14 +41,22 @@ public class NativeInterface {
     private AdapterService mAdapterService;
 
     static {
-        classInitNative();
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(TAG, "App is instrumented. Skip loading the native");
+        } else {
+            classInitNative();
+        }
     }
 
     private NativeInterface() {
         mAdapterService = Objects.requireNonNull(AdapterService.getAdapterService(),
                 "AdapterService cannot be null when NativeInterface init");
     }
-    private static NativeInterface sInterface;
+
+    @GuardedBy("INSTANCE_LOCK")
+    @VisibleForTesting
+    public static NativeInterface sInstance;
+
     private static final Object INSTANCE_LOCK = new Object();
 
     /**
@@ -56,11 +66,11 @@ public class NativeInterface {
      */
     public static NativeInterface getInstance() {
         synchronized (INSTANCE_LOCK) {
-            if (sInterface == null) {
-                sInterface = new NativeInterface();
+            if (sInstance == null) {
+                sInstance = new NativeInterface();
             }
         }
-        return sInterface;
+        return sInstance;
     }
 
     // Native wrappers to help unit testing
