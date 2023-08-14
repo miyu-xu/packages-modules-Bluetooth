@@ -34,6 +34,24 @@
       "parentUuid": "f30e478a_5d987292",
       "revId": "2280b76b4d612811f1cd6b68e2eaeb46f0e93cf8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40d86ef2_686078d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-14T17:42:02Z",
+      "side": 1,
+      "message": "Discussed offline, manual testing is best approach in current state. We can look at adding additional coverage later.",
+      "parentUuid": "4be031c2_ab119e40",
+      "revId": "2280b76b4d612811f1cd6b68e2eaeb46f0e93cf8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
