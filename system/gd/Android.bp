@@ -693,30 +693,6 @@ genrule {
     ],
 }
 
-genrule {
-    name: "BluetoothGeneratedPackets_python3_cc",
-    tools: [
-        "bluetooth_packetgen",
-    ],
-    cmd: "$(location bluetooth_packetgen) --include=packages/modules/Bluetooth/system/gd --out=$(genDir) --num_shards=10 $(in)",
-    srcs: [
-        "l2cap/l2cap_packets.pdl",
-    ],
-    out: [
-        "l2cap/l2cap_packets_python3.cc",
-        "l2cap/l2cap_packets_python3_shard_0.cc",
-        "l2cap/l2cap_packets_python3_shard_1.cc",
-        "l2cap/l2cap_packets_python3_shard_2.cc",
-        "l2cap/l2cap_packets_python3_shard_3.cc",
-        "l2cap/l2cap_packets_python3_shard_4.cc",
-        "l2cap/l2cap_packets_python3_shard_5.cc",
-        "l2cap/l2cap_packets_python3_shard_6.cc",
-        "l2cap/l2cap_packets_python3_shard_7.cc",
-        "l2cap/l2cap_packets_python3_shard_8.cc",
-        "l2cap/l2cap_packets_python3_shard_9.cc",
-    ],
-}
-
 cc_defaults {
     name: "bluetooth_py3_native_extension_defaults",
     include_dirs: [
@@ -790,36 +766,6 @@ cc_defaults {
     allow_undefined_symbols: true,
 }
 
-cc_library_host_shared {
-    name: "bluetooth_packets_python3",
-    defaults: [
-        "bluetooth_py3_native_extension_defaults",
-        "gd_defaults",
-    ],
-    srcs: [
-        ":BluetoothPacketSources",
-        "common/strings.cc",
-        "hci/address.cc",
-        "hci/class_of_device.cc",
-        "l2cap/fcs.cc",
-        "packet/python3_module.cc",
-
-    ],
-    generated_headers: [
-        "BluetoothGeneratedPackets_h",
-    ],
-    generated_sources: [
-        "BluetoothGeneratedPackets_python3_cc",
-    ],
-    header_libs: [
-        "pybind11_headers",
-    ],
-    cflags: [
-        "-fexceptions",
-    ],
-    rtti: true,
-}
-
 // Generate the python parser+serializer backend for
 // hci_packets.pdl.
 genrule {
@@ -849,5 +795,21 @@ genrule {
     ],
     out: [
         "smp_packets.py",
+    ],
+}
+
+// Generate the python parser+serializer backend for
+// l2cap_packets.pdl.
+genrule {
+    name: "gd_l2cap_packets_python3_gen",
+    defaults: ["pdl_python_generator_defaults"],
+    cmd: "$(location :pdlc) $(in) |" +
+        " $(location :pdl_python_generator)" +
+        " --output $(out) --custom-type-location blueberry.utils.bluetooth",
+    srcs: [
+        "l2cap/l2cap_packets.pdl",
+    ],
+    out: [
+        "l2cap_packets.py",
     ],
 }
