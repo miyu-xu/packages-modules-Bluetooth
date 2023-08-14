@@ -124,6 +124,12 @@ pdl_gen(
   INCLUDE "hci/address.h"
   USING "bluetooth::hci")
 
+pdl_gen(
+  NAME RootCanalGeneratedPackets_rs
+  INPUT ${ROOTCANAL_ROOT}/packets/link_layer_packets.pdl
+  OUTPUT link_layer_packets.rs
+  LANG rust)
+
 android_add_library(
   TARGET libscriptedbeaconpayload-protos-lite LICENSE Apache-2.0
   SOURCE_DIR ${ROOTCANAL_ROOT} SRC ${libscriptedbeaconpayload_protos_lite_src})
