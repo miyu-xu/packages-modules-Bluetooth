@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "93717c11_bb6e4c1a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-14T04:00:34Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "e092fc88_dcea34fa",
+      "range": {
+        "startLine": 92,
+        "startChar": 16,
+        "endLine": 92,
+        "endChar": 24
+      },
+      "revId": "f9258342eecd8399e18c559175da31f1824f0049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "276d90c9_1cb5e9ed",
@@ -81,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38ef876d_83671eec",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-14T04:00:34Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "276d90c9_1cb5e9ed",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 25
+      },
+      "revId": "f9258342eecd8399e18c559175da31f1824f0049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2553c63b_6dac03fe",
@@ -94,6 +142,30 @@
       "writtenOn": "2023-08-11T21:16:16Z",
       "side": 1,
       "message": "Can we validate for more than just result not null?\n\nPerhaps verify if 2 advertisement events are found to validate described behavior for CALLBACK_TYPE_ALL_MATCHES, checking that returned result object matches some necessary field: https://developer.android.com/reference/android/bluetooth/le/ScanSettings#CALLBACK_TYPE_ALL_MATCHES",
+      "range": {
+        "startLine": 103,
+        "startChar": 32,
+        "endLine": 103,
+        "endChar": 36
+      },
+      "revId": "f9258342eecd8399e18c559175da31f1824f0049",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94256952_22a6f2e9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-14T04:00:34Z",
+      "side": 1,
+      "message": "Done! I first validated by result being non null since I had trouble finding direction on adding advertisement data with Bumble, but managed to find out how. The test now verifies that 2 advertisement events found with CALLBACK_TYPE_ALL_MATCHES both matches the filter uuid criteria.",
+      "parentUuid": "2553c63b_6dac03fe",
       "range": {
         "startLine": 103,
         "startChar": 32,
