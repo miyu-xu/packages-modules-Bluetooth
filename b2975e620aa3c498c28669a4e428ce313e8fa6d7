@@ -54,6 +54,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8a72153_52fb735c",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-14T04:43:48Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "a459c474_38365c64",
+      "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "45e28f36_afd080c9",
         "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
         "patchSetId": 1
@@ -71,6 +89,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f34940e6_ba1f61fa",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-14T04:43:48Z",
+      "side": 1,
+      "message": "I don\u0027t know. Probably presubmit will reject it if it does?\nLet\u0027s also have someone from Android to evaluate.",
+      "parentUuid": "45e28f36_afd080c9",
+      "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "873eccec_f9d3efab",
         "filename": "system/include/hardware/bt_sock.h",
         "patchSetId": 1
@@ -82,6 +118,24 @@
       "writtenOn": "2023-08-11T17:48:46Z",
       "side": 1,
       "message": "nit: disconnect_all may be a better name.",
+      "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1044033_7fa3a849",
+        "filename": "system/include/hardware/bt_sock.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-14T04:43:48Z",
+      "side": 1,
+      "message": "OK",
+      "parentUuid": "873eccec_f9d3efab",
       "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
