@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eece0ce4_6f85edc6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-14T17:45:55Z",
+      "side": 1,
+      "message": "nit: Could this timeout be a bit shorter?",
+      "range": {
+        "startLine": 58,
+        "startChar": 51,
+        "endLine": 58,
+        "endChar": 56
+      },
+      "revId": "f4602c5632911aa26b11c53c949a2d482d742a1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
