@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f59ce734_ca3b4026",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-14T23:35:50Z",
+      "side": 1,
+      "message": "Looks weird.\nI think we should take ISO in consideration too.\nSomething like:\n```\nif (length \u003c kLinkQualityParamTotalLen \n             + kISOLinkQualityParamTotalLen\n             + kVersion5_0ParamsTotalLen) {\n```",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 112,
+        "endChar": 73
+      },
+      "revId": "f2e52468362b4cef6d3cb2252a48f499c7b33e34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "450b29c9_e9ffd762",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-14T23:35:50Z",
+      "side": 1,
+      "message": "Are we sure these fields are located after the iso fields ?",
+      "range": {
+        "startLine": 124,
+        "startChar": 6,
+        "endLine": 126,
+        "endChar": 35
+      },
+      "revId": "f2e52468362b4cef6d3cb2252a48f499c7b33e34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fdfaad3_2b04cc87",
+        "filename": "system/btif/src/btif_bqr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-14T23:35:50Z",
+      "side": 1,
+      "message": "Aren\u0027t we adding too much data ?\nShould it be `kVersion5_0ParamsTotalLen - kLinkQualityParamTotalLen` ?",
+      "range": {
+        "startLine": 788,
+        "startChar": 26,
+        "endLine": 788,
+        "endChar": 51
+      },
+      "revId": "f2e52468362b4cef6d3cb2252a48f499c7b33e34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
