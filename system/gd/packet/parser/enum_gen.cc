@@ -33,14 +33,6 @@ void EnumGen::GenDefinition(std::ostream& stream) {
   stream << "};\n";
 }
 
-void EnumGen::GenDefinitionPybind11(std::ostream& stream) {
-  stream << "py::enum_<" << e_.name_ << ">(m, \"" << e_.name_ << "\")";
-  for (const auto& pair : e_.constants_) {
-    stream << ".value(\"" << pair.second << "\", " << e_.name_ << "::" << pair.second << ")";
-  }
-  stream << ";\n";
-}
-
 void EnumGen::GenLogging(std::ostream& stream) {
   // Print out the switch statement that converts all the constants to strings.
   stream << "inline std::string " << e_.name_ << "Text(const " << e_.name_ << "& param) {";
