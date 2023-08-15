@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5416ad2_a09bac06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-08-15T03:21:45Z",
+      "side": 1,
+      "message": "Hi, a friendly ping. This is a workaround for the mouse bornd c170b.",
+      "revId": "437afcdb7c8e4c4f2644a2b97bb1445456704b61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
