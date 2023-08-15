@@ -1477,6 +1477,39 @@ tBTM_STATUS btm_ble_start_encrypt(const RawAddress& bda, bool use_stk,
 
 /*******************************************************************************
  *
+ * Function         btm_ble_notify_enc_cmpl
+ *
+ * Description      This function is called to connect EATT and notify GATT to
+ *                  send data if any request is pending. This either happens on
+ *                  encryption complete event, or if bond is pending, after SMP
+ *                  notifies that bonding is complete.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void btm_ble_notify_enc_cmpl(const RawAddress& bd_addr, bool encr_enable) {
+  if (encr_enable) {
+    uint8_t remote_lmp_version = 0;
+    if (!BTM_ReadRemoteVersion(bd_addr, &remote_lmp_version, nullptr,
+                               nullptr) ||
+        remote_lmp_version == 0) {
+      LOG_WARN("BLE Unable to determine remote version");
+    }
+
+    if (remote_lmp_version == 0 ||
+        remote_lmp_version >= HCI_PROTO_VERSION_5_2) {
+      /* Link is encrypted, start EATT if remote LMP version is unknown, or 5.2
+       * or greater */
+      bluetooth::eatt::EattExtension::GetInstance()->Connect(bd_addr);
+    }
+  }
+
+  /* to notify GATT to send data if any request is pending */
+  gatt_notify_enc_cmpl(bd_addr);
+}
+
+/*******************************************************************************
+ *
  * Function         btm_ble_link_encrypted
  *
  * Description      This function is called when LE link encrption status is
@@ -1522,25 +1555,12 @@ void btm_ble_link_encrypted(const RawAddress& bd_addr, uint8_t encr_enable) {
       btm_sec_dev_rec_cback_event(p_dev_rec, BTM_ERR_PROCESSING, true);
   }
 
-  if (encr_enable) {
-    uint8_t remote_lmp_version = 0;
-    if (!BTM_ReadRemoteVersion(p_dev_rec->ble.pseudo_addr, &remote_lmp_version,
-                               nullptr, nullptr) ||
-        remote_lmp_version == 0) {
-      LOG_WARN("BLE Unable to determine remote version");
-    }
-
-    if (remote_lmp_version == 0 ||
-        remote_lmp_version >= HCI_PROTO_VERSION_5_2) {
-      /* Link is encrypted, start EATT if remote LMP version is unknown, or 5.2
-       * or greater */
-      bluetooth::eatt::EattExtension::GetInstance()->Connect(
-          p_dev_rec->ble.pseudo_addr);
-    }
+  if (btm_cb.pairing_state != BTM_PAIR_STATE_IDLE &&
+      btm_cb.pairing_bda == p_dev_rec->ble.pseudo_addr) {
+    LOG_INFO("Waiting for bonding to complete to notify enc complete");
+  } else {
+    btm_ble_notify_enc_cmpl(p_dev_rec->ble.pseudo_addr, encr_enable);
   }
-
-  /* to notify GATT to send data if any request is pending */
-  gatt_notify_enc_cmpl(p_dev_rec->ble.pseudo_addr);
 }
 
 /*******************************************************************************
@@ -1879,6 +1899,8 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
             p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
             /* add all bonded device into resolving list if IRK is available*/
             btm_ble_resolving_list_load_dev(*p_dev_rec);
+
+            btm_ble_notify_enc_cmpl(p_dev_rec->ble.pseudo_addr, true);
           }
 
           btm_sec_dev_rec_cback_event(p_dev_rec, res, true);
