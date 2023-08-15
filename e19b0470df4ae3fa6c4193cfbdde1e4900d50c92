@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "560ba49e_e7143267",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-15T09:27:46Z",
+      "side": 1,
+      "message": "The comment is outdated (Which is missed in https://r.android.com/2103185). Would you mind writing another CL for updating the comments for the action_* functions?",
+      "range": {
+        "startLine": 1331,
+        "startChar": 16,
+        "endLine": 1331,
+        "endChar": 20
+      },
+      "revId": "e19b0470df4ae3fa6c4193cfbdde1e4900d50c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62bdb324_4b5a77df",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1348,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-15T09:27:46Z",
+      "side": 1,
+      "message": "IIUC during these lines at least PidChange DELETE/CREATE events are generated, and followed by the BluetoothStopped/Started events.\n\nI guess this may break the state machine one day if someone added something to action_on_bluetooth_stopped while not being aware of the adapter may have been started by this function.\n\nNot sure if it\u0027s good enough but I think we may add a new ProcessState::Restarting state, and handle the restart in `action_on_bluetooth_stopped`. That is, the state change is\n```\nRestartBluetooth -\u003e action_restart_bluetooth: set Restarting, run process_manager.stop\nBluetoothStopped -\u003e action_on_bluetooth_stopped: set TurningOn, run process_manager.start\nBluetoothStarted -\u003e action_on_bluetooth_started: set On\n```\nWDYT?",
+      "range": {
+        "startLine": 1345,
+        "startChar": 0,
+        "endLine": 1348,
+        "endChar": 94
+      },
+      "revId": "e19b0470df4ae3fa6c4193cfbdde1e4900d50c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
