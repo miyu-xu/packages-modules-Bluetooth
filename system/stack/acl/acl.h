@@ -16,14 +16,14 @@
 
 #pragma once
 
+#include <base/strings/stringprintf.h>
+
 #include <cstdint>
 #include <string>
-#include <unordered_set>
 #include <vector>
 
+#include "os/logging/log_adapter.h"
 #include "stack/acl/peer_packet_types.h"
-#include "stack/include/acl_api_types.h"
-#include "stack/include/bt_types.h"
 #include "stack/include/btm_api_types.h"
 #include "stack/include/hcimsgs.h"
 #include "types/bt_transport.h"
@@ -161,17 +161,44 @@ struct tBTM_PM_MCB {
   bool chg_ind = false;
   tBTM_PM_PWR_MD req_mode;
   tBTM_PM_PWR_MD set_mode;
-  tBTM_PM_STATE state = BTM_PM_ST_ACTIVE;  // 0
+  struct {
+   private:
+    tBTM_PM_STATE state = BTM_PM_ST_ACTIVE;  // 0
+   public:
+    tBTM_PM_STATE State() const { return state; }
+    void SetState(const tHCI_MODE& hci_mode) {
+      state = static_cast<tBTM_PM_STATE>(hci_mode);
+    }
+    void SetStatePending() { state = BTM_PM_ST_PENDING; };
+
+    void SetStored() { state |= BTM_PM_STORED_MASK; }
+    void ClearStored() { state &= ~BTM_PM_STORED_MASK; }
+  } mode;
+
   uint16_t interval = 0;
   uint16_t max_lat = 0;
   uint16_t min_loc_to = 0;
   uint16_t min_rmt_to = 0;
+
+ private:
+  uint16_t handle_;
+  RawAddress bda_;
+
+ public:
   void Init(RawAddress bda, uint16_t handle) {
     bda_ = bda;
     handle_ = handle;
   }
-  RawAddress bda_;
-  uint16_t handle_;
+  uint16_t Handle() const { return handle_; }
+  RawAddress BdAddr() const { return bda_; }
+
+  std::string ToString() const {
+    return base::StringPrintf(
+        "peer:%s handle:%hu mode.state:%s sniff:%hu/%hu/%hu/%hu",
+        ADDRESS_TO_LOGGABLE_CSTR(bda_), handle_,
+        power_mode_state_text(mode.State()).c_str(), interval, max_lat,
+        min_loc_to, min_rmt_to);
+  }
 };
 
 struct tACL_CONN {
