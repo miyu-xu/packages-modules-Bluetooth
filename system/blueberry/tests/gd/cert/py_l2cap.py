@@ -20,7 +20,6 @@ from blueberry.facade.l2cap.classic import facade_pb2 as l2cap_facade_pb2
 from blueberry.facade.l2cap.classic.facade_pb2 import LinkSecurityInterfaceCallbackEventType
 from blueberry.facade.l2cap.le import facade_pb2 as l2cap_le_facade_pb2
 from blueberry.facade.l2cap.le.facade_pb2 import SecurityLevel
-from bluetooth_packets_python3 import l2cap_packets
 from blueberry.tests.gd.cert.event_stream import FilteringEventStream
 from blueberry.tests.gd.cert.event_stream import EventStream, IEventStream
 from blueberry.tests.gd.cert.closable import Closable, safeClose
@@ -29,6 +28,7 @@ from blueberry.tests.gd.cert.matchers import HciMatchers
 from blueberry.tests.gd.cert.matchers import L2capMatchers
 from blueberry.tests.gd.cert.truth import assertThat
 import hci_packets as hci
+import l2cap_packets as l2cap
 
 
 class PyL2capChannel(IEventStream):

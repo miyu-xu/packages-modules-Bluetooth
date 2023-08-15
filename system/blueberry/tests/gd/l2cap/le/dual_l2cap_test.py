@@ -13,8 +13,6 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import bluetooth_packets_python3 as bt_packets
-from bluetooth_packets_python3 import l2cap_packets
 from blueberry.tests.gd.cert.truth import assertThat
 from blueberry.tests.gd.cert.py_l2cap import PyLeL2cap, PyL2cap
 from blueberry.tests.gd.cert.matchers import L2capMatchers
@@ -30,9 +28,10 @@ from blueberry.facade.hci import le_initiator_address_facade_pb2 as le_initiator
 from blueberry.facade.neighbor import facade_pb2 as neighbor_facade
 from mobly import test_runner
 import hci_packets as hci
+import l2cap_packets as l2cap
 
 # Assemble a sample packet.
-SAMPLE_PACKET = bt_packets.RawBuilder([0x19, 0x26, 0x08, 0x17])
+SAMPLE_PACKET = [0x19, 0x26, 0x08, 0x17]
 
 
 class DualL2capTest(gd_base_test.GdBaseTestClass):

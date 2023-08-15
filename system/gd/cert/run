@@ -345,8 +345,6 @@ function incremental_venv {
     cp {$HOST_BIN,$DEST_DIR}/bt_topshim_facade
     cp {$HOST_BIN,$DEST_DIR}/root-canal
 
-    cp {$HOST_LIB,$DEST_DIR}/bluetooth_packets_python3.so
-
     cp {$HOST_LIB,$DEST_LIB_DIR}/libbase.so
     cp {$HOST_LIB,$DEST_LIB_DIR}/libbluetooth_gd.so
     cp {$HOST_LIB,$DEST_LIB_DIR}/libc++.so
@@ -386,15 +384,6 @@ function venv_common {
         echo -e "${RED}Error installing GD Python libraries${NOCOLOR}"
         exit 1
     fi
-
-"${CERT_TEST_VENV}/bin/python" -c "
-import bluetooth_packets_python3 as bp3
-bp3.BaseStruct
-"
-if [[ $? -ne 0 ]] ; then
-  echo -e "${RED}Setup failed as bluetooth_packets_python3 cannot be imported${NOCOLOR}"
-  exit 1
-fi
 
 if [ "${VERBOSE_MODE}" == true ] ; then
   TEMP_CONFIG=/tmp/temp_mobly_config.yaml

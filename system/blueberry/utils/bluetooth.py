@@ -74,3 +74,19 @@ class ClassOfDevice:
     @property
     def size(self) -> int:
         return 3
+
+@dataclass(init=False)
+class Fcs:
+    fcs_: int = 0
+
+    def __init__(self):
+        fcs_ = 0
+
+    def Initialize():
+        return
+
+    def AddByte(next : int):
+        return
+    
+    def GetChecksum():
+        return 0

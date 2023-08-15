@@ -13,9 +13,6 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import bluetooth_packets_python3 as bt_packets
-from bluetooth_packets_python3 import l2cap_packets
-from bluetooth_packets_python3.l2cap_packets import LeCreditBasedConnectionResponseResult
 from blueberry.tests.gd.cert.truth import assertThat
 from blueberry.tests.gd.cert.py_l2cap import PyLeL2cap
 from blueberry.tests.gd.cert.matchers import L2capMatchers
@@ -30,9 +27,10 @@ from blueberry.facade.hci import le_initiator_address_facade_pb2 as le_initiator
 from blueberry.facade.l2cap.le.facade_pb2 import SecurityLevel
 from mobly import test_runner
 import hci_packets as hci
+import l2cap_packets as l2cap
 
 # Assemble a sample packet.
-SAMPLE_PACKET = bt_packets.RawBuilder([0x19, 0x26, 0x08, 0x17])
+SAMPLE_PACKET = [0x19, 0x26, 0x08, 0x17]
 
 
 class LeL2capTest(gd_base_test.GdBaseTestClass):
@@ -170,10 +168,10 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         """
         self._set_link_from_dut_and_open_channel()
         self.cert_l2cap.get_control_channel().send(
-            l2cap_packets.ConnectionParameterUpdateRequestBuilder(2, 0x10, 0x10, 0x0a, 0x64))
+            l2cap.ConnectionParameterUpdateRequest(2, 0x10, 0x10, 0x0a, 0x64))
         assertThat(self.cert_l2cap.get_control_channel()).emits(
             L2capMatchers.LeConnectionParameterUpdateResponse(
-                l2cap_packets.ConnectionParameterUpdateResponseResult.ACCEPTED))
+                l2cap.ConnectionParameterUpdateResponseResult.ACCEPTED))
 
     @metadata(pts_test_id="L2CAP/LE/CPU/BI-01-C", pts_test_name="Reject Connection Parameter Update Parameters")
     def test_reject_connection_parameter_update_parameters(self):
@@ -183,10 +181,10 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         """
         self._set_link_from_dut_and_open_channel()
         self.cert_l2cap.get_control_channel().send(
-            l2cap_packets.ConnectionParameterUpdateRequestBuilder(2, 0x10, 0x10, 512, 0x64))
+            l2cap.ConnectionParameterUpdateRequest(2, 0x10, 0x10, 512, 0x64))
         assertThat(self.cert_l2cap.get_control_channel()).emits(
             L2capMatchers.LeConnectionParameterUpdateResponse(
-                l2cap_packets.ConnectionParameterUpdateResponseResult.REJECTED))
+                l2cap.ConnectionParameterUpdateResponseResult.REJECTED))
 
     @metadata(pts_test_id="L2CAP/LE/CPU/BI-02-C", pts_test_name="Reject Connection Parameter Update Request")
     def test_reject_connection_parameter_update_request(self):
@@ -195,7 +193,7 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         """
         self._setup_link_from_cert()
         self.cert_l2cap.get_control_channel().send(
-            l2cap_packets.ConnectionParameterUpdateRequestBuilder(2, 0x10, 0x10, 0x0a, 0x64))
+            l2cap.ConnectionParameterUpdateRequest(2, 0x10, 0x10, 0x0a, 0x64))
         assertThat(self.cert_l2cap.get_control_channel()).emits(L2capMatchers.LeCommandReject())
 
     @metadata(pts_test_id="L2CAP/COS/CFC/BV-01-C", pts_test_name="Segmentation")
@@ -288,8 +286,8 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         """
         self._setup_link_from_cert()
         self.cert_l2cap.get_control_channel().send(
-            l2cap_packets.InformationRequestBuilder(
-                2, l2cap_packets.InformationRequestInfoType.EXTENDED_FEATURES_SUPPORTED))
+            l2cap.InformationRequest(
+                2, l2cap.InformationRequestInfoType.EXTENDED_FEATURES_SUPPORTED))
         assertThat(self.cert_l2cap.get_control_channel()).emits(L2capMatchers.LeCommandReject())
 
     @metadata(pts_test_id="L2CAP/LE/REJ/BI-02-C", pts_test_name="Command Reject – Reserved PDU Codes")
@@ -298,7 +296,7 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         Verify that an IUT receiving a PDU with a reserved command code sends a command reject.
         """
         self._setup_link_from_cert()
-        self.cert_l2cap.get_control_channel().send(l2cap_packets.MoveChannelRequestBuilder(2, 0, 0))
+        self.cert_l2cap.get_control_channel().send(l2cap.MoveChannelRequest(2, 0, 0))
         assertThat(self.cert_l2cap.get_control_channel()).emits(L2capMatchers.LeCommandReject())
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-01-C", pts_test_name="LE Credit Based Connection Request - Legacy Peer")
@@ -309,7 +307,7 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         self._setup_link_from_cert()
         response_future = self.dut_l2cap.connect_coc_to_cert(self.cert_address, psm=0x33)
         self.cert_l2cap.verify_and_reject_open_channel_from_remote(psm=0x33)
-        assertThat(response_future.get_status()).isNotEqualTo(LeCreditBasedConnectionResponseResult.SUCCESS)
+        assertThat(response_future.get_status()).isNotEqualTo(l2cap.LeCreditBasedConnectionResponseResult.SUCCESS)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-02-C",
               pts_test_name="LE Credit Based Connection Request on Supported LE_PSM")
@@ -342,8 +340,8 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         self._setup_link_from_cert()
         response_future = self.dut_l2cap.connect_coc_to_cert(self.cert_address, psm=0x33)
         self.cert_l2cap.verify_and_respond_open_channel_from_remote(
-            psm=0x33, result=LeCreditBasedConnectionResponseResult.LE_PSM_NOT_SUPPORTED)
-        assertThat(response_future.get_status()).isEqualTo(LeCreditBasedConnectionResponseResult.LE_PSM_NOT_SUPPORTED)
+            psm=0x33, result=l2cap.LeCreditBasedConnectionResponseResult.LE_PSM_NOT_SUPPORTED)
+        assertThat(response_future.get_status()).isEqualTo(l2cap.LeCreditBasedConnectionResponseResult.LE_PSM_NOT_SUPPORTED)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-05-C",
               pts_test_name="LE Credit Based Connection Request - unsupported LE_PSM")
@@ -353,10 +351,10 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         """
         self._setup_link_from_cert()
         self.cert_l2cap.get_control_channel().send(
-            l2cap_packets.LeCreditBasedConnectionRequestBuilder(1, 0x34, 0x0101, 2000, 1000, 1000))
+            l2cap.LeCreditBasedConnectionRequest(1, 0x34, 0x0101, 2000, 1000, 1000))
         assertThat(self.cert_l2cap.get_control_channel()).emits(
             L2capMatchers.CreditBasedConnectionResponse(
-                result=LeCreditBasedConnectionResponseResult.LE_PSM_NOT_SUPPORTED))
+                result=l2cap.LeCreditBasedConnectionResponseResult.LE_PSM_NOT_SUPPORTED))
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-06-C", pts_test_name="Credit Exchange – Receiving Incremental Credits")
     def test_credit_exchange_receiving_incremental_credits(self):
@@ -418,9 +416,9 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         self._setup_link_from_cert()
         response_future = self.dut_l2cap.connect_coc_to_cert(self.cert_address, psm=0x33)
         self.cert_l2cap.verify_and_respond_open_channel_from_remote(
-            psm=0x33, result=LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHENTICATION)
+            psm=0x33, result=l2cap.LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHENTICATION)
         assertThat(response_future.get_status()).isEqualTo(
-            LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHENTICATION)
+            l2cap.LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHENTICATION)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-11-C", pts_test_name="Security - Insufficient Authentication – Responder")
     def test_security_insufficient_authentication_responder(self):
@@ -432,7 +430,7 @@ Request which fails to satisfy authentication requirements.
         psm = 0x33
         self.dut_l2cap.register_coc(self.cert_address, psm, SecurityLevel.AUTHENTICATED_PAIRING_WITH_ENCRYPTION)
         self.cert_l2cap.open_channel_with_expected_result(
-            psm, LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHENTICATION)
+            psm, l2cap.LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHENTICATION)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-12-C", pts_test_name="Security - Insufficient Authorization – Initiator")
     def test_security_insufficient_authorization_initiator(self):
@@ -442,9 +440,9 @@ Request which fails to satisfy authentication requirements.
         self._setup_link_from_cert()
         response_future = self.dut_l2cap.connect_coc_to_cert(self.cert_address, psm=0x33)
         self.cert_l2cap.verify_and_respond_open_channel_from_remote(
-            psm=0x33, result=LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHORIZATION)
+            psm=0x33, result=l2cap.LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHORIZATION)
         assertThat(response_future.get_status()).isEqualTo(
-            LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHORIZATION)
+            l2cap.LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHORIZATION)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-13-C", pts_test_name="Security - Insufficient Authorization – Responder")
     def test_security_insufficient_authorization_responder(self):
@@ -456,7 +454,7 @@ Request which fails to satisfy authentication requirements.
         psm = 0x33
         self.dut_l2cap.register_coc(self.cert_address, psm, SecurityLevel.AUTHORIZATION)
         self.cert_l2cap.open_channel_with_expected_result(
-            psm, LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHORIZATION)
+            psm, l2cap.LeCreditBasedConnectionResponseResult.INSUFFICIENT_AUTHORIZATION)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-14-C", pts_test_name="Security - Insufficient Key Size – Initiator")
     def test_security_insufficient_key_size_initiator(self):
@@ -469,9 +467,9 @@ Request which fails to satisfy authentication requirements.
         self._setup_link_from_cert()
         response_future = self.dut_l2cap.connect_coc_to_cert(self.cert_address, psm=0x33)
         self.cert_l2cap.verify_and_respond_open_channel_from_remote(
-            psm=0x33, result=LeCreditBasedConnectionResponseResult.INSUFFICIENT_ENCRYPTION_KEY_SIZE)
+            psm=0x33, result=l2cap.LeCreditBasedConnectionResponseResult.INSUFFICIENT_ENCRYPTION_KEY_SIZE)
         assertThat(response_future.get_status()).isEqualTo(
-            LeCreditBasedConnectionResponseResult.INSUFFICIENT_ENCRYPTION_KEY_SIZE)
+            l2cap.LeCreditBasedConnectionResponseResult.INSUFFICIENT_ENCRYPTION_KEY_SIZE)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-15-C",
               pts_test_name="Security - Insufficient Encryption Key Size – Responder")
@@ -484,7 +482,7 @@ Request which fails to satisfy authentication requirements.
         psm = 0x33
         self.dut_l2cap.register_coc(self.cert_address, psm, SecurityLevel.AUTHENTICATED_PAIRING_WITH_128_BIT_KEY)
         self.cert_l2cap.open_channel_with_expected_result(
-            psm, LeCreditBasedConnectionResponseResult.INSUFFICIENT_ENCRYPTION_KEY_SIZE)
+            psm, l2cap.LeCreditBasedConnectionResponseResult.INSUFFICIENT_ENCRYPTION_KEY_SIZE)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-16-C",
               pts_test_name="LE Credit Based Connection Request - refuse due to insufficient resources - Initiator")
@@ -498,8 +496,8 @@ Request which fails to satisfy authentication requirements.
         self._setup_link_from_cert()
         response_future = self.dut_l2cap.connect_coc_to_cert(self.cert_address, psm=0x33)
         self.cert_l2cap.verify_and_respond_open_channel_from_remote(
-            psm=0x33, result=LeCreditBasedConnectionResponseResult.NO_RESOURCES_AVAILABLE)
-        assertThat(response_future.get_status()).isEqualTo(LeCreditBasedConnectionResponseResult.NO_RESOURCES_AVAILABLE)
+            psm=0x33, result=l2cap.LeCreditBasedConnectionResponseResult.NO_RESOURCES_AVAILABLE)
+        assertThat(response_future.get_status()).isEqualTo(l2cap.LeCreditBasedConnectionResponseResult.NO_RESOURCES_AVAILABLE)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-18-C",
               pts_test_name="LE Credit Based Connection Request - refused due to Invalid Source CID - Initiator")
@@ -510,8 +508,8 @@ Request which fails to satisfy authentication requirements.
         self._setup_link_from_cert()
         response_future = self.dut_l2cap.connect_coc_to_cert(self.cert_address, psm=0x33)
         self.cert_l2cap.verify_and_respond_open_channel_from_remote(
-            psm=0x33, result=LeCreditBasedConnectionResponseResult.INVALID_SOURCE_CID)
-        assertThat(response_future.get_status()).isEqualTo(LeCreditBasedConnectionResponseResult.INVALID_SOURCE_CID)
+            psm=0x33, result=l2cap.LeCreditBasedConnectionResponseResult.INVALID_SOURCE_CID)
+        assertThat(response_future.get_status()).isEqualTo(l2cap.LeCreditBasedConnectionResponseResult.INVALID_SOURCE_CID)
 
     @metadata(
         pts_test_id="L2CAP/LE/CFC/BV-19-C",
@@ -523,9 +521,9 @@ Request which fails to satisfy authentication requirements.
         self._setup_link_from_cert()
         response_future = self.dut_l2cap.connect_coc_to_cert(self.cert_address, psm=0x33)
         self.cert_l2cap.verify_and_respond_open_channel_from_remote(
-            psm=0x33, result=LeCreditBasedConnectionResponseResult.SOURCE_CID_ALREADY_ALLOCATED)
+            psm=0x33, result=l2cap.LeCreditBasedConnectionResponseResult.SOURCE_CID_ALREADY_ALLOCATED)
         assertThat(response_future.get_status()).isEqualTo(
-            LeCreditBasedConnectionResponseResult.SOURCE_CID_ALREADY_ALLOCATED)
+            l2cap.LeCreditBasedConnectionResponseResult.SOURCE_CID_ALREADY_ALLOCATED)
 
     @metadata(
         pts_test_id="L2CAP/LE/CFC/BV-20-C",
@@ -538,7 +536,7 @@ Request which fails to satisfy authentication requirements.
         (dut_channel, cert_channel) = self._open_channel_from_cert(psm=0x33, scid=0x0101)
         self.dut_l2cap.register_coc(self.cert_address, psm=0x35)
         self.cert_l2cap.get_control_channel().send(
-            l2cap_packets.LeCreditBasedConnectionRequestBuilder(2, 0x35, 0x0101, 1000, 1000, 1000))
+            l2cap.LeCreditBasedConnectionRequest(2, 0x35, 0x0101, 1000, 1000, 1000))
         assertThat(self.cert_l2cap.get_control_channel()).emits(L2capMatchers.CreditBasedConnectionResponseUsedCid())
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BV-21-C",
@@ -550,9 +548,9 @@ Request which fails to satisfy authentication requirements.
         self._setup_link_from_cert()
         response_future = self.dut_l2cap.connect_coc_to_cert(self.cert_address, psm=0x33)
         self.cert_l2cap.verify_and_respond_open_channel_from_remote(
-            psm=0x33, result=LeCreditBasedConnectionResponseResult.UNACCEPTABLE_PARAMETERS)
+            psm=0x33, result=l2cap.LeCreditBasedConnectionResponseResult.UNACCEPTABLE_PARAMETERS)
         assertThat(response_future.get_status()).isEqualTo(
-            LeCreditBasedConnectionResponseResult.UNACCEPTABLE_PARAMETERS)
+            l2cap.LeCreditBasedConnectionResponseResult.UNACCEPTABLE_PARAMETERS)
 
     @metadata(pts_test_id="L2CAP/LE/CFC/BI-01-C", pts_test_name="Credit Exchange – Exceed Initial Credits")
     def test_credit_exchange_exceed_initial_credits(self):

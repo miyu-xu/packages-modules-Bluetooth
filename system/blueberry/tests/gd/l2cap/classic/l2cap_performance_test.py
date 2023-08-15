@@ -22,9 +22,7 @@ from blueberry.tests.gd.cert import gd_base_test
 from blueberry.tests.gd.l2cap.classic.cert_l2cap import CertL2cap
 from blueberry.tests.gd.l2cap.classic.l2cap_test import L2capTestBase
 from blueberry.facade.l2cap.classic.facade_pb2 import RetransmissionFlowControlMode
-from bluetooth_packets_python3 import RawBuilder
-from bluetooth_packets_python3.l2cap_packets import FcsType
-from bluetooth_packets_python3.l2cap_packets import SupervisoryFunction
+import l2cap_packets as l2cap
 
 from mobly import test_runner
 
@@ -87,7 +85,7 @@ class L2capPerformanceTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         (dut_channel, cert_channel) = self._open_channel_from_cert()
         self.performance_test_logger.start_interval("RX")
         data = b"a" * mtu
-        data_packet = RawBuilder([x for x in data])
+        data_packet = [x for x in data]
         for _ in range(packets):
             cert_channel.send(data_packet)
         assertThat(dut_channel).emits(
@@ -106,11 +104,11 @@ class L2capPerformanceTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         # For ERTM TX test, we have to do it sequentially because cert needs to ack
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=tx_window_size)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=tx_window_size)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM,
-            fcs=FcsType.NO_FCS,
+            fcs=l2cap.FcsType.NO_FCS,
             req_config_options=config,
             rsp_config_options=config)
 
@@ -119,7 +117,7 @@ class L2capPerformanceTest(gd_base_test.GdBaseTestClass, L2capTestBase):
             dut_channel.send(b'a' * mtu)
             if i % tx_window_size == tx_window_size - 1:
                 assertThat(cert_channel).emits(L2capMatchers.IFrame(payload=b'a' * mtu), at_least_times=tx_window_size)
-                cert_channel.send_s_frame(req_seq=(i + 1) % 64, s=SupervisoryFunction.RECEIVER_READY)
+                cert_channel.send_s_frame(req_seq=(i + 1) % 64, s=l2cap.SupervisoryFunction.RECEIVER_READY)
 
         self.performance_test_logger.end_interval("TX")
 
@@ -134,16 +132,16 @@ class L2capPerformanceTest(gd_base_test.GdBaseTestClass, L2capTestBase):
 
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=tx_window_size)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=tx_window_size)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM,
-            fcs=FcsType.NO_FCS,
+            fcs=l2cap.FcsType.NO_FCS,
             req_config_options=config,
             rsp_config_options=config)
 
         data = b"a" * mtu
-        data_packet = RawBuilder([x for x in data])
+        data_packet = [x for x in data]
         self.performance_test_logger.start_interval("RX")
         for i in range(packets):
             cert_channel.send_i_frame(tx_seq=i % 64, req_seq=0, payload=data_packet)
@@ -178,7 +176,7 @@ class L2capPerformanceTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         (dut_channel, cert_channel) = self._open_channel_from_cert()
 
         data = b"a" * 100
-        data_packet = RawBuilder([x for x in data])
+        data_packet = [x for x in data]
         for i in range(100):
             self.performance_test_logger.start_interval("RX")
             cert_channel.send(data_packet)

@@ -110,18 +110,6 @@ bt_flatc_binary_schema("BluetoothGeneratedDumpsysBinarySchema_bfbs") {
   include_dir = "system/gd"
 }
 
-packetgen_py("BluetoothGeneratedPackets_python3_cc") {
-  sources = [
-    "hci/hci_packets.pdl",
-    "l2cap/l2cap_packets.pdl",
-    "security/smp_packets.pdl",
-  ]
-
-  include = "system/gd"
-  source_root = "../.."
-  shards = 10
-}
-
 packetgen_headers("BluetoothGeneratedPackets_h") {
   sources = [
     "hci/hci_packets.pdl",

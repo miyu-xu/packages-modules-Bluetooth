@@ -14,15 +14,13 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import bluetooth_packets_python3 as bt_packets
-from bluetooth_packets_python3 import l2cap_packets
-from bluetooth_packets_python3.l2cap_packets import CommandCode, LeCommandCode
 from blueberry.tests.gd.cert.capture import Capture
 from blueberry.tests.gd.cert.matchers import HciMatchers
 from blueberry.tests.gd.cert.matchers import L2capMatchers
 from blueberry.tests.gd.cert.matchers import SecurityMatchers
 from blueberry.facade.security.facade_pb2 import UiMsgType
 import hci_packets as hci
+import l2cap_packets as l2cap
 
 
 class HalCaptures(object):
@@ -107,8 +105,8 @@ class L2capCaptures(object):
 
     @staticmethod
     def _extract_connection_request(packet):
-        frame = L2capMatchers.control_frame_with_code(packet, CommandCode.CONNECTION_REQUEST)
-        return l2cap_packets.ConnectionRequestView(frame)
+        frame = L2capMatchers.control_frame_with_code(packet, l2cap.CommandCode.CONNECTION_REQUEST)
+        return l2cap_packets.ConnectionRequest(frame)
 
     @staticmethod
     def ConnectionResponse(scid):
@@ -116,8 +114,8 @@ class L2capCaptures(object):
 
     @staticmethod
     def _extract_connection_response(packet):
-        frame = L2capMatchers.control_frame_with_code(packet, CommandCode.CONNECTION_RESPONSE)
-        return l2cap_packets.ConnectionResponseView(frame)
+        frame = L2capMatchers.control_frame_with_code(packet, l2cap.CommandCode.CONNECTION_RESPONSE)
+        return l2cap_packets.ConnectionResponse(frame)
 
     @staticmethod
     def ConfigurationRequest(cid=None):
@@ -125,8 +123,8 @@ class L2capCaptures(object):
 
     @staticmethod
     def _extract_configuration_request(packet):
-        frame = L2capMatchers.control_frame_with_code(packet, CommandCode.CONFIGURATION_REQUEST)
-        return l2cap_packets.ConfigurationRequestView(frame)
+        frame = L2capMatchers.control_frame_with_code(packet, l2cap.CommandCode.CONFIGURATION_REQUEST)
+        return l2cap_packets.ConfigurationRequest(frame)
 
     @staticmethod
     def CreditBasedConnectionRequest(psm):
@@ -135,8 +133,8 @@ class L2capCaptures(object):
 
     @staticmethod
     def _extract_credit_based_connection_request(packet):
-        frame = L2capMatchers.le_control_frame_with_code(packet, LeCommandCode.LE_CREDIT_BASED_CONNECTION_REQUEST)
-        return l2cap_packets.LeCreditBasedConnectionRequestView(frame)
+        frame = L2capMatchers.le_control_frame_with_code(packet, l2cap.LeCommandCode.LE_CREDIT_BASED_CONNECTION_REQUEST)
+        return l2cap_packets.LeCreditBasedConnectionRequest(frame)
 
     @staticmethod
     def CreditBasedConnectionResponse():
@@ -145,8 +143,8 @@ class L2capCaptures(object):
 
     @staticmethod
     def _extract_credit_based_connection_response(packet):
-        frame = L2capMatchers.le_control_frame_with_code(packet, LeCommandCode.LE_CREDIT_BASED_CONNECTION_RESPONSE)
-        return l2cap_packets.LeCreditBasedConnectionResponseView(frame)
+        frame = L2capMatchers.le_control_frame_with_code(packet, l2cap.LeCommandCode.LE_CREDIT_BASED_CONNECTION_RESPONSE)
+        return l2cap_packets.LeCreditBasedConnectionResponse(frame)
 
     @staticmethod
     def LinkSecurityInterfaceCallbackEvent(type):

@@ -15,13 +15,7 @@
 
 from datetime import timedelta
 
-from bluetooth_packets_python3 import l2cap_packets
-from bluetooth_packets_python3 import RawBuilder
-from bluetooth_packets_python3.l2cap_packets import FcsType
-from bluetooth_packets_python3.l2cap_packets import Final
-from bluetooth_packets_python3.l2cap_packets import Poll
-from bluetooth_packets_python3.l2cap_packets import SegmentationAndReassembly
-from bluetooth_packets_python3.l2cap_packets import SupervisoryFunction
+import l2cap_packets as l2cap
 from blueberry.tests.gd.cert.behavior import when, anything, wait_until
 from blueberry.tests.gd.cert.event_stream import EventStream
 from blueberry.tests.gd.cert.matchers import L2capMatchers
@@ -40,7 +34,7 @@ from mobly import test_runner
 
 # Assemble a sample packet.
 SAMPLE_PACKET_DATA = b"\x19\x26\x08\x17"
-SAMPLE_PACKET = RawBuilder([x for x in SAMPLE_PACKET_DATA])
+SAMPLE_PACKET = [x for x in SAMPLE_PACKET_DATA]
 
 
 class L2capTestBase():
@@ -84,7 +78,7 @@ class L2capTestBase():
                                 fcs=None,
                                 req_config_options=None,
                                 rsp_config_options=None):
-        request_matcher = L2capMatchers.ConfigurationRequestView(scid)
+        request_matcher = L2capMatchers.ConfigurationRequest(scid)
         if rsp_config_options is not None:
             when(self.cert_l2cap).on_config_req(request_matcher).then().send_configuration_response(
                 options=rsp_config_options)
@@ -148,8 +142,8 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(scid=0x41, psm=0x33)
 
-        i_frame = l2cap_packets.EnhancedInformationFrameBuilder(
-            0x99, 0, Final.NOT_SET, 1, l2cap_packets.SegmentationAndReassembly.UNSEGMENTED, SAMPLE_PACKET)
+        i_frame = l2cap.EnhancedInformationFrame(
+            0x99, 0, l2cap.Final.NOT_SET, 1, l2cap.SegmentationAndReassembly.UNSEGMENTED, SAMPLE_PACKET)
         self.cert_l2cap.send_acl(i_frame)
         assertThat(cert_channel).emitsNone(L2capMatchers.SFrame(req_seq=4), timeout=timedelta(seconds=1))
 
@@ -163,7 +157,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.l2cap.FcsType.NO_FCS)
 
         dut_channel.send(b'abc' * 34)
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0, payload=b'abc' * 34))
@@ -274,13 +268,13 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         (dut_channel, cert_channel) = self._open_unconfigured_channel_from_cert()
 
         # Send configuration request with CONTINUE
-        mtu_opt = l2cap_packets.MtuConfigurationOption()
+        mtu_opt = l2cap.MtuConfigurationOption()
         mtu_opt.mtu = 0x1234
-        cert_channel.send_configure_request([mtu_opt], 2, l2cap_packets.Continuation.CONTINUE)
+        cert_channel.send_configure_request([mtu_opt], 2, l2cap.Continuation.CONTINUE)
 
-        flush_timeout_option = l2cap_packets.FlushTimeoutConfigurationOption()
+        flush_timeout_option = l2cap.FlushTimeoutConfigurationOption()
         flush_timeout_option.flush_timeout = 65535
-        cert_channel.send_configure_request([flush_timeout_option], 3, l2cap_packets.Continuation.END)
+        cert_channel.send_configure_request([flush_timeout_option], 3, l2cap.Continuation.END)
 
         assertThat(self.cert_l2cap.get_control_channel()).emits(L2capMatchers.ConfigurationResponse(), at_least_times=2)
 
@@ -293,8 +287,8 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
         scid = 0x41
         when(self.cert_l2cap).on_config_req(
-            L2capMatchers.ConfigurationRequestView(scid)).then().send_configuration_response(
-                result=l2cap_packets.ConfigurationResponseResult.UNACCEPTABLE_PARAMETERS,
+            L2capMatchers.ConfigurationRequest(scid)).then().send_configuration_response(
+                result=l2cap.ConfigurationResponseResult.UNACCEPTABLE_PARAMETERS,
                 options=CertL2cap.config_option_mtu_explicit(200)).send_configuration_response(options=[])
         (dut_channel, cert_channel) = self._open_unconfigured_channel_from_cert(scid=scid)
 
@@ -351,7 +345,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         cert_channel.send_configure_request(CertL2cap.config_option_mtu_explicit(20))
         # Invalid because minimum is 48
 
-        cert_channel.verify_configuration_response(l2cap_packets.ConfigurationResponseResult.UNACCEPTABLE_PARAMETERS)
+        cert_channel.verify_configuration_response(l2cap.ConfigurationResponseResult.UNACCEPTABLE_PARAMETERS)
 
     @metadata(pts_test_id="L2CAP/COS/CFD/BV-12-C", pts_test_name="Unknown Option Response")
     def test_config_unknown_options_with_hint(self):
@@ -364,13 +358,13 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
 
         (dut_channel, cert_channel) = self._open_unconfigured_channel_from_cert()
 
-        unknown_opt_hint = l2cap_packets.ExtendedWindowSizeOption()
+        unknown_opt_hint = l2cap.ExtendedWindowSizeOption()
         unknown_opt_hint.max_window_size = 20
-        unknown_opt_hint.is_hint = l2cap_packets.ConfigurationOptionIsHint.OPTION_IS_A_HINT
+        unknown_opt_hint.is_hint = l2cap.ConfigurationOptionIsHint.OPTION_IS_A_HINT
 
         for i in range(10):
             cert_channel.send_configure_request([unknown_opt_hint] * i)
-            cert_channel.verify_configuration_response(l2cap_packets.ConfigurationResponseResult.SUCCESS)
+            cert_channel.verify_configuration_response(l2cap.ConfigurationResponseResult.SUCCESS)
 
     @metadata(pts_test_id="L2CAP/COS/CFD/BV-14-C", pts_test_name="Unknown Mandatory Options Request")
     def test_unknown_mandatory_options_request(self):
@@ -385,12 +379,12 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
 
         (dut_channel, cert_channel) = self._open_unconfigured_channel_from_cert(scid=0x41, psm=0x33)
 
-        unknown_opt = l2cap_packets.ExtendedWindowSizeOption()
+        unknown_opt = l2cap.ExtendedWindowSizeOption()
         unknown_opt.max_window_size = 20
 
-        unknown_opt_hint = l2cap_packets.ExtendedWindowSizeOption()
+        unknown_opt_hint = l2cap.ExtendedWindowSizeOption()
         unknown_opt_hint.max_window_size = 20
-        unknown_opt_hint.is_hint = l2cap_packets.ConfigurationOptionIsHint.OPTION_IS_A_HINT
+        unknown_opt_hint.is_hint = l2cap.ConfigurationOptionIsHint.OPTION_IS_A_HINT
 
         configuration_option_attempts = [[unknown_opt], [unknown_opt, unknown_opt_hint], [
             unknown_opt, unknown_opt, unknown_opt
@@ -410,7 +404,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
 
         for option_list in configuration_option_attempts:
             cert_channel.send_configure_request(option_list)
-            cert_channel.verify_configuration_response(l2cap_packets.ConfigurationResponseResult.UNKNOWN_OPTIONS)
+            cert_channel.verify_configuration_response(l2cap.ConfigurationResponseResult.UNKNOWN_OPTIONS)
 
     @metadata(pts_test_id="L2CAP/COS/ECH/BV-01-C", pts_test_name="Respond to Echo Request")
     def test_respond_to_echo_request(self):
@@ -418,7 +412,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         Verify that the IUT responds to an echo request.
         """
         self._setup_link_from_cert()
-        echo_request = l2cap_packets.EchoRequestBuilder(100, RawBuilder([1, 2, 3]))
+        echo_request = l2cap.EchoRequest(100, [1, 2, 3])
         self.cert_l2cap.get_control_channel().send(echo_request)
 
         assertThat(self.cert_l2cap.get_control_channel()).emits(L2capMatchers.EchoResponse())
@@ -431,7 +425,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         # Command code ff, Signal id 01, size 0000
-        invalid_command_packet = RawBuilder([0xff, 0x01, 0x00, 0x00])
+        invalid_command_packet = [0xff, 0x01, 0x00, 0x00]
         self.cert_l2cap.get_control_channel().send(invalid_command_packet)
 
         assertThat(self.cert_l2cap.get_control_channel()).emits(L2capMatchers.CommandReject())
@@ -445,7 +439,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
         assertThat(self.cert_l2cap.get_control_channel()).emits(
             L2capMatchers.InformationRequestWithType(
-                l2cap_packets.InformationRequestInfoType.EXTENDED_FEATURES_SUPPORTED))
+                l2cap.InformationRequestInfoType.EXTENDED_FEATURES_SUPPORTED))
 
     @metadata(pts_test_id="L2CAP/COS/IEX/BV-02-C", pts_test_name="Respond with 1.2 Features")
     def test_respond_with_1_2_features(self):
@@ -537,7 +531,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
         assertThat(self.cert_l2cap.get_control_channel()).emits(
-            L2capMatchers.InformationRequestWithType(l2cap_packets.InformationRequestInfoType.FIXED_CHANNELS_SUPPORTED))
+            L2capMatchers.InformationRequestWithType(l2cap.InformationRequestInfoType.FIXED_CHANNELS_SUPPORTED))
 
     @metadata(pts_test_id="L2CAP/FOC/BV-01-C", pts_test_name="IUT Initiated Configuration of the FCS Option")
     def test_config_channel_not_use_FCS(self):
@@ -547,7 +541,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.l2cap.FcsType.NO_FCS)
 
         dut_channel.send(b'abc')
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0, payload=b'abc'))
@@ -561,7 +555,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.DEFAULT)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.l2cap.FcsType.DEFAULT)
 
         dut_channel.send(b'abc')
         assertThat(cert_channel).emits(L2capMatchers.IFrameWithFcs(payload=b"abc"))
@@ -576,8 +570,8 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM,
-            fcs=FcsType.DEFAULT,
-            req_config_options=CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS))
+            fcs=l2cap.l2cap.FcsType.DEFAULT,
+            req_config_options=CertL2cap.config_option_ertm(fcs=l2cap.l2cap.FcsType.NO_FCS))
 
         dut_channel.send(b'abc')
         assertThat(cert_channel).emits(L2capMatchers.IFrameWithFcs(payload=b"abc"))
@@ -590,7 +584,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.l2cap.FcsType.NO_FCS)
 
         dut_channel.send(b'abc')
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0, payload=b"abc"))
@@ -603,7 +597,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.l2cap.FcsType.NO_FCS)
 
         cert_channel.send_i_frame(tx_seq=0, req_seq=0, payload=SAMPLE_PACKET)
         assertThat(dut_channel).emits(L2capMatchers.PacketPayloadRawData(SAMPLE_PACKET_DATA))
@@ -616,7 +610,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.DEFAULT)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.l2cap.FcsType.DEFAULT)
 
         dut_channel.send(b'abc')
         assertThat(cert_channel).emits(L2capMatchers.IFrameWithFcs(tx_seq=0, payload=b"abc"))
@@ -629,9 +623,9 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.DEFAULT)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.FcsType.DEFAULT)
 
-        cert_channel.send_i_frame(tx_seq=0, req_seq=0, payload=SAMPLE_PACKET, fcs=FcsType.DEFAULT)
+        cert_channel.send_i_frame(tx_seq=0, req_seq=0, payload=SAMPLE_PACKET, fcs=l2cap.FcsType.DEFAULT)
         assertThat(dut_channel).emits(L2capMatchers.PacketPayloadRawData(SAMPLE_PACKET_DATA))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-01-C", pts_test_name="Transmit I-frames")
@@ -644,7 +638,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.FcsType.NO_FCS)
 
         dut_channel.send(b'abc')
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0, payload=b"abc"))
@@ -670,20 +664,20 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.FcsType.NO_FCS)
 
         for i in range(3):
             cert_channel.send_i_frame(tx_seq=i, req_seq=0, payload=SAMPLE_PACKET)
             assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=i + 1))
 
-        cert_channel.send_i_frame(tx_seq=3, req_seq=0, sar=SegmentationAndReassembly.START, payload=SAMPLE_PACKET)
+        cert_channel.send_i_frame(tx_seq=3, req_seq=0, sar=l2cap.SegmentationAndReassembly.START, payload=SAMPLE_PACKET)
         assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=4))
 
         cert_channel.send_i_frame(
-            tx_seq=4, req_seq=0, sar=SegmentationAndReassembly.CONTINUATION, payload=SAMPLE_PACKET)
+            tx_seq=4, req_seq=0, sar=l2cap.SegmentationAndReassembly.CONTINUATION, payload=SAMPLE_PACKET)
         assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=5))
 
-        cert_channel.send_i_frame(tx_seq=5, req_seq=0, sar=SegmentationAndReassembly.END, payload=SAMPLE_PACKET)
+        cert_channel.send_i_frame(tx_seq=5, req_seq=0, sar=l2cap.SegmentationAndReassembly.END, payload=SAMPLE_PACKET)
         assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=6))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-03-C", pts_test_name="Acknowledging Received I-Frames")
@@ -695,7 +689,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.FcsType.NO_FCS)
 
         for i in range(3):
             cert_channel.send_i_frame(tx_seq=i, req_seq=0, payload=SAMPLE_PACKET)
@@ -716,7 +710,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=1)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=1)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
@@ -727,7 +721,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0, payload=b'abc'))
         assertThat(cert_channel).emitsNone(L2capMatchers.IFrame(tx_seq=1, payload=b'def'), timeout=timedelta(seconds=3))
 
-        cert_channel.send_s_frame(req_seq=1, f=Final.POLL_RESPONSE)
+        cert_channel.send_s_frame(req_seq=1, f=l2cap.Final.POLL_RESPONSE)
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=1))
 
     @metadata(
@@ -741,7 +735,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=1)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=1)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
@@ -768,11 +762,11 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=10)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=10)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM,
-            fcs=FcsType.NO_FCS,
+            fcs=l2cap.FcsType.NO_FCS,
             req_config_options=config,
             rsp_config_options=config)
 
@@ -787,10 +781,10 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
 
         for i in range(buffer_size):
             cert_channel.send_i_frame(tx_seq=i + 1, req_seq=1, payload=SAMPLE_PACKET)
-            assertThat(cert_channel).emits(L2capMatchers.SFrame(s=l2cap_packets.SupervisoryFunction.RECEIVER_READY))
+            assertThat(cert_channel).emits(L2capMatchers.SFrame(s=l2cap.SupervisoryFunction.RECEIVER_READY))
 
         cert_channel.send_i_frame(tx_seq=buffer_size + 1, req_seq=1, payload=SAMPLE_PACKET)
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(s=l2cap_packets.SupervisoryFunction.RECEIVER_NOT_READY))
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(s=l2cap.SupervisoryFunction.RECEIVER_NOT_READY))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-08-C", pts_test_name="Send S-Frame [RR] with Poll Bit Set")
     def test_transmit_s_frame_rr_with_poll_bit_set(self):
@@ -800,16 +794,16 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, retransmission_time_out=1500)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, retransmission_time_out=1500)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM,
-            fcs=FcsType.NO_FCS,
+            fcs=l2cap.FcsType.NO_FCS,
             req_config_options=config,
             rsp_config_options=config)
 
         dut_channel.send(b'abc')
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(p=l2cap_packets.Poll.POLL))
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(p=l2cap.Poll.POLL))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-09-C", pts_test_name="Send S-Frame [RR] with Final Bit Set")
     def test_transmit_s_frame_rr_with_final_bit_set(self):
@@ -820,10 +814,10 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.FcsType.NO_FCS)
 
-        cert_channel.send_s_frame(req_seq=0, p=Poll.POLL)
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(f=Final.POLL_RESPONSE))
+        cert_channel.send_s_frame(req_seq=0, p=l2cap.Poll.POLL)
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(f=l2cap.Final.POLL_RESPONSE))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-10-C", pts_test_name="Retransmit S-Frame [RR] with Final Bit Set")
     def test_retransmit_s_frame_rr_with_poll_bit_set(self):
@@ -834,12 +828,12 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.FcsType.NO_FCS)
         dut_channel.send(b'abc')
 
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0, payload=b'abc'))
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=0, p=Poll.POLL, f=Final.NOT_SET))
-        cert_channel.send_s_frame(req_seq=1, f=Final.POLL_RESPONSE)
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=0, p=l2cap.Poll.POLL, f=l2cap.Final.NOT_SET))
+        cert_channel.send_s_frame(req_seq=1, f=l2cap.Final.POLL_RESPONSE)
 
     @metadata(pts_test_id="L2CAP/ERM/BV-11-C", pts_test_name="S-Frame Transmissions Exceed MaxTransmit")
     def test_s_frame_transmissions_exceed_max_transmit(self):
@@ -848,7 +842,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=1, max_transmit=1, monitor_time_out=10)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=1, max_transmit=1, monitor_time_out=10)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
@@ -865,15 +859,15 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=1, max_transmit=1)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=1, max_transmit=1)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
 
         dut_channel.send(b'abc')
-        assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0), L2capMatchers.SFrame(p=Poll.POLL)).inOrder()
+        assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0), L2capMatchers.SFrame(p=l2cap.Poll.POLL)).inOrder()
 
-        cert_channel.send_s_frame(req_seq=0, f=Final.POLL_RESPONSE)
+        cert_channel.send_s_frame(req_seq=0, f=l2cap.Final.POLL_RESPONSE)
         cert_channel.verify_disconnect_request()
 
     @metadata(pts_test_id="L2CAP/ERM/BV-13-C", pts_test_name="Respond to S-Frame [REJ]")
@@ -884,7 +878,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=2, max_transmit=2)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=2, max_transmit=2)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
@@ -894,7 +888,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         assertThat(cert_channel).emits(
             L2capMatchers.IFrame(tx_seq=0, payload=b'abc'), L2capMatchers.IFrame(tx_seq=1, payload=b'abc')).inOrder()
 
-        cert_channel.send_s_frame(req_seq=0, s=SupervisoryFunction.REJECT)
+        cert_channel.send_s_frame(req_seq=0, s=l2cap.SupervisoryFunction.REJECT)
 
         assertThat(cert_channel).emits(
             L2capMatchers.IFrame(tx_seq=0, payload=b'abc'), L2capMatchers.IFrame(tx_seq=1, payload=b'abc')).inOrder()
@@ -908,7 +902,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, max_transmit=2, tx_window_size=3)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, max_transmit=2, tx_window_size=3)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
@@ -919,10 +913,10 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
             L2capMatchers.IFrame(tx_seq=0, payload=b'abc'), L2capMatchers.IFrame(tx_seq=1, payload=b'abc'),
             L2capMatchers.IFrame(tx_seq=2, payload=b'abc')).inOrder()
 
-        cert_channel.send_s_frame(req_seq=1, p=Poll.POLL, s=SupervisoryFunction.SELECT_REJECT)
+        cert_channel.send_s_frame(req_seq=1, p=l2cap.Poll.POLL, s=l2cap.SupervisoryFunction.SELECT_REJECT)
 
         assertThat(cert_channel).emits(
-            L2capMatchers.IFrame(tx_seq=1, payload=b'abc', f=Final.POLL_RESPONSE),
+            L2capMatchers.IFrame(tx_seq=1, payload=b'abc', f=l2cap.Final.POLL_RESPONSE),
             L2capMatchers.IFrame(tx_seq=3, payload=b'abc')).inOrder()
 
     @metadata(pts_test_id="L2CAP/ERM/BV-15-C", pts_test_name="Respond to S-Frame [SREJ] POLL Bit Clear")
@@ -932,7 +926,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, max_transmit=2, tx_window_size=3)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, max_transmit=2, tx_window_size=3)
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
 
@@ -942,10 +936,10 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
             L2capMatchers.IFrame(tx_seq=0, payload=b'abc'), L2capMatchers.IFrame(tx_seq=1, payload=b'abc'),
             L2capMatchers.IFrame(tx_seq=2, payload=b'abc')).inOrder()
 
-        cert_channel.send_s_frame(req_seq=1, s=SupervisoryFunction.SELECT_REJECT)
-        assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=1, payload=b'abc', f=Final.NOT_SET))
-        cert_channel.send_s_frame(req_seq=3, s=SupervisoryFunction.RECEIVER_READY)
-        assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=3, payload=b'abc', f=Final.NOT_SET))
+        cert_channel.send_s_frame(req_seq=1, s=l2cap.SupervisoryFunction.SELECT_REJECT)
+        assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=1, payload=b'abc', f=l2cap.Final.NOT_SET))
+        cert_channel.send_s_frame(req_seq=3, s=l2cap.SupervisoryFunction.RECEIVER_READY)
+        assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=3, payload=b'abc', f=l2cap.Final.NOT_SET))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-16-C", pts_test_name="Send S-Frame [REJ]")
     def test_send_s_frame_rej(self):
@@ -956,20 +950,20 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
         tx_window_size = 4
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=tx_window_size)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=tx_window_size)
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
 
-        cert_channel.send_i_frame(tx_seq=0, req_seq=0, f=Final.NOT_SET, payload=SAMPLE_PACKET)
-        cert_channel.send_i_frame(tx_seq=2, req_seq=0, f=Final.NOT_SET, payload=SAMPLE_PACKET)
+        cert_channel.send_i_frame(tx_seq=0, req_seq=0, f=l2cap.Final.NOT_SET, payload=SAMPLE_PACKET)
+        cert_channel.send_i_frame(tx_seq=2, req_seq=0, f=l2cap.Final.NOT_SET, payload=SAMPLE_PACKET)
 
         assertThat(cert_channel).emits(
-            L2capMatchers.SFrame(req_seq=1, f=Final.NOT_SET, s=SupervisoryFunction.REJECT, p=Poll.NOT_SET))
+            L2capMatchers.SFrame(req_seq=1, f=l2cap.Final.NOT_SET, s=l2cap.SupervisoryFunction.REJECT, p=l2cap.Poll.NOT_SET))
 
         for i in range(1, tx_window_size):
-            cert_channel.send_i_frame(tx_seq=i, req_seq=0, f=Final.NOT_SET, payload=SAMPLE_PACKET)
+            cert_channel.send_i_frame(tx_seq=i, req_seq=0, f=l2cap.Final.NOT_SET, payload=SAMPLE_PACKET)
         assertThat(cert_channel).emits(
-            L2capMatchers.SFrame(req_seq=i + 1, f=Final.NOT_SET, s=SupervisoryFunction.RECEIVER_READY))
+            L2capMatchers.SFrame(req_seq=i + 1, f=l2cap.Final.NOT_SET, s=l2cap.SupervisoryFunction.RECEIVER_READY))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-18-C", pts_test_name="Receive S-Frame [RR] Final Bit = 1")
     def test_receive_s_frame_rr_final_bit_set(self):
@@ -979,16 +973,16 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, retransmission_time_out=1500)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, retransmission_time_out=1500)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
 
         dut_channel.send(b'abc')
 
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(p=l2cap_packets.Poll.POLL))
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(p=l2cap.Poll.POLL))
 
-        cert_channel.send_s_frame(req_seq=0, f=Final.POLL_RESPONSE)
+        cert_channel.send_s_frame(req_seq=0, f=l2cap.Final.POLL_RESPONSE)
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-19-C", pts_test_name="Receive I-Frame Final Bit = 1")
@@ -999,14 +993,14 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, retransmission_time_out=1500)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, retransmission_time_out=1500)
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
 
         dut_channel.send(b'abc')
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(p=Poll.POLL))
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(p=l2cap.Poll.POLL))
 
-        cert_channel.send_i_frame(tx_seq=0, req_seq=0, f=Final.POLL_RESPONSE, payload=SAMPLE_PACKET)
+        cert_channel.send_i_frame(tx_seq=0, req_seq=0, f=l2cap.Final.POLL_RESPONSE, payload=SAMPLE_PACKET)
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-20-C", pts_test_name="Enter Remote Busy Condition")
@@ -1017,14 +1011,14 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, retransmission_time_out=1500)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, retransmission_time_out=1500)
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
 
         dut_channel.send(b'abc')
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(p=l2cap_packets.Poll.POLL))
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(p=l2cap.Poll.POLL))
 
-        cert_channel.send_s_frame(req_seq=0, s=SupervisoryFunction.RECEIVER_NOT_READY, f=Final.POLL_RESPONSE)
+        cert_channel.send_s_frame(req_seq=0, s=l2cap.SupervisoryFunction.RECEIVER_NOT_READY, f=l2cap.Final.POLL_RESPONSE)
         assertThat(cert_channel).emitsNone(L2capMatchers.IFrame(tx_seq=0), timeout=timedelta(seconds=3))
 
     @metadata(pts_test_id="L2CAP/ERM/BV-22-C", pts_test_name="Exit Local Busy Condition")
@@ -1036,11 +1030,11 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=10)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=10)
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM,
-            fcs=FcsType.NO_FCS,
+            fcs=l2cap.FcsType.NO_FCS,
             req_config_options=config,
             rsp_config_options=config)
 
@@ -1055,15 +1049,15 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
 
         for i in range(buffer_size):
             cert_channel.send_i_frame(tx_seq=i + 1, req_seq=1, payload=SAMPLE_PACKET)
-            assertThat(cert_channel).emits(L2capMatchers.SFrame(s=l2cap_packets.SupervisoryFunction.RECEIVER_READY))
+            assertThat(cert_channel).emits(L2capMatchers.SFrame(s=l2cap.SupervisoryFunction.RECEIVER_READY))
 
         cert_channel.send_i_frame(tx_seq=buffer_size + 1, req_seq=1, payload=SAMPLE_PACKET)
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(s=l2cap_packets.SupervisoryFunction.RECEIVER_NOT_READY))
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(s=l2cap.SupervisoryFunction.RECEIVER_NOT_READY))
 
         dut_channel.set_traffic_paused(False)
         assertThat(cert_channel).emits(
-            L2capMatchers.SFrame(s=l2cap_packets.SupervisoryFunction.RECEIVER_READY, p=l2cap_packets.Poll.POLL))
-        cert_channel.send_s_frame(1, f=l2cap_packets.Final.POLL_RESPONSE)
+            L2capMatchers.SFrame(s=l2cap.SupervisoryFunction.RECEIVER_READY, p=l2cap.Poll.POLL))
+        cert_channel.send_s_frame(1, f=l2cap.Final.POLL_RESPONSE)
 
     @metadata(pts_test_id="L2CAP/ERM/BV-23-C", pts_test_name="Transmit I-Frames using SAR")
     def test_transmit_i_frames_using_sar(self):
@@ -1074,7 +1068,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         """
         self._setup_link_from_cert()
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, mps=11)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, mps=11)
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
 
@@ -1084,7 +1078,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
             L2capMatchers.IFrameStart(tx_seq=0, payload=b'abc'), L2capMatchers.IFrame(tx_seq=1, payload=b'abc'),
             L2capMatchers.IFrame(tx_seq=2, payload=b'abc')).inOrder()
 
-        cert_channel.send_s_frame(req_seq=3, s=SupervisoryFunction.RECEIVER_READY)
+        cert_channel.send_s_frame(req_seq=3, s=l2cap.SupervisoryFunction.RECEIVER_READY)
 
         dut_channel.send(b'defdefdef')
         # First IFrame should contain SDU size after control field
@@ -1101,7 +1095,7 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
         ertm_tx_window_size = 5
 
-        config = CertL2cap.config_option_ertm(fcs=FcsType.NO_FCS, tx_window_size=ertm_tx_window_size)
+        config = CertL2cap.config_option_ertm(fcs=l2cap.FcsType.NO_FCS, tx_window_size=ertm_tx_window_size)
         (dut_channel, cert_channel) = self._open_channel_from_cert(
             mode=RetransmissionFlowControlMode.ERTM, req_config_options=config, rsp_config_options=config)
 
@@ -1109,11 +1103,11 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=1))
 
         cert_channel.send_i_frame(tx_seq=ertm_tx_window_size - 1, req_seq=0, payload=SAMPLE_PACKET)
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(s=SupervisoryFunction.REJECT))
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(s=l2cap.SupervisoryFunction.REJECT))
 
-        cert_channel.send_s_frame(req_seq=0, p=Poll.POLL)
+        cert_channel.send_s_frame(req_seq=0, p=l2cap.Poll.POLL)
 
-        assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=1, f=l2cap_packets.Final.POLL_RESPONSE))
+        assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=1, f=l2cap.Final.POLL_RESPONSE))
         for i in range(1, ertm_tx_window_size):
             cert_channel.send_i_frame(tx_seq=i, req_seq=0, payload=SAMPLE_PACKET)
             assertThat(cert_channel).emits(L2capMatchers.SFrame(req_seq=i + 1))
@@ -1127,18 +1121,18 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.FcsType.NO_FCS)
 
         dut_channel.send(b'abc')
         dut_channel.send(b'abc')
         assertThat(cert_channel).emits(
             L2capMatchers.IFrame(tx_seq=0), L2capMatchers.IFrame(tx_seq=1),
-            L2capMatchers.SFrame(p=Poll.POLL)).inOrder()
+            L2capMatchers.SFrame(p=l2cap.Poll.POLL)).inOrder()
 
-        cert_channel.send_s_frame(req_seq=0, s=SupervisoryFunction.SELECT_REJECT)
+        cert_channel.send_s_frame(req_seq=0, s=l2cap.SupervisoryFunction.SELECT_REJECT)
         assertThat(cert_channel).emitsNone(timeout=timedelta(seconds=0.5))
 
-        cert_channel.send_s_frame(req_seq=0, s=SupervisoryFunction.SELECT_REJECT, f=Final.POLL_RESPONSE)
+        cert_channel.send_s_frame(req_seq=0, s=l2cap.SupervisoryFunction.SELECT_REJECT, f=l2cap.Final.POLL_RESPONSE)
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0))
 
     @metadata(
@@ -1155,20 +1149,20 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.FcsType.NO_FCS)
 
         dut_channel.send(b'abc')
         dut_channel.send(b'abc')
         assertThat(cert_channel).emits(
             L2capMatchers.IFrame(tx_seq=0),
             L2capMatchers.IFrame(tx_seq=1),
-            L2capMatchers.SFrame(p=l2cap_packets.Poll.POLL)).inOrder()
+            L2capMatchers.SFrame(p=l2cap.Poll.POLL)).inOrder()
 
-        cert_channel.send_s_frame(req_seq=0, s=SupervisoryFunction.REJECT)
+        cert_channel.send_s_frame(req_seq=0, s=l2cap.SupervisoryFunction.REJECT)
         assertThat(cert_channel).emitsNone(timeout=timedelta(seconds=0.5))
 
         # Send RR with F set
-        cert_channel.send_s_frame(req_seq=0, s=SupervisoryFunction.REJECT, f=Final.POLL_RESPONSE)
+        cert_channel.send_s_frame(req_seq=0, s=l2cap.SupervisoryFunction.REJECT, f=l2cap.Final.POLL_RESPONSE)
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0))
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=1))
 
@@ -1186,20 +1180,20 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
         self._setup_link_from_cert()
 
         (dut_channel, cert_channel) = self._open_channel_from_cert(
-            mode=RetransmissionFlowControlMode.ERTM, fcs=FcsType.NO_FCS)
+            mode=RetransmissionFlowControlMode.ERTM, fcs=l2cap.FcsType.NO_FCS)
 
         dut_channel.send(b'abc')
         dut_channel.send(b'abc')
         assertThat(cert_channel).emits(
             L2capMatchers.IFrame(tx_seq=0),
             L2capMatchers.IFrame(tx_seq=1),
-            L2capMatchers.SFrame(p=l2cap_packets.Poll.POLL)).inOrder()
+            L2capMatchers.SFrame(p=l2cap.Poll.POLL)).inOrder()
 
         # Send SREJ with F not set
-        cert_channel.send_s_frame(req_seq=0, s=SupervisoryFunction.SELECT_REJECT)
+        cert_channel.send_s_frame(req_seq=0, s=l2cap.SupervisoryFunction.SELECT_REJECT)
         assertThat(cert_channel).emitsNone(timeout=timedelta(seconds=0.5))
 
-        cert_channel.send_i_frame(tx_seq=0, req_seq=0, f=Final.POLL_RESPONSE, payload=SAMPLE_PACKET)
+        cert_channel.send_i_frame(tx_seq=0, req_seq=0, f=l2cap.Final.POLL_RESPONSE, payload=SAMPLE_PACKET)
 
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=0))
         assertThat(cert_channel).emits(L2capMatchers.IFrame(tx_seq=1))
