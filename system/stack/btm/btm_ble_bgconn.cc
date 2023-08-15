@@ -31,6 +31,7 @@
 #include "device/include/controller.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/shim.h"
+#include "os/system_properties.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/security_device_record.h"
@@ -41,6 +42,9 @@ extern tBTM_CB btm_cb;
 
 namespace {
 
+constexpr bool kEnableBlePrivacy = true;
+static const std::string kPropertyEnableBlePrivacy =
+    "bluetooth.core.gap.le.privacy.enabled";
 
 }  // namespace
 
@@ -88,7 +92,9 @@ const tBLE_BD_ADDR convert_to_address_with_type(
     // redesign.
     // TODO(b/235218533): Remove when LL Privacy is implemented.
 #if TARGET_FLOSS
-    if (!p_dev_rec->ble.cur_rand_addr.IsEmpty()) {
+    if (!p_dev_rec->ble.cur_rand_addr.IsEmpty() &&
+        !bluetooth::os::GetSystemPropertyBool(kPropertyEnableBlePrivacy,
+                                              kEnableBlePrivacy)) {
       return {
           .type = BLE_ADDR_RANDOM,
           .bda = p_dev_rec->ble.cur_rand_addr,
