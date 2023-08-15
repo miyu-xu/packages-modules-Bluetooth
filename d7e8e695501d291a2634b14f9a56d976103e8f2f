@@ -143,6 +143,29 @@
       "message": "Please add \"mHasWbsEnabled \u003d false;\" here too",
       "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7e09f46_5623f251",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-15T16:37:34Z",
+      "side": 1,
+      "message": "Please let us know how we can enable this flag in OTA upgrade projects.",
+      "range": {
+        "startLine": 849,
+        "startChar": 61,
+        "endLine": 849,
+        "endChar": 62
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
