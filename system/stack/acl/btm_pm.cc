@@ -28,6 +28,8 @@
  *
  *****************************************************************************/
 
+#include "hci_error_code.h"
+#include "os/logging/log_adapter.h"
 #define LOG_TAG "bt_btm_pm"
 
 #include <base/strings/stringprintf.h>
@@ -38,9 +40,9 @@
 #include "bt_target.h"
 #include "device/include/controller.h"
 #include "device/include/interop.h"
+#include "gd/common/init_flags.h"
+#include "gd/os/log.h"
 #include "main/shim/dumpsys.h"
-#include "main/shim/shim.h"
-#include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/btm/btm_int_types.h"
 #include "stack/include/btm_api.h"
@@ -54,13 +56,16 @@ void btm_cont_rswitch_from_handle(uint16_t hci_handle);
 extern tBTM_CB btm_cb;
 
 namespace {
+// The hci handle of the ACL connection with an outstanding power mode command
+// request.  Once the power mode command completes this value will be reset
+// to zero, an invalid hci handle value.
 uint16_t pm_pend_link = 0;
 
 std::unordered_map<uint16_t /* handle */, tBTM_PM_MCB> pm_mode_db;
 
 tBTM_PM_MCB* btm_pm_get_power_manager_from_address(const RawAddress& bda) {
   for (auto& entry : pm_mode_db) {
-    if (entry.second.bda_ == bda) {
+    if (entry.second.BdAddr() == bda) {
       return &entry.second;
     }
   }
@@ -193,7 +198,7 @@ tBTM_STATUS BTM_SetPowerMode(uint8_t pm_id, const RawAddress& remote_bda,
              ADDRESS_TO_LOGGABLE_CSTR(remote_bda));
     return BTM_UNKNOWN_ADDR;
   }
-  uint16_t handle = p_cb->handle_;
+  uint16_t handle = p_cb->Handle();
 
   tBTM_PM_MODE mode = p_mode->mode;
   if (!is_legal_power_mode(mode)) {
@@ -219,7 +224,7 @@ tBTM_STATUS BTM_SetPowerMode(uint8_t pm_id, const RawAddress& remote_bda,
     }
   }
 
-  if (mode == p_cb->state) {
+  if (mode == p_cb->mode.State()) {
     /* already in the requested mode and the current interval has less latency
      * than the max */
     if ((mode == BTM_PM_MD_ACTIVE) ||
@@ -245,15 +250,16 @@ tBTM_STATUS BTM_SetPowerMode(uint8_t pm_id, const RawAddress& remote_bda,
   }
 
   /* if mode == hold or pending, return */
-  if ((p_cb->state == BTM_PM_STS_HOLD) || (p_cb->state == BTM_PM_STS_PENDING) ||
-      (pm_pend_link != 0)) {
+  if ((p_cb->mode.State() == BTM_PM_STS_HOLD) ||
+      (p_cb->mode.State() == BTM_PM_STS_PENDING) || (pm_pend_link != 0)) {
     LOG_INFO(
         "Current power mode is hold or pending status or pending links"
         " state:%s[%hhu] pm_pending_link:%hu",
-        power_mode_state_text(p_cb->state).c_str(), p_cb->state, pm_pend_link);
+        power_mode_state_text(p_cb->mode.State()).c_str(), p_cb->mode.State(),
+        pm_pend_link);
     /* command pending */
     if (handle != pm_pend_link) {
-      p_cb->state |= BTM_PM_STORED_MASK;
+      p_cb->mode.SetStored();
       LOG_INFO("Setting stored bitmask for peer:%s",
                ADDRESS_TO_LOGGABLE_CSTR(remote_bda));
     }
@@ -261,16 +267,17 @@ tBTM_STATUS BTM_SetPowerMode(uint8_t pm_id, const RawAddress& remote_bda,
   }
 
   LOG_INFO(
-      "Setting power mode for peer:%s current_mode:%s[%hhu] new_mode:%s[%hhu]",
-      ADDRESS_TO_LOGGABLE_CSTR(remote_bda), power_mode_state_text(p_cb->state).c_str(),
-      p_cb->state, power_mode_text(p_mode->mode).c_str(), p_mode->mode);
+      "Setting power mode for peer:%s handle:%hu current_mode:%s[%hhu] "
+      "new_mode:%s[%hhu]",
+      ADDRESS_TO_LOGGABLE_CSTR(remote_bda), p_cb->Handle(),
+      power_mode_state_text(p_cb->mode.State()).c_str(), p_cb->mode.State(),
+      power_mode_text(p_mode->mode).c_str(), p_mode->mode);
 
-  return btm_pm_snd_md_req(p_cb->handle_, pm_id, p_cb->handle_, p_mode);
+  return btm_pm_snd_md_req(p_cb->Handle(), pm_id, p_cb->Handle(), p_mode);
 }
 
 bool BTM_SetLinkPolicyActiveMode(const RawAddress& remote_bda) {
-  tBTM_PM_PWR_MD settings;
-  memset((void*)&settings, 0, sizeof(settings));
+  tBTM_PM_PWR_MD settings{};
   settings.mode = BTM_PM_MD_ACTIVE;
 
   switch (BTM_SetPowerMode(BTM_PM_SET_ONLY_ID, remote_bda, &settings)) {
@@ -292,7 +299,7 @@ bool BTM_ReadPowerMode(const RawAddress& remote_bda, tBTM_PM_MODE* p_mode) {
     LOG_WARN("Unknown device:%s", ADDRESS_TO_LOGGABLE_CSTR(remote_bda));
     return false;
   }
-  *p_mode = static_cast<tBTM_PM_MODE>(p_mcb->state);
+  *p_mode = static_cast<tBTM_PM_MODE>(p_mcb->mode.State());
   return true;
 }
 
@@ -329,18 +336,19 @@ tBTM_STATUS BTM_SetSsrParams(const RawAddress& remote_bda, uint16_t max_lat,
     return BTM_SUCCESS;
   }
 
-  if (p_cb->state == BTM_PM_ST_ACTIVE || p_cb->state == BTM_PM_ST_SNIFF) {
+  if (p_cb->mode.State() == BTM_PM_ST_ACTIVE ||
+      p_cb->mode.State() == BTM_PM_ST_SNIFF) {
     LOG_INFO(
         "Set sniff subrating state:%s[%d] max_latency:0x%04x "
         "min_remote_timeout:0x%04x"
         " min_local_timeout:0x%04x",
-        power_mode_state_text(p_cb->state).c_str(), p_cb->state, max_lat,
-        min_rmt_to, min_loc_to);
-    send_sniff_subrating(p_cb->handle_, remote_bda, max_lat, min_rmt_to,
+        power_mode_state_text(p_cb->mode.State()).c_str(), p_cb->mode.State(),
+        max_lat, min_rmt_to, min_loc_to);
+    send_sniff_subrating(p_cb->Handle(), remote_bda, max_lat, min_rmt_to,
                          min_loc_to);
     return BTM_SUCCESS;
   }
-  LOG_INFO("pm_mode_db state: %d", p_cb->state);
+  LOG_INFO("pm_mode_db state: %d", p_cb->mode.State());
   p_cb->max_lat = max_lat;
   p_cb->min_rmt_to = min_rmt_to;
   p_cb->min_loc_to = min_loc_to;
@@ -367,8 +375,14 @@ void btm_pm_reset(void) {
   pm_reg_db.mask = BTM_PM_REC_NOT_USED;
 
   if (cb != NULL && pm_pend_link != 0) {
-    const RawAddress raw_address = pm_mode_db[pm_pend_link].bda_;
-    (*cb)(raw_address, BTM_PM_STS_ERROR, BTM_DEV_RESET, HCI_SUCCESS);
+    if (pm_mode_db.count(pm_pend_link) == 0) {
+      LOG_ERROR(
+          "Got PM reset with pending link without a connection pend_link:%hu",
+          pm_pend_link);
+    } else {
+      const RawAddress raw_address = pm_mode_db[pm_pend_link].BdAddr();
+      (*cb)(raw_address, BTM_PM_STS_ERROR, BTM_DEV_RESET, HCI_SUCCESS);
+    }
   }
   /* no command pending */
   pm_pend_link = 0;
@@ -457,9 +471,13 @@ static tBTM_PM_PWR_MD* btm_pm_compare_modes(const tBTM_PM_PWR_MD* p_md1,
  * Returns      void
  *
  ******************************************************************************/
-static tBTM_PM_MODE btm_pm_get_set_mode(uint8_t pm_id, tBTM_PM_MCB* p_cb,
+static tBTM_PM_MODE btm_pm_get_set_mode(uint8_t pm_id, const tBTM_PM_MCB* p_cb,
                                         const tBTM_PM_PWR_MD* p_mode,
                                         tBTM_PM_PWR_MD* p_res) {
+  LOG_INFO("Set mode id:%hhu %s %s", pm_id,
+           (p_cb) ? p_cb->ToString().c_str() : "nullptr",
+           (p_mode) ? p_mode->ToString().c_str() : "nullptr");
+
   tBTM_PM_PWR_MD* p_md = NULL;
 
   if (p_mode != NULL && p_mode->mode & BTM_PM_MD_FORCE) {
@@ -471,12 +489,15 @@ static tBTM_PM_MODE btm_pm_get_set_mode(uint8_t pm_id, tBTM_PM_MCB* p_cb,
   /* g through all the registered "set" parties */
   if (pm_reg_db.mask & BTM_PM_REG_SET) {
     if (p_cb->req_mode.mode == BTM_PM_MD_ACTIVE) {
-      /* if at least one registered (SET) party says ACTIVE, stay active */
+      LOG_DEBUG(
+          "At least one registered (SET) party says ACTIVE so stay active");
       return BTM_PM_MD_ACTIVE;
     } else {
-      /* if registered parties give conflicting information, stay active */
-      if ((btm_pm_compare_modes(p_md, &p_cb->req_mode, p_res)) == NULL)
+      if ((btm_pm_compare_modes(p_md, &p_cb->req_mode, p_res)) == NULL) {
+        LOG_DEBUG(
+            "Registered parties give conflicting information, staying active");
         return BTM_PM_MD_ACTIVE;
+      }
       p_md = p_res;
     }
   }
@@ -484,19 +505,23 @@ static tBTM_PM_MODE btm_pm_get_set_mode(uint8_t pm_id, tBTM_PM_MCB* p_cb,
   /* if the resulting mode is NULL(nobody registers SET), use the requested mode
    */
   if (p_md == NULL) {
-    if (p_mode)
+    if (p_mode) {
       *p_res = *((tBTM_PM_PWR_MD*)p_mode);
-    else /* p_mode is NULL when btm_pm_snd_md_req is called from
-            btm_pm_proc_mode_change */
+    } else {
+      LOG_DEBUG(
+          "p_mode is NULL when btm_pm_snd_md_req is called from "
+          "btm_pm_proc_mode_change");
       return BTM_PM_MD_ACTIVE;
+    }
   } else {
-    /* if the command is from unregistered party,
-       compare the resulting mode from registered party*/
     if ((pm_id == BTM_PM_SET_ONLY_ID) &&
-        ((btm_pm_compare_modes(p_mode, p_md, p_res)) == NULL))
+        ((btm_pm_compare_modes(p_mode, p_md, p_res)) == NULL)) {
+      LOG_DEBUG("Command is from unregistered party so setting active");
       return BTM_PM_MD_ACTIVE;
+    }
   }
 
+  LOG_DEBUG("Using calculated mode:%s", power_mode_text(p_res->mode).c_str());
   return p_res->mode;
 }
 
@@ -513,16 +538,16 @@ static tBTM_STATUS btm_pm_snd_md_req(uint16_t handle, uint8_t pm_id,
   ASSERT_LOG(pm_mode_db.count(handle) != 0,
              "Unable to find active acl for handle %d", handle);
   tBTM_PM_PWR_MD md_res;
-  tBTM_PM_MODE mode;
   tBTM_PM_MCB* p_cb = &pm_mode_db[handle];
   bool chg_ind = false;
 
-  mode = btm_pm_get_set_mode(pm_id, p_cb, p_mode, &md_res);
+  const tBTM_PM_MODE mode = btm_pm_get_set_mode(pm_id, p_cb, p_mode, &md_res);
   md_res.mode = mode;
 
-  LOG_DEBUG("Found controller in mode:%s", power_mode_text(mode).c_str());
+  LOG_DEBUG("Found controller in mode:%s[0x%x]", power_mode_text(mode).c_str(),
+            mode);
 
-  if (p_cb->state == mode) {
+  if (p_cb->mode.State() == mode) {
     LOG_INFO(
         "Link already in requested mode pm_id:%hhu link_ind:%d mode:%s[%hhu]",
         pm_id, link_ind, power_mode_text(mode).c_str(), mode);
@@ -539,7 +564,7 @@ static tBTM_STATUS btm_pm_snd_md_req(uint16_t handle, uint8_t pm_id,
   p_cb->chg_ind = chg_ind;
 
   /* cannot go directly from current mode to resulting mode. */
-  if (mode != BTM_PM_MD_ACTIVE && p_cb->state != BTM_PM_MD_ACTIVE) {
+  if (mode != BTM_PM_MD_ACTIVE && p_cb->mode.State() != BTM_PM_MD_ACTIVE) {
     LOG_DEBUG("Power mode change delay required");
     p_cb->chg_ind = true; /* needs to wake, then sleep */
   }
@@ -551,60 +576,86 @@ static tBTM_STATUS btm_pm_snd_md_req(uint16_t handle, uint8_t pm_id,
     const controller_t* controller = controller_get_interface();
     if (controller->supports_sniff_subrating()) {
       LOG_DEBUG("Sending sniff subrating to controller");
-      send_sniff_subrating(handle, p_cb->bda_, p_cb->max_lat, p_cb->min_rmt_to,
-                           p_cb->min_loc_to);
+      send_sniff_subrating(handle, p_cb->BdAddr(), p_cb->max_lat,
+                           p_cb->min_rmt_to, p_cb->min_loc_to);
     }
     p_cb->max_lat = 0;
   }
   /* Default is failure */
+  if (pm_pend_link != 0) {
+    LOG_WARN(
+        "Sending second power mode command with one already outstanding"
+        " prev_handle:%hu cur_handle:%hu",
+        pm_pend_link, handle);
+  }
   pm_pend_link = 0;
 
   /* send the appropriate HCI command */
   pm_pend_id = pm_id;
 
   LOG_INFO("Switching from %s[0x%02x] to %s[0x%02x]",
-           power_mode_state_text(p_cb->state).c_str(), p_cb->state,
-           power_mode_state_text(md_res.mode).c_str(), md_res.mode);
-  BTM_LogHistory(kBtmLogTag, p_cb->bda_, "Power mode change",
-                 base::StringPrintf(
-                     "%s[0x%02x] ==> %s[0x%02x]",
-                     power_mode_state_text(p_cb->state).c_str(), p_cb->state,
-                     power_mode_state_text(md_res.mode).c_str(), md_res.mode));
+           power_mode_state_text(p_cb->mode.State()).c_str(),
+           p_cb->mode.State(), power_mode_state_text(md_res.mode).c_str(),
+           md_res.mode);
+  BTM_LogHistory(
+      kBtmLogTag, p_cb->BdAddr(), "Power mode change",
+      base::StringPrintf(
+          "%s[0x%02x] ==> %s[0x%02x]",
+          power_mode_state_text(p_cb->mode.State()).c_str(), p_cb->mode.State(),
+          power_mode_state_text(md_res.mode).c_str(), md_res.mode));
 
   switch (md_res.mode) {
     case BTM_PM_MD_ACTIVE:
-      switch (p_cb->state) {
+      switch (p_cb->mode.State()) {
         case BTM_PM_MD_SNIFF:
+          LOG_DEBUG("Send command exit sniff mode peer:%s handle:%hu",
+                    ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()), handle);
           btsnd_hcic_exit_sniff_mode(handle);
           pm_pend_link = handle;
           break;
         case BTM_PM_MD_PARK:
+          LOG_DEBUG("Send command exit park mode peer:%s handle:%hu",
+                    ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()), handle);
           btsnd_hcic_exit_park_mode(handle);
           pm_pend_link = handle;
           break;
         default:
-          /* Failure pm_pend_link = MAX_L2CAP_LINKS */
+          LOG_WARN(
+              "Requested active mode but state was not in expected "
+              "peer:%s handle:%hu mode:%s[0x%x]",
+              ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()), handle,
+              power_mode_state_text(p_cb->mode.State()).c_str(),
+              p_cb->mode.State());
           break;
       }
       break;
 
     case BTM_PM_MD_HOLD:
+      LOG_DEBUG("Sending command enter hold mode peer:%s handle:%hu",
+                ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()), handle);
       btsnd_hcic_hold_mode(handle, md_res.max, md_res.min);
       pm_pend_link = handle;
       break;
 
     case BTM_PM_MD_SNIFF:
+      LOG_DEBUG("Sending command enter sniff mode peer:%s handle:%hu",
+                ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()), handle);
       btsnd_hcic_sniff_mode(handle, md_res.max, md_res.min, md_res.attempt,
                             md_res.timeout);
       pm_pend_link = handle;
       break;
 
     case BTM_PM_MD_PARK:
+      LOG_DEBUG("Sending command enter park mode peer:%s handle:%hu",
+                ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()), handle);
       btsnd_hcic_park_mode(handle, md_res.max, md_res.min);
       pm_pend_link = handle;
       break;
-    default:
-      /* Failure pm_pend_link = MAX_L2CAP_LINKS */
+
+    case BTM_PM_MD_FORCE:
+    case BTM_PM_MD_UNKNOWN:
+      LOG_WARN("Requested illegal mode:%s[0x%x]",
+               power_mode_state_text(md_res.mode).c_str(), md_res.mode);
       break;
   }
 
@@ -619,12 +670,12 @@ static tBTM_STATUS btm_pm_snd_md_req(uint16_t handle, uint8_t pm_id,
 
 static void btm_pm_continue_pending_mode_changes() {
   for (auto& entry : pm_mode_db) {
-    if (entry.second.state & BTM_PM_STORED_MASK) {
-      entry.second.state &= ~BTM_PM_STORED_MASK;
+    if (entry.second.mode.State() & BTM_PM_STORED_MASK) {
+      entry.second.mode.ClearStored();
       LOG_INFO("Found another link requiring power mode change:%s",
-               ADDRESS_TO_LOGGABLE_CSTR(entry.second.bda_));
-      btm_pm_snd_md_req(entry.second.handle_, BTM_PM_SET_ONLY_ID,
-                        entry.second.handle_, NULL);
+               ADDRESS_TO_LOGGABLE_CSTR(entry.second.BdAddr()));
+      btm_pm_snd_md_req(entry.second.Handle(), BTM_PM_SET_ONLY_ID,
+                        entry.second.Handle(), NULL);
       return;
     }
   }
@@ -665,20 +716,20 @@ void btm_pm_proc_cmd_status(tHCI_STATUS status) {
   tBTM_PM_STATUS pm_status = BTM_PM_STS_ERROR;
 
   if (status == HCI_SUCCESS) {
-    p_cb->state = BTM_PM_ST_PENDING;
+    p_cb->mode.SetStatePending();
     pm_status = BTM_PM_STS_PENDING;
   }
 
   /* notify the caller is appropriate */
   if ((pm_pend_id != BTM_PM_SET_ONLY_ID) && (pm_reg_db.mask & BTM_PM_REG_SET)) {
-    const RawAddress bd_addr = pm_mode_db[pm_pend_link].bda_;
+    const RawAddress bd_addr = pm_mode_db[pm_pend_link].BdAddr();
     LOG_DEBUG("Notifying callback that link power mode is complete peer:%s",
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     (*pm_reg_db.cback)(bd_addr, pm_status, 0, status);
   }
 
-  LOG_INFO("Clearing pending power mode link state:%s",
-           power_mode_state_text(p_cb->state).c_str());
+  LOG_INFO("Clearing pending power mode command link state:%s",
+           power_mode_state_text(p_cb->mode.State()).c_str());
   pm_pend_link = 0;
 
   btm_pm_continue_pending_mode_changes();
@@ -703,7 +754,7 @@ void btm_pm_proc_cmd_status(tHCI_STATUS status) {
  ******************************************************************************/
 void btm_pm_proc_mode_change(tHCI_STATUS hci_status, uint16_t hci_handle,
                              tHCI_MODE hci_mode, uint16_t interval) {
-  tBTM_PM_STATUS mode = static_cast<tBTM_PM_STATUS>(hci_mode);
+  tBTM_PM_MODE mode = static_cast<tBTM_PM_MODE>(hci_mode);
 
   /* update control block */
   if (pm_mode_db.count(hci_handle) == 0) {
@@ -712,16 +763,33 @@ void btm_pm_proc_mode_change(tHCI_STATUS hci_status, uint16_t hci_handle,
   }
   tBTM_PM_MCB* p_cb = &pm_mode_db[hci_handle];
 
-  const tBTM_PM_STATE old_state = p_cb->state;
-  p_cb->state = mode;
+  switch (hci_status) {
+    case HCI_SUCCESS:
+      break;
+    default:
+      LOG_WARN(
+          "Received failing power mode event peer:%s hci_status:%s "
+          "hci_handle:%hu",
+          ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()),
+          hci_status_code_text(hci_status).c_str(), hci_handle);
+      break;
+  }
+
+  const tBTM_PM_STATE old_state = p_cb->mode.State();
+  p_cb->mode.SetState(hci_mode);
   p_cb->interval = interval;
 
-  LOG_INFO("Power mode switched from %s[%hhu] to %s[%hhu]",
-           power_mode_state_text(old_state).c_str(), old_state,
-           power_mode_state_text(p_cb->state).c_str(), p_cb->state);
+  LOG_INFO(
+      "Hci mode change event hci_status:%s hci_handle:%hu %s[%hhu] to %s[%hhu]",
+      hci_status_code_text(hci_status).c_str(), hci_handle,
+      power_mode_state_text(old_state).c_str(), old_state,
+      power_mode_state_text(p_cb->mode.State()).c_str(), p_cb->mode.State());
 
-  if ((p_cb->state == BTM_PM_ST_ACTIVE) || (p_cb->state == BTM_PM_ST_SNIFF)) {
-    l2c_OnHciModeChangeSendPendingPackets(p_cb->bda_);
+  if ((p_cb->mode.State() == BTM_PM_ST_ACTIVE) ||
+      (p_cb->mode.State() == BTM_PM_ST_SNIFF)) {
+    LOG_DEBUG(
+        "Updating l2cap with power mode change ... this should be a callback");
+    l2c_OnHciModeChangeSendPendingPackets(p_cb->BdAddr());
   }
 
   /* set req_mode  HOLD mode->ACTIVE */
@@ -734,8 +802,8 @@ void btm_pm_proc_mode_change(tHCI_STATUS hci_status, uint16_t hci_handle,
   } else {
     for (auto& entry : pm_mode_db) {
       if (entry.second.chg_ind) {
-        btm_pm_snd_md_req(entry.second.handle_, BTM_PM_SET_ONLY_ID,
-                          entry.second.handle_, NULL);
+        btm_pm_snd_md_req(entry.second.Handle(), BTM_PM_SET_ONLY_ID,
+                          entry.second.Handle(), NULL);
         break;
       }
     }
@@ -743,7 +811,12 @@ void btm_pm_proc_mode_change(tHCI_STATUS hci_status, uint16_t hci_handle,
 
   /* notify registered parties */
   if (pm_reg_db.mask & BTM_PM_REG_SET) {
-    (*pm_reg_db.cback)(p_cb->bda_, mode, interval, hci_status);
+    LOG_DEBUG(
+        "Notify client of power mode change peer:%s mode:%s interval:%hu "
+        "status:%s",
+        ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()), power_mode_text(mode).c_str(),
+        interval, hci_error_code_text(hci_status).c_str());
+    (*pm_reg_db.cback)(p_cb->BdAddr(), mode, interval, hci_status);
   }
   /*check if sco disconnect  is waiting for the mode change */
   btm_sco_disc_chk_pend_for_modechange(hci_handle);
@@ -763,14 +836,13 @@ void btm_pm_proc_mode_change(tHCI_STATUS hci_status, uint16_t hci_handle,
  *
  ******************************************************************************/
 static void process_ssr_event(tHCI_STATUS status, uint16_t handle,
-                              UNUSED_ATTR uint16_t max_tx_lat,
-                              uint16_t max_rx_lat) {
+                              uint16_t max_tx_lat, uint16_t max_rx_lat) {
   if (pm_mode_db.count(handle) == 0) {
     LOG_WARN("Received sniff subrating event with no active ACL");
     return;
   }
   tBTM_PM_MCB* p_cb = &pm_mode_db[handle];
-  auto bd_addr = p_cb->bda_;
+  auto bd_addr = p_cb->BdAddr();
 
   bool use_ssr = true;
   if (p_cb->interval == max_rx_lat) {
@@ -780,16 +852,24 @@ static void process_ssr_event(tHCI_STATUS status, uint16_t handle,
     LOG_DEBUG("Sniff subrating enabled");
   }
 
-  int cnt = 0;
   if (pm_reg_db.mask & BTM_PM_REG_SET) {
+    LOG_DEBUG(
+        "Notify client of power mode sniff subrating event peer:%s mode:%s "
+        "max_tx_lat:%hu"
+        " max_rx_lat:%hu status:%s",
+        ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()),
+        power_mode_status_text(BTM_PM_STS_SSR).c_str(), max_tx_lat, max_rx_lat,
+        hci_error_code_text(status).c_str());
     (*pm_reg_db.cback)(bd_addr, BTM_PM_STS_SSR, (use_ssr) ? 1 : 0, status);
-    cnt++;
+  } else {
+    LOG_DEBUG(
+        "Client was NOT notified of power mode sniff subrating event peer:%s "
+        "mode:%s max_tx_lat:%hu"
+        " max_rx_lat:%hu status:%s",
+        ADDRESS_TO_LOGGABLE_CSTR(p_cb->BdAddr()),
+        power_mode_status_text(BTM_PM_STS_SSR).c_str(), max_tx_lat, max_rx_lat,
+        hci_error_code_text(status).c_str());
   }
-  LOG_DEBUG(
-      "Notified sniff subrating registered clients cnt:%d peer:%s use_ssr:%s "
-      "status:%s",
-      cnt, ADDRESS_TO_LOGGABLE_CSTR(bd_addr), logbool(use_ssr).c_str(),
-      hci_error_code_text(status).c_str());
 }
 
 void btm_pm_on_sniff_subrating(tHCI_STATUS status, uint16_t handle,
