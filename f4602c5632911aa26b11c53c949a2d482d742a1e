@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a92aa028_6917d3a4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-15T17:42:46Z",
+      "side": 1,
+      "message": "@licorne@google.com for owner review",
+      "revId": "f4602c5632911aa26b11c53c949a2d482d742a1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eece0ce4_6f85edc6",
@@ -19,6 +36,29 @@
         "startChar": 51,
         "endLine": 58,
         "endChar": 56
+      },
+      "revId": "f4602c5632911aa26b11c53c949a2d482d742a1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4d48c96_9810ce16",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-15T17:42:46Z",
+      "side": 1,
+      "message": "Should we do an AfterClass and drop the shell permission identity there ? (I see it has not been done in LeAdvertisingTest but I thing it is wrong)\n\nI am fine with it being added in immediate follow-up in case this trigger failure in the test suite as other tests may depend on it (which is bad, because we never know how sharding will works and this will ends up in flaky tests)",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 5
       },
       "revId": "f4602c5632911aa26b11c53c949a2d482d742a1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
