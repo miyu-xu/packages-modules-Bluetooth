@@ -294,6 +294,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae8d4a5d_94ec996b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-15T01:00:17Z",
+      "side": 1,
+      "message": "\u003e Thus I don\u0027t agree with revert but rather can adjust this change in follow up CL if there is a different approach that we align on\n\nDo you have an ETA for this ? I would prefer that we don\u0027t ship with this before we align on a solution.",
+      "parentUuid": "bba3d453_a13da626",
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5c880aff_62be674b",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 6
