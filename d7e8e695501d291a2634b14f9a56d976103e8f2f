@@ -190,6 +190,52 @@
       },
       "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6dcef128_e41587ce",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-15T18:39:12Z",
+      "side": 1,
+      "message": "also please add check for \"p_scb-\u003eis_swb_codec \u003d\u003d true\"",
+      "range": {
+        "startLine": 203,
+        "startChar": 77,
+        "endLine": 203,
+        "endChar": 78
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a539c733_1877df1a",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-15T18:39:12Z",
+      "side": 1,
+      "message": "please make it as below as we need to check if headset supports Q0 settings before entering into this condition otherwise, codec negotiation timer will kick in.\n(aptx_voice \u0026\u0026 (p_scb-\u003epeer_codecs \u0026 BTA_AG_SCO_SWB_SETTINGS_Q0_MASK))",
+      "range": {
+        "startLine": 690,
+        "startChar": 16,
+        "endLine": 690,
+        "endChar": 18
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
