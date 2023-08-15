@@ -699,9 +699,11 @@ enum : uint8_t {
   BTM_PM_STS_HOLD = HCI_MODE_HOLD,      // 0x01
   BTM_PM_STS_SNIFF = HCI_MODE_SNIFF,    // 0x02
   BTM_PM_STS_PARK = HCI_MODE_PARK,      // 0x03
-  BTM_PM_STS_SSR,     /* report the SSR parameters in HCI_SNIFF_SUB_RATE_EVT */
-  BTM_PM_STS_PENDING, /* when waiting for status from controller */
-  BTM_PM_STS_ERROR    /* when HCI command status returns error */
+  BTM_PM_STS_SSR,      /* report the SSR parameters in HCI_SNIFF_SUB_RATE_EVT */
+  BTM_PM_STS_PENDING,  // Mode change command status received and now waiting
+                       // for mode change event to indicate change to desired
+                       // mode target.
+  BTM_PM_STS_ERROR     /* HCI mode command status returns error */
 };
 typedef uint8_t tBTM_PM_STATUS;
 
