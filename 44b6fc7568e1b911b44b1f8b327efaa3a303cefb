@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b61eb868_8855a365",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-15T19:23:54Z",
+      "side": 1,
+      "message": "In A2DP, `getOrCreateStateMachine` is called only currently on connection state changes and audio config changes. We can change config changes to rely on the connected set only since those events are only generated/handled when the device is connected.\n\nIn AVRCP, its the same story. `getOrCreateStateMachine` is only called on connection state changes and Cover Art PSM events (i.e. SDP record details, they con sometimes come before the connection but after the native stack has the intent to connect).\n\nThey shouldn\u0027t get called _that_ often. That said, I do agree with you. This could use a refactor. I started looking at it to see if it was trivial and a few of the \"for each state machine, do blah\" are kind of hard to keep totally thread safe with the design we have now (particularly true for AVRCP, A2DP is a bit simpler).",
+      "parentUuid": "7ea9b40a_e80338fc",
+      "range": {
+        "startLine": 446,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 60
+      },
+      "revId": "44b6fc7568e1b911b44b1f8b327efaa3a303cefb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "abca5cc0_0b586ecf",
         "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
         "patchSetId": 4
