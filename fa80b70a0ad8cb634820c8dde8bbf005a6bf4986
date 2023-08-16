@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74ee8984_c4cc57fe",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-16T18:22:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "801c9215_92993952",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 63
+      },
+      "revId": "fa80b70a0ad8cb634820c8dde8bbf005a6bf4986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1d1a527c_3acbdfc3",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1df9dda_eddffef6",
+        "filename": "android/leaudio/OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-16T18:22:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1d1a527c_3acbdfc3",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "fa80b70a0ad8cb634820c8dde8bbf005a6bf4986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42018000_1b1a9247",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-08-16T18:17:53Z",
       "side": 1,
       "message": "This is already included",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 58
+      },
+      "revId": "fa80b70a0ad8cb634820c8dde8bbf005a6bf4986",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e36992b3_c20061db",
+        "filename": "system/bta/le_audio/OWNERS",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-16T18:22:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "42018000_1b1a9247",
       "range": {
         "startLine": 1,
         "startChar": 0,
