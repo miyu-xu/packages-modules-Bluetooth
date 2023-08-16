@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7190cd_434dc040",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-16T02:26:06Z",
+      "side": 1,
+      "message": "Hi Sonny, are you still going to submit this CL? I think it\u0027s still applicable.",
+      "revId": "010f679afe8ee8cdfdb53a762d6374017c36a1bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
