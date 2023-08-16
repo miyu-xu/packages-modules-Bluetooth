@@ -107,6 +107,7 @@ import libcore.util.HexEncoding;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -838,10 +839,11 @@ public class AdapterServiceTest {
     }
 
     /**
-     * Test: Obfuscate Bluetooth address when Bluetooth is disabled
-     * Check whether the returned value meets expectation
+     * Test: Obfuscate Bluetooth address when Bluetooth is disabled Check whether the returned value
+     * meets expectation
      */
     @Test
+    @Ignore("b/296127545: This is a native test")
     public void testObfuscateBluetoothAddress_BluetoothDisabled() {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
         byte[] metricsSalt = getMetricsSalt(mAdapterConfig);
@@ -854,10 +856,11 @@ public class AdapterServiceTest {
     }
 
     /**
-     * Test: Obfuscate Bluetooth address when Bluetooth is enabled
-     * Check whether the returned value meets expectation
+     * Test: Obfuscate Bluetooth address when Bluetooth is enabled Check whether the returned value
+     * meets expectation
      */
     @Test
+    @Ignore("b/296127545: This is a native test")
     public void testObfuscateBluetoothAddress_BluetoothEnabled() {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
         doEnable(false);
@@ -871,10 +874,9 @@ public class AdapterServiceTest {
         assertThat(obfuscateInJava(metricsSalt, device)).isEqualTo(obfuscatedAddress);
     }
 
-    /**
-     * Test: Check if obfuscated Bluetooth address stays the same after toggling Bluetooth
-     */
+    /** Test: Check if obfuscated Bluetooth address stays the same after toggling Bluetooth */
     @Test
+    @Ignore("b/296127545: This is a native test")
     public void testObfuscateBluetoothAddress_PersistentBetweenToggle() {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
         byte[] metricsSalt = getMetricsSalt(mAdapterConfig);
@@ -968,21 +970,19 @@ public class AdapterServiceTest {
     }
 
     /**
-     * Test: Get id when Bluetooth is disabled
-     * Check whether the returned value meets expectation
+     * Test: Get id when Bluetooth is disabled Check whether the returned value meets expectation
      */
     @Test
+    @Ignore("b/296127545: This is a native test")
     public void testGetMetricId_BluetoothDisabled() {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
         BluetoothDevice device = TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 0);
         assertThat(mAdapterService.getMetricId(device)).isGreaterThan(0);
     }
 
-    /**
-     * Test: Get id when Bluetooth is enabled
-     * Check whether the returned value meets expectation
-     */
+    /** Test: Get id when Bluetooth is enabled Check whether the returned value meets expectation */
     @Test
+    @Ignore("b/296127545: This is a native test")
     public void testGetMetricId_BluetoothEnabled() {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
         doEnable(false);
@@ -991,10 +991,9 @@ public class AdapterServiceTest {
         assertThat(mAdapterService.getMetricId(device)).isGreaterThan(0);
     }
 
-    /**
-     * Test: Check if id gotten stays the same after toggling Bluetooth
-     */
+    /** Test: Check if id gotten stays the same after toggling Bluetooth */
     @Test
+    @Ignore("b/296127545: This is a native test")
     public void testGetMetricId_PersistentBetweenToggle() {
         assertThat(mAdapterService.getState()).isEqualTo(STATE_OFF);
         BluetoothDevice device = TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 0);
