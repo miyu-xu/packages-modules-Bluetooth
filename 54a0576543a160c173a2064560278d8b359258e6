@@ -83,6 +83,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95b3e129_c95bc7b3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-08-16T11:48:20Z",
+      "side": 1,
+      "message": "It seems so:\n\nhttps://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:mediarouter/mediarouter/src/main/java/androidx/mediarouter/media/MediaRoute2Provider.java;drc\u003d2d0bac96f2d8f9ef7dd1d988e9c43fc622369977;l\u003d91\n\nBut in any way it is fine.",
+      "parentUuid": "1e21a5ea_7a3b60a2",
+      "range": {
+        "startLine": 820,
+        "startChar": 55,
+        "endLine": 820,
+        "endChar": 90
+      },
+      "revId": "54a0576543a160c173a2064560278d8b359258e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9d03246_209b5f72",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-08-16T11:48:20Z",
+      "side": 1,
+      "message": "It seems possible, but I don\u0027t understand yet why it can be:\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/services/Car/car-lib/src/android/car/CarProjectionManager.java;drc\u003d999a694cc031b38e9c10c03ccba4f92ecc8678f2;l\u003d270",
+      "parentUuid": "1e21a5ea_7a3b60a2",
+      "range": {
+        "startLine": 820,
+        "startChar": 55,
+        "endLine": 820,
+        "endChar": 90
+      },
+      "revId": "54a0576543a160c173a2064560278d8b359258e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ea2652e_568f019a",
