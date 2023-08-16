@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f987bb5f_6070473b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-16T01:39:44Z",
+      "side": 1,
+      "message": "Fixed to 1000ms!",
+      "parentUuid": "eece0ce4_6f85edc6",
+      "range": {
+        "startLine": 58,
+        "startChar": 51,
+        "endLine": 58,
+        "endChar": 56
+      },
+      "revId": "f4602c5632911aa26b11c53c949a2d482d742a1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4d48c96_9810ce16",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-08-15T17:42:46Z",
       "side": 1,
       "message": "Should we do an AfterClass and drop the shell permission identity there ? (I see it has not been done in LeAdvertisingTest but I thing it is wrong)\n\nI am fine with it being added in immediate follow-up in case this trigger failure in the test suite as other tests may depend on it (which is bad, because we never know how sharding will works and this will ends up in flaky tests)",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 5
+      },
+      "revId": "f4602c5632911aa26b11c53c949a2d482d742a1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6afc89a_d05588c8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-16T01:39:44Z",
+      "side": 1,
+      "message": "Dropping shell permission identity with AfterClass does sound right to me as well. I\u0027ll make sure to add in immediate follow up if any failure is triggered. If you think it should be added within this CL, please let me know and I\u0027ll add it :)",
+      "parentUuid": "b4d48c96_9810ce16",
       "range": {
         "startLine": 68,
         "startChar": 4,
