@@ -41,6 +41,7 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.hearingaid.HearingAidNativeInterface;
 import com.android.bluetooth.hfp.HeadsetNativeInterface;
+import com.android.bluetooth.hid.HidDeviceNativeInterface;
 import com.android.bluetooth.hid.HidHostNativeInterface;
 import com.android.bluetooth.pan.PanNativeInterface;
 
@@ -92,6 +93,7 @@ public class ProfileServiceTest {
     @Mock private AvrcpNativeInterface mAvrcpNativeInterface;
     @Mock private HeadsetNativeInterface mHeadsetNativeInterface;
     @Mock private HearingAidNativeInterface mHearingAidNativeInterface;
+    @Mock private HidDeviceNativeInterface mHidDeviceNativeInterface;
     @Mock private HidHostNativeInterface mHidHostNativeInterface;
     @Mock private PanNativeInterface mPanNativeInterface;
 
@@ -177,6 +179,7 @@ public class ProfileServiceTest {
         AvrcpNativeInterface.sInstance = mAvrcpNativeInterface;
         HeadsetNativeInterface.sInstance = mHeadsetNativeInterface;
         HearingAidNativeInterface.sInstance = mHearingAidNativeInterface;
+        HidDeviceNativeInterface.sInstance = mHidDeviceNativeInterface;
         HidHostNativeInterface.sInstance = mHidHostNativeInterface;
         PanNativeInterface.sInstance = mPanNativeInterface;
     }
@@ -194,6 +197,7 @@ public class ProfileServiceTest {
         AvrcpNativeInterface.sInstance = null;
         HeadsetNativeInterface.sInstance = null;
         HearingAidNativeInterface.sInstance = null;
+        HidDeviceNativeInterface.sInstance = null;
         HidHostNativeInterface.sInstance = null;
         PanNativeInterface.sInstance = null;
     }
@@ -208,8 +212,7 @@ public class ProfileServiceTest {
     }
 
     /**
-     * Test: Start the Bluetooth services that are configured twice.
-     * Verify that the services start.
+     * Test: Start the Bluetooth services that are configured twice. Verify that the services start.
      */
     @Test
     public void testEnableDisableTwice() throws TimeoutException {
