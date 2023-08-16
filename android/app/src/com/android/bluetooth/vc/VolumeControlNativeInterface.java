@@ -31,11 +31,17 @@ public class VolumeControlNativeInterface {
     private BluetoothAdapter mAdapter;
 
     @GuardedBy("INSTANCE_LOCK")
-    private static VolumeControlNativeInterface sInstance;
+    @VisibleForTesting
+    public static VolumeControlNativeInterface sInstance;
+
     private static final Object INSTANCE_LOCK = new Object();
 
     static {
-        classInitNative();
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(TAG, "App is instrumented. Skip loading the native");
+        } else {
+            classInitNative();
+        }
     }
 
     private VolumeControlNativeInterface() {
