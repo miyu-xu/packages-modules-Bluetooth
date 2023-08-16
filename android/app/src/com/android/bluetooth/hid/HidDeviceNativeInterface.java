@@ -26,6 +26,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
+import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
@@ -41,11 +42,17 @@ public class HidDeviceNativeInterface {
     private AdapterService mAdapterService;
 
     @GuardedBy("INSTANCE_LOCK")
-    private static HidDeviceNativeInterface sInstance;
+    @VisibleForTesting
+    public static HidDeviceNativeInterface sInstance;
+
     private static final Object INSTANCE_LOCK = new Object();
 
     static {
-        classInitNative();
+        if (Utils.isInstrumentationTestMode()) {
+            Log.w(TAG, "App is instrumented. Skip loading the native");
+        } else {
+            classInitNative();
+        }
     }
 
     @VisibleForTesting
