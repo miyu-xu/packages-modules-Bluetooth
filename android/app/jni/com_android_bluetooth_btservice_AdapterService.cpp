@@ -2155,71 +2155,78 @@ static jboolean pbapPseDynamicVersionUpgradeIsEnabledNative(JNIEnv* env,
              : JNI_FALSE;
 }
 
-static JNINativeMethod sMethods[] = {
-    /* name, signature, funcPtr */
-    {"classInitNative", "()V", (void*)classInitNative},
-    {"initNative", "(ZZI[Ljava/lang/String;ZLjava/lang/String;)Z",
-     (void*)initNative},
-    {"cleanupNative", "()V", (void*)cleanupNative},
-    {"enableNative", "()Z", (void*)enableNative},
-    {"disableNative", "()Z", (void*)disableNative},
-    {"setAdapterPropertyNative", "(I[B)Z", (void*)setAdapterPropertyNative},
-    {"getAdapterPropertiesNative", "()Z", (void*)getAdapterPropertiesNative},
-    {"getAdapterPropertyNative", "(I)Z", (void*)getAdapterPropertyNative},
-    {"getDevicePropertyNative", "([BI)Z", (void*)getDevicePropertyNative},
-    {"setDevicePropertyNative", "([BI[B)Z", (void*)setDevicePropertyNative},
-    {"startDiscoveryNative", "()Z", (void*)startDiscoveryNative},
-    {"cancelDiscoveryNative", "()Z", (void*)cancelDiscoveryNative},
-    {"createBondNative", "([BII)Z", (void*)createBondNative},
-    {"createBondOutOfBandNative",
-     "([BILandroid/bluetooth/OobData;Landroid/bluetooth/OobData;)Z",
-     (void*)createBondOutOfBandNative},
-    {"removeBondNative", "([B)Z", (void*)removeBondNative},
-    {"cancelBondNative", "([B)Z", (void*)cancelBondNative},
-    {"generateLocalOobDataNative", "(I)V", (void*)generateLocalOobDataNative},
-    {"getConnectionStateNative", "([B)I", (void*)getConnectionStateNative},
-    {"pinReplyNative", "([BZI[B)Z", (void*)pinReplyNative},
-    {"sspReplyNative", "([BIZI)Z", (void*)sspReplyNative},
-    {"getRemoteServicesNative", "([BI)Z", (void*)getRemoteServicesNative},
-    {"readEnergyInfoNative", "()I", (void*)readEnergyInfoNative},
-    {"dumpNative", "(Ljava/io/FileDescriptor;[Ljava/lang/String;)V",
-     (void*)dumpNative},
-    {"dumpMetricsNative", "()[B", (void*)dumpMetricsNative},
-    {"factoryResetNative", "()Z", (void*)factoryResetNative},
-    {"obfuscateAddressNative", "([B)[B", (void*)obfuscateAddressNative},
-    {"setBufferLengthMillisNative", "(II)Z",
-     (void*)setBufferLengthMillisNative},
-    {"getMetricIdNative", "([B)I", (void*)getMetricIdNative},
-    {"connectSocketNative", "([BI[BIII)I", (void*)connectSocketNative},
-    {"createSocketChannelNative", "(ILjava/lang/String;[BIII)I",
-     (void*)createSocketChannelNative},
-    {"requestMaximumTxDataLengthNative", "([B)V",
-     (void*)requestMaximumTxDataLengthNative},
-    {"allowLowLatencyAudioNative", "(Z[B)Z", (void*)allowLowLatencyAudioNative},
-    {"metadataChangedNative", "([BI[B)V", (void*)metadataChangedNative},
-    {"isLogRedactionEnabledNative", "()Z", (void*)isLogRedactionEnabledNative},
-    {"interopMatchAddrNative", "(Ljava/lang/String;Ljava/lang/String;)Z",
-     (void*)interopMatchAddrNative},
-    {"interopMatchNameNative", "(Ljava/lang/String;Ljava/lang/String;)Z",
-     (void*)interopMatchNameNative},
-    {"interopMatchAddrOrNameNative", "(Ljava/lang/String;Ljava/lang/String;)Z",
-     (void*)interopMatchAddrOrNameNative},
-    {"interopDatabaseAddRemoveAddrNative",
-     "(ZLjava/lang/String;Ljava/lang/String;I)V",
-     (void*)interopDatabaseAddRemoveAddrNative},
-    {"interopDatabaseAddRemoveNameNative",
-     "(ZLjava/lang/String;Ljava/lang/String;)V",
-     (void*)interopDatabaseAddRemoveNameNative},
-    {"getRemotePbapPceVersionNative", "(Ljava/lang/String;)I",
-     (void*)getRemotePbapPceVersionNative},
-    {"pbapPseDynamicVersionUpgradeIsEnabledNative", "()Z",
-     (void*)pbapPseDynamicVersionUpgradeIsEnabledNative},
-};
-
 int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
-  return jniRegisterNativeMethods(
-      env, "com/android/bluetooth/btservice/AdapterNativeInterface", sMethods,
-      NELEM(sMethods));
+  const char* className =
+      "com/android/bluetooth/btservice/AdapterNativeInterface";
+  const JNINativeMethod sMethods[] = {
+      /* name, signature, funcPtr */
+      {"classInitNative", "()V", (void*)classInitNative},
+      {"initNative", "(ZZI[Ljava/lang/String;ZLjava/lang/String;)Z",
+       (void*)initNative},
+      {"cleanupNative", "()V", (void*)cleanupNative},
+      {"enableNative", "()Z", (void*)enableNative},
+      {"disableNative", "()Z", (void*)disableNative},
+      {"setAdapterPropertyNative", "(I[B)Z", (void*)setAdapterPropertyNative},
+      {"getAdapterPropertiesNative", "()Z", (void*)getAdapterPropertiesNative},
+      {"getAdapterPropertyNative", "(I)Z", (void*)getAdapterPropertyNative},
+      {"getDevicePropertyNative", "([BI)Z", (void*)getDevicePropertyNative},
+      {"setDevicePropertyNative", "([BI[B)Z", (void*)setDevicePropertyNative},
+      {"startDiscoveryNative", "()Z", (void*)startDiscoveryNative},
+      {"cancelDiscoveryNative", "()Z", (void*)cancelDiscoveryNative},
+      {"createBondNative", "([BII)Z", (void*)createBondNative},
+      {"createBondOutOfBandNative",
+       "([BILandroid/bluetooth/OobData;Landroid/bluetooth/OobData;)Z",
+       (void*)createBondOutOfBandNative},
+      {"removeBondNative", "([B)Z", (void*)removeBondNative},
+      {"cancelBondNative", "([B)Z", (void*)cancelBondNative},
+      {"generateLocalOobDataNative", "(I)V", (void*)generateLocalOobDataNative},
+      {"getConnectionStateNative", "([B)I", (void*)getConnectionStateNative},
+      {"pinReplyNative", "([BZI[B)Z", (void*)pinReplyNative},
+      {"sspReplyNative", "([BIZI)Z", (void*)sspReplyNative},
+      {"getRemoteServicesNative", "([BI)Z", (void*)getRemoteServicesNative},
+      {"readEnergyInfoNative", "()I", (void*)readEnergyInfoNative},
+      {"dumpNative", "(Ljava/io/FileDescriptor;[Ljava/lang/String;)V",
+       (void*)dumpNative},
+      {"dumpMetricsNative", "()[B", (void*)dumpMetricsNative},
+      {"factoryResetNative", "()Z", (void*)factoryResetNative},
+      {"obfuscateAddressNative", "([B)[B", (void*)obfuscateAddressNative},
+      {"setBufferLengthMillisNative", "(II)Z",
+       (void*)setBufferLengthMillisNative},
+      {"getMetricIdNative", "([B)I", (void*)getMetricIdNative},
+      {"connectSocketNative", "([BI[BIII)I", (void*)connectSocketNative},
+      {"createSocketChannelNative", "(ILjava/lang/String;[BIII)I",
+       (void*)createSocketChannelNative},
+      {"requestMaximumTxDataLengthNative", "([B)V",
+       (void*)requestMaximumTxDataLengthNative},
+      {"allowLowLatencyAudioNative", "(Z[B)Z",
+       (void*)allowLowLatencyAudioNative},
+      {"metadataChangedNative", "([BI[B)V", (void*)metadataChangedNative},
+      {"isLogRedactionEnabledNative", "()Z",
+       (void*)isLogRedactionEnabledNative},
+      {"interopMatchAddrNative", "(Ljava/lang/String;Ljava/lang/String;)Z",
+       (void*)interopMatchAddrNative},
+      {"interopMatchNameNative", "(Ljava/lang/String;Ljava/lang/String;)Z",
+       (void*)interopMatchNameNative},
+      {"interopMatchAddrOrNameNative",
+       "(Ljava/lang/String;Ljava/lang/String;)Z",
+       (void*)interopMatchAddrOrNameNative},
+      {"interopDatabaseAddRemoveAddrNative",
+       "(ZLjava/lang/String;Ljava/lang/String;I)V",
+       (void*)interopDatabaseAddRemoveAddrNative},
+      {"interopDatabaseAddRemoveNameNative",
+       "(ZLjava/lang/String;Ljava/lang/String;)V",
+       (void*)interopDatabaseAddRemoveNameNative},
+      {"getRemotePbapPceVersionNative", "(Ljava/lang/String;)I",
+       (void*)getRemotePbapPceVersionNative},
+      {"pbapPseDynamicVersionUpgradeIsEnabledNative", "()Z",
+       (void*)pbapPseDynamicVersionUpgradeIsEnabledNative},
+  };
+  int result =
+      jniRegisterNativeMethods(env, className, sMethods, NELEM(sMethods));
+  if (result != 0) {
+    return result;
+  }
+  return result;
 }
 
 } /* namespace android */
@@ -2365,3 +2372,28 @@ jint JNI_OnLoad(JavaVM* jvm, void* reserved) {
 
   return JNI_VERSION_1_6;
 }
+
+namespace android {
+
+/** Load the java callback or die*/
+void jniRegisterJavaCallbacksOrDie(JNIEnv* env, const char* className,
+                                   JNIJavaCallbackMethod* methods,
+                                   int nMethods) {
+  jclass clazz = env->FindClass(className);
+  if (clazz == nullptr) {
+    LOG(FATAL) << "Native registration unable to find class '" << className
+               << "'; aborting...";
+  }
+
+  while (nMethods--) {
+    JNIJavaCallbackMethod& method = *methods++;
+    *method.id = env->GetMethodID(clazz, method.name, method.signature);
+    if (method.id == nullptr) {
+      LOG(FATAL) << "In class " << className << ": Unable to find "
+                 << method.name << " with signature=" << method.signature;
+    }
+  }
+
+  env->DeleteLocalRef(clazz);
+}
+}  // namespace android
