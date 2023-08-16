@@ -28,7 +28,7 @@ from blueberry.tests.gd.cert.truth import assertThat
 import l2cap_packets as l2cap
 
 
-class CertL2capChannel(IEventStream):
+class CertL2capChannel(Closable, IEventStream):
 
     def __init__(self, device, scid, dcid, acl_stream, acl, control_channel, fcs=None):
         self._device = device
@@ -43,6 +43,10 @@ class CertL2capChannel(IEventStream):
             self._our_acl_view = FilteringEventStream(acl_stream, L2capMatchers.ExtractBasicFrameWithFcs(scid))
         else:
             self._our_acl_view = FilteringEventStream(acl_stream, L2capMatchers.ExtractBasicFrame(scid))
+
+    def close(self):
+        self._acl_stream.close()
+        safeClose(self._acl)
 
     def get_event_queue(self):
         return self._our_acl_view.get_event_queue()
