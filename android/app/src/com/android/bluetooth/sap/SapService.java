@@ -3,7 +3,6 @@ package com.android.bluetooth.sap;
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 
 import android.annotation.RequiresPermission;
-import android.annotation.TargetApi;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.bluetooth.BluetoothAdapter;
@@ -19,7 +18,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelUuid;
@@ -35,7 +33,7 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
-import com.android.bluetooth.sdp.SdpManager;
+import com.android.bluetooth.sdp.SdpManagerNativeInterface;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -133,11 +131,12 @@ public class SapService extends ProfileService {
     }
 
     private void removeSdpRecord() {
-        if (mAdapterService != null && mSdpHandle >= 0 && SdpManager.getDefaultManager() != null) {
+        SdpManagerNativeInterface nativeInterface = SdpManagerNativeInterface.getInstance();
+        if (mAdapterService != null && mSdpHandle >= 0 && nativeInterface.isAvailable()) {
             if (VERBOSE) {
                 Log.d(TAG, "Removing SDP record handle: " + mSdpHandle);
             }
-            boolean status = SdpManager.getDefaultManager().removeSdpRecord(mSdpHandle);
+            boolean status = nativeInterface.removeSdpRecord(mSdpHandle);
             mSdpHandle = -1;
         }
     }
@@ -173,9 +172,12 @@ public class SapService extends ProfileService {
                 mServerSocket = BluetoothAdapter.getDefaultAdapter().listenUsingRfcommOn(
                         BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP, true, true);
                 removeSdpRecord();
-                mSdpHandle = SdpManager.getDefaultManager()
-                        .createSapsRecord(SDP_SAP_SERVICE_NAME, mServerSocket.getChannel(),
-                                SDP_SAP_VERSION);
+                mSdpHandle =
+                        SdpManagerNativeInterface.getInstance()
+                                .createSapsRecord(
+                                        SDP_SAP_SERVICE_NAME,
+                                        mServerSocket.getChannel(),
+                                        SDP_SAP_VERSION);
             } catch (IOException e) {
                 Log.e(TAG, "Error create RfcommServerSocket ", e);
                 initSocketOK = false;
