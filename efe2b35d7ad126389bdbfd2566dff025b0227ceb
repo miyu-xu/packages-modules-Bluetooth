@@ -16,6 +16,24 @@
       "message": "Is this removed intentionally?",
       "revId": "efe2b35d7ad126389bdbfd2566dff025b0227ceb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd292e47_dc1275f1",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothCall.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-16T11:41:03Z",
+      "side": 0,
+      "message": "No, I fixed it, thank you ; )",
+      "parentUuid": "9b09407f_fb8ccba5",
+      "revId": "efe2b35d7ad126389bdbfd2566dff025b0227ceb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

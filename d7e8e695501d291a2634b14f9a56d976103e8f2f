@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb878c79_31184906",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-16T11:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0c5e942_1e2728b0",
+      "range": {
+        "startLine": 663,
+        "startChar": 83,
+        "endLine": 663,
+        "endChar": 85
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d80135d_561766de",
@@ -88,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4564e2eb_4939c041",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 667,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-16T11:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d80135d_561766de",
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8bc1881_cf292b6f",
@@ -101,6 +143,24 @@
       "writtenOn": "2023-08-10T15:24:21Z",
       "side": 1,
       "message": "Please add \"mHasAptXSwbEnabled \u003d true\" here so that we set the right parameter to AudioManager once sSCO gets connected.",
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d8bfa2d_b1f377a6",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 671,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-16T11:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8bc1881_cf292b6f",
       "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -128,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4ad1238_0ded0273",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1830,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-16T11:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10055300_565e51bf",
+      "range": {
+        "startLine": 1830,
+        "startChar": 16,
+        "endLine": 1830,
+        "endChar": 30
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e3f2db0_ef833b33",
@@ -141,6 +225,24 @@
       "writtenOn": "2023-08-10T15:24:21Z",
       "side": 1,
       "message": "Please add \"mHasWbsEnabled \u003d false;\" here too",
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6142e39c_92b83af5",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1838,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-16T11:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e3f2db0_ef833b33",
       "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -215,6 +317,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "788a4686_37a5d95f",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-16T11:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6dcef128_e41587ce",
+      "range": {
+        "startLine": 203,
+        "startChar": 77,
+        "endLine": 203,
+        "endChar": 78
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a539c733_1877df1a",
@@ -228,6 +354,30 @@
       "writtenOn": "2023-08-15T18:39:12Z",
       "side": 1,
       "message": "please make it as below as we need to check if headset supports Q0 settings before entering into this condition otherwise, codec negotiation timer will kick in.\n(aptx_voice \u0026\u0026 (p_scb-\u003epeer_codecs \u0026 BTA_AG_SCO_SWB_SETTINGS_Q0_MASK))",
+      "range": {
+        "startLine": 690,
+        "startChar": 16,
+        "endLine": 690,
+        "endChar": 18
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9b9f020_6d56cb5b",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 690,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-16T11:41:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a539c733_1877df1a",
       "range": {
         "startLine": 690,
         "startChar": 16,
