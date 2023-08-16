@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd485f31_fed04d50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-16T23:56:24Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we follow the path and return the error from when it\u0027s directly happen.\nI see that in the GattService there is a native call for which we drop the return value.\ncf\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d4712-4716;drc\u003d5bd5ff659b24e03da0c041e49c641d58b2ce5886",
+      "revId": "59c19fa482f9e2800dfdda87d760a7406962a079",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
