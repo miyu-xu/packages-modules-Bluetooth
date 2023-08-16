@@ -39,6 +39,7 @@ import java.util.Arrays;
 public class LeAudioNativeInterface {
     private static final String TAG = LeAudioNativeInterface.class.getSimpleName();
     private static final boolean DBG = true;
+
     private BluetoothAdapter mAdapter;
 
     @GuardedBy("INSTANCE_LOCK")
@@ -73,11 +74,9 @@ public class LeAudioNativeInterface {
         }
     }
 
-    /**
-     * Set singleton instance.
-     */
+    /** Set singleton instance. */
     @VisibleForTesting
-    static void setInstance(LeAudioNativeInterface instance) {
+    public static void setInstance(LeAudioNativeInterface instance) {
         synchronized (INSTANCE_LOCK) {
             sInstance = instance;
         }
