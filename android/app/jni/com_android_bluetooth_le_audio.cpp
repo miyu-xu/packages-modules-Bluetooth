@@ -314,39 +314,6 @@ class LeAudioClientCallbacksImpl : public LeAudioClientCallbacks {
 
 static LeAudioClientCallbacksImpl sLeAudioClientCallbacks;
 
-static void classInitNative(JNIEnv* env, jclass clazz) {
-  jclass jniBluetoothLeAudioCodecConfigClass =
-      env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfig");
-  android_bluetooth_BluetoothLeAudioCodecConfig.constructor = env->GetMethodID(
-      jniBluetoothLeAudioCodecConfigClass, "<init>", "(IIIIIIIII)V");
-  android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
-      jniBluetoothLeAudioCodecConfigClass, "getCodecType", "()I");
-
-  method_onGroupStatus = env->GetMethodID(clazz, "onGroupStatus", "(II)V");
-  method_onGroupNodeStatus =
-      env->GetMethodID(clazz, "onGroupNodeStatus", "([BII)V");
-  method_onAudioConf = env->GetMethodID(clazz, "onAudioConf", "(IIIII)V");
-  method_onSinkAudioLocationAvailable =
-      env->GetMethodID(clazz, "onSinkAudioLocationAvailable", "([BI)V");
-  method_onInitialized = env->GetMethodID(clazz, "onInitialized", "()V");
-  method_onConnectionStateChanged =
-      env->GetMethodID(clazz, "onConnectionStateChanged", "(I[B)V");
-  method_onAudioLocalCodecCapabilities =
-      env->GetMethodID(clazz, "onAudioLocalCodecCapabilities",
-                       "([Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
-                       "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V");
-  method_onAudioGroupCodecConf =
-      env->GetMethodID(clazz, "onAudioGroupCodecConf",
-                       "(ILandroid/bluetooth/BluetoothLeAudioCodecConfig;"
-                       "Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
-                       "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
-                       "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V");
-  method_onHealthBasedRecommendationAction =
-      env->GetMethodID(clazz, "onHealthBasedRecommendationAction", "([BI)V");
-  method_onHealthBasedGroupRecommendationAction = env->GetMethodID(
-      clazz, "onHealthBasedGroupRecommendationAction", "(II)V");
-}
-
 std::vector<btle_audio_codec_config_t> prepareCodecPreferences(
     JNIEnv* env, jobject object, jobjectArray codecConfigArray) {
   std::vector<btle_audio_codec_config_t> codec_preferences;
@@ -619,27 +586,6 @@ static void sendAudioProfilePreferencesNative(
   sLeAudioClientInterface->SendAudioProfilePreferences(
       groupId, isOutputPreferenceLeAudio, isDuplexPreferenceLeAudio);
 }
-
-static JNINativeMethod sMethods[] = {
-    {"classInitNative", "()V", (void*)classInitNative},
-    {"initNative", "([Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
-     (void*)initNative},
-    {"cleanupNative", "()V", (void*)cleanupNative},
-    {"connectLeAudioNative", "([B)Z", (void*)connectLeAudioNative},
-    {"disconnectLeAudioNative", "([B)Z", (void*)disconnectLeAudioNative},
-    {"setEnableStateNative", "([BZ)Z", (void*)setEnableStateNative},
-    {"groupAddNodeNative", "(I[B)Z", (void*)groupAddNodeNative},
-    {"groupRemoveNodeNative", "(I[B)Z", (void*)groupRemoveNodeNative},
-    {"groupSetActiveNative", "(I)V", (void*)groupSetActiveNative},
-    {"setCodecConfigPreferenceNative",
-     "(ILandroid/bluetooth/BluetoothLeAudioCodecConfig;Landroid/bluetooth/"
-     "BluetoothLeAudioCodecConfig;)V",
-     (void*)setCodecConfigPreferenceNative},
-    {"setCcidInformationNative", "(II)V", (void*)setCcidInformationNative},
-    {"setInCallNative", "(Z)V", (void*)setInCallNative},
-    {"sendAudioProfilePreferencesNative", "(IZZ)V",
-     (void*)sendAudioProfilePreferencesNative},
-};
 
 /* Le Audio Broadcaster */
 static jmethodID method_onBroadcastCreated;
@@ -1099,63 +1045,6 @@ class LeAudioBroadcasterCallbacksImpl : public LeAudioBroadcasterCallbacks {
 
 static LeAudioBroadcasterCallbacksImpl sLeAudioBroadcasterCallbacks;
 
-static void BroadcasterClassInitNative(JNIEnv* env, jclass clazz) {
-  method_onBroadcastCreated =
-      env->GetMethodID(clazz, "onBroadcastCreated", "(IZ)V");
-  method_onBroadcastDestroyed =
-      env->GetMethodID(clazz, "onBroadcastDestroyed", "(I)V");
-  method_onBroadcastStateChanged =
-      env->GetMethodID(clazz, "onBroadcastStateChanged", "(II)V");
-  method_onBroadcastMetadataChanged =
-      env->GetMethodID(clazz, "onBroadcastMetadataChanged",
-                       "(ILandroid/bluetooth/BluetoothLeBroadcastMetadata;)V");
-
-  jclass jniArrayListClass = env->FindClass("java/util/ArrayList");
-  java_util_ArrayList.constructor =
-      env->GetMethodID(jniArrayListClass, "<init>", "()V");
-  java_util_ArrayList.add =
-      env->GetMethodID(jniArrayListClass, "add", "(Ljava/lang/Object;)Z");
-
-  jclass jniBluetoothLeAudioCodecConfigMetadataClass =
-      env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfigMetadata");
-  android_bluetooth_BluetoothLeAudioCodecConfigMetadata.constructor =
-      env->GetMethodID(jniBluetoothLeAudioCodecConfigMetadataClass, "<init>",
-                       "(JIII[B)V");
-
-  jclass jniBluetoothLeAudioContentMetadataClass =
-      env->FindClass("android/bluetooth/BluetoothLeAudioContentMetadata");
-  android_bluetooth_BluetoothLeAudioContentMetadata.constructor =
-      env->GetMethodID(jniBluetoothLeAudioContentMetadataClass, "<init>",
-                       "(Ljava/lang/String;Ljava/lang/String;[B)V");
-
-  jclass jniBluetoothLeBroadcastChannelClass =
-      env->FindClass("android/bluetooth/BluetoothLeBroadcastChannel");
-  android_bluetooth_BluetoothLeBroadcastChannel.constructor = env->GetMethodID(
-      jniBluetoothLeBroadcastChannelClass, "<init>",
-      "(ZILandroid/bluetooth/BluetoothLeAudioCodecConfigMetadata;)V");
-
-  jclass jniBluetoothLeBroadcastSubgroupClass =
-      env->FindClass("android/bluetooth/BluetoothLeBroadcastSubgroup");
-  android_bluetooth_BluetoothLeBroadcastSubgroup.constructor = env->GetMethodID(
-      jniBluetoothLeBroadcastSubgroupClass, "<init>",
-      "(JLandroid/bluetooth/BluetoothLeAudioCodecConfigMetadata;"
-      "Landroid/bluetooth/BluetoothLeAudioContentMetadata;"
-      "Ljava/util/List;)V");
-
-  jclass jniBluetoothDeviceClass =
-      env->FindClass("android/bluetooth/BluetoothDevice");
-  android_bluetooth_BluetoothDevice.constructor = env->GetMethodID(
-      jniBluetoothDeviceClass, "<init>", "(Ljava/lang/String;I)V");
-
-  jclass jniBluetoothLeBroadcastMetadataClass =
-      env->FindClass("android/bluetooth/BluetoothLeBroadcastMetadata");
-  android_bluetooth_BluetoothLeBroadcastMetadata.constructor = env->GetMethodID(
-      jniBluetoothLeBroadcastMetadataClass, "<init>",
-      "(ILandroid/bluetooth/BluetoothDevice;IIIZZLjava/lang/String;"
-      "[BIILandroid/bluetooth/BluetoothLeAudioContentMetadata;"
-      "Ljava/util/List;)V");
-}
-
 static void BroadcasterInitNative(JNIEnv* env, jobject object) {
   std::unique_lock<std::shared_timed_mutex> interface_lock(
       sBroadcasterInterfaceMutex);
@@ -1446,30 +1335,159 @@ static void getBroadcastMetadataNative(JNIEnv* env, jobject object,
   sLeAudioBroadcasterInterface->GetBroadcastMetadata(broadcast_id);
 }
 
-static JNINativeMethod sBroadcasterMethods[] = {
-    {"classInitNative", "()V", (void*)BroadcasterClassInitNative},
-    {"initNative", "()V", (void*)BroadcasterInitNative},
-    {"stopNative", "()V", (void*)BroadcasterStopNative},
-    {"cleanupNative", "()V", (void*)BroadcasterCleanupNative},
-    {"createBroadcastNative", "(ZLjava/lang/String;[B[B[I[[B)V",
-     (void*)CreateBroadcastNative},
-    {"updateMetadataNative", "(ILjava/lang/String;[B[[B)V",
-     (void*)UpdateMetadataNative},
-    {"startBroadcastNative", "(I)V", (void*)StartBroadcastNative},
-    {"stopBroadcastNative", "(I)V", (void*)StopBroadcastNative},
-    {"pauseBroadcastNative", "(I)V", (void*)PauseBroadcastNative},
-    {"destroyBroadcastNative", "(I)V", (void*)DestroyBroadcastNative},
-    {"getBroadcastMetadataNative", "(I)V", (void*)getBroadcastMetadataNative},
-};
+static int register_com_android_bluetooth_le_audio_broadcaster(JNIEnv* env) {
+  const char* className =
+      "com/android/bluetooth/le_audio/LeAudioBroadcasterNativeInterface";
+
+  const JNINativeMethod methods[] = {
+      {"initNative", "()V", (void*)BroadcasterInitNative},
+      {"stopNative", "()V", (void*)BroadcasterStopNative},
+      {"cleanupNative", "()V", (void*)BroadcasterCleanupNative},
+      {"createBroadcastNative", "(ZLjava/lang/String;[B[B[I[[B)V",
+       (void*)CreateBroadcastNative},
+      {"updateMetadataNative", "(ILjava/lang/String;[B[[B)V",
+       (void*)UpdateMetadataNative},
+      {"startBroadcastNative", "(I)V", (void*)StartBroadcastNative},
+      {"stopBroadcastNative", "(I)V", (void*)StopBroadcastNative},
+      {"pauseBroadcastNative", "(I)V", (void*)PauseBroadcastNative},
+      {"destroyBroadcastNative", "(I)V", (void*)DestroyBroadcastNative},
+      {"getBroadcastMetadataNative", "(I)V", (void*)getBroadcastMetadataNative},
+  };
+
+  const int result = REGISTER_NATIVE_METHODS(env, className, methods);
+  if (result != 0) {
+    return result;
+  }
+
+  JNIJavaCallbackMethod callbacksMethods[] = {
+      {"onBroadcastCreated", "(IZ)V", &method_onBroadcastCreated},
+      {"onBroadcastDestroyed", "(I)V", &method_onBroadcastDestroyed},
+      {"onBroadcastStateChanged", "(II)V", &method_onBroadcastStateChanged},
+      {"onBroadcastMetadataChanged",
+       "(ILandroid/bluetooth/BluetoothLeBroadcastMetadata;)V",
+       &method_onBroadcastMetadataChanged},
+  };
+  REGISTER_JAVA_CALLBACKS(env, className, callbacksMethods);
+
+  jclass jniArrayListClass = env->FindClass("java/util/ArrayList");
+  java_util_ArrayList.constructor =
+      env->GetMethodID(jniArrayListClass, "<init>", "()V");
+  java_util_ArrayList.add =
+      env->GetMethodID(jniArrayListClass, "add", "(Ljava/lang/Object;)Z");
+  env->DeleteLocalRef(jniArrayListClass);
+
+  jclass jniBluetoothLeAudioCodecConfigMetadataClass =
+      env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfigMetadata");
+  android_bluetooth_BluetoothLeAudioCodecConfigMetadata.constructor =
+      env->GetMethodID(jniBluetoothLeAudioCodecConfigMetadataClass, "<init>",
+                       "(JIII[B)V");
+  env->DeleteLocalRef(jniBluetoothLeAudioCodecConfigMetadataClass);
+
+  jclass jniBluetoothLeAudioContentMetadataClass =
+      env->FindClass("android/bluetooth/BluetoothLeAudioContentMetadata");
+  android_bluetooth_BluetoothLeAudioContentMetadata.constructor =
+      env->GetMethodID(jniBluetoothLeAudioContentMetadataClass, "<init>",
+                       "(Ljava/lang/String;Ljava/lang/String;[B)V");
+  env->DeleteLocalRef(jniBluetoothLeAudioContentMetadataClass);
+
+  jclass jniBluetoothLeBroadcastChannelClass =
+      env->FindClass("android/bluetooth/BluetoothLeBroadcastChannel");
+  android_bluetooth_BluetoothLeBroadcastChannel.constructor = env->GetMethodID(
+      jniBluetoothLeBroadcastChannelClass, "<init>",
+      "(ZILandroid/bluetooth/BluetoothLeAudioCodecConfigMetadata;)V");
+  env->DeleteLocalRef(jniBluetoothLeBroadcastChannelClass);
+
+  jclass jniBluetoothLeBroadcastSubgroupClass =
+      env->FindClass("android/bluetooth/BluetoothLeBroadcastSubgroup");
+  android_bluetooth_BluetoothLeBroadcastSubgroup.constructor = env->GetMethodID(
+      jniBluetoothLeBroadcastSubgroupClass, "<init>",
+      "(JLandroid/bluetooth/BluetoothLeAudioCodecConfigMetadata;"
+      "Landroid/bluetooth/BluetoothLeAudioContentMetadata;"
+      "Ljava/util/List;)V");
+  env->DeleteLocalRef(jniBluetoothLeBroadcastSubgroupClass);
+
+  jclass jniBluetoothDeviceClass =
+      env->FindClass("android/bluetooth/BluetoothDevice");
+  android_bluetooth_BluetoothDevice.constructor = env->GetMethodID(
+      jniBluetoothDeviceClass, "<init>", "(Ljava/lang/String;I)V");
+  env->DeleteLocalRef(jniBluetoothDeviceClass);
+
+  jclass jniBluetoothLeBroadcastMetadataClass =
+      env->FindClass("android/bluetooth/BluetoothLeBroadcastMetadata");
+  android_bluetooth_BluetoothLeBroadcastMetadata.constructor = env->GetMethodID(
+      jniBluetoothLeBroadcastMetadataClass, "<init>",
+      "(ILandroid/bluetooth/BluetoothDevice;IIIZZLjava/lang/String;"
+      "[BIILandroid/bluetooth/BluetoothLeAudioContentMetadata;"
+      "Ljava/util/List;)V");
+  env->DeleteLocalRef(jniBluetoothLeBroadcastMetadataClass);
+
+  return result;
+}
 
 int register_com_android_bluetooth_le_audio(JNIEnv* env) {
-  int register_success = jniRegisterNativeMethods(
-      env, "com/android/bluetooth/le_audio/LeAudioNativeInterface", sMethods,
-      NELEM(sMethods));
-  return register_success &
-         jniRegisterNativeMethods(
-             env,
-             "com/android/bluetooth/le_audio/LeAudioBroadcasterNativeInterface",
-             sBroadcasterMethods, NELEM(sBroadcasterMethods));
+  const char* className =
+      "com/android/bluetooth/le_audio/LeAudioNativeInterface";
+
+  const JNINativeMethod methods[] = {
+      {"initNative", "([Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
+       (void*)initNative},
+      {"cleanupNative", "()V", (void*)cleanupNative},
+      {"connectLeAudioNative", "([B)Z", (void*)connectLeAudioNative},
+      {"disconnectLeAudioNative", "([B)Z", (void*)disconnectLeAudioNative},
+      {"setEnableStateNative", "([BZ)Z", (void*)setEnableStateNative},
+      {"groupAddNodeNative", "(I[B)Z", (void*)groupAddNodeNative},
+      {"groupRemoveNodeNative", "(I[B)Z", (void*)groupRemoveNodeNative},
+      {"groupSetActiveNative", "(I)V", (void*)groupSetActiveNative},
+      {"setCodecConfigPreferenceNative",
+       "(ILandroid/bluetooth/BluetoothLeAudioCodecConfig;"
+       "Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
+       (void*)setCodecConfigPreferenceNative},
+      {"setCcidInformationNative", "(II)V", (void*)setCcidInformationNative},
+      {"setInCallNative", "(Z)V", (void*)setInCallNative},
+      {"sendAudioProfilePreferencesNative", "(IZZ)V",
+       (void*)sendAudioProfilePreferencesNative},
+  };
+
+  const int result = REGISTER_NATIVE_METHODS(env, className, methods);
+  if (result != 0) {
+    return result;
+  }
+
+  JNIJavaCallbackMethod callbacksMethods[] = {
+      {"onGroupStatus", "(II)V", &method_onGroupStatus},
+      {"onGroupNodeStatus", "([BII)V", &method_onGroupNodeStatus},
+      {"onAudioConf", "(IIIII)V", &method_onAudioConf},
+      {"onSinkAudioLocationAvailable", "([BI)V",
+       &method_onSinkAudioLocationAvailable},
+      {"onInitialized", "()V", &method_onInitialized},
+      {"onConnectionStateChanged", "(I[B)V", &method_onConnectionStateChanged},
+      {"onAudioLocalCodecCapabilities",
+       "([Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
+       "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
+       &method_onAudioLocalCodecCapabilities},
+      {"onAudioGroupCodecConf",
+       "(ILandroid/bluetooth/BluetoothLeAudioCodecConfig;"
+       "Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
+       "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;"
+       "[Landroid/bluetooth/BluetoothLeAudioCodecConfig;)V",
+       &method_onAudioGroupCodecConf},
+      {"onHealthBasedRecommendationAction", "([BI)V",
+       &method_onHealthBasedRecommendationAction},
+      {"onHealthBasedGroupRecommendationAction", "(II)V",
+       &method_onHealthBasedGroupRecommendationAction},
+  };
+  REGISTER_JAVA_CALLBACKS(env, className, callbacksMethods);
+
+  // Initialize BluetoothLeAudioCodecConfig (Bluetooth Framework)
+  jclass jniBluetoothLeAudioCodecConfigClass =
+      env->FindClass("android/bluetooth/BluetoothLeAudioCodecConfig");
+  CHECK(jniBluetoothLeAudioCodecConfigClass != NULL);
+  android_bluetooth_BluetoothLeAudioCodecConfig.constructor = env->GetMethodID(
+      jniBluetoothLeAudioCodecConfigClass, "<init>", "(IIIIIIIII)V");
+  android_bluetooth_BluetoothLeAudioCodecConfig.getCodecType = env->GetMethodID(
+      jniBluetoothLeAudioCodecConfigClass, "getCodecType", "()I");
+  env->DeleteLocalRef(jniBluetoothLeAudioCodecConfigClass);
+
+  return register_com_android_bluetooth_le_audio_broadcaster(env);
 }
 }  // namespace android

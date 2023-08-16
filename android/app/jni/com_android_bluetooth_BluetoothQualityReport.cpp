@@ -82,12 +82,6 @@ class BluetoothQualityReportCallbacksImpl
 
 static BluetoothQualityReportCallbacksImpl sBluetoothQualityReportCallbacks;
 
-static void classInitNative(JNIEnv* env, jclass clazz) {
-  method_bqrDeliver = env->GetMethodID(clazz, "bqrDeliver", "([BIII[B)V");
-
-  LOG(INFO) << __func__ << ": succeeds";
-}
-
 static void initNative(JNIEnv* env, jobject object) {
   std::unique_lock<std::shared_timed_mutex> interface_lock(interface_mutex);
   std::unique_lock<std::shared_timed_mutex> callbacks_lock(callbacks_mutex);
@@ -151,17 +145,25 @@ static void cleanupNative(JNIEnv* env, jobject object) {
   }
 }
 
-static JNINativeMethod sMethods[] = {
-    {"classInitNative", "()V", (void*)classInitNative},
-    {"initNative", "()V", (void*)initNative},
-    {"cleanupNative", "()V", (void*)cleanupNative},
-};
-
 int register_com_android_bluetooth_btservice_BluetoothQualityReport(
     JNIEnv* env) {
-  return jniRegisterNativeMethods(env,
-                                  "com/android/bluetooth/btservice/"
-                                  "BluetoothQualityReportNativeInterface",
-                                  sMethods, NELEM(sMethods));
+  const char* className =
+      "com/android/bluetooth/btservice/BluetoothQualityReportNativeInterface";
+
+  const JNINativeMethod methods[] = {
+      {"initNative", "()V", (void*)initNative},
+      {"cleanupNative", "()V", (void*)cleanupNative},
+  };
+  const int result = REGISTER_NATIVE_METHODS(env, className, methods);
+  if (result != 0) {
+    return result;
+  }
+
+  JNIJavaCallbackMethod callbacksMethods[] = {
+      {"bqrDeliver", "([BIII[B)V", &method_bqrDeliver},
+  };
+  REGISTER_JAVA_CALLBACKS(env, className, callbacksMethods);
+
+  return result;
 }
 }  // namespace android

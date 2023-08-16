@@ -153,22 +153,6 @@ class CsisClientCallbacksImpl : public CsisClientCallbacks {
 
 static CsisClientCallbacksImpl sCsisClientCallbacks;
 
-static void classInitNative(JNIEnv* env, jclass clazz) {
-  method_onConnectionStateChanged =
-      env->GetMethodID(clazz, "onConnectionStateChanged", "([BI)V");
-
-  method_onDeviceAvailable =
-      env->GetMethodID(clazz, "onDeviceAvailable", "([BIIIJJ)V");
-
-  method_onSetMemberAvailable =
-      env->GetMethodID(clazz, "onSetMemberAvailable", "([BI)V");
-
-  method_onGroupLockChanged =
-      env->GetMethodID(clazz, "onGroupLockChanged", "(IZI)V");
-
-  LOG(INFO) << __func__ << ": succeeds";
-}
-
 static void initNative(JNIEnv* env, jobject object) {
   std::unique_lock<std::shared_timed_mutex> interface_lock(interface_mutex);
   std::unique_lock<std::shared_timed_mutex> callbacks_lock(callbacks_mutex);
@@ -280,18 +264,30 @@ static void groupLockSetNative(JNIEnv* env, jobject object, jint group_id,
   sCsisClientInterface->LockGroup(group_id, lock);
 }
 
-static JNINativeMethod sMethods[] = {
-    {"classInitNative", "()V", (void*)classInitNative},
-    {"initNative", "()V", (void*)initNative},
-    {"cleanupNative", "()V", (void*)cleanupNative},
-    {"connectNative", "([B)Z", (void*)connectNative},
-    {"disconnectNative", "([B)Z", (void*)disconnectNative},
-    {"groupLockSetNative", "(IZ)V", (void*)groupLockSetNative},
-};
-
 int register_com_android_bluetooth_csip_set_coordinator(JNIEnv* env) {
-  return jniRegisterNativeMethods(
-      env, "com/android/bluetooth/csip/CsipSetCoordinatorNativeInterface",
-      sMethods, NELEM(sMethods));
+  const char* className =
+      "com/android/bluetooth/csip/CsipSetCoordinatorNativeInterface";
+
+  const JNINativeMethod methods[] = {
+      {"initNative", "()V", (void*)initNative},
+      {"cleanupNative", "()V", (void*)cleanupNative},
+      {"connectNative", "([B)Z", (void*)connectNative},
+      {"disconnectNative", "([B)Z", (void*)disconnectNative},
+      {"groupLockSetNative", "(IZ)V", (void*)groupLockSetNative},
+  };
+  const int result = REGISTER_NATIVE_METHODS(env, className, methods);
+  if (result != 0) {
+    return result;
+  }
+
+  JNIJavaCallbackMethod callbacksMethods[]{
+      {"onConnectionStateChanged", "([BI)V", &method_onConnectionStateChanged},
+      {"onDeviceAvailable", "([BIIIJJ)V", &method_onDeviceAvailable},
+      {"onSetMemberAvailable", "([BI)V", &method_onSetMemberAvailable},
+      {"onGroupLockChanged", "(IZI)V", &method_onGroupLockChanged},
+  };
+  REGISTER_JAVA_CALLBACKS(env, className, callbacksMethods);
+
+  return result;
 }
 }  // namespace android
