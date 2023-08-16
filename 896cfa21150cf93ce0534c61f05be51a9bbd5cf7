@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffd0fb33_b58c9a2c",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanNativeInterface.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-16T21:02:24Z",
+      "side": 1,
+      "message": "Ok... Since I have added the Guarded by ... I am actually required to do the setInstance.... 😭\n\nLet\u0027s do it ! 👍",
+      "parentUuid": "e43f7f2c_cf3f01cf",
+      "range": {
+        "startLine": 39,
+        "startChar": 37,
+        "endLine": 39,
+        "endChar": 48
+      },
+      "revId": "896cfa21150cf93ce0534c61f05be51a9bbd5cf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "528d046f_d1b05c1a",
