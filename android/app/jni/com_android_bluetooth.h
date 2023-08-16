@@ -168,6 +168,22 @@ int register_com_android_bluetooth_csip_set_coordinator(JNIEnv* env);
 
 int register_com_android_bluetooth_btservice_BluetoothQualityReport(
     JNIEnv* env);
+
+struct JNIJavaCallbackMethod {
+    const char* name;
+    const char* signature;
+    jmethodID* id;
+};
+
+void jniGetMethodsOrDie(JNIEnv* env, const char* className,
+                        const JNIJavaCallbackMethod* callbacks, int nCallbacks);
+
+#define REGISTER_NATIVE_METHODS(env, classname, methodsArray) \
+    jniRegisterNativeMethods(env, classname, methodsArray, NELEM(methodsArray))
+
+#define REGISTER_JAVA_CALLBACKS(env, classname, callbacksArray) \
+    jniGetMethodsOrDie(env, classname, callbacksArray, NELEM(callbacksArray))
+
 }  // namespace android
 
 #endif /* COM_ANDROID_BLUETOOTH_H */
