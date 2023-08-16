@@ -2,187 +2,312 @@ syntax = "proto3";
 
 option java_outer_classname = "HfpProto";
 
-package pandora;
+package pandora.hfp;
 
 import "pandora/host.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
 
 // Service to trigger HFP (Hands Free Profile) procedures.
 service HFP {
-  // Enable Service level connection
-  rpc EnableSlc(EnableSlcRequest) returns (google.protobuf.Empty);
-  // Disable Service level connection
-  rpc DisableSlc(DisableSlcRequest) returns (google.protobuf.Empty);
-  // Change the battery level to the one requested
-  rpc SetBatteryLevel(SetBatteryLevelRequest) returns (google.protobuf.Empty);
-  // Make a call
-  rpc MakeCall(MakeCallRequest) returns (MakeCallResponse);
-  // Answer a call
+  // Open the service level connection as **Hands-Free** to the
+  // remote **Audio Gateway** device.
+  //
+  // The rpc must block until the SLC initialization has completed.
+  //
+  // A cancellation of this call must result in aborting the current
+  // HFP procedure.
+  rpc OpenHandsFree(OpenHandsFreeRequest) returns (OpenHandsFreeResponse);
+
+  // Open the service level connection as **Audio-Gateway** to the
+  // remote **Hands-Free** device.
+  //
+  // The rpc may return before the SLC initialization has completed.
+  //
+  // A cancellation of this call must result in aborting the current
+  // HFP procedure.
+  rpc OpenAudioGateway(OpenAudioGatewayRequest) returns (OpenAudioGatewayResponse);
+
+  // Close the selected service level connection.
+  rpc Close(CloseRequest) returns (CloseResponse);
+
+  // Setup the audio connection for the selected service level connection.
+  //
+  // The rpc shall block until the synchronous connection is opened and
+  // the audio connection setup.
+  rpc OpenAudio(OpenAudioRequest) returns (OpenAudioResponse);
+
+  // Wait for the peer to setup the audio connection for the selected service
+  // level connection.
+  //
+  // The rpc shall block until the synchronous connection is opened and
+  // the audio connection setup.
+  rpc WaitAudio(WaitAudioRequest) returns (WaitAudioResponse);
+
+  // Close the audio connection for the selected service level connection.
+  // Calling this method shall result in the synchronous connection being
+  // disconnected.
+  rpc CloseAudio(CloseAudioRequest) returns (CloseAudioResponse);
+
+  // Return if the audio connection is setup for the selected service level
+  // connection.
+  rpc IsAudioOpen(IsAudioOpenRequest) returns (google.protobuf.BoolValue);
+
+  // Start a call for the selected service level connection.
+  rpc PlaceCall(PlaceCallRequest) returns (PlaceCallResponse);
+
+  // Accept an incoming call for the selected service level connection.
   rpc AnswerCall(AnswerCallRequest) returns (AnswerCallResponse);
-  // Decline a call
-  rpc DeclineCall(DeclineCallRequest) returns (DeclineCallResponse);
-  // Set the audio path
-  rpc SetAudioPath(SetAudioPathRequest) returns (SetAudioPathResponse);
-  // Swap the active and held call
-  rpc SwapActiveCall(SwapActiveCallRequest) returns (SwapActiveCallResponse);
-  // Set in-band ringtone
-  rpc SetInBandRingtone(SetInBandRingtoneRequest) returns (SetInBandRingtoneResponse);
-  // Set voice recognition
-  rpc SetVoiceRecognition(SetVoiceRecognitionRequest) returns (SetVoiceRecognitionResponse);
-  // Clear the call history
+
+  // Terminate the active call for the selected service level connection.
+  rpc TerminateCall(TerminateCallRequest) returns (TerminateCallResponse);
+
+  // Reject an incoming call for the selected service level connection.
+  rpc RejectCall(RejectCallRequest) returns (RejectCallResponse);
+
+  // Activate voice recognition on the selected service level connection.
+  rpc ActivateVoiceRecognition(ActivateVoiceRecognitionRequest) returns (ActivateVoiceRecognitionResponse);
+
+  // Deactivate voice recognition on the selected service level connection.
+  rpc DeactivateVoiceRecognition(DeactivateVoiceRecognitionRequest) returns (DeactivateVoiceRecognitionResponse);
+
+  // Configure the battery level percentage of the selected device.
+  // The device is expected to send a battery update notification
+  // on the selected service level connection if enabled.
+  rpc SetBatteryLevel(SetBatteryLevelRequest) returns (SetBatteryLevelResponse);
+
+  // Send a DTMF code on the selected service level connection.
+  // May only be called on Hands-Free service level connections.
+  rpc SendDtmf(SendDtmfRequest) returns (SendDtmfResponse);
+
+  // Interfaces being carried over from the previous version
+  // of the service.
   rpc ClearCallHistory(ClearCallHistoryRequest) returns (ClearCallHistoryResponse);
-  // Answer an incoming call from a peer device (as a handsfree)
-  rpc AnswerCallAsHandsfree(AnswerCallAsHandsfreeRequest) returns (AnswerCallAsHandsfreeResponse);
-  // End a call from a peer device (as a handsfree)
-  rpc EndCallAsHandsfree(EndCallAsHandsfreeRequest) returns (EndCallAsHandsfreeResponse);
-  // Decline an incoming call from a peer device (as a handsfree)
-  rpc DeclineCallAsHandsfree(DeclineCallAsHandsfreeRequest) returns (DeclineCallAsHandsfreeResponse);
-  // Connect to an incoming audio stream from a peer device (as a handsfree)
-  rpc ConnectToAudioAsHandsfree(ConnectToAudioAsHandsfreeRequest) returns (ConnectToAudioAsHandsfreeResponse);
-  // Disonnect from an incoming audio stream from a peer device (as a handsfree)
-  rpc DisconnectFromAudioAsHandsfree(DisconnectFromAudioAsHandsfreeRequest) returns (DisconnectFromAudioAsHandsfreeResponse);
-  // Make a call to a given phone number (as a handsfree)
-  rpc MakeCallAsHandsfree(MakeCallAsHandsfreeRequest) returns (MakeCallAsHandsfreeResponse);
-  // Connect a call on hold, and disconnect the current call (as a handsfree)
-  rpc CallTransferAsHandsfree(CallTransferAsHandsfreeRequest) returns (CallTransferAsHandsfreeResponse);
-  // Enable Service level connection (as a handsfree)
-  rpc EnableSlcAsHandsfree(EnableSlcAsHandsfreeRequest) returns (google.protobuf.Empty);
-  // Disable Service level connection (as a handsfree)
-  rpc DisableSlcAsHandsfree(DisableSlcAsHandsfreeRequest) returns (google.protobuf.Empty);
-  // Set voice recognition (as a handsfree)
-  rpc SetVoiceRecognitionAsHandsfree(SetVoiceRecognitionAsHandsfreeRequest) returns (SetVoiceRecognitionAsHandsfreeResponse);
-  // Send DTMF code from the handsfree
-  rpc SendDtmfFromHandsfree(SendDtmfFromHandsfreeRequest) returns (SendDtmfFromHandsfreeResponse);
+  rpc SetInBandRingtone(SetInBandRingtoneRequest) returns (SetInBandRingtoneResponse);
+  rpc CallTransferAsHandsFree(CallTransferAsHandsFreeRequest) returns (CallTransferAsHandsFreeResponse);
+  rpc SwapActiveCall(SwapActiveCallRequest) returns (SwapActiveCallResponse);
 }
 
-// Request of the `EnableSlc` method.
-message EnableSlcRequest {
-  // Connection crafted by grpc server
+// A Token representing an Hands-Free connection.
+// It is obtained as result to a call to OpenHandsFree on the HFP service.
+message HandsFree {
+  // Opaque value filled by the GRPC server, must not
+  // be modified nor crafted.
+  bytes cookie = 1;
+}
+
+// A Token representing an Audio-Gateway connection.
+// It is obtained as result to a call to OpenAudioGateway on the HFP service.
+message AudioGateway {
+  // Opaque value filled by the GRPC server, must not
+  // be modified nor crafted.
+  bytes cookie = 1;
+}
+
+// A Token representing either an Hands-Free or Audio-Gateway
+// service level connection. It is obtained as result to a call
+// to OpenHandsFree or OpenAudioGateway on the HFP service.
+message ServiceLevelConnection {
+  oneof slc {
+    HandsFree handsfree = 1;
+    AudioGateway audiogateway = 2;
+  }
+}
+
+// Request for the `OpenHandsFree` method.
+message OpenHandsFreeRequest {
+  // The connection that will open the channel.
   Connection connection = 1;
 }
 
-// Request of the `DisableSlc` method.
-message DisableSlcRequest {
-  // Connection crafted by grpc server
+// Response for the `OpenHandsFree` method.
+message OpenHandsFreeResponse {
+  // Result of the `OpenHandsFree` call.
+  oneof result {
+    HandsFree handsfree = 1;
+    google.protobuf.Empty disconnected = 2;
+  }
+}
+
+// Request for the `OpenAudioGateway` method.
+message OpenAudioGatewayRequest {
+  // The connection that will open the channel.
   Connection connection = 1;
 }
 
-// Request of the `SetBatteryLevel` method.
+// Response for the `OpenAudioGateway` method.
+message OpenAudioGatewayResponse {
+  // Result of the `OpenAudioGateway` call.
+  oneof result {
+    AudioGateway audiogateway = 1;
+    google.protobuf.Empty disconnected = 2;
+  }
+}
+
+// Request for the `Close` method.
+message CloseRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Response for the `Close` method.
+message CloseResponse {
+}
+
+// Request for the `OpenAudio` method.
+message OpenAudioRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Response for the `OpenAudio` method.
+message OpenAudioResponse {
+  oneof result {
+    google.protobuf.Empty opened = 1;
+    google.protobuf.Empty already_opened = 2;
+    google.protobuf.Empty disconnected = 3;
+  }
+}
+
+// Request for the `WaitAudio` method.
+message WaitAudioRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Response for the `WaitAudio` method.
+message WaitAudioResponse {
+  oneof result {
+    google.protobuf.Empty opened = 1;
+    google.protobuf.Empty already_opened = 2;
+    google.protobuf.Empty disconnected = 3;
+  }
+}
+
+// Request for the `CloseAudio` method.
+message CloseAudioRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Response for the `CloseAudio` method.
+message CloseAudioResponse {
+  oneof result {
+    google.protobuf.Empty closed = 1;
+    google.protobuf.Empty already_closed = 2;
+    google.protobuf.Empty disconnected = 3;
+  }
+}
+
+// Request for the `IsAudioOpen` method.
+message IsAudioOpenRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Request for the `PlaceCall` method.
+message PlaceCallRequest {
+  ServiceLevelConnection slc = 1;
+  oneof dial {
+    google.protobuf.Empty last = 2;
+    string number = 3;
+    string memory = 4;
+  }
+}
+
+// Response for the `PlaceCall` method.
+message PlaceCallResponse {
+}
+
+// Request for the `AnswerCall` method.
+message AnswerCallRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Response for the `AnswerCall` method.
+message AnswerCallResponse {
+}
+
+// Request for the `TerminateCall` method.
+message TerminateCallRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Response for the `TerminateCall` method.
+message TerminateCallResponse {
+}
+
+// Request for the `RejectCall` method.
+message RejectCallRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Response for the `RejectCall` method.
+message RejectCallResponse {
+}
+
+// Request for the `ActivateVoiceRecognition` method.
+message ActivateVoiceRecognitionRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Response for the `ActivateVoiceRecognition` method.
+message ActivateVoiceRecognitionResponse {
+}
+
+// Request for the `DeactivateVoiceRecognition` method.
+message DeactivateVoiceRecognitionRequest {
+  ServiceLevelConnection slc = 1;
+}
+
+// Response for the `DeactivateVoiceRecognition` method.
+message DeactivateVoiceRecognitionResponse {
+}
+
+// Request for the `SetBatteryLevel` method.
 message SetBatteryLevelRequest {
-  // Connection crafted by grpc server
-  Connection connection = 1;
-  // Battery level to be set on the DUT
+  ServiceLevelConnection slc = 1;
   int32 battery_percentage = 2;
 }
 
-message AnswerCallRequest {}
-
-message AnswerCallResponse {}
-
-message DeclineCallRequest {}
-
-message DeclineCallResponse {}
-
-enum AudioPath {
-  AUDIO_PATH_UNKNOWN = 0;
-  AUDIO_PATH_SPEAKERS = 1;
-  AUDIO_PATH_HANDSFREE = 2;
+// Response for the `SetBatteryLevel` method.
+message SetBatteryLevelResponse {
 }
 
-message SetAudioPathRequest {
-  AudioPath audio_path = 1;
-}
-
-message SetAudioPathResponse {}
-
-message SwapActiveCallRequest {}
-
-message SwapActiveCallResponse {}
-
-message SetInBandRingtoneRequest {
-  bool enabled = 1;
-}
-
-message SetInBandRingtoneResponse {}
-
-message MakeCallRequest {
-  string number = 1;
-}
-
-message MakeCallResponse {}
-
-message SetVoiceRecognitionRequest {
-  Connection connection = 1;
-  bool enabled = 2;
-}
-
-message SetVoiceRecognitionResponse {}
-
-message ClearCallHistoryRequest {}
-
-message ClearCallHistoryResponse {}
-
-message AnswerCallAsHandsfreeRequest {
-  Connection connection = 1;
-}
-
-message AnswerCallAsHandsfreeResponse {}
-
-message EndCallAsHandsfreeRequest {
-  Connection connection = 1;
-}
-
-message EndCallAsHandsfreeResponse {}
-
-message DeclineCallAsHandsfreeRequest {
-  Connection connection = 1;
-}
-
-message DeclineCallAsHandsfreeResponse {}
-
-message ConnectToAudioAsHandsfreeRequest {
-  Connection connection = 1;
-}
-
-message ConnectToAudioAsHandsfreeResponse {}
-
-message DisconnectFromAudioAsHandsfreeRequest {
-  Connection connection = 1;
-}
-
-message DisconnectFromAudioAsHandsfreeResponse {}
-
-message MakeCallAsHandsfreeRequest {
-  Connection connection = 1;
-  string number = 2;
-}
-
-message MakeCallAsHandsfreeResponse {}
-
-message CallTransferAsHandsfreeRequest {
-  Connection connection = 1;
-}
-
-message CallTransferAsHandsfreeResponse {}
-
-message EnableSlcAsHandsfreeRequest {
-  Connection connection = 1;
-}
-
-message DisableSlcAsHandsfreeRequest {
-  Connection connection = 1;
-}
-
-message SetVoiceRecognitionAsHandsfreeRequest {
-  Connection connection = 1;
-  bool enabled = 2;
-}
-
-message SetVoiceRecognitionAsHandsfreeResponse {}
-
-message SendDtmfFromHandsfreeRequest {
-  Connection connection = 1;
+// Request for the `SendDtmf` method.
+message SendDtmfRequest {
+  HandsFree handsfree = 1;
+  // Possible code values : 0,1,2,3,4,5,6,7,8,9,A,B,C,D,*,#
   uint32 code = 2;
 }
 
-message SendDtmfFromHandsfreeResponse {}
+// Response for the `SendDtmf` method.
+message SendDtmfResponse {
+}
+
+// Interfaces being carried over from the previous version
+// of the service.
+
+message ClearCallHistoryRequest {
+  AudioGateway audiogateway = 1;
+}
+
+message ClearCallHistoryResponse {
+}
+
+message SetInBandRingtoneRequest {
+  AudioGateway audiogateway = 1;
+  bool enabled = 2;
+}
+
+message SetInBandRingtoneResponse {
+}
+
+message CallTransferAsHandsFreeRequest {
+  HandsFree handsfree = 1;
+}
+
+message CallTransferAsHandsFreeResponse {
+}
+
+message SwapActiveCallRequest {
+  AudioGateway audiogateway = 1;
+}
+
+message SwapActiveCallResponse {
+}

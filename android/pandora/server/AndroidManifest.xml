@@ -29,7 +29,7 @@
           </service>
 
       <service
-          android:name=".Hfp$PandoraInCallService"
+          android:name=".HfpAg$PandoraInCallService"
           android:permission="android.permission.BIND_INCALL_SERVICE"
           android:exported="true">
         <intent-filter>
