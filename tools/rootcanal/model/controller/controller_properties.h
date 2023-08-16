@@ -158,6 +158,12 @@ struct ControllerProperties {
   // Provide parameters returned by vendor specific commands.
   std::vector<uint8_t> le_vendor_capabilities{};
 
+  // Enable flag for CSR vendor commands.
+  bool vendor_csr{true};
+
+  // Enable flag for Advertising Packet Content Filter (APCF) vendor commands.
+  bool vendor_apcf{false};
+
   bool SupportsLMPFeature(bluetooth::hci::LMPFeaturesPage0Bits bit) const {
     return (lmp_features[0] & static_cast<uint64_t>(bit)) != 0;
   }
