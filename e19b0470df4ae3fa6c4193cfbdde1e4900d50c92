@@ -93,6 +93,30 @@
       },
       "revId": "e19b0470df4ae3fa6c4193cfbdde1e4900d50c92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a2f0610_f87083ec",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1348,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-16T23:42:58Z",
+      "side": 1,
+      "message": "Looks good. While the state is TurningOn, I will keep no op for restarting. WDYT.",
+      "parentUuid": "62bdb324_4b5a77df",
+      "range": {
+        "startLine": 1345,
+        "startChar": 0,
+        "endLine": 1348,
+        "endChar": 94
+      },
+      "revId": "e19b0470df4ae3fa6c4193cfbdde1e4900d50c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
