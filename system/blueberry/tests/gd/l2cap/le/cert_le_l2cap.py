@@ -101,9 +101,9 @@ class CertLeL2cap(Closable):
         channel = CertLeL2capChannel(self._device, cid, cid, self._get_acl_stream(), self._le_acl, None, 0)
         return channel
 
-    def open_channel(self, signal_id, psm, scid, mtu=1000, mps=100, initial_credit=6):
+    def open_channel(self, psm, scid, mtu=1000, mps=100, initial_credit=6):
         self.control_channel.send(
-            l2cap.LeCreditBasedConnectionRequest(signal_id, psm, scid, mtu, mps, initial_credit))
+            l2cap.LeCreditBasedConnectionRequest(psm, scid, mtu, mps, initial_credit))
 
         response = L2capCaptures.CreditBasedConnectionResponse()
         assertThat(self.control_channel).emits(response)

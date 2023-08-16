@@ -59,19 +59,17 @@ class L2capTestBase():
         self.cert_l2cap.connect_acl(self.dut_address)
 
     def _open_unconfigured_channel_from_cert(self,
-                                             signal_id=1,
                                              scid=0x0101,
                                              psm=0x33,
                                              mode=RetransmissionFlowControlMode.BASIC,
                                              fcs=None):
 
         dut_channel = self.dut_l2cap.register_dynamic_channel(psm, mode)
-        cert_channel = self.cert_l2cap.open_channel(signal_id, psm, scid, fcs=fcs)
+        cert_channel = self.cert_l2cap.open_channel(psm, scid, fcs=fcs)
 
         return (dut_channel, cert_channel)
 
     def _open_channel_from_cert(self,
-                                signal_id=1,
                                 scid=0x0101,
                                 psm=0x33,
                                 mode=RetransmissionFlowControlMode.BASIC,
@@ -86,7 +84,7 @@ class L2capTestBase():
             when(self.cert_l2cap).on_config_req(request_matcher).then().send_configuration_response(
                 options=CertL2cap.config_option_ertm(fcs=fcs))
 
-        (dut_channel, cert_channel) = self._open_unconfigured_channel_from_cert(signal_id, scid, psm, mode, fcs)
+        (dut_channel, cert_channel) = self._open_unconfigured_channel_from_cert(scid, psm, mode, fcs)
         if req_config_options is None:
             req_config_options = CertL2cap.config_option_ertm(
                 fcs=fcs) if mode == RetransmissionFlowControlMode.ERTM else []
@@ -150,8 +148,8 @@ class L2capTest(gd_base_test.GdBaseTestClass, L2capTestBase):
     def test_open_two_channels(self):
         self._setup_link_from_cert()
 
-        self._open_channel_from_cert(signal_id=1, scid=0x41, psm=0x41)
-        self._open_channel_from_cert(signal_id=2, scid=0x43, psm=0x43)
+        self._open_channel_from_cert(scid=0x41, psm=0x41)
+        self._open_channel_from_cert(scid=0x43, psm=0x43)
 
     def test_connect_and_send_data_ertm_no_segmentation(self):
         self._setup_link_from_cert()

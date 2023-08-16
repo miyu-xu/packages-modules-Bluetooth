@@ -85,8 +85,7 @@ class CertL2capChannel(Closable, IEventStream):
 
     def _send_information_request(self, type):
         assertThat(self._scid).isEqualTo(1)
-        signal_id = 3
-        information_request = l2cap.InformationRequest(signal_id, type)
+        information_request = l2cap.InformationRequest(type)
         self.send(information_request)
 
     def send_extended_features_request(self):
@@ -194,8 +193,8 @@ class CertL2cap(Closable, IHasBehaviors):
         self._acl_manager.listen_for_an_incoming_connection()
         self._acl = self._acl_manager.complete_incoming_connection()
 
-    def open_channel(self, signal_id, psm, scid, fcs=None):
-        self.control_channel.send(l2cap.ConnectionRequest(signal_id, psm, scid))
+    def open_channel(self, psm, scid, fcs=None):
+        self.control_channel.send(l2cap.ConnectionRequest(psm, scid))
 
         response = L2capCaptures.ConnectionResponse(scid)
         assertThat(self.control_channel).emits(response)

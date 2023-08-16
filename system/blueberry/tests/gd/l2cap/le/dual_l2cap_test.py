@@ -113,25 +113,25 @@ class DualL2capTest(gd_base_test.GdBaseTestClass):
 
         return (dut_channel, cert_channel)
 
-    def _open_unconfigured_channel_from_cert(self, signal_id=1, scid=0x0101, psm=0x33):
+    def _open_unconfigured_channel_from_cert(self, scid=0x0101, psm=0x33):
 
         dut_channel = self.dut_l2cap.register_dynamic_channel(psm)
-        cert_channel = self.cert_l2cap.open_channel(signal_id, psm, scid)
+        cert_channel = self.cert_l2cap.open_channel(psm, scid)
 
         return (dut_channel, cert_channel)
 
-    def _open_channel_from_cert(self, signal_id=1, scid=0x0101, psm=0x33):
-        (dut_channel, cert_channel) = self._open_unconfigured_channel_from_cert(signal_id, scid, psm)
+    def _open_channel_from_cert(self, scid=0x0101, psm=0x33):
+        (dut_channel, cert_channel) = self._open_unconfigured_channel_from_cert(scid, psm)
         cert_channel.verify_configuration_request_and_respond()
         cert_channel.send_configure_request([])
         cert_channel.verify_configuration_response()
 
         return (dut_channel, cert_channel)
 
-    def _open_le_coc_from_cert(self, signal_id=1, scid=0x0101, psm=0x35, mtu=1000, mps=100, initial_credit=6):
+    def _open_le_coc_from_cert(self, scid=0x0101, psm=0x35, mtu=1000, mps=100, initial_credit=6):
 
         dut_channel = self.dut_le_l2cap.register_coc(self.cert_address, psm)
-        cert_channel = self.cert_le_l2cap.open_channel(signal_id, psm, scid, mtu, mps, initial_credit)
+        cert_channel = self.cert_le_l2cap.open_channel(psm, scid, mtu, mps, initial_credit)
 
         return (dut_channel, cert_channel)
 

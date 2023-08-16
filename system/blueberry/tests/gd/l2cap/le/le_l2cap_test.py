@@ -84,7 +84,6 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         self.cert_l2cap.connect_le_acl(self.dut_address)
 
     def _set_link_from_dut_and_open_channel(self,
-                                            signal_id=1,
                                             scid=0x0101,
                                             psm=0x33,
                                             mtu=1000,
@@ -110,10 +109,10 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         dut_channel = response_future.get_channel()
         return (dut_channel, cert_channel)
 
-    def _open_channel_from_cert(self, signal_id=1, scid=0x0101, psm=0x33, mtu=1000, mps=100, initial_credit=6):
+    def _open_channel_from_cert(self,  scid=0x0101, psm=0x33, mtu=1000, mps=100, initial_credit=6):
 
         dut_channel = self.dut_l2cap.register_coc(self.cert_address, psm)
-        cert_channel = self.cert_l2cap.open_channel(signal_id, psm, scid, mtu, mps, initial_credit)
+        cert_channel = self.cert_l2cap.open_channel(psm, scid, mtu, mps, initial_credit)
 
         return (dut_channel, cert_channel)
 
@@ -264,9 +263,9 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         Verify that an IUT can create multiple channels and receives data streams on the channels when the streams are interleaved.
         """
         self._setup_link_from_cert()
-        (dut_channel_x, cert_channel_x) = self._open_channel_from_cert(signal_id=1, scid=0x0103, psm=0x33)
-        (dut_channel_y, cert_channel_y) = self._open_channel_from_cert(signal_id=2, scid=0x0105, psm=0x35)
-        (dut_channel_z, cert_channel_z) = self._open_channel_from_cert(signal_id=3, scid=0x0107, psm=0x37)
+        (dut_channel_x, cert_channel_x) = self._open_channel_from_cert(scid=0x0103, psm=0x33)
+        (dut_channel_y, cert_channel_y) = self._open_channel_from_cert(scid=0x0105, psm=0x35)
+        (dut_channel_z, cert_channel_z) = self._open_channel_from_cert(scid=0x0107, psm=0x37)
         cert_channel_y.send_first_le_i_frame(4, SAMPLE_PACKET)
         cert_channel_z.send_first_le_i_frame(4, SAMPLE_PACKET)
         cert_channel_y.send_first_le_i_frame(4, SAMPLE_PACKET)
