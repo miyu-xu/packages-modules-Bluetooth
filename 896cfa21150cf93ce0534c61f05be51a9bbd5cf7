@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e43f7f2c_cf3f01cf",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanNativeInterface.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-16T17:25:56Z",
+      "side": 1,
+      "message": "I do not think this is necessary as I do not see the added value to a setter here (the getter can construct the object, nothing will be done in the setter).\n\nOnly hidDeviceNativeInterface and LeAudioNativeInterface has the `setInstance` and it is private for hid... For me it is a non necessary wrapper.",
+      "parentUuid": "81004e4b_12faca54",
+      "range": {
+        "startLine": 39,
+        "startChar": 37,
+        "endLine": 39,
+        "endChar": 48
+      },
+      "revId": "896cfa21150cf93ce0534c61f05be51a9bbd5cf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "528d046f_d1b05c1a",
         "filename": "android/app/src/com/android/bluetooth/pan/PanNativeInterface.java",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-16T10:04:23Z",
       "side": 1,
       "message": "You may want to remove @VisibleForTesting annotation of this method.",
+      "range": {
+        "startLine": 84,
+        "startChar": 20,
+        "endLine": 84,
+        "endChar": 41
+      },
+      "revId": "896cfa21150cf93ce0534c61f05be51a9bbd5cf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d2af637_da663899",
+        "filename": "android/app/src/com/android/bluetooth/pan/PanNativeInterface.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-16T17:25:56Z",
+      "side": 1,
+      "message": "Yes, thanks. Done\n\nFYI this warning is present a huge amount of time in the current codebase ^^",
+      "parentUuid": "528d046f_d1b05c1a",
       "range": {
         "startLine": 84,
         "startChar": 20,
