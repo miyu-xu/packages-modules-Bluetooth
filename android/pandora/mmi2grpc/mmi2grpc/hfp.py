@@ -17,11 +17,11 @@ from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
 
 from pandora_experimental.hfp_grpc import HFP
+from pandora_experimental.hfp_pb2 import ServiceLevelConnection
 from pandora.host_grpc import Host
 from pandora.host_pb2 import DISCOVERABLE_GENERAL, CONNECTABLE
 from pandora.security_grpc import Security, SecurityStorage
 from pandora.security_pb2 import PairingEventAnswer
-from pandora_experimental.hfp_pb2 import AUDIO_PATH_HANDSFREE, AUDIO_PATH_SPEAKERS
 
 import sys
 import threading
@@ -45,24 +45,30 @@ class HFPProxy(ProfileProxy):
         self.rootcanal = rootcanal
         self.modem = modem
         self.connection = None
+        self.slc = None
 
         self._auto_confirm_requests()
 
-    def asyncWaitConnection(self, pts_addr, delay=WAIT_DELAY_BEFORE_CONNECTION):
+    def asyncWaitConnection(self, test: str, pts_addr: bytes, delay=WAIT_DELAY_BEFORE_CONNECTION):
         """
         Send a WaitConnection in a grpc callback
         """
 
-        def waitConnectionCallback(self, pts_addr):
+        def waitConnectionCallback(self, test: str, pts_addr: bytes):
             self.connection = self.host.WaitConnection(address=pts_addr).connection
 
+            if "HFP/HF" in test:
+                self.slc = ServiceLevelConnection(handsfree=self.hfp.OpenHandsFree(connection=self.connection).handsfree)
+            else:
+                self.slc = ServiceLevelConnection(audiogateway=self.hfp.OpenAudioGateway(connection=self.connection).audiogateway)
+
         print(f"HFP placeholder mmi: asyncWaitConnection", file=sys.stderr)
-        th = threading.Timer(interval=delay, function=waitConnectionCallback, args=(self, pts_addr))
+        th = threading.Timer(interval=delay, function=waitConnectionCallback, args=(self, test, pts_addr))
         th.start()
 
     def test_started(self, test: str, pts_addr: bytes, **kwargs):
         if test not in ("HFP/AG/SLC/BV-02-C", "HFP/AG/SLC/BV-04-C"):
-            self.asyncWaitConnection(pts_addr)
+            self.asyncWaitConnection(test, pts_addr)
 
         return "OK"
 
@@ -90,12 +96,11 @@ class HFPProxy(ProfileProxy):
                 self.connection = self.host.Connect(address=pts_addr).connection
 
             if "HFP/HF" in test:
-                self.hfp.EnableSlcAsHandsfree(connection=self.connection)
+                self.slc = ServiceLevelConnection(handsfree=self.hfp.OpenHandsFree(connection=self.connection).handsfree)
             else:
-                self.hfp.EnableSlc(connection=self.connection)
+                self.slc = ServiceLevelConnection(audiogateway=self.hfp.OpenAudioGateway(connection=self.connection).audiogateway)
 
         threading.Thread(target=enable_slc).start()
-
         return "OK"
 
     @assert_description
@@ -144,10 +149,7 @@ class HFPProxy(ProfileProxy):
 
         def disable_slc():
             time.sleep(2)
-            if "HFP/HF" in test:
-                self.hfp.DisableSlcAsHandsfree(connection=self.connection)
-            else:
-                self.hfp.DisableSlc(connection=self.connection)
+            self.hfp.Close(slc=self.slc)
 
         threading.Thread(target=disable_slc).start()
 
@@ -199,6 +201,9 @@ class HFPProxy(ProfileProxy):
         # TODO
         time.sleep(2)  # give it time for SCO to come up
 
+        if not self.hfp.IsAudioOpen(slc=self.slc):
+            raise "Audio connection not opened"
+
         return "OK"
 
     @assert_description
@@ -209,7 +214,7 @@ class HFPProxy(ProfileProxy):
 
         def disable_call_external():
             time.sleep(2)
-            self.hfp.DeclineCall()
+            self.hfp.RejectCall(self.slc)
 
         threading.Thread(target=disable_call_external).start()
 
@@ -234,10 +239,7 @@ class HFPProxy(ProfileProxy):
 
         def disable_audio():
             time.sleep(2)
-            if "HFP/HF" in test:
-                self.hfp.DisconnectToAudioAsHandsfree(connection=self.connection)
-            else:
-                self.hfp.SetAudioPath(audio_path=AUDIO_PATH_SPEAKERS)
+            self.hfp.CloseAudio(slc=self.slc)
 
         threading.Thread(target=disable_audio).start()
 
@@ -248,6 +250,9 @@ class HFPProxy(ProfileProxy):
         """
         Verify the absence of an audio connection (SCO), then click Ok.
         """
+
+        if self.hfp.IsAudioOpen(slc=self.slc):
+            raise Exception("audio link is open when it was not expected to be")
 
         return "OK"
 
@@ -260,10 +265,7 @@ class HFPProxy(ProfileProxy):
 
         def enable_audio():
             time.sleep(2)
-            if "HFP/HF" in test:
-                self.hfp.ConnectToAudioAsHandsfree(connection=self.connection)
-            else:
-                self.hfp.SetAudioPath(audio_path=AUDIO_PATH_HANDSFREE)
+            self.hfp.OpenAudio(slc=self.slc)
 
         threading.Thread(target=enable_audio).start()
 
@@ -279,7 +281,7 @@ class HFPProxy(ProfileProxy):
 
         def disable_slc():
             time.sleep(2)
-            self.hfp.DisableSlc(connection=self.connection)
+            self.hfp.Close(slc=self.slc)
 
         threading.Thread(target=disable_slc).start()
 
@@ -294,7 +296,7 @@ class HFPProxy(ProfileProxy):
 
         self.modem.call(IXIT_PHONE_NUMBER)
         time.sleep(5)  # there's a delay before Android registers the call
-        self.hfp.AnswerCall()
+        self.hfp.AnswerCall(slc=self.slc)
         time.sleep(2)
 
         return "OK"
@@ -322,7 +324,9 @@ class HFPProxy(ProfileProxy):
         call active using the Implementation Under Test (IUT).
         """
 
-        self.hfp.SwapActiveCall()
+        # TODO
+        #self.hfp.SwapActiveCall(slc=self.slc)
+        assert False
 
         return "OK"
 
@@ -344,7 +348,7 @@ class HFPProxy(ProfileProxy):
         continue.
         """
 
-        self.hfp.DeclineCall()
+        self.hfp.RejectCall(slc=self.slc)
 
         return "OK"
 
@@ -408,7 +412,7 @@ class HFPProxy(ProfileProxy):
 
         def disable_slc():
             time.sleep(2)
-            self.hfp.DisableSlc(connection=self.connection)
+            self.hfp.Close(slc=self.slc)
 
         threading.Thread(target=disable_slc).start()
 
@@ -444,10 +448,10 @@ class HFPProxy(ProfileProxy):
         the last dialed number.  Answer the incoming call when alerted.
         """
 
-        self.hfp.MakeCall(number=str(IXIT_PHONE_NUMBER))
+        self.hfp.PlaceCall(slc=self.slc, number=str(IXIT_PHONE_NUMBER))
         self.log("Calling")
         time.sleep(2)
-        self.hfp.DeclineCall()
+        self.hfp.RejectCall(slc=self.slc)
         self.log("Declining")
         time.sleep(2)
 
