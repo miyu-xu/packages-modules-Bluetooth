@@ -17,6 +17,7 @@
 
 #include <base/functional/bind.h>
 #include <base/strings/string_number_conversions.h>
+#include <lc3.h>
 
 #include <deque>
 #include <mutex>
@@ -39,7 +40,6 @@
 #include "content_control_id_keeper.h"
 #include "device/include/controller.h"
 #include "devices.h"
-#include "embdrv/lc3/include/lc3.h"
 #include "gatt/bta_gattc_int.h"
 #include "gd/common/strings.h"
 #include "internal_include/stack_config.h"

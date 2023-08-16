@@ -17,12 +17,13 @@
 
 #include "broadcaster_types.h"
 
+#include <lc3.h>
+
 #include <vector>
 
 #include "bt_types.h"
 #include "bta_le_audio_broadcaster_api.h"
 #include "btm_ble_api_types.h"
-#include "embdrv/lc3/include/lc3.h"
 #include "internal_include/stack_config.h"
 #include "osi/include/properties.h"
 
