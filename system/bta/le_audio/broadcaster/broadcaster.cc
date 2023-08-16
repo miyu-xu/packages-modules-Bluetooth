@@ -16,6 +16,7 @@
  */
 
 #include <base/functional/bind.h>
+#include <lc3.h>
 
 #include <mutex>
 
@@ -27,7 +28,6 @@
 #include "bta/le_audio/le_audio_utils.h"
 #include "bta/le_audio/metrics_collector.h"
 #include "device/include/controller.h"
-#include "embdrv/lc3/include/lc3.h"
 #include "gd/common/strings.h"
 #include "internal_include/stack_config.h"
 #include "osi/include/log.h"
