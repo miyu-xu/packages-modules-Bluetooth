@@ -1,2 +1,2 @@
-include ../app/OWNERS
+include platform/packages/modules/Bluetooth:/system/OWNERS
 include platform/packages/modules/Bluetooth:/OWNERS_leaudio
