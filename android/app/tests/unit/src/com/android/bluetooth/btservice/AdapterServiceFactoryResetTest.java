@@ -342,6 +342,7 @@ public class AdapterServiceFactoryResetTest {
      * native layer
      */
     @Test
+    @Ignore("b/296127545: BluetoothInstrumentationTests should not perfom native call")
     public void testObfuscateBluetoothAddress_FactoryResetAndReloadNativeLayer()
             throws PackageManager.NameNotFoundException {
         byte[] metricsSalt1 = AdapterServiceTest.getMetricsSalt(mAdapterConfig);
