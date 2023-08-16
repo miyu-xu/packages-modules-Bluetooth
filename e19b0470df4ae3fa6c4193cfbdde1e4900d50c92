@@ -26,6 +26,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2e65b58_dd06ba2c",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-16T18:07:02Z",
+      "side": 1,
+      "message": "Yes, will add that.",
+      "parentUuid": "560ba49e_e7143267",
+      "range": {
+        "startLine": 1331,
+        "startChar": 16,
+        "endLine": 1331,
+        "endChar": 20
+      },
+      "revId": "e19b0470df4ae3fa6c4193cfbdde1e4900d50c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de8e666d_f51d7841",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-16T18:07:02Z",
+      "side": 1,
+      "message": "Sure. Will upload in the next rev.",
+      "parentUuid": "560ba49e_e7143267",
+      "range": {
+        "startLine": 1331,
+        "startChar": 16,
+        "endLine": 1331,
+        "endChar": 20
+      },
+      "revId": "e19b0470df4ae3fa6c4193cfbdde1e4900d50c92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62bdb324_4b5a77df",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 5
