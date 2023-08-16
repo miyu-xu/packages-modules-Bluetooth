@@ -133,6 +133,7 @@ cc_library_static {
         "libbluetooth_gd",
         "libbt-bta-core",
         "libcom.android.sysprop.bluetooth",
+        "liblc3",
     ],
     shared_libs: [
         "android.hardware.bluetooth.audio@2.1",
