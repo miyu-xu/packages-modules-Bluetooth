@@ -61,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e21a5ea_7a3b60a2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 820,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-16T09:45:22Z",
+      "side": 1,
+      "message": "Does it work even return types are different?",
+      "parentUuid": "a3652685_5b9bd178",
+      "range": {
+        "startLine": 820,
+        "startChar": 55,
+        "endLine": 820,
+        "endChar": 90
+      },
+      "revId": "54a0576543a160c173a2064560278d8b359258e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1ea2652e_568f019a",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 5
@@ -72,6 +96,30 @@
       "writtenOn": "2023-08-16T04:55:34Z",
       "side": 1,
       "message": "Q) Why do we call callbacks while holding locks?\n\nIf this lock is needed, how about copying the entrySet with the lock, and call callbacks outside of it?\n\n \n```\nMap.Entry\u003cBluetoothStateCallback, Executor\u003e callbacks;\nsynchrnozized(mLocalCallbacks) {\n    callbacks \u003d someDeepCopyMethod(mLocalCallbacks.entrySet());\n}\n\nfor (Map.Entry\u003cBluetoothStateCallback, Executor\u003e e : callbacks.entrySet()) {\n        e.getValue().execute(\n                () -\u003e e.getKey().onBluetoothStateChange(prevState, newState));\n}\n\n\n```",
+      "range": {
+        "startLine": 1073,
+        "startChar": 8,
+        "endLine": 1073,
+        "endChar": 40
+      },
+      "revId": "54a0576543a160c173a2064560278d8b359258e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f63b2d0a_51699e5d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1073,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-16T09:45:22Z",
+      "side": 1,
+      "message": "To avoid ConcurrentModificationException.\nChanged to ConcurrentHashMap instead.",
+      "parentUuid": "1ea2652e_568f019a",
       "range": {
         "startLine": 1073,
         "startChar": 8,
@@ -95,6 +143,30 @@
       "writtenOn": "2023-08-16T04:55:34Z",
       "side": 1,
       "message": "@BluetoothAdapter.AdapterState int",
+      "range": {
+        "startLine": 7478,
+        "startChar": 36,
+        "endLine": 7478,
+        "endChar": 39
+      },
+      "revId": "54a0576543a160c173a2064560278d8b359258e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eb81dc9_6fc24a54",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 7478,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-16T09:45:22Z",
+      "side": 1,
+      "message": "It is taking @InternalAdapterState.",
+      "parentUuid": "02e4fe93_16e983f8",
       "range": {
         "startLine": 7478,
         "startChar": 36,
