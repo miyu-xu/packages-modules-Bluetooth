@@ -259,11 +259,8 @@ public class AdapterService extends Service {
 
     private final ArrayList<DiscoveringPackage> mDiscoveringPackages = new ArrayList<>();
 
-    static {
-        classInitNative();
-    }
-
     private static AdapterService sAdapterService;
+    private final AdapterNativeInterface mNativeInterface = AdapterNativeInterface.getInstance();
 
     // Keep a constructor for ActivityThread.handleCreateService
     AdapterService() {}
@@ -275,6 +272,10 @@ public class AdapterService extends Service {
 
     public static synchronized AdapterService getAdapterService() {
         return sAdapterService;
+    }
+
+    AdapterNativeInterface getNative() {
+        return mNativeInterface;
     }
 
     /** Allow test to set an AdapterService to be return by AdapterService.getAdapterService() */
@@ -504,14 +505,16 @@ public class AdapterService extends Service {
                     // TODO(b/228875190): GATT is assumed supported. GATT starting triggers hardware
                     // initializtion. Configuring a device without GATT causes start up failures.
                     if (GattService.class.getSimpleName().equals(profile.getName())) {
-                        enableNative();
+                        mNativeInterface.enable();
                     } else if (mRegisteredProfiles.size() == Config.getSupportedProfiles().length
                             && mRegisteredProfiles.size() == mRunningProfiles.size()) {
                         mAdapterProperties.onBluetoothReady();
                         updateUuids();
                         initProfileServices();
-                        getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_LOCAL_IO_CAPS);
-                        getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_DYNAMIC_AUDIO_BUFFER);
+                        mNativeInterface.getAdapterProperty(
+                                AbstractionLayer.BT_PROPERTY_LOCAL_IO_CAPS);
+                        mNativeInterface.getAdapterProperty(
+                                AbstractionLayer.BT_PROPERTY_DYNAMIC_AUDIO_BUFFER);
                         mAdapterStateMachine.sendMessage(AdapterState.BREDR_STARTED);
                         mBtCompanionManager.loadCompanionInfo();
                     }
@@ -535,7 +538,7 @@ public class AdapterService extends Service {
                                     .equals(mRunningProfiles.get(0).getName())))) {
                         mAdapterStateMachine.sendMessage(AdapterState.BREDR_STOPPED);
                     } else if (mRunningProfiles.size() == 0) {
-                        disableNative();
+                        mNativeInterface.disable();
                     }
                     break;
                 default:
@@ -617,7 +620,7 @@ public class AdapterService extends Service {
         mJniCallbacks = new JniCallbacks(this, mAdapterProperties);
         mBluetoothKeystoreService =
                 new BluetoothKeystoreService(
-                        new BluetoothKeystoreNativeInterface(), isCommonCriteriaMode());
+                        BluetoothKeystoreNativeInterface.getInstance(), isCommonCriteriaMode());
         mBluetoothKeystoreService.start();
         int configCompareResult = mBluetoothKeystoreService.getCompareResult();
 
@@ -629,7 +632,7 @@ public class AdapterService extends Service {
                 getApplicationContext()
                         .getPackageManager()
                         .hasSystemFeature(PackageManager.FEATURE_LEANBACK_ONLY);
-        initNative(
+        mNativeInterface.init(
                 mUserManager.isGuestUser(),
                 isCommonCriteriaMode(),
                 configCompareResult,
@@ -643,9 +646,9 @@ public class AdapterService extends Service {
                 new RemoteCallbackList<IBluetoothQualityReportReadyCallback>();
         mCallbacks = new RemoteCallbackList<IBluetoothCallback>();
         // Load the name and address
-        getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_BDADDR);
-        getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_BDNAME);
-        getAdapterPropertyNative(AbstractionLayer.BT_PROPERTY_CLASS_OF_DEVICE);
+        mNativeInterface.getAdapterProperty(AbstractionLayer.BT_PROPERTY_BDADDR);
+        mNativeInterface.getAdapterProperty(AbstractionLayer.BT_PROPERTY_BDNAME);
+        mNativeInterface.getAdapterProperty(AbstractionLayer.BT_PROPERTY_CLASS_OF_DEVICE);
 
         mBluetoothKeystoreService.initJni();
 
@@ -959,7 +962,7 @@ public class AdapterService extends Service {
 
     void stopProfileServices() {
         // Make sure to stop classic background tasks now
-        cancelDiscoveryNative();
+        mNativeInterface.cancelDiscovery();
         mAdapterProperties.setScanMode(BluetoothAdapter.SCAN_MODE_NONE);
 
         Class[] supportedProfileServices = Config.getSupportedProfiles();
@@ -1288,7 +1291,7 @@ public class AdapterService extends Service {
 
         if (mNativeAvailable) {
             debugLog("cleanup() - Cleaning up adapter native");
-            cleanupNative();
+            mNativeInterface.cleanup();
             mNativeAvailable = false;
         }
 
@@ -2163,7 +2166,7 @@ public class AdapterService extends Service {
                 // by default return true
                 receiver.send(true);
             } else {
-                receiver.send(service.isLogRedactionEnabled());
+                receiver.send(service.mNativeInterface.isLogRedactionEnabled());
             }
         }
 
@@ -2481,7 +2484,7 @@ public class AdapterService extends Service {
             }
 
             service.debugLog("cancelDiscovery");
-            return service.cancelDiscoveryNative();
+            return service.mNativeInterface.cancelDiscovery();
         }
 
         @Override
@@ -2709,7 +2712,7 @@ public class AdapterService extends Service {
                 deviceProp.setBondingInitiatedLocally(false);
             }
 
-            return service.cancelBondNative(getBytesFromAddress(device.getAddress()));
+            return service.mNativeInterface.cancelBond(getBytesFromAddress(device.getAddress()));
         }
 
         @Override
@@ -3423,7 +3426,7 @@ public class AdapterService extends Service {
             }
             service.logUserBondResponse(
                     device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_PIN_REPLIED);
-            return service.pinReplyNative(
+            return service.mNativeInterface.pinReply(
                     getBytesFromAddress(device.getAddress()), accept, len, pinCode);
         }
 
@@ -3468,7 +3471,7 @@ public class AdapterService extends Service {
             }
             service.logUserBondResponse(
                     device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_SSP_REPLIED);
-            return service.sspReplyNative(
+            return service.mNativeInterface.sspReply(
                     getBytesFromAddress(device.getAddress()),
                     AbstractionLayer.BT_SSP_VARIANT_PASSKEY_ENTRY,
                     accept,
@@ -3510,7 +3513,7 @@ public class AdapterService extends Service {
             }
             service.logUserBondResponse(
                     device, accept, BluetoothProtoEnums.BOND_SUB_STATE_LOCAL_SSP_REPLIED);
-            return service.sspReplyNative(
+            return service.mNativeInterface.sspReply(
                     getBytesFromAddress(device.getAddress()),
                     AbstractionLayer.BT_SSP_VARIANT_PASSKEY_CONFIRMATION,
                     accept,
@@ -5605,8 +5608,6 @@ public class AdapterService extends Service {
         return mAdapterProperties.getName();
     }
 
-    private native boolean isLogRedactionEnabled();
-
     public int getNameLengthForAdvertise() {
         return mAdapterProperties.getName().length();
     }
@@ -5662,7 +5663,7 @@ public class AdapterService extends Service {
             mDiscoveringPackages.add(
                     new DiscoveringPackage(callingPackage, permission, hasDisavowedLocation));
         }
-        return startDiscoveryNative();
+        return mNativeInterface.startDiscovery();
     }
 
     /**
@@ -5741,7 +5742,7 @@ public class AdapterService extends Service {
 
         // Pairing is unreliable while scanning, so cancel discovery
         // Note, remove this when native stack improves
-        cancelDiscoveryNative();
+        mNativeInterface.cancelDiscovery();
 
         Message msg = mBondStateMachine.obtainMessage(BondStateMachine.CREATE_BOND);
         msg.obj = device;
@@ -5792,7 +5793,7 @@ public class AdapterService extends Service {
         mHandler.postDelayed(
                 () -> removeFromOobDataCallbackQueue(callback),
                 GENERATE_LOCAL_OOB_DATA_TIMEOUT.toMillis());
-        generateLocalOobDataNative(transport);
+        mNativeInterface.generateLocalOobData(transport);
     }
 
     private synchronized void removeFromOobDataCallbackQueue(IBluetoothOobDataCallback callback) {
@@ -5876,7 +5877,7 @@ public class AdapterService extends Service {
     }
 
     int getConnectionState(BluetoothDevice device) {
-        return getConnectionStateNative(getBytesFromAddress(device.getAddress()));
+        return mNativeInterface.getConnectionState(getBytesFromAddress(device.getAddress()));
     }
 
     int getConnectionHandle(BluetoothDevice device, int transport) {
@@ -6723,7 +6724,7 @@ public class AdapterService extends Service {
             mBtCompanionManager.factoryReset();
         }
 
-        return factoryResetNative();
+        return mNativeInterface.factoryReset();
     }
 
     @VisibleForTesting
@@ -6743,7 +6744,7 @@ public class AdapterService extends Service {
         }
 
         // Pull the data. The callback will notify mEnergyInfoLock.
-        readEnergyInfo();
+        mNativeInterface.readEnergyInfo();
 
         synchronized (mEnergyInfoLock) {
             long now = System.currentTimeMillis();
@@ -6979,7 +6980,7 @@ public class AdapterService extends Service {
 
         // pass just interesting metadata to native, to reduce spam
         if (key == BluetoothDevice.METADATA_LE_AUDIO) {
-            metadataChangedNative(Utils.getBytesFromAddress(address), key, value);
+            mNativeInterface.metadataChanged(Utils.getBytesFromAddress(address), key, value);
         }
 
         if (mMetadataListeners.containsKey(device)) {
@@ -7070,14 +7071,14 @@ public class AdapterService extends Service {
             writer.println("Not dumping, since Bluetooth is turning off");
             writer.println();
         } else {
-            dumpNative(fd, args);
+            mNativeInterface.dump(fd, args);
         }
     }
 
     private void dumpMetrics(FileDescriptor fd) {
         BluetoothMetricsProto.BluetoothLog.Builder metricsBuilder =
                 BluetoothMetricsProto.BluetoothLog.newBuilder();
-        byte[] nativeMetricsBytes = dumpMetricsNative();
+        byte[] nativeMetricsBytes = mNativeInterface.dumpMetrics();
         debugLog("dumpMetrics: native metrics size is " + nativeMetricsBytes.length);
         if (nativeMetricsBytes.length > 0) {
             try {
@@ -7395,7 +7396,7 @@ public class AdapterService extends Service {
         if (device == null) {
             return new byte[0];
         }
-        return obfuscateAddressNative(Utils.getByteAddress(device));
+        return mNativeInterface.obfuscateAddress(Utils.getByteAddress(device));
     }
 
     /**
@@ -7440,7 +7441,7 @@ public class AdapterService extends Service {
         if (device == null) {
             return 0;
         }
-        return getMetricIdNative(Utils.getByteAddress(device));
+        return mNativeInterface.getMetricId(Utils.getByteAddress(device));
     }
 
     public CompanionManager getCompanionManager() {
@@ -7529,7 +7530,7 @@ public class AdapterService extends Service {
      * @return boolean true if audio low latency is successfully allowed or disallowed
      */
     public boolean allowLowLatencyAudio(boolean allowed, BluetoothDevice device) {
-        return allowLowLatencyAudioNative(allowed, Utils.getByteAddress(device));
+        return mNativeInterface.allowLowLatencyAudio(allowed, Utils.getByteAddress(device));
     }
 
     /**
@@ -7539,7 +7540,7 @@ public class AdapterService extends Service {
      * @return int value other than 0 if remote PBAP PCE version is found
      */
     public int getRemotePbapPceVersion(String address) {
-        return getRemotePbapPceVersionNative(address);
+        return mNativeInterface.getRemotePbapPceVersion(address);
     }
 
     /**
@@ -7548,7 +7549,7 @@ public class AdapterService extends Service {
      * @return true/false.
      */
     public boolean pbapPseDynamicVersionUpgradeIsEnabled() {
-        return pbapPseDynamicVersionUpgradeIsEnabledNative();
+        return mNativeInterface.pbapPseDynamicVersionUpgradeIsEnabled();
     }
 
     /** Sets the battery level of the remote device */
@@ -7561,31 +7562,31 @@ public class AdapterService extends Service {
     }
 
     public boolean interopMatchAddr(InteropFeature feature, String address) {
-        return interopMatchAddrNative(feature.name(), address);
+        return mNativeInterface.interopMatchAddr(feature.name(), address);
     }
 
     public boolean interopMatchName(InteropFeature feature, String name) {
-        return interopMatchNameNative(feature.name(), name);
+        return mNativeInterface.interopMatchName(feature.name(), name);
     }
 
     public boolean interopMatchAddrOrName(InteropFeature feature, String address) {
-        return interopMatchAddrOrNameNative(feature.name(), address);
+        return mNativeInterface.interopMatchAddrOrName(feature.name(), address);
     }
 
     public void interopDatabaseAddAddr(InteropFeature feature, String address, int length) {
-        interopDatabaseAddRemoveAddrNative(true, feature.name(), address, length);
+        mNativeInterface.interopDatabaseAddRemoveAddr(true, feature.name(), address, length);
     }
 
     public void interopDatabaseRemoveAddr(InteropFeature feature, String address) {
-        interopDatabaseAddRemoveAddrNative(false, feature.name(), address, 0);
+        mNativeInterface.interopDatabaseAddRemoveAddr(false, feature.name(), address, 0);
     }
 
     public void interopDatabaseAddName(InteropFeature feature, String name) {
-        interopDatabaseAddRemoveNameNative(true, feature.name(), name);
+        mNativeInterface.interopDatabaseAddRemoveName(true, feature.name(), name);
     }
 
     public void interopDatabaseRemoveName(InteropFeature feature, String name) {
-        interopDatabaseAddRemoveNameNative(false, feature.name(), name);
+        mNativeInterface.interopDatabaseAddRemoveName(false, feature.name(), name);
     }
 
     private void loadLeAudioAllowDevices() {
@@ -7667,121 +7668,6 @@ public class AdapterService extends Service {
             mPhonePolicy.onUuidsDiscovered(device, uuids);
         }
     }
-
-    static native void classInitNative();
-
-    native boolean initNative(
-            boolean startRestricted,
-            boolean isCommonCriteriaMode,
-            int configCompareResult,
-            String[] initFlags,
-            boolean isAtvDevice,
-            String userDataDirectory);
-
-    native void cleanupNative();
-
-    /*package*/
-    native boolean enableNative();
-
-    /*package*/
-    native boolean disableNative();
-
-    /*package*/
-    native boolean setAdapterPropertyNative(int type, byte[] val);
-
-    /*package*/
-    native boolean getAdapterPropertiesNative();
-
-    /*package*/
-    native boolean getAdapterPropertyNative(int type);
-
-    /*package*/
-    native boolean setAdapterPropertyNative(int type);
-
-    /*package*/
-    native boolean setDevicePropertyNative(byte[] address, int type, byte[] val);
-
-    /*package*/
-    native boolean getDevicePropertyNative(byte[] address, int type);
-
-    /** package */
-    public native boolean createBondNative(byte[] address, int addressType, int transport);
-
-    /*package*/
-    native boolean createBondOutOfBandNative(
-            byte[] address, int transport, OobData p192Data, OobData p256Data);
-
-    /*package*/
-    public native boolean removeBondNative(byte[] address);
-
-    /*package*/
-    native boolean cancelBondNative(byte[] address);
-
-    /*package*/
-    native void generateLocalOobDataNative(int transport);
-
-    /*package*/
-    native boolean sdpSearchNative(byte[] address, byte[] uuid);
-
-    /*package*/
-    native int getConnectionStateNative(byte[] address);
-
-    private native boolean startDiscoveryNative();
-
-    private native boolean cancelDiscoveryNative();
-
-    private native boolean pinReplyNative(byte[] address, boolean accept, int len, byte[] pin);
-
-    private native boolean sspReplyNative(byte[] address, int type, boolean accept, int passkey);
-
-    /*package*/
-    native boolean getRemoteServicesNative(byte[] address, int transport);
-
-    /*package*/
-    native boolean getRemoteMasInstancesNative(byte[] address);
-
-    private native int readEnergyInfo();
-
-    /*package*/
-    native boolean factoryResetNative();
-
-    private native void dumpNative(FileDescriptor fd, String[] arguments);
-
-    private native byte[] dumpMetricsNative();
-
-    private native byte[] obfuscateAddressNative(byte[] address);
-
-    native boolean setBufferLengthMillisNative(int codec, int value);
-
-    private native int getMetricIdNative(byte[] address);
-
-    /*package*/ native int connectSocketNative(
-            byte[] address, int type, byte[] uuid, int port, int flag, int callingUid);
-
-    /*package*/ native int createSocketChannelNative(
-            int type, String serviceName, byte[] uuid, int port, int flag, int callingUid);
-
-    /*package*/ native void requestMaximumTxDataLengthNative(byte[] address);
-
-    private native boolean allowLowLatencyAudioNative(boolean allowed, byte[] address);
-
-    private native void metadataChangedNative(byte[] address, int key, byte[] value);
-
-    private native boolean interopMatchAddrNative(String featureName, String address);
-
-    private native boolean interopMatchNameNative(String featureName, String name);
-
-    private native boolean interopMatchAddrOrNameNative(String featureName, String address);
-
-    private native void interopDatabaseAddRemoveAddrNative(
-            boolean doAdd, String featureName, String address, int length);
-
-    private native void interopDatabaseAddRemoveNameNative(
-            boolean doAdd, String featureBame, String name);
-
-    private native int getRemotePbapPceVersionNative(String address);
-
-    private native boolean pbapPseDynamicVersionUpgradeIsEnabledNative();
 
     // Returns if this is a mock object. This is currently used in testing so that we may not call
     // System.exit() while finalizing the object. Otherwise GC of mock objects unfortunately ends up
