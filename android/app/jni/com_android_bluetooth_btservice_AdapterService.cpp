@@ -1753,7 +1753,7 @@ static jboolean getRemoteServicesNative(JNIEnv* env, jobject obj,
   return (ret == BT_STATUS_SUCCESS) ? JNI_TRUE : JNI_FALSE;
 }
 
-static int readEnergyInfo() {
+static int readEnergyInfoNative() {
   ALOGV("%s", __func__);
 
   if (!sBluetoothInterface) return JNI_FALSE;
@@ -1982,7 +1982,7 @@ static void metadataChangedNative(JNIEnv* env, jobject obj, jbyteArray address,
   return;
 }
 
-static jboolean isLogRedactionEnabled(JNIEnv* env, jobject obj) {
+static jboolean isLogRedactionEnabledNative(JNIEnv* env, jobject obj) {
   ALOGV("%s", __func__);
   return bluetooth::os::should_log_be_redacted();
 }
@@ -2230,7 +2230,7 @@ static JNINativeMethod sMethods[] = {
     {"sspReplyNative", "([BIZI)Z", (void*)sspReplyNative},
     {"getRemoteServicesNative", "([BI)Z", (void*)getRemoteServicesNative},
     {"alarmFiredNative", "()V", (void*)alarmFiredNative},
-    {"readEnergyInfo", "()I", (void*)readEnergyInfo},
+    {"readEnergyInfoNative", "()I", (void*)readEnergyInfoNative},
     {"dumpNative", "(Ljava/io/FileDescriptor;[Ljava/lang/String;)V",
      (void*)dumpNative},
     {"dumpMetricsNative", "()[B", (void*)dumpMetricsNative},
@@ -2246,7 +2246,7 @@ static JNINativeMethod sMethods[] = {
      (void*)requestMaximumTxDataLengthNative},
     {"allowLowLatencyAudioNative", "(Z[B)Z", (void*)allowLowLatencyAudioNative},
     {"metadataChangedNative", "([BI[B)V", (void*)metadataChangedNative},
-    {"isLogRedactionEnabled", "()Z", (void*)isLogRedactionEnabled},
+    {"isLogRedactionEnabledNative", "()Z", (void*)isLogRedactionEnabledNative},
     {"interopMatchAddrNative", "(Ljava/lang/String;Ljava/lang/String;)Z",
      (void*)interopMatchAddrNative},
     {"interopMatchNameNative", "(Ljava/lang/String;Ljava/lang/String;)Z",
@@ -2267,7 +2267,7 @@ static JNINativeMethod sMethods[] = {
 
 int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
   return jniRegisterNativeMethods(
-      env, "com/android/bluetooth/btservice/AdapterService", sMethods,
+      env, "com/android/bluetooth/btservice/AdapterNativeInterface", sMethods,
       NELEM(sMethods));
 }
 
