@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0804cc4e_d1d18920",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-08-16T04:29:29Z",
+      "side": 1,
+      "message": "Seems my +2 was expired when uploading patch set 2. \nLGTM. Please fix the errorprone.",
+      "revId": "73ede351fcfe883821b93fb6d617927e3f01a44d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
