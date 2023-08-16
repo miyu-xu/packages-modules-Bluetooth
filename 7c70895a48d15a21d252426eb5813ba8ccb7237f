@@ -16,6 +16,75 @@
       "message": "Gentle ping. Thanks!",
       "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ef1bd17_7574c189",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-08-16T15:36:49Z",
+      "side": 1,
+      "message": "I think these comments are mostly useless as the names are explicit, but we should be consistent. Please add a comment or remove the above comments.",
+      "range": {
+        "startLine": 96,
+        "startChar": 6,
+        "endLine": 96,
+        "endChar": 28
+      },
+      "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e352400c_5b188292",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-08-16T15:36:49Z",
+      "side": 1,
+      "message": "```suggestion\n  // RFCOMM sockets must be torn down before tearing down the underlying\n  // L2CAP sockets. \n  bt_status_t status \u003d btsock_rfc_disconnect(bd_addr);\n```",
+      "range": {
+        "startLine": 412,
+        "startChar": 2,
+        "endLine": 412,
+        "endChar": 54
+      },
+      "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53dcb0ad_ded8cd45",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-08-16T15:36:49Z",
+      "side": 1,
+      "message": "Is there a scenario in which we might want to disconnect all sockets even if the device is still connected? If so, is this action appropriate in that case? If yes, maybe alter the comment to indicate that it is generally for disconnecting all sockets, and device disconnection is an example of when that might happen. If no, maybe this should be `DisconnectAllAfterDeviceDisconnection`.",
+      "range": {
+        "startLine": 482,
+        "startChar": 4,
+        "endLine": 482,
+        "endChar": 75
+      },
+      "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
