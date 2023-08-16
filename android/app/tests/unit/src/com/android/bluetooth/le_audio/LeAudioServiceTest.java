@@ -182,7 +182,7 @@ public class LeAudioServiceTest {
         doAnswer(invocation -> mBondedDevices.toArray(new BluetoothDevice[]{})).when(
                 mAdapterService).getBondedDevices();
 
-        LeAudioNativeInterface.setInstance(mNativeInterface);
+        LeAudioNativeInterface.sInstance = mNativeInterface;
         startService();
         mService.mAudioManager = mAudioManager;
         mService.mMcpService = mMcpService;
@@ -240,7 +240,7 @@ public class LeAudioServiceTest {
         mTargetContext.unregisterReceiver(mLeAudioIntentReceiver);
         mDeviceQueueMap.clear();
         TestUtils.clearAdapterService(mAdapterService);
-        LeAudioNativeInterface.setInstance(null);
+        LeAudioNativeInterface.sInstance = null;
     }
 
     private void startService() throws TimeoutException {

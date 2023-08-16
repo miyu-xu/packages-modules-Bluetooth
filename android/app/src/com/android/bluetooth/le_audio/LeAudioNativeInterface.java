@@ -74,16 +74,6 @@ public class LeAudioNativeInterface {
         }
     }
 
-    /**
-     * Set singleton instance.
-     */
-    @VisibleForTesting
-    static void setInstance(LeAudioNativeInterface instance) {
-        synchronized (INSTANCE_LOCK) {
-            sInstance = instance;
-        }
-    }
-
     private byte[] getByteAddress(BluetoothDevice device) {
         if (device == null) {
             return Utils.getBytesFromAddress("00:00:00:00:00:00");

@@ -51,14 +51,6 @@ public class A2dpNativeInterface {
 
     private static final Object INSTANCE_LOCK = new Object();
 
-    static {
-        if (Utils.isInstrumentationTestMode()) {
-            Log.w(TAG, "App is instrumented. Skip loading the native");
-        } else {
-            classInitNative();
-        }
-    }
-
     @VisibleForTesting
     private A2dpNativeInterface() {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
