@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "596233a7_6687b34b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-16T16:38:41Z",
+      "side": 1,
+      "message": "Maybe we should just remove the assertions here.  Since they\u0027re specific to a non-Android HAL, I\u0027m not sure there\u0027s a benefit in wrapping it with TARGET_FLOSS",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 9
+      },
+      "revId": "dd7acc3b6e1a543b6c75fbdf882c3bcc46e6a7ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "92e94976_7cdb4416",
@@ -31,6 +54,52 @@
       "writtenOn": "2023-08-16T04:59:14Z",
       "side": 1,
       "message": "Hi, please help review. Thank you!",
+      "revId": "dd7acc3b6e1a543b6c75fbdf882c3bcc46e6a7ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc0c4a7f_01080118",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-16T16:38:41Z",
+      "side": 1,
+      "message": "Does this silently fail, or do you get a chance to recover?",
+      "range": {
+        "startLine": 299,
+        "startChar": 12,
+        "endLine": 299,
+        "endChar": 18
+      },
+      "revId": "dd7acc3b6e1a543b6c75fbdf882c3bcc46e6a7ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17ebc84e_ddd5e92f",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-16T16:38:41Z",
+      "side": 1,
+      "message": "How is this a broken chipset?  It seems like a software error if you can\u0027t receive from the socket.",
+      "range": {
+        "startLine": 387,
+        "startChar": 46,
+        "endLine": 387,
+        "endChar": 53
+      },
       "revId": "dd7acc3b6e1a543b6c75fbdf882c3bcc46e6a7ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
