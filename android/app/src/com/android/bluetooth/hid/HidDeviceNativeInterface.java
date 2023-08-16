@@ -70,7 +70,7 @@ public class HidDeviceNativeInterface {
     public static HidDeviceNativeInterface getInstance() {
         synchronized (INSTANCE_LOCK) {
             if (sInstance == null) {
-                setInstance(new HidDeviceNativeInterface());
+                sInstance = new HidDeviceNativeInterface();
             }
             return sInstance;
         }
