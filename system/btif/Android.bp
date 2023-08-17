@@ -122,7 +122,6 @@ cc_library_static {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     local_include_dirs: [
         "include",
@@ -208,7 +207,6 @@ cc_library_static {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     target: {
         android: {
@@ -342,7 +340,6 @@ cc_test {
     header_libs: ["libbluetooth_headers"],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     static_libs: [
         "libbluetooth-types",
@@ -375,7 +372,6 @@ cc_test {
     header_libs: ["libbluetooth_headers"],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     static_libs: [
         "libbluetooth-types",
@@ -576,7 +572,6 @@ cc_test {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     header_libs: ["libbluetooth_headers"],
     shared_libs: [
@@ -710,7 +705,6 @@ cc_test {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     header_libs: ["libbluetooth_headers"],
     shared_libs: [
