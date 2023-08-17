@@ -255,7 +255,6 @@ cc_binary {
         "BlueberryFacadeGeneratedStub_h",
         "BluetoothGeneratedBundlerSchema_h_bfbs",
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
         // Needed here to guarantee that generated zip file is created before
         // bluetooth_cert_tests.zip is packaged
         "BlueberryFacadeAndCertGeneratedStub_py",
@@ -268,6 +267,9 @@ cc_binary {
         "libbluetooth-dumpsys",
         "libbluetooth-protos",
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
+        "libbluetooth_l2cap_pdl",
+        "libbluetooth_smp_pdl",
         "libbluetooth_rust_interop",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
@@ -384,7 +386,6 @@ cc_test {
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedDumpsysInternalTestData_h",
         "BluetoothGeneratedDumpsysTestData_h",
-        "BluetoothGeneratedPackets_h",
     ],
     static_libs: [
         "libbluetooth-dumpsys",
@@ -392,6 +393,9 @@ cc_test {
         "libbluetooth-dumpsys-unittest",
         "libbluetooth-protos",
         "libbluetooth_gd_unit_tests",
+        "libbluetooth_hci_pdl",
+        "libbluetooth_l2cap_pdl",
+        "libbluetooth_smp_pdl",
         "libbluetooth_rust_interop",
         "libbt-platform-protos-lite",
         "libbt-platform-protos-lite",
@@ -480,7 +484,6 @@ cc_defaults {
     host_supported: true,
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     shared_libs: [
         "libcrypto",
@@ -759,14 +762,14 @@ cc_library_host_shared {
         "packet/python3_module.cc",
 
     ],
-    generated_headers: [
-        "BluetoothGeneratedPackets_h",
-    ],
     generated_sources: [
         "BluetoothGeneratedPackets_python3_cc",
     ],
     header_libs: [
         "pybind11_headers",
+    ],
+    static_libs: [
+        "libbluetooth_hci_pdl",
     ],
     cflags: [
         "-fexceptions",
