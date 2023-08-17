@@ -45,7 +45,7 @@ import pandora.HostProto.ScanningResponse;
 @RunWith(AndroidJUnit4.class)
 public class LeAdvertisingTest {
 
-    private static final String LOG_TAG = "LeAdvertisingTest";
+    private static final String TAG = "LeAdvertisingTest";
 
     private static final int TIMEOUT_ADVERTISING_MS = 1000;
 
@@ -82,6 +82,10 @@ public class LeAdvertisingTest {
               .forAddress("localhost", 7999)
               .usePlaintext()
               .build();
+        
+        if (mChannel == null) {
+            Log.e(TAG, "mChannel is null");
+        }
 
         mHostBlockingStub = HostGrpc.newBlockingStub(mChannel);
         mHostStub = HostGrpc.newStub(mChannel);
@@ -91,7 +95,9 @@ public class LeAdvertisingTest {
     @After
     public void tearDown() throws Exception {
         // terminate the channel
-        mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
+        if (mChannel != null) {
+            mChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
+        }
     }
 
     @Test
@@ -100,7 +106,7 @@ public class LeAdvertisingTest {
                                       .thenCompose(advAddressPair -> scanWithBumble(advAddressPair))
                                       .join();
 
-        Log.i(LOG_TAG, "scan response: " + response);
+        Log.i(TAG, "scan response: " + response);
         assertThat(response).isNotNull();
     }
 
@@ -122,21 +128,21 @@ public class LeAdvertisingTest {
             @Override
             public void onAdvertisingSetStarted(AdvertisingSet advertisingSet, int txPower,
                     int status) {
-                Log.i(LOG_TAG, "onAdvertisingSetStarted " + " txPower:" + txPower
+                Log.i(TAG, "onAdvertisingSetStarted " + " txPower:" + txPower
                     + " status:" + status);
                 advertisingSet.enableAdvertising(true, TIMEOUT_ADVERTISING_MS, 0);
             }
             @Override
             public void onOwnAddressRead(AdvertisingSet advertisingSet, int addressType,
                     String address) {
-                Log.i(LOG_TAG, "onOwnAddressRead " + " addressType:" + addressType
+                Log.i(TAG, "onOwnAddressRead " + " addressType:" + addressType
                     + " address:" + address);
                 future.complete(new Pair<String, Integer>(address, addressType));
             }
             @Override
             public void onAdvertisingEnabled(AdvertisingSet advertisingSet, boolean enabled,
                     int status) {
-                Log.i(LOG_TAG, "onAdvertisingEnabled " + " enabled:" + enabled
+                Log.i(TAG, "onAdvertisingEnabled " + " enabled:" + enabled
                         + " status:" + status);
                 advertisingSet.getOwnAddress();
             }
@@ -165,7 +171,7 @@ public class LeAdvertisingTest {
                 else {
                     addr = Utils.addressStringFromByteString(response.getRandom());
                 }
-                Log.i(LOG_TAG,"scan observer: scan response address: " + addr);
+                Log.i(TAG,"scan observer: scan response address: " + addr);
 
                 if (addr.equals(address)) {
                     future.complete(response);
@@ -174,13 +180,13 @@ public class LeAdvertisingTest {
 
             @Override
             public void onError(Throwable e) {
-                Log.e(LOG_TAG,"scan observer: on error " + e);
+                Log.e(TAG,"scan observer: on error " + e);
                 future.completeExceptionally(e);
             }
 
             @Override
             public void onCompleted() {
-                Log.i(LOG_TAG,"scan observer: on completed");
+                Log.i(TAG,"scan observer: on completed");
                 future.complete(null);
             }
         };
