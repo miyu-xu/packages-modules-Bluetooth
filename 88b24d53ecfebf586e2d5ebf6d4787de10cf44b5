@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b138806_0fc0111a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-08-17T20:25:36Z",
+      "side": 1,
+      "message": "Hi guys, what\u0027s the status of this CL?",
+      "revId": "88b24d53ecfebf586e2d5ebf6d4787de10cf44b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
