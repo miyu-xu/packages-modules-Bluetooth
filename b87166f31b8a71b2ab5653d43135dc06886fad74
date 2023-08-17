@@ -70,6 +70,24 @@
       "parentUuid": "db70c043_20d8ba3d",
       "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37932012_7274767b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-08-17T18:00:49Z",
+      "side": 1,
+      "message": "Can you update the browser side to mirror the change to the API now so there is no confusion later? You don\u0027t need to do anything with the return value except for maybe print an info log.",
+      "parentUuid": "3d99d05f_7bd0376d",
+      "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
