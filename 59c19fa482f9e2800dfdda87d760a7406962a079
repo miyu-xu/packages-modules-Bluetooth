@@ -52,6 +52,24 @@
       "parentUuid": "78b1a3bd_5d8ee2b5",
       "revId": "59c19fa482f9e2800dfdda87d760a7406962a079",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90d00346_9b868b97",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-17T23:17:50Z",
+      "side": 1,
+      "message": "The top-level native method has a void return, from lower down call path where there\u0027s error code returned error codes don\u0027t have 1:1 mapping to Java return codes. \n\nThe primary requirement here from Java should be to notify the caller that the length of notification is invalid, so I think we need to handle here unless we have the native call return a status code and manage passing that up thru the stack and back to Java. \n\nIf we don\u0027t have Java error code defined for this scenario (see BluetoothGatt error codes relative to native ones), we\u0027d either have to modify API surface or throw an exception. \n\nAgree we should handle properly if called in native as well whichever way we go.\n\nI\u0027m ok with throwing an exception from here for now, but perhaps we can consider this as part of b/201571634 as well.",
+      "parentUuid": "832dda99_f063eab6",
+      "revId": "59c19fa482f9e2800dfdda87d760a7406962a079",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
