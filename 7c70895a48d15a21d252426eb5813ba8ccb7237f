@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4268e548_8f433980",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-17T08:24:21Z",
+      "side": 1,
+      "message": "Will remove unnecessary comments.",
+      "parentUuid": "1ef1bd17_7574c189",
+      "range": {
+        "startLine": 96,
+        "startChar": 6,
+        "endLine": 96,
+        "endChar": 28
+      },
+      "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e352400c_5b188292",
         "filename": "system/btif/src/btif_sock.cc",
         "patchSetId": 2
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "11c949df_170db5ba",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-17T08:24:21Z",
+      "side": 1,
+      "message": "But that is not what actually happens. The L2CAP sockets here don\u0027t underlie the RFCOMM sockets. The upper stack can choose to connect/listen to L2CAP sockets or RFCOMM sockets, and we need to disconnect them both. However I want to also return the status properly.\n\nMaybe I can rewrite to reflect this better.",
+      "parentUuid": "e352400c_5b188292",
+      "range": {
+        "startLine": 412,
+        "startChar": 2,
+        "endLine": 412,
+        "endChar": 54
+      },
+      "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "53dcb0ad_ded8cd45",
         "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
         "patchSetId": 2
@@ -77,6 +125,30 @@
       "writtenOn": "2023-08-16T15:36:49Z",
       "side": 1,
       "message": "Is there a scenario in which we might want to disconnect all sockets even if the device is still connected? If so, is this action appropriate in that case? If yes, maybe alter the comment to indicate that it is generally for disconnecting all sockets, and device disconnection is an example of when that might happen. If no, maybe this should be `DisconnectAllAfterDeviceDisconnection`.",
+      "range": {
+        "startLine": 482,
+        "startChar": 4,
+        "endLine": 482,
+        "endChar": 75
+      },
+      "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09559dc7_07956d4d",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-17T08:24:21Z",
+      "side": 1,
+      "message": "I don\u0027t think such a scenario exists, but if it does, this will do just that.\nLet me update the comment.",
+      "parentUuid": "53dcb0ad_ded8cd45",
       "range": {
         "startLine": 482,
         "startChar": 4,
