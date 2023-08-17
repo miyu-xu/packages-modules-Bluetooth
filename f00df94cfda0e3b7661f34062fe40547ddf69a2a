@@ -16,6 +16,24 @@
       "message": "The Bug ID seems to be malformed.",
       "revId": "f00df94cfda0e3b7661f34062fe40547ddf69a2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f50f16b_cb31a0fa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-17T17:33:43Z",
+      "side": 1,
+      "message": "Correct, it should have been `289879962`.\n\nFYI this change is reverted in aosp/2696873 and re-landed in aosp/2697416",
+      "parentUuid": "52f6c5f1_293cb874",
+      "revId": "f00df94cfda0e3b7661f34062fe40547ddf69a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
