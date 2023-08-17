@@ -73,7 +73,6 @@ cc_library_static {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: crypto_toolbox_srcs + [
         "a2dp/a2dp_aac.cc",
@@ -135,6 +134,7 @@ cc_library_static {
         "pan/pan_utils.cc",
     ],
     static_libs: [
+        "libbluetooth_hci_pdl",
         "libbt-hci",
         "libbt-stack-core",
     ],
@@ -278,7 +278,6 @@ cc_library_static {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     cflags: [
         /* we export all classes, so change default visibility, instead of having EXPORT_SYMBOL on each class*/
@@ -287,6 +286,7 @@ cc_library_static {
     static_libs: [
         "libbluetooth_core_rs",
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
         "libbt-hci",
     ],
     shared_libs: [
@@ -406,7 +406,6 @@ cc_fuzz {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: crypto_toolbox_srcs + [
         ":TestCommonLogMsg",
@@ -431,6 +430,9 @@ cc_fuzz {
         "gatt/*.cc",
     ],
     static_libs: [
+        "libbluetooth_hci_pdl",
+        "libbluetooth_l2cap_pdl",
+        "libbluetooth_smp_pdl",
         "libgmock",
     ],
 }
@@ -448,7 +450,6 @@ cc_fuzz {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: crypto_toolbox_srcs + [
         ":TestCommonLogMsg",
@@ -468,6 +469,9 @@ cc_fuzz {
         "smp/*.cc", // add other sources files  (p256 related) under smp into this test
     ],
     static_libs: [
+        "libbluetooth_hci_pdl",
+        "libbluetooth_l2cap_pdl",
+        "libbluetooth_smp_pdl",
         "libgmock",
     ],
 }
@@ -485,7 +489,6 @@ cc_fuzz {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: [
         ":TestCommonLogMsg",
@@ -505,6 +508,9 @@ cc_fuzz {
         "fuzzers/bnep_fuzzer.cc",
     ],
     static_libs: [
+        "libbluetooth_hci_pdl",
+        "libbluetooth_l2cap_pdl",
+        "libbluetooth_smp_pdl",
         "libgmock",
     ],
 }
@@ -522,7 +528,6 @@ cc_fuzz {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: [
         ":TestCommonLogMsg",
@@ -544,6 +549,9 @@ cc_fuzz {
         "fuzzers/avrc_fuzzer.cc",
     ],
     static_libs: [
+        "libbluetooth_hci_pdl",
+        "libbluetooth_l2cap_pdl",
+        "libbluetooth_smp_pdl",
         "libgmock",
         "libosi",
     ],
@@ -569,7 +577,6 @@ cc_fuzz {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: [
         ":TestCommonLogMsg",
@@ -588,6 +595,9 @@ cc_fuzz {
         "l2cap/*.cc",
     ],
     static_libs: [
+        "libbluetooth_hci_pdl",
+        "libbluetooth_l2cap_pdl",
+        "libbluetooth_smp_pdl",
         "libgmock",
     ],
     target: {
@@ -726,7 +736,6 @@ cc_test {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     shared_libs: [
         "libcrypto",
@@ -734,6 +743,9 @@ cc_test {
     ],
     static_libs: [
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
+        "libbluetooth_l2cap_pdl",
+        "libbluetooth_smp_pdl",
         "libbt-common",
         "libchrome",
         "libevent",
@@ -804,7 +816,6 @@ cc_test {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     shared_libs: [
         "libcrypto",
@@ -812,6 +823,9 @@ cc_test {
     ],
     static_libs: [
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
+        "libbluetooth_l2cap_pdl",
+        "libbluetooth_smp_pdl",
         "libchrome",
         "libevent",
         "libgmock",
@@ -1356,7 +1370,6 @@ cc_test {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: crypto_toolbox_srcs + [
         ":BluetoothBtaaSources_host",
@@ -1583,7 +1596,6 @@ cc_test {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: [
         ":TestCommonLogMsg",
@@ -1649,7 +1661,6 @@ cc_test {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: [
         ":OsiCompatSources",
@@ -1738,7 +1749,6 @@ cc_test {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: [
         ":OsiCompatSources",
@@ -1823,7 +1833,6 @@ cc_test {
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     srcs: [
         ":OsiCompatSources",

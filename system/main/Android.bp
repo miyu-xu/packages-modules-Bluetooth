@@ -48,7 +48,6 @@ cc_library_static {
     generated_headers: [
         "BluetoothGeneratedBundlerSchema_h_bfbs",
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     apex_available: [
         "com.android.btservices",
@@ -137,7 +136,6 @@ cc_library_static {
     generated_headers: [
         "BluetoothGeneratedBundlerSchema_h_bfbs",
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -203,6 +201,7 @@ cc_test {
     static_libs: [
         "libbluetooth-dumpsys",
         "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
         "libbt-common",
         "libbtdevice",
         "libchrome",
@@ -228,7 +227,6 @@ cc_test {
     generated_headers: [
         "BluetoothGeneratedBundlerSchema_h_bfbs",
         "BluetoothGeneratedDumpsysDataSchema_h",
-        "BluetoothGeneratedPackets_h",
     ],
     min_sdk_version: "Tiramisu",
 }
