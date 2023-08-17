@@ -110,6 +110,30 @@
       },
       "revId": "f4602c5632911aa26b11c53c949a2d482d742a1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "775ce2ef_14857e7a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-17T01:44:48Z",
+      "side": 1,
+      "message": "You will not add any failure by keeping the permission.\nBut then you are changing the way other test run.\n\nFor exemple if a  test is always run after your test, it will pass until the day the test order change (like with a new sharding) and the test will suddenly fail with no obvious reason.\n\nI do think we should do it in this CL",
+      "parentUuid": "c6afc89a_d05588c8",
+      "range": {
+        "startLine": 68,
+        "startChar": 4,
+        "endLine": 73,
+        "endChar": 5
+      },
+      "revId": "f4602c5632911aa26b11c53c949a2d482d742a1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
