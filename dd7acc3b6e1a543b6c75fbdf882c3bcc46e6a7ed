@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9126d8f_46d4610d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-08-17T04:09:57Z",
+      "side": 1,
+      "message": "Sure. Let\u0027s remove the assertion.",
+      "parentUuid": "596233a7_6687b34b",
+      "range": {
+        "startLine": 11,
+        "startChar": 1,
+        "endLine": 11,
+        "endChar": 9
+      },
+      "revId": "dd7acc3b6e1a543b6c75fbdf882c3bcc46e6a7ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "92e94976_7cdb4416",
@@ -83,6 +107,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8460548_eb207ad9",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-08-17T04:09:57Z",
+      "side": 1,
+      "message": "We restart the daemon a few times after shutting down unexpectedly. If the chipset can recover themselves within the time, bluetooth will work again.",
+      "parentUuid": "bc0c4a7f_01080118",
+      "range": {
+        "startLine": 299,
+        "startChar": 12,
+        "endLine": 299,
+        "endChar": 18
+      },
+      "revId": "dd7acc3b6e1a543b6c75fbdf882c3bcc46e6a7ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17ebc84e_ddd5e92f",
         "filename": "system/gd/hal/hci_hal_host.cc",
         "patchSetId": 6
@@ -94,6 +142,30 @@
       "writtenOn": "2023-08-16T16:38:41Z",
       "side": 1,
       "message": "How is this a broken chipset?  It seems like a software error if you can\u0027t receive from the socket.",
+      "range": {
+        "startLine": 387,
+        "startChar": 46,
+        "endLine": 387,
+        "endChar": 53
+      },
+      "revId": "dd7acc3b6e1a543b6c75fbdf882c3bcc46e6a7ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76c09250_891d7cde",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-08-17T04:09:57Z",
+      "side": 1,
+      "message": "For example, usb disconnected can cause the socket unable to read. This is a known issue in some of the chipset.",
+      "parentUuid": "17ebc84e_ddd5e92f",
       "range": {
         "startLine": 387,
         "startChar": 46,
