@@ -95,7 +95,3 @@ void btm_pm_proc_ssr_evt(uint8_t* p, UNUSED_ATTR uint16_t evt_len) {
   inc_func_call_count(__func__);
 }
 void btm_pm_reset(void) { inc_func_call_count(__func__); }
-void process_ssr_event(tHCI_STATUS status, uint16_t handle,
-                       UNUSED_ATTR uint16_t max_tx_lat, uint16_t max_rx_lat) {
-  inc_func_call_count(__func__);
-}

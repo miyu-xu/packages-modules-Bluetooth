@@ -105,6 +105,9 @@ static void send_sniff_subrating(uint16_t handle, const RawAddress& addr,
 static tBTM_STATUS btm_pm_snd_md_req(uint16_t handle, uint8_t pm_id,
                                      int link_ind,
                                      const tBTM_PM_PWR_MD* p_mode);
+static void process_ssr_event(tHCI_STATUS status, uint16_t handle,
+                              UNUSED_ATTR uint16_t max_tx_lat,
+                              uint16_t max_rx_lat);
 
 /*****************************************************************************/
 /*                     P U B L I C  F U N C T I O N S                        */
@@ -759,8 +762,9 @@ void btm_pm_proc_mode_change(tHCI_STATUS hci_status, uint16_t hci_handle,
  * Returns          none.
  *
  ******************************************************************************/
-void process_ssr_event(tHCI_STATUS status, uint16_t handle,
-                       UNUSED_ATTR uint16_t max_tx_lat, uint16_t max_rx_lat) {
+static void process_ssr_event(tHCI_STATUS status, uint16_t handle,
+                              UNUSED_ATTR uint16_t max_tx_lat,
+                              uint16_t max_rx_lat) {
   if (pm_mode_db.count(handle) == 0) {
     LOG_WARN("Received sniff subrating event with no active ACL");
     return;
