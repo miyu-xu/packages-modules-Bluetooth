@@ -16,6 +16,69 @@
       "message": "LGTM but I want an actual bumble owner to validate this (hence why removing my vote)",
       "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e5c47c3_908f4537",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-08-17T22:18:21Z",
+      "side": 1,
+      "message": "nit: change LOG_TAG to TAG",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 39
+      },
+      "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb4a37d5_90afb17d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-08-17T22:18:21Z",
+      "side": 1,
+      "message": "Might be worth creating an helper function since the LeAdvertisingTest.java and this one have the same setup",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 0
+      },
+      "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb06ef9d_90248e1e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-08-17T22:18:21Z",
+      "side": 1,
+      "message": "What is the meaning of `\u003c2` ? Why 2 ?",
+      "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
