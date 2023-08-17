@@ -59,11 +59,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Queue;
 import java.util.SortedMap;
+import java.util.SortedSet;
 import java.util.TreeMap;
+import java.util.TreeSet;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -139,13 +140,8 @@ public class BluetoothInCallService extends InCallService {
     private final HashMap<Integer, BluetoothCall> mBluetoothConferenceCallInference =
             new HashMap<>();
 
-    private final Map<String, Integer> mClccInferenceIndexMap = new HashMap<>();
-
     // A queue record the removal order of bluetooth calls
     private final Queue<Integer> mBluetoothCallQueue = new ArrayDeque<>();
-
-    // A map from Calls to indexes used to identify calls for CLCC (C* List Current Calls).
-    private final Map<String, Integer> mClccIndexMap = new HashMap<>();
 
     private static BluetoothInCallService sInstance = null;
 
@@ -652,11 +648,6 @@ public class BluetoothInCallService extends InCallService {
                 Log.d(TAG, "add inference call with reason: " + cause.getReason());
                 mBluetoothCallQueue.add(call.getId());
                 mBluetoothConferenceCallInference.put(call.getId(), call);
-                Integer indexValue = mClccIndexMap.get(getClccMapKey(call));
-                mClccInferenceIndexMap.put(getClccMapKey(call), indexValue);
-                if (indexValue == null) {
-                    Log.w(TAG, "CLCC index value is null");
-                }
                 // queue size limited to 2 because merge operation only happens on 2 calls
                 // we are only interested in last 2 calls merged
                 if (mBluetoothCallQueue.size() > 2) {
@@ -669,12 +660,10 @@ public class BluetoothInCallService extends InCallService {
             if (call.isConference()) {
                 Log.d(TAG, "conference call ends, clear inference");
                 mBluetoothConferenceCallInference.clear();
-                mClccInferenceIndexMap.clear();
                 mBluetoothCallQueue.clear();
             }
         }
 
-        mClccIndexMap.remove(getClccMapKey(call));
         updateHeadsetWithCallState(false /* force */);
 
         if (mBluetoothLeCallControl != null) {
@@ -748,9 +737,7 @@ public class BluetoothInCallService extends InCallService {
         sInstance = null;
         mCallbacks.clear();
         mBluetoothCallHashMap.clear();
-        mClccIndexMap.clear();
         mBluetoothConferenceCallInference.clear();
-        mClccInferenceIndexMap.clear();
         mBluetoothCallQueue.clear();
         mMaxNumberOfCalls = 0;
     }
@@ -767,7 +754,9 @@ public class BluetoothInCallService extends InCallService {
                 DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH, CLCC_INFERENCE, false);
         Log.d(TAG, "is conference call inference enabled: " + isInferenceEnabled);
         for (BluetoothCall call : calls) {
-            if (isInferenceEnabled && call.isConference()
+            // find the parent among conference calls
+            if (isInferenceEnabled
+                    && call.isConference()
                     && !mBluetoothConferenceCallInference.isEmpty()) {
                 SortedMap<Integer, Object[]> clccResponseMap = new TreeMap<>();
                 Log.d(
@@ -784,18 +773,29 @@ public class BluetoothInCallService extends InCallService {
                     break;
                 }
                 for (BluetoothCall inferredCall : mBluetoothConferenceCallInference.values()) {
-                    String clccMapKey = getClccMapKey(inferredCall);
-                    if (!mClccInferenceIndexMap.containsKey(clccMapKey)) {
-                        Log.w(TAG, "Inference Index Map does not have: " + clccMapKey);
-                        continue;
-                    }
-                    if (mClccInferenceIndexMap.get(clccMapKey) == null) {
-                        Log.w(TAG, "inferred index is null");
-                        continue;
-                    }
-                    int index = mClccInferenceIndexMap.get(clccMapKey);
                     // save the index so later on when real children arrive, index is the same
-                    mClccIndexMap.put(clccMapKey, index);
+                    int index = inferredCall.mCLCCIndex;
+                    if (index == -1) {
+                        Log.w(TAG, "inferred index is not valid");
+                        continue;
+                    }
+                    for (BluetoothCall bluetoothCall : mBluetoothCallHashMap.values()) {
+                        boolean isSame =
+                                PhoneNumberUtils.areSamePhoneNumber(
+                                        call.getHandle().toString(),
+                                        inferredCall.getHandle().toString(),
+                                        mTelephonyManager.getNetworkCountryIso());
+                        if (isSame) {
+                            Log.d(
+                                    TAG,
+                                    "found conference call children that has same call handle, "
+                                            + "call id:"
+                                            + bluetoothCall.getId());
+                            call.mCLCCIndex = inferredCall.mCLCCIndex;
+                            break;
+                        }
+                    }
+
                     int direction = inferredCall.isIncoming() ? 1 : 0;
                     int state = CALL_STATE_ACTIVE;
                     boolean isPartOfConference = true;
@@ -986,14 +986,14 @@ public class BluetoothInCallService extends InCallService {
     }
 
     /**
-     * Returns the caches index for the specified call.  If no such index exists, then an index is
-     * given (smallest number starting from 1 that isn't already taken).
+     * Returns the caches index for the specified call. If no such index exists, then an index is
+     * given (the smallest number starting from 1 that isn't already taken).
      */
     private int getIndexForCall(BluetoothCall call) {
-        String key = getClccMapKey(call);
-        if (mClccIndexMap.containsKey(key)) {
-            return mClccIndexMap.get(key);
+        if (call.mCLCCIndex >= 1) {
+            return call.mCLCCIndex;
         }
+
         int index = 1; // Indexes for bluetooth clcc are 1-based.
         if (call.isConference()) {
             index = mMaxNumberOfCalls + 1; // The conference call should have a higher index
@@ -1001,13 +1001,22 @@ public class BluetoothInCallService extends InCallService {
                   "getIndexForCall for conference call starting from "
                   + mMaxNumberOfCalls);
         }
-        while (mClccIndexMap.containsValue(index)) {
-            index++;
+        // find the next available smallest index
+        SortedSet<Integer> availableIndex = new TreeSet<>();
+        for (int i = index; i <= mMaxNumberOfCalls + 1; i++) {
+            availableIndex.add(i);
+        }
+        for (BluetoothCall bluetoothCall : mBluetoothCallHashMap.values()) {
+            int callCLCCIndex = bluetoothCall.mCLCCIndex;
+            if (availableIndex.contains(callCLCCIndex)) {
+                availableIndex.remove(callCLCCIndex);
+            }
         }
 
         // NOTE: Indexes are removed in {@link #onCallRemoved}.
-        mClccIndexMap.put(key, index);
-        return index;
+        call.mCLCCIndex = availableIndex.first();
+        Log.d(TAG, "call " + call.getHandle().toString() + "CLCC index is " + call.mCLCCIndex);
+        return call.mCLCCIndex;
     }
 
     private boolean _processChld(int chld) {
