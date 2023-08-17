@@ -52,6 +52,24 @@
       "parentUuid": "ccc3c068_8ff0a6ae",
       "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d99d05f_7bd0376d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-17T17:56:14Z",
+      "side": 1,
+      "message": "I just realized that too. Maybe this one? crrev/c/3907181. I think it does not care about the return value now. The return value is used for autotest. I can add the handling of return value when we are going to enable the finch.",
+      "parentUuid": "db70c043_20d8ba3d",
+      "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
