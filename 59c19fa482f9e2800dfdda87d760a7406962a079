@@ -16,6 +16,24 @@
       "message": "Shouldn\u0027t we follow the path and return the error from when it\u0027s directly happen.\nI see that in the GattService there is a native call for which we drop the return value.\ncf\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d4712-4716;drc\u003d5bd5ff659b24e03da0c041e49c641d58b2ce5886",
       "revId": "59c19fa482f9e2800dfdda87d760a7406962a079",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78b1a3bd_5d8ee2b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-17T09:39:12Z",
+      "side": 1,
+      "message": "Thanks for the reply William. Yes I feel like that would be better as well, and dug into the native call/layers but couldn\u0027t find where the error exactly happens. \n\nThe problem is that with the current code, even when sending notification larger than max length (512), `BluetoothStatusCodes.SUCCESS` is returned and no error/exception is thrown to the user (However, notification isn\u0027t sent) I thought this would have been handled within the native code, but couldn\u0027t find the code yet. \n\nSo I thought checking in the Java layer could be a solution, but please let me know if I\u0027m missing something or should solve this in a different direction!",
+      "parentUuid": "cd485f31_fed04d50",
+      "revId": "59c19fa482f9e2800dfdda87d760a7406962a079",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
