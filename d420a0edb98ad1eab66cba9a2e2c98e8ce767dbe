@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34f60082_4440c1d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-17T18:51:08Z",
+      "side": 1,
+      "message": "Is is because the `is_ble_observe_active` can be updated both in `le_scanning_manager` and `btm_ble_gap` ?\nOr is there another source of out-of-sync ?",
+      "revId": "d420a0edb98ad1eab66cba9a2e2c98e8ce767dbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
