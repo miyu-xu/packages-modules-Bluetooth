@@ -88,6 +88,24 @@
       "parentUuid": "3d99d05f_7bd0376d",
       "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb95cf96_5e9fd854",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-17T18:12:14Z",
+      "side": 1,
+      "message": "Sure. As I check the chrome CL, I notice it has a callback. ```  SetLLPrivacy(\n      base::BindOnce([](DBusResult\u003cVoid\u003e ret) {\n        if (!ret.has_value())\n          LOG(ERROR) \u003c\u003c \"Fail to set LL privacy.\\n\";\n      }),\n      base::FeatureList::IsEnabled(bluez::features::kLinkLayerPrivacy));``` I cannot recall the details here. Does this only check if the call is successiful? Because currently, there should be no return value.",
+      "parentUuid": "37932012_7274767b",
+      "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
