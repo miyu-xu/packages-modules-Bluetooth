@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52f6c5f1_293cb874",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-08-17T17:11:53Z",
+      "side": 1,
+      "message": "The Bug ID seems to be malformed.",
+      "revId": "f00df94cfda0e3b7661f34062fe40547ddf69a2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
