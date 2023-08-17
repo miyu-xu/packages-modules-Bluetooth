@@ -34,6 +34,24 @@
       "parentUuid": "72d52f97_7f8759a0",
       "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "db70c043_20d8ba3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-08-17T17:53:35Z",
+      "side": 1,
+      "message": "Ah, I was wondering what the return value is being used for. For completeness, I think you should update the browser side as well though so it matches the API and you can log from the browser side as well that you failed/succeeded in enabling privacy",
+      "parentUuid": "ccc3c068_8ff0a6ae",
+      "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
