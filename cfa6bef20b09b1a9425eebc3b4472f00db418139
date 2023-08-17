@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "844f8685_dafbc9b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-17T17:30:04Z",
+      "side": 1,
+      "message": "LGTM but I want an actual bumble owner to validate this (hence why removing my vote)",
+      "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
