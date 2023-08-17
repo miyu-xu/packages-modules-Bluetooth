@@ -16,6 +16,24 @@
       "message": "I didn\u0027t lose your +1 😊",
       "revId": "88d857f6e30ff71db47564110a86885fe870de49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e5add92_005bee3f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-17T21:26:18Z",
+      "side": 1,
+      "message": "🎉",
+      "parentUuid": "cfef353d_cc649f17",
+      "revId": "88d857f6e30ff71db47564110a86885fe870de49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
