@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5926f7cb_770ab524",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-08-17T18:34:18Z",
+      "side": 1,
+      "message": "We need to wait for https://github.com/google/bumble/pull/248 to be merged into Android to run the presubmit on this CL",
+      "revId": "1c233fa94c151683f48034baa0839517f54beaaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
