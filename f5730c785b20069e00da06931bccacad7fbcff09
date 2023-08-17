@@ -117,6 +117,30 @@
       },
       "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17640ca1_d5215b9a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-17T21:17:54Z",
+      "side": 1,
+      "message": "Going through the code and the explanation it starts to make more sense to me.\n\nWhile the logic makes sense to me, this only happens when role is peripheral (and hence p_lcb isn\u0027t allocated). So I recommend doing it the way below (lines 248 - 258).\n\n```\nif (!p_lcb) {\n    p_lcb \u003d l2cu_allocate_lcb(bda, false, BT_TRANSPORT_LE);\n    if (!p_lcb) {\n      LOG_ERROR(\"Unable to allocate link resource for le acl connection\");\n      return false;\n    } else {\n      if (!l2cu_initialize_fixed_ccb(p_lcb, L2CAP_ATT_CID)) {\n        LOG_ERROR(\"Unable to allocate channel resource for le acl connection\");\n        return false;\n      }\n    }\n    p_lcb-\u003elink_state \u003d LST_CONNECTING; // \u003c-- Lets add the change here\n}\n```",
+      "parentUuid": "10efc1da_c5e2c7d1",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 52
+      },
+      "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
