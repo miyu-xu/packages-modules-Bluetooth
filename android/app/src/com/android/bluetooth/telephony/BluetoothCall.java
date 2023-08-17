@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.telephony;
 
-import android.bluetooth.BluetoothLeCallControl;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,6 +47,9 @@ public class BluetoothCall {
     private Call mCall;
     private UUID mCallId;
 
+    // An index used to identify calls for CLCC (C* List Current Calls).
+    private int mClccIndex = -1;
+
     public Call getCall() {
         return mCall;
     }
@@ -58,6 +60,14 @@ public class BluetoothCall {
 
     public void setCall(Call call) {
         mCall = call;
+    }
+
+    public int getClccIndex() {
+        return mClccIndex;
+    }
+
+    public void setClccIndex(int clccIndex) {
+        mClccIndex = clccIndex;
     }
 
     public BluetoothCall(Call call) {
