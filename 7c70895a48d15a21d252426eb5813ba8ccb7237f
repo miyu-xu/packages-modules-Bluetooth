@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "855c89cb_d96aa167",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-17T08:39:43Z",
+      "side": 1,
+      "message": "welp, clang actually reformats this when I remove the comments. Maybe it was the purpose of the comment in the first place ...",
+      "parentUuid": "4268e548_8f433980",
+      "range": {
+        "startLine": 96,
+        "startChar": 6,
+        "endLine": 96,
+        "endChar": 28
+      },
+      "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e352400c_5b188292",
@@ -112,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "01abe826_356aab67",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-17T08:39:43Z",
+      "side": 1,
+      "message": "Done, now we always disconnect to both of them and return whatever error if any.",
+      "parentUuid": "11c949df_170db5ba",
+      "range": {
+        "startLine": 412,
+        "startChar": 2,
+        "endLine": 412,
+        "endChar": 54
+      },
+      "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53dcb0ad_ded8cd45",
@@ -149,6 +197,30 @@
       "side": 1,
       "message": "I don\u0027t think such a scenario exists, but if it does, this will do just that.\nLet me update the comment.",
       "parentUuid": "53dcb0ad_ded8cd45",
+      "range": {
+        "startLine": 482,
+        "startChar": 4,
+        "endLine": 482,
+        "endChar": 75
+      },
+      "revId": "7c70895a48d15a21d252426eb5813ba8ccb7237f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8b2ed59_5b49022a",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 482,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-17T08:39:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09559dc7_07956d4d",
       "range": {
         "startLine": 482,
         "startChar": 4,
