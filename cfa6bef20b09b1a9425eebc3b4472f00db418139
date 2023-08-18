@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3290191_fbb854d3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-08-18T02:51:49Z",
+      "side": 1,
+      "message": "Yes definitely, let\u0027s do that 😊",
+      "parentUuid": "b75a9ee1_17ebaa5f",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 0
+      },
+      "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb06ef9d_90248e1e",
@@ -143,6 +167,24 @@
       "side": 1,
       "message": "So the logic to test here is if `CALLBACK_TYPE_ALL_MATCHES` works as intended, and for it to work, it needs to trigger callbacks for ALL advertisements that match the filter, and to verify this I wanted to check if 2 or more advertisements were triggered (If stop at the first match, that would be the same as `CALLBACK_TYPE_FIRST_MATCH` and won\u0027t check if ALL matches were triggered). \n\nTherefore waiting until we get 2 advertisement packets triggering the callback and completing the future object at at that point.",
       "parentUuid": "bb06ef9d_90248e1e",
+      "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60ecf10a_ec89cb65",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-08-18T02:51:49Z",
+      "side": 1,
+      "message": "Indeed, LGTM",
+      "parentUuid": "dbd6008a_16ef116b",
       "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
