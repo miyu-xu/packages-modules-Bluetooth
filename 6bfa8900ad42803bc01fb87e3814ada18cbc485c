@@ -16,6 +16,23 @@
       "message": "Please upload change on master branch",
       "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a149d6cd_4df80ae7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-18T15:52:18Z",
+      "side": 1,
+      "message": "Thanks for this.  Have you tested it with names that contain emojis or other encoded characters?  Does it still work?",
+      "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
