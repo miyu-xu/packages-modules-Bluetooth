@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54113ed1_c05cc366",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-18T03:04:44Z",
+      "side": 1,
+      "message": "NIT: add should be fine.",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06eef5e9_770b400b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-18T03:04:44Z",
+      "side": 1,
+      "message": "NIT: Typo",
+      "range": {
+        "startLine": 11,
+        "startChar": 9,
+        "endLine": 11,
+        "endChar": 20
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0258fab_f40c5b74",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-18T03:04:44Z",
+      "side": 1,
+      "message": "NIT： Is this also corresponds to any",
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09163fb8_6e05e16d",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-18T03:04:44Z",
+      "side": 1,
+      "message": "Do we plan to also use this for A2DP?\n\nIf we only want to use this for HFP, I think we can remove some of the config fields.",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97fd1005_5e9abe34",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-18T03:04:44Z",
+      "side": 1,
+      "message": "NIT: Move to 66 and add comment for each enum if necessary?",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e90ce003_10836fbc",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-18T03:04:44Z",
+      "side": 1,
+      "message": "I think we can also limit this to be Mono and Stero only?\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/embdrv/sbc/decoder/srce/alloc.c;drc\u003d36a3fbaff221127f2071bd43eac6af4df64526f1;l\u003d38",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 20
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc86faf8_997cc1c0",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-18T03:04:44Z",
+      "side": 1,
+      "message": "NIT: have the",
+      "range": {
+        "startLine": 88,
+        "startChar": 35,
+        "endLine": 88,
+        "endChar": 38
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
