@@ -16,6 +16,24 @@
       "message": "This patch did some logging and clearing states improvements - not sure how it breaks anything.",
       "revId": "a8de290f2723b4652c4d3ae23bab65f5e1719dca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8364ba95_c13713d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-18T20:56:14Z",
+      "side": 1,
+      "message": "Unresolving ommment as this feedback really need to be considered and addressed before submitting the change",
+      "parentUuid": "e35d9314_cead3ef2",
+      "revId": "a8de290f2723b4652c4d3ae23bab65f5e1719dca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
