@@ -320,7 +320,8 @@ public class BluetoothInCallService extends InCallService {
         }
 
         public void onChildrenChanged(BluetoothCall call, List<BluetoothCall> children) {
-            if (call.isExternalCall()) {
+            if (mCallInfo.isNullCall(call) || call.isExternalCall()) {
+                Log.w(TAG, "null call or external call");
                 return;
             }
             if (call.getChildrenIds().size() == 1) {
