@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fce635b_c45ef196",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-18T05:26:35Z",
+      "side": 1,
+      "message": "Fixed and tested.",
+      "parentUuid": "1aa31db8_45da7a9b",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 9
+      },
+      "revId": "d748b17b77b4a90dc57af98127d92401567c68de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e57d47b_4114b2cf",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-18T01:40:15Z",
       "side": 1,
       "message": "Hi Zhengping, in another comment you mentioned that you\u0027ll keep it (TuringOn) no-op. What\u0027s the change here?\n\nAlso I don\u0027t think it\u0027s good to jump to `ProcessState::On`, which we should rely on the PidChange monitor.\n\nIf you would like to restart btadapterd even when it\u0027s at TurningOn state, then a proper way may be calling `self.process_manager.stop` followed by `self.process_manager.start`, keep the state at `ProcessState::TurningOn` and wait for the pid file to be created (this would be handled by PidChange monitor).",
+      "range": {
+        "startLine": 1350,
+        "startChar": 0,
+        "endLine": 1353,
+        "endChar": 13
+      },
+      "revId": "d748b17b77b4a90dc57af98127d92401567c68de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcd2e655_ee217058",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1353,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-18T05:26:35Z",
+      "side": 1,
+      "message": "You are right. Fixed. I will just add a debug message. If the adapter is not ON yet, there is no need to turn off.",
+      "parentUuid": "9e57d47b_4114b2cf",
       "range": {
         "startLine": 1350,
         "startChar": 0,
