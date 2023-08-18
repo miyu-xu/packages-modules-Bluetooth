@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb643e0b_92934481",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-18T03:50:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54113ed1_c05cc366",
+      "range": {
+        "startLine": 7,
+        "startChar": 7,
+        "endLine": 7,
+        "endChar": 12
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06eef5e9_770b400b",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "17048013_dd0ebc39",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-18T03:50:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06eef5e9_770b400b",
+      "range": {
+        "startLine": 11,
+        "startChar": 9,
+        "endLine": 11,
+        "endChar": 20
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0258fab_f40c5b74",
@@ -60,6 +108,24 @@
       "writtenOn": "2023-08-18T03:04:44Z",
       "side": 1,
       "message": "NIT： Is this also corresponds to any",
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b47d44c_f6c2d54b",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-18T03:50:54Z",
+      "side": 1,
+      "message": "Different from SbcEncoderParam below, Lc3Param is a union of lc3 config and encode/decode parameters, and does not correspond to any lc3 struct.",
+      "parentUuid": "a0258fab_f40c5b74",
       "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -134,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd5bfa50_9739494b",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-18T03:50:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97fd1005_5e9abe34",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e90ce003_10836fbc",
@@ -194,6 +284,30 @@
       "writtenOn": "2023-08-18T03:04:44Z",
       "side": 1,
       "message": "NIT: have the",
+      "range": {
+        "startLine": 88,
+        "startChar": 35,
+        "endLine": 88,
+        "endChar": 38
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eca2fc90_1f4107a6",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-18T03:50:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc86faf8_997cc1c0",
       "range": {
         "startLine": 88,
         "startChar": 35,
