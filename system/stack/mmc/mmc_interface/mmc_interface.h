@@ -41,8 +41,8 @@ class MmcInterface {
   // Transcodes data in |i_buf|, and stores the result in |o_buf|.
   //
   // Returns:
-  //   0, if transcode succeeded.
-  //   Otherwise, a negative errno on error.
+  //   Non-negative value, if transcode succeeded.
+  //   Negative errno on error, otherwise.
   virtual int transcode(uint8_t* i_buf, int i_len, uint8_t* o_buf,
                         int o_len) = 0;
 };
