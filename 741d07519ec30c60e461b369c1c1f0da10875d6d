@@ -87,6 +87,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a14c00d6_6c04f7df",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-18T03:26:19Z",
+      "side": 1,
+      "message": "We plan to use SbcEncoderParam in A2DP, thus we still keep the config fields unused by MSBC.",
+      "parentUuid": "09163fb8_6e05e16d",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 23
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97fd1005_5e9abe34",
@@ -123,6 +147,30 @@
       "writtenOn": "2023-08-18T03:04:44Z",
       "side": 1,
       "message": "I think we can also limit this to be Mono and Stero only?\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/embdrv/sbc/decoder/srce/alloc.c;drc\u003d36a3fbaff221127f2071bd43eac6af4df64526f1;l\u003d38",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 20
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a18986c_0fb851ff",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-18T03:26:19Z",
+      "side": 1,
+      "message": "I prefer to leave the validation part to the sbc library itself, so that the message won\u0027t depend on the sbc implementation details.",
+      "parentUuid": "e90ce003_10836fbc",
       "range": {
         "startLine": 79,
         "startChar": 8,
