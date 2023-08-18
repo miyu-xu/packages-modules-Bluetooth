@@ -213,6 +213,7 @@ source_set("stack") {
     "smp",
     "srvc",
     "//bt/system/",
+    "//bt/system/include",
     "//bt/system/bta/include",
     "//bt/system/bta/sys",
     "//bt/system/btif/include",
@@ -236,10 +237,14 @@ source_set("stack") {
     "//bt/system/gd/rust/shim:init_flags_bridge_header",
     "//bt/system/types",
     "//bt/system/types",
-    "//bt/system/embdrv/lc3:liblc3",
+    "//bt/system/stack/mmc",
+    "//bt/system/stack/mmc/codec_client:libcodec_client",
+    "//bt/system/stack/mmc/proto:mmc_config_proto",
   ]
 
-  configs += [ "//bt/system:target_defaults" ]
+  configs += [
+    "//bt/system:target_defaults",
+  ]
 }
 
 if (use.test) {

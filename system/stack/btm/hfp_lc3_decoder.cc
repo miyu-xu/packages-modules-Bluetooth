@@ -18,43 +18,56 @@
 
 #include "hfp_lc3_decoder.h"
 
-#include <base/logging.h>
-
 #include <cstring>
 
-#include "embdrv/lc3/include/lc3.h"
-#include "osi/include/allocator.h"
+#include "mmc/codec_client/codec_client.h"
+#include "mmc/proto/mmc_config.pb.h"
 #include "osi/include/log.h"
 
 const int HFP_LC3_H2_HEADER_LEN = 2;
 const int HFP_LC3_PKT_FRAME_LEN = 58;
 const int HFP_LC3_PCM_BYTES = 480;
 
-static void* hfp_lc3_decoder_mem;
-static lc3_decoder_t hfp_lc3_decoder;
+static mmc::CodecClient* client = nullptr;
+static const uint8_t plc_buf[HFP_LC3_H2_HEADER_LEN + HFP_LC3_PKT_FRAME_LEN] = {
+    0};
 
 bool hfp_lc3_decoder_init() {
-  if (hfp_lc3_decoder_mem) {
-    LOG_WARN("%s: The decoder instance should have had been released.",
-             __func__);
-    osi_free(hfp_lc3_decoder_mem);
+  if (!client) {
+    client = new mmc::CodecClient;
   }
 
   const int dt_us = 7500;
   const int sr_hz = 32000;
   const int sr_pcm_hz = 32000;
-  const unsigned dec_size = lc3_decoder_size(dt_us, sr_pcm_hz);
 
-  hfp_lc3_decoder_mem = osi_malloc(dec_size);
-  hfp_lc3_decoder =
-      lc3_setup_decoder(dt_us, sr_hz, sr_pcm_hz, hfp_lc3_decoder_mem);
+  mmc::Lc3Param param;
+  param.set_dt_us(dt_us);
+  param.set_sr_hz(sr_hz);
+  param.set_sr_pcm_hz(sr_pcm_hz);
+
+  // Move decode parameters here.
+  param.set_stride(1);
+  param.set_fmt(mmc::Lc3Param::kLc3PcmFormatS16);
+
+  mmc::ConfigParam config;
+  *config.mutable_hfp_lc3_decoder_param() = param;
+
+  int ret = client->init(config);
+  if (ret < 0) {
+    LOG_ERROR("%s: Init failed with error message, %s", __func__,
+              strerror(-ret));
+    return false;
+  }
 
   return true;
 }
 
 void hfp_lc3_decoder_cleanup() {
-  if (hfp_lc3_decoder_mem) {
-    osi_free_and_reset((void**)&hfp_lc3_decoder_mem);
+  if (client) {
+    client->cleanup();
+    delete client;
+    client = nullptr;
   }
 }
 
@@ -66,18 +79,28 @@ bool hfp_lc3_decoder_decode_packet(const uint8_t* i_buf, int16_t* o_buf,
     return false;
   }
 
-  const uint8_t* frame = i_buf ? i_buf + HFP_LC3_H2_HEADER_LEN : nullptr;
+  // Pass zeros to MMC when i_buf is nullptr.
+  const uint8_t* frame = i_buf ? i_buf : plc_buf;
 
-  /* Note this only fails when wrong parameters are supplied. */
-  int rc = lc3_decode(hfp_lc3_decoder, frame, HFP_LC3_PKT_FRAME_LEN,
-                      LC3_PCM_FORMAT_S16, o_buf, 1);
+  // Additional one byte to distinguish PLC conduct.
+  uint8_t* o_packet = new uint8_t[out_len + 1];
 
-  ASSERT(rc == 0 || rc == 1);
+  int rc = client->transcode((uint8_t*)frame,
+                             HFP_LC3_PKT_FRAME_LEN + HFP_LC3_H2_HEADER_LEN,
+                             o_packet, out_len + 1);
 
-  if (rc == 1) {
+  ASSERT_LOG(rc >= 0, "%s: Transcode failed with error message, %s", __func__,
+             strerror(-rc));
+
+  int outcome = o_packet[0];
+
+  if (outcome == 1) {
     LOG_WARN("%s: PLC conducted", __func__);
     /* TODO(b/269970706): change this to debug log */
   }
 
-  return !rc;
+  memcpy(o_buf, o_packet + 1, out_len);
+
+  delete[] o_packet;
+  return !outcome;
 }
