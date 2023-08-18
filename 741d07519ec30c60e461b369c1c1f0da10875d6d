@@ -271,6 +271,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d836780b_14974aef",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-18T16:49:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9a18986c_0fb851ff",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 79,
+        "endChar": 20
+      },
+      "revId": "741d07519ec30c60e461b369c1c1f0da10875d6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc86faf8_997cc1c0",
