@@ -20,50 +20,67 @@
 
 #include <cstring>
 
-#include "embdrv/lc3/include/lc3.h"
-#include "osi/include/allocator.h"
+#include "mmc/codec_client/codec_client.h"
+#include "mmc/proto/mmc_config.pb.h"
 #include "osi/include/log.h"
 
 const int HFP_LC3_PCM_BYTES = 480;
 const int HFP_LC3_PKT_FRAME_LEN = 58;
 
-static void* hfp_lc3_encoder_mem;
-static lc3_encoder_t hfp_lc3_encoder;
+static mmc::CodecClient* client = nullptr;
 
 void hfp_lc3_encoder_init() {
-  if (hfp_lc3_encoder_mem) {
-    LOG_WARN("%s: The encoder instance should have had been released.",
-             __func__);
-    osi_free(hfp_lc3_encoder_mem);
-  }
+  hfp_lc3_encoder_cleanup();
+  client = new mmc::CodecClient;
 
   const int dt_us = 7500;
   const int sr_hz = 32000;
   const int sr_pcm_hz = 32000;
-  const unsigned enc_size = lc3_encoder_size(dt_us, sr_pcm_hz);
 
-  hfp_lc3_encoder_mem = osi_malloc(enc_size);
-  hfp_lc3_encoder =
-      lc3_setup_encoder(dt_us, sr_hz, sr_pcm_hz, hfp_lc3_encoder_mem);
+  mmc::Lc3Param param;
+  param.set_dt_us(dt_us);
+  param.set_sr_hz(sr_hz);
+  param.set_sr_pcm_hz(sr_pcm_hz);
+
+  // Move encode parameters here.
+  param.set_stride(1);
+  param.set_fmt(mmc::Lc3Param::kLc3PcmFormatS16);
+
+  mmc::ConfigParam config;
+  *config.mutable_hfp_lc3_encoder_param() = param;
+
+  int ret = client->init(config);
+  if (ret < 0) {
+    LOG_ERROR("%s: Init failed with error message, %s", __func__,
+              strerror(-ret));
+  }
+  return;
 }
 
 void hfp_lc3_encoder_cleanup() {
-  if (hfp_lc3_encoder_mem) {
-    osi_free_and_reset((void**)&hfp_lc3_encoder_mem);
+  if (client) {
+    client->cleanup();
+    delete client;
+    client = nullptr;
   }
 }
 
 uint32_t hfp_lc3_encode_frames(int16_t* input, uint8_t* output) {
   if (input == nullptr || output == nullptr) {
-    LOG_ERROR("%s: Buffer is null.", __func__);
+    LOG_ERROR("%s: Buffer is null", __func__);
     return 0;
   }
 
-  /* Note this only fails when wrong parameters are supplied. */
-  int rc = lc3_encode(hfp_lc3_encoder, LC3_PCM_FORMAT_S16, input, 1,
-                      HFP_LC3_PKT_FRAME_LEN, output);
+  if (!client) {
+    LOG_ERROR("%s: CodecClient does not init", __func__);
+    return 0;
+  }
 
-  ASSERT(rc == 0);
+  int rc = client->transcode((uint8_t*)input, HFP_LC3_PCM_BYTES, output,
+                             HFP_LC3_PKT_FRAME_LEN);
+
+  ASSERT_LOG(rc >= 0, "%s: Transcode failed with error message, %s", __func__,
+             strerror(-rc));
 
   return HFP_LC3_PCM_BYTES;
 }
