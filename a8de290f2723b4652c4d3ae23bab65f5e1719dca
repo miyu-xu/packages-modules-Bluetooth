@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e35d9314_cead3ef2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-18T20:06:00Z",
+      "side": 1,
+      "message": "This patch did some logging and clearing states improvements - not sure how it breaks anything.",
+      "revId": "a8de290f2723b4652c4d3ae23bab65f5e1719dca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
