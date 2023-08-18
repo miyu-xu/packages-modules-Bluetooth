@@ -106,6 +106,24 @@
       "parentUuid": "37932012_7274767b",
       "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3f23bee_f073fc9a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-18T01:31:15Z",
+      "side": 1,
+      "message": "The snippet only prints out the log on the DBus call failed. I think after changing the DBus return type for SetLLPrivacy, the DBus call on Chrome side will always fail on parsing*, but that shouldn\u0027t be harmful for now.\n\n*:https://crsrc.org/c/device/bluetooth/floss/floss_dbus_client.h;l\u003d854;drc\u003dca4603602c18dbe00c818928eb9d83c816fc7512",
+      "parentUuid": "bb95cf96_5e9fd854",
+      "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
