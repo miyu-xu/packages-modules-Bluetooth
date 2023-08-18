@@ -124,6 +124,24 @@
       "parentUuid": "bb95cf96_5e9fd854",
       "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85909a4f_8d05cd71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-08-18T21:18:07Z",
+      "side": 1,
+      "message": "Spoke offline, browser change here: https://crrev.com/c/4793775. Thanks!",
+      "parentUuid": "a3f23bee_f073fc9a",
+      "revId": "b87166f31b8a71b2ab5653d43135dc06886fad74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
