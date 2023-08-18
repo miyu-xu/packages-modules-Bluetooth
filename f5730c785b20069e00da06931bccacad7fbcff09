@@ -141,6 +141,30 @@
       },
       "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5adb218d_2ffd138c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1965943
+      },
+      "writtenOn": "2023-08-18T01:17:23Z",
+      "side": 1,
+      "message": "@aritrasen, we agree with you, and upload the patch as advice done.",
+      "parentUuid": "17640ca1_d5215b9a",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 52
+      },
+      "revId": "f5730c785b20069e00da06931bccacad7fbcff09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
