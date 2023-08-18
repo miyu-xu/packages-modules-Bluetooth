@@ -33,6 +33,29 @@
       "message": "Thanks for this.  Have you tested it with names that contain emojis or other encoded characters?  Does it still work?",
       "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "183cd0be_5fac98d3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-18T15:52:49Z",
+      "side": 1,
+      "message": "should this be name.bytes.length()?",
+      "range": {
+        "startLine": 321,
+        "startChar": 16,
+        "endLine": 321,
+        "endChar": 20
+      },
+      "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
