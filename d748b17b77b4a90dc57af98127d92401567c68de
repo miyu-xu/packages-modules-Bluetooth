@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1aa31db8_45da7a9b",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-08-18T03:03:17Z",
+      "side": 1,
+      "message": "How about restarting all active ones? Ex:\n\n    pub(crate) fn restart_available_adapters(\u0026mut self) {                                                                                                                                                                                                                                                                                                                                   \n        self.get_available_adapters()                                                                                                                                                                                                                                                                                                                                                       \n            .into_iter()                                                                                                                                                                                                                                                                                                                                                                    \n            .filter(|adapter| adapter.enabled)                                                                                                                                                                                                                                                                                                                                              \n            .map(|adapter| VirtualHciIndex(adapter.hci_interface))                                                                                                                                                                                                                                                                                                                          \n            .for_each(|virt_hci| self.proxy.restart_bluetooth(virt_hci));                                                                                                                                                                                                                                                                                                                   \n    } \n\nOr leave a TODO comment so that someone can fix the tech debt in the future.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 9
+      },
+      "revId": "d748b17b77b4a90dc57af98127d92401567c68de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e57d47b_4114b2cf",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 7
