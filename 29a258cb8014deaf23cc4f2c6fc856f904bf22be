@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2844823c_6fdd3ebd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-18T20:37:32Z",
+      "side": 1,
+      "message": "in general, I\u0027m okay with this solution. as we discussed offline, you\u0027ve also explained the reasons why we don\u0027t want to sync the iso state with java layer.\n\nif this is testable, can we add some unit tests to cover the new logic?",
+      "revId": "29a258cb8014deaf23cc4f2c6fc856f904bf22be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a13648f_a1966d77",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-18T20:37:32Z",
+      "side": 1,
+      "message": "so if there is queued broadcast, we drop the new request. isn\u0027t this case avoided from Java layer? or this might still happen here?\nbut anyways we might not hit this issue for now since we\u0027re only supporting one BIG.",
+      "revId": "29a258cb8014deaf23cc4f2c6fc856f904bf22be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
