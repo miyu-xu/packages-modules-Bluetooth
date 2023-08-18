@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8b3abfe_8dee34fa",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-18T01:55:57Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "8e5c47c3_908f4537",
+      "range": {
+        "startLine": 58,
+        "startChar": 32,
+        "endLine": 58,
+        "endChar": 39
+      },
+      "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb4a37d5_90afb17d",
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b75a9ee1_17ebaa5f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-18T01:55:57Z",
+      "side": 1,
+      "message": "That sounds good. Do you think it will be okay if I do that outside of this CL and create a new helper class with helper functions so that they can be used in future tests as well?",
+      "parentUuid": "cb4a37d5_90afb17d",
+      "range": {
+        "startLine": 77,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 0
+      },
+      "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bb06ef9d_90248e1e",
         "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
         "patchSetId": 6
@@ -77,6 +125,24 @@
       "writtenOn": "2023-08-17T22:18:21Z",
       "side": 1,
       "message": "What is the meaning of `\u003c2` ? Why 2 ?",
+      "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbd6008a_16ef116b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-18T01:55:57Z",
+      "side": 1,
+      "message": "So the logic to test here is if `CALLBACK_TYPE_ALL_MATCHES` works as intended, and for it to work, it needs to trigger callbacks for ALL advertisements that match the filter, and to verify this I wanted to check if 2 or more advertisements were triggered (If stop at the first match, that would be the same as `CALLBACK_TYPE_FIRST_MATCH` and won\u0027t check if ALL matches were triggered). \n\nTherefore waiting until we get 2 advertisement packets triggering the callback and completing the future object at at that point.",
+      "parentUuid": "bb06ef9d_90248e1e",
       "revId": "cfa6bef20b09b1a9425eebc3b4472f00db418139",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
