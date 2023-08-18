@@ -130,8 +130,8 @@ source_set("stack") {
     "btm/btm_sec.cc",
     "btm/hfp_msbc_encoder.cc",
     "btm/hfp_msbc_decoder.cc",
-    "btm/hfp_lc3_encoder.cc",
-    "btm/hfp_lc3_decoder.cc",
+    "btm/hfp_lc3_encoder_linux.cc",
+    "btm/hfp_lc3_decoder_linux.cc",
     "btu/btu_hcif.cc",
     "btu/btu_task.cc",
     "eatt/eatt.cc",
@@ -226,7 +226,6 @@ source_set("stack") {
     "//bt/system/udrv/include",
     "//bt/system/vnd/ble",
     "//bt/system/vnd/include",
-    "//bt/system/embdrv/lc3/include",
   ]
 
   deps = [
@@ -236,10 +235,14 @@ source_set("stack") {
     "//bt/system/gd/rust/shim:init_flags_bridge_header",
     "//bt/system/types",
     "//bt/system/types",
-    "//bt/system/embdrv/lc3:liblc3",
+    "//bt/system/stack/mmc",
+    "//bt/system/stack/mmc/codec_client:libcodec_client",
+    "//bt/system/stack/mmc/proto:mmc_config_proto",
   ]
 
-  configs += [ "//bt/system:target_defaults" ]
+  configs += [
+    "//bt/system:target_defaults",
+  ]
 }
 
 if (use.test) {
