@@ -1,1 +1,3 @@
 include platform/packages/modules/Bluetooth:/OWNERS_chromeos
+
+jrwu@google.com
