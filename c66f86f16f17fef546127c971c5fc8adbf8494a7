@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea54880_89c5a722",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-18T18:24:06Z",
+      "side": 1,
+      "message": "LGTM as owners reviewed the aosp/2715281 initial CL (this is cherry-picked from master to main).",
+      "revId": "c66f86f16f17fef546127c971c5fc8adbf8494a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
