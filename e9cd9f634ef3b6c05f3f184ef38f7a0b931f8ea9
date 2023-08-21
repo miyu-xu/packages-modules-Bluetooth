@@ -935,6 +935,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "572b6dc8_66c1d9df",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-08-21T17:58:16Z",
+      "side": 1,
+      "message": "They will support both - basically older chipsets which dont support the newer codecs will still rely on Aptx Voice.",
+      "parentUuid": "6e3d3448_9af91ada",
+      "range": {
+        "startLine": 1276,
+        "startChar": 13,
+        "endLine": 1276,
+        "endChar": 23
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2b635018_d2437c70",
         "filename": "system/bta/ag/bta_ag_swb.cc",
         "patchSetId": 3
