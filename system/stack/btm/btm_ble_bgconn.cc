@@ -31,6 +31,7 @@
 #include "device/include/controller.h"
 #include "main/shim/acl_api.h"
 #include "main/shim/shim.h"
+#include "os/system_properties.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/security_device_record.h"
@@ -41,6 +42,12 @@ extern tBTM_CB btm_cb;
 
 namespace {
 
+// TODO(b/235218533): Remove when LL Privacy is implemented.
+#if TARGET_FLOSS
+constexpr bool kEnableBlePrivacy = true;
+static const std::string kPropertyEnableBlePrivacy =
+    "bluetooth.core.gap.le.privacy.enabled";
+#endif
 
 }  // namespace
 
@@ -84,11 +91,13 @@ const tBLE_BD_ADDR convert_to_address_with_type(
     };
   } else {
     // Floss doesn't support LL Privacy (yet). To expedite ARC testing, always
-    // connect to the latest LE random address (if available) rather than
-    // redesign.
+    // connect to the latest LE random address (if available and LL Privacy is
+    // not enabled through sysprop) rather than redesign.
     // TODO(b/235218533): Remove when LL Privacy is implemented.
 #if TARGET_FLOSS
-    if (!p_dev_rec->ble.cur_rand_addr.IsEmpty()) {
+    if (!p_dev_rec->ble.cur_rand_addr.IsEmpty() &&
+        !bluetooth::os::GetSystemPropertyBool(kPropertyEnableBlePrivacy,
+                                              kEnableBlePrivacy)) {
       return {
           .type = BLE_ADDR_RANDOM,
           .bda = p_dev_rec->ble.cur_rand_addr,
