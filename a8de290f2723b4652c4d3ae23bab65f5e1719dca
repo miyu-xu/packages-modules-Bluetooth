@@ -34,6 +34,24 @@
       "parentUuid": "e35d9314_cead3ef2",
       "revId": "a8de290f2723b4652c4d3ae23bab65f5e1719dca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ba242a2_1368d232",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-21T18:17:38Z",
+      "side": 1,
+      "message": "Thanks for the callout Lukasz, you are right - I missed where the call to GD impl was when looked at this previously (thought was within the if statement). \n\nApologies for the noise, will abandon the revert.",
+      "parentUuid": "8364ba95_c13713d4",
+      "revId": "a8de290f2723b4652c4d3ae23bab65f5e1719dca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
