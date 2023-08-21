@@ -140,12 +140,7 @@ public class AvrcpTargetService extends ProfileService {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (action.equals(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED)) {
-                if (mNativeInterface == null) return;
-
-                // Update all the playback status info for each connected device
-                mNativeInterface.sendMediaUpdate(false, true, false);
-            } else if (action.equals(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)) {
+            if (action.equals(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)) {
                 if (mNativeInterface == null) return;
 
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
@@ -252,7 +247,6 @@ public class AvrcpTargetService extends ProfileService {
         mReceiver = new AvrcpBroadcastReceiver();
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED);
         filter.addAction(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED);
         filter.addAction(AudioManager.ACTION_VOLUME_CHANGED);
         registerReceiver(mReceiver, filter);
@@ -366,6 +360,19 @@ public class AvrcpTargetService extends ProfileService {
         if (device == null) return -1;
 
         return mVolumeManager.getVolume(device, mVolumeManager.getNewDeviceVolume());
+    }
+
+    /**
+     * Handle when Active Device changes in A2DP.
+     *
+     * @param device
+     */
+    public void handleA2dpActiveDeviceChanged(BluetoothDevice device) {
+        volumeDeviceSwitched(device);
+        if (mNativeInterface != null) {
+            // Update all the playback status info for each connected device
+            mNativeInterface.sendMediaUpdate(false, true, false);
+        }
     }
 
     // TODO (apanicke): Add checks to rejectlist Absolute Volume devices if they behave poorly.
