@@ -24,6 +24,9 @@ pub trait IBatteryProviderManager {
 
     /// Updates the battery information for the battery associated with battery_id.
     fn set_battery_info(&mut self, battery_provider_id: u32, battery_set: BatterySet);
+
+    /// Removes the battery information for the battery associated with battery_id.
+    fn remove_battery_info(&mut self, battery_provider_id: u32, address: String, uuid: String);
 }
 
 /// Represents the BatteryProviderManager, a central point for collecting battery information from
@@ -74,12 +77,27 @@ impl IBatteryProviderManager for BatteryProviderManager {
         self.remove_battery_provider_callback(battery_provider_id);
     }
 
+    fn remove_battery_info(&mut self, _battery_provider_id: u32, address: String, uuid: String) {
+        if let Some(batteries) = self.battery_info.get_mut(&address) {
+            batteries.remove_battery_set(&uuid);
+
+            if batteries.is_empty() {
+                self.battery_info.remove(&address);
+            }
+        }
+    }
+
     fn set_battery_info(&mut self, _battery_provider_id: u32, battery_set: BatterySet) {
+        if battery_set.batteries.is_empty() {
+            return;
+        }
+
         let batteries = self
             .battery_info
             .entry(battery_set.address.clone())
             .or_insert_with(|| Batteries::new());
         batteries.add_or_update_battery_set(battery_set);
+
         if let Some(best_battery_set) = batteries.pick_best() {
             let tx = self.tx.clone();
             tokio::spawn(async move {
