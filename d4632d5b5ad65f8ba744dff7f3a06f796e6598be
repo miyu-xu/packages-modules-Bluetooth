@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a939e597_2b67f043",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-21T23:03:21Z",
+      "side": 0,
+      "message": "Okay... I assume removing it is causing the build failures...\nIf we don\u0027t want to keep it, we should crate a libbluetooth_test_pdl (or libbluetooth_test_hci_pdl) similar to the others....\n\nSince this is only test related with only one usage, I have no strong opinion on keeping the src file or having the extra library",
+      "range": {
+        "startLine": 434,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 25
+      },
+      "revId": "d4632d5b5ad65f8ba744dff7f3a06f796e6598be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
