@@ -16,14 +16,14 @@
 
 #pragma once
 
-#include <assert.h>
+// #include <assert.h>
 #include <log/log.h>
-#include <stdio.h>
+// #include <stdio.h>
 #include <sys/syscall.h> /* Definition of SYS_* constants */
 #include <unistd.h>
 
 #include <chrono>
-#include <ctime>
+// #include <ctime>
 #include <string>
 
 #include "build_timestamp.h"  // generated
