@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Android Open Source Project
+ * Copyright 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,20 @@
  * limitations under the License.
  */
 
-#include <string>
+#pragma once
 
-#include "include/hardware/bluetooth.h"
-#include "osi/include/properties.h"
+#include <sys/types.h>
 
-namespace {
-constexpr char kZygoteService[] = "init.svc.zygote";
-constexpr char kZygoteServiceRunning[] = "running";
+class BtStackInfo {
+ public:
+  BtStackInfo();
 
-}  // namespace
+  void DumpsysLite();
 
-bool is_android_running() {
-  char value[PROPERTY_VALUE_MAX];
-  osi_property_get(kZygoteService, value, kZygoteServiceRunning);
-  if (!strncmp(kZygoteServiceRunning, value, PROPERTY_VALUE_MAX)) {
-    return true;
-  }
-  return false;
-}
+  pid_t MainPid() const { return main_pid_; }
+  pid_t JniPid() const { return jni_pid_; }
+
+ private:
+  pid_t main_pid_;
+  pid_t jni_pid_;
+};

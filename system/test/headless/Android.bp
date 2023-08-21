@@ -14,7 +14,7 @@ sh_binary {
 }
 
 genrule {
-    name: "HeadlessBuildTimestamp",
+    name: "HeadlessBuildTimestamp_h",
     tools: [
         "headless_build_timestamp",
     ],
@@ -27,9 +27,11 @@ genrule {
 filegroup {
     name: "TestHeadlessModules",
     srcs: [
+        "adapter/adapter.cc",
         "connect/connect.cc",
         "discovery/discovery.cc",
         "dumpsys/dumpsys.cc",
+        "mode/mode.cc",
         "nop/nop.cc",
         "pairing/pairing.cc",
         "read/name.cc",
@@ -43,7 +45,8 @@ filegroup {
 filegroup {
     name: "TestHeadlessCore",
     srcs: [
-        "bt_property.cc",
+        "bt_stack_info.cc",
+        "config.cc",
         "get_options.cc",
         "handler.cc",
         "headless.cc",
@@ -51,6 +54,7 @@ filegroup {
         "main.cc",
         "messenger.cc",
         "property.cc",
+        "text.cc",
         "util.cc",
     ],
 }
@@ -158,7 +162,7 @@ cc_binary {
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
         "BluetoothGeneratedPackets_h",
-        "HeadlessBuildTimestamp",
+        "HeadlessBuildTimestamp_h",
     ],
     include_dirs: [
         "packages/modules/Bluetooth/system",

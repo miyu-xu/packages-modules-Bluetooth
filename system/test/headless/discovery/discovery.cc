@@ -48,8 +48,9 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
   Stopwatch acl_stopwatch("ACL_connection");
   Stopwatch sdp_stopwatch("SDP_discovery");
 
-  LOG_CONSOLE("Started service discovery");
-  auto check_point = messenger::sdp::get_check_point();
+  LOG_CONSOLE("Started service discovery %s", bd_addr.ToString().c_str());
+#if 0
+  auto check_point = messenger::properties::get_check_point();
   ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
          BT_STATUS_SUCCESS);
 
@@ -61,12 +62,12 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
   LOG_CONSOLE("ACL connected to %s :%sms", STR(raw_address),
               STR(acl_stopwatch));
 
-  if (!messenger::sdp::await_service_discovery(8s, check_point, 1UL)) {
+  if (!messenger::properties::await_service_discovery(8s, check_point, 1UL)) {
     LOG_CONSOLE("TIMEOUT waiting for service discovery to %s",
                 raw_address.ToString().c_str());
     return -1;
   }
-  auto callback_queue = messenger::sdp::collect_from(check_point);
+  auto callback_queue = messenger::properties::collect_from(check_point);
   ASSERT_LOG(callback_queue.size() == 1,
              "Received unexpected number of SDP queries");
 
@@ -75,14 +76,14 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
 
   LOG_CONSOLE("got remote services :%s", params.ToString().c_str());
 
-  for (int i = 0; i < params.num_properties; i++) {
-    process_property(params.bd_addr, params.properties + i);
+  for (auto p : params.properties()) {
+    LOG_CONSOLE("%s", p->ToString().c_str());
   }
 
   // Run a second fetch SDP
   {
     LOG_CONSOLE("Sending second SDP request");
-    auto check_point = messenger::sdp::get_check_point();
+    auto check_point = messenger::properties::get_check_point();
 
     ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
            BT_STATUS_SUCCESS);
@@ -95,12 +96,12 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
     LOG_CONSOLE("ACL connected to %s :%sms", STR(raw_address),
                 STR(acl_stopwatch));
 
-    if (!messenger::sdp::await_service_discovery(8s, check_point, 1UL)) {
+    if (!messenger::properties::await_service_discovery(8s, check_point, 1UL)) {
       LOG_CONSOLE("TIMEOUT waiting for service discovery to %s",
                   raw_address.ToString().c_str());
       return -1;
     }
-    auto callback_queue = messenger::sdp::collect_from(check_point);
+    auto callback_queue = messenger::properties::collect_from(check_point);
     ASSERT_LOG(callback_queue.size() == 1,
                "Received unexpected number of SDP queries");
 
@@ -109,15 +110,15 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
 
     LOG_CONSOLE("got remote services :%s", params.ToString().c_str());
 
-    for (int i = 0; i < params.num_properties; i++) {
-      process_property(params.bd_addr, params.properties + i);
-    }
+//    for (int i = 0; i < params.num_properties; i++) {
+//      process_property(params.bd_addr, params.properties + i);
+//    }
   }
 
   // Run a third fetch SDP
   {
     LOG_CONSOLE("Sending third SDP request");
-    auto check_point = messenger::sdp::get_check_point();
+    auto check_point = messenger::properties::get_check_point();
 
     ASSERT(bluetoothInterface.get_remote_services(&bd_addr, 0) ==
            BT_STATUS_SUCCESS);
@@ -130,12 +131,12 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
     LOG_CONSOLE("ACL connected to %s :%sms", STR(raw_address),
                 STR(acl_stopwatch));
 
-    if (!messenger::sdp::await_service_discovery(8s, check_point, 1UL)) {
+    if (!messenger::properties::await_service_discovery(8s, check_point, 1UL)) {
       LOG_CONSOLE("TIMEOUT waiting for service discovery to %s",
                   raw_address.ToString().c_str());
       return -1;
     }
-    auto callback_queue = messenger::sdp::collect_from(check_point);
+    auto callback_queue = messenger::properties::collect_from(check_point);
     ASSERT_LOG(callback_queue.size() == 1,
                "Received unexpected number of SDP queries");
 
@@ -144,9 +145,9 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
 
     LOG_CONSOLE("got remote services :%s", params.ToString().c_str());
 
-    for (int i = 0; i < params.num_properties; i++) {
-      process_property(params.bd_addr, params.properties + i);
-    }
+//    for (int i = 0; i < params.num_properties; i++) {
+//      process_property(params.bd_addr, params.properties + i);
+//    }
   }
 
   LOG_CONSOLE("Awaiting disconnect");
@@ -155,6 +156,7 @@ int start_discovery([[maybe_unused]] unsigned int num_loops,
                 raw_address.ToString().c_str());
     return -1;
   }
+#endif
 
   LOG_CONSOLE("Dumpsys system");
   bluetoothInterface.dump(2, nullptr);
