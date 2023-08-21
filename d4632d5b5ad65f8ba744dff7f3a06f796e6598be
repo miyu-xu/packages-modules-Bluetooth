@@ -22,6 +22,30 @@
       },
       "revId": "d4632d5b5ad65f8ba744dff7f3a06f796e6598be",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98cbeda7_922edad7",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T23:04:22Z",
+      "side": 0,
+      "message": "It builds locally for me.  I need to figure it out a bit better",
+      "parentUuid": "a939e597_2b67f043",
+      "range": {
+        "startLine": 434,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 25
+      },
+      "revId": "d4632d5b5ad65f8ba744dff7f3a06f796e6598be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
