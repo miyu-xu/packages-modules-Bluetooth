@@ -38,6 +38,15 @@ struct BTM_Sec_AddressKnown {
 };
 extern struct BTM_Sec_AddressKnown BTM_Sec_AddressKnown;
 
+struct BTM_Sec_GetAddressWithType {
+  std::function<tBLE_BD_ADDR(const RawAddress& address)> body{
+      [](const RawAddress& address) {
+        return tBLE_BD_ADDR{.type = BLE_ADDR_PUBLIC, .bda = address};
+      }};
+  tBLE_BD_ADDR operator()(const RawAddress& address) { return body(address); };
+};
+extern struct BTM_Sec_GetAddressWithType BTM_Sec_GetAddressWithType;
+
 // Name: maybe_resolve_address
 // Params: RawAddress* bda, tBLE_ADDR_TYPE* bda_type
 // Returns: bool
