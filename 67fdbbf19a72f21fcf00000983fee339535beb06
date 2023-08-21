@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b47bcbaf_44e850f9",
+        "filename": "system/stack/mmc/codec_server/hfp_lc3_mmc_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-21T08:02:11Z",
+      "side": 1,
+      "message": "Yes, we should check whether `lc3_setup_encoder` returns nullptr.\nIn the original code, `hfp_lc3_encoder.cc` does not check the return value because parameters are constant and could not be wrong, which is not the case in this code.",
+      "parentUuid": "437ae8bd_e42e71de",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 18
+      },
+      "revId": "67fdbbf19a72f21fcf00000983fee339535beb06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49a2a9cc_4935bf9d",
