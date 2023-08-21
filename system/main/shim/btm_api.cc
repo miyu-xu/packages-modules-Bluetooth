@@ -28,6 +28,9 @@
 #include "stack/btm/btm_ble_int.h"
 #include "types/raw_address.h"
 
+extern const tBLE_BD_ADDR convert_to_address_with_type(
+    const RawAddress& bd_addr, const tBTM_SEC_DEV_REC* p_dev_rec);
+
 uint16_t bluetooth::shim::BTM_GetHCIConnHandle(const RawAddress& remote_bda,
                                                tBT_TRANSPORT transport) {
   return Stack::GetInstance()->GetBtm()->GetAclHandle(remote_bda, transport);
@@ -80,8 +83,11 @@ tBTM_STATUS bluetooth::shim::BTM_AllowWakeByHid(
     std::promise<bool> accept_promise;
     auto accept_future = accept_promise.get_future();
 
+    tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(hid_address.first);
+    tBLE_BD_ADDR bdadr =
+        convert_to_address_with_type(hid_address.first, p_dev_rec);
     Stack::GetInstance()->GetAcl()->AcceptLeConnectionFrom(
-        ToAddressWithType(hid_address.first, hid_address.second),
+        ToAddressWithType(bdadr.bda, bdadr.type),
         /*is_direct=*/false, std::move(accept_promise));
 
     accept_future.wait();
@@ -101,8 +107,11 @@ tBTM_STATUS bluetooth::shim::BTM_RestoreFilterAcceptList(
     std::promise<bool> accept_promise;
     auto accept_future = accept_promise.get_future();
 
+    tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(address_pair.first);
+    tBLE_BD_ADDR bdadr =
+        convert_to_address_with_type(address_pair.first, p_dev_rec);
     Stack::GetInstance()->GetAcl()->AcceptLeConnectionFrom(
-        ToAddressWithType(address_pair.first, address_pair.second),
+        ToAddressWithType(bdadr.bda, bdadr.type),
         /*is_direct=*/false, std::move(accept_promise));
 
     accept_future.wait();
