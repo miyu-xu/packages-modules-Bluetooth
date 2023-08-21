@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e74cf29e_40eda01d",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-21T16:14:28Z",
+      "side": 1,
+      "message": "Should it be removed too ?\n\nMaybe another CL to have the test paaacket library ?",
+      "range": {
+        "startLine": 434,
+        "startChar": 0,
+        "endLine": 434,
+        "endChar": 25
+      },
+      "revId": "d307565e6adf7685619dd888e9859bb335bd2d56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
