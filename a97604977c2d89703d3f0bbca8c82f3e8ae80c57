@@ -16,6 +16,23 @@
       "message": "This CL remove the use of generated header but no longer depend on the hci_pdl library. is there something missing or is it on purpose ?",
       "revId": "a97604977c2d89703d3f0bbca8c82f3e8ae80c57",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "930a83ab_426e9fb9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T16:26:52Z",
+      "side": 1,
+      "message": "It\u0027s on purpose.  It still builds for me :)",
+      "revId": "a97604977c2d89703d3f0bbca8c82f3e8ae80c57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
