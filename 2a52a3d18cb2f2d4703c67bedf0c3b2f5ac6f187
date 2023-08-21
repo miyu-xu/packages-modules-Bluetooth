@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd1eda3d_b163202b",
+        "filename": "system/stack/mmc/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T16:23:24Z",
+      "side": 1,
+      "message": "I\u0027d prefer adding this to OWNERS_chromeos.  We\u0027re moving toward having owners in files and including the files in the tree.  If that doesn\u0027t seem like the right direction, maybe we need OWNERS_chromeos_audio or something like that.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 15
+      },
+      "revId": "2a52a3d18cb2f2d4703c67bedf0c3b2f5ac6f187",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
