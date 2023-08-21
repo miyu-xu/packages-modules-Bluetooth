@@ -10,6 +10,55 @@ package {
     default_applicable_licenses: ["system_bt_license"],
 }
 
+// genrule {
+//     name: "bluetooth_cert_test",
+//     srcs: [
+//         "blueberry/**/*.py",
+//         "blueberry/**/*.yaml",
+//     ],
+//     dist: {
+//         targets: ["bluetooth_stack_with_facade"],
+//     },
+//     compile_multilib: "first",
+//     tools: [
+//         "soong_zip",
+//         "root-canal",
+//         "bluetooth_stack_with_facade",
+//         "bluetooth_with_facades",
+//     ],
+//     cmd: "echo $(locations blueberry/**/*.py) $(locations blueberry/**/*.yaml) > $(genDir)/list && " +
+//          "$(location soong_zip) -o $(out) " +
+//          "  -C packages/modules/Bluetooth/system -l $(genDir)/list " +
+//          "  -C $$(dirname $(location bluetooth_stack_with_facade)) -f $(location bluetooth_stack_with_facade) " +
+//          "  -C $$(dirname $(location root-canal)) -f $(location root-canal)",
+//     out: ["bluetooth_cert_tests2.zip"],
+// }
+
+python_binary_host {
+    name: "bluetooth_cert_test",
+    srcs: [
+        "blueberry/**/*.py",
+    ],
+    main: "blueberry/tests/gd/gd_all_tests.py",
+    data: [
+        ":bluetooth_packets_python3",
+        ":bluetooth_stack_with_facade",
+        ":bluetooth_with_facades",
+        ":root-canal",
+        "blueberry/**/*.yaml",
+    ],
+}
+
+genrule {
+    name: "bluetooth_cert_test_zip",
+    tools: ["bluetooth_cert_test"],
+    cmd: "cp $(location bluetooth_cert_test) $(out)",
+    dist: {
+        targets: ["bluetooth_stack_with_facade"],
+    },
+    out: ["bluetooth_cert_tests.zip"],
+}
+
 filegroup {
     name: "BlueberryFacadeProto",
     srcs: [
