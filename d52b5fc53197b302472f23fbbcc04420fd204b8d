@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18836e0e_0c94e187",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 20
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T22:44:16Z",
+      "side": 1,
+      "message": "I like the direction!  Thanks",
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b9091f6_3033c0fb",
+        "filename": "system/bta/has/has_ctp.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T22:44:16Z",
+      "side": 1,
+      "message": "Can we just remove these?  I didn\u0027t think we needed this annotation if there are no statements before the next case label.",
+      "range": {
+        "startLine": 270,
+        "startChar": 5,
+        "endLine": 270,
+        "endChar": 24
+      },
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fdcd8b9_d5c49e81",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 5287,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T22:44:16Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 5287,
+        "startChar": 10,
+        "endLine": 5287,
+        "endChar": 21
+      },
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e5248b_133282d3",
+        "filename": "system/bta/le_audio/le_audio_log_history.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T22:44:16Z",
+      "side": 1,
+      "message": "unrelated",
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5a22b9d_ac0ee465",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T22:44:16Z",
+      "side": 1,
+      "message": "unrelated",
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f58f3e04_c8d32ed3",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T22:44:16Z",
+      "side": 1,
+      "message": "It looks like FALLTHROUGH_INTENDED is defined in the top-level Build.gn file.  Can we just convert it to that?",
+      "range": {
+        "startLine": 197,
+        "startChar": 8,
+        "endLine": 197,
+        "endChar": 23
+      },
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36f7a40b_862576f9",
+        "filename": "system/btif/BUILD.gn",
+        "patchSetId": 20
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-21T22:44:16Z",
+      "side": 1,
+      "message": "This one is not in alphabetical order.  Is there another reason to move them?",
+      "range": {
+        "startLine": 74,
+        "startChar": 9,
+        "endLine": 74,
+        "endChar": 24
+      },
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
