@@ -22,6 +22,30 @@
       },
       "revId": "31c5ddb88ee500b2f097db8831e7f9658b982e26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7881c3f6_f2e2e16d",
+        "filename": "system/stack/mmc/mmc_interface/mmc_interface.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-21T03:49:46Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "7b4f290b_44a8c827",
+      "range": {
+        "startLine": 26,
+        "startChar": 68,
+        "endLine": 26,
+        "endChar": 69
+      },
+      "revId": "31c5ddb88ee500b2f097db8831e7f9658b982e26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
