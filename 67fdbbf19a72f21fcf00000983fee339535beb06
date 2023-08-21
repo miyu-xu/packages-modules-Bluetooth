@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d7962a5_9a1a660c",
+        "filename": "system/stack/mmc/codec_server/hfp_lc3_mmc_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-21T03:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4b73086_aa6546f1",
+      "range": {
+        "startLine": 36,
+        "startChar": 11,
+        "endLine": 36,
+        "endChar": 13
+      },
+      "revId": "67fdbbf19a72f21fcf00000983fee339535beb06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "437ae8bd_e42e71de",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "53fad084_5fbd4baa",
+        "filename": "system/stack/mmc/codec_server/hfp_lc3_mmc_encoder.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-21T03:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49a2a9cc_4935bf9d",
+      "range": {
+        "startLine": 62,
+        "startChar": 11,
+        "endLine": 62,
+        "endChar": 13
+      },
+      "revId": "67fdbbf19a72f21fcf00000983fee339535beb06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26bc1c31_e95e1324",
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7350268f_55a3d87d",
+        "filename": "system/stack/mmc/codec_server/hfp_lc3_mmc_encoder.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-21T03:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26bc1c31_e95e1324",
+      "range": {
+        "startLine": 41,
+        "startChar": 7,
+        "endLine": 41,
+        "endChar": 9
+      },
+      "revId": "67fdbbf19a72f21fcf00000983fee339535beb06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "967a95b5_19d65f1b",
@@ -106,6 +178,30 @@
       "writtenOn": "2023-08-18T17:09:31Z",
       "side": 1,
       "message": "Consider: Add a log or even assert.",
+      "range": {
+        "startLine": 38,
+        "startChar": 6,
+        "endLine": 38,
+        "endChar": 32
+      },
+      "revId": "67fdbbf19a72f21fcf00000983fee339535beb06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b4d07a2_73899675",
+        "filename": "system/stack/mmc/codec_server/lc3_utils.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-21T03:50:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "967a95b5_19d65f1b",
       "range": {
         "startLine": 38,
         "startChar": 6,
