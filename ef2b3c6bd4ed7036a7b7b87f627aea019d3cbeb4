@@ -22,6 +22,30 @@
       },
       "revId": "ef2b3c6bd4ed7036a7b7b87f627aea019d3cbeb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bef8f660_6ff8cb3f",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientNativeInterface.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-21T17:46:12Z",
+      "side": 1,
+      "message": "Substring is needed because Log.isLoggable only accept up to 23 char length for the TAG",
+      "parentUuid": "32ae69dd_c623c4ff",
+      "range": {
+        "startLine": 37,
+        "startChar": 58,
+        "endLine": 37,
+        "endChar": 75
+      },
+      "revId": "ef2b3c6bd4ed7036a7b7b87f627aea019d3cbeb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
