@@ -55,6 +55,11 @@ extern tBTM_CB btm_cb;
 
 namespace {
 uint16_t pm_pend_link = 0;
+tBTM_PM_RCB pm_reg_db; /* per application/module */
+
+uint8_t pm_pend_id = 0; /* the id pf the module, which has a pending PM cmd */
+
+constexpr char kBtmLogTag[] = "ACL";
 
 std::unordered_map<uint16_t /* handle */, tBTM_PM_MCB> pm_mode_db;
 
@@ -67,11 +72,34 @@ tBTM_PM_MCB* btm_pm_get_power_manager_from_address(const RawAddress& bda) {
   return nullptr;
 }
 
-tBTM_PM_RCB pm_reg_db; /* per application/module */
+}  // namespace
 
-uint8_t pm_pend_id = 0; /* the id pf the module, which has a pending PM cmd */
-
-constexpr char kBtmLogTag[] = "ACL";
+// BLUETOOTH CORE SPECIFICATION Version 5.4 | Vol 4, Part E
+// 7.2.2 Sniff Mode command
+// Sniff mode parameter validation
+bool is_sniff_mode_parameters_valid(const tBTM_PM_PWR_MD& mode) {
+  if (mode.mode != BTM_PM_MD_SNIFF) {
+    LOG_WARN("Do not check sniff mode parameters on non-sniff mode request");
+    return false;
+  }
+  if (mode.max & 0x0001 || mode.max == 0 || mode.max == 1 ||
+      mode.max == 0xffff) {
+    return false;
+  }
+  if (mode.min & 0x0001 || mode.min == 0 || mode.min == 1 ||
+      mode.min == 0xffff) {
+    return false;
+  }
+  if (mode.attempt == 0 || mode.attempt > 0x7fff) {
+    return false;
+  }
+  if (mode.timeout > 0x7fff) {
+    return false;
+  }
+  if (mode.min > mode.max) {
+    return false;
+  }
+  return true;
 }
 
 /*****************************************************************************/
@@ -597,6 +625,10 @@ static tBTM_STATUS btm_pm_snd_md_req(uint16_t handle, uint8_t pm_id,
       break;
 
     case BTM_PM_MD_SNIFF:
+      if (!is_sniff_mode_parameters_valid(md_res)) {
+        LOG_WARN("Sending invalid sniff mode parameters:%s",
+                 md_res.ToString().c_str());
+      }
       btsnd_hcic_sniff_mode(handle, md_res.max, md_res.min, md_res.attempt,
                             md_res.timeout);
       pm_pend_link = handle;
