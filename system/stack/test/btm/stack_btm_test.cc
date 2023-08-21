@@ -513,3 +513,118 @@ TEST_F(StackBtmWithInitFreeTest, is_disconnect_reason_valid) {
       ASSERT_FALSE(is_disconnect_reason_valid(reason));
   }
 }
+
+bool is_sniff_mode_parameters_valid(const tBTM_PM_PWR_MD& mode);
+TEST_F(StackBtmWithInitFreeTest, is_sniff_mode_parameters_valid) {
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0,
+      .min = 0,
+      .attempt = 1,
+      .timeout = 0,
+      .mode = BTM_PM_MD_ACTIVE,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0,
+      .min = 0,
+      .attempt = 1,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 1,
+      .min = 0,
+      .attempt = 1,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0xffff,
+      .min = 0,
+      .attempt = 1,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x0f01,
+      .min = 0,
+      .attempt = 1,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x10,
+      .min = 0,
+      .attempt = 1,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x10,
+      .min = 1,
+      .attempt = 1,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x10,
+      .min = 0xffff,
+      .attempt = 1,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x10,
+      .min = 0x0f01,
+      .attempt = 1,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x10,
+      .min = 0x10,
+      .attempt = 0,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x10,
+      .min = 0x10,
+      .attempt = 0x8000,
+      .timeout = 0,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x10,
+      .min = 0x10,
+      .attempt = 1,
+      .timeout = 0x8000,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_FALSE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x10,
+      .min = 0x100,
+      .attempt = 1,
+      .timeout = 0x8000,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+
+  ASSERT_TRUE(is_sniff_mode_parameters_valid(tBTM_PM_PWR_MD{
+      .max = 0x100,
+      .min = 0x10,
+      .attempt = 1,
+      .timeout = 0x1,
+      .mode = BTM_PM_MD_SNIFF,
+  }));
+}
