@@ -22,6 +22,30 @@
       },
       "revId": "ed233f5200dbb1e2eb0565a5c44f8b24d4d37d8a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c587fb64_27f01b6f",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-21T18:42:34Z",
+      "side": 1,
+      "message": "Acknowledged --- see aosp/2719519",
+      "parentUuid": "d4a6601b_75eb5ec2",
+      "range": {
+        "startLine": 151,
+        "startChar": 39,
+        "endLine": 151,
+        "endChar": 58
+      },
+      "revId": "ed233f5200dbb1e2eb0565a5c44f8b24d4d37d8a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
