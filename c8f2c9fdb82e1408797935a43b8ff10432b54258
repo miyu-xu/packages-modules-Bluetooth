@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "093bef78_69d67396",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-08-22T14:36:40Z",
+      "side": 1,
+      "message": "Add a TODO that this needs to be updated to more proper prioritization.",
+      "range": {
+        "startLine": 154,
+        "startChar": 41,
+        "endLine": 154,
+        "endChar": 78
+      },
+      "revId": "c8f2c9fdb82e1408797935a43b8ff10432b54258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c19299a_e9c13820",
         "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
         "patchSetId": 2
