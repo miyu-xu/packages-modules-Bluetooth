@@ -1277,6 +1277,8 @@ public class A2dpService extends ProfileService {
         if (mFactory.getAvrcpTargetService() != null) {
             mFactory.getAvrcpTargetService().handleA2dpConnectionStateChanged(device, toState);
         }
+        mAdapterService.notifyProfileConnectionStateChangeToGatt(
+                BluetoothProfile.A2DP, fromState, toState);
         mAdapterService
                 .getActiveDeviceManager()
                 .profileConnectionStateChanged(BluetoothProfile.A2DP, device, fromState, toState);
