@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddaadc03_c844b069",
+        "filename": "system/bta/has/has_ctp.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-22T09:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b9091f6_3033c0fb",
+      "range": {
+        "startLine": 270,
+        "startChar": 5,
+        "endLine": 270,
+        "endChar": 24
+      },
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fdcd8b9_d5c49e81",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9303c4c5_308386ea",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 5287,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-22T09:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fdcd8b9_d5c49e81",
+      "range": {
+        "startLine": 5287,
+        "startChar": 10,
+        "endLine": 5287,
+        "endChar": 21
+      },
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10e5248b_133282d3",
@@ -77,6 +125,24 @@
       "writtenOn": "2023-08-21T22:44:16Z",
       "side": 1,
       "message": "unrelated",
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f05622be_c884e650",
+        "filename": "system/bta/le_audio/le_audio_log_history.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-22T09:07:24Z",
+      "side": 1,
+      "message": "Need to include `check.h`, and this newline of file is from the auto-format.",
+      "parentUuid": "10e5248b_133282d3",
       "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -121,6 +187,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec42e5d4_e277ce0e",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-22T09:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f58f3e04_c8d32ed3",
+      "range": {
+        "startLine": 197,
+        "startChar": 8,
+        "endLine": 197,
+        "endChar": 23
+      },
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36f7a40b_862576f9",
@@ -134,6 +224,30 @@
       "writtenOn": "2023-08-21T22:44:16Z",
       "side": 1,
       "message": "This one is not in alphabetical order.  Is there another reason to move them?",
+      "range": {
+        "startLine": 74,
+        "startChar": 9,
+        "endLine": 74,
+        "endChar": 24
+      },
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cefc95c0_1bc2b373",
+        "filename": "system/btif/BUILD.gn",
+        "patchSetId": 20
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-22T09:07:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36f7a40b_862576f9",
       "range": {
         "startLine": 74,
         "startChar": 9,
