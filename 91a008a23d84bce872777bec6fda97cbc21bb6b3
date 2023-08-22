@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "074a4a4b_8e278244",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-22T02:55:49Z",
+      "side": 1,
+      "message": "+2 % NIT",
+      "revId": "91a008a23d84bce872777bec6fda97cbc21bb6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "847c5ade_ff993ba3",
+        "filename": "system/stack/mmc/codec_server/hfp_lc3_mmc_decoder.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-08-22T02:55:49Z",
+      "side": 1,
+      "message": "NIT: The return error message on line 56 should be sufficient.\n\nIf you\u0027d like it to be more specific, you can also change the `!hfp_lc3_decoder_` to `hfp_lc3_decoder \u003d\u003d NULL`\n\nIn most cases, we prefer making code readable and self-explained such that we don\u0027t need extra comments.",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 14
+      },
+      "revId": "91a008a23d84bce872777bec6fda97cbc21bb6b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
