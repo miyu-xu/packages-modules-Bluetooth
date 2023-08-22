@@ -349,7 +349,7 @@ static void bta_dm_pm_cback(tBTA_SYS_CONN_STATUS status, uint8_t id,
 
   LOG_DEBUG("Power management callback status:%s[%hhu] id:%s[%d], app:%hhu",
             bta_sys_conn_status_text(status).c_str(), status,
-            BtaIdSysText(id).c_str(), id, app_id);
+            BtaIdSysText(static_cast<tBTA_SYS_ID>(id)).c_str(), id, app_id);
 
   /* find if there is an power mode entry for the service */
   for (i = 1; i <= p_bta_dm_pm_cfg[0].app_id; i++) {
@@ -434,13 +434,13 @@ static void bta_dm_pm_cback(tBTA_SYS_CONN_STATUS status, uint8_t id,
     }
 
     /* fill in a new cb */
-    bta_dm_conn_srvcs.conn_srvc[j].id = id;
+    bta_dm_conn_srvcs.conn_srvc[j].id = static_cast<tBTA_SYS_ID>(id);
     bta_dm_conn_srvcs.conn_srvc[j].app_id = app_id;
     bta_dm_conn_srvcs.conn_srvc[j].new_request = true;
     bta_dm_conn_srvcs.conn_srvc[j].peer_bdaddr = peer_addr;
 
     LOG_INFO("New connection service:%s[%hhu] app_id:%d",
-             BtaIdSysText(id).c_str(), id, app_id);
+             BtaIdSysText(static_cast<tBTA_SYS_ID>(id)).c_str(), id, app_id);
 
     bta_dm_conn_srvcs.count++;
     bta_dm_conn_srvcs.conn_srvc[j].state = status;

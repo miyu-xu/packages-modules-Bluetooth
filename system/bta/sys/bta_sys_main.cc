@@ -98,7 +98,7 @@ static void bta_sys_event(BT_HDR_RIGID* p_msg) {
     freebuf = (*bta_sys_cb.reg[id]->evt_hdlr)(p_msg);
   } else {
     LOG_INFO("Ignoring receipt of unregistered event id:%s",
-             BtaIdSysText(id).c_str());
+             BtaIdSysText(static_cast<tBTA_SYS_ID>(id)).c_str());
   }
 
   if (freebuf) {
