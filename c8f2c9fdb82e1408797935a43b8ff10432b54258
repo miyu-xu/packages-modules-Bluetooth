@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fc92b96_2734c696",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-08-22T14:35:38Z",
+      "side": 1,
+      "message": "The original intention of defining `Batteries` this way (`pub struct Batteries(Vec\u003cBatterySet\u003e)` was to automatically get access to these methods. It looks like that doesn\u0027t actually work unless we impl `Deref` and `DerefMut` for `Batteries`. It isn\u0027t entirely clear whether we should do that or not. It is probably fine for now since all of the logic happen internally.",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 147,
+        "endChar": 5
+      },
+      "revId": "c8f2c9fdb82e1408797935a43b8ff10432b54258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c19299a_e9c13820",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-08-22T14:35:38Z",
+      "side": 1,
+      "message": "We should probably first check to see if we were even tracking this address in the first place. If not, there\u0027s no reason to do the rest.",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 45
+      },
+      "revId": "c8f2c9fdb82e1408797935a43b8ff10432b54258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
