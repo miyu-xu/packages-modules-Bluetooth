@@ -22,6 +22,30 @@
       },
       "revId": "3ca26f3430ed8da9d7a9e88a78528e1ca5c84d23",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0508d1a3_498a6447",
+        "filename": "system/bta/le_audio/audio_set_scenarios.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-08-22T08:28:31Z",
+      "side": 1,
+      "message": "this is a configuration with two devices, each has two CISes -\u003e totally 4 CISes for sink, and 1 for source.\n\nSo, 3 CISes are uni-directional, and 1 CIS is bi-directional. Might move this one too as the condition is dual mic, which means # of mic \u003c\u003d 2 for all configurations.",
+      "parentUuid": "81c637c5_d8d4ff6d",
+      "range": {
+        "startLine": 29,
+        "startChar": 1,
+        "endLine": 30,
+        "endChar": 71
+      },
+      "revId": "3ca26f3430ed8da9d7a9e88a78528e1ca5c84d23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
