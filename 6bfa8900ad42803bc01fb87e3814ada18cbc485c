@@ -114,6 +114,24 @@
       "message": "`substring` will not trunk based on the bytes length but on the char length.",
       "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbf5755c_d82b8459",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2023-08-22T05:33:52Z",
+      "side": 1,
+      "message": "bluetooth name is 248 char only we need to correct macro name BLUETOOTH_NAME_MAX_LENGTH_BYTES to\nBLUETOOTH_NAME_MAX_LENGTH_CHARS",
+      "parentUuid": "7cfab851_fc7ca17e",
+      "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
