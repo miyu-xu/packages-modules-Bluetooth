@@ -6,7 +6,11 @@ TestBeds:
     AndroidDevice: '*'
     BumbleDevice:
     - tcp: ${ROOTCANAL_HCI_ADDRESS}
+      server:
+        identity_address_type: 'public'
     - tcp: ${ROOTCANAL_HCI_ADDRESS}
+      server:
+        identity_address_type: 'public'
 - Name: bumble.bumbles
   Controllers:
     BumbleDevice:
