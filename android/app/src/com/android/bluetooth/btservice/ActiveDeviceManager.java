@@ -161,11 +161,11 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
     }
 
     /**
-     * Called when A2DP active state changed by A2dpService
+     * Called when A2DP active device changed by A2dpService
      *
      * @param device The device currently activated. {@code null} if no A2DP device activated
      */
-    public void a2dpActiveStateChanged(BluetoothDevice device) {
+    public void a2dpActiveDeviceChanged(BluetoothDevice device) {
         mHandler.post(() -> handleA2dpActiveDeviceChanged(device));
     }
 
