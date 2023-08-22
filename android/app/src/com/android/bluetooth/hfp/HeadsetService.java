@@ -2008,6 +2008,9 @@ public class HeadsetService extends ProfileService {
         mAdapterService
                 .getActiveDeviceManager()
                 .hfpConnectionStateChanged(device, fromState, toState);
+        mAdapterService
+                .getSilenceDeviceManager()
+                .hfpConnectionStateChanged(device, fromState, toState);
     }
 
     /**
