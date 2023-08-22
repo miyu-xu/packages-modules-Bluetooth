@@ -152,6 +152,7 @@ import libcore.util.SneakyThrow;
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputFilter.Config;
 import java.io.PrintWriter;
 import java.time.Duration;
 import java.util.ArrayDeque;
@@ -6843,6 +6844,18 @@ public class AdapterService extends Service {
         if (mGattService != null) {
             mGattService.unregAll(source);
         }
+    }
+
+    /**
+     * Notify GATT of a Bluetooth profile's connection state change for a given {@link
+     * BluetoothProfile}.
+     */
+    public void notifyProfileConnectionStateChangeToGatt(int profile, int fromState, int toState) {
+        if (mGattService == null) {
+            Log.w(TAG, "GATT Service is not running!");
+            return;
+        }
+        mGattService.notifyProfileConnectionStateChange(profile, fromState, toState);
     }
 
     static int convertScanModeToHal(int mode) {
