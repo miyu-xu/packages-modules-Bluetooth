@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a17e2574_bd9ac433",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-22T20:31:23Z",
+      "side": 1,
+      "message": "Move the insertion into `self.listening` down after you have the joinhandle (so you can also set joinhandle on the same listener object).",
+      "revId": "44e0800776ccdf77b45d08d09721f2603444e348",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4af5e56e_c23200aa",
         "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
         "patchSetId": 1
@@ -14,6 +31,24 @@
       "writtenOn": "2023-08-22T10:32:30Z",
       "side": 1,
       "message": "Hi Abhishek, I noticed that we never call `abort()` to the futures and I guess we may just remove them.\n\nThe futures are also not helpful to the bug this CL attempts to address - Aborting the listening task doesn\u0027t clean up the resource correctly and the UUID would still be there.",
+      "revId": "44e0800776ccdf77b45d08d09721f2603444e348",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56c40f66_ddef0f52",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-22T20:31:23Z",
+      "side": 1,
+      "message": "I think you need to refactor this further to remove listening joinhandles from this list. You still need to `abort` connecting joinhandles.\n\nMy suggestion:\n* Rename self.futures to `self.connecting` and only insert the connecting_task\n* Put the joinhandle for listening tasks in `self.listening` (as part of the InternalListeningSocket). Only if there is a joinhandle do we need to send the `Close` (which will end the future too).",
+      "parentUuid": "4af5e56e_c23200aa",
       "revId": "44e0800776ccdf77b45d08d09721f2603444e348",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
