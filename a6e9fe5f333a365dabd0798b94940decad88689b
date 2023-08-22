@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "524f6ac1_50b49474",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-22T05:21:00Z",
+      "side": 1,
+      "message": "If there are no use-cases, what about merging this method into the handleA2dpActiveDeviceChanged method?",
+      "range": {
+        "startLine": 339,
+        "startChar": 16,
+        "endLine": 339,
+        "endChar": 36
+      },
+      "revId": "a6e9fe5f333a365dabd0798b94940decad88689b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e922898c_a783ec25",
         "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpTargetService.java",
         "patchSetId": 2
