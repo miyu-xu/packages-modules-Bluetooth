@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21246a5a_0f1b5f04",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T01:26:01Z",
+      "side": 1,
+      "message": "nit: `const` ?",
+      "range": {
+        "startLine": 486,
+        "startChar": 2,
+        "endLine": 486,
+        "endChar": 23
+      },
+      "revId": "4c91923ee1836ff78f7a59c6380ac53ce0a5f62b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcba228d_e09200da",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T01:26:01Z",
+      "side": 1,
+      "message": "nit: inline the value here, I think it\u0027s fine to repeat in this case",
+      "range": {
+        "startLine": 496,
+        "startChar": 37,
+        "endLine": 496,
+        "endChar": 46
+      },
+      "revId": "4c91923ee1836ff78f7a59c6380ac53ce0a5f62b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c892bdb_b0d2e8f3",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 2386,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T01:26:01Z",
+      "side": 1,
+      "message": "This does not really `register` callbacks, what do you think about `jniGetMethodsOrDie` ?",
+      "range": {
+        "startLine": 2386,
+        "startChar": 5,
+        "endLine": 2386,
+        "endChar": 34
+      },
+      "revId": "4c91923ee1836ff78f7a59c6380ac53ce0a5f62b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c94e7e9b_d833e247",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 2387,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T01:26:01Z",
+      "side": 1,
+      "message": "nit: `const`",
+      "range": {
+        "startLine": 2387,
+        "startChar": 35,
+        "endLine": 2387,
+        "endChar": 56
+      },
+      "revId": "4c91923ee1836ff78f7a59c6380ac53ce0a5f62b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a815aec_e6388b2c",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 8
+      },
+      "lineNbr": 2396,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T01:26:01Z",
+      "side": 1,
+      "message": "```suggestion\n  for (int i \u003d 0; i \u003c nMethods; i++) {\n    JNIJavaCallbackMethod\u0026 method \u003d methods[i];\n```",
+      "range": {
+        "startLine": 2395,
+        "startChar": 0,
+        "endLine": 2396,
+        "endChar": 47
+      },
+      "revId": "4c91923ee1836ff78f7a59c6380ac53ce0a5f62b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
