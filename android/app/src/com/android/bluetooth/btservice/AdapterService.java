@@ -758,6 +758,10 @@ public class AdapterService extends Service {
         return mActiveDeviceManager;
     }
 
+    public ActiveDeviceManager getSilenceDeviceManager() {
+        return mSilenceDeviceManager;
+    }
+
     private boolean initMetricsLogger() {
         if (mMetricsLogger != null) {
             return false;
