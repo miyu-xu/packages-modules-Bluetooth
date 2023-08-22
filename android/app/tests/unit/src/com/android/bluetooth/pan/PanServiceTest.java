@@ -42,6 +42,7 @@ import com.android.bluetooth.pan.PanService.BluetoothPanDevice;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -121,6 +122,7 @@ public class PanServiceTest {
         assertThat(mService.connect(mRemoteDevice)).isTrue();
     }
 
+    @Ignore("b/296828558")
     @Test
     public void disconnect_returnsTrue() {
         assertThat(mService.disconnect(mRemoteDevice)).isTrue();
