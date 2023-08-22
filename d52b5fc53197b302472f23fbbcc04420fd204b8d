@@ -164,6 +164,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e69c098f_b18435d5",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 20
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-22T09:07:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5a22b9d_ac0ee465",
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f58f3e04_c8d32ed3",
