@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af5e56e_c23200aa",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-22T10:32:30Z",
+      "side": 1,
+      "message": "Hi Abhishek, I noticed that we never call `abort()` to the futures and I guess we may just remove them.\n\nThe futures are also not helpful to the bug this CL attempts to address - Aborting the listening task doesn\u0027t clean up the resource correctly and the UUID would still be there.",
+      "revId": "44e0800776ccdf77b45d08d09721f2603444e348",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
