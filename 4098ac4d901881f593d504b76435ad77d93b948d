@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "903c4e58_d3db2095",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-22T16:58:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea1282dd_d5707069",
+      "revId": "4098ac4d901881f593d504b76435ad77d93b948d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "abaf1aa4_5b31a1c0",
@@ -154,6 +172,24 @@
       "side": 1,
       "message": "not sure if I got this, if scanDelegator is present, I would only need to add the source to its set, not skip adding.",
       "parentUuid": "ebcbee84_855432a4",
+      "revId": "4098ac4d901881f593d504b76435ad77d93b948d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47669132_b5767bdc",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-22T16:58:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fbbf722_a49ea57a",
       "revId": "4098ac4d901881f593d504b76435ad77d93b948d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -329,6 +365,24 @@
       "side": 1,
       "message": "you\u0027re right, technically that should be possible, source might have multiple BIG(psync train) with the same addresses. and I\u0027ve noticed even today SIG members are debating about the usage of multiple BIGs or different BISs within same BIG. \n\nbut I don\u0027t think we can well handle such case along the flow even if we allow the sync here, there are other modules implementation, like UI, have similar assumption like this. Considering our source implementation is not allowing multi-BIG at this moment, my thoughts is we can have this check to make the implementation aligned with other places first. and we should investigate further and make a throughout plan once we\u0027re going to support multi BIG in the future. please let me know if this makes sense to you.",
       "parentUuid": "1bfb91bb_dbdba13d",
+      "revId": "4098ac4d901881f593d504b76435ad77d93b948d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d661173_b3058cd5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1104,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-22T16:58:20Z",
+      "side": 1,
+      "message": "will follow-up if any additional questions here, mark as resolved to unblock.",
+      "parentUuid": "1153d4c7_92595eac",
       "revId": "4098ac4d901881f593d504b76435ad77d93b948d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
