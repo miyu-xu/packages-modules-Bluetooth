@@ -16,6 +16,29 @@
       "message": "m",
       "revId": "11b5ea5904e88f421f9a82ed61338bcb11f28ac5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90349940_56d98b9e",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T01:52:40Z",
+      "side": 1,
+      "message": "Can we just remove it instead ?",
+      "range": {
+        "startLine": 33,
+        "startChar": 49,
+        "endLine": 33,
+        "endChar": 65
+      },
+      "revId": "11b5ea5904e88f421f9a82ed61338bcb11f28ac5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
