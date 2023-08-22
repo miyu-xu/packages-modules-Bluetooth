@@ -99,10 +99,6 @@ public class SilenceDeviceManager {
                     mHandler.obtainMessage(MSG_HFP_CONNECTION_STATE_CHANGED,
                                            intent).sendToTarget();
                     break;
-                case BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED:
-                    mHandler.obtainMessage(MSG_A2DP_ACTIVE_DEIVCE_CHANGED,
-                                           intent).sendToTarget();
-                    break;
                 case BluetoothHeadset.ACTION_ACTIVE_DEVICE_CHANGED:
                     mHandler.obtainMessage(MSG_HFP_ACTIVE_DEVICE_CHANGED,
                         intent).sendToTarget();
@@ -113,6 +109,15 @@ public class SilenceDeviceManager {
             }
         }
     };
+
+    /**
+     * Called when A2DP active state changed by A2dpService
+     *
+     * @param device The device currently activated. {@code null} if no A2DP device activated
+     */
+    public void a2dpActiveStateChanged(BluetoothDevice device) {
+        mHandler.obtainMessage(MSG_A2DP_ACTIVE_DEIVCE_CHANGED, device).sendToTarget();
+    }
 
     class SilenceDeviceManagerHandler extends Handler {
         SilenceDeviceManagerHandler(Looper looper) {
@@ -180,16 +185,13 @@ public class SilenceDeviceManager {
                 }
                 break;
 
-                case MSG_A2DP_ACTIVE_DEIVCE_CHANGED: {
-                    Intent intent = (Intent) msg.obj;
-                    BluetoothDevice a2dpActiveDevice =
-                            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                case MSG_A2DP_ACTIVE_DEIVCE_CHANGED:
+                    BluetoothDevice a2dpActiveDevice = (BluetoothDevice) msg.obj;
                     if (getSilenceMode(a2dpActiveDevice)) {
                         // Resume the device from silence mode.
                         setSilenceMode(a2dpActiveDevice, false);
                     }
-                }
-                break;
+                    break;
 
                 case MSG_HFP_ACTIVE_DEVICE_CHANGED: {
                     Intent intent = (Intent) msg.obj;
@@ -224,7 +226,6 @@ public class SilenceDeviceManager {
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED);
-        filter.addAction(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED);
         filter.addAction(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothHeadset.ACTION_ACTIVE_DEVICE_CHANGED);
         mAdapterService.registerReceiver(mReceiver, filter);
