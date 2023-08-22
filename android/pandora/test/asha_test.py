@@ -71,6 +71,9 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         self.devices = PandoraDevices(self)
         self.dut, ref_left, ref_right, *_ = self.devices
 
+        ref_left._bumble.config.update({'server': {'identity_address_type': 'public'}})
+        ref_right._bumble.config.update({'server': {'identity_address_type': 'public'}})
+
         if isinstance(self.dut, BumblePandoraDevice):
             raise signals.TestAbortClass('DUT Bumble does not support Asha source')
         if not isinstance(ref_left, BumblePandoraDevice):
