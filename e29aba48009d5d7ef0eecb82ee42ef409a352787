@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4781889a_970476c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-22T07:37:45Z",
+      "side": 1,
+      "message": "You\u0027ll need to mock SilenceDeviceManager in the tests (everywhere ActiveDeviceManager is mocked) to avoid the crash",
+      "revId": "e29aba48009d5d7ef0eecb82ee42ef409a352787",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
