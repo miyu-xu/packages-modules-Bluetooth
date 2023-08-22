@@ -1197,7 +1197,15 @@ impl BluetoothSocketManager {
     pub fn remove_callback(&mut self, callback: CallbackId) {
         // Remove any associated futures and sockets waiting to accept.
         self.futures.remove(&callback);
-        self.listening.remove(&callback);
+        self.listening.remove(&callback).map(|sockets| {
+            for s in sockets {
+                let tx = s.tx.clone();
+                let id = s.socket_id;
+                self.runtime.spawn(async move {
+                    let _ = tx.send(SocketRunnerActions::Close(id)).await;
+                });
+            }
+        });
         self.callbacks.remove_callback(callback);
     }
 
