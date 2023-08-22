@@ -1191,6 +1191,14 @@ public class LeAudioService extends ProfileService {
                             + ")");
         }
 
+        if (mAdapterService.getGattService() != null
+                && mAdapterService.getGattService().getScanManager() != null) {
+            mAdapterService
+                    .getGattService()
+                    .getScanManager()
+                    .handleBluetoothProfileConnectionStateChanged(
+                            BluetoothProfile.LE_AUDIO, prevState, newState);
+        }
         mAdapterService
                 .getActiveDeviceManager()
                 .profileConnectionStateChanged(

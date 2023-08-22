@@ -643,4 +643,15 @@ public class A2dpSinkService extends ProfileService {
         A2dpSinkStateMachine stateMachine = getStateMachineForDevice(device);
         stateMachine.sendMessage(A2dpSinkStateMachine.STACK_EVENT, event);
     }
+
+    void connectionStateChanged(BluetoothDevice device, int fromState, int toState) {
+        if (mAdapterService.getGattService() != null
+                && mAdapterService.getGattService().getScanManager() != null) {
+            mAdapterService
+                    .getGattService()
+                    .getScanManager()
+                    .handleBluetoothProfileConnectionStateChanged(
+                            BluetoothProfile.A2DP_SINK, fromState, toState);
+        }
+    }
 }

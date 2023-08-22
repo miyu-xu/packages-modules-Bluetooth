@@ -2006,6 +2006,12 @@ public class HeadsetService extends ProfileService {
         mAdapterService
                 .getRemoteDevices()
                 .handleHeadsetConnectionStateChanged(device, fromState, toState);
+        mActiveDeviceManager.hfpConnectionStateChanged(device, fromState, toState);
+        mAdapterService
+                .getGattService()
+                .getScanManager()
+                .handleBluetoothProfileConnectionStateChanged(
+                        BluetoothProfile.HEADSET, fromState, toState);
     }
 
     /**

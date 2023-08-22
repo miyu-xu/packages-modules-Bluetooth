@@ -447,8 +447,8 @@ public class GattService extends ProfileService {
         }
     }
 
-    @VisibleForTesting
-    ScanManager getScanManager() {
+    /** Returns current instance of {@code ScanManager}. */
+    public ScanManager getScanManager() {
         if (mScanManager == null) {
             Log.w(TAG, "getScanManager(): scan manager is null");
             return null;
