@@ -22,7 +22,6 @@ import static android.bluetooth.BluetoothDevice.TRANSPORT_AUTO;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
 import static android.text.format.DateUtils.SECOND_IN_MILLIS;
-
 import static com.android.bluetooth.Utils.callerIsSystem;
 import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
@@ -33,7 +32,6 @@ import static com.android.bluetooth.Utils.getBytesFromAddress;
 import static com.android.bluetooth.Utils.hasBluetoothPrivilegedPermission;
 import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 import static com.android.bluetooth.Utils.isPackageNameAccurate;
-
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.NonNull;
@@ -6843,6 +6841,18 @@ public class AdapterService extends Service {
         if (mGattService != null) {
             mGattService.unregAll(source);
         }
+    }
+
+    /**
+     * Notify GATT of a Bluetooth profile's connection state change for a given {@link
+     * BluetoothProfile}.
+     */
+    public void notifyProfileConnectionStateChangeToGatt(int profile, int fromState, int toState) {
+        if (mGattService == null) {
+            Log.w(TAG, "GATT Service is not running!");
+            return;
+        }
+        mGattService.notifyProfileConnectionStateChange(profile, fromState, toState);
     }
 
     static int convertScanModeToHal(int mode) {
