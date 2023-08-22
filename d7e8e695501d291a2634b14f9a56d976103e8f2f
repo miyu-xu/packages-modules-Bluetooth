@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60613057_4649a83c",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-22T08:08:17Z",
+      "side": 1,
+      "message": "This changes only the naming of a sysprop and it\u0027s appearance here as a function - so you can set/reset it just like before, in the old code.",
+      "parentUuid": "c14b3a17_ea31ead3",
+      "range": {
+        "startLine": 195,
+        "startChar": 87,
+        "endLine": 195,
+        "endChar": 88
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0c5e942_1e2728b0",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 8
