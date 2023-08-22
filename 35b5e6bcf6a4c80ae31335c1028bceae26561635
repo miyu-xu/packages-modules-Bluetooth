@@ -33,6 +33,24 @@
       "message": "Change looks innocuous. Pre-submit validates build so you can add a `mma -j` to `Test: ` to get rid of lint.",
       "revId": "35b5e6bcf6a4c80ae31335c1028bceae26561635",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "263c3ed2_fca230dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1096946
+      },
+      "writtenOn": "2023-08-22T19:05:39Z",
+      "side": 1,
+      "message": "thanks!",
+      "parentUuid": "4c750186_328ce319",
+      "revId": "35b5e6bcf6a4c80ae31335c1028bceae26561635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
