@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5576a7e_daf9d6a5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-22T16:56:50Z",
+      "side": 1,
+      "message": "resolved to unblock, will follow-up later.",
+      "parentUuid": "2844823c_6fdd3ebd",
+      "revId": "29a258cb8014deaf23cc4f2c6fc856f904bf22be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a13648f_a1966d77",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-08-18T20:37:32Z",
       "side": 1,
       "message": "so if there is queued broadcast, we drop the new request. isn\u0027t this case avoided from Java layer? or this might still happen here?\nbut anyways we might not hit this issue for now since we\u0027re only supporting one BIG.",
+      "revId": "29a258cb8014deaf23cc4f2c6fc856f904bf22be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c50ed39c_07bba449",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-22T16:56:50Z",
+      "side": 1,
+      "message": "will follow-up later for this question.",
+      "parentUuid": "6a13648f_a1966d77",
       "revId": "29a258cb8014deaf23cc4f2c6fc856f904bf22be",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
