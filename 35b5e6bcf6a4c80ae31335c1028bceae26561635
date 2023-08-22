@@ -16,6 +16,23 @@
       "message": "failure reads like a test timeout, which shouldn\u0027t happen as a result of this change unless something really weird is going on. :) \n\ntrying again",
       "revId": "35b5e6bcf6a4c80ae31335c1028bceae26561635",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c750186_328ce319",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-22T19:04:25Z",
+      "side": 1,
+      "message": "Change looks innocuous. Pre-submit validates build so you can add a `mma -j` to `Test: ` to get rid of lint.",
+      "revId": "35b5e6bcf6a4c80ae31335c1028bceae26561635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
