@@ -151,11 +151,11 @@ public class HfpClientConnectionService extends ConnectionService {
             }
         }
         AdapterService adapterService = AdapterService.getAdapterService();
-        if (adapterService != null && adapterService.getRemoteDevices() != null) {
-            adapterService
-                    .getRemoteDevices()
-                    .handleHeadsetClientConnectionStateChanged(device, oldState, newState);
-        }
+        adapterService
+                .getRemoteDevices()
+                .handleHeadsetClientConnectionStateChanged(device, oldState, newState);
+        adapterService.notifyProfileConnectionStateChangeToGatt(
+                BluetoothProfile.HEADSET_CLIENT, oldState, newState);
     }
 
     private void onCallChangedInternal(BluetoothDevice device, HfpClientCall call) {
