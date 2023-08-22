@@ -70,6 +70,24 @@
       "parentUuid": "832dda99_f063eab6",
       "revId": "59c19fa482f9e2800dfdda87d760a7406962a079",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a21d1e1_9b2ac543",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-22T02:26:56Z",
+      "side": 1,
+      "message": "Talked to Christine offline. Agreed to submit this CL for now to throw exception to user since currently, notification doesn\u0027t send when it\u0027s over max length(512 bytes), and nothing is informed to the user. \n\nHowever, also agreed that this should be aligned with handling in the native layer as William mentioned, and will deal with this as a part of the enumerating GATT error project.",
+      "parentUuid": "90d00346_9b868b97",
+      "revId": "59c19fa482f9e2800dfdda87d760a7406962a079",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
