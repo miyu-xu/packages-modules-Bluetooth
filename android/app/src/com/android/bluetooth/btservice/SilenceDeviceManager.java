@@ -100,8 +100,6 @@ public class SilenceDeviceManager {
                                            intent).sendToTarget();
                     break;
                 case BluetoothHeadset.ACTION_ACTIVE_DEVICE_CHANGED:
-                    mHandler.obtainMessage(MSG_HFP_ACTIVE_DEVICE_CHANGED,
-                        intent).sendToTarget();
                     break;
                 default:
                     Log.e(TAG, "Received unexpected intent, action=" + action);
@@ -117,6 +115,15 @@ public class SilenceDeviceManager {
      */
     public void a2dpActiveDeviceChanged(BluetoothDevice device) {
         mHandler.obtainMessage(MSG_A2DP_ACTIVE_DEVICE_CHANGED, device).sendToTarget();
+    }
+
+    /**
+     * Called when HFP active device is changed by HeadsetService
+     *
+     * @param device The device currently activated. {@code null} if no HFP device activated
+     */
+    public void hfpActiveDeviceChanged(BluetoothDevice device) {
+        mHandler.obtainMessage(MSG_HFP_ACTIVE_DEVICE_CHANGED, device).sendToTarget();
     }
 
     class SilenceDeviceManagerHandler extends Handler {
@@ -193,21 +200,17 @@ public class SilenceDeviceManager {
                     }
                     break;
 
-                case MSG_HFP_ACTIVE_DEVICE_CHANGED: {
-                    Intent intent = (Intent) msg.obj;
-                    BluetoothDevice hfpActiveDevice =
-                            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                case MSG_HFP_ACTIVE_DEVICE_CHANGED:
+                    BluetoothDevice hfpActiveDevice = (BluetoothDevice) msg.obj;
                     if (getSilenceMode(hfpActiveDevice)) {
                         // Resume the device from silence mode.
                         setSilenceMode(hfpActiveDevice, false);
                     }
-                }
-                break;
+                    break;
 
-                default: {
+                default:
                     Log.e(TAG, "Unknown message: " + msg.what);
-                }
-                break;
+                    break;
             }
         }
     };
