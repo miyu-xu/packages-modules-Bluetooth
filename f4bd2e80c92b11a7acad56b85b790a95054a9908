@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec851cf0_0472f3ab",
+        "filename": "android/app/jni/com_android_bluetooth.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T02:21:41Z",
+      "side": 1,
+      "message": "nit: `JNIJavaCallback` or `JNIJavaMethod` 🙃 `Callback` and `Method` tells the same thing for me.",
+      "range": {
+        "startLine": 172,
+        "startChar": 7,
+        "endLine": 172,
+        "endChar": 28
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "005e1d57_e6bddfa1",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_controller.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1212,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T02:21:41Z",
+      "side": 1,
+      "message": "nit: What about putting a boolean into `JNIJavaCallbackMethod` to handle static methods ?\n\nFeel free to discard this comment if you don\u0027t want to do it.",
+      "range": {
+        "startLine": 1212,
+        "startChar": 43,
+        "endLine": 1212,
+        "endChar": 60
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e051491_f2d794d0",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2163,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T02:21:41Z",
+      "side": 1,
+      "message": "Why are you not using `REGISTER_JAVA_CALLBACKS` for this one ?",
+      "range": {
+        "startLine": 2159,
+        "startChar": 0,
+        "endLine": 2163,
+        "endChar": 42
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "319792af_87fe6724",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2360,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T02:21:41Z",
+      "side": 1,
+      "message": "This seems to only be used once, could we inline it in `jniGetMethodsOrDie` ?",
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dfdf987_d3ceab11",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2687,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T02:21:41Z",
+      "side": 1,
+      "message": "`return 0` here and everywhere after a `REGISTER_JAVA_CALLBACKS` ?",
+      "range": {
+        "startLine": 2687,
+        "startChar": 9,
+        "endLine": 2687,
+        "endChar": 15
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c6cd7f4_ba100fdb",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2856,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T02:21:41Z",
+      "side": 1,
+      "message": "```suggestion\n  const std::array\u003cstd::function\u003cint(JNIEnv*)\u003e, 5\u003e register_fns \u003d {\n    register_com_android_bluetooth_gatt_scan,\n    register_com_android_bluetooth_gatt_advertise_manager,\n    register_com_android_bluetooth_gatt_periodic_scan,\n    register_com_android_bluetooth_gatt_distance_measurement,\n    register_com_android_bluetooth_gatt_,\n  };\n\n\n  for (const auto\u0026 fn : register_fns) {\n    const int result \u003d fn(env);\n    if (result !\u003d 0) {\n      return result;\n    }\n  }\n```\n\nOr change the return type from an `int` to a `bool`",
+      "range": {
+        "startLine": 2852,
+        "startChar": 0,
+        "endLine": 2856,
+        "endChar": 51
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a54dfed_500ef74e",
+        "filename": "android/app/jni/com_android_bluetooth_hap_client.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T02:21:41Z",
+      "side": 1,
+      "message": "`REGISTER_JAVA_CALLBACKS` ?",
+      "range": {
+        "startLine": 619,
+        "startChar": 0,
+        "endLine": 627,
+        "endChar": 63
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d77f80de_df1df34b",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T02:21:41Z",
+      "side": 1,
+      "message": "`REGISTER_JAVA_CALLBACKS` ?",
+      "range": {
+        "startLine": 1372,
+        "startChar": 1,
+        "endLine": 1422,
+        "endChar": 60
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee1cce5d_19fc06a1",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1489,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-22T02:21:41Z",
+      "side": 1,
+      "message": "`REGISTER_JAVA_CALLBACKS` ?",
+      "range": {
+        "startLine": 1481,
+        "startChar": 0,
+        "endLine": 1489,
+        "endChar": 59
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
