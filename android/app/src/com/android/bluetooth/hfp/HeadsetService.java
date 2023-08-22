@@ -2007,6 +2007,14 @@ public class HeadsetService extends ProfileService {
                 setActiveDevice(null);
             }
         }
+        if (mAdapterService.getGattService() != null
+                && mAdapterService.getGattService().getScanManager() != null) {
+            mAdapterService
+                    .getGattService()
+                    .getScanManager()
+                    .handleBluetoothProfileConnectionStateChanged(
+                            BluetoothProfile.HEADSET, fromState, toState);
+        }
         mActiveDeviceManager.hfpConnectionStateChanged(device, fromState, toState);
     }
 

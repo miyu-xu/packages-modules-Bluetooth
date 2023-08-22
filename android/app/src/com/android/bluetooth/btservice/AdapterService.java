@@ -6839,6 +6839,11 @@ public class AdapterService extends Service {
         }
     }
 
+    /** Returns the current {@code GattService} instance present in Adapter service. */
+    public GattService getGattService() {
+        return mGattService;
+    }
+
     /**
      * Notify the UID and package name of the app, and the address of associated active device
      *
