@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55811e4b_94952197",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2163,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T22:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a15dac4_c1751c6c",
+      "range": {
+        "startLine": 2159,
+        "startChar": 0,
+        "endLine": 2163,
+        "endChar": 42
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "319792af_87fe6724",
@@ -294,6 +318,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65f96c19_066f3d97",
+        "filename": "android/app/jni/com_android_bluetooth_hap_client.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T22:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a54dfed_500ef74e",
+      "range": {
+        "startLine": 619,
+        "startChar": 0,
+        "endLine": 627,
+        "endChar": 63
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d77f80de_df1df34b",
@@ -317,6 +365,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff59857a_e5508750",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1422,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T22:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d77f80de_df1df34b",
+      "range": {
+        "startLine": 1372,
+        "startChar": 1,
+        "endLine": 1422,
+        "endChar": 60
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee1cce5d_19fc06a1",
@@ -330,6 +402,30 @@
       "writtenOn": "2023-08-22T02:21:41Z",
       "side": 1,
       "message": "`REGISTER_JAVA_CALLBACKS` ?",
+      "range": {
+        "startLine": 1481,
+        "startChar": 0,
+        "endLine": 1489,
+        "endChar": 59
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4b89074_3a9dc40b",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1489,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T22:14:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ee1cce5d_19fc06a1",
       "range": {
         "startLine": 1481,
         "startChar": 0,
