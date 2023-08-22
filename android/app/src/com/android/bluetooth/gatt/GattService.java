@@ -91,6 +91,10 @@ import com.android.bluetooth.btservice.BluetoothAdapterProxy;
 import com.android.bluetooth.btservice.CompanionManager;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
+import com.android.bluetooth.gatt.GattService.BluetoothGattBinder;
+import com.android.bluetooth.gatt.GattService.ClientDeathRecipient;
+import com.android.bluetooth.gatt.GattService.ScannerDeathRecipient;
+import com.android.bluetooth.gatt.GattService.ServerDeathRecipient;
 import com.android.bluetooth.util.NumberUtils;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -495,6 +499,15 @@ public class GattService extends ProfileService {
             return Service.START_NOT_STICKY;
         }
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    /** Notify Scan manager of bluetooth profile connection state changes */
+    public void notifyProfileConnectionStateChange(int profile, int fromState, int toState) {
+        if (mScanManager == null) {
+            Log.w(TAG, "scan manager is null");
+            return;
+        }
+        mScanManager.handleBluetoothProfileConnectionStateChanged(profile, fromState, toState);
     }
 
     /**
