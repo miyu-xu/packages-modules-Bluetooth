@@ -35,6 +35,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f83e39d2_bc360852",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T01:14:10Z",
+      "side": 1,
+      "message": "I agree with the fix location and with the underlying change wanted.\nSince there are some comment around the way of doing it and since this CL is in merge-conflict, I have uploaded aosp/2719527 to address the issue and add associated test.\n\nPlease feel free to have a look.",
+      "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "183cd0be_5fac98d3",
@@ -54,6 +71,47 @@
         "endLine": 321,
         "endChar": 20
       },
+      "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20f8f97b_8687fbed",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T01:14:10Z",
+      "side": 1,
+      "message": "Yes it should.",
+      "parentUuid": "183cd0be_5fac98d3",
+      "range": {
+        "startLine": 321,
+        "startChar": 16,
+        "endLine": 321,
+        "endChar": 20
+      },
+      "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cfab851_fc7ca17e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T01:14:10Z",
+      "side": 1,
+      "message": "`substring` will not trunk based on the bytes length but on the char length.",
       "revId": "6bfa8900ad42803bc01fb87e3814ada18cbc485c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
