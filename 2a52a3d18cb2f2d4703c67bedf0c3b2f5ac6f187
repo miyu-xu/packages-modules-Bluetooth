@@ -22,6 +22,30 @@
       },
       "revId": "2a52a3d18cb2f2d4703c67bedf0c3b2f5ac6f187",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b3a9eca_013f1eaf",
+        "filename": "system/stack/mmc/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-22T01:55:11Z",
+      "side": 1,
+      "message": "I agree, but it was a bit challenging to get owner approval to aosp/2709173, and this is blocking the review process.",
+      "parentUuid": "bd1eda3d_b163202b",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 15
+      },
+      "revId": "2a52a3d18cb2f2d4703c67bedf0c3b2f5ac6f187",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
