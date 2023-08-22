@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8ca23c1_7eac5933",
+        "filename": "android/app/jni/com_android_bluetooth.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T18:20:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec851cf0_0472f3ab",
+      "range": {
+        "startLine": 172,
+        "startChar": 7,
+        "endLine": 172,
+        "endChar": 28
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "005e1d57_e6bddfa1",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-22T02:21:41Z",
       "side": 1,
       "message": "nit: What about putting a boolean into `JNIJavaCallbackMethod` to handle static methods ?\n\nFeel free to discard this comment if you don\u0027t want to do it.",
+      "range": {
+        "startLine": 1212,
+        "startChar": 43,
+        "endLine": 1212,
+        "endChar": 60
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f92c4c9_0c57043d",
+        "filename": "android/app/jni/com_android_bluetooth_avrcp_controller.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 1212,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T18:20:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "005e1d57_e6bddfa1",
       "range": {
         "startLine": 1212,
         "startChar": 43,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a15dac4_c1751c6c",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2163,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T18:20:14Z",
+      "side": 1,
+      "message": "I didn\u0027t use this pattern when we were loading from something else than `com.android.bluetooth...`\n\nI was not happy about calling theses ^^",
+      "parentUuid": "6e051491_f2d794d0",
+      "range": {
+        "startLine": 2159,
+        "startChar": 0,
+        "endLine": 2163,
+        "endChar": 42
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "319792af_87fe6724",
         "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
         "patchSetId": 10
@@ -83,6 +155,24 @@
       "writtenOn": "2023-08-22T02:21:41Z",
       "side": 1,
       "message": "This seems to only be used once, could we inline it in `jniGetMethodsOrDie` ?",
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5216c6be_08328ffb",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2360,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T18:20:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "319792af_87fe6724",
       "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52b616c7_573b122a",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2687,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T18:20:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2dfdf987_d3ceab11",
+      "range": {
+        "startLine": 2687,
+        "startChar": 9,
+        "endLine": 2687,
+        "endChar": 15
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c6cd7f4_ba100fdb",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-08-22T02:21:41Z",
       "side": 1,
       "message": "```suggestion\n  const std::array\u003cstd::function\u003cint(JNIEnv*)\u003e, 5\u003e register_fns \u003d {\n    register_com_android_bluetooth_gatt_scan,\n    register_com_android_bluetooth_gatt_advertise_manager,\n    register_com_android_bluetooth_gatt_periodic_scan,\n    register_com_android_bluetooth_gatt_distance_measurement,\n    register_com_android_bluetooth_gatt_,\n  };\n\n\n  for (const auto\u0026 fn : register_fns) {\n    const int result \u003d fn(env);\n    if (result !\u003d 0) {\n      return result;\n    }\n  }\n```\n\nOr change the return type from an `int` to a `bool`",
+      "range": {
+        "startLine": 2852,
+        "startChar": 0,
+        "endLine": 2856,
+        "endChar": 51
+      },
+      "revId": "f4bd2e80c92b11a7acad56b85b790a95054a9908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12880b17_a5fd488d",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 2856,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-22T18:20:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c6cd7f4_ba100fdb",
       "range": {
         "startLine": 2852,
         "startChar": 0,
