@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7c55fd7_9290fa7d",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_provider_manager.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-08-23T11:22:51Z",
+      "side": 1,
+      "message": "Jesse, this API doesn\u0027t look like a must for this bug. If this API hasn\u0027t been used, can we put this into another CL? see go/floss-api-bc for more context about Floss API compatibility.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "619b2155118e464b5e7ead1c9e31310f9d6bd258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
