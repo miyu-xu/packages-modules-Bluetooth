@@ -125,6 +125,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9334cf3_2cfb4ad0",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-23T08:32:17Z",
+      "side": 1,
+      "message": "As a sanity check can you try building android and checking this work.",
+      "parentUuid": "f34940e6_ba1f61fa",
+      "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "873eccec_f9d3efab",
         "filename": "system/include/hardware/bt_sock.h",
         "patchSetId": 1
