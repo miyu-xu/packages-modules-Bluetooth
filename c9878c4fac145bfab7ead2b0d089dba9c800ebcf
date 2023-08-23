@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4d990a19_7b8e9003",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-23T08:03:48Z",
+      "side": 1,
+      "message": "Can the use of callbacks be the alternative?\n\ne.g.\n```\nA2dpService {\n  ...\n  mAdapterService.notifyXxxChanged()\n  ...\n}\n\nScanManager {\n  ...\n  mAdapterService.registerXxxCallback(...)\n  ...\n}\n```",
+      "parentUuid": "96ffa1aa_89badf99",
+      "revId": "c9878c4fac145bfab7ead2b0d089dba9c800ebcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6353c882_00376c8b",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
