@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7132fcd4_88717d1c",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-23T09:49:52Z",
+      "side": 1,
+      "message": "Thanks for the explanation. Yeah, I wasn\u0027t sure what to do in this case, so I just went with the one most harmless in my mind.",
+      "parentUuid": "7fc92b96_2734c696",
+      "range": {
+        "startLine": 145,
+        "startChar": 4,
+        "endLine": 147,
+        "endChar": 5
+      },
+      "revId": "c8f2c9fdb82e1408797935a43b8ff10432b54258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "093bef78_69d67396",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60a8396d_bab4ff58",
+        "filename": "system/gd/rust/linux/stack/src/battery_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-23T09:49:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "093bef78_69d67396",
+      "range": {
+        "startLine": 154,
+        "startChar": 41,
+        "endLine": 154,
+        "endChar": 78
+      },
+      "revId": "c8f2c9fdb82e1408797935a43b8ff10432b54258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c19299a_e9c13820",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-08-22T14:35:38Z",
       "side": 1,
       "message": "We should probably first check to see if we were even tracking this address in the first place. If not, there\u0027s no reason to do the rest.",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 45
+      },
+      "revId": "c8f2c9fdb82e1408797935a43b8ff10432b54258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e7d0913_1680927e",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-23T09:49:52Z",
+      "side": 1,
+      "message": "I\u0027m not sure. Could you double check?\n\nWe do gatt.client_disconnect() here, and the corresponding gatt.client_connect() is located in init_device(), but that is not where handle is inserted.\nDoesn\u0027t that mean calling init_device() but not calling drop_device() would leave the gatt hanging? Or is it not possible to do so because of some ordering?",
+      "parentUuid": "8c19299a_e9c13820",
       "range": {
         "startLine": 279,
         "startChar": 8,
