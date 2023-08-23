@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "badab8e9_c7015252",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T23:45:48Z",
+      "side": 1,
+      "message": "How was it done prior to this CL to enableSwb for lc3 ?\n\nWhy only aptx need this path ?",
+      "range": {
+        "startLine": 949,
+        "startChar": 16,
+        "endLine": 949,
+        "endChar": 31
+      },
+      "revId": "e2f0443123a65e5c6933da586171429f984780f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

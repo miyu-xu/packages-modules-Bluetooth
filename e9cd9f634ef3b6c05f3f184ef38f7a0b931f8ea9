@@ -686,6 +686,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59e2d53b_19df8de7",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1669,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T23:45:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "75824642_e969f58c",
+      "range": {
+        "startLine": 1669,
+        "startChar": 7,
+        "endLine": 1669,
+        "endChar": 43
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3be1b772_c7e298ec",
@@ -989,6 +1013,30 @@
       "side": 1,
       "message": "I am still not sure how it should be done. \n- should we leave it as it is, so if aptx voice is supported we go with it? \n- or should we prioritize lc3 and only if it is not supported check aptx voice?",
       "parentUuid": "572b6dc8_66c1d9df",
+      "range": {
+        "startLine": 1276,
+        "startChar": 13,
+        "endLine": 1276,
+        "endChar": 23
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "270a1954_0e6d523a",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T23:45:48Z",
+      "side": 1,
+      "message": "I may be wrong but I understand that aptx voice is a deprecated codec and we are adding it for backward compatibility while converging.\n\nIf this is really the case, I think we should go with LC3 first, and if remote device does not support it, fallback on aptx voice.",
+      "parentUuid": "e792e418_34e098df",
       "range": {
         "startLine": 1276,
         "startChar": 13,
