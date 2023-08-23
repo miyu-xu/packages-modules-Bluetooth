@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa106b01_d70212e1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-23T17:40:14Z",
+      "side": 1,
+      "message": "It will pass the test when LL privacy is disabled. It cannot pass 01 if LL privacy is enabled. I think this means there is no regression? But I would still need to check why LL privacy is not working.",
+      "parentUuid": "e1a81e66_9197b32d",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 36
+      },
+      "revId": "6242509748939df34d802d9a40a8b5fffc6c4822",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bac3967_5f3ed6bb",
