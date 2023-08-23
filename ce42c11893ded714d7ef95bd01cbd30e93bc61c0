@@ -16,6 +16,24 @@
       "message": "A word of comment here and above explaining OTA parameter please?",
       "revId": "ce42c11893ded714d7ef95bd01cbd30e93bc61c0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "196a46a8_4d9de4e6",
+        "filename": "system/gd/hci/acl_manager/le_acl_connection.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-23T13:56:59Z",
+      "side": 1,
+      "message": "I\u0027ve add it here \n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2723214/5/system/main/shim/btm_api.h\n\nBut ok, will add it there as well.",
+      "parentUuid": "574fcc48_3bad19cf",
+      "revId": "ce42c11893ded714d7ef95bd01cbd30e93bc61c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
