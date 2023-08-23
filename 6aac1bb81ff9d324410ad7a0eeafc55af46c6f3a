@@ -77,6 +77,53 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a062b0fd_569cdcf6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-23T21:15:44Z",
+      "side": 1,
+      "message": "Could we put a child of `Exception` here instead ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 54,
+        "endLine": 24,
+        "endChar": 63
+      },
+      "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4d40e4d_d7b66176",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-23T21:15:44Z",
+      "side": 1,
+      "message": "I think we should name it `factoryReset` instead.",
+      "parentUuid": "9030a805_3d561807",
+      "range": {
+        "startLine": 24,
+        "startChar": 23,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c64a972_435df9c8",
         "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
         "patchSetId": 2
@@ -93,6 +140,53 @@
         "startChar": 16,
         "endLine": 28,
         "endChar": 46
+      },
+      "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d2d77ce_05696bd8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-23T21:15:44Z",
+      "side": 1,
+      "message": "This is constant for all tests, I don\u0027t think it should be passed as parameter",
+      "parentUuid": "9c64a972_435df9c8",
+      "range": {
+        "startLine": 28,
+        "startChar": 16,
+        "endLine": 28,
+        "endChar": 46
+      },
+      "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e58acf84_05fd698d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-23T21:15:44Z",
+      "side": 1,
+      "message": "This function will mostly always be called after `closePreviousChannels`, I think we should merge both functions together",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 53
       },
       "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
