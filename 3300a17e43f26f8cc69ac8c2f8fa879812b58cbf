@@ -22,6 +22,30 @@
       },
       "revId": "3300a17e43f26f8cc69ac8c2f8fa879812b58cbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e05cb7d_cc5b5186",
+        "filename": "system/bta/le_audio/client_parser_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-23T14:41:14Z",
+      "side": 1,
+      "message": "Correct.\nSure following patch will remove it.",
+      "parentUuid": "a4f61e5a_510a60fe",
+      "range": {
+        "startLine": 1234,
+        "startChar": 32,
+        "endLine": 1234,
+        "endChar": 64
+      },
+      "revId": "3300a17e43f26f8cc69ac8c2f8fa879812b58cbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
