@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a967a77_65a01ffa",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-23T03:31:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a17e2574_bd9ac433",
+      "revId": "44e0800776ccdf77b45d08d09721f2603444e348",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4af5e56e_c23200aa",
@@ -49,6 +67,24 @@
       "side": 1,
       "message": "I think you need to refactor this further to remove listening joinhandles from this list. You still need to `abort` connecting joinhandles.\n\nMy suggestion:\n* Rename self.futures to `self.connecting` and only insert the connecting_task\n* Put the joinhandle for listening tasks in `self.listening` (as part of the InternalListeningSocket). Only if there is a joinhandle do we need to send the `Close` (which will end the future too).",
       "parentUuid": "4af5e56e_c23200aa",
+      "revId": "44e0800776ccdf77b45d08d09721f2603444e348",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "254a3716_f268ceeb",
+        "filename": "system/gd/rust/linux/stack/src/socket_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-23T03:31:43Z",
+      "side": 1,
+      "message": "Done. I refactored a bit more - Align the `self.connecting` and `self.listening` type which also allow us to remove the handle on `OnOutgoingConnectionResult`.",
+      "parentUuid": "56c40f66_ddef0f52",
       "revId": "44e0800776ccdf77b45d08d09721f2603444e348",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
