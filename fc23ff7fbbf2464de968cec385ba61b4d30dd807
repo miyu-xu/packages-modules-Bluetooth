@@ -360,6 +360,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81dbf43a_7054e219",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-23T23:48:43Z",
+      "side": 1,
+      "message": "There are many, many places causing failures\n\n```\npackages/modules/Bluetooth/system/gd/btaa/android/activity_attribution.cc:79:28: error: unused parameter \u0027success\u0027 [-Werror,-Wunused-parameter]\n  Status notifyWakeup(bool success, const std::vector\u003cstd::string\u003e\u0026 wakeup_reasons) override {\n                           ^\npackages/modules/Bluetooth/system/gd/btaa/android/activity_attribution.cc:229:56: error: unused parameter \u0027list\u0027 [-Werror,-Wunused-parameter]\nvoid ActivityAttribution::ListDependencies(ModuleList* list) const {}\n                                                       ^\n2 errors generated.\npackages/modules/Bluetooth/system/gd/os/android/metrics.cc:180:20: error: unused parameter \u0027address\u0027 [-Werror,-Wunused-parameter]\n    const Address\u0026 address, int num_decoded_frames, double packet_loss_ratio) {}\n                   ^\npackages/modules/Bluetooth/system/gd/os/android/metrics.cc:180:33: error: unused parameter \u0027num_decoded_frames\u0027 [-Werror,-Wunused-parameter]\n    const Address\u0026 address, int num_decoded_frames, double packet_loss_ratio) {}\n                                ^\npackages/modules/Bluetooth/system/gd/os/android/metrics.cc:180:60: error: unused parameter \u0027packet_loss_ratio\u0027 [-Werror,-Wunused-parameter]\n    const Address\u0026 address, int num_decoded_frames, double packet_loss_ratio) {}\n    \npackages/modules/Bluetooth/system/gd/os/android/wakelock_native.cc:111:71: error: unused parameter \u0027lock_name\u0027 [-Werror,-Wunused-parameter]\nWakelockNative::StatusCode WakelockNative::Release(const std::string\u0026 lock_name) {\n```\nThis is worthy of a future clean up.\n\nThis is needed now as this binary is _built_ rather than linked with the bluetooth source.",
+      "parentUuid": "76822b23_558afec1",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 32
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9c2fcd65_e9fdb39d",
