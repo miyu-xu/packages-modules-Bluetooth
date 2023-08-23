@@ -68,9 +68,9 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 class AdapterProperties {
+    private static final String TAG = AdapterProperties.class.getSimpleName();
     private static final boolean DBG = true;
-    private static final boolean VDBG = false;
-    private static final String TAG = "AdapterProperties";
+    private static final boolean VDBG = Log.isLoggable(TAG, Log.VERBOSE);
 
     private static final String MAX_CONNECTED_AUDIO_DEVICES_PROPERTY =
             "persist.bluetooth.maxconnectedaudiodevices";
@@ -628,16 +628,16 @@ class AdapterProperties {
             if (state == BluetoothDevice.BOND_BONDED) {
                 // add if not already in list
                 if (!mBondedDevices.contains(device)) {
-                    debugLog("Adding bonded device:" + device);
+                    debugLog("Adding bonded device:" + device.getAnonymizedAddress());
                     mBondedDevices.add(device);
                     cleanupPrevBondRecordsFor(device);
                 }
             } else if (state == BluetoothDevice.BOND_NONE) {
                 // remove device from list
                 if (mBondedDevices.remove(device)) {
-                    debugLog("Removing bonded device:" + device);
+                    debugLog("Removing bonded device:" + device.getAnonymizedAddress());
                 } else {
-                    debugLog("Failed to remove device: " + device);
+                    debugLog("Failed to remove device: " + device.getAnonymizedAddress());
                 }
             }
             invalidateGetBondStateCache();
@@ -649,7 +649,7 @@ class AdapterProperties {
     void cleanupPrevBondRecordsFor(BluetoothDevice currentDevice) {
         String currentAddress = currentDevice.getAddress();
         String currentIdentityAddress = mService.getIdentityAddress(currentAddress);
-        debugLog("cleanupPrevBondRecordsFor: " + currentDevice);
+        debugLog("cleanupPrevBondRecordsFor: " + currentDevice.getAnonymizedAddress());
         if (currentIdentityAddress == null) {
             return;
         }
@@ -661,15 +661,18 @@ class AdapterProperties {
                 if (mService.getNative()
                         .removeBond(Utils.getBytesFromAddress(device.getAddress()))) {
                     mBondedDevices.remove(device);
-                    infoLog("Removing old bond record: "
-                                    + device
+                    infoLog(
+                            "Removing old bond record: "
+                                    + device.getAnonymizedAddress()
                                     + " for current device: "
-                                    + currentDevice);
+                                    + currentDevice.getAnonymizedAddress());
                 } else {
-                    Log.e(TAG, "Unexpected error while removing old bond record:"
-                                    + device
+                    Log.e(
+                            TAG,
+                            "Unexpected error while removing old bond record:"
+                                    + device.getAnonymizedAddress()
                                     + " for current device: "
-                                    + currentDevice);
+                                    + currentDevice.getAnonymizedAddress());
                 }
                 break;
             }
@@ -736,17 +739,23 @@ class AdapterProperties {
                     metricId, device.getName());
             MetricsLogger.getInstance().logSanitizedBluetoothDeviceName(metricId, device.getName());
         }
-        Log.d(TAG, "PROFILE_CONNECTION_STATE_CHANGE: profile="
-                + BluetoothProfile.getProfileName(profile) + ", device=" + device + ", "
-                + prevState + " -> " + state);
+        Log.d(
+                TAG,
+                "PROFILE_CONNECTION_STATE_CHANGE:"
+                        + (" profile=" + BluetoothProfile.getProfileName(profile))
+                        + (", device=" + device.getAnonymizedAddress())
+                        + (", " + prevState + " -> " + state));
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CONNECTION_STATE_CHANGED, state,
                 0 /* deprecated */, profile, mService.obfuscateAddress(device),
                 metricId, 0, -1);
 
         if (!isNormalStateTransition(prevState, state)) {
-            Log.w(TAG, "PROFILE_CONNECTION_STATE_CHANGE: unexpected transition for profile="
-                    + BluetoothProfile.getProfileName(profile)
-                    + ", device=" + device + ", " + prevState + " -> " + state);
+            Log.w(
+                    TAG,
+                    "PROFILE_CONNECTION_STATE_CHANGE: unexpected transition for"
+                            + (" profile=" + BluetoothProfile.getProfileName(profile))
+                            + (", device=" + device.getAnonymizedAddress())
+                            + (", " + prevState + " -> " + state));
         }
         sendConnectionStateChange(device, profile, state, prevState);
     }
@@ -776,11 +785,18 @@ class AdapterProperties {
                 intent.putExtra(BluetoothAdapter.EXTRA_CONNECTION_STATE, newAdapterState);
                 intent.putExtra(BluetoothAdapter.EXTRA_PREVIOUS_CONNECTION_STATE, prevAdapterState);
                 intent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT);
-                Log.d(TAG, "ADAPTER_CONNECTION_STATE_CHANGE: " + device + ": " + prevAdapterState
-                        + " -> " + newAdapterState);
+                Log.d(
+                        TAG,
+                        "ADAPTER_CONNECTION_STATE_CHANGE: "
+                                + device.getAnonymizedAddress()
+                                + (": " + prevAdapterState + " -> " + newAdapterState));
                 if (!isNormalStateTransition(prevState, state)) {
-                    Log.w(TAG, "ADAPTER_CONNECTION_STATE_CHANGE: unexpected transition for profile="
-                            + profile + ", device=" + device + ", " + prevState + " -> " + state);
+                    Log.w(
+                            TAG,
+                            "ADAPTER_CONNECTION_STATE_CHANGE: unexpected transition for"
+                                    + (" profile=" + profile)
+                                    + (", device=" + device.getAnonymizedAddress())
+                                    + (", " + prevState + " -> " + state));
                 }
                 mService.sendBroadcastAsUser(intent, UserHandle.ALL, BLUETOOTH_CONNECT,
                         Utils.getTempAllowlistBroadcastOptions());
