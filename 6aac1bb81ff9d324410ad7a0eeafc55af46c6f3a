@@ -54,6 +54,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2b2f88c8_a2364ac9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-23T21:16:43Z",
+      "side": 1,
+      "message": "Could you update `LeScanningTest` as well ?",
+      "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9030a805_3d561807",
         "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
         "patchSetId": 2
