@@ -723,6 +723,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb6b0e83_bf6183bd",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1670,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-23T21:09:01Z",
+      "side": 1,
+      "message": "If you could yes, I think it was done this way because when this was implemented the API was frozen already.",
+      "parentUuid": "51780bb3_f04c5e7a",
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "191e85dc_0997645f",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 3
