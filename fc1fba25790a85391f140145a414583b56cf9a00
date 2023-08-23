@@ -22,6 +22,30 @@
       },
       "revId": "fc1fba25790a85391f140145a414583b56cf9a00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9e1b9f7_b0565398",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T00:08:26Z",
+      "side": 1,
+      "message": "I do think this should reflect a size in bytes and not in chars as per the spec (see comment in aosp/2715734 that I am partially copying here):\n\n\n```\n4.3.5 Name request:\n\n[...]\nThe name is a user-friendly name associated with the device and consists of a \nmaximum of 248 bytes coded according to the UTF-8 standard\n[...]\n```",
+      "parentUuid": "57806231_82a2e9e1",
+      "range": {
+        "startLine": 85,
+        "startChar": 40,
+        "endLine": 85,
+        "endChar": 72
+      },
+      "revId": "fc1fba25790a85391f140145a414583b56cf9a00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
