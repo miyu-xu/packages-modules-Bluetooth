@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b515d82e_7d02323e",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-08-23T14:42:37Z",
+      "side": 1,
+      "message": "What does \"codec location is transparent to controller\" mean ?\nVariable name is understandable, but the description is not clear to me.",
+      "range": {
+        "startLine": 721,
+        "startChar": 5,
+        "endLine": 722,
+        "endChar": 29
+      },
+      "revId": "8835da681ac4a7b2a1e4a6e5807618bd236329eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
