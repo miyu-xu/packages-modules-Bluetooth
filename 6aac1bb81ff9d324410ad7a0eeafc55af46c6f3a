@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb0642cb_17533cca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-23T06:19:35Z",
+      "side": 1,
+      "message": "Making repeated intialization in Bumble tests into helper methods, and showing example of using them in LeAdvertisingTest.",
+      "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
