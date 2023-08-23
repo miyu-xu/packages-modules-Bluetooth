@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e61981b5_6e18ee53",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T04:16:12Z",
+      "side": 1,
+      "message": "You should re-run the failing test locally to gain time as they are still failing.\n\nNo need to run the whole tests, ponly the one related to your change.\n\nAnd then you can update this line to reflect the test that are actually meaningfull (to avoid a too wide scope)",
+      "range": {
+        "startLine": 10,
+        "startChar": 12,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "414dd4b6a49ea7e8793466c60956fb38cf8f9737",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
