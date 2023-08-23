@@ -67,7 +67,8 @@ void bluetooth::shim::ACL_IgnoreAllLeConnections() {
 }
 void bluetooth::shim::ACL_ReadConnectionAddress(const RawAddress& pseudo_addr,
                                                 RawAddress& conn_addr,
-                                                tBLE_ADDR_TYPE* p_addr_type) {
+                                                tBLE_ADDR_TYPE* p_addr_type,
+                                                bool ota_address) {
   inc_func_call_count(__func__);
 }
 std::optional<uint8_t> bluetooth::shim::ACL_GetAdvertisingSetConnectedTo(
