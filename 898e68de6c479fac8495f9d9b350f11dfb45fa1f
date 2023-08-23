@@ -16,6 +16,24 @@
       "message": "@sattiraju@google.com Should we ramp up the flag using mendel release tool ?\n\nIt is my understanding that settings the default to `true` is no longer something that we should allow",
       "revId": "898e68de6c479fac8495f9d9b350f11dfb45fa1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24ca1e11_2921e11d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-08-23T05:52:08Z",
+      "side": 1,
+      "message": "We dont allow mendel ramp up in Prod anymore - it is disallowed. The pixel team is trying to enable this feature by default in SUO and should follow through to QPR1.",
+      "parentUuid": "511611ba_13b085a5",
+      "revId": "898e68de6c479fac8495f9d9b350f11dfb45fa1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
