@@ -16,6 +16,24 @@
       "message": "Hey Aritra - Should this ever be null? Can we check why it would be null.",
       "revId": "db76ab3f7efef5954e0137985dd8b1473a07ad95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dae801ed_2e509b1c",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 798,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-23T08:13:33Z",
+      "side": 1,
+      "message": "If bluetooth turns on/off too quickly the a2dp cleanup might happen before the setup is done. It shouldn\u0027t actually be happening as much as we see in b/285791484 but that is the only theory I had why it could be happening.",
+      "parentUuid": "0ff7d2f7_80e27007",
+      "revId": "db76ab3f7efef5954e0137985dd8b1473a07ad95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
