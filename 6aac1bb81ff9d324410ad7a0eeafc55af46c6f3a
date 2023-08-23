@@ -33,6 +33,69 @@
       "message": "Looks fine to me, letting bumble owner to review",
       "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "983eafb5_6626ba5a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-08-23T17:07:08Z",
+      "side": 1,
+      "message": "Thanks for the refactor !",
+      "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9030a805_3d561807",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-08-23T17:07:08Z",
+      "side": 1,
+      "message": "We could rename it `closeChannel` if we pass the address and the port as parameters.",
+      "range": {
+        "startLine": 24,
+        "startChar": 23,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c64a972_435df9c8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-08-23T17:07:08Z",
+      "side": 1,
+      "message": "Do you think we could pass this as parameters ? Same for `createNewChannel` ? And use constant in the test file for the port and the address ?\ne.g:\n\n```\nclosePreviousChannels(String address, Int port)\n```",
+      "range": {
+        "startLine": 28,
+        "startChar": 16,
+        "endLine": 28,
+        "endChar": 46
+      },
+      "revId": "6aac1bb81ff9d324410ad7a0eeafc55af46c6f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
