@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a40eb6c1_16de2674",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-23T00:28:59Z",
+      "side": 1,
+      "message": "It doesn\u0027t seem ideal to expose ScanManager and GattService for this - is there a way we could route the state change events thru a more central place, rather than having each profile notify ScanManager independently?",
+      "revId": "c9878c4fac145bfab7ead2b0d089dba9c800ebcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
