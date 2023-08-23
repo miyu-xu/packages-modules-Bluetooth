@@ -141,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e049e6fe_a64e5edb",
+        "filename": "system/gd/rust/topshim/src/profiles/socket.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-23T10:03:54Z",
+      "side": 1,
+      "message": "Ack. Presubmit doesn\u0027t fail and it has to build android.",
+      "parentUuid": "b9334cf3_2cfb4ad0",
+      "revId": "b2975e620aa3c498c28669a4e428ce313e8fa6d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "873eccec_f9d3efab",

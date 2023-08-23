@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37395d0f_b34b0694",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-23T10:03:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0cb168e_69003e59",
+      "revId": "5e9bedc363d8fac9d92ab2b271887f05a037588b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4af5ca92_bde6d979",
@@ -48,6 +66,30 @@
       "writtenOn": "2023-08-23T08:32:17Z",
       "side": 1,
       "message": "Can we add appropriate logging for this function",
+      "range": {
+        "startLine": 406,
+        "startChar": 19,
+        "endLine": 406,
+        "endChar": 40
+      },
+      "revId": "5e9bedc363d8fac9d92ab2b271887f05a037588b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f76df6e_11d6a5fe",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-23T10:03:54Z",
+      "side": 1,
+      "message": "Done, added one line of log",
+      "parentUuid": "4af5ca92_bde6d979",
       "range": {
         "startLine": 406,
         "startChar": 19,

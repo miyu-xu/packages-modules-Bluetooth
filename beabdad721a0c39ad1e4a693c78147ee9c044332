@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a7496cb_41fba1bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-08-23T10:03:54Z",
+      "side": 1,
+      "message": "Hi, could anyone give CR+2 so I can submit? Thanks!",
+      "revId": "beabdad721a0c39ad1e4a693c78147ee9c044332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
