@@ -218,6 +218,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1356e129_a468f809",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-23T23:40:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fa559a3_448b91c3",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 42
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10d080b8_621b75c8",
@@ -314,6 +338,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "864ebcbe_73a109e6",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-23T23:40:30Z",
+      "side": 1,
+      "message": "```\npackages/modules/Bluetooth/system/gd/hal/hci_hal_android_hidl.cc:419:85: error: unused parameter \u0027cookie\u0027 [-Werror,-Wunused-parameter]\n          ::ndk::ScopedAIBinder_DeathRecipient(AIBinder_DeathRecipient_new([](void* cookie) {\n                                                                                    ^\n1 error generated.\n```\n\nThe gd hal module has an issue.  I will try [[maybe_unused]] on this specific one to see if that is the only place.",
+      "parentUuid": "76822b23_558afec1",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 32
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9c2fcd65_e9fdb39d",
         "filename": "system/test/headless/Android.bp",
         "patchSetId": 2
@@ -349,6 +397,30 @@
       "side": 1,
       "message": "I will double check all the generated headers again",
       "parentUuid": "9c2fcd65_e9fdb39d",
+      "range": {
+        "startLine": 159,
+        "startChar": 9,
+        "endLine": 159,
+        "endChar": 46
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a60866_ab60913e",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-23T23:40:30Z",
+      "side": 1,
+      "message": "Anytime `gd/module.h\u0027 is brought in, the generated header files are necessary as the dumpsys header file is included.",
+      "parentUuid": "05ad661e_7e5f8160",
       "range": {
         "startLine": 159,
         "startChar": 9,
@@ -396,6 +468,30 @@
       "side": 1,
       "message": "Acknowledged",
       "parentUuid": "6ac0d86e_2b5ddcfa",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 36
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f2d6f19_08e914e6",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-23T23:40:30Z",
+      "side": 1,
+      "message": "Any source file directly including hci packets uses this generated header.\n\n\n```\nIn file included from packages/modules/Bluetooth/system/gd/btaa/android/activity_attribution.cc:27:\nIn file included from packages/modules/Bluetooth/system/gd/btaa/attribution_processor.h:22:\nIn file included from packages/modules/Bluetooth/system/gd/btaa/hci_processor.h:20:\npackages/modules/Bluetooth/system/gd/btaa/cmd_evt_classification.h:20:10: fatal error: \u0027hci/hci_packets.h\u0027 file not found\n#include \"hci/hci_packets.h\"\n         ^~~~~~~~~~~~~~~~~~~\n1 error generated.\n```\n\nPrevious behavior linked in these libraries; current behavior builds.",
+      "parentUuid": "b64042a5_f3efc26e",
       "range": {
         "startLine": 160,
         "startChar": 9,
