@@ -16,6 +16,24 @@
       "message": "Update this comment since you\u0027re checking against ll privacy now.",
       "revId": "db12594195e5f66496e0d71d7f2b728c4e9efd0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae19ea28_824d320d",
+        "filename": "system/stack/btm/btm_ble_bgconn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-23T16:02:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81e357a7_ced1d3ea",
+      "revId": "db12594195e5f66496e0d71d7f2b728c4e9efd0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
