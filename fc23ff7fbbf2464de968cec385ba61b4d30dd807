@@ -528,6 +528,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f8df9bfe_70dadf0e",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T23:50:06Z",
+      "side": 1,
+      "message": "I do not understand what you mean with \"current behavior builds.\"\n\nDidn\u0027t you say the binary was building fine ? Only had a shared library dependency ?",
+      "parentUuid": "5f2d6f19_08e914e6",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 36
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "79a75cc4_38494a29",
         "filename": "system/test/headless/Android.bp",
         "patchSetId": 2
