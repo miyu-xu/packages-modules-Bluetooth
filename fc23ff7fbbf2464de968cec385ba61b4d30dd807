@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6806e075_fb6dad5f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T22:10:42Z",
+      "side": 1,
+      "message": "This does not explain at all what this CL is about, why this modification is needed and what you will gain with the CL.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4b1e19d_a372a00f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T22:10:42Z",
+      "side": 1,
+      "message": "Is really hard to see what are the diff and what is just moving around code.\nCan you separate into 2 CL, one were code is moved around without behavior change and one where build rules changes ?",
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e64c594a_4961f23a",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T22:10:42Z",
+      "side": 1,
+      "message": "This filegroup is only used once, please delete and merge with it usage.\nPlease do the same with TestHeadlessModules that has only one usage",
+      "range": {
+        "startLine": 44,
+        "startChar": 11,
+        "endLine": 44,
+        "endChar": 27
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b0628a3_1e990a05",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T22:10:42Z",
+      "side": 1,
+      "message": "Please avoid declaring variable for this kind of usage.\n\nSince each variable are matching only one usecase, I do not see any benefit of doing it. Can you explain to me what this make you achieve ?\n\nI would prevert to avoid adding more lines to bp when they are not needed",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 42
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10d080b8_621b75c8",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T22:10:42Z",
+      "side": 1,
+      "message": "this has only one usage, please merge it",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 19
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87e3ce53_221ca70f",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T22:10:42Z",
+      "side": 1,
+      "message": "this was not needed before, why it is added now ?",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 32
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2fcd65_e9fdb39d",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T22:10:42Z",
+      "side": 1,
+      "message": "this was not needed before, why it is added now ?",
+      "range": {
+        "startLine": 159,
+        "startChar": 9,
+        "endLine": 159,
+        "endChar": 46
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ac0d86e_2b5ddcfa",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T22:10:42Z",
+      "side": 1,
+      "message": "this was not needed before, why it is added now ?",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 36
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79a75cc4_38494a29",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-23T22:10:42Z",
+      "side": 1,
+      "message": "There is some per-target build, but the flag now add a -DANDROID to the list of flag. Isn\u0027t it contradictory ?",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 10
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
