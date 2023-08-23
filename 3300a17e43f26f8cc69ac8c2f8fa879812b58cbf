@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4f61e5a_510a60fe",
+        "filename": "system/bta/le_audio/client_parser_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1234,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-08-23T14:35:33Z",
+      "side": 1,
+      "message": "It is not LC3 specific, right ? it\u0027s just sampling frequency.\nSame for erst of parameters.",
+      "range": {
+        "startLine": 1234,
+        "startChar": 32,
+        "endLine": 1234,
+        "endChar": 64
+      },
+      "revId": "3300a17e43f26f8cc69ac8c2f8fa879812b58cbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
