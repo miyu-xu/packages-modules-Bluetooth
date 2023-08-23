@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e5afe23_c37c6689",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-23T14:41:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "729fda80_ec873f03",
+      "revId": "447e5deee7a93769058f8fe94beea50eeaf5b1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38df72ef_6c04a38a",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-08-21T09:45:30Z",
       "side": 1,
       "message": "ditto",
+      "revId": "447e5deee7a93769058f8fe94beea50eeaf5b1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe2855e2_96c53405",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-23T14:41:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38df72ef_6c04a38a",
       "revId": "447e5deee7a93769058f8fe94beea50eeaf5b1e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f324b42_79e1bacb",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-23T14:41:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28c1ef78_279dc3ce",
+      "revId": "447e5deee7a93769058f8fe94beea50eeaf5b1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "129b54c9_f7b3c109",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-08-21T09:45:30Z",
       "side": 1,
       "message": "ditto",
+      "revId": "447e5deee7a93769058f8fe94beea50eeaf5b1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2d9bbab_770243c2",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-23T14:41:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "129b54c9_f7b3c109",
       "revId": "447e5deee7a93769058f8fe94beea50eeaf5b1e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "341adcf2_84aaa371",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-23T14:41:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2c4d09d_50d14f97",
+      "revId": "447e5deee7a93769058f8fe94beea50eeaf5b1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05fc242c_68e6a80d",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-08-21T09:45:30Z",
       "side": 1,
       "message": "ditto",
+      "revId": "447e5deee7a93769058f8fe94beea50eeaf5b1e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "915b239d_3e8654d8",
+        "filename": "system/bta/le_audio/codec_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-08-23T14:41:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05fc242c_68e6a80d",
       "revId": "447e5deee7a93769058f8fe94beea50eeaf5b1e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
