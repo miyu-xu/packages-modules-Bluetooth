@@ -117,6 +117,9 @@ public class BrowsablePlayerConnector {
         mHandler = new Handler(looper) {
             public void handleMessage(Message msg) {
                 if (DEBUG) Log.d(TAG, "Received a message: msg.what=" + msg.what);
+                if (this != mHandler) {
+                    return;
+                }
                 switch(msg.what) {
                     case MSG_GET_FOLDER_ITEMS_CB: {
                         int status = msg.arg1;
@@ -134,7 +137,8 @@ public class BrowsablePlayerConnector {
                                     + wrapper.getPackageName());
                             mResults.add(wrapper);
                         }
-                    } break;
+                        break;
+                    }
 
                     case MSG_CONNECT_CB: {
                         BrowsedPlayerWrapper wrapper = (BrowsedPlayerWrapper) msg.obj;
@@ -157,19 +161,20 @@ public class BrowsablePlayerConnector {
                                 (int status, String mediaId, List<ListItem> results) -> {
                                     // Send the response as a message so that it is properly
                                     // synchronized
-                                    Message cb =
-                                            mHandler.obtainMessage(MSG_GET_FOLDER_ITEMS_CB);
+                                    Message cb = obtainMessage(MSG_GET_FOLDER_ITEMS_CB);
                                     cb.arg1 = status;
                                     cb.arg2 = results.size();
                                     cb.obj = wrapper;
-                                    mHandler.sendMessage(cb);
+                                    sendMessage(cb);
                                 });
-                    } break;
+                        break;
+                    }
 
                     case MSG_TIMEOUT: {
                         Log.v(TAG, "Timed out waiting for players");
                         removePendingPlayers();
-                    } break;
+                        break;
+                    }
                 }
 
                 if (mPendingPlayers.size() == 0) {
@@ -193,7 +198,7 @@ public class BrowsablePlayerConnector {
     void cleanup() {
         if (mPendingPlayers.size() != 0) {
             Log.i(TAG, "Bluetooth turn off with " + mPendingPlayers.size() + " pending player(s)");
-            mHandler.removeMessages(MSG_TIMEOUT);
+            mHandler.removeCallbacksAndMessages(null);
             removePendingPlayers();
             mHandler = null;
         }
