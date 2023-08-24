@@ -276,8 +276,8 @@ class BtifAvPeer {
   const RawAddress& ActivePeerAddress() const;
 
   const RawAddress& PeerAddress() const { return peer_address_; }
-  bool IsSource() const { return (peer_sep_ == AVDT_TSEP_SRC); }
-  bool IsSink() const { return (peer_sep_ == AVDT_TSEP_SNK); }
+  bool IsSource() const { return ((peer_sep_ & AVDT_TSEP_MASK) == AVDT_TSEP_SRC); }
+  bool IsSink() const { return ((peer_sep_ & AVDT_TSEP_MASK) == AVDT_TSEP_SNK); }
   uint8_t PeerSep() const { return peer_sep_; }
   void SetSep(uint8_t sep_type) { peer_sep_ = sep_type; }
   /**
@@ -385,7 +385,6 @@ class BtifAvSource {
       : callbacks_(nullptr),
         enabled_(false),
         a2dp_offload_enabled_(false),
-        invalid_peer_check_(false),
         max_connected_peers_(kDefaultMaxConnectedAudioDevices) {}
   ~BtifAvSource();
 
@@ -398,9 +397,6 @@ class BtifAvSource {
   btav_source_callbacks_t* Callbacks() { return callbacks_; }
   bool Enabled() const { return enabled_; }
   bool A2dpOffloadEnabled() const { return a2dp_offload_enabled_; }
-  void SetInvalidPeerCheck(bool invalid_peer_check) {
-    invalid_peer_check_ = invalid_peer_check;
-  }
   BtifAvPeer* FindPeer(const RawAddress& peer_address);
   BtifAvPeer* FindPeerByHandle(tBTA_AV_HNDL bta_handle);
   BtifAvPeer* FindPeerByPeerId(uint8_t peer_id);
@@ -414,7 +410,7 @@ class BtifAvSource {
    * @param peer_address the peer address to connect to
    * @return true if connection is allowed, otherwise false
    */
-  bool AllowedToConnect(const RawAddress& peer_address) const;
+  bool AllowedToConnect(const RawAddress& peer_address);
 
   /**
    * Delete a peer.
@@ -596,7 +592,6 @@ class BtifAvSource {
   btav_source_callbacks_t* callbacks_;
   bool enabled_;
   bool a2dp_offload_enabled_;
-  bool invalid_peer_check_;  // pending to check at BTA_AV_OPEN_EVT
   int max_connected_peers_;
   std::map<RawAddress, BtifAvPeer*> peers_;
   std::set<RawAddress> silenced_peers_;
@@ -616,7 +611,6 @@ class BtifAvSink {
   BtifAvSink()
       : callbacks_(nullptr),
         enabled_(false),
-        invalid_peer_check_(false),
         max_connected_peers_(kDefaultMaxConnectedAudioDevices) {}
   ~BtifAvSink();
 
@@ -626,10 +620,6 @@ class BtifAvSink {
 
   btav_sink_callbacks_t* Callbacks() { return callbacks_; }
   bool Enabled() const { return enabled_; }
-
-  void SetInvalidPeerCheck(bool invalid_peer_check) {
-    invalid_peer_check_ = invalid_peer_check;
-  }
   BtifAvPeer* FindPeer(const RawAddress& peer_address);
   BtifAvPeer* FindPeerByHandle(tBTA_AV_HNDL bta_handle);
   BtifAvPeer* FindPeerByPeerId(uint8_t peer_id);
@@ -643,7 +633,7 @@ class BtifAvSink {
    * @param peer_address the peer address to connect to
    * @return true if connection is allowed, otherwise false
    */
-  bool AllowedToConnect(const RawAddress& peer_address) const;
+  bool AllowedToConnect(const RawAddress& peer_address);
 
   /**
    * Delete a peer.
@@ -752,7 +742,6 @@ class BtifAvSink {
 
   btav_sink_callbacks_t* callbacks_;
   bool enabled_;
-  bool invalid_peer_check_;  // pending to check at BTA_AV_OPEN_EVT
   int max_connected_peers_;
   std::map<RawAddress, BtifAvPeer*> peers_;
   RawAddress active_peer_;
@@ -1249,9 +1238,11 @@ BtifAvPeer* BtifAvSource::FindOrCreatePeer(const RawAddress& peer_address,
   return peer;
 }
 
-bool BtifAvSource::AllowedToConnect(const RawAddress& peer_address) const {
+bool BtifAvSource::AllowedToConnect(const RawAddress& peer_address) {
   int connected = 0;
-  if (btif_av_src_sink_coexist_enabled() && invalid_peer_check_) {
+  BtifAvPeer* peer_check = FindPeer(peer_address);
+  if (btif_av_src_sink_coexist_enabled() && peer_check != nullptr
+      && ((peer_check->PeerSep() & AVDT_TSEP_INVALID) == AVDT_TSEP_INVALID)) {
     LOG_INFO(
         "invalid_peer_check_ so allow to connect here, when"
         " BTA_AV_OPEN_EVT coming, would check again!");
@@ -1506,10 +1497,11 @@ BtifAvPeer* BtifAvSink::FindOrCreatePeer(const RawAddress& peer_address,
   return peer;
 }
 
-bool BtifAvSink::AllowedToConnect(const RawAddress& peer_address) const {
+bool BtifAvSink::AllowedToConnect(const RawAddress& peer_address) {
   int connected = 0;
-
-  if (btif_av_src_sink_coexist_enabled() && invalid_peer_check_) {
+  BtifAvPeer* peer_check = FindPeer(peer_address);
+  if (btif_av_src_sink_coexist_enabled() && peer_check != nullptr
+      && ((peer_check->PeerSep() & AVDT_TSEP_INVALID) == AVDT_TSEP_INVALID)) {
     LOG_INFO(
         "invalid_peer_check_ so allow to connect here, when"
         " BTA_AV_OPEN_EVT coming, would check again!");
@@ -1870,12 +1862,11 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
                       ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
                       peer_.PeerSep(), p_bta_data->open.sep);
           /* if peer is wrong sep type, move it to BtifAvSxxx */
-          if (peer_.PeerSep() == AVDT_TSEP_SNK) {
-            LOG_VERBOSE("set source invalid_peer_check as false");
-            btif_av_source.SetInvalidPeerCheck(false);
+          if ((peer_.PeerSep() & AVDT_TSEP_INVALID) == AVDT_TSEP_INVALID) {
+            LOG_INFO("set invalid peer sep to valid");
+            peer_.SetSep(peer_.PeerSep() & AVDT_TSEP_MASK);
           } else {
-            LOG_VERBOSE("set sink invalid_peer_check as false");
-            btif_av_sink.SetInvalidPeerCheck(false);
+            LOG_INFO("not invalid peer sep");
           }
           if (peer_.PeerSep() != p_bta_data->open.sep) {
             BtifAvPeer* tmp_peer = nullptr;
@@ -2103,12 +2094,11 @@ bool BtifAvStateMachine::StateOpening::ProcessEvent(uint32_t event,
                       ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()),
                       peer_.PeerSep(), p_bta_data->open.sep);
           /* if peer is wrong sep type, move it to BtifAvSxxx */
-          if (peer_.PeerSep() == AVDT_TSEP_SNK) {
-            LOG_VERBOSE("set source invalid_peer_check as false");
-            btif_av_source.SetInvalidPeerCheck(false);
+          if ((peer_.PeerSep() & AVDT_TSEP_INVALID) == AVDT_TSEP_INVALID) {
+            LOG_INFO("set invalid peer sep to valid");
+            peer_.SetSep(peer_.PeerSep() & AVDT_TSEP_MASK);
           } else {
-            LOG_VERBOSE("set sink invalid_peer_check as false");
-            btif_av_sink.SetInvalidPeerCheck(false);
+            LOG_INFO("not invalid peer sep");
           }
           if (peer_.PeerSep() != p_bta_data->open.sep) {
             BtifAvPeer* tmp_peer = nullptr;
@@ -2150,6 +2140,13 @@ bool BtifAvStateMachine::StateOpening::ProcessEvent(uint32_t event,
           } else if (peer_.IsSource()) {
             can_connect = btif_av_sink.AllowedToConnect(peer_.PeerAddress());
             if (!can_connect) sink_disconnect_src(peer_.PeerAddress());
+          }
+
+          if (!can_connect) {
+            LOG_ERROR(
+            "%s: Cannot connect to peer %s: too many connected "
+            "peers", __PRETTY_FUNCTION__, ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()));
+            break;
           }
         }
         /** @} */
@@ -3124,25 +3121,27 @@ static BtifAvPeer* btif_av_handle_both_peer(uint8_t peer_sep,
                       peer_sep);
           peer = btif_av_source.FindOrCreatePeer(peer_address, bta_handle);
         } else {
-          btif_av_source.SetInvalidPeerCheck(true);
           if (!btif_av_source.Peers().empty()) {
             LOG_VERBOSE(
                 "%s: peer_sep invalid, and already has sink peer,"
                 " so try create a new sink peer",
                 __func__);
             peer = btif_av_source.FindOrCreatePeer(peer_address, bta_handle);
+            if (peer != nullptr) peer->SetSep(AVDT_TSEP_INVALID|AVDT_TSEP_SNK);
           } else if (!btif_av_sink.Peers().empty()) {
             LOG_VERBOSE(
                 "%s: peer_sep invalid, and already has source peer,"
                 " so try create a new source peer",
                 __func__);
             peer = btif_av_sink.FindOrCreatePeer(peer_address, bta_handle);
+            if (peer != nullptr) peer->SetSep(AVDT_TSEP_INVALID|AVDT_TSEP_SRC);
           } else {
             LOG_VERBOSE(
                 "%s: peer_sep invalid, and no active peer,"
                 " so try create a new sink peer",
                 __func__);
             peer = btif_av_source.FindOrCreatePeer(peer_address, bta_handle);
+            if (peer != nullptr) peer->SetSep(AVDT_TSEP_INVALID|AVDT_TSEP_SNK);
           }
         }
       }
