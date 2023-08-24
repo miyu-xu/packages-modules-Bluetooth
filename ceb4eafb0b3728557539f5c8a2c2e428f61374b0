@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46af94f1_ba3cb6cb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-24T17:51:33Z",
+      "side": 1,
+      "message": "There is a typo in `prarm` / `param`\n\n```suggestion\n     * @param profile The Bluetooth profile of which active state changed\n```",
+      "range": {
+        "startLine": 200,
+        "startChar": 8,
+        "endLine": 200,
+        "endChar": 13
+      },
+      "revId": "ceb4eafb0b3728557539f5c8a2c2e428f61374b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
