@@ -193,7 +193,7 @@ public class BrowsablePlayerConnector {
     void cleanup() {
         if (mPendingPlayers.size() != 0) {
             Log.i(TAG, "Bluetooth turn off with " + mPendingPlayers.size() + " pending player(s)");
-            mHandler.removeMessages(MSG_TIMEOUT);
+            mHandler.removeCallbacksAndMessages(null);
             removePendingPlayers();
             mHandler = null;
         }
