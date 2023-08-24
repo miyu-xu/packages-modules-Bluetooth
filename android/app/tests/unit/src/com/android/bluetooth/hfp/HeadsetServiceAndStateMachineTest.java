@@ -16,7 +16,6 @@
 
 package com.android.bluetooth.hfp;
 
-import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.ArgumentMatchers.anyInt;
@@ -473,7 +472,8 @@ public class HeadsetServiceAndStateMachineTest {
         BluetoothDevice activeDevice = connectedDevices.get(MAX_HEADSET_CONNECTIONS / 2);
         Assert.assertTrue(mHeadsetService.setActiveDevice(activeDevice));
         verify(mNativeInterface).setActiveDevice(activeDevice);
-        verify(mActiveDeviceManager).hfpActiveStateChanged(activeDevice);
+        verify(mActiveDeviceManager)
+                .profileActiveDeviceChanged(BluetoothProfile.HEADSET, activeDevice);
         verify(mSilenceDeviceManager).hfpActiveDeviceChanged(activeDevice);
         Assert.assertEquals(activeDevice, mHeadsetService.getActiveDevice());
         // Start virtual call
@@ -1181,7 +1181,8 @@ public class HeadsetServiceAndStateMachineTest {
                 mHeadsetService.getStateMachinesThreadLooper(), mHeadsetService, mAdapterService,
                 mNativeInterface, mSystemInterface);
         verify(mActiveDeviceManager, timeout(STATE_CHANGE_TIMEOUT_MILLIS))
-                .hfpConnectionStateChanged(
+                .profileConnectionStateChanged(
+                        BluetoothProfile.HEADSET,
                         device,
                         BluetoothProfile.STATE_DISCONNECTED,
                         BluetoothProfile.STATE_CONNECTING);
@@ -1201,7 +1202,8 @@ public class HeadsetServiceAndStateMachineTest {
                         HeadsetHalConstants.CONNECTION_STATE_SLC_CONNECTED, device);
         mHeadsetService.messageFromNative(slcConnectedEvent);
         verify(mActiveDeviceManager, timeout(STATE_CHANGE_TIMEOUT_MILLIS))
-                .hfpConnectionStateChanged(
+                .profileConnectionStateChanged(
+                        BluetoothProfile.HEADSET,
                         device,
                         BluetoothProfile.STATE_CONNECTING,
                         BluetoothProfile.STATE_CONNECTED);
