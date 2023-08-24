@@ -342,6 +342,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61385aa_d009134e",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 849,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-24T17:39:02Z",
+      "side": 1,
+      "message": "Yes, that is correct (unless there is a crash related to this feature and we need to extend it, but this would be a worst case scenario)",
+      "parentUuid": "b71c0880_cffc1e0b",
+      "range": {
+        "startLine": 849,
+        "startChar": 61,
+        "endLine": 849,
+        "endChar": 62
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6dcef128_e41587ce",
