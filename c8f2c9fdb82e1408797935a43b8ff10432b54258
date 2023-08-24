@@ -164,6 +164,30 @@
       },
       "revId": "c8f2c9fdb82e1408797935a43b8ff10432b54258",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f963e862_7a4535ce",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-08-24T07:02:21Z",
+      "side": 1,
+      "message": "If in that case, I think it\u0027s okay to have this change merged before we have API version.",
+      "parentUuid": "27fbd47c_88c56246",
+      "range": {
+        "startLine": 279,
+        "startChar": 8,
+        "endLine": 279,
+        "endChar": 45
+      },
+      "revId": "c8f2c9fdb82e1408797935a43b8ff10432b54258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
