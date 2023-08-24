@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25441317_40a92255",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T12:38:16Z",
+      "side": 1,
+      "message": "Same should be done in ConnectedBase",
+      "revId": "c730ae81d3f0577549978bfb612f4b0cbaa5e48b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "240a5894_f7d22295",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 11
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T12:38:16Z",
+      "side": 1,
+      "message": "The property we are using is \"persist.vendor.qcom.bluetooth.enable.swbpm\" to enable/disable power management feature. This change in property name will break OTA upgrades as i indicated earlier.",
+      "revId": "c730ae81d3f0577549978bfb612f4b0cbaa5e48b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

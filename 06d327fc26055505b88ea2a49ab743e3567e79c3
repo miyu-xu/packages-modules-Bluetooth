@@ -118,6 +118,30 @@
       },
       "revId": "06d327fc26055505b88ea2a49ab743e3567e79c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67d97125_cec6d8b9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetHalConstants.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T12:38:16Z",
+      "side": 1,
+      "message": "One more thing, AOSP does not support SCO over HCI. There is no CVSD/MSBC/LC3 encoding/decoding happening over SCO in AOSP. We are aligning AptX voice with these codecs.",
+      "parentUuid": "6f103782_deab6c60",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 45
+      },
+      "revId": "06d327fc26055505b88ea2a49ab743e3567e79c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
