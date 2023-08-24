@@ -19,10 +19,12 @@ import static com.android.bluetooth.opp.BluetoothOppService.WHERE_INVISIBLE_UNCO
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -47,6 +49,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 @MediumTest
@@ -147,6 +150,17 @@ public class BluetoothOppServiceTest {
 
     @Test
     public void trimDatabase_trimsOldOrInvisibleRecords() {
+        // Wait until the initial trimDatabase operation is done.
+        verify(mBluetoothMethodProxy, timeout(5_000))
+                .contentResolverQuery(
+                        any(),
+                        eq(BluetoothShare.CONTENT_URI),
+                        eq(new String[] {BluetoothShare._ID}),
+                        any(),
+                        isNull(),
+                        eq(BluetoothShare._ID));
+
+        Mockito.clearInvocations(mBluetoothMethodProxy);
         ContentResolver contentResolver =
                 InstrumentationRegistry.getInstrumentation()
                         .getTargetContext()
