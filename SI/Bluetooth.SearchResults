@@ -1,0 +1,9 @@
+---- btif_av_find_by_handle Matches (9 in 3 files) ----
+Btif_av.cc (z:\bluetooth\system\btif\src):const RawAddress& btif_av_find_by_handle(tBTA_AV_HNDL bta_handle) {
+Mock_btif_av.cc (z:\bluetooth\system\test\mock):struct btif_av_find_by_handle btif_av_find_by_handle;
+Mock_btif_av.cc (z:\bluetooth\system\test\mock):const RawAddress& btif_av_find_by_handle::return_value = RawAddress::kEmpty;
+Mock_btif_av.cc (z:\bluetooth\system\test\mock):const RawAddress& btif_av_find_by_handle(tBTA_AV_HNDL bta_handle) {
+Mock_btif_av.cc (z:\bluetooth\system\test\mock):  return test::mock::btif_av::btif_av_find_by_handle(bta_handle);
+Mock_btif_av.h (z:\bluetooth\system\test\mock):// Name: btif_av_find_by_handle
+Mock_btif_av.h (z:\bluetooth\system\test\mock):struct btif_av_find_by_handle {
+Mock_btif_av.h (z:\bluetooth\system\test\mock):extern struct btif_av_find_by_handle btif_av_find_by_handle;
