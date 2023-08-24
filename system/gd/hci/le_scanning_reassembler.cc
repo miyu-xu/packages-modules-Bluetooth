@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 #include "hci/le_scanning_reassembler.h"
 
@@ -30,25 +34,59 @@
 #include "os/log.h"
 #include "storage/storage_module.h"
 
-namespace bluetooth::hci {
+#include <openssl/aead.h>
+#include <openssl/base.h>
+#include <openssl/rand.h>
+#include <base/strings/string_number_conversions.h>
 
+namespace bluetooth::hci {
+std::optional<std::vector<uint8_t>> LeScanningReassembler::ProcessPeriodicAdvertisingReport(
+    uint16_t sync_handle,
+    AddressWithType Address_with_type,
+    DataStatus data_status,
+    const std::vector<uint8_t>& periodic_advertising_data) {
+  // LOG(INFO) << __func__ << " Sync Handle:" << sync_handle << " " << ContainsPeriodicFragment(sync_handle);
+  LOG(INFO) << __func__ << " " << DirectAdvertisingAddressType(Address_with_type.GetAddressType());
+  LOG(INFO) << __func__ << " ADDRESS: " << Address_with_type.GetAddress();
+  AdvertisingKey key(Address_with_type.GetAddress(),
+                    DirectAdvertisingAddressType(Address_with_type.GetAddressType()),
+                    (uint8_t)sync_handle);
+  std::list<PeriodicAdvertisingFragment>::iterator advertising_fragment = AppendPeriodicFragment(sync_handle, periodic_advertising_data);
+  // std::list<PeriodicAdvertisingFragment>::iterator advertising_fragment = periodic_cache_.find(sync_handle);
+  // if (advertising_fragment == periodic_cache_.end()) {
+
+  // }
+
+  if (data_status != DataStatus::CONTINUING) {
+    LOG(INFO) << __func__ << " DATA COMPLETE";
+    advertising_fragment->data = TrimAdvertisingData(advertising_fragment->data);
+  }
+  if (data_status == DataStatus::CONTINUING) {
+    LOG(INFO) << __func__ << " DATA INCOMPLETE";
+    return {};
+  }
+  std::vector<uint8_t> complete_advertising_data = std::move(advertising_fragment->data);
+  periodic_cache_.erase(advertising_fragment);
+  return complete_advertising_data;
+}
 std::optional<std::vector<uint8_t>> LeScanningReassembler::ProcessAdvertisingReport(
     uint16_t event_type,
     uint8_t address_type,
     Address address,
     uint8_t advertising_sid,
-    const std::vector<uint8_t>& advertising_data) {
+    const std::vector<uint8_t>& advertising_data,
+    std::vector<uint8_t> enc_key_material) {
   bool is_scannable = event_type & (1 << kScannableBit);
   bool is_scan_response = event_type & (1 << kScanResponseBit);
   bool is_legacy = event_type & (1 << kLegacyBit);
   DataStatus data_status = DataStatus((event_type >> kDataStatusBits) & 0x3);
-
+  LOG(INFO) << __func__ << " " << DirectAdvertisingAddressType(address_type);
   if (address_type != (uint8_t)DirectAdvertisingAddressType::NO_ADDRESS_PROVIDED &&
       address == Address::kEmpty) {
     LOG_WARN("Ignoring non-anonymous advertising report with empty address");
     return {};
   }
-
+  LOG(INFO) << __func__ << " " << address << " " << (uint16_t)address_type << " " << (uint16_t)advertising_sid;
   AdvertisingKey key(address, DirectAdvertisingAddressType(address_type), advertising_sid);
 
   // Ignore scan responses received without a matching advertising event.
@@ -90,8 +128,269 @@ std::optional<std::vector<uint8_t>> LeScanningReassembler::ProcessAdvertisingRep
   // Otherwise the full advertising report has been reassembled,
   // removed the cache entry and return the complete advertising data.
   std::vector<uint8_t> complete_advertising_data = std::move(advertising_fragment->data);
+
+  bool encrypted_data = false;
+  bool is_decrypt_success = false;
+  std::map<int,int> enc_adv_data_map;
+  std::map<int, std::vector<uint8_t>> decrypted_data_map;
+
+  for(int i = 0; i < (int)complete_advertising_data.size(); i++) {
+    if (complete_advertising_data[i] == (uint8_t)GapDataType::ENCRYPTED_ADVERTISING_DATA) {
+      if (((int)complete_advertising_data[i-1] + (i)) <= (int)complete_advertising_data.size()) {
+        encrypted_data = true;
+        LOG(INFO) << __func__ << " BDA: "<<address.ToString().c_str()<< " Found Encrypted Data Index " << i;
+      }
+    }
+  }
+  LOG(INFO) << " BDA: " << address.ToString().c_str() << " Data: " <<
+                base::HexEncode(complete_advertising_data.data(), complete_advertising_data.size());
+  if (encrypted_data) {
+    enc_adv_data_map = GetEncAdvFieldsInfo(complete_advertising_data.data(),
+                                           complete_advertising_data.size());
+
+    LOG(INFO) << __func__ << " Advertising Data Before Decryption " <<
+                            base::HexEncode(complete_advertising_data.data(),
+                                            complete_advertising_data.size());
+    std::vector<uint8_t> decrypted_data = ProcessEncryptedData(complete_advertising_data,
+                                                               &is_decrypt_success,
+                                                               enc_adv_data_map,
+                                                               enc_key_material);
+    if (!is_decrypt_success) {
+      LOG(INFO) << __func__ << " Decryption FAILED";
+    }
+    if (!decrypted_data.empty()) {
+      LOG(INFO) << __func__ << " Decryption PASSED";
+      complete_advertising_data.clear();
+      complete_advertising_data.insert(complete_advertising_data.begin(),
+                                      decrypted_data.begin(),
+                                      decrypted_data.end());
+    }
+  }
+
   cache_.erase(advertising_fragment);
   return complete_advertising_data;
+}
+
+std::vector<uint8_t> LeScanningReassembler::ProcessEncryptedData(std::vector<uint8_t> adv_data,
+                                                   bool* is_decryption_success,
+                                                   std::map<int, int> enc_adv_data_map,
+                                                   std::vector<uint8_t> enc_key_material) {
+
+  LOG(INFO) << __func__;
+  LOG(INFO) << "ENC_KEY_MATERIAL " << base::HexEncode(enc_key_material.data(), enc_key_material.size());
+  std::vector<uint8_t> iv;
+  std::vector<uint8_t> key;
+
+  std::vector<std::vector<uint8_t>> enc_key_material_vec;
+  std::vector<uint8_t> adv_data_decrypted;
+
+  static const std::vector<uint8_t> ad = {0xEA};
+  *is_decryption_success = false;
+  std::map<int, std::vector<uint8_t>> decrypted_data_map;
+  std::vector<uint8_t> empty_vec;
+
+
+  /* Split the string from bt_config.conf file into individual 24 byte Encrypted data
+     key material char values and save it in enc_key_material_vec vector */
+  std::vector<uint8_t> enc_key;
+  for (size_t i=0; i < enc_key_material.size(); i++) {
+    enc_key.push_back(enc_key_material[i]);
+    if ((i>0) && (((i+1)%ENC_KEY_MATERIAL_LEN) == 0)) {
+      enc_key_material_vec.push_back(enc_key);
+      enc_key.clear();
+    }
+  }
+
+  // if (btm_cb.enc_adv_data_log_enabled) {
+    //Print the split 24 byte Encrypted data key material char values
+    for (size_t k=0; k<enc_key_material_vec.size(); k++) {
+      LOG(INFO) << " Enc Data Key vector " << (int)k << ": "
+                << base::HexEncode(enc_key_material_vec[k].data(), enc_key_material_vec[k].size());
+    }
+  // }
+
+  /*Iterate through the multiple enc data key char values to check
+    and find the enc key which successfully decrypts the data */
+  for (size_t k=0; k<enc_key_material_vec.size(); k++) {
+    key.clear();
+    iv.clear();
+    // enc_key_material = (char*) enc_key_material_vec[k].c_str();
+    key.insert(key.begin(), enc_key_material_vec[k].begin(), enc_key_material_vec[k].begin() + 16);
+    iv.insert(iv.begin(), enc_key_material_vec[k].begin() + 16, enc_key_material_vec[k].end());
+    // for (int i=0; i<ENC_KEY_LEN; i++) {
+    //   key.push_back(enc_key_material[i]);
+    // }
+    // int j=16;
+    // for (int i=0; i<ENC_IV_LEN; i++) {
+    //   iv.push_back(enc_key_material[i+j]);
+    // }
+
+    // if (btm_cb.enc_adv_data_log_enabled) {
+      if (!key.empty()) {
+        LOG(INFO) << " Session Key: " << base::HexEncode(key.data(), key.size());
+      }
+      if (!iv.empty()) {
+        LOG(INFO) << " IV: " << base::HexEncode(iv.data(), iv.size());
+      }
+    // }
+
+    const EVP_AEAD_CTX *aeadCTX = EVP_AEAD_CTX_new(EVP_aead_aes_128_ccm_bluetooth(), key.data(),
+        key.size(), EVP_AEAD_DEFAULT_TAG_LENGTH);
+    if (aeadCTX == nullptr) return empty_vec;
+    int pos_index = 0;
+    int enc_data_part_len = 0;
+
+    if (enc_adv_data_map.empty()){
+      LOG(INFO) << " enc_adv_data_map is empty:";
+      return empty_vec;
+    }
+
+    std::map<int, int>::iterator it;
+    // if (btm_cb.enc_adv_data_log_enabled) {
+      for (it = enc_adv_data_map.begin(); it != enc_adv_data_map.end(); it++) {
+        LOG(INFO) << " enc_adv_data_map: postion:" << +(it->first)
+                  << " :length:" << +(it->second);
+      }
+    // }
+
+    for (it = enc_adv_data_map.begin(); it != enc_adv_data_map.end(); it++) {
+      std::vector<uint8_t> nonce;
+      std::vector<uint8_t> MIC;
+      std::vector<uint8_t> payload;
+      std::vector<uint8_t> randomizer;
+      pos_index = it->first;
+      enc_data_part_len = it->second;
+
+      // if (btm_cb.enc_adv_data_log_enabled) {
+        LOG(INFO) << " pos_index:" << +pos_index << " :enc_data_part_len:" << +enc_data_part_len;
+      // }
+      for(int i = pos_index; i < (pos_index + enc_data_part_len); i++){
+        if((i >= (pos_index +2)) && (i <= (pos_index+6))){
+          randomizer.push_back(adv_data[i]);
+        }
+        else if((i > (pos_index + 6)) && i < (pos_index + (enc_data_part_len-4))){
+          payload.push_back(adv_data[i]);
+        }
+        if((i >= (pos_index + (enc_data_part_len-4))) && (i < (pos_index + enc_data_part_len))){
+          MIC.push_back(adv_data[i]);
+        }
+      }
+
+      nonce.insert(nonce.end(), randomizer.begin(), randomizer.end());
+      nonce.insert(nonce.end(), iv.rbegin(), iv.rend());
+
+      std::vector<uint8_t> out(payload.size());
+      // if (btm_cb.enc_adv_data_log_enabled) {
+        if (!randomizer.empty()) {
+          LOG(INFO) << " Randomizer: " << base::HexEncode(randomizer.data(), randomizer.size());
+        }
+        if (!nonce.empty()) {
+          LOG(INFO) << " Nonce: " << base::HexEncode(nonce.data(), nonce.size());
+        }
+        if (!payload.empty()) {
+          LOG(INFO) << " Payload: " << base::HexEncode(payload.data(), payload.size());
+        }
+        if (!MIC.empty()) {
+          LOG(INFO) << " MIC: " << base::HexEncode(MIC.data(), MIC.size());
+        }
+      // }
+
+      EVP_AEAD_CTX_open_gather(aeadCTX, out.data(), nonce.data(), nonce.size(), payload.data(),
+                               payload.size(), MIC.data(), MIC.size(), ad.data(), ad.size());
+      // if (btm_cb.enc_adv_data_log_enabled) {
+        LOG(INFO) << " OUT: " << base::HexEncode(out.data(), out.size());
+      // }
+      if (out.size() > 0 && (out[0] > 0)) {
+        LOG(INFO) << " Decryption successful: ";
+        std::vector<uint8_t> decrypted_data;
+
+        //construct enc adv data part's (decrypted) vector
+        decrypted_data.insert(decrypted_data.begin(), out.begin(), out.end());
+
+        //Insert decrypted part vector and position
+        decrypted_data_map.insert(std::pair<int, std::vector<uint8_t>>(pos_index, decrypted_data));
+      } else {
+        LOG(INFO) << " Decryption NOT successful: ";
+        break;//try next enc key char value
+      }
+    }
+
+    // if (btm_cb.enc_adv_data_log_enabled) {
+      //Print decrypted_data_map
+      std::map<int, std::vector<uint8_t>>::iterator it1;
+      for (it1 = decrypted_data_map.begin(); it1 != decrypted_data_map.end(); it1++) {
+        LOG(INFO) << " decrypted_data_map: postion:" << +(it1->first);
+        std::vector<uint8_t> vec_temp = it1->second;
+        LOG(INFO) << " decrypted_data_map vector: "
+                  << base::HexEncode(vec_temp.data(), vec_temp.size());
+      }
+    // s}
+
+    if (!decrypted_data_map.empty() && !enc_adv_data_map.empty()) {
+      std::map<int, std::vector<uint8_t>>::iterator it_decrypted_map;
+      std::map<int, int>::iterator it_enc_map;
+      *is_decryption_success = true;
+      it_decrypted_map = decrypted_data_map.begin();
+      int enc_data_index = it_decrypted_map->first;
+      std::vector<uint8_t> decrypted_part = it_decrypted_map->second;
+
+      it_enc_map = enc_adv_data_map.begin();
+      int enc_data_part_len = it_enc_map->second;
+
+      // Copy data from original adv_data to adv_data_decrypted vector
+      for (int i=0; i< (int)adv_data.size(); i++) {
+        if (i < enc_data_index) {
+          adv_data_decrypted.push_back(adv_data[i]);
+        } else if (i == enc_data_index) {
+          adv_data_decrypted.insert(adv_data_decrypted.end(), decrypted_part.begin(),
+                                    decrypted_part.end());
+          i = i+enc_data_part_len-1;
+          it_decrypted_map++;
+          if (it_decrypted_map != decrypted_data_map.end()) {
+            enc_data_index = it_decrypted_map->first;
+            decrypted_part = it_decrypted_map->second;
+          } else {
+            enc_data_index = (int) adv_data.size();
+          }
+          it_enc_map++;
+          if (it_enc_map != enc_adv_data_map.end()) {
+            enc_data_part_len = it_enc_map->second;
+          } else {
+            enc_data_part_len = 0;
+          }
+        }
+      }//end for loop
+      adv_data.clear();
+      adv_data.insert(adv_data.begin(), adv_data_decrypted.begin(), adv_data_decrypted.end());
+      break; //break and no need to iterate through other enc key char values for decryption
+    }
+  }//for loop for enc_key_value
+
+  return adv_data;
+}
+
+std::map<int, int> LeScanningReassembler::GetEncAdvFieldsInfo(const uint8_t* ad, size_t ad_len) {
+    size_t position = 0;
+    std::map<int, int> enc_adv_map;
+    int enc_data_part_length = 0;
+
+    while (position < ad_len) {
+      uint8_t len = ad[position];
+
+      if (len == 0) break;
+      if (position + len >= ad_len) break;
+
+      uint8_t adv_type = ad[position + 1];
+
+      if (adv_type == (uint8_t)GapDataType::ENCRYPTED_ADVERTISING_DATA) {
+        enc_data_part_length = len + 1; /* Length(1 byte) + len */
+        enc_adv_map.insert(std::pair<int, int>((int)position, enc_data_part_length));
+      }
+
+      position += len + 1; /* skip the length of data */
+    }
+
+    return enc_adv_map;
 }
 
 /// Trim the advertising data by removing empty or overflowing
@@ -153,6 +452,56 @@ LeScanningReassembler::AppendFragment(const AdvertisingKey& key, const std::vect
 
   cache_.emplace_front(key, data);
   return cache_.begin();
+  // else {
+  //   LOG(INFO) << __func__ << " 1";
+  //   auto it = FindFragment(key, periodic);
+  //   if (it != periodic_cache_.end()) {
+  //     LOG(INFO) << __func__ << " 1.5";
+  //     it->data.insert(it->data.end(), data.cbegin(), data.cend());
+  //     return it;
+  //   }
+  //   LOG(INFO) << __func__ << " 2";
+  //   if (periodic_cache_.size() > kMaximumCacheSize) {
+  //     LOG(INFO) << __func__ << " 2.5";
+  //     periodic_cache_.pop_back();
+  //   }
+  //   LOG(INFO) << __func__ << " 3";
+  //   periodic_cache_.emplace_front(key, data);
+  //   return periodic_cache_.begin();
+  // }
+}
+
+std::list<LeScanningReassembler::PeriodicAdvertisingFragment>::iterator
+LeScanningReassembler::AppendPeriodicFragment(uint16_t sync_handle, const std::vector<uint8_t>& data) {
+  LOG(INFO) << __func__ << " 1";
+  auto it = FindPeriodicFragment(sync_handle);
+  if (it != periodic_cache_.end()) {
+    LOG(INFO) << __func__ << " 1.5";
+    it->data.insert(it->data.end(), data.cbegin(), data.cend());
+    return it;
+  }
+  LOG(INFO) << __func__ << " 2";
+  if (periodic_cache_.size() > kMaximumCacheSize) {
+    LOG(INFO) << __func__ << " 2.5";
+    periodic_cache_.pop_back();
+  }
+  LOG(INFO) << __func__ << " 3";
+  periodic_cache_.emplace_front(sync_handle, data);
+  return periodic_cache_.begin();
+}
+std::list<LeScanningReassembler::PeriodicAdvertisingFragment>::iterator
+  LeScanningReassembler::FindPeriodicFragment(uint16_t sync_handle) {
+  LOG(INFO) << __func__ << " ?!!";
+  // periodic_cache_.emplace_front(PeriodicAdvertisingFragment(0x02,{0x02,0x03}));
+  LOG(INFO) << __func__ << " ?!!?";
+  for(auto it = periodic_cache_.begin(); it != periodic_cache_.end(); it++) {
+    LOG(INFO) << __func__ << " LOOP";
+    if (it->sync_handle == sync_handle) {
+      return it;
+    }
+  }
+  LOG(INFO) << __func__ << " END";
+  return periodic_cache_.end();
 }
 
 void LeScanningReassembler::RemoveFragment(const AdvertisingKey& key) {
@@ -166,6 +515,10 @@ bool LeScanningReassembler::ContainsFragment(const AdvertisingKey& key) {
   return FindFragment(key) != cache_.end();
 }
 
+bool LeScanningReassembler::ContainsPeriodicFragment(uint16_t sync_handle) {
+  return FindPeriodicFragment(sync_handle) != periodic_cache_.end();
+}
+
 std::list<LeScanningReassembler::AdvertisingFragment>::iterator LeScanningReassembler::FindFragment(
     const AdvertisingKey& key) {
   for (auto it = cache_.begin(); it != cache_.end(); it++) {
@@ -174,6 +527,23 @@ std::list<LeScanningReassembler::AdvertisingFragment>::iterator LeScanningReasse
     }
   }
   return cache_.end();
+  // else {
+  //   std::list<AdvertisingFragment>::iterator test;
+  //   LOG(INFO) << __func__ << " ?!";
+  //   periodic_cache_.begin();
+  //   LOG(INFO) << __func__ << " ?!?!";
+  //   LOG(INFO) << __func__ << " " << periodic_cache_.empty();
+  //   if (!periodic_cache_.empty()) {
+  //     for (auto it = periodic_cache_.begin(); it != periodic_cache_.end(); it++) {
+  //       LOG(INFO) << __func__ << " LOOP";
+  //       if (it->key == key) {
+  //         return it;
+  //       }
+  //     }
+  //   }
+  //   LOG(INFO) << __func__ << " END";
+  //   return periodic_cache_.end();
+  // }
 }
 
 }  // namespace bluetooth::hci

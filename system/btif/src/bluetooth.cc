@@ -15,6 +15,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 
 /*******************************************************************************
@@ -1504,4 +1507,14 @@ void invoke_switch_codec_cb(bool is_low_latency_buffer_size) {
                                               is_low_latency_buffer_size);
                                   },
                                   is_low_latency_buffer_size));
+}
+
+void invoke_enc_key_material_cb(bt_status_t status, int num_properties, bt_property_t *prop) {
+  do_in_jni_thread(FROM_HERE, base::BindOnce(
+                                  [](bt_status_t status, int num_properties, bt_property_t *prop) {
+                                    HAL_CBACK(bt_hal_cbacks, adapter_properties_cb,
+                                     BT_STATUS_SUCCESS, num_properties, prop);
+                                  },
+                                  status, num_properties, property_deep_copy(prop)));
+
 }

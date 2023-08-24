@@ -143,6 +143,7 @@ cc_library_static {
         "-DBUILDCFG",
     ],
     shared_libs: [
+        "libcrypto",
     ],
     whole_static_libs: [
         "libbluetooth_gd", // Gabeldorsche

@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 
 package com.android.bluetooth.gatt;
@@ -230,6 +234,7 @@ public class AdvertiseManager {
 
         AdvertisingSetDeathRecipient deathRecipient = new AdvertisingSetDeathRecipient(callback);
         IBinder binder = toBinder(callback);
+        byte[] encryptedKeyMaterialValue = new byte[0];
         try {
             binder.linkToDeath(deathRecipient, 0);
         } catch (RemoteException e) {
@@ -239,11 +244,27 @@ public class AdvertiseManager {
         String deviceName = AdapterService.getAdapterService().getName();
         try {
             byte[] advDataBytes = AdvertiseHelper.advertiseDataToBytes(advertiseData, deviceName);
+            byte[] advDataEncBytes = AdvertiseHelper.advertiseDataEncToBytes(advertiseData, deviceName);
             byte[] scanResponseBytes =
                     AdvertiseHelper.advertiseDataToBytes(scanResponse, deviceName);
+            byte[] scanResponseEncBytes =
+                    AdvertiseHelper.advertiseDataEncToBytes(scanResponse, deviceName);
             byte[] periodicDataBytes =
                     AdvertiseHelper.advertiseDataToBytes(periodicData, deviceName);
+            byte[] periodicDataEncBytes =
+                    AdvertiseHelper.advertiseDataEncToBytes(periodicData, deviceName);
 
+            if (advertiseData != null) {
+                encryptedKeyMaterialValue = advertiseData.getEncryptedKeyMaterialValue();
+                if (encryptedKeyMaterialValue == null) {
+                    encryptedKeyMaterialValue = new byte[0];
+                }
+            } else if (scanResponse != null) {
+                encryptedKeyMaterialValue = scanResponse.getEncryptedKeyMaterialValue();
+                if (encryptedKeyMaterialValue == null) {
+                    encryptedKeyMaterialValue = new byte[0];
+                }
+            }
             int cbId = --sTempRegistrationId;
             mAdvertisers.put(binder, new AdvertiserInfo(cbId, deathRecipient, callback));
 
@@ -255,16 +276,10 @@ public class AdvertiseManager {
             mAdvertiserMap.recordAdvertiseStart(cbId, parameters, advertiseData,
                     scanResponse, periodicParameters, periodicData, duration, maxExtAdvEvents);
 
-            mNativeInterface.startAdvertisingSet(
-                    parameters,
-                    advDataBytes,
-                    scanResponseBytes,
-                    periodicParameters,
-                    periodicDataBytes,
-                    duration,
-                    maxExtAdvEvents,
-                    cbId,
-                    serverIf);
+            startAdvertisingSetNative(parameters, advDataBytes, advDataEncBytes,
+                    scanResponseBytes, scanResponseEncBytes, periodicParameters, periodicDataBytes,
+                    periodicDataEncBytes, duration, maxExtAdvEvents, encryptedKeyMaterialValue,
+                    cbId, serverIf);
 
         } catch (IllegalArgumentException e) {
             try {
@@ -347,6 +362,7 @@ public class AdvertiseManager {
     }
 
     void setAdvertisingData(int advertiserId, AdvertiseData data) {
+        Log.d(TAG, "PLEASE WORK");
         Map.Entry<IBinder, AdvertiserInfo> entry = findAdvertiser(advertiserId);
         if (entry == null) {
             Log.w(TAG, "setAdvertisingData() - bad advertiserId " + advertiserId);
@@ -354,8 +370,9 @@ public class AdvertiseManager {
         }
         String deviceName = AdapterService.getAdapterService().getName();
         try {
-            mNativeInterface.setAdvertisingData(
-                    advertiserId, AdvertiseHelper.advertiseDataToBytes(data, deviceName));
+            setAdvertisingDataNative(advertiserId,
+                    AdvertiseHelper.advertiseDataToBytes(data, deviceName),
+                    AdvertiseHelper.advertiseDataEncToBytes(data, deviceName));
 
             mAdvertiserMap.setAdvertisingData(advertiserId, data);
         } catch (IllegalArgumentException e) {
@@ -376,8 +393,9 @@ public class AdvertiseManager {
         }
         String deviceName = AdapterService.getAdapterService().getName();
         try {
-            mNativeInterface.setScanResponseData(
-                    advertiserId, AdvertiseHelper.advertiseDataToBytes(data, deviceName));
+            setScanResponseDataNative(advertiserId,
+                    AdvertiseHelper.advertiseDataToBytes(data, deviceName),
+                    AdvertiseHelper.advertiseDataEncToBytes(data, deviceName));
 
             mAdvertiserMap.setScanResponseData(advertiserId, data);
         } catch (IllegalArgumentException e) {
@@ -421,8 +439,9 @@ public class AdvertiseManager {
         }
         String deviceName = AdapterService.getAdapterService().getName();
         try {
-            mNativeInterface.setPeriodicAdvertisingData(
-                    advertiserId, AdvertiseHelper.advertiseDataToBytes(data, deviceName));
+            setPeriodicAdvertisingDataNative(advertiserId,
+                    AdvertiseHelper.advertiseDataToBytes(data, deviceName),
+                    AdvertiseHelper.advertiseDataEncToBytes(data, deviceName));
 
             mAdvertiserMap.setPeriodicAdvertisingData(advertiserId, data);
         } catch (IllegalArgumentException e) {
@@ -548,4 +567,42 @@ public class AdvertiseManager {
             stats.onPeriodicAdvertiseEnabled(enable);
         }
     }
+
+    static {
+        classInitNative();
+    }
+
+    private static native void classInitNative();
+
+    private native void initializeNative();
+
+    private native void cleanupNative();
+
+    private native void startAdvertisingSetNative(AdvertisingSetParameters parameters,
+            byte[] advertiseData, byte[] advertiseDataEnc,
+            byte[] scanResponse, byte[] scanResponseEnc,
+            PeriodicAdvertisingParameters periodicParameters,
+            byte[] periodicData, byte[] periodicDataEnc ,int duration,
+            int maxExtAdvEvents, byte[] encryptedKeyMaterialValue, int regId, int serverIf);
+
+    private native void getOwnAddressNative(int advertiserId);
+
+    private native void stopAdvertisingSetNative(int advertiserId);
+
+    private native void enableAdvertisingSetNative(int advertiserId, boolean enable, int duration,
+            int maxExtAdvEvents);
+
+    private native void setAdvertisingDataNative(int advertiserId, byte[] data, byte[] data_enc);
+
+    private native void setScanResponseDataNative(int advertiserId, byte[] data, byte[] data_enc);
+
+    private native void setAdvertisingParametersNative(int advertiserId,
+            AdvertisingSetParameters parameters);
+
+    private native void setPeriodicAdvertisingParametersNative(int advertiserId,
+            PeriodicAdvertisingParameters parameters);
+
+    private native void setPeriodicAdvertisingDataNative(int advertiserId, byte[] data, byte[] data_enc);
+
+    private native void setPeriodicAdvertisingEnableNative(int advertiserId, boolean enable);
 }

@@ -14,6 +14,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 
 /******************************************************************************
@@ -36,13 +39,17 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "stack/include/bt_types.h"
+#include "stack/btm/btm_int_types.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+#include "gap_api.h"
 
 #include <base/logging.h>
 
 using base::StringPrintf;
 using bluetooth::Uuid;
+
+extern tBTM_CB btm_cb;
 
 #define BLE_GATT_SVR_SUP_FEAT_EATT_BITMASK 0x01
 
@@ -569,6 +576,12 @@ static bool gatt_att_write_cl_supp_feat(uint16_t conn_id, uint16_t handle) {
                << loghex(static_cast<uint8_t>(status));
     return false;
   }
+  gatt_op_cb_data cb_data;
+  cb_data.cb = base::BindOnce(
+      [](const RawAddress& bdaddr, uint8_t support) { return; });
+  cb_data.op_uuid = GATT_UUID_CLIENT_SUP_FEAT;
+  OngoingOps[conn_id].emplace_back(std::move(cb_data));
+
 
   return true;
 }
@@ -588,7 +601,7 @@ static void gatt_cl_op_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
   auto iter = OngoingOps.find(conn_id);
 
   VLOG(1) << __func__ << " opcode: " << loghex(static_cast<uint8_t>(op))
-          << " status: " << status
+          << " status: " << loghex(static_cast<uint8_t>(status))
           << " conn id: " << loghex(static_cast<uint8_t>(conn_id));
 
   if (op != GATTC_OPTYPE_READ && op != GATTC_OPTYPE_WRITE) {
@@ -599,12 +612,14 @@ static void gatt_cl_op_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
   if (iter == OngoingOps.end() || (iter->second.size() == 0)) {
     /* If OngoingOps is empty it means we are not interested in the result here.
      */
+
     LOG_DEBUG("Unexpected read complete");
     return;
   }
 
   uint16_t cl_op_uuid = iter->second.front().op_uuid;
 
+  tGATT_PROFILE_CLCB* p_clcb = gatt_profile_find_clcb_by_conn_id(conn_id);
   if (op == GATTC_OPTYPE_WRITE) {
     if (cl_op_uuid == GATT_UUID_GATT_SRV_CHGD) {
       LOG_DEBUG("Write response from Service Changed CCC");
@@ -615,6 +630,11 @@ static void gatt_cl_op_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
                                      uint8_t support) { return; }));
     } else {
       LOG_DEBUG("Not interested in that write response");
+    }
+    if (status == GATT_SUCCESS && cl_op_uuid == GATT_UUID_CLIENT_SUP_FEAT) {
+      if (btm_cb.enc_adv_data_enabled) {
+        GAP_BleGetEncKeyMaterialInfo(p_clcb->bda, p_clcb->transport);
+      }
     }
     return;
   }
