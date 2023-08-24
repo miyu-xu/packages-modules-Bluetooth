@@ -22,6 +22,30 @@
       },
       "revId": "619b2155118e464b5e7ead1c9e31310f9d6bd258",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8129a037_c066d6ad",
+        "filename": "system/gd/rust/linux/service/src/iface_battery_provider_manager.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-08-24T07:04:47Z",
+      "side": 1,
+      "message": "offline discussion with Archie: okay to have this change before API versioning.",
+      "parentUuid": "f7c55fd7_9290fa7d",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "619b2155118e464b5e7ead1c9e31310f9d6bd258",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
