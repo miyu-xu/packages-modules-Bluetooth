@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "588feaa4_356aac9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-24T21:38:27Z",
+      "side": 1,
+      "message": "It\u0027s pretty hard to debug btmanagerd from logs -- improve the logging to make it easier.\n\nSample logs:\n```\n2023-08-24T21:16:04.033740Z INFO btmanagerd[27989]: Stopping 0\n2023-08-24T21:16:04.034151Z WARNING btmanagerd[27989]: Adapter 0 is already stopped\n2023-08-24T21:16:09.743071Z INFO btmanagerd[27989]: Starting 0\n2023-08-24T21:16:09.755722Z INFO btmanagerd[27989]: [hci0]: Action\u003dStartBluetooth(VirtualHciIndex(0)), Previous State(Off), Next State(TurningOn)\n2023-08-24T21:16:09.967699Z INFO btmanagerd[27989]: [hci0]: Action\u003dBluetoothStarted(28278, RealHciIndex(0)), Previous State(TurningOn), Next State(On)\n2023-08-24T21:16:09.967707Z INFO btmanagerd[27989]: Started 0\n2023-08-24T21:16:23.029887Z INFO btmanagerd[27989]: Starting 0\n2023-08-24T21:16:23.030351Z WARNING btmanagerd[27989]: Adapter 0 is already enabled.\n```",
+      "revId": "d58334427525358b47f5f058612222f4d1945699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
