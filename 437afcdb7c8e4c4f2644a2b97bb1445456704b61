@@ -16,6 +16,23 @@
       "message": "Hi, a friendly ping. This is a workaround for the mouse bornd c170b.",
       "revId": "437afcdb7c8e4c4f2644a2b97bb1445456704b61",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b521df84_0c4e1d3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-08-24T11:10:44Z",
+      "side": 1,
+      "message": "Thanks for reviewing!",
+      "revId": "437afcdb7c8e4c4f2644a2b97bb1445456704b61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
