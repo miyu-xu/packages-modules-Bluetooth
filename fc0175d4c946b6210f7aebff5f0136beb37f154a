@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd4b6342_99133f98",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsablePlayerConnector.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-24T17:44:07Z",
+      "side": 1,
+      "message": "This looks very weird....\nI do not understand why we need it",
+      "range": {
+        "startLine": 120,
+        "startChar": 16,
+        "endLine": 122,
+        "endChar": 17
+      },
+      "revId": "fc0175d4c946b6210f7aebff5f0136beb37f154a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
