@@ -147,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03eb0fa7_e08d49b4",
+        "filename": "system/bta/le_audio/le_audio_log_history.cc",
+        "patchSetId": 20
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-24T04:02:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f05622be_c884e650",
+      "revId": "d52b5fc53197b302472f23fbbcc04420fd204b8d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5a22b9d_ac0ee465",
