@@ -145,6 +145,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df5940f3_808f0466",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:45:20Z",
+      "side": 1,
+      "message": "Hi Jakub, it looks like this.\n\n469\tSlave\t11\tAT+BRSF\u003d959.\tRetrieve AG Supported Features\t\t\t25\t 00:00:41.143000\t6/4/2019 8:43:13.826000 PM\t\n470\tMaster\t11\t..+BRSF: 3943..\t\t\tRetrieved AG Supported Features\t28\t 00:00:00.002000\t6/4/2019 8:43:13.828000 PM\t\n471\tMaster\t11\t..OK..\t\t\tSuccess\t18\t 00:00:00.002000\t6/4/2019 8:43:13.830000 PM\t\n476\tSlave\t11\tAT+BAC\u003d1,2.\tAvailable codecs\t\t\t23\t 00:00:00.013000\t6/4/2019 8:43:13.843000 PM\t\n477\tMaster\t11\t..OK..\t\t\tSuccess\t19\t 00:00:00.002000\t6/4/2019 8:43:13.845000 PM\t\n480\tSlave\t11\tAT+%QAC\u003d0,6,7.\tAT+%QAC\u003d0,6,7\t\t\t26\t 00:00:00.006000\t6/4/2019 8:43:13.851000 PM\t\n481\tMaster\t11\t..+%QAC: 0,4,6,7..\t+%QAC: 0,4,6,7\t\t\t31\t 00:00:00.002000\t6/4/2019 8:43:13.853000 PM\t\n482\tMaster\t11\t..OK..\t\t\tSuccess\t18\t 00:00:00.002000\t6/4/2019 8:43:13.855000 PM\n\n588\tMaster\t11\t..+%QCS: 0..\t+%QCS: 0\t\t\t24\t 00:00:00.116000\t6/4/2019 8:43:14.241000 PM\t\n628\tSlave\t11\tAT+%QCS\u003d0.\tAT+%QCS\u003d0\t\t\t22\t 00:00:00.020000\t6/4/2019 8:43:14.425000 PM\t\n632\tMaster\t11\t..OK..\t\t\tSuccess\t19\t 00:00:00.001000\t6/4/2019 8:43:14.426000 PM",
+      "parentUuid": "5626070d_d63fc207",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 0
+      },
+      "revId": "4751b67fb63d91a6efbed394a1522840eec3e6ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0447d328_b596b956",
         "filename": "system/bta/ag/bta_ag_swb.cc",
         "patchSetId": 6
