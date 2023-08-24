@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "175969f7_477096fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-24T05:00:00Z",
+      "side": 1,
+      "message": "getAnonymizedAddress is not needed to be called as the toString method has been updated to obfuscate by default....\nI would like to check this allegation before going farther with this CL.\nEither it\u0027s true and we can abandonn it, or it is false and a lot more log need to be fixed",
+      "revId": "041f80254aed0731ee219bf2f7be157b6c66502b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
