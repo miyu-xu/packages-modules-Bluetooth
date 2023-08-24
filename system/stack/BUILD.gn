@@ -44,20 +44,22 @@ source_set("nonstandard_codecs") {
       "//bt/system",
       "//bt/system/bta/include",
       "//bt/system/btif/include",
+      "//bt/system/include",
       "//bt/system/internal_include",
+      "//bt/system/stack",
       "//bt/system/stack/include",
       "//bt/system/utils/include",
     ]
 
-    deps = [ "//bt/system/gd/rust/shim:init_flags_bridge_header" ]
+    deps = [
+      "//bt/system/gd/rust/shim:init_flags_bridge_header",
+      "//bt/system/stack/mmc/codec_server:libcodec_server_a2dp_aac_linux",
+      "//bt/system/stack/mmc",
+      "//bt/system/stack/mmc/codec_client:libcodec_client",
+      "//bt/system/stack/mmc/proto:mmc_config_proto",
+    ]
 
     # b/289017207: external codec libs should not be directly linked
-    libs = [
-      # Following are for AAC using FFmpeg
-      "avcodec",
-      "avformat",
-      "avutil",
-    ]
 
     configs += [
       "//bt/system:target_defaults",
