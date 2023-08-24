@@ -1624,7 +1624,7 @@ public class AvrcpControllerStateMachineTest {
         MediaControllerCompat.TransportControls transportControls =
                 BluetoothMediaBrowserService.getTransportControls();
         transportControls.pause();
-        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
+        verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
                 .sendPassThroughCommand(
                         eq(mTestAddress),
                         eq(AvrcpControllerService.PASS_THRU_CMD_ID_PAUSE),
