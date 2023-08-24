@@ -70,6 +70,30 @@
       },
       "revId": "a0f91e9b338bc1cc6eaf6d1f11a952e450fa64db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cbc5049_d90abb53",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:53:28Z",
+      "side": 1,
+      "message": "Hi Jakub, aptx swb power management is for selecting aptx voice codec only when codec over mobile network used is HD codec for phone calls. If narrow band codec is used for phone calls, aptx voice codec is not used though the aptx voice codec support is available in phone and connected headset.",
+      "parentUuid": "6138e818_2e4297d1",
+      "range": {
+        "startLine": 405,
+        "startChar": 8,
+        "endLine": 405,
+        "endChar": 18
+      },
+      "revId": "a0f91e9b338bc1cc6eaf6d1f11a952e450fa64db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
