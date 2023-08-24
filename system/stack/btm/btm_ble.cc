@@ -14,6 +14,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 
 /******************************************************************************
@@ -55,6 +58,9 @@
 #include "stack/include/smp_api.h"
 #include "stack/include/smp_api_types.h"
 #include "types/raw_address.h"
+#include "btif/include/btif_config.h"
+#include "stack/gatt/gatt_int.h"
+#include "stack/include/gap_api.h"
 
 extern tBTM_CB btm_cb;
 
@@ -1535,6 +1541,18 @@ void btm_ble_link_encrypted(const RawAddress& bd_addr, uint8_t encr_enable) {
 
   /* to notify GATT to send data if any request is pending */
   gatt_notify_enc_cmpl(p_dev_rec->ble.pseudo_addr);
+  if (encr_enable && btm_sec_is_a_bonded_dev(p_dev_rec->ble.pseudo_addr)
+      && btm_cb.enc_adv_data_enabled) {
+    size_t length =
+        btif_config_get_bin_length(p_dev_rec->ble.pseudo_addr.ToString().c_str(), "ENC_KEY_MATERIAL");
+    tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(p_dev_rec->ble.pseudo_addr, BT_TRANSPORT_LE);
+    if (p_tcb && (p_tcb->is_read_enc_key_pending ||
+        (!p_tcb->is_read_enc_key_pending && (length > 0)))) {
+      BTM_TRACE_DEBUG(" btm_ble_link_encrypted, read enc key values");
+      GAP_BleGetEncKeyMaterialInfo(p_dev_rec->ble.pseudo_addr, BT_TRANSPORT_LE);
+      p_tcb->is_read_enc_key_pending = false;
+    }
+  }
 }
 
 /*******************************************************************************
@@ -2247,6 +2265,29 @@ void btm_ble_set_test_local_sign_cntr_value(bool enable,
 void btm_ble_set_keep_rfu_in_auth_req(bool keep_rfu) {
   BTM_TRACE_DEBUG("btm_ble_set_keep_rfu_in_auth_req keep_rfus=%d", keep_rfu);
   btm_cb.devcb.keep_rfu_in_auth_req = keep_rfu;
+}
+
+/*******************************************************************************
+ *
+ * Function         BTM_BleGetEncKeyMaterial
+ *
+ * Description      This function is called to get the local device Encrypted
+ *                  Data Key Material characteristic value associated with
+ *                  GAP service.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTM_BleGetEncKeyMaterial(uint8_t *enc_key_value) {
+  BTM_TRACE_DEBUG("BTM_BleGetEncKeyMaterial");
+  size_t len = btif_config_get_bin_length("Adapter", "ENC_KEY_MATERIAL");
+  VLOG(1) << __func__ << " len:" << loghex(len);
+  if (len > 0) {
+    if (btif_storage_get_enc_key_material(NULL, enc_key_value, (int*)&len)
+        == BT_STATUS_SUCCESS) {
+      VLOG(1) << __func__ << " Found Adapter Enc Key Material value";
+    }
+  }
 }
 
 #endif /* BTM_BLE_CONFORMANCE_TESTING */

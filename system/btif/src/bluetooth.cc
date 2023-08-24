@@ -15,6 +15,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 
 /*******************************************************************************
@@ -350,7 +353,8 @@ static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
       .invoke_thread_evt_cb = invoke_thread_evt_cb,
       .invoke_le_test_mode_cb = invoke_le_test_mode_cb,
       .invoke_energy_info_cb = invoke_energy_info_cb,
-      .invoke_link_quality_report_cb = invoke_link_quality_report_cb};
+      .invoke_link_quality_report_cb = invoke_link_quality_report_cb,
+      .invoke_enc_key_material_cb = invoke_enc_key_material_cb};
   static auto configInterface = ConfigInterfaceImpl();
   static auto msbcCodecInterface = MSBCCodec();
   static auto lc3CodecInterface = LC3Codec();
@@ -1501,4 +1505,17 @@ void invoke_switch_codec_cb(bool is_low_latency_buffer_size) {
                                               is_low_latency_buffer_size);
                                   },
                                   is_low_latency_buffer_size));
+}
+
+void invoke_enc_key_material_cb(bt_status_t status, int num_properties, bt_property_t *prop) {
+  do_in_jni_thread(FROM_HERE, base::BindOnce(
+                                  [](bt_status_t status, int num_properties, bt_property_t *prop) {
+                                    HAL_CBACK(bt_hal_cbacks, adapter_properties_cb,
+                                     status, num_properties, prop);
+                                     if(prop){
+                                      osi_free(prop);
+                                     }
+                                  },
+                                  status, num_properties, property_deep_copy_array(num_properties, prop)));
+
 }

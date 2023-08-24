@@ -15,6 +15,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 
 /*******************************************************************************
@@ -120,6 +123,8 @@ const Uuid UUID_BATTERY = Uuid::FromString("180F");
 const Uuid UUID_A2DP_SINK = Uuid::FromString("110B");
 
 #define BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING 2
+
+#define ENC_KEY_MATERIAL_LEN 24
 
 #ifndef PROPERTY_CLASS_OF_DEVICE
 #define PROPERTY_CLASS_OF_DEVICE "bluetooth.device.class_of_device"
@@ -2388,6 +2393,16 @@ static void btif_dm_upstreams_evt(uint16_t event, char* p_param) {
       GetInterfaceToProfiles()->events->invoke_le_address_associate_cb(
           p_data->proc_id_addr.pairing_bda, p_data->proc_id_addr.id_addr);
       break;
+    case BTA_DM_ENC_KEY_MATERIAL: {
+      char buf[512];
+      bt_property_t prop;
+      prop.type = BT_PROPERTY_ENC_KEY_MATERIAL;
+      prop.val = (void*)buf;
+      prop.len = ENC_KEY_MATERIAL_LEN;
+      memcpy(prop.val, p_data->enc_key_material.enc_key_value, ENC_KEY_MATERIAL_LEN);
+      GetInterfaceToProfiles()->events->invoke_enc_key_material_cb(BT_STATUS_SUCCESS, 1, &prop);
+      break;
+    }
 
     case BTA_DM_SIRK_VERIFICATION_REQ_EVT:
       GetInterfaceToProfiles()->events->invoke_le_address_associate_cb(

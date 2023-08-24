@@ -14,6 +14,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 
 /******************************************************************************
@@ -40,6 +43,7 @@
 #include "btif/include/btif_config.h"
 #include "btif/include/btif_dm.h"
 #include "btif/include/btif_storage.h"
+#include "btif/include/btif_config.h"
 #include "btif/include/stack_manager.h"
 #include "device/include/controller.h"
 #include "device/include/interop.h"
@@ -466,6 +470,23 @@ void BTA_dm_on_hw_on() {
   bta_dm_init_pm();
 
   bta_dm_gattc_register();
+
+  uint8_t enc_key_value[24] = {0};
+  size_t len = btif_config_get_bin_length("Adapter", "ENC_KEY_MATERIAL");
+  VLOG(1) << __func__ << " len:" << loghex(len);
+  if (len > 0) {
+    if (btif_storage_get_enc_key_material(NULL, enc_key_value, (int*)&len)
+        == BT_STATUS_SUCCESS) {
+      VLOG(1) << __func__ << " Found Adapter Enc Key Material value";
+    }
+  }
+  if (bta_dm_cb.p_sec_cback) {
+    tBTA_DM_SEC sec_event;
+    memset(&sec_event, 0, sizeof(tBTA_DM_SEC));
+    memcpy(sec_event.enc_key_material.enc_key_value, enc_key_value, 24);
+    bta_dm_cb.p_sec_cback(BTA_DM_ENC_KEY_MATERIAL, &sec_event);
+  }
+
 }
 
 /** Disables the BT device manager */

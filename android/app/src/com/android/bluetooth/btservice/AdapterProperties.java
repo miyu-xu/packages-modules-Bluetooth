@@ -13,6 +13,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 
 package com.android.bluetooth.btservice;
@@ -145,6 +149,7 @@ class AdapterProperties {
     private boolean mIsLePeriodicAdvertisingSyncTransferRecipientSupported;
     private boolean mIsLeConnectedIsochronousStreamCentralSupported;
     private boolean mIsLeIsochronousBroadcasterSupported;
+    private byte[] mEncKeyMaterial;
 
     private List<BufferConstraint> mBufferConstraintList;
 
@@ -549,6 +554,13 @@ class AdapterProperties {
      */
     public boolean isOffloadedTransportDiscoveryDataScanSupported() {
         return mIsOffloadedTransportDiscoveryDataScanSupported;
+    }
+
+	/**
+     * @return the getEncKeyMaterialValue
+     */
+    byte[] getEncKeyMaterialValue() {
+        return mEncKeyMaterial;
     }
 
     /**
@@ -1031,6 +1043,9 @@ class AdapterProperties {
                         debugLog("mLocalIOCapability set to " + mLocalIOCapability);
                         break;
 
+                    case AbstractionLayer.BT_PROPERTY_ENC_KEY_MATERIAL:
+                        mEncKeyMaterial = val;
+                        break;
                     case AbstractionLayer.BT_PROPERTY_WL_MEDIA_PLAYERS_LIST:
                         int pos = 0;
                         for (int j = 0; j < val.length; j++) {

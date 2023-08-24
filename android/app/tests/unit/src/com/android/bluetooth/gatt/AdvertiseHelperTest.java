@@ -41,7 +41,7 @@ public class AdvertiseHelperTest {
 
     @Test
     public void advertiseDataToBytes() throws Exception {
-        byte[] emptyBytes = AdvertiseHelper.advertiseDataToBytes(null, "");
+        byte[] emptyBytes = AdvertiseHelper.advertiseDataToBytes(null, "", false);
 
         assertThat(emptyBytes.length).isEqualTo(0);
 
@@ -70,7 +70,7 @@ public class AdvertiseHelperTest {
         String deviceName = "TestDeviceName";
 
         int expectedAdvDataBytesLength = 86;
-        byte[] advDataBytes = AdvertiseHelper.advertiseDataToBytes(advertiseData, deviceName);
+        byte[] advDataBytes = AdvertiseHelper.advertiseDataToBytes(advertiseData, deviceName, false);
 
         String deviceNameLong = "TestDeviceNameLongTestDeviceName";
 
@@ -78,7 +78,7 @@ public class AdvertiseHelperTest {
 
         int expectedAdvDataBytesLongNameLength = 98;
         byte[] advDataBytesLongName = AdvertiseHelper
-                .advertiseDataToBytes(advertiseData, deviceNameLong);
+                .advertiseDataToBytes(advertiseData, deviceNameLong, false);
 
         assertThat(advDataBytesLongName.length).isEqualTo(expectedAdvDataBytesLongNameLength);
     }

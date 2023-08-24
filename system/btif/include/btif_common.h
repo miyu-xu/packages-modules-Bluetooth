@@ -236,5 +236,7 @@ void invoke_link_quality_report_cb(
 
 void invoke_switch_buffer_size_cb(bool is_low_latency_buffer_size);
 void invoke_switch_codec_cb(bool is_low_latency_buffer_size);
+void invoke_enc_key_material_cb(bt_status_t status, int num_properties,
+                                  bt_property_t* prop);
 
 #endif /* BTIF_COMMON_H */

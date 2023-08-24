@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 
 #define LOG_TAG "bt_shim_scanner"
@@ -46,9 +50,24 @@
 #include "types/ble_address_with_type.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+#include "stack/include/ble_hci_link_interface.h"
 
 using bluetooth::ToGdAddress;
 using bluetooth::ToRawAddress;
+
+namespace bluetooth {
+  namespace shim {
+    namespace legacy {
+      hci::Address identity_to_pseudo_random(hci::Address address, uint8_t address_type, bool refresh) {
+        LOG(INFO) << __func__ ;
+        RawAddress address_ = ToRawAddress(address);
+        tBLE_ADDR_TYPE address_type_ = to_ble_addr_type(address_type);
+        btm_identity_addr_to_random_pseudo(&address_, &address_type_, refresh);
+        return ToGdAddress(address_);
+      }
+    }
+  }
+}
 
 extern tBTM_CB btm_cb;
 
