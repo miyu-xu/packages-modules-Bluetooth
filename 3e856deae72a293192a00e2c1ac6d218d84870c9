@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f2641c1_d8e17c7e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1308,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-08-24T22:47:48Z",
+      "side": 1,
+      "message": "In current code, are non-PLANTRONICS and non-APPLE filtered out?",
+      "range": {
+        "startLine": 1301,
+        "startChar": 8,
+        "endLine": 1308,
+        "endChar": 9
+      },
+      "revId": "3e856deae72a293192a00e2c1ac6d218d84870c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
