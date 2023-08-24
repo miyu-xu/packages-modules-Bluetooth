@@ -76,7 +76,13 @@ impl IBluetoothManager for BluetoothManager {
         self.proxy.modify_state(virt_hci, move |a: &mut AdapterState| a.config_enabled = true);
 
         // Ignore the request if adapter is already enabled or not present.
-        if self.is_adapter_enabled(virt_hci) || !self.is_adapter_present(virt_hci) {
+        if self.is_adapter_enabled(virt_hci) {
+            warn!("Adapter {} is already enabled.", hci_interface);
+            return;
+        }
+
+        if !self.is_adapter_present(virt_hci) {
+            warn!("Adapter {} is not present.", hci_interface);
             return;
         }
 
@@ -96,6 +102,7 @@ impl IBluetoothManager for BluetoothManager {
 
         // Ignore the request if adapter is already disabled.
         if !self.is_adapter_enabled(virt_hci) {
+            warn!("Adapter {} is already stopped", hci_interface);
             return;
         }
 

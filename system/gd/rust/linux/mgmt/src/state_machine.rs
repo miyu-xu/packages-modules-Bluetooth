@@ -631,13 +631,13 @@ pub async fn mainloop(
 
         match m.unwrap() {
             // Adapter action has changed
-            Message::AdapterStateChange(action) => {
+            Message::AdapterStateChange(adapter_action) => {
                 // Grab previous state from lock and release
                 let hci: VirtualHciIndex;
                 let next_state;
                 let prev_state;
 
-                match &action {
+                match &adapter_action {
                     AdapterStateActions::StartBluetooth(i) => {
                         hci = *i;
                         prev_state = context.state_machine.get_process_state(hci);
@@ -735,9 +735,10 @@ pub async fn mainloop(
                     }
                 };
 
-                debug!(
-                    "[hci{}]: Took action {:?} with prev_state({:?}) and next_state({:?})",
-                    hci, action, prev_state, next_state
+                // All actions and the resulting state changes should be logged for debugging.
+                info!(
+                    "[hci{}]: Action={:?}, Previous State({:?}), Next State({:?})",
+                    hci, adapter_action, prev_state, next_state
                 );
 
                 // Only emit enabled event for certain transitions
