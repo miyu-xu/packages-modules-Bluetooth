@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac6e506a_a68f69aa",
+        "filename": "system/test/mock/mock_stack_btm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-24T23:35:24Z",
+      "side": 0,
+      "message": "This const disappeared.",
+      "range": {
+        "startLine": 176,
+        "startChar": 63,
+        "endLine": 176,
+        "endChar": 68
+      },
+      "revId": "65cb0ced48fc1f4053653f9c7c074680a87c118f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
