@@ -34,6 +34,7 @@
 #include <future>
 
 #include "common/message_loop_thread.h"
+#include "mmc/codec_server/a2dp_aac_mmc_encoder.h"
 #include "mmc/codec_server/hfp_lc3_mmc_decoder.h"
 #include "mmc/codec_server/hfp_lc3_mmc_encoder.h"
 #include "mmc/daemon/constants.h"
@@ -185,6 +186,8 @@ void Service::CodecInit(dbus::MethodCall* method_call,
     codec_server = std::make_unique<HfpLc3Decoder>();
   } else if (request.config().has_hfp_lc3_encoder_param()) {
     codec_server = std::make_unique<HfpLc3Encoder>();
+  } else if (request.config().has_a2dp_aac_encoder_param()) {
+    codec_server = std::make_unique<A2dpAacEncoder>();
   } else {
     std::move(sender).Run(dbus::ErrorResponse::FromMethodCall(
         method_call, kMmcServiceError, "Codec type must be specified"));
