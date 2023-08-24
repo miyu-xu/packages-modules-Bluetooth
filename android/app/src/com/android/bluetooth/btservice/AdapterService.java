@@ -13,6 +13,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 
 package com.android.bluetooth.btservice;
@@ -4363,6 +4367,23 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public void getEncKeyMaterialValue(SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getEncKeyMaterialValue());
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+        private byte[] getEncKeyMaterialValue() {
+            AdapterService service = getService();
+            if (service == null) {
+                return null;
+            }
+
+            return service.getEncKeyMaterialValue();
+        }
+
+        @Override
         public void isActivityAndEnergyReportingSupported(SynchronousResultReceiver receiver) {
             try {
                 receiver.send(isActivityAndEnergyReportingSupported());
@@ -6682,6 +6703,10 @@ public class AdapterService extends Service {
 
     public int getLeMaximumAdvertisingDataLength() {
         return mAdapterProperties.getLeMaximumAdvertisingDataLength();
+    }
+
+    public byte[] getEncKeyMaterialValue() {
+        return mAdapterProperties.getEncKeyMaterialValue();
     }
 
     /**

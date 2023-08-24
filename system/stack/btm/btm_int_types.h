@@ -14,6 +14,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 #ifndef BTM_INT_TYPES_H
 #define BTM_INT_TYPES_H
@@ -272,6 +275,8 @@ typedef struct tBTM_CB {
   bool security_mode_changed{false}; /* mode changed during bonding */
   bool pin_type_changed{false};      /* pin type changed during bonding */
   bool sec_req_pending{false};       /*   true if a request is pending */
+  bool enc_adv_data_enabled{true};
+  bool enc_adv_data_log_enabled{true};
 
   uint8_t pin_code_len{0};          /* for legacy devices */
   PIN_CODE pin_code;                /* for legacy devices */

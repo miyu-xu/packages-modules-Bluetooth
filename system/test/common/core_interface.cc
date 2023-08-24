@@ -12,7 +12,12 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
+
 
 #include "core_interface.h"
 
@@ -38,7 +43,8 @@ static bluetooth::core::EventCallbacks eventCallbacks = {
     .invoke_thread_evt_cb = invoke_thread_evt_cb,
     .invoke_le_test_mode_cb = invoke_le_test_mode_cb,
     .invoke_energy_info_cb = invoke_energy_info_cb,
-    .invoke_link_quality_report_cb = invoke_link_quality_report_cb};
+    .invoke_link_quality_report_cb = invoke_link_quality_report_cb,
+    .invoke_enc_key_material_cb = invoke_enc_key_material_cb};
 
 // This interface lets us query for configuration properties of the stack that
 // could change at runtime
