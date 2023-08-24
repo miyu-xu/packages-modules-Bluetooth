@@ -552,6 +552,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0898b9b5_eea54638",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-24T00:09:32Z",
+      "side": 1,
+      "message": "Yes, AFAIK the binary is/was building fine.\n\nThe idea is to minimize shared dependencies.\n\nWhy do you think the pdl packet header is suddenly an issue ?",
+      "parentUuid": "f8df9bfe_70dadf0e",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 36
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "79a75cc4_38494a29",
         "filename": "system/test/headless/Android.bp",
         "patchSetId": 2
