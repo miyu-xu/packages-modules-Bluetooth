@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cac8ccf_da14b12a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-24T07:46:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7814a262_72ac2756",
+      "revId": "c99a9065a073ad42d341e148a2465872b9fc1729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d0e94ea_0421d6d9",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-08-24T06:38:16Z",
       "side": 1,
       "message": "How about adding a log at the beginning of this method for debugging purposes?",
+      "range": {
+        "startLine": 158,
+        "startChar": 77,
+        "endLine": 158,
+        "endChar": 78
+      },
+      "revId": "c99a9065a073ad42d341e148a2465872b9fc1729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da1caf65_30b6e3fb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-24T07:46:46Z",
+      "side": 1,
+      "message": "Since handleXxx methods print the logs, I think it\u0027s Ok not to add more logs.\nWDYT?",
+      "parentUuid": "5d0e94ea_0421d6d9",
       "range": {
         "startLine": 158,
         "startChar": 77,
@@ -82,6 +124,30 @@
         "startChar": 79,
         "endLine": 204,
         "endChar": 80
+      },
+      "revId": "c99a9065a073ad42d341e148a2465872b9fc1729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0410ea09_064045f6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-24T07:46:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa2624bc_b9364351",
+      "range": {
+        "startLine": 204,
+        "startChar": 29,
+        "endLine": 204,
+        "endChar": 34
       },
       "revId": "c99a9065a073ad42d341e148a2465872b9fc1729",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
