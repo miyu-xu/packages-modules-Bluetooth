@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8efd0ea_b871a388",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-24T04:25:49Z",
+      "side": 1,
+      "message": "Looks like `is_some_and` is too new. Use `map_or` instead.",
+      "revId": "ae30b17caf1733ec4b4272ad67c4df88a15d914f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
