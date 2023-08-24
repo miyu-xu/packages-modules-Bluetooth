@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 
 #pragma once
@@ -66,6 +70,7 @@ struct EventCallbacks {
                                         int retransmission_count,
                                         int packets_not_receive_count,
                                         int negative_acknowledgement_count);
+  void (*invoke_enc_key_material_cb)(bt_status_t status, int num_properties, bt_property_t *prop);
 
   EventCallbacks(const EventCallbacks&) = delete;
   EventCallbacks& operator=(const EventCallbacks&) = delete;

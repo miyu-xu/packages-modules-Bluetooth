@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 
 package com.android.bluetooth.gatt;
@@ -45,7 +49,7 @@ class AdvertiseHelper {
     private static final int TRANSPORT_DISCOVERY_DATA = 0X26;
     private static final int MANUFACTURER_SPECIFIC_DATA = 0XFF;
 
-    public static byte[] advertiseDataToBytes(AdvertiseData data, String name) {
+    public static byte[] advertiseDataToBytes(AdvertiseData data, String name, boolean encrypt) {
 
         if (data == null) {
             return new byte[0];
@@ -56,7 +60,8 @@ class AdvertiseHelper {
 
         ByteArrayOutputStream ret = new ByteArrayOutputStream();
 
-        if (data.getIncludeDeviceName()) {
+        if (data.getIncludeDeviceName() && ((!encrypt && !data.getDeviceNameEnc()) ||
+                                            (encrypt && data.getDeviceNameEnc()))) {
             try {
                 byte[] nameBytes = name.getBytes("UTF-8");
 
@@ -71,41 +76,45 @@ class AdvertiseHelper {
                     type = COMPLETE_LOCAL_NAME;
                 }
 
-                check_length(type, nameLength + 1);
                 ret.write(nameLength + 1);
                 ret.write(type);
                 ret.write(nameBytes, 0, nameLength);
+
             } catch (java.io.UnsupportedEncodingException e) {
                 Log.e(TAG, "Can't include name - encoding error!", e);
             }
         }
 
-        for (int i = 0; i < data.getManufacturerSpecificData().size(); i++) {
-            int manufacturerId = data.getManufacturerSpecificData().keyAt(i);
+        if ((!encrypt && !data.getManufacturerSpecificDataEnc()) ||
+            (encrypt && data.getManufacturerSpecificDataEnc())) {
+            for (int i = 0; i < data.getManufacturerSpecificData().size(); i++) {
+                int manufacturerId = data.getManufacturerSpecificData().keyAt(i);
 
-            byte[] manufacturerData = data.getManufacturerSpecificData().get(manufacturerId);
-            int dataLen = 2 + (manufacturerData == null ? 0 : manufacturerData.length);
-            byte[] concated = new byte[dataLen];
-            // First two bytes are manufacturer id in little-endian.
-            concated[0] = (byte) (manufacturerId & 0xFF);
-            concated[1] = (byte) ((manufacturerId >> 8) & 0xFF);
-            if (manufacturerData != null) {
-                System.arraycopy(manufacturerData, 0, concated, 2, manufacturerData.length);
+                byte[] manufacturerData = data.getManufacturerSpecificData().get(manufacturerId);
+                int dataLen = 2 + (manufacturerData == null ? 0 : manufacturerData.length);
+                byte[] concated = new byte[dataLen];
+                // First two bytes are manufacturer id in little-endian.
+                concated[0] = (byte) (manufacturerId & 0xFF);
+                concated[1] = (byte) ((manufacturerId >> 8) & 0xFF);
+                if (manufacturerData != null) {
+                    System.arraycopy(manufacturerData, 0, concated, 2, manufacturerData.length);
+                }
+
+                ret.write(concated.length + 1);
+                ret.write(MANUFACTURER_SPECIFIC_DATA);
+                ret.write(concated, 0, concated.length);
             }
-
-            check_length(MANUFACTURER_SPECIFIC_DATA, concated.length + 1);
-            ret.write(concated.length + 1);
-            ret.write(MANUFACTURER_SPECIFIC_DATA);
-            ret.write(concated, 0, concated.length);
         }
 
-        if (data.getIncludeTxPowerLevel()) {
+        if (data.getIncludeTxPowerLevel() && ((!encrypt && !data.getTxPowerLevelEnc()) ||
+                                             (encrypt && data.getTxPowerLevelEnc()))) {
             ret.write(2 /* Length */);
             ret.write(TX_POWER_LEVEL);
             ret.write(0); // lower layers will fill this value.
         }
 
-        if (data.getServiceUuids() != null) {
+        if (data.getServiceUuids() != null && (!encrypt && !data.getServiceUuidsEnc() ||
+                                                (encrypt && data.getServiceUuidsEnc()))) {
             ByteArrayOutputStream serviceUuids16 = new ByteArrayOutputStream();
             ByteArrayOutputStream serviceUuids32 = new ByteArrayOutputStream();
             ByteArrayOutputStream serviceUuids128 = new ByteArrayOutputStream();
@@ -123,28 +132,26 @@ class AdvertiseHelper {
             }
 
             if (serviceUuids16.size() != 0) {
-                check_length(COMPLETE_LIST_16_BIT_SERVICE_UUIDS, serviceUuids16.size() + 1);
                 ret.write(serviceUuids16.size() + 1);
                 ret.write(COMPLETE_LIST_16_BIT_SERVICE_UUIDS);
                 ret.write(serviceUuids16.toByteArray(), 0, serviceUuids16.size());
             }
 
             if (serviceUuids32.size() != 0) {
-                check_length(COMPLETE_LIST_32_BIT_SERVICE_UUIDS, serviceUuids32.size() + 1);
                 ret.write(serviceUuids32.size() + 1);
                 ret.write(COMPLETE_LIST_32_BIT_SERVICE_UUIDS);
                 ret.write(serviceUuids32.toByteArray(), 0, serviceUuids32.size());
             }
 
             if (serviceUuids128.size() != 0) {
-                check_length(COMPLETE_LIST_128_BIT_SERVICE_UUIDS, serviceUuids32.size() + 1);
                 ret.write(serviceUuids128.size() + 1);
                 ret.write(COMPLETE_LIST_128_BIT_SERVICE_UUIDS);
                 ret.write(serviceUuids128.toByteArray(), 0, serviceUuids128.size());
             }
         }
 
-        if (!data.getServiceData().isEmpty()) {
+        if (!data.getServiceData().isEmpty() && (!encrypt && !data.getServiceDataEnc() ||
+                                                (encrypt  && data.getServiceDataEnc()))) {
             for (ParcelUuid parcelUuid : data.getServiceData().keySet()) {
                 byte[] serviceData = data.getServiceData().get(parcelUuid);
 
@@ -161,17 +168,14 @@ class AdvertiseHelper {
                 }
 
                 if (uuid.length == BluetoothUuid.UUID_BYTES_16_BIT) {
-                    check_length(SERVICE_DATA_16_BIT_UUID, concated.length + 1);
                     ret.write(concated.length + 1);
                     ret.write(SERVICE_DATA_16_BIT_UUID);
                     ret.write(concated, 0, concated.length);
                 } else if (uuid.length == BluetoothUuid.UUID_BYTES_32_BIT) {
-                    check_length(SERVICE_DATA_32_BIT_UUID, concated.length + 1);
                     ret.write(concated.length + 1);
                     ret.write(SERVICE_DATA_32_BIT_UUID);
                     ret.write(concated, 0, concated.length);
                 } else /*if (uuid.length == BluetoothUuid.UUID_BYTES_128_BIT)*/ {
-                    check_length(SERVICE_DATA_128_BIT_UUID, concated.length + 1);
                     ret.write(concated.length + 1);
                     ret.write(SERVICE_DATA_128_BIT_UUID);
                     ret.write(concated, 0, concated.length);
@@ -179,8 +183,18 @@ class AdvertiseHelper {
             }
         }
 
+        if ((!encrypt && !data.getTransportDiscoveryDataEnc()) ||
+            (encrypt && data.getTransportDiscoveryDataEnc())) {
+            for (TransportDiscoveryData transportDiscoveryData : data.getTransportDiscoveryData()) {
+                ret.write(transportDiscoveryData.totalBytes());
+                ret.write(transportDiscoveryData.toByteArray(),
+                        0, transportDiscoveryData.totalBytes());
+            }
+        }
 
-        if (data.getServiceSolicitationUuids() != null) {
+        if (data.getServiceSolicitationUuids() != null &&
+            ((!encrypt && !data.getServiceSolicitationUuidsEnc()) ||
+            (encrypt && data.getServiceSolicitationUuidsEnc()))) {
             ByteArrayOutputStream serviceUuids16 = new ByteArrayOutputStream();
             ByteArrayOutputStream serviceUuids32 = new ByteArrayOutputStream();
             ByteArrayOutputStream serviceUuids128 = new ByteArrayOutputStream();
@@ -198,40 +212,23 @@ class AdvertiseHelper {
             }
 
             if (serviceUuids16.size() != 0) {
-                check_length(LIST_16_BIT_SERVICE_SOLICITATION_UUIDS, serviceUuids16.size() + 1);
                 ret.write(serviceUuids16.size() + 1);
                 ret.write(LIST_16_BIT_SERVICE_SOLICITATION_UUIDS);
                 ret.write(serviceUuids16.toByteArray(), 0, serviceUuids16.size());
             }
 
             if (serviceUuids32.size() != 0) {
-                check_length(LIST_32_BIT_SERVICE_SOLICITATION_UUIDS, serviceUuids32.size() + 1);
                 ret.write(serviceUuids32.size() + 1);
                 ret.write(LIST_32_BIT_SERVICE_SOLICITATION_UUIDS);
                 ret.write(serviceUuids32.toByteArray(), 0, serviceUuids32.size());
             }
 
             if (serviceUuids128.size() != 0) {
-                check_length(LIST_128_BIT_SERVICE_SOLICITATION_UUIDS, serviceUuids128.size() + 1);
                 ret.write(serviceUuids128.size() + 1);
                 ret.write(LIST_128_BIT_SERVICE_SOLICITATION_UUIDS);
                 ret.write(serviceUuids128.toByteArray(), 0, serviceUuids128.size());
             }
         }
-
-        for (TransportDiscoveryData transportDiscoveryData : data.getTransportDiscoveryData()) {
-            ret.write(transportDiscoveryData.totalBytes());
-            ret.write(transportDiscoveryData.toByteArray(),
-                    0, transportDiscoveryData.totalBytes());
-        }
         return ret.toByteArray();
-    }
-
-    static void check_length(int type, int length) {
-        if (length > 255) {
-            Log.w(TAG, "Length of data with type " + Integer.toString(type, 16)
-                    + " is grater than 255");
-            throw new IllegalArgumentException("Length of data is grater than 255");
-        }
     }
 }

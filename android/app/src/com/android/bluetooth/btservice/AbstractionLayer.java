@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 
 package com.android.bluetooth.btservice;
@@ -55,6 +59,8 @@ public final class AbstractionLayer {
     static final int BT_PROPERTY_REMOTE_ASHA_TRUNCATED_HISYNCID = 0X16;
     static final int BT_PROPERTY_REMOTE_MODEL_NUM = 0x17;
 
+	static final int BT_PROPERTY_ENC_KEY_MATERIAL = 0x18;
+
     public static final int BT_DEVICE_TYPE_BREDR = 0x01;
     public static final int BT_DEVICE_TYPE_BLE = 0x02;
     public static final int BT_DEVICE_TYPE_DUAL = 0x03;
@@ -91,4 +97,5 @@ public final class AbstractionLayer {
     public static final int BT_STATUS_RMT_DEV_DOWN = 10;
     public static final int BT_STATUS_AUTH_REJECTED = 11;
     public static final int BT_STATUS_AUTH_TIMEOUT = 12;
+
 }
