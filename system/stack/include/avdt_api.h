@@ -110,7 +110,8 @@ inline std::string avdt_result_text(const tAVDT_RESULT& result) {
 /* SEP Type.  This indicates the stream endpoint type. */
 #define AVDT_TSEP_SRC 0     /* Source SEP */
 #define AVDT_TSEP_SNK 1     /* Sink SEP */
-#define AVDT_TSEP_INVALID 3 /* Invalid SEP */
+#define AVDT_TSEP_MASK 1    /* SRC&Sink SEP MASK*/
+#define AVDT_TSEP_INVALID 2 /* Invalid SEP */
 inline const std::string peer_stream_endpoint_text(int type) {
   switch (type) {
     case AVDT_TSEP_SRC:
