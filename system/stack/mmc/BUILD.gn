@@ -78,6 +78,7 @@ source_set("libmmc") {
     "//bt/system/common",
     "//bt/system/stack/mmc/proto:mmc_service_proto",
     "//bt/system/stack/mmc/codec_server:libcodec_server_hfp_lc3",
+    "//bt/system/stack/mmc/codec_server:libcodec_server_a2dp_aac",
   ]
 }
 
