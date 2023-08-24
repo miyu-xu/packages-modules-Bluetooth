@@ -42,7 +42,7 @@ namespace activity_attribution {
 
 const ModuleFactory ActivityAttribution::Factory = ModuleFactory([]() { return new ActivityAttribution(); });
 
-static const std::string kBtWakelockName("hal_bluetooth_lock");
+static const std::string kBtWakelockName("btaa_hal_bluetooth_lock");
 static const std::string kBtWakeupReason("hs_uart_wakeup");
 static const std::string kSuspendService("suspend_control");
 static const size_t kHciAclHeaderSize = 4;
