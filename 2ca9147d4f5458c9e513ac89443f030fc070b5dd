@@ -22,6 +22,30 @@
       },
       "revId": "2ca9147d4f5458c9e513ac89443f030fc070b5dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "847ed8d9_78776122",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-24T00:48:31Z",
+      "side": 1,
+      "message": "Done\n\nIt\u0027s used as an index too, so I will cast it the other way instead.",
+      "parentUuid": "bdc4584c_1a16f0d9",
+      "range": {
+        "startLine": 344,
+        "startChar": 56,
+        "endLine": 344,
+        "endChar": 67
+      },
+      "revId": "2ca9147d4f5458c9e513ac89443f030fc070b5dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
