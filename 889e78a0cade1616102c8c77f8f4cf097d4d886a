@@ -1,0 +1,186 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "008c16ce_55a652b9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled regardless of headset supporting Aptx voice codec. \n\nIf headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e5e11d8_cb7680ac",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled regardless of headset supporting Aptx voice codec.\n\nIf headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a90d215_775c1768",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1795,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled regardless of headset supporting Aptx voice codec.\n\nIf headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea23e620_c1db5796",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 2314,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled regardless of headset supporting Aptx voice codec.\n\nIf headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63fcb726_281a5f86",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled. If headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d00a6d_62e2e2d9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled. If headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06ffff00_d665a033",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1845,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled. If headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c781ca6d_377ed6e6",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1281,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "p_scb-\u003esco_codec is not updated with Aptx voice codec. please check",
+      "range": {
+        "startLine": 1281,
+        "startChar": 79,
+        "endLine": 1281,
+        "endChar": 80
+      },
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87891145_0139342d",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1967,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "send +QCS :)",
+      "range": {
+        "startLine": 1967,
+        "startChar": 16,
+        "endLine": 1967,
+        "endChar": 17
+      },
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d729c00_1399e1d7",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1982,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-24T14:09:04Z",
+      "side": 1,
+      "message": "send +QAC",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
