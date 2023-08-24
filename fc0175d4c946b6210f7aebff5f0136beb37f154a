@@ -22,6 +22,30 @@
       },
       "revId": "fc0175d4c946b6210f7aebff5f0136beb37f154a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ebbcf0a_34203527",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/BrowsablePlayerConnector.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-24T17:47:35Z",
+      "side": 1,
+      "message": "I understand that this aim to target when mHandler is set to null, but we are still processing message, but having this check here is only moving the race condition around and not addressing it.\n\nI would assume that the modification on obtainMessage is already enough to prevent a NPE.\n\nI would assume that the cleanup should be done on the Handler if we want to prevent a race condition",
+      "parentUuid": "fd4b6342_99133f98",
+      "range": {
+        "startLine": 120,
+        "startChar": 16,
+        "endLine": 122,
+        "endChar": 17
+      },
+      "revId": "fc0175d4c946b6210f7aebff5f0136beb37f154a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
