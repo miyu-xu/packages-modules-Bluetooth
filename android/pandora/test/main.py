@@ -21,7 +21,7 @@ import cases.le_security_test
 import cases.security_test
 import gatt_test
 import sdp_test
-import smp_test
+import smp.smp_test as smp_test
 import hfpclient_test
 
 _TEST_CLASSES_LIST = [
