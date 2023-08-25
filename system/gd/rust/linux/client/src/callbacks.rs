@@ -1407,6 +1407,8 @@ impl IBluetoothMediaCallback for MediaCallback {
             );
         }));
     }
+    fn on_uhid_open(&mut self, _addr: String) {}
+    fn on_uhid_close(&mut self, _addr: String) {}
 }
 
 impl RPCProxy for MediaCallback {

@@ -2660,4 +2660,14 @@ impl IBluetoothMediaCallback for IBluetoothMediaCallbackDBus {
         pkt_status_in_binary: String,
     ) {
     }
+
+    #[dbus_method("OnUhidOpen")]
+    fn on_uhid_open(&mut self, addr: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnUhidClose")]
+    fn on_uhid_close(&mut self, addr: String) {
+        dbus_generated!()
+    }
 }
