@@ -187,6 +187,10 @@ pub trait IBluetoothMediaCallback: RPCProxy {
         pkt_status_in_hex: String,
         pkt_status_in_binary: String,
     );
+
+    fn on_uhid_open(&mut self, addr: String);
+
+    fn on_uhid_close(&mut self, addr: String);
 }
 
 pub trait IBluetoothTelephony {
@@ -1099,8 +1103,18 @@ impl BluetoothMedia {
                     self.adapter_get_remote_name(addr),
                     move |m| {
                         match m {
-                            OutputEvent::Close => debug!("UHID: Close"),
-                            OutputEvent::Open => debug!("UHID: Open"),
+                            OutputEvent::Close => {
+                                txl.blocking_send(Message::UHidHfpCloseCallback(
+                                    remote_addr.clone(),
+                                ))
+                                .unwrap();
+                            }
+                            OutputEvent::Open => {
+                                txl.blocking_send(Message::UHidHfpOpenCallback(
+                                    remote_addr.clone(),
+                                ))
+                                .unwrap();
+                            }
                             OutputEvent::Output { data } => {
                                 txl.blocking_send(Message::UHidHfpOutputCallback(
                                     remote_addr.clone(),
@@ -1209,6 +1223,36 @@ impl BluetoothMedia {
                 }
             }
         }
+    }
+
+    pub fn dispatch_uhid_hfp_open_callback(&mut self, address: String) {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("UHID: Invalid device address for dispatch_uhid_hfp_open_callback");
+                return;
+            }
+            Some(addr) => addr,
+        };
+
+        debug!("[{}]: UHID: Open", DisplayAddress(&addr));
+        self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
+            callback.on_uhid_open(address.to_string());
+        });
+    }
+
+    pub fn dispatch_uhid_hfp_close_callback(&mut self, address: String) {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("UHID: Invalid device address for dispatch_uhid_hfp_close_callback");
+                return;
+            }
+            Some(addr) => addr,
+        };
+
+        debug!("[{}]: UHID: Close", DisplayAddress(&addr));
+        self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
+            callback.on_uhid_close(address.to_string());
+        });
     }
 
     fn set_hfp_mic_volume(&mut self, volume: u8, addr: RawAddress) {
