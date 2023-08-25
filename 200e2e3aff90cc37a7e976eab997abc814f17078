@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "565fc22f_89661744",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-25T20:22:59Z",
+      "side": 1,
+      "message": "I don\u0027t think PDL should handle this.\n\nI think PDL is the implementation, but this is policy (?) \n\nPDL knows they are uint16_t, but that is all.\n\nA higher level knows which ones are valid.\n\nb/c I can imagine cases where one wants to send invalid packets for testing purposes.",
+      "parentUuid": "2591e6b3_f234f50d",
+      "revId": "200e2e3aff90cc37a7e976eab997abc814f17078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41f24af9_752ba783",
