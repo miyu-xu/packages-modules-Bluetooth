@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab43df7c_408af1ae",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-25T18:08:22Z",
+      "side": 1,
+      "message": "why did id need to be cast here, but not on line 352?",
+      "range": {
+        "startLine": 371,
+        "startChar": 66,
+        "endLine": 371,
+        "endChar": 68
+      },
+      "revId": "98ae59a74e881391ac596c6d5cc594ac4c4ea952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
