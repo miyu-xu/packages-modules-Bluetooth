@@ -1565,30 +1565,13 @@ void btm_ble_ltk_request_reply(const RawAddress& bda, bool use_stk,
   BTM_TRACE_ERROR("key size = %d", p_rec->ble.keys.key_size);
   if (use_stk) {
     btsnd_hcic_ble_ltk_req_reply(btm_cb.enc_handle, stk);
-    return;
+  } else /* calculate LTK using peer device  */
+  {
+    if (p_rec->ble.key_type & BTM_LE_KEY_LENC)
+      btsnd_hcic_ble_ltk_req_reply(btm_cb.enc_handle, p_rec->ble.keys.lltk);
+    else
+      btsnd_hcic_ble_ltk_req_neg_reply(btm_cb.enc_handle);
   }
-  /* calculate LTK using peer device  */
-  if (p_rec->ble.key_type & BTM_LE_KEY_LENC) {
-    btsnd_hcic_ble_ltk_req_reply(btm_cb.enc_handle, p_rec->ble.keys.lltk);
-    return;
-  }
-
-  p_rec = btm_find_dev_with_lenc(bda);
-  if (!p_rec) {
-    btsnd_hcic_ble_ltk_req_neg_reply(btm_cb.enc_handle);
-    return;
-  }
-
-  LOG_INFO("Found second sec_dev_rec for device that have LTK");
-  /* This can happen when remote established LE connection using RPA to this
-   * device, but then pair with us using Classing transport while still keeping
-   * LE connection. If remote attempts to encrypt the LE connection, we might
-   * end up here. We will eventually consolidate both entries, this is to avoid
-   * race conditions. */
-
-  LOG_ASSERT(p_rec->ble.key_type & BTM_LE_KEY_LENC);
-  p_cb->key_size = p_rec->ble.keys.key_size;
-  btsnd_hcic_ble_ltk_req_reply(btm_cb.enc_handle, p_rec->ble.keys.lltk);
 }
 
 /*******************************************************************************
@@ -2022,9 +2005,6 @@ bool BTM_BleVerifySignature(const RawAddress& bd_addr, uint8_t* p_orig,
  *
  ******************************************************************************/
 void BTM_BleSirkConfirmDeviceReply(const RawAddress& bd_addr, uint8_t res) {
-  if (bluetooth::shim::is_gd_shim_enabled()) {
-    ASSERT_LOG(false, "This should not be invoked from code path");
-  }
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   tSMP_STATUS res_smp = (res == BTM_SUCCESS) ? SMP_SUCCESS : SMP_FAIL;
 
