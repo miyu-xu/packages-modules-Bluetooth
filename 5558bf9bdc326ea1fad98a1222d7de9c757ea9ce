@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbb9b16c_799fd16c",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-08-25T15:46:58Z",
+      "side": 1,
+      "message": "We gave these two fields default values when added to `struct SetConfiguration`.  But when we added them here, we left them uninitialized, and didn\u0027t set them in the constructor.  Should we be initializing these, either here or in the constructor?",
+      "range": {
+        "startLine": 724,
+        "startChar": 0,
+        "endLine": 726,
+        "endChar": 23
+      },
+      "revId": "5558bf9bdc326ea1fad98a1222d7de9c757ea9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
