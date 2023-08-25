@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f0a1b9b_b3be75eb",
+        "filename": "system/btif/BUILD.gn",
+        "patchSetId": 26
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-25T18:34:22Z",
+      "side": 1,
+      "message": "nit: now this one is out of order.",
+      "revId": "f94c2d780f89a16454106d3890050d906bc52424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
