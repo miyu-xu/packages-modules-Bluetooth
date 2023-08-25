@@ -26,6 +26,8 @@ use bt_utils::uhid_hfp::{
 };
 use bt_utils::uinput::UInput;
 
+use dbus;
+use dbus::channel::Sender as DbusSender;
 use itertools::Itertools;
 use log::{debug, info, warn};
 use std::collections::{HashMap, HashSet};
@@ -1101,12 +1103,28 @@ impl BluetoothMedia {
             warn!("[{}]: UHID create: entry already created", DisplayAddress(&addr));
             return;
         }
-        let adapter_addr = match &self.adapter {
-            Some(adapter) => adapter.lock().unwrap().get_address().to_lowercase(),
-            _ => "".to_string(),
+        let (adapter_addr, adapter_hci) = match &self.adapter {
+            Some(adapter) => {
+                let adapter = adapter.lock().unwrap();
+                (adapter.get_address().to_lowercase(), adapter.get_hci_index())
+            }
+            _ => {
+                warn!("[{}]: UHID create: Failed to get adapter", DisplayAddress(&addr));
+                return;
+            }
         };
         let txl = self.tx.clone();
         let remote_addr = addr.to_string();
+        let conn = match dbus::blocking::Connection::new_system() {
+            Err(e) => {
+                log::error!("UHID: Failed to get DBus system connection: {:?}", e);
+                return;
+            }
+            Ok(c) => c,
+        };
+        let dbus_path: dbus::Path =
+            format!("/org/chromium/bluetooth/hci{}/media", adapter_hci).into();
+        let dbus_iface: dbus::strings::Interface = "org.chromium.bluetooth.BluetoothMedia".into();
         self.uhid.insert(
             addr,
             UHid {
@@ -1116,8 +1134,26 @@ impl BluetoothMedia {
                     self.adapter_get_remote_name(addr),
                     move |m| {
                         match m {
-                            OutputEvent::Close => debug!("UHID: Close"),
-                            OutputEvent::Open => debug!("UHID: Open"),
+                            OutputEvent::Close => {
+                                debug!("UHID: Close");
+                                let msg = dbus::Message::signal(
+                                    &dbus_path,
+                                    &dbus_iface,
+                                    &"UhidClose".into(),
+                                );
+                                let msg = msg.append1(remote_addr.clone());
+                                let _ = conn.send(msg);
+                            }
+                            OutputEvent::Open => {
+                                debug!("UHID: Open");
+                                let msg = dbus::Message::signal(
+                                    &dbus_path,
+                                    &dbus_iface,
+                                    &"UhidOpen".into(),
+                                );
+                                let msg = msg.append1(remote_addr.clone());
+                                let _ = conn.send(msg);
+                            }
                             OutputEvent::Output { data } => {
                                 txl.blocking_send(Message::UHidHfpOutputCallback(
                                     remote_addr.clone(),
