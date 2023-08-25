@@ -22,6 +22,30 @@
       },
       "revId": "e2f0443123a65e5c6933da586171429f984780f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efb09214_c6061814",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-25T12:16:09Z",
+      "side": 1,
+      "message": "If I understand correctly from this CL:\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2533039\n\n```\nbool get_swb_supported() {\n  return osi_property_get_bool(\"bluetooth.hfp.swb.supported\", false);\n}\n```\n\nLC3 SWB was enabled based on this sysprop. On the other hand AptX Voice needs to be enabled/disabled from HeadsetService",
+      "parentUuid": "badab8e9_c7015252",
+      "range": {
+        "startLine": 949,
+        "startChar": 16,
+        "endLine": 949,
+        "endChar": 31
+      },
+      "revId": "e2f0443123a65e5c6933da586171429f984780f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

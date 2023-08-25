@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5a903c93_35f2e03a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-25T12:16:09Z",
+      "side": 1,
+      "message": "While I was trying to implement this check if peer supports LC3 I started wondering if such checks: \n```\n(p_scb-\u003epeer_codecs \u0026 BTM_SCO_CODEC_LC3)\n```\n\nwon\u0027t collide with:\n```\n(p_scb-\u003epeer_codecs \u0026 BTA_AG_SCO_SWB_SETTINGS_Q0_MASK)\n```\nand they will. How can we go around that?",
+      "parentUuid": "008c16ce_55a652b9",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e5e11d8_cb7680ac",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 12
@@ -143,6 +161,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c0bec82_b3fde491",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1281,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-25T12:16:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c781ca6d_377ed6e6",
+      "range": {
+        "startLine": 1281,
+        "startChar": 79,
+        "endLine": 1281,
+        "endChar": 80
+      },
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87891145_0139342d",
@@ -156,6 +198,30 @@
       "writtenOn": "2023-08-24T14:09:04Z",
       "side": 1,
       "message": "send +QCS :)",
+      "range": {
+        "startLine": 1967,
+        "startChar": 16,
+        "endLine": 1967,
+        "endChar": 17
+      },
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "996227ee_f671aa16",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1967,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-25T12:16:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87891145_0139342d",
       "range": {
         "startLine": 1967,
         "startChar": 16,
@@ -183,6 +249,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26858ee7_0520ec44",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 1982,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-25T12:16:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d729c00_1399e1d7",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5bc624f3_4f838f3f",
@@ -200,6 +284,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f4d4098_d456b3fe",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-25T12:16:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bc624f3_4f838f3f",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e65c3db4_8b28d3e2",
@@ -213,6 +315,24 @@
       "writtenOn": "2023-08-24T14:45:20Z",
       "side": 1,
       "message": "same here. this should be done before LC3 codec support is checked above so that we prioritize LC3 over Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f84caf2_78139a61",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 558,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-25T12:16:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e65c3db4_8b28d3e2",
       "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
