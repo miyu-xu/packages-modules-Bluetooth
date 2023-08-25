@@ -22,7 +22,12 @@ import cases.security_test
 import gatt_test
 import hfpclient_test
 import sdp_test
+<<<<<<< PATCH SET (e29cd2 SMP MITM Security Request on encrypted link)
+import smp.smp_test as smp_test
+import hfpclient_test
+=======
 import smp_test
+>>>>>>> BASE      (664d9e Remove unused flag is_gd_shim_enabled)
 
 _TEST_CLASSES_LIST = [
     cases.host_test.HostTest,
