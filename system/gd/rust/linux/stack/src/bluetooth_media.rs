@@ -1100,15 +1100,22 @@ impl BluetoothMedia {
             warn!("[{}]: WebHID create: UHID entry already created", DisplayAddress(&addr));
             return;
         }
-        let adapter_addr = match &self.adapter {
-            Some(adapter) => adapter.lock().unwrap().get_address().to_lowercase(),
-            _ => "".to_string(),
+        let (adapter_addr, adapter_hci) = match &self.adapter {
+            Some(adapter) => {
+                let adapter = adapter.lock().unwrap();
+                (adapter.get_address().to_lowercase(), adapter.get_hci_index())
+            }
+            _ => {
+                warn!("[{}]: WebHID create: Failed to get adapter", DisplayAddress(&addr));
+                return;
+            }
         };
         self.uhid.insert(
             addr,
             UHid {
                 handle: UHidHfp::create(
                     adapter_addr,
+                    adapter_hci,
                     addr.to_string(),
                     self.adapter_get_remote_name(addr),
                     self.tx.clone(),

@@ -1,6 +1,8 @@
 //! This library provides UHID for HFP to interact with WebHID.
 
 use bt_topshim::topstack;
+use dbus;
+use dbus::channel::Sender as DbusSender;
 use log::debug;
 use std::convert::TryFrom;
 use std::fs::{File, OpenOptions};
@@ -57,6 +59,7 @@ pub struct UHidHfp {
 impl UHidHfp {
     pub fn create(
         adapter_addr: String,
+        adapter_hci: u16,
         remote_addr: String,
         remote_name: String,
         tx: Sender<Message>,
@@ -88,6 +91,19 @@ impl UHidHfp {
         topstack::get_runtime().spawn_blocking(move || {
             let mut event = [0u8; UHID_EVENT_SIZE];
             debug!("WebHID: UHid reading loop start");
+
+            let conn = match dbus::blocking::Connection::new_system() {
+                Err(e) => {
+                    log::error!("WebHID: Failed to get DBus system connection: {:?}", e);
+                    return;
+                }
+                Ok(c) => c,
+            };
+            let dbus_path: dbus::Path =
+                format!("/org/chromium/bluetooth/hci{}/media", adapter_hci).into();
+            let dbus_iface: dbus::strings::Interface =
+                "org.chromium.bluetooth.BluetoothMedia".into();
+
             loop {
                 match uhid_reader.read_exact(&mut event) {
                     Err(e) => {
@@ -99,6 +115,26 @@ impl UHidHfp {
                 match OutputEvent::try_from(event) {
                     Ok(m) => {
                         match m {
+                            OutputEvent::Close => {
+                                debug!("WebHID: UHid Close");
+                                let msg = dbus::Message::signal(
+                                    &dbus_path,
+                                    &dbus_iface,
+                                    &"UhidClose".into(),
+                                );
+                                let msg = msg.append1(remote_addr.clone());
+                                let _ = conn.send(msg);
+                            }
+                            OutputEvent::Open => {
+                                debug!("WebHID: UHid Open");
+                                let msg = dbus::Message::signal(
+                                    &dbus_path,
+                                    &dbus_iface,
+                                    &"UhidOpen".into(),
+                                );
+                                let msg = msg.append1(remote_addr.clone());
+                                let _ = conn.send(msg);
+                            }
                             OutputEvent::Output { data } => {
                                 tx.blocking_send(Message::UHidHfpOutputCallback(
                                     remote_addr.clone(),
