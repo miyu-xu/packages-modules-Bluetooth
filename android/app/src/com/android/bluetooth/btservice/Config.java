@@ -72,8 +72,11 @@ public class Config {
             "ro.bluetooth.leaudio_switcher.supported";
     private static final String LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY =
             "ro.bluetooth.leaudio_broadcast_switcher.supported";
-    private static final String LE_AUDIO_SWITCHER_DISABLED_PROPERTY =
-            "persist.bluetooth.leaudio_switcher.disabled";
+    static final String LE_AUDIO_SWITCHER_STATUS_PROPERTY =
+            "persist.bluetooth.leaudio_switcher.status";
+    private static final String LE_AUDIO_STATUS_DISABLED = "Disabled";
+    private static final String LE_AUDIO_STATUS_UNICAST = "Unicast";
+    private static final String LE_AUDIO_STATUS_UNICAST_BROADCAST = "Unicast and Broadcast";
 
     private static final Set<String> PERSISTENT_FLAGS = Set.of(
             FEATURE_HEARING_AID,
@@ -191,15 +194,22 @@ public class Config {
 
         final boolean leAudioDynamicSwitchSupported =
                 SystemProperties.getBoolean(LE_AUDIO_DYNAMIC_SWITCH_PROPERTY, false);
+        final boolean leAudioBroadcastDynamicSwitchSupported =
+                SystemProperties.getBoolean(LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY, false);
+        final String leAudioSwitchStatus =
+                SystemProperties.get(LE_AUDIO_SWITCHER_STATUS_PROPERTY, "none");
 
-        if (leAudioDynamicSwitchSupported) {
-            final String leAudioSwitcherDisabled = SystemProperties
-                    .get(LE_AUDIO_SWITCHER_DISABLED_PROPERTY, "none");
-            if (leAudioSwitcherDisabled.equals("true")) {
-                setLeAudioProfileStatus(false);
-            } else if (leAudioSwitcherDisabled.equals("false")) {
-                setLeAudioProfileStatus(true);
-            }
+        if (leAudioSwitchStatus.equals(LE_AUDIO_STATUS_DISABLED) && leAudioDynamicSwitchSupported) {
+            setLeAudioProfileStatus(false);
+            setBroadcastProfileStatus(false);
+        } else if (leAudioSwitchStatus.equals(LE_AUDIO_STATUS_UNICAST)
+                && leAudioDynamicSwitchSupported) {
+            setLeAudioProfileStatus(true);
+            setBroadcastProfileStatus(false);
+        } else if (leAudioSwitchStatus.equals(LE_AUDIO_STATUS_UNICAST_BROADCAST)
+                && leAudioBroadcastDynamicSwitchSupported) {
+            setLeAudioProfileStatus(true);
+            setBroadcastProfileStatus(true);
         }
 
         // Disable ASHA on Automotive, TV, and Watch devices if the system property is not set
@@ -249,15 +259,12 @@ public class Config {
         setProfileEnabled(TbsService.class, enable);
         setProfileEnabled(McpService.class, enable);
         setProfileEnabled(VolumeControlService.class, enable);
+    }
 
-        final boolean broadcastDynamicSwitchSupported =
-                SystemProperties.getBoolean(LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY, false);
-
-        if (broadcastDynamicSwitchSupported) {
-            setProfileEnabled(BassClientService.class, enable);
-            updateSupportedProfileMask(
-                    enable, LeAudioService.class, BluetoothProfile.LE_AUDIO_BROADCAST);
-        }
+    static void setBroadcastProfileStatus(Boolean enable) {
+        setProfileEnabled(BassClientService.class, enable);
+        updateSupportedProfileMask(
+                enable, LeAudioService.class, BluetoothProfile.LE_AUDIO_BROADCAST);
     }
 
     /**
