@@ -153,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f75f454_62f9c3d5",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-25T18:37:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f8460548_eb207ad9",
+      "range": {
+        "startLine": 299,
+        "startChar": 12,
+        "endLine": 299,
+        "endChar": 18
+      },
+      "revId": "dd7acc3b6e1a543b6c75fbdf882c3bcc46e6a7ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17ebc84e_ddd5e92f",
@@ -190,6 +214,30 @@
       "side": 1,
       "message": "For example, usb disconnected can cause the socket unable to read. This is a known issue in some of the chipset.",
       "parentUuid": "17ebc84e_ddd5e92f",
+      "range": {
+        "startLine": 387,
+        "startChar": 46,
+        "endLine": 387,
+        "endChar": 53
+      },
+      "revId": "dd7acc3b6e1a543b6c75fbdf882c3bcc46e6a7ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0c5707b_0413e1e1",
+        "filename": "system/gd/hal/hci_hal_host.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-25T18:37:44Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "76c09250_891d7cde",
       "range": {
         "startLine": 387,
         "startChar": 46,
