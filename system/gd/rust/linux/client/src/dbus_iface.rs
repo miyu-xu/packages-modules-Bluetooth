@@ -2660,4 +2660,9 @@ impl IBluetoothMediaCallback for IBluetoothMediaCallbackDBus {
         pkt_status_in_binary: String,
     ) {
     }
+
+    #[dbus_method("OnTelephonyUse")]
+    fn on_telephony_use(&mut self, addr: String, state: bool) {
+        dbus_generated!()
+    }
 }

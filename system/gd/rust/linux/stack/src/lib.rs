@@ -151,6 +151,7 @@ pub enum Message {
 
     // UHid callbacks
     UHidHfpOutputCallback(String, u8, u8),
+    UHidTelephonyUseCallback(String, bool),
 }
 
 /// Represents suspend mode of a module.
@@ -434,6 +435,13 @@ impl Stack {
                         .lock()
                         .unwrap()
                         .dispatch_uhid_hfp_output_callback(addr, id, data);
+                }
+
+                Message::UHidTelephonyUseCallback(addr, state) => {
+                    bluetooth_media
+                        .lock()
+                        .unwrap()
+                        .dispatch_uhid_telephony_use_callback(addr, state);
                 }
             }
         }

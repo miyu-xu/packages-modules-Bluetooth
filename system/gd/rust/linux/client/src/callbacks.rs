@@ -1407,6 +1407,7 @@ impl IBluetoothMediaCallback for MediaCallback {
             );
         }));
     }
+    fn on_telephony_use(&mut self, _addr: String, _state: bool) {}
 }
 
 impl RPCProxy for MediaCallback {
