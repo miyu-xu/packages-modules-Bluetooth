@@ -46,7 +46,6 @@ namespace shim {
  */
 bool is_gd_l2cap_enabled();
 bool is_gd_shim_enabled();
-bool is_gd_btaa_enabled();
 
 /**
  * Checks if the bluetooth gd stack has been started up.
