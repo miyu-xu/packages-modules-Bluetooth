@@ -143,6 +143,7 @@ public class ScanManager {
             ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
     private static final boolean DEFAULT_UID_IS_FOREGROUND = true;
     private static final int SCAN_MODE_APP_IN_BACKGROUND = ScanSettings.SCAN_MODE_LOW_POWER;
+    private static final int SCAN_MODE_FORCE_DOWNGRADED = ScanSettings.SCAN_MODE_LOW_POWER;
     private final SparseBooleanArray mIsUidForegroundMap = new SparseBooleanArray();
     private boolean mScreenOn = false;
     private boolean mIsConnecting;
@@ -702,7 +703,7 @@ public class ScanManager {
             if (isAutoBatchScanClientEnabled(client)) {
                 return;
             }
-            client.updateScanMode(ScanSettings.SCAN_MODE_SCREEN_OFF);
+            updateClientScanMode(client, ScanSettings.SCAN_MODE_SCREEN_OFF);
             if (client.stats != null) {
                 client.stats.setAutoBatchScan(client.scannerId, true);
             }
@@ -712,7 +713,7 @@ public class ScanManager {
             if (!isAutoBatchScanClientEnabled(client)) {
                 return;
             }
-            client.updateScanMode(client.scanModeApp);
+            updateClientScanMode(client, client.scanModeApp);
             if (client.stats != null) {
                 client.stats.setAutoBatchScan(client.scannerId, false);
             }
@@ -734,23 +735,23 @@ public class ScanManager {
         }
 
         private boolean updateScanModeScreenOff(ScanClient client) {
-            if (mScanNative.isForceDowngradedScanClient(client)) {
+            if (mScanNative.isOpportunisticScanClient(client)) {
                 return false;
             }
-            if (!isAppForeground(client) && !mScanNative.isOpportunisticScanClient(client)) {
-                return client.updateScanMode(ScanSettings.SCAN_MODE_SCREEN_OFF);
+            if (!isAppForeground(client) || mScanNative.isForceDowngradedScanClient(client)) {
+                return updateClientScanMode(client, ScanSettings.SCAN_MODE_SCREEN_OFF);
             }
 
             // The following codes are effectively only for services
             // Apps are either already or will be soon handled by handleImportanceChange().
             switch (client.scanModeApp) {
                 case ScanSettings.SCAN_MODE_LOW_POWER:
-                    return client.updateScanMode(ScanSettings.SCAN_MODE_SCREEN_OFF);
+                    return updateClientScanMode(client, ScanSettings.SCAN_MODE_SCREEN_OFF);
                 case ScanSettings.SCAN_MODE_BALANCED:
                 case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
-                    return client.updateScanMode(ScanSettings.SCAN_MODE_SCREEN_OFF_BALANCED);
+                    return updateClientScanMode(client, ScanSettings.SCAN_MODE_SCREEN_OFF_BALANCED);
                 case ScanSettings.SCAN_MODE_LOW_LATENCY:
-                    return client.updateScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY);
+                    return updateClientScanMode(client, ScanSettings.SCAN_MODE_LOW_LATENCY);
                 case ScanSettings.SCAN_MODE_OPPORTUNISTIC:
                 default:
                     return false;
@@ -809,10 +810,10 @@ public class ScanManager {
         private boolean upgradeScanModeByOneLevel(ScanClient client) {
             switch (client.scanModeApp) {
                 case ScanSettings.SCAN_MODE_LOW_POWER:
-                    return client.updateScanMode(ScanSettings.SCAN_MODE_BALANCED);
+                    return updateClientScanMode(client, ScanSettings.SCAN_MODE_BALANCED);
                 case ScanSettings.SCAN_MODE_BALANCED:
                 case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
-                    return client.updateScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY);
+                    return updateClientScanMode(client, ScanSettings.SCAN_MODE_LOW_LATENCY);
                 case ScanSettings.SCAN_MODE_OPPORTUNISTIC:
                 case ScanSettings.SCAN_MODE_LOW_LATENCY:
                 default:
@@ -825,7 +826,7 @@ public class ScanManager {
                     <= mPriorityMap.get(client.scanModeApp)) {
                 return;
             }
-            if (client.updateScanMode(client.scanModeApp)) {
+            if (updateClientScanMode(client, client.scanModeApp)) {
                 if (DBG) {
                     Log.d(TAG, "scanMode upgrade is reverted for " + client);
                 }
@@ -834,22 +835,25 @@ public class ScanManager {
         }
 
         private boolean updateScanModeScreenOn(ScanClient client) {
-            if (mScanNative.isForceDowngradedScanClient(client)) {
+            if (mScanNative.isOpportunisticScanClient(client)) {
                 return false;
             }
-
-            int newScanMode =  (isAppForeground(client)
-                    || mScanNative.isOpportunisticScanClient(client))
-                    ? client.scanModeApp : SCAN_MODE_APP_IN_BACKGROUND;
-            return client.updateScanMode(newScanMode);
+            int newScanMode =
+                    isAppForeground(client) ? client.scanModeApp : SCAN_MODE_APP_IN_BACKGROUND;
+            if (mScanNative.isForceDowngradedScanClient(client)) {
+                if (mPriorityMap.get(newScanMode) > mPriorityMap.get(SCAN_MODE_FORCE_DOWNGRADED)) {
+                    newScanMode = SCAN_MODE_FORCE_DOWNGRADED;
+                }
+            }
+            return updateClientScanMode(client, newScanMode);
         }
 
         private boolean downgradeScanModeFromMaxDuty(ScanClient client) {
             if ((client.stats == null) || mAdapterService.getScanDowngradeDurationMillis() == 0) {
                 return false;
             }
-            if (ScanSettings.SCAN_MODE_LOW_LATENCY == client.settings.getScanMode()) {
-                client.updateScanMode(ScanSettings.SCAN_MODE_BALANCED);
+            int maxScanMode = ScanSettings.SCAN_MODE_BALANCED;
+            if (updateClientScanMode(client, client.settings.getScanMode(), maxScanMode)) {
                 client.stats.setScanDowngrade(client.scannerId, true);
                 if (DBG) {
                     Log.d(TAG, "downgradeScanModeFromMaxDuty() for " + client);
@@ -1370,7 +1374,7 @@ public class ScanManager {
                     Log.w(TAG,
                             "Moving filtered scan client to downgraded scan (scannerId "
                                     + client.scannerId + ")");
-                    client.updateScanMode(ScanSettings.SCAN_MODE_LOW_POWER);
+                    downgradeClientScanMode(client, SCAN_MODE_FORCE_DOWNGRADED);
                 }
                 client.stats.setScanTimeout(client.scannerId);
                 client.stats.recordScanTimeoutCountMetrics();
@@ -2027,19 +2031,21 @@ public class ScanManager {
         }
 
         for (ScanClient client : mRegularScanClients) {
-            if (client.appUid != uid || mScanNative.isForceDowngradedScanClient(client)) {
+            if (client.appUid != uid || mScanNative.isOpportunisticScanClient(client)) {
                 continue;
             }
             if (isForeground) {
-                if (client.updateScanMode(client.scanModeApp)) {
+                int maxScanMode =
+                        mScanNative.isForceDowngradedScanClient(client)
+                                ? SCAN_MODE_FORCE_DOWNGRADED
+                                : client.scanModeApp;
+                if (updateClientScanMode(client, client.scanModeApp, maxScanMode)) {
                     updatedScanParams = true;
                 }
             } else {
-                // Skip scan mode update in any of following cases
-                //   1. screen is already off which triggers handleScreenOff()
-                //   2. opportunistics scan
-                if (mScreenOn && !mScanNative.isOpportunisticScanClient(client)
-                        && client.updateScanMode(SCAN_MODE_APP_IN_BACKGROUND)) {
+                int maxScanMode =
+                        mScreenOn ? SCAN_MODE_APP_IN_BACKGROUND : ScanSettings.SCAN_MODE_SCREEN_OFF;
+                if (downgradeClientScanMode(client, maxScanMode)) {
                     updatedScanParams = true;
                 }
             }
@@ -2052,5 +2058,23 @@ public class ScanManager {
         if (updatedScanParams) {
             mScanNative.configureRegularScanParams();
         }
+    }
+
+    private boolean updateClientScanMode(ScanClient client, int newScanMode) {
+        return client.updateScanMode(newScanMode);
+    }
+
+    private boolean updateClientScanMode(ScanClient client, int newScanMode, int maxScanMode) {
+        if (mPriorityMap.get(newScanMode) > mPriorityMap.get(maxScanMode)) {
+            newScanMode = maxScanMode;
+        }
+        return client.updateScanMode(newScanMode);
+    }
+
+    private boolean downgradeClientScanMode(ScanClient client, int newScanMode) {
+        if (mPriorityMap.get(client.settings.getScanMode()) <= mPriorityMap.get(newScanMode)) {
+            return false;
+        }
+        return updateClientScanMode(client, newScanMode);
     }
 }
