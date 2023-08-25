@@ -4,7 +4,9 @@ use bt_topshim::profiles::a2dp::{
 };
 use bt_topshim::profiles::avrcp::PlayerMetadata;
 use bt_topshim::profiles::hfp::HfpCodecCapability;
-use btstack::bluetooth_media::{BluetoothAudioDevice, IBluetoothMedia, IBluetoothMediaCallback};
+use btstack::bluetooth_media::{
+    BluetoothAudioDevice, IBluetoothMedia, IBluetoothMediaCallback, IBluetoothTelephonyCallback,
+};
 use btstack::RPCProxy;
 
 use dbus::arg::RefArg;
@@ -103,6 +105,17 @@ impl IBluetoothMediaCallback for BluetoothMediaCallbackDBus {
 }
 
 #[allow(dead_code)]
+struct BluetoothTelephonyCallbackDBus {}
+
+#[dbus_proxy_obj(BluetoothTelephonyCallback, "org.chromium.bluetooth.BluetoothTelephonyCallback")]
+impl IBluetoothTelephonyCallback for BluetoothTelephonyCallbackDBus {
+    #[dbus_method("OnTelephonyUse")]
+    fn on_telephony_use(&mut self, addr: String, state: bool) {
+        dbus_generated!()
+    }
+}
+
+#[allow(dead_code)]
 struct IBluetoothMediaDBus {}
 
 #[dbus_propmap(PresentationPosition)]
@@ -171,6 +184,14 @@ impl DBusArg for PlayerMetadata {
 impl IBluetoothMedia for IBluetoothMediaDBus {
     #[dbus_method("RegisterCallback")]
     fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("RegisterTelephonyCallback")]
+    fn register_telephony_callback(
+        &mut self,
+        callback: Box<dyn IBluetoothTelephonyCallback + Send>,
+    ) -> bool {
         dbus_generated!()
     }
 

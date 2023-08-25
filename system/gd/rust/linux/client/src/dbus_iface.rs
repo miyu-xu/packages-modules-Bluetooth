@@ -37,6 +37,7 @@ use btstack::bluetooth_gatt::{
 };
 use btstack::bluetooth_media::{
     BluetoothAudioDevice, IBluetoothMedia, IBluetoothMediaCallback, IBluetoothTelephony,
+    IBluetoothTelephonyCallback,
 };
 use btstack::bluetooth_qa::IBluetoothQA;
 use btstack::socket_manager::{
@@ -2352,6 +2353,21 @@ impl IBluetoothTelephony for BluetoothTelephonyDBus {
     }
 }
 
+struct IBluetoothTelephonyCallbackDBus {}
+
+impl RPCProxy for IBluetoothTelephonyCallbackDBus {}
+
+#[generate_dbus_exporter(
+    export_bluetooth_telephony_callback_dbus_intf,
+    "org.chromium.bluetooth.BluetoothTelephonyCallback"
+)]
+impl IBluetoothTelephonyCallback for IBluetoothTelephonyCallbackDBus {
+    #[dbus_method("OnTelephonyUse")]
+    fn on_telephony_use(&mut self, addr: String, state: bool) {
+        dbus_generated!()
+    }
+}
+
 pub(crate) struct BluetoothQADBusRPC {
     client_proxy: ClientDBusProxy,
 }
@@ -2500,6 +2516,14 @@ impl BluetoothMediaDBus {
 impl IBluetoothMedia for BluetoothMediaDBus {
     #[dbus_method("RegisterCallback")]
     fn register_callback(&mut self, callback: Box<dyn IBluetoothMediaCallback + Send>) -> bool {
+        dbus_generated!()
+    }
+
+    #[dbus_method("RegisterTelephonyCallback")]
+    fn register_telephony_callback(
+        &mut self,
+        callback: Box<dyn IBluetoothTelephonyCallback + Send>,
+    ) -> bool {
         dbus_generated!()
     }
 
