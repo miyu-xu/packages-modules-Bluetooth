@@ -70,6 +70,30 @@
       },
       "revId": "3e856deae72a293192a00e2c1ac6d218d84870c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10ae5e6_4162e4a5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1308,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-25T10:54:34Z",
+      "side": 1,
+      "message": "Yes. Hence The if check is if \"companyId !\u003d PLANTRONICS OR companyId !\u003d APPLE then return\" since we are only interested in those 2.",
+      "parentUuid": "7682ebc8_44d3cfe1",
+      "range": {
+        "startLine": 1301,
+        "startChar": 8,
+        "endLine": 1308,
+        "endChar": 9
+      },
+      "revId": "3e856deae72a293192a00e2c1ac6d218d84870c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
