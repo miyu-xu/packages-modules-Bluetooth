@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8485d6b8_6d586ba1",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-25T22:15:59Z",
+      "side": 1,
+      "message": "Does this needs to be persist ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 23
+      },
+      "revId": "a9ed229c7ecd7c6676858ab6315028872ee1c6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
