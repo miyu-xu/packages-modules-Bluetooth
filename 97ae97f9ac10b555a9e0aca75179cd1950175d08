@@ -16,6 +16,24 @@
       "message": "@hallstrom@google.com, can you help to review this change ?\nI am not sure of the consequence of this change",
       "revId": "97ae97f9ac10b555a9e0aca75179cd1950175d08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5331bfc9_a465d0cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-08-25T20:09:16Z",
+      "side": 1,
+      "message": "Here is some background.\n\nWe\u0027re getting inputs from OEM about some issues where LE scan activity causes to wake AP by 3P apps. We extended scan timeout for filtered scan. scan timeout was applied only for unfiltered scan before. When scan timeout happens, we throttled scan mode as low power scan mode (10% duty cycle) which is not changeable anymore. BTW, low power scan mode is higher duty cycle than screen off scan mode (5% with longer scan interval). So, if there is any scan which hit scan timeout, total system scan mode could be low power scan mode instead of screen off scan mode (5%) during screen off.The change is to make the scans which hit scan timeout can be applied between low power scan mode during screen on and screen off scan mode during screen off properly.",
+      "parentUuid": "3acd1ab6_5e2d4bbd",
+      "revId": "97ae97f9ac10b555a9e0aca75179cd1950175d08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
