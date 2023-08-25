@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24472b5d_6df07986",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-25T18:02:33Z",
+      "side": 1,
+      "message": "Can we remove this one now that we only have one controller (in gd/) ?",
+      "revId": "6fe44afa78cd7800253d01b0b9024096de84bad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
