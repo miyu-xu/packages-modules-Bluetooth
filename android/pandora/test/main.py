@@ -22,7 +22,7 @@ import cases.security_test
 import gatt_test
 import hfpclient_test
 import sdp_test
-import smp_test
+import smp.smp_test as smp_test
 
 _TEST_CLASSES_LIST = [
     cases.host_test.HostTest,
