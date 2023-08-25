@@ -100,6 +100,16 @@ impl IBluetoothMediaCallback for BluetoothMediaCallbackDBus {
     ) {
         dbus_generated!()
     }
+
+    #[dbus_method("OnUhidOpen")]
+    fn on_uhid_open(&mut self, addr: String) {
+        dbus_generated!()
+    }
+
+    #[dbus_method("OnUhidClose")]
+    fn on_uhid_close(&mut self, addr: String) {
+        dbus_generated!()
+    }
 }
 
 #[allow(dead_code)]
