@@ -540,6 +540,7 @@ static bool is_peer_identity_key_valid(const tBTM_SEC_DEV_REC& dev_rec) {
 static Octet16 get_local_irk() { return btm_cb.devcb.id_keys.irk; }
 
 void btm_ble_resolving_list_load_dev(tBTM_SEC_DEV_REC& dev_rec) {
+  if (btm_cb.ble_ctr_cb.privacy_mode != BTM_PRIVACY_1_2) return;
   if (controller_get_interface()->get_ble_resolving_list_max_size() == 0) {
     LOG_INFO("Controller does not support RPA offloading or privacy 1.2");
     return;
@@ -570,6 +571,11 @@ void btm_ble_resolving_list_load_dev(tBTM_SEC_DEV_REC& dev_rec) {
         .bda = dev_rec.bd_addr,
         .type = dev_rec.ble.AddressType(),
     };
+  }
+
+  if (!is_ble_addr_type_known(dev_rec.ble.identity_address_with_type.type)) {
+    LOG_ERROR("Illegal address type.");
+    return;
   }
 
   bluetooth::shim::ACL_AddToAddressResolution(
