@@ -572,6 +572,12 @@ void btm_ble_resolving_list_load_dev(tBTM_SEC_DEV_REC& dev_rec) {
     };
   }
 
+  if (!is_ble_addr_type_known(dev_rec.ble.identity_address_with_type.type)) {
+    LOG_ERROR("Illegal address type.");
+    return;
+  }
+  if (btm_cb.ble_ctr_cb.privacy_mode != BTM_PRIVACY_1_2) return;
+
   bluetooth::shim::ACL_AddToAddressResolution(
       dev_rec.ble.identity_address_with_type, peer_irk, local_irk);
 
