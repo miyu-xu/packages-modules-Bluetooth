@@ -188,6 +188,8 @@ pub trait IBluetoothMediaCallback: RPCProxy {
         pkt_status_in_hex: String,
         pkt_status_in_binary: String,
     );
+
+    fn on_telephony_use(&mut self, addr: String, state: bool);
 }
 
 pub trait IBluetoothTelephony {
@@ -1100,8 +1102,20 @@ impl BluetoothMedia {
                     self.adapter_get_remote_name(addr),
                     move |m| {
                         match m {
-                            OutputEvent::Close => debug!("UHID: Close"),
-                            OutputEvent::Open => debug!("UHID: Open"),
+                            OutputEvent::Close => {
+                                txl.blocking_send(Message::UHidTelephonyUseCallback(
+                                    remote_addr.clone(),
+                                    false,
+                                ))
+                                .unwrap();
+                            }
+                            OutputEvent::Open => {
+                                txl.blocking_send(Message::UHidTelephonyUseCallback(
+                                    remote_addr.clone(),
+                                    true,
+                                ))
+                                .unwrap();
+                            }
                             OutputEvent::Output { data } => {
                                 txl.blocking_send(Message::UHidHfpOutputCallback(
                                     remote_addr.clone(),
@@ -1212,6 +1226,21 @@ impl BluetoothMedia {
                 self.uhid_send_input_report(&addr);
             }
         }
+    }
+
+    pub fn dispatch_uhid_telephony_use_callback(&mut self, address: String, state: bool) {
+        let addr = match RawAddress::from_string(address.clone()) {
+            None => {
+                warn!("UHID: Invalid device address for dispatch_uhid_telephony_use_callback");
+                return;
+            }
+            Some(addr) => addr,
+        };
+
+        debug!("[{}]: UHID: Telephony use: {}", DisplayAddress(&addr), state);
+        self.callbacks.lock().unwrap().for_all_callbacks(|callback| {
+            callback.on_telephony_use(address.to_string(), state);
+        });
     }
 
     fn set_hfp_mic_volume(&mut self, volume: u8, addr: RawAddress) {

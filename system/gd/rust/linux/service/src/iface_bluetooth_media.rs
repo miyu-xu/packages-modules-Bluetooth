@@ -100,6 +100,11 @@ impl IBluetoothMediaCallback for BluetoothMediaCallbackDBus {
     ) {
         dbus_generated!()
     }
+
+    #[dbus_method("OnTelephonyUse")]
+    fn on_telephony_use(&mut self, addr: String, state: bool) {
+        dbus_generated!()
+    }
 }
 
 #[allow(dead_code)]
