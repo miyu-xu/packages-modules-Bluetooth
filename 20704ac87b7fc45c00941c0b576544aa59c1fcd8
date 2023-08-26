@@ -16,6 +16,24 @@
       "message": "Why is this `persist` ?\n\nAlso should this be a feature flag and not a system property ?\n\nAnd if it should indeed be a system property could we define a `sysprop` in `p/m/Bluetooth/sysprop` and use that ?",
       "revId": "20704ac87b7fc45c00941c0b576544aa59c1fcd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60fce810_1e67a0d0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-08-26T11:32:52Z",
+      "side": 1,
+      "message": "Hi David,\n\nThe properties is not used to make the feature on the specific project to be supported or not. It\u0027s used to enable/disable the feature dynamically on the supported project via the UI toggle.",
+      "parentUuid": "b4d940a7_acf78763",
+      "revId": "20704ac87b7fc45c00941c0b576544aa59c1fcd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
