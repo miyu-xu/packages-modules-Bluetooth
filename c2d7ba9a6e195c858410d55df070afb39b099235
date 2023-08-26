@@ -16,6 +16,24 @@
       "message": "Hi Zhengping, it seems that this warning is \"new\" as it\u0027s showing all over the place in the stack, I\u0027m not sure why.\n\nI wanted to let you know that I\u0027m currently working on a CL to fix it on the whole stack.",
       "revId": "c2d7ba9a6e195c858410d55df070afb39b099235",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "538e84ac_1ca1f5d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-26T00:57:35Z",
+      "side": 1,
+      "message": "https://r.android.com/2728675",
+      "parentUuid": "183c7b41_dca06dff",
+      "revId": "c2d7ba9a6e195c858410d55df070afb39b099235",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
