@@ -39,6 +39,30 @@
       },
       "revId": "b4a5c598a730fac123ebf02d472bda8504125926",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "caf49cbc_d7c90071",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-26T05:32:39Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6ce05e94_4f60edf1",
+      "range": {
+        "startLine": 579,
+        "startChar": 0,
+        "endLine": 579,
+        "endChar": 64
+      },
+      "revId": "b4a5c598a730fac123ebf02d472bda8504125926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
