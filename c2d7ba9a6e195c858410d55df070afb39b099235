@@ -34,6 +34,24 @@
       "parentUuid": "183c7b41_dca06dff",
       "revId": "c2d7ba9a6e195c858410d55df070afb39b099235",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b82cd0b3_2fcb1d4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-26T02:16:59Z",
+      "side": 1,
+      "message": "Thanks David. I just found this out when I was trying to compile my CL. I will leave it to you for a general fix.",
+      "parentUuid": "538e84ac_1ca1f5d7",
+      "revId": "c2d7ba9a6e195c858410d55df070afb39b099235",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
