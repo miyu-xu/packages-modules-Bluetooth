@@ -16,6 +16,29 @@
       "message": "Hi Katherine, Please help review or add",
       "revId": "b4a5c598a730fac123ebf02d472bda8504125926",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ce05e94_4f60edf1",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-26T03:36:35Z",
+      "side": 1,
+      "message": "Should this move to the beginning of the function?  No need to check anything else if we\u0027re not in privacy mode.",
+      "range": {
+        "startLine": 579,
+        "startChar": 0,
+        "endLine": 579,
+        "endChar": 64
+      },
+      "revId": "b4a5c598a730fac123ebf02d472bda8504125926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
