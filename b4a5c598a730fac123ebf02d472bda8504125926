@@ -63,6 +63,30 @@
       },
       "revId": "b4a5c598a730fac123ebf02d472bda8504125926",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9088a4d_d79fb5fc",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-26T05:47:58Z",
+      "side": 1,
+      "message": "Thanks for the quick review. I agree. I am still not sure why the address could be invalid and cause a crash, I will keep an address check there in case this happens when the privacy mode is enabled.",
+      "parentUuid": "caf49cbc_d7c90071",
+      "range": {
+        "startLine": 579,
+        "startChar": 0,
+        "endLine": 579,
+        "endChar": 64
+      },
+      "revId": "b4a5c598a730fac123ebf02d472bda8504125926",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
