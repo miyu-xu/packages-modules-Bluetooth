@@ -1409,6 +1409,15 @@ void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
   }
 }
 
+namespace bluetooth {
+namespace legacy {
+namespace testing {
+void btm_clr_inq_db(const RawAddress* p_bda) { ::btm_clr_inq_db(p_bda); }
+uint16_t btm_get_num_bd_entries() { return num_bd_entries_; }
+}  // namespace testing
+}  // namespace legacy
+}  // namespace bluetooth
+
 /*******************************************************************************
  *
  * Function         btm_sort_inq_result
