@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73156d04_f9fc0dfd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:56:13Z",
+      "side": 1,
+      "message": "Please use the correct letter case (https://ffmpeg.org/legal.html#:~:text\u003dDo%20not%20misspell%20FFmpeg%20(two%20capitals%20F%20and%20lowercase%20%22mpeg%22)).",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "cc30aa943a7e701ccec0214d58d10e4880d10ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb878e7_51e8fd95",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:56:13Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 9,
+        "startChar": 41,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "cc30aa943a7e701ccec0214d58d10e4880d10ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52a729f8_fe665856",
+        "filename": "system/stack/mmc/codec_server/a2dp_aac_mmc_encoder_linux.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:56:13Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 30,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "cc30aa943a7e701ccec0214d58d10e4880d10ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
