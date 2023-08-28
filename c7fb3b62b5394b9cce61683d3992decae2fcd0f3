@@ -52,6 +52,24 @@
       "parentUuid": "43d70d05_8b16d93a",
       "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7eb5d07_b1ae7883",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2023-08-28T21:23:10Z",
+      "side": 1,
+      "message": "The test binary actually doesn\u0027t build for device side tests. I don\u0027t find these modules under target/testcases. There might be some misconfigured build file.",
+      "parentUuid": "72d7f001_769cdb34",
+      "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
