@@ -104,3 +104,9 @@ TEST(InitFlagsTest, test_enable_use_rsi_from_cached_inqiry_results) {
   InitFlags::Load(input);
   ASSERT_TRUE(InitFlags::UseRsiFromCachedInquiryResults());
 }
+
+TEST(InitFlagsTest, test_avdtp_offload_extensibility) {
+  const char* input[] = {"INIT_avdtp_offload_extensibility=true", nullptr};
+  InitFlags::Load(input);
+  ASSERT_TRUE(InitFlags::IsAvdtpOffloadExtensibilityEnabled());
+}
