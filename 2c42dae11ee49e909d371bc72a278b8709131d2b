@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a11e83e2_474ace42",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-28T22:55:46Z",
+      "side": 1,
+      "message": "FYI, looks like one place is missing and create  the build failure:\nsystem/main/shim/shim.cc\n```\npackages/modules/Bluetooth/system/main/shim/shim.cc:69:41: error: no member named \u0027gd_core_is_enabled\u0027 in namespace \u0027bluetooth::common::init_flags\u0027; did you mean \u0027gd_l2cap_is_enabled\u0027?\nreturn bluetooth::common::init_flags::gd_core_is_enabled();\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~\n```\n\n(idk why I end up looking at this sorry for the noise if you were already on this)",
+      "revId": "2c42dae11ee49e909d371bc72a278b8709131d2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
