@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71e4d11a_e4406da5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-28T12:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73156d04_f9fc0dfd",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 15
+      },
+      "revId": "cc30aa943a7e701ccec0214d58d10e4880d10ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ceb878e7_51e8fd95",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47018612_00123d04",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-28T12:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ceb878e7_51e8fd95",
+      "range": {
+        "startLine": 9,
+        "startChar": 41,
+        "endLine": 9,
+        "endChar": 56
+      },
+      "revId": "cc30aa943a7e701ccec0214d58d10e4880d10ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52a729f8_fe665856",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-08-28T07:56:13Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 30,
+        "startChar": 29,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "cc30aa943a7e701ccec0214d58d10e4880d10ab8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ab5bf97_e27f0f2c",
+        "filename": "system/stack/mmc/codec_server/a2dp_aac_mmc_encoder_linux.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-28T12:13:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52a729f8_fe665856",
       "range": {
         "startLine": 30,
         "startChar": 29,
