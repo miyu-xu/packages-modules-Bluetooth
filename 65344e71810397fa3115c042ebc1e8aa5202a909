@@ -22,6 +22,30 @@
       },
       "revId": "65344e71810397fa3115c042ebc1e8aa5202a909",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ddc2f4b2_5f05bb4b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/audio_util/BrowsablePlayerConnectorTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-08-28T02:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25e4ac7c_1d55afe8",
+      "range": {
+        "startLine": 99,
+        "startChar": 0,
+        "endLine": 99,
+        "endChar": 32
+      },
+      "revId": "65344e71810397fa3115c042ebc1e8aa5202a909",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
