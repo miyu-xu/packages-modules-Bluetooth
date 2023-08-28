@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91f57228_f8a09c75",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-08-28T23:41:20Z",
+      "side": 0,
+      "message": "@kaishi@google.com\nWe want to make the scan using opportunistic scan mode keep staying opportunistic scan mode, right?",
+      "range": {
+        "startLine": 841,
+        "startChar": 12,
+        "endLine": 843,
+        "endChar": 71
+      },
+      "revId": "5dcdae784a8882017ef05c1e31c151f62afac3d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
