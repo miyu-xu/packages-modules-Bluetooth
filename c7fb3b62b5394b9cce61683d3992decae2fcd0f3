@@ -16,6 +16,24 @@
       "message": "`unit_test: true` should be the default for `host_supported` `cc_test`  go/a-unit-tests#current-default-unit-tests\n\nAm I missing something here ?",
       "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43d70d05_8b16d93a",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2023-08-28T21:15:06Z",
+      "side": 1,
+      "message": "ha, I forgot that part. Thanks!\n\nI found the tests in unit test suites. So we don\u0027t need this in test mapping files. I will do some cleanup.",
+      "parentUuid": "737ae52d_a3419f07",
+      "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
