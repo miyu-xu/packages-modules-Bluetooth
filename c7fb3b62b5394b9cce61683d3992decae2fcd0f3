@@ -88,6 +88,24 @@
       "parentUuid": "d7eb5d07_b1ae7883",
       "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48b88b63_75787fba",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2023-08-28T22:24:44Z",
+      "side": 1,
+      "message": "hmm, go/ab/I46300010191921436, seems the host unit test was demoted to postsubmit BVT. To continue the test coverage, I can also move them to hostside test mapping suite, which is also a presubmit suite.\n\nThe root cause of this issue is that, these test modules somehow only has a hostside build. They do have `android` target specified, but no binary was built for android target. That leads to test mapping suite tries to run the hostside test on a suite meant for device tests (having the modules in `device-tests` suite has nothing to do with them being built for device target). On top of that, the hostside test binary has a bug in packaging, some shared lib is not properly specified in build deps and causes the test to fail on AOSP cuttlefish target.\n\n`bluetooth_hh_test` has the same problem, no device side test is built for this target. It\u0027s not affected only because that somehow that binary has the right build deps to run when the lunch target is AOSP cf (the binary is still a hostside test).\n\nFixing the build bug (missing device side test binary) can be a separate issue, for now, I\u0027d like to label these tests clearly to be hostside test. You will have the same presubmit coverage. WDYT?",
+      "parentUuid": "2027f259_b3e3e6b8",
+      "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
