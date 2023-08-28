@@ -333,6 +333,26 @@ struct LogMetricBluetoothLEConnectionMetricEvent {
   };
 };
 
+// Name: LogMetricMmcTranscodeRttStats
+// Params: int maximum_rtt, double mean_rtt, double std_dev_rtt, int median_rtt,
+// int num_requests, std::string codec_type
+// Returns: void
+struct LogMetricMmcTranscodeRttStats {
+  std::function<void(int maximum_rtt, double mean_rtt, double std_dev_rtt,
+                     int median_rtt, int num_requests,
+                     const std::string& codec_type)>
+      body{[](int maximum_rtt, double mean_rtt, double std_dev_rtt,
+              int median_rtt, int num_requests,
+              const std::string& codec_type) {}};
+  void operator()(int maximum_rtt, double mean_rtt, double std_dev_rtt,
+                  int median_rtt, int num_requests,
+                  const std::string& codec_type) {
+    body(maximum_rtt, mean_rtt, std_dev_rtt, median_rtt, num_requests,
+         codec_type);
+  };
+};
+extern struct LogMetricMmcTranscodeRttStats LogMetricMmcTranscodeRttStats;
+
 }  // namespace main_shim_metrics_api
 }  // namespace mock
 }  // namespace test

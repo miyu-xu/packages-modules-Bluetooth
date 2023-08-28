@@ -131,5 +131,13 @@ void LogMetricBluetoothLEConnectionMetricEvent(
     android::bluetooth::le::LeConnectionState transaction_state,
     std::vector<std::pair<os::ArgumentType, int>>& argument_list) {}
 
+void LogMetricMmcTranscodeRttStats(
+    int maximum_rtt,
+    double mean_rtt,
+    double std_dev_rtt,
+    int median_rtt,
+    int num_requests,
+    const std::string& codec_type) {}
+
 }  // namespace os
 }  // namespace bluetooth
