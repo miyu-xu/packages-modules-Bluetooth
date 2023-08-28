@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bade9804_c1b0836c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-28T04:50:29Z",
+      "side": 1,
+      "message": "b/297629431 Bug created to track the test failure when LL privacy is enabled.",
+      "parentUuid": "1232fbf0_5ff03afa",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 36
+      },
+      "revId": "6242509748939df34d802d9a40a8b5fffc6c4822",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bac3967_5f3ed6bb",
