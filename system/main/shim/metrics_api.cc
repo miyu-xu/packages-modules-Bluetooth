@@ -168,5 +168,13 @@ void LogMetricBluetoothLEConnectionMetricEvent(
   bluetooth::os::LogMetricBluetoothLEConnectionMetricEvent(address, origin_type, connection_type, transaction_state, argument_list);
 }
 
+void LogMetricMmcTranscodeRttStats(int maximum_rtt, double mean_rtt,
+                                   double std_dev_rtt, int median_rtt,
+                                   int num_requests,
+                                   const std::string& codec_type) {
+  bluetooth::os::LogMetricMmcTranscodeRttStats(
+      maximum_rtt, mean_rtt, std_dev_rtt, median_rtt, num_requests, codec_type);
+}
+
 }  // namespace shim
 }  // namespace bluetooth

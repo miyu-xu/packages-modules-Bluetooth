@@ -201,6 +201,23 @@ struct log_hfp_audio_packet_loss_stats {
     body(address, num_decoded_frames, packet_loss_ratio, codec_type);
   };
 };
+
+// Name: log_mmc_transcode_rtt_stats
+struct log_mmc_transcode_rtt_stats {
+  std::function<void(int maximum_rtt, double mean_rtt, double std_dev_rtt,
+                     int median_rtt, int num_requests,
+                     const std::string& codec_type)>
+      body{[](int maximum_rtt, double mean_rtt, double std_dev_rtt,
+              int median_rtt, int num_requests,
+              const std::string& codec_type) {}};
+  void operator()(int maximum_rtt, double mean_rtt, double std_dev_rtt,
+                  int median_rtt, int num_requests,
+                  const std::string& codec_type) {
+    body(maximum_rtt, mean_rtt, std_dev_rtt, median_rtt, num_requests,
+         codec_type);
+  };
+};
+
 extern struct log_hfp_audio_packet_loss_stats log_hfp_audio_packet_loss_stats;
 }  // namespace stack_metrics_logging
 }  // namespace mock

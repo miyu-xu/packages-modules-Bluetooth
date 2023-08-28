@@ -191,5 +191,31 @@ void LogMetricBluetoothLEConnectionMetricEvent(
     android::bluetooth::le::LeConnectionState transaction_state,
     std::vector<std::pair<os::ArgumentType, int>>& argument_list) {}
 
+void LogMetricMmcTranscodeRttStats(
+    int maximum_rtt,
+    double mean_rtt,
+    double std_dev_rtt,
+    int median_rtt,
+    int num_requests,
+    const std::string& codec_type) {
+  LOG_DEBUG(
+      "MmcTranscodeRttStats: %d, %f, %f, %d, %d, %s",
+      maximum_rtt,
+      mean_rtt,
+      std_dev_rtt,
+      median_rtt,
+      num_requests,
+      codec_type.c_str());
+
+  ::metrics::structured::events::bluetooth::BluetoothMmcTranscodeRtt()
+      .SetMaximumRtt(maximum_rtt)
+      .SetMeanRtt(mean_rtt)
+      .SetStdDevRtt(std_dev_rtt)
+      .SetMedianRtt(median_rtt)
+      .SetNumRequests(num_requests)
+      .SetCodecType(codec_type)
+      .Record();
+}
+
 }  // namespace os
 }  // namespace bluetooth
