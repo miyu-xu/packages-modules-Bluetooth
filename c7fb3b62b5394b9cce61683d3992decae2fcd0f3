@@ -124,6 +124,24 @@
       "parentUuid": "48b88b63_75787fba",
       "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18097eaa_eb1c1bc1",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2023-08-28T22:52:50Z",
+      "side": 1,
+      "message": "OK, so the build issue could be related to the `only_phone` build target. That should be fixed indeed. We don\u0027t need this CL.",
+      "parentUuid": "b37953d8_8b288408",
+      "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
