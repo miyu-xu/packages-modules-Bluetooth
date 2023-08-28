@@ -230,5 +230,20 @@ void LogMetricBluetoothLEConnectionMetricEvent(
     android::bluetooth::le::LeConnectionType connection_type,
     android::bluetooth::le::LeConnectionState transaction_state,
     std::vector<std::pair<os::ArgumentType, int>> argument_list);
+
+/**
+ * Log Mmc transcode round-trip time statistics
+ *
+ * @param maximum_rtt maximum round-trip time in this session
+ * @param mean_rtt the average of round-trip time in this session
+ * @param std_dev_rtt the standard deviation of round-trip time in this session
+ * @param median_rtt the median of round-trip time in this session
+ * @param num_requests the number of transcoding requests in the session
+ * @param codec_type codec type used in this session
+ */
+void LogMetricMmcTranscodeRttStats(int maximum_rtt, double mean_rtt,
+                                   double std_dev_rtt, int median_rtt,
+                                   int num_requests,
+                                   const std::string& codec_type);
 }  // namespace shim
 }  // namespace bluetooth
