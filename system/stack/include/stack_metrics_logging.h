@@ -58,3 +58,8 @@ void log_hfp_audio_packet_loss_stats(const RawAddress& address,
                                      int num_decoded_frames,
                                      double packet_loss_ratio,
                                      uint16_t codec_type);
+
+void log_mmc_transcode_rtt_stats(int maximum_rtt, double mean_rtt,
+                                 double std_dev_rtt, int median_rtt,
+                                 int num_requests,
+                                 const std::string& codec_type);

@@ -196,5 +196,11 @@ void bluetooth::shim::LogMetricBluetoothLEConnectionMetricEvent(
   inc_func_call_count(__func__);
   // test::mock::main_shim_metrics_api::LogMetricBluetoothLEConnectionMetricEvent(raw_address, origin_type, connection_type, transaction_state, argument_list);
 }
-
+void bluetooth::shim::LogMetricMmcTranscodeRttStats(
+    int maximum_rtt, double mean_rtt, double std_dev_rtt, int median_rtt,
+    int num_requests, const std::string& codec_type) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_mmc_transcode_rtt_stats(
+      maximum_rtt, mean_rtt, std_dev_rtt, median_rtt, num_requests, codec_type);
+}
 // END mockcify generation
