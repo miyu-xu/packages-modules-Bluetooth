@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f3281ce_5ed2258c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-28T19:35:41Z",
+      "side": 1,
+      "message": "I was tempted to fix this for all the profiles, but I decided against it in case I didn\u0027t have the background on the other oddities in this function.\n\nOther potential problems:\n1. Nearly all the calls ignore the local uuids\n2. MAP and PBAP return connection status and don\u0027t have uuid based logic\n3. If all calls used UUIDs, we could terminate early with remote uuids is empty.",
+      "revId": "306b7c21f56f12f093e2ec3c1eb93c39ab9b5e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
