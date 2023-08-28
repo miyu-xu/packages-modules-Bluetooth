@@ -70,6 +70,24 @@
       "parentUuid": "72d7f001_769cdb34",
       "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2027f259_b3e3e6b8",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 748,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-28T21:41:33Z",
+      "side": 1,
+      "message": "Could we understand why before removing those tests from the TEST_MAPPING ? \n\nBecause those tests are running as part of `test_mapping/presubmit-avd` configuration, for example here on a recent presubmit for one of my CLs \nhttps://android-build.corp.google.com/test_investigate/?invocationId\u003dI32300010191740392\u0026testResultId\u003dTR44128893699444639\n\nAnd for example, looking at the `Android.bp` file, I don\u0027t understand the difference between [`bluetooth_le_audio_client_test`](https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/bta/Android.bp;l\u003d816;drc\u003d634365bbbbfe45b36cc66a3498db9d42d985c8c2) and [`bluetooth_hh_test`](https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/bta/Android.bp;l\u003d1132;drc\u003d634365bbbbfe45b36cc66a3498db9d42d985c8c2) (Both part of `device-tests`, same defaults, same configuration)",
+      "parentUuid": "d7eb5d07_b1ae7883",
+      "revId": "c7fb3b62b5394b9cce61683d3992decae2fcd0f3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
