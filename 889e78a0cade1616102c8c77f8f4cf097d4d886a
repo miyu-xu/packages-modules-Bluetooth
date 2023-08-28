@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "df33ac89_35f8662e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-08-28T09:02:23Z",
+      "side": 1,
+      "message": "Ok I think I could use p_scb-\u003eis_swb_codec to ensure it\u0027s aptx. Do you agree?",
+      "parentUuid": "5a903c93_35f2e03a",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e5e11d8_cb7680ac",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 12
