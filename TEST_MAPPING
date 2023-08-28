@@ -92,16 +92,7 @@
       "name": "bluetooth_hh_test"
     },
     {
-      "name": "bluetooth_le_audio_client_test"
-    },
-    {
-      "name": "bluetooth_le_audio_test"
-    },
-    {
       "name": "bluetooth_packet_parser_test"
-    },
-    {
-      "name": "bluetooth_test_broadcaster"
     },
     {
       "name": "bluetooth_test_broadcaster_state_machine"
@@ -111,9 +102,6 @@
     },
     {
       "name": "bluetooth_test_gd_unit"
-    },
-    {
-      "name": "bluetooth_test_sdp"
     },
     {
       "name": "bluetooth_vc_test"
@@ -302,17 +290,7 @@
       "name": "bluetooth_hh_test"
     },
     {
-      "name": "bluetooth_le_audio_client_test"
-    },
-    // b/271319421
-    // {
-    //   "name": "bluetooth_le_audio_test"
-    // },
-    {
       "name": "bluetooth_packet_parser_test"
-    },
-    {
-      "name": "bluetooth_test_broadcaster"
     },
     {
       "name": "bluetooth_test_broadcaster_state_machine"
@@ -322,9 +300,6 @@
     },
     {
       "name": "bluetooth_test_gd_unit"
-    },
-    {
-      "name": "bluetooth_test_sdp"
     },
     {
       "name": "bluetooth_vc_test"
