@@ -136,4 +136,13 @@ void log_hfp_audio_packet_loss_stats(const RawAddress& address,
   test::mock::stack_metrics_logging::log_hfp_audio_packet_loss_stats(
       address, num_decoded_frames, packet_loss_ratio, codec_type);
 }
+
+void log_mmc_transcode_rtt_stats(int maximum_rtt, double mean_rtt,
+                                 double std_dev_rtt, int median_rtt,
+                                 int num_requests,
+                                 const std::string& codec_type) {
+  inc_func_call_count(__func__);
+  test::mock::stack_metrics_logging::log_mmc_transcode_rtt_stats(
+      maximum_rtt, mean_rtt, std_dev_rtt, median_rtt, num_requests, codec_type);
+}
 // END mockcify generation
