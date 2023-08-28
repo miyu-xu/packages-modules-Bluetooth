@@ -14,13 +14,14 @@
  * limitations under the License.
  */
 
+#include "stack/include/stack_metrics_logging.h"
+
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/hci/enums.pb.h>
 
 #include "common/metrics.h"
 #include "main/shim/metrics_api.h"
 #include "main/shim/shim.h"
-#include "stack/include/stack_metrics_logging.h"
 #include "types/raw_address.h"
 
 void log_classic_pairing_event(const RawAddress& address, uint16_t handle,
@@ -80,4 +81,12 @@ void log_hfp_audio_packet_loss_stats(const RawAddress& address,
                                      uint16_t codec_type) {
   bluetooth::shim::LogMetricHfpPacketLossStats(address, num_decoded_frames,
                                                packet_loss_ratio, codec_type);
+}
+
+void log_mmc_transcode_rtt_stats(int maximum_rtt, double mean_rtt,
+                                 double std_dev_rtt, int median_rtt,
+                                 int num_requests,
+                                 const std::string& codec_type) {
+  bluetooth::shim::LogMetricMmcTranscodeRttStats(
+      maximum_rtt, mean_rtt, std_dev_rtt, median_rtt, num_requests, codec_type);
 }
