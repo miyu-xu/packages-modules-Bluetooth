@@ -16,6 +16,24 @@
       "message": "This is tested with ll privacy disabled too right?",
       "revId": "44f1fa3ab66b984122dbc20c3c94a7d575146c71",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3bd5c02_5c5c272c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-28T18:59:10Z",
+      "side": 1,
+      "message": "Yes. Manual test and autotest with ll privacy disabled.",
+      "parentUuid": "d49f69ec_66402378",
+      "revId": "44f1fa3ab66b984122dbc20c3c94a7d575146c71",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
