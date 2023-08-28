@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82e06ed7_a6007039",
+        "filename": "system/stack/btm/hfp_lc3_decoder_linux.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:52:01Z",
+      "side": 1,
+      "message": "NIT: has not been initialized",
+      "range": {
+        "startLine": 79,
+        "startChar": 31,
+        "endLine": 79,
+        "endChar": 35
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b3532e_3fd579a6",
+        "filename": "system/stack/btm/hfp_lc3_decoder_linux.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:52:01Z",
+      "side": 1,
+      "message": "NIT: One extra byte in the beginning to indicate whether PLC was conducted.",
+      "range": {
+        "startLine": 86,
+        "startChar": 5,
+        "endLine": 86,
+        "endChar": 51
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40455692_55c2ded8",
+        "filename": "system/stack/btm/hfp_lc3_decoder_linux.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:52:01Z",
+      "side": 1,
+      "message": "```suggestion\n  bool plc_conducted \u003d o_packet[0];\n```",
+      "range": {
+        "startLine": 96,
+        "startChar": 2,
+        "endLine": 96,
+        "endChar": 5
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8fc8197_ec481e1e",
+        "filename": "system/stack/btm/hfp_lc3_decoder_linux.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:52:01Z",
+      "side": 1,
+      "message": "Let\u0027s remove this and change it to debug log.",
+      "range": {
+        "startLine": 100,
+        "startChar": 14,
+        "endLine": 100,
+        "endChar": 23
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "170c2982_4584a7be",
+        "filename": "system/stack/btm/hfp_lc3_decoder_linux.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:52:01Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 103,
+        "startChar": 2,
+        "endLine": 103,
+        "endChar": 8
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ca67344_605d3015",
+        "filename": "system/stack/btm/hfp_lc3_encoder_linux.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:52:01Z",
+      "side": 1,
+      "message": "Does this need to be a fatal error? Maybe we can return an empty result?",
+      "range": {
+        "startLine": 79,
+        "startChar": 2,
+        "endLine": 79,
+        "endChar": 12
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17b05fca_fd1e121b",
+        "filename": "system/stack/mmc/codec_client/codec_client.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:52:01Z",
+      "side": 1,
+      "message": "There appears to be a version mismatch.\n\nLet\u0027s go with \n```suggestion\n#if BASE_VER \u003e\u003d 1170299\n        .value_or(nullptr)\n#endif\n```\n\nfor now, and leave a TODO to a bug to uprev libchrome.",
+      "range": {
+        "startLine": 81,
+        "startChar": 11,
+        "endLine": 81,
+        "endChar": 19
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97bf27f8_1ac0b8be",
+        "filename": "system/stack/mmc/codec_client/codec_client.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:52:01Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 112,
+        "startChar": 2,
+        "endLine": 112,
+        "endChar": 8
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bf820fa_6869c87e",
+        "filename": "system/stack/mmc/codec_client/codec_client.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-28T07:52:01Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 112,
+        "startChar": 5,
+        "endLine": 112,
+        "endChar": 6
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
