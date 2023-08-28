@@ -155,6 +155,7 @@ impl BatteryService {
             BatteryServiceActions::OnSearchComplete(addr, services, status) => {
                 if status != GattStatus::Success {
                     debug!("GATT service discovery for {} failed with status {:?}", addr, status);
+                    self.drop_device(addr);
                     return;
                 }
                 let (bas_uuid, battery_level_uuid) = match (
@@ -162,7 +163,10 @@ impl BatteryService {
                     UuidHelper::parse_string(CHARACTERISTIC_BATTERY_LEVEL),
                 ) {
                     (Some(bas_uuid), Some(battery_level_uuid)) => (bas_uuid, battery_level_uuid),
-                    _ => return,
+                    _ => {
+                        self.drop_device(addr);
+                        return;
+                    }
                 };
                 // TODO(b/233101174): handle multiple instances of BAS
                 let bas = match services.iter().find(|service| service.uuid == bas_uuid.uu) {
@@ -174,6 +178,7 @@ impl BatteryService {
                                 BatteryServiceStatus::BatteryServiceNotSupported,
                             )
                         });
+                        self.drop_device(addr);
                         return;
                     }
                 };
@@ -185,6 +190,7 @@ impl BatteryService {
                     Some(battery_level) => battery_level,
                     None => {
                         debug!("Device {} has no BatteryLevel characteristic", addr);
+                        self.drop_device(addr);
                         return;
                     }
                 };
@@ -276,6 +282,15 @@ impl BatteryService {
     }
 
     fn drop_device(&mut self, remote_address: String) {
+        if self.handles.contains_key(&remote_address) {
+            // Let BatteryProviderManager know that BAS no longer has a battery for this device.
+            self.battery_provider_manager.lock().unwrap().remove_battery_info(
+                self.battery_provider_id,
+                remote_address.clone(),
+                uuid::BAS.to_string(),
+            );
+        }
+        self.battery_sets.remove(&remote_address);
         self.handles.remove(&remote_address);
         match self.client_id {
             Some(client_id) => {
@@ -283,13 +298,6 @@ impl BatteryService {
             }
             None => return,
         }
-        // Let BatteryProviderManager know that BAS no longer has a battery for this device.
-        self.battery_provider_manager.lock().unwrap().remove_battery_info(
-            self.battery_provider_id,
-            remote_address.clone(),
-            uuid::BAS.to_string(),
-        );
-        self.battery_sets.remove(&remote_address);
     }
 
     /// Perform an explicit read on all devices BAS knows about.
