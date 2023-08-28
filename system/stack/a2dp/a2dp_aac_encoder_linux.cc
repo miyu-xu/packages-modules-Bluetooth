@@ -51,7 +51,7 @@ class FFmpegInterface {
     clear_context();
     client = new mmc::CodecClient;
 
-    mmc::AacEncoderLinuxParam param;
+    mmc::AacEncoderParam param;
     param.set_sample_rate(sample_rate);
     param.set_channel_count(channel_count);
     param.set_bit_rate(bit_rate);

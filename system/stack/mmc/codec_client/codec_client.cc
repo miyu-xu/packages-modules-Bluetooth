@@ -17,6 +17,7 @@
 #include "mmc/codec_client/codec_client.h"
 
 #include <base/logging.h>
+#include <base/timer/elapsed_timer.h>
 #include <dbus/bus.h>
 #include <dbus/message.h>
 #include <dbus/object_proxy.h>
@@ -27,16 +28,38 @@
 #include <unistd.h>
 
 #include <cstring>
+#include <memory>
 
 #include "mmc/daemon/constants.h"
+#include "mmc/metrics/mmc_rtt_logger.h"
 #include "mmc/proto/mmc_config.pb.h"
 #include "mmc/proto/mmc_service.pb.h"
 
 namespace mmc {
+namespace {
+// Codec type strings
+constexpr char kHfpLc3Encoder[] = "HFP_LC3_Encoder";
+constexpr char kHfpLc3Decoder[] = "HFP_LC3_Decoder";
+constexpr char kA2dpAacLinuxEncoder[] = "A2DP_AAC_Linux_Encoder";
+constexpr char kUnsupportedType[] = "Unsupported_Type";
+
+std::string CodecTypeToString(const ConfigParam& config) {
+  if (config.has_hfp_lc3_decoder_param()) {
+    return std::string(kHfpLc3Decoder);
+  } else if (config.has_hfp_lc3_encoder_param()) {
+    return std::string(kHfpLc3Encoder);
+  } else if (config.has_a2dp_aac_encoder_linux_param()) {
+    return std::string(kA2dpAacLinuxEncoder);
+  } else {
+    return std::string(kUnsupportedType);
+  }
+}
+}  // namespace
 
 CodecClient::CodecClient() {
   skt_fd_ = -1;
   codec_manager_ = nullptr;
+  record_logger_ = nullptr;
 
   // Set up DBus connection.
   dbus::Bus::Options options;
@@ -60,10 +83,10 @@ CodecClient::CodecClient() {
 CodecClient::~CodecClient() { cleanup(); }
 
 int CodecClient::init(const ConfigParam config) {
-  if (skt_fd_ >= 0) {
-    close(skt_fd_);
-    skt_fd_ = -1;
-  }
+  cleanup();
+
+  // Set up record logger.
+  record_logger_ = std::make_unique<MmcRttLogger>(CodecTypeToString(config));
 
   dbus::MethodCall method_call(mmc::kMmcServiceInterface,
                                mmc::kCodecInitMethod);
@@ -137,6 +160,12 @@ void CodecClient::cleanup() {
     skt_fd_ = -1;
   }
 
+  // Upload Rtt statics when the session ends.
+  if (record_logger_.get() != nullptr) {
+    record_logger_->UploadTranscodeRttStatics();
+    record_logger_.release();
+  }
+
   dbus::MethodCall method_call(mmc::kMmcServiceInterface,
                                mmc::kCodecCleanUpMethod);
 
@@ -158,6 +187,9 @@ void CodecClient::cleanup() {
 
 int CodecClient::transcode(uint8_t* i_buf, int i_len, uint8_t* o_buf,
                            int o_len) {
+  // Start Timer
+  base::ElapsedTimer timer;
+
   // i_buf and o_buf cannot be null.
   if (i_buf == nullptr || o_buf == nullptr) {
     LOG(ERROR) << "Buffer is null";
@@ -208,6 +240,10 @@ int CodecClient::transcode(uint8_t* i_buf, int i_len, uint8_t* o_buf,
     LOG(ERROR) << "Failed to recv data";
     return -EIO;
   }
+
+  // End timer
+  record_logger_->RecordRtt(timer.Elapsed().InMicroseconds());
+
   return rc;
 }
 
