@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf75bf65_c50a43eb",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3640,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-29T00:39:25Z",
+      "side": 1,
+      "message": "There is the same case just above, where `isDirect` is in the if and not within a ternary condition.\n\nCan we keep the file homogeneous ?",
+      "range": {
+        "startLine": 3615,
+        "startChar": 7,
+        "endLine": 3640,
+        "endChar": 9
+      },
+      "revId": "ff679a4ee1aab763af1f9afac0e2ec2393572de9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
