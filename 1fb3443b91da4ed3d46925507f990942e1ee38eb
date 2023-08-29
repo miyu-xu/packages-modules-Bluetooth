@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbe9e83c_c6f21e37",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-08-29T20:58:09Z",
+      "side": 1,
+      "message": "Yes, main bug fix is here but other functions also needs to be updated so that the forced scans could be switched between low_power (during screen on) and screen_off (during screen off) scan mode. Otherwise, the forced scans will stays in screen_off scan mode forever.",
+      "parentUuid": "a62f756f_eb70b2d9",
+      "range": {
+        "startLine": 741,
+        "startChar": 56,
+        "endLine": 741,
+        "endChar": 83
+      },
+      "revId": "1fb3443b91da4ed3d46925507f990942e1ee38eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8de7f5c1_20373e09",
         "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
         "patchSetId": 6
