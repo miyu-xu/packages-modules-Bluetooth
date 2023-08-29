@@ -124,6 +124,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b35e4204_7918cc5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-29T23:40:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4b70a3fe_3c9a9649",
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e64c594a_4961f23a",
@@ -622,6 +640,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "022b0d21_db0dfe04",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-29T23:40:02Z",
+      "side": 1,
+      "message": "Discarding `target` approach as x86 binaries require more work to build properly.\n\nRemoving `BluetoothGeneratedPackets_h` for this CL.",
+      "parentUuid": "9b7e039d_8a6e878c",
+      "range": {
+        "startLine": 160,
+        "startChar": 9,
+        "endLine": 160,
+        "endChar": 36
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79a75cc4_38494a29",
@@ -659,6 +701,30 @@
       "side": 1,
       "message": "I will double check the build without this flag",
       "parentUuid": "79a75cc4_38494a29",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 10
+      },
+      "revId": "fc23ff7fbbf2464de968cec385ba61b4d30dd807",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a62851ac_c730d78a",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-29T23:40:02Z",
+      "side": 1,
+      "message": "Removed\n\nDone",
+      "parentUuid": "23f893fb_d8003314",
       "range": {
         "startLine": 180,
         "startChar": 8,
