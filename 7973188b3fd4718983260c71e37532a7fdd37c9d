@@ -331,6 +331,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66f2aff1_556cb6be",
+        "filename": "system/stack/btm/hfp_lc3_encoder_linux.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-29T09:55:48Z",
+      "side": 1,
+      "message": "Done. Print warning log and return 0 to indicate encoding error.",
+      "parentUuid": "4f4ede12_d538b03a",
+      "range": {
+        "startLine": 79,
+        "startChar": 2,
+        "endLine": 79,
+        "endChar": 12
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17b05fca_fd1e121b",
