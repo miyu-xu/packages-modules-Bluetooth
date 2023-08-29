@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f200e80_692a5128",
+        "filename": "android/pandora/test/main.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-29T01:53:00Z",
+      "side": 1,
+      "message": "`hfpclient_test` is already imported.",
+      "revId": "fc4523e9316bfa15e53405f1478d3415880b5a66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
