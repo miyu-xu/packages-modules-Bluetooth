@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43c45b2a_c782dbe9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-29T16:15:33Z",
+      "side": 1,
+      "message": "Hi, the UHID/UINPUT utility is already created at system/gd/rust/linux/utils/src/. Could you please reuse the functions there?",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
