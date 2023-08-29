@@ -52,6 +52,24 @@
       "parentUuid": "03589c20_a19c059a",
       "revId": "306b7c21f56f12f093e2ec3c1eb93c39ab9b5e69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecef5ddf_d8c8abc0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-29T18:45:44Z",
+      "side": 1,
+      "message": "Your change only impact the support of MAP_CLIENT and your check of UUID seems correct.\n\nI double check with the spec for checking the uuid used and that looks correct to me\n\nI think it is safe to submit. 👍\n\n\n\n-----\n\n-----\n#### About comment#1:\n\n\n\n\u003e Nearly all the calls ignore the local uuids\n\nI guess this is yet another symptom of the code being done mainly for phone.\nWe should add the check for other form factor I agree\n\n----\n\n\u003e MAP and PBAP return connection status and don\u0027t have uuid based logic\n\nI will assume that this has been done in order to rely on the sharedPreference value too (and require the user interaction to validate the usage).  \nif it\u0027s the case, in addition to the uuid, these would need a call to `getDeviceAccessFromPrefs(device, MESSAGE_ACCESS_PERMISSION_PREFERENCE_FILE)` (and `PHONEBOOK_ACCESS_PERMISSION_PREFERENCE_FILE` for pbap)\n\n----\n\n\u003e If all calls used UUIDs, we could terminate early with remote uuids is empty.\n\nCould be a nice optimisation, I am not sure how often it happen nor how much time we will gain, but sure.",
+      "parentUuid": "1b29ca70_de9e84e8",
+      "revId": "306b7c21f56f12f093e2ec3c1eb93c39ab9b5e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
