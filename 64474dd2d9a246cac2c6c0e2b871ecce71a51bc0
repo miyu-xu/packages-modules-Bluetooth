@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "045351b1_2671b400",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-29T20:26:09Z",
+      "side": 1,
+      "message": "This should not be necessary.\n\naosp/2726481 was merged a few days ago and there was no failure since.",
+      "revId": "64474dd2d9a246cac2c6c0e2b871ecce71a51bc0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
