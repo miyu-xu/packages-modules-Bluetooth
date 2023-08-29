@@ -493,6 +493,11 @@ bool btm_ble_read_resolving_list_entry(tBTM_SEC_DEV_REC* p_dev_rec) {
              __func__);
     return false;
   }
+  if (btm_cb.ble_ctr_cb.privacy_mode < BTM_PRIVACY_1_2) {
+    LOG_DEBUG("%s Unable to read resolving list entry as privacy mode is %d",
+              __func__, btm_cb.ble_ctr_cb.privacy_mode);
+    return false;
+  }
 
   if (controller_get_interface()->supports_ble_privacy()) {
     btsnd_hcic_ble_read_resolvable_addr_peer(
