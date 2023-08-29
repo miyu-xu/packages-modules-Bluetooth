@@ -22,6 +22,30 @@
       },
       "revId": "9e9a3e629098b6ab147645aedd55256216160726",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6938819_4aa61403",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4556,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-29T04:11:52Z",
+      "side": 1,
+      "message": "That metric was added to client by someone else, and I was assigned a bug to add metric related with foreground services for client and server, so I missed this point :(\n\nBut yes I agree that this metric (direct/autoconnect) should be added for server as well, so I\u0027ll try to get confirmation that adding to server is also ok and add the metric to server as well. (This will be outside of this CL since enums have to be added to proto files separately)\n\nAfter that I\u0027ll try to create a common static private method for both client and server!",
+      "parentUuid": "60bd25df_05a936ec",
+      "range": {
+        "startLine": 4536,
+        "startChar": 5,
+        "endLine": 4556,
+        "endChar": 0
+      },
+      "revId": "9e9a3e629098b6ab147645aedd55256216160726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
