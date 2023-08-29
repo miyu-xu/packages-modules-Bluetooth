@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab85e1dc_d87be6ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-08-29T20:16:39Z",
+      "side": 1,
+      "message": "Seems like an XL CL - Anyway we can break it down further into smaller CLs.",
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
