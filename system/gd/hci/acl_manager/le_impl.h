@@ -1149,6 +1149,16 @@ struct le_impl : public bluetooth::hci::LeAddressManagerCallback {
     if (create_connection_timeout_alarms_.find(address_with_type) != create_connection_timeout_alarms_.end()) {
       create_connection_timeout_alarms_.at(address_with_type).Cancel();
       create_connection_timeout_alarms_.erase(address_with_type);
+
+      if (background_connections_.find(address_with_type) != background_connections_.end()) {
+        direct_connections_.erase(address_with_type);
+        disarm_connectability();
+      }
+      le_client_handler_->Post(common::BindOnce(
+          &LeConnectionCallbacks::OnLeConnectFail,
+          common::Unretained(le_client_callbacks_),
+          address_with_type,
+          ErrorCode::CONNECTION_ACCEPT_TIMEOUT));
     }
     // the connection will be canceled by LeAddressManager.OnPause()
     remove_device_from_connect_list(address_with_type);
