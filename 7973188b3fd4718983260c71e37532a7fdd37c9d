@@ -285,6 +285,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2feb939_c5d08bfd",
+        "filename": "system/stack/btm/hfp_lc3_encoder_linux.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-29T06:50:06Z",
+      "side": 1,
+      "message": "I see. So this is an irrecoverable error. However, I\u0027m unsure if it\u0027s as fatal that we want to bring the whole BT process down (IMO silencing the stre",
+      "parentUuid": "29cf00a4_83831a1f",
+      "range": {
+        "startLine": 79,
+        "startChar": 2,
+        "endLine": 79,
+        "endChar": 12
+      },
+      "revId": "7973188b3fd4718983260c71e37532a7fdd37c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "17b05fca_fd1e121b",
         "filename": "system/stack/mmc/codec_client/codec_client.cc",
         "patchSetId": 16
