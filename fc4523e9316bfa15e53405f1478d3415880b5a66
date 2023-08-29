@@ -16,6 +16,23 @@
       "message": "`hfpclient_test` is already imported.",
       "revId": "fc4523e9316bfa15e53405f1478d3415880b5a66",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6dd423c_ab596ca3",
+        "filename": "android/pandora/test/smp/smp_test_mitm_sec_req_on_enc.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-08-29T17:03:45Z",
+      "side": 1,
+      "message": "nit: Can you split the add of the test and the \"refactor\" on 2 CLs ?",
+      "revId": "fc4523e9316bfa15e53405f1478d3415880b5a66",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
