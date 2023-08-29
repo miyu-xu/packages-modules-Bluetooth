@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9deb3ff6_acc87d5c",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-29T16:56:35Z",
+      "side": 1,
+      "message": "We don\u0027t have a test that covers this test.  I saw the manual test steps, but can we add a test that covers this case?\n\nI would think it could be added in acl_manager_unittest.cc or le_impl_test.cc",
+      "revId": "7f9be4b95da9c9b9cad59af5a1dccb09f9b781ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
