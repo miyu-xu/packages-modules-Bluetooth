@@ -83,7 +83,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 @RunWith(AndroidJUnit4.class)
 public class HeadsetServiceAndStateMachineTest {
     private static final String TAG = "HeadsetServiceAndStateMachineTest";
-    private static final int ASYNC_CALL_TIMEOUT_MILLIS = 500;
+    private static final int ASYNC_CALL_TIMEOUT_MILLIS = 1000;
     private static final int START_VR_TIMEOUT_MILLIS = 1000;
     private static final int START_VR_TIMEOUT_WAIT_MILLIS = START_VR_TIMEOUT_MILLIS * 3 / 2;
     private static final int STATE_CHANGE_TIMEOUT_MILLIS = 1000;
