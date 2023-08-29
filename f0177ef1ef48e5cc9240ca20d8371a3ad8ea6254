@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a8a9dd8_9de7ccfe",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-08-29T05:11:00Z",
+      "side": 1,
+      "message": "Kept the previous code instead of using a new wrapper API.",
+      "parentUuid": "3cd63ec1_b4d456f7",
+      "range": {
+        "startLine": 829,
+        "startChar": 5,
+        "endLine": 829,
+        "endChar": 67
+      },
+      "revId": "f0177ef1ef48e5cc9240ca20d8371a3ad8ea6254",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecb9a0b9_d850d0c8",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-29T01:35:41Z",
       "side": 1,
       "message": "Is the function name still correct?",
+      "range": {
+        "startLine": 851,
+        "startChar": 24,
+        "endLine": 851,
+        "endChar": 52
+      },
+      "revId": "f0177ef1ef48e5cc9240ca20d8371a3ad8ea6254",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "714810ce_fa21d899",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-08-29T05:11:00Z",
+      "side": 1,
+      "message": "Yes, this function is still intended to reduce the scan mode from max duty cycle.",
+      "parentUuid": "ecb9a0b9_d850d0c8",
       "range": {
         "startLine": 851,
         "startChar": 24,
