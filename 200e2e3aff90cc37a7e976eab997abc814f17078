@@ -105,6 +105,29 @@
       },
       "revId": "200e2e3aff90cc37a7e976eab997abc814f17078",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfe6e0c2_e7942b6a",
+        "filename": "system/stack/acl/btm_pm.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-29T00:12:09Z",
+      "side": 1,
+      "message": "These two are redundant.  They are covered by mode.max \u0026 0x0001.\n\nSame thing for mode.min",
+      "range": {
+        "startLine": 85,
+        "startChar": 41,
+        "endLine": 86,
+        "endChar": 24
+      },
+      "revId": "200e2e3aff90cc37a7e976eab997abc814f17078",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
