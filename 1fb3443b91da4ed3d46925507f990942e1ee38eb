@@ -16,6 +16,52 @@
       "message": "Updated the changes as more readable. I hope it looks better.",
       "revId": "1fb3443b91da4ed3d46925507f990942e1ee38eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a62f756f_eb70b2d9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-08-29T20:52:34Z",
+      "side": 1,
+      "message": "The main bug fix is here, right?\n\nAll rest of changes are just nice to have.",
+      "range": {
+        "startLine": 741,
+        "startChar": 56,
+        "endLine": 741,
+        "endChar": 83
+      },
+      "revId": "1fb3443b91da4ed3d46925507f990942e1ee38eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8de7f5c1_20373e09",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 850,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-08-29T20:52:34Z",
+      "side": 1,
+      "message": "The purpose of function is now more like downgradeScanToBalancedMode()",
+      "range": {
+        "startLine": 850,
+        "startChar": 24,
+        "endLine": 850,
+        "endChar": 52
+      },
+      "revId": "1fb3443b91da4ed3d46925507f990942e1ee38eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
