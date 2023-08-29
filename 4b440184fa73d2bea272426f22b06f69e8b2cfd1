@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c43dfd1d_ddc2d187",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-29T00:51:02Z",
+      "side": 1,
+      "message": "I like the is_ pattern so I will use that (versus the are_)",
+      "revId": "4b440184fa73d2bea272426f22b06f69e8b2cfd1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
