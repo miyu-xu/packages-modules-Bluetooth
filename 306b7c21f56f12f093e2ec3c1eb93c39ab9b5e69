@@ -34,6 +34,24 @@
       "parentUuid": "4f3281ce_5ed2258c",
       "revId": "306b7c21f56f12f093e2ec3c1eb93c39ab9b5e69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b29ca70_de9e84e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-29T18:08:01Z",
+      "side": 1,
+      "message": "It looks like Sungsoo is out through the beginning of next week. Anyone else that can have a peak at this so we can get it in sooner? I\u0027m trying to get this into UDC-QPR without any surprises!\n\nHappy to talk with Sungsoo about the wider ideas on this code/help implement them when he\u0027s back too.",
+      "parentUuid": "03589c20_a19c059a",
+      "revId": "306b7c21f56f12f093e2ec3c1eb93c39ab9b5e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
