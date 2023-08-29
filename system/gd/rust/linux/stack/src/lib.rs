@@ -118,6 +118,7 @@ pub enum Message {
     // Battery related
     BatteryProviderManagerCallbackDisconnected(u32),
     BatteryProviderManagerBatteryUpdated(String, BatterySet),
+    BatteryProviderManagerBatteryRemoved(String),
     BatteryServiceCallbackDisconnected(u32),
     BatteryService(BatteryServiceActions),
     BatteryServiceRefresh,
@@ -341,6 +342,9 @@ impl Stack {
                         .lock()
                         .unwrap()
                         .handle_battery_updated(remote_address, battery_set);
+                }
+                Message::BatteryProviderManagerBatteryRemoved(remote_address) => {
+                    battery_manager.lock().unwrap().handle_battery_removed(remote_address);
                 }
                 Message::BatteryProviderManagerCallbackDisconnected(id) => {
                     battery_provider_manager.lock().unwrap().remove_battery_provider_callback(id);

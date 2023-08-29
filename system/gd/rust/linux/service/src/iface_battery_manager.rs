@@ -29,6 +29,10 @@ impl IBatteryManagerCallback for IBatteryManagerCallbackDBus {
     fn on_battery_info_updated(&mut self, remote_address: String, battery_set: BatterySet) {
         dbus_generated!()
     }
+    #[dbus_method("OnBatteryInfoRemoved")]
+    fn on_battery_info_removed(&mut self, remote_address: String) {
+        dbus_generated!()
+    }
 }
 
 struct IBatteryManagerDBus {}

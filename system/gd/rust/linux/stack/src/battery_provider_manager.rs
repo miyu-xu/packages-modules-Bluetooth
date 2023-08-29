@@ -64,6 +64,51 @@ impl BatteryProviderManager {
     pub fn remove_battery_provider_callback(&mut self, battery_provider_id: u32) {
         self.battery_provider_callbacks.remove_callback(battery_provider_id);
     }
+
+    fn notify_battery_change(
+        &self,
+        previous_best: Option<BatterySet>,
+        new_best: Option<BatterySet>,
+    ) {
+        match (previous_best, new_best) {
+            (None, None) => return,
+            (None, Some(new_best)) => {
+                let tx = self.tx.clone();
+                tokio::spawn(async move {
+                    let _ = tx
+                        .send(Message::BatteryProviderManagerBatteryUpdated(
+                            new_best.address.clone(),
+                            new_best,
+                        ))
+                        .await;
+                });
+            }
+            (Some(previous_best), Some(new_best)) => {
+                if new_best == previous_best {
+                    return;
+                }
+                let tx = self.tx.clone();
+                tokio::spawn(async move {
+                    let _ = tx
+                        .send(Message::BatteryProviderManagerBatteryUpdated(
+                            new_best.address.clone(),
+                            new_best,
+                        ))
+                        .await;
+                });
+            }
+            (Some(previous_best), None) => {
+                let tx = self.tx.clone();
+                tokio::spawn(async move {
+                    let _ = tx
+                        .send(Message::BatteryProviderManagerBatteryRemoved(
+                            previous_best.address.clone(),
+                        ))
+                        .await;
+                });
+            }
+        }
+    }
 }
 
 impl IBatteryProviderManager for BatteryProviderManager {
@@ -79,13 +124,17 @@ impl IBatteryProviderManager for BatteryProviderManager {
     }
 
     fn remove_battery_info(&mut self, _battery_provider_id: u32, address: String, uuid: String) {
-        if let Some(batteries) = self.battery_info.get_mut(&address) {
-            batteries.remove_battery_set(&uuid);
+        let batteries =
+            self.battery_info.entry(address.clone()).or_insert_with(|| Batteries::new());
+        let previous_best = batteries.pick_best();
 
-            if batteries.is_empty() {
-                self.battery_info.remove(&address);
-            }
+        batteries.remove_battery_set(&uuid);
+        let new_best = batteries.pick_best();
+        if batteries.is_empty() {
+            self.battery_info.remove(&address);
         }
+
+        self.notify_battery_change(previous_best, new_best);
     }
 
     fn set_battery_info(&mut self, _battery_provider_id: u32, battery_set: BatterySet) {
@@ -96,26 +145,14 @@ impl IBatteryProviderManager for BatteryProviderManager {
             battery_set.clone()
         );
 
-        if battery_set.batteries.is_empty() {
-            return;
-        }
-
         let batteries = self
             .battery_info
             .entry(battery_set.address.clone())
             .or_insert_with(|| Batteries::new());
+        let previous_best = batteries.pick_best();
         batteries.add_or_update_battery_set(battery_set);
 
-        if let Some(best_battery_set) = batteries.pick_best() {
-            let tx = self.tx.clone();
-            tokio::spawn(async move {
-                let _ = tx
-                    .send(Message::BatteryProviderManagerBatteryUpdated(
-                        best_battery_set.address.clone(),
-                        best_battery_set,
-                    ))
-                    .await;
-            });
-        }
+        let new_best = batteries.pick_best();
+        self.notify_battery_change(previous_best, new_best);
     }
 }

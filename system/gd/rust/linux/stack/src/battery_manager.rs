@@ -8,7 +8,7 @@ use std::sync::{Arc, Mutex};
 use tokio::sync::mpsc::Sender;
 
 /// The primary representation of battery information for internal passing and external calls.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct BatterySet {
     /// Address of the remote device.
     pub address: String,
@@ -21,7 +21,7 @@ pub struct BatterySet {
 }
 
 /// Describes an individual battery measurement, possibly one of many for a given device.
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub struct Battery {
     /// Battery charge percentage between 0 and 100. For protocols that use 0-5 this will be that
     /// number multiplied by 20.
@@ -32,12 +32,16 @@ pub struct Battery {
 }
 
 /// Helper representation of a collection of BatterySet to simplify passing around data internally.
+#[derive(Debug, PartialEq)]
 pub struct Batteries(Vec<BatterySet>);
 
 /// Callback for interacting with the BatteryManager.
 pub trait IBatteryManagerCallback: RPCProxy {
     /// Invoked whenever battery information associated with the given remote changes.
     fn on_battery_info_updated(&mut self, remote_address: String, battery_set: BatterySet);
+
+    /// Invoked whenever there are no longer any sources of battery information..
+    fn on_battery_info_removed(&mut self, remote_address: String);
 }
 
 /// Central point for getting battery information that might be sourced from numerous systems.
@@ -82,6 +86,12 @@ impl BatteryManager {
         self.callbacks.for_all_callbacks(|callback| {
             callback.on_battery_info_updated(remote_address.clone(), battery_set.clone())
         });
+    }
+
+    /// Handles all BatterySets removed.
+    pub fn handle_battery_removed(&mut self, remote_address: String) {
+        self.callbacks
+            .for_all_callbacks(|callback| callback.on_battery_info_removed(remote_address.clone()));
     }
 }
 
@@ -128,6 +138,10 @@ impl Batteries {
     /// Updates a battery matching all non-battery-level fields if found, otherwise adds new_battery
     /// verbatim.
     pub fn add_or_update_battery_set(&mut self, new_battery_set: BatterySet) {
+        if new_battery_set.batteries.is_empty() {
+            self.0.retain(|battery_set| &battery_set.source_uuid != &new_battery_set.source_uuid);
+            return;
+        }
         match self
             .0
             .iter_mut()
@@ -157,4 +171,194 @@ impl Batteries {
             .or_else(|| self.0.first())
             .cloned()
     }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const TEST_DEVICE_NAME_1: &str = "aa:aa:aa:aa:aa:aa";
+    const TEST_SERVICE_UUID_1: &str = "c5294101-a8c2-48e7-bbc2-f6cabcb1fb9a";
+    const TEST_SERVICE_INFO_1: &str = "test 1";
+    const TEST_DEVICE_NAME_2: &str = "aa:aa:aa:aa:aa:ff";
+    const TEST_SERVICE_UUID_2: &str = "c5294101-a8c2-48e7-bbc2-f6cabcb1fb9b";
+    const TEST_SERVICE_INFO_2: &str = "test 2";
+
+    // BatterySet tests
+
+    #[test]
+    fn test_new_battery() {
+        let mut battery_set = BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_1.to_string(),
+            TEST_SERVICE_INFO_1.to_string(),
+            vec![],
+        );
+        assert_eq!(battery_set.batteries.len(), 0);
+        battery_set.add_or_update_battery(Battery { percentage: 42, variant: "".to_string() });
+        assert_eq!(battery_set.batteries.len(), 1);
+        assert_eq!(battery_set.batteries[0].percentage, 42);
+    }
+
+    #[test]
+    fn test_updated_battery() {
+        let mut battery_set = BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_1.to_string(),
+            TEST_SERVICE_INFO_1.to_string(),
+            vec![],
+        );
+        assert_eq!(battery_set.batteries.len(), 0);
+        battery_set.add_or_update_battery(Battery { percentage: 42, variant: "".to_string() });
+        assert_eq!(battery_set.batteries.len(), 1);
+        assert_eq!(battery_set.batteries[0].percentage, 42);
+        battery_set.add_or_update_battery(Battery { percentage: 23, variant: "".to_string() });
+        assert_eq!(battery_set.batteries.len(), 1);
+        assert_eq!(battery_set.batteries[0].percentage, 23);
+    }
+
+    #[test]
+    fn test_multiple_variant_battery() {
+        let mut battery_set = BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_1.to_string(),
+            TEST_SERVICE_INFO_1.to_string(),
+            vec![],
+        );
+        assert_eq!(battery_set.batteries.len(), 0);
+        battery_set.add_or_update_battery(Battery { percentage: 42, variant: "Left".to_string() });
+        battery_set.add_or_update_battery(Battery { percentage: 23, variant: "Right".to_string() });
+        assert_eq!(battery_set.batteries.len(), 2);
+        assert_eq!(
+            battery_set.batteries,
+            vec![
+                Battery { percentage: 42, variant: "Left".to_string() },
+                Battery { percentage: 23, variant: "Right".to_string() },
+            ]
+        );
+    }
+
+    // Batteries tests
+
+    #[test]
+    fn test_new_battery_set() {
+        let mut batteries = Batteries::new();
+        assert_eq!(batteries.0.len(), 0);
+        batteries.add_or_update_battery_set(BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_1.to_string(),
+            TEST_SERVICE_INFO_1.to_string(),
+            vec![Battery { percentage: 42, variant: "".to_string() }],
+        ));
+        assert_eq!(
+            batteries.0,
+            vec![BatterySet::new(
+                TEST_DEVICE_NAME_1.to_string(),
+                TEST_SERVICE_UUID_1.to_string(),
+                TEST_SERVICE_INFO_1.to_string(),
+                vec![Battery { percentage: 42, variant: "".to_string() },]
+            )]
+        );
+    }
+
+    #[test]
+    fn test_update_battery_set() {
+        let mut batteries = Batteries::new();
+        assert_eq!(batteries.0.len(), 0);
+        batteries.add_or_update_battery_set(BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_1.to_string(),
+            TEST_SERVICE_INFO_1.to_string(),
+            vec![Battery { percentage: 42, variant: "".to_string() }],
+        ));
+        assert_eq!(
+            batteries.0,
+            vec![BatterySet::new(
+                TEST_DEVICE_NAME_1.to_string(),
+                TEST_SERVICE_UUID_1.to_string(),
+                TEST_SERVICE_INFO_1.to_string(),
+                vec![Battery { percentage: 42, variant: "".to_string() },]
+            )]
+        );
+        batteries.add_or_update_battery_set(BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_1.to_string(),
+            TEST_SERVICE_INFO_1.to_string(),
+            vec![Battery { percentage: 23, variant: "".to_string() }],
+        ));
+        assert_eq!(
+            batteries.0,
+            vec![BatterySet::new(
+                TEST_DEVICE_NAME_1.to_string(),
+                TEST_SERVICE_UUID_1.to_string(),
+                TEST_SERVICE_INFO_1.to_string(),
+                vec![Battery { percentage: 23, variant: "".to_string() },]
+            )]
+        );
+    }
+
+    #[test]
+    fn test_multiple_battery_sets() {
+        let mut batteries = Batteries::new();
+        assert_eq!(batteries.0.len(), 0);
+        batteries.add_or_update_battery_set(BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_1.to_string(),
+            TEST_SERVICE_INFO_1.to_string(),
+            vec![Battery { percentage: 42, variant: "".to_string() }],
+        ));
+        batteries.add_or_update_battery_set(BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_2.to_string(),
+            TEST_SERVICE_INFO_2.to_string(),
+            vec![Battery { percentage: 23, variant: "".to_string() }],
+        ));
+        assert_eq!(
+            batteries.0,
+            vec![
+                BatterySet::new(
+                    TEST_DEVICE_NAME_1.to_string(),
+                    TEST_SERVICE_UUID_1.to_string(),
+                    TEST_SERVICE_INFO_1.to_string(),
+                    vec![Battery { percentage: 42, variant: "".to_string() },]
+                ),
+                BatterySet::new(
+                    TEST_DEVICE_NAME_1.to_string(),
+                    TEST_SERVICE_UUID_2.to_string(),
+                    TEST_SERVICE_INFO_2.to_string(),
+                    vec![Battery { percentage: 23, variant: "".to_string() },]
+                ),
+            ]
+        );
+    }
+
+    #[test]
+    fn test_remove_battery_set() {
+        let mut batteries = Batteries::new();
+        assert_eq!(batteries.0.len(), 0);
+        batteries.add_or_update_battery_set(BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_1.to_string(),
+            TEST_SERVICE_INFO_1.to_string(),
+            vec![Battery { percentage: 42, variant: "".to_string() }],
+        ));
+        batteries.add_or_update_battery_set(BatterySet::new(
+            TEST_DEVICE_NAME_1.to_string(),
+            TEST_SERVICE_UUID_2.to_string(),
+            TEST_SERVICE_INFO_2.to_string(),
+            vec![Battery { percentage: 23, variant: "".to_string() }],
+        ));
+        batteries.remove_battery_set(TEST_SERVICE_UUID_1);
+        assert_eq!(
+            batteries.0,
+            vec![BatterySet::new(
+                TEST_DEVICE_NAME_1.to_string(),
+                TEST_SERVICE_UUID_2.to_string(),
+                TEST_SERVICE_INFO_2.to_string(),
+                vec![Battery { percentage: 23, variant: "".to_string() },]
+            ),]
+        );
+    }
+
+    // TODO(233124093): Add tests for Batteries::pick_best when the logic is updated.
 }
