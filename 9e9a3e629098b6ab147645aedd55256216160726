@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60bd25df_05a936ec",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4556,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-29T00:42:39Z",
+      "side": 1,
+      "message": "This is the exact same code as in aosp/2651599 for clientConnect\n\nCan you do a common static private method that will do this logic ?\n\n\nAlso, why this metric is only done in client and not in server:\n```\nif (isDirect) { \nMetricsLogger.getInstance().count(BluetoothProtoEnums.GATT_CLIENT_CONNECT_IS_DIRECT, 1);\n} else {\nMetricsLogger.getInstance().count(BluetoothProtoEnums.GATT_CLIENT_CONNECT_IS_AUTOCONNECT, 1);\n}\n```",
+      "range": {
+        "startLine": 4536,
+        "startChar": 5,
+        "endLine": 4556,
+        "endChar": 0
+      },
+      "revId": "9e9a3e629098b6ab147645aedd55256216160726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
