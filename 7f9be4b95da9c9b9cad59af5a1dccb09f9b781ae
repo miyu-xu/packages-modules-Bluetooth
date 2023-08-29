@@ -16,6 +16,29 @@
       "message": "We don\u0027t have a test that covers this test.  I saw the manual test steps, but can we add a test that covers this case?\n\nI would think it could be added in acl_manager_unittest.cc or le_impl_test.cc",
       "revId": "7f9be4b95da9c9b9cad59af5a1dccb09f9b781ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "390e6e05_5a9d772b",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-29T18:13:40Z",
+      "side": 1,
+      "message": "I would think we wouldn\u0027t want to cancel direct connect attempt if later background connect attempt is canceled - rather should not cancel direct connect and instead remove from background connections list, and let the direct connect hit the normal timeout.",
+      "range": {
+        "startLine": 1154,
+        "startChar": 8,
+        "endLine": 1154,
+        "endChar": 53
+      },
+      "revId": "7f9be4b95da9c9b9cad59af5a1dccb09f9b781ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
