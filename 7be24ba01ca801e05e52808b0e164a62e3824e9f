@@ -16,6 +16,24 @@
       "message": "Requesting review for this CL :)",
       "revId": "7be24ba01ca801e05e52808b0e164a62e3824e9f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2be6747_3c11f750",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-29T00:40:13Z",
+      "side": 1,
+      "message": "Thanks Kihong, I missed the notification in my inbox from when you resolved your comments 😅",
+      "parentUuid": "0eedf7db_5295c3d0",
+      "revId": "7be24ba01ca801e05e52808b0e164a62e3824e9f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
