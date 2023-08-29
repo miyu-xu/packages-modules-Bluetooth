@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cd63ec1_b4d456f7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-08-29T01:35:41Z",
+      "side": 1,
+      "message": "Is any change above necessary? It looks like they are not changing anything. But your changes make the review harder.",
+      "range": {
+        "startLine": 829,
+        "startChar": 5,
+        "endLine": 829,
+        "endChar": 67
+      },
+      "revId": "f0177ef1ef48e5cc9240ca20d8371a3ad8ea6254",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecb9a0b9_d850d0c8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-08-29T01:35:41Z",
+      "side": 1,
+      "message": "Is the function name still correct?",
+      "range": {
+        "startLine": 851,
+        "startChar": 24,
+        "endLine": 851,
+        "endChar": 52
+      },
+      "revId": "f0177ef1ef48e5cc9240ca20d8371a3ad8ea6254",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
