@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51027daf_7c3d59ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-08-29T20:01:24Z",
+      "side": 1,
+      "message": "Updated the changes as more readable. I hope it looks better.",
+      "revId": "1fb3443b91da4ed3d46925507f990942e1ee38eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
