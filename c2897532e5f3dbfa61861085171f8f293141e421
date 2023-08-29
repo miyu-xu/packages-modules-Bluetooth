@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d120b24b_028bfa92",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-29T20:18:23Z",
+      "side": 1,
+      "message": "I still think that `mediaFwkMode` should never be a `PlayerSettingsValues.xxx` as this can be confusing, but consider this command as a nit as this is not really important",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 24
+      },
+      "revId": "c2897532e5f3dbfa61861085171f8f293141e421",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
