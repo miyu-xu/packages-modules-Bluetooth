@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e183dc49_92f262e1",
+        "filename": "framework/java/android/bluetooth/BluetoothQualityReport.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-29T22:44:08Z",
+      "side": 1,
+      "message": "Why not let it be an empty string if it\u0027s not set?",
+      "range": {
+        "startLine": 528,
+        "startChar": 23,
+        "endLine": 528,
+        "endChar": 33
+      },
+      "revId": "63ea193e4e580d1566a1e213887f096fe072ca67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
