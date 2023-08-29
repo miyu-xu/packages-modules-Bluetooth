@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7bf483_f379847d",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-29T19:08:28Z",
+      "side": 1,
+      "message": "Forgot that too thanks",
+      "parentUuid": "db046142_f44016dc",
+      "range": {
+        "startLine": 111,
+        "startChar": 36,
+        "endLine": 111,
+        "endChar": 55
+      },
+      "revId": "6362e7f7a7c7e175a72d7092f81b6c78e8b4cd9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b93f15c_cfc98abe",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-29T18:21:16Z",
       "side": 1,
       "message": "`mediaFwkMode` is either a `PlayerSettingsValues.xxx` or a `PlaybackStateCompat.xxx`.\n\nThis would be error prone.\nEspecially if you have the securityException, you will do a switch on the wrong value.\n\nsame for `getPlayerShuffleMode`\n\n\n```suggestion\n        if (mActivePlayerController \u003d\u003d null) {\n            Log.i(TAG, \"getPlayerRepeatMode: no active player\");\n            return PlayerSettingsValues.STATE_REPEAT_OFF;\n        }\n        int mediaFwkMode;\n        try {\n            mediaFwkMode \u003d mActivePlayerController.getRepeatMode();\n        } catch (SecurityException e) {\n            Log.e(TAG, e.toString());\n            return PlayerSettingsValues.STATE_REPEAT_OFF;\n        }\n```",
+      "range": {
+        "startLine": 177,
+        "startChar": 8,
+        "endLine": 186,
+        "endChar": 9
+      },
+      "revId": "6362e7f7a7c7e175a72d7092f81b6c78e8b4cd9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3c3b84f_c48ec4b8",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-29T19:08:28Z",
+      "side": 1,
+      "message": "Yup",
+      "parentUuid": "8b93f15c_cfc98abe",
       "range": {
         "startLine": 177,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e8f9a51_c79eb887",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-29T19:08:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "73c0d69d_f9a7b884",
+      "range": {
+        "startLine": 235,
+        "startChar": 20,
+        "endLine": 235,
+        "endChar": 51
+      },
+      "revId": "6362e7f7a7c7e175a72d7092f81b6c78e8b4cd9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "387cb922_52c4cc85",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-08-29T18:21:16Z",
       "side": 1,
       "message": "```suggestion\n    private static boolean unregisterMediaControllerCallback(\n```",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 54
+      },
+      "revId": "6362e7f7a7c7e175a72d7092f81b6c78e8b4cd9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eef85fdc_1dcee385",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-29T19:08:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "387cb922_52c4cc85",
       "range": {
         "startLine": 250,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b426202f_5982e73a",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-29T19:08:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "593852ae_2493551b",
+      "range": {
+        "startLine": 334,
+        "startChar": 0,
+        "endLine": 334,
+        "endChar": 61
+      },
+      "revId": "6362e7f7a7c7e175a72d7092f81b6c78e8b4cd9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2d6f1c23_8bde5d75",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-08-29T18:21:16Z",
       "side": 1,
       "message": "```suggestion\n    private static String getShuffleModeStringValue(int shuffleMode) {\n```",
+      "range": {
+        "startLine": 349,
+        "startChar": 19,
+        "endLine": 349,
+        "endChar": 44
+      },
+      "revId": "6362e7f7a7c7e175a72d7092f81b6c78e8b4cd9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a55384_dd1b58ad",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-29T19:08:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2d6f1c23_8bde5d75",
       "range": {
         "startLine": 349,
         "startChar": 19,
