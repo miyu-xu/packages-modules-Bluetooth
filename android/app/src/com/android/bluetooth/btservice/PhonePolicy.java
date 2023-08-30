@@ -663,7 +663,24 @@ class PhonePolicy {
             }
             debugLog("autoConnect: Device " + mostRecentlyActiveA2dpDevice
                     + " attempting auto connection");
-            autoConnectHeadset(mostRecentlyActiveA2dpDevice);
+
+            // autoConnectHeadset the last connected HFP device
+            final HeadsetService headsetService = mFactory.getHeadsetService();
+            if (headsetService != null) {
+                List<BluetoothDevice> mostRecentlyActiveHfpDevice =
+                        mDatabaseManager.getMostRecentlyConnectedDevices().stream().filter(
+                                x -> headsetService.getConnectionPolicy(x)
+                                        == BluetoothProfile.CONNECTION_POLICY_ALLOWED).toList();
+                if (!mostRecentlyActiveHfpDevice.isEmpty()) {
+                    autoConnectHeadset(mostRecentlyActiveHfpDevice.get(0));
+                } else {
+                    Log.w(TAG, "no device's Headset profile is CONNECTION_POLICY_ALLOWED");
+                }
+            } else {
+                // fallback to mostRecentlyActiveA2dpDevice
+                autoConnectHeadset(mostRecentlyActiveA2dpDevice);
+            }
+
             autoConnectA2dp(mostRecentlyActiveA2dpDevice);
             autoConnectHidHost(mostRecentlyActiveA2dpDevice);
         } else {
