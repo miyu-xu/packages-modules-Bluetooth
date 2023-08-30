@@ -58,6 +58,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a888c3b5_8606c848",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-30T08:34:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ce19f3a_a5542d4c",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c615abfe_2bbe987b",
@@ -71,6 +89,24 @@
       "writtenOn": "2023-08-30T07:24:36Z",
       "side": 1,
       "message": "Is that possible we reuse read function in https://docs.rs/uhid-virt/latest/src/uhid_virt/uhid_device.rs.html#53?",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cba9da22_01e862d7",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-30T08:34:34Z",
+      "side": 1,
+      "message": "The uhid_virt\u0027s read function is blocking and uhid_virt device doesn\u0027t implement clone trait, so not directly.",
+      "parentUuid": "c615abfe_2bbe987b",
       "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +128,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "beb4d5a4_b6e2778e",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-30T08:34:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14ef1b85_ce007f72",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6de4ecfb_5f0822f8",
@@ -105,6 +159,24 @@
       "writtenOn": "2023-08-30T07:24:36Z",
       "side": 1,
       "message": "ditto",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "11ab5a30_a039c7d4",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-30T08:34:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6de4ecfb_5f0822f8",
       "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -126,6 +198,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0408b55_21d1c0c6",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-30T08:34:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c6e646e_02f8f13a",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97a4a13f_d3d4aa94",
@@ -143,6 +233,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33444ffb_7e802010",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-30T08:34:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97a4a13f_d3d4aa94",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2312f718_6b0e245a",
@@ -156,6 +264,24 @@
       "writtenOn": "2023-08-30T07:24:36Z",
       "side": 1,
       "message": "ditto",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c976dd5_8a3893d5",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-30T08:34:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2312f718_6b0e245a",
       "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
