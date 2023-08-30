@@ -16,6 +16,23 @@
       "message": "go/cros-bt-telephony-design-doc",
       "revId": "02f934341f08d4e599a34b3dc43704d57314add8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1f1d650_340ff066",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T08:45:43Z",
+      "side": 1,
+      "message": "I think you should use dbus framework provided by floss.\n\nHere is an example of `on_bluetooth_audio_device_added`\n\nhttps://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/service/src/iface_bluetooth_media.rs\n\nhttps://osscs.corp.google.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth_media.rs;l\u003d1288?q\u003don_bluetooth_audio_device_added",
+      "revId": "02f934341f08d4e599a34b3dc43704d57314add8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
