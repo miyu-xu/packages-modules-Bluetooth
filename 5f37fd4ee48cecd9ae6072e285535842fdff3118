@@ -140,6 +140,24 @@
       "parentUuid": "b6bdd4f3_cf0c8f51",
       "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4195d916_3e5d54e8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T05:59:53Z",
+      "side": 1,
+      "message": "Currently, we use `uhid-virt`. Do you mean we contribute `uhid-virt` to let it support the output event?\n\n`uhid-virt` support input but lack of output event support.",
+      "parentUuid": "7f22a3e1_2c053762",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
