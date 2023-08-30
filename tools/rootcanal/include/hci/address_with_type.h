@@ -18,16 +18,20 @@
 
 #include <fmt/core.h>
 
+#include <cstddef>
+#include <cstdint>
+#include <cstring>
+#include <functional>
+#include <ostream>
 #include <sstream>
 #include <string>
 #include <utility>
 
 #include "crypto/crypto.h"
 #include "hci/address.h"
-#include "packets/hci_packets.h"
+#include "packet/hci_packets.h"
 
-namespace bluetooth {
-namespace hci {
+namespace bluetooth::hci {
 
 class AddressWithType final {
  public:
@@ -120,8 +124,7 @@ inline std::ostream& operator<<(std::ostream& os, const AddressWithType& a) {
   return os;
 }
 
-}  // namespace hci
-}  // namespace bluetooth
+}  // namespace bluetooth::hci
 
 namespace std {
 template <>
