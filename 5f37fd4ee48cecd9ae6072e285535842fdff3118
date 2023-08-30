@@ -1,6 +1,69 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "38781ebc_309429c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:10:35Z",
+      "side": 1,
+      "message": "remove this",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fff5312_4bd239b9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:10:35Z",
+      "side": 1,
+      "message": ":",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 5
+      },
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa8771fa_59ee2c94",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:10:35Z",
+      "side": 1,
+      "message": "TEST: atest bluetooth_test_gd",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "2ca4d06e_de0d50f2",
