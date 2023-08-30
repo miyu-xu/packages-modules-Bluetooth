@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ce29875_efe80651",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-08-30T04:42:21Z",
+      "side": 1,
+      "message": "Thanks Kai for the review in detail.\n\n@hallstrom@google.com, can you review this change?",
+      "revId": "2be67fd00171d8ced4fd39b86cadfff8d81a2348",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
