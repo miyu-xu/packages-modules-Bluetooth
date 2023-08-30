@@ -176,6 +176,24 @@
       "parentUuid": "4195d916_3e5d54e8",
       "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30103f20_3e16fa0b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T06:54:32Z",
+      "side": 1,
+      "message": "Sorry for incorrect information. It seem like `uhid-virt` do support output event.\n\nhttps://docs.rs/uhid-virt/latest/src/uhid_virt/uhid_device.rs.html#52.\n\nHi Ferderic\n\nCloud you use read function in `uhid-virt` directly?",
+      "parentUuid": "8451aa45_9a98bf17",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
