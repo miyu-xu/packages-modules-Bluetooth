@@ -30,6 +30,7 @@ import android.bluetooth.BluetoothUuid;
 import android.content.Intent;
 import android.os.HandlerThread;
 import android.os.ParcelUuid;
+import android.util.Log;
 
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
@@ -551,6 +552,34 @@ public class PhonePolicyTest {
         // Check that we get a call to A2DP connect again
         verify(mA2dpService, timeout(CONNECT_OTHER_PROFILES_TIMEOUT_WAIT_MILLIS).times(2)).connect(
                 connectionOrder.get(0));
+    }
+
+    /**
+     * Test that when the adapter is turned ON then call auto connect on devices that only has HFP
+     * enabled. NOTE that the assumption is that we have already done the pairing previously
+     * and hence the priorities for the device is already set to AUTO_CONNECT over HFP (as
+     * part of post pairing process).
+     */
+    @Test
+    public void testAutoConnectHfpOnly() {
+        // Return desired values from the mocked object(s)
+        when(mAdapterService.getState()).thenReturn(BluetoothAdapter.STATE_ON);
+        when(mAdapterService.isQuietModeEnabled()).thenReturn(false);
+
+        // Return a device that is HFP only
+        BluetoothDevice bondedDevice = getTestDevice(mAdapter, 0);
+        when(mDatabaseManager.getMostRecentlyConnectedA2dpDevice()).thenReturn(null);
+        when(mDatabaseManager.getMostRecentlyConnectedDevices()).thenReturn(List.of(bondedDevice));
+        when(mAdapterService.getBondState(bondedDevice)).thenReturn(BluetoothDevice.BOND_BONDED);
+
+        // Return CONNECTION_POLICY_ALLOWED over HFP
+        when(mHeadsetService.getConnectionPolicy(bondedDevice)).thenReturn(
+                BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        mPhonePolicy.autoConnect();
+
+        // Check that we got a request to connect over HFP
+        verify(mHeadsetService, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).connect(eq(bondedDevice));
     }
 
     /**
