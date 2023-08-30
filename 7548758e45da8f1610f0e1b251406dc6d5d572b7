@@ -46,6 +46,30 @@
       },
       "revId": "7548758e45da8f1610f0e1b251406dc6d5d572b7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eed0720_bf398424",
+        "filename": "system/osi/test/fuzzers/alarm/Android.bp",
+        "patchSetId": 17
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-30T22:28:03Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3c5d0821_bbec5155",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 30
+      },
+      "revId": "7548758e45da8f1610f0e1b251406dc6d5d572b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
