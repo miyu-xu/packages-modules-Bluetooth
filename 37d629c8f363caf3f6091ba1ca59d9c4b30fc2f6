@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b20d081d_1fdc015e",
+        "filename": "system/stack/mmc/daemon/constants.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-30T02:35:10Z",
+      "side": 1,
+      "message": "Please add a comment to this.",
+      "range": {
+        "startLine": 32,
+        "startChar": 14,
+        "endLine": 32,
+        "endChar": 28
+      },
+      "revId": "37d629c8f363caf3f6091ba1ca59d9c4b30fc2f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "583b3fe7_7ce5bcfc",
+        "filename": "system/stack/mmc/daemon/service.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-30T02:35:10Z",
+      "side": 1,
+      "message": "Please use `std::fill_n` appease the warning.",
+      "range": {
+        "startLine": 216,
+        "startChar": 2,
+        "endLine": 216,
+        "endChar": 8
+      },
+      "revId": "37d629c8f363caf3f6091ba1ca59d9c4b30fc2f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
