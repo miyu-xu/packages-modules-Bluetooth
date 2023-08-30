@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9af13bf_85230ea1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:46:36Z",
+      "side": 1,
+      "message": "Please also test with Google Meet.\n\nAnd also test with incoming-call, answer-call, hang up call when there is a audio stream.\n\nFor example, open https://online-voice-recorder.com/ and test with \n\nhttps://google.git.io/libhidtelephoony/ again.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 41
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cef1103e_e3adf8aa",
@@ -14,6 +37,40 @@
       "writtenOn": "2023-08-30T05:35:35Z",
       "side": 1,
       "message": "go/cros-bt-telephony-design-doc",
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae1ee945_e61e5ba3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1721,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:46:36Z",
+      "side": 1,
+      "message": "It should be Active.",
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "091433e2_ccf743b9",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:46:36Z",
+      "side": 1,
+      "message": "```suggestion\n/*\nWhen a SCO is created, it is necessary to have at least one call in the call list. Otherwise, some headsets may not be able to output sound.\n\nTherefore, we need to separate the call for CRAS from the call for the application so that we can have a correct life cycle for the call list status.\n\n*/\n    pub enum CallSource {\n```",
       "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
