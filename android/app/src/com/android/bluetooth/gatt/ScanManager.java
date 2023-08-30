@@ -330,6 +330,9 @@ public class ScanManager {
             Log.e(TAG, "mBluetoothAdapterProxy is null");
             return false;
         }
+        boolean offloadedFilteringSupported =
+                mBluetoothAdapterProxy.isOffloadedScanFilteringSupported();
+        Log.i(TAG, "Offloaded filtering supported: " + offloadedFilteringSupported);
         return mBluetoothAdapterProxy.isOffloadedScanFilteringSupported();
     }
 
@@ -1500,10 +1503,12 @@ public class ScanManager {
 
             // Do not add any filters set by opportunistic scan clients
             if (isOpportunisticScanClient(client)) {
+                Log.i(TAG, "Opportunistic scan client, skip add filter");
                 return;
             }
 
             if (!shouldAddAllPassFilterToController(client, deliveryMode)) {
+                Log.i(TAG, "Should not pass all filter to controller, skip add filter");
                 return;
             }
 

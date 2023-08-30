@@ -211,6 +211,7 @@ import java.util.UUID;
      * Add ScanFilter to scan filter queue.
      */
     void addScanFilter(ScanFilter filter) {
+
         if (filter == null) {
             return;
         }
