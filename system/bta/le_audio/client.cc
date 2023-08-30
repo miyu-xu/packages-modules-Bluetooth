@@ -2068,7 +2068,7 @@ class LeAudioClientImpl : public LeAudioClient {
      */
     auto group = aseGroups_.FindById(group_id);
     if (group == nullptr || !group->IsAnyDeviceConnected()) {
-      LOG_INFO("Group %d is not streaming", group_id);
+      LOG_INFO("Group %d is not connected", group_id);
       return;
     }
 
@@ -2996,6 +2996,13 @@ class LeAudioClientImpl : public LeAudioClient {
         UpdateLocationsAndContextsAvailability(group);
       }
       AttachToStreamingGroupIfNeeded(leAudioDevice);
+
+      if (reconnection_mode_ == BTM_BLE_BKG_CONNECT_TARGETED_ANNOUNCEMENTS) {
+        /* Add other devices to allow list if there are any not yet connected
+         * from the group
+         */
+        group->AddToAllowListNotConnectedGroupMembers(gatt_if_);
+      }
     }
   }
 
@@ -5106,10 +5113,6 @@ class LeAudioClientImpl : public LeAudioClient {
               std::bind(&LeAudioSourceAudioHalClient::UpdateAudioConfigToHal,
                         le_audio_source_hal_client_.get(),
                         std::placeholders::_1));
-          if (reconnection_mode_ ==
-              BTM_BLE_BKG_CONNECT_TARGETED_ANNOUNCEMENTS) {
-            group->AddToAllowListNotConnectedGroupMembers(gatt_if_);
-          }
         }
 
         if (audio_sender_state_ == AudioState::READY_TO_START)
