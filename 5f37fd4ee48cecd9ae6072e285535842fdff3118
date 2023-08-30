@@ -321,6 +321,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3fc44676_622205de",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-30T15:29:35Z",
+      "side": 1,
+      "message": "Read function of `uhid-virt` can not be used directly as it is a synchronous function and need to be run from a blocking thread. In addition the underlying File is not public and `uhid-vrt` doesn\u0027t implement the clone trait.\n\niiuc the UHid struct in uhid.rs is just a list of UHIDDevice\u003cFile\u003e objects, allowing to destroy all of them with clear() method, without support to send/receive events from UHID or use a specific UHID device.\nAnd suspend.rs create an entry for each adapter on suspend.\nDo I understand it correctly?\n\nWhile for HFP, I rewrote the UHIDDevice\u003cFile\u003e to be able to clone the underlying File, which allows to send events from the main thread and wait for incoming event in a blocking thread.\n\nAs they have not the same purpose, I don\u0027t see how to merge them.\nWould it be ok if I move the UHidHfp cote from uhid_hfp.rs into uhid.rs?",
+      "parentUuid": "0fd745e2_cb8da13d",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e1d7c19_8946d3a5",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
