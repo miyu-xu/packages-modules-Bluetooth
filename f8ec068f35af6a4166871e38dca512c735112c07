@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21c19fc0_71e96fb3",
+        "filename": "system/stack/mmc/codec_client/codec_client.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-30T09:18:51Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 147,
+        "startChar": 11,
+        "endLine": 147,
+        "endChar": 19
+      },
+      "revId": "f8ec068f35af6a4166871e38dca512c735112c07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
