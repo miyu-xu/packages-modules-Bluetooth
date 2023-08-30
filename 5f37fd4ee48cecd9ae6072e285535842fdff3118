@@ -194,6 +194,29 @@
       "parentUuid": "8451aa45_9a98bf17",
       "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e1d7c19_8946d3a5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T06:58:38Z",
+      "side": 1,
+      "message": "Is that possible to put this into here?\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/linux/utils/src/uhid.rs?q\u003dBluetooth%2Fsystem%2Fgd%2Frust%2Flinux%2Futils%2Fsrc%2Fuhid.rs",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 22
+      },
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
