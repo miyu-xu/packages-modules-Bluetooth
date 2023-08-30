@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e03041d_040885ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-08-30T08:30:41Z",
+      "side": 1,
+      "message": "It seems build errors happen in external:\n\nexternal/sl4a/Common/src/com/googlecode/android_scripting/facade/bluetooth/BluetoothA2dpFacade.java:132: error: cannot find symbol\nif (sA2dpProfile.getPriority(device) \u003e BluetoothProfile.PRIORITY_ON) {\n^\nsymbol:   method getPriority(BluetoothDevice)\nlocation: variable sA2dpProfile of type BluetoothA2dp",
+      "revId": "1ad69edd1f446d5058ebb9fd36b8b6b875c28671",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
