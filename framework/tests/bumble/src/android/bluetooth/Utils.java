@@ -3,10 +3,11 @@ package android.bluetooth;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 
-import java.util.concurrent.TimeUnit;
-
 import io.grpc.ManagedChannel;
 import io.grpc.okhttp.OkHttpChannelBuilder;
+
+import java.util.concurrent.TimeUnit;
+
 import pandora.HostGrpc;
 
 public final class Utils {

@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import static android.bluetooth.Utils.factoryResetAndCreateNewChannel;
 
+import static com.google.common.io.BaseEncoding.base16;
 import static com.google.common.truth.Truth.assertThat;
 
 import android.bluetooth.le.BluetoothLeScanner;
@@ -34,6 +35,9 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.google.protobuf.Empty;
 
+import io.grpc.ManagedChannel;
+import io.grpc.stub.StreamObserver;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -46,18 +50,21 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
-import io.grpc.ManagedChannel;
-import io.grpc.stub.StreamObserver;
-
 import pandora.HostGrpc;
 import pandora.HostProto;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
+import pandora.HostProto.OwnAddressType;
 
 @RunWith(AndroidJUnit4.class)
 public class LeScanningTest {
     private static final String TAG = "LeScanningTest";
     private static final int TIMEOUT_SCANNING_MS = 2000;
+
+    private static final String TEST_ADDRESS_RANDOM_STATIC = "F0:43:A8:23:10:11";
+
+    // IRK must match what's defined in bumble_config.json
+    private static final byte[] TEST_IRK = base16().decode("1F66F4B5F0C742F807DD0DDBF64E9213");
 
     private static ManagedChannel mChannel;
 
@@ -66,6 +73,7 @@ public class LeScanningTest {
     private static HostGrpc.HostStub mHostStub;
 
     private final String TEST_UUID_STRING = "00001805-0000-1000-8000-00805f9b34fb";
+
 
     @BeforeClass
     public static void setUpClass() throws Exception {
@@ -99,10 +107,15 @@ public class LeScanningTest {
 
     @Test
     public void startBleScan_withCallbackTypeAllMatches() {
-        advertiseWithBumble(TEST_UUID_STRING);
+        advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
 
-        List<ScanResult> results = startScanning(TEST_UUID_STRING,
-                ScanSettings.CALLBACK_TYPE_ALL_MATCHES).join();
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .build();
+
+        List<ScanResult> results =
+                startScanning(scanFilter, ScanSettings.CALLBACK_TYPE_ALL_MATCHES).join();
 
         assertThat(results.get(0).getScanRecord().getServiceUuids().get(0)).isEqualTo(
                 ParcelUuid.fromString(TEST_UUID_STRING));
@@ -110,8 +123,27 @@ public class LeScanningTest {
                 ParcelUuid.fromString(TEST_UUID_STRING));
     }
 
-    private CompletableFuture<List<ScanResult>> startScanning(String serviceUuid,
-            int callbackType) {
+    @Test
+    public void scanForIrkIdentityAddress_withCallbackTypeAllMatches() {
+        advertiseWithBumble(null, OwnAddressType.RANDOM);
+
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setDeviceAddress(
+                                TEST_ADDRESS_RANDOM_STATIC,
+                                BluetoothDevice.ADDRESS_TYPE_RANDOM,
+                                TEST_IRK)
+                        .build();
+
+        List<ScanResult> results =
+                startScanning(scanFilter, ScanSettings.CALLBACK_TYPE_ALL_MATCHES).join();
+
+        assertThat(results).isNotNull();
+        assertThat(results.get(0).getDevice().getAddress()).isEqualTo(TEST_ADDRESS_RANDOM_STATIC);
+    }
+
+    private CompletableFuture<List<ScanResult>> startScanning(
+            ScanFilter scanFilter, int callbackType) {
         CompletableFuture<List<ScanResult>> future = new CompletableFuture<>();
         List<ScanResult> scanResults = new ArrayList<>();
 
@@ -129,20 +161,27 @@ public class LeScanningTest {
                         .build();
 
         List<ScanFilter> scanFilters = new ArrayList<>();
-        ScanFilter scanFilter = new ScanFilter.Builder()
-                .setServiceUuid(ParcelUuid.fromString(serviceUuid))
-                .build();
         scanFilters.add(scanFilter);
 
         ScanCallback scanCallback =
                 new ScanCallback() {
                     @Override
                     public void onScanResult(int callbackType, ScanResult result) {
-                        Log.i(TAG, "onScanResult " + "callbackType: " + callbackType
-                                + ", service uuids: " + result.getScanRecord().getServiceUuids());
-                        if (scanResults.size() < 2) {
-                            scanResults.add(result);
+                        Log.i(
+                                TAG,
+                                "onScanResult "
+                                        + "callbackType: "
+                                        + callbackType
+                                        + ", service uuids: "
+                                        + result.getScanRecord().getServiceUuids());
+                        if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
+                            if (scanResults.size() < 2) {
+                                scanResults.add(result);
+                            } else {
+                                future.complete(scanResults);
+                            }
                         } else {
+                            scanResults.add(result);
                             future.complete(scanResults);
                         }
                     }
@@ -160,15 +199,18 @@ public class LeScanningTest {
         return future.completeOnTimeout(null, TIMEOUT_SCANNING_MS, TimeUnit.MILLISECONDS);
     }
 
-    private void advertiseWithBumble(String serviceUuid) {
-        HostProto.DataTypes dataType = HostProto.DataTypes.newBuilder()
-                .addCompleteServiceClassUuids128(serviceUuid)
-                .build();
+    private void advertiseWithBumble(String serviceUuid, OwnAddressType addressType) {
+        HostProto.DataTypes.Builder dataTypeBuilder = HostProto.DataTypes.newBuilder();
+        if (serviceUuid != null) {
+            dataTypeBuilder.addCompleteServiceClassUuids128(serviceUuid);
+        }
 
-        AdvertiseRequest request = AdvertiseRequest.newBuilder()
-                .setLegacy(true)
-                .setData(dataType)
-                .build();
+        AdvertiseRequest request =
+                AdvertiseRequest.newBuilder()
+                        .setLegacy(true)
+                        .setOwnAddressType(addressType)
+                        .setData(dataTypeBuilder.build())
+                        .build();
 
         StreamObserver<AdvertiseResponse> responseObserver =
                 new StreamObserver<>() {
