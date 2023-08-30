@@ -1,12 +1,16 @@
 package android.bluetooth;
 
+import static com.google.common.io.BaseEncoding.base16;
+
 import com.google.protobuf.ByteString;
 import com.google.protobuf.Empty;
 
-import java.util.concurrent.TimeUnit;
-
 import io.grpc.ManagedChannel;
 import io.grpc.okhttp.OkHttpChannelBuilder;
+
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
+
 import pandora.HostGrpc;
 
 public final class Utils {
@@ -37,5 +41,15 @@ public final class Utils {
 
         // return new channel for future use
         return OkHttpChannelBuilder.forAddress("localhost", 7999).usePlaintext().build();
+    }
+
+    /**
+     * Decode address to byte array.
+     *
+     * @param address String representing Bluetooth address (case insensitive).
+     * @return Decoded address.
+     */
+    public static byte[] decode(String address) {
+        return base16().upperCase().withSeparator(":", 2).decode(address.toUpperCase(Locale.US));
     }
 }
