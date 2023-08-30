@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60d882cd_b36ae311",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T05:35:26Z",
+      "side": 1,
+      "message": "go/cros-bt-telephony-design-doc",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
