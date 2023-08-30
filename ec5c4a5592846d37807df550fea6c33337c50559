@@ -407,6 +407,512 @@
       },
       "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8aa870b0_61dd3b1d",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 100
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d381255f_03194faa",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "This should be only one line of log",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 74
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87b56554_ee3f8f93",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 55,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 0
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc79a752_bda96738",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "replace with an `else`",
+      "range": {
+        "startLine": 63,
+        "startChar": 3,
+        "endLine": 64,
+        "endChar": 6
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "caf5f3d9_3c7e445d",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "ADDRESS_TO_LOGGABLE_STR(address)",
+      "range": {
+        "startLine": 141,
+        "startChar": 43,
+        "endLine": 141,
+        "endChar": 69
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "001befde_84e87740",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "should this be an `else if` ?",
+      "range": {
+        "startLine": 160,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 8
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f9ff3fe_8070f64d",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 0
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d9091d2_b6a94ace",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"postion\" -- should it be \"position\"?",
+      "range": {
+        "startLine": 251,
+        "startChar": 41,
+        "endLine": 251,
+        "endChar": 48
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7826fce_8f14cb55",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"postion\" -- should it be \"position\"?",
+      "range": {
+        "startLine": 251,
+        "startChar": 41,
+        "endLine": 251,
+        "endChar": 48
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf10e610_8aba611d",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"postion\" -- should it be \"position\"?",
+      "range": {
+        "startLine": 322,
+        "startChar": 43,
+        "endLine": 322,
+        "endChar": 50
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13ab59bf_68c76d6f",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"postion\" -- should it be \"position\"?",
+      "range": {
+        "startLine": 322,
+        "startChar": 43,
+        "endLine": 322,
+        "endChar": 50
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62ab345c_ba386bef",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 455,
+        "startChar": 0,
+        "endLine": 471,
+        "endChar": 6
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8d652d5_609f43c7",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "Remove logging here",
+      "range": {
+        "startLine": 476,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 32
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "215b0c49_52761202",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 530,
+        "startChar": 0,
+        "endLine": 546,
+        "endChar": 6
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4061d9e9_76d59fca",
+        "filename": "system/main/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "@licorne@google.com I remember a CL of you to remove a few dependency on libcrypto.\nCan you check if this one is ok and/or if we need to link it differently ?",
+      "range": {
+        "startLine": 146,
+        "startChar": 9,
+        "endLine": 146,
+        "endChar": 18
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a5214ea_7c246822",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "I am surprised that GD does not have this internally and rely on legacy stack.\nWhy is this something needed only for this feature ?",
+      "range": {
+        "startLine": 61,
+        "startChar": 19,
+        "endLine": 61,
+        "endChar": 44
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab7b17f6_664a5d4c",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "I am surprise we need to put this in reverse. I haven\u0027t found the explication in the spec and would be curious to know why we are doing that.",
+      "range": {
+        "startLine": 216,
+        "startChar": 10,
+        "endLine": 216,
+        "endChar": 33
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b0966e5_dad0c208",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "I would prefer a brace initialization to avoid memset.\n\n\n```suggestion\n  tGATT_VALUE ccc_value \u003d {\n    .handle \u003d handle,\n    .len \u003d 2,\n    .value[0] \u003d GATT_CLT_CONFIG_INDICATION,\n  };\n```",
+      "range": {
+        "startLine": 375,
+        "startChar": 2,
+        "endLine": 379,
+        "endChar": 50
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "270fa1c2_59372fe9",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "I think this log should not be here 😊",
+      "range": {
+        "startLine": 464,
+        "startChar": 27,
+        "endLine": 464,
+        "endChar": 38
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "446e727f_88159bdb",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "Are VLOG visible ? Shouldn\u0027t we replace them all by LOG_INFO or LOG_WARN ??\n(btw, `__func__` is automatically included in the `LOG_XXX(\"foo\")` macro  )",
+      "range": {
+        "startLine": 469,
+        "startChar": 2,
+        "endLine": 469,
+        "endChar": 6
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "551ee725_35763f47",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "using raw number looks really wrong and errorprone.\nThis comment is not in the scope of this CL, but it does look like something wrong is happening here.",
+      "range": {
+        "startLine": 702,
+        "startChar": 12,
+        "endLine": 725,
+        "endChar": 14
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b640eb7_84fa0da5",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T21:37:15Z",
+      "side": 1,
+      "message": "Address should not be logged. Instead ADDRESS_TO_LOGGABLE macro should be used across all the logging",
+      "range": {
+        "startLine": 945,
+        "startChar": 43,
+        "endLine": 945,
+        "endChar": 51
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
