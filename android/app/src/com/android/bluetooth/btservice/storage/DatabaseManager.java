@@ -620,6 +620,7 @@ public class DatabaseManager {
             if (isA2dpDevice) {
                 metadata.is_active_a2dp_device = true;
             }
+            metadata.is_last_connected_device = true;
 
             Log.d(TAG, "Updating last connected time for device: " + device.getAnonymizedAddress()
                     + " to " + metadata.last_active_time);
@@ -634,6 +635,7 @@ public class DatabaseManager {
      */
     public void setDisconnection(BluetoothDevice device) {
         synchronized (mMetadataCache) {
+            Log.d(TAG, "setDisconnection: device " + device.getAnonymizedAddress());
             if (device == null) {
                 Log.e(TAG, "setDisconnection: device is null");
                 return;
@@ -646,6 +648,7 @@ public class DatabaseManager {
             }
             // Updates last connected time to either current time if connected or -1 if disconnected
             Metadata metadata = mMetadataCache.get(address);
+            metadata.is_last_connected_device = false;
             if (metadata.is_active_a2dp_device) {
                 metadata.is_active_a2dp_device = false;
                 Log.d(TAG, "setDisconnection: Updating is_active_device to false for device: "
@@ -982,8 +985,10 @@ public class DatabaseManager {
     }
 
     void createMetadata(String address, boolean isActiveA2dpDevice) {
+        Log.d(TAG, "createMetadata");
         Metadata data = new Metadata(address);
         data.is_active_a2dp_device = isActiveA2dpDevice;
+        data.is_last_connected_device = false;
         mMetadataCache.put(address, data);
         updateDatabase(data);
         logMetadataChange(data, "Metadata created");
@@ -1038,6 +1043,27 @@ public class DatabaseManager {
             }
         }
         return false;
+    }
+
+    public boolean isLastConnectedDevice(BluetoothDevice device) {
+        synchronized (mMetadataCache) {
+            if (device == null) {
+                Log.e(TAG, "device is null");
+                return false;
+            }
+
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.d(TAG, "isLastConnectedDevice: device " + device + " is not in cache");
+                return false;
+            }
+
+            Metadata data = mMetadataCache.get(address);
+            Log.d(TAG, device.getAnonymizedAddress() + " is_last_connected_device: "
+                    + data.is_last_connected_device);
+            return data.is_last_connected_device;
+        }
     }
 
     void migrateSettingsGlobal() {

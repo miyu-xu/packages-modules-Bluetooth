@@ -58,6 +58,11 @@ public class Metadata {
     public long last_active_time;
     public boolean is_active_a2dp_device;
 
+    /**
+     * is device connected in last bluetooth session
+     */
+    public boolean is_last_connected_device = false;
+
     @Embedded
     public AudioPolicyEntity audioPolicyMetadata;
 
