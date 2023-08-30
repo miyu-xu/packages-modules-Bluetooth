@@ -70,6 +70,24 @@
       "parentUuid": "f529071e_1e3c79ac",
       "revId": "04413b5ada072b4261641791088dd84f22f11a7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a4f310b_510af884",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-30T01:12:09Z",
+      "side": 1,
+      "message": "The update is already part of this CL 😁 I checked locally that it builds properly.",
+      "parentUuid": "4fdafb34_cb433811",
+      "revId": "04413b5ada072b4261641791088dd84f22f11a7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
