@@ -187,6 +187,30 @@
       },
       "revId": "c16600a9fd568aef3901aca2fd82e28660ff867e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c687d222_5b61bfaa",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpBipClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T15:44:48Z",
+      "side": 1,
+      "message": "Auto-formatting is happy with the parenthesis, it just doesn\u0027t know where to add them so will put one item per line",
+      "parentUuid": "96c86bef_dad8025c",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 30
+      },
+      "revId": "c16600a9fd568aef3901aca2fd82e28660ff867e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
