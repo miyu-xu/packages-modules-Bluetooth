@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b119b9a5_93183229",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpBipClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-30T07:51:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3da0d48c_769fd30e",
+      "range": {
+        "startLine": 247,
+        "startChar": 5,
+        "endLine": 247,
+        "endChar": 22
+      },
+      "revId": "c16600a9fd568aef3901aca2fd82e28660ff867e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28380d6a_e319c7b4",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-29T23:11:23Z",
       "side": 1,
       "message": "nit suggestion:\n\n\n```suggestion\n        mHandler.sendEmptyMessage(CONNECT);\n```\n\nyou can do that in disconnect too. Or don\u0027t change anything as the code was already like this",
+      "range": {
+        "startLine": 249,
+        "startChar": 8,
+        "endLine": 249,
+        "endChar": 55
+      },
+      "revId": "c16600a9fd568aef3901aca2fd82e28660ff867e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0b5b6f9_fa75a7a3",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpBipClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-30T07:51:40Z",
+      "side": 1,
+      "message": "Let\u0027s keep it as it was, but thanks for the suggestion!",
+      "parentUuid": "28380d6a_e319c7b4",
       "range": {
         "startLine": 249,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efb5636b_597c0a07",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpBipClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 330,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-30T07:51:40Z",
+      "side": 1,
+      "message": "Yes, I felt bad creating a connect without a disconnect but you\u0027re right I should replace the call in shutdown :)",
+      "parentUuid": "6d4f38cd_ac6a58b5",
+      "range": {
+        "startLine": 326,
+        "startChar": 3,
+        "endLine": 330,
+        "endChar": 5
+      },
+      "revId": "c16600a9fd568aef3901aca2fd82e28660ff867e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2126e462_060d7a8f",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-08-29T23:11:23Z",
       "side": 1,
       "message": "nit suggestion: (personal preference 😊 )\nThis could be more readable by inline key value:\n\n```suggestion\n        String expected \u003d\n                \"\u003cAvrcpBipClient\"\n                        + (\" device\u003d\" + mTestDevice)\n                        + (\" psm\u003d\" + TEST_PSM)\n                        + (\" state\u003d\" + mClient.getStateName())\n                        + \"\u003e\";\n```",
+      "range": {
+        "startLine": 144,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 30
+      },
+      "revId": "c16600a9fd568aef3901aca2fd82e28660ff867e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "96c86bef_dad8025c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpBipClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-30T07:51:40Z",
+      "side": 1,
+      "message": "Yup, auto-formatting did not make too much sense here.",
+      "parentUuid": "2126e462_060d7a8f",
       "range": {
         "startLine": 144,
         "startChar": 8,
