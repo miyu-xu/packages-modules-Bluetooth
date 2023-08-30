@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c90aaaa_54ab2bb6",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-08-30T22:42:51Z",
+      "side": 1,
+      "message": "not sure if using IsBroadcaster for this sink cleanup here is a good solution to solve this. \nconsidering cis to bis handover should address this, i\u0027d suggest to try with that solution and we can revisit this if in the future we consider to support unicast \u0026 broadcast overlap use case.",
+      "revId": "67c41e747eead52ea9d16f9922341f330ff52f30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
