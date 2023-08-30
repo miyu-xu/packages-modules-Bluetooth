@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b82755c1_850bc962",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-08-30T02:00:14Z",
+      "side": 1,
+      "message": "Similar to aosp/2709179 with notifications, for now try to throw exception to user since currently, writeCharacteristic doesn\u0027t write when it\u0027s over max length(512 bytes), and no error/exception is informed to the user. Test is linked with the same topic as this CL.\n\nSame with the notification case, this should be aligned with handling in the native layer in the future, and will deal with this as a part of the enumerating GATT error project.",
+      "revId": "9a701e05fb1b59b264cf493b43582dadc9f6858a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
