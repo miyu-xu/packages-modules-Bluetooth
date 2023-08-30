@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79f7d9a4_d39fb784",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-30T01:34:58Z",
+      "side": 1,
+      "message": "Looking at the code, I\u0027m not sure to understand why we should change `BTM_SCO_CODEC_LC3` and not `BTA_AG_SCO_SWB_SETTINGS_Q0_MASK` as neither of those value are serialized or send over the air.\n\nI agree that we should modify one of the two because they are conflicting, but I think we should modify `BTA_AG_SCO_SWB_SETTINGS_Q0_MASK` and all the other Q1, Q2, Q3 and move it alongside `BTM_SCO_CODEC_LC3` (in btm_api_types.h).\n\nWhile looking at the code I also found strange that we set `BTA_AG_SCO_SWB_SETTINGS_Q1_MASK`, `BTA_AG_SCO_SWB_SETTINGS_Q2_MASK`, `BTA_AG_SCO_SWB_SETTINGS_Q3_MASK` but never test for those bits.",
+      "parentUuid": "762ff7b1_f13e9429",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e5e11d8_cb7680ac",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 12
