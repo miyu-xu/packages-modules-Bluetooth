@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1024e25_37d1b138",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T15:42:47Z",
+      "side": 1,
+      "message": "you are creating a default that will be used in only one place. I do not understand what will it be used for.",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 31
+      },
+      "revId": "09e5ebdbf5c6687542affd21ee67fb5ae5b68fe7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
