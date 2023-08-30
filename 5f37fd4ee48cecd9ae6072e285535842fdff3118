@@ -303,6 +303,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0fd745e2_cb8da13d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-30T07:30:01Z",
+      "side": 1,
+      "message": "Would it be acceptable to move the vector of UHIDDevice\u003cFile\u003e out of uhid.rs, as different usage may need to store different data with UHID device?",
+      "parentUuid": "30103f20_3e16fa0b",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e1d7c19_8946d3a5",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
