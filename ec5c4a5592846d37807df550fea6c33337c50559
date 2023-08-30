@@ -16,6 +16,397 @@
       "message": "Seems like an XL CL - Anyway we can break it down further into smaller CLs.",
       "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "542f92f3_b43806da",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "Can you run auto-format on the patchset ? There is a tab here and in a few other locations",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "251936ee_c02e6c00",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterProperties.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "FYI, this is non compliant with AOSP header.\n\nWe will have to modify this CL to remove all these mentions as per the code submission to non third-party directories agreement.",
+      "range": {
+        "startLine": 18,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 75
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecd616e9_8145097a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "The content of this method looks a lot like what is inside `advertiseDataToBytes` except some flipped condition.\n\nI feel like we can merge them or improve the code here to not have 200 lines that repeat themselves",
+      "range": {
+        "startLine": 231,
+        "startChar": 25,
+        "endLine": 231,
+        "endChar": 48
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baedf17e_0c518ebb",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "I expect this not to work with the latest change that has been merged.\nPlease use `mNativeInterface.startAdvertisingSet` and modify the AdvertiseManagerNativeInterface",
+      "range": {
+        "startLine": 279,
+        "startChar": 12,
+        "endLine": 279,
+        "endChar": 37
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e215d0c_dd3b410b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "I assume this was push by mistake\n\nDid it works ? 😜",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 34
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0d437e0_9db94a93",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "Delete. This code is now in `AdvertiseManagerNativeInterface.java`",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 92
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98462560_5fefefc7",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2774,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "I do not have knowledge on the sensibility of this data but:\n1. Is it fine to expose trough aidl and in an hidden API ?\n2. Is it fine to have no permission for this ?\n3. What is the point of having the API in java as hidden if we are not exposing it. \n \n We should not implement the AIDL nor any getter from Framework if we do not open the API (currently `@hide`)\n \n \n About the last bullet, is there plan to expose that to Apps as official android bluetooth API ? \nOr is there plan to expose this to systemApi only ?  (this question apply for all the hidden API added in the framework/... code)",
+      "range": {
+        "startLine": 2773,
+        "startChar": 0,
+        "endLine": 2774,
+        "endChar": 25
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae52930a_768d24a0",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2780,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "I assume that the readLock should be done before the `try { } finally { }` to avoid [LockNotBeforeTry](https://errorprone.info/bugpattern/LockNotBeforeTry) bugpattern",
+      "range": {
+        "startLine": 2780,
+        "startChar": 0,
+        "endLine": 2780,
+        "endChar": 43
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0599627_0c111386",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2800,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "Delete ?",
+      "range": {
+        "startLine": 2794,
+        "startChar": 3,
+        "endLine": 2800,
+        "endChar": 0
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1af0d0a6_f52340ed",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "`@NonNull` should be not necessary for boolean",
+      "range": {
+        "startLine": 138,
+        "startChar": 5,
+        "endLine": 138,
+        "endChar": 12
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4bdcdf8_be6b7c86",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "`@NonNull` should be not necessary for boolean",
+      "range": {
+        "startLine": 158,
+        "startChar": 5,
+        "endLine": 158,
+        "endChar": 12
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7585e3c2_dc810eb6",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Common Typos: Common typo found: \" dont \" -- should it be \" don\u0027t \"?",
+      "range": {
+        "startLine": 941,
+        "startChar": 57,
+        "endLine": 941,
+        "endChar": 63
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0420a8ed_8c61face",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2403,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "delete  or uncomment ?",
+      "range": {
+        "startLine": 2403,
+        "startChar": 0,
+        "endLine": 2403,
+        "endChar": 99
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de7d6514_5cd98909",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1674,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "btif_config_set_int can take the String as parameter directly",
+      "range": {
+        "startLine": 1674,
+        "startChar": 36,
+        "endLine": 1674,
+        "endChar": 55
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ee3ac8a_0decb500",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 41
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61c42a13_e0efd26e",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "can we modify the logging to be written in one invocation ?",
+      "range": {
+        "startLine": 1049,
+        "startChar": 6,
+        "endLine": 1053,
+        "endChar": 73
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbd382f6_47c8ed2a",
+        "filename": "system/gd/hci/le_advertising_manager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T18:30:39Z",
+      "side": 1,
+      "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 100
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
