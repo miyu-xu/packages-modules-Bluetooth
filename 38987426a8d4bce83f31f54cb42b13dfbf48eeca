@@ -16,6 +16,29 @@
       "message": "go/cros-bt-telephony-design-doc",
       "revId": "38987426a8d4bce83f31f54cb42b13dfbf48eeca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44987b8e_8ef9d6ac",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1124,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:16:06Z",
+      "side": 1,
+      "message": "```suggestion\n// To change the value of phone_ops_enabled, you need to toggle the BluetoothFlossTelephony feature flag on chrome://flags.\n        if !self.phone_ops_enabled {\n```",
+      "range": {
+        "startLine": 1124,
+        "startChar": 8,
+        "endLine": 1124,
+        "endChar": 36
+      },
+      "revId": "38987426a8d4bce83f31f54cb42b13dfbf48eeca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
