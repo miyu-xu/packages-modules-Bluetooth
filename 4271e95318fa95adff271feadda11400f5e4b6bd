@@ -16,6 +16,148 @@
       "message": "go/cros-bt-telephony-design-doc",
       "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02ee67da_622af41c",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:24:36Z",
+      "side": 1,
+      "message": "Can we merge this file into https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/linux/utils/src/uhid.rs?q\u003dBluetooth%2Fsystem%2Fgd%2Frust%2Flinux%2Futils%2Fsrc%2Fuhid.rs ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ce19f3a_a5542d4c",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:24:36Z",
+      "side": 1,
+      "message": "```suggestion\npub const BLUETOOTH_TELEPHONY_UHID_REPORT_ID: u8 \u003d 1;\n```",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c615abfe_2bbe987b",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:24:36Z",
+      "side": 1,
+      "message": "Is that possible we reuse read function in https://docs.rs/uhid-virt/latest/src/uhid_virt/uhid_device.rs.html#53?",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14ef1b85_ce007f72",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:24:36Z",
+      "side": 1,
+      "message": "We are not WebHID. We are a UHID device created by floss. Using `WebHID:` here is not appropriate.",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6de4ecfb_5f0822f8",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:24:36Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c6e646e_02f8f13a",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:24:36Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97a4a13f_d3d4aa94",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:24:36Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2312f718_6b0e245a",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T07:24:36Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
