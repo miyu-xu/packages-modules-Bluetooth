@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce24b95d_d10af1b5",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 7
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-30T09:20:32Z",
+      "side": 1,
+      "message": "Sounds a bit strange. Consider just calling it |AacEncoderParam|.",
+      "range": {
+        "startLine": 87,
+        "startChar": 8,
+        "endLine": 87,
+        "endChar": 28
+      },
+      "revId": "d40ad7f87912da3a0c6f8b961ea4519fdd4d867a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
