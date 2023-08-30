@@ -52,6 +52,24 @@
       "parentUuid": "5873a60d_a4ee3ade",
       "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6bdd4f3_cf0c8f51",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-08-30T05:35:00Z",
+      "side": 1,
+      "message": "Generalize the ../utils/src/uhid.rs to supports both what we need now and what you want to add. \n\nIsolate the defines and creation in the utils files, leave bluetooth_media for media logic only.",
+      "parentUuid": "34b0083a_30dba2fb",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
