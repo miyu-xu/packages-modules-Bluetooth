@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0220aa00_36fc4ed4",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothCall.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-30T23:18:23Z",
+      "side": 1,
+      "message": "I would suggest making this private and using getting and setter to change this.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "49cb1c4e48fe2cfb2937589be1c34dfb7b3703ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a2cb7e6_3db6552e",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 854,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-30T23:18:23Z",
+      "side": 1,
+      "message": "can we extract these into corresponding values and then use it. Seems very difficult to read this way.\n\nAlso instead of using a Object[] can we at some place convert it into a CLCC object or the likes to represent it better.",
+      "range": {
+        "startLine": 845,
+        "startChar": 16,
+        "endLine": 854,
+        "endChar": 52
+      },
+      "revId": "49cb1c4e48fe2cfb2937589be1c34dfb7b3703ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
