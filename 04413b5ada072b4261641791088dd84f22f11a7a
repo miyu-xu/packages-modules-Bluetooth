@@ -52,6 +52,24 @@
       "parentUuid": "7d6b6e55_1d400d8a",
       "revId": "04413b5ada072b4261641791088dd84f22f11a7a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fdafb34_cb433811",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-08-30T01:03:50Z",
+      "side": 1,
+      "message": "David, if you have an idea of how to update the Docker image, I can push it live once you have an available change.",
+      "parentUuid": "f529071e_1e3c79ac",
+      "revId": "04413b5ada072b4261641791088dd84f22f11a7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
