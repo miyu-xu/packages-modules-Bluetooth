@@ -1,5 +1,52 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2c7d297_9e3025a8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T00:14:51Z",
+      "side": 1,
+      "message": "Removing the final should not be needed if you use the real implementation instead of moking.\nInstead of Mocking RemoteDevices, you could create a new `RemoteDevice(mockAdapterService, testLooper)`",
+      "range": {
+        "startLine": 61,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 6
+      },
+      "revId": "5818aa209f98c6762ee30fb85c8c4a4c1b8c95d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5110b2b4_270ae38a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-30T00:14:51Z",
+      "side": 1,
+      "message": "This should be on `looper` and not on `Looper.getMainLooper`.\n\nBy using the `Looper` you are making testLooper injection more difficult",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 59
+      },
+      "revId": "5818aa209f98c6762ee30fb85c8c4a4c1b8c95d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
