@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8971e18_897e14b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-08-30T09:28:48Z",
+      "side": 1,
+      "message": "Test: atest bluetooth_test_gd",
+      "revId": "02f934341f08d4e599a34b3dc43704d57314add8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "4c0e4b05_068fc949",
