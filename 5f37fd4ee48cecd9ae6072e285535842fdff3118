@@ -339,6 +339,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c96c14b_b3c9a3d5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-30T17:01:01Z",
+      "side": 1,
+      "message": "I just realized some of the code in this CL has been removed/replaced with uhid_hfp in a later CL. I would suggest in this case to move the uhid_hfp.rs to `system/gd/rust/linux/utils/src/`. The minimum work is to keep all the implementation details in one place.",
+      "parentUuid": "3fc44676_622205de",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4e1d7c19_8946d3a5",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 3
