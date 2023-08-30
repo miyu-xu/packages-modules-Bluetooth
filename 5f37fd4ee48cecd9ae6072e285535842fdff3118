@@ -158,6 +158,24 @@
       "parentUuid": "7f22a3e1_2c053762",
       "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8451aa45_9a98bf17",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-30T06:10:20Z",
+      "side": 1,
+      "message": "I see. If we would switch to `tokio_linux_uhid`, it makes sense to create a new file. But I think a separate implementation based on `uhid-virt` is not recommended.",
+      "parentUuid": "4195d916_3e5d54e8",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
