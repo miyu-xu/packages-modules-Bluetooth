@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "210523d2_c1aa9569",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:34:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89dea2e8_42ab18ee",
+      "revId": "ad95e6ba338cd01f4aaef2d25b271277166faf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2da33a9b_a54ecf41",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "72d5d716_d1a520ab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:34:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2da33a9b_a54ecf41",
+      "revId": "ad95e6ba338cd01f4aaef2d25b271277166faf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ecddab5_52518d7e",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-08-30T09:28:29Z",
       "side": 1,
       "message": "Test: atest bluetooth_test_gd",
+      "revId": "ad95e6ba338cd01f4aaef2d25b271277166faf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "527b50d6_6140beed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:34:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ecddab5_52518d7e",
       "revId": "ad95e6ba338cd01f4aaef2d25b271277166faf59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +140,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2132ca5_c5ed844c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1180,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:34:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8387c19c_df79c65c",
+      "revId": "ad95e6ba338cd01f4aaef2d25b271277166faf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "815fcccc_e216cd85",
@@ -99,6 +171,30 @@
       "writtenOn": "2023-08-31T09:58:04Z",
       "side": 1,
       "message": "How about `uhid.volume`?",
+      "range": {
+        "startLine": 1189,
+        "startChar": 44,
+        "endLine": 1189,
+        "endChar": 56
+      },
+      "revId": "ad95e6ba338cd01f4aaef2d25b271277166faf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e30cef74_97694699",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:34:57Z",
+      "side": 1,
+      "message": "this failed to build if called with `uhid.volume` directly, with \"error[E0499]: cannot borrow `*self` as mutable more than once at a time\"\nusing `saved_volume` allows rust compiler to drop the `uhid` reference before call to `set_hfp_mic_volume`",
+      "parentUuid": "815fcccc_e216cd85",
       "range": {
         "startLine": 1189,
         "startChar": 44,
