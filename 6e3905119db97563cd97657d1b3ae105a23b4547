@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef52f097_b50a16f6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-08-31T15:18:55Z",
+      "side": 1,
+      "message": "Done\n\nI\u0027ve analysed changes that introduced this \"active device notify\" before AudioDevice connection and it looks like all of them were about volume control.\n\nI\u0027ve checked all headsets that I have especially for volume control and I did not face any volume control issues.\n\nThere is the same implementation in LE Audio currently. Now those two modules should be in sync with volume control handling, active device, connected in AudioManager.\n\nI\u0027ve also asked testers to check such change.",
+      "parentUuid": "c861b8e9_6e1b6e05",
+      "range": {
+        "startLine": 29,
+        "startChar": 12,
+        "endLine": 29,
+        "endChar": 27
+      },
+      "revId": "6e3905119db97563cd97657d1b3ae105a23b4547",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "24b3c601_b8d7eb18",
