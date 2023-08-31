@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e20ae5f8_e8a1fa14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-08-31T01:26:21Z",
+      "side": 1,
+      "message": "```\n    /**\n     * Get the Bluetooth class of the remote device.\n     *\n     * @return Bluetooth class object, or null on error\n     */\npublic BluetoothClass getBluetoothClass()\n```",
+      "revId": "551080468627222dae855c93dde0160b0b558e0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
