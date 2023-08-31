@@ -755,6 +755,14 @@ public class AdapterService extends Service {
         return mSilenceDeviceManager;
     }
 
+    public PbapClientService getPbapClientService() {
+        if (mPbapClientService == null) {
+            Log.i(TAG, "Pbab Client Service is not started");
+            return null;
+        }
+        return mPbapClientService;
+    }
+
     private boolean initMetricsLogger() {
         if (mMetricsLogger != null) {
             return false;

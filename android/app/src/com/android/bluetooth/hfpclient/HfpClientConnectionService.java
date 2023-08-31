@@ -156,6 +156,11 @@ public class HfpClientConnectionService extends ConnectionService {
                     .getRemoteDevices()
                     .handleHeadsetClientConnectionStateChanged(device, oldState, newState);
         }
+        if (adapterService != null && adapterService.getPbapClientService() != null) {
+            adapterService
+                    .getPbapClientService()
+                    .handleHeadsetClientConnectionStateChanged(device, oldState, newState);
+        }
     }
 
     private void onCallChangedInternal(BluetoothDevice device, HfpClientCall call) {
