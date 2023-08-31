@@ -22,6 +22,30 @@
       },
       "revId": "9af042f2739e08c1bef40170ab61526c1518534a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1076c7d2_232b5004",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-31T06:50:52Z",
+      "side": 1,
+      "message": "While the message does not have `Linux`, the field in |ConfigParam| remains to be |a2dp_aac_encoder_linux_param| to distinguish non-standard codecs.",
+      "parentUuid": "ec0cec82_2536fbc0",
+      "range": {
+        "startLine": 108,
+        "startChar": 20,
+        "endLine": 108,
+        "endChar": 48
+      },
+      "revId": "9af042f2739e08c1bef40170ab61526c1518534a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
