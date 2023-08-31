@@ -22,6 +22,30 @@
       },
       "revId": "453fc46023abd5a27bbd41c1dfaf5c2b5e112642",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e55906ca_6c596d58",
+        "filename": "system/stack/mmc/codec_server/a2dp_aac_mmc_encoder.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-31T10:30:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31681936_df7273d4",
+      "range": {
+        "startLine": 73,
+        "startChar": 18,
+        "endLine": 73,
+        "endChar": 46
+      },
+      "revId": "453fc46023abd5a27bbd41c1dfaf5c2b5e112642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
