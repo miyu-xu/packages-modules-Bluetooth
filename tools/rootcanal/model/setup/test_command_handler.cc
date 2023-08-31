@@ -25,6 +25,7 @@
 #include "device_boutique.h"
 #include "log.h"
 #include "phy.h"
+#include "rootcanal/configuration.pb.h"
 
 using std::vector;
 
@@ -45,6 +46,7 @@ TestCommandHandler::TestCommandHandler(TestModel& test_model)
   SET_HANDLER("del_device_from_phy", RemoveDeviceFromPhy);
   SET_HANDLER("list", List);
   SET_HANDLER("set_device_address", SetDeviceAddress);
+  SET_HANDLER("set_device_configuration", SetDeviceConfiguration);
   SET_HANDLER("set_timer_period", SetTimerPeriod);
   SET_HANDLER("start_timer", StartTimer);
   SET_HANDLER("stop_timer", StopTimer);
@@ -125,7 +127,7 @@ void TestCommandHandler::AddRemote(const vector<std::string>& args) {
     return;
   }
 
-  size_t port = std::stoi(args[1]);
+  size_t port = static_cast<size_t>(std::strtoul(args[1].c_str(), nullptr, 0));
   Phy::Type phy_type = Phy::Type::BR_EDR;
   if ("LOW_ENERGY" == args[2]) {
     phy_type = Phy::Type::LOW_ENERGY;
@@ -146,7 +148,8 @@ void TestCommandHandler::AddRemote(const vector<std::string>& args) {
 }
 
 void TestCommandHandler::RemoveDevice(const vector<std::string>& args) {
-  size_t dev_index = std::stoi(args[0]);
+  size_t dev_index =
+      static_cast<size_t>(std::strtoul(args[0].c_str(), nullptr, 0));
 
   model_.RemoveDevice(dev_index);
   response_string_ = "TestCommandHandler 'del' called with device at index " +
@@ -231,6 +234,39 @@ void TestCommandHandler::SetDeviceAddress(const vector<std::string>& args) {
   Address::FromString(args[1], device_address);
   model_.SetDeviceAddress(device_id, device_address);
   response_string_ = "set_device_address " + args[0];
+  response_string_ += " ";
+  response_string_ += args[1];
+  send_response_(response_string_);
+}
+
+void TestCommandHandler::SetDeviceConfiguration(const vector<std::string>& args) {
+  if (args.size() != 2) {
+    response_string_ =
+        "TestCommandHandler 'set_device_configuration' takes two arguments";
+    send_response_(response_string_);
+    return;
+  }
+  size_t device_id = std::stoi(args[0]);
+  rootcanal::configuration::ControllerPreset preset =
+      rootcanal::configuration::ControllerPreset::DEFAULT;
+
+  if (args[1] == "default") {
+    preset = rootcanal::configuration::ControllerPreset::DEFAULT;
+  } else if (args[1] == "laird_bl654") {
+    preset = rootcanal::configuration::ControllerPreset::LAIRD_BL654;
+  } else if (args[1] == "csr_rck_pts_dongle") {
+    preset = rootcanal::configuration::ControllerPreset::CSR_RCK_PTS_DONGLE;
+  } else {
+    response_string_ =
+        "TestCommandHandler 'set_device_configuration' invalid configuration preset";
+    send_response_(response_string_);
+    return;
+  }
+
+  rootcanal::configuration::Controller configuration;
+  configuration.set_preset(preset);
+  model_.SetDeviceConfiguration(device_id, configuration);
+  response_string_ = "set_device_configuration " + args[0];
   response_string_ += " ";
   response_string_ += args[1];
   send_response_(response_string_);
