@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2463af71_5063a81a",
+        "filename": "system/stack/btm/hfp_lc3_encoder_linux.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-31T05:11:08Z",
+      "side": 1,
+      "message": "Removed the comment to avoid confusion.",
+      "parentUuid": "c3dddaf8_ddb2ced5",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "2deb79dbce6f40c8e069ea2dfbd46a7b904364fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1de7949_c516a9dd",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc938d9e_23cf80c3",
+        "filename": "system/stack/mmc/codec_client/codec_client.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-31T05:11:08Z",
+      "side": 1,
+      "message": "Handle rc \u003d\u003d 0 in \"rc \u003c i_len\"",
+      "parentUuid": "e1de7949_c516a9dd",
+      "range": {
+        "startLine": 177,
+        "startChar": 12,
+        "endLine": 177,
+        "endChar": 17
+      },
+      "revId": "2deb79dbce6f40c8e069ea2dfbd46a7b904364fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7ff77c0_2095a313",
@@ -84,6 +132,30 @@
       "writtenOn": "2023-08-31T01:02:35Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 187,
+        "startChar": 12,
+        "endLine": 187,
+        "endChar": 17
+      },
+      "revId": "2deb79dbce6f40c8e069ea2dfbd46a7b904364fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1a1f765_fdbab603",
+        "filename": "system/stack/mmc/codec_client/codec_client.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-31T05:11:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7ff77c0_2095a313",
       "range": {
         "startLine": 187,
         "startChar": 12,
@@ -131,6 +203,30 @@
       "side": 1,
       "message": "For rc \u003d\u003d 0, I would return -EREMOTEIO instead. (When POLLIN is set, reading zero byte should be viewed as an error.)",
       "parentUuid": "5227068b_56c9c2e9",
+      "range": {
+        "startLine": 199,
+        "startChar": 12,
+        "endLine": 199,
+        "endChar": 17
+      },
+      "revId": "2deb79dbce6f40c8e069ea2dfbd46a7b904364fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85a61379_797a68c5",
+        "filename": "system/stack/mmc/codec_client/codec_client.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-31T05:11:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be95160d_0afc9385",
       "range": {
         "startLine": 199,
         "startChar": 12,
