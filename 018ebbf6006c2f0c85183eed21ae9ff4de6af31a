@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41cf9a5b_ba67e69e",
+        "filename": "system/gd/rust/linux/stack/Cargo.toml",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-08-31T16:50:48Z",
+      "side": 1,
+      "message": "Maybe this is not necessary as implementation is moved to utils.",
+      "revId": "018ebbf6006c2f0c85183eed21ae9ff4de6af31a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
