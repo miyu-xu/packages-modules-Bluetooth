@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "721c1e7a_f6d2a75a",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HfpClientConnectionService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-31T16:48:55Z",
+      "side": 1,
+      "message": "why not `PbapClientService.getPbapClientService();` directly ?",
+      "range": {
+        "startLine": 160,
+        "startChar": 11,
+        "endLine": 161,
+        "endChar": 43
+      },
+      "revId": "fdf095d68bdda87cf1e5db575b5e836b440988fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
