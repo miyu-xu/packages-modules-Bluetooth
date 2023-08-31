@@ -67,6 +67,46 @@
       "message": "go/cros-bt-telephony-design-doc",
       "revId": "ad95e6ba338cd01f4aaef2d25b271277166faf59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8387c19c_df79c65c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1180,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-31T09:58:04Z",
+      "side": 1,
+      "message": "nit: Consider early returning to save indent for the below lines. BTW it may be worth printing the warning when uhid is not found.\n```suggestion\n        let uhid \u003d match self.uhid.get_mut(\u0026addr) {\n            Some(uhid) \u003d\u003e uhid,\n            _ \u003d\u003e return,\n        }\n```",
+      "revId": "ad95e6ba338cd01f4aaef2d25b271277166faf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "815fcccc_e216cd85",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1189,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-31T09:58:04Z",
+      "side": 1,
+      "message": "How about `uhid.volume`?",
+      "range": {
+        "startLine": 1189,
+        "startChar": 44,
+        "endLine": 1189,
+        "endChar": 56
+      },
+      "revId": "ad95e6ba338cd01f4aaef2d25b271277166faf59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
