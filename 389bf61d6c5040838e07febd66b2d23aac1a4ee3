@@ -96,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "efa0afda_a689e8ad",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2024,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-31T23:41:14Z",
+      "side": 1,
+      "message": "I assume that this is not what Christine meant.\nInstead of 2 Log.d, you could have one and put everything on one line.\n\n\nFyi, you can also merged on the same line Key-values by using parentheses like this \n```\n            Log.d(\n                    TAG,\n                    \"PROFILE_CONNECTION_STATE_CHANGE:\"\n                            + (\" profile\u003d\" + BluetoothProfile.getProfileName(profile));\n                            + (\", prevState\u003d\" + fromState\n                            + (\", state\u003d\" + toState)\n                            + (\"updatedConnectingState \u003d \" + updatedConnectingState);\n```",
+      "parentUuid": "2acd7068_157a2917",
+      "range": {
+        "startLine": 2022,
+        "startChar": 0,
+        "endLine": 2024,
+        "endChar": 9
+      },
+      "revId": "389bf61d6c5040838e07febd66b2d23aac1a4ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1e04c97_b4364765",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 7
