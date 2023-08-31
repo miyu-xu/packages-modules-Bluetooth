@@ -214,8 +214,8 @@ static void hci_btsnd_hcic_disconnect(tACL_CONN& p_acl, tHCI_STATUS reason,
       // link stays up due to the presence of other clients.
       bluetooth::connection::GetConnectionManager()
           .stop_all_connections_to_device(bluetooth::core::ToRustAddress(
-              tBLE_BD_ADDR{.bda = p_acl.active_remote_addr,
-                           .type = p_acl.active_remote_addr_type}));
+              tBLE_BD_ADDR{.type = p_acl.active_remote_addr_type,
+                           .bda = p_acl.active_remote_addr}));
     }
   }
 
@@ -2409,10 +2409,6 @@ void BTM_ReadConnectionAddr(const RawAddress& remote_bda,
  *
  ******************************************************************************/
 bool BTM_IsBleConnection(uint16_t hci_handle) {
-  if (bluetooth::shim::is_gd_shim_enabled()) {
-    ASSERT_LOG(false, "This should not be invoked from code path");
-  }
-
   if (bluetooth::shim::is_gd_l2cap_enabled()) {
     return bluetooth::shim::L2CA_IsLeLink(hci_handle);
   }
@@ -2775,8 +2771,8 @@ void acl_write_automatic_flush_timeout(const RawAddress& bd_addr,
 bool acl_create_le_connection_with_id(uint8_t id, const RawAddress& bd_addr,
                                       tBLE_ADDR_TYPE addr_type) {
   tBLE_BD_ADDR address_with_type{
-      .bda = bd_addr,
       .type = addr_type,
+      .bda = bd_addr,
   };
 
   gatt_find_in_device_record(bd_addr, &address_with_type);

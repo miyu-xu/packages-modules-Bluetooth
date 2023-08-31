@@ -249,6 +249,7 @@ struct tBTA_DM_PEER_DEVICE {
   bool in_use;
 
  private:
+<<<<<<< HEAD   (9e380c Snap for 10708247 from 9881e645f9ee99e6e4e5d9784c2f1602fc807)
   friend void bta_dm_acl_up(const RawAddress& bd_addr, tBT_TRANSPORT transport,
                             uint16_t acl_handle);
   friend void bta_dm_pm_btm_status(const RawAddress& bd_addr,
@@ -260,9 +261,43 @@ struct tBTA_DM_PEER_DEVICE {
                               uint8_t app_id, const RawAddress& peer_addr);
   friend void handle_remote_features_complete(const RawAddress& bd_addr);
   tBTA_DM_DEV_INFO info;
+=======
+  // Dynamic pieces of operational device information
+  tBTA_DM_DEV_INFO info{BTA_DM_DI_NONE};
+>>>>>>> BRANCH (cc1a3b Merge "Add keyword to support tests to run on a dedicated su)
 
  public:
+<<<<<<< HEAD   (9e380c Snap for 10708247 from 9881e645f9ee99e6e4e5d9784c2f1602fc807)
   tBTA_DM_DEV_INFO Info() const { return info; }
+=======
+  std::string info_text() const { return device_info_text(info); }
+
+  void reset_device_info() { info = BTA_DM_DI_NONE; }
+
+  void set_av_active() { info |= BTA_DM_DI_AV_ACTIVE; }
+  void reset_av_active() { info &= ~BTA_DM_DI_AV_ACTIVE; }
+  bool is_av_active() const { return info & BTA_DM_DI_AV_ACTIVE; }
+
+  void set_local_init_sniff() { info |= BTA_DM_DI_INT_SNIFF; }
+  bool is_local_init_sniff() const { return info & BTA_DM_DI_INT_SNIFF; }
+  void set_remote_init_sniff() { info |= BTA_DM_DI_ACP_SNIFF; }
+  bool is_remote_init_sniff() const { return info & BTA_DM_DI_ACP_SNIFF; }
+
+  void set_sniff_command_sent() { info |= BTA_DM_DI_SET_SNIFF; }
+  void reset_sniff_command_sent() { info &= ~BTA_DM_DI_SET_SNIFF; }
+  bool is_sniff_command_sent() const { return info & BTA_DM_DI_SET_SNIFF; }
+
+  // NOTE: Why is this not used as a bitmask
+  void set_both_device_ssr_capable() { info = BTA_DM_DI_USE_SSR; }
+
+  void reset_sniff_flags() {
+    info &= ~(BTA_DM_DI_INT_SNIFF | BTA_DM_DI_ACP_SNIFF | BTA_DM_DI_SET_SNIFF);
+  }
+>>>>>>> BRANCH (cc1a3b Merge "Add keyword to support tests to run on a dedicated su)
+
+  void set_ssr_active() { info |= BTA_DM_DI_USE_SSR; }
+  void reset_ssr_active() { info &= ~BTA_DM_DI_USE_SSR; }
+  bool is_ssr_active() const { return info & BTA_DM_DI_USE_SSR; }
 
   tBTA_DM_ENCRYPT_CBACK* p_encrypt_cback;
   tBTM_PM_STATUS prev_low; /* previous low power mode used */

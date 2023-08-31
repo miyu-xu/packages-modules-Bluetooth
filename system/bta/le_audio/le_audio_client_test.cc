@@ -456,8 +456,8 @@ class UnicastTestNoInit : public Test {
     ASSERT_NE(peer_devices.count(conn_id), 0u);
 
     tBTA_GATTC_CLOSE event_data = {
-        .status = GATT_SUCCESS,
         .conn_id = conn_id,
+        .status = GATT_SUCCESS,
         .client_if = gatt_if,
         .remote_bda = peer_devices.at(conn_id)->addr,
         .reason = reason,
@@ -476,8 +476,8 @@ class UnicastTestNoInit : public Test {
   void InjectSearchCompleteEvent(uint16_t conn_id) {
     ASSERT_NE(conn_id, GATT_INVALID_CONN_ID);
     tBTA_GATTC_SEARCH_CMPL event_data = {
-        .status = GATT_SUCCESS,
         .conn_id = conn_id,
+        .status = GATT_SUCCESS,
     };
 
     do_in_main_thread(FROM_HERE,
@@ -4005,14 +4005,21 @@ TEST_F(UnicastTest, RemoveDeviceWhenGettingConnectionReady) {
   EXPECT_CALL(mock_audio_hal_client_callbacks_,
               OnConnectionState(ConnectionState::CONNECTED, test_address0))
       .Times(0);
+  EXPECT_CALL(mock_gatt_interface_, CancelOpen(gatt_if, test_address0, false))
+      .Times(0);
   ConnectLeAudio(test_address0);
 
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+  Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
 
   EXPECT_CALL(mock_gatt_queue_, Clean(conn_id)).Times(AtLeast(1));
   EXPECT_CALL(mock_gatt_interface_, Close(conn_id)).Times(1);
+
+  /* First time called when RemoveDevice is called and then second time
+   * OnGattDisconnected. We accept this spare call.
+   */
   EXPECT_CALL(mock_gatt_interface_, CancelOpen(gatt_if, test_address0, false))
-      .Times(1);
+      .Times(2);
 
   /*
    * StopStream will put calls on main_loop so to keep the correct order
@@ -4128,14 +4135,17 @@ TEST_F(UnicastTest, DisconnectDeviceWhenGettingConnectionReady) {
   EXPECT_CALL(mock_audio_hal_client_callbacks_,
               OnConnectionState(ConnectionState::CONNECTED, test_address0))
       .Times(0);
+  EXPECT_CALL(mock_gatt_interface_, CancelOpen(gatt_if, test_address0, false))
+      .Times(0);
   ConnectLeAudio(test_address0);
 
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
+  Mock::VerifyAndClearExpectations(&mock_gatt_interface_);
 
   EXPECT_CALL(mock_gatt_queue_, Clean(conn_id)).Times(AtLeast(1));
   EXPECT_CALL(mock_gatt_interface_, Close(conn_id)).Times(1);
   EXPECT_CALL(mock_gatt_interface_, CancelOpen(gatt_if, test_address0, false))
-      .Times(0);
+      .Times(1);
 
   LeAudioClient::Get()->Disconnect(test_address0);
   SyncOnMainLoop();
