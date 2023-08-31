@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf811b80_ef593028",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-31T17:18:43Z",
+      "side": 1,
+      "message": "Do we want to also check if mostRecentlyActiveA2dpDevice is null? Previously we were just returning but since we are also checking for HFP device we don\u0027t, but then we should still check if there is a device to fallback to?",
+      "revId": "f50d59c6fa24355837d4aab86370609492653212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
