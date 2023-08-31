@@ -16,6 +16,24 @@
       "message": "I am not sure of what happen when there is 2 different devices for a2dp and hfp.\n\nWith this CL, I expect autoConnect to start the connection on the two devices, but then we will connect all other profiles in the second step ([connectOtherProfile](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/PhonePolicy.java;l\u003d724;drc\u003d8f2c782c4cfa816faaa31339d1fa6ed52e066a64)).\n\nAt this point, we will have the hfp device that will connect a2dp and I expect it to disconnect the current a2dpDevice (cause we only support one a2dpDevice at the time)....\n\nSounds incorrect to me. Wdyt ?",
       "revId": "f23d27e2926c446cd475a99ab1aeda649c66150b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43ccd5fb_d3b55c65",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-08-31T21:04:16Z",
+      "side": 1,
+      "message": "phone can connect to multiple devices support a2dp, but only 1 active a2dp device, I just tried on my headset :)",
+      "parentUuid": "b99b2206_1aac8e70",
+      "revId": "f23d27e2926c446cd475a99ab1aeda649c66150b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
