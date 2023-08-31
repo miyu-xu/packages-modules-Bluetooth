@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec0cec82_2536fbc0",
+        "filename": "system/stack/mmc/proto/mmc_config.proto",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-31T06:44:33Z",
+      "side": 1,
+      "message": "Please change consistently, either all with or without `linux`.",
+      "range": {
+        "startLine": 108,
+        "startChar": 20,
+        "endLine": 108,
+        "endChar": 48
+      },
+      "revId": "9af042f2739e08c1bef40170ab61526c1518534a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
