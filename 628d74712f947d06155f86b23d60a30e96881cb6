@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99840489_ed9eb3e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-31T22:25:05Z",
+      "side": 1,
+      "message": "Should this really be a header lib?  When is the right time to wonder where it\u0027s actually needed?\n\nIt seems like a very strange combination of includes.\n\n    header_libs: [\n        \"avrcp_headers\",\n        \"libbluetooth-types-header\",\n        \"libbtcore_headers\",\n    ],\n    export_header_lib_headers: [\n        \"avrcp_headers\",\n        \"libbluetooth-types-header\",\n        \"libbtcore_headers\",\n    ],\n    export_include_dirs: [\"./\"],",
+      "revId": "628d74712f947d06155f86b23d60a30e96881cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
