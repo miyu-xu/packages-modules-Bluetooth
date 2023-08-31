@@ -94,6 +94,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f9914e9_2efb1cc9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-31T09:15:10Z",
+      "side": 1,
+      "message": "So if I understand correctly, what this snippet attempts to do is: If SCO is connected, ensure there is a CRAS CallInfo like below. If SCO is disconnected, ensure there is no. Actually the phone_ops_enabled value here doesn\u0027t matter.\n```\nCallInfo {\n    index: /* whatever */,\n    dir_incoming: false,\n    source: CallSource::CRAS,\n    state: CallState::Active,\n    number: \"\".into(),\n}\n```\nHow about:\n```suggestion\n                        if self.call_list.iter().all(|c| c.source !\u003d CallSource::CRAS) {\n                            // This triggers a +CIEV command to set the call status for HFP devices.\n                            // It is required for some devices to provide sound.\n                            self.phone_state.num_active +\u003d 1;\n                            self.call_list.push(CallInfo {\n                                index: self.new_call_index(),\n                                dir_incoming: false,\n                                source: CallSource::CRAS,\n                                state: CallState::Active,\n                                number: \"\".into(),\n                            });\n                            self.phone_state_change(\"\".into());\n                        }\n```",
+      "range": {
+        "startLine": 727,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 25
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "535d97b2_8489aceb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-31T09:15:10Z",
+      "side": 1,
+      "message": "Similarly what we want here is only removing the CRAS call.\n\n```suggestion\n                        if self.call_list.iter().any(|c| c.source \u003d\u003d CallSource::CRAS) {\n                            self.call_list.retain(|x| match x.source {\n                                CallSource::CRAS \u003d\u003e {\n                                    self.phone_state.num_active -\u003d 1;\n                                    false\n                                }\n                                _ \u003d\u003e true,\n                            });\n                            self.phone_state_change(\"\".into());\n                        }\n```",
+      "range": {
+        "startLine": 769,
+        "startChar": 0,
+        "endLine": 782,
+        "endChar": 25
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae1ee945_e61e5ba3",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
@@ -141,6 +187,70 @@
       "side": 1,
       "message": "phone_state.state was set to Idle before, and if set to Active this breaks the call answer process as it doesn\u0027t send \"+CIEV: 2,0\" to stop ringing.",
       "parentUuid": "abb7902e_aecc6d53",
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ed1e900_c39507a0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1721,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-31T09:15:10Z",
+      "side": 1,
+      "message": "Idle is correct. Active and Held are only used in CLCC response but not PhoneStateChange.",
+      "parentUuid": "a896893b_daaa2d3a",
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "229b1624_7a7f5ca3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-31T09:15:10Z",
+      "side": 1,
+      "message": "We shouldn\u0027t reach here as long as `self.phone_state.state !\u003d CallState::Idle`. Consider `unreachable!()` or print an error log. TBH I don\u0027t think this function needs any changes at least in this CL, since a CallInfo from CRAS should always be Active.",
+      "range": {
+        "startLine": 1728,
+        "startChar": 8,
+        "endLine": 1728,
+        "endChar": 13
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "283b512b_4b37d352",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-31T09:15:10Z",
+      "side": 1,
+      "message": "I think what you want here is:\n1. Don\u0027t affect CRAS call\n2. If there is a `CallState::Incoming | CallState::Dialing | CallState::Alerting` call, remove it and set the phone state back to Idle\n3. If 2 is not true (*) and there is a `CallState::Active`, remove it and `self.phone_state.num_active -\u003d 1`\n4. When there is any phone state change, returns true so the caller would send out a phone state change\n\n*: Before I assert that there is exactly one incoming/dialing/alerting/active call after the match statement, but that may not be true anymore after this feature.\n\nI don\u0027t understand why you `c.state \u003d CallState::Idle` and then remove them immediately (using retain). At least the snippet can be revised to:\n```suggestion\n        self.call_list.retain(|c| match c.source {\n            CallSource::CRAS \u003d\u003e true,\n            CallSource::HID \u003d\u003e {\n                if c.state \u003d\u003d CallState::Active {\n                    self.phone_state.num_active -\u003d 1;\n                }\n                false\n            }\n        });\n        if self.phone_state.num_active \u003d\u003d 0 {\n            self.phone_state.state \u003d CallState::Idle;\n        }\n        // However, we shouldn\u0027t always return true\n```\n\nAgain please note that this code removes all HID calls, while I remember that we are going to support answering a call during a meeting? @whalechang@google.com please suggest.",
+      "range": {
+        "startLine": 1736,
+        "startChar": 0,
+        "endLine": 1759,
+        "endChar": 9
+      },
       "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

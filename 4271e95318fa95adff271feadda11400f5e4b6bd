@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1869bea_a9cc0ee1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2591,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-08-31T09:15:10Z",
+      "side": 0,
+      "message": "Why remove this? This is still needed if the phone_ops_enabled flag is flipped while a headset is already connected.\n\nIIUC, we should just remove the `if !enable {` check.",
+      "range": {
+        "startLine": 2580,
+        "startChar": 0,
+        "endLine": 2591,
+        "endChar": 0
+      },
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
