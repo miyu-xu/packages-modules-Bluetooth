@@ -22,6 +22,30 @@
       },
       "revId": "fa80c9830fe208149143814679024f58d63c0fef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dcdfee2_531a4af7",
+        "filename": "system/stack/mmc/codec_client/codec_client.cc",
+        "patchSetId": 24
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-31T09:37:34Z",
+      "side": 1,
+      "message": "Done. Return -EIO.",
+      "parentUuid": "c7111329_e9f10574",
+      "range": {
+        "startLine": 197,
+        "startChar": 12,
+        "endLine": 197,
+        "endChar": 17
+      },
+      "revId": "fa80c9830fe208149143814679024f58d63c0fef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
