@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ea36e22_359a5dbd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-31T01:34:17Z",
+      "side": 1,
+      "message": "Seeing the size of the `decode` function implementation I would prefer that we inline it\n\n\n```suggestion\n    private static final byte[] TEST_IRK_RANDOM_STATIC \u003d\n            base16().lowerCase().decode(\"4c0470e88c0300ff4c23c1de89f5b21d\");\n```\n\nOr \n\n\n```\n    private static final byte[] TEST_IRK_RANDOM_STATIC \u003d\n            base16().decode(\"4C0470E88C0300FF4C23C1DE89F5B21D\");\n```\n\n(And we can put the IRK in uppercase in Bumble\u0027s config file as well as bytes.fromhex in Python don\u0027t care about the case)",
+      "range": {
+        "startLine": 64,
+        "startChar": 3,
+        "endLine": 65,
+        "endChar": 61
+      },
+      "revId": "84586f5ffeeae67a484048d475efe7c37d7b47dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6953d089_ecb6b0ec",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-31T01:34:17Z",
+      "side": 1,
+      "message": "nit: Should we add a test that makes bumble use it\u0027s public Address and filter with the Public address ? (I wonder if we can do parametrized tests with JUnit)",
+      "range": {
+        "startLine": 124,
+        "startChar": 3,
+        "endLine": 141,
+        "endChar": 5
+      },
+      "revId": "84586f5ffeeae67a484048d475efe7c37d7b47dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fa3e485_467ea941",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-08-31T01:34:17Z",
+      "side": 1,
+      "message": "Something feels wrong here, this is used to decode the IRK and not an address 🤔",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 51,
+        "endChar": 7
+      },
+      "revId": "84586f5ffeeae67a484048d475efe7c37d7b47dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
