@@ -19,6 +19,7 @@ from threading import Thread
 
 from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._rootcanal import Dongle
 
 from pandora_experimental.gatt_grpc import GATT
 from pandora.host_grpc import Host
@@ -77,11 +78,12 @@ CUSTOM_CHARACTERISTIC_UUID = "0000FFF4-0000-1000-8000-00805F9B34FB"
 
 class GATTProxy(ProfileProxy):
 
-    def __init__(self, channel):
+    def __init__(self, channel, rootcanal):
         super().__init__(channel)
         self.gatt = GATT(channel)
         self.host = Host(channel)
         self.security_storage = SecurityStorage(channel)
+        self.rootcanal = rootcanal
         self.connection = None
         self.services = None
         self.characteristics = None
@@ -92,6 +94,11 @@ class GATTProxy(ProfileProxy):
         self.handles = []
         self.written_over_length = False
         self.last_added_service = None
+
+    def test_started(self, test: str, **kwargs):
+        self.rootcanal.select_pts_dongle(Dongle.CSR_RCK_PTS_DONGLE)
+
+        return "OK"
 
     @assert_description
     def MMI_IUT_INITIATE_CONNECTION(self, test, pts_addr: bytes, **kwargs):
