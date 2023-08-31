@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3dddaf8_ddb2ced5",
+        "filename": "system/stack/btm/hfp_lc3_encoder_linux.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-31T02:25:03Z",
+      "side": 1,
+      "message": "It is a reminder that we set the original encode parameters at init.\nMaybe changing it into the below would be better:\n// MMC sends only data during encoding, encode parameters should be set at init.",
+      "parentUuid": "f2439a00_7c38e478",
+      "range": {
+        "startLine": 42,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 33
+      },
+      "revId": "2deb79dbce6f40c8e069ea2dfbd46a7b904364fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1de7949_c516a9dd",
@@ -83,6 +107,30 @@
       "writtenOn": "2023-08-31T01:02:35Z",
       "side": 1,
       "message": "if `rc` is `0`, `errno` seems inaccurate?",
+      "range": {
+        "startLine": 199,
+        "startChar": 12,
+        "endLine": 199,
+        "endChar": 17
+      },
+      "revId": "2deb79dbce6f40c8e069ea2dfbd46a7b904364fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be95160d_0afc9385",
+        "filename": "system/stack/mmc/codec_client/codec_client.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-08-31T02:25:03Z",
+      "side": 1,
+      "message": "For rc \u003d\u003d 0, I would return -EREMOTEIO instead. (When POLLIN is set, reading zero byte should be viewed as an error.)",
+      "parentUuid": "5227068b_56c9c2e9",
       "range": {
         "startLine": 199,
         "startChar": 12,
