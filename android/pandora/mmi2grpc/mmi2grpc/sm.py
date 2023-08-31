@@ -19,6 +19,7 @@ import asyncio
 
 from mmi2grpc._helpers import assert_description, match_description
 from mmi2grpc._proxy import ProfileProxy
+from mmi2grpc._rootcanal import Dongle
 
 from pandora.security_grpc import Security
 from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer
@@ -32,14 +33,20 @@ def debug(*args, **kwargs):
 
 class SMProxy(ProfileProxy):
 
-    def __init__(self, channel):
+    def __init__(self, channel, rootcanal):
         super().__init__(channel)
         self.security = Security(channel)
         self.host = Host(channel)
+        self.rootcanal = rootcanal
         self.connection = None
         self.pairing_stream = None
         self.passkey_queue = Queue()
         self._handle_pairing_requests()
+
+    def test_started(self, test: str, **kwargs):
+        self.rootcanal.select_pts_dongle(Dongle.CSR_RCK_PTS_DONGLE)
+
+        return "OK"
 
     @assert_description
     def MMI_IUT_ENABLE_CONNECTION_SM(self, pts_addr: bytes, **kwargs):
