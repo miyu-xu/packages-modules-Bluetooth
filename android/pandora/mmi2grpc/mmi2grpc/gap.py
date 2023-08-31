@@ -1,24 +1,27 @@
 from threading import Thread
 from mmi2grpc._helpers import assert_description, match_description
+from mmi2grpc._rootcanal import Dongle
 from mmi2grpc._proxy import ProfileProxy
 from time import sleep
+import sys
 
 from pandora_experimental.gatt_grpc import GATT
 from pandora_experimental.gatt_pb2 import GattServiceParams, GattCharacteristicParams
 from pandora.host_grpc import Host
 from pandora.host_pb2 import PUBLIC, RANDOM, DISCOVERABLE_GENERAL, NOT_DISCOVERABLE, DISCOVERABLE_LIMITED, NOT_CONNECTABLE, DataTypes
 from pandora.security_grpc import Security, SecurityStorage
-from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer
+from pandora.security_pb2 import LEVEL1, LE_LEVEL3, PairingEventAnswer
 
 
 class GAPProxy(ProfileProxy):
 
-    def __init__(self, channel):
+    def __init__(self, channel, rootcanal):
         super().__init__(channel)
         self.gatt = GATT(channel)
         self.host = Host(channel)
         self.security = Security(channel)
         self.security_storage = SecurityStorage(channel)
+        self.rootcanal = rootcanal
 
         self.connection = None
         self.pairing_events = None
@@ -30,6 +33,11 @@ class GAPProxy(ProfileProxy):
 
         self._auto_confirm_requests()
 
+    def test_started(self, test: str, description: str, pts_addr: bytes):
+        self.rootcanal.select_pts_dongle(Dongle.CSR_RCK_PTS_DONGLE)
+
+        return "OK"
+
     @match_description
     def TSC_MMI_iut_send_hci_connect_request(self, test: str, pts_addr: bytes, **kwargs):
         """
@@ -37,7 +45,15 @@ class GAPProxy(ProfileProxy):
         connection( after the IUT discovers the Lower Tester over BR and LE)?.
         """
 
-        if test in {"GAP/SEC/AUT/BV-02-C", "GAP/SEC/SEM/BV-05-C", "GAP/SEC/SEM/BV-08-C"}:
+        if test in [
+            "GAP/IDLE/BON/BV-03-C",
+            "GAP/IDLE/BON/BV-04-C",
+            "GAP/IDLE/BON/BV-05-C",
+            "GAP/IDLE/BON/BV-06-C",
+            "GAP/SEC/AUT/BV-02-C",
+            "GAP/SEC/SEM/BV-05-C",
+            "GAP/SEC/SEM/BV-08-C"
+        ]:
             # we connect then pair, so we have to pair directly in this MMI
             self.pairing_events = self.security.OnPairing()
             self.connection = self.host.Connect(address=pts_addr).connection
@@ -299,11 +315,11 @@ class GAPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
+    @match_description
     def TSC_MMI_iut_start_general_inquiry_found(self, pts_addr: bytes, **kwargs):
         """
         Please start general inquiry. Click 'Yes' If IUT does discovers PTS and
-        ready for PTS to initiate LE create connection otherwise click 'No'.
+        ready for PTS to initiate (a|LE) create connection otherwise click 'No'.
         """
 
         inquiry_responses = self.host.Inquiry()
@@ -329,7 +345,7 @@ class GAPProxy(ProfileProxy):
     @match_description
     def TSC_MMI_iut_confirm_device_discovery(self, test: str, pts_addr: bytes, **kwargs):
         """
-        Please confirm that IUT has discovered PTS and retrieved its name (?P<name>[a-zA-Z\-0-9]*)
+        Please confirm that IUT has discovered PTS and retrieved its name '?(?P<name>[a-zA-Z\-0-9]*)'?\.?
         """
         #Verifying if the BD Address matches in Inquiry
         inquiry_responses = self.host.Inquiry()
@@ -546,14 +562,17 @@ class GAPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
+    @match_description
     def TSC_MMI_iut_start_bonding_procedure_bondable(self, test: str, pts_addr: bytes, **kwargs):
         """
-        Please start the Bonding Procedure in bondable mode.
+        (Please start the Bonding Procedure in bondable mode.|Please configure the IUT into LE Security and start pairing process.)
         """
 
         self.pairing_events = self.security.OnPairing()
-        self.connection = next(self.advertise).connection
+
+        if not self.connection:
+            self.connection = next(self.advertise).connection
+
         if test == "GAP/DM/BON/BV-01-C":
             # we already started in the previous test
             return "OK"
@@ -561,7 +580,10 @@ class GAPProxy(ProfileProxy):
         if test not in {"GAP/SEC/AUT/BV-21-C"}:
             self.security_storage.DeleteBond(public=pts_addr)
 
-        self.security.Secure(connection=self.connection, le=LE_LEVEL3)
+        if test in ["GAP/SEC/SEM/BV-53-C"]:
+            self.security.Secure(connection=self.connection, classic=LEVEL1)
+        else:
+            self.security.Secure(connection=self.connection, le=LE_LEVEL3)
 
         return "OK"
 
@@ -909,6 +931,15 @@ class GAPProxy(ProfileProxy):
 
         return handle_format(response.service.characteristics[0].handle)
 
+    @assert_description
+    def TSC_MMI_iut_remove_bonding(self, pts_addr: bytes, **kwargs):
+        """
+        Please have Upper Tester remove the bonding information of the PTS.
+        Press OK to continue.
+        """
+
+        self.security_storage.DeleteBond(public = pts_addr)
+
         return "OK"
 
     @assert_description
@@ -934,6 +965,44 @@ class GAPProxy(ProfileProxy):
 
         return "OK"
 
+    @match_description
+    def TSC_MMI_helper_do_not_find_confirm(self, pts_addr: bytes, passkey: str, **kwargs):
+        """
+        Please confirm the following number matches IUT: (?P<passkey>[0-9]+).
+        """
+
+        for event in self.pairing_events:
+            if event.address == pts_addr and event.numeric_comparison == int(passkey):
+                self.pairing_events.send(PairingEventAnswer(event=event, confirm=True))
+                return "OK"
+
+        assert False
+
+    @assert_description
+    def _mmi_208(self, **kwargs):
+        """
+        Please configure the IUT into LE Security Mode 1 Level 4 and start
+        pairing process.
+        """
+
+        def secure():
+            self.pairing_events = self.security.OnPairing()
+            self.security.Secure(connection=self.connection, le=LE_LEVEL3)
+
+        Thread(target=secure).start()
+
+        return "OK"
+
+    @assert_description
+    def _mmi_265(self, **kwargs):
+        """
+        Please initiate a link encryption with the Lower Tester.
+        """
+
+        # TODO
+
+        return "OK"
+
     def _auto_confirm_requests(self, times=None):
 
         def task():
@@ -947,6 +1016,15 @@ class GAPProxy(ProfileProxy):
 
         Thread(target=task).start()
 
+    @assert_description
+    def _mmi_264(self, **kwargs):
+        """
+        Please send L2CAP Connection Request to PTS.
+        """
+
+        # TODO
+
+        return "OK"
 
 def handle_format(handle):
     return hex(handle)[2:].zfill(4)
