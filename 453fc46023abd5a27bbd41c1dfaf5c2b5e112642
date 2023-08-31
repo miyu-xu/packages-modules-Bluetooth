@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31681936_df7273d4",
+        "filename": "system/stack/mmc/codec_server/a2dp_aac_mmc_encoder.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-08-31T10:15:17Z",
+      "side": 1,
+      "message": "`s/linux//` considering the previous change.",
+      "range": {
+        "startLine": 73,
+        "startChar": 18,
+        "endLine": 73,
+        "endChar": 46
+      },
+      "revId": "453fc46023abd5a27bbd41c1dfaf5c2b5e112642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
