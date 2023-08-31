@@ -22,6 +22,30 @@
       },
       "revId": "389bf61d6c5040838e07febd66b2d23aac1a4ee3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2acd7068_157a2917",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2024,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-31T23:33:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d379b8ff_341b2c9a",
+      "range": {
+        "startLine": 2022,
+        "startChar": 0,
+        "endLine": 2024,
+        "endChar": 9
+      },
+      "revId": "389bf61d6c5040838e07febd66b2d23aac1a4ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
