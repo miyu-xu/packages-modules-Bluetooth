@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32cd702d_c4cd046e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:25:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38781ebc_309429c3",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 15
+      },
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fff5312_4bd239b9",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f81592e_8e8303c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:25:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "988eda02_389776c5",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 5
+      },
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa8771fa_59ee2c94",
@@ -102,6 +150,24 @@
       "side": 1,
       "message": "Should be: Test: atest bluetooth_test_gd",
       "parentUuid": "fa8771fa_59ee2c94",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3db069c_67f5eb6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:25:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22b16f16_45647e34",
       "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -355,6 +421,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a7a79c6_05a745aa",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:25:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5c96c14b_b3c9a3d5",
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4e1d7c19_8946d3a5",
@@ -392,6 +476,30 @@
       "side": 1,
       "message": "Do you mean replacing the existing one?",
       "parentUuid": "4e1d7c19_8946d3a5",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 22
+      },
+      "revId": "5f37fd4ee48cecd9ae6072e285535842fdff3118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49e42930_0eed1b82",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:25:22Z",
+      "side": 1,
+      "message": "Moved to system/gd/rust/linux/utils/src/uhid_hfp.rs",
+      "parentUuid": "f9e1b7fd_bcd26dff",
       "range": {
         "startLine": 70,
         "startChar": 0,
