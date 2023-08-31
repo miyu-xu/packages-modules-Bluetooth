@@ -85,6 +85,9 @@ public class BluetoothOppService extends ProfileService implements IObexConnecti
      */
     private static final String OPP_PROVIDER =
             BluetoothOppProvider.class.getCanonicalName();
+
+    private static final String OPP_PROVIDER1 =
+            BluetoothOppProvider.class.getCanonicalName();
     private static final String INCOMING_FILE_CONFIRM_ACTIVITY =
             BluetoothOppIncomingFileConfirmActivity.class.getCanonicalName();
     private static final String TRANSFER_ACTIVITY =
