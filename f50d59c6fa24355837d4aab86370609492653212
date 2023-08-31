@@ -70,6 +70,24 @@
       "parentUuid": "ac0b6ae1_90d5e6ac",
       "revId": "f50d59c6fa24355837d4aab86370609492653212",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04598250_68044e9c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-31T18:09:17Z",
+      "side": 1,
+      "message": "I\u0027m talking about the check line 660 in the original code, with your proposed change even if `mostRecentlyActiveA2dpDevice` is null we\u0027ll go through `connect()` of all profiles, before it was not the case.",
+      "parentUuid": "bd4040f5_6041e54a",
+      "revId": "f50d59c6fa24355837d4aab86370609492653212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
