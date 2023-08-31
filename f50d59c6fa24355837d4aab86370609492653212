@@ -52,6 +52,24 @@
       "parentUuid": "9de64644_a2e8a822",
       "revId": "f50d59c6fa24355837d4aab86370609492653212",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4040f5_6041e54a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-08-31T18:04:26Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand your second comment, we don\u0027t want to fallback to a non-null device we want to keep the same behaviour as before (i.e. not calling connect on a null device). Even though the device is checked before connecting we will still have \"connect\" logs, which I feel might be confusing when debugging.\n\nWhat I suggest is checking that `mostRecentlyActiveA2dpDevice` is not null before calling connect here, if both are null we should return instead.",
+      "parentUuid": "ac0b6ae1_90d5e6ac",
+      "revId": "f50d59c6fa24355837d4aab86370609492653212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
