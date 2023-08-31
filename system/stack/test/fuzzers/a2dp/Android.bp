@@ -11,6 +11,7 @@ cc_fuzz {
     name: "a2dp_fuzz",
     static_libs: [
         "libbluetooth-types",
+        "libbt_shim_bridge",
         "libchrome",
     ],
     defaults: ["libbt-stack_fuzz_defaults"],

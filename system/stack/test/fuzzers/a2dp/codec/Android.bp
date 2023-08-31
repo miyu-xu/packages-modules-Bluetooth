@@ -21,6 +21,7 @@ cc_fuzz {
     name: "a2dp_codec_fuzz",
     static_libs: [
         "libbluetooth-types",
+        "libbt_shim_bridge",
         "libchrome",
     ],
     defaults: ["libbt-stack_fuzz_codec_defaults"],
@@ -33,6 +34,7 @@ cc_fuzz {
     name: "a2dp_codec_info_fuzz",
     static_libs: [
         "libbluetooth-types",
+        "libbt_shim_bridge",
         "libchrome",
     ],
     defaults: ["libbt-stack_fuzz_codec_defaults"],
@@ -45,6 +47,7 @@ cc_fuzz {
     name: "a2dp_codec_cfg_fuzz",
     static_libs: [
         "libbluetooth-types",
+        "libbt_shim_bridge",
         "libchrome",
     ],
     defaults: ["libbt-stack_fuzz_codec_defaults"],
