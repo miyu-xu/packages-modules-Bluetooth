@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dfaebaa4_e108a4a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-08-31T23:30:53Z",
+      "side": 1,
+      "message": "There is no test modification in this CL...\nhow is it possible ? 😄",
+      "revId": "23e720da3ccde8b7dd14c33426a610a27829161b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
