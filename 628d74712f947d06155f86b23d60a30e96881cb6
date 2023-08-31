@@ -34,6 +34,24 @@
       "parentUuid": "99840489_ed9eb3e7",
       "revId": "628d74712f947d06155f86b23d60a30e96881cb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "308730a7_0db427f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-08-31T23:50:49Z",
+      "side": 1,
+      "message": "I\u0027m still interested in the \"when\" question.",
+      "parentUuid": "39fa1bfe_df777a7b",
+      "revId": "628d74712f947d06155f86b23d60a30e96881cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
