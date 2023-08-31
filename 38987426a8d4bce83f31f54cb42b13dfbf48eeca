@@ -16,6 +16,24 @@
       "message": "Given this is added in aosp/2651881, which is no landed yet. Why not rebase the series and move the uhid_hfp CL forward?",
       "revId": "38987426a8d4bce83f31f54cb42b13dfbf48eeca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5b74036_4a08d37f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:33:57Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "ede83e9e_27f405d7",
+      "revId": "38987426a8d4bce83f31f54cb42b13dfbf48eeca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

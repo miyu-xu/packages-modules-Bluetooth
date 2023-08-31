@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bca97e94_beb45d00",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:33:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "876c9e71_0ee6afff",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce4621ec_af8c0abe",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a63d8cc5_09df5d08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:33:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ce4621ec_af8c0abe",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a949fa6_64af823f",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-08-30T09:27:29Z",
       "side": 1,
       "message": "Test: atest bluetooth_test_gd",
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82cd5818_4e85e75b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:33:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a949fa6_64af823f",
       "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -82,6 +136,30 @@
       "writtenOn": "2023-08-30T07:24:36Z",
       "side": 1,
       "message": "Can we merge this file into https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/linux/utils/src/uhid.rs?q\u003dBluetooth%2Fsystem%2Fgd%2Frust%2Flinux%2Futils%2Fsrc%2Fuhid.rs ?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "394d4154_be7ffda8",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-08-31T14:33:57Z",
+      "side": 1,
+      "message": "Moved to system/gd/rust/linux/utils/src/uhid_hfp.rs",
+      "parentUuid": "02ee67da_622af41c",
       "range": {
         "startLine": 1,
         "startChar": 0,
