@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a20fc381_4781210f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-31T04:23:06Z",
+      "side": 1,
+      "message": "I agree callbacks could be a good alternative but I preferably choose to route it through AdapterService for the time being. \n\nWe need better handling of all connection state changes for all profiles and my idea was to have a `ConnectionManager` or equivalent in the app level to manage it better. Until then, this felt like a good fix thats functional and clean to a degree.",
+      "parentUuid": "de9269ad_de7aff69",
+      "revId": "c9878c4fac145bfab7ead2b0d089dba9c800ebcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6353c882_00376c8b",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 2
@@ -85,6 +103,30 @@
       "writtenOn": "2023-08-23T04:42:03Z",
       "side": 1,
       "message": "I would assume that this is impossible to reach.\n\nThe Gatt service is create prior to create any other profiles.\nThe Gatt service is started (hence it create scanManager) prior to create any other profiles\n\n\nAlso, I prefer this to crash than to silently not notify other services as it would be very hard to debug if the call is not made",
+      "range": {
+        "startLine": 1194,
+        "startChar": 8,
+        "endLine": 1195,
+        "endChar": 79
+      },
+      "revId": "c9878c4fac145bfab7ead2b0d089dba9c800ebcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "700ab90d_96bf7296",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1195,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-08-31T04:23:06Z",
+      "side": 1,
+      "message": "Makes sense. Removed the checks.",
+      "parentUuid": "6353c882_00376c8b",
       "range": {
         "startLine": 1194,
         "startChar": 8,
