@@ -16,6 +16,24 @@
       "message": "why not transition to disconnect state immediately instead of deferring?\nAlso, at line 236 there is connection state disconnected. Are these two (DISCONNECT v/s StackEvent.CONNECTION_STATE_DISCONNECTED) different events?",
       "revId": "e210e44f76cc3b700aedcc1802d1c797b4db925a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b9d2415_132a0e5e",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-08-31T17:52:59Z",
+      "side": 1,
+      "message": "Those are different events. One says \"please disconnect\" (DISCONNECT) and the other says \"the device is disconnected\" (CONNECTION_STATE_DISCONNECTED). The latter can come from an incoming disconnect event, or as a result of the above outgoing request.\n\nThe reason I don\u0027t think we want to do to disconnected is because we technically don\u0027t have a connection yet (as far as we know) and we don\u0027t know whether our pending connecting attempt will succeed or fail. I\u0027m not sure what the behavior of the native stack will be if we send a disconnect request down when we\u0027re not in the connected state. It could get dropped, or be subject to bugs/race conditions. This way, we reach a stable state, and then issue the request at a time where we know it will be handled. Worst case, the connecting state waits 10s for a timeout and we\u0027re not connected anyway (and we drop the request). Average case, the connecting state quickly changes to connected and we service the request.\n\nFWIW too, this is also what other state machines in our code base do with disconnect requests in the connecting state.",
+      "parentUuid": "11b0bb1e_a9e2a282",
+      "revId": "e210e44f76cc3b700aedcc1802d1c797b4db925a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
