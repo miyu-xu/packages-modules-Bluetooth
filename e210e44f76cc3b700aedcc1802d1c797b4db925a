@@ -34,6 +34,24 @@
       "parentUuid": "11b0bb1e_a9e2a282",
       "revId": "e210e44f76cc3b700aedcc1802d1c797b4db925a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "083511dd_34c5fbd1",
+        "filename": "android/app/src/com/android/bluetooth/a2dpsink/A2dpSinkStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-08-31T18:50:30Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "4b9d2415_132a0e5e",
+      "revId": "e210e44f76cc3b700aedcc1802d1c797b4db925a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
