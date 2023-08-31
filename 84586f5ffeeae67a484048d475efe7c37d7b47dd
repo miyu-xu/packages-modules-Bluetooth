@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "abcfd349_de8ef43f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-31T20:35:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2ea36e22_359a5dbd",
+      "range": {
+        "startLine": 64,
+        "startChar": 3,
+        "endLine": 65,
+        "endChar": 61
+      },
+      "revId": "84586f5ffeeae67a484048d475efe7c37d7b47dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6953d089_ecb6b0ec",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33f6721c_9b92cf13",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-31T20:35:32Z",
+      "side": 1,
+      "message": "Agreed - will do in follow-up CL once I get this one passing.",
+      "parentUuid": "6953d089_ecb6b0ec",
+      "range": {
+        "startLine": 124,
+        "startChar": 3,
+        "endLine": 141,
+        "endChar": 5
+      },
+      "revId": "84586f5ffeeae67a484048d475efe7c37d7b47dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fa3e485_467ea941",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-08-31T01:34:17Z",
       "side": 1,
       "message": "Something feels wrong here, this is used to decode the IRK and not an address 🤔",
+      "range": {
+        "startLine": 46,
+        "startChar": 3,
+        "endLine": 51,
+        "endChar": 7
+      },
+      "revId": "84586f5ffeeae67a484048d475efe7c37d7b47dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1adcad3_888051e7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-08-31T20:35:32Z",
+      "side": 1,
+      "message": "Thanks for catching! Removed.",
+      "parentUuid": "2fa3e485_467ea941",
       "range": {
         "startLine": 46,
         "startChar": 3,
