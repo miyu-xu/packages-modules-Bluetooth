@@ -1,5 +1,6 @@
 from threading import Thread
 from mmi2grpc._helpers import assert_description, match_description
+from mmi2grpc._rootcanal import Dongle
 from mmi2grpc._proxy import ProfileProxy
 from time import sleep
 
@@ -13,12 +14,13 @@ from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer
 
 class GAPProxy(ProfileProxy):
 
-    def __init__(self, channel):
+    def __init__(self, channel, rootcanal):
         super().__init__(channel)
         self.gatt = GATT(channel)
         self.host = Host(channel)
         self.security = Security(channel)
         self.security_storage = SecurityStorage(channel)
+        self.rootcanal = rootcanal
 
         self.connection = None
         self.pairing_events = None
@@ -29,6 +31,11 @@ class GAPProxy(ProfileProxy):
         self.cached_passkey = None
 
         self._auto_confirm_requests()
+
+    def test_started(self, test: str, description: str, pts_addr: bytes):
+        self.rootcanal.select_pts_dongle(Dongle.CSR_RCK_PTS_DONGLE)
+
+        return "OK"
 
     @match_description
     def TSC_MMI_iut_send_hci_connect_request(self, test: str, pts_addr: bytes, **kwargs):
@@ -546,10 +553,10 @@ class GAPProxy(ProfileProxy):
 
         return "OK"
 
-    @assert_description
+    @match_description
     def TSC_MMI_iut_start_bonding_procedure_bondable(self, test: str, pts_addr: bytes, **kwargs):
         """
-        Please start the Bonding Procedure in bondable mode.
+        (Please start the Bonding Procedure in bondable mode.|Please configure the IUT into LE Security and start pairing process.)
         """
 
         self.pairing_events = self.security.OnPairing()
@@ -909,6 +916,15 @@ class GAPProxy(ProfileProxy):
 
         return handle_format(response.service.characteristics[0].handle)
 
+    @assert_description
+    def TSC_MMI_iut_remove_bonding(self, pts_addr: bytes, **kwargs):
+        """
+        Please have Upper Tester remove the bonding information of the PTS.
+        Press OK to continue.
+        """
+
+        self.security_storage.DeleteBond(public = pts_addr)
+
         return "OK"
 
     @assert_description
@@ -931,6 +947,14 @@ class GAPProxy(ProfileProxy):
             self.host.Disconnect(connection=self.connection)
 
         Thread(target=after_that).start()
+
+        return "OK"
+
+    @match_description
+    def TSC_MMI_helper_do_not_find_confirm(self, passkey: str, **kwargs):
+        """
+        Please confirm the following number matches IUT: (?P<passkey>[0-9]+).
+        """
 
         return "OK"
 
