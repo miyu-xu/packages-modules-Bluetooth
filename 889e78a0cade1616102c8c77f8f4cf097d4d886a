@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c579ff62_75977eed",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-08-31T14:50:13Z",
+      "side": 1,
+      "message": "Agree that. I was suggesting to change BTM_SCO_CODEC_LC3 only instead of changing definitions of BTA_AG_SCO_SWB_SETTINGS_Q0_MASK, and Q1, Q2, Q3 as it needs more changes relatively.\n\nQ1, Q2 and Q3 settings are not supported as of now. They will be supported in future hence they are not yet checked anywhere. They can be place holders for now.",
+      "parentUuid": "79f7d9a4_d39fb784",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e5e11d8_cb7680ac",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 12
