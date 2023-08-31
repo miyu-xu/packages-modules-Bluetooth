@@ -34,6 +34,24 @@
       "parentUuid": "bf811b80_ef593028",
       "revId": "f50d59c6fa24355837d4aab86370609492653212",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac0b6ae1_90d5e6ac",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-08-31T17:55:15Z",
+      "side": 1,
+      "message": "I think if we want to fallback to a non null device, it maybe a behavior change. We may ask PM\u0027s opinion for this. Current fix\u0027s logic aligns with a2dp\u0027s and hid\u0027s",
+      "parentUuid": "9de64644_a2e8a822",
+      "revId": "f50d59c6fa24355837d4aab86370609492653212",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
