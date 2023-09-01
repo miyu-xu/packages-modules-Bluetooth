@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ad7f6eb_ea0d2790",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-01T15:27:17Z",
+      "side": 1,
+      "message": "Etienne,\n\nThis is an old CL that may address race conditions in the lifecycle for these two objects.  The idea is to disable *before* any functors are placed on mainloop in case the mainloop is busy takes a long time.\n\nI don\u0027t know the best way to test this lifecycle either.",
+      "revId": "4409d87057e35889f61e4e6a6cbe819994d1b692",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
