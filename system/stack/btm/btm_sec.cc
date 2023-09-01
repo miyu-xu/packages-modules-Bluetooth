@@ -3447,6 +3447,11 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
     }
     p_dev_rec->sec_status = status;
     btm_ble_link_encrypted(p_dev_rec->ble.pseudo_addr, encr_enable);
+
+    if (status == HCI_ERR_KEY_MISSING) {
+      bta_dm_remove_device(p_dev_rec->ble.pseudo_addr);
+      return;
+    }
     return;
   } else {
     /* BR/EDR connection, update the encryption key size to be 16 as always */
