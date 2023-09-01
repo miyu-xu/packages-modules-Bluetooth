@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b710480d_6543f51b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2009,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-01T01:11:43Z",
+      "side": 1,
+      "message": "Just for logging purposes. (Wanted to retain previously logged information).",
+      "parentUuid": "37f52f5c_6a5cf5bb",
+      "range": {
+        "startLine": 2009,
+        "startChar": 16,
+        "endLine": 2009,
+        "endChar": 23
+      },
+      "revId": "389bf61d6c5040838e07febd66b2d23aac1a4ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7659f1e3_aec4237b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-08-31T23:38:21Z",
       "side": 1,
       "message": "This is not an action anymore, but the profile",
+      "range": {
+        "startLine": 2013,
+        "startChar": 54,
+        "endLine": 2013,
+        "endChar": 60
+      },
+      "revId": "389bf61d6c5040838e07febd66b2d23aac1a4ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1476d78_24edd8e5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2013,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-01T01:11:43Z",
+      "side": 1,
+      "message": "Corrected the logging.",
+      "parentUuid": "7659f1e3_aec4237b",
       "range": {
         "startLine": 2013,
         "startChar": 54,
@@ -118,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3845cf2_b6aabaf4",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2024,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-01T01:11:43Z",
+      "side": 1,
+      "message": "Oops. That should have been obvious 😂",
+      "parentUuid": "efa0afda_a689e8ad",
+      "range": {
+        "startLine": 2022,
+        "startChar": 0,
+        "endLine": 2024,
+        "endChar": 9
+      },
+      "revId": "389bf61d6c5040838e07febd66b2d23aac1a4ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1e04c97_b4364765",
@@ -131,6 +203,30 @@
       "writtenOn": "2023-08-31T23:38:21Z",
       "side": 1,
       "message": "This should be HEADSET related macro not leAudio right ?",
+      "range": {
+        "startLine": 2010,
+        "startChar": 33,
+        "endLine": 2010,
+        "endChar": 41
+      },
+      "revId": "389bf61d6c5040838e07febd66b2d23aac1a4ee3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc6d3ee8_fca26a88",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 2010,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-01T01:11:43Z",
+      "side": 1,
+      "message": "My bad. Fixed.",
+      "parentUuid": "b1e04c97_b4364765",
       "range": {
         "startLine": 2010,
         "startChar": 33,
