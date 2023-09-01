@@ -31,7 +31,7 @@
 #include "main/shim/shim.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/btm/btm_dev.h"
-#include "stack/crypto_toolbox/crypto_toolbox.h"
+#include "crypto_toolbox.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_octets.h"
 #include "types/ble_address_with_type.h"

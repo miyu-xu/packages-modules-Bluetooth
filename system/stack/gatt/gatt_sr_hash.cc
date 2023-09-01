@@ -22,7 +22,7 @@
 #include <list>
 
 #include "gatt_int.h"
-#include "stack/crypto_toolbox/crypto_toolbox.h"
+#include "crypto_toolbox.h"
 #include "types/bluetooth/uuid.h"
 
 using bluetooth::Uuid;

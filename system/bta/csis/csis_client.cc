@@ -46,7 +46,7 @@
 #include "osi/include/stack_power_telemetry.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
-#include "stack/crypto_toolbox/crypto_toolbox.h"
+#include "crypto_toolbox.h"
 #include "stack/gatt/gatt_int.h"
 
 using base::Closure;
