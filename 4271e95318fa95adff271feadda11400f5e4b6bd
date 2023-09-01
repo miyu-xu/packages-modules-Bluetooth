@@ -46,6 +46,30 @@
       },
       "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cea7962_fa411ac0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2591,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-01T10:20:25Z",
+      "side": 0,
+      "message": "The call_list is cleared at line #2593, so it is necessary to insert a CRAS call.\n\nAlternatively, you may modify this entire function like:\n1. If enable, don\u0027t do anything as the CRAS call should be preserved.\n2. If !enable, remove all HID calls and update `self.phone_state`; If there\u0027s any changes then run `self.phone_state_change()`",
+      "parentUuid": "11cf2857_c3f2a486",
+      "range": {
+        "startLine": 2580,
+        "startChar": 0,
+        "endLine": 2591,
+        "endChar": 0
+      },
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -323,6 +323,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "466017f2_6e4ab49a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-01T10:20:25Z",
+      "side": 1,
+      "message": "Acknowledged. Please handle the return value correctly and remove the redundant statements then.",
+      "parentUuid": "6547bec3_1b45fcb6",
+      "range": {
+        "startLine": 1736,
+        "startChar": 0,
+        "endLine": 1759,
+        "endChar": 9
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "091433e2_ccf743b9",
         "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
         "patchSetId": 2
