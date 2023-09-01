@@ -18,13 +18,11 @@
  * Generated mock file from original source file
  *   Functions generated:1
  */
-
 #include "stack/crypto_toolbox/crypto_toolbox.h"
 #include "test/common/mock_functions.h"
 
 namespace crypto_toolbox {
-Octet16 aes_cmac(const Octet16& key, const uint8_t* input, uint16_t length) {
-  inc_func_call_count(__func__);
+Octet16 aes_cmac(const Octet16&, const uint8_t*, uint16_t) {
   Octet16 octet16;
   return octet16;
 }

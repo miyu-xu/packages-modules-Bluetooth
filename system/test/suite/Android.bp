@@ -109,6 +109,10 @@ cc_test {
         "bluetooth_gtest_x86_asan_workaround",
         "mts_defaults",
         "net_test_defaults",
+
+        // indirect dependency on libbt-crypto-toolbox
+        // TODO: convert to a module that is directly depended on
+        "libbt-crypto-toolbox_support_defaults",
     ],
     srcs: [
         "adapter/adapter_unittest.cc",
