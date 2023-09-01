@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb08d075_0100a41c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-09-01T05:38:19Z",
+      "side": 1,
+      "message": "I agree with your opinion.\nEven if the background connection is canceled, I think the timer for the existing direct connection should be maintained.\nHowever, this will need big change of gd stack.\nThis problem is quite critical because once it occurs, it does not recover until BT off.\nAre you discussing modifications for this in Google?",
+      "revId": "d48e9fe984b8cc5131653ffa6447ee56f5c15f9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
