@@ -16,6 +16,24 @@
       "message": "William and I synced offline.\n\nWe\u0027re going to split the TestUtils changes off from the A2DP Sink changes, just in case something pops up. That way the test utilities can exist and others can use the pattern even if we need to revert/rethink the A2DP Sink changes due to unforeseen issues.",
       "revId": "65f2021dacc1ada899c640467b36b562522dbffc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c7e0686_e6aa8a13",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-01T17:47:16Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "bea94077_89e8f111",
+      "revId": "65f2021dacc1ada899c640467b36b562522dbffc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
