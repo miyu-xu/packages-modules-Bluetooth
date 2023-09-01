@@ -66,7 +66,7 @@ logger = logging.getLogger(__name__)
 class HfpProtocol:
     dlc: rfcomm.DLC
     buffer: str
-    lines: collections.deque
+    lines: collections.deque[str]
     lines_available: asyncio.Event
 
     def __init__(self, dlc: rfcomm.DLC) -> None:
@@ -139,11 +139,11 @@ class HfpClientTest(base_test.BaseTestClass):  # type: ignore[misc]
             if isinstance(server, AndroidPandoraServer):
                 self.dut_adb = server.device.adb
                 # Enable HFP Client
-                self.dut_adb.shell(['setprop', PROPERTY_HF_ENABLED, 'true'])
+                self.dut_adb.shell(['setprop', PROPERTY_HF_ENABLED, 'true'])  # type: ignore
                 # Set HF features if not set yet
-                hf_feature_text = self.dut_adb.getprop(PROPERTY_HF_FEATURES)
+                hf_feature_text = self.dut_adb.getprop(PROPERTY_HF_FEATURES)  # type: ignore
                 if len(hf_feature_text) == 0:
-                    self.dut_adb.shell(['setprop', PROPERTY_HF_FEATURES, HFP_HF_FEATURE_DEFAULT])
+                    self.dut_adb.shell(['setprop', PROPERTY_HF_FEATURES, HFP_HF_FEATURE_DEFAULT])  # type: ignore
                 break
 
     def teardown_class(self) -> None:
@@ -203,9 +203,9 @@ class HfpClientTest(base_test.BaseTestClass):  # type: ignore[misc]
     @avatar.asynchronous
     async def test_hf_indicator_setup(self, enhanced_driver_safety_enabled: bool) -> None:
         if enhanced_driver_safety_enabled:
-            self.dut_adb.shell(['setprop', PROPERTY_HF_INDICATOR_ENHANCED_DRIVER_SAFETY, 'true'])
+            self.dut_adb.shell(['setprop', PROPERTY_HF_INDICATOR_ENHANCED_DRIVER_SAFETY, 'true'])  # type: ignore
         else:
-            self.dut_adb.shell(['setprop', PROPERTY_HF_INDICATOR_ENHANCED_DRIVER_SAFETY, 'false'])
+            self.dut_adb.shell(['setprop', PROPERTY_HF_INDICATOR_ENHANCED_DRIVER_SAFETY, 'false'])  # type: ignore
 
         ref_dut_hfp_protocol = await self.make_hfp_connection()
 
