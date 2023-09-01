@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "449a7451_9bf1c702",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-09-01T16:10:42Z",
+      "side": 1,
+      "message": "The intention of these test cases is not to remove the local bond. Instead it is to inform the higher layers (and may be users) that the bond is potentially lost.\n\nThis change goes against the security policy we are trying to bring to prevent DoS attacks from malicious devices.",
+      "revId": "4769454db1368ac2d238bdfffacac76f336ecce3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
