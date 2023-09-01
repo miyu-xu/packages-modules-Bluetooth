@@ -52,6 +52,24 @@
       "parentUuid": "39fa1bfe_df777a7b",
       "revId": "628d74712f947d06155f86b23d60a30e96881cb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78651fb6_bc67d9d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-01T01:27:53Z",
+      "side": 1,
+      "message": "\u003e Should this really be a header lib?\n\nI don\u0027t know, but it\u0027s indeed a strange one.\n\n\u003e When is the right time to wonder where it\u0027s actually needed?\n\nAll the targets to which I\u0027m adding it don\u0027t compile if I remove it.\n\nI\u0027m fine splitting it but it\u0027s not \"just\" a combination of includes as it\u0027s also exporting it\u0027s own dir `export_include_dirs: [\"./\"]`.\n\nI agree that we should clean it up, but I don\u0027t really know how yet.",
+      "parentUuid": "308730a7_0db427f9",
+      "revId": "628d74712f947d06155f86b23d60a30e96881cb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
