@@ -34,6 +34,24 @@
       "parentUuid": "2e0e6840_58480fd6",
       "revId": "e5150ed37e3a72dae3edabbb7888453c3a4b9d21",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "807de00f_14b1fbcf",
+        "filename": "system/bta/dm/bta_dm_gatt_client.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-01T00:35:04Z",
+      "side": 1,
+      "message": "b/298524037",
+      "parentUuid": "b6975edd_d557f66a",
+      "revId": "e5150ed37e3a72dae3edabbb7888453c3a4b9d21",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
