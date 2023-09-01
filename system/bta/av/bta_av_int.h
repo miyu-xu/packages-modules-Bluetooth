@@ -400,8 +400,8 @@ typedef struct {
 /* data type for BTA_AV_ROLE_CHANGE_EVT */
 typedef struct {
   BT_HDR_RIGID hdr;
-  uint8_t new_role;
-  uint8_t hci_status;
+  tHCI_ROLE new_role;
+  tHCI_STATUS hci_status;
 } tBTA_AV_ROLE_RES;
 
 /* data type for BTA_AV_SDP_DISC_OK_EVT */
