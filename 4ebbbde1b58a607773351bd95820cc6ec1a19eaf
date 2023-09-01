@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c9e55d74_2e7ba05b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-01T07:42:59Z",
+      "side": 1,
+      "message": "I did, but just omit those weird Log fixups:\n```\ndiff --git a/android/app/src/com/android/bluetooth/a2dp/A2dpService.java b/android/app/src/com/android/bluetooth/a2dp/A2dpService.java\nindex e70529cad9..7295205b8e 100644\n--- a/android/app/src/com/android/bluetooth/a2dp/A2dpService.java\n+++ b/android/app/src/com/android/bluetooth/a2dp/A2dpService.java\n@@ -1087,8 +1087,12 @@ public class A2dpService extends ProfileService {\n                     BluetoothDevice device \u003d mAdapterService.getDeviceFromByte(addressBytes);\n \n                     if (DBG) {\n-                        Log.d(TAG, \" onAudioDevicesAdded: \" + device + \", device type: \"\n-                                + deviceInfo.getType());\n+                        Log.d(\n+                                TAG,\n+                                \" onAudioDevicesAdded: \"\n+                                        + device\n+                                        + \", device type: \"\n+                                        + deviceInfo.getType());\n                     }\n \n                     /* Don\u0027t expose already exposed active device */\n@@ -1099,11 +1103,16 @@ public class A2dpService extends ProfileService {\n                         return;\n                     }\n \n-\n                     if (!device.equals(mActiveDevice)) {\n-                        Log.e(TAG, \"Added device does not match to the one activated here. (\"\n-                                + device + \" !\u003d \" + mActiveDevice\n-                                + \" / \" + mActiveDevice+ \")\");\n+                        Log.e(\n+                                TAG,\n+                                \"Added device does not match to the one activated here. (\"\n+                                        + device\n+                                        + \" !\u003d \"\n+                                        + mActiveDevice\n+                                        + \" / \"\n+                                        + mActiveDevice\n+                                        + \")\");\n                         continue;\n                     }\n \n@@ -1135,9 +1144,14 @@ public class A2dpService extends ProfileService {\n                     mExposedActiveDevice \u003d null;\n \n                     if (DBG) {\n-                        Log.d(TAG, \" onAudioDevicesRemoved: \" + address + \", device type: \"\n-                                + deviceInfo.getType()\n-                                + \", mActiveDevice: \" + mActiveDevice);\n+                        Log.d(\n+                                TAG,\n+                                \" onAudioDevicesRemoved: \"\n+                                        + address\n+                                        + \", device type: \"\n+                                        + deviceInfo.getType()\n+                                        + \", mActiveDevice: \"\n+                                        + mActiveDevice);\n                     }\n                 }\n             }\n```\n\nDo we really want such formatting ?",
+      "parentUuid": "89b9281e_63e9f928",
+      "revId": "4ebbbde1b58a607773351bd95820cc6ec1a19eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2a798969_5bbc143b",
         "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
         "patchSetId": 4
@@ -31,6 +49,30 @@
       "writtenOn": "2023-08-31T16:37:17Z",
       "side": 1,
       "message": "Should be step 9 according to the fifo order in start",
+      "range": {
+        "startLine": 233,
+        "startChar": 8,
+        "endLine": 235,
+        "endChar": 0
+      },
+      "revId": "4ebbbde1b58a607773351bd95820cc6ec1a19eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1464efd_f9019fcf",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-01T07:42:59Z",
+      "side": 1,
+      "message": "If next step should be \"7\" as you suggested then I believe unregister callback should be 10.",
+      "parentUuid": "2a798969_5bbc143b",
       "range": {
         "startLine": 233,
         "startChar": 8,
@@ -54,6 +96,30 @@
       "writtenOn": "2023-08-31T16:37:17Z",
       "side": 1,
       "message": "Step 7",
+      "range": {
+        "startLine": 236,
+        "startChar": 15,
+        "endLine": 236,
+        "endChar": 19
+      },
+      "revId": "4ebbbde1b58a607773351bd95820cc6ec1a19eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6790206_38358910",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-01T07:42:59Z",
+      "side": 1,
+      "message": "Ok - but I don\u0027t get it where is the Step 3. I thought it was a mistake, isn\u0027t it ?",
+      "parentUuid": "de703127_35dc5fc1",
       "range": {
         "startLine": 236,
         "startChar": 15,
