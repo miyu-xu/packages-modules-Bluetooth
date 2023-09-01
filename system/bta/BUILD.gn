@@ -151,7 +151,8 @@ static_library("bta") {
   ]
 
   configs += [
-    "//bt/system:target_defaults"
+    "//bt/system:target_defaults",
+    "//bt/system/stack/crypto_toolbox:cryto_toolbox_support_defaults",
   ]
 
   deps = [
@@ -163,6 +164,7 @@ static_library("bta") {
     "//bt/system/bta:install_audio_set_configurations_bfbs",
     "//bt/system:libbt-platform-protos-lite",
     "//bt/system/gd/rust/shim:init_flags_bridge_header",
+    "//bt/system/stack/crypto_toolbox",
   ]
 
   libs = [

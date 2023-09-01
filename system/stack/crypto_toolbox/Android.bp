@@ -1,0 +1,174 @@
+package {
+    // See: http://go/android-license-faq
+    // A large-scale-change added 'default_applicable_licenses' to import
+    // all of the 'license_kinds' from "system_bt_license"
+    // to get the below license kinds:
+    //   SPDX-license-identifier-Apache-2.0
+    //   SPDX-license-identifier-BSD
+    default_applicable_licenses: ["system_bt_license"],
+}
+
+cc_library {
+    name: "libbt-crypto-toolbox",
+    srcs: [
+        "src/*.cc",
+    ],
+    defaults: [
+        "bluetooth_cflags",
+    ],
+    local_include_dirs: [
+        "include",
+        "priv_include",
+    ],
+    header_libs: [
+        // TODO: factor this out
+        "libbluetooth_headers",     // for check.h in crypto_toolbox.h
+    ],
+    export_include_dirs: [
+        "include",
+    ],
+    include_dirs: [
+        // TODO: factor this out
+        // "stack/include/bt_octets.h" is included in
+        // the sources
+        "packages/modules/Bluetooth/system",
+
+        // TODO: drop this into a dependency on a module
+        // for bt_types.h used in bt_target.h
+        // p_256_multprecision.cc
+        // -> bt_target.h
+        // -> bt_types.h
+        "packages/modules/Bluetooth/system/stack/include"
+    ],
+    // TODO: drop the dependency on the logging statements
+    static_libs: [
+        "libchrome",
+    ],
+    shared_libs: [
+        // TODO: factor this out
+        "liblog",
+        "libcutils",
+    ],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    host_supported: true,
+    min_sdk_version: "Tiramisu",
+}
+
+
+// to use libbt-crypto-toolbox, add
+// libbt-crypto-toolbox_support_defaults to the defaults
+// of a module
+cc_defaults {
+    name: "libbt-crypto-toolbox_support_defaults",
+    header_libs: [
+        "libbluetooth_headers", // for check.h in crypto_toolbox.h
+    ],
+
+    static_libs: [
+        "libbt-crypto-toolbox",
+        // TODO: factor this out
+        "libchrome",
+    ],
+
+    include_dirs: [
+        // TODO: factor this out
+        // "stack/include/bt_octets.h" is included in
+        // the headers
+        "packages/modules/Bluetooth/system",
+    ],
+    shared_libs: [
+        // TODO: drop this dependency by removing logs
+        "liblog",
+    ],
+}
+
+rust_defaults {
+    name: "libbt-crypto-toolbox_support_rs_defaults",
+    static_libs: [
+        "libbt-crypto-toolbox",
+        "libchrome",
+    ],
+}
+
+// a mock library for libbt-crytotoolbox
+cc_test_library {
+    name: "libbt-crypto-toolbox-mock",
+    defaults: [
+        "bluetooth_cflags",
+    ],
+    srcs: [
+        "mock/src/*.cc",
+    ],
+    local_include_dirs: [
+        "priv_include",
+        "mock/include",
+    ],
+    header_libs: [
+        "libbluetooth_headers",     // for check.h in crypto_toolbox.h
+    ],
+    export_include_dirs: [
+        // also export the headers of libbt-crypto-toolbox
+        // to make the headers of it accessible users of this mock
+        // as the crypto_toolbox.h is also included in
+        // mock_stack_crypto_toolbox.h
+        "include",
+        "mock/include",
+    ],
+    include_dirs: [
+        // TODO: factoring this out
+        // "stack/include/bt_octets.h" is included in
+        // the sources
+        "packages/modules/Bluetooth/system",
+    ],
+    host_supported: true,
+}
+
+
+// to use libbt-crypto-toolbox-mock, add
+// libbt-crypto-toolbox-mock_support_defaults to the defaults
+// of a module
+cc_defaults {
+    name: "libbt-crypto-toolbox-mock_support_defaults",
+    header_libs: [
+        "libbluetooth_headers", // for check.h in crypto_toolbox.h
+    ],
+    static_libs: [
+        "libbt-crypto-toolbox-mock",
+    ],
+    include_dirs: [
+        // TODO: factoring this out
+        // "stack/include/bt_octets.h" is included in
+        // the headers
+        "packages/modules/Bluetooth/system",
+    ],
+}
+
+
+// TODO:
+//  Add a default for libbt-crypto-toolbox-mock to be used in
+//  rust libraries
+
+// Test for crypto toolbox
+cc_test {
+    name: "cryto-toolbox-test",
+
+    local_include_dirs: [
+        "priv_include",
+    ],
+    defaults: [
+        "mts_defaults",
+        "libbt-crypto-toolbox_support_defaults",
+    ],
+    host_supported: true,
+    test_suites: [
+        "device-tests",
+    ],
+    srcs: [
+        "test/crypto_toolbox_test.cc",
+    ],
+    static_libs: [
+        "libgmock",
+    ]
+}
