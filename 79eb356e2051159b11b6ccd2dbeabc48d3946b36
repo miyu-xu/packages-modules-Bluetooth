@@ -22,6 +22,30 @@
       },
       "revId": "79eb356e2051159b11b6ccd2dbeabc48d3946b36",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2b6a29a_0512d397",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-01T17:56:44Z",
+      "side": 1,
+      "message": "Yes, b/287610827#comment13 was intended to point out the similar cases where BT connection was dropped but actually upper service was dead. I thought it is better to print package name to find out the root cause easily for similar cases.",
+      "parentUuid": "d40cd3dd_e3c026c8",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "79eb356e2051159b11b6ccd2dbeabc48d3946b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
