@@ -30,7 +30,7 @@
 #include "gap_api.h"
 #include "gd/common/init_flags.h"
 #include "gd/common/strings.h"
-#include "stack/crypto_toolbox/crypto_toolbox.h"
+#include "crypto_toolbox.h"
 
 namespace bluetooth {
 namespace csis {
