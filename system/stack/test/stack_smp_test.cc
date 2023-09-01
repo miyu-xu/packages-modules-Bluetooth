@@ -29,7 +29,7 @@
 #include "stack/include/bt_octets.h"
 #include "stack/include/smp_api.h"
 #include "stack/include/smp_status.h"
-#include "stack/smp/p_256_ecc_pp.h"
+#include "p_256_ecc_pp.h"
 #include "stack/smp/smp_int.h"
 #include "test/common/mock_functions.h"
 #include "test/mock/mock_stack_acl.h"
