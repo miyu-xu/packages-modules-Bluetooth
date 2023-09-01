@@ -26,7 +26,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/sdpdefs.h"
 #include "stack/include/smp_api.h"
-#include "stack/smp/p_256_ecc_pp.h"
+#include "p_256_ecc_pp.h"
 #include "stack/smp/smp_int.h"
 #include "test/fake/fake_osi.h"
 #include "test/mock/mock_btif_config.h"
