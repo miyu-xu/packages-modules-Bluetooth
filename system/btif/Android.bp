@@ -261,6 +261,10 @@ cc_test {
         "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
+
+        // indirect dependency on libbt-crypto-toolbox
+        // TODO: convert to a module that is directly depended on
+        "libbt-crypto-toolbox_support_defaults",
     ],
     test_suites: ["device-tests"],
     include_dirs: btifCommonIncludes,
@@ -540,6 +544,10 @@ cc_test {
         "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
+
+        // indirect dependency on libbt-crypto-toolbox
+        // TODO: convert to a module that is directly depended on
+        "libbt-crypto-toolbox_support_defaults",
     ],
     test_suites: ["device-tests"],
     include_dirs: [
@@ -678,6 +686,10 @@ cc_test {
         "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
+
+        // indirect dependency on libbt-crypto-toolbox
+        // TODO: convert to a module that is directly depended on
+        "libbt-crypto-toolbox_support_defaults",
     ],
     test_suites: ["device-tests"],
     include_dirs: [

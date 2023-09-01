@@ -22,17 +22,15 @@
 #include <map>
 #include <string>
 
-#include "stack/crypto_toolbox/aes.h"
-#include "stack/crypto_toolbox/crypto_toolbox.h"
-#include "test/common/mock_functions.h"
+#include "aes.h"
+#include "crypto_toolbox.h"
 
 #ifndef UNUSED_ATTR
 #define UNUSED_ATTR
 #endif
 
 namespace crypto_toolbox {
-Octet16 aes_cmac(const Octet16& key, const uint8_t* input, uint16_t length) {
-  inc_func_call_count(__func__);
+Octet16 aes_cmac(const Octet16&, const uint8_t*, uint16_t) {
   Octet16 octet16;
   return octet16;
 }

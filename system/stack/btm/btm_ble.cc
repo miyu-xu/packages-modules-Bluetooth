@@ -40,7 +40,7 @@
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/security_device_record.h"
-#include "stack/crypto_toolbox/crypto_toolbox.h"
+#include "crypto_toolbox.h"
 #include "stack/eatt/eatt.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_octets.h"
