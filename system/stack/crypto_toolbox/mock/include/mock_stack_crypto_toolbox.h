@@ -37,9 +37,8 @@
 
 #include <algorithm>
 
-#include "stack/crypto_toolbox/aes.h"
-#include "stack/crypto_toolbox/crypto_toolbox.h"
-#include "test/common/mock_functions.h"
+#include "aes.h"
+#include "crypto_toolbox.h"
 
 // Mocked compile conditionals, if any
 #ifndef UNUSED_ATTR
@@ -57,7 +56,7 @@ namespace stack_crypto_toolbox {
 struct h6 {
   Octet16 octet16;
   std::function<Octet16(const Octet16& w, std::array<uint8_t, 4> keyid)> body{
-      [this](const Octet16& w, std::array<uint8_t, 4> keyid) {
+      [this](const Octet16&, std::array<uint8_t, 4>) {
         return octet16;
       }};
   Octet16 operator()(const Octet16& w, std::array<uint8_t, 4> keyid) {
@@ -71,7 +70,7 @@ extern struct h6 h6;
 struct h7 {
   Octet16 octet16;
   std::function<Octet16(const Octet16& salt, const Octet16& w)> body{
-      [this](const Octet16& salt, const Octet16& w) { return octet16; }};
+      [this](const Octet16&, const Octet16&) { return octet16; }};
   Octet16 operator()(const Octet16& salt, const Octet16& w) {
     return body(salt, w);
   };
@@ -84,8 +83,8 @@ struct f4 {
   Octet16 octet16;
   std::function<Octet16(const uint8_t* u, const uint8_t* v, const Octet16& x,
                         uint8_t z)>
-      body{[this](const uint8_t* u, const uint8_t* v, const Octet16& x,
-                  uint8_t z) { return octet16; }};
+      body{[this](const uint8_t*, const uint8_t*, const Octet16&,
+                  uint8_t) { return octet16; }};
   Octet16 operator()(const uint8_t* u, const uint8_t* v, const Octet16& x,
                      uint8_t z) {
     return body(u, v, x, z);
@@ -98,8 +97,8 @@ extern struct f4 f4;
 struct f5 {
   std::function<void(const uint8_t* w, const Octet16& n1, const Octet16& n2,
                      uint8_t* a1, uint8_t* a2, Octet16* mac_key, Octet16* ltk)>
-      body{[](const uint8_t* w, const Octet16& n1, const Octet16& n2,
-              uint8_t* a1, uint8_t* a2, Octet16* mac_key, Octet16* ltk) {}};
+      body{[](const uint8_t*, const Octet16&, const Octet16&,
+              uint8_t*, uint8_t*, Octet16*, Octet16*) {}};
   void operator()(const uint8_t* w, const Octet16& n1, const Octet16& n2,
                   uint8_t* a1, uint8_t* a2, Octet16* mac_key, Octet16* ltk) {
     body(w, n1, n2, a1, a2, mac_key, ltk);
@@ -114,9 +113,9 @@ struct f6 {
   std::function<Octet16(const Octet16& w, const Octet16& n1, const Octet16& n2,
                         const Octet16& r, uint8_t* iocap, uint8_t* a1,
                         uint8_t* a2)>
-      body{[this](const Octet16& w, const Octet16& n1, const Octet16& n2,
-                  const Octet16& r, uint8_t* iocap, uint8_t* a1,
-                  uint8_t* a2) { return octet16; }};
+      body{[this](const Octet16&, const Octet16&, const Octet16&,
+                  const Octet16&, uint8_t*, uint8_t*,
+                  uint8_t*) { return octet16; }};
   Octet16 operator()(const Octet16& w, const Octet16& n1, const Octet16& n2,
                      const Octet16& r, uint8_t* iocap, uint8_t* a1,
                      uint8_t* a2) {
@@ -130,8 +129,8 @@ extern struct f6 f6;
 struct g2 {
   std::function<uint32_t(const uint8_t* u, const uint8_t* v, const Octet16& x,
                          const Octet16& y)>
-      body{[](const uint8_t* u, const uint8_t* v, const Octet16& x,
-              const Octet16& y) { return 0; }};
+      body{[](const uint8_t*, const uint8_t*, const Octet16&,
+              const Octet16&) { return 0; }};
   uint32_t operator()(const uint8_t* u, const uint8_t* v, const Octet16& x,
                       const Octet16& y) {
     return body(u, v, x, y);
@@ -144,7 +143,7 @@ extern struct g2 g2;
 struct ltk_to_link_key {
   Octet16 octet16;
   std::function<Octet16(const Octet16& ltk, bool use_h7)> body{
-      [this](const Octet16& ltk, bool use_h7) { return octet16; }};
+      [this](const Octet16&, bool) { return octet16; }};
   Octet16 operator()(const Octet16& ltk, bool use_h7) {
     return body(ltk, use_h7);
   };
@@ -156,7 +155,7 @@ extern struct ltk_to_link_key ltk_to_link_key;
 struct link_key_to_ltk {
   Octet16 octet16;
   std::function<Octet16(const Octet16& link_key, bool use_h7)> body{
-      [this](const Octet16& link_key, bool use_h7) { return octet16; }};
+      [this](const Octet16&, bool) { return octet16; }};
   Octet16 operator()(const Octet16& link_key, bool use_h7) {
     return body(link_key, use_h7);
   };
