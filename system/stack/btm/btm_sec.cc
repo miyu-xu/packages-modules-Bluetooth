@@ -1150,7 +1150,8 @@ tBTM_STATUS BTM_SetEncryption(const RawAddress& bd_addr,
 
   /* enqueue security request if security is active */
   if (p_dev_rec->p_callback || (p_dev_rec->sec_state != BTM_SEC_STATE_IDLE)) {
-    LOG_WARN("Security Manager: BTM_SetEncryption busy, enqueue request");
+    LOG_WARN("Security Manager: Enqueue request in state:%s",
+             security_state_text(p_dev_rec->sec_state).c_str()));
     btm_sec_queue_encrypt_request(bd_addr, transport, p_callback, p_ref_data,
                                   sec_act);
     LOG_INFO("Queued start encryption");
