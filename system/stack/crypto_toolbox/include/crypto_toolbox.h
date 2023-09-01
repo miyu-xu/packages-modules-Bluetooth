@@ -15,7 +15,6 @@
  */
 
 #pragma once
-#include <base/logging.h>
 
 #include "check.h"
 #include "stack/include/bt_octets.h"
