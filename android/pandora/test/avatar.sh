@@ -35,6 +35,7 @@ _PANDORA_PYTHON_PATHS=(
   "${ANDROID_BUILD_TOP}/external/python/bumble/"
   "${ANDROID_BUILD_TOP}/external/python/mobly/"
   "${ANDROID_BUILD_TOP}/external/python/pyee/"
+  "${ANDROID_BUILD_TOP}/external/python/portpicker/src/"
   "${ANDROID_BUILD_TOP}/out/soong/.intermediates/external/pandora/bt-test-interfaces/python/pandora-python-gen-src/gen/"
   "${ANDROID_BUILD_TOP}/out/soong/.intermediates/packages/modules/Bluetooth/pandora/interfaces/python/pandora_experimental-python-gen-src/gen/"
 )
@@ -43,13 +44,14 @@ if [[ "$1" =~ ^('format'|'lint'|'run')$ ]]; then
   [ ! -d "${_VENV_DIR}" ] && python3 -m venv "${_VENV_DIR}"
   source "${_VENV_DIR}"/bin/activate
   pip install \
-    'grpcio==1.51.1' \
+    'grpcio==1.57' \
     'cryptography==35' \
-    'protobuf==4.22.1' \
+    'numpy==1.25.2' \
+    'protobuf==4.24.2' \
     'pyright==1.1.298' \
-    'mypy==1.1.1' \
-    'types-protobuf==4.22.0.1' \
-    'black==22.10.0' \
+    'mypy==1.5.1' \
+    'types-protobuf==4.24.0.1' \
+    'black==23.7.0' \
     'isort==5.12.0'
   export PYTHONPATH="$(IFS=:; echo "${_PANDORA_PYTHON_PATHS[*]}"):${PYTHONPATH}"
 fi
