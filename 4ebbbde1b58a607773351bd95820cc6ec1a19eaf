@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "357c3cd2_027b25d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-01T15:56:57Z",
+      "side": 1,
+      "message": "Fine to skip it.\nYou can also make them more in line by using parentheses like this:\n\n```\nif (DBG) {\n-                        Log.d(TAG, \" onAudioDevicesAdded: \" + device + \", device type: \"\n-                                + deviceInfo.getType());\n+                        Log.d(\n+                                TAG,\n+                                \" onAudioDevicesAdded:\"\n+                                        + (\" device\u003d\" + device)\n+                                        + (\", device type: \" + deviceInfo.getType()));\n                     }\n```\n\nWhich in this case is way better.\n\nBut we can skip it if you don\u0027t feel like it.",
+      "parentUuid": "c9e55d74_2e7ba05b",
+      "revId": "4ebbbde1b58a607773351bd95820cc6ec1a19eaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a798969_5bbc143b",
