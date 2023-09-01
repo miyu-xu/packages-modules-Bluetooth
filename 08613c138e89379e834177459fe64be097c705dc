@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "492d45f0_dcb0d2c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-01T16:32:36Z",
+      "side": 1,
+      "message": "None of the code in GattService ad ScanManager are covered. Gerrit shows a 0% coverage.\n\nI think we should have  a test that check that profiles are notifying correctly",
+      "revId": "08613c138e89379e834177459fe64be097c705dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
