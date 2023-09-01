@@ -209,6 +209,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "504ee2c3_4a3ac61d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1721,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-01T07:52:23Z",
+      "side": 1,
+      "message": "Acknowledged. I just misunderstand phone_state usage here.",
+      "parentUuid": "2ed1e900_c39507a0",
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "229b1624_7a7f5ca3",
@@ -234,6 +252,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "912e0a4c_a66bd46c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-01T07:52:23Z",
+      "side": 1,
+      "message": "True, agree on this.",
+      "parentUuid": "229b1624_7a7f5ca3",
+      "range": {
+        "startLine": 1728,
+        "startChar": 8,
+        "endLine": 1728,
+        "endChar": 13
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "283b512b_4b37d352",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
@@ -245,6 +287,30 @@
       "writtenOn": "2023-08-31T09:15:10Z",
       "side": 1,
       "message": "I think what you want here is:\n1. Don\u0027t affect CRAS call\n2. If there is a `CallState::Incoming | CallState::Dialing | CallState::Alerting` call, remove it and set the phone state back to Idle\n3. If 2 is not true (*) and there is a `CallState::Active`, remove it and `self.phone_state.num_active -\u003d 1`\n4. When there is any phone state change, returns true so the caller would send out a phone state change\n\n*: Before I assert that there is exactly one incoming/dialing/alerting/active call after the match statement, but that may not be true anymore after this feature.\n\nI don\u0027t understand why you `c.state \u003d CallState::Idle` and then remove them immediately (using retain). At least the snippet can be revised to:\n```suggestion\n        self.call_list.retain(|c| match c.source {\n            CallSource::CRAS \u003d\u003e true,\n            CallSource::HID \u003d\u003e {\n                if c.state \u003d\u003d CallState::Active {\n                    self.phone_state.num_active -\u003d 1;\n                }\n                false\n            }\n        });\n        if self.phone_state.num_active \u003d\u003d 0 {\n            self.phone_state.state \u003d CallState::Idle;\n        }\n        // However, we shouldn\u0027t always return true\n```\n\nAgain please note that this code removes all HID calls, while I remember that we are going to support answering a call during a meeting? @whalechang@google.com please suggest.",
+      "range": {
+        "startLine": 1736,
+        "startChar": 0,
+        "endLine": 1759,
+        "endChar": 9
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6547bec3_1b45fcb6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-01T07:52:23Z",
+      "side": 1,
+      "message": "Yes, it is possible to answer calls during a meeting. However, there should only be one active call at a time. When the user answers a new call, the old call should be hung up. This will depend on the implementation of the application. For example, on Android, the meeting session will end if the user answers a new call.\n\n\nIf the application does not behave in this way, it is not possible to know which call to hang up. This is because the UHID does not pass any information about the call, only a boolean value indicating whether the current call is hung up or not.\n\nIn that case, I think it is not that bad to simply end all the call.",
+      "parentUuid": "283b512b_4b37d352",
       "range": {
         "startLine": 1736,
         "startChar": 0,

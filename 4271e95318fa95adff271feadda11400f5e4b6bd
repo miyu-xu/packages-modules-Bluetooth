@@ -22,6 +22,30 @@
       },
       "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11cf2857_c3f2a486",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2591,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-01T07:52:23Z",
+      "side": 0,
+      "message": "Why do we always need to insert an active call enable flag enabled?\n\nIf that is a CRAS call, then we should not touch here.\nIf that is a HID call, then we also don\u0027t need to add HID call since HID call should always be added by web hid application.",
+      "parentUuid": "d1869bea_a9cc0ee1",
+      "range": {
+        "startLine": 2580,
+        "startChar": 0,
+        "endLine": 2591,
+        "endChar": 0
+      },
+      "revId": "4271e95318fa95adff271feadda11400f5e4b6bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
