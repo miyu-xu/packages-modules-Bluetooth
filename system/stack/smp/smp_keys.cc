@@ -36,7 +36,7 @@
 #include "smp_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
-#include "stack/crypto_toolbox/crypto_toolbox.h"
+#include "crypto_toolbox.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_octets.h"
 #include "types/raw_address.h"

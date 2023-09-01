@@ -25,6 +25,11 @@ package {
 
 cc_defaults {
     name: "libbt_audio_hal_interface_fuzz_defaults",
+    defaults: [
+        // indirect dependency on libbt-crypto-toolbox
+        // TODO: convert to a module that is directly depended on
+        "libbt-crypto-toolbox_support_defaults",
+    ],
     header_libs: [
         "avrcp_headers",
         "libbluetooth_headers",

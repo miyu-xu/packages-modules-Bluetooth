@@ -55,7 +55,13 @@ java_library {
 
 cc_library_shared {
     name: "libbluetooth_jni",
-    defaults: ["fluoride_defaults"],
+    defaults: [
+        "fluoride_defaults",
+        // indirect dependency on libbt-crypto-toolbox
+        // TODO: convert to a module that is directly depended on
+        "libbt-crypto-toolbox_support_defaults",
+    ],
+
     srcs: ["jni/**/*.cpp"],
     version_script: "libbluetooth_jni.map",
     header_libs: [
