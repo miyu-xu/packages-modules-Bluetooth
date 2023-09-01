@@ -28,12 +28,10 @@
 #define DWORD_BYTES 4
 #define DWORD_BITS_SHIFT 5
 
-#define KEY_LENGTH_DWORDS_P256 8
 /* Arithmetic Operations */
 
 int multiprecision_compare(uint32_t* a, uint32_t* b);
 int multiprecision_iszero(uint32_t* a);
-void multiprecision_init(uint32_t* c);
 void multiprecision_copy(uint32_t* c, uint32_t* a);
 uint32_t multiprecision_dword_bits(uint32_t a);
 uint32_t multiprecision_most_signdwords(uint32_t* a);

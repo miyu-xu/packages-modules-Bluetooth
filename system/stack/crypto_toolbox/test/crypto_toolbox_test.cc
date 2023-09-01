@@ -16,7 +16,7 @@
  *
  ******************************************************************************/
 
-#include "stack/crypto_toolbox/crypto_toolbox.h"
+#include "crypto_toolbox.h"
 
 #include <base/logging.h>
 #include <base/strings/string_number_conversions.h>
@@ -25,7 +25,7 @@
 
 #include <vector>
 
-#include "stack/crypto_toolbox/aes.h"
+#include "aes.h"
 #include "stack/include/bt_octets.h"
 
 using ::testing::ElementsAreArray;
