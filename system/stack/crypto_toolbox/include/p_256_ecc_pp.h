@@ -26,7 +26,8 @@
 #pragma once
 
 #include <cstdbool>
-#include "p_256_multprecision.h"
+#include <cstdint>
+#define KEY_LENGTH_DWORDS_P256 8
 
 typedef struct {
   uint32_t x[KEY_LENGTH_DWORDS_P256];
@@ -63,3 +64,8 @@ void ECC_PointMult_Bin_NAF(Point* q, Point* p, uint32_t* n);
 #define ECC_PointMult(q, p, n) ECC_PointMult_Bin_NAF(q, p, n)
 
 void p_256_init_curve();
+
+
+// TODO: move this to private header
+void multiprecision_init(uint32_t* c);
+
