@@ -904,8 +904,6 @@ class CsisClientImpl : public CsisClient {
 
   void OnGattWriteCcc(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
                       void* user_data) {
-    LOG(INFO) << __func__ << " handle=" << loghex(handle);
-
     auto device = FindDeviceByConnId(conn_id);
     if (device == nullptr) {
       LOG(INFO) << __func__ << " unknown conn_id=" << loghex(conn_id);
@@ -917,6 +915,28 @@ class CsisClientImpl : public CsisClient {
       LOG_INFO("Database out of sync for %s",
                ADDRESS_TO_LOGGABLE_CSTR(device->addr));
       ClearDeviceInformationAndStartSearch(device);
+    }
+
+    if (status == GATT_SUCCESS) {
+      LOG_INFO("Successfully registered on ccc: 0x%04x, device: %s", handle,
+               ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+      return;
+    }
+
+    LOG_ERROR(
+        "Failed to register for indications: 0x%04x, device: %s, status: "
+        "0x%02x",
+        handle, ADDRESS_TO_LOGGABLE_CSTR(device->addr), status);
+
+    auto val_handle = device->FindValueHandleByCccHandle(handle);
+    if (!val_handle) {
+      LOG_ERROR("Unknown ccc handle: 0x%04x, device: %s", handle,
+                ADDRESS_TO_LOGGABLE_CSTR(device->addr));
+      return;
+    }
+
+    if (val_handle != GAP_INVALID_HANDLE) {
+      BTA_GATTC_DeregisterForNotifications(gatt_if_, device->addr, val_handle);
     }
   }
 
@@ -1669,12 +1689,14 @@ class CsisClientImpl : public CsisClient {
         DLOG(INFO) << __func__ << " Lock UUID found handle: "
                    << loghex(csis_inst->svc_data.lock_handle.val_hdl)
                    << " ccc handle: "
-                   << loghex(csis_inst->svc_data.lock_handle.ccc_hdl);
+                   << loghex(csis_inst->svc_data.lock_handle.ccc_hdl)
+                   << " device: " << ADDRESS_TO_LOGGABLE_STR(device->addr);
       } else if (charac.uuid == kCsisRankUuid) {
         csis_inst->svc_data.rank_handle = charac.value_handle;
 
         DLOG(INFO) << __func__ << " Rank UUID found handle: "
-                   << loghex(csis_inst->svc_data.rank_handle);
+                   << loghex(csis_inst->svc_data.rank_handle)
+                   << " device: " << ADDRESS_TO_LOGGABLE_STR(device->addr);
       } else if (charac.uuid == kCsisSirkUuid) {
         /* Find the optional CCC descriptor */
         uint16_t ccc_handle =
@@ -1689,7 +1711,8 @@ class CsisClientImpl : public CsisClient {
         DLOG(INFO) << __func__ << " SIRK UUID found handle: "
                    << loghex(csis_inst->svc_data.sirk_handle.val_hdl)
                    << " ccc handle: "
-                   << loghex(csis_inst->svc_data.sirk_handle.ccc_hdl);
+                   << loghex(csis_inst->svc_data.sirk_handle.ccc_hdl)
+                   << " device: " << ADDRESS_TO_LOGGABLE_STR(device->addr);
       } else if (charac.uuid == kCsisSizeUuid) {
         /* Find the optional CCC descriptor */
         uint16_t ccc_handle =
@@ -1704,7 +1727,8 @@ class CsisClientImpl : public CsisClient {
         DLOG(INFO) << __func__ << " Size UUID found handle: "
                    << loghex(csis_inst->svc_data.size_handle.val_hdl)
                    << " ccc handle: "
-                   << loghex(csis_inst->svc_data.size_handle.ccc_hdl);
+                   << loghex(csis_inst->svc_data.size_handle.ccc_hdl)
+                   << " device: " << ADDRESS_TO_LOGGABLE_STR(device->addr);
       }
     }
 
@@ -2118,10 +2142,10 @@ class CsisClientImpl : public CsisClient {
     UINT16_TO_STREAM(value_ptr, GATT_CHAR_CLIENT_CONFIG_NOTIFICATION);
     BtaGattQueue::WriteDescriptor(
         conn_id, ccc_handle, std::move(value), GATT_WRITE,
-        [](uint16_t conn_id, tGATT_STATUS status, uint16_t value_handle,
-           uint16_t len, const uint8_t* value, void* user_data) {
+        [](uint16_t conn_id, tGATT_STATUS status, uint16_t handle, uint16_t len,
+           const uint8_t* value, void* user_data) {
           if (instance)
-            instance->OnGattWriteCcc(conn_id, status, value_handle, user_data);
+            instance->OnGattWriteCcc(conn_id, status, handle, user_data);
         },
         nullptr);
   }
