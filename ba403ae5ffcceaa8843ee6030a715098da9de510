@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02e5c920_d1b41448",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothInCallService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-01T22:13:44Z",
+      "side": 1,
+      "message": "SHould the null check be added here too ?",
+      "range": {
+        "startLine": 302,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 40
+      },
+      "revId": "ba403ae5ffcceaa8843ee6030a715098da9de510",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
