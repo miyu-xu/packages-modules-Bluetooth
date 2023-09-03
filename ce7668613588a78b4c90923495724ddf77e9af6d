@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36d62d3d_0647818f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-03T22:18:46Z",
+      "side": 1,
+      "message": "What about having this sendMessages in the handleBluetoothProfileConnectionStateChanged method w/o onConnectingState method?",
+      "range": {
+        "startLine": 309,
+        "startChar": 0,
+        "endLine": 315,
+        "endChar": 5
+      },
+      "revId": "ce7668613588a78b4c90923495724ddf77e9af6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
