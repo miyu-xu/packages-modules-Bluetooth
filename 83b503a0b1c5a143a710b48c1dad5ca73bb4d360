@@ -16,6 +16,75 @@
       "message": "(Note: Added @sungsoo as reviewer since this is for API documentation, even though no API changes would like feedback from an API councillor) - thanks!",
       "revId": "83b503a0b1c5a143a710b48c1dad5ca73bb4d360",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc34347e_0b1b3cf0",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-03T22:06:17Z",
+      "side": 1,
+      "message": "an",
+      "range": {
+        "startLine": 785,
+        "startChar": 85,
+        "endLine": 785,
+        "endChar": 86
+      },
+      "revId": "83b503a0b1c5a143a710b48c1dad5ca73bb4d360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92eef7e4_24bfab32",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-03T22:06:17Z",
+      "side": 1,
+      "message": "Could you add the comment about big endian here as well?",
+      "range": {
+        "startLine": 795,
+        "startChar": 18,
+        "endLine": 795,
+        "endChar": 31
+      },
+      "revId": "83b503a0b1c5a143a710b48c1dad5ca73bb4d360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3eb9d3f_4995f316",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-03T22:06:17Z",
+      "side": 1,
+      "message": "Could you add the comment about little endian here as well?",
+      "range": {
+        "startLine": 797,
+        "startChar": 18,
+        "endLine": 797,
+        "endChar": 21
+      },
+      "revId": "83b503a0b1c5a143a710b48c1dad5ca73bb4d360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
