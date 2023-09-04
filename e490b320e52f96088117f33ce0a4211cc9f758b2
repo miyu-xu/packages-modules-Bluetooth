@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c2ada95_cb9f88a4",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2071,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-04T07:30:10Z",
+      "side": 1,
+      "message": "It is not clear what the \u0027Default\u0027 reconnection mode is.\nIt seems that `client.cc` has a default reconnection mode, which is passed to this function, therefore it is \u0027default\u0027 in the context of `client.cc`.\n\nLet\u0027s remove \u0027default\u0027 part from the group class method name since it is confusing.",
+      "range": {
+        "startLine": 2071,
+        "startChar": 32,
+        "endLine": 2071,
+        "endChar": 39
+      },
+      "revId": "e490b320e52f96088117f33ce0a4211cc9f758b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
