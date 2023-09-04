@@ -512,7 +512,7 @@ void btif_hh_remove_device(RawAddress bd_addr) {
   /* need to notify up-layer device is disconnected to avoid state out of sync
    * with up-layer */
 
-  do_in_jni_thread(base::Bind(
+  do_in_jni_thread(base::BindOnce(
       [](RawAddress bd_addr) {
         HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addr,
                   BTHH_CONN_STATE_DISCONNECTED);
@@ -595,12 +595,12 @@ bt_status_t btif_hh_virtual_unplug(const RawAddress* bd_addr) {
 
       /* need to notify up-layer device is disconnected to avoid
        * state out of sync with up-layer */
-      do_in_jni_thread(base::Bind(
-            [](RawAddress bd_addrcb) {
-              HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addrcb,
-                        BTHH_CONN_STATE_DISCONNECTED);
-            },
-           *bd_addr));
+      do_in_jni_thread(base::BindOnce(
+          [](RawAddress bd_addrcb) {
+            HAL_CBACK(bt_hh_callbacks, connection_state_cb, &bd_addrcb,
+                      BTHH_CONN_STATE_DISCONNECTED);
+          },
+          *bd_addr));
     }
     return BT_STATUS_FAIL;
   }
@@ -665,7 +665,7 @@ bt_status_t btif_hh_connect(const RawAddress* bd_addr) {
   btif_hh_cb.pending_conn_address = *bd_addr;
   BTA_HhOpen(*bd_addr);
 
-  do_in_jni_thread(base::Bind(
+  do_in_jni_thread(base::BindOnce(
       [](RawAddress* bd_addr) {
         HAL_CBACK(bt_hh_callbacks, connection_state_cb, bd_addr,
                   BTHH_CONN_STATE_CONNECTING);
