@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3d1cc24_e816ad5b",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1673,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-04T09:24:27Z",
+      "side": 1,
+      "message": "before we set instance to the device only when instance was verified. Now we set it and remove if something will go wrong.\nWhy we are changing it?",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b49312f_2c675c8e",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1682,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-04T09:24:27Z",
+      "side": 1,
+      "message": "Please change to LOG_ERROR",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68fbf3fd_b4a1f9ad",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1693,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-04T09:24:27Z",
+      "side": 1,
+      "message": "Can we take an opportunity to change this logs to LOG_DEBUG ?",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c996f51b_ad7d2cca",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1701,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-04T09:24:27Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "796bb403_b6dc0271",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1715,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-04T09:24:27Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be0fa9d2_498eb3dd",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-04T09:24:27Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f742b675_7c385161",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-04T09:24:27Z",
+      "side": 1,
+      "message": "this seems to be separate patch.",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
