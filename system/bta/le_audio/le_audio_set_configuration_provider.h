@@ -32,6 +32,8 @@ class AudioSetConfigurationProvider {
   static void Cleanup();
   virtual const set_configurations::AudioSetConfigurations* GetConfigurations(
       ::le_audio::types::LeAudioContextType content_type) const;
+  virtual uint8_t CheckConfigurationIsBiDirSwb(
+      const set_configurations::AudioSetConfiguration& set_configuration) const;
 
  private:
   struct impl;
