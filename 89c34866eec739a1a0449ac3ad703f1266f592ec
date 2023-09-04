@@ -16,6 +16,23 @@
       "message": "Looks good. Also tested and it worked.",
       "revId": "89c34866eec739a1a0449ac3ad703f1266f592ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0495d71_6557b3d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-04T08:07:04Z",
+      "side": 1,
+      "message": "This might not be the best solution to this problem. PTAL at this approach https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2492537",
+      "revId": "89c34866eec739a1a0449ac3ad703f1266f592ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
