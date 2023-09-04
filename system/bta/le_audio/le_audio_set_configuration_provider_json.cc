@@ -740,4 +740,21 @@ AudioSetConfigurationProvider::GetConfigurations(
   return nullptr;
 }
 
+bool AudioSetConfigurationProvider::CheckConfigurationIsBiDirSwb(
+    const set_configurations::AudioSetConfiguration& set_configuration) const {
+  bool is_source_swb = false;
+  bool is_sink_swb = false;
+
+  for (const auto& conf : set_configuration.confs) {
+    if (conf.direction == le_audio::types::kLeAudioDirectionSink) {
+      is_sink_swb = conf.codec.GetConfigSamplingFrequency() >=
+                    le_audio::LeAudioCodecConfiguration::kSampleRate32000;
+    } else {
+      is_source_swb = conf.codec.GetConfigSamplingFrequency() >=
+                      le_audio::LeAudioCodecConfiguration::kSampleRate32000;
+    }
+  }
+  return is_sink_swb && is_source_swb;
+}
+
 }  // namespace le_audio
