@@ -41,6 +41,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9596eb0a_a751d1a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-04T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "574a8218_56e76de7",
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37e4c5d3_8c5060e1",
@@ -58,6 +76,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03265ae4_5b955f90",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-04T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37e4c5d3_8c5060e1",
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03a15f7c_7c44a388",
@@ -71,6 +107,24 @@
       "writtenOn": "2023-08-30T09:27:56Z",
       "side": 1,
       "message": "Test: atest bluetooth_test_gd",
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfd51dbc_2e66e566",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-04T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03a15f7c_7c44a388",
       "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -117,6 +171,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ace27951_76844213",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-04T13:20:31Z",
+      "side": 1,
+      "message": "`num_active` should only be incremented if `phone_ops_enabled` is false",
+      "parentUuid": "9f9914e9_2efb1cc9",
+      "range": {
+        "startLine": 727,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 25
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "535d97b2_8489aceb",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
@@ -128,6 +206,30 @@
       "writtenOn": "2023-08-31T09:15:10Z",
       "side": 1,
       "message": "Similarly what we want here is only removing the CRAS call.\n\n```suggestion\n                        if self.call_list.iter().any(|c| c.source \u003d\u003d CallSource::CRAS) {\n                            self.call_list.retain(|x| match x.source {\n                                CallSource::CRAS \u003d\u003e {\n                                    self.phone_state.num_active -\u003d 1;\n                                    false\n                                }\n                                _ \u003d\u003e true,\n                            });\n                            self.phone_state_change(\"\".into());\n                        }\n```",
+      "range": {
+        "startLine": 769,
+        "startChar": 0,
+        "endLine": 782,
+        "endChar": 25
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaf39f55_0edde523",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-04T13:20:31Z",
+      "side": 1,
+      "message": "idem: `num_active` should only be decremented if `phone_ops_enabled` is false",
+      "parentUuid": "535d97b2_8489aceb",
       "range": {
         "startLine": 769,
         "startChar": 0,
@@ -274,6 +376,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12c87a2b_2195c926",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1728,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-04T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "912e0a4c_a66bd46c",
+      "range": {
+        "startLine": 1728,
+        "startChar": 8,
+        "endLine": 1728,
+        "endChar": 13
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "283b512b_4b37d352",
@@ -335,6 +461,30 @@
       "side": 1,
       "message": "Acknowledged. Please handle the return value correctly and remove the redundant statements then.",
       "parentUuid": "6547bec3_1b45fcb6",
+      "range": {
+        "startLine": 1736,
+        "startChar": 0,
+        "endLine": 1759,
+        "endChar": 9
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41446b3b_9a5351e8",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1759,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-04T13:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "466017f2_6e4ab49a",
       "range": {
         "startLine": 1736,
         "startChar": 0,
