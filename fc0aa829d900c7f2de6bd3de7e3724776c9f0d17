@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9192c46d_97c5356f",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2861,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-04T08:50:44Z",
+      "side": 1,
+      "message": "Shouldn\u0027t the `autonomous_target_state_` be reset on both ASEs when the timer is canceled, or is this done somewhere else?\n\nAdditionally when someone calls `DeactivateAllAses()` when we are waiting for this scheduled timer call, the states will be reset, but the timer would still be running, calling the callback for an expired ASE.",
+      "range": {
+        "startLine": 2861,
+        "startChar": 8,
+        "endLine": 2861,
+        "endChar": 55
+      },
+      "revId": "fc0aa829d900c7f2de6bd3de7e3724776c9f0d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
