@@ -20,7 +20,7 @@ use dbus::strings::Path;
 
 use dbus_macros::{dbus_method, dbus_propmap, dbus_proxy_obj, generate_dbus_exporter};
 
-use dbus_projection::DisconnectWatcher;
+use dbus_projection::{DBusLog, DBusLogOptions, DBusLogVerbosity, DisconnectWatcher};
 use dbus_projection::{dbus_generated, impl_dbus_arg_enum};
 
 use num_traits::cast::{FromPrimitive, ToPrimitive};
@@ -288,6 +288,10 @@ impl DBusArg for Uuid128Bit {
     fn to_dbus(data: [u8; 16]) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
         return Ok(data.to_vec());
     }
+
+    fn log(data: &[u8; 16]) -> String {
+        String::from(format!("{:?}", data))
+    }
 }
 
 #[allow(dead_code)]
@@ -463,6 +467,10 @@ impl DBusArg for ScanFilterCondition {
             _ => {}
         }
         return Ok(map);
+    }
+
+    fn log(condition: &ScanFilterCondition) -> String {
+        String::from(format!("{:?}", condition))
     }
 }
 

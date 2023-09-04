@@ -13,7 +13,7 @@ use dbus::strings::Path;
 
 use dbus_macros::{dbus_method, dbus_propmap, dbus_proxy_obj, generate_dbus_exporter};
 
-use dbus_projection::DisconnectWatcher;
+use dbus_projection::{DBusLog, DBusLogOptions, DBusLogVerbosity, DisconnectWatcher};
 use dbus_projection::{dbus_generated, impl_dbus_arg_enum, impl_dbus_arg_from_into};
 
 use crate::dbus_arg::{DBusArg, DBusArgError, RefArgToRust};
@@ -164,6 +164,10 @@ impl DBusArg for PlayerMetadata {
         _metadata: PlayerMetadata,
     ) -> Result<dbus::arg::PropMap, Box<dyn std::error::Error>> {
         Ok(std::collections::HashMap::new())
+    }
+
+    fn log(metadata: &PlayerMetadata) -> String {
+        String::from(format!("{:?}", metadata))
     }
 }
 

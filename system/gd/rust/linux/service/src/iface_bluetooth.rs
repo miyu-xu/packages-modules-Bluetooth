@@ -29,7 +29,7 @@ use dbus::nonblock::SyncConnection;
 use dbus::strings::Path;
 use dbus_macros::{dbus_method, dbus_propmap, dbus_proxy_obj, generate_dbus_exporter};
 
-use dbus_projection::DisconnectWatcher;
+use dbus_projection::{DBusLog, DBusLogOptions, DBusLogVerbosity, DisconnectWatcher};
 use dbus_projection::{dbus_generated, impl_dbus_arg_enum, impl_dbus_arg_from_into};
 
 use num_traits::cast::{FromPrimitive, ToPrimitive};
@@ -402,6 +402,10 @@ impl DBusArg for BtSdpRecord {
             }
         }
         Ok(map)
+    }
+
+    fn log(record: &BtSdpRecord) -> String {
+        String::from(format!("{:?}", record))
     }
 }
 

@@ -51,7 +51,7 @@ use dbus::arg::RefArg;
 use dbus::nonblock::SyncConnection;
 
 use dbus_projection::{
-    dbus_generated, impl_dbus_arg_enum, impl_dbus_arg_from_into, ClientDBusProxy, DisconnectWatcher,
+    dbus_generated, impl_dbus_arg_enum, impl_dbus_arg_from_into, ClientDBusProxy, DisconnectWatcher, DBusLog, DBusLogOptions, DBusLogVerbosity, 
 };
 
 use dbus_macros::{
@@ -122,6 +122,10 @@ impl DBusArg for Uuid128Bit {
 
     fn to_dbus(data: [u8; 16]) -> Result<Vec<u8>, Box<dyn std::error::Error>> {
         return Ok(data.to_vec());
+    }
+
+    fn log(_data: &[u8; 16]) -> String {
+        panic!("Not implemented")
     }
 }
 
@@ -356,6 +360,10 @@ impl DBusArg for BtSdpRecord {
         }
         Ok(map)
     }
+
+    fn log(_data: &BtSdpRecord) -> String {
+        panic!("Not implemented")
+    }
 }
 
 #[dbus_propmap(BluetoothGattDescriptor)]
@@ -507,6 +515,10 @@ impl DBusArg for ScanFilterCondition {
             _ => {}
         }
         return Ok(map);
+    }
+
+    fn log(_data: &ScanFilterCondition) -> String {
+        panic!("Not implemented")
     }
 }
 

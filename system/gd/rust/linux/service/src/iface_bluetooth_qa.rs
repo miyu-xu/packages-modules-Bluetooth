@@ -3,7 +3,7 @@ use btstack::bluetooth_qa::{IBluetoothQA, IBluetoothQACallback};
 use bt_topshim::btif::BtDiscMode;
 use dbus_macros::{dbus_method, dbus_proxy_obj, generate_dbus_exporter};
 use dbus_projection::dbus_generated;
-use dbus_projection::DisconnectWatcher;
+use dbus_projection::{DBusLog, DBusLogOptions, DBusLogVerbosity, DisconnectWatcher};
 
 use crate::dbus_arg::DBusArg;
 use bt_topshim::btif::BtStatus;

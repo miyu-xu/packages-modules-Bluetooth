@@ -270,6 +270,10 @@ macro_rules! impl_dbus_arg_enum {
             fn to_dbus(data: $enum_type) -> Result<u32, Box<dyn std::error::Error>> {
                 return Ok(data.to_u32().unwrap());
             }
+
+            fn log(data: &$enum_type) -> String {
+                String::from(format!("{:?}", data))
+            }
         }
     };
 }
@@ -308,6 +312,10 @@ macro_rules! impl_dbus_arg_from_into {
                     Ok(result) => Ok(result),
                 }
             }
+
+            fn log(data: &$rust_type) -> String {
+                String::from(format!("{:?}", data))
+            }
         }
     };
 }
@@ -320,4 +328,43 @@ macro_rules! dbus_generated {
         // return type.
         panic!("To be implemented by dbus_projection macros");
     };
+}
+
+pub enum DBusLogOptions {
+    LogAll,
+    LogMethodNameOnly,
+}
+
+pub enum DBusLogVerbosity {
+    Error,
+    Warn,
+    Info,
+    Verbose,
+}
+
+pub enum DBusLog {
+    Enable(DBusLogOptions, DBusLogVerbosity),
+    Disable,
+}
+
+impl DBusLog {
+    pub fn log(logging: DBusLog, prefix: &str, func_name: &str, param: &str) {
+        match logging {
+            Self::Enable(option, verbosity) => match option {
+                DBusLogOptions::LogAll => match verbosity {
+                    DBusLogVerbosity::Error => log::error!("{}: {}: {}", prefix, func_name, param),
+                    DBusLogVerbosity::Warn => log::warn!("{}: {}: {}", prefix, func_name, param),
+                    DBusLogVerbosity::Info => log::info!("{}: {}: {}", prefix, func_name, param),
+                    DBusLogVerbosity::Verbose => log::debug!("{}: {}: {}", prefix, func_name, param),
+                }
+                DBusLogOptions::LogMethodNameOnly => match verbosity {
+                    DBusLogVerbosity::Error => log::error!("{}: {}", prefix, func_name),
+                    DBusLogVerbosity::Warn => log::warn!("{}: {}", prefix, func_name),
+                    DBusLogVerbosity::Info => log::info!("{}: {}", prefix, func_name),
+                    DBusLogVerbosity::Verbose => log::debug!("{}: {}", prefix, func_name),
+                }
+            }
+            Self::Disable => {}
+        }
+    }
 }
