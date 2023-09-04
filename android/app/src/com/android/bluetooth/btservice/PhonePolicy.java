@@ -750,6 +750,13 @@ class PhonePolicy {
             warnLog("processConnectOtherProfiles, adapter is not ON " + mAdapterService.getState());
             return;
         }
+
+        /* Make sure that device is still connected before connecting other profiles */
+        if (!device.isConnected()) {
+            debugLog("processConnectOtherProfiles: device is not connected anymore " + device);
+            return;
+        }
+
         if (handleAllProfilesDisconnected(device)) {
             debugLog("processConnectOtherProfiles: all profiles disconnected for " + device);
             return;
