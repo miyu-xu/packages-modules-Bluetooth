@@ -321,3 +321,42 @@ macro_rules! dbus_generated {
         panic!("To be implemented by dbus_projection macros");
     };
 }
+
+pub enum DbusLogOptions {
+    LogAll,
+    LogMethodNameOnly,
+}
+
+pub enum DbusLogVerbosity {
+    Error,
+    Warn,
+    Info,
+    Verbose,
+}
+
+pub enum DbusLog {
+    Enable(DbusLogOptions, DbusLogVerbosity),
+    Disable,
+}
+
+impl DbusLog {
+    pub fn log(logging: DbusLog, prefix: &str, func_name: &str, param: &str) {
+        match logging {
+            Self::Enable(option, verbosity) => match option {
+                DbusLogOptions::LogAll => match verbosity {
+                    DbusLogVerbosity::Error => log::error!("{}: {} {}", prefix, func_name, param),
+                    DbusLogVerbosity::Warn => log::warn!("{}: {} {}", prefix, func_name, param),
+                    DbusLogVerbosity::Info => log::info!("{}: {} {}", prefix, func_name, param),
+                    DbusLogVerbosity::Verbose => log::debug!("{}: {} {}", prefix, func_name, param),
+                }
+                DbusLogOptions::LogMethodNameOnly => match verbosity {
+                    DbusLogVerbosity::Error => log::error!("{}: {}", prefix, func_name),
+                    DbusLogVerbosity::Warn => log::warn!("{}: {}", prefix, func_name),
+                    DbusLogVerbosity::Info => log::info!("{}: {}", prefix, func_name),
+                    DbusLogVerbosity::Verbose => log::debug!("{}: {}", prefix, func_name),
+                }
+            }
+            Self::Disable => {}
+        }
+    }
+}

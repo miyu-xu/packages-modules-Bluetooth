@@ -2,7 +2,7 @@ use dbus::arg::RefArg;
 use dbus::strings::Path;
 use dbus_crossroads;
 use dbus_macros::{dbus_method, dbus_propmap, dbus_proxy_obj, generate_dbus_exporter};
-use dbus_projection::{dbus_generated, DisconnectWatcher};
+use dbus_projection::{dbus_generated, DbusLog, DbusLogOptions, DbusLogVerbosity, DisconnectWatcher};
 
 use btstack::RPCProxy;
 
@@ -27,7 +27,7 @@ struct BluetoothManagerDBus {}
     manager
 )]
 impl IBluetoothManager for BluetoothManagerDBus {
-    #[dbus_method("Start")]
+    #[dbus_method("Start", DbusLog::Enable(DbusLogOptions::LogAll, DbusLogVerbosity::Info))]
     fn start(&mut self, hci_interface: i32) {
         dbus_generated!()
     }

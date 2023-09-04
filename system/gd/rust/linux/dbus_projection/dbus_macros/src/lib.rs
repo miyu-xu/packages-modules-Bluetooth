@@ -120,16 +120,13 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
                 continue;
             }
 
-            let attr_args = attr.parse_meta().unwrap();
-            let dbus_method_name = if let Meta::List(meta_list) = attr_args {
-                Some(meta_list.nested[0].clone())
-            } else {
-                None
+            let meta_list = match attr.parse_meta().unwrap() {
+                Meta::List(meta_list) => meta_list,
+                _ => continue,
             };
 
-            if dbus_method_name.is_none() {
-                continue;
-            }
+            let dbus_method_name = meta_list.nested[0].clone();
+            let dbus_logging = meta_list.nested[1].clone();
 
             let method_name = method.sig.ident;
 
@@ -138,6 +135,7 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
             let mut make_args = quote! {};
             let mut dbus_input_vars = quote! {};
             let mut dbus_input_types = quote! {};
+            let mut debug_format = String::new();
 
             for input in method.sig.inputs {
                 if let FnArg::Typed(ref typed) = input {
@@ -183,6 +181,11 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
 
                             let #ident = #ident.unwrap();
                         };
+
+                        if debug_format.len() != 0 {
+                            debug_format.push_str(", ");
+                        }
+                        debug_format.push_str("{}");
                     }
                 }
             }
@@ -199,6 +202,11 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
                 ret = quote! {Ok((<#t as DBusArg>::to_dbus(ret).unwrap(),))};
                 output_names = quote! { "out", };
             }
+
+            let debug = quote! {
+                let dbus_param = format!(#debug_format, #method_args);
+                DbusLog::log(#dbus_logging, "dbus in:", #dbus_method_name, dbus_param.as_str());
+            };
 
             let method_call = match mixin_name {
                 Some(name) => {
@@ -223,6 +231,7 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
                                           #dbus_input_args |
                       -> Result<(#output_type), dbus_crossroads::MethodErr> {
                     #make_args
+                    #debug
                     #method_call
                     #ret
                 };
