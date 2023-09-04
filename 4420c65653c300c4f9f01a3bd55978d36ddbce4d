@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7851ccf_fca90d1a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 878,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-09-04T00:48:23Z",
+      "side": 1,
+      "message": "This seems be guarded by mLock",
+      "range": {
+        "startLine": 878,
+        "startChar": 8,
+        "endLine": 878,
+        "endChar": 24
+      },
+      "revId": "4420c65653c300c4f9f01a3bd55978d36ddbce4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
