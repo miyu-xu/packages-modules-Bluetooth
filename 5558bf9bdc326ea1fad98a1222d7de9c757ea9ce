@@ -22,6 +22,30 @@
       },
       "revId": "5558bf9bdc326ea1fad98a1222d7de9c757ea9ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56ef1efe_c41373b3",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 726,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-04T07:10:02Z",
+      "side": 1,
+      "message": "Fixed in https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2729377\nThank you.",
+      "parentUuid": "cbb9b16c_799fd16c",
+      "range": {
+        "startLine": 724,
+        "startChar": 0,
+        "endLine": 726,
+        "endChar": 23
+      },
+      "revId": "5558bf9bdc326ea1fad98a1222d7de9c757ea9ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
