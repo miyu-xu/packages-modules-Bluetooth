@@ -740,4 +740,17 @@ AudioSetConfigurationProvider::GetConfigurations(
   return nullptr;
 }
 
+bool AudioSetConfigurationProvider::CheckConfigurationIsBiDirSwb(
+    const set_configurations::AudioSetConfiguration& set_configuration) const {
+  uint8_t dir = 0;
+
+  for (const auto& conf : set_configuration.confs) {
+    if (conf.codec.GetConfigSamplingFrequency() >=
+        le_audio::LeAudioCodecConfiguration::kSampleRate32000) {
+      dir |= conf.direction;
+    }
+  }
+  return dir == le_audio::types::kLeAudioDirectionBoth;
+}
+
 }  // namespace le_audio
