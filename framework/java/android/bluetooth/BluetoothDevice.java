@@ -283,6 +283,29 @@ public final class BluetoothDevice implements Parcelable, Attributable {
             "android.bluetooth.device.action.SWITCH_BUFFER_SIZE";
 
     /**
+     * Broadcast Action: Indicates that previously bonded device couldn't provide keys to establish
+     * encryption. This can have numerous reasons, i.e.:
+     *
+     * <ul>
+     *   <li>remote was factory reset, or removed bond
+     *   <li>spoofing attack, someone is impersonating remote device
+     *   <li>in case of LE devices, very unlikely address collision
+     * </ul>
+     *
+     * Only registered receivers will receive this intent.
+     *
+     * <p>Always contains the extra field {@link #EXTRA_DEVICE}
+     *
+     * @hide
+     */
+    @SuppressLint("ActionValue")
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
+    @SystemApi
+    public static final String ACTION_KEY_MISSING = "android.bluetooth.device.action.KEY_MISSING";
+
+    /**
      * Used as an Integer extra field in {@link #ACTION_BATTERY_LEVEL_CHANGED}
      * intent. It contains the most recently retrieved battery level information
      * ranging from 0% to 100% for a remote device, {@link #BATTERY_LEVEL_UNKNOWN}
