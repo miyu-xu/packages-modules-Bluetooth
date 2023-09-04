@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "575baf8e_7ec23f9a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-04T14:21:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c8971e18_897e14b2",
+      "revId": "02f934341f08d4e599a34b3dc43704d57314add8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4c0e4b05_068fc949",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -48,6 +66,24 @@
       "writtenOn": "2023-08-30T08:45:43Z",
       "side": 1,
       "message": "I think you should use dbus framework provided by floss.\n\nHere is an example of `on_bluetooth_audio_device_added`\n\nhttps://osscs.corp.google.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/service/src/iface_bluetooth_media.rs\n\nhttps://osscs.corp.google.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth_media.rs;l\u003d1288?q\u003don_bluetooth_audio_device_added",
+      "revId": "02f934341f08d4e599a34b3dc43704d57314add8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6556b470_8c6fd902",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-04T14:21:24Z",
+      "side": 1,
+      "message": "iiuc, the floss dbus framework doesn\u0027t allow to send DBus signal.\nThe callback solution calls the method of a remote DBus object trough a proxy created by the `dbus_method` macro of dbus_projection.\nIn the case of `on_bluetooth_audio_device_added`, the DBus proxy is created in `impl IBluetoothMediaCallback for BluetoothMediaCallbackDBus` (system/gd/rust/linux/service/src/iface_bluetooth_media.rs) to access the interface implemented in `cras/src/server/cras_fl_media.c` (lines 29 and 1102).\n\nIf we use this floss DBus framework we should first add the method to cras first. Moreover, as the UHID event is received in the blocking thread, this will need to send it back to main thread before being able to call the callback solution (to call the dbus cras method).\nThis seems heavy to me.",
+      "parentUuid": "f1f1d650_340ff066",
       "revId": "02f934341f08d4e599a34b3dc43704d57314add8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
