@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c85d88cc_0b5b336f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-04T06:21:07Z",
+      "side": 1,
+      "message": "Why don\u0027t you just revert aosp/2289824?\nAre you 100% sure this is not needed anymore?\nIf so, why was the CL merged then?",
+      "range": {
+        "startLine": 10,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 49
+      },
+      "revId": "91cf7e4b5071d0b54dd6ce9acaab0753a19ae8ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
