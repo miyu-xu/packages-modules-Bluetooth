@@ -525,9 +525,11 @@ struct AudioSetConfigurationProviderJson {
 
     LOG_DEBUG(": Updating %d config entries.", flat_configs->size());
     for (auto const& flat_cfg : *flat_configs) {
-      configurations_.insert({flat_cfg->name()->str(),
-                              AudioSetConfigurationFromFlat(
-                                  flat_cfg, &codec_cfgs, &qos_cfgs, location)});
+      auto configuration = AudioSetConfigurationFromFlat(flat_cfg, &codec_cfgs,
+                                                         &qos_cfgs, location);
+      if (configuration.confs.size()) {
+        configurations_.insert({flat_cfg->name()->str(), configuration});
+      }
     }
 
     return true;
@@ -738,6 +740,19 @@ AudioSetConfigurationProvider::GetConfigurations(
         content_type);
 
   return nullptr;
+}
+
+bool AudioSetConfigurationProvider::CheckConfigurationIsBiDirSwb(
+    const set_configurations::AudioSetConfiguration& set_configuration) const {
+  uint8_t dir = 0;
+
+  for (const auto& conf : set_configuration.confs) {
+    if (conf.codec.GetConfigSamplingFrequency() >=
+        le_audio::LeAudioCodecConfiguration::kSampleRate32000) {
+      dir |= conf.direction;
+    }
+  }
+  return dir == le_audio::types::kLeAudioDirectionBoth;
 }
 
 }  // namespace le_audio
