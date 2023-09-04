@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d0d7b90f_2f692167",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1673,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-04T15:48:27Z",
+      "side": 1,
+      "message": "This is because we find value handle by ccc handle via `FindValueHandleByCccHandle()`, which checks csis_instance service data. If we do not set first, we will find csis_instances_.size() \u003d\u003d 0 and not get value handle when we want to call `FindValueHandleByCccHandle()` before instance is set.\n\nIn the ccc registration fail case, this will make us not find any value handle and cannot deregister notification for this value handle even if it does exist because register fail event might happen before setting instance if setting instance only when csis instance is verified.\n\nSo I set csis instance into csis_instances_ first and remove it while it is not verified.",
+      "parentUuid": "f3d1cc24_e816ad5b",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b49312f_2c675c8e",
         "filename": "system/bta/csis/csis_client.cc",
         "patchSetId": 2
@@ -31,6 +49,24 @@
       "writtenOn": "2023-09-04T09:24:27Z",
       "side": 1,
       "message": "Please change to LOG_ERROR",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e8aaa01_11b14e5e",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1682,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-04T15:48:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b49312f_2c675c8e",
       "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91dbc245_2997301a",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1693,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-04T15:48:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68fbf3fd_b4a1f9ad",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c996f51b_ad7d2cca",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-09-04T09:24:27Z",
       "side": 1,
       "message": "ditto",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3d550ad_83ce5870",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1701,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-04T15:48:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c996f51b_ad7d2cca",
       "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a21c6e0_8249b102",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1715,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-04T15:48:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "796bb403_b6dc0271",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be0fa9d2_498eb3dd",
@@ -103,6 +193,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c755da4d_19902f97",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1731,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-04T15:48:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be0fa9d2_498eb3dd",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f742b675_7c385161",
@@ -116,6 +224,24 @@
       "writtenOn": "2023-09-04T09:24:27Z",
       "side": 1,
       "message": "this seems to be separate patch.",
+      "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bba011fb_2d11d5a3",
+        "filename": "system/bta/vc/vc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 623,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-04T15:48:27Z",
+      "side": 1,
+      "message": "New patch for this one,",
+      "parentUuid": "f742b675_7c385161",
       "revId": "5066e8eb3678e12b884553bc83089c00068ab9c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
