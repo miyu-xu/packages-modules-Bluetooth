@@ -16,6 +16,24 @@
       "message": "Hi, this is the CL for enabling debug for Dbus inbound traffic.\nI haven\u0027t labeled all of the methods, but I want to confirm whether this approach is acceptable?",
       "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc969ab_114a9169",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-04T12:31:36Z",
+      "side": 1,
+      "message": "Initially I want to append the logging function exclusively inside dbus_macros but I can\u0027t make it happen nicely since the syn parser can\u0027t seem to cast the enum. Probably I can make it work by comparing strings, but that kinda defeats the purpose of having enum in the first place. \n\nSo I create the logging function in dbus_projection, and there I have a rather ugly implementation since log::info and friends doesn\u0027t accept variable as the 1st parameter, only a plain string literal.\n\nI also have some difficulties to make `DbusLog::log(DbusLog::Enable(DbusLogOptions::LogAll, DbusLogVerbosity::Info)` the default value if none is given, I hope to supply it on line 129 of dbus_projection/dbus_macros/src/lib.rs but the library seems to just refuse creating a Token item from string.\n\nI also find the way of adding `debug_format` cumbersome, but not sure how to improve on that.",
+      "parentUuid": "bc1bf083_b7f28928",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
