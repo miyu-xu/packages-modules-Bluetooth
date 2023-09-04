@@ -42,7 +42,7 @@ impl IBluetoothManager for BluetoothManagerDBus {
         dbus_generated!()
     }
 
-    #[dbus_method("RegisterCallback")]
+    #[dbus_method("RegisterCallback", DBusLog::Disable)]
     fn register_callback(&mut self, callback: Box<dyn IBluetoothManagerCallback + Send>) {
         dbus_generated!()
     }

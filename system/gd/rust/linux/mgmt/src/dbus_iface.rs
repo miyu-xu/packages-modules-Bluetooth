@@ -44,7 +44,7 @@ impl SuspendDBus {
 
 #[generate_dbus_interface_client(SuspendDBusRPC)]
 impl ISuspend for SuspendDBus {
-    #[dbus_method("RegisterCallback")]
+    #[dbus_method("RegisterCallback", DBusLog::Disable)]
     fn register_callback(&mut self, callback: Box<dyn ISuspendCallback + Send>) -> bool {
         dbus_generated!()
     }

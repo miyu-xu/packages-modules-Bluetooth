@@ -4,7 +4,7 @@
 //! and traits onto D-Bus.
 extern crate proc_macro;
 
-use quote::{format_ident, quote, ToTokens};
+use quote::{format_ident, quote, ToTokens, TokenStreamExt};
 
 use std::fs::File;
 use std::io::Write;
@@ -13,11 +13,11 @@ use std::path::Path;
 use syn::parse::Parser;
 use syn::punctuated::Punctuated;
 use syn::token::Comma;
-use syn::{Expr, FnArg, ImplItem, ItemImpl, ItemStruct, Meta, Pat, ReturnType, Type};
+use syn::{Expr, FnArg, ImplItem, ItemImpl, ItemStruct, Meta, NestedMeta, Pat, ReturnType, Type};
 
 use crate::proc_macro::TokenStream;
 
-const OUTPUT_DEBUG: bool = false;
+const OUTPUT_DEBUG: bool = true;
 
 fn debug_output_to_file(gen: &proc_macro2::TokenStream, filename: String) {
     if !OUTPUT_DEBUG {
@@ -120,16 +120,24 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
                 continue;
             }
 
-            let attr_args = attr.parse_meta().unwrap();
-            let dbus_method_name = if let Meta::List(meta_list) = attr_args {
-                Some(meta_list.nested[0].clone())
-            } else {
-                None
+            let meta_list = match attr.parse_meta().unwrap() {
+                Meta::List(meta_list) => meta_list,
+                _ => continue,
             };
 
-            if dbus_method_name.is_none() {
-                continue;
-            }
+            let dbus_method_name = meta_list.nested[0].clone();
+            // logging is default to verbose if not specified
+            let dbus_logging = if meta_list.nested.len() > 1 {
+                meta_list.nested[1].clone()
+            } else {
+                let token = quote! { DBusLog::Enable(DBusLogOptions::LogAll, DBusLogVerbosity::Verbose) };
+                syn::parse2::<NestedMeta>(token).unwrap()
+            };
+
+            let dbus_log = match DBusLog::parse_nested_meta(&dbus_logging) {
+                Ok(dbus_log) => dbus_log,
+                Err(e) => panic!("{}", e),
+            };
 
             let method_name = method.sig.ident;
 
@@ -138,6 +146,7 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
             let mut make_args = quote! {};
             let mut dbus_input_vars = quote! {};
             let mut dbus_input_types = quote! {};
+            let mut debug_format = String::new();
 
             for input in method.sig.inputs {
                 if let FnArg::Typed(ref typed) = input {
@@ -183,6 +192,11 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
 
                             let #ident = #ident.unwrap();
                         };
+
+                        if debug_format.len() != 0 {
+                            debug_format.push_str(", ");
+                        }
+                        debug_format.push_str("{}");
                     }
                 }
             }
@@ -199,6 +213,15 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
                 ret = quote! {Ok((<#t as DBusArg>::to_dbus(ret).unwrap(),))};
                 output_names = quote! { "out", };
             }
+
+            let debug_method_name = quote!{ #dbus_method_name };
+            let debug = dbus_log.generate_log("dbus in:", &debug_method_name, &method_args);
+            /* 
+            let debug = quote! {
+                let dbus_param = format!(#debug_format, #method_args);
+                DbusLog::log(#dbus_logging, "dbus in:", #dbus_method_name, dbus_param.as_str());
+            };
+            */
 
             let method_call = match mixin_name {
                 Some(name) => {
@@ -223,6 +246,7 @@ pub fn generate_dbus_exporter(attr: TokenStream, item: TokenStream) -> TokenStre
                                           #dbus_input_args |
                       -> Result<(#output_type), dbus_crossroads::MethodErr> {
                     #make_args
+                    #debug
                     #method_call
                     #ret
                 };
@@ -1325,4 +1349,131 @@ pub fn generate_dbus_arg(_item: TokenStream) -> TokenStream {
     debug_output_to_file(&gen, format!("out-generate_dbus_arg.rs"));
 
     gen.into()
+}
+
+/// These enums are used to log DBus transactions
+enum DBusLogVerbosity {
+    Error,
+    Warn,
+    Info,
+    Verbose,
+}
+
+enum DBusLogOptions {
+    LogAll,
+    LogMethodNameOnly,
+}
+
+enum DBusLog {
+    Enable(DBusLogOptions, DBusLogVerbosity),
+    Disable,
+}
+
+impl DBusLogVerbosity {
+    fn parse_nested_meta(nested_meta: &NestedMeta) -> Result<Self, String> {
+        const PARSING_ERR: &str = "failed parsing DBusLogVerbosity";
+        let meta = match nested_meta {
+            NestedMeta::Meta(meta) => meta,
+            _ => return Err(String::from(PARSING_ERR)),
+        };
+        if meta.path().segments.len() < 2 || meta.path().segments[0].ident.to_string() != "DBusLogVerbosity" {
+            return Err(String::from(PARSING_ERR));
+        }
+
+        match meta.path().segments[1].ident.to_string().as_str() {
+            "Error" => Ok(DBusLogVerbosity::Error),
+            "Warn" => Ok(DBusLogVerbosity::Warn),
+            "Info" => Ok(DBusLogVerbosity::Info),
+            "Verbose" => Ok(DBusLogVerbosity::Verbose),
+            _ => Err(String::from(PARSING_ERR)),
+        }
+    }
+}
+ 
+impl DBusLogOptions {
+    fn parse_nested_meta(nested_meta: &NestedMeta) -> Result<Self, String> {
+        const PARSING_ERR: &str = "failed parsing DBusLogOptions";
+        let meta = match nested_meta {
+            NestedMeta::Meta(meta) => meta,
+            _ => return Err(String::from(PARSING_ERR)),
+        };
+        if meta.path().segments.len() < 2 || meta.path().segments[0].ident.to_string() != "DBusLogOptions" {
+            return Err(String::from(PARSING_ERR));
+        }
+
+        match meta.path().segments[1].ident.to_string().as_str() {
+            "LogAll" => Ok(DBusLogOptions::LogAll),
+            "LogMethodNameOnly" => Ok(DBusLogOptions::LogMethodNameOnly),
+            _ => Err(String::from(PARSING_ERR)),
+        }
+    }
+}
+
+impl DBusLog {
+    fn parse_nested_meta(nested_meta: &NestedMeta) -> Result<Self, String> {
+        const PARSING_ERR: &str = "failed parsing DBusLog";
+        let meta = match nested_meta {
+            NestedMeta::Meta(meta) => meta,
+            _ => return Err(String::from(PARSING_ERR)),
+        };
+        if meta.path().segments.len() < 2 || meta.path().segments[0].ident.to_string() != "DBusLog" {
+            return Err(String::from(PARSING_ERR));
+        }
+
+        match meta.path().segments[1].ident.to_string().as_str() {
+            "Disable" => Ok(DBusLog::Disable),
+            "Enable" => {
+                let meta_list = match meta {
+                    Meta::List(meta_list) => meta_list,
+                    _ => return Err(String::from(PARSING_ERR)),
+                };
+                if meta_list.nested.len() < 2 {
+                    return Err(String::from(PARSING_ERR));
+                }
+        
+                let options = match DBusLogOptions::parse_nested_meta(&meta_list.nested[0]) {
+                    Ok(options) => options,
+                    Err(e) => return Err(e),
+                };
+                let verbosity = match DBusLogVerbosity::parse_nested_meta(&meta_list.nested[1]) {
+                    Ok(verbosity) => verbosity,
+                    Err(e) => return Err(e),
+                };
+
+                Ok(DBusLog::Enable(options, verbosity))
+            },
+            _ => Err(String::from(PARSING_ERR)),
+        }
+    }
+
+    fn generate_log(&self, prefix: &str, method_name: &proc_macro2::TokenStream, params: &proc_macro2::TokenStream) -> proc_macro2::TokenStream {
+        match self {
+            Self::Disable => quote!{},
+            Self::Enable(option, verbosity) => {
+
+                match option {
+                    DBusLogOptions::LogAll => {
+                        let mut format = String::from("{}: {}");
+                        let param_len = Punctuated::<Expr, Comma>::parse_terminated.parse2(params.clone()).unwrap().len();
+                        for _ in 0..param_len {
+                            format.push_str(", {:?}");
+                        }
+                
+                        match verbosity {
+                            DBusLogVerbosity::Verbose => quote! { log::debug!(#format, #prefix, #method_name, #params); },
+                            _ => quote!{}
+                        }
+                    },
+                    DBusLogOptions::LogMethodNameOnly => {
+                        let format = String::from("{}: {}");
+
+                        match verbosity {
+                            DBusLogVerbosity::Verbose => quote! { log::debug!(#format, #prefix, #method_name); },
+                            _ => quote!{}
+                        }
+                    }
+                }
+            },
+        }
+    }
 }
