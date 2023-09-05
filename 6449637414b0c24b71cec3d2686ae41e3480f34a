@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a993948_4552f6db",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-05T09:34:25Z",
+      "side": 1,
+      "message": "This keeps the previous behavior which was decrease `num_active` and remove the call (CRAS) from the `call_list`.\nCurrently, if `num_active` is not 0 at the end of `hangup_call_impl` the audio is not disconnected.",
+      "parentUuid": "1f25e490_f7032f56",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df4c9e57_5827dba1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
