@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d07c536d_09b91e8e",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-05T23:06:44Z",
+      "side": 1,
+      "message": "Generally warning is something that went wrong, to me.  But I can see your point.  I just don\u0027t want a bug filed saying \"This test must have failed because of this warning\". :)",
+      "parentUuid": "3db8af91_ae532ece",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d036501b_148c644b",
@@ -102,6 +126,24 @@
       "side": 1,
       "message": "Probably the warning applies to changed or new code only",
       "parentUuid": "d036501b_148c644b",
+      "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7e604fb_cfe51aaf",
+        "filename": "tools/rootcanal/model/setup/test_command_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-05T23:06:44Z",
+      "side": 1,
+      "message": ":)  I meant, any reason we can ignore the warning, or should we fix our usages of stoi.",
+      "parentUuid": "397c04ab_63b19d32",
       "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
