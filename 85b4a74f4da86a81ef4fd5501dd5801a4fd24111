@@ -16,6 +16,24 @@
       "message": "I think this is missed in the past CL. We should be checking SCO state instead of SLC state, just like what we\u0027ve done when handling `HfpCallbacks::AudioState`.\n```suggestion\n        if self.hfp_audio_state.values().any(|x| x \u003d\u003d \u0026BthfAudioState::Connected) {\n```",
       "revId": "85b4a74f4da86a81ef4fd5501dd5801a4fd24111",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df0cb8c3_fcd7d556",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 2614,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-05T15:13:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adf37196_94f11954",
+      "revId": "85b4a74f4da86a81ef4fd5501dd5801a4fd24111",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
