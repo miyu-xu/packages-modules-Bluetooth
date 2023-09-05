@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e879afae_4427a2f9",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-05T17:28:55Z",
+      "side": 1,
+      "message": "Why is this \"persist\" ? if the sysprop is about the hardware supporting swb, then there is no point of having it as persist. If you intend to use this as a feature flag, then we are on the wrong path as sysprop are not feature flag.\n\nIf it is intended to be persist, are you adding a toggle in developer option for it ? If not, what is the need for it being persist ?\n\nIf the property is used to toggle the experiment, without hardware requirement, it should be `.enabled` and not `.supported`.\n\n\nIt would be better to separate leaudio from the rest of the feature, like this:\n`bluetooth.leaudio.[...]`\n\n\nI notice you recently submit aosp/2674936, it would be nice to fix the property there too.",
+      "range": {
+        "startLine": 1421,
+        "startChar": 7,
+        "endLine": 1421,
+        "endChar": 14
+      },
+      "revId": "023ba3b8788f3918a67692c4b228eb5434310ed2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8863bfeb_db7bf535",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-05T17:28:55Z",
+      "side": 1,
+      "message": "If you name the variable `dual_swb_bidirection_supported_`, shouldn\u0027t you flip the property name too ? `leaudio_dual_swb_bidirection` instead of `leaudio_dual_bidirection_swb` ?",
+      "range": {
+        "startLine": 1424,
+        "startChar": 21,
+        "endLine": 1424,
+        "endChar": 52
+      },
+      "revId": "023ba3b8788f3918a67692c4b228eb5434310ed2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
