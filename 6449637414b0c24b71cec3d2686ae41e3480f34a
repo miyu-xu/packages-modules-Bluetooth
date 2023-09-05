@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f25e490_f7032f56",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-05T08:28:11Z",
+      "side": 1,
+      "message": "\u003e and iiuc it should not avoid to manage this CRAS call.\n\nCould you please tell why?\n\nEvery telephony operation should not affect the CRAS-source call. The call should be added/removed on and only on SCO connected/disconnected.\n\nHi @whalechang@google.com, if I recall correctly, what we expect when hanging up a call is:\n1. Floss updates the call list and propagates the event to App and Headset\n2. App stops using audio\n3. CRAS cleans up the SCO\n4. Floss removes the CRAS call\n\nIs that correct?",
+      "parentUuid": "7c91ce6a_24799713",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df4c9e57_5827dba1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
