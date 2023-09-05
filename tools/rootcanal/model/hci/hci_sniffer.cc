@@ -14,9 +14,16 @@
  * limitations under the License.
  */
 
-#include "hci_sniffer.h"
+#include "model/hci/hci_sniffer.h"
+
+#include <cstdint>
+#include <memory>
+#include <ostream>
+#include <vector>
 
 #include "hci/pcap_filter.h"
+#include "model/hci/h4.h"
+#include "model/hci/hci_transport.h"
 #include "pcap.h"
 
 namespace rootcanal {

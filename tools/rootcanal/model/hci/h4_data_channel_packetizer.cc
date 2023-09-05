@@ -14,21 +14,20 @@
 // limitations under the License.
 //
 
-#include "h4_data_channel_packetizer.h"
+#include "model/hci/h4_data_channel_packetizer.h"
 
-#include <string.h>  // for strerror, size_t
-#include <unistd.h>  // for ssize_t
+#include <unistd.h>
 
-#include <cerrno>       // for errno, EAGAIN, ECONNRESET
-#include <cstdint>      // for uint8_t
-#include <functional>   // for function
-#include <type_traits>  // for remove_extent_t
-#include <utility>      // for move
-#include <vector>       // for vector
+#include <cerrno>
+#include <cstdint>
+#include <cstring>
+#include <functional>
+#include <memory>
+#include <utility>
+#include <vector>
 
 #include "log.h"
-#include "model/hci/h4_parser.h"     // for H4Parser, ClientDisconnectCa...
-#include "net/async_data_channel.h"  // for AsyncDataChannel
+#include "model/hci/h4_parser.h"
 
 namespace rootcanal {
 

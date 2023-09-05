@@ -16,7 +16,7 @@
 
 #pragma once
 
-#include <cstdint>  // for uint8_t
+#include <cstdint>
 
 namespace rootcanal {
 

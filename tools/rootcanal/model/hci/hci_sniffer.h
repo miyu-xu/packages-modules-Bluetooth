@@ -17,9 +17,9 @@
 #pragma once
 
 #include <cstdint>
-#include <fstream>
 #include <memory>
 #include <ostream>
+#include <vector>
 
 #include "hci/pcap_filter.h"
 #include "model/hci/h4.h"

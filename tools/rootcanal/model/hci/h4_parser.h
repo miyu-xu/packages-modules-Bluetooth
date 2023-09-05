@@ -16,14 +16,13 @@
 
 #pragma once
 
-#include <stddef.h>  // for size_t
+#include <cstddef>
+#include <cstdint>
+#include <functional>
+#include <vector>
+#include <ostream>
 
-#include <cstdint>     // for uint8_t, int32_t
-#include <functional>  // for function
-#include <ostream>     // for operator<<, ostream
-#include <vector>      // for vector
-
-#include "model/hci/h4.h"  // for PacketType
+#include "model/hci/h4.h"
 
 namespace rootcanal {
 
@@ -60,7 +59,7 @@ class H4Parser {
   // Resets the parser to the empty, initial state.
   void Reset();
 
-  State CurrentState() { return state_; };
+  State CurrentState() { return state_; }
 
   void EnableRecovery() { enable_recovery_state_ = true; }
   void DisableRecovery() { enable_recovery_state_ = false; }

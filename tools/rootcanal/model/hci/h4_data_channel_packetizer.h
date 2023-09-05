@@ -16,13 +16,12 @@
 
 #pragma once
 
-#include <stddef.h>  // for size_t
-#include <stdint.h>  // for uint8_t
+#include <cstddef>
+#include <cstdint>
+#include <memory>
 
-#include <memory>  // for shared_ptr
-
-#include "h4_parser.h"               // for ClientDisconnectCallback, H4Parser
-#include "net/async_data_channel.h"  // for AsyncDataChannel
+#include "model/hci/h4_parser.h"
+#include "net/async_data_channel.h"
 
 namespace rootcanal {
 
