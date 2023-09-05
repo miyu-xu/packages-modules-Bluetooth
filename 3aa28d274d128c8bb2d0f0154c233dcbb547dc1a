@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58b0abf5_83180baa",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder_linux.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-09-05T07:30:02Z",
+      "side": 1,
+      "message": "Do we want to `clear_context()` before returning here?",
+      "revId": "3aa28d274d128c8bb2d0f0154c233dcbb547dc1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
