@@ -116,4 +116,10 @@ class AdapterBinder(rawBinder: IBinder) {
         adapterBinder.unregAllGattClient(source, recv)
         recv.awaitResultNoInterrupt(SYNC_TIMEOUT).getValue(null)
     }
+
+    @Throws(RemoteException::class)
+    fun sendAirplaneModeNotification(isTogglingBluetooth:Boolean) {
+        adapterBinder.sendAirplaneModeNotification(isTogglingBluetooth)
+    }
 }
+

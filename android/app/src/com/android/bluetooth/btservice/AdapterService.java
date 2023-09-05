@@ -4826,6 +4826,20 @@ public class AdapterService extends Service {
                 receiver.propagateException(e);
             }
         }
+
+        @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+        @Override
+        public void sendAirplaneModeNotification(boolean isTogglingBluetooth) {
+            AdapterService service = getService();
+            if (service == null) {
+                return;
+            }
+            if (!callerIsSystem(TAG, "sendAirplaneModeNotification")) {
+                return;
+            }
+            enforceBluetoothPrivilegedPermission(service);
+            service.sendAirplaneModeNotification(isTogglingBluetooth);
+        }
     }
 
     /**
@@ -6360,6 +6374,11 @@ public class AdapterService extends Service {
             }
         }
     }
+
+     private void sendAirplaneModeNotification(boolean isTogglingBluetooth) {
+     if (isTogglingBluetooth) {
+         if (isFirstTime
+     }
 
     /**
      * Notify the UID and package name of the app, and the address of associated active device

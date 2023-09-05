@@ -38,8 +38,7 @@ private const val TAG = "BluetoothAirplaneModeListener"
 public var isOn = false
     private set
 
-// TODO ?
-private lateinit var MyuserContext: Context
+private lateinit var userResolver: ContentResolver
 
 /**
  * The AirplaneModeListener handles system airplane mode change callback and checks whether we need
@@ -58,9 +57,14 @@ public fun initialize(
     looper: Looper,
     resolver: ContentResolver,
     bluetoothAdapterState: BluetoothAdapterState,
+        notificationCallback: (m: Boolean) -> Unit,
     callback: (m: Boolean) -> Unit
 ) {
     bluetoothState = bluetoothAdapterState
+    sendNotification = notificationCallback
+
+    // Initialize userContentResolver with the system resolver while waiting on user to be started
+    userResolver = resolver
 
     // Initialize local variable
     isApmEnhancementEnabled = Settings.Global.getInt(resolver, APM_ENHANCEMENT, 0) == 1
@@ -68,14 +72,14 @@ public fun initialize(
     val airplane_callback =
         fun(newMode: Boolean) {
             val previousMode = isOn
-            isOn = overrideSettingValue(MyuserContext, resolver, newMode)
+            isOn = overrideSettingValue(userResolver, resolver, newMode)
             if (previousMode == isOn) {
                 Log.d(TAG, "Ignore airplane mode change because is already: " + isOn)
                 return
             }
             if (!isOn) {
                 // airplaneSession is guarantee to be set if mode was on
-                airplaneSession!!.terminate(MyuserContext)
+                airplaneSession!!.terminate(userResolver)
                 airplaneSession = null
                 // reportEndOfAirplaneModeSession()
             }
@@ -94,33 +98,34 @@ public fun initialize(
     }
 }
 
-public fun notifyUserToggledBluetooth(userContext: Context, isBluetoothOn: Boolean) {
-    airplaneSession?.let { it.notifyUserToggledBluetooth(userContext, isBluetoothOn) }
+public fun notifyUserToggledBluetooth(userResolver: ContentResolver, isBluetoothOn: Boolean) {
+    airplaneSession?.let { it.notifyUserToggledBluetooth(userResolver, isBluetoothOn) }
 }
 
 /**
  * ***********************************************************************************************
  */
 private lateinit var bluetoothState: BluetoothAdapterState
-// private lateinit var userContext: Context
+private lateinit var sendNotification: (m: Boolean) -> Unit
+
 private var isApmEnhancementEnabled: Boolean = false
 
 private var airplaneSession: AirplaneSession? = null
 
 private fun overrideSettingValue(
-    userContext: Context,
+    userResolver: ContentResolver,
     resolver: ContentResolver,
     newMode: Boolean
 ): Boolean {
     if (newMode) {
-        if (shouldSkipAirplaneModeChange(userContext, resolver)) {
+        if (shouldSkipAirplaneModeChange(userResolver, resolver)) {
             Settings.Global.putInt(
                 resolver,
                 Settings.Global.BLUETOOTH_ON,
                 2
                 // TODO: BluetoothManagerService.BLUETOOTH_ON_AIRPLANE
             )
-            displayUserNotificationIfNeeded(userContext, resolver)
+            displayUserNotificationIfNeeded(userResolver, resolver)
             return false
         }
         airplaneSession = AirplaneSession(resolver)
@@ -148,55 +153,55 @@ private const val APM_WIFI_BT_NOTIFICATION = "apm_wifi_bt_notification"
 // keeps track of whether bt remains on notification was shown
 private const val APM_BT_NOTIFICATION = "apm_bt_notification"
 
-private fun displayUserNotificationIfNeeded(userContext: Context, resolver: ContentResolver) {
-    if (!isApmEnhancementEnabled || !isBluetoothToggledOnApm(userContext)) {
-        if (shouldPopToast(resolver)) {
-            // TODO does this work with userContext?
-            Log.e(
-                TAG,
-                "WILLIAM - DO NOT SUBMIT - displayUserNotificationIfNeeded attempt on userContext"
-            )
-            val r = userContext.getResources()
-            val text: CharSequence =
-                r.getString(
-                    Resources.getSystem()
-                        .getIdentifier("bluetooth_airplane_mode_toast", "string", "android")
-                )
-            // TODO does this work with userContext?
-            Log.e(
-                TAG,
-                "WILLIAM - DO NOT SUBMIT - displayUserNotificationIfNeeded attempt on userContext for Toast"
-            )
-            Toast.makeText(userContext, text, Toast.LENGTH_LONG).show()
-        }
-        return
-    }
-    if (isWifiEnabledOnApm(userContext, resolver)) {
-        if (isFirstTimeNotification(userContext, APM_WIFI_BT_NOTIFICATION)) {
-            sendNotification(
-                userContext,
-                "bluetooth_and_wifi_stays_on_title",
-                "bluetooth_and_wifi_stays_on_message",
-                APM_WIFI_BT_NOTIFICATION
-            )
-        }
-    } else {
-        if (isFirstTimeNotification(userContext, APM_BT_NOTIFICATION)) {
-            sendNotification(
-                userContext,
-                "bluetooth_stays_on_title",
-                "bluetooth_stays_on_message",
-                APM_BT_NOTIFICATION
-            )
-        }
-    }
-}
+// private fun displayUserNotificationIfNeeded(userResolver: ContentResolver, resolver: ContentResolver) {
+//     if (!isApmEnhancementEnabled || !isBluetoothToggledOnApm(userResolver)) {
+//         if (shouldPopToast(resolver)) {
+//             // TODO does this work with userContext?
+//             Log.e(
+//                 TAG,
+//                 "WILLIAM - DO NOT SUBMIT - displayUserNotificationIfNeeded attempt on userContext"
+//             )
+//             val r = userContext.getResources()
+//             val text: CharSequence =
+//                 r.getString(
+//                     Resources.getSystem()
+//                         .getIdentifier("bluetooth_airplane_mode_toast", "string", "android")
+//                 )
+//             // TODO does this work with userContext?
+//             Log.e(
+//                 TAG,
+//                 "WILLIAM - DO NOT SUBMIT - displayUserNotificationIfNeeded attempt on userContext for Toast"
+//             )
+//             Toast.makeText(userContext, text, Toast.LENGTH_LONG).show()
+//         }
+//         return
+//     }
+//     if (isWifiEnabledOnApm(userContext, resolver)) {
+//         if (isFirstTimeNotification(userContext, APM_WIFI_BT_NOTIFICATION)) {
+//             sendNotification(
+//                 userContext,
+//                 "bluetooth_and_wifi_stays_on_title",
+//                 "bluetooth_and_wifi_stays_on_message",
+//                 APM_WIFI_BT_NOTIFICATION
+//             )
+//         }
+//     } else {
+//         if (isFirstTimeNotification(userContext, APM_BT_NOTIFICATION)) {
+//             sendNotification(
+//                 userContext,
+//                 "bluetooth_stays_on_title",
+//                 "bluetooth_stays_on_message",
+//                 APM_BT_NOTIFICATION
+//             )
+//         }
+//     }
+// }
 
-private fun shouldSkipAirplaneModeChange(userContext: Context, resolver: ContentResolver): Boolean {
+private fun shouldSkipAirplaneModeChange(userResolver: ContentResolver, resolver: ContentResolver): Boolean {
     // APM feature enabled and user has used the feature by changing BT state in APM
     // BT will only remain on in APM based on user's last action in APM
-    if (isApmEnhancementEnabled && isBluetoothToggledOnApm(userContext)) {
-        if (isBluetoothOn() && isBluetoothOnAPM(userContext)) {
+    if (isApmEnhancementEnabled && isBluetoothToggledOnApm(userResolver)) {
+    if (isBluetoothOn() && isBluetoothOnAPM(userResolver)) {
             Log.i(TAG, "Skip airplane mode change because of settings secure")
             return true
         }
@@ -214,29 +219,29 @@ private fun shouldSkipAirplaneModeChange(userContext: Context, resolver: Content
     return false
 }
 
-// TODO(b/290403852): Do not rely on application ressource within system server
-private fun sendNotification(
-    userContext: Context,
-    titleId: String,
-    messageId: String,
-    notificationState: String
-) {
-    val btPackageName: String? =
-        "foo" // TODO BluetoothModeChangeHelper.getBluetoothPackageName(userContext)
-    if (btPackageName == null) {
-        Log.e(TAG, "Unable to find Bluetooth package name")
-        return
-    }
+// // TODO(b/290403852): Do not rely on application resource within system server
+// private fun sendNotification(
+//     userContext: Context,
+//     titleId: String,
+//     messageId: String,
+//     notificationState: String
+// ) {
+//     val btPackageName: String? =
+//         "com.android.bluetooth" // TODO BluetoothModeChangeHelper.getBluetoothPackageName(userContext)
+//     if (btPackageName == null) {
+//         Log.e(TAG, "Unable to find Bluetooth package name")
+//         return
+//     }
 
-    // TODO is userContext expected to works here
-    Log.e(TAG, "WILLIAM - DO NOT SUBMIT - sendNotification attempt on userContext")
+//     // TODO is userContext expected to works here
+//     Log.e(TAG, "WILLIAM - DO NOT SUBMIT - sendNotification attempt on userContext")
 
-    val resources = userContext.packageManager.getResourcesForApplication(btPackageName)
-    val title = resources.getIdentifier(titleId, "string", btPackageName)
-    val message = resources.getIdentifier(messageId, "string", btPackageName)
-    sendApmNotification(userContext, resources.getString(title), resources.getString(message))
-    setUserSettingsSecure(userContext, notificationState, 1)
-}
+//     val resources = userContext.packageManager.getResourcesForApplication(btPackageName)
+//     val title = resources.getIdentifier(titleId, "string", btPackageName)
+//     val message = resources.getIdentifier(messageId, "string", btPackageName)
+//     sendApmNotification(userResolver, resources.getString(title), resources.getString(message))
+//     setUserSettingsSecure(userResolver, notificationState, 1)
+// }
 
 // keeps track of whether user enabling bt notification was shown
 private const val APM_BT_ENABLED_NOTIFICATION = "apm_bt_enabled_notification"
@@ -257,8 +262,7 @@ private class AirplaneSession(val resolver: ContentResolver) {
         isMediaProfileConnectedBeforeApmToggle = false
     }
 
-    /** userContext is NOT the system server context */
-    fun notifyUserToggledBluetooth(userContext: Context, isBluetoothOn: Boolean) {
+    fun notifyUserToggledBluetooth(userResolver: ContentResolver, isBluetoothOn: Boolean) {
         if (
             !userToggledBluetoothDuringApm &&
                 SystemClock.elapsedRealtime() - sessionStartTime < 60000
@@ -270,7 +274,7 @@ private class AirplaneSession(val resolver: ContentResolver) {
             return
         }
         setUserSettingsSecure(
-            userContext,
+            userResolver,
             BLUETOOTH_APM_STATE,
             if (isBluetoothOn) {
                 1
@@ -278,19 +282,19 @@ private class AirplaneSession(val resolver: ContentResolver) {
                 0
             }
         )
-        setUserSettingsSecure(userContext, APM_USER_TOGGLED_BLUETOOTH, 1)
-        if (isBluetoothOn && isFirstTimeNotification(userContext, APM_BT_ENABLED_NOTIFICATION)) {
-            sendNotification(
-                userContext,
-                "bluetooth_enabled_apm_title",
-                "bluetooth_enabled_apm_message",
-                APM_BT_ENABLED_NOTIFICATION
-            )
+        setUserSettingsSecure(userResolver, APM_USER_TOGGLED_BLUETOOTH, 1)
+        if (isBluetoothOn && isFirstTimeNotification(userResolver, APM_BT_ENABLED_NOTIFICATION)) {
+            sendNotification(true)
+                // userResolver,
+                // "bluetooth_enabled_apm_title",
+                // "bluetooth_enabled_apm_message",
+                // APM_BT_ENABLED_NOTIFICATION
+            // )
         }
     }
 
     /** Log current airplaneSession. Session cannot be re-use */
-    fun terminate(userContext: Context) {
+    fun terminate(userResolver: ContentResolver) {
         BluetoothStatsLog.write(
             BluetoothStatsLog.AIRPLANE_MODE_SESSION_REPORTED,
             BluetoothStatsLog.AIRPLANE_MODE_SESSION_REPORTED__PACKAGE_NAME__BLUETOOTH,
@@ -314,30 +318,30 @@ internal const val APM_USER_TOGGLED_BLUETOOTH = "apm_user_toggled_bluetooth"
 // keeps track of whether wifi should remain on in airplane mode
 private const val WIFI_APM_STATE = "wifi_apm_state"
 
-private fun isWifiEnabledOnApm(userContext: Context, resolver: ContentResolver): Boolean {
+private fun isWifiEnabledOnApm(userResolver: ContentResolver, resolver: ContentResolver): Boolean {
     return Settings.Global.getInt(resolver, Settings.Global.WIFI_ON, 0) != 0 &&
-        Settings.Secure.getInt(userContext.contentResolver, WIFI_APM_STATE, 0) == 1
+        Settings.Secure.getInt(userResolver, WIFI_APM_STATE, 0) == 1
 }
 
-/** The Airplane Enhancement Mode is defined for each user and require an explicit userContext */
-private fun isFirstTimeNotification(userContext: Context, name: String): Boolean {
+/** The Airplane Enhancement Mode is defined for each user and require an explicit userResolver */
+private fun isFirstTimeNotification(userResolver: ContentResolver, name: String): Boolean {
     // TODO: Clearing Identity should not be needed if we are on correct handler
-    return Settings.Secure.getInt(userContext.contentResolver, name, 0) == 1
+    return Settings.Secure.getInt(userResolver, name, 0) == 1
 }
 
-/** The Airplane Enhancement Mode is defined for each user and require an explicit userContext */
-private fun isBluetoothToggledOnApm(userContext: Context): Boolean {
-    return Settings.Secure.getInt(userContext.contentResolver, APM_USER_TOGGLED_BLUETOOTH, 0) == 1
+/** The Airplane Enhancement Mode is defined for each user and require an explicit userResolver */
+private fun isBluetoothToggledOnApm(userResolver: ContentResolver): Boolean {
+    return Settings.Secure.getInt(userResolver, APM_USER_TOGGLED_BLUETOOTH, 0) == 1
 }
 
-/** The Airplane Enhancement Mode is defined for each user and require an explicit userContext */
-private fun setUserSettingsSecure(userContext: Context, name: String, value: Int) {
+/** The Airplane Enhancement Mode is defined for each user and require an explicit userResolver */
+private fun setUserSettingsSecure(userResolver: ContentResolver, name: String, value: Int) {
     // TODO: Clearing Identity should not be needed if we are on correct handler
-    Settings.Secure.putInt(userContext.contentResolver, name, value)
+    Settings.Secure.putInt(userResolver, name, value)
 }
 
-private fun isBluetoothOnAPM(userContext: Context): Boolean {
-    return Settings.Secure.getInt(userContext.contentResolver, BLUETOOTH_APM_STATE, 0) == 1
+private fun isBluetoothOnAPM(userResolver: ContentResolver): Boolean {
+    return Settings.Secure.getInt(userResolver, BLUETOOTH_APM_STATE, 0) == 1
 }
 
 private fun isBluetoothOn(): Boolean {

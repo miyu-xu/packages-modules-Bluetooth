@@ -446,6 +446,17 @@ class BluetoothManagerService {
     private static final Object ON_SATELLITE_MODE_CHANGED_TOKEN = new Object();
     private static final Object ON_SWITCH_USER_TOKEN = new Object();
 
+    /**
+     * Call Bluetooth app to manage airplane notification
+     *
+     * @param isTogglingBluetooth: Weither the notification is due to the user toggling the Bluetooth or toggling the airplaneMode
+     */
+    private Unit sendAirplaneModeNotification(boolean isTogglingBluetooth) {
+        assert(mAdapter != null); // Notification is always sent when Bluetooth is on
+        mAdapter.sendAirplaneModeNotification(isTogglingBluetooth);
+        return Unit.INSTANCE;
+    }
+
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     Unit onAirplaneModeChanged(boolean isAirplaneModeOn) {
         mHandler.postDelayed(
@@ -1450,7 +1461,7 @@ class BluetoothManagerService {
 
         if (USE_NEW_AIRPLANE_MODE) {
             AirplaneModeListener.initialize(
-                    mLooper, mContentResolver, mState, this::onAirplaneModeChanged);
+                    mLooper, mContentResolver, mState, this::sendAirplaneModeNotification, this::onAirplaneModeChanged);
         }
 
         final boolean isBluetoothDisallowed = isBluetoothDisallowed();
