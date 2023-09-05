@@ -22,6 +22,99 @@
       },
       "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c53f1bb_d012662d",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-05T22:55:28Z",
+      "side": 1,
+      "message": "Should we get rid of BTA_JV_MAX_SCN, as well?",
+      "parentUuid": "a4420e92_884da4d2",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 42
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12481ba4_bdfa5c08",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-05T22:55:28Z",
+      "side": 1,
+      "message": "I would prefer using this here:\nRFCOMM_MAX_SCN - 1",
+      "range": {
+        "startLine": 38,
+        "startChar": 28,
+        "endLine": 38,
+        "endChar": 30
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bb2baab_755a6a91",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-05T22:55:28Z",
+      "side": 1,
+      "message": "Should this be 1?  Since HFP reserves 1, it\u0027s probably better for no one to free it.  I guess that would change the behavior, though.",
+      "range": {
+        "startLine": 101,
+        "startChar": 36,
+        "endLine": 101,
+        "endChar": 37
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe6ced7e_e3f0dfa4",
+        "filename": "system/stack/test/btm/btm_scn_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-05T22:55:28Z",
+      "side": 1,
+      "message": "2?",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 16
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
