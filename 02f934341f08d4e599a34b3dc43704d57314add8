@@ -86,6 +86,24 @@
       "parentUuid": "f1f1d650_340ff066",
       "revId": "02f934341f08d4e599a34b3dc43704d57314add8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0aab54b_58dc5d50",
+        "filename": "system/gd/rust/linux/stack/src/uhid_hfp.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-05T14:39:35Z",
+      "side": 1,
+      "message": "Done using method call.",
+      "parentUuid": "6556b470_8c6fd902",
+      "revId": "02f934341f08d4e599a34b3dc43704d57314add8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
