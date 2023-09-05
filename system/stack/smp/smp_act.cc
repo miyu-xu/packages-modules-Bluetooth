@@ -872,10 +872,18 @@ void smp_br_process_pairing_command(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
         __func__);
   }
 
-  /* auth_req received via BR/EDR SM channel is set to 0,
-     but everything derived/exchanged has to be saved */
-  p_cb->peer_auth_req |= SMP_AUTH_BOND;
-  p_cb->loc_auth_req |= SMP_AUTH_BOND;
+  /* Bond the device only when the peer requests. */
+  if (p_cb->peer_auth_req & SMP_AUTH_BOND) {
+    /* Go ahead if the classic bonding haven't been done before. */
+    if (!p_dev_rec || !(p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_KNOWN)) {
+      p_cb->loc_auth_req |= SMP_AUTH_BOND;
+    }
+    /* Classic saves the key only if it is auth-ed. Align the behavior here. */
+    if (p_dev_rec && (p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_KNOWN) &&
+        (p_dev_rec->sec_flags & BTM_SEC_LINK_KEY_AUTHED)) {
+      p_cb->loc_auth_req |= SMP_AUTH_BOND;
+    }
+  }
 }
 
 /*******************************************************************************
@@ -2219,7 +2227,9 @@ void smp_br_process_link_key(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
 
   SMP_TRACE_DEBUG("%s: LTK derivation from LK successfully completed",
                   __func__);
-  smp_save_secure_connections_long_term_key(p_cb);
+  if (p_cb->loc_auth_req & SMP_AUTH_BOND) {
+    smp_save_secure_connections_long_term_key(p_cb);
+  }
   smp_update_key_mask(p_cb, SMP_SEC_KEY_TYPE_ENC, false);
   smp_br_select_next_key(p_cb, NULL);
 }
