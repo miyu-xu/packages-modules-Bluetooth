@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ea8e1a8_23cc5c55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-05T20:29:46Z",
+      "side": 1,
+      "message": "This callback mangled two parameters in order to use the same callback signature.\n\nAdd another callback signature to properly type the parameters being sent for role switches.\n\nThis becomes more obvious as the lower layers reclaim and hide all these implementation details.",
+      "revId": "14c21e6f4b41590faa4187624635b7df0e6c9c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
