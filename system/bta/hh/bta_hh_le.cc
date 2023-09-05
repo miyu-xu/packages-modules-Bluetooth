@@ -2221,7 +2221,7 @@ static void bta_hh_process_cache_rpt(tBTA_HH_DEV_CB* p_cb,
 
   if (num_rpt != 0) /* no cache is found */
   {
-    p_cb->hid_srvc.state = BTA_HH_SERVICE_UNKNOWN;
+    p_cb->hid_srvc.state = BTA_HH_SERVICE_DISCOVERED;
 
     /* set the descriptor info */
     p_cb->hid_srvc.descriptor.dl_len = p_cb->dscp_info.descriptor.dl_len;
