@@ -2007,6 +2007,8 @@ public class HeadsetService extends ProfileService {
                 .handleHeadsetConnectionStateChanged(device, fromState, toState);
         mAdapterService.notifyProfileConnectionStateChangeToGatt(
                 BluetoothProfile.HEADSET, fromState, toState);
+        mAdapterService.updateProfileConnectionAdapterProperties(
+                device, BluetoothProfile.HEADSET, toState, fromState);
     }
 
     /**
