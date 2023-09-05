@@ -16,6 +16,24 @@
       "message": "Nit: How about collecting the direction via OR logic when the sample frequency equal to or greater than 32k, and just check whether the direction is the same as kLeAudioDirectionBoth?",
       "revId": "0e5897548db0d66f73fbcb75c48a1b2e6d6524f6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9668c742_ba33609a",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 745,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-05T03:28:37Z",
+      "side": 1,
+      "message": "Thanks, done.",
+      "parentUuid": "25506c89_7c28028e",
+      "revId": "0e5897548db0d66f73fbcb75c48a1b2e6d6524f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
