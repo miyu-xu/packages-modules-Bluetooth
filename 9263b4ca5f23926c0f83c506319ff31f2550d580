@@ -195,6 +195,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "66fec650_6e302b8a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-05T01:48:36Z",
+      "side": 1,
+      "message": "\u003e `num_active` should only be incremented if `phone_ops_enabled` is false\n\nI don\u0027t think so. That means we are sending out mismatched info between CLCC response (based on `self.call_list`) and CIEV command (based on `self.phone_state`). That may confuse the remote BT device which is what we should prevent from.",
+      "parentUuid": "ace27951_76844213",
+      "range": {
+        "startLine": 727,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 25
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "535d97b2_8489aceb",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
@@ -230,6 +254,30 @@
       "side": 1,
       "message": "idem: `num_active` should only be decremented if `phone_ops_enabled` is false",
       "parentUuid": "535d97b2_8489aceb",
+      "range": {
+        "startLine": 769,
+        "startChar": 0,
+        "endLine": 782,
+        "endChar": 25
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c24aae68_ea0e46a2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-05T01:48:36Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "eaf39f55_0edde523",
       "range": {
         "startLine": 769,
         "startChar": 0,

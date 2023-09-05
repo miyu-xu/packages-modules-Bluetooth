@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df4c9e57_5827dba1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 2623,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-05T01:48:36Z",
+      "side": 1,
+      "message": "I think in this CL we want to have a `CallSource::CRAS` call as long as there is a SLC connection, regardless of the `phone_ops_enabled` value. Thus, this check should be removed.",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
