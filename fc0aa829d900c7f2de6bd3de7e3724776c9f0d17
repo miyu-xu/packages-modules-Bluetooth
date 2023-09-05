@@ -22,6 +22,30 @@
       },
       "revId": "fc0aa829d900c7f2de6bd3de7e3724776c9f0d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dc36689_30b6ec52",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2861,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-05T12:48:40Z",
+      "side": 1,
+      "message": "1. autonomous_target_state_ is set only for first ASE. It make sense to clear it here - thank you for checking!\n\n2. Wouldn\u0027t this be enough ? https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2692656/3/system/bta/le_audio/devices.cc#2929",
+      "parentUuid": "9192c46d_97c5356f",
+      "range": {
+        "startLine": 2861,
+        "startChar": 8,
+        "endLine": 2861,
+        "endChar": 55
+      },
+      "revId": "fc0aa829d900c7f2de6bd3de7e3724776c9f0d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
