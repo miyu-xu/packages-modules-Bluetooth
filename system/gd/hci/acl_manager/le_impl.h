@@ -59,7 +59,7 @@ constexpr uint16_t kScanIntervalFast = 0x0060;    /* 30 ~ 60 ms (use 60)  = 96 *
 constexpr uint16_t kScanWindowFast = 0x0030;      /* 30 ms = 48 *0.625 */
 constexpr uint16_t kScanWindow2mFast = 0x0018;    /* 15 ms = 24 *0.625 */
 constexpr uint16_t kScanWindowCodedFast = 0x0018; /* 15 ms = 24 *0.625 */
-constexpr uint16_t kScanIntervalSlow = 0x0800;    /* 1.28 s = 2048 *0.625 */
+constexpr uint16_t kScanIntervalSlow = 512;	//0x0800;    /* 1.28 s = 2048 *0.625 */
 constexpr uint16_t kScanWindowSlow = 0x0030;      /* 30 ms = 48 *0.625 */
 constexpr uint16_t kScanIntervalSystemSuspend = 0x0400; /* 640 ms = 1024 * 0.625 */
 constexpr uint16_t kScanWindowSystemSuspend = 0x0012;   /* 11.25ms = 18 * 0.625 */
