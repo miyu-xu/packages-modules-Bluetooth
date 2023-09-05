@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4b3b7a7_185050d0",
+        "filename": "aconfig/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-05T01:04:35Z",
+      "side": 1,
+      "message": "Can we have a single flag package for whole Bluetooth module?\n(e.g. com.android.btservices)\n\nFHI, SystemUI flags:\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/packages/SystemUI/aconfig/\nand its usage: \nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/packages/SystemUI/src/com/android/systemui/accessibility/floatingmenu/MenuView.java;l\u003d41?q\u003dfloatingmenuoverlapsnavbarsflag\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain:frameworks%2Fbase%2Fpackages%2FSystemUI%2F",
+      "range": {
+        "startLine": 8,
+        "startChar": 14,
+        "endLine": 8,
+        "endChar": 42
+      },
+      "revId": "69ce146f240efd8522c07448d4476a2498e60cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
