@@ -16,11 +16,15 @@
 
 #pragma once
 
-#include <memory>  // for shared_ptr, make_...
+#include <cstdint>
+#include <memory>
+#include <vector>
 
-#include "model/hci/h4_data_channel_packetizer.h"  // for H4DataChannelP...
-#include "model/hci/hci_transport.h"               // for HciTransport
-#include "net/async_data_channel.h"                // for AsyncDataChannel
+#include "model/hci/h4.h"
+#include "model/hci/h4_data_channel_packetizer.h"
+#include "model/hci/h4_parser.h"
+#include "model/hci/hci_transport.h"
+#include "net/async_data_channel.h"
 
 namespace rootcanal {
 

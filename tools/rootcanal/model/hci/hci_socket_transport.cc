@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
-#include "hci_socket_transport.h"
+#include "model/hci/hci_socket_transport.h"
+
+#include <cstdint>
+#include <memory>
+#include <vector>
 
 #include "log.h"
+#include "model/hci/h4.h"
+#include "model/hci/h4_data_channel_packetizer.h"
+#include "model/hci/h4_parser.h"
+#include "model/hci/hci_transport.h"
 
 namespace rootcanal {
 

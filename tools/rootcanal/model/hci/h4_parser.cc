@@ -14,16 +14,17 @@
 // limitations under the License.
 //
 
-#include "model/hci/h4_parser.h"  // for H4Parser, PacketType, H4Pars...
+#include "model/hci/h4_parser.h"
 
 #include <array>
-#include <cstddef>     // for size_t
-#include <cstdint>     // for uint8_t, int32_t
-#include <functional>  // for function
-#include <utility>     // for move
-#include <vector>      // for vector
+#include <cstddef>
+#include <cstdint>
+#include <functional>
+#include <utility>
+#include <vector>
 
 #include "log.h"
+#include "model/hci/h4.h"
 
 namespace rootcanal {
 
