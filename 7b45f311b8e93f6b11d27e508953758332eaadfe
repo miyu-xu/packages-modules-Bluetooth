@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eed4c9a_493dfd5e",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-09-05T09:54:21Z",
+      "side": 1,
+      "message": "Couldn\u0027t the change create an issue with `volumeDeviceSwitched`? As we call `mAudioManager.handleBluetoothActiveDeviceChanged` before informing it of the absolute volume support of the remote device, I think this may induce volume \"jumps\".",
+      "range": {
+        "startLine": 1155,
+        "startChar": 45,
+        "endLine": 1155,
+        "endChar": 74
+      },
+      "revId": "7b45f311b8e93f6b11d27e508953758332eaadfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
