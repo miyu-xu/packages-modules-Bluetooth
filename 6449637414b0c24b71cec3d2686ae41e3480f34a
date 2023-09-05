@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c91ce6a_24799713",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-05T07:56:46Z",
+      "side": 1,
+      "message": "and iiuc it should not avoid to manage this CRAS call.\nI have updated the CL to do it, is the new version correct?",
+      "parentUuid": "c2b45b0c_ba796c84",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df4c9e57_5827dba1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
@@ -31,6 +49,24 @@
       "writtenOn": "2023-09-05T01:48:36Z",
       "side": 1,
       "message": "I think in this CL we want to have a `CallSource::CRAS` call as long as there is a SLC connection, regardless of the `phone_ops_enabled` value. Thus, this check should be removed.",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd902bbf_ef2c0ce7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 2623,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-05T07:56:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df4c9e57_5827dba1",
       "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
