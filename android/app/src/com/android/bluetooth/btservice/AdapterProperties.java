@@ -46,6 +46,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.ParcelUuid;
 import android.os.SystemProperties;
 import android.os.UserHandle;
@@ -145,66 +147,69 @@ class AdapterProperties {
     private List<BufferConstraint> mBufferConstraintList;
 
     private boolean mReceiverRegistered;
-    private BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (action == null) {
-                Log.w(TAG, "Received intent with null action");
-                return;
-            }
-            switch (action) {
-                case BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.HEADSET, intent);
-                    break;
-                case BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.A2DP, intent);
-                    break;
-                case BluetoothHeadsetClient.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.HEADSET_CLIENT, intent);
-                    break;
-                case BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.HEARING_AID, intent);
-                    break;
-                case BluetoothA2dpSink.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.A2DP_SINK, intent);
-                    break;
-                case BluetoothHidDevice.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.HID_DEVICE, intent);
-                    break;
-                case BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.HID_HOST, intent);
-                    break;
-                case BluetoothAvrcpController.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.AVRCP_CONTROLLER, intent);
-                    break;
-                case BluetoothPan.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.PAN, intent);
-                    break;
-                case BluetoothMap.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.MAP, intent);
-                    break;
-                case BluetoothMapClient.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.MAP_CLIENT, intent);
-                    break;
-                case BluetoothSap.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.SAP, intent);
-                    break;
-                case BluetoothPbapClient.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.PBAP_CLIENT, intent);
-                    break;
-                case BluetoothPbap.ACTION_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.PBAP, intent);
-                    break;
-                case BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED:
-                    sendConnectionStateChange(BluetoothProfile.LE_AUDIO, intent);
-                    break;
-                default:
-                    Log.w(TAG, "Received unknown intent " + intent);
-                    break;
-            }
-        }
-    };
+    private Handler mHandler;
+
+    private BroadcastReceiver mReceiver =
+            new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    String action = intent.getAction();
+                    if (action == null) {
+                        Log.w(TAG, "Received intent with null action");
+                        return;
+                    }
+                    switch (action) {
+                        case BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.HEADSET, intent);
+                            break;
+                        case BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.A2DP, intent);
+                            break;
+                        case BluetoothHeadsetClient.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.HEADSET_CLIENT, intent);
+                            break;
+                        case BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.HEARING_AID, intent);
+                            break;
+                        case BluetoothA2dpSink.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.A2DP_SINK, intent);
+                            break;
+                        case BluetoothHidDevice.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.HID_DEVICE, intent);
+                            break;
+                        case BluetoothHidHost.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.HID_HOST, intent);
+                            break;
+                        case BluetoothAvrcpController.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.AVRCP_CONTROLLER, intent);
+                            break;
+                        case BluetoothPan.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.PAN, intent);
+                            break;
+                        case BluetoothMap.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.MAP, intent);
+                            break;
+                        case BluetoothMapClient.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.MAP_CLIENT, intent);
+                            break;
+                        case BluetoothSap.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.SAP, intent);
+                            break;
+                        case BluetoothPbapClient.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.PBAP_CLIENT, intent);
+                            break;
+                        case BluetoothPbap.ACTION_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.PBAP, intent);
+                            break;
+                        case BluetoothLeAudio.ACTION_LE_AUDIO_CONNECTION_STATE_CHANGED:
+                            logConnectionStateChanges(BluetoothProfile.LE_AUDIO, intent);
+                            break;
+                        default:
+                            Log.w(TAG, "Received unknown intent " + intent);
+                            break;
+                    }
+                }
+            };
 
     // Lock for all getters and setters.
     // If finer grained locking is needer, more locks
@@ -240,6 +245,8 @@ class AdapterProperties {
         mA2dpOffloadEnabled =
                 SystemProperties.getBoolean(A2DP_OFFLOAD_SUPPORTED_PROPERTY, false)
                 && !SystemProperties.getBoolean(A2DP_OFFLOAD_DISABLED_PROPERTY, false);
+
+        mHandler = new Handler(Looper.getMainLooper());
 
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
@@ -731,7 +738,7 @@ class AdapterProperties {
     }
 
     @RequiresPermission(android.Manifest.permission.INTERACT_ACROSS_USERS)
-    private void sendConnectionStateChange(int profile, Intent connIntent) {
+    private void logConnectionStateChanges(int profile, Intent connIntent) {
         BluetoothDevice device = connIntent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
         int prevState = connIntent.getIntExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, -1);
         int state = connIntent.getIntExtra(BluetoothProfile.EXTRA_STATE, -1);
@@ -741,23 +748,34 @@ class AdapterProperties {
                     metricId, device.getName());
             MetricsLogger.getInstance().logSanitizedBluetoothDeviceName(metricId, device.getName());
         }
-        Log.d(TAG, "PROFILE_CONNECTION_STATE_CHANGE: profile="
-                + BluetoothProfile.getProfileName(profile) + ", device=" + device + ", "
-                + prevState + " -> " + state);
         BluetoothStatsLog.write(BluetoothStatsLog.BLUETOOTH_CONNECTION_STATE_CHANGED, state,
                 0 /* deprecated */, profile, mService.obfuscateAddress(device),
                 metricId, 0, -1);
+    }
 
+    @RequiresPermission(android.Manifest.permission.INTERACT_ACROSS_USERS)
+    void updateOnProfileConnectionChanged(
+            BluetoothDevice device, int profile, int state, int prevState) {
+        mHandler.post(() -> sendConnectionStateChange(device, profile, state, prevState));
+    }
+
+    @RequiresPermission(android.Manifest.permission.INTERACT_ACROSS_USERS)
+    void sendConnectionStateChange(BluetoothDevice device, int profile, int state, int prevState) {
+        Log.d(
+                TAG,
+                "PROFILE_CONNECTION_STATE_CHANGE: profile="
+                        + BluetoothProfile.getProfileName(profile)
+                        + ", device="
+                        + device
+                        + ", "
+                        + prevState
+                        + " -> "
+                        + state);
         if (!isNormalStateTransition(prevState, state)) {
             Log.w(TAG, "PROFILE_CONNECTION_STATE_CHANGE: unexpected transition for profile="
                     + BluetoothProfile.getProfileName(profile)
                     + ", device=" + device + ", " + prevState + " -> " + state);
         }
-        sendConnectionStateChange(device, profile, state, prevState);
-    }
-
-    @RequiresPermission(android.Manifest.permission.INTERACT_ACROSS_USERS)
-    void sendConnectionStateChange(BluetoothDevice device, int profile, int state, int prevState) {
         if (!validateProfileConnectionState(state) || !validateProfileConnectionState(prevState)) {
             // Previously, an invalid state was broadcast anyway,
             // with the invalid state converted to -1 in the intent.
