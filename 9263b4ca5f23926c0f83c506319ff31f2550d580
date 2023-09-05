@@ -219,6 +219,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c465c232_14bee2ad",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-05T06:19:51Z",
+      "side": 1,
+      "message": "OK, but this will change the way the `num_active` is used as for the first call this will set it to 2 calls (one HID and one CRAS when SCO connects).\nCurrently this prevents to hangup the call at least, as only the HID call is removed from `call_list` and then `num_active` is !\u003d 0, which doesn\u0027t trigger the SCO disconnection and so the CRAS entry is not removed from `call_list`.",
+      "parentUuid": "66fec650_6e302b8a",
+      "range": {
+        "startLine": 727,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 25
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "535d97b2_8489aceb",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2
