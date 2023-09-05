@@ -146,6 +146,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "671377e2_5209a4b9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-09-05T18:45:03Z",
+      "side": 1,
+      "message": "Are these changes sanity tested for LC3 over HFP to make sure LC3 codec works fine? From code, I don\u0027t anticipate issues with LC3. but would like to make sure.",
+      "parentUuid": "f72e1100_811dae34",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e5e11d8_cb7680ac",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 12
