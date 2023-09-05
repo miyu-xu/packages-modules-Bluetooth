@@ -243,6 +243,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "12b6566c_f5e18241",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-05T06:29:29Z",
+      "side": 1,
+      "message": "Good finding, the hangup code is incorrect. I\u0027ve left another comment.",
+      "parentUuid": "c465c232_14bee2ad",
+      "range": {
+        "startLine": 727,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 25
+      },
+      "revId": "9263b4ca5f23926c0f83c506319ff31f2550d580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "535d97b2_8489aceb",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 2

@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c2b45b0c_ba796c84",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-05T06:29:29Z",
+      "side": 1,
+      "message": "This check needs to be removed. No matter if we\u0027ve rejected an incoming call or terminated a dialing/alerting/active call, the final state should be Idle.",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df4c9e57_5827dba1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
