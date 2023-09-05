@@ -34,6 +34,24 @@
       "parentUuid": "b4d940a7_acf78763",
       "revId": "20704ac87b7fc45c00941c0b576544aa59c1fcd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b65b3c5d_8ce4fae7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-09-05T03:38:30Z",
+      "side": 1,
+      "message": "Hi David, \n\nI tried to add the property to `p/m/Bluetooth/sysprop`, I found I need to set the function to `Public` in order to call in Java layer, however, this will required an API. As we just need to read the property, I would prefer to keep the current implementation without adding API.",
+      "parentUuid": "60fce810_1e67a0d0",
+      "revId": "20704ac87b7fc45c00941c0b576544aa59c1fcd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
