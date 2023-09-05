@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27180133_cc630404",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 530,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-09-05T04:57:48Z",
+      "side": 1,
+      "message": "Nit: Use `empty()` instead of `size()`",
+      "revId": "5b2192f07bfeca82fae8e8c1d30b768816624ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
