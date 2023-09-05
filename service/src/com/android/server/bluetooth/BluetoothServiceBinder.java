@@ -41,6 +41,7 @@ import android.bluetooth.IBluetoothStateChangeCallback;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.os.IBinder;
+import android.os.Messenger;
 import android.os.ParcelFileDescriptor;
 import android.os.UserManager;
 import android.permission.PermissionManager;
@@ -90,15 +91,17 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     }
 
     @Override
-    public void registerStateChangeCallback(@NonNull IBluetoothStateChangeCallback callback) {
-        requireNonNull(callback, "Callback cannot be null in registerStateChangeCallback");
-        mBluetoothManagerService.registerStateChangeCallback(callback);
+    public void registerStateChangeMessenger(@NonNull Messenger m, @NonNull String name) {
+        requireNonNull(m, "Messenger cannot be null in registerStateChangeMessenger");
+        requireNonNull(name, "Name cannot be null in registerStateChangeMessenger");
+        mBluetoothManagerService.registerStateChangeMessenger(m, name);
     }
 
     @Override
-    public void unregisterStateChangeCallback(@NonNull IBluetoothStateChangeCallback callback) {
-        requireNonNull(callback, "Callback cannot be null in unregisterStateChangeCallback");
-        mBluetoothManagerService.unregisterStateChangeCallback(callback);
+    public void unregisterStateChangeMessenger(@NonNull Messenger m, @NonNull String name) {
+        requireNonNull(m, "Messenger cannot be null in unregisterStateChangeMessenger");
+        requireNonNull(name, "Name cannot be null in unregisterStateChangeMessenger");
+        mBluetoothManagerService.unregisterStateChangeMessenger(m, name);
     }
 
     @Override
@@ -181,23 +184,6 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
         }
 
         return mBluetoothManagerService.getState();
-    }
-
-    @Override
-    public boolean bindBluetoothProfileService(
-            int bluetoothProfile, String serviceName, IBluetoothProfileServiceConnection proxy) {
-        requireNonNull(
-                proxy,
-                "IBluetoothProfileServiceConnection cannot be null in bindBluetoothProfileService");
-
-        return mBluetoothManagerService.bindBluetoothProfileService(
-                bluetoothProfile, serviceName, proxy);
-    }
-
-    @Override
-    public void unbindBluetoothProfileService(
-            int bluetoothProfile, IBluetoothProfileServiceConnection proxy) {
-        mBluetoothManagerService.unbindBluetoothProfileService(bluetoothProfile, proxy);
     }
 
     @Override

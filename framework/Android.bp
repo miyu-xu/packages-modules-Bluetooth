@@ -26,6 +26,7 @@ java_defaults {
     static_libs: [
         "PlatformProperties",
         "modules-utils-synchronous-result-receiver",
+        "service-bluetooth-for-clients",
     ],
     libs: [
         "app-compat-annotations",
@@ -85,8 +86,7 @@ java_sdk_library {
 
     permitted_packages: [
         "android.bluetooth",
-        // Created by jarjar rules.
-        "com.android.bluetooth.x",
+        "com.android.bluetooth.x", // Created by jarjar rules.
     ],
     lint: {
         strict_updatability_linting: true,

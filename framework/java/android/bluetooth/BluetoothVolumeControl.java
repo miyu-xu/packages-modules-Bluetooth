@@ -183,15 +183,15 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         mAttributionSource = adapter.getAttributionSource();
         mProfileConnector.connect(context, listener);
 
-        IBluetoothManager mgr = mAdapter.getBluetoothManager();
-        if (mgr != null) {
-            try {
-                mgr.registerStateChangeCallback(mBluetoothStateChangeCallback);
-            } catch (RemoteException e) {
-                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-                throw e.rethrowFromSystemServer();
-            }
-        }
+        // IBluetoothManager mgr = mAdapter.getBluetoothManager();
+        // if (mgr != null) {
+        //     try {
+        //         mgr.registerStateChangeCallback(mBluetoothStateChangeCallback);
+        //     } catch (RemoteException e) {
+        //         Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        //         throw e.rethrowFromSystemServer();
+        //     }
+        // }
 
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
@@ -216,14 +216,14 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
     public void close() {
         if (VDBG) log("close()");
 
-        IBluetoothManager mgr = mAdapter.getBluetoothManager();
-        if (mgr != null) {
-            try {
-                mgr.unregisterStateChangeCallback(mBluetoothStateChangeCallback);
-            } catch (RemoteException e) {
-                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-            }
-        }
+        // IBluetoothManager mgr = mAdapter.getBluetoothManager();
+        // if (mgr != null) {
+        //     try {
+        //         mgr.unregisterStateChangeCallback(mBluetoothStateChangeCallback);
+        //     } catch (RemoteException e) {
+        //         Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        //     }
+        // }
         mProfileConnector.disconnect();
     }
 

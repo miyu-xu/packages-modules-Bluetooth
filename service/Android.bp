@@ -21,10 +21,23 @@ filegroup {
     srcs: [
         ":statslog-bluetooth-java-gen",
         "src/**/*.java",
+        // "src/Messages.java",
         "src/RadioModeListener.kt",
         "src/com/**/*.kt",
     ],
     visibility: [":__subpackages__"],
+}
+
+java_library {
+    name: "service-bluetooth-for-clients",
+    srcs: ["src/Messages.java"],
+
+    visibility: ["//packages/modules/Bluetooth/framework"],
+
+    installable: false,
+    sdk_version: "module_current",
+    apex_available: ["com.android.btservices"],
+    min_sdk_version: "Tiramisu",
 }
 
 // pre-jarjar version of service-bluetooth that builds against pre-jarjar version of framework-bluetooth
@@ -109,9 +122,7 @@ java_library {
     visibility: [
         "//packages/modules/Bluetooth/apex",
     ],
-    apex_available: [
-        "com.android.btservices",
-    ],
+    apex_available: ["com.android.btservices"],
     min_sdk_version: "Tiramisu",
 }
 
@@ -128,9 +139,7 @@ java_library {
         ":srcs_bluetooth_manager_service_proto",
     ],
     sdk_version: "system_server_current",
-    apex_available: [
-        "com.android.btservices",
-    ],
+    apex_available: ["com.android.btservices"],
     min_sdk_version: "Tiramisu",
 }
 
@@ -148,9 +157,7 @@ java_library {
         strict_updatability_linting: true,
     },
     sdk_version: "system_current",
-    apex_available: [
-        "com.android.btservices",
-    ],
+    apex_available: ["com.android.btservices"],
     min_sdk_version: "Tiramisu",
 }
 

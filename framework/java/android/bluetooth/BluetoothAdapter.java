@@ -3607,6 +3607,8 @@ public final class BluetoothAdapter {
         return null;
     }
 
+    // List<BluetoothProfile> profileProxies = new ArrayList<>();
+
     /**
      * Get the profile proxy object associated with the profile.
      *

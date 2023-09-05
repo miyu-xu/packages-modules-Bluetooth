@@ -5,3 +5,5 @@ rule com.android.modules.utils.** com.android.bluetooth.x.@0
 # Use our statically linked PlatformProperties library
 rule android.sysprop.** com.android.bluetooth.x.@0
 
+# Used to communicate with the service
+rule com.android.server.bluetooth.Messages com.android.bluetooth.x.server.@0

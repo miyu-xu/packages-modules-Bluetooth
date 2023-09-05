@@ -1100,14 +1100,14 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
         mAdapterService =  Objects.requireNonNull(AdapterService.getAdapterService(),
                 "AdapterService shouldn't be null when creating MediaControlCattService");
 
-        IBluetoothManager mgr = BluetoothAdapter.getDefaultAdapter().getBluetoothManager();
-        if (mgr != null) {
-            try {
-                mgr.registerStateChangeCallback(mBluetoothStateChangeCallback);
-            } catch (RemoteException e) {
-                throw e.rethrowFromSystemServer();
-            }
-        }
+        // IBluetoothManager mgr = BluetoothAdapter.getDefaultAdapter().getBluetoothManager();
+        // if (mgr != null) {
+        //     try {
+        //         mgr.registerStateChangeCallback(mBluetoothStateChangeCallback);
+        //     } catch (RemoteException e) {
+        //         throw e.rethrowFromSystemServer();
+        //     }
+        // }
 
         mEventLogger =
                 new BluetoothEventLogger(
