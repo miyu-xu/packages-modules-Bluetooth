@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1aad0a73_1ccf5938",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-05T22:58:47Z",
+      "side": 1,
+      "message": "nit: INFO?",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d036501b_148c644b",
+        "filename": "tools/rootcanal/model/setup/test_command_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-05T22:58:47Z",
+      "side": 1,
+      "message": "Any reason this warning doesn\u0027t apply to us?",
+      "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07ef6031_1b5d088f",
+        "filename": "tools/rootcanal/model/setup/test_command_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-05T22:58:47Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please don\u0027t use std::stoi* functions. Exceptions are disabled by default on Android and your code will abort. Consider atoi() if -1 is suitable for reporting errors, \u003candroid-base/parseint.h\u003e for C++, or the strtol()/scanf() family otherwi...\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease don\u0027t use std::stoi* functions. Exceptions are disabled by default on Android and your code will abort. Consider atoi() if -1 is suitable for reporting errors, \u003candroid-base/parseint.h\u003e for C++, or the strtol()/scanf() family otherwise.",
+      "range": {
+        "startLine": 248,
+        "startChar": 21,
+        "endLine": 248,
+        "endChar": 31
+      },
+      "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
