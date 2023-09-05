@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aff57819_743ed7ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-05T15:03:48Z",
+      "side": 1,
+      "message": "It seems I misunderstood BR something in SMP. Let\u0027s see whether this simplified patch passes the PTS test or not.",
+      "revId": "b69d96f3199e2b23a72e5917324b7c48adc1a5e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
