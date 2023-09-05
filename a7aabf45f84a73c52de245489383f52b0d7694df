@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93d2fdcd_a40b1cd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-05T22:26:39Z",
+      "side": 1,
+      "message": "Yeah...I\u0027m trying to get the role change/power mode into order, as that is really ACL related, but I run into issues like this 😂",
+      "revId": "a7aabf45f84a73c52de245489383f52b0d7694df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
