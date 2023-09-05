@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3db8af91_ae532ece",
+        "filename": "tools/rootcanal/model/controller/dual_mode_controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-05T23:04:47Z",
+      "side": 1,
+      "message": "I feel it is import enough that we want it to pop out on the logs, but that is my own opinion.",
+      "parentUuid": "1aad0a73_1ccf5938",
+      "range": {
+        "startLine": 37,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d036501b_148c644b",
         "filename": "tools/rootcanal/model/setup/test_command_handler.cc",
         "patchSetId": 2
@@ -60,6 +84,24 @@
         "endLine": 248,
         "endChar": 31
       },
+      "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "397c04ab_63b19d32",
+        "filename": "tools/rootcanal/model/setup/test_command_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-05T23:04:47Z",
+      "side": 1,
+      "message": "Probably the warning applies to changed or new code only",
+      "parentUuid": "d036501b_148c644b",
       "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
