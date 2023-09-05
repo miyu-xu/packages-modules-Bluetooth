@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4420e92_884da4d2",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-05T22:15:59Z",
+      "side": 1,
+      "message": "We can totally get rid of this define and use RFCOMM_MAX_SCN here",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 42
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
