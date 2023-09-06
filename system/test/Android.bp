@@ -571,6 +571,11 @@ filegroup {
 }
 
 filegroup {
+    name: "TestCommonBtuTraceLevel",
+    srcs: ["common/btu_trace_level.cc"],
+}
+
+filegroup {
     name: "TestFakeThread",
     srcs: [
         "fake/fake_thread.cc",
