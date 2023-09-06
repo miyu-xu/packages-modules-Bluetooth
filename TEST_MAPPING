@@ -321,6 +321,9 @@
   "postsubmit": [
     {
       "name": "bluetooth_le_audio_codec_manager_test"
+    },
+    {
+      "name": "net_test_btif_av"
     }
   ]
 }
