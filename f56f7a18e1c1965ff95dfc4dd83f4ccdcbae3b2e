@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "745c4a19_dbfa4a33",
+        "filename": "system/gd/packet/parser/gen_cpp.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-06T01:34:38Z",
+      "side": 1,
+      "message": "Do you need this include ?",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 19
+      },
+      "revId": "f56f7a18e1c1965ff95dfc4dd83f4ccdcbae3b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f25221_87fb9346",
+        "filename": "system/gd/packet/parser/test/generated_packet_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1980,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-06T01:34:38Z",
+      "side": 1,
+      "message": "nit: That is out of scope for this test I think",
+      "range": {
+        "startLine": 1977,
+        "startChar": 0,
+        "endLine": 1980,
+        "endChar": 3
+      },
+      "revId": "f56f7a18e1c1965ff95dfc4dd83f4ccdcbae3b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7f9dc65_5f44d7d9",
+        "filename": "system/gd/packet/parser/test/generated_packet_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1987,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-06T01:34:38Z",
+      "side": 1,
+      "message": "nit: parent_view-\u003eGetFourBits()",
+      "range": {
+        "startLine": 1987,
+        "startChar": 27,
+        "endLine": 1987,
+        "endChar": 55
+      },
+      "revId": "f56f7a18e1c1965ff95dfc4dd83f4ccdcbae3b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bce7e39_4507ea60",
+        "filename": "system/gd/packet/parser/test/generated_packet_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1990,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-06T01:34:38Z",
+      "side": 1,
+      "message": "nit: child_view-\u003eGetMoreBits()",
+      "range": {
+        "startLine": 1990,
+        "startChar": 29,
+        "endLine": 1990,
+        "endChar": 56
+      },
+      "revId": "f56f7a18e1c1965ff95dfc4dd83f4ccdcbae3b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
