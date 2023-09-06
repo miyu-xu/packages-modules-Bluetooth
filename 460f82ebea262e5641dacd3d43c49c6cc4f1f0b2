@@ -46,6 +46,30 @@
       },
       "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5390977_8958d1de",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2633,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-06T12:25:46Z",
+      "side": 1,
+      "message": "Doesn\u0027t this be enough https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2692656/1/system/bta/le_audio/devices.cc#2444 ? Alarm is freed in device destructor, so it should be not possible that alarm would be called with no device.",
+      "parentUuid": "2190854c_bf1f23d2",
+      "range": {
+        "startLine": 2633,
+        "startChar": 8,
+        "endLine": 2633,
+        "endChar": 21
+      },
+      "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
