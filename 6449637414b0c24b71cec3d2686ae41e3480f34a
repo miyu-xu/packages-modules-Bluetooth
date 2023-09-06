@@ -128,6 +128,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "003a3ecf_98c5fd94",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-06T07:53:55Z",
+      "side": 1,
+      "message": "@chharry@google.com I attached btadapterd logs to https://partnerissuetracker.corp.google.com/issues/299231669.\nDo you need other logs?\n\nfyi, I never see the `stop_sco_call` traces in the btadapterd logs.",
+      "parentUuid": "073b88cf_c47be235",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df4c9e57_5827dba1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
