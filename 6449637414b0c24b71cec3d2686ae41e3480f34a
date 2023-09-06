@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "073b88cf_c47be235",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-06T07:02:21Z",
+      "side": 1,
+      "message": "It seems Whale and I have the same understanding of the expected behavior.\n\nFrederic, first please help verify whether `stop_sco_call` is called by CRAS after the App stops. Please provide as much info as possible so I can help debug this.",
+      "parentUuid": "3ffad534_20f23b74",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df4c9e57_5827dba1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
