@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7d29979_68e8b88a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-06T04:33:23Z",
+      "side": 1,
+      "message": "I was looking for something that would enforce the valid check at compile-time...\n\nI guess this doesn\u0027t work the way I was hoping :(",
+      "revId": "92a77899a4d7be232a876b98d702ba0d40d3d56e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
