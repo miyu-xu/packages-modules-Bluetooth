@@ -40,6 +40,9 @@
       "name": "net_test_btif"
     },
     {
+      "name": "net_test_btif_av"
+    },
+    {
       "name": "net_test_btif_hf_client_service"
     },
     {
