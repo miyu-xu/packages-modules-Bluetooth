@@ -46,6 +46,30 @@
       },
       "revId": "a17008e2b6216249c67daa77a29172b0f0dd593c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d76c5e7c_0f5a962f",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2334,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-06T10:41:19Z",
+      "side": 1,
+      "message": "Right, since we destroy the device, there is no need to reset the `autonomous_operation_timer_` to `nullptr` nad just `alarm_free(...)` is enough.",
+      "parentUuid": "2dc92049_64524c7b",
+      "range": {
+        "startLine": 2334,
+        "startChar": 6,
+        "endLine": 2334,
+        "endChar": 50
+      },
+      "revId": "a17008e2b6216249c67daa77a29172b0f0dd593c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
