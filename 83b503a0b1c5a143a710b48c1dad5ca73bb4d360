@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a128611_02bd5159",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-06T23:46:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc34347e_0b1b3cf0",
+      "range": {
+        "startLine": 785,
+        "startChar": 85,
+        "endLine": 785,
+        "endChar": 86
+      },
+      "revId": "83b503a0b1c5a143a710b48c1dad5ca73bb4d360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92eef7e4_24bfab32",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "024736b6_320763f8",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 795,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-06T23:46:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92eef7e4_24bfab32",
+      "range": {
+        "startLine": 795,
+        "startChar": 18,
+        "endLine": 795,
+        "endChar": 31
+      },
+      "revId": "83b503a0b1c5a143a710b48c1dad5ca73bb4d360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b3eb9d3f_4995f316",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-09-03T22:06:17Z",
       "side": 1,
       "message": "Could you add the comment about little endian here as well?",
+      "range": {
+        "startLine": 797,
+        "startChar": 18,
+        "endLine": 797,
+        "endChar": 21
+      },
+      "revId": "83b503a0b1c5a143a710b48c1dad5ca73bb4d360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82882e36_ebcfc5f6",
+        "filename": "framework/java/android/bluetooth/le/ScanFilter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-06T23:46:07Z",
+      "side": 1,
+      "message": "Appears to already be covered here:\n\n```non-null little endian byte array```",
+      "parentUuid": "b3eb9d3f_4995f316",
       "range": {
         "startLine": 797,
         "startChar": 18,
