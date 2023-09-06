@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dade9eb2_621352e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-06T22:49:41Z",
+      "side": 1,
+      "message": "Tag are not needed anymore (nit: refractor -\u003e refactor)",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d48a012a_7e3ee341",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-06T22:49:41Z",
+      "side": 1,
+      "message": "I am not a big fan of this change.\nI like the profiles being explicit about calling int the silenceDeviceManager",
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f059bea_8dac9ce0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/SilenceDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-06T22:49:41Z",
+      "side": 1,
+      "message": "Don\u0027t this will create a lot of log and noise ?",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 22
+      },
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ca24411_4ec20183",
+        "filename": "android/app/src/com/android/bluetooth/btservice/SilenceDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-06T22:49:41Z",
+      "side": 1,
+      "message": "I don\u0027t see a lot of `String.format` in the code.\nWhy not using simply :\n```\n\"No Silence device action required for Profile \" + BluetoothProfile.getProfileName(profile)\n```",
+      "range": {
+        "startLine": 96,
+        "startChar": 24,
+        "endLine": 96,
+        "endChar": 37
+      },
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1366378c_6d170982",
+        "filename": "android/app/src/com/android/bluetooth/btservice/SilenceDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-06T22:49:41Z",
+      "side": 1,
+      "message": "And why not handling the connection here too ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 16,
+        "endLine": 109,
+        "endChar": 42
+      },
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
