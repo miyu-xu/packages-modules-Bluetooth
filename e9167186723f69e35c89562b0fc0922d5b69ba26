@@ -73,6 +73,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4a084c27_72ac3dcb",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-06T23:15:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "12481ba4_bdfa5c08",
+      "range": {
+        "startLine": 38,
+        "startChar": 28,
+        "endLine": 38,
+        "endChar": 30
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "6bb2baab_755a6a91",
         "filename": "system/stack/btm/btm_scn.cc",
         "patchSetId": 3
@@ -120,6 +144,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb48ffc6_ad16b478",
+        "filename": "system/stack/test/btm/btm_scn_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-06T23:15:35Z",
+      "side": 1,
+      "message": "@aritrasen I don\u0027t understand the purpose of this line. Since we are testing a case where there isn\u0027t an available scn, the value of the available index wouldn\u0027t actually make a difference, right?",
+      "range": {
+        "startLine": 83,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 33
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fe6ced7e_e3f0dfa4",
         "filename": "system/stack/test/btm/btm_scn_test.cc",
         "patchSetId": 3
@@ -131,6 +178,30 @@
       "writtenOn": "2023-09-05T22:55:28Z",
       "side": 1,
       "message": "2?",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 16
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6351f681_5cec3539",
+        "filename": "system/stack/test/btm/btm_scn_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-06T23:15:35Z",
+      "side": 1,
+      "message": "index 1, so it\u0027s starting at scn 2",
+      "parentUuid": "fe6ced7e_e3f0dfa4",
       "range": {
         "startLine": 84,
         "startChar": 15,
