@@ -22,6 +22,30 @@
       },
       "revId": "a17008e2b6216249c67daa77a29172b0f0dd593c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dc92049_64524c7b",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2334,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-06T09:55:27Z",
+      "side": 1,
+      "message": "\u0027alarm_free(ase.autonomous_operation_timer_);\u0027 seems to be best optimization, according to https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/osi/src/alarm.cc;drc\u003d49c21c29e72ef678a018d9885f967c004954d811;l\u003d190 it do all things mentioned here.\n\nbtw. there should be of course alarm allocation in ASE constructor - it get lost while rebase :/ thanks for checking that",
+      "parentUuid": "5313160d_7dc5379a",
+      "range": {
+        "startLine": 2334,
+        "startChar": 6,
+        "endLine": 2334,
+        "endChar": 50
+      },
+      "revId": "a17008e2b6216249c67daa77a29172b0f0dd593c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
