@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1fea9fa_c02f6bc8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-06T00:52:05Z",
+      "side": 1,
+      "message": "```suggestion\n        mAdapterService.registerBluetoothStateCallback(mAdapterService.getMainExecutor(), this);\n```\n\nTo keep the same behavior as the BroadcastReceiver ?",
+      "range": {
+        "startLine": 237,
+        "startChar": 55,
+        "endLine": 237,
+        "endChar": 90
+      },
+      "revId": "c1edcccb41efbafd846b76a98678bb8359ee9b5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
