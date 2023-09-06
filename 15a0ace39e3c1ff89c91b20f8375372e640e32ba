@@ -146,6 +146,48 @@
       "parentUuid": "397c04ab_63b19d32",
       "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f90d613_7fae24dc",
+        "filename": "tools/rootcanal/model/setup/test_command_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-06T00:33:35Z",
+      "side": 1,
+      "message": "stoi would abort() when given an invalid value, which is not what we want.\nI replaced both calls to strtoul which just returns 0 in this case.",
+      "parentUuid": "e7e604fb_cfe51aaf",
+      "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7597435_2f0b24b0",
+        "filename": "tools/rootcanal/model/setup/test_command_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-06T00:33:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07ef6031_1b5d088f",
+      "range": {
+        "startLine": 248,
+        "startChar": 21,
+        "endLine": 248,
+        "endChar": 31
+      },
+      "revId": "15a0ace39e3c1ff89c91b20f8375372e640e32ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
