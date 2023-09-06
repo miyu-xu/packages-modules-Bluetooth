@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c0858600_15c28b58",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-06T02:55:47Z",
+      "side": 1,
+      "message": "It looks this message is not needed if we handle the message in the onBluetoothStateChange callback method which is running on the mHandler thread.",
+      "range": {
+        "startLine": 82,
+        "startChar": 29,
+        "endLine": 82,
+        "endChar": 60
+      },
+      "revId": "c1edcccb41efbafd846b76a98678bb8359ee9b5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1fea9fa_c02f6bc8",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 1
@@ -14,6 +37,30 @@
       "writtenOn": "2023-09-06T00:52:05Z",
       "side": 1,
       "message": "```suggestion\n        mAdapterService.registerBluetoothStateCallback(mAdapterService.getMainExecutor(), this);\n```\n\nTo keep the same behavior as the BroadcastReceiver ?",
+      "range": {
+        "startLine": 237,
+        "startChar": 55,
+        "endLine": 237,
+        "endChar": 90
+      },
+      "revId": "c1edcccb41efbafd846b76a98678bb8359ee9b5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec8df37b_6cb5bddb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-06T02:55:47Z",
+      "side": 1,
+      "message": "mHandler uses service.getMainLooper() which means it is using the same thread with main executor, I think.",
+      "parentUuid": "a1fea9fa_c02f6bc8",
       "range": {
         "startLine": 237,
         "startChar": 55,
