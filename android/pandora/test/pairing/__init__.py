@@ -12,11 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from pairing.br_edr.misc.service_access_tests import ServiceAccessTempBondingTest
 from pairing.smp_test import SmpTest
 
 _test_class_list = [
+    ServiceAccessTempBondingTest,
     SmpTest,
 ]
+
 
 def get_test_class_list():
     return _test_class_list
