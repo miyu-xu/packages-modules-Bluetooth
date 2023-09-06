@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ffad534_20f23b74",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-06T05:51:57Z",
+      "side": 1,
+      "message": "Regarding the use case of normal app (like meet), the correct work flow is look like following\n\n1. Floss updates the call list and propagates the event to App and Headset\n2. App stops using audio\n3. CRAS notice app stop audio so it will should call `stop_sco_call`(CRAS cleans up the SCO)\n4. the CRAS call should be remove when CRAS clean up SCO(`BthfAudioState::Disconnected`)",
+      "parentUuid": "257320e5_17f6a57a",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df4c9e57_5827dba1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
