@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5313160d_7dc5379a",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2334,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-06T09:04:06Z",
+      "side": 1,
+      "message": "It seems to me that this is always `nullptr` or did I miss the `alarm_new()` call somewhere?\n\n...anyway, shouldn\u0027t we also `alarm_free()` even when the alarm is not scheduled but `!\u003d nullptr`?\n\nUsually, if we want to only cancel the alarm it would look like this:\n\n```\nif (ase.autonomous_operation_timer_) {\n  if (alarm_is_scheduled(ase.autonomous_operation_timer_)) {\n    alarm_cancel(ase.autonomous_operation_timer_);\n  }\n}\n```\n\n..but if we want to cancel when scheduled and also free the timer, then it might lo0k like this:\n\n```\nif (ase.autonomous_operation_timer_) {\n  if (alarm_is_scheduled(ase.autonomous_operation_timer_)) {\n    alarm_cancel(ase.autonomous_operation_timer_);\n  }\n  alarm_free(ase.autonomous_operation_timer_);\n  ase.autonomous_operation_timer_ \u003d nullptr;\n}\n```\n\n..but if we want to simplify, since `alarm_free()` cancels the scheduled timer, and is able to handle `nullptr` argument, it might be enough here to just do:\n\n```\n  alarm_free(ase.autonomous_operation_timer_);\n  if (ase.autonomous_operation_timer_)\n    ase.autonomous_operation_timer_ \u003d nullptr;\n```\n...or even this since this single assign is unexpensive even when it is already `nullptr`:\n```\n  alarm_free(ase.autonomous_operation_timer_);\n  ase.autonomous_operation_timer_ \u003d nullptr;\n```",
+      "range": {
+        "startLine": 2334,
+        "startChar": 6,
+        "endLine": 2334,
+        "endChar": 50
+      },
+      "revId": "a17008e2b6216249c67daa77a29172b0f0dd593c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
