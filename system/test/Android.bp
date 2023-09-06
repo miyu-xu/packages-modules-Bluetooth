@@ -385,6 +385,11 @@ filegroup {
 }
 
 filegroup {
+    name: "TestMockStrlcpy",
+    srcs: ["mock/mock_strlcpy.cc"],
+}
+
+filegroup {
     name: "TestMockStackAcl",
     srcs: [
         "mock/mock_stack_acl*.cc",
