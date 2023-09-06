@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a977b2b8_0c4d0b85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-06T20:33:03Z",
+      "side": 1,
+      "message": "nit: This is easier to parse if it starts with the desired behavior.  Maybe something like:\n\nDirectly ask the app what profiles are connected.  This removes the need to store profiles and register listeners.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "3c57bed019f5b058347711c7da657ef741955e1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99c8e9de_42574580",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-06T20:33:03Z",
+      "side": 1,
+      "message": "This one was already public...  Would it have been enough?",
+      "range": {
+        "startLine": 661,
+        "startChar": 33,
+        "endLine": 661,
+        "endChar": 49
+      },
+      "revId": "3c57bed019f5b058347711c7da657ef741955e1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
