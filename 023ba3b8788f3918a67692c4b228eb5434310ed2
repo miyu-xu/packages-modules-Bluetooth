@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4b3c187_5af55128",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-06T17:57:35Z",
+      "side": 1,
+      "message": "Per offline discussed, remove persist, and change the property from `leaudio_dual_bidirection_swb.supported` to `leaudio.dual_bidirection_swb.supported` as it is one of le audio property.",
+      "parentUuid": "e879afae_4427a2f9",
+      "range": {
+        "startLine": 1421,
+        "startChar": 7,
+        "endLine": 1421,
+        "endChar": 14
+      },
+      "revId": "023ba3b8788f3918a67692c4b228eb5434310ed2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8863bfeb_db7bf535",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-05T17:28:55Z",
       "side": 1,
       "message": "If you name the variable `dual_swb_bidirection_supported_`, shouldn\u0027t you flip the property name too ? `leaudio_dual_swb_bidirection` instead of `leaudio_dual_bidirection_swb` ?",
+      "range": {
+        "startLine": 1424,
+        "startChar": 21,
+        "endLine": 1424,
+        "endChar": 52
+      },
+      "revId": "023ba3b8788f3918a67692c4b228eb5434310ed2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2623c4e_060208eb",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1424,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-06T17:57:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8863bfeb_db7bf535",
       "range": {
         "startLine": 1424,
         "startChar": 21,
