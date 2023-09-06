@@ -70,6 +70,30 @@
       },
       "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd1847c7_9e3e2a61",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2633,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-06T14:05:29Z",
+      "side": 1,
+      "message": "Oh, you are right. My bad.",
+      "parentUuid": "d5390977_8958d1de",
+      "range": {
+        "startLine": 2633,
+        "startChar": 8,
+        "endLine": 2633,
+        "endChar": 21
+      },
+      "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
