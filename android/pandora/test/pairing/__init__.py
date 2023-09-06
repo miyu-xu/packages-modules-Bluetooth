@@ -12,7 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-_test_class_list = []
+from .misc import br_edr_service_access_tests
+
+_test_class_list = [
+    br_edr_service_access_tests.ServiceAccessTempBondingTest,
+]
 
 def get_test_class_list():
     return _test_class_list
