@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59f697bc_b7451bf1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-06T18:37:00Z",
+      "side": 1,
+      "message": "m Bluetooth ?",
+      "revId": "4c1ac0a7a95c406f3b0463a5f03f374b97d7949c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
