@@ -5787,7 +5787,7 @@ packet StorageThresholdBreachEvent : VendorSpecificEvent (subevent_code = STORAG
 enum ApcfOpcode : 8 {
   ENABLE = 0x00,
   SET_FILTERING_PARAMETERS = 0x01,
-  BROADCASTER_ADDRESS = 0x02,
+  BROADCAST_ADDRESS = 0x02,
   SERVICE_UUID = 0x03,
   SERVICE_SOLICITATION_UUID = 0x04,
   LOCAL_NAME = 0x05,
@@ -5868,14 +5868,14 @@ enum ApcfApplicationAddressType : 8 {
   NOT_APPLICABLE = 0x02,
 }
 
-packet LeApcfBroadcasterAddress : LeApcf (apcf_opcode = BROADCASTER_ADDRESS) {
+packet LeApcfBroadcastAddress : LeApcf (apcf_opcode = BROADCAST_ADDRESS) {
   apcf_action : ApcfAction,
   apcf_filter_index : 8,
   apcf_broadcaster_address : Address,
   apcf_application_address_type : ApcfApplicationAddressType,
 }
 
-packet LeApcfBroadcasterAddressComplete : LeApcfComplete (apcf_opcode = BROADCASTER_ADDRESS) {
+packet LeApcfBroadcastAddressComplete : LeApcfComplete (apcf_opcode = BROADCAST_ADDRESS) {
   apcf_action : ApcfAction,
   apcf_available_spaces : 8,
 }
@@ -5935,13 +5935,16 @@ packet LeApcfServiceDataComplete : LeApcfComplete (apcf_opcode = SERVICE_DATA) {
   apcf_available_spaces : 8,
 }
 
-packet LeApcfADType : LeApcf (apcf_opcode = AD_TYPE_FILTER) {
+packet LeApcfAdTypeFilter : LeApcf (apcf_opcode = AD_TYPE_FILTER) {
   apcf_action : ApcfAction,
   apcf_filter_index : 8,
-  apcf_ad_type_data : 8[],
+  apcf_ad_type : 8,
+  _size_(apcf_ad_data) : 8,
+  apcf_ad_data : 8[],
+  apcf_ad_data_mask : 8[],
 }
 
-packet LeApcfADTypeComplete : LeApcfComplete (apcf_opcode = AD_TYPE_FILTER) {
+packet LeApcfAdTypeFilterComplete : LeApcfComplete (apcf_opcode = AD_TYPE_FILTER) {
   apcf_action : ApcfAction,
   apcf_available_spaces : 8,
 }

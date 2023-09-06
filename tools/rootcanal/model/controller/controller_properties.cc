@@ -1970,7 +1970,10 @@ ControllerProperties::ControllerProperties(
   // Apply selected vendor features.
   if (config.has_vendor()) {
     if (config.vendor().has_csr()) {
-      vendor_csr = config.vendor().csr();
+      supports_csr_vendor_command = config.vendor().csr();
+    }
+    if (config.vendor().has_android()) {
+      supports_le_apcf_vendor_command = config.vendor().android();
     }
   }
 
