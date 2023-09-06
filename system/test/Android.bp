@@ -561,6 +561,11 @@ filegroup {
 }
 
 filegroup {
+    name: "TestCommonApplTraceLevel",
+    srcs: ["common/appl_trace_level.cc"],
+}
+
+filegroup {
     name: "TestCommonBtifTraceLevel",
     srcs: ["common/btif_trace_level.cc"],
 }
