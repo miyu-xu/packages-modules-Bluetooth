@@ -94,6 +94,30 @@
       },
       "revId": "fc0aa829d900c7f2de6bd3de7e3724776c9f0d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1d94439_d8ffd26a",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2861,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-06T09:11:28Z",
+      "side": 1,
+      "message": "Sorry, by `dependencies` I meant ASE state modifications being done from multiple places. If you think that\u0027s all, then fine.",
+      "parentUuid": "4d00648c_504524eb",
+      "range": {
+        "startLine": 2861,
+        "startChar": 8,
+        "endLine": 2861,
+        "endChar": 55
+      },
+      "revId": "fc0aa829d900c7f2de6bd3de7e3724776c9f0d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
