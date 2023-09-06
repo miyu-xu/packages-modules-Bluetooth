@@ -563,6 +563,14 @@ filegroup {
 }
 
 filegroup {
+    name: "TestMockBtifStackManager",
+    srcs: [
+        ":TestCommonCoreInterface",
+        "mock/mock_btif_stack_manager.cc",
+    ],
+}
+
+filegroup {
     name: "TestFakeOsi",
     srcs: [
         ":TestMockOsi",
