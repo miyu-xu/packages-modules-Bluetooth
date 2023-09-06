@@ -63,20 +63,6 @@ import java.util.Objects;
 
 // Describes the phone policy
 //
-// The policy should be as decoupled from the stack as possible. In an ideal world we should not
-// need to have this policy talk with any non-public APIs and one way to enforce that would be to
-// keep this file outside the Bluetooth process. Unfortunately, keeping a separate process alive is
-// an expensive and a tedious task.
-//
-// Best practices:
-// a) PhonePolicy should be ALL private methods
-//    -- Use broadcasts which can be listened in on the BroadcastReceiver
-// b) NEVER call from the PhonePolicy into the Java stack, unless public APIs. It is OK to call into
-// the non public versions as long as public versions exist (so that a 3rd party policy can mimick)
-// us.
-//
-// Policy description:
-//
 // Policies are usually governed by outside events that may warrant an action. We talk about various
 // events and the resulting outcome from this policy:
 //
@@ -86,7 +72,7 @@ import java.util.Objects;
 // 2. When the profile connection-state changes: At this point if a new profile gets CONNECTED we
 // will try to connect other profiles on the same device. This is to avoid collision if devices
 // somehow end up trying to connect at same time or general connection issues.
-class PhonePolicy {
+class PhonePolicy implements AdapterService.BluetoothStateCallback {
     private static final boolean DBG = true;
     private static final String TAG = "BluetoothPhonePolicy";
 
@@ -115,6 +101,15 @@ class PhonePolicy {
     private final HashSet<BluetoothDevice> mA2dpRetrySet = new HashSet<>();
     private final HashSet<BluetoothDevice> mConnectOtherProfilesDeviceSet = new HashSet<>();
     @VisibleForTesting boolean mAutoConnectProfilesSupported;
+
+    @Override
+    public void onBluetoothStateChange(int prevState, int newState) {
+        // Only pass the message on if the adapter has actually changed state from
+        // non-ON to ON. NOTE: ON is the state depicting BREDR ON and not just BLE ON.
+        if (newState == BluetoothAdapter.STATE_ON) {
+            mHandler.obtainMessage(MESSAGE_ADAPTER_STATE_TURNED_ON).sendToTarget();
+        }
+    }
 
     // Broadcast receiver for all changes to states of various profiles
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -170,14 +165,6 @@ class PhonePolicy {
                     mHandler.obtainMessage(MESSAGE_PROFILE_ACTIVE_DEVICE_CHANGED,
                             BluetoothProfile.LE_AUDIO, -1, // No-op argument
                             intent).sendToTarget();
-                    break;
-                case BluetoothAdapter.ACTION_STATE_CHANGED:
-                    // Only pass the message on if the adapter has actually changed state from
-                    // non-ON to ON. NOTE: ON is the state depicting BREDR ON and not just BLE ON.
-                    int newState = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, -1);
-                    if (newState == BluetoothAdapter.STATE_ON) {
-                        mHandler.obtainMessage(MESSAGE_ADAPTER_STATE_TURNED_ON).sendToTarget();
-                    }
                     break;
                 case BluetoothDevice.ACTION_ACL_CONNECTED:
                     mHandler.obtainMessage(MESSAGE_DEVICE_CONNECTED, intent).sendToTarget();
@@ -247,6 +234,8 @@ class PhonePolicy {
 
     // Policy API functions for lifecycle management (protected)
     protected void start() {
+        mAdapterService.registerBluetoothStateCallback((command) -> mHandler.post(command), this);
+
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED);
@@ -255,7 +244,6 @@ class PhonePolicy {
         filter.addAction(BluetoothCsipSetCoordinator.ACTION_CSIS_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothVolumeControl.ACTION_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
-        filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
         filter.addAction(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED);
         filter.addAction(BluetoothHeadset.ACTION_ACTIVE_DEVICE_CHANGED);
         filter.addAction(BluetoothHearingAid.ACTION_ACTIVE_DEVICE_CHANGED);
@@ -264,6 +252,7 @@ class PhonePolicy {
     }
 
     protected void cleanup() {
+        mAdapterService.unregisterBluetoothStateCallback(this);
         mAdapterService.unregisterReceiver(mReceiver);
         resetStates();
     }
