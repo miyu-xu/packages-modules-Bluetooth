@@ -93,6 +93,30 @@
       },
       "revId": "3c57bed019f5b058347711c7da657ef741955e1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "19805fc9_c6556ff3",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-09-06T23:27:14Z",
+      "side": 1,
+      "message": "Yes, a device can be connected \u0026 not active is the reason, I am fine with public",
+      "parentUuid": "bddb7094_6a9c364e",
+      "range": {
+        "startLine": 661,
+        "startChar": 33,
+        "endLine": 661,
+        "endChar": 49
+      },
+      "revId": "3c57bed019f5b058347711c7da657ef741955e1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
