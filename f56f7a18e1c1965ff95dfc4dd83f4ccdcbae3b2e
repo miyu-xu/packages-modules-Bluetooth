@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "372cc280_c1ac2018",
+        "filename": "system/gd/packet/parser/gen_cpp.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-06T04:23:25Z",
+      "side": 1,
+      "message": "It seems nice to have, since I\u0027m using std::optional in this file.  It compiles without it.",
+      "parentUuid": "745c4a19_dbfa4a33",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 19
+      },
+      "revId": "f56f7a18e1c1965ff95dfc4dd83f4ccdcbae3b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "59f25221_87fb9346",
         "filename": "system/gd/packet/parser/test/generated_packet_test.cc",
         "patchSetId": 3
@@ -54,6 +78,30 @@
       "writtenOn": "2023-09-06T01:34:38Z",
       "side": 1,
       "message": "nit: That is out of scope for this test I think",
+      "range": {
+        "startLine": 1977,
+        "startChar": 0,
+        "endLine": 1980,
+        "endChar": 3
+      },
+      "revId": "f56f7a18e1c1965ff95dfc4dd83f4ccdcbae3b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fadf247_a407b672",
+        "filename": "system/gd/packet/parser/test/generated_packet_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1980,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-06T04:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "59f25221_87fb9346",
       "range": {
         "startLine": 1977,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "507e0dba_9e019b24",
+        "filename": "system/gd/packet/parser/test/generated_packet_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1987,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-06T04:23:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7f9dc65_5f44d7d9",
+      "range": {
+        "startLine": 1987,
+        "startChar": 27,
+        "endLine": 1987,
+        "endChar": 55
+      },
+      "revId": "f56f7a18e1c1965ff95dfc4dd83f4ccdcbae3b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8bce7e39_4507ea60",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-09-06T01:34:38Z",
       "side": 1,
       "message": "nit: child_view-\u003eGetMoreBits()",
+      "range": {
+        "startLine": 1990,
+        "startChar": 29,
+        "endLine": 1990,
+        "endChar": 56
+      },
+      "revId": "f56f7a18e1c1965ff95dfc4dd83f4ccdcbae3b2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1361e979_8c709b46",
+        "filename": "system/gd/packet/parser/test/generated_packet_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1990,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-06T04:23:25Z",
+      "side": 1,
+      "message": "Done.  Much nicer.  Thanks!",
+      "parentUuid": "8bce7e39_4507ea60",
       "range": {
         "startLine": 1990,
         "startChar": 29,
