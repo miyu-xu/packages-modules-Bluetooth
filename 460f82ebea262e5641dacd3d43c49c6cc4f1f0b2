@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32ef1d1a_5aa777d0",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2633,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-06T10:46:56Z",
+      "side": 1,
+      "message": "If this is scheduled, but then the device is removed, and then the callback is executed, would that point to the already released LeAudioDevice object?",
+      "range": {
+        "startLine": 2633,
+        "startChar": 8,
+        "endLine": 2633,
+        "endChar": 21
+      },
+      "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
