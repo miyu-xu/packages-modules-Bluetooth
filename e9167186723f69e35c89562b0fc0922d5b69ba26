@@ -94,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94405c5e_22aba356",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-06T23:11:00Z",
+      "side": 1,
+      "message": "We should indeed verify if HFP uses FREE SCN - If it doesn\u0027t yes i guess.",
+      "parentUuid": "6bb2baab_755a6a91",
+      "range": {
+        "startLine": 101,
+        "startChar": 36,
+        "endLine": 101,
+        "endChar": 37
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe6ced7e_e3f0dfa4",
