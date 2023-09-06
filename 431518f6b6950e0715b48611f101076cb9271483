@@ -22,6 +22,30 @@
       },
       "revId": "431518f6b6950e0715b48611f101076cb9271483",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfb03a16_25ee8821",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-09-06T22:27:44Z",
+      "side": 1,
+      "message": "Ohhh, I got that, it is count as failure, but reason is `REASON_INCOMING_CONN_REJECTED`",
+      "parentUuid": "c09017f0_f668f13c",
+      "range": {
+        "startLine": 587,
+        "startChar": 52,
+        "endLine": 587,
+        "endChar": 66
+      },
+      "revId": "431518f6b6950e0715b48611f101076cb9271483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
