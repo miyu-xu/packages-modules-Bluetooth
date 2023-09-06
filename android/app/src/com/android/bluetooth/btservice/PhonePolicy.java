@@ -94,7 +94,6 @@ class PhonePolicy {
     private static final int MESSAGE_PROFILE_CONNECTION_STATE_CHANGED = 1;
     private static final int MESSAGE_CONNECT_OTHER_PROFILES = 3;
     private static final int MESSAGE_ADAPTER_STATE_TURNED_ON = 4;
-    private static final int MESSAGE_PROFILE_ACTIVE_DEVICE_CHANGED = 5;
     private static final int MESSAGE_DEVICE_CONNECTED = 6;
 
     @VisibleForTesting static final String AUTO_CONNECT_PROFILES_PROPERTY =
@@ -115,6 +114,16 @@ class PhonePolicy {
     private final HashSet<BluetoothDevice> mA2dpRetrySet = new HashSet<>();
     private final HashSet<BluetoothDevice> mConnectOtherProfilesDeviceSet = new HashSet<>();
     @VisibleForTesting boolean mAutoConnectProfilesSupported;
+
+    /**
+     * Called when active state of audio profiles changed
+     *
+     * @param profile The Bluetooth profile of which active state changed
+     * @param device The device currently activated. {@code null} if no A2DP device activated
+     */
+    public void profileActiveDeviceChanged(int profile, BluetoothDevice device) {
+        mHandler.post(() -> processActiveDeviceChanged(device, profile));
+    }
 
     // Broadcast receiver for all changes to states of various profiles
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -149,26 +158,6 @@ class PhonePolicy {
                 case BluetoothVolumeControl.ACTION_CONNECTION_STATE_CHANGED:
                     mHandler.obtainMessage(MESSAGE_PROFILE_CONNECTION_STATE_CHANGED,
                             BluetoothProfile.VOLUME_CONTROL, -1, // No-op argument
-                            intent).sendToTarget();
-                    break;
-                case BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED:
-                    mHandler.obtainMessage(MESSAGE_PROFILE_ACTIVE_DEVICE_CHANGED,
-                            BluetoothProfile.A2DP, -1, // No-op argument
-                            intent).sendToTarget();
-                    break;
-                case BluetoothHeadset.ACTION_ACTIVE_DEVICE_CHANGED:
-                    mHandler.obtainMessage(MESSAGE_PROFILE_ACTIVE_DEVICE_CHANGED,
-                            BluetoothProfile.HEADSET, -1, // No-op argument
-                            intent).sendToTarget();
-                    break;
-                case BluetoothHearingAid.ACTION_ACTIVE_DEVICE_CHANGED:
-                    mHandler.obtainMessage(MESSAGE_PROFILE_ACTIVE_DEVICE_CHANGED,
-                            BluetoothProfile.HEARING_AID, -1, // No-op argument
-                            intent).sendToTarget();
-                    break;
-                case BluetoothLeAudio.ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED:
-                    mHandler.obtainMessage(MESSAGE_PROFILE_ACTIVE_DEVICE_CHANGED,
-                            BluetoothProfile.LE_AUDIO, -1, // No-op argument
                             intent).sendToTarget();
                     break;
                 case BluetoothAdapter.ACTION_STATE_CHANGED:
@@ -212,15 +201,6 @@ class PhonePolicy {
                     processProfileStateChanged(device, msg.arg1, nextState, prevState);
                 }
                 break;
-
-                case MESSAGE_PROFILE_ACTIVE_DEVICE_CHANGED: {
-                    Intent intent = (Intent) msg.obj;
-                    BluetoothDevice activeDevice =
-                            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    processActiveDeviceChanged(activeDevice, msg.arg1);
-                }
-                break;
-
                 case MESSAGE_CONNECT_OTHER_PROFILES: {
                     // Called when we try connect some profiles in processConnectOtherProfiles but
                     // we send a delayed message to try connecting the remaining profiles
