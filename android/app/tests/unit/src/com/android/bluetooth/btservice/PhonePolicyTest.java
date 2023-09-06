@@ -363,10 +363,7 @@ public class PhonePolicyTest {
                 BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
 
         // Make one of the device active
-        Intent intent = new Intent(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED);
-        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, connectionOrder.get(0));
-        intent.addFlags(Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
-        mPhonePolicy.getBroadcastReceiver().onReceive(null /* context */, intent);
+        mPhonePolicy.profileActiveDeviceChanged(BluetoothProfile.A2DP, connectionOrder.get(0));
         waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
         // Only calls setConnection on device connectionOrder.get(0) with STATE_CONNECTED
@@ -379,10 +376,7 @@ public class PhonePolicyTest {
         // Make another device active
         when(mHeadsetService.getConnectionState(connectionOrder.get(1))).thenReturn(
                 BluetoothProfile.STATE_CONNECTED);
-        intent = new Intent(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED);
-        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, connectionOrder.get(1));
-        intent.addFlags(Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
-        mPhonePolicy.getBroadcastReceiver().onReceive(null /* context */, intent);
+        mPhonePolicy.profileActiveDeviceChanged(BluetoothProfile.A2DP, connectionOrder.get(1));
         waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
         // Only calls setConnection on device connectionOrder.get(1) with STATE_CONNECTED
@@ -396,7 +390,7 @@ public class PhonePolicyTest {
         // Disconnect a2dp for the device from previous STATE_CONNECTED
         when(mHeadsetService.getConnectionState(connectionOrder.get(1))).thenReturn(
                 BluetoothProfile.STATE_DISCONNECTED);
-        intent = new Intent(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED);
+        Intent intent = new Intent(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED);
         intent.putExtra(BluetoothDevice.EXTRA_DEVICE, connectionOrder.get(1));
         intent.putExtra(BluetoothProfile.EXTRA_PREVIOUS_STATE, BluetoothProfile.STATE_CONNECTED);
         intent.putExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_DISCONNECTED);
