@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "84c8e1e1_1001239c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-06T23:06:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a977b2b8_0c4d0b85",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 0
+      },
+      "revId": "3c57bed019f5b058347711c7da657ef741955e1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99c8e9de_42574580",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-06T20:33:03Z",
       "side": 1,
       "message": "This one was already public...  Would it have been enough?",
+      "range": {
+        "startLine": 661,
+        "startChar": 33,
+        "endLine": 661,
+        "endChar": 49
+      },
+      "revId": "3c57bed019f5b058347711c7da657ef741955e1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bddb7094_6a9c364e",
+        "filename": "android/app/src/com/android/bluetooth/hearingaid/HearingAidService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-06T23:06:40Z",
+      "side": 1,
+      "message": "I do not know.\n\nI would expect a device can be connected \u0026 not active, but this is said without deep knowledge.\n\nThe `getConnectedDevices` was already the method called, so I would like this CL not to change the call being done.\n\nAlso, checking `getActiveDevices` is a bit more annoying than `getConnectedDevices` as there are always 2 items in the list and the check need to be  \n\n```\nif (mHearingAidService !\u003d null) {\n List\u003cBluetoothDevice\u003e devices \u003d mHearingAidService.getActiveDevices();\n if (devices[0] !\u003d null || devices[1] !\u003d null) {\n  debugLog(\"isMediaProfileConnected. HearingAid is connected\");\n  return true;\n }\n}\n```\n\ninstead of \n```\nif (mHearingAidService !\u003d null \u0026\u0026 mHearingAidService.getConnectedDevices().size() \u003e 0) \n```\n\nSince putting public does not expose anything outside of the app (we are not in the framework), I do think this is fine. (Also other profiles already have the method as public, even if I should not point fingers :p )\n\nI am adding @yuyangh@google.com as reviewer to validate this. (Please resolve this comment if you are ok with the current change ! 😊 )",
+      "parentUuid": "99c8e9de_42574580",
       "range": {
         "startLine": 661,
         "startChar": 33,
