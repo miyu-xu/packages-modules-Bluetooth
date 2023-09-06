@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "257320e5_17f6a57a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-06T05:39:36Z",
+      "side": 1,
+      "message": "Hi Hsin-chen,\nI agree with the steps you mentioned. However, I think steps 2-4 should happen in `BthfAudioState::Disconnected` instead of the current function.\n\nIf we remove the `CRAS` call when hanging up a call, it could cause audio disconnection. For example, if you open a meeting session and another recording app at the same time, and then remove the CRAS call when hanging up the call, the recording app may not work properly because the call list is empty.\n\nTo resolve this kind of issue, I choose completely separating the life cycles of `CRAS` calls and `HID` calls.\n\nThat is\n1. CRAS calls should only be added when `start_sco_call` is called and only removed when `stop_sco_call` is called.\n2. HID calls should be added when an incoming call is received and removed when a call is hung up or declined.",
+      "parentUuid": "8a993948_4552f6db",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df4c9e57_5827dba1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
