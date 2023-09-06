@@ -22,6 +22,30 @@
       },
       "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2190854c_bf1f23d2",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2633,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-06T10:55:26Z",
+      "side": 1,
+      "message": "Instead of binding the pointer value, we might have to bind the address value and retrieve back the device pointer inside the `OnDeviceAutonomousStateTransitionTimeout(address)` callback.",
+      "parentUuid": "32ef1d1a_5aa777d0",
+      "range": {
+        "startLine": 2633,
+        "startChar": 8,
+        "endLine": 2633,
+        "endChar": 21
+      },
+      "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
