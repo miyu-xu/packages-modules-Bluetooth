@@ -46,6 +46,30 @@
       },
       "revId": "fc0aa829d900c7f2de6bd3de7e3724776c9f0d17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b759312_dd43fd1d",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2861,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-09-06T07:45:18Z",
+      "side": 1,
+      "message": "That should be it for now. Did you perhaps check if there are any other dependencies like this? This one was the first one I noticed, but I\u0027m worried there could be more.",
+      "parentUuid": "3dc36689_30b6ec52",
+      "range": {
+        "startLine": 2861,
+        "startChar": 8,
+        "endLine": 2861,
+        "endChar": 55
+      },
+      "revId": "fc0aa829d900c7f2de6bd3de7e3724776c9f0d17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
