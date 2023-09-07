@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eff05003_3408ba8d",
+        "filename": "system/stack/BUILD.gn",
+        "patchSetId": 12
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-07T01:37:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2191fc4c_28b29d90",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 17
+      },
+      "revId": "a7732cab7429b40ad39baaa465bdacdfe83db9ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9c80c6c_7ac21ea2",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-05T04:25:54Z",
       "side": 1,
       "message": "Consider: rebase onto aosp/2689106",
+      "range": {
+        "startLine": 180,
+        "startChar": 6,
+        "endLine": 180,
+        "endChar": 27
+      },
+      "revId": "a7732cab7429b40ad39baaa465bdacdfe83db9ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1864ff48_2d0f015f",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder_linux.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-07T01:37:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f9c80c6c_7ac21ea2",
       "range": {
         "startLine": 180,
         "startChar": 6,
