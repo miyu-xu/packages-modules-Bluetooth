@@ -117,6 +117,29 @@
       },
       "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0875da7_744f61e3",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-09-07T10:18:12Z",
+      "side": 1,
+      "message": "Should this stay as it was ? Is that accidentally commited local change ?",
+      "range": {
+        "startLine": 58,
+        "startChar": 5,
+        "endLine": 58,
+        "endChar": 31
+      },
+      "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
