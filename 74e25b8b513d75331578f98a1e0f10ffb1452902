@@ -22,6 +22,74 @@
       },
       "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa9bedff_72b060c2",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-07T23:58:03Z",
+      "side": 1,
+      "message": "LE would also use an addr type",
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd493e0_e2cc2f93",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-07T23:58:03Z",
+      "side": 1,
+      "message": "```\ntime_t Used for time in seconds.  According to POSIX, it is an integer type.\n```\nWere milliseconds considered ?",
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b86537e7_156e4531",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 33
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-07T23:58:03Z",
+      "side": 1,
+      "message": "This is a circular buffer...could you use this one ?\n\n`gd/common/circular_buffer.h`",
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d8576f7_fa7a72bb",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 33
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-07T23:58:03Z",
+      "side": 1,
+      "message": "Why is `started` in the API when I assume it\u0027s not used during normal operation.",
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
