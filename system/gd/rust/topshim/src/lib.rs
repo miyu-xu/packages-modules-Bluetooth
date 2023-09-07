@@ -25,3 +25,6 @@ pub mod sysprop;
 pub mod topstack;
 
 mod utils;
+
+#[cfg(target_os = "android")]
+pub mod jni;

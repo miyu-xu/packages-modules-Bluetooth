@@ -945,17 +945,17 @@ public class AdapterService extends Service {
         int metricId = getMetricId(device);
         long currentTime = System.nanoTime();
         long endToEndLatencyNanos = currentTime - socketCreationTimeNanos;
-        BluetoothStatsLog.write(
-                BluetoothStatsLog.BLUETOOTH_RFCOMM_CONNECTION_ATTEMPTED,
-                metricId,
-                endToEndLatencyNanos,
-                isSecured
-                        ? BluetoothRfcommProtoEnums.SOCKET_SECURITY_SECURE
-                        : BluetoothRfcommProtoEnums.SOCKET_SECURITY_INSECURE,
-                resultCode,
-                isSerialPort,
-                appUid,
-                new byte[0]);
+        // BluetoothStatsLog.write(
+        //         BluetoothStatsLog.BLUETOOTH_RFCOMM_CONNECTION_ATTEMPTED,
+        //         metricId,
+        //         endToEndLatencyNanos,
+        //         isSecured
+        //                 ? BluetoothRfcommProtoEnums.SOCKET_SECURITY_SECURE
+        //                 : BluetoothRfcommProtoEnums.SOCKET_SECURITY_INSECURE,
+        //         resultCode,
+        //         isSerialPort,
+        //         appUid,
+        //         new byte[0]);
     }
 
     @RequiresPermission(
