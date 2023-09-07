@@ -6891,6 +6891,9 @@ public class AdapterService extends Service {
                             + (" LeAudio=" + mLeAudioService));
             return false;
         }
+    /** Update PhonePolicy when new {@link BluetoothDevice} creates an ACL connection. */
+    public void updatePhonePolicyOnAclConnect(BluetoothDevice device) {
+        mPhonePolicy.handleAclConnected(device);
     }
 
     /**
