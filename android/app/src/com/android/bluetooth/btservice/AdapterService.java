@@ -6888,6 +6888,25 @@ public class AdapterService extends Service {
     }
 
     /**
+     * Notify {@link BluetoothProfile} when ACL connection disconnects from {@link BluetoothDevice}
+     * for a given {@code transport}.
+     */
+    public void notifyProfileOnAclDisconnect(BluetoothDevice device, int transport) {
+        if (mMapService != null) {
+            mMapService.onAclDisconnect(device);
+        }
+        if (mMapClientService != null) {
+            mMapClientService.onAclDisconnect(device, transport);
+        }
+        if (mSapService != null) {
+            mSapService.onAclDisconnect(device);
+        }
+        if (mPbapClientService != null) {
+            mPbapClientService.onAclDisconnect(device, transport);
+        }
+    }
+
+    /**
      * Notify GATT of a Bluetooth profile's connection state change for a given {@link
      * BluetoothProfile}.
      */
