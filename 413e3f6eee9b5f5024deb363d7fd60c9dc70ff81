@@ -16,6 +16,24 @@
       "message": "Please add an empty line.",
       "revId": "413e3f6eee9b5f5024deb363d7fd60c9dc70ff81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7de6b9da_b473edb6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6858,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-07T06:58:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d39d6ba4_baeabf37",
+      "revId": "413e3f6eee9b5f5024deb363d7fd60c9dc70ff81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
