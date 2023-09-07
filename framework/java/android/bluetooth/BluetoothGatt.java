@@ -1498,7 +1498,7 @@ public final class BluetoothGatt implements BluetoothProfile {
             synchronized (mDeviceBusyLock) {
                 mDeviceBusy = false;
             }
-            throw e.rethrowFromSystemServer();
+            e.rethrowAsRuntimeException();
         }
 
         return requestStatus;
@@ -1641,7 +1641,7 @@ public final class BluetoothGatt implements BluetoothProfile {
             synchronized (mDeviceBusyLock) {
                 mDeviceBusy = false;
             }
-            e.rethrowFromSystemServer();
+            e.rethrowAsRuntimeException();
         }
         return BluetoothStatusCodes.ERROR_UNKNOWN;
     }
