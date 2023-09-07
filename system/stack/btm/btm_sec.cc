@@ -3944,8 +3944,12 @@ void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason,
           BTM_SEC_16_DIGIT_PIN_AUTHED);
 
     // Remove temporary key.
-    if (p_dev_rec->bond_type == tBTM_SEC_DEV_REC::BOND_TYPE_TEMPORARY)
+    if (p_dev_rec->bond_type == tBTM_SEC_DEV_REC::BOND_TYPE_TEMPORARY) {
       p_dev_rec->sec_flags &= ~(BTM_SEC_LINK_KEY_KNOWN);
+      // Remote device may have requested for SMP over BR. Remove it too.
+      p_dev_rec->sec_flags &= ~(BTM_SEC_LE_LINK_KEY_KNOWN);
+      p_dev_rec->ble.key_type = BTM_LE_KEY_NONE;
+    }
   }
 
   /* Some devices hardcode sample LTK value from spec, instead of generating
