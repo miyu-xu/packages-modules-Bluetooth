@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cdc179c6_fa3e3af6",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-07T10:55:30Z",
+      "side": 1,
+      "message": "Changed to allocation on timer start.",
+      "parentUuid": "ff00cb92_b6750164",
+      "range": {
+        "startLine": 725,
+        "startChar": 36,
+        "endLine": 725,
+        "endChar": 82
+      },
+      "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "32ef1d1a_5aa777d0",
         "filename": "system/bta/le_audio/state_machine.cc",
         "patchSetId": 4
@@ -132,6 +156,30 @@
       "writtenOn": "2023-09-07T10:18:12Z",
       "side": 1,
       "message": "Should this stay as it was ? Is that accidentally commited local change ?",
+      "range": {
+        "startLine": 58,
+        "startChar": 5,
+        "endLine": 58,
+        "endChar": 31
+      },
+      "revId": "460f82ebea262e5641dacd3d43c49c6cc4f1f0b2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b1ec826_af923409",
+        "filename": "system/bta/le_audio/state_machine_test.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-07T10:55:30Z",
+      "side": 1,
+      "message": "It was locally but have some thoughts that it would be good to have it - now I\u0027m not convinced... Lets keep it as it was.",
+      "parentUuid": "d0875da7_744f61e3",
       "range": {
         "startLine": 58,
         "startChar": 5,
