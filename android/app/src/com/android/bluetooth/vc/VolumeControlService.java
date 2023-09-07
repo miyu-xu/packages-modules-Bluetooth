@@ -308,10 +308,11 @@ public class VolumeControlService extends ProfileService {
         mGroupVolumeCache.clear();
         mGroupMuteCache.clear();
 
-        // Clear AdapterService, VolumeControlNativeInterface
+        // Clear AdapterService, VolumeControlNativeInterface, DatabaseManager
         mAudioManager = null;
         mVolumeControlNativeInterface = null;
         mAdapterService = null;
+        mDatabaseManager = null;
 
         if (mCallbacks != null) {
             mCallbacks.kill();
@@ -553,6 +554,10 @@ public class VolumeControlService extends ProfileService {
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
                 "Need BLUETOOTH_PRIVILEGED permission");
         return mDatabaseManager.getProfileConnectionPolicy(device, BluetoothProfile.VOLUME_CONTROL);

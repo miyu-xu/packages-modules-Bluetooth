@@ -223,9 +223,10 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         mLocks.clear();
 
-        // Clear AdapterService, CsipSetCoordinatorNativeInterface
+        // Clear AdapterService, CsipSetCoordinatorNativeInterface, DatabaseManager
         mCsipSetCoordinatorNativeInterface = null;
         mAdapterService = null;
+        mDatabaseManager = null;
 
         return true;
     }
@@ -498,6 +499,10 @@ public class CsipSetCoordinatorService extends ProfileService {
      * @return connection policy of the specified device
      */
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
         enforceCallingOrSelfPermission(
                 BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
         return mDatabaseManager.getProfileConnectionPolicy(

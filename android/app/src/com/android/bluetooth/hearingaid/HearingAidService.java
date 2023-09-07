@@ -17,6 +17,7 @@
 package com.android.bluetooth.hearingaid;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+
 import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
@@ -211,10 +212,11 @@ public class HearingAidService extends ProfileService {
         mAudioManager.unregisterAudioDeviceCallback(mAudioManagerOnAudioDevicesAddedCallback);
         mAudioManager.unregisterAudioDeviceCallback(mAudioManagerOnAudioDevicesRemovedCallback);
 
-        // Clear AdapterService, HearingAidNativeInterface
+        // Clear AdapterService, HearingAidNativeInterface, DatabaseManager
         mAudioManager = null;
         mHearingAidNativeInterface = null;
         mAdapterService = null;
+        mDatabaseManager = null;
 
         return true;
     }
@@ -544,6 +546,11 @@ public class HearingAidService extends ProfileService {
      */
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
+
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
                 "Need BLUETOOTH_PRIVILEGED permission");
         return mDatabaseManager

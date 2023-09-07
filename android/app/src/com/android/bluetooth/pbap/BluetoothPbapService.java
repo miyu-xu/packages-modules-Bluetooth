@@ -646,6 +646,10 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         if (device == null) {
             throw new IllegalArgumentException("Null device");
         }
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
         return mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.PBAP);
     }
@@ -764,6 +768,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
             mPbapStateMachineMap.clear();
         }
         getApplicationContext().unregisterReceiver(mUserChangeReceiver);
+        mDatabaseManager = null;
         return true;
     }
 

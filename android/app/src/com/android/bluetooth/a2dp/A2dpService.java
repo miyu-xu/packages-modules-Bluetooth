@@ -17,10 +17,12 @@
 package com.android.bluetooth.a2dp;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.bluetooth.Utils.enforceCdmAssociation;
 import static com.android.bluetooth.Utils.hasBluetoothPrivilegedPermission;
+
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.NonNull;
@@ -238,8 +240,9 @@ public class A2dpService extends ProfileService {
         // Step 6: Cleanup native interface
         mNativeInterface.cleanup();
 
-        // Step 5: Clear codec config
+        // Step 5: Clear codec config, DatabaseManager
         mA2dpCodecConfig = null;
+        mDatabaseManager = null;
 
         // Step 4: Destroy state machines and stop handler thread
         synchronized (mStateMachines) {
@@ -709,6 +712,11 @@ public class A2dpService extends ProfileService {
      * @hide
      */
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
+
         return mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.A2DP);
     }

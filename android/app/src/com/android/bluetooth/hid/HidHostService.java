@@ -123,6 +123,7 @@ public class HidHostService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "Stopping Bluetooth HidHostService");
         }
+        mDatabaseManager = null;
         return true;
     }
 
@@ -722,6 +723,10 @@ public class HidHostService extends ProfileService {
     public int getConnectionPolicy(BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "getConnectionPolicy: " + device);
+        }
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
         }
         return mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.HID_HOST);

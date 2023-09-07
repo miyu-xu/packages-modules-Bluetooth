@@ -18,6 +18,7 @@ package com.android.bluetooth.hfp;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.MODIFY_PHONE_STATE;
+
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
@@ -259,6 +260,7 @@ public class HeadsetService extends ProfileService {
         // Step 4: Destroy native interface
         mNativeInterface.cleanup();
         setHeadsetService(null);
+        mDatabaseManager = null;
         // Step 3: Destroy system interface
         mSystemInterface.stop();
         // Step 2: Stop handler thread
@@ -1092,6 +1094,11 @@ public class HeadsetService extends ProfileService {
      * @hide
      */
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
+
         return mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.HEADSET);
     }
