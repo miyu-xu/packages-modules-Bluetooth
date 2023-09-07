@@ -267,6 +267,7 @@ public class GattNativeInterface {
     /**********************************************************************************************/
 
     private native void initializeNative();
+  //private native void initializeGattSystemLayer();
 
     private native void cleanupNative();
     private native int gattClientGetDeviceTypeNative(String address);
@@ -330,6 +331,7 @@ public class GattNativeInterface {
     public void init(GattService gattService) {
         mGattService = gattService;
         initializeNative();
+        // initializeGattSystemLayer();
     }
 
     /**
@@ -617,4 +619,3 @@ public class GattNativeInterface {
         gattTestNative(command, uuid1Lsb, uuid1Msb, bda1, p1, p2, p3, p4, p5);
     }
 }
-

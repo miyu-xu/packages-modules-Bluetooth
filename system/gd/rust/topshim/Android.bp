@@ -7,24 +7,18 @@ package {
     default_applicable_licenses: ["system_bt_license"],
 }
 
-rust_library_host_rlib {
+rust_library_rlib {
     name: "libbt_topshim",
     defaults: ["gd_rust_defaults"],
     crate_name: "bt_topshim",
     srcs: [
         "src/lib.rs",
-
         ":libbt_topshim_wrapper_bindgen",
     ],
     rustlibs: [
         "libbitflags",
-        "libbluetooth_rs",
-        "libbt_common",
-        "libbt_facade_helpers",
-        "libbt_packets",
         "libcxx",
         "libfutures",
-        "libgrpcio",
         "liblazy_static",
         "liblog_rust",
         "libnix",
@@ -39,6 +33,18 @@ rust_library_host_rlib {
     ],
     lints: "none",
     clippy_lints: "none",
+    target: {
+        android: {
+            rustlibs: [
+                "libjni",
+            ],
+        },
+    },
+    host_supported: true,
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "30",
 }
 
 cc_library_static {
@@ -74,6 +80,10 @@ cc_library_static {
         "libbluetooth_log",
         "libchrome",
     ],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "30",
 }
 
 gensrcs {
@@ -151,4 +161,8 @@ rust_bindgen {
         "libbluetooth_headers",
         "libbluetooth_system_headers",
     ],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
 }

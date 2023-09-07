@@ -1417,6 +1417,22 @@ pub fn get_btinterface() -> Option<BluetoothInterface> {
     ret
 }
 
+#[cfg(target_os = "android")]
+pub mod jni {
+    use super::BluetoothInterface;
+    use lazy_static::lazy_static;
+    use std::sync::{Arc, Mutex};
+
+    lazy_static! {
+        static ref BTIF: Arc<Mutex<BluetoothInterface>> =
+            Arc::new(Mutex::new(super::get_btinterface().expect("Bluetooth module is loaded")));
+    }
+
+    pub(crate) fn get_bluetooth_interface() -> Arc<Mutex<BluetoothInterface>> {
+        BTIF.clone()
+    }
+}
+
 // Turns C-array T[] to Vec<U>.
 pub(crate) fn ptr_to_vec<T: Copy, U: From<T>>(start: *const T, length: usize) -> Vec<U> {
     unsafe {

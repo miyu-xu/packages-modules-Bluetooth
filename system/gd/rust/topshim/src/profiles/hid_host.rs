@@ -156,7 +156,7 @@ struct RawHHWrapper {
     raw: *const bindings::bthh_interface_t,
 }
 
-// Pointers unsafe due to ownership but this is a static pointer so Send is ok
+// Pointers unsafe due to ownership but this is a static pointer so Send is ok.
 unsafe impl Send for RawHHWrapper {}
 
 pub struct HidHost {

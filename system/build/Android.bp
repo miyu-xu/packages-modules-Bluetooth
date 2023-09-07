@@ -11,6 +11,8 @@ cc_defaults {
     name: "fluoride_defaults",
     defaults: ["bluetooth_cflags"],
     cflags: [
+    "-g",
+    "-O0",
         "-DEXPORT_SYMBOL=__attribute__((visibility(\"default\")))",
         "-DLOG_NDEBUG=0",
         "-fvisibility=hidden",
@@ -22,5 +24,8 @@ cc_defaults {
                 misc_undefined: ["bounds"],
             },
         },
+    },
+    strip: {
+    none: true,
     },
 }
