@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fdde920_3f4540a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-07T03:49:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fd9eebf6_b72d6a34",
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2f059bea_8dac9ce0",
@@ -214,6 +232,30 @@
       "side": 1,
       "message": "I eventually want to. The issue is there are a lot of connection state change stuff so converging it into one place would require more effort (but is something I am eventually interested in). I am however not including it in the scope of this.",
       "parentUuid": "1366378c_6d170982",
+      "range": {
+        "startLine": 109,
+        "startChar": 16,
+        "endLine": 109,
+        "endChar": 42
+      },
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93853535_6df2899f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/SilenceDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-07T03:49:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f414f81c_9c3f8480",
       "range": {
         "startLine": 109,
         "startChar": 16,
