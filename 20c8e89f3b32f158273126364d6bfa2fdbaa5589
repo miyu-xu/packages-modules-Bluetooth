@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed56bc80_21c41969",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-09-07T17:18:36Z",
+      "side": 1,
+      "message": "This may impact FastPair or other use cases which may be using GATT during SMP pairing.\nWe should also guard these changes under a flag.",
+      "revId": "20c8e89f3b32f158273126364d6bfa2fdbaa5589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
