@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "419e71e0_96ffb0a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-07T21:46:35Z",
+      "side": 1,
+      "message": "Were these metrics being sent multiple times ? Is there no longer any metrics for connection complete ? (Are there remaining metrics logging points ?)",
+      "revId": "b9b157e9295bc0c067c7c5f0770f5ec3323fd88c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
