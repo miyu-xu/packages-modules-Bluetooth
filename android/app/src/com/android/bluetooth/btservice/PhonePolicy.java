@@ -92,7 +92,6 @@ class PhonePolicy {
     private static final int MESSAGE_CONNECT_OTHER_PROFILES = 3;
     private static final int MESSAGE_ADAPTER_STATE_TURNED_ON = 4;
     private static final int MESSAGE_PROFILE_ACTIVE_DEVICE_CHANGED = 5;
-    private static final int MESSAGE_DEVICE_CONNECTED = 6;
 
     @VisibleForTesting static final String AUTO_CONNECT_PROFILES_PROPERTY =
             "bluetooth.auto_connect_profiles.enabled";
@@ -127,6 +126,10 @@ class PhonePolicy {
             default:
                 break;
         }
+    }
+
+    public void handleAclConnected(BluetoothDevice device) {
+        mHandler.post(() -> processDeviceConnected(device));
     }
 
     // Broadcast receiver for all changes to states of various profiles
@@ -166,9 +169,6 @@ class PhonePolicy {
                     if (newState == BluetoothAdapter.STATE_ON) {
                         mHandler.obtainMessage(MESSAGE_ADAPTER_STATE_TURNED_ON).sendToTarget();
                     }
-                    break;
-                case BluetoothDevice.ACTION_ACL_CONNECTED:
-                    mHandler.obtainMessage(MESSAGE_DEVICE_CONNECTED, intent).sendToTarget();
                     break;
                 default:
                     Log.e(TAG, "Received unexpected intent, action=" + action);
@@ -212,11 +212,6 @@ class PhonePolicy {
                     resetStates();
                     autoConnect();
                     break;
-                case MESSAGE_DEVICE_CONNECTED:
-                    Intent intent = (Intent) msg.obj;
-                    BluetoothDevice device =
-                            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    processDeviceConnected(device);
             }
         }
     }
