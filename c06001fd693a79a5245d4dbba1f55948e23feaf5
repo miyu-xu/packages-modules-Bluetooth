@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aac9434a_4954866b",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1292,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-07T04:10:32Z",
+      "side": 1,
+      "message": "Can we merge these methods into one?\n(If possible, let\u0027s do it in the next CL)\nand ditto for other profile services.",
+      "range": {
+        "startLine": 1283,
+        "startChar": 0,
+        "endLine": 1292,
+        "endChar": 72
+      },
+      "revId": "c06001fd693a79a5245d4dbba1f55948e23feaf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
