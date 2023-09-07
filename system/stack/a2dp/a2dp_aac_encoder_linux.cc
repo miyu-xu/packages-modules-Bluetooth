@@ -24,6 +24,7 @@ extern "C" {
 #include <libavutil/samplefmt.h>
 }
 
+#include <base/timer/elapsed_timer.h>
 #include <inttypes.h>
 #include <stdio.h>
 #include <string.h>
@@ -38,6 +39,7 @@ extern "C" {
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "stack/include/bt_hdr.h"
+#include "stack/mmc/metrics/mmc_rtt_logger.h"
 
 const int A2DP_AAC_HEADER_LEN = 9;
 const int A2DP_AAC_MAX_LEN_REPR = 4;
@@ -102,11 +104,13 @@ class FFmpegInterface {
       avcodec_free_context(&avctx);
       avctx = NULL;
     }
+    recorder.UploadTranscodeRttStatics();
   }
 
   // Returns a negative errno if the encoded frame was not produced.
   // Otherwise returns the length of the encoded frame stored in `o_buf`.
   int encode_pcm(uint8_t* i_buf, int i_len, int bit_depth, uint8_t* o_buf) {
+    base::ElapsedTimer timer;
     int rc;
 
     AVFrame* frame = av_frame_alloc();
@@ -225,7 +229,7 @@ class FFmpegInterface {
     av_packet_unref(pkt);
     av_frame_free(&frame);
     av_packet_free(&pkt);
-
+    recorder.RecordRtt(timer.Elapsed().InMicroseconds());
     return written;
   }
 
@@ -238,6 +242,7 @@ class FFmpegInterface {
   };
 
   AVCodecContext* avctx;
+  mmc::MmcRttLogger recorder = mmc::MmcRttLogger("FFmpegAAC");
 };
 
 typedef struct {

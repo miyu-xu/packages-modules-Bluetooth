@@ -49,7 +49,10 @@ source_set("nonstandard_codecs") {
       "//bt/system/utils/include",
     ]
 
-    deps = [ "//bt/system/gd/rust/shim:init_flags_bridge_header" ]
+    deps = [
+      "//bt/system/gd/rust/shim:init_flags_bridge_header",
+      "//bt/system/stack/mmc/metrics:libmmc_metrics",
+    ]
 
     # b/289017207: external codec libs should not be directly linked
     libs = [
