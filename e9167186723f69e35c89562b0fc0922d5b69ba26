@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96dd472d_88074117",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-07T20:29:24Z",
+      "side": 1,
+      "message": "Removing these wasn\u0027t very hard, and to me it made sense to remove them, so I did",
+      "parentUuid": "7c53f1bb_d012662d",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 42
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "12481ba4_bdfa5c08",
@@ -156,6 +180,30 @@
       "side": 1,
       "message": "Until we have verified it...",
       "parentUuid": "94405c5e_22aba356",
+      "range": {
+        "startLine": 101,
+        "startChar": 36,
+        "endLine": 101,
+        "endChar": 37
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45645102_4f7638d1",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-07T20:29:24Z",
+      "side": 1,
+      "message": "No, HFP does not use FREE SCN. I\u0027ll change it to 1",
+      "parentUuid": "71b9d496_44d7f838",
       "range": {
         "startLine": 101,
         "startChar": 36,
