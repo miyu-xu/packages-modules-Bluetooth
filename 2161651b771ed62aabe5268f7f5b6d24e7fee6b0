@@ -34,6 +34,57 @@
       "parentUuid": "bc1bf083_b7f28928",
       "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "689dd493_fd98d0de",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-07T17:22:52Z",
+      "side": 1,
+      "message": "We should also document the `#[dbus_method(...)]` part -- I didn\u0027t realize we hadn\u0027t actually documented it here.",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc211977_a5ab685c",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-07T17:22:52Z",
+      "side": 1,
+      "message": "I think you should set a default log level and we should only actually mark the disable logs for verbose entries.\n\n```\n// Log all D-Bus at verbose level. For especially verbose calls and callbacks, this needs to be explicitly disabled.\nconst DEFAULT_DBUS_LOGGING_CONFIG \u003d DbusLog::Enable(DbusLogOptions::LogAll, DbusLogVerbosity::Verbose);\n\nlet dbus_method_name \u003d meta_list.nested[0].clone();\nlet dbus_logging \u003d if meta_list.nested.len() \u003e 1 {\n  meta_list.nested[1].clone()\n} else {\n  DEFAULT_DBUS_LOGGING_CONFIG.clone()\n}\n```",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4135eed3_dc520c06",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-07T17:22:52Z",
+      "side": 1,
+      "message": "You should also add a logging option to callbacks but default this to no logging (as callbacks tend to be way more verbose).\n\nWhen logging the callback, it would also be useful to log what the object id of the callback target is as well (i.e. the D-Bus object path).",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
