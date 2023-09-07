@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61bb6940_ede89d07",
+        "filename": "system/btif/include/btif_common.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1997210
+      },
+      "writtenOn": "2023-09-07T02:49:11Z",
+      "side": 1,
+      "message": "It doesn\u0027t need to be a OnceCallback. Callers of this function might pass in a RepeatingCallback and use the returned Callback multiple times. Before that possibility is excluded, I think it\u0027s safer to keep it as it is.",
+      "parentUuid": "e45ba8cb_7f260951",
+      "range": {
+        "startLine": 169,
+        "startChar": 52,
+        "endLine": 169,
+        "endChar": 60
+      },
+      "revId": "be1c45351918f8779af4b08dea1cb7e36af7ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ccb701d0_aaadccfe",
         "filename": "system/btif/include/btif_common.h",
         "patchSetId": 3
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-06T18:48:26Z",
       "side": 1,
       "message": "Why not BindOnce here too ?",
+      "range": {
+        "startLine": 170,
+        "startChar": 15,
+        "endLine": 170,
+        "endChar": 19
+      },
+      "revId": "be1c45351918f8779af4b08dea1cb7e36af7ef54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2768e24_6bc2dcf9",
+        "filename": "system/btif/include/btif_common.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1997210
+      },
+      "writtenOn": "2023-09-07T02:49:11Z",
+      "side": 1,
+      "message": "I try to make this change simple. Using BindOnce here would require changing the signature of `jni_thread_wrapper` (from returning a Callback to returning a OnceCallback). I think it\u0027s not safe to do so before examining all the callers because that might result in crashes.",
+      "parentUuid": "ccb701d0_aaadccfe",
       "range": {
         "startLine": 170,
         "startChar": 15,
