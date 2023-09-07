@@ -662,6 +662,10 @@ public class BluetoothMapService extends ProfileService {
     int getConnectionPolicy(BluetoothDevice device) {
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
                 "Need BLUETOOTH_PRIVILEGED permission");
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
         return mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.MAP);
     }
@@ -908,6 +912,7 @@ public class BluetoothMapService extends ProfileService {
         sendShutdownMessage();
         setComponentAvailable(MAP_SETTINGS_ACTIVITY, false);
         setComponentAvailable(MAP_FILE_PROVIDER, false);
+        mDatabaseManager = null;
         return true;
     }
 

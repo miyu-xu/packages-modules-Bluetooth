@@ -360,6 +360,8 @@ public class BassClientService extends ProfileService {
         if (mPendingGroupOp != null) {
             mPendingGroupOp.clear();
         }
+
+        mDatabaseManager = null;
         return true;
     }
 
@@ -883,6 +885,10 @@ public class BassClientService extends ProfileService {
      * @return connection policy of the device
      */
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
         return mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT);
     }

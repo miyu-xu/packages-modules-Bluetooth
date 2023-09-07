@@ -221,8 +221,9 @@ public class A2dpService extends ProfileService {
         mA2dpNativeInterface.cleanup();
         mA2dpNativeInterface = null;
 
-        // Step 5: Clear codec config
+        // Step 5: Clear codec config, DatabaseManager
         mA2dpCodecConfig = null;
+        mDatabaseManager = null;
 
         // Step 4: Destroy state machines and stop handler thread
         synchronized (mStateMachines) {
@@ -696,6 +697,11 @@ public class A2dpService extends ProfileService {
      * @hide
      */
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
+
         return mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.A2DP);
     }

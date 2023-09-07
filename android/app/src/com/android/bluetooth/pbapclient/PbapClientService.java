@@ -170,6 +170,7 @@ public class PbapClientService extends ProfileService {
         mPbapClientStateMachineMap.clear();
         cleanupAuthenicationService();
         setComponentAvailable(AUTHENTICATOR_SERVICE, false);
+        mDatabaseManager = null;
         return true;
     }
 
@@ -637,6 +638,10 @@ public class PbapClientService extends ProfileService {
     public int getConnectionPolicy(BluetoothDevice device) {
         if (device == null) {
             throw new IllegalArgumentException("Null device");
+        }
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
         }
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
                 "Need BLUETOOTH_PRIVILEGED permission");

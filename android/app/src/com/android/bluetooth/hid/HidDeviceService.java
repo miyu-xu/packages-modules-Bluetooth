@@ -738,6 +738,10 @@ public class HidDeviceService extends ProfileService {
         if (device == null) {
             throw new IllegalArgumentException("Null device");
         }
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
         enforceCallingOrSelfPermission(
                 BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
         return mDatabaseManager
@@ -804,6 +808,7 @@ public class HidDeviceService extends ProfileService {
         AdapterService.getAdapterService().notifyActivityAttributionInfo(
                 getAttributionSource(),
                 AdapterService.ACTIVITY_ATTRIBUTION_NO_ACTIVE_DEVICE_ADDRESS);
+        mDatabaseManager = null;
         return true;
     }
 

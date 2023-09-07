@@ -237,6 +237,7 @@ public class HapClientService extends ProfileService {
 
         // Clear AdapterService
         mAdapterService = null;
+        mDatabaseManager = null;
 
         return true;
     }
@@ -392,6 +393,10 @@ public class HapClientService extends ProfileService {
      * @hide
      */
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
         return mDatabaseManager.getProfileConnectionPolicy(device, BluetoothProfile.HAP_CLIENT);
     }
 

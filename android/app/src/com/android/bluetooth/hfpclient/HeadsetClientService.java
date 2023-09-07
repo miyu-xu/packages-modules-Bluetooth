@@ -188,6 +188,8 @@ public class HeadsetClientService extends ProfileService {
             mNativeInterface.cleanup();
             mNativeInterface = null;
 
+            mDatabaseManager = null;
+
             return true;
         }
     }
@@ -862,6 +864,10 @@ public class HeadsetClientService extends ProfileService {
      * @hide
      */
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
         return mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.HEADSET_CLIENT);
     }

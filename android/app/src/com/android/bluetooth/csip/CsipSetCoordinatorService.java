@@ -229,9 +229,10 @@ public class CsipSetCoordinatorService extends ProfileService {
 
         mLocks.clear();
 
-        // Clear AdapterService, CsipSetCoordinatorNativeInterface
+        // Clear AdapterService, CsipSetCoordinatorNativeInterface, DatabaseManager
         mCsipSetCoordinatorNativeInterface = null;
         mAdapterService = null;
+        mDatabaseManager = null;
 
         return true;
     }
@@ -274,7 +275,8 @@ public class CsipSetCoordinatorService extends ProfileService {
      * @return true if connection is successful, false otherwise.
      */
     public boolean connect(BluetoothDevice device) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
+        enforceCallingOrSelfPermission(
+                BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
         if (DBG) {
             Log.d(TAG, "connect(): " + device);
         }
@@ -309,7 +311,8 @@ public class CsipSetCoordinatorService extends ProfileService {
      * @return true if disconnect is successful, false otherwise.
      */
     public boolean disconnect(BluetoothDevice device) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
+        enforceCallingOrSelfPermission(
+                BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
         if (DBG) {
             Log.d(TAG, "disconnect(): " + device);
         }
@@ -480,7 +483,8 @@ public class CsipSetCoordinatorService extends ProfileService {
      * @return true on success, otherwise false
      */
     public boolean setConnectionPolicy(BluetoothDevice device, int connectionPolicy) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
+        enforceCallingOrSelfPermission(
+                BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
         if (DBG) {
             Log.d(TAG, "Saved connectionPolicy " + device + " = " + connectionPolicy);
         }
@@ -501,7 +505,12 @@ public class CsipSetCoordinatorService extends ProfileService {
      * @return connection policy of the specified device
      */
     public int getConnectionPolicy(BluetoothDevice device) {
-        enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
+        enforceCallingOrSelfPermission(
+                BLUETOOTH_PRIVILEGED, "Need BLUETOOTH_PRIVILEGED permission");
         return mDatabaseManager.getProfileConnectionPolicy(
                 device, BluetoothProfile.CSIP_SET_COORDINATOR);
     }

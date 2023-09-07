@@ -284,6 +284,10 @@ public class MapClientService extends ProfileService {
      */
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
         enforceCallingOrSelfPermission(BLUETOOTH_PRIVILEGED,
                 "Need BLUETOOTH_PRIVILEGED permission");
         return mDatabaseManager
@@ -359,6 +363,7 @@ public class MapClientService extends ProfileService {
             stateMachine.doQuit();
         }
         mMapInstanceMap.clear();
+        mDatabaseManager = null;
         return true;
     }
 
