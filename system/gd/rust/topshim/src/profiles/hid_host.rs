@@ -153,7 +153,7 @@ struct RawHHWrapper {
     raw: *const bindings::bthh_interface_t,
 }
 
-// Pointers unsafe due to ownership but this is a static pointer so Send is ok
+// Pointers unsafe due to ownership but this is a static pointer so Send is ok.
 unsafe impl Send for RawHHWrapper {}
 
 pub struct HidHost {
@@ -386,5 +386,49 @@ impl HidHost {
     #[profile_enabled_or]
     pub fn cleanup(&mut self) {
         ccall!(self, cleanup)
+    }
+}
+
+#[cfg(target_os = "android")]
+pub mod jni {
+    use super::{HHCallbacksDispatcher, HidHost};
+    use crate::btif::jni::get_bluetooth_interface;
+    use crate::jni::make_native_method;
+    use jni;
+    use lazy_static::lazy_static;
+    use std::sync::{Arc, Mutex};
+
+    lazy_static! {
+        // Global hidhost interface.
+        static ref HIDHOST_INTF: Arc<Mutex<HidHost>> = Arc::new(Mutex::new(HidHost::new(
+            &get_bluetooth_interface().lock().unwrap())));
+    }
+
+    pub extern "system" fn hidhost_initialize_native(
+        _env: jni::JNIEnv,
+        _obj: jni::objects::JObject,
+    ) {
+        // Initialize hid host and intercept all callbacks (and do nothing)
+        HIDHOST_INTF.lock().unwrap().initialize(HHCallbacksDispatcher {
+            dispatch: Box::new(move |hhcb| {
+                log::info!("HIDHOST callback: {:?}", hhcb);
+            }),
+        });
+    }
+
+    pub extern "system" fn hidhost_cleanup_native(_env: jni::JNIEnv, _obj: jni::objects::JObject) {
+        HIDHOST_INTF.lock().unwrap().cleanup();
+    }
+
+    pub fn register_hidhost_methods(env: &jni::JNIEnv) -> bool {
+        let methods: Vec<jni::NativeMethod> = vec![
+            make_native_method("initializeNative", "()V", hidhost_initialize_native as *mut ()),
+            make_native_method("cleanupNative", "()V", hidhost_cleanup_native as *mut ()),
+        ];
+
+        match env.find_class("com/android/bluetooth/hid/HidHostNativeInterface") {
+            Ok(class) => env.register_native_methods(class, methods.as_slice()).is_ok(),
+            Err(_) => false,
+        }
     }
 }
