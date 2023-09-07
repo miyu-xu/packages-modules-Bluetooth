@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d39d6ba4_baeabf37",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 6858,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-07T04:01:55Z",
+      "side": 1,
+      "message": "Please add an empty line.",
+      "revId": "413e3f6eee9b5f5024deb363d7fd60c9dc70ff81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
