@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ba846f_66e9b0d0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-09-07T21:04:58Z",
+      "side": 1,
+      "message": "Maybe we need to change the value `BTA_AG_FEAT_SWB` as well? \nBecause BTA_AG_FEAT_HF_IND still has the same value as BTA_AG_FEAT_SWB",
+      "revId": "e7a8e9e7466caa358679f176bdeb18a62e133247",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
