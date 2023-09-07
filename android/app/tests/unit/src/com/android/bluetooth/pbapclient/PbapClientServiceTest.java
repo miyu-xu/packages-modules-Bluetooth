@@ -34,6 +34,7 @@ import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.CallLog;
+import android.os.Looper;
 
 import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
@@ -352,10 +353,8 @@ public class PbapClientServiceTest {
         mService.mPbapClientStateMachineMap.put(mRemoteDevice, sm);
         when(sm.getConnectionState(mRemoteDevice)).thenReturn(connectionState);
 
-        Intent intent = new Intent(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mRemoteDevice);
-        intent.putExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_BREDR);
-        mService.mPbapBroadcastReceiver.onReceive(mService, intent);
+        mService.onAclDisconnect(mRemoteDevice, BluetoothDevice.TRANSPORT_BREDR);
+        TestUtils.waitForLooperToFinishScheduledTask(Looper.getMainLooper());
 
         verify(sm).disconnect(mRemoteDevice);
     }
