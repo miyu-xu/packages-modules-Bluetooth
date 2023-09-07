@@ -407,6 +407,7 @@ public class LeAudioService extends ProfileService {
         mActiveAudioInDevice = null;
         mExposedActiveDevice = null;
         mLeAudioCodecConfig = null;
+        mDatabaseManager = null;
 
         // Set the service and BLE devices as inactive
         setLeAudioService(null);
@@ -2586,6 +2587,11 @@ public class LeAudioService extends ProfileService {
      * @hide
      */
     public int getConnectionPolicy(BluetoothDevice device) {
+        if (mDatabaseManager == null) {
+            Log.e(TAG, "DatabaseManager is null, not able to get exact connection policy.");
+            return BluetoothProfile.CONNECTION_POLICY_UNKNOWN;
+        }
+
         int connection_policy = mDatabaseManager
                 .getProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO);
         if (DBG) {
