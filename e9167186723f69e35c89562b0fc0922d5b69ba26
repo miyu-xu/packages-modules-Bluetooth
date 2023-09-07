@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "71b9d496_44d7f838",
+        "filename": "system/stack/btm/btm_scn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-07T00:25:34Z",
+      "side": 1,
+      "message": "Until we have verified it...",
+      "parentUuid": "94405c5e_22aba356",
+      "range": {
+        "startLine": 101,
+        "startChar": 36,
+        "endLine": 101,
+        "endChar": 37
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eb48ffc6_ad16b478",
         "filename": "system/stack/test/btm/btm_scn_test.cc",
         "patchSetId": 3
