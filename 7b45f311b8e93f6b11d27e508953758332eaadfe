@@ -22,6 +22,30 @@
       },
       "revId": "7b45f311b8e93f6b11d27e508953758332eaadfe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6685aec_f2a173f5",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1155,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-09-07T09:38:26Z",
+      "side": 1,
+      "message": "I did some manual testing as well and the `active device`switch seems to be working well. No sound jump, no route issues. Tested with phone-\u003eBT device and switch between connected BT devices.",
+      "parentUuid": "5eed4c9a_493dfd5e",
+      "range": {
+        "startLine": 1155,
+        "startChar": 45,
+        "endLine": 1155,
+        "endChar": 74
+      },
+      "revId": "7b45f311b8e93f6b11d27e508953758332eaadfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
