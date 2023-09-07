@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc2c3fff_730a34bc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-09-07T02:27:04Z",
+      "side": 1,
+      "message": "NIT: external/lc3 is for Android, so this is not accurate.",
+      "range": {
+        "startLine": 7,
+        "startChar": 11,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "d85d070ab21163eeeb2eba1ba601b7d3e21f6bc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
