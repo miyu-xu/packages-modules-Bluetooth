@@ -216,11 +216,10 @@ bool bta_ag_add_record(uint16_t service_uuid, const char* p_service_name,
 
     // check property for SWB support
     if (hfp_hal_interface::get_swb_supported()) {
-      features |= BTA_AG_FEAT_SWB;
+      swb_supported = true;
     }
 
     if (features & BTA_AG_FEAT_CODEC) codec_supported = true;
-    if (features & BTA_AG_FEAT_SWB) swb_supported = true;
 
     features &= BTA_AG_SDP_FEAT_SPEC;
 
