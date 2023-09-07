@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e30b417d_c4321212",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "542f92f3_b43806da",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 2
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "251936ee_c02e6c00",
@@ -87,6 +111,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd577120_9a99266f",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Fixed, Added additional parameter to advertiseDataToBytes to accommodate encryption",
+      "parentUuid": "ecd616e9_8145097a",
+      "range": {
+        "startLine": 231,
+        "startChar": 25,
+        "endLine": 231,
+        "endChar": 48
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "baedf17e_0c518ebb",
@@ -100,6 +148,30 @@
       "writtenOn": "2023-08-30T18:30:39Z",
       "side": 1,
       "message": "I expect this not to work with the latest change that has been merged.\nPlease use `mNativeInterface.startAdvertisingSet` and modify the AdvertiseManagerNativeInterface",
+      "range": {
+        "startLine": 279,
+        "startChar": 12,
+        "endLine": 279,
+        "endChar": 37
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64de92f3_55ae7f42",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "baedf17e_0c518ebb",
       "range": {
         "startLine": 279,
         "startChar": 12,
@@ -133,6 +205,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0af19398_30199d75",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Oops. It did work indeed",
+      "parentUuid": "2e215d0c_dd3b410b",
+      "range": {
+        "startLine": 365,
+        "startChar": 0,
+        "endLine": 365,
+        "endChar": 34
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0d437e0_9db94a93",
@@ -146,6 +242,30 @@
       "writtenOn": "2023-08-30T18:30:39Z",
       "side": 1,
       "message": "Delete. This code is now in `AdvertiseManagerNativeInterface.java`",
+      "range": {
+        "startLine": 570,
+        "startChar": 0,
+        "endLine": 607,
+        "endChar": 92
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82817257_28818555",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 607,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "a0d437e0_9db94a93",
       "range": {
         "startLine": 570,
         "startChar": 0,
@@ -179,6 +299,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e5a3f16_6dabc1aa",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2774,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Fixed. Added \"@RequiresBluetoothConnectPermission\"\nFor right now we will keep the APIs as hidden and we can expose them down the line in a new patch.",
+      "parentUuid": "98462560_5fefefc7",
+      "range": {
+        "startLine": 2773,
+        "startChar": 0,
+        "endLine": 2774,
+        "endChar": 25
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae52930a_768d24a0",
@@ -192,6 +336,30 @@
       "writtenOn": "2023-08-30T18:30:39Z",
       "side": 1,
       "message": "I assume that the readLock should be done before the `try { } finally { }` to avoid [LockNotBeforeTry](https://errorprone.info/bugpattern/LockNotBeforeTry) bugpattern",
+      "range": {
+        "startLine": 2780,
+        "startChar": 0,
+        "endLine": 2780,
+        "endChar": 43
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f701f74_dd385cf7",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2780,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Readlock has been moved to before the try block",
+      "parentUuid": "ae52930a_768d24a0",
       "range": {
         "startLine": 2780,
         "startChar": 0,
@@ -225,6 +393,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdb39a68_e064b833",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2800,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "f0599627_0c111386",
+      "range": {
+        "startLine": 2794,
+        "startChar": 3,
+        "endLine": 2800,
+        "endChar": 0
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1af0d0a6_f52340ed",
@@ -238,6 +430,30 @@
       "writtenOn": "2023-08-30T18:30:39Z",
       "side": 1,
       "message": "`@NonNull` should be not necessary for boolean",
+      "range": {
+        "startLine": 138,
+        "startChar": 5,
+        "endLine": 138,
+        "endChar": 12
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37929a3c_d8e3e555",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "1af0d0a6_f52340ed",
       "range": {
         "startLine": 138,
         "startChar": 5,
@@ -271,6 +487,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9a3c185_f2e66b9d",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "d4bdcdf8_be6b7c86",
+      "range": {
+        "startLine": 158,
+        "startChar": 5,
+        "endLine": 158,
+        "endChar": 12
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7585e3c2_dc810eb6",
@@ -284,6 +524,30 @@
       "writtenOn": "2023-08-30T18:30:39Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Common Typos: Common typo found: \" dont \" -- should it be \" don\u0027t \"?",
+      "range": {
+        "startLine": 941,
+        "startChar": 57,
+        "endLine": 941,
+        "endChar": 63
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2cf861d_5ba14ca4",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Typo has been fixed",
+      "parentUuid": "7585e3c2_dc810eb6",
       "range": {
         "startLine": 941,
         "startChar": 57,
@@ -317,6 +581,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60b44d02_cfadda55",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2403,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Uncommented",
+      "parentUuid": "0420a8ed_8c61face",
+      "range": {
+        "startLine": 2403,
+        "startChar": 0,
+        "endLine": 2403,
+        "endChar": 99
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de7d6514_5cd98909",
@@ -330,6 +618,30 @@
       "writtenOn": "2023-08-30T18:30:39Z",
       "side": 1,
       "message": "btif_config_set_int can take the String as parameter directly",
+      "range": {
+        "startLine": 1674,
+        "startChar": 36,
+        "endLine": 1674,
+        "endChar": 55
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5c7fba7_049df978",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1674,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "bdstr.c_str() -\u003e bdstr. Fixed",
+      "parentUuid": "de7d6514_5cd98909",
       "range": {
         "startLine": 1674,
         "startChar": 36,
@@ -363,6 +675,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f801bccf_0e6d3040",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "9ee3ac8a_0decb500",
+      "range": {
+        "startLine": 135,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 41
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61c42a13_e0efd26e",
@@ -376,6 +712,30 @@
       "writtenOn": "2023-08-30T18:30:39Z",
       "side": 1,
       "message": "can we modify the logging to be written in one invocation ?",
+      "range": {
+        "startLine": 1049,
+        "startChar": 6,
+        "endLine": 1053,
+        "endChar": 73
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c20e65e_bcd0f950",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "These Logs have been combined into 1",
+      "parentUuid": "61c42a13_e0efd26e",
       "range": {
         "startLine": 1049,
         "startChar": 6,
@@ -409,6 +769,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "539c81ee_2d736004",
+        "filename": "system/gd/hci/le_advertising_manager.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "dbd382f6_47c8ed2a",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 100
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8aa870b0_61dd3b1d",
@@ -422,6 +806,30 @@
       "writtenOn": "2023-08-30T21:37:15Z",
       "side": 1,
       "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 100
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27042b91_cb30cac5",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "8aa870b0_61dd3b1d",
       "range": {
         "startLine": 48,
         "startChar": 0,
@@ -455,6 +863,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4c10db7_03e65e25",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "d381255f_03194faa",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 74
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87b56554_ee3f8f93",
@@ -468,6 +900,30 @@
       "writtenOn": "2023-08-30T21:37:15Z",
       "side": 1,
       "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 55,
+        "startChar": 1,
+        "endLine": 59,
+        "endChar": 0
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3943682_0c62012a",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "87b56554_ee3f8f93",
       "range": {
         "startLine": 55,
         "startChar": 1,
@@ -501,6 +957,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d548fd_59a8af7b",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Changed to else",
+      "parentUuid": "cc79a752_bda96738",
+      "range": {
+        "startLine": 63,
+        "startChar": 3,
+        "endLine": 64,
+        "endChar": 6
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "caf5f3d9_3c7e445d",
@@ -514,6 +994,30 @@
       "writtenOn": "2023-08-30T21:37:15Z",
       "side": 1,
       "message": "ADDRESS_TO_LOGGABLE_STR(address)",
+      "range": {
+        "startLine": 141,
+        "startChar": 43,
+        "endLine": 141,
+        "endChar": 69
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0eb5afd3_9c06214c",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Utilized ADDRESS_TO_LOGGABLE_STR macro",
+      "parentUuid": "caf5f3d9_3c7e445d",
       "range": {
         "startLine": 141,
         "startChar": 43,
@@ -547,6 +1051,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73172411_dcdba3fb",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Changed to else if",
+      "parentUuid": "001befde_84e87740",
+      "range": {
+        "startLine": 160,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 8
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f9ff3fe_8070f64d",
@@ -560,6 +1088,30 @@
       "writtenOn": "2023-08-30T21:37:15Z",
       "side": 1,
       "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 220,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 0
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6de6649_33a18bde",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "3f9ff3fe_8070f64d",
       "range": {
         "startLine": 220,
         "startChar": 0,
@@ -616,6 +1168,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88afd8d1_20549e71",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7826fce_8f14cb55",
+      "range": {
+        "startLine": 251,
+        "startChar": 41,
+        "endLine": 251,
+        "endChar": 48
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "291cbd53_cec468a0",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Typo has been fixed",
+      "parentUuid": "4d9091d2_b6a94ace",
+      "range": {
+        "startLine": 251,
+        "startChar": 41,
+        "endLine": 251,
+        "endChar": 48
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf10e610_8aba611d",
@@ -662,6 +1262,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dd0a2ba_a7e9d01e",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "cf10e610_8aba611d",
+      "range": {
+        "startLine": 322,
+        "startChar": 43,
+        "endLine": 322,
+        "endChar": 50
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3e2b268_4d680dce",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Typo has been fixed",
+      "parentUuid": "13ab59bf_68c76d6f",
+      "range": {
+        "startLine": 322,
+        "startChar": 43,
+        "endLine": 322,
+        "endChar": 50
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62ab345c_ba386bef",
@@ -675,6 +1323,30 @@
       "writtenOn": "2023-08-30T21:37:15Z",
       "side": 1,
       "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 455,
+        "startChar": 0,
+        "endLine": 471,
+        "endChar": 6
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9acb0307_74771b43",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "62ab345c_ba386bef",
       "range": {
         "startLine": 455,
         "startChar": 0,
@@ -708,6 +1380,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f660f169_0802ca77",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8d652d5_609f43c7",
+      "range": {
+        "startLine": 476,
+        "startChar": 0,
+        "endLine": 476,
+        "endChar": 32
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "215b0c49_52761202",
@@ -721,6 +1417,30 @@
       "writtenOn": "2023-08-30T21:37:15Z",
       "side": 1,
       "message": "uncomment or delete ?",
+      "range": {
+        "startLine": 530,
+        "startChar": 0,
+        "endLine": 546,
+        "endChar": 6
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cf9794f_f6c8f362",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "215b0c49_52761202",
       "range": {
         "startLine": 530,
         "startChar": 0,
@@ -777,6 +1497,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96ec0a35_51ac1ace",
+        "filename": "system/main/shim/le_scanning_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "The identity to pseudo random function is needed as we chose to store the Encrypted Data Key Material within the bt_config.conf file in order to have access to the value in between booting the device. Since the value is stored under the pseudo random address we need that address in order to retrieve the encrypted data key material to decrypt.",
+      "parentUuid": "0a5214ea_7c246822",
+      "range": {
+        "startLine": 61,
+        "startChar": 19,
+        "endLine": 61,
+        "endChar": 44
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ab7b17f6_664a5d4c",
@@ -790,6 +1534,30 @@
       "writtenOn": "2023-08-30T21:37:15Z",
       "side": 1,
       "message": "I am surprise we need to put this in reverse. I haven\u0027t found the explication in the spec and would be curious to know why we are doing that.",
+      "range": {
+        "startLine": 216,
+        "startChar": 10,
+        "endLine": 216,
+        "endChar": 33
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4b8f06f_3dfba0e7",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "We are doing this because we need to send the Encrypted Data Key Material in Little Endian over the air. Which is why we reverse the Encrypted Data Key Material when it is shared during discovery.",
+      "parentUuid": "ab7b17f6_664a5d4c",
       "range": {
         "startLine": 216,
         "startChar": 10,
@@ -823,6 +1591,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47ba7aff_a736c7a5",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Brace Initialization complete",
+      "parentUuid": "9b0966e5_dad0c208",
+      "range": {
+        "startLine": 375,
+        "startChar": 2,
+        "endLine": 379,
+        "endChar": 50
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "270fa1c2_59372fe9",
@@ -846,6 +1638,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3da0ca10_051d1d39",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Log Removed",
+      "parentUuid": "270fa1c2_59372fe9",
+      "range": {
+        "startLine": 464,
+        "startChar": 27,
+        "endLine": 464,
+        "endChar": 38
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "446e727f_88159bdb",
@@ -859,6 +1675,30 @@
       "writtenOn": "2023-08-30T21:37:15Z",
       "side": 1,
       "message": "Are VLOG visible ? Shouldn\u0027t we replace them all by LOG_INFO or LOG_WARN ??\n(btw, `__func__` is automatically included in the `LOG_XXX(\"foo\")` macro  )",
+      "range": {
+        "startLine": 469,
+        "startChar": 2,
+        "endLine": 469,
+        "endChar": 6
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98ef7a20_80226cd5",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "VLOG is not visible unless verbose logging is enabled. Changed to LOG_DEBUG",
+      "parentUuid": "446e727f_88159bdb",
       "range": {
         "startLine": 469,
         "startChar": 2,
@@ -905,6 +1745,30 @@
       "writtenOn": "2023-08-30T21:37:15Z",
       "side": 1,
       "message": "Address should not be logged. Instead ADDRESS_TO_LOGGABLE macro should be used across all the logging",
+      "range": {
+        "startLine": 945,
+        "startChar": 43,
+        "endLine": 945,
+        "endChar": 51
+      },
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73648bdb_e7b63021",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 945,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "Utilized ADDRESS_TO_LOGGABLE macro",
+      "parentUuid": "0b640eb7_84fa0da5",
       "range": {
         "startLine": 945,
         "startChar": 43,

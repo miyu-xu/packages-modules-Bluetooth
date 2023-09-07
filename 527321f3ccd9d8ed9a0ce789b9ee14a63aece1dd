@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37ca70cf_4820af56",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-07T19:36:54Z",
+      "side": 1,
+      "message": "This code is commented in regards to periodic_cache. We are in the process of resolving this in a future change.",
+      "range": {
+        "startLine": 349,
+        "startChar": 14,
+        "endLine": 350,
+        "endChar": 14
+      },
+      "revId": "527321f3ccd9d8ed9a0ce789b9ee14a63aece1dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
