@@ -16,6 +16,24 @@
       "message": "missing \"}\"?",
       "revId": "17287e9a054a56e6732f65d900b5c46699b338c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fc60811_e86d6779",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 6893,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-07T07:00:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6705eab5_f995834a",
+      "revId": "17287e9a054a56e6732f65d900b5c46699b338c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
