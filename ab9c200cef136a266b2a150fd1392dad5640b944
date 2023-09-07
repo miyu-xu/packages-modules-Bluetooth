@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "498eb1e5_5196b0ed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-07T00:08:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dade9eb2_621352e9",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d48a012a_7e3ee341",
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fd9eebf6_b72d6a34",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-07T00:08:19Z",
+      "side": 1,
+      "message": "The silence device manager is only called when active device changes. The idea here is group it and route it via adapter service. I want all calls made when active device changes to be in one place - since it ideally is easier to follow whats happening that way.",
+      "parentUuid": "d48a012a_7e3ee341",
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2f059bea_8dac9ce0",
         "filename": "android/app/src/com/android/bluetooth/btservice/SilenceDeviceManager.java",
         "patchSetId": 2
@@ -54,6 +96,30 @@
       "writtenOn": "2023-09-06T22:49:41Z",
       "side": 1,
       "message": "Don\u0027t this will create a lot of log and noise ?",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 22
+      },
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6ecce66_f41d6659",
+        "filename": "android/app/src/com/android/bluetooth/btservice/SilenceDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-07T00:08:19Z",
+      "side": 1,
+      "message": "Acknowledged. Removed the log since it didn\u0027t really add any value on second thoughts.",
+      "parentUuid": "2f059bea_8dac9ce0",
       "range": {
         "startLine": 94,
         "startChar": 16,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "376a6ce6_427ca30d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/SilenceDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-07T00:08:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0ca24411_4ec20183",
+      "range": {
+        "startLine": 96,
+        "startChar": 24,
+        "endLine": 96,
+        "endChar": 37
+      },
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1366378c_6d170982",
@@ -100,6 +190,30 @@
       "writtenOn": "2023-09-06T22:49:41Z",
       "side": 1,
       "message": "And why not handling the connection here too ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 16,
+        "endLine": 109,
+        "endChar": 42
+      },
+      "revId": "ab9c200cef136a266b2a150fd1392dad5640b944",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f414f81c_9c3f8480",
+        "filename": "android/app/src/com/android/bluetooth/btservice/SilenceDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-07T00:08:19Z",
+      "side": 1,
+      "message": "I eventually want to. The issue is there are a lot of connection state change stuff so converging it into one place would require more effort (but is something I am eventually interested in). I am however not including it in the scope of this.",
+      "parentUuid": "1366378c_6d170982",
       "range": {
         "startLine": 109,
         "startChar": 16,
