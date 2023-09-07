@@ -58,7 +58,6 @@ rust_defaults {
         "libbt-stack-core",
         "libbt_shim_bridge",
         "libbt_topshim_cxx",
-        "libbt_topshim_cxx",
         "libbtcore",
         "libbtdevice",
         "libbte",
