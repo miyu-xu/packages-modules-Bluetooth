@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0980950_2fde71e5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-09-07T07:59:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7efdc7e8_79661915",
+      "range": {
+        "startLine": 77,
+        "startChar": 32,
+        "endLine": 77,
+        "endChar": 77
+      },
+      "revId": "56b95580508ffc4e89d63ce4b901b43ec230b360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec72dd4b_ba9337a4",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-05T17:37:45Z",
       "side": 1,
       "message": "Not sure if broadcast feature could be enabled as le audio disabled. Please sync the current feature design and to see if we need to keep the handle along with LE audio unicast toggle switcher.",
+      "range": {
+        "startLine": 206,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 9
+      },
+      "revId": "56b95580508ffc4e89d63ce4b901b43ec230b360",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1cea48b_00b7cc33",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-09-07T07:59:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ec72dd4b_ba9337a4",
       "range": {
         "startLine": 206,
         "startChar": 0,
