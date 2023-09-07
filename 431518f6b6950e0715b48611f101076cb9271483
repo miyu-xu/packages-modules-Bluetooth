@@ -46,6 +46,30 @@
       },
       "revId": "431518f6b6950e0715b48611f101076cb9271483",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec7f022d_68495203",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 2010065
+      },
+      "writtenOn": "2023-09-07T19:05:42Z",
+      "side": 1,
+      "message": "Yes, with the reason association we can filter these out or include in error calculations. The total percentage of such reasons can give us an accurate estimate of occurrence as well.",
+      "parentUuid": "bfb03a16_25ee8821",
+      "range": {
+        "startLine": 587,
+        "startChar": 52,
+        "endLine": 587,
+        "endChar": 66
+      },
+      "revId": "431518f6b6950e0715b48611f101076cb9271483",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
