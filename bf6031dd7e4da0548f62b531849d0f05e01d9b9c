@@ -33,6 +33,23 @@
       "message": "Myles, this patch adds definition of the HCI event \"Authenticated Payload Timeout Expired\" to the tool hcidoc to identify the potential problems of a new BT controller. I treat it as an invalid invalid in hci_layer.cc to avoid its impact on Bluetooth host. \n\nHere\u0027s how I verify it with bluetooth_test_gd_unit. Please let me know if anything else is needed?\n```\nsource build/envsetup.sh\nlunch aosp_cf_x86_64_phone-userdebug\nm -j\natest --host bluetooth_test_gd_unit\n```",
       "revId": "bf6031dd7e4da0548f62b531849d0f05e01d9b9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "836717a5_3926407e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-07T23:05:50Z",
+      "side": 1,
+      "message": "This looks good.  I was expecting there to be code for enabling this event in the event mask.  Is that coming in a different CL? According to the spec, this is disabled by default.",
+      "revId": "bf6031dd7e4da0548f62b531849d0f05e01d9b9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
