@@ -43,6 +43,11 @@ pub const UNKNOWN_SCO_ADDRESS: [u8; 6] = [0xdeu8, 0xad, 0xbe, 0xef, 0x00, 0x00];
 /// result in an NOCP signal being generated.
 pub const NOCP_CORRELATION_TIME_MS: i64 = 5000;
 
+/// On abrupt baseband disconnection, the controller might not have the time to respond NOCP to the
+/// outstanding ACL packets. This disconnection is not the cause of NOCP, so we shouldn't mark it as
+/// such. Therefore, ACL packets within 1s before disconnection is allowed to have no NOCP.
+pub const NOCP_DISCONNECT_TOLERANCE_TIME_MS: i64 = 1000;
+
 pub(crate) struct NocpData {
     /// Number of in-flight packets without a corresponding NOCP.
     pub inflight_acl_ts: VecDeque<NaiveDateTime>,
@@ -323,9 +328,11 @@ impl OddDisconnectionsRule {
                 self.active_handles.remove(&handle);
 
                 // Check if this is a NOCP type disconnection and flag it.
-                match self.nocp_by_handle.get_mut(&handle) {
-                    Some(nocp_data) => {
-                        if let Some(acl_front_ts) = nocp_data.inflight_acl_ts.pop_front() {
+                if let Some(nocp_data) = self.nocp_by_handle.get_mut(&handle) {
+                    if let Some(acl_front_ts) = nocp_data.inflight_acl_ts.pop_front() {
+                        let duration_since_acl = packet.ts.signed_duration_since(acl_front_ts);
+                        if duration_since_acl.num_milliseconds() > NOCP_DISCONNECT_TOLERANCE_TIME_MS
+                        {
                             self.signals.push(Signal {
                                 index: packet.index,
                                 ts: packet.ts.clone(),
@@ -338,7 +345,6 @@ impl OddDisconnectionsRule {
                                         handle, acl_front_ts)));
                         }
                     }
-                    None => (),
                 }
 
                 // Remove nocp information for handles that were removed.
