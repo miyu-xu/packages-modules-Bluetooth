@@ -2222,6 +2222,12 @@ int register_com_android_bluetooth_btservice_AdapterService(JNIEnv* env) {
 
 } /* namespace android */
 
+// Rust defined registration function.
+extern int register_rust_jni(JNIEnv* env);
+
+// TODO - Replace with flag.
+static const bool g_use_rust_jni = false;
+
 /*
  * JNI Initialization
  */
@@ -2235,6 +2241,15 @@ jint JNI_OnLoad(JavaVM* jvm, void* reserved) {
   if (jvm->GetEnv((void**)&e, JNI_VERSION_1_6)) {
     ALOGE("JNI version mismatch error");
     return JNI_ERR;
+  }
+
+  if (g_use_rust_jni) {
+    // First, register the Rust JNI interfaces if supported.
+    status = register_rust_jni(e);
+    if (status < 0) {
+      ALOGE("jni rust topshim registration failure, status: %d", status);
+      return JNI_ERR;
+    }
   }
 
   status = android::register_com_android_bluetooth_btservice_AdapterService(e);

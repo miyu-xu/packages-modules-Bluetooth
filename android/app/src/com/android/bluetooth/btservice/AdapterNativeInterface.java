@@ -67,6 +67,10 @@ public class AdapterNativeInterface {
             boolean isAtvDevice,
             String userDataDirectory) {
         mJniCallbacks = new JniCallbacks(service, adapterProperties);
+
+        // Test Rust native interface.
+        testFoo();
+
         return initNative(
                 startRestricted,
                 isCommonCriteriaMode,
@@ -352,4 +356,6 @@ public class AdapterNativeInterface {
     private native boolean pbapPseDynamicVersionUpgradeIsEnabledNative();
 
     private native boolean isLogRedactionEnabledNative();
+
+    private native void testFoo();
 }
