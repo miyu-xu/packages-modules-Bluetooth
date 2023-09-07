@@ -29,6 +29,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.content.Intent;
+import android.os.Looper;
 
 import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
@@ -313,10 +314,8 @@ public class MapClientServiceTest {
         mService.getInstanceMap().put(mRemoteDevice, sm);
         when(sm.getState()).thenReturn(connectionState);
 
-        Intent intent = new Intent(BluetoothDevice.ACTION_ACL_DISCONNECTED);
-        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mRemoteDevice);
-        intent.putExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_BREDR);
-        mService.mMapReceiver.onReceive(mService, intent);
+        mService.onAclDisconnect(mRemoteDevice, BluetoothDevice.TRANSPORT_BREDR);
+        TestUtils.waitForLooperToFinishScheduledTask(Looper.getMainLooper());
 
         verify(sm).disconnect();
     }
