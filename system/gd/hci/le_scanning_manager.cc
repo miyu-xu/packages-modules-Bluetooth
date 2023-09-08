@@ -561,6 +561,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       scan_on_resume_ = true;
       return;
     }
+    if (is_scanning_) {
+      LOG_INFO("Scanning already started, return!");
+      return;
+    }
     is_scanning_ = true;
     if (!address_manager_registered_) {
       le_address_manager_->Register(this);
@@ -1610,6 +1614,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
     paused_ = false;
     if (scan_on_resume_ == true) {
+      scan_on_resume_ = false;
       start_scan();
     }
     le_address_manager_->AckResume(this);
