@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edf88547_f5777d08",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-08T19:33:05Z",
+      "side": 1,
+      "message": "This handler must be deleted + stopping or dropping it\u0027s message during the stop of the service to prevent any crash",
+      "range": {
+        "startLine": 335,
+        "startChar": 8,
+        "endLine": 335,
+        "endChar": 16
+      },
+      "revId": "a39f6420b05855836a0e0df81febe861f4cfbb78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
