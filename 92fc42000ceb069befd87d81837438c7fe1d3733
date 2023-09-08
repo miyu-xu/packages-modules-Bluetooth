@@ -16,6 +16,24 @@
       "message": "What is the goal of mocking strlcpy ?",
       "revId": "92fc42000ceb069befd87d81837438c7fe1d3733",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fed3ee0_0dfcb7c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-08T16:07:44Z",
+      "side": 1,
+      "message": "the problem is strlcpy is combined into the osi lib, but shouldn\u0027t.\n\nIf strlcpy was pulled out of osi lib, we wouldn\u0027t need a mock, we could use the lib directly.\n\nBut since strlcpy is bundled with all the other osi lib functions, it\u0027s either all-or-none.\n\nThis is a short term solution...long term I would like to pull strlcpy out into libstrlcpy.\n\nMaybe that is the better approach regardless.\n\nWhat do you think ?",
+      "parentUuid": "06faa95f_e71577f6",
+      "revId": "92fc42000ceb069befd87d81837438c7fe1d3733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
