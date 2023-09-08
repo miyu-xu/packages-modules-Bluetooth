@@ -50,6 +50,24 @@
       "message": "This looks good.  I was expecting there to be code for enabling this event in the event mask.  Is that coming in a different CL? According to the spec, this is disabled by default.",
       "revId": "bf6031dd7e4da0548f62b531849d0f05e01d9b9c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a37df0c6_1a4bb603",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-08T02:14:44Z",
+      "side": 1,
+      "message": "Actually, the problem was found on BlueZ which sets the mask in kernel space:\nhttps://elixir.bootlin.com/linux/latest/source/net/bluetooth/hci_sync.c#L4377\n\nWe can enable this for Floss in another CL",
+      "parentUuid": "836717a5_3926407e",
+      "revId": "bf6031dd7e4da0548f62b531849d0f05e01d9b9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
