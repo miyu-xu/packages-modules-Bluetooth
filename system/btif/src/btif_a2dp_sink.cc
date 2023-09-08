@@ -689,7 +689,7 @@ uint8_t btif_a2dp_sink_enqueue_buf(BT_HDR* p_pkt) {
           MAX_A2DP_DELAYED_START_FRAME_COUNT) {
     LOG_VERBOSE("%s: Initiate decoding. Current focus state:%d", __func__,
                 btif_a2dp_sink_cb.rx_focus_state);
-    if (btif_a2dp_sink_cb.rx_focus_state == BTIF_A2DP_SINK_FOCUS_GRANTED) {
+    if (btif_a2dp_sink_cb.rx_focus_state >= BTIF_A2DP_SINK_FOCUS_GRANTED) {
       btif_a2dp_sink_audio_handle_start_decoding();
     }
   }
