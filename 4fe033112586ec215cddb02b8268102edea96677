@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebab3a56_6132c259",
+        "filename": "system/stack/BUILD.gn",
+        "patchSetId": 13
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-09-08T03:24:23Z",
+      "side": 1,
+      "message": "Please leave a comment to explain that this requires MMC.",
+      "range": {
+        "startLine": 29,
+        "startChar": 12,
+        "endLine": 29,
+        "endChar": 30
+      },
+      "revId": "4fe033112586ec215cddb02b8268102edea96677",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
