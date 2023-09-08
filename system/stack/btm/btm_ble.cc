@@ -1494,7 +1494,8 @@ void btm_ble_link_encrypted(const RawAddress& bd_addr, uint8_t encr_enable) {
   if (encr_enable && p_dev_rec->enc_key_size == 0)
     p_dev_rec->enc_key_size = p_dev_rec->ble.keys.key_size;
 
-  p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+  btm_sec_state_reset(p_dev_rec, BT_TRANSPORT_LE, encr_enable);
+
   if (p_dev_rec->p_callback && enc_cback) {
     if (encr_enable)
       btm_sec_dev_rec_cback_event(p_dev_rec, BTM_SUCCESS, true);
@@ -1862,6 +1863,11 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
           }
 
           if (res == BTM_SUCCESS) {
+<<<<<<< PATCH SET (c5a92a Revive the enqueued encryption request)
+            btm_sec_state_reset(p_dev_rec, BT_TRANSPORT_LE, true);
+            /* add all bonded device into resolving list if IRK is available*/
+            btm_ble_resolving_list_load_dev(*p_dev_rec);
+=======
             p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
 
             if (p_dev_rec->bond_type != tBTM_SEC_DEV_REC::BOND_TYPE_TEMPORARY) {
@@ -1877,6 +1883,7 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
               p_dev_rec->sec_flags &= ~(BTM_SEC_LE_LINK_KEY_KNOWN);
               p_dev_rec->ble.key_type = BTM_LE_KEY_NONE;
             }
+>>>>>>> BASE      (5b4d10 Merge "Disable system HfpClientConnectionService for wearabl)
           }
 
           btm_sec_dev_rec_cback_event(p_dev_rec, res, true);

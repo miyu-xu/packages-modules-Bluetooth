@@ -2270,7 +2270,7 @@ void btm_sec_abort_access_req(const RawAddress& bd_addr) {
       (p_dev_rec->sec_state != BTM_SEC_STATE_AUTHENTICATING))
     return;
 
-  p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+  btm_sec_state_reset(p_dev_rec, BT_TRANSPORT_AUTO, false);
 
   BTM_TRACE_DEBUG("%s: clearing callback. p_dev_rec=%p, p_callback=%p",
                   __func__, p_dev_rec, p_dev_rec->p_callback);
@@ -2389,7 +2389,7 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
     }
 
     if (p_dev_rec->sec_state == BTM_SEC_STATE_GETTING_NAME)
-      p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+      btm_sec_state_reset(p_dev_rec, BT_TRANSPORT_AUTO, false);
 
     /* Notify all clients waiting for name to be resolved */
     for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
@@ -3177,7 +3177,7 @@ static void btm_sec_auth_collision(uint16_t handle) {
       /* We will restart authentication after timeout */
       if (p_dev_rec->sec_state == BTM_SEC_STATE_AUTHENTICATING ||
           p_dev_rec->is_security_state_bredr_encrypting())
-        p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+        btm_sec_state_reset(p_dev_rec, BT_TRANSPORT_BR_EDR, false);
 
       btm_cb.p_collided_dev_rec = p_dev_rec;
       alarm_set_on_mloop(btm_cb.sec_collision_timer, BT_1SEC_TIMEOUT_MS,
@@ -3480,8 +3480,6 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
 
   LOG_DEBUG("after update p_dev_rec->sec_flags=0x%x", p_dev_rec->sec_flags);
 
-  btm_sec_check_pending_enc_req(p_dev_rec, transport, encr_enable);
-
   if (transport == BT_TRANSPORT_LE) {
     if (status == HCI_ERR_KEY_MISSING || status == HCI_ERR_AUTH_FAILURE ||
         status == HCI_ERR_ENCRY_MODE_NOT_ACCEPTABLE) {
@@ -3530,7 +3528,7 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
   /* If this encryption was started by peer do not need to do anything */
   if (!p_dev_rec->is_security_state_bredr_encrypting()) {
     if (BTM_SEC_STATE_DELAY_FOR_ENC == p_dev_rec->sec_state) {
-      p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+      btm_sec_state_reset(p_dev_rec, transport, encr_enable);
       BTM_TRACE_DEBUG("%s: clearing callback. p_dev_rec=%p, p_callback=%p",
                       __func__, p_dev_rec, p_dev_rec->p_callback);
       p_dev_rec->p_callback = NULL;
@@ -3538,7 +3536,7 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
       return;
     } else if (!concurrentPeerAuthIsEnabled() &&
                p_dev_rec->sec_state == BTM_SEC_STATE_AUTHENTICATING) {
-      p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+      btm_sec_state_reset(p_dev_rec, transport, encr_enable);
       return;
     }
     if (!handleUnexpectedEncryptionChange()) {
@@ -3546,7 +3544,7 @@ void btm_sec_encrypt_change(uint16_t handle, tHCI_STATUS status,
     }
   }
 
-  p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+  btm_sec_state_reset(p_dev_rec, transport, encr_enable);
   /* If encryption setup failed, notify the waiting layer */
   if (status != HCI_SUCCESS) {
     btm_sec_dev_rec_cback_event(p_dev_rec, BTM_ERR_PROCESSING, false);
@@ -4012,7 +4010,7 @@ void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason,
                                : BTM_SEC_STATE_DISCONNECTING_BLE;
     return;
   }
-  p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+  btm_sec_state_reset(p_dev_rec, BT_TRANSPORT_AUTO, false);
   p_dev_rec->security_required = BTM_SEC_NONE;
 
   if (p_dev_rec->p_callback != nullptr) {
@@ -4984,16 +4982,16 @@ static void btm_sec_queue_encrypt_request(const RawAddress& bd_addr,
                                           tBTM_SEC_CALLBACK* p_callback,
                                           void* p_ref_data,
                                           tBTM_BLE_SEC_ACT sec_act) {
-  tBTM_SEC_QUEUE_ENTRY* p_e =
+  tBTM_SEC_QUEUE_ENTRY* req =
       (tBTM_SEC_QUEUE_ENTRY*)osi_malloc(sizeof(tBTM_SEC_QUEUE_ENTRY) + 1);
 
-  p_e->psm = 0; /* if PSM 0, encryption request */
-  p_e->p_callback = p_callback;
-  p_e->p_ref_data = p_ref_data;
-  p_e->transport = transport;
-  p_e->sec_act = sec_act;
-  p_e->bd_addr = bd_addr;
-  fixed_queue_enqueue(btm_cb.sec_pending_q, p_e);
+  req->psm = 0; /* if PSM 0, encryption request */
+  req->p_callback = p_callback;
+  req->p_ref_data = p_ref_data;
+  req->transport = transport;
+  req->sec_act = sec_act;
+  req->bd_addr = bd_addr;
+  fixed_queue_enqueue(btm_cb.sec_pending_q, req);
 }
 
 /*******************************************************************************
@@ -5011,26 +5009,54 @@ static void btm_sec_check_pending_enc_req(tBTM_SEC_DEV_REC* p_dev_rec,
                                           uint8_t encr_enable) {
   if (fixed_queue_is_empty(btm_cb.sec_pending_q)) return;
 
-  const tBTM_STATUS res = encr_enable ? BTM_SUCCESS : BTM_ERR_PROCESSING;
   list_t* list = fixed_queue_get_list(btm_cb.sec_pending_q);
   for (const list_node_t* node = list_begin(list); node != list_end(list);) {
-    tBTM_SEC_QUEUE_ENTRY* p_e = (tBTM_SEC_QUEUE_ENTRY*)list_node(node);
+    bool request_concluded = false;
+    tBTM_SEC_QUEUE_ENTRY* req = (tBTM_SEC_QUEUE_ENTRY*)list_node(node);
     node = list_next(node);
 
-    if (p_e->bd_addr == p_dev_rec->bd_addr && p_e->psm == 0 &&
-        p_e->transport == transport) {
-      if (encr_enable == 0 || transport == BT_TRANSPORT_BR_EDR ||
-          p_e->sec_act == BTM_BLE_SEC_ENCRYPT ||
-          p_e->sec_act == BTM_BLE_SEC_ENCRYPT_NO_MITM ||
-          (p_e->sec_act == BTM_BLE_SEC_ENCRYPT_MITM &&
-           p_dev_rec->sec_flags & BTM_SEC_LE_AUTHENTICATED)) {
-        if (p_e->p_callback)
-          (*p_e->p_callback)(&p_dev_rec->bd_addr, transport, p_e->p_ref_data,
-                             res);
-        fixed_queue_try_remove_from_queue(btm_cb.sec_pending_q, (void*)p_e);
-        osi_free(p_e);
+    if (req->bd_addr == p_dev_rec->bd_addr && req->psm == 0) {
+      if (req->transport == transport) {
+        /* Security procedure completed for the same transport */
+        if (encr_enable == 0) {
+          /* Encryption failure concludes all pending encryption requests */
+          request_concluded = true;
+        } else if (transport == BT_TRANSPORT_BR_EDR) {
+          request_concluded = true;
+        } else if (req->sec_act == BTM_BLE_SEC_ENCRYPT ||
+                   req->sec_act == BTM_BLE_SEC_ENCRYPT_NO_MITM) {
+          /* MITM protection was not requested */
+          request_concluded = true;
+        } else if (req->sec_act == BTM_BLE_SEC_ENCRYPT_MITM &&
+                   (p_dev_rec->sec_flags & BTM_SEC_LE_AUTHENTICATED)) {
+          /* MITM protection requirement is satisfied */
+          request_concluded = true;
+        }
       }
+
+      /* If request concluded, notify requester, otherwise try again */
+      if (request_concluded) {
+        if (req->p_callback)
+          (*req->p_callback)(&p_dev_rec->bd_addr, transport, req->p_ref_data,
+                             encr_enable ? BTM_SUCCESS : BTM_ERR_PROCESSING);
+      } else {
+        BTM_SetEncryption(req->bd_addr, req->transport, req->p_callback,
+                          req->p_ref_data, req->sec_act);
+      }
+
+      fixed_queue_try_remove_from_queue(btm_cb.sec_pending_q, (void*)req);
+      osi_free(req);
     }
+  }
+}
+
+void btm_sec_state_reset(tBTM_SEC_DEV_REC* p_dev_rec, tBT_TRANSPORT transport,
+                         uint8_t encr_state) {
+  if (p_dev_rec) {
+    p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+
+    /* Revive any pending encryption requests */
+    btm_sec_check_pending_enc_req(p_dev_rec, transport, encr_state);
   }
 }
 
