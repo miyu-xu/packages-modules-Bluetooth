@@ -90,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3c6dda12_c179615f",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-08T13:28:25Z",
+      "side": 1,
+      "message": "That is what I want to say, but apparently there is another issue.\nSome of the DBus parameter isn\u0027t loggable (i.e. doesn\u0027t implement the fmt::Display) and there currently is no way in stable rust to ask the compiler to \"print if it\u0027s loggable otherwise skip\". \nWe cannot just say \"the option is LogFunctionNameOnly so don\u0027t print the parameters\" because the compiler will still eagerly check what\u0027s inside the LogAll arm.\n\nSo, probably either of these:\n(A) implement the fmt::Display for every parameter -\u003e sounds bad. Maybe we can generalize it somehow? But I have no idea how to achieve that.\n(B) detect the content of the enum inside dbus_macro scope. This can\u0027t be done easily since the it seems ast cannot cast the token into DBusLog enum. Maybe we can build a somewhat dirty implementation of the casting ourselves by checking the ident and comparing those with a list of predefined idents. \n(C) split the current requirement of DBusLog::Enable(DBusLogOptions, DBusLogVerbosity) into three parameters: (isEnable, isLogAll, verbosity). This allows us to work in dbus_macro scope to not include the params if not required.",
+      "parentUuid": "f52ffdeb_611a0a2a",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4135eed3_dc520c06",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 1
@@ -101,6 +119,24 @@
       "writtenOn": "2023-09-07T17:22:52Z",
       "side": 1,
       "message": "You should also add a logging option to callbacks but default this to no logging (as callbacks tend to be way more verbose).\n\nWhen logging the callback, it would also be useful to log what the object id of the callback target is as well (i.e. the D-Bus object path).",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e0b5dc7_ee24b5b9",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-08T13:28:25Z",
+      "side": 1,
+      "message": "That\u0027s the plan but let\u0027s do the exporter one first.",
+      "parentUuid": "4135eed3_dc520c06",
       "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
