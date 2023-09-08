@@ -237,6 +237,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3501b73_047522d7",
+        "filename": "system/stack/test/btm/btm_scn_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-08T00:24:59Z",
+      "side": 1,
+      "message": "I removed it - it doesn\u0027t affect the test and it also didn\u0027t do anything",
+      "parentUuid": "eb48ffc6_ad16b478",
+      "range": {
+        "startLine": 83,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 33
+      },
+      "revId": "e9167186723f69e35c89562b0fc0922d5b69ba26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe6ced7e_e3f0dfa4",
