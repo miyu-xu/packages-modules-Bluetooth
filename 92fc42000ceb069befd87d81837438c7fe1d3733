@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06faa95f_e71577f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-08T15:57:48Z",
+      "side": 1,
+      "message": "What is the goal of mocking strlcpy ?",
+      "revId": "92fc42000ceb069befd87d81837438c7fe1d3733",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
