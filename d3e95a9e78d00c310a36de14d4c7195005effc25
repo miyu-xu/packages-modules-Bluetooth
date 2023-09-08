@@ -16,6 +16,23 @@
       "message": "Hi, please review this CL series. Thanks!",
       "revId": "d3e95a9e78d00c310a36de14d4c7195005effc25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c348b4c_dc2dd456",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-08T16:38:15Z",
+      "side": 1,
+      "message": "Are you sure you don\u0027t want to just reuse the NOCP correlation time here? You should update the comment if it makes sense to split the two.",
+      "revId": "d3e95a9e78d00c310a36de14d4c7195005effc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
