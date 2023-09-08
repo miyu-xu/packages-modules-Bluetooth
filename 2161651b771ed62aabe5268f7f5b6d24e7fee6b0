@@ -72,6 +72,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f52ffdeb_611a0a2a",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-08T11:15:23Z",
+      "side": 1,
+      "message": "The problem with this is\n(1) we depend on dbus_projection to be able to reference to DbusLog, but dbus_projection itself depends on dbus_macros so it will make a circular dependency.\n(2) the data type of meta_list.nested[x] is NestedMeta, therefore is different from the data type of DEFAULT_DBUS_LOGGING_CONFIG.\n\nFor (1) we can define a third crate just to have these DbusLogXXX enums, so there are no circular dependency.\nFor (2) we can define it like this, or something\n```\nDEFAULT_DBUS_LOGGING_CONFIG \u003d syn::parse2::\u003cNestedMeta\u003e(quote! {\n  DbusLog::Enable(DbusLogOptions::LogAll, DbusLogVerbosity::Verbose)\n});\n```\nnow both are of NestedMeta type (and that avoids problem (1) as well since we don\u0027t really refer to DbusLog)",
+      "parentUuid": "bc211977_a5ab685c",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4135eed3_dc520c06",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 1
