@@ -210,3 +210,15 @@ bool btm_set_bond_type_dev(const RawAddress& bd_addr,
  *
  ******************************************************************************/
 std::vector<tBTM_SEC_DEV_REC*> btm_get_sec_dev_rec();
+
+/*******************************************************************************
+ *
+ * Function         btm_sec_state_reset
+ *
+ * Description      Resets the BTM security state
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+void btm_sec_state_reset(tBTM_SEC_DEV_REC* p_dev_rec, tBT_TRANSPORT transport,
+                         uint8_t encr_state);
