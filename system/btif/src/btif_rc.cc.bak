@@ -617,7 +617,7 @@ void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
     rc_features |= BTRC_FEAT_COVER_ARTWORK;
   }
 
-  if (bt_rc_ctrl_callbacks != NULL) {
+  if (bt_rc_ctrl_callbacks != NULL && is_need_report) {
     LOG_VERBOSE("%s: Update rc features to CTRL: %d", __func__, rc_features);
     do_in_jni_thread(FROM_HERE,
                      base::BindOnce(bt_rc_ctrl_callbacks->getrcfeatures_cb,
