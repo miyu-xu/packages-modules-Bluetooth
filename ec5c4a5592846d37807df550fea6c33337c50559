@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d2260a2_fba33b8e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-08T00:51:33Z",
+      "side": 1,
+      "message": "+1, unresolving this comment for consideration - let\u0027s please discuss how to break into smaller CLs and ensure adequately tested.",
+      "parentUuid": "ab85e1dc_d87be6ae",
+      "revId": "ec5c4a5592846d37807df550fea6c33337c50559",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "542f92f3_b43806da",
         "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
         "patchSetId": 1

@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "898f9501_04433048",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-08T00:51:33Z",
+      "side": 1,
+      "message": "Please consider adding unit test coverage on this CL. \n\nAt minimum I would recommend adding coverage for le_advertising_manager.cc and le_scanning_reassembler.cc, but ideally as much unit test coverage as possible.",
+      "revId": "527321f3ccd9d8ed9a0ce789b9ee14a63aece1dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37ca70cf_4820af56",
         "filename": "system/gd/hci/le_periodic_sync_manager.h",
         "patchSetId": 4
