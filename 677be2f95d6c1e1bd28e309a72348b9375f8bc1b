@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe5188a4_bf305b4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-09-08T11:47:30Z",
+      "side": 1,
+      "message": "@huirong.liao@mediatek.com, are the failures here caught by any unit test already?",
+      "revId": "677be2f95d6c1e1bd28e309a72348b9375f8bc1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
