@@ -562,6 +562,21 @@ void fill_avrc_attr_entry(tAVRC_ATTR_ENTRY* attr_vals, int num_attrs,
 void rc_cleanup_sent_cmd(void* p_data) { log::verbose(""); }
 
 void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
+  if (btif_av_is_connected_addr(p_dev->rc_addr)) {
+    if (btif_av_peer_is_source(p_dev->rc_addr)) {
+      p_dev->rc_features = p_dev->peer_tg_features;
+      if ((p_dev->peer_tg_features & BTA_AV_FEAT_METADATA) &&
+          (p_dev->peer_tg_features & BTA_AV_FEAT_VENDOR)) {
+        getcapabilities_cmd(AVRC_CAP_COMPANY_ID, p_dev);
+      }
+    }
+  } else {
+    log::verbose("{} is not connected, pending",
+                 ADDRESS_TO_LOGGABLE_CSTR(p_dev->rc_addr));
+    p_dev->launch_cmd_pending |=
+        (RC_PENDING_ACT_GET_CAP | RC_PENDING_ACT_REG_VOL);
+  }
+
   if (!(p_dev->peer_tg_features & BTA_AV_FEAT_RCTG) &&
       (!(p_dev->peer_tg_features & BTA_AV_FEAT_RCCT) ||
        !(p_dev->peer_tg_features & BTA_AV_FEAT_ADV_CTRL))) {
@@ -592,21 +607,6 @@ void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
      * update.
      */
     p_dev->rc_features_processed = true;
-  }
-
-  if (btif_av_is_connected_addr(p_dev->rc_addr)) {
-    if (btif_av_peer_is_source(p_dev->rc_addr)) {
-      p_dev->rc_features = p_dev->peer_tg_features;
-      if ((p_dev->peer_tg_features & BTA_AV_FEAT_METADATA) &&
-          (p_dev->peer_tg_features & BTA_AV_FEAT_VENDOR)) {
-        getcapabilities_cmd(AVRC_CAP_COMPANY_ID, p_dev);
-      }
-    }
-  } else {
-    log::verbose("{} is not connected, pending",
-                 ADDRESS_TO_LOGGABLE_CSTR(p_dev->rc_addr));
-    p_dev->launch_cmd_pending |=
-        (RC_PENDING_ACT_GET_CAP | RC_PENDING_ACT_REG_VOL);
   }
 
   /* Add browsing feature capability */
@@ -1249,10 +1249,17 @@ void btif_rc_handler(tBTA_AV_EVT event, tBTA_AV* p_data) {
         log::error("RC Feature event for Invalid rc handle");
         break;
       }
+<<<<<<< HEAD
       log::verbose("peer_ct_features:0x{:x}, peer_tg_features=0x{:x}",
                    p_data->rc_feat.peer_ct_features,
                    p_data->rc_feat.peer_tg_features);
       if (btif_av_src_sink_coexist_enabled() &&
+=======
+      LOG_VERBOSE("%s peer_ct_features:0x%x, peer_tg_features=0x%x", __func__,
+                  p_data->rc_feat.peer_ct_features,
+                  p_data->rc_feat.peer_tg_features);
+      if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable() &&
+>>>>>>> b96fe020be... fix avrcp work abnormal when src_sink_coexist
           (p_dev->peer_ct_features == p_data->rc_feat.peer_ct_features) &&
           (p_dev->peer_tg_features == p_data->rc_feat.peer_tg_features)) {
         log::error(
