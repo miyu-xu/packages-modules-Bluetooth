@@ -102,6 +102,7 @@ struct RemoteNameRequestModule::impl {
           "Received CONNECTION_COMPLETE (corresponding INCORRECTLY to an RNR cancellation) from %s",
           address.ToRedactedStringForLogging().c_str());
       pending_ = false;
+      received_feature_ = false;
       on_remote_name_complete_.Invoke(ErrorCode::UNKNOWN_CONNECTION, {});
       acl_scheduler_->ReportRemoteNameRequestCompletion(address);
     } else {
@@ -157,15 +158,20 @@ struct RemoteNameRequestModule::impl {
   void on_remote_host_supported_features_notification(EventView view) {
     auto packet = RemoteHostSupportedFeaturesNotificationView::Create(view);
     ASSERT(packet.IsValid());
-    if (pending_) {
+    if (pending_ && !received_feature_) {
       LOG_INFO(
           "Received REMOTE_HOST_SUPPORTED_FEATURES_NOTIFICATION from %s",
           packet.GetBdAddr().ToRedactedStringForLogging().c_str());
       on_remote_host_supported_features_notification_.Invoke(packet.GetHostSupportedFeatures());
-    } else {
+      received_feature_ = true;
+    } else if (!pending_) {
       LOG_ERROR(
           "Received unexpected REMOTE_HOST_SUPPORTED_FEATURES_NOTIFICATION when no Remote Name "
           "Request is outstanding");
+    } else {  // received_feature_
+      LOG_ERROR(
+          "Received more than one REMOTE_HOST_SUPPORTED_FEATURES_NOTIFICATION during Remote Name "
+          "Request");
     }
   }
 
@@ -177,6 +183,7 @@ struct RemoteNameRequestModule::impl {
           "Received REMOTE_NAME_REQUEST_COMPLETE from %s",
           packet.GetBdAddr().ToRedactedStringForLogging().c_str());
       pending_ = false;
+      received_feature_ = false;
       on_remote_name_complete_.Invoke(packet.GetStatus(), packet.GetRemoteName());
       acl_scheduler_->ReportRemoteNameRequestCompletion(packet.GetBdAddr());
     } else {
@@ -192,6 +199,7 @@ struct RemoteNameRequestModule::impl {
   os::Handler* handler_;
 
   bool pending_ = false;
+  bool received_feature_ = false;
   RemoteHostSupportedFeaturesCallback on_remote_host_supported_features_notification_;
   RemoteNameCallback on_remote_name_complete_;
 };
