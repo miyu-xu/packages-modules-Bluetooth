@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aefcf710_226ae855",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-08T22:15:49Z",
+      "side": 1,
+      "message": "nit: check for !\u003d nullptr",
+      "range": {
+        "startLine": 1175,
+        "startChar": 21,
+        "endLine": 1175,
+        "endChar": 31
+      },
+      "revId": "9503e171cbf123e6168e836a5fcc5fcbbf1dcd58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
