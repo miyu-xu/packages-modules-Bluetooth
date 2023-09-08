@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ae1c238_9ff42f96",
+        "filename": "android/app/src/com/android/bluetooth/gatt/AdvertiseHelper.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-08T17:59:07Z",
+      "side": 0,
+      "message": "Does advertiser packet be bigger than 255 ? I feel like we should keep this check.",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 236,
+        "endChar": 5
+      },
+      "revId": "bd5606aac77e61d591b124cf66aa499019703900",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
