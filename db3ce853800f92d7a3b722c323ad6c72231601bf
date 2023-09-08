@@ -45,6 +45,30 @@
       },
       "revId": "db3ce853800f92d7a3b722c323ad6c72231601bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9101cc9d_75d21593",
+        "filename": "system/gd/rust/topshim/src/jni.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-08T00:20:50Z",
+      "side": 1,
+      "message": "Source: https://github.com/jni-rs/jni-rs/tree/master/example",
+      "parentUuid": "2ec7c85a_8a7da707",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 1
+      },
+      "revId": "db3ce853800f92d7a3b722c323ad6c72231601bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
