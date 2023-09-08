@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f2e4f3c_1c73f37d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-08T17:23:21Z",
+      "side": 1,
+      "message": "Replace primitive with proper type for BTA identifier which separates type/impl",
+      "revId": "c1ccf65644769ddab24c26e19859558ab9bab519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
