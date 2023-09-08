@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae5ba5f7_5af1f28c",
+        "filename": "system/gd/rust/topshim/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-08T00:20:28Z",
+      "side": 1,
+      "message": "Are you sure ?\nI thought that for rust the srcs should have the lib.rs first",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "db3ce853800f92d7a3b722c323ad6c72231601bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec7c85a_8a7da707",
+        "filename": "system/gd/rust/topshim/src/jni.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-08T00:20:28Z",
+      "side": 1,
+      "message": "When I look at the code example of the jni crate, it doesn\u0027t look like they need to call register.\n\nWhy is it different than your approach ? \nWhat are the + / - of both ?",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 1
+      },
+      "revId": "db3ce853800f92d7a3b722c323ad6c72231601bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
