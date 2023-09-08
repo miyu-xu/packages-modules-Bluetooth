@@ -563,7 +563,7 @@ void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
   if (!(p_dev->peer_tg_features & BTA_AV_FEAT_RCTG) &&
       (!(p_dev->peer_tg_features & BTA_AV_FEAT_RCCT) ||
        !(p_dev->peer_tg_features & BTA_AV_FEAT_ADV_CTRL))) {
-    is_need_report = false;
+    is_need_report = true;
   }
 
   int rc_features = 0;
