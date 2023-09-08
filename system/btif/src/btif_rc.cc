@@ -559,10 +559,11 @@ void fill_avrc_attr_entry(tAVRC_ATTR_ENTRY* attr_vals, int num_attrs,
 void rc_cleanup_sent_cmd(void* p_data) { BTIF_TRACE_DEBUG("%s: ", __func__); }
 
 void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
+  bool is_need_report = false;
   if (!(p_dev->peer_tg_features & BTA_AV_FEAT_RCTG) &&
       (!(p_dev->peer_tg_features & BTA_AV_FEAT_RCCT) ||
        !(p_dev->peer_tg_features & BTA_AV_FEAT_ADV_CTRL))) {
-    return;
+    is_need_report = true;
   }
 
   int rc_features = 0;
@@ -616,7 +617,7 @@ void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
     rc_features |= BTRC_FEAT_COVER_ARTWORK;
   }
 
-  if (bt_rc_ctrl_callbacks != NULL) {
+  if (bt_rc_ctrl_callbacks != NULL && is_need_report) {
     BTIF_TRACE_DEBUG("%s: Update rc features to CTRL: %d", __func__,
                      rc_features);
     do_in_jni_thread(FROM_HERE,
