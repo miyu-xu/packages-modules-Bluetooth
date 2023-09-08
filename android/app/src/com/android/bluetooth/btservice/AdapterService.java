@@ -5197,7 +5197,15 @@ public class AdapterService extends Service {
         }
 
         @Override
-        public IBluetoothGatt getBluetoothGatt() {
+        public void getBluetoothGatt(SynchronousResultReceiver receiver) {
+            try {
+                receiver.send(getBluetoothGatt());
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        private IBluetoothGatt getBluetoothGatt() {
             AdapterService service = getService();
             if (service == null) {
                 return null;

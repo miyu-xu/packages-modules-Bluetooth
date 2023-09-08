@@ -4219,9 +4219,13 @@ public final class BluetoothAdapter {
         mServiceLock.readLock().lock();
         try {
             if (mService != null) {
-                return mService.getBluetoothGatt();
+                final SynchronousResultReceiver<IBluetoothGatt> recv =
+                        SynchronousResultReceiver.get();
+                mService.getBluetoothGatt(recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             }
-        } catch (RemoteException e) {
+
+        } catch (RemoteException | TimeoutException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
         } finally {
             mServiceLock.readLock().unlock();
