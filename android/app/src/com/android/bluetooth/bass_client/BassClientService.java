@@ -34,10 +34,7 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanRecord;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -111,7 +108,6 @@ public class BassClientService extends ProfileService {
     private Map<BluetoothDevice, PeriodicAdvertisementResult> mPeriodicAdvertisementResultMap;
     private ScanCallback mSearchScanCallback;
     private Callbacks mCallbacks;
-    private BroadcastReceiver mIntentReceiver;
 
     private static final int LOG_NB_EVENTS = 100;
     private static final BluetoothEventLogger sEventLogger =
@@ -313,28 +309,6 @@ public class BassClientService extends ProfileService {
         mCallbackHandlerThread.start();
         mCallbacks = new Callbacks(mCallbackHandlerThread.getLooper());
 
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-        mIntentReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String action = intent.getAction();
-
-                if (action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)) {
-                    int state = intent.getIntExtra(BluetoothDevice.EXTRA_BOND_STATE,
-                            BluetoothDevice.ERROR);
-                    BluetoothDevice device =
-                            intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    Objects.requireNonNull(device,
-                            "ACTION_BOND_STATE_CHANGED with no EXTRA_DEVICE");
-                    bondStateChanged(device, state);
-
-                }
-            }
-        };
-        registerReceiver(mIntentReceiver, filter, Context.RECEIVER_EXPORTED);
-
         setBassClientService(this);
         // Saving PSync stuff for future addition
         mDeviceToSyncHandleMap = new HashMap<BluetoothDevice, Integer>();
@@ -370,11 +344,6 @@ public class BassClientService extends ProfileService {
         if (mHandler != null) {
             mHandler.removeCallbacksAndMessages(null);
             mHandler = null;
-        }
-
-        if (mIntentReceiver != null) {
-            unregisterReceiver(mIntentReceiver);
-            mIntentReceiver = null;
         }
 
         setBassClientService(null);
@@ -714,6 +683,10 @@ public class BassClientService extends ProfileService {
                 removeStateMachine(device);
             }
         }
+    }
+
+    public void handleBondStateChanged(BluetoothDevice device, int fromState, int toState) {
+        mHandler.post(() -> bondStateChanged(device, toState));
     }
 
     @VisibleForTesting

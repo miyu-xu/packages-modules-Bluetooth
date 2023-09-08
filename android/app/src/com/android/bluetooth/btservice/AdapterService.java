@@ -6917,6 +6917,43 @@ public class AdapterService extends Service {
         mPhonePolicy.profileActiveDeviceChanged(profile, device);
     }
 
+    /** Handle Bluetooth profiles when bond state changes with a {@link BluetoothDevice} */
+    public void handleBondStateChanged(BluetoothDevice device, int fromState, int toState) {
+        if (mA2dpService != null) {
+            mA2dpService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mHeadsetService != null) {
+            mHeadsetService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mLeAudioService != null) {
+            mLeAudioService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mHearingAidService != null) {
+            mHearingAidService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mHapClientService != null) {
+            mHapClientService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mBassClientService != null) {
+            mBassClientService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mBatteryService != null) {
+            mBatteryService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mVolumeControlService != null) {
+            mVolumeControlService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mPbapService != null) {
+            mPbapService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mCsipSetCoordinatorService != null) {
+            mCsipSetCoordinatorService.handleBondStateChanged(device, fromState, toState);
+        }
+        if (mDatabaseManager != null) {
+            mDatabaseManager.handleBondStateChanged(device, fromState, toState);
+        }
+    }
+
     static int convertScanModeToHal(int mode) {
         switch (mode) {
             case BluetoothAdapter.SCAN_MODE_NONE:
