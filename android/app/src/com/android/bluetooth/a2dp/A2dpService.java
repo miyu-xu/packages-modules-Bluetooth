@@ -259,6 +259,9 @@ public class A2dpService extends ProfileService {
                 // Do not rethrow as we are shutting down anyway
             }
         }
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler = null;
+
         // Step 2: Reset maximum number of connected audio devices
         mMaxConnectedAudioDevices = 1;
 

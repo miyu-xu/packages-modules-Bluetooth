@@ -180,6 +180,9 @@ public class RemoteDevices {
             mSdpTracker.clear();
         }
 
+        // Unregister Handler and stop all queued messages.
+        mMainHandler.removeCallbacksAndMessages(null);
+
         synchronized (mDevices) {
             if (mDevices != null) {
                 debugLog("reset(): Broadcasting ACL_DISCONNECTED");

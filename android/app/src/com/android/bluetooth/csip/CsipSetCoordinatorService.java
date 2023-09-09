@@ -214,6 +214,10 @@ public class CsipSetCoordinatorService extends ProfileService {
             }
         }
 
+        // Unregister Handler and stop all queued messages.
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler = null;
+
         mDeviceGroupIdRankMap.clear();
         mCallbacks.clear();
         mFoundSetMemberToGroupId.clear();
