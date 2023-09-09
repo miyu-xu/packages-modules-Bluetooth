@@ -349,6 +349,10 @@ public class BassClientService extends ProfileService {
         if (DBG) {
             Log.d(TAG, "stop()");
         }
+        // Unregister Handler and stop all queued messages.
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler = null;
+
         synchronized (mStateMachines) {
             for (BassClientStateMachine sm : mStateMachines.values()) {
                 BassObjectsFactory.getInstance().destroyStateMachine(sm);

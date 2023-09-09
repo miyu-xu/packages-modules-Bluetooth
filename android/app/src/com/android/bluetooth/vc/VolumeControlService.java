@@ -277,6 +277,10 @@ public class VolumeControlService extends ProfileService {
         // Mark service as stopped
         setVolumeControlService(null);
 
+        // Unregister handler and remove all queued messages.
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler = null;
+
         // Unregister broadcast receivers
         unregisterReceiver(mBondStateChangedReceiver);
         mBondStateChangedReceiver = null;

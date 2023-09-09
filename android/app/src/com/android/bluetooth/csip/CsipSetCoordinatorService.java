@@ -191,6 +191,10 @@ public class CsipSetCoordinatorService extends ProfileService {
         // Mark service as stopped
         setCsipSetCoordinatorService(null);
 
+        // Unregister Handler and stop all queued messages.
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler = null;
+
         // Unregister broadcast receivers
         unregisterReceiver(mBondStateChangedReceiver);
         mBondStateChangedReceiver = null;

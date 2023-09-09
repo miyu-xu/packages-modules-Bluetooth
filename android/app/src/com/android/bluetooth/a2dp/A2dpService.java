@@ -231,7 +231,9 @@ public class A2dpService extends ProfileService {
         // Step 8: Unregister Audio Device Callback
         mAudioManager.unregisterAudioDeviceCallback(mAudioManagerAudioDeviceCallback);
 
-        // Step 7: Unregister broadcast receivers
+        // Step 7: Unregister Handlers and broadcast receivers
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler = null;
         unregisterReceiver(mBondStateChangedReceiver);
         mBondStateChangedReceiver = null;
 
