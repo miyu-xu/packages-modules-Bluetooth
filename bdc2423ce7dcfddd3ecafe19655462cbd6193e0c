@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfb5485c_0e4d499f",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-09T05:34:23Z",
+      "side": 1,
+      "message": "handler is created in step 3 and should be deleted in step 3 too",
+      "range": {
+        "startLine": 235,
+        "startChar": 7,
+        "endLine": 236,
+        "endChar": 24
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb5b9a08_0c3b21a5",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-09T05:34:23Z",
+      "side": 1,
+      "message": "ditto \u003d\u003e move after the thread are stopped",
+      "range": {
+        "startLine": 352,
+        "startChar": 5,
+        "endLine": 354,
+        "endChar": 24
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1596e402_00ba64ce",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-09T05:34:23Z",
+      "side": 1,
+      "message": "`     * RemoteDevices is still usable after reset`\n\nYou should not put mMainHandler to null",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 28
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c96bd7dc_3f6a816d",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-09T05:34:23Z",
+      "side": 1,
+      "message": "ditto ⇒ move after the  thread being stopped",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 196,
+        "endChar": 23
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a133f8e3_c2f3cbce",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-09T05:34:23Z",
+      "side": 1,
+      "message": "since handleConnectionStateChange is called from another thread, I think this is not correct.\n\nYou can still have the other thread alive, while the handler is null, making the post a NPE.\n\nThe handler should be clear and the callback removed AFTER the statemachine thread has quit",
+      "range": {
+        "startLine": 282,
+        "startChar": 8,
+        "endLine": 282,
+        "endChar": 16
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
