@@ -371,7 +371,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type, ear=ear)
             # DUT initiates connection to ref_device.
             dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
-            advertisement.cancel()
 
             return dut_ref, ref_dut
 
@@ -490,7 +489,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type, ear=Ear.LEFT)
 
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
-        advertisement.cancel()
 
         await self.dut.aio.host.Disconnect(connection=dut_ref)
         assert_false(await self.is_device_connected(self.ref_left, ref_dut, 5), "Should be disconnected")
@@ -517,7 +515,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type, ear=ear)
             # DUT initiates connection to ref_device.
             dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
-            advertisement.cancel()
 
             return dut_ref, ref_dut
 
@@ -555,7 +552,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type, ear=Ear.LEFT)
 
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
-        advertisement.cancel()
 
         await self.ref_left.aio.host.Disconnect(connection=ref_dut)
         assert_false(await self.is_device_connected(self.dut, dut_ref, 5), "Should be disconnected")
@@ -661,7 +657,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         _, ref_left_dut = await self.dut_connect_to_ref(
             advertisement=advertisement_left, ref=ref_left, dut_address_type=dut_address_type
         )
-        advertisement_left.cancel()
 
         advertisement_right = await self.ref_advertise_asha(
             ref_device=self.ref_right, ref_address_type=ref_address_type, ear=Ear.RIGHT
@@ -670,7 +665,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         _, ref_right_dut = await self.dut_connect_to_ref(
             advertisement=advertisement_right, ref=ref_right, dut_address_type=dut_address_type
         )
-        advertisement_right.cancel()
 
         if disconnect_device == Ear.LEFT:
             await self.ref_left.aio.host.Disconnect(connection=ref_left_dut)
@@ -786,7 +780,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             ref = await self.dut_scan_for_asha(dut_address_type=RANDOM, ear=ear)
             # DUT initiates connection to ref_device.
             dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
-            advertisement.cancel()
 
             return dut_ref, ref_dut
 
@@ -888,7 +881,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             ref = await self.dut_scan_for_asha(dut_address_type=RANDOM, ear=ear)
             # DUT initiates connection to ref_device.
             dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
-            advertisement.cancel()
 
             return dut_ref, ref_dut
 
@@ -941,7 +933,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             ref = await self.dut_scan_for_asha(dut_address_type=RANDOM, ear=ear)
             # DUT initiates connection to ref_device.
             dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
-            advertisement.cancel()
 
             return dut_ref, ref_dut
 
@@ -996,7 +987,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             ref = await self.dut_scan_for_asha(dut_address_type=RANDOM, ear=ear)
             # DUT initiates connection to ref_device.
             dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
-            advertisement.cancel()
 
             return dut_ref, ref_dut
 
@@ -1087,7 +1077,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             ref = await self.dut_scan_for_asha(dut_address_type=RANDOM, ear=ear)
             # DUT initiates connection to ref_device.
             dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
-            advertisement.cancel()
 
             return dut_ref, ref_dut
 
@@ -1160,7 +1149,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             ref = await self.dut_scan_for_asha(dut_address_type=RANDOM, ear=ear)
             # DUT initiates connection to ref_device.
             dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
-            advertisement.cancel()
 
             return dut_ref, ref_dut
 
@@ -1194,6 +1182,31 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         assert_not_equal(len(audio_data), 0)
         # TODO(duoho): decode audio_data and verify the content
 
+    @asynchronous
+    async def test_update_connection_parameter_while_connected_is_rejected(self) -> None:
+        advertisement = await self.ref_advertise_asha(
+            ref_device=self.ref_left, ref_address_type=RANDOM, ear=Ear.LEFT
+        )
+        ref = await self.dut_scan_for_asha(dut_address_type=RANDOM, ear=Ear.LEFT)
+
+        dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
+
+        # DUT starts pairing with the ref_left
+        (secure, wait_security) = await asyncio.gather(
+            self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3),
+            self.ref_left.aio.security.WaitSecurity(connection=ref_dut, le=LE_LEVEL3),
+        )
+
+        assert_equal(secure.result_variant(), 'success')
+        assert_equal(wait_security.result_variant(), 'success')
+
+        connection = self.ref_left.device.lookup_connection(int.from_bytes(ref_dut.cookie.value, 'big'))
+        assert connection
+
+        result = await self.ref_left.device.l2cap_channel_manager.update_connection_parameters(connection, 20, 30, 42, 42)
+
+        # TODO(b/284056597) assert not equal to 0 when fix is merged
+        assert_not_equal(result, 1)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
