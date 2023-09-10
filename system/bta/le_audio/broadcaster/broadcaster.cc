@@ -1191,8 +1191,7 @@ void LeAudioBroadcaster::Initialize(
     return;
   }
 
-  if (!controller_get_interface()->supports_ble_isochronous_broadcaster() &&
-      !osi_property_get_bool("persist.bluetooth.fake_iso_support", false)) {
+  if (!controller_get_interface()->supports_ble_isochronous_broadcaster()) {
     LOG_WARN("Isochronous Broadcast not supported by the controller!");
     return;
   }

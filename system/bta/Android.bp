@@ -1081,7 +1081,6 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
-        ":TestStubOsi",
         "le_audio/broadcaster/broadcaster.cc",
         "le_audio/broadcaster/broadcaster_test.cc",
         "le_audio/broadcaster/broadcaster_types.cc",
@@ -1115,7 +1114,6 @@ cc_test {
         "libevent",
         "libgmock",
         "liblc3",
-        "libosi",
     ],
     sanitize: {
         cfi: true,
