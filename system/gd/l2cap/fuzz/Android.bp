@@ -41,5 +41,4 @@ cc_fuzz {
         cc: ["android-bluetooth-security@google.com"],
         componentid: 27441,
     },
-    cflags: ["-Wno-unused-parameter"],
 }

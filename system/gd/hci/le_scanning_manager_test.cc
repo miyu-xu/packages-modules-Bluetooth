@@ -138,7 +138,7 @@ class TestController : public Controller {
  protected:
   void Start() override {}
   void Stop() override {}
-  void ListDependencies(ModuleList* list) const {}
+  void ListDependencies(ModuleList* /* list */) const {}
 
  private:
   std::set<OpCode> supported_opcodes_{};
@@ -161,18 +161,18 @@ class TestLeAddressManager : public LeAddressManager {
     return AddressPolicy::USE_STATIC_ADDRESS;
   }
 
-  void Unregister(LeAddressManagerCallback* callback) override {
+  void Unregister(LeAddressManagerCallback* /* callback */) override {
     if (!ignore_unregister_for_testing) {
       client_ = nullptr;
     }
     test_client_state_ = UNREGISTERED;
   }
 
-  void AckPause(LeAddressManagerCallback* callback) override {
+  void AckPause(LeAddressManagerCallback* /* callback */) override {
     test_client_state_ = PAUSED;
   }
 
-  void AckResume(LeAddressManagerCallback* callback) override {
+  void AckResume(LeAddressManagerCallback* /* callback */) override {
     test_client_state_ = RESUMED;
   }
 
@@ -208,11 +208,11 @@ class TestAclManager : public AclManager {
     delete thread_;
   }
 
-  void ListDependencies(ModuleList* list) const {}
+  void ListDependencies(ModuleList* /* list */) const {}
 
-  void SetRandomAddress(Address address) {}
+  void SetRandomAddress(Address /* address */) {}
 
-  void enqueue_command(std::unique_ptr<CommandBuilder> command_packet){};
+  void enqueue_command(std::unique_ptr<CommandBuilder> /* command_packet */){};
 
  private:
   os::Thread* thread_;
