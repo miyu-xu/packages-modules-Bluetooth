@@ -163,9 +163,8 @@ static void block4(g722_band_t *band, int d)
 }
 /*- End of function --------------------------------------------------------*/
 
-g722_encode_state_t *g722_encode_init(g722_encode_state_t *s,
-                                             unsigned int rate, int options)
-{
+g722_encode_state_t* g722_encode_init(g722_encode_state_t* s, unsigned int rate,
+                                      int /* options */) {
     if (s == NULL)
     {
 #ifdef G722_SUPPORT_MALLOC
