@@ -43,7 +43,7 @@ LogCapture* LogCapture::Rewind() {
   return this;
 }
 
-bool LogCapture::Find(std::string to_find) {
+bool LogCapture::Find(std::string /* to_find */) {
   // For |atest| assume all log captures succeed
   return true;
 }
@@ -74,7 +74,7 @@ std::pair<int, int> LogCapture::create_backing_store() const {
   return std::make_pair(dup_fd, fd);
 }
 
-bool LogCapture::set_non_blocking(int fd) const {
+bool LogCapture::set_non_blocking(int /* fd */) const {
   return true;
 }
 

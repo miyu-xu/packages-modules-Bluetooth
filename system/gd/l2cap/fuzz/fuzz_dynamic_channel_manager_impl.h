@@ -35,8 +35,8 @@ namespace {
 class FuzzDynamicChannelManagerImpl {
  public:
   void ConnectChannel(
-      hci::Address device,
-      l2cap::classic::DynamicChannelConfigurationOption configuration_option,
+      hci::Address /* device */,
+      l2cap::classic::DynamicChannelConfigurationOption /* configuration_option */,
       l2cap::Psm,
       l2cap::classic::DynamicChannelManager::OnConnectionOpenCallback on_open_callback,
       l2cap::classic::DynamicChannelManager::OnConnectionFailureCallback on_fail_callback) {

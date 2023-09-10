@@ -52,9 +52,9 @@ class ShimL2capFuzz {
     return future.get();
   }
 
-  void OnConnectionComplete(std::unique_ptr<l2cap::classic::DynamicChannel> channel) {}
+  void OnConnectionComplete(std::unique_ptr<l2cap::classic::DynamicChannel> /* channel */) {}
 
-  void OnConnectionFail(l2cap::classic::DynamicChannelManager::ConnectionResult result) {}
+  void OnConnectionFail(l2cap::classic::DynamicChannelManager::ConnectionResult /* result */) {}
 
   ShimL2capFuzz(FuzzedDataProvider* fdp) {
     hci::fuzz::FuzzHciLayer* fuzzHci = fake_registry_.Inject<hci::fuzz::FuzzHciLayer>(&hci::HciLayer::Factory);

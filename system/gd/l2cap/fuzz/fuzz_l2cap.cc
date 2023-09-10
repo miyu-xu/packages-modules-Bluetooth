@@ -38,12 +38,12 @@ using shim::ShimL2capFuzz;
 class FakeCommandInterface : public hci::CommandInterface<hci::AclCommandBuilder> {
  public:
   virtual void EnqueueCommand(
-      std::unique_ptr<hci::AclCommandBuilder> command,
-      common::ContextualOnceCallback<void(hci::CommandCompleteView)> on_complete) {}
+      std::unique_ptr<hci::AclCommandBuilder> /* command */,
+      common::ContextualOnceCallback<void(hci::CommandCompleteView)> /* on_complete */) {}
 
   virtual void EnqueueCommand(
-      std::unique_ptr<hci::AclCommandBuilder> command,
-      common::ContextualOnceCallback<void(hci::CommandStatusView)> on_status) {}
+      std::unique_ptr<hci::AclCommandBuilder> /* command */,
+      common::ContextualOnceCallback<void(hci::CommandStatusView)> /* on_status */) {}
 } fake_command_interface;
 
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
