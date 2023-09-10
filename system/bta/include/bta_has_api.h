@@ -29,7 +29,8 @@ class HasClient {
  public:
   virtual ~HasClient() = default;
 
-  static void Initialize(bluetooth::has::HasClientCallbacks* callbacks,
+  static void Initialize(bool always_use_preset_cache,
+                         bluetooth::has::HasClientCallbacks* callbacks,
                          base::Closure initCb);
   static void CleanUp();
   static HasClient* Get();

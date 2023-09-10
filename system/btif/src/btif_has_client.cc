@@ -29,6 +29,7 @@
 #include "bta_has_api.h"
 #include "btif_common.h"
 #include "btif_profile_storage.h"
+#include "osi/include/properties.h"
 #include "stack/include/btu.h"
 
 using base::Bind;
@@ -55,9 +56,12 @@ class HearingAaccessClientServiceInterfaceImpl : public HasClientInterface,
     DVLOG(2) << __func__;
     this->callbacks_ = callbacks;
 
+    bool always_use_preset_cache = osi_property_get_bool(
+        "persist.bluetooth.has.always_use_preset_cache", true);
+
     do_in_main_thread(
         FROM_HERE,
-        Bind(&HasClient::Initialize, this,
+        Bind(&HasClient::Initialize, always_use_preset_cache, this,
              jni_thread_wrapper(
                  FROM_HERE,
                  Bind(&btif_storage_load_bonded_leaudio_has_devices))));

@@ -123,9 +123,12 @@ std::mutex instance_mutex;
  */
 class HasClientImpl : public HasClient {
  public:
-  HasClientImpl(bluetooth::has::HasClientCallbacks* callbacks,
+  HasClientImpl(bool always_use_preset_cache,
+                bluetooth::has::HasClientCallbacks* callbacks,
                 base::Closure initCb)
-      : gatt_if_(0), callbacks_(callbacks) {
+      : always_use_preset_cache_(always_use_preset_cache),
+        gatt_if_(0),
+        callbacks_(callbacks) {
     BTA_GATTC_AppRegister(
         [](tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
           if (instance && p_data) instance->GattcCallback(event, p_data);
@@ -862,8 +865,7 @@ class HasClientImpl : public HasClient {
      * details are always up to date. However we have to be able to do the
      * READ_PRESET_BY_INDEX, to pass the test specification requirements.
      */
-    if (osi_property_get_bool("persist.bluetooth.has.always_use_preset_cache",
-                              true)) {
+    if (always_use_preset_cache_) {
       auto* preset = device->GetPreset(preset_index);
       if (preset == nullptr) {
         LOG(ERROR) << __func__ << "Invalid preset request"
@@ -957,8 +959,7 @@ class HasClientImpl : public HasClient {
                                 device.active_preset_ccc_handle);
     }
 
-    if (osi_property_get_bool("persist.bluetooth.has.always_use_preset_cache",
-                              true) == false) {
+    if (always_use_preset_cache_ == false) {
       CpReadAllPresetsOperation(HasCtpOp(
           device.addr, PresetCtpOpcode::READ_PRESETS,
           le_audio::has::kStartPresetIndex, le_audio::has::kMaxNumOfPresets));
@@ -2090,6 +2091,7 @@ class HasClientImpl : public HasClient {
         HasGattOpContext(HasGattOpContext::kContextFlagsEnableNotification));
   }
 
+  bool always_use_preset_cache_;
   uint8_t gatt_if_;
   bluetooth::has::HasClientCallbacks* callbacks_;
   std::list<HasDevice> devices_;
@@ -2106,7 +2108,8 @@ alarm_t* HasCtpGroupOpCoordinator::operation_timeout_timer = nullptr;
 size_t HasCtpGroupOpCoordinator::ref_cnt = 0u;
 alarm_callback_t HasCtpGroupOpCoordinator::cb = [](void*) {};
 
-void HasClient::Initialize(bluetooth::has::HasClientCallbacks* callbacks,
+void HasClient::Initialize(bool always_use_preset_cache,
+                           bluetooth::has::HasClientCallbacks* callbacks,
                            base::Closure initCb) {
   std::scoped_lock<std::mutex> lock(instance_mutex);
   if (instance) {
@@ -2117,7 +2120,7 @@ void HasClient::Initialize(bluetooth::has::HasClientCallbacks* callbacks,
   HasCtpGroupOpCoordinator::Initialize([](void* p) {
     if (instance) instance->OnGroupOpCoordinatorTimeout(p);
   });
-  instance = new HasClientImpl(callbacks, initCb);
+  instance = new HasClientImpl(always_use_preset_cache, callbacks, initCb);
 }
 
 bool HasClient::IsHasClientRunning() { return instance; }

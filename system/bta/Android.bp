@@ -1149,7 +1149,6 @@ cc_test {
     ],
     srcs: [
         ":TestCommonMockFunctions",
-        ":TestStubOsi",
         "gatt/database.cc",
         "gatt/database_builder.cc",
         "has/has_client.cc",
@@ -1177,7 +1176,9 @@ cc_test {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
+        "libevent",
         "libgmock",
+        "libosi",
     ],
     sanitize: {
         cfi: true,

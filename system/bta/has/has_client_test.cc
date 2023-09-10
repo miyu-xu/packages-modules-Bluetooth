@@ -32,6 +32,7 @@
 #include "bta_has_api.h"
 #include "btif_storage_mock.h"
 #include "btm_api_mock.h"
+#include "common/message_loop_thread.h"
 #include "gatt/database_builder.h"
 #include "hardware/bt_gatt_types.h"
 #include "has_types.h"
@@ -40,7 +41,7 @@
 #include "test/common/mock_functions.h"
 
 bool gatt_profile_get_eatt_support(const RawAddress& addr) { return true; }
-void osi_property_set_bool(const char* key, bool value);
+bluetooth::common::MessageLoopThread* get_main_thread() { return nullptr; }
 
 namespace bluetooth {
 namespace has {
@@ -644,6 +645,7 @@ class HasClientTestBase : public ::testing::Test {
   }
 
   void SetUp(void) override {
+    alarm_initialize_for_test();
     reset_mock_function_count_map();
     controller::SetMockControllerInterface(&controller_interface_);
     bluetooth::manager::SetMockBtmInterface(&btm_interface);
@@ -745,6 +747,7 @@ class HasClientTestBase : public ::testing::Test {
   }
 
   void TearDown(void) override {
+    alarm_cleanup();
     services_map.clear();
     gatt::SetMockBtaGattQueue(nullptr);
     gatt::SetMockBtaGattInterface(nullptr);
@@ -757,12 +760,13 @@ class HasClientTestBase : public ::testing::Test {
     current_peer_features_val_.clear();
   }
 
-  void TestAppRegister(void) {
+  void TestAppRegister(bool always_use_preset_cache) {
     BtaAppRegisterCallback app_register_callback;
     EXPECT_CALL(gatt_interface, AppRegister(_, _, _))
         .WillOnce(DoAll(SaveArg<0>(&gatt_callback),
                         SaveArg<1>(&app_register_callback)));
-    HasClient::Initialize(callbacks.get(), base::DoNothing());
+    HasClient::Initialize(always_use_preset_cache, callbacks.get(),
+                          base::DoNothing());
     ASSERT_TRUE(gatt_callback);
     ASSERT_TRUE(app_register_callback);
     app_register_callback.Run(gatt_if, GATT_SUCCESS);
@@ -1173,7 +1177,8 @@ class HasClientTestBase : public ::testing::Test {
 class HasClientTest : public HasClientTestBase {
   void SetUp(void) override {
     HasClientTestBase::SetUp();
-    TestAppRegister();
+    bool always_use_preset_cache = true;
+    TestAppRegister(always_use_preset_cache);
   }
   void TearDown(void) override {
     TestAppUnregister();
@@ -1186,21 +1191,28 @@ TEST_F(HasClientTestBase, test_get_uninitialized) {
 }
 
 TEST_F(HasClientTestBase, test_initialize) {
-  HasClient::Initialize(callbacks.get(), base::DoNothing());
+  bool always_use_preset_cache = true;
+  HasClient::Initialize(always_use_preset_cache, callbacks.get(),
+                        base::DoNothing());
   ASSERT_TRUE(HasClient::IsHasClientRunning());
   HasClient::CleanUp();
 }
 
 TEST_F(HasClientTestBase, test_initialize_twice) {
-  HasClient::Initialize(callbacks.get(), base::DoNothing());
+  bool always_use_preset_cache = true;
+  HasClient::Initialize(always_use_preset_cache, callbacks.get(),
+                        base::DoNothing());
   HasClient* has_p = HasClient::Get();
-  HasClient::Initialize(callbacks.get(), base::DoNothing());
+  HasClient::Initialize(always_use_preset_cache, callbacks.get(),
+                        base::DoNothing());
   ASSERT_EQ(has_p, HasClient::Get());
   HasClient::CleanUp();
 }
 
 TEST_F(HasClientTestBase, test_cleanup_initialized) {
-  HasClient::Initialize(callbacks.get(), base::DoNothing());
+  bool always_use_preset_cache = true;
+  HasClient::Initialize(always_use_preset_cache, callbacks.get(),
+                        base::DoNothing());
   HasClient::CleanUp();
   ASSERT_FALSE(HasClient::IsHasClientRunning());
 }
@@ -1211,7 +1223,8 @@ TEST_F(HasClientTestBase, test_cleanup_uninitialized) {
 }
 
 TEST_F(HasClientTestBase, test_app_registration) {
-  TestAppRegister();
+  bool always_use_preset_cache = true;
+  TestAppRegister(always_use_preset_cache);
   TestAppUnregister();
 }
 
@@ -2959,8 +2972,9 @@ TEST_F(HasClientTest, test_dumpsys) {
   ASSERT_TRUE(SimpleJsonValidator(sv[1], &dumpsys_byte_cnt));
 }
 
-TEST_F(HasClientTest, test_connect_database_out_of_sync) {
-  osi_property_set_bool("persist.bluetooth.has.always_use_preset_cache", false);
+TEST_F(HasClientTestBase, test_connect_database_out_of_sync) {
+  bool always_use_preset_cache = false;
+  TestAppRegister(always_use_preset_cache);
 
   const RawAddress test_address = GetTestAddress(1);
   std::set<HasPreset, HasPreset::ComparatorDesc> has_presets = {{
@@ -3000,6 +3014,7 @@ TEST_F(HasClientTest, test_connect_database_out_of_sync) {
   ON_CALL(gatt_interface, ServiceSearchRequest(_, _)).WillByDefault(Return());
   EXPECT_CALL(gatt_interface, ServiceSearchRequest(_, _));
   HasClient::Get()->GetPresetInfo(test_address, 1);
+  TestAppUnregister();
 }
 
 class HasTypesTest : public ::testing::Test {
@@ -3148,9 +3163,6 @@ TEST_F(HasTypesTest, test_group_op_coordinator_init) {
 
   HasCtpGroupOpCoordinator::Cleanup();
   ASSERT_EQ(0u, wrapper.ref_cnt);
-
-  ASSERT_EQ(1, get_func_call_count("alarm_free"));
-  ASSERT_EQ(1, get_func_call_count("alarm_new"));
 }
 
 TEST_F(HasTypesTest, test_group_op_coordinator_copy) {
@@ -3178,9 +3190,6 @@ TEST_F(HasTypesTest, test_group_op_coordinator_copy) {
 
   HasCtpGroupOpCoordinator::Cleanup();
   ASSERT_EQ(0u, wrapper.ref_cnt);
-
-  ASSERT_EQ(1, get_func_call_count("alarm_free"));
-  ASSERT_EQ(1, get_func_call_count("alarm_new"));
 }
 
 TEST_F(HasTypesTest, test_group_op_coordinator_completion) {
@@ -3209,24 +3218,22 @@ TEST_F(HasTypesTest, test_group_op_coordinator_completion) {
   wrapper.SetCompleted(address3);
   ASSERT_EQ(1u, wrapper.ref_cnt);
   ASSERT_FALSE(wrapper.IsFullyCompleted());
-  ASSERT_EQ(0, get_func_call_count("alarm_free"));
+  ASSERT_EQ(1u, alarm_pending_count());
 
   /* Non existing address completion */
   wrapper.SetCompleted(address2);
-  ASSERT_EQ(0, get_func_call_count("alarm_free"));
+  ASSERT_EQ(1u, alarm_pending_count());
   ASSERT_EQ(1u, wrapper.ref_cnt);
 
   /* Last device address completion */
   wrapper2.SetCompleted(address2);
   ASSERT_TRUE(wrapper.IsFullyCompleted());
   ASSERT_EQ(0u, wrapper.ref_cnt);
-  const int alarm_free_count = get_func_call_count("alarm_free");
-  ASSERT_EQ(1, alarm_free_count);
+  ASSERT_EQ(0u, alarm_pending_count());
 
   HasCtpGroupOpCoordinator::Cleanup();
 
-  ASSERT_EQ(alarm_free_count, get_func_call_count("alarm_free"));
-  ASSERT_EQ(1, get_func_call_count("alarm_new"));
+  ASSERT_EQ(0u, alarm_pending_count());
 }
 
 }  // namespace
