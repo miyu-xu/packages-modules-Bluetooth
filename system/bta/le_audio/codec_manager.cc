@@ -84,11 +84,8 @@ static std::unordered_map<
 
 struct codec_manager_impl {
  public:
-  codec_manager_impl() {
-    offload_enable_ = osi_property_get_bool(
-                          "ro.bluetooth.leaudio_offload.supported", false) &&
-                      !osi_property_get_bool(
-                          "persist.bluetooth.leaudio_offload.disabled", true);
+  codec_manager_impl(bool offload_enable) {
+    offload_enable_ = offload_enable;
     if (offload_enable_ == false) {
       LOG_INFO("offload disabled");
       return;
@@ -112,8 +109,10 @@ struct codec_manager_impl {
     SetCodecLocation(CodecLocation::ADSP);
   }
   void start(
+      bool dual_bidirection_swb_supported,
       const std::vector<btle_audio_codec_config_t>& offloading_preference) {
-    le_audio::AudioSetConfigurationProvider::Initialize(GetCodecLocation());
+    le_audio::AudioSetConfigurationProvider::Initialize(
+        dual_bidirection_swb_supported, GetCodecLocation());
     UpdateOffloadCapability(offloading_preference);
   }
   ~codec_manager_impl() {
@@ -530,10 +529,12 @@ struct CodecManager::impl {
   impl(const CodecManager& codec_manager) : codec_manager_(codec_manager) {}
 
   void Start(
+      bool offload_enable, bool dual_bidirection_swb_supported,
       const std::vector<btle_audio_codec_config_t>& offloading_preference) {
     LOG_ASSERT(!codec_manager_impl_);
-    codec_manager_impl_ = std::make_unique<codec_manager_impl>();
-    codec_manager_impl_->start(offloading_preference);
+    codec_manager_impl_ = std::make_unique<codec_manager_impl>(offload_enable);
+    codec_manager_impl_->start(dual_bidirection_swb_supported,
+                               offloading_preference);
   }
 
   void Stop() {
@@ -550,8 +551,11 @@ struct CodecManager::impl {
 CodecManager::CodecManager() : pimpl_(std::make_unique<impl>(*this)) {}
 
 void CodecManager::Start(
+    bool offload_enable, bool dual_bidirection_swb_supported,
     const std::vector<btle_audio_codec_config_t>& offloading_preference) {
-  if (!pimpl_->IsRunning()) pimpl_->Start(offloading_preference);
+  if (!pimpl_->IsRunning())
+    pimpl_->Start(offload_enable, dual_bidirection_swb_supported,
+                  offloading_preference);
 }
 
 void CodecManager::Stop() {

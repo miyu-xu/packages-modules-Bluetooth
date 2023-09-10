@@ -61,7 +61,8 @@ class CodecManager {
     static CodecManager* instance = new CodecManager();
     return instance;
   }
-  void Start(const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
+  void Start(bool offload_enable, bool dual_bidirection_swb_supported,
+             const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
                  offloading_preference);
   void Stop(void);
   virtual types::CodecLocation GetCodecLocation(void) const;

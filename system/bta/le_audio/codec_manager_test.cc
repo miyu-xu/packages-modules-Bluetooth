@@ -38,8 +38,6 @@ using le_audio::types::CodecLocation;
 using le_audio::types::kLeAudioDirectionSink;
 using le_audio::types::kLeAudioDirectionSource;
 
-void osi_property_set_bool(const char* key, bool value);
-
 template <typename T>
 T& le_audio::types::BidirectionalPair<T>::get(uint8_t direction) {
   return (direction == le_audio::types::kLeAudioDirectionSink) ? sink : source;
@@ -63,11 +61,6 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
 
 namespace le_audio {
 namespace {
-
-static constexpr char kPropLeAudioOffloadSupported[] =
-    "ro.bluetooth.leaudio_offload.supported";
-static constexpr char kPropLeAudioOffloadDisabled[] =
-    "persist.bluetooth.leaudio_offload.disabled";
 
 class CodecManagerTestBase : public Test {
  public:
@@ -102,13 +95,7 @@ class CodecManagerTestBase : public Test {
 /*----------------- ADSP codec manager tests ------------------*/
 class CodecManagerTestAdsp : public CodecManagerTestBase {
  public:
-  virtual void SetUp() override {
-    // Enable the HW offloader
-    osi_property_set_bool(kPropLeAudioOffloadSupported, true);
-    osi_property_set_bool(kPropLeAudioOffloadDisabled, false);
-
-    CodecManagerTestBase::SetUp();
-  }
+  virtual void SetUp() override { CodecManagerTestBase::SetUp(); }
 };
 
 TEST_F(CodecManagerTestAdsp, test_init) {
@@ -127,7 +114,10 @@ TEST_F(CodecManagerTestAdsp, test_start) {
 
   const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
       offloading_preference(0);
-  codec_manager->Start(offloading_preference);
+  bool offload_enable = true;
+  bool dual_bidirection_swb_supported = true;
+  codec_manager->Start(offload_enable, dual_bidirection_swb_supported,
+                       offloading_preference);
   Mock::VerifyAndClearExpectations(&btm_interface);
 
   ASSERT_EQ(codec_manager->GetCodecLocation(), CodecLocation::ADSP);
@@ -146,7 +136,10 @@ TEST_F(CodecManagerTestAdsp, test_start) {
 TEST_F(CodecManagerTestAdsp, testStreamConfigurationAdspDownMix) {
   const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
       offloading_preference(0);
-  codec_manager->Start(offloading_preference);
+  bool offload_enable = true;
+  bool dual_bidirection_swb_supported = true;
+  codec_manager->Start(offload_enable, dual_bidirection_swb_supported,
+                       offloading_preference);
 
   // Current CIS configuration for two earbuds
   std::vector<struct types::cis> cises{
@@ -283,13 +276,7 @@ TEST_F(CodecManagerTestAdsp, testStreamConfigurationAdspDownMix) {
 /*----------------- HOST codec manager tests ------------------*/
 class CodecManagerTestHost : public CodecManagerTestBase {
  public:
-  virtual void SetUp() override {
-    // Enable the HW offloader
-    osi_property_set_bool(kPropLeAudioOffloadSupported, false);
-    osi_property_set_bool(kPropLeAudioOffloadDisabled, false);
-
-    CodecManagerTestBase::SetUp();
-  }
+  virtual void SetUp() override { CodecManagerTestBase::SetUp(); }
 };
 
 TEST_F(CodecManagerTestHost, test_init) {
@@ -308,7 +295,10 @@ TEST_F(CodecManagerTestHost, test_start) {
 
   const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
       offloading_preference(0);
-  codec_manager->Start(offloading_preference);
+  bool offload_enable = false;
+  bool dual_bidirection_swb_supported = true;
+  codec_manager->Start(offload_enable, dual_bidirection_swb_supported,
+                       offloading_preference);
   Mock::VerifyAndClearExpectations(&btm_interface);
 
   ASSERT_EQ(codec_manager->GetCodecLocation(), CodecLocation::HOST);

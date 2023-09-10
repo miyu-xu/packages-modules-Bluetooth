@@ -69,6 +69,7 @@ void CodecManager::UpdateBroadcastConnHandle(
 }
 
 void CodecManager::Start(
+    bool offload_enable, bool dual_bidirection_swb_supported,
     const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
         offloading_preference) {
   // It is needed here as CodecManager which is a singleton creates it, but in

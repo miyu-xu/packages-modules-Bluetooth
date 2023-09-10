@@ -1416,7 +1416,9 @@ class UnicastTestNoInit : public Test {
     available_src_context_types_ = 0xffff;
     supported_snk_context_types_ = 0xffff;
     supported_src_context_types_ = 0xffff;
-    le_audio::AudioSetConfigurationProvider::Initialize(codec_location);
+    bool dual_bidirection_swb_supported = true;
+    le_audio::AudioSetConfigurationProvider::Initialize(
+        dual_bidirection_swb_supported, codec_location);
     ASSERT_FALSE(LeAudioClient::IsLeAudioClientRunning());
   }
 
@@ -1425,7 +1427,10 @@ class UnicastTestNoInit : public Test {
     ASSERT_NE(codec_manager_, nullptr);
     std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
         mock_offloading_preference(0);
-    codec_manager_->Start(mock_offloading_preference);
+    bool offload_enable = false;
+    bool dual_bidirection_swb_supported = true;
+    codec_manager_->Start(offload_enable, dual_bidirection_swb_supported,
+                          mock_offloading_preference);
     mock_codec_manager_ = MockCodecManager::GetInstance();
     ASSERT_NE((void*)mock_codec_manager_, (void*)codec_manager_);
     ASSERT_NE(mock_codec_manager_, nullptr);

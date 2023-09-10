@@ -5660,7 +5660,14 @@ void LeAudioClient::Initialize(
   instance = new LeAudioClientImpl(callbacks_, stateMachineCallbacks, initCb);
 
   IsoManager::GetInstance()->RegisterCigCallbacks(stateMachineHciCallbacks);
-  CodecManager::GetInstance()->Start(offloading_preference);
+  bool offload_enable =
+      osi_property_get_bool("ro.bluetooth.leaudio_offload.supported", false) &&
+      !osi_property_get_bool("persist.bluetooth.leaudio_offload.disabled",
+                             true);
+  bool dual_bidirection_swb_supported = osi_property_get_bool(
+      "bluetooth.leaudio.dual_bidirection_swb.supported", true);
+  CodecManager::GetInstance()->Start(
+      offload_enable, dual_bidirection_swb_supported, offloading_preference);
   ContentControlIdKeeper::GetInstance()->Start();
 
   callbacks_->OnInitialized();

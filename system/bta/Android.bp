@@ -714,7 +714,6 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
-        ":TestStubOsi",
         "le_audio/codec_manager.cc",
         "le_audio/codec_manager_test.cc",
         "le_audio/le_audio_set_configuration_provider_json.cc",
@@ -748,7 +747,6 @@ cc_test {
         "libevent",
         "libflatbuffers-cpp",
         "libgmock",
-        "libosi",
     ],
     sanitize: {
         cfi: false,

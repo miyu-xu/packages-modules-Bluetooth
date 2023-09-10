@@ -460,7 +460,10 @@ class StateMachineTestBase : public Test {
     ASSERT_NE(codec_manager_, nullptr);
     std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
         mock_offloading_preference(0);
-    codec_manager_->Start(mock_offloading_preference);
+    bool offload_enable = false;
+    bool dual_bidirection_swb_supported = true;
+    codec_manager_->Start(offload_enable, dual_bidirection_swb_supported,
+                          mock_offloading_preference);
     mock_codec_manager_ = MockCodecManager::GetInstance();
     ASSERT_NE(mock_codec_manager_, nullptr);
     ON_CALL(*mock_codec_manager_, GetCodecLocation())
@@ -1297,8 +1300,9 @@ class StateMachineTestBase : public Test {
 class StateMachineTest : public StateMachineTestBase {
   void SetUp() override {
     ConfigCodecManagerMock(types::CodecLocation::HOST);
+    bool dual_bidirection_swb_supported = true;
     ::le_audio::AudioSetConfigurationProvider::Initialize(
-        ::le_audio::types::CodecLocation::HOST);
+        dual_bidirection_swb_supported, ::le_audio::types::CodecLocation::HOST);
     StateMachineTestBase::SetUp();
   }
 };
@@ -1306,8 +1310,9 @@ class StateMachineTest : public StateMachineTestBase {
 class StateMachineTestAdsp : public StateMachineTestBase {
   void SetUp() override {
     ConfigCodecManagerMock(types::CodecLocation::ADSP);
+    bool dual_bidirection_swb_supported = true;
     ::le_audio::AudioSetConfigurationProvider::Initialize(
-        ::le_audio::types::CodecLocation::ADSP);
+        dual_bidirection_swb_supported, ::le_audio::types::CodecLocation::ADSP);
     StateMachineTestBase::SetUp();
   }
 };

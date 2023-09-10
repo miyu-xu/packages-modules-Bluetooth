@@ -70,9 +70,9 @@ static const std::vector<
 struct AudioSetConfigurationProviderJson {
   static constexpr auto kDefaultScenario = "Media";
 
-  AudioSetConfigurationProviderJson(types::CodecLocation location) {
-    dual_bidirection_swb_supported_ = osi_property_get_bool(
-        "bluetooth.leaudio.dual_bidirection_swb.supported", true);
+  AudioSetConfigurationProviderJson(bool dual_bidirection_swb_supported,
+                                    types::CodecLocation location) {
+    dual_bidirection_swb_supported_ = dual_bidirection_swb_supported;
     ASSERT_LOG(LoadContent(kLeAudioSetConfigs, kLeAudioSetScenarios, location),
                ": Unable to load le audio set configuration files.");
   }
@@ -620,10 +620,11 @@ struct AudioSetConfigurationProvider::impl {
   impl(const AudioSetConfigurationProvider& config_provider)
       : config_provider_(config_provider) {}
 
-  void Initialize(types::CodecLocation location) {
+  void Initialize(bool dual_bidirection_swb_supported,
+                  types::CodecLocation location) {
     ASSERT_LOG(!config_provider_impl_, " Config provider not available.");
-    config_provider_impl_ =
-        std::make_unique<AudioSetConfigurationProviderJson>(location);
+    config_provider_impl_ = std::make_unique<AudioSetConfigurationProviderJson>(
+        dual_bidirection_swb_supported, location);
   }
 
   void Cleanup() {
@@ -676,13 +677,15 @@ std::mutex instance_mutex;
 AudioSetConfigurationProvider::AudioSetConfigurationProvider()
     : pimpl_(std::make_unique<AudioSetConfigurationProvider::impl>(*this)) {}
 
-void AudioSetConfigurationProvider::Initialize(types::CodecLocation location) {
+void AudioSetConfigurationProvider::Initialize(
+    bool dual_bidirection_swb_supported, types::CodecLocation location) {
   std::scoped_lock<std::mutex> lock(instance_mutex);
   if (!config_provider)
     config_provider = std::make_unique<AudioSetConfigurationProvider>();
 
   if (!config_provider->pimpl_->IsRunning())
-    config_provider->pimpl_->Initialize(location);
+    config_provider->pimpl_->Initialize(dual_bidirection_swb_supported,
+                                        location);
 }
 
 void AudioSetConfigurationProvider::DebugDump(int fd) {
