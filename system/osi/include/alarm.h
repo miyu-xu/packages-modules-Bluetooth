@@ -19,6 +19,7 @@
 #pragma once
 
 #include <stdbool.h>
+#include <stddef.h>
 #include <stdint.h>
 
 typedef struct alarm_t alarm_t;
@@ -27,6 +28,14 @@ typedef struct thread_t thread_t;
 
 // Prototype for the alarm callback function.
 typedef void (*alarm_callback_t)(void* data);
+
+typedef void (*alarm_trigger_first_t)(void);
+
+// Initialize alarm without a backing timer.
+// Alarms callbacks will not be triggered anymore.
+// Returns a function that when called, triggers
+// the first pending timer
+alarm_trigger_first_t alarm_initialize_for_test(void);
 
 // Creates a new one-time off alarm object with user-assigned
 // |name|. |name| may not be NULL, and a copy of the string will
@@ -94,6 +103,9 @@ bool alarm_is_scheduled(const alarm_t* alarm);
 // Returns 0 if not armed. |alarm| may not be NULL.
 // TODO: Remove this function once PM timers can be re-factored
 uint64_t alarm_get_remaining_ms(const alarm_t* alarm);
+
+// Returns the number of alarms pending to be scheduled
+size_t alarm_pending_count(void);
 
 // Cleanup the alarm internal state.
 // This function should be called by the OSI module cleanup during

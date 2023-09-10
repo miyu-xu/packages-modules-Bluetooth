@@ -151,6 +151,7 @@ static void update_scheduling_stats(alarm_stats_t* stats, uint64_t now_ms,
 // |queue| may not be NULL. |thread| may not be NULL.
 static void alarm_register_processing_queue(fixed_queue_t* queue,
                                             thread_t* thread);
+static void alarm_trigger_first(void);
 
 static void update_stat(stat_t* stat, uint64_t delta_ms) {
   if (stat->max_ms < delta_ms) stat->max_ms = delta_ms;
@@ -208,6 +209,11 @@ uint64_t alarm_get_remaining_ms(const alarm_t* alarm) {
     remaining_ms = alarm->deadline_ms - just_now_ms;
 
   return remaining_ms;
+}
+
+size_t alarm_pending_count(void) {
+  std::lock_guard<std::mutex> lock(alarms_mutex);
+  return list_length(alarms);
 }
 
 void alarm_set(alarm_t* alarm, uint64_t interval_ms, alarm_callback_t cb,
@@ -303,6 +309,21 @@ void alarm_cleanup(void) {
 
   list_free(alarms);
   alarms = NULL;
+}
+
+alarm_trigger_first_t alarm_initialize_for_test(void) {
+  CHECK(alarms == NULL);
+
+  alarms = list_new(NULL);
+  CHECK(alarms != NULL);
+
+  alarm_expired = semaphore_new(0);
+  CHECK(alarm_expired != NULL);
+
+  default_callback_queue = fixed_queue_new(SIZE_MAX);
+  CHECK(default_callback_queue != NULL);
+
+  return alarm_trigger_first;
 }
 
 static bool lazy_initialize(void) {
@@ -660,6 +681,23 @@ static void callback_dispatch(UNUSED_ATTR void* context) {
   }
 
   LOG_INFO("%s Callback thread exited", __func__);
+}
+
+static void alarm_trigger_first(void) {
+  std::unique_lock<std::mutex> lock(alarms_mutex);
+
+  CHECK(!list_is_empty(alarms));
+
+  alarm_t* alarm = static_cast<alarm_t*>(list_front(alarms));
+  list_remove(alarms, alarm);
+
+  if (alarm->is_periodic) {
+    alarm->prev_deadline_ms = alarm->deadline_ms;
+    schedule_next_instance(alarm);
+    alarm->stats.rescheduled_count++;
+  }
+
+  alarm_ready_generic(alarm, lock);
 }
 
 static bool timer_create_internal(const clockid_t clock_id, timer_t* timer) {
