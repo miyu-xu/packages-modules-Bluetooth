@@ -422,7 +422,8 @@ void PacketDef::GenBuilderDefinition(std::ostream& s, bool generate_fuzzing, boo
 void PacketDef::GenTestingFromView(std::ostream& s) const {
   s << "#if defined(PACKET_FUZZ_TESTING) || defined(PACKET_TESTING) || defined(FUZZ_TARGET)\n";
 
-  s << "static std::unique_ptr<" << name_ << "Builder> FromView(" << name_ << "View view) {";
+  s << "static std::unique_ptr<" << name_ << "Builder> FromView([[maybe_unused]] " << name_
+    << "View view) {";
   s << "return " << name_ << "Builder::Create(";
   FieldList params = GetParamList().GetFieldsWithoutTypes({
       BodyField::kFieldType,
