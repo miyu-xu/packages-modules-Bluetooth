@@ -777,51 +777,6 @@ class LeAudioClientImpl : public LeAudioClient {
     group_remove_node(group, address, true);
   }
 
-  AudioContexts ChooseMetadataContextType(AudioContexts metadata_context_type) {
-    /* This function takes already filtered contexts which we are plannig to use
-     * in the Enable or UpdateMetadata command.
-     * Note we are not changing stream configuration here, but just the list of
-     * the contexts in the Metadata which will be provide to remote side.
-     * Ideally, we should send all the bits we have, but not all headsets like
-     * it.
-     */
-    if (osi_property_get_bool(kAllowMultipleContextsInMetadata, true)) {
-      return metadata_context_type;
-    }
-
-    LOG_DEBUG("Converting to single context type: %s",
-              metadata_context_type.to_string().c_str());
-
-    /* Mini policy */
-    if (metadata_context_type.any()) {
-      LeAudioContextType context_priority_list[] = {
-          /* Highest priority first */
-          LeAudioContextType::CONVERSATIONAL,
-          LeAudioContextType::RINGTONE,
-          LeAudioContextType::LIVE,
-          LeAudioContextType::VOICEASSISTANTS,
-          LeAudioContextType::GAME,
-          LeAudioContextType::MEDIA,
-          LeAudioContextType::EMERGENCYALARM,
-          LeAudioContextType::ALERTS,
-          LeAudioContextType::INSTRUCTIONAL,
-          LeAudioContextType::NOTIFICATIONS,
-          LeAudioContextType::SOUNDEFFECTS,
-      };
-      for (auto ct : context_priority_list) {
-        if (metadata_context_type.test(ct)) {
-          LOG_DEBUG("Converted to single context type: %s",
-                    ToString(ct).c_str());
-          return AudioContexts(ct);
-        }
-      }
-    }
-
-    /* Fallback to BAP mandated context type */
-    LOG_WARN("Invalid/unknown context, using 'UNSPECIFIED'");
-    return AudioContexts(LeAudioContextType::UNSPECIFIED);
-  }
-
   /* Return true if stream is started */
   bool GroupStream(int group_id, LeAudioContextType configuration_context_type,
                    BidirectionalPair<AudioContexts> remote_contexts) {
@@ -3750,8 +3705,6 @@ class LeAudioClientImpl : public LeAudioClient {
 
     /* Group should tie in time to get requested status */
     uint64_t timeoutMs = kAudioSuspentKeepIsoAliveTimeoutMs;
-    timeoutMs = osi_property_get_int32(kAudioSuspentKeepIsoAliveTimeoutMsProp,
-                                       timeoutMs);
 
     if (stack_config_get_interface()
             ->get_pts_le_audio_disable_ases_before_stopping()) {
@@ -4385,11 +4338,6 @@ class LeAudioClientImpl : public LeAudioClient {
     local_metadata_context_types_.source =
         GetAudioContextsFromSourceMetadata(source_metadata);
 
-    local_metadata_context_types_.sink =
-        ChooseMetadataContextType(local_metadata_context_types_.sink);
-    local_metadata_context_types_.source =
-        ChooseMetadataContextType(local_metadata_context_types_.source);
-
     ReconfigureOrUpdateRemote(group, le_audio::types::kLeAudioDirectionSink);
   }
 
@@ -4496,9 +4444,6 @@ class LeAudioClientImpl : public LeAudioClient {
       }
     }
 
-    contexts_pair.sink = ChooseMetadataContextType(contexts_pair.sink);
-    contexts_pair.source = ChooseMetadataContextType(contexts_pair.source);
-
     LOG_DEBUG("Aligned remote metadata audio context: sink=%s, source=%s",
               ToString(contexts_pair.sink).c_str(),
               ToString(contexts_pair.source).c_str());
@@ -4529,11 +4474,6 @@ class LeAudioClientImpl : public LeAudioClient {
     /* Set remote source metadata context from the recording tracks metadata */
     local_metadata_context_types_.sink =
         GetAudioContextsFromSinkMetadata(sink_metadata);
-
-    local_metadata_context_types_.sink =
-        ChooseMetadataContextType(local_metadata_context_types_.sink);
-    local_metadata_context_types_.source =
-        ChooseMetadataContextType(local_metadata_context_types_.source);
 
     /* Reconfigure or update only if the stream is already started
      * otherwise wait for the local sink to resume.
@@ -5278,8 +5218,6 @@ class LeAudioClientImpl : public LeAudioClient {
   LeAudioGroupStateMachine* groupStateMachine_;
   int active_group_id_;
   LeAudioContextType configuration_context_type_;
-  static constexpr char kAllowMultipleContextsInMetadata[] =
-      "persist.bluetooth.leaudio.allow.multiple.contexts";
   BidirectionalPair<AudioContexts> local_metadata_context_types_;
   uint64_t stream_setup_start_timestamp_;
   uint64_t stream_setup_end_timestamp_;
@@ -5340,8 +5278,6 @@ class LeAudioClientImpl : public LeAudioClient {
   std::unique_ptr<LeAudioSinkAudioHalClient> le_audio_sink_hal_client_;
   static constexpr uint64_t kAudioSuspentKeepIsoAliveTimeoutMs = 5000;
   static constexpr uint64_t kAudioDisableTimeoutMs = 3000;
-  static constexpr char kAudioSuspentKeepIsoAliveTimeoutMsProp[] =
-      "persist.bluetooth.leaudio.audio.suspend.timeoutms";
   alarm_t* close_vbc_timeout_;
   alarm_t* suspend_timeout_;
   alarm_t* disable_timer_;
