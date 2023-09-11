@@ -215,10 +215,15 @@ class LeAudioClientImpl : public LeAudioClient {
   };
 
   LeAudioClientImpl(
+      bool dual_bidirection_swb_supported,
+      bool notify_upper_layer_about_group_being_in_idle_during_call,
       bluetooth::le_audio::LeAudioClientCallbacks* callbacks_,
       LeAudioGroupStateMachine::Callbacks* state_machine_callbacks_,
       base::Closure initCb)
-      : gatt_if_(0),
+      : dual_bidirection_swb_supported_(dual_bidirection_swb_supported),
+        notify_upper_layer_about_group_being_in_idle_during_call_(
+            notify_upper_layer_about_group_being_in_idle_during_call),
+        gatt_if_(0),
         callbacks_(callbacks_),
         active_group_id_(bluetooth::groups::kGroupUnknown),
         configuration_context_type_(LeAudioContextType::UNINITIALIZED),
@@ -368,8 +373,7 @@ class LeAudioClientImpl : public LeAudioClient {
   void OnGroupAddedCb(const RawAddress& address, const bluetooth::Uuid& uuid,
                       int group_id) {
     LOG(INFO) << __func__ << " address: " << ADDRESS_TO_LOGGABLE_STR(address)
-              << " group uuid " << uuid
-              << " group_id: " << group_id;
+              << " group uuid " << uuid << " group_id: " << group_id;
 
     /* We are interested in the groups which are in the context of CAP */
     if (uuid != le_audio::uuid::kCapServiceUuid) return;
@@ -436,10 +440,9 @@ class LeAudioClientImpl : public LeAudioClient {
 
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
     if (group == NULL) {
-      LOG(INFO) << __func__
-                << " device not in the group: "
-                << ADDRESS_TO_LOGGABLE_STR(leAudioDevice->address_)
-                << ", " << group_id;
+      LOG(INFO) << __func__ << " device not in the group: "
+                << ADDRESS_TO_LOGGABLE_STR(leAudioDevice->address_) << ", "
+                << group_id;
       return;
     }
 
@@ -648,7 +651,7 @@ class LeAudioClientImpl : public LeAudioClient {
         return;
       }
 
-      new_group = aseGroups_.Add(id);
+      new_group = aseGroups_.Add(dual_bidirection_swb_supported_, id);
       if (!new_group) {
         LOG(ERROR) << __func__
                    << ", can't create group - group is already there?";
@@ -660,7 +663,7 @@ class LeAudioClientImpl : public LeAudioClient {
                  group_id, id);
       new_group = aseGroups_.FindById(group_id);
       if (!new_group) {
-        new_group = aseGroups_.Add(group_id);
+        new_group = aseGroups_.Add(dual_bidirection_swb_supported_, group_id);
       } else {
         if (new_group->IsDeviceInTheGroup(leAudioDevice)) return;
       }
@@ -752,8 +755,7 @@ class LeAudioClientImpl : public LeAudioClient {
               << " address: " << ADDRESS_TO_LOGGABLE_STR(address);
 
     if (!leAudioDevice) {
-      LOG(ERROR) << __func__
-                 << ", Skipping unknown leAudioDevice, address: "
+      LOG(ERROR) << __func__ << ", Skipping unknown leAudioDevice, address: "
                  << ADDRESS_TO_LOGGABLE_STR(address);
       return;
     }
@@ -1952,7 +1954,8 @@ class LeAudioClientImpl : public LeAudioClient {
       LOG(INFO) << __func__ << ", Configure MTU";
       /* Use here kBapMinimumAttMtu, because we know that GATT will request
        * default ATT MTU anyways. We also know that GATT will use this
-       * kBapMinimumAttMtu as an input for Data Length Update procedure in the controller.
+       * kBapMinimumAttMtu as an input for Data Length Update procedure in the
+       * controller.
        */
       BtaGattQueue::ConfigureMtu(leAudioDevice->conn_id_, kBapMinimumAttMtu);
     }
@@ -5020,8 +5023,7 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
   void NotifyUpperLayerGroupTurnedIdleDuringCall(int group_id) {
-    if (!osi_property_get_bool(kNotifyUpperLayerAboutGroupBeingInIdleDuringCall,
-                               false)) {
+    if (!notify_upper_layer_about_group_being_in_idle_during_call_) {
       return;
     }
 
@@ -5159,8 +5161,8 @@ class LeAudioClientImpl : public LeAudioClient {
                 kLeAudioContextAllRemoteSource.test(configuration_context_type_)
                     ? le_audio::types::kLeAudioDirectionSource
                     : le_audio::types::kLeAudioDirectionSink;
-            auto remote_contexts =
-                DirectionalRealignMetadataAudioContexts(group, remote_direction);
+            auto remote_contexts = DirectionalRealignMetadataAudioContexts(
+                group, remote_direction);
             ApplyRemoteMetadataAudioContextPolicy(group, remote_contexts,
                                                   remote_direction);
             if (GroupStream(group->group_id_, configuration_context_type_,
@@ -5169,7 +5171,7 @@ class LeAudioClientImpl : public LeAudioClient {
               return;
             }
             LOG_INFO("Clear pending configuration flag for group %d",
-                    group->group_id_);
+                     group->group_id_);
             group->ClearPendingConfiguration();
           }
         }
@@ -5211,6 +5213,8 @@ class LeAudioClientImpl : public LeAudioClient {
   }
 
  private:
+  bool dual_bidirection_swb_supported_;
+  bool notify_upper_layer_about_group_being_in_idle_during_call_;
   tGATT_IF gatt_if_;
   bluetooth::le_audio::LeAudioClientCallbacks* callbacks_;
   LeAudioDevices leAudioDevices_;
@@ -5240,9 +5244,6 @@ class LeAudioClientImpl : public LeAudioClient {
 
   /* LeAudioHealthStatus */
   LeAudioHealthStatus* leAudioHealthStatus_ = nullptr;
-
-  static constexpr char kNotifyUpperLayerAboutGroupBeingInIdleDuringCall[] =
-      "persist.bluetooth.leaudio.notify.idle.during.call";
 
   static constexpr uint16_t kBapMinimumAttMtu = 64;
 
@@ -5562,6 +5563,8 @@ LeAudioClient* LeAudioClient::Get() {
 
 /* Initializer of main le audio implementation class and its instance */
 void LeAudioClient::Initialize(
+    bool offload_enable, bool dual_bidirection_swb_supported,
+    bool notify_upper_layer_about_group_being_in_idle_during_call,
     bluetooth::le_audio::LeAudioClientCallbacks* callbacks_,
     base::Closure initCb, base::Callback<bool()> hal_2_1_verifier,
     const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&
@@ -5593,15 +5596,12 @@ void LeAudioClient::Initialize(
   stateMachineHciCallbacks = &stateMachineHciCallbacksImpl;
   stateMachineCallbacks = &stateMachineCallbacksImpl;
   device_group_callbacks = &deviceGroupsCallbacksImpl;
-  instance = new LeAudioClientImpl(callbacks_, stateMachineCallbacks, initCb);
+  instance = new LeAudioClientImpl(
+      dual_bidirection_swb_supported,
+      notify_upper_layer_about_group_being_in_idle_during_call, callbacks_,
+      stateMachineCallbacks, initCb);
 
   IsoManager::GetInstance()->RegisterCigCallbacks(stateMachineHciCallbacks);
-  bool offload_enable =
-      osi_property_get_bool("ro.bluetooth.leaudio_offload.supported", false) &&
-      !osi_property_get_bool("persist.bluetooth.leaudio_offload.disabled",
-                             true);
-  bool dual_bidirection_swb_supported = osi_property_get_bool(
-      "bluetooth.leaudio.dual_bidirection_swb.supported", true);
   CodecManager::GetInstance()->Start(
       offload_enable, dual_bidirection_swb_supported, offloading_preference);
   ContentControlIdKeeper::GetInstance()->Start();

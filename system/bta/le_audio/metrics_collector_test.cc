@@ -23,6 +23,7 @@
 #include <cstdint>
 #include <vector>
 
+#include "osi/include/metrics.h"
 #include "types/raw_address.h"
 
 using testing::_;
@@ -54,6 +55,9 @@ std::vector<RawAddress> last_device_address;
 std::vector<int64_t> last_streaming_offset_nanos;
 std::vector<int64_t> last_streaming_duration_nanos;
 std::vector<int32_t> last_streaming_context_type;
+
+void osi_metrics_wakelock_acquired(uint64_t now_ms) {}
+void osi_metrics_wakelock_released(uint64_t now_ms) {}
 
 namespace bluetooth {
 namespace common {

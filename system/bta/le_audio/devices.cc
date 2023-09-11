@@ -1417,8 +1417,6 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
   // make sure the device is always choosing the config that its
   // sampling rate matches with the sampling rate which is used
   // when all devices in the group are connected.
-  bool dual_bidirection_swb_supported_ = osi_property_get_bool(
-      "bluetooth.leaudio.dual_bidirection_swb.supported", true);
   if (Size() > 1 && !dual_bidirection_swb_supported_ &&
       AudioSetConfigurationProvider::Get()->CheckConfigurationIsBiDirSwb(
           *audio_set_conf)) {
@@ -2968,7 +2966,8 @@ bool LeAudioDevice::IsMetadataChanged(
   return false;
 }
 
-LeAudioDeviceGroup* LeAudioDeviceGroups::Add(int group_id) {
+LeAudioDeviceGroup* LeAudioDeviceGroups::Add(
+    bool dual_bidirection_swb_supported, int group_id) {
   /* Get first free group id */
   if (FindById(group_id)) {
     LOG(ERROR) << __func__
@@ -2976,7 +2975,8 @@ LeAudioDeviceGroup* LeAudioDeviceGroups::Add(int group_id) {
     return nullptr;
   }
 
-  return (groups_.emplace_back(std::make_unique<LeAudioDeviceGroup>(group_id)))
+  return (groups_.emplace_back(std::make_unique<LeAudioDeviceGroup>(
+              dual_bidirection_swb_supported, group_id)))
       .get();
 }
 

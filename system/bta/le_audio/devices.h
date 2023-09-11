@@ -268,6 +268,7 @@ class LeAudioDevices {
 
 class LeAudioDeviceGroup {
  public:
+  bool dual_bidirection_swb_supported_;
   const int group_id_;
   bool enabled_;
   types::CigState cig_state_;
@@ -283,8 +284,10 @@ class LeAudioDeviceGroup {
   bool is_duplex_preference_le_audio;
 
   std::vector<struct types::cis> cises_;
-  explicit LeAudioDeviceGroup(const int group_id)
-      : group_id_(group_id),
+  explicit LeAudioDeviceGroup(bool dual_bidirection_swb_supported,
+                              const int group_id)
+      : dual_bidirection_swb_supported_(dual_bidirection_swb_supported),
+        group_id_(group_id),
         enabled_(true),
         cig_state_(types::CigState::NONE),
         stream_conf({}),
@@ -568,7 +571,7 @@ class LeAudioDeviceGroup {
  */
 class LeAudioDeviceGroups {
  public:
-  LeAudioDeviceGroup* Add(int group_id);
+  LeAudioDeviceGroup* Add(bool dual_bidirection_swb_supported, int group_id);
   void Remove(const int group_id);
   LeAudioDeviceGroup* FindById(int group_id) const;
   std::vector<int> GetGroupsIds(void) const;

@@ -38,6 +38,8 @@ class LeAudioClient {
   virtual ~LeAudioClient(void) = default;
 
   static void Initialize(
+      bool offload_enable, bool dual_bidirection_swb_supported,
+      bool notify_upper_layer_about_group_being_in_idle_during_call,
       bluetooth::le_audio::LeAudioClientCallbacks* callbacks,
       base::Closure initCb, base::Callback<bool()> hal_2_1_verifier,
       const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>&

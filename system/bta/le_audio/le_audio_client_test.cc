@@ -77,15 +77,11 @@ using le_audio::types::AudioContexts;
 using le_audio::types::BidirectionalPair;
 using le_audio::types::LeAudioContextType;
 
-extern struct fake_osi_alarm_set_on_mloop fake_osi_alarm_set_on_mloop_;
-
 constexpr int max_num_of_ases = 5;
 constexpr le_audio::types::LeAudioContextType
     kLeAudioDefaultConfigurationContext =
         le_audio::types::LeAudioContextType::UNSPECIFIED;
 
-static constexpr char kNotifyUpperLayerAboutGroupBeingInIdleDuringCall[] =
-    "persist.bluetooth.leaudio.notify.idle.during.call";
 const char* test_flags[] = {
     "INIT_logging_debug_enabled_for_all=true",
     "INIT_leaudio_targeted_announcement_reconnection_mode=true",
@@ -99,8 +95,6 @@ const char* test_flags_with_health_status[] = {
     "INIT_leaudio_enable_health_based_actions=true",
     nullptr,
 };
-
-void osi_property_set_bool(const char* key, bool value);
 
 // Disables most likely false-positives from base::SplitString()
 extern "C" const char* __asan_default_options() {
@@ -1383,6 +1377,7 @@ class UnicastTestNoInit : public Test {
   }
 
   void SetUp() override {
+    alarm_trigger_first = alarm_initialize_for_test();
     init_message_loop_thread();
     ON_CALL(controller_interface_, SupportsBleConnectedIsochronousStreamCentral)
         .WillByDefault(Return(true));
@@ -1475,6 +1470,8 @@ class UnicastTestNoInit : public Test {
       le_audio::AudioSetConfigurationProvider::Cleanup();
 
     iso_manager_->Stop();
+
+    alarm_cleanup();
   }
 
  protected:
@@ -2536,10 +2533,15 @@ class UnicastTestNoInit : public Test {
   std::map<uint16_t, std::unique_ptr<NiceMock<MockDeviceWrapper>>> peer_devices;
   std::list<int> group_locks;
   std::map<RawAddress, int> groups;
+
+  alarm_trigger_first_t alarm_trigger_first;
 };
 
 class UnicastTest : public UnicastTestNoInit {
  protected:
+  virtual bool NotifyUpperLayerAboutGroupBeingInIdleDuringCall() {
+    return false;
+  }
   void SetUp() override {
     UnicastTestNoInit::SetUp();
 
@@ -2569,7 +2571,11 @@ class UnicastTest : public UnicastTestNoInit {
     EXPECT_CALL(mock_gatt_interface_, AppRegister(_, _, _))
         .WillOnce(DoAll(SaveArg<0>(&gatt_callback),
                         SaveArg<1>(&app_register_callback)));
+    bool offload_enable = false;
+    bool dual_bidirection_swb_supported = true;
     LeAudioClient::Initialize(
+        offload_enable, dual_bidirection_swb_supported,
+        NotifyUpperLayerAboutGroupBeingInIdleDuringCall(),
         &mock_audio_hal_client_callbacks_,
         base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
                    &mock_storage_load),
@@ -2592,6 +2598,14 @@ class UnicastTest : public UnicastTestNoInit {
     Mock::VerifyAndClear(&mock_audio_hal_client_callbacks_);
     groups.clear();
     UnicastTestNoInit::TearDown();
+  }
+};
+
+class UnicastTestNotifyUpperLayerAboutGroupBeingInIdleDuringCall
+    : public UnicastTest {
+ protected:
+  bool NotifyUpperLayerAboutGroupBeingInIdleDuringCall() override {
+    return true;
   }
 };
 
@@ -2629,8 +2643,14 @@ TEST_F(UnicastTestNoInit, InitializeNoHal_2_1) {
   std::vector<::bluetooth::le_audio::btle_audio_codec_config_t>
       framework_encode_preference;
 
+  bool offload_enable = false;
+  bool dual_bidirection_swb_supported = true;
+  bool notify_upper_layer_about_group_being_in_idle_during_call = false;
+
   EXPECT_DEATH(
       LeAudioClient::Initialize(
+          offload_enable, dual_bidirection_swb_supported,
+          notify_upper_layer_about_group_being_in_idle_during_call,
           &mock_audio_hal_client_callbacks_,
           base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
                      &mock_storage_load),
@@ -3313,7 +3333,12 @@ TEST_F(UnicastTestNoInit, ConnectFailedDueToInvalidParameters) {
   ON_CALL(mock_gatt_interface_, AppRegister(_, _, _))
       .WillByDefault(DoAll(SaveArg<0>(&gatt_callback),
                            SaveArg<1>(&app_register_callback)));
+  bool offload_enable = false;
+  bool dual_bidirection_swb_supported = true;
+  bool notify_upper_layer_about_group_being_in_idle_during_call = false;
   LeAudioClient::Initialize(
+      offload_enable, dual_bidirection_swb_supported,
+      notify_upper_layer_about_group_being_in_idle_during_call,
       &mock_audio_hal_client_callbacks_,
       base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
                  &mock_storage_load),
@@ -3444,7 +3469,12 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGrouped) {
   ON_CALL(mock_gatt_interface_, AppRegister(_, _, _))
       .WillByDefault(DoAll(SaveArg<0>(&gatt_callback),
                            SaveArg<1>(&app_register_callback)));
+  bool offload_enable = false;
+  bool dual_bidirection_swb_supported = true;
+  bool notify_upper_layer_about_group_being_in_idle_during_call = false;
   LeAudioClient::Initialize(
+      offload_enable, dual_bidirection_swb_supported,
+      notify_upper_layer_about_group_being_in_idle_during_call,
       &mock_audio_hal_client_callbacks_,
       base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
                  &mock_storage_load),
@@ -3596,7 +3626,12 @@ TEST_F(UnicastTestNoInit, LoadStoredEarbudsCsisGroupedDifferently) {
                            SaveArg<1>(&app_register_callback)));
   std::vector<::bluetooth::le_audio::btle_audio_codec_config_t>
       framework_encode_preference;
+  bool offload_enable = false;
+  bool dual_bidirection_swb_supported = true;
+  bool notify_upper_layer_about_group_being_in_idle_during_call = false;
   LeAudioClient::Initialize(
+      offload_enable, dual_bidirection_swb_supported,
+      notify_upper_layer_about_group_being_in_idle_during_call,
       &mock_audio_hal_client_callbacks_,
       base::Bind([](MockFunction<void()>* foo) { foo->Call(); },
                  &mock_storage_load),
@@ -5092,7 +5127,7 @@ TEST_F(UnicastTest, TwoEarbudsStreamingContextSwitchReconfigure) {
   // Stop
   StopStreaming(group_id);
   // simulate suspend timeout passed, alarm executing
-  fake_osi_alarm_set_on_mloop_.cb(fake_osi_alarm_set_on_mloop_.data);
+  alarm_trigger_first();
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
 
   // Conversational is a bidirectional scenario so expect GTBS CCID
@@ -5418,7 +5453,7 @@ TEST_F(UnicastTest, ModifyContextTypeOnDeviceA_WhileDeviceB_IsDisconnected) {
   // Stop
   StopStreaming(group_id);
   // simulate suspend timeout passed, alarm executing
-  fake_osi_alarm_set_on_mloop_.cb(fake_osi_alarm_set_on_mloop_.data);
+  alarm_trigger_first();
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
 
   // Device B got disconnected
@@ -5698,7 +5733,7 @@ TEST_F(UnicastTest, StartStreamToSupportedContextTypeThenMixUnavailable) {
   /* Stop stream */
   StopStreaming(group_id);
   // simulate suspend timeout passed, alarm executing
-  fake_osi_alarm_set_on_mloop_.cb(fake_osi_alarm_set_on_mloop_.data);
+  alarm_trigger_first();
   SyncOnMainLoop();
 
   Mock::VerifyAndClearExpectations(&mock_audio_hal_client_callbacks_);
@@ -6514,7 +6549,8 @@ TEST_F(UnicastTest, MusicDuringCallContextTypes) {
   LocalAudioSourceSuspend();
   LocalAudioSinkSuspend();
   // simulate suspend timeout passed, alarm executing
-  fake_osi_alarm_set_on_mloop_.cb(fake_osi_alarm_set_on_mloop_.data);
+  alarm_trigger_first();
+  alarm_trigger_first();
   Mock::VerifyAndClearExpectations(&mock_state_machine_);
 
   // Restart the stream with MEDIA
@@ -6735,11 +6771,10 @@ TEST_F(UnicastTest, StartNotAvailableUnsupportedContextTypeUnspecifiedAvail) {
   TestAudioDataTransfer(group_id, cis_count_out, cis_count_in, 1920);
 }
 
-TEST_F(UnicastTest, NotifyAboutGroupTunrnedIdleEnabled) {
+TEST_F(UnicastTestNotifyUpperLayerAboutGroupBeingInIdleDuringCall,
+       NotifyAboutGroupTunrnedIdleEnabled) {
   const RawAddress test_address0 = GetTestAddress(0);
   int group_id = bluetooth::groups::kGroupUnknown;
-
-  osi_property_set_bool(kNotifyUpperLayerAboutGroupBeingInIdleDuringCall, true);
 
   SetSampleDatabaseEarbudsValid(
       1, test_address0, codec_spec_conf::kLeAudioLocationStereo,
@@ -6803,8 +6838,6 @@ TEST_F(UnicastTest, NotifyAboutGroupTunrnedIdleEnabled) {
   Mock::VerifyAndClearExpectations(&mock_le_audio_source_hal_client_);
 
   LeAudioClient::Get()->SetInCall(false);
-  osi_property_set_bool(kNotifyUpperLayerAboutGroupBeingInIdleDuringCall,
-                        false);
 }
 
 TEST_F(UnicastTest, NotifyAboutGroupTunrnedIdleDisabled) {

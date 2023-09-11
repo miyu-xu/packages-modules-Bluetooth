@@ -872,7 +872,6 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
-        ":TestStubOsi",
         "gatt/database.cc",
         "gatt/database_builder.cc",
         "le_audio/client.cc",
