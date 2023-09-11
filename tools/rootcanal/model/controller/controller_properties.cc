@@ -1876,7 +1876,7 @@ ControllerProperties::ControllerProperties(
 
       case ControllerPreset::CSR_RCK_PTS_DONGLE:
         // Configuration extracted with the helper script controller_info.py
-        supports_csr_vendor_command = true;
+        vendor_csr = true;
         br_supported = true;
         le_supported = true;
         hci_version = bluetooth::hci::HciVersion::V_4_2;
@@ -1970,10 +1970,7 @@ ControllerProperties::ControllerProperties(
   // Apply selected vendor features.
   if (config.has_vendor()) {
     if (config.vendor().has_csr()) {
-      supports_csr_vendor_command = config.vendor().csr();
-    }
-    if (config.vendor().has_android()) {
-      supports_le_apcf_vendor_command = config.vendor().android();
+      vendor_csr = config.vendor().csr();
     }
   }
 
