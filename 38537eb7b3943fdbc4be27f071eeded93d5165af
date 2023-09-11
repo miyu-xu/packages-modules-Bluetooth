@@ -22,6 +22,30 @@
       },
       "revId": "38537eb7b3943fdbc4be27f071eeded93d5165af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05d949e5_78a30ca3",
+        "filename": "tools/rootcanal/model/controller/controller_properties.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1975,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-11T15:35:02Z",
+      "side": 1,
+      "message": "There is a need for it for pts-bot tests, when using a single config for the pts-dongle and android.\n\nAs long as the vendor do not clash (i.e. use the same opcodes) I am happy to let a user enable multiple vendors.",
+      "parentUuid": "58c8bed4_f3b92b6b",
+      "range": {
+        "startLine": 1974,
+        "startChar": 4,
+        "endLine": 1975,
+        "endChar": 6
+      },
+      "revId": "38537eb7b3943fdbc4be27f071eeded93d5165af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
