@@ -33,6 +33,24 @@
       "message": "Are you sure you don\u0027t want to just reuse the NOCP correlation time here? You should update the comment if it makes sense to split the two.",
       "revId": "d3e95a9e78d00c310a36de14d4c7195005effc25",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb4b8c3f_a3d0dc72",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-11T04:20:00Z",
+      "side": 1,
+      "message": "Ack. End up using the same time const.",
+      "parentUuid": "6c348b4c_dc2dd456",
+      "revId": "d3e95a9e78d00c310a36de14d4c7195005effc25",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
