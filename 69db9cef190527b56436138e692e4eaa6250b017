@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74afd717_0a7fa5f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-11T03:34:59Z",
+      "side": 1,
+      "message": "Hi Abhishek, liblc3 was added recently and libabsl is not in build.py but in https://android.googlesource.com/platform/packages/modules/Bluetooth.\nIIUC, we probably also want to update the doc as well?",
+      "revId": "69db9cef190527b56436138e692e4eaa6250b017",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
