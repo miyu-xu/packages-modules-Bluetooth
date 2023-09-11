@@ -16,6 +16,24 @@
       "message": "Hi wescande,\n\nObserved this change(patch set 1) is causing calculator regression\n\nhttps://screenshot.googleplex.com/BsGBsrgdRrHTCnk\n\nhttps://crystalball-presubmit.corp.google.com/dashboard/I30200010195847187?change_number\u003d2746026\u0026host\u003dandroid-review.googlesource.com\u0026patchset\u003d1\n\nPlease fix this regression before merging this change.",
       "revId": "2c9537460711d2fbefd848fcad09c5181ce27649",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2f104df_0dfad7fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-11T18:34:09Z",
+      "side": 1,
+      "message": "Hi,\nThe first patchset was not working as expected. This should no longer be the case.\nLooking at the presubmit run for patchset 2, open-calculator does no longer seems to be failing.\nI consider this change safe to land now, please, re-open if I am wrong !\n\n---\n\nAlso... why does a calculator need to fetch the Gatt service ? 😂",
+      "parentUuid": "ca52a2ff_b71a7e15",
+      "revId": "2c9537460711d2fbefd848fcad09c5181ce27649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
