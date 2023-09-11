@@ -126,6 +126,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fa51cd7c_f90b22c3",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-11T21:28:05Z",
+      "side": 1,
+      "message": "I\u0027m not a fan of moving the parsing into the proc macro like this. Can we change logging Enabled and Disabled enum into separate structs and store it as a generic for logging?\n\n```\nstruct DBusLog\u003cT\u003e {\n  details: T\n}\n\ntrait DbusLogging {\n  fn format();\n}\n\nstruct LoggingDisabled;\nimpl DbusLogging for LoggingDisabled {\n  fn format(){}\n}\n\nstruct LoggingEnabled(DBusLogOptions, DBusLogVerbosity);\nimpl DBusLogging for LoggingEnabled {\n  fn format() -\u003e Option\u003cString\u003e {\n    let log_options \u003d \u0026self.0;\n    let log_verbosity \u003d \u0026self.1;\n    \n    // ... rest of logging implementation\n  }\n}\n```",
+      "parentUuid": "a795b7e6_f8e78ec9",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4135eed3_dc520c06",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 1
