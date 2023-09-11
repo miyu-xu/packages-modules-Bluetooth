@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05fdc6f4_3f29bd6c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-11T23:13:47Z",
+      "side": 1,
+      "message": "+hallstrom for LE scanning review\n\nHsin-chen, you should also update the le_scanning_manager_test to cover this scenario",
+      "revId": "94b8298a2e65f91a2608769ffd005eb11a78aac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
