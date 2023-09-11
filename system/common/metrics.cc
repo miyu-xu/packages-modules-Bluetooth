@@ -36,15 +36,25 @@
 
 #include "address_obfuscator.h"
 #include "bluetooth/metrics/bluetooth.pb.h"
-#include "gd/metrics/metrics_state.h"
 #include "gd/hci/address.h"
+#include "gd/metrics/metrics_state.h"
 #include "gd/os/metrics.h"
 #include "leaky_bonded_queue.h"
 #include "metric_id_allocator.h"
+#include "osi/include/metrics.h"
 #include "osi/include/osi.h"
 #include "stack/include/btm_api_types.h"
 #include "time_util.h"
 #include "types/raw_address.h"
+
+void osi_metrics_wakelock_acquired(uint64_t now_ms) {
+  bluetooth::common::BluetoothMetricsLogger::GetInstance()->LogWakeEvent(
+      bluetooth::common::WAKE_EVENT_ACQUIRED, "", "", now_ms);
+}
+void osi_metrics_wakelock_released(uint64_t now_ms) {
+  bluetooth::common::BluetoothMetricsLogger::GetInstance()->LogWakeEvent(
+      bluetooth::common::WAKE_EVENT_RELEASED, "", "", now_ms);
+}
 
 namespace bluetooth {
 

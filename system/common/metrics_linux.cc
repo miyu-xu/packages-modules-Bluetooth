@@ -20,7 +20,11 @@
 
 #include "leaky_bonded_queue.h"
 #include "metrics.h"
+#include "osi/include/metrics.h"
 #include "types/raw_address.h"
+
+void osi_metrics_wakelock_acquired(uint64_t now_ms) {}
+void osi_metrics_wakelock_released(uint64_t now_ms) {}
 
 namespace bluetooth {
 
