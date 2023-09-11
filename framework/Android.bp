@@ -91,6 +91,10 @@ java_sdk_library {
     lint: {
         strict_updatability_linting: true,
     },
+    droiddoc_options: [
+        "--hide MissingNullability",
+        "--hide NoClone",
+    ],
 }
 
 // defaults for tests that need to build against framework-bluetooths's @hide APIs
