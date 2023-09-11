@@ -22,6 +22,30 @@
       },
       "revId": "a39f6420b05855836a0e0df81febe861f4cfbb78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6ebcebe_ee47bd4c",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-11T21:23:07Z",
+      "side": 1,
+      "message": "Addressed this by cleaning it in the Handler.",
+      "parentUuid": "edf88547_f5777d08",
+      "range": {
+        "startLine": 335,
+        "startChar": 8,
+        "endLine": 335,
+        "endChar": 16
+      },
+      "revId": "a39f6420b05855836a0e0df81febe861f4cfbb78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
