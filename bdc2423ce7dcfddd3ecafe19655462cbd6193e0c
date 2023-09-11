@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45557632_027e2a99",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-11T18:08:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bfb5485c_0e4d499f",
+      "range": {
+        "startLine": 235,
+        "startChar": 7,
+        "endLine": 236,
+        "endChar": 24
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb5b9a08_0c3b21a5",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-09T05:34:23Z",
       "side": 1,
       "message": "ditto \u003d\u003e move after the thread are stopped",
+      "range": {
+        "startLine": 352,
+        "startChar": 5,
+        "endLine": 354,
+        "endChar": 24
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ada3dc1d_8fe0b957",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-11T18:08:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb5b9a08_0c3b21a5",
       "range": {
         "startLine": 352,
         "startChar": 5,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "122018b0_9a6ac79d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-11T18:08:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1596e402_00ba64ce",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 28
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c96bd7dc_3f6a816d",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e996883_6fdc5be2",
+        "filename": "android/app/src/com/android/bluetooth/csip/CsipSetCoordinatorService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-11T18:08:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c96bd7dc_3f6a816d",
+      "range": {
+        "startLine": 194,
+        "startChar": 6,
+        "endLine": 196,
+        "endChar": 23
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a133f8e3_c2f3cbce",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-09-09T05:34:23Z",
       "side": 1,
       "message": "since handleConnectionStateChange is called from another thread, I think this is not correct.\n\nYou can still have the other thread alive, while the handler is null, making the post a NPE.\n\nThe handler should be clear and the callback removed AFTER the statemachine thread has quit",
+      "range": {
+        "startLine": 282,
+        "startChar": 8,
+        "endLine": 282,
+        "endChar": 16
+      },
+      "revId": "bdc2423ce7dcfddd3ecafe19655462cbd6193e0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78d902dc_f73e9f78",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-11T18:08:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a133f8e3_c2f3cbce",
       "range": {
         "startLine": 282,
         "startChar": 8,
