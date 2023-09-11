@@ -16,6 +16,24 @@
       "message": "Please for next CL, add a bug instead of bypassing the Lint with a +2.\nThis is helpful to automatically generate release note.\n\nNot having a bug number require manual manipulation by the release team and is discouraged.",
       "revId": "094b1694caf85c27f4c11f1830c53b8d6382b409",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6b6957_5207c2f4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-11T05:57:22Z",
+      "side": 1,
+      "message": "Thanks for notifying. Will take care of this.",
+      "parentUuid": "a7b8c5cd_ce5158b1",
+      "revId": "094b1694caf85c27f4c11f1830c53b8d6382b409",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
