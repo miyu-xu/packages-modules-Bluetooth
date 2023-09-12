@@ -44,7 +44,32 @@ class LeAudioDeviceGroup {
  public:
   const int group_id_;
 
-  types::CigState cig_state_;
+  class CigConfiguration_ {
+   public:
+    CigConfiguration_() = delete;
+    CigConfiguration_(LeAudioDeviceGroup* group)
+        : group_(group), state(types::CigState::NONE) {}
+
+    types::CigState GetState(void) const { return state; }
+    void SetState(le_audio::types::CigState state) {
+      LOG_VERBOSE("%s -> %s", bluetooth::common::ToString(this->state).c_str(),
+                  bluetooth::common::ToString(state).c_str());
+      this->state = state;
+    }
+
+    void GenerateCisIds(types::LeAudioContextType context_type);
+    bool AssignCisIds(LeAudioDevice* leAudioDevice);
+    void AssignCisConnHandles(const std::vector<uint16_t>& conn_handles);
+    void UnassignCis(LeAudioDevice* leAudioDevice);
+
+    std::vector<struct types::cis> cises;
+
+   private:
+    uint8_t GetFirstFreeCisId(types::CisType cis_type) const;
+
+    LeAudioDeviceGroup* group_;
+    types::CigState state;
+  } cig;
 
   struct stream_configuration stream_conf;
 
@@ -56,10 +81,9 @@ class LeAudioDeviceGroup {
   bool is_output_preference_le_audio;
   bool is_duplex_preference_le_audio;
 
-  std::vector<struct types::cis> cises_;
   explicit LeAudioDeviceGroup(const int group_id)
       : group_id_(group_id),
-        cig_state_(types::CigState::NONE),
+        cig(this),
         stream_conf({}),
         audio_directions_(0),
         is_enabled_(true),
@@ -103,11 +127,8 @@ class LeAudioDeviceGroup {
                          types::LeAudioContextType::RFU) const;
   bool Activate(types::LeAudioContextType context_type);
   void Deactivate(void);
-  types::CigState GetCigState(void) const;
-  void SetCigState(le_audio::types::CigState state);
-  void CigClearCis(void);
-  void ClearSinksFromConfiguration(void);
-  void ClearSourcesFromConfiguration(void);
+  void ClearSinkCisesFromConfiguration(void);
+  void ClearSourceCisesFromConfiguration(void);
   void Cleanup(void);
   LeAudioDevice* GetFirstDevice(void) const;
   LeAudioDevice* GetFirstDeviceWithAvailableContext(
@@ -133,14 +154,9 @@ class LeAudioDeviceGroup {
   bool IsGroupReadyToCreateStream(void) const;
   bool IsGroupReadyToSuspendStream(void) const;
   bool HaveAllCisesDisconnected(void) const;
-  uint8_t GetFirstFreeCisId(void) const;
-  uint8_t GetFirstFreeCisId(types::CisType cis_type) const;
-  void CigGenerateCisIds(types::LeAudioContextType context_type);
-  bool CigAssignCisIds(LeAudioDevice* leAudioDevice);
-  void CigAssignCisConnHandles(const std::vector<uint16_t>& conn_handles);
-  void CigAssignCisConnHandlesToAses(LeAudioDevice* leAudioDevice);
-  void CigAssignCisConnHandlesToAses(void);
-  void CigUnassignCis(LeAudioDevice* leAudioDevice);
+  void ClearAllCises(void);
+  void AssignCisConnHandlesToAses(LeAudioDevice* leAudioDevice);
+  void AssignCisConnHandlesToAses(void);
   bool Configure(types::LeAudioContextType context_type,
                  const types::BidirectionalPair<types::AudioContexts>&
                      metadata_context_types,
