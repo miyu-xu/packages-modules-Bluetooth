@@ -180,6 +180,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c2bd5fb_3dcfbc3d",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-12T17:01:13Z",
+      "side": 1,
+      "message": "Not really, I remember some `register_callback` functions, e.g. [1] complains about not having fmt::Debug and fmt::Display implemented. There are also a handful of structs (or was it enums?) complains the same thing.\n\nI wasn\u0027t aware they all implement the DBusArg trait. Maybe we can just add `to_dbus_log()` or something in that trait.\n\n[1] https://source.corp.google.com/h/chromium/chromiumos/codesearch/+/main:src/aosp/packages/modules/Bluetooth/upstream/system/gd/rust/linux/mgmt/src/bluetooth_manager.rs;l\u003d124;drc\u003d5db25325b33732f6b496eabf20e65c55df12885e",
+      "parentUuid": "20a1d3df_28f06d11",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4135eed3_dc520c06",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 1
