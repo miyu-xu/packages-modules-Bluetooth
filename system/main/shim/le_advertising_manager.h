@@ -20,9 +20,14 @@
 #pragma once
 
 #include "include/hardware/ble_advertiser.h"
+#include "stack/include/gap_api.h"
 
 namespace bluetooth {
 namespace shim {
+void enc_key_cb();
+namespace legacy {
+void GAP_DB_Callback(std::vector<uint8_t> temp, uint8_t attr_uuid);
+}
 
 BleAdvertiserInterface* get_ble_advertiser_instance();
 void init_advertising_manager();

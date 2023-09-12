@@ -395,6 +395,8 @@ init_flags!(
         use_rsi_from_cached_inqiry_results = false,
         att_mtu_default: i32 = 517,
         encryption_in_busy_state = true,
+        encrypted_advertising = false,
+        encrypted_advertising_log = false,
     }
     // dynamic flags can be updated at runtime and should be accessed directly
     // to check.
