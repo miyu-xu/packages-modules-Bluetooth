@@ -16,6 +16,23 @@
       "message": "This should only change the order of initializing core profiles since when we toggle off adapter power, we stop the btadapterd. So everything will restart when we toggle on the adapter. i.e. the core profile should only initialize once during the life of btadapterd.\n\nPlease review, thanks!",
       "revId": "376bd939ce7b2ecd123c3e29cbd82e4b229350df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02f3d2da_aecfc1db",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-12T05:51:21Z",
+      "side": 1,
+      "message": "Sounds reasonable. Do you mind checking headset profiles as well?",
+      "revId": "376bd939ce7b2ecd123c3e29cbd82e4b229350df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
