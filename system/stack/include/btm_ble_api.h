@@ -780,4 +780,17 @@ void BTM_BlePeriodicSyncTxParameters(RawAddress addr, uint8_t mode,
                                      uint16_t skip, uint16_t timeout,
                                      StartSyncCb syncCb);
 
+/*******************************************************************************
+ *
+ * Function         BTM_BleGetEncKeyMaterial
+ *
+ * Description      This function is called to get the local device Encrypted
+ *                  Data Key Material characteristic value associated with
+ *                  GAP service.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTM_BleGetEncKeyMaterial(uint8_t* enc_key_value);
+
 #endif
