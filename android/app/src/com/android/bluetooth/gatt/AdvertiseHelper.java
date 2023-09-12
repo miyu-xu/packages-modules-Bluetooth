@@ -45,7 +45,7 @@ class AdvertiseHelper {
     private static final int TRANSPORT_DISCOVERY_DATA = 0X26;
     private static final int MANUFACTURER_SPECIFIC_DATA = 0XFF;
 
-    public static byte[] advertiseDataToBytes(AdvertiseData data, String name) {
+    public static byte[] advertiseDataToBytes(AdvertiseData data, String name, boolean encrypt) {
 
         if (data == null) {
             return new byte[0];
@@ -56,7 +56,9 @@ class AdvertiseHelper {
 
         ByteArrayOutputStream ret = new ByteArrayOutputStream();
 
-        if (data.getIncludeDeviceName()) {
+        if (data.getIncludeDeviceName()
+                && ((!encrypt && !data.getDeviceNameEnc())
+                        || (encrypt && data.getDeviceNameEnc()))) {
             try {
                 byte[] nameBytes = name.getBytes("UTF-8");
 
@@ -75,37 +77,45 @@ class AdvertiseHelper {
                 ret.write(nameLength + 1);
                 ret.write(type);
                 ret.write(nameBytes, 0, nameLength);
+
             } catch (java.io.UnsupportedEncodingException e) {
                 Log.e(TAG, "Can't include name - encoding error!", e);
             }
         }
 
-        for (int i = 0; i < data.getManufacturerSpecificData().size(); i++) {
-            int manufacturerId = data.getManufacturerSpecificData().keyAt(i);
+        if ((!encrypt && !data.getManufacturerSpecificDataEnc())
+                || (encrypt && data.getManufacturerSpecificDataEnc())) {
+            for (int i = 0; i < data.getManufacturerSpecificData().size(); i++) {
+                int manufacturerId = data.getManufacturerSpecificData().keyAt(i);
 
-            byte[] manufacturerData = data.getManufacturerSpecificData().get(manufacturerId);
-            int dataLen = 2 + (manufacturerData == null ? 0 : manufacturerData.length);
-            byte[] concated = new byte[dataLen];
-            // First two bytes are manufacturer id in little-endian.
-            concated[0] = (byte) (manufacturerId & 0xFF);
-            concated[1] = (byte) ((manufacturerId >> 8) & 0xFF);
-            if (manufacturerData != null) {
-                System.arraycopy(manufacturerData, 0, concated, 2, manufacturerData.length);
+                byte[] manufacturerData = data.getManufacturerSpecificData().get(manufacturerId);
+                int dataLen = 2 + (manufacturerData == null ? 0 : manufacturerData.length);
+                byte[] concated = new byte[dataLen];
+                // First two bytes are manufacturer id in little-endian.
+                concated[0] = (byte) (manufacturerId & 0xFF);
+                concated[1] = (byte) ((manufacturerId >> 8) & 0xFF);
+                if (manufacturerData != null) {
+                    System.arraycopy(manufacturerData, 0, concated, 2, manufacturerData.length);
+                }
+
+                check_length(MANUFACTURER_SPECIFIC_DATA, concated.length + 1);
+                ret.write(concated.length + 1);
+                ret.write(MANUFACTURER_SPECIFIC_DATA);
+                ret.write(concated, 0, concated.length);
             }
-
-            check_length(MANUFACTURER_SPECIFIC_DATA, concated.length + 1);
-            ret.write(concated.length + 1);
-            ret.write(MANUFACTURER_SPECIFIC_DATA);
-            ret.write(concated, 0, concated.length);
         }
 
-        if (data.getIncludeTxPowerLevel()) {
+        if (data.getIncludeTxPowerLevel()
+                && ((!encrypt && !data.getTxPowerLevelEnc())
+                        || (encrypt && data.getTxPowerLevelEnc()))) {
             ret.write(2 /* Length */);
             ret.write(TX_POWER_LEVEL);
             ret.write(0); // lower layers will fill this value.
         }
 
-        if (data.getServiceUuids() != null) {
+        if (data.getServiceUuids() != null
+                && (!encrypt && !data.getServiceUuidsEnc()
+                        || (encrypt && data.getServiceUuidsEnc()))) {
             ByteArrayOutputStream serviceUuids16 = new ByteArrayOutputStream();
             ByteArrayOutputStream serviceUuids32 = new ByteArrayOutputStream();
             ByteArrayOutputStream serviceUuids128 = new ByteArrayOutputStream();
@@ -144,7 +154,9 @@ class AdvertiseHelper {
             }
         }
 
-        if (!data.getServiceData().isEmpty()) {
+        if (!data.getServiceData().isEmpty()
+                && (!encrypt && !data.getServiceDataEnc()
+                        || (encrypt && data.getServiceDataEnc()))) {
             for (ParcelUuid parcelUuid : data.getServiceData().keySet()) {
                 byte[] serviceData = data.getServiceData().get(parcelUuid);
 
@@ -179,8 +191,9 @@ class AdvertiseHelper {
             }
         }
 
-
-        if (data.getServiceSolicitationUuids() != null) {
+        if (data.getServiceSolicitationUuids() != null
+                && ((!encrypt && !data.getServiceSolicitationUuidsEnc())
+                        || (encrypt && data.getServiceSolicitationUuidsEnc()))) {
             ByteArrayOutputStream serviceUuids16 = new ByteArrayOutputStream();
             ByteArrayOutputStream serviceUuids32 = new ByteArrayOutputStream();
             ByteArrayOutputStream serviceUuids128 = new ByteArrayOutputStream();
@@ -219,11 +232,17 @@ class AdvertiseHelper {
             }
         }
 
-        for (TransportDiscoveryData transportDiscoveryData : data.getTransportDiscoveryData()) {
-            ret.write(transportDiscoveryData.totalBytes());
-            ret.write(transportDiscoveryData.toByteArray(),
-                    0, transportDiscoveryData.totalBytes());
+        if ((!encrypt && !data.getTransportDiscoveryDataEnc())
+                || (encrypt && data.getTransportDiscoveryDataEnc())) {
+            for (TransportDiscoveryData transportDiscoveryData : data.getTransportDiscoveryData()) {
+                ret.write(transportDiscoveryData.totalBytes());
+                ret.write(
+                        transportDiscoveryData.toByteArray(),
+                        0,
+                        transportDiscoveryData.totalBytes());
+            }
         }
+
         return ret.toByteArray();
     }
 
