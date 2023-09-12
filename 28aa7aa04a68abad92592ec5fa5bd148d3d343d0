@@ -34,6 +34,24 @@
       "parentUuid": "4e15bd7e_525c0d61",
       "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2413df3_eba12eed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-12T20:55:51Z",
+      "side": 1,
+      "message": "Does that mean that aosp/2027383 had no effect ? It mention that the values has been manually checked.\nIf this other CL had effect, then what the native value are used for and in which context ?\n\nIf they need to be kept in sync with the java, should we only defined the value once and make the java ask the native what the value is ? or the other way around, the native ask the java, as you prefer. (I prefer the first but)",
+      "parentUuid": "7a5c2b8e_0f211823",
+      "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
