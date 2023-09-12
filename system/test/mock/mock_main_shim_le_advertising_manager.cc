@@ -42,4 +42,9 @@ MockBleAdvertisingManager* MockBleAdvertisingManager::Get() {
 
 BleAdvertiserInterface* bluetooth::shim::get_ble_advertiser_instance() {
   return static_cast<BleAdvertiserInterface*>(bt_le_advertiser_instance);
+
+  void bluetooth::shim::legacy::OnGetEncKeyMaterial(std::vector<uint8_t> temp,
+                                                    uint16_t attr_uuid) {
+    inc_func_call_count(__func__);
+  }
 }

@@ -25,6 +25,10 @@ namespace bluetooth {
 namespace shim {
 
 BleAdvertiserInterface* get_ble_advertiser_instance();
+void GetEncKeyMaterial();
+namespace legacy {
+void OnGetEncKeyMaterial(std::vector<uint8_t> temp, uint8_t attr_uuid);
+}
 void init_advertising_manager();
 
 }  // namespace shim
