@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17153877_f8158e54",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-12T12:11:30Z",
+      "side": 1,
+      "message": "bond never completed after User Confirmation Reply on AOSP CF X86_64",
+      "range": {
+        "startLine": 189,
+        "startChar": 43,
+        "endLine": 189,
+        "endChar": 54
+      },
+      "revId": "0a8c1ebf703a91dceba257bb0ac1d92abaa1419c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
