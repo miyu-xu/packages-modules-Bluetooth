@@ -16,6 +16,7 @@
 #include "hci/le_advertising_manager.h"
 
 #include <android_bluetooth_flags.h>
+#include <base/strings/string_number_conversions.h>
 
 #include <iterator>
 #include <memory>
@@ -31,11 +32,15 @@
 #include "hci/hci_packets.h"
 #include "hci/le_advertising_interface.h"
 #include "hci/vendor_specific_event_manager.h"
+#include "le_rand_callback.h"
 #include "module.h"
 #include "os/handler.h"
 #include "os/log.h"
 #include "os/system_properties.h"
 #include "packet/fragmenting_inserter.h"
+#include "stack/include/gap_api.h"
+#include "storage/config_cache.h"
+#include "storage/storage_module.h"
 
 namespace bluetooth {
 namespace hci {
@@ -145,7 +150,8 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       hci::HciLayer* hci_layer,
       hci::Controller* controller,
       hci::AclManager* acl_manager,
-      hci::VendorSpecificEventManager* vendor_specific_event_manager) {
+      hci::VendorSpecificEventManager* vendor_specific_event_manager,
+      storage::StorageModule* storage) {
     module_handler_ = handler;
     hci_layer_ = hci_layer;
     controller_ = controller;
@@ -154,6 +160,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     le_address_manager_ = acl_manager->GetLeAddressManager();
     num_instances_ = controller_->GetLeNumberOfSupportedAdverisingSets();
 
+    storage_module_ = storage;
     le_advertising_interface_ =
         hci_layer_->GetLeAdvertisingInterface(module_handler_->BindOn(this, &LeAdvertisingManager::impl::handle_event));
     vendor_specific_event_manager->RegisterEventHandler(
@@ -239,6 +246,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
 
   void register_advertising_callback(AdvertisingCallback* advertising_callback) {
     advertising_callbacks_ = advertising_callback;
+  }
+
+  void register_enc_key_material_callback(EncKeyMaterialCallback* enc_key_material_callback) {
+    enc_key_material_callback_ = enc_key_material_callback;
   }
 
   void multi_advertising_state_change(hci::VendorSpecificEventView event) {
@@ -1552,6 +1563,7 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
   common::Callback<void(Address, AddressType)> scan_callback_;
   common::ContextualCallback<void(ErrorCode, uint16_t, hci::AddressWithType)> set_terminated_callback_{};
   AdvertisingCallback* advertising_callbacks_ = nullptr;
+  EncKeyMaterialCallback* enc_key_material_callback_ = nullptr;
   os::Handler* registered_handler_{nullptr};
   Module* module_;
   os::Handler* module_handler_;
@@ -1566,6 +1578,9 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
   hci::AclManager* acl_manager_;
   bool address_manager_registered = false;
   bool paused = false;
+  storage::ConfigCache* configcache_;
+  storage::StorageModule* storage_module_;
+  EncrDataKey* key_iv = new EncrDataKey;
 
   std::mutex id_mutex_;
   size_t num_instances_;
@@ -1590,6 +1605,40 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       return;
     }
     le_physical_channel_tx_power_ = complete_view.GetTransmitPowerLevel();
+  }
+
+  template <class View>
+  void GenerateKeyIV(EncrDataKey* KeyIV, int iteration, CommandCompleteView view) {
+    ASSERT(view.IsValid());
+    auto rand_view = LeRandCompleteView::Create(view);
+    ASSERT(rand_view.IsValid());
+    uint8_t finalresult[8];
+    std::vector<uint8_t> temp_rand;
+    uint64_t rand = rand_view.GetRandomNumber();
+    memcpy(finalresult, &rand, 8);
+    for (int i = 0; i < 8; i++) {
+      temp_rand.push_back(finalresult[i]);
+    }
+    if (iteration == 1) {
+      KeyIV->key.insert(KeyIV->key.end(), temp_rand.begin(), temp_rand.end());
+    } else if (iteration == 2) {
+      KeyIV->key.insert(KeyIV->key.begin() + 8, temp_rand.begin(), temp_rand.end());
+    } else if (iteration == 3) {
+      KeyIV->iv.insert(KeyIV->iv.end(), temp_rand.begin(), temp_rand.end());
+      std::vector<uint8_t> completeKeyIV;
+      completeKeyIV.insert(completeKeyIV.end(), KeyIV->key.begin(), KeyIV->key.end());
+      completeKeyIV.insert(completeKeyIV.end(), KeyIV->iv.begin(), KeyIV->iv.end());
+      std::string completekeyiv = base::HexEncode(completeKeyIV.data(), completeKeyIV.size());
+      storage_module_->SetBin("Adapter", BTIF_STORAGE_KEY_ENCR_DATA, completeKeyIV);
+      enc_key_material_callback_->OnGetEncKeyMaterial(
+          completeKeyIV, GATT_UUID_GAP_ENC_KEY_MATERIAL);
+    } else {
+      std::optional<std::vector<uint8_t>> keyiv =
+          std::move(storage_module_->GetBin("Adapter", BTIF_STORAGE_KEY_ENCR_DATA));
+      std::vector<uint8_t> enc_key_material(keyiv->begin(), keyiv->end());
+      enc_key_material_callback_->OnGetEncKeyMaterial(
+          enc_key_material, GATT_UUID_GAP_ENC_KEY_MATERIAL);
+    }
   }
 
   template <class View>
@@ -1813,6 +1862,35 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     ASSERT(status != AdvertisingCallback::AdvertisingStatus::SUCCESS);
     advertising_callbacks_->OnAdvertisingSetStarted(reg_id, kInvalidId, 0, status);
   }
+
+  void get_enc_key_material(
+      storage::StorageModule* storage_module_, hci::HciLayer* hci_layer_, os::Handler* handler) {
+    std::optional<std::vector<uint8_t>> keyiv =
+        std::move(storage_module_->GetBin("Adapter", BTIF_STORAGE_KEY_ENCR_DATA));
+    std::vector<uint8_t> enc_key_material;
+    enc_key_material.insert(enc_key_material.end(), keyiv->begin(), keyiv->end());
+    if (!storage_module_->HasProperty("Adapter", BTIF_STORAGE_KEY_ENCR_DATA) ||
+        enc_key_material.size() < ENC_KEY_MATERIAL_LEN) {
+      LOG_INFO(" Encrypted Data Key Material not in Config");
+      hci_layer_->EnqueueCommand(
+          LeRandBuilder::Create(),
+          handler->BindOnceOn(this, &impl::GenerateKeyIV<LeRandCompleteView>, key_iv, 1));
+      hci_layer_->EnqueueCommand(
+          LeRandBuilder::Create(),
+          handler->BindOnceOn(this, &impl::GenerateKeyIV<LeRandCompleteView>, key_iv, 2));
+      hci_layer_->EnqueueCommand(
+          LeRandBuilder::Create(),
+          handler->BindOnceOn(this, &impl::GenerateKeyIV<LeRandCompleteView>, key_iv, 3));
+    } else {
+      LOG_INFO(" Encrypted Data Key Material in Config");
+      std::optional<std::vector<uint8_t>> keyiv =
+          std::move(storage_module_->GetBin("Adapter", BTIF_STORAGE_KEY_ENCR_DATA));
+      std::vector<uint8_t> enc_key_material;
+      enc_key_material.insert(enc_key_material.end(), keyiv->begin(), keyiv->end());
+      enc_key_material_callback_->OnGetEncKeyMaterial(
+          enc_key_material, GATT_UUID_GAP_ENC_KEY_MATERIAL);
+    }
+  }
 };
 
 LeAdvertisingManager::LeAdvertisingManager() {
@@ -1824,6 +1902,7 @@ void LeAdvertisingManager::ListDependencies(ModuleList* list) const {
   list->add<hci::Controller>();
   list->add<hci::AclManager>();
   list->add<hci::VendorSpecificEventManager>();
+  list->add<storage::StorageModule>();
 }
 
 void LeAdvertisingManager::Start() {
@@ -1832,11 +1911,17 @@ void LeAdvertisingManager::Start() {
       GetDependency<hci::HciLayer>(),
       GetDependency<hci::Controller>(),
       GetDependency<AclManager>(),
-      GetDependency<VendorSpecificEventManager>());
+      GetDependency<VendorSpecificEventManager>(),
+      GetDependency<storage::StorageModule>());
 }
 
 void LeAdvertisingManager::Stop() {
   pimpl_.reset();
+}
+
+void LeAdvertisingManager::GetEncKeyMaterial() {
+  pimpl_->get_enc_key_material(
+      GetDependency<storage::StorageModule>(), GetDependency<hci::HciLayer>(), GetHandler());
 }
 
 std::string LeAdvertisingManager::ToString() const {
@@ -1999,6 +2084,10 @@ void LeAdvertisingManager::RemoveAdvertiser(AdvertiserId advertiser_id) {
 
 void LeAdvertisingManager::RegisterAdvertisingCallback(AdvertisingCallback* advertising_callback) {
   CallOn(pimpl_.get(), &impl::register_advertising_callback, advertising_callback);
+}
+void LeAdvertisingManager::RegisterEncKeyMaterialCallback(
+    EncKeyMaterialCallback* enc_key_material_callback) {
+  CallOn(pimpl_.get(), &impl::register_enc_key_material_callback, enc_key_material_callback);
 }
 
 }  // namespace hci
