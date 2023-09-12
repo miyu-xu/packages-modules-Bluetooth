@@ -331,6 +331,7 @@ typedef struct {
   tGATT_STATUS gatt_status;
   uint8_t sirk_type;
   Octet16 sirk;
+  bool is_read_enc_key_pending;
 
   bool in_use;
   uint8_t tcb_idx;
