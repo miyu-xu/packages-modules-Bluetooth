@@ -620,6 +620,37 @@ struct btif_storage_set_remote_device_type {
 extern struct btif_storage_set_remote_device_type
     btif_storage_set_remote_device_type;
 
+// Name: btif_storage_get_enc_key_material_length
+// Params: const RawAddress* remote_bd_addr
+// Return: bt_status_t
+struct btif_storage_get_enc_key_material_length {
+  static size_t return_value;
+  std::function<size_t(const RawAddress* remote_bd_addr)> body{
+      [](const RawAddress* /* remote_bd_addr */) { return return_value; }};
+  size_t operator()(const RawAddress* remote_bd_addr) {
+    return body(remote_bd_addr);
+  };
+};
+extern struct btif_storage_get_enc_key_material_length
+    btif_storage_get_enc_key_material_length;
+
+// Name: btif_storage_get_enc_key_material
+// Params: const RawAddress* remote_bd_addr, uint8_t* key_value, size_t*
+// key_length Return: bt_status_t
+struct btif_storage_get_enc_key_material {
+  static bt_status_t return_value;
+  std::function<bt_status_t(const RawAddress* remote_bd_addr,
+                            uint8_t* key_value, size_t* key_length)>
+      body{[](const RawAddress* /* remote_bd_addr */, uint8_t* /*key_value */,
+              size_t* /* key_length */) { return return_value; }};
+  bt_status_t operator()(const RawAddress* remote_bd_addr, uint8_t* key_value,
+                         size_t* key_length) {
+    return body(remote_bd_addr, key_value, key_length);
+  };
+};
+extern struct btif_storage_get_enc_key_material
+    btif_storage_get_enc_key_material;
+
 }  // namespace btif_storage
 }  // namespace mock
 }  // namespace test

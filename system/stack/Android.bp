@@ -1873,6 +1873,7 @@ cc_test {
         ":TestMockSrvcDis",
         ":TestMockStackAcl",
         ":TestMockStackBtm",
+        ":TestMockStackGap",
         ":TestMockStackL2cap",
         ":TestMockStackSdp",
         ":TestMockStackSmp",

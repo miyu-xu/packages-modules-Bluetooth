@@ -83,6 +83,9 @@ struct btif_storage_set_remote_addr_type2 btif_storage_set_remote_addr_type2;
 struct btif_storage_set_remote_device_property
     btif_storage_set_remote_device_property;
 struct btif_storage_set_remote_device_type btif_storage_set_remote_device_type;
+struct btif_storage_get_enc_key_material_length
+    btif_storage_get_enc_key_material_length;
+struct btif_storage_get_enc_key_material btif_storage_get_enc_key_material;
 
 }  // namespace btif_storage
 }  // namespace mock
@@ -127,6 +130,8 @@ bt_status_t btif_storage_remove_bonded_device::return_value = BT_STATUS_SUCCESS;
 bt_status_t btif_storage_set_adapter_property::return_value = BT_STATUS_SUCCESS;
 bt_status_t btif_storage_set_remote_device_property::return_value =
     BT_STATUS_SUCCESS;
+size_t btif_storage_get_enc_key_material_length::return_value = 24;
+bt_status_t btif_storage_get_enc_key_material::return_value = BT_STATUS_SUCCESS;
 
 }  // namespace btif_storage
 }  // namespace mock
@@ -351,5 +356,21 @@ void btif_storage_set_remote_device_type(const RawAddress& remote_bd_addr,
   test::mock::btif_storage::btif_storage_set_remote_device_type(remote_bd_addr,
                                                                 device_type);
 }
+
+size_t btif_storage_get_enc_key_material_length(
+    const RawAddress* remote_bd_addr) {
+  inc_func_call_count(__func__);
+  return test::mock::btif_storage::btif_storage_get_enc_key_material_length(
+      remote_bd_addr);
+}
+
+bt_status_t btif_storage_get_enc_key_material(const RawAddress* remote_bd_addr,
+                                              uint8_t* key_value,
+                                              size_t* key_length) {
+  inc_func_call_count(__func__);
+  return test::mock::btif_storage::btif_storage_get_enc_key_material(
+      remote_bd_addr, key_value, key_length);
+}
+
 // Mocked functions complete
 // END mockcify generation
