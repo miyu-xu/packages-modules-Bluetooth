@@ -987,7 +987,6 @@ void gap_attr_db_init(void);
 void GAP_Init(void) {
   gap_conn_init();
   gap_attr_db_init();
-
   if (IS_FLAG_ENABLED(encrypted_advertising_data)) {
     bluetooth::shim::GetEncKeyMaterial();
   }

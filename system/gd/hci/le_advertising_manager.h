@@ -20,8 +20,10 @@
 
 #include "common/callback.h"
 #include "hci/address_with_type.h"
+#include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
 #include "module.h"
+#include "storage/storage_module.h"
 
 namespace bluetooth {
 namespace shim {
@@ -30,8 +32,8 @@ namespace legacy {
 void OnGetEncKeyMaterial(std::vector<uint8_t> temp, uint16_t attr_uuid);
 }  // namespace legacy
 }  // namespace shim
-
 namespace hci {
+
 struct EncrDataKey {
   std::vector<uint8_t> key;
   std::vector<uint8_t> iv;
@@ -57,6 +59,11 @@ class AdvertisingConfig {
  public:
   std::vector<GapData> advertisement;
   std::vector<GapData> scan_response;
+  std::vector<uint8_t> randomizer;
+  std::vector<GapData> advertisement_enc;
+  std::vector<GapData> scan_response_enc;
+  std::vector<GapData> periodic_data_enc;
+  std::vector<uint8_t> enc_key_value;
   uint16_t interval_min;
   uint16_t interval_max;
   AdvertisingType advertising_type;
@@ -158,12 +165,21 @@ class LeAdvertisingManager : public bluetooth::Module {
 
   void SetData(AdvertiserId advertiser_id, bool set_scan_rsp, std::vector<GapData> data);
 
+  void SetData(
+      AdvertiserId advertiser_id,
+      bool set_scan_rsp,
+      std::vector<GapData> data,
+      std::vector<GapData> data_encrypt);
+
   void EnableAdvertiser(
       AdvertiserId advertiser_id, bool enable, uint16_t duration, uint8_t max_extended_advertising_events);
 
   void SetPeriodicParameters(AdvertiserId advertiser_id, PeriodicAdvertisingParameters periodic_advertising_parameters);
 
   void SetPeriodicData(AdvertiserId advertiser_id, std::vector<GapData> data);
+
+  void SetPeriodicData(
+      AdvertiserId advertiser_id, std::vector<GapData> data, std::vector<GapData> data_encrypt);
 
   void EnablePeriodicAdvertising(AdvertiserId advertiser_id, bool enable, bool include_adi);
 
