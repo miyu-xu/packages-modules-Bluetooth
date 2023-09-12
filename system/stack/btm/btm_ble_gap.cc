@@ -3499,6 +3499,13 @@ void btm_ble_init(void) {
 #if (BLE_VND_INCLUDED == FALSE)
   btm_ble_adv_filter_init();
 #endif
+  btm_cb.enc_adv_data_enabled =
+      osi_property_get_bool("persist.vendor.btstack.enable.enc_adv_data", true);
+  btm_cb.enc_adv_data_log_enabled = osi_property_get_bool(
+      "persist.vendor.btstack.enable.enc_adv_data_log", false);
+
+  LOG_INFO("enc_adv_data_enabled=%d, enc_adv_data_log_enabled=%d",
+           +btm_cb.enc_adv_data_enabled, +btm_cb.enc_adv_data_log_enabled);
 }
 
 // Clean up btm ble control block
