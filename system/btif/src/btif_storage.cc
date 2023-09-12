@@ -44,7 +44,6 @@
 #include "btif/include/stack_manager_t.h"
 #include "btif_api.h"
 #include "btif_config.h"
-#include "btif_storage.h"
 #include "btif_util.h"
 #include "core_callbacks.h"
 #include "device/include/controller.h"
