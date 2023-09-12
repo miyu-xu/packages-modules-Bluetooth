@@ -21,8 +21,10 @@ android_test_helper_app {
 
     static_libs: [
         "androidx.core_core",
+        "androidx.test.ext.junit",
         "androidx.test.ext.truth",
         "androidx.test.rules",
+        "bluetooth-test-util-lib",
         "grpc-java-lite",
         "grpc-java-okhttp-client-lite",
         "opencensus-java-contrib-grpc-metrics",
