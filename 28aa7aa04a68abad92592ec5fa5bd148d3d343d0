@@ -16,6 +16,24 @@
       "message": "What are the consequence of this change ?\ngoing from 5s to 100 ms looks like a huge step, I am worried about unwanted consequence of this change",
       "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a5c2b8e_0f211823",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-12T20:29:14Z",
+      "side": 1,
+      "message": "Since Android T, LE scan window/interval 100ms/100ms for LOW_LATENCY has been used from ScanManager.java by aosp/2027383, but this change was not applied to native BT stack. In aosp/2027383 description, reducing interval/window could provide better scan performance, but the scan duty cycle is still 100%.\n\n```\nReduce low latency mode scan interval to 100ms for the better channel\ndiversity. Test results indicate there is no change of discovery\nlatency with the small scan interval in the home environment.\n```",
+      "parentUuid": "4e15bd7e_525c0d61",
+      "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
