@@ -1,1 +1,8 @@
-{}
+{
+  "name": "MyTestDevice",
+  "classic_enabled": true,
+  "t": true,
+  "server": {
+    "io_capability": "no_output_no_input"
+  }
+}
