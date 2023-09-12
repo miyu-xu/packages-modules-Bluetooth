@@ -135,6 +135,11 @@
     int ijk;                                                      \
     for (ijk = 0; ijk < (len); ijk++) *(p)++ = (uint8_t)(a)[ijk]; \
   }
+#define REVERSE_ARRAY_TO_STREAM(p, a, len)                                  \
+  {                                                                         \
+    int ijk;                                                                \
+    for (ijk = 0; ijk < (len); ijk++) *(p)++ = (uint8_t)(a)[(len)-1 - ijk]; \
+  }
 #define STREAM_TO_INT8(u8, p)   \
   {                             \
     (u8) = (*((int8_t*)(p)));   \

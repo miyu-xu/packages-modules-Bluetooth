@@ -111,3 +111,5 @@
 #define BTIF_STORAGE_KEY_VENDOR_ID "VendorId"
 #define BTIF_STORAGE_KEY_VENDOR_ID_SOURCE "VendorIdSource"
 #define BTIF_STORAGE_KEY_VERSION "ProductVersion"
+#define BTIF_STORAGE_KEY_ENCR_DATA_CCCD "EncryptedDataKeyCCCD"
+#define BTIF_STORAGE_KEY_ENCR_DATA "EncKeyMaterial"
