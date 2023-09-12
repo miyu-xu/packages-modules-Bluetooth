@@ -17,6 +17,7 @@
  ******************************************************************************/
 
 #include <base/logging.h>
+#include <base/strings/string_number_conversions.h>
 #include <base/strings/stringprintf.h>
 #include <string.h>
 
@@ -30,17 +31,34 @@
 #include "os/log.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
+#include "main/shim/dumpsys.h"
+#include "stack_config.h"
 #include "types/bluetooth/uuid.h"
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
+#include "bta_gatt_api.h"
+#include "btif_config.h"
+#include "btif_storage.h"
+#include "btm_int_types.h"
+#include "btm_dev.h"
+#include "stack/gatt/gatt_int.h"
+
+#define GAP_ENC_KEY_CONNECTING 1 /* wait for connection */
+#define GAP_ENC_KEY_CHARACTERISTIC \
+  2                               /* Read for Enc Key Material Characteristic */
+#define GAP_ENC_KEY_CCCD 3        /* Discover CCCD */
+#define GAP_ENC_KEY_CONFIG_CCCD 4 /* Write CCCD */
 
 using base::StringPrintf;
 using bluetooth::Uuid;
 
-namespace {
-
 typedef struct {
   uint16_t uuid;
+  uint8_t op;
+  uint16_t handle;
+  tGATT_DISC_TYPE disc_type;
+  Uuid char_uuid;
+  uint16_t s_handle;
   tGAP_BLE_CMPL_CBACK* p_cback;
 } tGAP_REQUEST;
 
@@ -51,6 +69,13 @@ typedef struct {
   uint16_t cl_op_uuid;
   bool connected;
   std::queue<tGAP_REQUEST> requests;
+  uint8_t enc_key_stage;
+  uint16_t curr_enc_key_char_handle;
+  uint16_t curr_cccd_handle;
+  uint8_t enc_key_result;
+  Uuid char_uuid;
+  std::vector<uint16_t> enc_key_char_handles;
+  bool is_enc_key_info_in_progress;
 } tGAP_CLCB;
 
 typedef struct {
@@ -65,12 +90,15 @@ void client_connect_cback(tGATT_IF, const RawAddress&, uint16_t, bool,
                           tGATT_DISCONN_REASON, tBT_TRANSPORT);
 void client_cmpl_cback(uint16_t, tGATTC_OPTYPE, tGATT_STATUS,
                        tGATT_CL_COMPLETE*);
+void client_disc_res_cback(uint16_t, tGATT_DISC_TYPE, tGATT_DISC_RES*);
+void client_disc_cmpl_cback(uint16_t, tGATT_DISC_TYPE, tGATT_STATUS);
+static void gap_cl_get_enc_key_info(tGAP_CLCB*);
 
 tGATT_CBACK gap_cback = {
     .p_conn_cb = client_connect_cback,
     .p_cmpl_cb = client_cmpl_cback,
-    .p_disc_res_cb = nullptr,
-    .p_disc_cmpl_cb = nullptr,
+    .p_disc_res_cb = client_disc_res_cback,
+    .p_disc_cmpl_cb = client_disc_cmpl_cback,
     .p_req_cb = server_attr_request_cback,
     .p_enc_cmpl_cb = nullptr,
     .p_congestion_cb = nullptr,
@@ -80,9 +108,10 @@ tGATT_CBACK gap_cback = {
 };
 
 constexpr int GAP_CHAR_DEV_NAME_SIZE = BD_NAME_LEN;
-constexpr int GAP_MAX_CHAR_NUM = 4;
+constexpr int GAP_MAX_CHAR_NUM = 6;
 
 std::vector<tGAP_CLCB> gap_clcbs;
+std::vector<std::pair<RawAddress, uint16_t>> bda_and_conn_id;
 /* LE GAP attribute database */
 std::array<tGAP_ATTR, GAP_MAX_CHAR_NUM> gatt_attr;
 tGATT_IF gatt_if;
@@ -131,12 +160,16 @@ tGATT_STATUS read_attr_value(uint16_t handle, tGATT_VALUE* p_value,
   uint8_t* p = p_value->value;
   uint16_t offset = p_value->offset;
   uint8_t* p_dev_name = NULL;
+  uint8_t* p_encr_material = p;
+  uint8_t* p_temp = p_encr_material;
 
   for (const tGAP_ATTR& db_attr : gatt_attr) {
     const tGAP_BLE_ATTR_VALUE& attr_value = db_attr.attr_value;
     if (handle == db_attr.handle) {
-      if (db_attr.uuid != GATT_UUID_GAP_DEVICE_NAME && is_long)
+      if (db_attr.uuid != GATT_UUID_GAP_DEVICE_NAME &&
+          db_attr.uuid != GATT_UUID_GAP_ENC_KEY_MATERIAL && is_long) {
         return GATT_NOT_LONG;
+      }
 
       switch (db_attr.uuid) {
         case GATT_UUID_GAP_DEVICE_NAME:
@@ -173,6 +206,26 @@ tGATT_STATUS read_attr_value(uint16_t handle, tGATT_VALUE* p_value,
           UINT8_TO_STREAM(p, attr_value.addr_resolution);
           p_value->len = 1;
           break;
+        /* Encrypted Data Key Material*/
+        case GATT_UUID_GAP_ENC_KEY_MATERIAL:
+          if (stack_config_get_interface()
+                  ->get_pts_enable_authorization_encr_data_key()) {
+            return GATT_INSUF_AUTHORIZATION;
+          }
+          REVERSE_ARRAY_TO_STREAM(p_encr_material,
+                                  attr_value.enc_key_material.session_key,
+                                  ENC_KEY_LEN);
+          REVERSE_ARRAY_TO_STREAM(p_encr_material,
+                                  attr_value.enc_key_material.init_vector,
+                                  ENC_IV_LEN);
+          if (offset > ENC_KEY_MATERIAL_LEN) {
+            LOG(ERROR) << __func__ << " GATT_INVALID_OFFSET";
+            return GATT_INVALID_OFFSET;
+          }
+          p_value->len = ENC_KEY_MATERIAL_LEN - offset;
+          p_temp += offset;
+          ARRAY_TO_STREAM(p, p_temp, p_value->len);
+          break;
       }
       return GATT_SUCCESS;
     }
@@ -191,10 +244,25 @@ tGATT_STATUS proc_read(tGATTS_REQ_TYPE, tGATT_READ_REQ* p_data,
 }
 
 /** GAP ATT server process a write request */
-tGATT_STATUS proc_write_req(tGATTS_REQ_TYPE, tGATT_WRITE_REQ* p_data) {
-  for (const auto& db_addr : gatt_attr)
-    if (p_data->handle == db_addr.handle) return GATT_WRITE_NOT_PERMIT;
+tGATT_STATUS proc_write_req(tGATTS_REQ_TYPE, tGATT_WRITE_REQ* p_data,
+                            uint16_t conn_id) {
+  for (const auto& db_addr : gatt_attr) {
+    if (p_data->handle != db_addr.handle) {
+      continue;
+    }
+    if (db_addr.uuid == GATT_UUID_CHAR_CLIENT_CONFIG) {
+      uint8_t value = 0;
+      uint8_t* p = p_data->value;
+      STREAM_TO_UINT8(value, p);
 
+      tGATT_TCB& tcb = gatt_cb.tcb[GATT_GET_TCB_IDX(conn_id)];
+      btif_storage_set_encr_data_cccd(tcb.peer_bda, value);
+      return GATT_SUCCESS;
+    }
+    else {
+      return GATT_WRITE_NOT_PERMIT;
+    }
+  }
   return GATT_NOT_FOUND;
 }
 
@@ -217,7 +285,7 @@ void server_attr_request_cback(uint16_t conn_id, uint32_t trans_id,
     case GATTS_REQ_TYPE_WRITE_DESCRIPTOR:
       if (!p_data->write_req.need_rsp) ignore = true;
 
-      status = proc_write_req(type, &p_data->write_req);
+      status = proc_write_req(type, &p_data->write_req, conn_id);
       break;
 
     case GATTS_REQ_TYPE_WRITE_EXEC:
@@ -237,6 +305,27 @@ void server_attr_request_cback(uint16_t conn_id, uint32_t trans_id,
   }
 
   if (!ignore) GATTS_SendRsp(conn_id, trans_id, status, &rsp_msg);
+}
+
+/**
+ * utility function to send a Discover req for CCCD descriptor.
+ * Returns true if discovery started, else false if GAP is busy.
+ */
+bool send_cl_disc_request(tGAP_CLCB& clcb) {
+  if (!clcb.requests.size()) {
+    return false;
+  }
+  tGAP_REQUEST& req = clcb.requests.front();
+  uint8_t disc_type = req.disc_type;
+  Uuid char_uuid = req.char_uuid;
+  clcb.requests.pop();
+
+  uint16_t s_handle = (clcb.curr_enc_key_char_handle + 1);
+  uint16_t e_handle = (clcb.curr_enc_key_char_handle + 2);
+
+  GATTC_Discover(clcb.conn_id, static_cast<tGATT_DISC_TYPE>(disc_type),
+                 s_handle, e_handle, char_uuid);
+  return true;
 }
 
 /**
@@ -261,10 +350,57 @@ bool send_cl_read_request(tGAP_CLCB& clcb) {
   param.service.e_handle = 0xFFFF;
   param.service.auth_req = 0;
 
+  VLOG(1) << __func__ << ": req handle: " << +req.handle
+          << " UUID: " << loghex(uuid);
+  if (uuid == GATT_UUID_GAP_ENC_KEY_MATERIAL) {
+    param.service.s_handle = req.handle;
+    param.service.e_handle = 0xFFFF;
+  }
+
   if (GATTC_Read(clcb.conn_id, GATT_READ_BY_TYPE, &param) == GATT_SUCCESS) {
     clcb.cl_op_uuid = uuid;
   }
 
+  return true;
+}
+
+/**
+ * utility function to send a write request for a CCCD descriptor.
+ * Returns true if read started, else false if GAP is busy.
+ */
+bool send_cl_write_request(tGAP_CLCB& clcb) {
+  if (!clcb.requests.size()) {
+    return false;
+  }
+  tGAP_REQUEST& req = clcb.requests.front();
+  clcb.p_cback = req.p_cback;
+  uint16_t handle = req.handle;
+  clcb.requests.pop();
+
+  tGATT_VALUE ccc_value{
+      .handle = handle,
+      .len = 2,
+      .value[0] = GATT_CLT_CONFIG_INDICATION,
+  };
+
+  GATTC_Write(clcb.conn_id, GATT_WRITE, &ccc_value);
+  return true;
+}
+
+bool send_cl_request(tGAP_CLCB& clcb) {
+  if (!clcb.requests.size()) {
+    return false;
+  }
+
+  tGAP_REQUEST& req = clcb.requests.front();
+  uint8_t op = req.op;
+  if (op == GATTC_OPTYPE_READ) {
+    send_cl_read_request(clcb);
+  } else if (op == GATTC_OPTYPE_WRITE) {
+    send_cl_write_request(clcb);
+  } else if (op == GATTC_OPTYPE_DISCOVERY) {
+    send_cl_disc_request(clcb);
+  }
   return true;
 }
 
@@ -282,7 +418,9 @@ void cl_op_cmpl(tGAP_CLCB& clcb, bool status, uint16_t len, uint8_t* p_name) {
 
   /* if no further activity is requested in callback, drop the link */
   if (clcb.connected) {
-    if (!send_cl_read_request(clcb)) {
+    if (!send_cl_request(clcb) &&
+        (clcb.enc_key_stage <= GAP_ENC_KEY_CONNECTING)) {
+      VLOG(1) << __func__ << " Calling GATT Disconnect";
       GATT_Disconnect(clcb.conn_id);
       clcb_dealloc(clcb);
     }
@@ -294,6 +432,7 @@ void client_connect_cback(tGATT_IF, const RawAddress& bda, uint16_t conn_id,
                           bool connected, tGATT_DISCONN_REASON reason,
                           tBT_TRANSPORT) {
   tGAP_CLCB* p_clcb = find_clcb_by_bd_addr(bda);
+  bda_and_conn_id.emplace_back(std::make_pair(bda, conn_id));
   if (p_clcb == NULL) {
     LOG_INFO("No active GAP service found for peer:%s callback:%s",
              ADDRESS_TO_LOGGABLE_CSTR(bda), (connected) ? "Connected" : "Disconnected");
@@ -305,13 +444,71 @@ void client_connect_cback(tGATT_IF, const RawAddress& bda, uint16_t conn_id,
     p_clcb->conn_id = conn_id;
     p_clcb->connected = true;
     /* start operation is pending */
-    send_cl_read_request(*p_clcb);
+    send_cl_request(*p_clcb);
   } else {
     LOG_WARN("Disconnected GAP from remote device");
     p_clcb->connected = false;
     cl_op_cmpl(*p_clcb, false, 0, NULL);
     /* clean up clcb */
     clcb_dealloc(*p_clcb);
+  }
+}
+
+/*******************************************************************************
+ *
+ * Function         client_disc_res_cback
+ *
+ * Description      Gatt profile discovery result callback
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void client_disc_res_cback(uint16_t conn_id, tGATT_DISC_TYPE disc_type,
+                           tGATT_DISC_RES* p_data) {
+  tGAP_CLCB* p_clcb = ble_find_clcb_by_conn_id(conn_id);
+  if (p_clcb == NULL) return;
+
+  LOG_DEBUG("disc type: %d enc_key_stage: %d ", +disc_type,
+            +p_clcb->enc_key_stage);
+  switch (disc_type) {
+    case GATT_DISC_CHAR_DSCPT: /* stage 3 */
+      if (p_data->type == Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG)) {
+        p_clcb->curr_cccd_handle = p_data->handle;
+        p_clcb->enc_key_stage++;
+        p_clcb->enc_key_result++;
+        LOG_DEBUG("curr_cccd_handle: %d", +p_clcb->curr_cccd_handle);
+      }
+      break;
+    default:
+      break;
+  }
+}
+
+/*******************************************************************************
+ *
+ * Function         client_disc_cmpl_cback
+ *
+ * Description      Gatt profile discovery complete callback
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void client_disc_cmpl_cback(uint16_t conn_id, tGATT_DISC_TYPE disc_type,
+                            tGATT_STATUS status) {
+  tGAP_CLCB* p_clcb = ble_find_clcb_by_conn_id(conn_id);
+  if (p_clcb == NULL) return;
+
+  LOG_DEBUG("status=%d, enc_key_stage=%d", +status, +p_clcb->enc_key_stage);
+
+  if (status != GATT_SUCCESS || p_clcb->enc_key_result == 0) {
+    LOG_WARN("Unable to register for enc key material indication ");
+    p_clcb->is_enc_key_info_in_progress = false;
+    return;
+  }
+
+  if (p_clcb->enc_key_stage > GAP_ENC_KEY_CONNECTING) {
+    p_clcb->enc_key_result = 0;
+    gap_cl_get_enc_key_info(p_clcb);
   }
 }
 
@@ -328,8 +525,9 @@ void client_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op, tGATT_STATUS status,
 
   op_type = p_clcb->cl_op_uuid;
 
-  /* Currently we only issue read commands */
-  if (op != GATTC_OPTYPE_READ) return;
+  DVLOG(1) << StringPrintf(
+      "%s: - op_code: 0x%02x  status: 0x%02x  read_type: 0x%04x", __func__, op,
+      status, op_type);
 
   if (status != GATT_SUCCESS) {
     cl_op_cmpl(*p_clcb, false, 0, NULL);
@@ -337,39 +535,67 @@ void client_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op, tGATT_STATUS status,
   }
 
   pp = p_data->att_value.value;
-  switch (op_type) {
-    case GATT_UUID_GAP_PREF_CONN_PARAM:
-      /* Extract the peripheral preferred connection parameters and save them */
-      STREAM_TO_UINT16(min, pp);
-      STREAM_TO_UINT16(max, pp);
-      STREAM_TO_UINT16(latency, pp);
-      STREAM_TO_UINT16(tout, pp);
+  if (op == GATTC_OPTYPE_READ) {
+    switch (op_type) {
+      case GATT_UUID_GAP_PREF_CONN_PARAM:
+        /* Extract the peripheral preferred connection parameters and save them
+         */
+        STREAM_TO_UINT16(min, pp);
+        STREAM_TO_UINT16(max, pp);
+        STREAM_TO_UINT16(latency, pp);
+        STREAM_TO_UINT16(tout, pp);
 
-      BTM_BleSetPrefConnParams(p_clcb->bda, min, max, latency, tout);
-      /* release the connection here */
-      cl_op_cmpl(*p_clcb, true, 0, NULL);
-      break;
+        BTM_BleSetPrefConnParams(p_clcb->bda, min, max, latency, tout);
+        /* release the connection here */
+        cl_op_cmpl(*p_clcb, true, 0, NULL);
+        break;
 
-    case GATT_UUID_GAP_DEVICE_NAME:
-      len = (uint16_t)strlen((char*)pp);
-      if (len > GAP_CHAR_DEV_NAME_SIZE) len = GAP_CHAR_DEV_NAME_SIZE;
-      cl_op_cmpl(*p_clcb, true, len, pp);
-      break;
+      case GATT_UUID_GAP_DEVICE_NAME:
+        len = (uint16_t)strlen((char*)pp);
+        if (len > GAP_CHAR_DEV_NAME_SIZE) len = GAP_CHAR_DEV_NAME_SIZE;
+        cl_op_cmpl(*p_clcb, true, len, pp);
+        break;
 
-    case GATT_UUID_GAP_CENTRAL_ADDR_RESOL:
-      cl_op_cmpl(*p_clcb, true, 1, pp);
-      break;
+      case GATT_UUID_GAP_CENTRAL_ADDR_RESOL:
+        cl_op_cmpl(*p_clcb, true, 1, pp);
+        break;
+      case GATT_UUID_GAP_ENC_KEY_MATERIAL:
+        p_clcb->curr_enc_key_char_handle = p_data->att_value.handle;
+        p_clcb->enc_key_char_handles.push_back(p_data->att_value.handle);
+        len = (uint16_t)strlen((char*)pp);
+        cl_op_cmpl(*p_clcb, true, len, pp);
+        break;
+    }
+  } else if (op == GATTC_OPTYPE_WRITE) {
+    cl_op_cmpl(*p_clcb, true, 0, NULL);
+  } else if (op == GATTC_OPTYPE_INDICATION) {
+    LOG(INFO) << __func__ << " Received Indication in GAP profile";
+    uint16_t handle = p_data->att_value.handle;
+
+    if (std::find(p_clcb->enc_key_char_handles.begin(),
+                  p_clcb->enc_key_char_handles.end(),
+                  handle) != p_clcb->enc_key_char_handles.end()) {
+      LOG(INFO)
+          << __func__
+          << " Received Indication for Enc key material char in GAP profile";
+      GAP_BleGetEncKeyMaterialInfo(p_clcb->bda);
+    }
   }
 }
 
 bool accept_client_operation(const RawAddress& peer_bda, uint16_t uuid,
+                             uint16_t handle, uint8_t op, uint8_t disc_type,
                              tGAP_BLE_CMPL_CBACK* p_cback) {
-  if (p_cback == NULL && uuid != GATT_UUID_GAP_PREF_CONN_PARAM) return false;
 
   tGAP_CLCB* p_clcb = find_clcb_by_bd_addr(peer_bda);
   if (p_clcb == NULL) {
     p_clcb = clcb_alloc(peer_bda);
   }
+
+  DVLOG(1) << __func__ << ": BDA: " << ADDRESS_TO_LOGGABLE_STR(peer_bda)
+           << " :op: " << +op << " :disc_type:" << +disc_type
+           << StringPrintf(" cl_op_uuid: 0x%04x", uuid)
+           << " start_handle: " << +handle;
 
   if (GATT_GetConnIdIfConnected(gatt_if, peer_bda, &p_clcb->conn_id,
                                 BT_TRANSPORT_LE))
@@ -380,15 +606,31 @@ bool accept_client_operation(const RawAddress& peer_bda, uint16_t uuid,
     return false;
 
   /* enqueue the request */
-  p_clcb->requests.push({.uuid = uuid, .p_cback = p_cback});
+  if (op == GATTC_OPTYPE_READ) {
+    /* enqueue the read request */
+    p_clcb->requests.push({.uuid = uuid, .handle = handle, .p_cback = p_cback});
+  } else if (op == GATTC_OPTYPE_WRITE) {
+    /* enqueue the write request */
+    p_clcb->requests.push({.handle = handle, .p_cback = p_cback});
+  } else if (op == GATTC_OPTYPE_DISCOVERY) {
+    /* enqueue the disc request */
+    p_clcb->requests.push({.disc_type = static_cast<tGATT_DISC_TYPE>(disc_type), .p_cback = p_cback});
+  }
 
-  if (p_clcb->connected && p_clcb->cl_op_uuid == 0)
-    return send_cl_read_request(*p_clcb);
-  else /* wait for connection up or pending operation to finish */
+  if (p_clcb->connected && p_clcb->cl_op_uuid == 0) {
+    if (op == GATTC_OPTYPE_READ) {
+      return send_cl_read_request(*p_clcb);
+    } else if (op == GATTC_OPTYPE_WRITE) {
+      return send_cl_write_request(*p_clcb);
+    } else if (op == GATTC_OPTYPE_DISCOVERY) {
+      return send_cl_disc_request(*p_clcb);
+    } else { /* wait for connection up or pending operation to finish */
+      return true;
+    }
+  } else { /* wait for connection up or pending operation to finish */
     return true;
+  }
 }
-
-}  // namespace
 
 /*******************************************************************************
  *
@@ -414,6 +656,8 @@ void gap_attr_db_init(void) {
   Uuid name_uuid = Uuid::From16Bit(GATT_UUID_GAP_DEVICE_NAME);
   Uuid icon_uuid = Uuid::From16Bit(GATT_UUID_GAP_ICON);
   Uuid addr_res_uuid = Uuid::From16Bit(GATT_UUID_GAP_CENTRAL_ADDR_RESOL);
+  Uuid encr_data_uuid = Uuid::From16Bit(GATT_UUID_GAP_ENC_KEY_MATERIAL);
+  Uuid cccd_uuid = Uuid::From16Bit(GATT_UUID_CHAR_CLIENT_CONFIG);
 
   btgatt_db_element_t service[] = {
       {
@@ -431,7 +675,14 @@ void gap_attr_db_init(void) {
       {.uuid = addr_res_uuid,
        .type = BTGATT_DB_CHARACTERISTIC,
        .properties = GATT_CHAR_PROP_BIT_READ,
-       .permissions = GATT_PERM_READ}
+       .permissions = GATT_PERM_READ},
+      {.uuid = encr_data_uuid,
+       .type = BTGATT_DB_CHARACTERISTIC,
+       .properties = GATT_CHAR_PROP_BIT_READ | GATT_CHAR_PROP_BIT_INDICATE,
+       .permissions = GATT_READ_AUTH_REQUIRED},
+      {.uuid = cccd_uuid,
+       .type = BTGATT_DB_DESCRIPTOR,
+       .permissions = (GATT_PERM_READ | GATT_PERM_WRITE)}
 #if (BTM_PERIPHERAL_ENABLED == TRUE) /* Only needed for peripheral testing */
       ,
       {.uuid = Uuid::From16Bit(GATT_UUID_GAP_PREF_CONN_PARAM),
@@ -455,16 +706,44 @@ void gap_attr_db_init(void) {
   gatt_attr[2].handle = service[3].attribute_handle;
   gatt_attr[2].attr_value.addr_resolution = 0;
 
+  gatt_attr[3].uuid = GATT_UUID_GAP_ENC_KEY_MATERIAL;
+  gatt_attr[3].handle = service[4].attribute_handle;
+  gatt_attr[4].uuid = GATT_UUID_CHAR_CLIENT_CONFIG;
+  gatt_attr[4].handle = service[5].attribute_handle;
+
 #if (BTM_PERIPHERAL_ENABLED == TRUE) /*  Only needed for peripheral testing */
 
-  gatt_attr[3].uuid = GATT_UUID_GAP_PREF_CONN_PARAM;
-  gatt_attr[3].attr_value.conn_param.int_max = GAP_PREFER_CONN_INT_MAX; /* 6 */
-  gatt_attr[3].attr_value.conn_param.int_min = GAP_PREFER_CONN_INT_MIN; /* 0 */
-  gatt_attr[3].attr_value.conn_param.latency = GAP_PREFER_CONN_LATENCY; /* 0 */
-  gatt_attr[3].attr_value.conn_param.sp_tout =
+  gatt_attr[5].uuid = GATT_UUID_GAP_PREF_CONN_PARAM;
+  gatt_attr[5].attr_value.conn_param.int_max = GAP_PREFER_CONN_INT_MAX; /* 6 */
+  gatt_attr[5].attr_value.conn_param.int_min = GAP_PREFER_CONN_INT_MIN; /* 0 */
+  gatt_attr[5].attr_value.conn_param.latency = GAP_PREFER_CONN_LATENCY; /* 0 */
+  gatt_attr[5].attr_value.conn_param.sp_tout =
       GAP_PREFER_CONN_SP_TOUT; /* 2000 */
-  gatt_attr[3].handle = service[4].attribute_handle;
+  gatt_attr[5].handle = service[6].attribute_handle;
 #endif
+}
+
+/* Function to check if Indications are required*/
+void gap_chk_encr_data(std::pair<RawAddress, uint16_t> bda_conn_id_pair,
+                       tGAP_ATTR db_attr) {
+  uint8_t encr_data_cccd =
+      btif_storage_get_encr_data_cccd(bda_conn_id_pair.first);
+  if (encr_data_cccd != GATT_CHAR_CLIENT_CONFIG_INDICTION) {
+    LOG_DEBUG("Discard Encr DataKey - CCCD disabled: %d", encr_data_cccd);
+    return;
+  }
+
+  uint16_t conn_id = bda_conn_id_pair.second;
+  if (conn_id == GATT_INVALID_CONN_ID) {
+    LOG_ERROR("Unable to find conn_id for %s",
+              ADDRESS_TO_LOGGABLE_CSTR(bda_conn_id_pair.first));
+    return;
+  }
+
+  uint8_t encr_material[ENC_KEY_MATERIAL_LEN];
+  memcpy(encr_material, &db_attr.attr_value.enc_key_material, ENC_KEY_MATERIAL_LEN);
+  GATTS_HandleValueIndication(conn_id, db_attr.handle, sizeof(encr_material),
+                              encr_material);
 }
 
 /*******************************************************************************
@@ -495,6 +774,20 @@ void GAP_BleAttrDBUpdate(uint16_t attr_uuid, tGAP_BLE_ATTR_VALUE* p_value) {
         case GATT_UUID_GAP_CENTRAL_ADDR_RESOL:
           db_attr.attr_value.addr_resolution = p_value->addr_resolution;
           break;
+        case GATT_UUID_GAP_ENC_KEY_MATERIAL:
+          if(std::memcmp((const void*)&db_attr.attr_value.enc_key_material,
+            (const void*)&p_value->enc_key_material,
+            sizeof(tGAP_BLE_ENC_KEY_MATERIAL)) != 0) {
+              memcpy((void*)&db_attr.attr_value.enc_key_material, (const void*)&p_value->enc_key_material,
+                    sizeof(tGAP_BLE_ENC_KEY_MATERIAL));
+              for (unsigned int i = 0; i < bda_and_conn_id.size(); i++) {
+                auto temp = bda_and_conn_id[i];
+                LOG_INFO(" BDA: %s conn_id: %d",
+                          ADDRESS_TO_LOGGABLE_CSTR(temp.first), temp.second);
+                gap_chk_encr_data(temp, db_attr);
+              }
+            }
+          break;
       }
       break;
     }
@@ -514,7 +807,8 @@ void GAP_BleAttrDBUpdate(uint16_t attr_uuid, tGAP_BLE_ATTR_VALUE* p_value) {
  *
  ******************************************************************************/
 bool GAP_BleReadPeerPrefConnParams(const RawAddress& peer_bda) {
-  return accept_client_operation(peer_bda, GATT_UUID_GAP_PREF_CONN_PARAM, NULL);
+  return accept_client_operation(peer_bda, GATT_UUID_GAP_PREF_CONN_PARAM, 0,
+                                 GATTC_OPTYPE_READ, 0, NULL);
 }
 
 /*******************************************************************************
@@ -529,7 +823,8 @@ bool GAP_BleReadPeerPrefConnParams(const RawAddress& peer_bda) {
  ******************************************************************************/
 bool GAP_BleReadPeerDevName(const RawAddress& peer_bda,
                             tGAP_BLE_CMPL_CBACK* p_cback) {
-  return accept_client_operation(peer_bda, GATT_UUID_GAP_DEVICE_NAME, p_cback);
+  return accept_client_operation(peer_bda, GATT_UUID_GAP_DEVICE_NAME, 0,
+                                 GATTC_OPTYPE_READ, 0, p_cback);
 }
 
 /*******************************************************************************
@@ -559,4 +854,228 @@ bool GAP_BleCancelReadPeerDevName(const RawAddress& peer_bda) {
   cl_op_cmpl(*p_clcb, false, 0, NULL);
 
   return (true);
+}
+
+
+void btm_ble_config_cccd_enc_key_cmpl(bool status, const RawAddress& bda,
+                                      uint16_t length, char* p_name) {
+  tGAP_CLCB* p_clcb = find_clcb_by_bd_addr(bda);
+
+  if (p_clcb == NULL) {
+    LOG_DEBUG("p_clcb is NULL for %s", ADDRESS_TO_LOGGABLE_CSTR(bda));
+    return;
+  }
+
+  p_clcb->enc_key_result = 0;
+
+  LOG_DEBUG("curr enc key char handle: %d", +p_clcb->curr_enc_key_char_handle);
+
+  std::vector<uint16_t>::iterator it = std::find(
+      p_clcb->enc_key_char_handles.begin(), p_clcb->enc_key_char_handles.end(),
+      p_clcb->curr_enc_key_char_handle);
+
+  // Check if next enc key char handle available, then discover and configure
+  // CCCD for it
+  if (it == p_clcb->enc_key_char_handles.end()) {
+    return;
+  }
+
+  std::vector<uint16_t>::iterator it_next = std::next(it, 1);
+  if ((it_next) != p_clcb->enc_key_char_handles.end()) {
+    p_clcb->enc_key_stage = GAP_ENC_KEY_CCCD;
+    p_clcb->curr_enc_key_char_handle = *(it_next);
+    gap_cl_get_enc_key_info(p_clcb);
+  } else {
+    LOG_DEBUG(" next enc key char handle is NOT available");
+    p_clcb->is_enc_key_info_in_progress = false;
+  }
+}
+
+/*******************************************************************************
+ *
+ * Function         GAP_BleConfigCccdForKeyMaterial
+ *
+ * Description      Start configuration of CCC Descriptor of Encryption Key
+ *                  Material characteristic for indications
+ *
+ * Returns          true if read started, else false if GAP is busy
+ *
+ ******************************************************************************/
+bool GAP_BleConfigCccdForKeyMaterial(const RawAddress& peer_bda,
+                                     uint16_t handle,
+                                     tGAP_BLE_CMPL_CBACK* p_cback) {
+  return accept_client_operation(peer_bda, GATT_UUID_CHAR_CLIENT_CONFIG, handle,
+                                 GATTC_OPTYPE_WRITE, 0, p_cback);
+}
+
+/*******************************************************************************
+ *
+ * Function         GAP_BleDiscEncKeyMaterialCCCD
+ *
+ * Description      Start discvoery of CCC Descriptor of Encryption Key
+ *                  Material characteristic
+ *
+ * Returns          true if read started, else false if GAP is busy
+ *
+ ******************************************************************************/
+bool GAP_BleDiscEncKeyMaterialCCCD(const RawAddress& peer_bda) {
+  LOG_DEBUG("peer_bda: %s", ADDRESS_TO_LOGGABLE_CSTR(peer_bda));
+  return accept_client_operation(peer_bda, 0, 0, GATTC_OPTYPE_DISCOVERY,
+                                 GATT_DISC_CHAR_DSCPT, NULL);
+}
+
+void btm_ble_read_enc_key_cmpl(bool status, const RawAddress& bda,
+                               uint16_t length, char* p_data) {
+  tGAP_CLCB* p_clcb = find_clcb_by_bd_addr(bda);
+  if (p_clcb == NULL) {
+    LOG_DEBUG("p_clcb is NULL: ");
+    return;
+  }
+
+  if (!status) {
+    LOG_DEBUG("status is false");
+    /* Status false(error) implies that read of enc key chars are completed,
+     * Go to next stage(desc) now.*/
+    if (p_clcb->enc_key_char_handles.empty()) {
+      LOG_DEBUG("enc_key_char_handles empty ");
+      p_clcb->is_enc_key_info_in_progress = false;
+      return;
+    }
+    p_clcb->enc_key_stage++;
+
+    // Pick first enc key char handle, and find CCCD desc for it to configure
+    if (!p_clcb->enc_key_char_handles.empty()) {
+      p_clcb->curr_enc_key_char_handle = p_clcb->enc_key_char_handles[0];
+    }
+
+    gap_cl_get_enc_key_info(p_clcb);
+    return;
+  }
+
+  LOG_DEBUG("curr_enc_key_char_handle: %d", p_clcb->curr_enc_key_char_handle);
+
+  char reversekeyiv[ENC_KEY_MATERIAL_LEN];
+  char *reversekeyiv_ptr = reversekeyiv;
+  REVERSE_ARRAY_TO_STREAM(reversekeyiv_ptr, p_data, ENC_KEY_LEN);
+  REVERSE_ARRAY_TO_STREAM(reversekeyiv_ptr, p_data+16, ENC_IV_LEN);
+  memcpy(p_data, reversekeyiv, ENC_KEY_MATERIAL_LEN);
+  size_t len = btif_storage_get_enc_key_material_length(&bda);
+  if (len <= 0) {
+    LOG_DEBUG("prev enc key char value NOT available ");
+    btif_storage_set_enc_key_material(bda, (uint8_t*)p_data, length);
+  } else {
+    uint8_t concat_enc_key_material[length + len];
+    if (btif_storage_get_enc_key_material(&bda, concat_enc_key_material,
+        &len) == BT_STATUS_SUCCESS) {
+      if (length > 0) {
+        memcpy(concat_enc_key_material + len, p_data, length);
+        btif_storage_remove_enc_key_material(&bda);
+        btif_storage_set_enc_key_material(bda, concat_enc_key_material, (length + len));
+      }
+    }
+  }
+
+  /* Don't increment p_clcb->enc_key_stage as we want to be in Read enc key
+   * material char state to read multiple other enc key material char values and
+   * concatenate them */
+  gap_cl_get_enc_key_info(p_clcb);
+}
+
+/*******************************************************************************
+ *
+ * Function         GAP_BleReadEncKeyMaterial
+ *
+ * Description      Start a process to read a connected peripheral's Encryption
+ *                  Key material characteristic
+ *
+ * Returns          true if read started, else false if GAP is busy
+ *
+ ******************************************************************************/
+bool GAP_BleReadEncKeyMaterial(const RawAddress& peer_bda, uint16_t handle,
+                               tGAP_BLE_CMPL_CBACK* p_cback) {
+  return accept_client_operation(peer_bda, GATT_UUID_GAP_ENC_KEY_MATERIAL,
+                                 handle, GATTC_OPTYPE_READ, 0, p_cback);
+}
+
+/*******************************************************************************
+ *
+ * Function         gap_cl_get_enc_key_info
+ *
+ * Description      get and configure encryption key material characteristic
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+static void gap_cl_get_enc_key_info(tGAP_CLCB* p_clcb) {
+  LOG_DEBUG("stage: %d", +p_clcb->enc_key_stage);
+  switch (p_clcb->enc_key_stage) {
+    case GAP_ENC_KEY_CHARACTERISTIC: /* Read Enc Key Material Char */
+      GAP_BleReadEncKeyMaterial(p_clcb->bda,
+                                (p_clcb->curr_enc_key_char_handle + 1),
+                                btm_ble_read_enc_key_cmpl);
+      break;
+
+    case GAP_ENC_KEY_CCCD: /* Discover CCCD */
+      GAP_BleDiscEncKeyMaterialCCCD(p_clcb->bda);
+      break;
+
+    case GAP_ENC_KEY_CONFIG_CCCD: /* Config cccd */
+      GAP_BleConfigCccdForKeyMaterial(p_clcb->bda, p_clcb->curr_cccd_handle,
+                                      btm_ble_config_cccd_enc_key_cmpl);
+      break;
+    default:
+      LOG_WARN("Invalid Input for Encryption Key Material to fetch ");
+  }
+}
+
+/*******************************************************************************
+ *
+ * Function         GAP_BleGetEncKeyMaterialInfo
+ *
+ * Description      Get Encryption Key Material information characteristic value
+ *                  from remote device
+ *
+ * Returns          none
+ *
+ ******************************************************************************/
+void GAP_BleGetEncKeyMaterialInfo(const RawAddress& remote_bda) {
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(remote_bda);
+
+  /* 
+   * If remote device is encypted, then only get the encrypt key material
+   * information
+   */
+  if (p_dev_rec && (p_dev_rec->sec_flags & BTM_SEC_LE_ENCRYPTED)) {
+    VLOG(1) << __func__ << ": Encryption is done, read enc key values";
+    tGAP_CLCB* p_clcb = find_clcb_by_bd_addr(remote_bda);
+    if (p_clcb == NULL) {
+      p_clcb = clcb_alloc(remote_bda);
+      if (p_clcb == NULL) return;
+    }
+
+    if (p_clcb->is_enc_key_info_in_progress) {
+      LOG_DEBUG("Enc key info already in progress");
+      return;
+    }
+
+    btif_storage_remove_enc_key_material(&remote_bda);
+
+    p_clcb->is_enc_key_info_in_progress = true;
+    p_clcb->enc_key_stage = GAP_ENC_KEY_CONNECTING;
+    p_clcb->curr_enc_key_char_handle = 0;
+    p_clcb->curr_cccd_handle = 0;
+    p_clcb->enc_key_char_handles.clear();
+
+    p_clcb->enc_key_stage++;
+    gap_cl_get_enc_key_info(p_clcb);
+  }
+  else {
+    tGATT_TCB* p_tcb =
+        gatt_find_tcb_by_addr(remote_bda, BT_TRANSPORT_LE);
+    if (p_tcb) {
+      p_tcb->is_read_enc_key_pending = true;
+      VLOG(1) << __func__
+              << ": Encryption is not done, don't read enc key values";
+    }
+  }
 }

@@ -32,10 +32,13 @@
 #include "bt_target.h"
 #include "btif/include/btif_storage.h"
 #include "eatt/eatt.h"
+#include "gap_api.h"
 #include "gatt_api.h"
 #include "gatt_int.h"
 #include "os/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
+#include "gd/common/init_flags.h"
+#include "stack/btm/btm_int_types.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/bt_uuid16.h"
 #include "types/bluetooth/uuid.h"
@@ -44,6 +47,8 @@
 
 using base::StringPrintf;
 using bluetooth::Uuid;
+
+extern tBTM_CB btm_cb;
 
 #define BLE_GATT_SVR_SUP_FEAT_EATT_BITMASK 0x01
 
@@ -570,6 +575,11 @@ static bool gatt_att_write_cl_supp_feat(uint16_t conn_id, uint16_t handle) {
                << loghex(static_cast<uint8_t>(status));
     return false;
   }
+  gatt_op_cb_data cb_data;
+  cb_data.cb =
+      base::BindOnce([](const RawAddress& bdaddr, uint8_t support) { return; });
+  cb_data.op_uuid = GATT_UUID_CLIENT_SUP_FEAT;
+  OngoingOps[conn_id].emplace_back(std::move(cb_data));
 
   return true;
 }
@@ -589,7 +599,7 @@ static void gatt_cl_op_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
   auto iter = OngoingOps.find(conn_id);
 
   VLOG(1) << __func__ << " opcode: " << loghex(static_cast<uint8_t>(op))
-          << " status: " << status
+          << " status: " << loghex(static_cast<uint8_t>(status))
           << " conn id: " << loghex(static_cast<uint8_t>(conn_id));
 
   if (op != GATTC_OPTYPE_READ && op != GATTC_OPTYPE_WRITE) {
@@ -606,6 +616,7 @@ static void gatt_cl_op_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
 
   uint16_t cl_op_uuid = iter->second.front().op_uuid;
 
+  tGATT_PROFILE_CLCB* p_clcb = gatt_profile_find_clcb_by_conn_id(conn_id);
   if (op == GATTC_OPTYPE_WRITE) {
     if (cl_op_uuid == GATT_UUID_GATT_SRV_CHGD) {
       LOG_DEBUG("Write response from Service Changed CCC");
@@ -616,6 +627,11 @@ static void gatt_cl_op_cmpl_cback(uint16_t conn_id, tGATTC_OPTYPE op,
                                      uint8_t support) { return; }));
     } else {
       LOG_DEBUG("Not interested in that write response");
+    }
+    if (status == GATT_SUCCESS && cl_op_uuid == GATT_UUID_CLIENT_SUP_FEAT) {
+      if (bluetooth::common::init_flags::encrypted_advertising_is_enabled()) {
+        GAP_BleGetEncKeyMaterialInfo(p_clcb->bda);
+      }
     }
     return;
   }
