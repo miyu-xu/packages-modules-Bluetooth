@@ -102,10 +102,13 @@ class BleAdvertisingManager {
                           uint8_t /* status */)>
           cb,
       tBTM_BLE_ADV_PARAMS* params, std::vector<uint8_t> advertise_data,
+      std::vector<uint8_t> advertise_data_enc,
       std::vector<uint8_t> scan_response_data,
+      std::vector<uint8_t> scan_response_data_enc,
       tBLE_PERIODIC_ADV_PARAMS* periodic_params,
-      std::vector<uint8_t> periodic_data, uint16_t duration,
-      uint8_t maxExtAdvEvents,
+      std::vector<uint8_t> periodic_data,
+      std::vector<uint8_t> periodic_data_enc, uint16_t duration,
+      uint8_t maxExtAdvEvents, std::vector<uint8_t> enc_key_value,
       base::Callback<void(uint8_t /* inst_id */, uint8_t /* status */)>
           timeout_cb) = 0;
 
@@ -130,7 +133,8 @@ class BleAdvertisingManager {
   /* This function configure a Multi-ADV instance with the specified adv data or
    * scan response data.*/
   virtual void SetData(uint8_t inst_id, bool is_scan_rsp,
-                       std::vector<uint8_t> data, MultiAdvCb cb) = 0;
+                       std::vector<uint8_t> data, std::vector<uint8_t> data_enc,
+                       MultiAdvCb cb) = 0;
 
   /* This function configure instance with the specified periodic parameters */
   virtual void SetPeriodicAdvertisingParameters(
@@ -139,6 +143,7 @@ class BleAdvertisingManager {
   /* This function configure instance with the specified periodic data */
   virtual void SetPeriodicAdvertisingData(uint8_t inst_id,
                                           std::vector<uint8_t> data,
+                                          std::vector<uint8_t> data_enc,
                                           MultiAdvCb cb) = 0;
 
   /* This function enables/disables periodic advertising on selected instance */

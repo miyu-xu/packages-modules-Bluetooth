@@ -23,8 +23,12 @@
 #include "bt_target.h"
 #include "device/include/controller.h"
 #include "gap_api.h"
+#include "gd/common/init_flags.h"
+#include "hcimsgs.h"
 #include "l2c_api.h"
 #include "l2cdefs.h"
+#include "main/shim/le_advertising_manager.h"
+#include "main/shim/shim.h"
 #include "osi/include/allocator.h"
 #include "osi/include/fixed_queue.h"
 #include "osi/include/mutex.h"
@@ -990,4 +994,8 @@ void gap_attr_db_init(void);
 void GAP_Init(void) {
   gap_conn_init();
   gap_attr_db_init();
+  CHECK(bluetooth::shim::is_gd_stack_started_up());
+  if (bluetooth::common::init_flags::encrypted_advertising_is_enabled()) {
+    bluetooth::shim::enc_key_cb();
+  }
 }
