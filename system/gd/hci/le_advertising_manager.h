@@ -24,7 +24,18 @@
 #include "module.h"
 
 namespace bluetooth {
+namespace shim {
+namespace legacy {
+#define GATT_UUID_GAP_ENC_KEY_MATERIAL 0x2B88
+void OnGetEncKeyMaterial(std::vector<uint8_t> temp, uint16_t attr_uuid);
+}  // namespace legacy
+}  // namespace shim
+
 namespace hci {
+struct EncrDataKey {
+  std::vector<uint8_t> key;
+  std::vector<uint8_t> iv;
+};
 
 class PeriodicAdvertisingParameters {
  public:
@@ -159,6 +170,8 @@ class LeAdvertisingManager : public bluetooth::Module {
   void RemoveAdvertiser(AdvertiserId advertiser_id);
 
   void RegisterAdvertisingCallback(AdvertisingCallback* advertising_callback);
+
+  void GetEncKeyMaterial();
 
   static const ModuleFactory Factory;
 

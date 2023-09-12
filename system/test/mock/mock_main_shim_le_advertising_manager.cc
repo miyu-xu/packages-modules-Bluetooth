@@ -27,6 +27,12 @@ BleAdvertiserInterface* bluetooth::shim::get_ble_advertiser_instance() {
   inc_func_call_count(__func__);
   return nullptr;
 }
+
+void bluetooth::shim::legacy::OnGetEncKeyMaterial(std::vector<uint8_t> temp,
+                                                  uint16_t attr_uuid) {
+  inc_func_call_count(__func__);
+}
+
 void bluetooth::shim::init_advertising_manager() {
   inc_func_call_count(__func__);
 }

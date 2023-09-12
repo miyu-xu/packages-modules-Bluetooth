@@ -19,11 +19,13 @@
 #include <bluetooth/log.h>
 #include <string.h>
 
+#include "android_bluetooth_flags.h"
 #include "device/include/controller.h"
 #include "gap_api.h"
 #include "internal_include/bt_target.h"
 #include "l2c_api.h"
 #include "l2cdefs.h"
+#include "main/shim/le_advertising_manager.h"
 #include "osi/include/allocator.h"
 #include "osi/include/fixed_queue.h"
 #include "osi/include/mutex.h"
@@ -985,4 +987,8 @@ void gap_attr_db_init(void);
 void GAP_Init(void) {
   gap_conn_init();
   gap_attr_db_init();
+
+  if (IS_FLAG_ENABLED(encrypted_advertising_data)) {
+    bluetooth::shim::GetEncKeyMaterial();
+  }
 }
