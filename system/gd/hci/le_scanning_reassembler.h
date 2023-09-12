@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 #pragma once
 
@@ -46,11 +50,14 @@ public:
 
   LeScanningReassembler& operator=(const LeScanningReassembler&) = delete;
 
-  /// Process an incoming advertsing report, extracted from any of the
-  /// HCI LE Advertising Report or the HCI LE Extended Advertising Report
-  /// events.
-  /// Returns the completed advertising data if the event was complete, or the
-  /// completion of a fragmented advertising event.
+  struct PeriodicAdvertisingFragment {
+    std::optional<uint16_t> sync_handle;
+    std::vector<uint8_t> data;
+
+    PeriodicAdvertisingFragment(uint16_t sync_handle, const std::vector<uint8_t>& data)
+        : sync_handle(sync_handle), data(data.begin(), data.end()) {}
+  };
+
   std::optional<CompleteAdvertisingData> ProcessAdvertisingReport(
           uint16_t event_type, uint8_t address_type, Address address, uint8_t advertising_sid,
           const std::vector<uint8_t>& advertising_data);
@@ -109,15 +116,6 @@ private:
         : key(key), extended_event_type(extended_event_type), data(data.begin(), data.end()) {}
   };
 
-  /// Packs incomplete periodic advertising data.
-  struct PeriodicAdvertisingFragment {
-    std::optional<uint16_t> sync_handle;
-    std::vector<uint8_t> data;
-
-    PeriodicAdvertisingFragment(uint16_t sync_handle, const std::vector<uint8_t>& data)
-        : sync_handle(sync_handle), data(data.begin(), data.end()) {}
-  };
-
   /// Advertising cache for de-fragmenting extended advertising reports,
   /// and joining advertising reports with the matching scan response when
   /// applicable.
@@ -130,11 +128,10 @@ private:
   std::list<AdvertisingFragment>::iterator AppendFragment(const AdvertisingKey& key,
                                                           uint16_t extended_event_type,
                                                           const std::vector<uint8_t>& data);
-
   void RemoveFragment(const AdvertisingKey& key);
 
   bool ContainsFragment(const AdvertisingKey& key);
-
+  bool ContainsPeriodicFragment(uint16_t sync_handle);
   std::list<AdvertisingFragment>::iterator FindFragment(const AdvertisingKey& key);
 
   /// Advertising cache for de-fragmenting periodic advertising reports.
