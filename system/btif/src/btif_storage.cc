@@ -1594,3 +1594,116 @@ void btif_debug_linkkey_type_dump(int fd) {
     dprintf(fd, "\n");
   }
 }
+void btif_storage_set_encr_data_cccd(const RawAddress& bd_addr, uint8_t cccd) {
+  do_in_jni_thread(FROM_HERE, Bind(
+                                  [](const RawAddress& bd_addr, uint8_t cccd) {
+                                    btif_config_set_int(
+                                        bd_addr.ToString(),
+                                        BTIF_STORAGE_KEY_ENCR_DATA_CCCD, cccd);
+                                  },
+                                  bd_addr, cccd));
+}
+
+uint8_t btif_storage_get_encr_data_cccd(const RawAddress& bda) {
+  int cccd = 0;
+
+  btif_config_get_int(bda.ToString(), BTIF_STORAGE_KEY_ENCR_DATA_CCCD, &cccd);
+  return cccd;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_set_enc_key_material
+ *
+ * Description      BTIF storage API - Store encryption key material char value
+ *                  of remote server
+ *
+ * Returns          BT_STATUS_SUCCESS if the store was successful,
+ *                  BT_STATUS_FAIL otherwise
+ *
+ ******************************************************************************/
+void btif_storage_set_enc_key_material(const RawAddress& remote_bd_addr,
+                                              uint8_t* value,
+                                              size_t key_length) {
+  do_in_jni_thread(FROM_HERE, Bind(
+                                  [](const RawAddress& remote_bd_addr, uint8_t* value,
+                                      uint8_t key_length ) {
+                                    btif_config_set_bin(
+                                      remote_bd_addr.ToString(),
+                                      BTIF_STORAGE_KEY_ENCR_DATA,
+                                      value,
+                                      key_length);
+                                  },
+                                  remote_bd_addr, value, key_length));
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_get_enc_key_material
+ *
+ * Description      Finds the value of the encrypted data key material
+ *                  is present or not?
+ *
+ * Returns          BT_STATUS_SUCCESS if the fetch was successful,
+ *                  BT_STATUS_FAIL otherwise
+ *
+ ******************************************************************************/
+bt_status_t btif_storage_get_enc_key_material(const RawAddress* remote_bd_addr,
+                                              uint8_t* key_value,
+                                              size_t* key_length) {
+  LOG(INFO) << __func__;
+  std::string key =
+      (remote_bd_addr == NULL) ? "Adapter" : remote_bd_addr->ToString();
+  return btif_config_get_bin(key, BTIF_STORAGE_KEY_ENCR_DATA, key_value,
+                             key_length)
+             ? BT_STATUS_SUCCESS
+             : BT_STATUS_FAIL;
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_get_enc_key_material_length
+ *
+ * Description      Finds the length of the value of the
+ *                  encrypted data key material
+ *
+ * Returns          Returns the length of the encrypted data key material
+ *
+ ******************************************************************************/
+size_t btif_storage_get_enc_key_material_length(const RawAddress* remote_bd_addr) {
+  LOG(INFO) << __func__;
+  std::string key =
+      (remote_bd_addr == NULL) ? "Adapter" : remote_bd_addr->ToString();
+  return btif_config_get_bin_length(key, BTIF_STORAGE_KEY_ENCR_DATA);
+}
+
+/*******************************************************************************
+ *
+ * Function         btif_storage_remove_enc_key_material
+ *
+ * Description      BTIF storage API - Deletes the enc key material value
+ *                  from NVRAM
+ *
+ * Returns          BT_STATUS_SUCCESS if the deletion was successful,
+ *                  BT_STATUS_FAIL otherwise
+ *
+ ******************************************************************************/
+void btif_storage_remove_enc_key_material(
+    const RawAddress* remote_bd_addr) {
+  do_in_jni_thread(FROM_HERE,
+                   Bind(
+                       [](const RawAddress* remote_bd_addr) {
+                        std::string key;
+                        if (remote_bd_addr == NULL) {
+                          key = "Adapter";
+                          LOG_DEBUG(" %s in bd addr:%s", __func__, "Adapter");
+                        } else {
+                          key = remote_bd_addr->ToString();
+                          LOG_DEBUG(" %s in bd addr:%s", __func__,
+                                          ADDRESS_TO_LOGGABLE_CSTR(*remote_bd_addr));
+                        }
+                        btif_config_remove(
+                            key, BTIF_STORAGE_KEY_ENCR_DATA);
+                       },
+                       remote_bd_addr));
+}

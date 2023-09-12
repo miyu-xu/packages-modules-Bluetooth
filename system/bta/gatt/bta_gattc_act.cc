@@ -40,18 +40,24 @@
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
+#include "stack/btm/btm_dev.h"
+#include "stack/btm/btm_int_types.h"
+#include "stack/gatt/gatt_int.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_ble_api_types.h"
 #include "stack/include/btm_sec_api.h"
+#include "stack/include/gap_api.h"
 #include "stack/include/l2c_api.h"
 #include "stack/include/main_thread.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+#include "android_bluetooth_flags.h"
 
 using base::StringPrintf;
 using bluetooth::Uuid;
 
+extern tBTM_CB btm_cb;
 /*****************************************************************************
  *  Constants
  ****************************************************************************/
@@ -995,6 +1001,13 @@ void bta_gattc_disc_cmpl(tBTA_GATTC_CLCB* p_clcb,
     tBTA_GATTC bta_gattc;
     bta_gattc.remote_bda = p_clcb->p_srcb->server_bda;
     (*p_clcb->p_rcb->p_cback)(BTA_GATTC_SRVC_DISC_DONE_EVT, &bta_gattc);
+  }
+
+  if (IS_FLAG_ENABLED(encrypted_advertising_data) &&
+      (p_clcb->status == GATT_SUCCESS) &&
+      p_clcb->p_srcb &&
+      btm_sec_is_a_bonded_dev(p_clcb->p_srcb->server_bda)) {
+    GAP_BleGetEncKeyMaterialInfo(p_clcb->p_srcb->server_bda);
   }
 }
 
