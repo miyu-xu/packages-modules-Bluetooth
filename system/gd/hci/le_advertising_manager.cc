@@ -46,6 +46,7 @@
 #include "storage/config_cache.h"
 #include "storage/storage_module.h"
 #include "hci/event_checkers.h"
+#include "storage/config_keys.h"
 
 namespace bluetooth {
 namespace hci {

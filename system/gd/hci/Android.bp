@@ -23,6 +23,7 @@ filegroup {
         "hci_metrics_logging.cc",
         "le_address_manager.cc",
         "le_advertising_manager.cc",
+        "le_scanning_decrypter.cc",
         "le_scanning_manager.cc",
         "le_scanning_reassembler.cc",
         "link_key.cc",
@@ -62,6 +63,7 @@ filegroup {
         "le_scanning_reassembler_test.cc",
         "remote_name_request_test.cc",
         "uuid_unittest.cc",
+        "le_scanning_decrypter_test.cc",
     ],
 }
 
