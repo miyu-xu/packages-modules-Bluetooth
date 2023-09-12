@@ -386,6 +386,20 @@ void BTA_dm_on_hw_on() {
   bta_dm_init_pm();
 
   bta_dm_disc_gattc_register();
+
+  tBTA_DM_SEC sec_event{};
+  size_t len = btif_config_get_bin_length("Adapter", "ENC_KEY_MATERIAL");
+  VLOG(1) << __func__ << " ENC_KEY_MATERIAL len:" << loghex(len);
+  if (len == ENC_KEY_MATERIAL_LEN) {
+    if (btif_storage_get_enc_key_material(
+            NULL, sec_event.enc_key_material.enc_key_value, (int*)&len) ==
+        BT_STATUS_SUCCESS) {
+      VLOG(1) << __func__ << " Found Adapter Enc Key Material value";
+    }
+  }
+  if (bta_dm_cb.p_sec_cback) {
+    bta_dm_cb.p_sec_cback(BTA_DM_ENC_KEY_MATERIAL, &sec_event);
+  }
 }
 
 /** Disables the BT device manager */

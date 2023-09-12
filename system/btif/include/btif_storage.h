@@ -339,6 +339,25 @@ void btif_storage_remove_leaudio_has(const RawAddress& address);
 void btif_storage_set_leaudio_has_acceptlist(const RawAddress& address,
                                              bool add_to_acceptlist);
 
+/* Set Encrypted Data Key Material CCCD value for remote client */
+void btif_storage_set_encr_data_cccd(const RawAddress& bd_addr, uint8_t cccd);
+
+/* Get Encrypted Data Key Material CCCD value for remote client */
+uint8_t btif_storage_get_encr_data_cccd(const RawAddress& bd_addr);
+
+/** Store encryption key material char value of remote server */
+bt_status_t btif_storage_set_enc_key_material(const RawAddress& remote_bd_addr,
+                                              uint8_t* key, uint8_t key_length);
+
+/** Get encryption key materail char value of remote server */
+bt_status_t btif_storage_get_enc_key_material(const RawAddress* remote_bd_addr,
+                                              uint8_t* key_value,
+                                              int* key_length);
+
+/** Remove encryption key material char value of remote server */
+bt_status_t btif_storage_remove_enc_key_material(
+    const RawAddress* remote_bd_addr);
+
 /*******************************************************************************
  *
  * Function         btif_storage_is_retricted_device
