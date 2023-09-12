@@ -7656,9 +7656,11 @@ public class AdapterService extends Service {
             return;
         }
 
-        synchronized (mDeviceConfigLock) {
-            mLeAudioAllowDevices = new HashSet<String>(Arrays.asList(mLeAudioAllowList.split(",")));
+        List<String> leAudioAllowDevices = BluetoothProperties.le_audio_allow_list();
+        if (leAudioAllowDevices != null && !leAudioAllowDevices.isEmpty()) {
+            mLeAudioAllowDevices = new HashSet<String>(leAudioAllowDevices);
         }
+
         return;
     }
 
