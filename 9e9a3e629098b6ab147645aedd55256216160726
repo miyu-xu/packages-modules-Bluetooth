@@ -46,6 +46,30 @@
       },
       "revId": "9e9a3e629098b6ab147645aedd55256216160726",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e6a4719_29884b04",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4556,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-09-12T05:46:10Z",
+      "side": 1,
+      "message": "Talked with Christine offline. Decided to keep this CL as it is and not add direct/autoconnect metric in server (aosp/2732613 was made to do this but abandoned now), since the metric added currently (GATT_***_CONNECT_IS_DIRECT/AUTOCONNECT_IN_FOREGROUND) contains direct/autoconnect information along with foreground info. \n\nSo the plan now is to merge this server side CL as it is, and remove the unnecessary [direct/autoconnect](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/gatt/GattService.java;l\u003d3649?q\u003dgattservice\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22) metric and make the code look the same in the client side in another CL!",
+      "parentUuid": "b6938819_4aa61403",
+      "range": {
+        "startLine": 4536,
+        "startChar": 5,
+        "endLine": 4556,
+        "endChar": 0
+      },
+      "revId": "9e9a3e629098b6ab147645aedd55256216160726",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
