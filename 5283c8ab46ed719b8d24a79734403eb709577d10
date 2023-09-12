@@ -34,6 +34,23 @@
       "parentUuid": "5eaeafc3_e90178aa",
       "revId": "5283c8ab46ed719b8d24a79734403eb709577d10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a262153b_cce31241",
+        "filename": "android/pandora/test/avatar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-09-12T12:35:51Z",
+      "side": 1,
+      "message": "The `${_VENV_DIR}` is already created by the `python3 -m venv \"${_VENV_DIR}\"` command.\nIf the `venv` is corrupted the recommended way is to delete the avatar cache `rm -rf ~/.cache/avatar`",
+      "revId": "5283c8ab46ed719b8d24a79734403eb709577d10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
