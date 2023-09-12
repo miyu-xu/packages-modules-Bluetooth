@@ -22,6 +22,29 @@
       },
       "revId": "0a8c1ebf703a91dceba257bb0ac1d92abaa1419c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a442a08_182f6420",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-09-12T13:10:12Z",
+      "side": 1,
+      "message": "Isnt the Bumble confirmation required before waiting for `BOND_BONDED` ?\nYou can switch to auto-confirmation on the Bumble side by removing the handling of the pairing events (ie. not calling `onPairing`)",
+      "range": {
+        "startLine": 191,
+        "startChar": 8,
+        "endLine": 195,
+        "endChar": 97
+      },
+      "revId": "0a8c1ebf703a91dceba257bb0ac1d92abaa1419c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
