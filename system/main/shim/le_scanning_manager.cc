@@ -37,7 +37,9 @@
 #include "main/shim/shim.h"
 #include "os/log.h"
 #include "stack/btm/btm_int_types.h"
+#include "stack/include/ble_hci_link_interface.h"
 #include "stack/include/bt_dev_class.h"
+#include "stack/include/btm_ble_addr.h"
 #include "stack/include/btm_log_history.h"
 #include "storage/device.h"
 #include "storage/le_device.h"
@@ -48,6 +50,20 @@
 
 using bluetooth::ToGdAddress;
 using bluetooth::ToRawAddress;
+
+namespace bluetooth {
+namespace shim {
+namespace legacy {
+hci::Address identity_to_pseudo_random(hci::Address address,
+                                       uint8_t address_type, bool refresh) {
+  RawAddress address_ = ToRawAddress(address);
+  tBLE_ADDR_TYPE address_type_ = to_ble_addr_type(address_type);
+  btm_identity_addr_to_random_pseudo(&address_, &address_type_, refresh);
+  return ToGdAddress(address_);
+}
+}  // namespace legacy
+}  // namespace shim
+}  // namespace bluetooth
 
 extern tBTM_CB btm_cb;
 
