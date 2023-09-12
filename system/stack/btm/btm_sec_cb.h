@@ -59,6 +59,9 @@ class tBTM_SEC_CB {
   bool pin_type_changed{false};      /* pin type changed during bonding */
   bool sec_req_pending{false};       /*   true if a request is pending */
 
+  bool enc_adv_data_enabled{true};
+  bool enc_adv_data_log_enabled{false};
+
   uint8_t pin_code_len{0}; /* for legacy devices */
   PIN_CODE pin_code;       /* for legacy devices */
   tBTM_PAIRING_STATE pairing_state{
