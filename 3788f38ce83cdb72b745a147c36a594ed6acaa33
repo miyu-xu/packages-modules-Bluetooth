@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ed10e4a_9355f778",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-12T18:19:34Z",
+      "side": 1,
+      "message": "+aritrasen - Some WIP work on how to get topshim + JNI to work nicely",
+      "revId": "3788f38ce83cdb72b745a147c36a594ed6acaa33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9729f648_c032ea22",
+        "filename": "system/gd/rust/topshim/src/profiles/hid_host.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-12T18:19:34Z",
+      "side": 1,
+      "message": "Topshim takes the callback functions, converts them into Rust enums and then sends it to this dispatcher function. JNI would need to convert these Rust structs into Java objects and send it to the relevant callback function.",
+      "revId": "3788f38ce83cdb72b745a147c36a594ed6acaa33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
