@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7201c79_1bad776e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-09-12T05:20:43Z",
+      "side": 1,
+      "message": "Explanation of the problem is in https://b.corp.google.com/issues/297502921#comment10",
+      "revId": "e25d0810630c368f5c64614a79f40b7a0b49102a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
