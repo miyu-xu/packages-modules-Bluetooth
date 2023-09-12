@@ -19,6 +19,7 @@
 #include <bluetooth/log.h>
 #include <string.h>
 
+#include "android_bluetooth_flags.h"
 #include "device/include/controller.h"
 #include "gap_api.h"
 #include "internal_include/bt_target.h"
@@ -985,4 +986,8 @@ void gap_attr_db_init(void);
 void GAP_Init(void) {
   gap_conn_init();
   gap_attr_db_init();
+
+  if (IS_FLAG_ENABLED(encrypted_advertising_data)) {
+    bluetooth::shim::enc_key_cb();
+  }
 }
