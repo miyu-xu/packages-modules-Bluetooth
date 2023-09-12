@@ -162,6 +162,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20a1d3df_28f06d11",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-12T16:45:29Z",
+      "side": 1,
+      "message": "Btw, instead of using `fmt::Display`, I think we prefer to use `fmt::Debug` for this and just use `{:?}` instead. I\u0027m pretty sure everything that implements `DBusArg` also has `#[derive(Debug)]`.\n\nI think I\u0027d rather go with option A (requiring all DBus structures to implement Debug) than go with a much more complex proc-macro parsing logic.",
+      "parentUuid": "fe2d48bf_794cfd1e",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4135eed3_dc520c06",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 1
