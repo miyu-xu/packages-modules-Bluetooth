@@ -206,6 +206,8 @@ class PeriodicSyncManagerTest : public ::testing::Test {
     MOCK_METHOD(void, OnPeriodicSyncLost, (uint16_t));
     MOCK_METHOD(void, OnPeriodicSyncTransferred, (int, uint8_t, Address));
     MOCK_METHOD(void, OnBigInfoReport, (uint16_t, bool));
+    MOCK_METHOD(
+        bool, OnFetchPseudoAddressFromIdentityAddress, (Address, uint8_t, Address*), (override));
   } mock_callbacks_;
 
   os::Thread* thread_;

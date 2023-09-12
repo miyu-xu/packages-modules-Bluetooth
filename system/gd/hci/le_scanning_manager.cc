@@ -16,16 +16,19 @@
 #include "hci/le_scanning_manager.h"
 
 #include <android_bluetooth_flags.h>
+#include <base/strings/string_number_conversions.h>
 
 #include <memory>
 #include <unordered_map>
 
+#include "android_bluetooth_flags.h"
 #include "hci/acl_manager.h"
 #include "hci/controller.h"
 #include "hci/event_checkers.h"
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
 #include "hci/le_periodic_sync_manager.h"
+#include "hci/le_scanning_decrypter.h"
 #include "hci/le_scanning_interface.h"
 #include "hci/le_scanning_reassembler.h"
 #include "hci/vendor_specific_event_manager.h"
@@ -33,6 +36,7 @@
 #include "os/handler.h"
 #include "os/log.h"
 #include "os/system_properties.h"
+#include "storage/config_keys.h"
 #include "storage/storage_module.h"
 
 namespace bluetooth {
@@ -156,6 +160,11 @@ class NullScanningCallback : public ScanningCallback {
   void OnBigInfoReport(uint16_t /* sync_handle */, bool /* encrypted */) {
     LOG_INFO("OnBigInfoReport in NullScanningCallback");
   };
+
+  bool OnFetchPseudoAddressFromIdentityAddress(Address, uint8_t, Address*) {
+    LOG_INFO("OnFetchPseudoAddressFromIdentityAddress in NullScanningCallback");
+    return false;
+  }
 };
 
 enum class BatchScanState {
@@ -463,6 +472,34 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     std::optional<LeScanningReassembler::CompleteAdvertisingData> processed_report =
         scanning_reassembler_.ProcessAdvertisingReport(
             event_type, address_type, address, advertising_sid, advertising_data);
+
+    if (IS_FLAG_ENABLED(encrypted_advertising_data)) {
+      if (processed_report.has_value() &&
+          scanning_decrypter_.ContainsEncryptedData(
+              processed_report->data.data(), processed_report->data.size())) {
+        Address pseudo_address;
+        bool pseudoAddresssAvailable = scanning_callbacks_->OnFetchPseudoAddressFromIdentityAddress(
+            address, address_type, &pseudo_address);
+        if (pseudoAddresssAvailable) {
+          auto enc_key_material =
+              storage_module_->GetBin(pseudo_address.ToString().c_str(), BTIF_STORAGE_KEY_ENCR_DATA)
+                  .value_or(std::vector<uint8_t>{});
+          if (enc_key_material.size() > 0) {
+            std::vector<uint8_t> decrypted_data;
+            bool is_decrypt_success = false;
+            is_decrypt_success = scanning_decrypter_.ExtractEncryptedData(
+                processed_report->data, enc_key_material, &decrypted_data);
+            if (!is_decrypt_success) {
+              LOG_INFO(
+                  "Decryption FAILED ENC_KEY_MATERIAL  %s",
+                  base::HexEncode(enc_key_material.data(), enc_key_material.size()).c_str());
+            } else {
+              processed_report->data = decrypted_data;
+            }
+          }
+        }
+      }
+    }
 
     if (processed_report.has_value()) {
       switch (address_type) {
@@ -1694,6 +1731,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   bool scan_on_resume_ = false;
   bool paused_ = false;
   LeScanningReassembler scanning_reassembler_;
+  LeScanningDecrypter scanning_decrypter_;
   bool is_filter_supported_ = false;
   bool is_ad_type_filter_supported_ = false;
   bool is_batch_scan_supported_ = false;

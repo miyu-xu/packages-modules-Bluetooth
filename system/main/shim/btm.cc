@@ -150,7 +150,11 @@ void Btm::ScanningCallbacks::OnPeriodicSyncTransferred(
     bluetooth::hci::Address /* address */) {}
 void Btm::ScanningCallbacks::OnBigInfoReport(uint16_t /* sync_handle */,
                                              bool /* encrypted */) {}
-
+bool Btm::ScanningCallbacks::OnFetchPseudoAddressFromIdentityAddress(
+    bluetooth::hci::Address /* address */, uint8_t /* address_type */,
+    bluetooth::hci::Address* /* pseudo_address */) {
+  return false;
+}
 Btm::Btm(os::Handler* handler, neighbor::InquiryModule* inquiry)
     : scanning_timer_(handler), observing_timer_(handler) {
   ASSERT(handler != nullptr);

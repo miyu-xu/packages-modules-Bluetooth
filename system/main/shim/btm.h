@@ -235,6 +235,9 @@ class Btm {
     void OnPeriodicSyncTransferred(int pa_source, uint8_t status,
                                    bluetooth::hci::Address address) override;
     void OnBigInfoReport(uint16_t sync_handle, bool encrypted) override;
+    bool OnFetchPseudoAddressFromIdentityAddress(
+        bluetooth::hci::Address address, uint8_t address_type,
+        bluetooth::hci::Address* pseudo_address) override;
   };
   ScanningCallbacks scanning_callbacks_;
   void StartScanning(bool /* use_active_scanning */);

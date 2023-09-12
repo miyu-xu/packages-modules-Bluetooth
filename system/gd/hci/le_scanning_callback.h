@@ -92,6 +92,8 @@ class ScanningCallback {
   virtual void OnPeriodicSyncLost(uint16_t sync_handle) = 0;
   virtual void OnPeriodicSyncTransferred(int pa_source, uint8_t status, Address address) = 0;
   virtual void OnBigInfoReport(uint16_t sync_handle, bool encrypted) = 0;
+  virtual bool OnFetchPseudoAddressFromIdentityAddress(
+      Address address, uint8_t address_type, Address* pseudo_address) = 0;
 };
 
 class AdvertisingPacketContentFilterCommand {

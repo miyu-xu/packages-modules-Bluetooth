@@ -138,6 +138,9 @@ class BleScannerInterfaceImpl : public ::BleScannerInterface,
                            bluetooth::hci::ErrorCode status);
   void OnMsftAdvMonitorRemove(bluetooth::hci::ErrorCode status);
   void OnMsftAdvMonitorEnable(bool enable, bluetooth::hci::ErrorCode status);
+  bool OnFetchPseudoAddressFromIdentityAddress(
+      bluetooth::hci::Address address, uint8_t address_type,
+      bluetooth::hci::Address* pseudo_address);
   MsftCallbacks msft_callbacks_;
 
  private:
