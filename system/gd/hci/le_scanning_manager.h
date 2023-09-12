@@ -25,6 +25,11 @@
 #include "module.h"
 
 namespace bluetooth {
+namespace shim {
+namespace legacy {
+hci::Address identity_to_pseudo_random(hci::Address address, uint8_t address_type, bool refresh);
+}
+}  // namespace shim
 namespace hci {
 
 enum class BatchScanMode : uint8_t {

@@ -15,6 +15,11 @@
  */
 #include "hci/le_scanning_reassembler.h"
 
+#include <base/strings/string_number_conversions.h>
+#include <openssl/aead.h>
+#include <openssl/base.h>
+#include <openssl/rand.h>
+
 #include <memory>
 #include <unordered_map>
 
@@ -28,10 +33,35 @@
 #include "module.h"
 #include "os/handler.h"
 #include "os/log.h"
+#include "os/system_properties.h"
 #include "storage/storage_module.h"
 
 namespace bluetooth::hci {
+std::list<LeScanningReassembler::PeriodicAdvertisingFragment> periodic_cache_;
 
+std::optional<std::vector<uint8_t>> LeScanningReassembler::ProcessPeriodicAdvertisingReport(
+    uint16_t sync_handle,
+    AddressWithType Address_with_type,
+    DataStatus data_status,
+    const std::vector<uint8_t>& periodic_advertising_data) {
+  AdvertisingKey key(
+      Address_with_type.GetAddress(),
+      DirectAdvertisingAddressType(Address_with_type.GetAddressType()),
+      (uint8_t)sync_handle);
+  std::list<PeriodicAdvertisingFragment>::iterator advertising_fragment =
+      AppendPeriodicFragment(sync_handle, periodic_advertising_data);
+
+  if (data_status != DataStatus::CONTINUING) {
+    LOG_INFO("DATA COMPLETE");
+    advertising_fragment->data = TrimAdvertisingData(advertising_fragment->data);
+  } else {
+    LOG_INFO("DATA INCOMPLETE");
+    return {};
+  }
+  std::vector<uint8_t> complete_advertising_data = std::move(advertising_fragment->data);
+  periodic_cache_.erase(advertising_fragment);
+  return complete_advertising_data;
+}
 std::optional<std::vector<uint8_t>> LeScanningReassembler::ProcessAdvertisingReport(
     uint16_t event_type,
     uint8_t address_type,
@@ -42,13 +72,13 @@ std::optional<std::vector<uint8_t>> LeScanningReassembler::ProcessAdvertisingRep
   bool is_scan_response = event_type & (1 << kScanResponseBit);
   bool is_legacy = event_type & (1 << kLegacyBit);
   DataStatus data_status = DataStatus((event_type >> kDataStatusBits) & 0x3);
-
   if (address_type != (uint8_t)DirectAdvertisingAddressType::NO_ADDRESS_PROVIDED &&
       address == Address::kEmpty) {
     LOG_WARN("Ignoring non-anonymous advertising report with empty address");
     return {};
   }
-
+  LOG(INFO) << __func__ << " " << address << " " << (uint16_t)address_type << " "
+            << (uint16_t)advertising_sid;
   AdvertisingKey key(address, DirectAdvertisingAddressType(address_type), advertising_sid);
 
   // Ignore scan responses received without a matching advertising event.
@@ -90,6 +120,7 @@ std::optional<std::vector<uint8_t>> LeScanningReassembler::ProcessAdvertisingRep
   // Otherwise the full advertising report has been reassembled,
   // removed the cache entry and return the complete advertising data.
   std::vector<uint8_t> complete_advertising_data = std::move(advertising_fragment->data);
+
   cache_.erase(advertising_fragment);
   return complete_advertising_data;
 }
@@ -155,6 +186,30 @@ LeScanningReassembler::AppendFragment(const AdvertisingKey& key, const std::vect
   return cache_.begin();
 }
 
+std::list<LeScanningReassembler::PeriodicAdvertisingFragment>::iterator
+LeScanningReassembler::AppendPeriodicFragment(
+    uint16_t sync_handle, const std::vector<uint8_t>& data) {
+  auto it = FindPeriodicFragment(sync_handle);
+  if (it != periodic_cache_.end()) {
+    it->data.insert(it->data.end(), data.cbegin(), data.cend());
+    return it;
+  }
+  if (periodic_cache_.size() > kMaximumCacheSize) {
+    periodic_cache_.pop_back();
+  }
+  periodic_cache_.emplace_front(sync_handle, data);
+  return periodic_cache_.begin();
+}
+std::list<LeScanningReassembler::PeriodicAdvertisingFragment>::iterator
+LeScanningReassembler::FindPeriodicFragment(uint16_t sync_handle) {
+  for (auto it = periodic_cache_.begin(); it != periodic_cache_.end(); it++) {
+    if (it->sync_handle == sync_handle) {
+      return it;
+    }
+  }
+  return periodic_cache_.end();
+}
+
 void LeScanningReassembler::RemoveFragment(const AdvertisingKey& key) {
   auto it = FindFragment(key);
   if (it != cache_.end()) {
@@ -164,6 +219,10 @@ void LeScanningReassembler::RemoveFragment(const AdvertisingKey& key) {
 
 bool LeScanningReassembler::ContainsFragment(const AdvertisingKey& key) {
   return FindFragment(key) != cache_.end();
+}
+
+bool LeScanningReassembler::ContainsPeriodicFragment(uint16_t sync_handle) {
+  return FindPeriodicFragment(sync_handle) != periodic_cache_.end();
 }
 
 std::list<LeScanningReassembler::AdvertisingFragment>::iterator LeScanningReassembler::FindFragment(
