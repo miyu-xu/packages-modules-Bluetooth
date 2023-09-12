@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 
 /**
@@ -21,9 +25,14 @@
 
 #include "ble_advertiser.h"
 #include "include/hardware/ble_advertiser.h"
+#include "stack/include/gap_api.h"
 
 namespace bluetooth {
 namespace shim {
+    void enc_key_cb();
+namespace legacy {
+    void GAP_DB_Callback(std::vector<uint8_t> temp, uint8_t attr_uuid);
+}
 
 BleAdvertiserInterface* get_ble_advertiser_instance();
 void init_advertising_manager();
