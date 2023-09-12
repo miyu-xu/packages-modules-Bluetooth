@@ -23,6 +23,7 @@ filegroup {
         "hci_metrics_logging.cc",
         "le_address_manager.cc",
         "le_advertising_manager.cc",
+        "le_scanning_decrypter.cc",
         "le_scanning_manager.cc",
         "le_scanning_reassembler.cc",
         "link_key.cc",
