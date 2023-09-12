@@ -31,6 +31,7 @@
 #include "storage/storage_module.h"
 
 namespace bluetooth::hci {
+std::list<LeScanningReassembler::PeriodicAdvertisingFragment> periodic_cache_;
 
 std::optional<LeScanningReassembler::CompleteAdvertisingData>
 LeScanningReassembler::ProcessAdvertisingReport(
@@ -198,6 +199,10 @@ bool LeScanningReassembler::ContainsFragment(const AdvertisingKey& key) {
   return FindFragment(key) != cache_.end();
 }
 
+bool LeScanningReassembler::ContainsPeriodicFragment(uint16_t sync_handle) {
+  return FindPeriodicFragment(sync_handle) != periodic_cache_.end();
+}
+
 std::list<LeScanningReassembler::AdvertisingFragment>::iterator LeScanningReassembler::FindFragment(
     const AdvertisingKey& key) {
   for (auto it = cache_.begin(); it != cache_.end(); it++) {
@@ -208,9 +213,6 @@ std::list<LeScanningReassembler::AdvertisingFragment>::iterator LeScanningReasse
   return cache_.end();
 }
 
-/// Append to the current advertising data of the selected periodic advertiser.
-/// If the advertiser is unknown a new entry is added, optionally by
-/// dropping the oldest advertiser.
 std::list<LeScanningReassembler::PeriodicAdvertisingFragment>::iterator
 LeScanningReassembler::AppendPeriodicFragment(
     uint16_t sync_handle, const std::vector<uint8_t>& data) {
@@ -219,7 +221,6 @@ LeScanningReassembler::AppendPeriodicFragment(
     it->data.insert(it->data.end(), data.cbegin(), data.cend());
     return it;
   }
-
   if (periodic_cache_.size() > kMaximumPeriodicCacheSize) {
     periodic_cache_.pop_back();
   }
