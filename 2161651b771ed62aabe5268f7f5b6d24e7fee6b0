@@ -144,6 +144,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe2d48bf_794cfd1e",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-12T08:41:23Z",
+      "side": 1,
+      "message": "I am not sure how this can avoid us from parsing things in the proc macro. Where should we put that piece of code?\n\nIf it\u0027s outside proc macro:\nWe need to pass the \"formatted dbus params\" into `format()` in the Enabled case, because in proc macro we are not sure DBusLogOptions is LogAll or LogMethodNameOnly. However, we cannot format some of the dbus params since not all of them implements the derive Debug or Display.\n\nIf it\u0027s inside proc macro:\nIt looks like there is no way to associate the tokens to a particular struct or enum without manually parsing it (or use a parser library). I tried using the darling parser library, it works for struct, but I can\u0027t get it to work for tuples and for enums.",
+      "parentUuid": "fa51cd7c_f90b22c3",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4135eed3_dc520c06",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 1
