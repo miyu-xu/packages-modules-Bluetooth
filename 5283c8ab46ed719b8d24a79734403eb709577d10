@@ -16,6 +16,24 @@
       "message": "Looks good to me but I\u0027ll let @uael having a second looks since it is his code.",
       "revId": "5283c8ab46ed719b8d24a79734403eb709577d10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56f89213_2b823682",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-09-12T12:34:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5eaeafc3_e90178aa",
+      "revId": "5283c8ab46ed719b8d24a79734403eb709577d10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
