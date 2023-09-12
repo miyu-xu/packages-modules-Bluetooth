@@ -16,6 +16,24 @@
       "message": "Can this be a `ClassRule` instead ?",
       "revId": "8fdbd69cac719add5127cb47b37c40d949551675",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afd97af0_88b602d6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeAdvertisingTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-09-12T15:21:36Z",
+      "side": 1,
+      "message": "Humm, I\u0027m not sure to actually understand the ClassRule doc, it\u0027s maybe only use-full for suites. At first I was just wondering if it was possible to do this without a field since its unused",
+      "parentUuid": "a7915932_7a7fabed",
+      "revId": "8fdbd69cac719add5127cb47b37c40d949551675",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
