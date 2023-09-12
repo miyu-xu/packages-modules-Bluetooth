@@ -15,6 +15,8 @@
  */
 #include "hci/le_scanning_manager.h"
 
+#include <base/strings/string_number_conversions.h>
+
 #include <memory>
 #include <unordered_map>
 
@@ -25,6 +27,7 @@
 #include "hci/le_periodic_sync_manager.h"
 #include "hci/le_scanning_interface.h"
 #include "hci/le_scanning_reassembler.h"
+#include "hci/le_scanning_decrypter.h"
 #include "hci/vendor_specific_event_manager.h"
 #include "module.h"
 #include "os/handler.h"
@@ -202,7 +205,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     le_address_manager_ = acl_manager->GetLeAddressManager();
     le_scanning_interface_ = hci_layer_->GetLeScanningInterface(
         module_handler_->BindOn(this, &LeScanningManager::impl::handle_scan_results));
-    periodic_sync_manager_.Init(le_scanning_interface_, module_handler_);
+    periodic_sync_manager_.Init(le_scanning_interface_, module_handler_, storage_module_);
     /* Check to see if the opcode is supported and C19 (support for extended advertising). */
     if (controller_->IsSupported(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS) &&
         controller->SupportsBleExtendedAdvertising()) {
@@ -451,6 +454,50 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
 
     auto complete_advertising_data = scanning_reassembler_.ProcessAdvertisingReport(
         event_type, address_type, address, advertising_sid, advertising_data);
+
+    if (bluetooth::common::init_flags::encrypted_advertising_is_enabled()) {
+      Address pseudo_address =
+        bluetooth::shim::legacy::identity_to_pseudo_random(address, address_type, false);
+      std::optional<std::vector<uint8_t>> keyiv =
+          std::move(storage_module_->GetBin(pseudo_address.ToString().c_str(), Enc_Key_Material));
+      std::vector<uint8_t> enc_key_material;
+      if(keyiv.has_value()){
+        enc_key_material.insert(enc_key_material.end(), keyiv->begin(), keyiv->end());
+      }
+      if (bluetooth::common::init_flags::encrypted_advertising_log_is_enabled()) {
+        if(!enc_key_material.empty()){
+          LOG_INFO(
+              "ENC_KEY_MATERIAL %s",
+              base::HexEncode(enc_key_material.data(), enc_key_material.size()).c_str());
+        }
+      }
+      std::vector<uint8_t> decrypted_data;
+      bool encrypted_data_exists = false;
+      bool is_decrypt_success = false;
+      if (complete_advertising_data.has_value()) {
+        is_decrypt_success = scanning_decrypter_.ExtractEncryptedData(
+            complete_advertising_data.value(),
+            enc_key_material,
+            &decrypted_data,
+            &encrypted_data_exists);
+      }
+
+      if(encrypted_data_exists) {
+        if (!is_decrypt_success) {
+          if (bluetooth::common::init_flags::encrypted_advertising_log_is_enabled()) {
+            LOG_INFO("Decryption FAILED");
+          }
+        } else {
+          complete_advertising_data = decrypted_data;
+          if (bluetooth::common::init_flags::encrypted_advertising_log_is_enabled()) {
+            LOG_INFO("Decryption PASSED");
+            LOG_INFO("Complete Decrypted Data: %s",
+              base::HexEncode(complete_advertising_data->data(),
+                              complete_advertising_data->size()).c_str());
+          }
+        }
+      }
+    }
 
     if (complete_advertising_data.has_value()) {
       switch (address_type) {
@@ -1662,6 +1709,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   bool scan_on_resume_ = false;
   bool paused_ = false;
   LeScanningReassembler scanning_reassembler_;
+  LeScanningDecrypter scanning_decrypter_;
   bool is_filter_supported_ = false;
   bool is_ad_type_filter_supported_ = false;
   bool is_batch_scan_supported_ = false;
