@@ -599,4 +599,17 @@ bool BTM_BleConfigPrivacy(bool enable);
  ******************************************************************************/
 bool BTM_BleLocalPrivacyEnabled(void);
 
+/*******************************************************************************
+ *
+ * Function         BTM_BleGetEncKeyMaterial
+ *
+ * Description      This function is called to get the local device Encrypted
+ *                  Data Key Material characteristic value associated with
+ *                  GAP service.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTM_BleGetEncKeyMaterial(uint8_t* enc_key_value);
+
 #endif

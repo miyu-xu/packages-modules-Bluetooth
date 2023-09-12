@@ -35,6 +35,7 @@
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_ble_api.h"
 #include "stack/include/btu_hcif.h"
+#include "stack/include/gap_api.h"
 #include "stack/include/gatt_api.h"
 #include "stack/include/hcimsgs.h"
 

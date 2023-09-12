@@ -177,6 +177,7 @@ typedef enum: uint8_t {
   BTA_DM_LINK_UP_FAILED_EVT = 34,    /* Create connection failed event */
 } tBTA_DM_ACL_EVT;
 
+
 /* Structure associated with BTA_DM_LINK_UP_EVT */
 typedef struct {
   RawAddress bd_addr; /* BD address peer device. */
