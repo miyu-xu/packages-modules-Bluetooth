@@ -13,6 +13,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 #pragma once
@@ -44,45 +48,47 @@ public:
                std::vector<uint8_t> scan_response_data, int timeout_s,
                ::BleAdvertiserInterface::StatusCallback timeout_cb),
               (override));
-  MOCK_METHOD((void), StartAdvertisingSet,
+  MOCK_METHOD(void, StartAdvertisingSet,
               (uint8_t client_id, int reg_id,
                ::BleAdvertiserInterface::IdTxPowerStatusCallback register_cb,
                ::AdvertiseParameters params, std::vector<uint8_t> advertise_data,
-               std::vector<uint8_t> scan_response_data,
+               std::vector<uint8_t> advertise_data_enc, std::vector<uint8_t> scan_response_data,
+               std::vector<uint8_t> scan_response_data_enc,
                ::PeriodicAdvertisingParameters periodic_params, std::vector<uint8_t> periodic_data,
-               uint16_t duration, uint8_t maxExtAdvEvents, IdStatusCallback timeout_cb),
-              (override));
-  MOCK_METHOD((void), RegisterAdvertiser, (::BleAdvertiserInterface::IdStatusCallback cb),
-              (override));
-  MOCK_METHOD((void), Enable,
+               std::vector<uint8_t> periodic_data_enc, uint16_t duration, uint8_t maxExtAdvEvents,
+               std::vector<uint8_t> enc_key_value, IdStatusCallback timeout_cb),
+              override);
+  MOCK_METHOD( void , RegisterAdvertiser,  ::BleAdvertiserInterface::IdStatusCallback cb ,
+
+  MOCK_METHOD( void , Enable,
               (uint8_t advertiser_id, bool enable, ::BleAdvertiserInterface::StatusCallback cb,
                uint16_t duration, uint8_t maxExtAdvEvents,
                ::BleAdvertiserInterface::StatusCallback timeout_cb),
-              (override));
-  MOCK_METHOD((void), SetParameters,
+               override );
+  MOCK_METHOD( void , SetParameters,
               (uint8_t advertiser_id, ::AdvertiseParameters params,
                ::BleAdvertiserInterface::ParametersCallback cb),
-              (override));
-  MOCK_METHOD((void), SetData,
+               override );
+  MOCK_METHOD( void , SetData,
               (int advertiser_id, bool set_scan_rsp, std::vector<uint8_t> data,
-               ::BleAdvertiserInterface::StatusCallback cb),
-              (override));
-  MOCK_METHOD((void), SetPeriodicAdvertisingParameters,
+               std::vector<uint8_t> data_enc, ::BleAdvertiserInterface::StatusCallback cb),
+               override );
+  MOCK_METHOD( void , SetPeriodicAdvertisingParameters,
               (int advertiser_id, ::PeriodicAdvertisingParameters periodic_params,
                ::BleAdvertiserInterface::StatusCallback cb),
-              (override));
-  MOCK_METHOD((void), SetPeriodicAdvertisingData,
+               override );
+  MOCK_METHOD( void , SetPeriodicAdvertisingData,
               (int advertiser_id, std::vector<uint8_t> data,
-               ::BleAdvertiserInterface::StatusCallback cb),
-              (override));
-  MOCK_METHOD((void), SetPeriodicAdvertisingEnable,
+               std::vector<uint8_t> data_enc, ::BleAdvertiserInterface::StatusCallback cb),
+               override );
+  MOCK_METHOD( void , SetPeriodicAdvertisingEnable,
               (int advertiser_id, bool enable, bool include_adi,
                ::BleAdvertiserInterface::StatusCallback cb),
-              (override));
-  MOCK_METHOD((void), Unregister, (uint8_t advertiser_id), (override));
-  MOCK_METHOD((void), GetOwnAddress,
-              (uint8_t advertiser_id, ::BleAdvertiserInterface::GetAddressCallback cb), (override));
-  MOCK_METHOD((void), RegisterCallbacks, (::AdvertisingCallbacks * callbacks), (override));
-  MOCK_METHOD((void), RegisterCallbacksNative,
-              (::AdvertisingCallbacks * callbacks, uint8_t client_id), (override));
+               override );
+  MOCK_METHOD( void , Unregister,  uint8_t advertiser_id ,  override );
+  MOCK_METHOD( void , GetOwnAddress,
+              (uint8_t advertiser_id, ::BleAdvertiserInterface::GetAddressCallback cb),  override );
+  MOCK_METHOD( void , RegisterCallbacks,  ::AdvertisingCallbacks * callbacks ,  override );
+  MOCK_METHOD( void , RegisterCallbacksNative,
+              (::AdvertisingCallbacks * callbacks, uint8_t client_id),  override );
 };
