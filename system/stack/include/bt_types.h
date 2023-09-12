@@ -14,6 +14,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 
 #ifndef BT_TYPES_H
@@ -163,6 +166,11 @@ enum {
   {                                                               \
     int ijk;                                                      \
     for (ijk = 0; ijk < (len); ijk++) *(p)++ = (uint8_t)(a)[ijk]; \
+  }
+#define REVERSE_ARRAY_TO_STREAM(p, a, len)                                \
+  {                                                               \
+    int ijk;                                                      \
+    for (ijk = 0; ijk < (len); ijk++) *(p)++ = (uint8_t)(a)[(len)-1 - ijk]; \
   }
 #define STREAM_TO_INT8(u8, p)   \
   {                             \
