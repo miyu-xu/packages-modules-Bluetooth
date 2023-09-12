@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5c8548a6_ceba3719",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-12T06:28:42Z",
+      "side": 1,
+      "message": "Thanks! I tested it with WH-1000XM4 on morphius and everything works as expected. Tested:\n- AVRCP play/pause/volume change\n- A2DP\n- HFP\n- suspend/resume\n- disconnect/reconnect\n- power off/on adapter",
+      "parentUuid": "e161186f_4cb19e53",
+      "revId": "376bd939ce7b2ecd123c3e29cbd82e4b229350df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "c3031c67_dcb842ae",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
