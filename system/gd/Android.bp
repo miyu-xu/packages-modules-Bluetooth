@@ -168,8 +168,11 @@ cc_defaults {
         "server_configurable_flags",
     ],
     include_dirs: [
+        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/stack/include",
+        "packages/modules/Bluetooth/system/types",
     ],
 }
 

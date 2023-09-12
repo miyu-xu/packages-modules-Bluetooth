@@ -14,6 +14,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ *  Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+ *  Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
+ *
  ******************************************************************************/
 
 /******************************************************************************
@@ -33,10 +37,15 @@
 #include "bta/gatt/bta_gattc_int.h"
 #include "bta/include/bta_api.h"
 #include "btif/include/btif_debug_conn.h"
+#include "btif/include/btif_storage.h"
+#include "device/include/interop.h"
 #include "hardware/bt_gatt_types.h"
 #include "hci/controller_interface.h"
 #include "main/shim/entry.h"
 #include "osi/include/allocator.h"
+#include "stack/btm/btm_dev.h"
+#include "stack/btm/btm_int_types.h"
+#include "stack/gatt/gatt_int.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_ble_api_types.h"
@@ -48,11 +57,13 @@
 
 // TODO(b/369381361) Enfore -Wmissing-prototypes
 #pragma GCC diagnostic ignored "-Wmissing-prototypes"
+#include "stack/include/gap_api.h"
 
 using base::StringPrintf;
 using bluetooth::Uuid;
 using namespace bluetooth;
 
+extern tBTM_CB btm_cb;
 /*****************************************************************************
  *  Constants
  ****************************************************************************/
@@ -1042,6 +1053,12 @@ void bta_gattc_disc_cmpl(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* /* p_da
             .service_discovery_done.remote_bda = p_clcb->p_srcb->server_bda,
     };
     (*p_clcb->p_rcb->p_cback)(BTA_GATTC_SRVC_DISC_DONE_EVT, &bta_gattc);
+  }
+
+  if (com::android::bluetooth::flags::encrypted_advertising_data() &&
+      (p_clcb->status == GATT_SUCCESS) && p_clcb->p_srcb &&
+      btm_sec_is_a_bonded_dev(p_clcb->p_srcb->server_bda)) {
+    GAP_BleGetEncKeyMaterialInfo(p_clcb->p_srcb->server_bda);
   }
 }
 

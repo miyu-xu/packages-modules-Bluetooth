@@ -14,6 +14,10 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ *  Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+ *  Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ *  SPDX-License-Identifier: BSD-3-Clause-Clear
+ *
  ******************************************************************************/
 
 #include <bluetooth/log.h>
@@ -25,6 +29,7 @@
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
+#include "main/shim/le_advertising_manager.h"
 #include "osi/include/allocator.h"
 #include "osi/include/fixed_queue.h"
 #include "osi/include/mutex.h"
@@ -1054,4 +1059,11 @@ static void gap_release_ccb(tGAP_CCB* p_ccb) {
 void GAP_Init(void) {
   gap_conn_init();
   gap_attr_db_init();
+
+  if (com::android::bluetooth::flags::encrypted_advertising_data()) {
+    bluetooth::shim::EncKeyMaterialInterface* enc_key_material_instance;
+    bluetooth::shim::init_enc_key_material_manager();
+    enc_key_material_instance = bluetooth::shim::get_enc_key_material_instance();
+    enc_key_material_instance->GetEncKeyMaterial();
+  }
 }
