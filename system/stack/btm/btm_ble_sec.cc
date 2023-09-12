@@ -52,6 +52,9 @@
 #include "stack/include/smp_api.h"
 #include "stack/include/smp_api_types.h"
 #include "types/raw_address.h"
+#include "stack/include/gap_api.h"
+#include "stack/gatt/gatt_int.h"
+#include "btif/include/btif_config.h"
 
 extern tBTM_CB btm_cb;
 
@@ -1314,6 +1317,23 @@ void btm_ble_link_encrypted(const RawAddress& bd_addr, uint8_t encr_enable) {
 
   /* to notify GATT to send data if any request is pending */
   gatt_notify_enc_cmpl(p_dev_rec->ble.pseudo_addr);
+
+  if (!encr_enable || !btm_sec_is_a_bonded_dev(p_dev_rec->ble.pseudo_addr) ||
+      !bluetooth::common::init_flags::encrypted_advertising_is_enabled()) {
+    return;
+  }
+
+  size_t length = btif_storage_get_enc_key_material_length(&p_dev_rec->ble.pseudo_addr);
+
+  tGATT_TCB* p_tcb =
+      gatt_find_tcb_by_addr(p_dev_rec->ble.pseudo_addr, BT_TRANSPORT_LE);
+  /* Resume pending read of encrypted data key material*/
+  if (p_tcb && (p_tcb->is_read_enc_key_pending ||
+                (!p_tcb->is_read_enc_key_pending && (length > 0)))) {
+    BTM_TRACE_DEBUG(" btm_ble_link_encrypted, read enc key values");
+    GAP_BleGetEncKeyMaterialInfo(p_dev_rec->ble.pseudo_addr);
+    p_tcb->is_read_enc_key_pending = false;
+  }
 }
 
 /*******************************************************************************
@@ -1975,4 +1995,30 @@ std::optional<tBLE_BD_ADDR> BTM_BleGetIdentityAddress(
   }
 
   return p_dev_rec->ble.identity_address_with_type;
+}
+
+/*******************************************************************************
+ *
+ * Function         BTM_BleGetEncKeyMaterial
+ *
+ * Description      This function is called to get the local device Encrypted
+ *                  Data Key Material characteristic value associated with
+ *                  GAP service.
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void BTM_BleGetEncKeyMaterial(uint8_t* enc_key_value) {
+  //Length of enc_key_value is always 24 bytesi(Key + IV).
+  //Since this is local device encrypted data key characteristic.
+
+  BTM_TRACE_DEBUG("BTM_BleGetEncKeyMaterial");
+  size_t len = btif_storage_get_enc_key_material_length(NULL);
+  VLOG(1) << __func__ << " len:" << loghex(len);
+  if (len > 0) {
+    if (btif_storage_get_enc_key_material(NULL, enc_key_value, &len) ==
+        BT_STATUS_SUCCESS) {
+      VLOG(1) << __func__ << " Found Adapter Enc Key Material value";
+    }
+  }
 }
