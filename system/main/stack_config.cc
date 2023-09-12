@@ -51,6 +51,8 @@ const char* PTS_L2CAP_ECOC_RECONFIGURE = "PTS_L2capEcocReconfigure";
 const char* PTS_BROADCAST_AUDIO_CONFIG_OPTION =
     "PTS_BroadcastAudioConfigOption";
 const char* PTS_LE_AUDIO_SUSPEND_STREAMING = "PTS_LeAudioSuspendStreaming";
+const char* PTS_ENABLE_AUTHORIZATION_ENCR_DATA_KEY =
+    "PTS_EnableAuthorizationEncrDataKey";
 
 static std::unique_ptr<config_t> config;
 }  // namespace
@@ -202,6 +204,11 @@ static bool get_pts_le_audio_disable_ases_before_stopping(void) {
                          PTS_LE_AUDIO_SUSPEND_STREAMING, false);
 }
 
+static bool get_pts_enable_authorization_encr_data_key(void) {
+  return config_get_bool(*config, CONFIG_DEFAULT_SECTION,
+                         PTS_ENABLE_AUTHORIZATION_ENCR_DATA_KEY, false);
+}
+
 static config_t* get_all(void) { return config.get(); }
 
 const stack_config_t interface = {
@@ -226,6 +233,7 @@ const stack_config_t interface = {
     get_pts_l2cap_ecoc_reconfigure,
     get_pts_broadcast_audio_config_options,
     get_pts_le_audio_disable_ases_before_stopping,
+    get_pts_enable_authorization_encr_data_key,
     get_all};
 
 const stack_config_t* stack_config_get_interface(void) { return &interface; }
