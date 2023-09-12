@@ -29,6 +29,9 @@
 #include "storage/config_cache.h"
 #include "storage/device.h"
 #include "storage/mutation.h"
+#include "btif/include/btif_storage.h"
+
+#define Enc_Key_Material BTIF_STORAGE_KEY_ENCR_DATA
 
 namespace bluetooth {
 
@@ -42,6 +45,10 @@ class SecurityManagerImpl;
 
 namespace hci {
 class AclManager;
+class LeAdvertisingManager;
+class LeScanningManager;
+class LeScanningReassembler;
+class PeriodicSyncManager;
 }
 
 namespace storage {
@@ -122,6 +129,10 @@ class StorageModule : public bluetooth::Module {
   friend shim::BtifConfigInterface;
   friend hci::AclManager;
   friend security::internal::SecurityManagerImpl;
+  friend hci::LeAdvertisingManager;
+  friend hci::LeScanningManager;
+  friend hci::LeScanningReassembler;
+  friend hci::PeriodicSyncManager;
   // For unit test only
   ConfigCache* GetMemoryOnlyConfigCache();
   // Normally, underlying config will be saved at most 3 seconds after the first config change in a series of changes

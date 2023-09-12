@@ -44,7 +44,6 @@
 #include "btif/include/stack_manager.h"
 #include "btif_api.h"
 #include "btif_config.h"
-#include "btif_storage.h"
 #include "btif_util.h"
 #include "core_callbacks.h"
 #include "device/include/controller.h"
@@ -99,7 +98,6 @@ using bluetooth::Uuid;
 #define BTIF_STORAGE_KEY_PRODUCT_ID "ProductId"
 #define BTIF_STORAGE_KEY_VERSION "ProductVersion"
 #define BTIF_STORAGE_KEY_ENCR_DATA_CCCD "EncryptedDataKeyCCCD"
-#define BTIF_STORAGE_KEY_ENCR_DATA "EncKeyMaterial"
 #define BTIF_STORAGE_KEY_RESTRICTED "Restricted"
 #define BTIF_STORAGE_KEY_ADDR_TYPE "AddrType"
 
