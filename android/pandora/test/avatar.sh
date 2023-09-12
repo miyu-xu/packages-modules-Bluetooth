@@ -40,7 +40,8 @@ _PANDORA_PYTHON_PATHS=(
 )
 
 if [[ "$1" =~ ^('format'|'lint'|'run')$ ]]; then
-  [ ! -d "${_VENV_DIR}" ] && python3 -m venv "${_VENV_DIR}"
+  [ ! -d "${_VENV_DIR}" ] && mkdir ${_VENV_DIR}
+  python3 -m venv "${_VENV_DIR}"
   source "${_VENV_DIR}"/bin/activate
   pip install \
     'grpcio==1.51.1' \
