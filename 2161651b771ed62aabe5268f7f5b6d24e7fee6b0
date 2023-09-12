@@ -198,6 +198,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a025846a_e85a8013",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-12T17:09:40Z",
+      "side": 1,
+      "message": "I saw that `Box\u003cdyn IBluetoothCallbacks + Send\u003e` was complaining specifically. You could probably just `impl fmt::Debug for Box\u003cdyn #trait_ + Send\u003e {...}` here: https://source.corp.google.com/h/chromium/chromiumos/codesearch/+/main:src/aosp/packages/modules/Bluetooth/upstream/system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs;l\u003d882",
+      "parentUuid": "7c2bd5fb_3dcfbc3d",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4135eed3_dc520c06",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 1
