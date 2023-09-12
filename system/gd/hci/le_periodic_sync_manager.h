@@ -21,6 +21,7 @@
 #include <memory>
 #include <utility>
 
+#include "android_bluetooth_flags.h"
 #include "common/callback.h"
 #include "common/init_flags.h"
 #include "hci/address_with_type.h"
@@ -542,10 +543,10 @@ class PeriodicSyncManager {
   hci::LeScanningInterface* le_scanning_interface_;
   os::Handler* handler_;
   ScanningCallback* callbacks_;
+  LeScanningReassembler scanning_reassembler_;
   std::list<PendingPeriodicSyncRequest> pending_sync_requests_;
   std::list<PeriodicSyncStates> periodic_syncs_;
   std::list<PeriodicSyncTransferStates> periodic_sync_transfers_;
-  LeScanningReassembler scanning_reassembler_;
   bool sync_received_callback_registered_ = false;
   int sync_received_callback_id{};
 };

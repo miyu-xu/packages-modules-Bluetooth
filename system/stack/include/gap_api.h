@@ -72,6 +72,8 @@
 #define ENC_IV_LEN 8
 #define ENC_KEY_MATERIAL_LEN (ENC_KEY_LEN + ENC_IV_LEN)
 
+#define ENC_KEY_MATERIAL_LEN (ENC_KEY_LEN + ENC_IV_LEN)
+
 struct tGAP_COC_CREDITS {
   uint16_t credits_received;
   uint16_t credit_count;

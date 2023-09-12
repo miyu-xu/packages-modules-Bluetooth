@@ -15,6 +15,11 @@
  */
 #include "hci/le_scanning_reassembler.h"
 
+#include <base/strings/string_number_conversions.h>
+#include <openssl/aead.h>
+#include <openssl/base.h>
+#include <openssl/rand.h>
+
 #include <memory>
 #include <unordered_map>
 
@@ -28,9 +33,11 @@
 #include "module.h"
 #include "os/handler.h"
 #include "os/log.h"
+#include "os/system_properties.h"
 #include "storage/storage_module.h"
 
 namespace bluetooth::hci {
+std::list<LeScanningReassembler::PeriodicAdvertisingFragment> periodic_cache_;
 
 std::optional<LeScanningReassembler::CompleteAdvertisingData>
 LeScanningReassembler::ProcessAdvertisingReport(
@@ -43,13 +50,11 @@ LeScanningReassembler::ProcessAdvertisingReport(
   bool is_scan_response = event_type & (1 << kScanResponseBit);
   bool is_legacy = event_type & (1 << kLegacyBit);
   DataStatus data_status = DataStatus((event_type >> kDataStatusBits) & 0x3);
-
   if (address_type != (uint8_t)DirectAdvertisingAddressType::NO_ADDRESS_PROVIDED &&
       address == Address::kEmpty) {
     LOG_WARN("Ignoring non-anonymous advertising report with empty address");
     return {};
   }
-
   AdvertisingKey key(address, DirectAdvertisingAddressType(address_type), advertising_sid);
 
   // Ignore scan responses received without a matching advertising event.
@@ -198,6 +203,10 @@ bool LeScanningReassembler::ContainsFragment(const AdvertisingKey& key) {
   return FindFragment(key) != cache_.end();
 }
 
+bool LeScanningReassembler::ContainsPeriodicFragment(uint16_t sync_handle) {
+  return FindPeriodicFragment(sync_handle) != periodic_cache_.end();
+}
+
 std::list<LeScanningReassembler::AdvertisingFragment>::iterator LeScanningReassembler::FindFragment(
     const AdvertisingKey& key) {
   for (auto it = cache_.begin(); it != cache_.end(); it++) {
@@ -208,9 +217,6 @@ std::list<LeScanningReassembler::AdvertisingFragment>::iterator LeScanningReasse
   return cache_.end();
 }
 
-/// Append to the current advertising data of the selected periodic advertiser.
-/// If the advertiser is unknown a new entry is added, optionally by
-/// dropping the oldest advertiser.
 std::list<LeScanningReassembler::PeriodicAdvertisingFragment>::iterator
 LeScanningReassembler::AppendPeriodicFragment(
     uint16_t sync_handle, const std::vector<uint8_t>& data) {
@@ -219,11 +225,9 @@ LeScanningReassembler::AppendPeriodicFragment(
     it->data.insert(it->data.end(), data.cbegin(), data.cend());
     return it;
   }
-
-  if (periodic_cache_.size() > kMaximumPeriodicCacheSize) {
+  if (periodic_cache_.size() > kMaximumCacheSize) {
     periodic_cache_.pop_back();
   }
-
   periodic_cache_.emplace_front(sync_handle, data);
   return periodic_cache_.begin();
 }
