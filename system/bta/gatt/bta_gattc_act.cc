@@ -14,6 +14,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 
 /******************************************************************************
@@ -47,10 +50,15 @@
 #include "stack/include/l2c_api.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
+#include "stack/gatt/gatt_int.h"
+#include "stack/include/gap_api.h"
+#include "stack/btm/btm_int_types.h"
+#include "stack/btm/btm_dev.h"
 
 using base::StringPrintf;
 using bluetooth::Uuid;
 
+extern tBTM_CB btm_cb;
 /*****************************************************************************
  *  Constants
  ****************************************************************************/
@@ -918,6 +926,21 @@ void bta_gattc_disc_cmpl(tBTA_GATTC_CLCB* p_clcb,
     tBTA_GATTC bta_gattc;
     bta_gattc.remote_bda = p_clcb->p_srcb->server_bda;
     (*p_clcb->p_rcb->p_cback)(BTA_GATTC_SRVC_DISC_DONE_EVT, &bta_gattc);
+  }
+
+  if (btm_cb.enc_adv_data_enabled) {
+    if ((p_clcb->status == GATT_SUCCESS) && p_clcb->p_srcb
+        && btm_sec_is_a_bonded_dev(p_clcb->p_srcb->server_bda)) {
+      tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(p_clcb->p_srcb->server_bda);
+      tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(p_clcb->p_srcb->server_bda, BT_TRANSPORT_LE);
+      if (p_dev_rec && (p_dev_rec->sec_flags & BTM_SEC_LE_ENCRYPTED)) {
+        VLOG(1) << __func__ << ": Encryption is done, read enc key values";
+        GAP_BleGetEncKeyMaterialInfo(p_clcb->p_srcb->server_bda, BT_TRANSPORT_LE);
+      } else if (p_tcb) {
+        p_tcb->is_read_enc_key_pending = true;
+        VLOG(1) << __func__ << ": Encryption is not done, don't read enc key values";
+      }
+    }
   }
 }
 
