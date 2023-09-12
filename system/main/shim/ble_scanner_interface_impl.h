@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
+ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
 /**
@@ -120,6 +124,9 @@ public:
   void OnBigInfoReport(uint16_t sync_handle, bool encrypted) override;
 
   ::ScanningCallbacks* scanning_callbacks_ = default_scanning_callback;
+  bool OnFetchPseudoAddressFromIdentityAddress(bluetooth::hci::Address address,
+                                               uint8_t address_type,
+                                               bluetooth::hci::Address* pseudo_address);
   void OnMsftAdvMonitorAdd(uint8_t monitor_handle, bluetooth::hci::ErrorCode status);
   void OnMsftAdvMonitorRemove(bluetooth::hci::ErrorCode status);
   void OnMsftAdvMonitorEnable(bool enable, bluetooth::hci::ErrorCode status);
