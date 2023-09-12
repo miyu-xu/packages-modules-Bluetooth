@@ -42,6 +42,7 @@ class SecurityManagerImpl;
 
 namespace hci {
 class AclManager;
+class LeAdvertisingManager;
 }
 
 namespace storage {
@@ -122,6 +123,7 @@ class StorageModule : public bluetooth::Module {
   friend shim::BtifConfigInterface;
   friend hci::AclManager;
   friend security::internal::SecurityManagerImpl;
+  friend hci::LeAdvertisingManager;
   // For unit test only
   ConfigCache* GetMemoryOnlyConfigCache();
   // Normally, underlying config will be saved at most 3 seconds after the first config change in a series of changes
