@@ -25,6 +25,7 @@ filegroup {
         "le_advertising_manager.cc",
         "le_scanning_manager.cc",
         "le_scanning_reassembler.cc",
+        "le_scanning_decrypter.cc",
         "link_key.cc",
         "msft.cc",
         "remote_name_request.cc",

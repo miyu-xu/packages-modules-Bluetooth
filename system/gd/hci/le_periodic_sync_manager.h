@@ -15,6 +15,8 @@
  */
 #pragma once
 
+#include <base/strings/string_number_conversions.h>
+
 #include <chrono>
 #include <memory>
 #include <utility>
@@ -26,10 +28,15 @@
 #include "hci/hci_packets.h"
 #include "hci/le_scanning_callback.h"
 #include "hci/le_scanning_interface.h"
+#include "hci/le_scanning_manager.h"
+#include "hci/le_scanning_reassembler.h"
+#include "hci/le_scanning_decrypter.h"
 #include "hci/uuid.h"
 #include "module.h"
 #include "os/alarm.h"
 #include "os/log.h"
+#include "storage/storage_module.h"
+#include "android_bluetooth_flags.h"
 
 namespace bluetooth {
 namespace hci {
@@ -82,9 +89,13 @@ class PeriodicSyncManager {
   explicit PeriodicSyncManager(ScanningCallback* callbacks)
       : le_scanning_interface_(nullptr), handler_(nullptr), callbacks_(callbacks), sync_received_callback_id(0) {}
 
-  void Init(hci::LeScanningInterface* le_scanning_interface, os::Handler* handler) {
+  void Init(
+      hci::LeScanningInterface* le_scanning_interface,
+      os::Handler* handler,
+      storage::StorageModule* storage_module) {
     le_scanning_interface_ = le_scanning_interface;
     handler_ = handler;
+    storage_module_ = storage_module;
   }
 
   void SetScanningCallback(ScanningCallback* callbacks) {
@@ -307,19 +318,59 @@ class PeriodicSyncManager {
         (uint16_t)event_view.GetDataStatus(),
         (uint16_t)event_view.GetData().size());
 
+    LOG_INFO(
+        "Data: %s",
+        base::HexEncode(event_view.GetData().data(), event_view.GetData().size()).c_str());
     uint16_t sync_handle = event_view.GetSyncHandle();
     auto periodic_sync = GetEstablishedSyncFromHandle(sync_handle);
     if (periodic_sync == periodic_syncs_.end()) {
       LOG_ERROR("[PSync]: index not found for handle %u", sync_handle);
       return;
     }
+    auto complete_advertising_data_ = scanning_reassembler_->ProcessPeriodicAdvertisingReport(
+        sync_handle,
+        DataStatus(event_view.GetDataStatus()),
+        event_view.GetData());
+    std::vector<uint8_t> complete_advertising_data(
+        complete_advertising_data_->begin(), complete_advertising_data_->end());
+    if (IS_FLAG_ENABLED(encrypted_advertising_data)) {
+      /* Periodic Sync Decryption */
+      Address advertiser_address = periodic_sync->address_with_type.GetAddress();
+      uint8_t address_type = (uint8_t)periodic_sync->address_with_type.GetAddressType();
+      Address pseudo_address = bluetooth::shim::legacy::identity_to_pseudo_random(
+          advertiser_address, address_type, false);
+      auto enc_key_material =
+        storage_module_->GetBin(pseudo_address.ToString().c_str(),
+                                Enc_Key_Material).value_or(std::vector<uint8_t>{});
+      std::vector<uint8_t> decrypted_data;
+
+      bool has_encrypted_data = false;
+      bool is_decrypt_success = scanning_decrypter_->ExtractEncryptedData(
+          complete_advertising_data,
+          enc_key_material,
+          &decrypted_data,
+          &has_encrypted_data);
+
+      if(has_encrypted_data) {
+        if (!is_decrypt_success) {
+          LOG_INFO("Decryption FAILED ENC_KEY_MATERIAL: %s",
+                    base::HexEncode(enc_key_material.data(), enc_key_material.size()).c_str());
+        } else {
+          complete_advertising_data = decrypted_data;
+          LOG_DEBUG("Complete Decrypted Data: %s",
+              base::HexEncode(complete_advertising_data.data(),
+                complete_advertising_data.size()).c_str());
+        }
+      }
+    }
+
     LOG_DEBUG("%s", "[PSync]: invoking callback");
     callbacks_->OnPeriodicSyncReport(
         sync_handle,
         event_view.GetTxPower(),
         event_view.GetRssi(),
         (uint16_t)event_view.GetDataStatus(),
-        event_view.GetData());
+        complete_advertising_data);
   }
 
   void HandleLePeriodicAdvertisingSyncLost(LePeriodicAdvertisingSyncLostView event_view) {
@@ -528,7 +579,10 @@ class PeriodicSyncManager {
 
   hci::LeScanningInterface* le_scanning_interface_;
   os::Handler* handler_;
+  storage::StorageModule* storage_module_;
   ScanningCallback* callbacks_;
+  LeScanningReassembler* scanning_reassembler_;
+  LeScanningDecrypter* scanning_decrypter_;
   std::list<PendingPeriodicSyncRequest> pending_sync_requests_;
   std::list<PeriodicSyncStates> periodic_syncs_;
   std::list<PeriodicSyncTransferStates> periodic_sync_transfers_;

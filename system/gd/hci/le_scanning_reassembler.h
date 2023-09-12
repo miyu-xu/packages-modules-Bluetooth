@@ -25,6 +25,7 @@
 #include "hci/address_with_type.h"
 #include "hci/hci_packets.h"
 
+#define ENC_KEY_MATERIAL_LEN 24
 namespace bluetooth::hci {
 
 /// The LE Scanning reassembler is responsible for defragmenting
@@ -46,11 +47,25 @@ class LeScanningReassembler {
 
   LeScanningReassembler& operator=(const LeScanningReassembler&) = delete;
 
+  struct PeriodicAdvertisingFragment {
+    std::optional<uint16_t> sync_handle;
+    std::vector<uint8_t> data;
+
+    PeriodicAdvertisingFragment(uint16_t sync_handle, const std::vector<uint8_t>& data)
+        : sync_handle(sync_handle), data(data.begin(), data.end()) {}
+  };
+
   /// Process an incoming advertsing report, extracted from any of the
   /// HCI LE Advertising Report or the HCI LE Extended Advertising Report
   /// events.
   /// Returns the completed advertising data if the event was complete, or the
   /// completion of a fragmented advertising event.
+
+  std::optional<std::vector<uint8_t>> ProcessPeriodicAdvertisingReport(
+      uint16_t sync_handle,
+      DataStatus status,
+      const std::vector<uint8_t>& periodic_advertising_data);
+
   std::optional<CompleteAdvertisingData> ProcessAdvertisingReport(
       uint16_t event_type,
       uint8_t address_type,
@@ -117,10 +132,13 @@ class LeScanningReassembler {
   std::list<AdvertisingFragment>::iterator AppendFragment(
       const AdvertisingKey& key, uint16_t extended_event_type, const std::vector<uint8_t>& data);
 
+  std::list<PeriodicAdvertisingFragment>::iterator AppendPeriodicFragment(
+      uint16_t sync_handle, const std::vector<uint8_t>& data);
   void RemoveFragment(const AdvertisingKey& key);
 
   bool ContainsFragment(const AdvertisingKey& key);
-
+  bool ContainsPeriodicFragment(uint16_t sync_handle);
+  std::list<PeriodicAdvertisingFragment>::iterator FindPeriodicFragment(uint16_t sync_handle);
   std::list<AdvertisingFragment>::iterator FindFragment(const AdvertisingKey& key);
 
   /// Trim the advertising data by removing empty or overflowing
