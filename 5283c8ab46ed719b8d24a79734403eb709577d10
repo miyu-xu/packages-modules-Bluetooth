@@ -51,6 +51,24 @@
       "message": "The `${_VENV_DIR}` is already created by the `python3 -m venv \"${_VENV_DIR}\"` command.\nIf the `venv` is corrupted the recommended way is to delete the avatar cache `rm -rf ~/.cache/avatar`",
       "revId": "5283c8ab46ed719b8d24a79734403eb709577d10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1bad84d_e832442f",
+        "filename": "android/pandora/test/avatar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-12T20:37:01Z",
+      "side": 1,
+      "message": "python3 -m venv \"${_VENV_DIR}\" doesn\u0027t seem to create the directory for me locally.\n\nInstead it says no such directory present. But ~/.cache/avatar does exist. I wasn\u0027t sure this is the recommended way since it is not a part of the documentation.",
+      "parentUuid": "a262153b_cce31241",
+      "revId": "5283c8ab46ed719b8d24a79734403eb709577d10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
