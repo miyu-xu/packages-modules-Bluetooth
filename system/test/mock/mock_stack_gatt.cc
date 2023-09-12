@@ -28,6 +28,12 @@
 
 using namespace bluetooth;
 
+tGATT_TCB* gatt_find_tcb_by_addr(const RawAddress& /*bda */, tBT_TRANSPORT /* transport */) {
+  static tGATT_TCB test_tcb;
+  inc_func_call_count(__func__);
+  return &test_tcb;
+}
+
 tGATT_STATUS GATTC_Discover(uint16_t /* conn_id */, tGATT_DISC_TYPE /* disc_type */,
                             uint16_t /* start_handle */, uint16_t /* end_handle */,
                             const Uuid& /* uuid */) {
