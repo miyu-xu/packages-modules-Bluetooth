@@ -394,6 +394,13 @@ typedef enum {
    */
   BT_PROPERTY_REMOTE_MODEL_NUM,
 
+  /*
+   * Description - Encrypted Data Key material char value
+   * Access mode - GET.
+   * Data type   - uint8_t*.
+   */
+  BT_PROPERTY_ENC_KEY_MATERIAL,
+
   BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP = 0xFF,
 } bt_property_type_t;
 
