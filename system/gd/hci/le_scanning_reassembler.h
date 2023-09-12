@@ -19,12 +19,14 @@
 
 #include <cstdint>
 #include <list>
+#include <map>
 #include <optional>
 #include <vector>
 
 #include "hci/address_with_type.h"
 #include "hci/hci_packets.h"
 
+#define ENC_KEY_MATERIAL_LEN 24
 namespace bluetooth::hci {
 
 /// The LE Scanning reassembler is responsible for defragmenting
@@ -39,17 +41,41 @@ class LeScanningReassembler {
   LeScanningReassembler(const LeScanningReassembler&) = delete;
   LeScanningReassembler& operator=(const LeScanningReassembler&) = delete;
 
+  struct PeriodicAdvertisingFragment {
+    std::optional<uint16_t> sync_handle;
+    std::vector<uint8_t> data;
+
+    PeriodicAdvertisingFragment(uint16_t sync_handle, const std::vector<uint8_t>& data)
+        : sync_handle(sync_handle), data(data.begin(), data.end()) {}
+  };
+
   /// Process an incoming advertsing report, extracted from any of the
   /// HCI LE Advertising Report or the HCI LE Extended Advertising Report
   /// events.
   /// Returns the completed advertising data if the event was complete, or the
   /// completion of a fragmented advertising event.
+
+  std::optional<std::vector<uint8_t>> ProcessPeriodicAdvertisingReport(
+      uint16_t sync_handle,
+      AddressWithType Address_with_type,
+      DataStatus status,
+      const std::vector<uint8_t>& periodic_advertising_data);
+
   std::optional<std::vector<uint8_t>> ProcessAdvertisingReport(
       uint16_t event_type,
       uint8_t address_type,
       Address address,
       uint8_t advertising_sid,
-      const std::vector<uint8_t>& advertising_data);
+      const std::vector<uint8_t>& advertising_data,
+      std::vector<uint8_t> enc_key_material);
+
+  std::vector<uint8_t> ProcessEncryptedData(
+      std::vector<uint8_t> adv_data,
+      bool* is_decryption_success,
+      std::map<int, int> enc_adv_data_map,
+      std::vector<uint8_t> enc_key_material);
+
+  static std::map<int, int> GetEncAdvFieldsInfo(const uint8_t* ad, size_t ad_len);
 
   /// Configure the scan response filter.
   /// If true all scan responses are ignored.
@@ -106,8 +132,12 @@ class LeScanningReassembler {
   /// Advertising cache management methods.
   std::list<AdvertisingFragment>::iterator AppendFragment(
       const AdvertisingKey& key, const std::vector<uint8_t>& data);
+  std::list<PeriodicAdvertisingFragment>::iterator AppendPeriodicFragment(
+      uint16_t sync_handle, const std::vector<uint8_t>& data);
   void RemoveFragment(const AdvertisingKey& key);
   bool ContainsFragment(const AdvertisingKey& key);
+  bool ContainsPeriodicFragment(uint16_t sync_handle);
+  std::list<PeriodicAdvertisingFragment>::iterator FindPeriodicFragment(uint16_t sync_handle);
   std::list<AdvertisingFragment>::iterator FindFragment(const AdvertisingKey& key);
 
   /// Trim the advertising data by removing empty or overflowing
