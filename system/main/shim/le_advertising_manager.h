@@ -20,6 +20,7 @@
 #pragma once
 
 #include "include/hardware/ble_advertiser.h"
+#include "stack/include/gap_api.h"
 
 namespace bluetooth {
 namespace shim {
