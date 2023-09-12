@@ -31,6 +31,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
+#include "android_bluetooth_flags.h"
 
 using base::StringPrintf;
 
@@ -990,4 +991,8 @@ void gap_attr_db_init(void);
 void GAP_Init(void) {
   gap_conn_init();
   gap_attr_db_init();
+
+  if (IS_FLAG_ENABLED(encrypted_advertising_data)) {
+    bluetooth::shim::enc_key_cb();
+  }
 }
