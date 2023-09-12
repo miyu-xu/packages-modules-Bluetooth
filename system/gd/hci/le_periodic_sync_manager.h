@@ -33,6 +33,9 @@
 #include "module.h"
 #include "os/alarm.h"
 #include "os/log.h"
+#include "storage/storage_module.h"
+#include "storage/config_keys.h"
+#include "android_bluetooth_flags.h"
 
 namespace bluetooth {
 namespace hci {
@@ -85,9 +88,13 @@ class PeriodicSyncManager {
   explicit PeriodicSyncManager(ScanningCallback* callbacks)
       : le_scanning_interface_(nullptr), handler_(nullptr), callbacks_(callbacks), sync_received_callback_id(0) {}
 
-  void Init(hci::LeScanningInterface* le_scanning_interface, os::Handler* handler) {
+  void Init(
+      hci::LeScanningInterface* le_scanning_interface,
+      os::Handler* handler,
+      storage::StorageModule* storage_module) {
     le_scanning_interface_ = le_scanning_interface;
     handler_ = handler;
+    storage_module_ = storage_module;
   }
 
   void SetScanningCallback(ScanningCallback* callbacks) {
@@ -310,6 +317,9 @@ class PeriodicSyncManager {
         (uint16_t)event_view.GetDataStatus(),
         (uint16_t)event_view.GetData().size());
 
+    LOG_INFO(
+        "Data: %s",
+        base::HexEncode(event_view.GetData().data(), event_view.GetData().size()).c_str());
     uint16_t sync_handle = event_view.GetSyncHandle();
     auto periodic_sync = GetEstablishedSyncFromHandle(sync_handle);
     if (periodic_sync == periodic_syncs_.end()) {
@@ -541,11 +551,12 @@ class PeriodicSyncManager {
 
   hci::LeScanningInterface* le_scanning_interface_;
   os::Handler* handler_;
+  storage::StorageModule* storage_module_;
   ScanningCallback* callbacks_;
+  LeScanningReassembler scanning_reassembler_;
   std::list<PendingPeriodicSyncRequest> pending_sync_requests_;
   std::list<PeriodicSyncStates> periodic_syncs_;
   std::list<PeriodicSyncTransferStates> periodic_sync_transfers_;
-  LeScanningReassembler scanning_reassembler_;
   bool sync_received_callback_registered_ = false;
   int sync_received_callback_id{};
 };
