@@ -43,6 +43,7 @@
 #include "packet/fragmenting_inserter.h"
 #include "stack/include/gap_api.h"
 #include "storage/config_cache.h"
+#include "storage/config_keys.h"
 #include "storage/storage_module.h"
 
 namespace bluetooth {
