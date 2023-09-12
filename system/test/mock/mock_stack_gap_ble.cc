@@ -42,4 +42,9 @@ void GAP_BleAttrDBUpdate(uint16_t /* attr_uuid */,
                          tGAP_BLE_ATTR_VALUE* /* p_value */) {
   inc_func_call_count(__func__);
 }
+
+void GAP_BleGetEncKeyMaterialInfo(const RawAddress& /* peer_bda */) {
+  inc_func_call_count(__func__);
+}
+
 void gap_attr_db_init(void) { inc_func_call_count(__func__); }

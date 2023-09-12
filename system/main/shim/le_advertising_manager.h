@@ -23,9 +23,21 @@
 
 namespace bluetooth {
 namespace shim {
-
+class EncKeyMaterialInterface {
+ public:
+  virtual ~EncKeyMaterialInterface() = default;
+  /** Registers an EncKeyMaterialInterface with the stack */
+  virtual void Init() = 0;
+  virtual void GetEncKeyMaterial() = 0;
+};
 BleAdvertiserInterface* get_ble_advertiser_instance();
+void GetEncKeyMaterial();
+namespace legacy {
+void OnGetEncKeyMaterial(std::vector<uint8_t> temp, uint8_t attr_uuid);
+}
 void init_advertising_manager();
+EncKeyMaterialInterface* get_enc_key_material_instance();
+void init_enc_key_material_manager();
 
 }  // namespace shim
 }  // namespace bluetooth

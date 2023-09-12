@@ -30,6 +30,7 @@
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "stack/include/btm_log_history.h"
+#include "stack/include/gap_api.h"
 #include "stack/include/main_thread.h"
 #include "types/raw_address.h"
 #include "utils.h"
@@ -42,6 +43,35 @@ using bluetooth::hci::GapData;
 using bluetooth::hci::OwnAddressType;
 using bluetooth::shim::parse_gap_data;
 using std::vector;
+
+namespace bluetooth {
+namespace shim {
+
+class EncKeyMaterialInterfaceImpl
+    : public EncKeyMaterialInterface,
+      public bluetooth::hci::EncKeyMaterialCallback {
+ public:
+  ~EncKeyMaterialInterfaceImpl() override{};
+  void GetEncKeyMaterial() {
+    LOG(INFO) << __func__ << " in shim layer";
+    bluetooth::shim::GetAdvertising()->GetEncKeyMaterial();
+  }
+
+  void Init() {
+    bluetooth::shim::GetAdvertising()->RegisterEncKeyMaterialCallback(this);
+  }
+
+  void OnGetEncKeyMaterial(std::vector<uint8_t> temp, uint16_t attr_uuid) {
+    tGAP_BLE_ATTR_VALUE* temp_attr = new tGAP_BLE_ATTR_VALUE;
+    std::copy(temp.begin(), temp.begin() + 16,
+              temp_attr->enc_key_material.session_key);
+    std::copy(temp.begin() + 16, temp.end(),
+              temp_attr->enc_key_material.init_vector);
+    GAP_BleAttrDBUpdate(attr_uuid, temp_attr);
+  }
+};
+}  // namespace shim
+}  // namespace bluetooth
 
 namespace {
 constexpr char kBtmLogTag[] = "ADV";
@@ -417,5 +447,21 @@ BleAdvertiserInterface* bluetooth::shim::get_ble_advertiser_instance() {
 void bluetooth::shim::init_advertising_manager() {
   static_cast<BleAdvertiserInterfaceImpl*>(
       bluetooth::shim::get_ble_advertiser_instance())
+      ->Init();
+}
+
+bluetooth::shim::EncKeyMaterialInterface* enc_key_material_instance = nullptr;
+
+bluetooth::shim::EncKeyMaterialInterface*
+bluetooth::shim::get_enc_key_material_instance() {
+  if (enc_key_material_instance == nullptr) {
+    enc_key_material_instance =
+        new bluetooth::shim::EncKeyMaterialInterfaceImpl();
+  }
+  return enc_key_material_instance;
+}
+void bluetooth::shim::init_enc_key_material_manager() {
+  static_cast<bluetooth::shim::EncKeyMaterialInterface*>(
+      bluetooth::shim::get_enc_key_material_instance())
       ->Init();
 }
