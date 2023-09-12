@@ -17,7 +17,6 @@
 package android.bluetooth;
 
 import static android.bluetooth.Utils.factoryResetAndCreateNewChannel;
-
 import static com.google.common.truth.Truth.assertThat;
 
 import android.bluetooth.le.BluetoothLeScanner;
@@ -29,10 +28,13 @@ import android.os.ParcelUuid;
 import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
+import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
 
 import com.google.protobuf.Empty;
+
+import io.grpc.ManagedChannel;
+import io.grpc.stub.StreamObserver;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,9 +47,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
-
-import io.grpc.ManagedChannel;
-import io.grpc.stub.StreamObserver;
 
 import pandora.HostGrpc;
 import pandora.HostProto;
