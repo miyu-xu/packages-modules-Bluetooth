@@ -19,6 +19,7 @@
  */
 #pragma once
 
+#include "hci/address.h"
 #include "include/hardware/ble_scanner.h"
 
 namespace bluetooth {
