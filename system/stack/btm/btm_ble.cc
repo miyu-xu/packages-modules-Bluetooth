@@ -31,12 +31,13 @@
 #include "os/log.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/gatt/gatt_int.h"
-#include "stack/include/acl_api.h"
-#include "stack/include/bt_types.h"
-#include "stack/include/btm_ble_api.h"
-#include "stack/include/btu_hcif.h"
-#include "stack/include/gatt_api.h"
-#include "stack/include/hcimsgs.h"
+#include "acl_api.h"
+#include "bt_types.h"
+#include "btm_ble_api.h"
+#include "btu_hcif.h"
+#include "gap_api.h"
+#include "gatt_api.h"
+#include "hcimsgs.h"
 
 extern tBTM_CB btm_cb;
 
