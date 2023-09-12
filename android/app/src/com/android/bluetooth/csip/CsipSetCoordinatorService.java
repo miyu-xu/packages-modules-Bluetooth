@@ -73,7 +73,7 @@ import java.util.stream.Collectors;
  * @hide
  */
 public class CsipSetCoordinatorService extends ProfileService {
-    private static final boolean DBG = false;
+    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
     private static final String TAG = "CsipSetCoordinatorService";
 
     // Timeout for state machine thread join, to prevent potential ANR.
