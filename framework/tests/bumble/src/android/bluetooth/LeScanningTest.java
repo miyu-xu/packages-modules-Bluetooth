@@ -27,7 +27,6 @@ import android.os.ParcelUuid;
 import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
 import io.grpc.stub.StreamObserver;
