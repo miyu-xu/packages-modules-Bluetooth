@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e15bd7e_525c0d61",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-12T05:20:07Z",
+      "side": 1,
+      "message": "What are the consequence of this change ?\ngoing from 5s to 100 ms looks like a huge step, I am worried about unwanted consequence of this change",
+      "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
