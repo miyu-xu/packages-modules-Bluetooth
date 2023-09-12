@@ -15,6 +15,8 @@
  */
 #include "hci/le_scanning_manager.h"
 
+#include <base/strings/string_number_conversions.h>
+
 #include <memory>
 #include <unordered_map>
 
@@ -186,7 +188,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     le_address_manager_ = acl_manager->GetLeAddressManager();
     le_scanning_interface_ = hci_layer_->GetLeScanningInterface(
         module_handler_->BindOn(this, &LeScanningManager::impl::handle_scan_results));
-    periodic_sync_manager_.Init(le_scanning_interface_, module_handler_);
+    periodic_sync_manager_.Init(le_scanning_interface_, module_handler_, storage_module_);
     /* Check to see if the opcode is supported and C19 (support for extended advertising). */
     if (controller_->IsSupported(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS) &&
         controller->SupportsBleExtendedAdvertising()) {
@@ -433,8 +435,21 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     scanning_reassembler_.SetIgnoreScanResponses(
         filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY);
 
+    Address pseudo_address =
+        bluetooth::shim::legacy::identity_to_pseudo_random(address, address_type, false);
+    std::optional<std::vector<uint8_t>> keyiv =
+        std::move(storage_module_->GetBin(pseudo_address.ToString().c_str(), "ENC_KEY_MATERIAL"));
+    std::vector<uint8_t> enc_key_material;
+    enc_key_material.insert(enc_key_material.end(), keyiv->begin(), keyiv->end());
+    if (bluetooth::common::init_flags::encrypted_advertising_log_is_enabled()) {
+      if(!enc_key_material.empty()){
+        LOG_INFO(
+            "ENC_KEY_MATERIAL %s",
+            base::HexEncode(enc_key_material.data(), enc_key_material.size()).c_str());
+      }
+    }
     auto complete_advertising_data = scanning_reassembler_.ProcessAdvertisingReport(
-        event_type, address_type, address, advertising_sid, advertising_data);
+        event_type, address_type, address, advertising_sid, advertising_data, enc_key_material);
 
     if (complete_advertising_data.has_value()) {
       switch (address_type) {
