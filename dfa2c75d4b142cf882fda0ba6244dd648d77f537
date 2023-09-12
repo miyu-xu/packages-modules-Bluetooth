@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29dd864d_9a3d8dd7",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-12T21:38:24Z",
+      "side": 1,
+      "message": "I think the change in line 1617 is reasonable, but concern with this part of the change is this can result in silent failure to start scan (e.g. if want to update scan parameters we\u0027d need to stop and then start) - the crash on assertion indicates a problem with the logic calling into this class currently.\n\nOn core Android we\u0027ve been running into crash scenario more often on userdebug due to the assert, am planning a refactor around this in V to address by moving multiplexing logic further down.\n\nPerhaps better synchronization on scan_on_resume_ and is_scanning_ is required, but wonder if this particular issue could be addressed with just the change in line 1617?",
+      "range": {
+        "startLine": 564,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 5
+      },
+      "revId": "dfa2c75d4b142cf882fda0ba6244dd648d77f537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
