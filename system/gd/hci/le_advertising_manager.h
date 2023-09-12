@@ -12,6 +12,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 #pragma once
 
@@ -20,10 +24,23 @@
 #include "common/callback.h"
 #include "hci/address_with_type.h"
 #include "hci/hci_packets.h"
+#include "hci/hci_layer.h"
 #include "module.h"
+#include "storage/storage_module.h"
 
 namespace bluetooth {
+namespace shim {
+namespace legacy {
+  #define GATT_UUID_GAP_ENC_KEY_MATERIAL 0x2B88
+  void GAP_DB_Callback(std::vector<uint8_t> temp, uint16_t attr_uuid);
+}
+}
 namespace hci {
+
+struct EncrDataKey {
+   std::vector<uint8_t> key;
+   std::vector<uint8_t> iv;
+};
 
 class PeriodicAdvertisingParameters {
  public:
@@ -45,6 +62,11 @@ class AdvertisingConfig {
  public:
   std::vector<GapData> advertisement;
   std::vector<GapData> scan_response;
+  std::vector<uint8_t> randomizer;
+  std::vector<GapData> advertisement_enc;
+  std::vector<GapData> scan_response_enc;
+  std::vector<GapData> periodic_data_enc;
+  std::vector<uint8_t> enc_key_value;
   uint16_t interval_min;
   uint16_t interval_max;
   AdvertisingType advertising_type;
@@ -98,6 +120,7 @@ class AdvertisingCallback {
   virtual void OnOwnAddressRead(uint8_t advertiser_id, uint8_t address_type, Address address) = 0;
 };
 
+
 class LeAdvertisingManager : public bluetooth::Module {
  public:
   static constexpr AdvertiserId kInvalidId = 0xFF;
@@ -140,20 +163,22 @@ class LeAdvertisingManager : public bluetooth::Module {
 
   void SetParameters(AdvertiserId advertiser_id, AdvertisingConfig config);
 
-  void SetData(AdvertiserId advertiser_id, bool set_scan_rsp, std::vector<GapData> data);
+  void SetData(AdvertiserId advertiser_id, bool set_scan_rsp, std::vector<GapData> data, std::vector<GapData> data_encrypt);
 
   void EnableAdvertiser(
       AdvertiserId advertiser_id, bool enable, uint16_t duration, uint8_t max_extended_advertising_events);
 
   void SetPeriodicParameters(AdvertiserId advertiser_id, PeriodicAdvertisingParameters periodic_advertising_parameters);
 
-  void SetPeriodicData(AdvertiserId advertiser_id, std::vector<GapData> data);
+  void SetPeriodicData(AdvertiserId advertiser_id, std::vector<GapData> data, std::vector<GapData> data_encrypt);
 
   void EnablePeriodicAdvertising(AdvertiserId advertiser_id, bool enable, bool include_adi);
 
   void RemoveAdvertiser(AdvertiserId advertiser_id);
 
   void RegisterAdvertisingCallback(AdvertisingCallback* advertising_callback);
+
+  void enc_key_material_cb();
 
   static const ModuleFactory Factory;
 

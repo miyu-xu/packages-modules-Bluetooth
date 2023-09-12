@@ -13,6 +13,10 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  */
 
 #include "bta/le_audio/broadcaster/state_machine.h"
@@ -205,6 +209,7 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
     sm_config_.broadcast_name = broadcast_name;
     sm_config_.public_announcement = announcement;
     advertiser_if_->SetData(advertising_sid_, false, adv_data,
+                            std::vector<uint8_t>(),
                             base::DoNothing());
   }
 
@@ -215,6 +220,7 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
 
     sm_config_.announcement = std::move(announcement);
     advertiser_if_->SetPeriodicAdvertisingData(advertising_sid_, periodic_data,
+                                               std::vector<uint8_t>(),
                                                base::DoNothing());
   }
 
@@ -362,8 +368,10 @@ class BroadcastStateMachineImpl : public BroadcastStateMachine {
        */
       advertiser_if_->StartAdvertisingSet(
           kAdvertiserClientIdLeAudio, kLeAudioBroadcastRegId, base::DoNothing(),
-          adv_params, adv_data, std::vector<uint8_t>(), periodic_params,
-          periodic_data, 0 /* duration */, 0 /* maxExtAdvEvents */,
+          adv_params, adv_data, std::vector<uint8_t>(), std::vector<uint8_t>(),
+          std::vector<uint8_t>(), periodic_params,
+          periodic_data, std::vector<uint8_t>(), 0 /* duration */, 0 /* maxExtAdvEvents */,
+          std::vector<uint8_t>(),
           base::DoNothing());
     }
   }

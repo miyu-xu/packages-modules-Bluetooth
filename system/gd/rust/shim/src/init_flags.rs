@@ -11,7 +11,6 @@ mod ffi {
         fn set_all_for_testing();
 
         fn dump() -> Vec<InitFlagWithValue>;
-
         fn always_send_services_if_gatt_disc_done_is_enabled() -> bool;
         fn always_use_private_gatt_for_debugging_is_enabled() -> bool;
         fn bta_dm_clear_conn_id_on_client_close_is_enabled() -> bool;
@@ -53,6 +52,8 @@ mod ffi {
         fn use_rsi_from_cached_inqiry_results_is_enabled() -> bool;
         fn get_att_mtu_default() -> i32;
         fn encryption_in_busy_state_is_enabled() -> bool;
+        fn encrypted_advertising_is_enabled() -> bool;
+        fn encrypted_advertising_log_is_enabled() -> bool;
     }
 }
 

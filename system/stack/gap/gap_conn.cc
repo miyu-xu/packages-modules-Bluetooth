@@ -14,6 +14,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
  ******************************************************************************/
 
 #include <base/logging.h>
@@ -31,6 +34,11 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
+#include "gd/common/init_flags.h"
+
+#include "hcimsgs.h"
+#include "main/shim/shim.h"
+#include "main/shim/le_advertising_manager.h"
 
 using base::StringPrintf;
 
@@ -1024,4 +1032,8 @@ void gap_attr_db_init(void);
 void GAP_Init(void) {
   gap_conn_init();
   gap_attr_db_init();
+  CHECK(bluetooth::shim::is_gd_stack_started_up());
+  if(bluetooth::common::init_flags::encrypted_advertising_is_enabled()) {
+    bluetooth::shim::enc_key_cb();
+  }
 }
