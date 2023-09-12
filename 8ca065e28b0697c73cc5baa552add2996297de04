@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eca55073_b9e0014c",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder_linux.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-12T17:42:25Z",
+      "side": 1,
+      "message": "I expect `LOG_XX` to already provide the `__func__`, adding it will print it twice (unless floss log include a different version of LOG_XXX ? )",
+      "range": {
+        "startLine": 65,
+        "startChar": 6,
+        "endLine": 65,
+        "endChar": 15
+      },
+      "revId": "8ca065e28b0697c73cc5baa552add2996297de04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
