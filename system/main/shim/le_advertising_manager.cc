@@ -22,6 +22,8 @@
 
 #include "le_advertising_manager.h"
 
+#include <base/logging.h>
+#include <base/strings/string_number_conversions.h>
 #include <bluetooth/log.h>
 #include <com_android_bluetooth_flags.h>
 #include <hardware/bluetooth.h>
@@ -137,11 +139,20 @@ public:
 
   // ::BleAdvertiserInterface
   void SetData(int advertiser_id, bool set_scan_rsp, vector<uint8_t> data,
+               vector<uint8_t> data_encrypt,
                ::BleAdvertiserInterface::StatusCallback /* cb */) override {
     log::info("in shim layer");
     std::vector<GapData> advertising_data = {};
     parse_gap_data(data, advertising_data);
-    bluetooth::shim::GetAdvertising()->SetData(advertiser_id, set_scan_rsp, advertising_data);
+
+    if (!com::android::bluetooth::flags::encrypted_advertising_data()) {
+      bluetooth::shim::GetAdvertising()->SetData(advertiser_id, set_scan_rsp, advertising_data);
+    } else {
+      std::vector<GapData> advertising_data_encrypt = {};
+      parse_gap_data(data_encrypt, advertising_data_encrypt);
+      bluetooth::shim::GetAdvertising()->SetData(advertiser_id, set_scan_rsp, advertising_data,
+                                                 advertising_data_encrypt);
+    }
   }
 
   // ::BleAdvertiserInterface
@@ -176,13 +187,14 @@ public:
   void StartAdvertisingSet(uint8_t client_id, int reg_id,
                            ::BleAdvertiserInterface::IdTxPowerStatusCallback /* register_cb */,
                            ::AdvertiseParameters params, std::vector<uint8_t> advertise_data,
+                           std::vector<uint8_t> advertise_data_enc,
                            std::vector<uint8_t> scan_response_data,
+                           std::vector<uint8_t> scan_response_data_enc,
                            ::PeriodicAdvertisingParameters periodic_params,
-                           std::vector<uint8_t> periodic_data, uint16_t duration,
-                           uint8_t maxExtAdvEvents,
+                           std::vector<uint8_t> periodic_data,
+                           std::vector<uint8_t> periodic_data_enc, uint16_t duration,
+                           uint8_t maxExtAdvEvents, std::vector<uint8_t> enc_key_value,
                            ::BleAdvertiserInterface::IdStatusCallback /* timeout_cb */) override {
-    log::info("in shim layer");
-
     bluetooth::hci::AdvertisingConfig config{};
     parse_parameter(config, params);
     parse_periodic_advertising_parameter(config.periodic_advertising_parameters, periodic_params);
@@ -190,6 +202,13 @@ public:
     parse_gap_data(advertise_data, config.advertisement);
     parse_gap_data(scan_response_data, config.scan_response);
     parse_gap_data(periodic_data, config.periodic_data);
+
+    if (com::android::bluetooth::flags::encrypted_advertising_data()) {
+      config.enc_key_value = enc_key_value;
+      parse_gap_data(advertise_data_enc, config.advertisement_enc);
+      parse_gap_data(scan_response_data_enc, config.scan_response_enc);
+      parse_gap_data(periodic_data_enc, config.periodic_data_enc);
+    }
 
     // if registered by native client, add the register id
     if (client_id != kAdvertiserClientIdJni) {
@@ -221,11 +240,20 @@ public:
 
   // ::BleAdvertiserInterface
   void SetPeriodicAdvertisingData(int advertiser_id, std::vector<uint8_t> data,
+                                  std::vector<uint8_t> data_encrypt,
                                   ::BleAdvertiserInterface::StatusCallback /* cb */) override {
     log::info("in shim layer");
     std::vector<GapData> advertising_data = {};
     parse_gap_data(data, advertising_data);
-    bluetooth::shim::GetAdvertising()->SetPeriodicData(advertiser_id, advertising_data);
+
+    if (!true) {
+      bluetooth::shim::GetAdvertising()->SetPeriodicData(advertiser_id, advertising_data);
+    } else {
+      std::vector<GapData> advertising_data_encrypt = {};
+      parse_gap_data(data_encrypt, advertising_data_encrypt);
+      bluetooth::shim::GetAdvertising()->SetPeriodicData(advertiser_id, advertising_data,
+                                                         advertising_data_encrypt);
+    }
   }
 
   // ::BleAdvertiserInterface
