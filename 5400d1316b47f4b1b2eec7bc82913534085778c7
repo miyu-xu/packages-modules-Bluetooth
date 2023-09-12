@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beb5b321_84656ce3",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-12T01:25:41Z",
+      "side": 0,
+      "message": "Naive question but if we already have an id, isn\u0027t it expected to have a slot associated with it ?\nNote that I have no idea what an id is nor a slot.",
+      "range": {
+        "startLine": 152,
+        "startChar": 19,
+        "endLine": 152,
+        "endChar": 38
+      },
+      "revId": "5400d1316b47f4b1b2eec7bc82913534085778c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
