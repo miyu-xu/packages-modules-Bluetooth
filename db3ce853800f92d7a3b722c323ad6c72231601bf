@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e2ac260c_d723a03a",
+        "filename": "system/gd/rust/topshim/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-12T19:13:38Z",
+      "side": 1,
+      "message": "It is because you removed the empty line\n\nBpfmt will preserve the order if there is an empty line",
+      "parentUuid": "806a455d_d044b708",
+      "range": {
+        "startLine": 15,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 21
+      },
+      "revId": "db3ce853800f92d7a3b722c323ad6c72231601bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ec7c85a_8a7da707",
         "filename": "system/gd/rust/topshim/src/jni.rs",
         "patchSetId": 1
