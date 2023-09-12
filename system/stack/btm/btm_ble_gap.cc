@@ -3468,6 +3468,8 @@ void btm_ble_update_mode_operation(uint8_t link_role, const RawAddress* bd_addr,
  ******************************************************************************/
 void btm_ble_init(void) {
   tBTM_BLE_CB* p_cb = &btm_cb.ble_ctr_cb;
+  char enc_adv_data_enabled_prop[PROPERTY_VALUE_MAX] = "false";
+  char enc_adv_data_log_enabled_prop[PROPERTY_VALUE_MAX] = "false";
 
   BTM_TRACE_DEBUG("%s", __func__);
 
@@ -3499,6 +3501,22 @@ void btm_ble_init(void) {
 #if (BLE_VND_INCLUDED == FALSE)
   btm_ble_adv_filter_init();
 #endif
+  if (osi_property_get("persist.vendor.btstack.enable.enc_adv_data",
+                       enc_adv_data_enabled_prop, "true") &&
+      !strcmp(enc_adv_data_enabled_prop, "true")) {
+    btm_cb.enc_adv_data_enabled = true;
+  } else {
+    btm_cb.enc_adv_data_enabled = false;
+  }
+  LOG_INFO("enc_adv_data_enabled: %d", +btm_cb.enc_adv_data_enabled);
+  if (osi_property_get("persist.vendor.btstack.enable.enc_adv_data_log",
+                       enc_adv_data_log_enabled_prop, "false") &&
+      !strcmp(enc_adv_data_log_enabled_prop, "true")) {
+    btm_cb.enc_adv_data_log_enabled = true;
+  } else {
+    btm_cb.enc_adv_data_log_enabled = false;
+  }
+  LOG_INFO("enc_adv_data_log_enabled: %d", +btm_cb.enc_adv_data_log_enabled);
 }
 
 // Clean up btm ble control block
