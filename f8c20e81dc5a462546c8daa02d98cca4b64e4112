@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e482d61_1ddc6ead",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-09-13T07:26:54Z",
+      "side": 1,
+      "message": "We skip the CTKD if the bond is temporary. https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/btm/btm_sec.cc;drc\u003d50f7acaf28c3847bcb59f65e6ad3b25d7e7e1e49;l\u003d3462",
+      "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
