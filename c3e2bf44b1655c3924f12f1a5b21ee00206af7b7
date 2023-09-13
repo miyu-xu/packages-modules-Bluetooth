@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f214b1cb_d20a1c8a",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4412bc87_b8eb84fb",
+      "range": {
+        "startLine": 1,
+        "startChar": 31,
+        "endLine": 1,
+        "endChar": 46
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4be38ad_2be87e3c",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-13T10:16:13Z",
       "side": 1,
       "message": "privilege",
+      "range": {
+        "startLine": 2,
+        "startChar": 14,
+        "endLine": 2,
+        "endChar": 22
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6492313a_a9e5b69d",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4be38ad_2be87e3c",
       "range": {
         "startLine": 2,
         "startChar": 14,
@@ -93,6 +141,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a59df1f_2d65b76b",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "506fdaf5_c296a053",
+      "range": {
+        "startLine": 3,
+        "startChar": 12,
+        "endLine": 3,
+        "endChar": 36
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50506fde_597eb6b6",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35389c74_d7fb99b8",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 37
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2fad1942_2f7bf93b",
@@ -139,6 +235,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e362e1a2_95f87db1",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2fad1942_2f7bf93b",
+      "range": {
+        "startLine": 5,
+        "startChar": 2,
+        "endLine": 5,
+        "endChar": 3
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "853c3990_b649c90b",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abc39c9b_fb64b000",
+      "range": {
+        "startLine": 5,
+        "startChar": 15,
+        "endLine": 5,
+        "endChar": 16
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55057603_185cfff9",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-09-13T10:16:13Z",
       "side": 1,
       "message": "Consider making this a link to the interface (e.g., https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/mmc/mmc_interface/mmc_interface.h?q\u003d%22class%20MmcInterface%20%7B%22\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain:packages%2Fmodules%2FBluetooth%2F).",
+      "range": {
+        "startLine": 8,
+        "startChar": 32,
+        "endLine": 8,
+        "endChar": 45
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5776e7c5_b401a71c",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55057603_185cfff9",
       "range": {
         "startLine": 8,
         "startChar": 32,
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5e283a2_c3a7d06e",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "It depends on the codec implementation. But generally (at least LC3 and AAC), `cleanup` will release all resources.",
+      "parentUuid": "33bc1e88_594c79b3",
+      "range": {
+        "startLine": 11,
+        "startChar": 17,
+        "endLine": 11,
+        "endChar": 45
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3053b423_19558365",
@@ -198,6 +390,30 @@
       "writtenOn": "2023-09-13T10:16:13Z",
       "side": 1,
       "message": "Consider making this a link.",
+      "range": {
+        "startLine": 14,
+        "startChar": 34,
+        "endLine": 14,
+        "endChar": 50
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ab36d80_d0e778a5",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3053b423_19558365",
       "range": {
         "startLine": 14,
         "startChar": 34,
@@ -254,6 +470,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7e0118a_38126ad7",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a77e984c_c0f01b77",
+      "range": {
+        "startLine": 15,
+        "startChar": 31,
+        "endLine": 15,
+        "endChar": 32
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63a3f9e1_ff6501e3",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34a49d5c_d8e803f5",
+      "range": {
+        "startLine": 15,
+        "startChar": 40,
+        "endLine": 15,
+        "endChar": 51
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a4c3b5b_fa7baa14",
@@ -267,6 +531,30 @@
       "writtenOn": "2023-09-13T10:16:13Z",
       "side": 1,
       "message": "Library-specific enum mappings.",
+      "range": {
+        "startLine": 18,
+        "startChar": 4,
+        "endLine": 18,
+        "endChar": 48
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e60687d0_ad1326d5",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a4c3b5b_fa7baa14",
       "range": {
         "startLine": 18,
         "startChar": 4,
@@ -323,6 +611,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cd07420_2f799712",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c691344a_55ab28a4",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 19,
+        "endChar": 25
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8692689b_9381537b",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93b2aa95_c7098253",
+      "range": {
+        "startLine": 19,
+        "startChar": 26,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64dcf20d_23576a0b",
@@ -369,6 +705,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c895bf2_f5979cad",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "743d3772_73b04144",
+      "range": {
+        "startLine": 21,
+        "startChar": 34,
+        "endLine": 21,
+        "endChar": 43
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfc79109_8a42ee8a",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64dcf20d_23576a0b",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 29
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5167182_7235a772",
@@ -382,6 +766,30 @@
       "writtenOn": "2023-09-13T10:16:13Z",
       "side": 1,
       "message": "Access the interface via `CodecClient` from within the BT process",
+      "range": {
+        "startLine": 22,
+        "startChar": 7,
+        "endLine": 22,
+        "endChar": 37
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02687612_afcb256d",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5167182_7235a772",
       "range": {
         "startLine": 22,
         "startChar": 7,
@@ -415,6 +823,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba27a334_595f9160",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Added link to the header, and changed \"codec client\" to `CodecClient`",
+      "parentUuid": "cc333ec8_3480d3cd",
+      "range": {
+        "startLine": 23,
+        "startChar": 36,
+        "endLine": 23,
+        "endChar": 48
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "29c15687_8d448fd6",
@@ -428,6 +860,30 @@
       "writtenOn": "2023-09-13T10:16:13Z",
       "side": 1,
       "message": "links",
+      "range": {
+        "startLine": 31,
+        "startChar": 11,
+        "endLine": 31,
+        "endChar": 15
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfd7dd34_70f4d79c",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29c15687_8d448fd6",
       "range": {
         "startLine": 31,
         "startChar": 11,
@@ -461,6 +917,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dad3386_61ed4d7c",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e509d17f_e424d0dc",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 1
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7ef9737_6451247e",
@@ -484,6 +964,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "11bc79e8_299fa320",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7ef9737_6451247e",
+      "range": {
+        "startLine": 33,
+        "startChar": 2,
+        "endLine": 33,
+        "endChar": 14
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b5982db_417a5269",
@@ -497,6 +1001,30 @@
       "writtenOn": "2023-09-13T10:16:13Z",
       "side": 1,
       "message": "evaluation",
+      "range": {
+        "startLine": 34,
+        "startChar": 14,
+        "endLine": 34,
+        "endChar": 24
+      },
+      "revId": "c3e2bf44b1655c3924f12f1a5b21ee00206af7b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d6f0194_73c39338",
+        "filename": "system/stack/mmc/README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T16:08:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b5982db_417a5269",
       "range": {
         "startLine": 34,
         "startChar": 14,
