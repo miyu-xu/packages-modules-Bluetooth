@@ -22,6 +22,30 @@
       },
       "revId": "5400d1316b47f4b1b2eec7bc82913534085778c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "796acee0_ee4a50fe",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-13T08:30:17Z",
+      "side": 0,
+      "message": "Yes.  The ID should have been generated when the slot was allocated, but if someone cleaned it up and you\u0027re asking for it, you want to know that it\u0027s gone.",
+      "parentUuid": "beb5b321_84656ce3",
+      "range": {
+        "startLine": 152,
+        "startChar": 19,
+        "endLine": 152,
+        "endChar": 38
+      },
+      "revId": "5400d1316b47f4b1b2eec7bc82913534085778c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
