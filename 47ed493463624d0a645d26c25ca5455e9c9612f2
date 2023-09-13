@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dab44aaf_bc762fcd",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-13T18:29:32Z",
+      "side": 1,
+      "message": "This is the utils library for the cts Bluetooth tests.\nI would prefer our test not to depend on it.",
+      "range": {
+        "startLine": 27,
+        "startChar": 9,
+        "endLine": 27,
+        "endChar": 32
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "211569a0_ac9a8cd5",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 4
