@@ -52,6 +52,24 @@
       "parentUuid": "0e482d61_1ddc6ead",
       "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33de2e8d_e8038d3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-13T08:11:45Z",
+      "side": 1,
+      "message": "Good point. How about to clear the bits right after we drop* the LTK if the current transport is Classic? Does that make sense?\n\n*:https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;l\u003d3463;drc\u003dc0f53d14769fcd88080b1b0505cfc03eb4de89fc",
+      "parentUuid": "18316b65_5568b2cf",
+      "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
