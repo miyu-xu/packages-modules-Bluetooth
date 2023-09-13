@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7f30a8c_f5cc7fc0",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 1567049
+      },
+      "writtenOn": "2023-09-13T16:07:10Z",
+      "side": 1,
+      "message": "Here we assume T \u003d GattService.PendingIntentInfo. If this is the case, why do we need to leave T to a very generic type?",
+      "range": {
+        "startLine": 219,
+        "startChar": 52,
+        "endLine": 219,
+        "endChar": 80
+      },
+      "revId": "a1e8b29657b93018f1da4b6f2e57644210ebf7c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
