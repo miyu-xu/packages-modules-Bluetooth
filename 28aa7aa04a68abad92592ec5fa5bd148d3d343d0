@@ -70,6 +70,41 @@
       "parentUuid": "d2413df3_eba12eed",
       "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82c7d1c0_ad6146aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-13T17:09:45Z",
+      "side": 1,
+      "message": "Please wait to submit until William\u0027s comment resolved.",
+      "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8ccab94_b479d757",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-13T17:09:45Z",
+      "side": 1,
+      "message": "+1 - I agree with the feedback here but seems reasonable to do in follow-up CL since the native value has been defined a long time and is used in a few places.\n\nPerhaps we can file a follow up bug to track? (I am happy to file the bug, PLMK if any concerns on this approach, William)",
+      "parentUuid": "7ff1b9d8_b4a8faa2",
+      "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
