@@ -183,6 +183,14 @@ impl IBluetoothManager for BluetoothManager {
     fn set_desired_default_adapter(&mut self, adapter_index: i32) {
         self.proxy.set_desired_default_adapter(VirtualHciIndex(adapter_index));
     }
+
+    fn get_floss_api_version(&mut self) -> u32 {
+        let pkg_ver = env!("CARGO_PKG_VERSION");
+        let mut versions = pkg_ver.split('.');
+        let major = versions.next().unwrap_or("0").parse::<u32>().unwrap_or(0);
+        let minor = versions.next().unwrap_or("0").parse::<u32>().unwrap_or(0);
+        (major << 16) | minor
+    }
 }
 
 /// Implementation of IBluetoothExperimental
