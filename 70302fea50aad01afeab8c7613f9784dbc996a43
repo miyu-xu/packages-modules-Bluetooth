@@ -16,6 +16,24 @@
       "message": "Can we have a Bug added to the commit messaage\nWithout a bug it will not be properly processed in the release note",
       "revId": "70302fea50aad01afeab8c7613f9784dbc996a43",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "54070a42_cd7265d3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-09-13T06:19:57Z",
+      "side": 1,
+      "message": "I had made a bugreport and updated commit message.",
+      "parentUuid": "968dc450_76bcb213",
+      "revId": "70302fea50aad01afeab8c7613f9784dbc996a43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
