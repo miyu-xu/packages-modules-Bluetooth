@@ -1151,37 +1151,6 @@ public class BluetoothMapService extends ProfileService {
                     }
                     sendConnectCancelMessage();
                 }
-            } else if (action.equals(BluetoothDevice.ACTION_SDP_RECORD)) {
-                if (DEBUG) {
-                    Log.d(TAG, "Received ACTION_SDP_RECORD.");
-                }
-                ParcelUuid uuid = intent.getParcelableExtra(BluetoothDevice.EXTRA_UUID);
-                if (VERBOSE) {
-                    Log.v(TAG, "Received UUID: " + uuid.toString());
-                    Log.v(TAG, "expected UUID: "
-                            + BluetoothMnsObexClient.BLUETOOTH_UUID_OBEX_MNS.toString());
-                }
-                if (uuid.equals(BluetoothMnsObexClient.BLUETOOTH_UUID_OBEX_MNS)) {
-                    mMnsRecord = intent.getParcelableExtra(BluetoothDevice.EXTRA_SDP_RECORD);
-                    int status = intent.getIntExtra(BluetoothDevice.EXTRA_SDP_SEARCH_STATUS, -1);
-                    if (VERBOSE) {
-                        Log.v(TAG, " -> MNS Record:" + mMnsRecord);
-                        Log.v(TAG, " -> status: " + status);
-                    }
-                    if (mBluetoothMnsObexClient != null && !mSdpSearchInitiated) {
-                        mBluetoothMnsObexClient.setMnsRecord(mMnsRecord);
-                    }
-                    if (status != -1 && mMnsRecord != null) {
-                        for (int i = 0, c = mMasInstances.size(); i < c; i++) {
-                            mMasInstances.valueAt(i)
-                                    .setRemoteFeatureMask(mMnsRecord.getSupportedFeatures());
-                        }
-                    }
-                    if (mSdpSearchInitiated) {
-                        mSdpSearchInitiated = false; // done searching
-                        sendConnectMessage(-1); // -1 indicates all MAS instances
-                    }
-                }
             } else if (action.equals(BluetoothMapContentObserver.ACTION_MESSAGE_SENT)) {
                 int result = getResultCode();
                 boolean handled = false;
@@ -1223,6 +1192,44 @@ public class BluetoothMapService extends ProfileService {
             // Send any pending timeout now, since ACL got disconnected
             mSessionStatusHandler.removeMessages(USER_TIMEOUT);
             mSessionStatusHandler.obtainMessage(USER_TIMEOUT).sendToTarget();
+        }
+    }
+
+    public void receiveSdpSearchRecord(
+        BluetoothDevice device, int status, Parcelable record, ParcelUuid uuid) {
+        mSessionStatusHandler
+                .post(() -> handleSdpSearchRecordReceived(device, status, record, uuid));
+    }
+
+    private void handleSdpSearchRecordReceived(
+        BluetoothDevice device, int status, Parcelable record, ParcelUuid uuid) {
+        if (DEBUG) {
+            Log.d(TAG, "Received ACTION_SDP_RECORD.");
+        }
+        if (VERBOSE) {
+            Log.v(TAG, "Received UUID: " + uuid.toString());
+            Log.v(TAG, "expected UUID: "
+                    + BluetoothMnsObexClient.BLUETOOTH_UUID_OBEX_MNS.toString());
+        }
+        if (uuid.equals(BluetoothMnsObexClient.BLUETOOTH_UUID_OBEX_MNS)) {
+            mMnsRecord = record;
+            if (VERBOSE) {
+                Log.v(TAG, " -> MNS Record:" + mMnsRecord);
+                Log.v(TAG, " -> status: " + status);
+            }
+            if (mBluetoothMnsObexClient != null && !mSdpSearchInitiated) {
+                mBluetoothMnsObexClient.setMnsRecord(mMnsRecord);
+            }
+            if (status != -1 && mMnsRecord != null) {
+                for (int i = 0, c = mMasInstances.size(); i < c; i++) {
+                    mMasInstances.valueAt(i)
+                            .setRemoteFeatureMask(mMnsRecord.getSupportedFeatures());
+                }
+            }
+            if (mSdpSearchInitiated) {
+                mSdpSearchInitiated = false; // done searching
+                sendConnectMessage(-1); // -1 indicates all MAS instances
+            }
         }
     }
 

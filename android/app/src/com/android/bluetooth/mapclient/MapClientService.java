@@ -326,11 +326,6 @@ public class MapClientService extends ProfileService {
             }
         }
 
-        mMapReceiver = new MapBroadcastReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(BluetoothDevice.ACTION_SDP_RECORD);
-        registerReceiver(mMapReceiver, filter);
         removeUncleanAccounts();
         MapClientContent.clearAllContent(this);
         setMapClientService(this);
@@ -343,10 +338,6 @@ public class MapClientService extends ProfileService {
             Log.d(TAG, "stop()");
         }
 
-        if (mMapReceiver != null) {
-            unregisterReceiver(mMapReceiver);
-            mMapReceiver = null;
-        }
         if (mMnsServer != null) {
             mMnsServer.stop();
         }
