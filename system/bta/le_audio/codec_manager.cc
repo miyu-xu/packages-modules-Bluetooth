@@ -186,8 +186,8 @@ struct codec_manager_impl {
         continue;
       }
       auto& adsp_config = adsp_audio_set_conf.confs[0];
-      const types::LeAudioLc3Config lc3_config =
-          std::get<types::LeAudioLc3Config>(adsp_config.codec.config);
+      const types::LeAudioCodecConfigCore lc3_config =
+          std::get<types::LeAudioCodecConfigCore>(adsp_config.codec.config);
       le_audio::broadcast_offload_config broadcast_config;
       broadcast_config.stream_map.resize(lc3_config.channel_count);
       broadcast_config.bits_per_sample =
@@ -396,10 +396,10 @@ struct codec_manager_impl {
       return false;
     }
 
-    const types::LeAudioLc3Config adsp_lc3_config =
-        std::get<types::LeAudioLc3Config>(adsp_config.config);
-    const types::LeAudioLc3Config target_lc3_config =
-        std::get<types::LeAudioLc3Config>(target_config.config);
+    const types::LeAudioCodecConfigCore adsp_lc3_config =
+        std::get<types::LeAudioCodecConfigCore>(adsp_config.config);
+    const types::LeAudioCodecConfigCore target_lc3_config =
+        std::get<types::LeAudioCodecConfigCore>(target_config.config);
 
     if (adsp_lc3_config.sampling_frequency !=
             target_lc3_config.sampling_frequency ||
