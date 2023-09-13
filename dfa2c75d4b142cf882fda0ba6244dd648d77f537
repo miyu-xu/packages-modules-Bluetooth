@@ -22,6 +22,30 @@
       },
       "revId": "dfa2c75d4b142cf882fda0ba6244dd648d77f537",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08740055_955f5cb6",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-13T00:15:42Z",
+      "side": 1,
+      "message": "Yes actually line #1617 is enough. Remove this change.",
+      "parentUuid": "29dd864d_9a3d8dd7",
+      "range": {
+        "startLine": 564,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 5
+      },
+      "revId": "dfa2c75d4b142cf882fda0ba6244dd648d77f537",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
