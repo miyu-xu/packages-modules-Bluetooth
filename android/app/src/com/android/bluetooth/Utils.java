@@ -1277,4 +1277,15 @@ public final class Utils {
         }
         return str;
     }
+
+    /** Device config flags for Bluetooth mainline module. TODO: Use aconfig flag when available */
+    public static final class Flags {
+        /** A flag for centralizing audio routing of Bluetooth module. (b/290885204) */
+        public static boolean audioRoutingCentralization() {
+            return DeviceConfig.getBoolean(
+                    DeviceConfig.NAMESPACE_BLUETOOTH,
+                    "com.android.bluetooth.audio_routing_centalization",
+                    false);
+        }
+    }
 }
