@@ -70,6 +70,7 @@ class LeAudioDeviceGroup {
     types::CigState state;
   } cig;
 
+  /* Current audio stream configuration */
   struct stream_configuration stream_conf;
 
   uint8_t audio_directions_;
