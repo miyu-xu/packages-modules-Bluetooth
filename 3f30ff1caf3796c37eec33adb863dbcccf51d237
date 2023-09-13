@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32e7c154_48053b9f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2045885
+      },
+      "writtenOn": "2023-09-13T21:24:52Z",
+      "side": 1,
+      "message": "2747056: Remove -Wno-unused-parameter from system/gd | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2747056",
+      "revId": "3f30ff1caf3796c37eec33adb863dbcccf51d237",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
