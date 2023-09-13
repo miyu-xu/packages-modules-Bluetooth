@@ -213,8 +213,16 @@ public class ContextMap<C, T> {
      * Add an entry to the application context list.
      */
     App add(UUID uuid, WorkSource workSource, C callback, T info, GattService service) {
-        int appUid = Binder.getCallingUid();
-        String appName = service.getPackageManager().getNameForUid(appUid);
+        int appUid;
+        String appName = null;
+        if (info != null) {
+            GattService.PendingIntentInfo piInfo = (GattService.PendingIntentInfo) info;
+            appUid = piInfo.callingUid;
+            appName = piInfo.callingPackage;
+        } else {
+            appUid = Binder.getCallingUid();
+            appName = service.getPackageManager().getNameForUid(appUid);
+        }
         if (appName == null) {
             // Assign an app name if one isn't found
             appName = "Unknown App (UID: " + appUid + ")";
