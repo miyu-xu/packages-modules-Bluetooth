@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13d84ae6_2f0308d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-13T08:58:44Z",
+      "side": 1,
+      "message": "Please take a look, thanks!\n\nside note: I\u0027d like to continue working on making sure media/gatt/battery are exposed after they are initialized. However, since the clients (btclient \u0026 chrome) are now implemented in a way that when the adapter is up, they would register the callbacks to all APIs, which would be an issue if we delay the APIs exposure. Therefore, I\u0027ll work on the btclient \u0026 chrome change first.",
+      "revId": "dbad4d916b7ca5228b1f8fae929ba7ff8bf0d373",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
