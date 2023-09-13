@@ -70,6 +70,24 @@
       "parentUuid": "18316b65_5568b2cf",
       "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75c139bd_3e0b90dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-09-13T08:32:28Z",
+      "side": 1,
+      "message": "Does aosp/2736450 help with this scenario? It invalidates the bond record in the sec_flags if the device is deleted.",
+      "parentUuid": "18316b65_5568b2cf",
+      "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
