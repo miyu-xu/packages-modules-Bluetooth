@@ -769,6 +769,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
         mFactory = factory;
         mAudioManager = service.getSystemService(AudioManager.class);
         mAudioManagerAudioDeviceCallback = new AudioManagerAudioDeviceCallback();
+        Log.e(TAG, "xxx flag: " + Utils.Flags.audioRoutingCentralization());
     }
 
     void start() {
