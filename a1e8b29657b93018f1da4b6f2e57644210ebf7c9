@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30b0cb2b_b7b161e6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-13T17:46:42Z",
+      "side": 1,
+      "message": "Can we add unit test coverage for this?",
+      "revId": "a1e8b29657b93018f1da4b6f2e57644210ebf7c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c7f30a8c_f5cc7fc0",
         "filename": "android/app/src/com/android/bluetooth/gatt/ContextMap.java",
         "patchSetId": 2
