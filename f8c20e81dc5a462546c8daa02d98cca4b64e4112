@@ -34,6 +34,24 @@
       "parentUuid": "0e482d61_1ddc6ead",
       "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18316b65_5568b2cf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-09-13T07:50:24Z",
+      "side": 1,
+      "message": "If we bond over LE, then separately perform a temporary BR/EDR pairing, we will end up with a persistent LE LTK and temporary BR/EDR LK. Do we want to remove the persistent LE LTK in this case?",
+      "parentUuid": "0e482d61_1ddc6ead",
+      "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
