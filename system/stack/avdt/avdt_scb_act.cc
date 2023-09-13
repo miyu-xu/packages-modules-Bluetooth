@@ -283,6 +283,19 @@ void avdt_scb_hdl_pkt_no_frag(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
     p_data->p_pkt->len -= (offset + pad_len);
     p_data->p_pkt->offset += offset;
 
+    if (NULL == p_scb) {
+      AVDT_TRACE_ERROR("p_scb is null");
+      return;
+    }
+
+#if (BTA_AV_CO_CP_SCMS_T == TRUE)
+    /* if remote SRC device use SCMS_T when it set configuration  */
+    if (p_scb->curr_cfg.num_protect) {
+      p_data->p_pkt->len -= 1;
+      p_data->p_pkt->offset += 1;
+    }
+#endif
+
     if (p_scb->stream_config.p_sink_data_cback != NULL) {
       /* report sequence number */
       p_data->p_pkt->layer_specific = seq;

@@ -517,6 +517,8 @@ class BtaAvCo {
   BtaAvCoSep* FindPeerSource(BtaAvCoPeer* p_peer,
                              btav_a2dp_codec_index_t codec_index);
 
+  bool ContentProtectEnabled() const { return content_protect_enabled_; }
+
  private:
   /**
    * Reset the state.
@@ -689,8 +691,6 @@ class BtaAvCo {
    */
   static bool AudioProtectHasScmst(uint8_t num_protect,
                                    const uint8_t* p_protect_info);
-
-  bool ContentProtectEnabled() const { return content_protect_enabled_; }
 
   std::recursive_mutex codec_lock_;  // Protect access to the codec state
   std::vector<btav_a2dp_codec_config_t> codec_priorities_;  // Configured
@@ -1027,12 +1027,9 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
     }
   }
 
-  // By default, no content protection
-  *p_num_protect = 0;
-  if (ContentProtectEnabled() && p_peer->ContentProtectActive()) {
-    *p_num_protect = AVDT_CP_INFO_LEN;
-    memcpy(p_protect_info, bta_av_co_cp_scmst, AVDT_CP_INFO_LEN);
-  }
+  //select codec done update cp info
+  *p_num_protect = p_sink->num_protect;
+  memcpy(p_protect_info, p_sink->protect_info, AVDT_CP_INFO_LEN);
 
   // If acceptor -> reconfig otherwise reply for configuration
   *p_sep_info_idx = p_sink->sep_info_idx;
@@ -1146,12 +1143,9 @@ tA2DP_STATUS BtaAvCo::ProcessSinkGetConfig(tBTA_AV_HNDL bta_av_handle,
     }
   }
 
-  // By default, no content protection
-  *p_num_protect = 0;
-  if (ContentProtectEnabled() && p_peer->ContentProtectActive()) {
-    *p_num_protect = AVDT_CP_INFO_LEN;
-    memcpy(p_protect_info, bta_av_co_cp_scmst, AVDT_CP_INFO_LEN);
-  }
+  //select codec done update cp info
+  *p_num_protect = p_source->num_protect;
+  memcpy(p_protect_info, p_source->protect_info, AVDT_CP_INFO_LEN);
 
   // If acceptor -> reconfig otherwise reply for configuration
   *p_sep_info_idx = p_source->sep_info_idx;
@@ -1879,6 +1873,11 @@ BtaAvCoSep* BtaAvCo::FindPeerSink(BtaAvCoPeer* p_peer,
     if (peer_codec_index != codec_index) {
       continue;
     }
+    /* If local CP enabled and peer CP disabled,
+     * AudioSepHasContentProtection will return false and continue,
+     * this api will return nullptr and cause connection failed
+     */
+#if (BTA_AV_CO_CP_SCMS_T != TRUE)
     if (!AudioSepHasContentProtection(p_sink)) {
       APPL_TRACE_DEBUG(
           "%s: peer Sink for codec %s does not support "
@@ -1886,6 +1885,7 @@ BtaAvCoSep* BtaAvCo::FindPeerSink(BtaAvCoPeer* p_peer,
           __func__, A2DP_CodecIndexStr(codec_index));
       continue;
     }
+#endif
     return p_sink;
   }
   return nullptr;
@@ -1907,6 +1907,11 @@ BtaAvCoSep* BtaAvCo::FindPeerSource(BtaAvCoPeer* p_peer,
     if (peer_codec_index != codec_index) {
       continue;
     }
+    /* If local CP enabled and peer CP disabled,
+     * AudioSepHasContentProtection will return false and continue,
+     * this api will return nullptr and cause connection failed
+     */
+#if (BTA_AV_CO_CP_SCMS_T != TRUE)
     if (!AudioSepHasContentProtection(p_source)) {
       APPL_TRACE_DEBUG(
           "%s: peer Source for codec %s does not support "
@@ -1914,6 +1919,7 @@ BtaAvCoSep* BtaAvCo::FindPeerSource(BtaAvCoPeer* p_peer,
           __func__, A2DP_CodecIndexStr(codec_index));
       continue;
     }
+#endif
     return p_source;
   }
   return nullptr;
@@ -2300,6 +2306,16 @@ btav_a2dp_scmst_info_t bta_av_co_get_scmst_info(
   }
 
   return scmst_info;
+}
+
+bool bta_av_co_active_peer_cp_is_active(void) {
+  APPL_TRACE_DEBUG("%s cp active:%d", __FUNCTION__,
+      bta_av_co_cb.ContentProtectEnabled() &&
+      (bta_av_co_cb.GetActivePeer() != nullptr) &&
+      bta_av_co_cb.GetActivePeer()->ContentProtectActive());
+  return (bta_av_co_cb.ContentProtectEnabled() &&
+      (bta_av_co_cb.GetActivePeer() != nullptr) &&
+      bta_av_co_cb.GetActivePeer()->ContentProtectActive());
 }
 
 void btif_a2dp_codec_debug_dump(int fd) { bta_av_co_cb.DebugDump(fd); }

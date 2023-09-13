@@ -1747,11 +1747,15 @@ void bta_av_getcap_results(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   memcpy(cfg.codec_info, p_scb->peer_cap.codec_info, AVDT_CODEC_SIZE);
   memcpy(cfg.protect_info, p_scb->peer_cap.protect_info, AVDT_PROTECT_SIZE);
 
+  p_info->num_protect = cfg.num_protect;
+  if (p_info->num_protect)
+    memcpy(p_info->protect_info, cfg.protect_info, p_info->num_protect);
+
   APPL_TRACE_DEBUG("%s: peer %s bta_handle:0x%x num_codec:%d psc_mask=0x%x",
                    __func__, ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()),
                    p_scb->hndl, p_scb->peer_cap.num_codec, p_scb->cfg.psc_mask);
-  APPL_TRACE_DEBUG("%s: media type 0x%x, 0x%x", __func__, media_type,
-                   p_scb->media_type);
+  APPL_TRACE_DEBUG("%s: media type 0x%x, 0x%x, num_protect %d", __func__, media_type,
+                   p_scb->media_type, cfg.num_protect);
   APPL_TRACE_DEBUG("%s: codec: %s", __func__,
                    A2DP_CodecInfoString(p_scb->cfg.codec_info).c_str());
 
