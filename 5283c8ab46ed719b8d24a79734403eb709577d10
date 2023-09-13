@@ -69,6 +69,24 @@
       "parentUuid": "a262153b_cce31241",
       "revId": "5283c8ab46ed719b8d24a79734403eb709577d10",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb0c208d_6d8ee27f",
+        "filename": "android/pandora/test/avatar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-09-13T06:08:46Z",
+      "side": 1,
+      "message": "From https://developers.google.com/pandora/guides/avatar/android-guide#avatar_cli_preferred\n`Note: If you have errors such as ModuleNotFoundError: no module named pip, reset your Avatar cache by doing rm -rf ~/.cache/avatar/venv.`\n\u003e python3 -m venv \"${_VENV_DIR}\" doesn\u0027t seem to create the directory for me locally.\n\nThis is an issue, but I think it\u0027s related to having `~/.cache/avatar ` to already exist",
+      "parentUuid": "c1bad84d_e832442f",
+      "revId": "5283c8ab46ed719b8d24a79734403eb709577d10",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
