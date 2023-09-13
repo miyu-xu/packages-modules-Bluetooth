@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "547f2242_970bc520",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-13T08:28:59Z",
+      "side": 1,
+      "message": "It might be nice to split the cleanup from the test.  mAddress -\u003e mNetworkAddress is a nice clarification, though.",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34ace026_336ae302",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-13T08:28:59Z",
+      "side": 1,
+      "message": "This seems unrelated to the pairing test.",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 8
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
