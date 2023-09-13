@@ -346,6 +346,8 @@ typedef struct {
   uint8_t seid;       /* Stream endpoint identifier */
   uint8_t media_type; /* Media type: AVDT_MEDIA_TYPE_* */
   uint8_t tsep;       /* SEP type */
+  uint8_t num_protect; /* Number of content protection information elements */
+  uint8_t protect_info[AVDT_PROTECT_SIZE]; /* Content protection capabilities */
 } tAVDT_SEP_INFO;
 
 /**
