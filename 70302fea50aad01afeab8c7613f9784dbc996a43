@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "968dc450_76bcb213",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-13T00:28:15Z",
+      "side": 1,
+      "message": "Can we have a Bug added to the commit messaage\nWithout a bug it will not be properly processed in the release note",
+      "revId": "70302fea50aad01afeab8c7613f9784dbc996a43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
