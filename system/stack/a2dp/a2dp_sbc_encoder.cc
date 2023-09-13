@@ -33,6 +33,7 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "stack/include/bt_hdr.h"
+#include "bta/include/bta_av_co.h"
 
 /* Buffer pool */
 #define A2DP_SBC_BUFFER_SIZE BT_DEFAULT_BUFFER_SIZE
@@ -738,6 +739,12 @@ static uint16_t adjust_effective_mtu(
       mtu_size = MAX_2MBPS_AVDTP_MTU;
     }
   }
+
+#if (BTA_AV_CO_CP_SCMS_T == TRUE)
+  if (bta_av_co_active_peer_cp_is_active())
+    mtu_size -= 1;
+#endif
+
   return mtu_size;
 }
 

@@ -35,6 +35,7 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "stack/include/bt_hdr.h"
+#include "bta/include/bta_av_co.h"
 
 //
 // Encoder for LDAC Source Codec
@@ -573,6 +574,12 @@ static uint16_t adjust_effective_mtu(
   if (mtu_size > peer_params.peer_mtu) {
     mtu_size = peer_params.peer_mtu;
   }
+
+#if (BTA_AV_CO_CP_SCMS_T == TRUE)
+  if (bta_av_co_active_peer_cp_is_active())
+    mtu_size -= 1;
+#endif
+
   LOG_VERBOSE("%s: original AVDTP MTU size: %d", __func__, mtu_size);
   return mtu_size;
 }
