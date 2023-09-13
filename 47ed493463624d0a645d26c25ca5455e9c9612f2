@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "211569a0_ac9a8cd5",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "I think we need to be root to do this command.\n\nCan you add a [RootTargetPreparer](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/test/AndroidTest.xml;l\u003d18-20;drc\u003d6f81c7ba8cb7208f787aaf24f095f358810cb121) as well ?",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "34ace026_336ae302",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 4
@@ -36,6 +53,328 @@
         "startChar": 0,
         "endLine": 32,
         "endChar": 8
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54ed4690_53efb5ea",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "+1",
+      "parentUuid": "34ace026_336ae302",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 8
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87348455_c03edd81",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "nit: Creating a stub is cheap, we should use `security()` and `hostBlocking` on mBumble instead of storing member variables.",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac8227b8_995787fb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "Protobuf generated code cannot return `null`\n\nhttps://protobuf.dev/reference/java/java-generated/\n\n```\nNote that no Java protocol buffer methods accept or return nulls unless otherwise specified.\n```\n\nI think we should remove this.",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42e9759b_ee4a17f3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "I think we are abusing `Objects.requireNonNull`.\n\nAs we are calling a method on this object, we would get a NPE if bluetoothManager was null, \n\nFrom the `Objects.requireNonNull` documentation https://docs.oracle.com/javase/8/docs/api/java/util/Objects.html#requireNonNull-T-\n\n\nThis method is designed primarily for doing parameter validation in methods and constructors, as demonstrated below:\n```\n public Foo(Bar bar) {\n     this.bar \u003d Objects.requireNonNull(bar);\n }\n```\n\nAnd we are not in this case.\n\nI think that we should remove it and just put\n\n\n```\n        mAdapter \u003d bluetoothManager.getAdapter();\n```",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 59
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e66cf50f_6d2b96d6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "Similar comment that for `Objects.requireNonNull` above, I don\u0027t think this should be a test assertion, we should let it break afterwards, it will give a clearer error as well.",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85e0cd9e_8df2f1dd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "TIL that we had a method that directly take the byte array instead of a String address 🤣\n\nI know what to look everywhere in Pandora if we can get rid of some of those conversions because I feel that we do that in multiple places.",
+      "range": {
+        "startLine": 91,
+        "startChar": 33,
+        "endLine": 91,
+        "endChar": 48
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "857020fb_fcc97606",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "The BluetoothAdapter should already be enabled as it\u0027s part of the AndroidTest.xml setup commands.\n\nI think I would prefer for us to not do that, and just rely on each test letting the BluetoothAdapter in a correct state.\n\nSo I would prefer that we remove that.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 84
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a59c4c7b_36ff956b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "Do we need this ?",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "582aeec9_7f2a57fd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "ditto: Remove the `Objects.requireNonNull`",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 35
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce701179_29283166",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "Same logic as `enableAdapter`, I would prefer for us to not have that.",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb044b22_a58f2cf1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "Use `pairingEvents.add(value)` instead as the queue is unbounded.",
+      "range": {
+        "startLine": 137,
+        "startChar": 23,
+        "endLine": 141,
+        "endChar": 25
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20cdad72_813dcb26",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "We should do something with those two.\n\nI think we should do a small abstraction implementing `Iterator` and `StreamObserver` that would correctly handle error (rethrow the error when we call next) + complete (throw a NoSuchElementException when we call next).",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 48
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58dc6395_e8bd62c5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "This cannot be null, we should remove this.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fff7754_911d5684",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "Seeing the size of the functions, I would prefer to inline it\u0027s content and make the test throws an InterruptedException",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 5
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8548ce92_cb9cb6d8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-13T18:26:13Z",
+      "side": 1,
+      "message": "I don\u0027t know if this is something that we want to have.\n\nIt would make sense outside of a test because something else might be using the API and we might be receiving intents for other devices.\n\nBut while running a test, I would expect us to have exclusive access to Bluetooth and that no one else should be doing something with the API.\n\nI would prefer for the test to fail than to hide this.",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 80
       },
       "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
