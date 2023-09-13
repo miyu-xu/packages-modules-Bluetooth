@@ -22,6 +22,54 @@
       },
       "revId": "8ca065e28b0697c73cc5baa552add2996297de04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56436733_cb57e8bb",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder_linux.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T06:11:38Z",
+      "side": 1,
+      "message": "Many files contain the same duplicate log, I open a bug (b/300197555) and we could fix this in another CL",
+      "parentUuid": "eca55073_b9e0014c",
+      "range": {
+        "startLine": 65,
+        "startChar": 6,
+        "endLine": 65,
+        "endChar": 15
+      },
+      "revId": "8ca065e28b0697c73cc5baa552add2996297de04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a01385ac_4f25ba42",
+        "filename": "system/stack/a2dp/a2dp_aac_encoder_linux.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-13T06:11:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eca55073_b9e0014c",
+      "range": {
+        "startLine": 65,
+        "startChar": 6,
+        "endLine": 65,
+        "endChar": 15
+      },
+      "revId": "8ca065e28b0697c73cc5baa552add2996297de04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
