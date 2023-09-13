@@ -16,6 +16,24 @@
       "message": "Hi Christine, could you help take additional look? I realized there\u0027s yet another path to trigger the crash and updated the patch (unittest is also updated).",
       "revId": "68c3c0bfadc021b8d93fb56c6ceebe4a9b9f6f00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e860a29c_1c76e1d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-13T17:24:13Z",
+      "side": 1,
+      "message": "LGTM, thanks Hsin-chen.",
+      "parentUuid": "93b937a2_24953f3a",
+      "revId": "68c3c0bfadc021b8d93fb56c6ceebe4a9b9f6f00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
