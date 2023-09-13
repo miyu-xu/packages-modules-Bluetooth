@@ -36,7 +36,7 @@ using types::BidirectionalPair;
 using types::CisType;
 using types::LeAudioContextType;
 
-using types::LeAudioLc3Config;
+using types::LeAudioCodecConfigBase;
 
 /* LeAudioDeviceGroup Class methods implementation */
 void LeAudioDeviceGroup::AddNode(
@@ -1282,7 +1282,8 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
       /* TODO Make it no Lc3 specific */
       if (!CheckIfStrategySupported(
               strategy, audio_locations,
-              std::get<LeAudioLc3Config>(ent.codec.config).GetChannelCount(),
+              std::get<LeAudioCodecConfigBase>(ent.codec.config)
+                  .GetChannelCount(),
               device->GetLc3SupportedChannelCount(ent.direction))) {
         LOG_DEBUG(" insufficient device audio allocation: %lu",
                   audio_locations.to_ulong());
