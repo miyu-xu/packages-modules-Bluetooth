@@ -52,6 +52,24 @@
       "parentUuid": "7a5c2b8e_0f211823",
       "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ff1b9d8_b4a8faa2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-13T01:15:49Z",
+      "side": 1,
+      "message": "Overall scan performance is same but 100ms/100ms could have better channel diversity because LE scan radio frequency is stuck during LE scan window. 5 seconds was too big. It seems your proposal to sync the parameters between framework and native stack is really good to have. I hope to the design could be done by another CL.",
+      "parentUuid": "d2413df3_eba12eed",
+      "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
