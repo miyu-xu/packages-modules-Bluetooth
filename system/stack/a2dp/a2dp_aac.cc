@@ -744,8 +744,19 @@ bool A2DP_InitCodecConfigAac(AvdtpSepConfig* p_cfg) {
 }
 
 bool A2DP_InitCodecConfigAacSink(AvdtpSepConfig* p_cfg) {
-  return A2DP_BuildInfoAac(AVDT_MEDIA_TYPE_AUDIO, &a2dp_aac_sink_caps,
-                           p_cfg->codec_info) == A2DP_SUCCESS;
+  if (A2DP_BuildInfoAac(AVDT_MEDIA_TYPE_AUDIO, &a2dp_aac_sink_caps,
+      p_cfg->codec_info) != A2DP_SUCCESS) {
+    return false;
+  }
+#if (BTA_AV_CO_CP_SCMS_T == TRUE)
+  /* Content protection info - support SCMS-T */
+  uint8_t* p = p_cfg->protect_info;
+  *p++ = AVDT_CP_LOSC;
+  UINT16_TO_STREAM(p, AVDT_CP_SCMS_T_ID);
+  p_cfg->num_protect = 1;
+#endif
+
+  return true;
 }
 
 UNUSED_ATTR static void build_codec_config(const tA2DP_AAC_CIE& config_cie,
