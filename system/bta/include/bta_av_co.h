@@ -244,4 +244,15 @@ void bta_av_co_audio_update_mtu(tBTA_AV_HNDL bta_av_handle,
  ******************************************************************************/
 btav_a2dp_scmst_info_t bta_av_co_get_scmst_info(const RawAddress& peer_address);
 
+/*******************************************************************************
+ **
+ ** Function        bta_av_co_active_peer_cp_is_active
+ **
+ ** Description     If DUT and active peer both support CP, return TRUE
+ **
+ ** Returns         TRUE or FALSE
+ **
+ ******************************************************************************/
+bool bta_av_co_active_peer_cp_is_active(void);
+
 #endif /* BTA_AV_CO_H */
