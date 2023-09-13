@@ -26,14 +26,11 @@ import android.bluetooth.BluetoothUuid;
 import android.bluetooth.IBluetoothMapClient;
 import android.bluetooth.SdpMasRecord;
 import android.content.AttributionSource;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ParcelUuid;
+import android.os.Parcelable;
 import android.sysprop.BluetoothProperties;
 import android.util.Log;
 
@@ -67,7 +64,6 @@ public class MapClientService extends ProfileService {
     private DatabaseManager mDatabaseManager;
     private static MapClientService sMapClientService;
     @VisibleForTesting
-    MapBroadcastReceiver mMapReceiver;
     private Handler mHandler;
 
     public static boolean isEnabled() {
@@ -326,11 +322,6 @@ public class MapClientService extends ProfileService {
             }
         }
 
-        mMapReceiver = new MapBroadcastReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(BluetoothDevice.ACTION_SDP_RECORD);
-        registerReceiver(mMapReceiver, filter);
         removeUncleanAccounts();
         MapClientContent.clearAllContent(this);
         setMapClientService(this);
@@ -343,10 +334,6 @@ public class MapClientService extends ProfileService {
             Log.d(TAG, "stop()");
         }
 
-        if (mMapReceiver != null) {
-            unregisterReceiver(mMapReceiver);
-            mMapReceiver = null;
-        }
         if (mMnsServer != null) {
             mMnsServer.stop();
         }
@@ -730,52 +717,6 @@ public class MapClientService extends ProfileService {
         }
     }
 
-    @VisibleForTesting
-    class MapBroadcastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            if (DBG) {
-                Log.d(TAG, "onReceive: " + action);
-            }
-            BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-            if (device == null) {
-                Log.e(TAG, "broadcast has NO device param!");
-                return;
-            }
-
-            MceStateMachine stateMachine = mMapInstanceMap.get(device);
-            if (stateMachine == null) {
-                Log.e(TAG, "No Statemachine found for the device=" + device.toString());
-                return;
-            }
-
-            if (action.equals(BluetoothDevice.ACTION_SDP_RECORD)) {
-                ParcelUuid uuid = intent.getParcelableExtra(BluetoothDevice.EXTRA_UUID);
-                if (DBG) {
-                    Log.d(TAG, "Received SDP Record event, device=" + device.toString() + ", uuid="
-                            + uuid);
-                }
-
-                if (uuid.equals(BluetoothUuid.MAS)) {
-                    // Check if we have a valid SDP record.
-                    SdpMasRecord masRecord =
-                            intent.getParcelableExtra(BluetoothDevice.EXTRA_SDP_RECORD);
-                    if (DBG) {
-                        Log.d(TAG, "SDP = " + masRecord);
-                    }
-                    int status = intent.getIntExtra(BluetoothDevice.EXTRA_SDP_SEARCH_STATUS, -1);
-                    if (masRecord == null) {
-                        Log.w(TAG, "SDP search ended with no MAS record. Status: " + status);
-                        return;
-                    }
-                    stateMachine.obtainMessage(MceStateMachine.MSG_MAS_SDP_DONE,
-                            masRecord).sendToTarget();
-                }
-            }
-        }
-    }
-
     public void onAclDisconnect(BluetoothDevice device, int transport) {
         mHandler.post(() -> handleAclDisconnect(device, transport));
     }
@@ -796,6 +737,35 @@ public class MapClientService extends ProfileService {
 
         if (stateMachine.getState() == BluetoothProfile.STATE_CONNECTED) {
             stateMachine.disconnect();
+        }
+    }
+
+    public void receiveSdpSearchRecord(
+            BluetoothDevice device, int status, Parcelable record, ParcelUuid uuid) {
+        mHandler.post(() -> handleSdpSearchRecordReceived(device, status, record, uuid));
+    }
+
+    private void handleSdpSearchRecordReceived(
+            BluetoothDevice device, int status, Parcelable record, ParcelUuid uuid) {
+        MceStateMachine stateMachine = mMapInstanceMap.get(device);
+        if (stateMachine == null) {
+            Log.e(TAG, "No Statemachine found for the device=" + device.toString());
+            return;
+        }
+        if (DBG) {
+            Log.d(TAG, "Received SDP Record, device=" + device.toString() + ", uuid=" + uuid);
+        }
+        if (uuid.equals(BluetoothUuid.MAS)) {
+            // Check if we have a valid SDP record.
+            SdpMasRecord masRecord = (SdpMasRecord) record;
+            if (DBG) {
+                Log.d(TAG, "SDP = " + masRecord);
+            }
+            if (masRecord == null) {
+                Log.w(TAG, "SDP search ended with no MAS record. Status: " + status);
+                return;
+            }
+            stateMachine.obtainMessage(MceStateMachine.MSG_MAS_SDP_DONE, masRecord).sendToTarget();
         }
     }
 }

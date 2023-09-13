@@ -27,8 +27,6 @@ import static org.mockito.Mockito.when;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
-import android.bluetooth.BluetoothUuid;
-import android.content.Intent;
 import android.os.Looper;
 
 import androidx.test.filters.MediumTest;
@@ -242,18 +240,6 @@ public class MapClientServiceTest {
     }
 
     @Test
-    public void broadcastReceiver_withRandomAction_doesNothing() {
-        MceStateMachine sm = mock(MceStateMachine.class);
-        mService.getInstanceMap().put(mRemoteDevice, sm);
-
-        Intent intent = new Intent("Test_random_action");
-        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mRemoteDevice);
-        mService.mMapReceiver.onReceive(mService, intent);
-
-        verify(sm, never()).disconnect();
-    }
-
-    @Test
     public void
             broadcastReceiver_withActionAclDisconnectedNoTransport_whenConnected_doesNotCallDisconnect() {
         int connectionState = BluetoothProfile.STATE_CONNECTED;
@@ -293,18 +279,5 @@ public class MapClientServiceTest {
         TestUtils.waitForLooperToBeIdle(Looper.getMainLooper());
 
         verify(sm).disconnect();
-    }
-
-    @Test
-    public void broadcastReceiver_withActionSdpRecord_withoutMasRecord_doesNothing() {
-        MceStateMachine sm = mock(MceStateMachine.class);
-        mService.getInstanceMap().put(mRemoteDevice, sm);
-
-        Intent intent = new Intent(BluetoothDevice.ACTION_SDP_RECORD);
-        intent.putExtra(BluetoothDevice.EXTRA_DEVICE, mRemoteDevice);
-        intent.putExtra(BluetoothProfile.EXTRA_STATE, BluetoothProfile.STATE_DISCONNECTED);
-        intent.putExtra(BluetoothDevice.EXTRA_UUID, BluetoothUuid.MAS);
-        // No MasRecord / searchStatus is included in this intent
-        mService.mMapReceiver.onReceive(mService, intent);
     }
 }
