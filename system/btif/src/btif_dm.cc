@@ -284,6 +284,8 @@ bt_status_t btif_sdp_execute_service(bool b_enable);
 void btif_iot_update_remote_info(tBTA_DM_AUTH_CMPL* p_auth_cmpl, bool is_ble,
                                  bool is_ssp);
 
+extern void btif_hf_acl_disconnected(RawAddress& address);
+extern void btif_hf_client_acl_disconnected(RawAddress& address);
 /******************************************************************************
  *  Functions
  *****************************************************************************/

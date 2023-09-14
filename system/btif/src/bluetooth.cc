@@ -178,6 +178,9 @@ bt_status_t btif_sdp_execute_service(bool b_enable);
 bt_status_t btif_hh_connect(const RawAddress* bd_addr);
 bt_status_t btif_hd_execute_service(bool b_enable);
 
+void btif_hf_acl_disconnected(const RawAddress& address);
+void btif_hf_client_acl_disconnected(const RawAddress& address);
+
 /*******************************************************************************
  *  Callbacks from bluetooth::core (see go/invisalign-bt)
  ******************************************************************************/
@@ -324,6 +327,8 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
 
   void onLinkDown(const RawAddress& bd_addr) override {
     btif_av_acl_disconnected(bd_addr);
+    btif_hf_acl_disconnected(bd_addr);
+    btif_hf_client_acl_disconnected(bd_addr);
   }
 };
 

@@ -735,6 +735,19 @@ static void bte_hf_evt(tBTA_AG_EVT event, tBTA_AG* p_data) {
   ASSERTC(status == BT_STATUS_SUCCESS, "context transfer failed", status);
 }
 
+void acl_disconnected(RawAddress& address) {
+  int idx = btif_hf_idx_by_bdaddr(&address);
+  if (idx == BTIF_HF_INVALID_IDX)
+    return;
+
+  if (btif_hf_cb[idx].is_initiator) {
+    LOG_WARN("%s clear cb for acl disconnected, addr: %s",
+             __func__, ADDRESS_TO_LOGGABLE_CSTR(address));
+    reset_control_block(&btif_hf_cb[idx]);
+    btif_queue_advance();
+  }
+}
+
 /*******************************************************************************
  *
  * Function         connect
@@ -1645,3 +1658,8 @@ Interface* GetInterface() {
 
 }  // namespace headset
 }  // namespace bluetooth
+
+void btif_hf_acl_disconnected(const RawAddress& address) {
+  RawAddress addr = address;
+  bluetooth::headset::acl_disconnected(addr);
+}
