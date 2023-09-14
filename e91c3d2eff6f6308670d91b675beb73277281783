@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fdecbfc_022eb022",
+        "filename": "system/btif/src/bluetooth.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1565288
+      },
+      "writtenOn": "2023-09-14T08:23:54Z",
+      "side": 1,
+      "message": "This fixes:\n```\n../../../../../../../tmp/portage/net-wireless/floss-9999/work/floss-9999/platform2/bt/system/stack/btm/btm_ble_gap.cc:1587:29: error: comparison of different enumeration types (\u0027tBTM_BLE_EVT\u0027 and \u0027(unnamed enum at ../../../../../../../tmp/portage/net-wireless/floss-9999/work/floss-9999/platform2/bt/system/stack/include/btm_ble_api_types.h:38:1)\u0027) is deprecated [-Werror,-Wdeprecated-anon-enum-enum-conversion]\n    if (p_cb-\u003edirected_conn \u003d\u003d BTM_BLE_CONNECT_DIR_EVT ||\n        ~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~\n```",
+      "revId": "e91c3d2eff6f6308670d91b675beb73277281783",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9476b659_d259c4e3",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 1565288
+      },
+      "writtenOn": "2023-09-14T08:23:54Z",
+      "side": 1,
+      "message": "This fixes:\n```\n../../../../../../../tmp/portage/net-wireless/floss-9999/work/floss-9999/platform2/bt/system/btif/src/bluetooth.cc:337:32: error: initialization of non-aggregate type \u0027bluetooth::core::EventCallbacks\u0027 with a designated initializer list\n  static auto eventCallbacks \u003d bluetooth::core::EventCallbacks{\n                               ^                              ~\n```",
+      "revId": "e91c3d2eff6f6308670d91b675beb73277281783",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
