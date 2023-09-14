@@ -458,6 +458,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15d15c5f_07e27f4b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-09-14T07:30:50Z",
+      "side": 1,
+      "message": "Can we add the test steps and expectation in the comments here?",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb044b22_a58f2cf1",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 4
