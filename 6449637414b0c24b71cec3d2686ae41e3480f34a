@@ -146,6 +146,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9425870_dc8f8092",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-14T11:15:57Z",
+      "side": 1,
+      "message": "Hi Hsin-chen Chuang\n\nI update the testing result. Please help take a look. Thanks!",
+      "parentUuid": "003a3ecf_98c5fd94",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "df4c9e57_5827dba1",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 7
