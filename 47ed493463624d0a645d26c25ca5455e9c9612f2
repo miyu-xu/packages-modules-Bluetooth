@@ -694,6 +694,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c5d369d0_8aedece5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T22:36:54Z",
+      "side": 1,
+      "message": "Btw, as it\u0027s a bit bigger change, I can do it as a followup as well 😊",
+      "parentUuid": "3ccff710_a52236cc",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 48
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ce90008_c98d3e1d",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 4
