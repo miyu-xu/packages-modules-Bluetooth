@@ -16,7 +16,6 @@ pub mod hci {
     #![allow(clippy::all)]
     #![allow(unused)]
     #![allow(missing_docs)]
-    #![allow(non_camel_case_types)]
 
     include!(concat!(env!("OUT_DIR"), "/hci_packets.rs"));
 
