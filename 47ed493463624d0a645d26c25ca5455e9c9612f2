@@ -577,6 +577,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5bd04b1a_709b2b0c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T22:10:54Z",
+      "side": 1,
+      "message": "I would prefer that we follow go/unit-testing-practices#naming and put a more descriptive test name",
+      "range": {
+        "startLine": 131,
+        "startChar": 16,
+        "endLine": 131,
+        "endChar": 34
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "cb044b22_a58f2cf1",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 4
