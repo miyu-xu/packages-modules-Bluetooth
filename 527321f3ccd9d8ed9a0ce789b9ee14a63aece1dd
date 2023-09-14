@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70676029_bd2a4235",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1702,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-14T18:58:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41192ecf_e9ddffdc",
+      "range": {
+        "startLine": 1702,
+        "startChar": 22,
+        "endLine": 1702,
+        "endChar": 38
+      },
+      "revId": "527321f3ccd9d8ed9a0ce789b9ee14a63aece1dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7847519a_adec0534",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-09-08T17:59:07Z",
       "side": 1,
       "message": "Can we do a stringbuilder and log only once ?\n(This pattern is used in a few places)\n\nIt will allow the log not to be split by log from external process, and we can keep a multiline log to keep it readable",
+      "range": {
+        "startLine": 1080,
+        "startChar": 4,
+        "endLine": 1090,
+        "endChar": 7
+      },
+      "revId": "527321f3ccd9d8ed9a0ce789b9ee14a63aece1dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "230d01f2_91078ea9",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-14T18:58:48Z",
+      "side": 1,
+      "message": "Can you show me an example of StringBuilder being used?",
+      "parentUuid": "7847519a_adec0534",
       "range": {
         "startLine": 1080,
         "startChar": 4,
@@ -104,6 +152,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba18581e_c4582831",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-14T18:58:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37ca70cf_4820af56",
+      "range": {
+        "startLine": 349,
+        "startChar": 14,
+        "endLine": 350,
+        "endChar": 14
+      },
+      "revId": "527321f3ccd9d8ed9a0ce789b9ee14a63aece1dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13a2cba0_dd67abaf",
@@ -117,6 +189,30 @@
       "writtenOn": "2023-09-08T17:59:07Z",
       "side": 1,
       "message": "Should the commented code in this file be deleted ?",
+      "range": {
+        "startLine": 196,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 43
+      },
+      "revId": "527321f3ccd9d8ed9a0ce789b9ee14a63aece1dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30a883f6_3771e65e",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-14T18:58:48Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "13a2cba0_dd67abaf",
       "range": {
         "startLine": 196,
         "startChar": 0,
@@ -150,6 +246,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d7f1ffa_75a973e6",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-14T18:58:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e900809_9f6bc19c",
+      "range": {
+        "startLine": 587,
+        "startChar": 0,
+        "endLine": 587,
+        "endChar": 80
+      },
+      "revId": "527321f3ccd9d8ed9a0ce789b9ee14a63aece1dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1456980c_f21225e7",
@@ -163,6 +283,30 @@
       "writtenOn": "2023-09-08T17:59:07Z",
       "side": 1,
       "message": "ADDRESS_TO_LOGGABLE_STR",
+      "range": {
+        "startLine": 593,
+        "startChar": 38,
+        "endLine": 593,
+        "endChar": 46
+      },
+      "revId": "527321f3ccd9d8ed9a0ce789b9ee14a63aece1dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1903215_6028d5ef",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-14T18:58:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1456980c_f21225e7",
       "range": {
         "startLine": 593,
         "startChar": 38,
