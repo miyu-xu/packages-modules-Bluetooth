@@ -39,7 +39,7 @@ internal fun initializeRadioModeListener(
     modeKey: String,
     callback: (m: Boolean) -> Unit
 ): Boolean {
-    val observer =
+    val obs =
         object : ContentObserver(Handler(looper)) {
             override fun onChange(selfChange: Boolean) {
                 callback(getRadioModeValue(resolver, radio, modeKey))
@@ -51,12 +51,12 @@ internal fun initializeRadioModeListener(
     resolver.registerContentObserver(
         Settings.Global.getUriFor(radio),
         notifyForDescendants,
-        observer
+        obs
     )
     resolver.registerContentObserver(
         Settings.Global.getUriFor(modeKey),
         notifyForDescendants,
-        observer
+        obs
     )
     return getRadioModeValue(resolver, radio, modeKey)
 }
