@@ -226,6 +226,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4eb9a117_ebdbe256",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T22:08:01Z",
+      "side": 1,
+      "message": "Yes ! It\u0027s basically just calling the constructor and here is the `HostStub` [constructor](https://cs.android.com/android/platform/superproject/main/+/main:out/soong/.intermediates/external/pandora/bt-test-interfaces/pandora-grpc-java/android_common/xref/srcjars.xref/pandora/HostGrpc.java;l\u003d652;drc\u003d57b39d9314c2fa598986453e454cb16a6df9db6d;bpv\u003d0;bpt\u003d1)",
+      "parentUuid": "113c935d_33dbcc63",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ac8227b8_995787fb",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 4
@@ -442,6 +466,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ff200c8_3dac2ce8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T22:08:01Z",
+      "side": 1,
+      "message": "And what effect would this have ?",
+      "parentUuid": "d3e027b2_528dc5a9",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "582aeec9_7f2a57fd",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 4
@@ -494,6 +536,24 @@
       "side": 1,
       "message": "should I add the logic to AndroidTest.xml? I don\u0027t think AndroidTest.xml is invoked in every test case and I want to toggle BT in every test case, could it do that? \n\nOtherwise, I can create a Rule",
       "parentUuid": "ce701179_29283166",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08ea2e79_bdf3ec38",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T22:08:01Z",
+      "side": 1,
+      "message": "I think we should not toggle BT in every test case as it\u0027s not a reliable operation in Bluetooth right now.",
+      "parentUuid": "14378f95_7f6fe45d",
       "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -587,6 +647,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3ccff710_a52236cc",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T22:08:01Z",
+      "side": 1,
+      "message": "A crash or just an error sent by Bumble over GRPC.",
+      "parentUuid": "7b15e027_215b4dd1",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 48
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3ce90008_c98d3e1d",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 4
@@ -622,6 +706,30 @@
       "side": 1,
       "message": "nice! will do in the next patch",
       "parentUuid": "3ce90008_c98d3e1d",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 57
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afe48960_e49bb5f7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T22:08:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "073f0c6c_3c278236",
       "range": {
         "startLine": 153,
         "startChar": 0,
@@ -728,6 +836,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "02681b53_dbb59287",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T22:08:01Z",
+      "side": 1,
+      "message": "\u003e some infra won\u0027t finish gracefull\n\nCan you give more details ? For me this as the same effect as an Assert: [an assert is also throwing an exception](https://cs.android.com/android/platform/superproject/main/+/main:external/junit/src/main/java/org/junit/Assert.java;l\u003d85;drc\u003d8e80a2a7b89329f95cb41e8b2981044362478c04), just an unchecked one",
+      "parentUuid": "c896fa9c_331f2868",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 5
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8548ce92_cb9cb6d8",
         "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
         "patchSetId": 4
@@ -763,6 +895,30 @@
       "side": 1,
       "message": "`exclusive access to Bluetooth` I am not sure we can guarantee this in this kind of test, similar to the CTS tests.",
       "parentUuid": "8548ce92_cb9cb6d8",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 80
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa5e6802_2234d125",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T22:08:01Z",
+      "side": 1,
+      "message": "By `exclusive access to Bluetooth` I mostly mean that no one should be connecting and pairing Bluetooth devices while the test is running, which I think is a reasonable thing to ask.",
+      "parentUuid": "fff69bff_a8931a4d",
       "range": {
         "startLine": 62,
         "startChar": 0,
