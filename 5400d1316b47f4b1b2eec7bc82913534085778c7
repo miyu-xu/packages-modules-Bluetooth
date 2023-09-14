@@ -70,6 +70,30 @@
       },
       "revId": "5400d1316b47f4b1b2eec7bc82913534085778c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "570c4eba_6032a0fe",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-14T17:02:29Z",
+      "side": 0,
+      "message": "After talking with Aritra- I\u0027m going to take a look at the places where this is used and try and identify the case(s) where shouldn\u0027t be an error.  The new plan is to remove this log and instead put error/warning logs everywhere find_rfc_slot_by_id is used.",
+      "parentUuid": "ce4e46c2_6fd8560e",
+      "range": {
+        "startLine": 152,
+        "startChar": 19,
+        "endLine": 152,
+        "endChar": 38
+      },
+      "revId": "5400d1316b47f4b1b2eec7bc82913534085778c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
