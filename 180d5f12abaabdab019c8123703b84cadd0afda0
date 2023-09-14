@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffca3d70_2715fbe7",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-14T00:22:52Z",
+      "side": 1,
+      "message": "Q) Are there any possibility that this is called after stop()? If so, NPE would happen.",
+      "range": {
+        "startLine": 1174,
+        "startChar": 16,
+        "endLine": 1174,
+        "endChar": 38
+      },
+      "revId": "180d5f12abaabdab019c8123703b84cadd0afda0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
