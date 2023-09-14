@@ -51,8 +51,12 @@ public class ScanNativeInterface {
     private native void registerScannerNative(long appUuidLsb, long appUuidMsb);
     private native void unregisterScannerNative(int scannerId);
     private native void gattClientScanNative(boolean start);
-    private native void gattSetScanParametersNative(int clientIf, int scanInterval,
-            int scanWindow);
+
+    private native void gattSetScanParametersNative(int clientIf, int scanInterval, int scanWindow);
+
+    private native int getLowLatencyIntervalMsNative();
+
+    private native int getLowLatencyWindowsMsNative();
     /************************** Filter related native methods ********************************/
     private native void gattClientScanFilterAddNative(int clientId,
             ScanFilterQueue.Entry[] entries, int filterIndex);
@@ -191,5 +195,13 @@ public class ScanNativeInterface {
         } catch (InterruptedException e) {
             return false;
         }
+    }
+
+    int getLowLatencyIntervalMs() {
+        return getLowLatencyIntervalMsNative();
+    }
+
+    int getLowLatencyWindowsMs() {
+        return getLowLatencyWindowsMsNative();
     }
 }

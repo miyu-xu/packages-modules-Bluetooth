@@ -31,6 +31,7 @@
 #include "rust/cxx.h"
 #include "rust/src/gatt/ffi/gatt_shim.h"
 #include "src/gatt/ffi.rs.h"
+#include "stack/btm/btm_ble_const.h"
 #include "utils/Log.h"
 #define info(fmt, ...) ALOGI("%s(L%d): " fmt, __func__, __LINE__, ##__VA_ARGS__)
 #define debug(fmt, ...) \
@@ -1310,6 +1311,16 @@ static int gattClientGetDeviceTypeNative(JNIEnv* env, jobject /* object */,
                                          jstring address) {
   if (!sGattIf) return 0;
   return sGattIf->client->get_device_type(str2addr(env, address));
+}
+
+static int getLowLatencyWindowsMsNative(JNIEnv* /* env */,
+                                        jobject /* object */) {
+  return (int)((float)BTM_BLE_LOW_LATENCY_SCAN_WIN / .625);
+}
+
+static int getLowLatencyIntervalMsNative(JNIEnv* /* env */,
+                                         jobject /* object */) {
+  return (int)((float)BTM_BLE_LOW_LATENCY_SCAN_INT / .625);
 }
 
 static void gattClientRegisterAppNative(JNIEnv* /* env */, jobject /* object */,
@@ -2596,6 +2607,10 @@ static int register_com_android_bluetooth_gatt_scan(JNIEnv* env) {
        (void*)gattClientScanFilterEnableNative},
       {"gattSetScanParametersNative", "(III)V",
        (void*)gattSetScanParametersNative},
+      {"getLowLatencyIntervalMsNative", "()I",
+       (void*)getLowLatencyIntervalMsNative},
+      {"getLowLatencyWindowsMsNative", "()I",
+       (void*)getLowLatencyWindowsMsNative},
   };
   return REGISTER_NATIVE_METHODS(
       env, "com/android/bluetooth/gatt/ScanNativeInterface", methods);

@@ -76,8 +76,6 @@ public class ScanManager {
     private static final int SCAN_MODE_LOW_POWER_INTERVAL_MS = 1400;
     private static final int SCAN_MODE_BALANCED_WINDOW_MS = 183;
     private static final int SCAN_MODE_BALANCED_INTERVAL_MS = 730;
-    private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS = 100;
-    private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS = 100;
     public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS = 512;
     public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS = 10240;
     public static final int SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS = 183;
@@ -962,10 +960,10 @@ public class ScanManager {
 
         private AlarmManager mAlarmManager;
         private PendingIntent mBatchScanIntervalIntent;
-        private ScanNativeInterface mNativeInterface;
+        private final ScanNativeInterface mNativeInterface =
+                GattObjectsFactory.getInstance().getScanNativeInterface();
 
         ScanNative() {
-            mNativeInterface = GattObjectsFactory.getInstance().getScanNativeInterface();
             mFilterIndexStack = new ArrayDeque<Integer>();
             mClientFilterIndexMap = new HashMap<Integer, Deque<Integer>>();
 
@@ -1013,6 +1011,14 @@ public class ScanManager {
 
         private boolean waitForCallback() {
             return mNativeInterface.waitForCallback(OPERATION_TIME_OUT_MILLIS);
+        }
+
+        int getLowLatencyIntervalMs() {
+            return mNativeInterface.getLowLatencyIntervalMs();
+        }
+
+        int getLowLatencyWindowsMs() {
+            return mNativeInterface.getLowLatencyWindowsMs();
         }
 
         void configureRegularScanParams() {
@@ -1663,9 +1669,9 @@ public class ScanManager {
             switch (settings.getScanMode()) {
                 case ScanSettings.SCAN_MODE_LOW_LATENCY:
                     return Settings.Global.getInt(
-                        resolver,
-                        Settings.Global.BLE_SCAN_LOW_LATENCY_WINDOW_MS,
-                        SCAN_MODE_LOW_LATENCY_WINDOW_MS);
+                            resolver,
+                            Settings.Global.BLE_SCAN_LOW_LATENCY_WINDOW_MS,
+                            mScanNative.getLowLatencyWindowsMs());
                 case ScanSettings.SCAN_MODE_BALANCED:
                 case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
                     return Settings.Global.getInt(
@@ -1700,9 +1706,9 @@ public class ScanManager {
             switch (settings.getScanMode()) {
                 case ScanSettings.SCAN_MODE_LOW_LATENCY:
                     return Settings.Global.getInt(
-                        resolver,
-                        Settings.Global.BLE_SCAN_LOW_LATENCY_INTERVAL_MS,
-                        SCAN_MODE_LOW_LATENCY_INTERVAL_MS);
+                            resolver,
+                            Settings.Global.BLE_SCAN_LOW_LATENCY_INTERVAL_MS,
+                            mScanNative.getLowLatencyIntervalMs());
                 case ScanSettings.SCAN_MODE_BALANCED:
                 case ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY:
                     return Settings.Global.getInt(
