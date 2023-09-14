@@ -94,6 +94,30 @@
       },
       "revId": "5400d1316b47f4b1b2eec7bc82913534085778c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb159c82_4e4c8faa",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T17:11:40Z",
+      "side": 0,
+      "message": "That sound like the best thing to do. Thanks for doing the extra effort ! 🙏",
+      "parentUuid": "570c4eba_6032a0fe",
+      "range": {
+        "startLine": 152,
+        "startChar": 19,
+        "endLine": 152,
+        "endChar": 38
+      },
+      "revId": "5400d1316b47f4b1b2eec7bc82913534085778c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
