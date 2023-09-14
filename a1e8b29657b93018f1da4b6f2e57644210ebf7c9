@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ddb892c6_70ba1120",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-14T13:04:38Z",
+      "side": 1,
+      "message": "Because PendingIntent can be given to another application, it seems better to extract uid from attributionSource.getUid() instead of pendingIntent.getCreatorUid() because we\u0027re interested in who requested startScan(). Please let me know your opinion.\n\n```\nvoid registerPiAndStartScan() {\n        // instead of pendingIntent.getCreatorUid()\n        int callingUid \u003d attributionSource.getUid();\n```",
+      "parentUuid": "d281f4e0_0f442be8",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "a1e8b29657b93018f1da4b6f2e57644210ebf7c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30b0cb2b_b7b161e6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
