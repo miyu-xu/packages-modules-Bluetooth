@@ -22,6 +22,30 @@
       },
       "revId": "a0c32cae7b15d746e5def09e8cd4a9065d2df589",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ed4ca71_946516ec",
+        "filename": "tools/rootcanal/model/controller/vendor_commands/le_apcf.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-14T18:58:30Z",
+      "side": 1,
+      "message": "Indeed, I am patching to invoke erase(_) with the returned iterator",
+      "parentUuid": "68a94ed8_0a9f7c20",
+      "range": {
+        "startLine": 37,
+        "startChar": 7,
+        "endLine": 37,
+        "endChar": 16
+      },
+      "revId": "a0c32cae7b15d746e5def09e8cd4a9065d2df589",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
