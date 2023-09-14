@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37a677e4_fd31ca85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-14T03:08:36Z",
+      "side": 1,
+      "message": "LGTM except some nits.",
+      "revId": "de99a4ae793e97800cbc2e860e516714ae1e0c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12541ded_923476da",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-14T03:08:36Z",
+      "side": 1,
+      "message": "I saw there are `CARGO_PKG_VERSION_MAJOR/MINOR` environments in the document. Is that what we actually need here?",
+      "revId": "de99a4ae793e97800cbc2e860e516714ae1e0c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bc43d02_8c1b8613",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-14T03:08:36Z",
+      "side": 1,
+      "message": "nit: Consider functional style `and_then(|x| x.parse::\u003cu32\u003e())` for chained options.",
+      "range": {
+        "startLine": 190,
+        "startChar": 36,
+        "endLine": 190,
+        "endChar": 65
+      },
+      "revId": "de99a4ae793e97800cbc2e860e516714ae1e0c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
