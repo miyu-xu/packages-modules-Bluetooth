@@ -105,6 +105,24 @@
       "parentUuid": "7ff1b9d8_b4a8faa2",
       "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a73fe437_f4888c7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T05:54:45Z",
+      "side": 1,
+      "message": "I apologize in advance but my question remain unchanged:\n\naosp/2027383 was merged and its result validated. Was it a mistake ?\nIf it wasn\u0027t when are we using the java parameter and when are we using the native parameter ?\nIt would be great to understand this prior to make the modification in order to anticipate the behavior. Will we have any interop issues ?\n\n\u003e since the native value has been defined a long time and is used in a few places.\n\n\nBecause it has been defined a long time, I am not confident in changing it\u0027s value and since there are no real test I cannot confidently approve the CL. If initial CL was approved after lab testing, it should be the same for this one.\n\n\u003e Perhaps we can file a follow up bug to track?\n\nAs per go/review-pushback#later we should not. Is there an emergency for merging this change ?\nWe are one day before QPR1, we should not merge this in a hurry",
+      "parentUuid": "b8ccab94_b479d757",
+      "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
