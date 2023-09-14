@@ -170,6 +170,9 @@ static constexpr int CONFIG_COMPARE_ALL_PASS = 0b11;
 static int common_criteria_config_compare_result = CONFIG_COMPARE_ALL_PASS;
 static bool is_local_device_atv = false;
 
+void btif_hf_acl_disconnected(const RawAddress& address);
+void btif_hf_client_acl_disconnected(const RawAddress& address);
+
 /*******************************************************************************
  *  Callbacks from bluetooth::core (see go/invisalign-bt)
  ******************************************************************************/
@@ -328,6 +331,8 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
 
     btif_av_acl_disconnected(bd_addr, A2dpType::kSource);
     btif_av_acl_disconnected(bd_addr, A2dpType::kSink);
+    btif_hf_acl_disconnected(bd_addr);
+    btif_hf_client_acl_disconnected(bd_addr);
   }
 };
 
