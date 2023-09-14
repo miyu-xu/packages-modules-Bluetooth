@@ -33,6 +33,24 @@
       "message": "Can you split the logic change from the format change ?\nWe should end up in 2 CL that will be way easier to review, and if anything goes wrong we will not have to revert the format change.",
       "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7530d8c4_4816a2df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-14T20:09:39Z",
+      "side": 1,
+      "message": "Sure thing - reverted format change here, will fork to a follow-up CL.",
+      "parentUuid": "0af39101_4c64545a",
+      "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
