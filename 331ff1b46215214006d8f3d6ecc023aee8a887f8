@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fc6ea9d_e1ac33fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-14T23:00:41Z",
+      "side": 1,
+      "message": "lgtm with some comments",
+      "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb196363_dbc74f0f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-14T23:00:41Z",
+      "side": 1,
+      "message": "nit: Rename to `uhid_wakeup_source`",
+      "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c882bef_7188890a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-14T23:00:41Z",
+      "side": 1,
+      "message": "Rename this to `create_uhid_for_suspend_wakesource`. We want to be clear WHY we\u0027re creating this uhid device.\n\nYou should also update the docstring here to explain the context behind why it\u0027s necessary.",
+      "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87bf8a6f_eeefa9a4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-14T23:00:41Z",
+      "side": 1,
+      "message": "nit: rename to `clear_uhid_for_suspend_wakesource`",
+      "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af36fa6_88a1643c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1139,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-14T23:00:41Z",
+      "side": 1,
+      "message": "Unnecessary check. `self.uhid.clear()` should handle this check.",
+      "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
