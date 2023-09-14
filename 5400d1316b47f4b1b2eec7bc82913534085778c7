@@ -46,6 +46,30 @@
       },
       "revId": "5400d1316b47f4b1b2eec7bc82913534085778c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce4e46c2_6fd8560e",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T06:01:36Z",
+      "side": 0,
+      "message": "Ack...\nSo if the id is gone but you don\u0027t expect it to be gone... isn\u0027t it an error and not a warning ?\nUnless we are using this method to check \"if\" the id is still valid ?",
+      "parentUuid": "796acee0_ee4a50fe",
+      "range": {
+        "startLine": 152,
+        "startChar": 19,
+        "endLine": 152,
+        "endChar": 38
+      },
+      "revId": "5400d1316b47f4b1b2eec7bc82913534085778c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
