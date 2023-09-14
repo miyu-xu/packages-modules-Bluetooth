@@ -378,8 +378,8 @@ bool IsCodecConfigSettingSupported(
   switch (codec_id.coding_format) {
     case kLeAudioCodingFormatLC3:
       return IsCodecConfigurationSupported(
-          pac.codec_spec_caps,
-          std::get<LeAudioCodecConfigBase>(codec_capability_setting.config));
+          pac.codec_spec_caps, types::LeAudioCodecConfigBase::FromLtvMap(
+                                   codec_capability_setting.params));
     default:
       return false;
   }
@@ -388,7 +388,7 @@ bool IsCodecConfigSettingSupported(
 uint32_t CodecConfigSetting::GetConfigSamplingFrequency() const {
   switch (id.coding_format) {
     case kLeAudioCodingFormatLC3:
-      return std::get<types::LeAudioCodecConfigBase>(config)
+      return types::LeAudioCodecConfigBase::FromLtvMap(params)
           .GetSamplingFrequencyHz();
     default:
       LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
@@ -399,7 +399,7 @@ uint32_t CodecConfigSetting::GetConfigSamplingFrequency() const {
 uint32_t CodecConfigSetting::GetConfigDataIntervalUs() const {
   switch (id.coding_format) {
     case kLeAudioCodingFormatLC3:
-      return std::get<types::LeAudioCodecConfigBase>(config)
+      return types::LeAudioCodecConfigBase::FromLtvMap(params)
           .GetFrameDurationUs();
     default:
       LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
@@ -420,12 +420,11 @@ uint8_t CodecConfigSetting::GetConfigBitsPerSample() const {
 
 uint8_t CodecConfigSetting::GetConfigChannelCount() const {
   switch (id.coding_format) {
-    case kLeAudioCodingFormatLC3:
-      LOG_DEBUG(
-          "count = %d",
-          static_cast<int>(
-              std::get<types::LeAudioCodecConfigBase>(config).channel_count));
-      return std::get<types::LeAudioCodecConfigBase>(config).channel_count;
+    case kLeAudioCodingFormatLC3: {
+      auto base_config = types::LeAudioCodecConfigBase::FromLtvMap(params);
+      LOG_DEBUG("count = %d", base_config.GetChannelCount());
+      return base_config.GetChannelCount();
+    }
     default:
       LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
       return 0;

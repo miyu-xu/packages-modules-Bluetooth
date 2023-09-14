@@ -269,11 +269,10 @@ bool LeAudioDevice::ConfigureAses(
 
       ase->target_latency = ent.qos.target_latency;
       ase->codec_id = ent.codec.id;
-      /* TODO: find better way to not use LeAudioCodecConfigBase explicitly in
-       * SetConfiguration. */
-      auto base_config = std::get<LeAudioCodecConfigBase>(ent.codec.config);
+      ase->codec_config = ent.codec.params;
 
-      /*Let's choose audio channel allocation if not set */
+      /* Let's choose audio channel allocation if not set */
+      auto base_config = LeAudioCodecConfigBase::FromLtvMap(ent.codec.params);
       base_config.audio_channel_allocation =
           PickAudioLocation(strategy, audio_locations,
                             group_audio_locations_memo.get(ent.direction));
@@ -285,10 +284,12 @@ bool LeAudioDevice::ConfigureAses(
             GetMaxCodecFramesPerSduFromPac(pac);
       }
 
+      // FIXME: move as function to the base_configso that it would relaculate
+      // on it's own and remove max_sdu_size variable
       ase->max_sdu_size = base_config.GetChannelCount() *
                           base_config.octets_per_codec_frame.value_or(0) *
                           base_config.codec_frames_blocks_per_sdu.value_or(1);
-      ase->codec_config = base_config.GetAsLtvMap();
+      ase->codec_config.Append(base_config.GetAsLtvMap());
 
       ase->retrans_nb = ent.qos.retransmission_number;
       ase->max_transport_latency = ent.qos.max_transport_latency;
