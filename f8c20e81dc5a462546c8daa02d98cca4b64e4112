@@ -88,6 +88,24 @@
       "parentUuid": "18316b65_5568b2cf",
       "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a70fddb_35d00628",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-14T09:22:14Z",
+      "side": 1,
+      "message": "Unfortunately not - It seems `BTM_SecDeleteDevice` is not called in the outgoing insecure RFCOMM procedure.\n\nAny suggestions about clearing the bitmap when dropping the LTK?",
+      "parentUuid": "75c139bd_3e0b90dd",
+      "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
