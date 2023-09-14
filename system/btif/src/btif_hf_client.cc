@@ -78,6 +78,7 @@ typedef struct {
   bthf_client_connection_state_t state;  // State of current connection
   tBTA_HF_CLIENT_PEER_FEAT peer_feat;    // HF features
   tBTA_HF_CLIENT_CHLD_FEAT chld_feat;    // AT+CHLD=<> command features
+  bool is_initiator;
 } btif_hf_client_cb_t;
 
 /* Max devices supported by BTIF (useful to match the value in BTA) */
@@ -301,6 +302,7 @@ static bt_status_t connect_int(RawAddress* bd_addr, uint16_t uuid) {
 
   cb->state = BTHF_CLIENT_CONNECTION_STATE_CONNECTING;
   cb->peer_bda = *bd_addr;
+  cb->is_initiator = true;
 
   /* Open HF connection to remote device and get the relevant handle.
    * The handle is valid until we have called BTA_HfClientClose or the LL
@@ -826,6 +828,18 @@ static void process_ind_evt(tBTA_HF_CLIENT_IND* ind) {
   }
 }
 
+void btif_hf_client_acl_disconnected(const RawAddress& address) {
+  btif_hf_client_cb_t* cb = btif_hf_client_get_cb_by_bda(address);
+  if (cb == NULL)
+    return;
+
+  if (cb->is_initiator) {
+    LOG_WARN("%s clear cb for acl disconnected, addr: %s",
+              __func__, ADDRESS_TO_LOGGABLE_CSTR(address));
+    cb->is_initiator = false;
+    btif_queue_advance();
+  }
+}
 /*******************************************************************************
  *
  * Function         btif_hf_client_upstreams_evt
@@ -884,7 +898,10 @@ static void btif_hf_client_upstreams_evt(uint16_t event, char* p_param) {
       if (cb->state == BTHF_CLIENT_CONNECTION_STATE_DISCONNECTED)
         cb->peer_bda = RawAddress::kAny;
 
-      if (p_data->open.status != BTA_HF_CLIENT_SUCCESS) btif_queue_advance();
+      if (p_data->open.status != BTA_HF_CLIENT_SUCCESS) {
+        cb->is_initiator = false;
+        btif_queue_advance();
+      }
       break;
 
     case BTA_HF_CLIENT_CONN_EVT:
@@ -901,6 +918,7 @@ static void btif_hf_client_upstreams_evt(uint16_t event, char* p_param) {
                   BTHF_CLIENT_IN_BAND_RINGTONE_PROVIDED);
       }
 
+      cb->is_initiator = false;
       btif_queue_advance();
       break;
 
@@ -927,6 +945,7 @@ static void btif_hf_client_upstreams_evt(uint16_t event, char* p_param) {
         cb->handle = 0;
       }
 
+      cb->is_initiator = false;
       btif_queue_advance();
       break;
 
