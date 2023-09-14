@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2bd30240_96d9c83c",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1198,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-14T00:38:06Z",
+      "side": 1,
+      "message": "Oh! It was sdpSearchRecordRecevied for this.",
+      "parentUuid": "c41c9d9b_d0928836",
+      "range": {
+        "startLine": 1198,
+        "startChar": 16,
+        "endLine": 1198,
+        "endChar": 38
+      },
+      "revId": "f23775548c9b42efa08895cbd9b3b1099a5b7832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "304e1be7_dedd35cb",
         "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
         "patchSetId": 5
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-14T00:34:59Z",
       "side": 1,
       "message": "What about sdpSearchRecordReceived? (ditto for others)",
+      "range": {
+        "startLine": 1204,
+        "startChar": 17,
+        "endLine": 1204,
+        "endChar": 46
+      },
+      "revId": "f23775548c9b42efa08895cbd9b3b1099a5b7832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02b5ba2e_23309092",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-14T00:38:06Z",
+      "side": 1,
+      "message": "And this looks consistent.",
+      "parentUuid": "304e1be7_dedd35cb",
       "range": {
         "startLine": 1204,
         "startChar": 17,
