@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bfafdfe_a9651630",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T06:15:54Z",
+      "side": 1,
+      "message": "Can you update the bug to be in the following component + fill the template.\n\nhttps://b.corp.google.com/issues?q\u003dstatus:open%20componentid:1387432\u0026s\u003dcreated_time:desc\n\nAnd can you add the bug  in the commit message ?",
+      "range": {
+        "startLine": 1283,
+        "startChar": 74,
+        "endLine": 1283,
+        "endChar": 83
+      },
+      "revId": "63f5f1987031651436ce17b2e300b4e751edf2d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
