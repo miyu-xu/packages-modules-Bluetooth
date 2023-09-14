@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c41c9d9b_d0928836",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1198,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-14T00:34:59Z",
+      "side": 1,
+      "message": "What about handleSdpSearchRecord for consistency with other CLs? (ditto for others)",
+      "range": {
+        "startLine": 1198,
+        "startChar": 16,
+        "endLine": 1198,
+        "endChar": 38
+      },
+      "revId": "f23775548c9b42efa08895cbd9b3b1099a5b7832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "304e1be7_dedd35cb",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-14T00:34:59Z",
+      "side": 1,
+      "message": "What about sdpSearchRecordReceived? (ditto for others)",
+      "range": {
+        "startLine": 1204,
+        "startChar": 17,
+        "endLine": 1204,
+        "endChar": 46
+      },
+      "revId": "f23775548c9b42efa08895cbd9b3b1099a5b7832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa71fcc3_955e4f38",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-14T00:34:59Z",
+      "side": 1,
+      "message": "Do you see any problem if we directly send message to the stateMachine without this? (ditto for others)",
+      "range": {
+        "startLine": 590,
+        "startChar": 8,
+        "endLine": 590,
+        "endChar": 89
+      },
+      "revId": "f23775548c9b42efa08895cbd9b3b1099a5b7832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
