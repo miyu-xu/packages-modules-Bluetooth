@@ -484,7 +484,6 @@ bool hal_ucast_capability_to_stack_format(
   auto sample_rate_hz = hal_lc3_capability.samplingFrequencyHz[0];
   auto frame_duration_us = hal_lc3_capability.frameDurationUs[0];
   auto octets_per_frame = hal_lc3_capability.octetsPerFrame[0];
-  auto channel_count = hal_capability.channelCountPerDevice;
 
   if (sampling_freq_map.find(sample_rate_hz) == sampling_freq_map.end() ||
       frame_duration_map.find(frame_duration_us) == frame_duration_map.end() ||
@@ -500,14 +499,24 @@ bool hal_ucast_capability_to_stack_format(
     return false;
   }
 
-  stack_capability = {
-      .id = ::le_audio::set_configurations::LeAudioCodecIdLc3,
-      .config = LeAudioCodecConfigBase(
-          {.sampling_frequency = sampling_freq_map[sample_rate_hz],
-           .frame_duration = frame_duration_map[frame_duration_us],
-           .audio_channel_allocation = audio_location_map[supported_channel],
-           .octets_per_codec_frame = octets_per_frame_map[octets_per_frame],
-           .channel_count = static_cast<uint8_t>(channel_count)})};
+  stack_capability.id = ::le_audio::set_configurations::LeAudioCodecIdLc3;
+  uint8_t codec_frame_blocks_per_sdu = 1;
+
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeSamplingFreq,
+      sampling_freq_map[sample_rate_hz]);
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeFrameDuration,
+      frame_duration_map[frame_duration_us]);
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeAudioChannelAllocation,
+      audio_location_map[supported_channel]);
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeOctetsPerCodecFrame,
+      octets_per_frame_map[octets_per_frame]);
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeCodecFrameBlocksPerSdu,
+      codec_frame_blocks_per_sdu);
   return true;
 }
 
@@ -537,7 +546,6 @@ bool hal_bcast_capability_to_stack_format(
   auto sample_rate_hz = (*hal_lc3_capabilities)[0]->samplingFrequencyHz[0];
   auto frame_duration_us = (*hal_lc3_capabilities)[0]->frameDurationUs[0];
   auto octets_per_frame = (*hal_lc3_capabilities)[0]->octetsPerFrame[0];
-  auto channel_count = hal_bcast_capability.channelCountPerStream;
 
   if (sampling_freq_map.find(sample_rate_hz) == sampling_freq_map.end() ||
       frame_duration_map.find(frame_duration_us) == frame_duration_map.end() ||
@@ -554,14 +562,24 @@ bool hal_bcast_capability_to_stack_format(
     return false;
   }
 
-  stack_capability = {
-      .id = ::le_audio::set_configurations::LeAudioCodecIdLc3,
-      .config = LeAudioCodecConfigBase(
-          {.sampling_frequency = sampling_freq_map[sample_rate_hz],
-           .frame_duration = frame_duration_map[frame_duration_us],
-           .audio_channel_allocation = audio_location_map[supported_channel],
-           .octets_per_codec_frame = octets_per_frame_map[octets_per_frame],
-           .channel_count = static_cast<uint8_t>(channel_count)})};
+  stack_capability.id = ::le_audio::set_configurations::LeAudioCodecIdLc3;
+  uint8_t codec_frame_blocks_per_sdu = 1;
+
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeSamplingFreq,
+      sampling_freq_map[sample_rate_hz]);
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeFrameDuration,
+      frame_duration_map[frame_duration_us]);
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeAudioChannelAllocation,
+      audio_location_map[supported_channel]);
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeOctetsPerCodecFrame,
+      octets_per_frame_map[octets_per_frame]);
+  stack_capability.params.Add(
+      ::le_audio::codec_spec_conf::kLeAudioLtvTypeCodecFrameBlocksPerSdu,
+      codec_frame_blocks_per_sdu);
   return true;
 }
 

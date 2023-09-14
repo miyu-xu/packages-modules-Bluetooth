@@ -846,8 +846,7 @@ struct CodecConfigSetting {
   types::LeAudioCodecId id;
 
   /* Codec Specific Configuration variant */
-  /* TODO: Support vendor parameters (use a generic LTV map) */
-  std::variant<types::LeAudioCodecConfigBase> config;
+  types::LeAudioLtvMap params;
 
   /* TODO: Support vendor parameter getters/viewers */
   /* Sampling freqency requested for codec */
