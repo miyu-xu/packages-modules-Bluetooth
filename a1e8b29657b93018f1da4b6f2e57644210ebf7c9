@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d281f4e0_0f442be8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-14T06:17:02Z",
+      "side": 1,
+      "message": "Thanks for the comments. The path was following. The context switch happened from onScannerRegistered() callback.\n\n```\nstartScanForIntent() -\u003e registerPiAndStartScan() -\u003e onScannerRegistered() callback -\u003e continuePiStartScan() -\u003e new ScanClient() -\u003e Binder.getCallingUid();\n```\n\nIf not tracking the original caller uid for Pending Intent, I\u0027m not sure which uid has to be checked for optimizing scan parameters. In b/299231195, the 3P app started 100% duty cycle scan by Pending Intent and the scan was not downgraded even during screen off because the caller was btservice stying foreground forever.",
+      "parentUuid": "8182e95b_7f1706c9",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "a1e8b29657b93018f1da4b6f2e57644210ebf7c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30b0cb2b_b7b161e6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -119,6 +143,30 @@
       "writtenOn": "2023-09-14T05:35:21Z",
       "side": 1,
       "message": "```suggestion\n            Log.d(\n                    TAG,\n                    \"startScan(PI) -\"\n                            + (\" UUID\u003d\" + uuid)\n                            + (\" Package\u003d\" + callingPackage)\n                            + (\" UID\u003d\" + callingUid));\n```",
+      "range": {
+        "startLine": 3264,
+        "startChar": 10,
+        "endLine": 3271,
+        "endChar": 40
+      },
+      "revId": "a1e8b29657b93018f1da4b6f2e57644210ebf7c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d5b7ed1_b76a8af9",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3271,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-14T06:17:02Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "f6d4f0ac_3cf22c59",
       "range": {
         "startLine": 3264,
         "startChar": 10,
