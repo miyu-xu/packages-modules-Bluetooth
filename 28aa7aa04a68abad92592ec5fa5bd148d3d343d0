@@ -141,6 +141,24 @@
       "parentUuid": "a73fe437_f4888c7e",
       "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c83b7119_78effeab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T19:41:48Z",
+      "side": 1,
+      "message": "Thanks, that really help to understand.\nDetails from the comment42 does help understanding what happen. Looks like the native parameter are set for any intial inquiry and then the java parameter are always updated.\n\nI am now willing to approve using the same parameter in java and native 😎\n\nI have upload a few CL to make the unification between java and native (aosp/2752966) to follow-up on my intial comment. Just need to create a bug for it.",
+      "parentUuid": "7451d45d_454a8591",
+      "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
