@@ -22,6 +22,30 @@
       },
       "revId": "c44bc3be930f7515885730f40fcf2c6fcf1ff76a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73c27ae2_4cd3144e",
+        "filename": "system/gd/os/android/metrics.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 2018475
+      },
+      "writtenOn": "2023-09-14T08:26:55Z",
+      "side": 1,
+      "message": "Removed the empty function in android/metrics.cc because we won\u0027t link this method in Android.",
+      "parentUuid": "5c9e7abc_ba3cb02b",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 35
+      },
+      "revId": "c44bc3be930f7515885730f40fcf2c6fcf1ff76a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
