@@ -16,6 +16,24 @@
       "message": "Hi @angelala@google.com,\n\nThanks for submitting this CL. It looks like the code format on the file you are modifying was wrong prior to your change, and you made the extra effort to fix it even on part of the code you are not touching.\nThis is awesome, can you keep these modifications but split the CL in two ? This way we will have a verbose CL that touch the comment and is really simple to review, then we will have the API change CL that may require nit / more question / api review.\nIn case anything need to be reverted, I would like the extra work you did to not be wasted !\n\nThanks a ton",
       "revId": "c2e73110f78a030d20f74b328f13824fba5500de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5bb8863_ee218e6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2023-09-14T06:04:22Z",
+      "side": 1,
+      "message": "Sure! Agree with your point! I\u0027ll prepare another CL for the comment modifications :)",
+      "parentUuid": "4bef656c_84ab4956",
+      "revId": "c2e73110f78a030d20f74b328f13824fba5500de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
