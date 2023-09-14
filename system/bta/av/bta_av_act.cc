@@ -2237,10 +2237,12 @@ void bta_av_rc_disc_done_all(UNUSED_ATTR tBTA_AV_DATA* p_data) {
        * we still need to send RC feature event. So we need to get BD
        * from Message.  Note that lidx is 1 based not 0 based
        */
-      if (p_cb->rcb[rc_handle].lidx > 0)
-        peer_addr = p_cb->lcb[p_cb->rcb[rc_handle].lidx - 1].addr;
-      else
-        peer_addr = p_cb->lcb[p_cb->rcb[rc_handle].lidx].addr;
+      if (!((p_cb->rcb[rc_handle].lidx - 1) >= 0 &&
+          (p_cb->rcb[rc_handle].lidx - 1) < (BTA_AV_NUM_LINKS + 1))) {
+        APPL_TRACE_WARNING("%s: lidx(%d) invalid", __func__, p_cb->rcb[rc_handle].lidx);
+        return;
+      }
+      peer_addr = p_cb->lcb[p_cb->rcb[rc_handle].lidx - 1].addr;
     } else {
       peer_addr = p_scb->PeerAddress();
     }
@@ -2431,6 +2433,11 @@ void bta_av_rc_disc_done(UNUSED_ATTR tBTA_AV_DATA* p_data) {
        * we still need to send RC feature event. So we need to get BD
        * from Message.  Note that lidx is 1 based not 0 based
        */
+      if (!((p_cb->rcb[rc_handle].lidx - 1) >= 0 &&
+          (p_cb->rcb[rc_handle].lidx - 1) < (BTA_AV_NUM_LINKS + 1))) {
+        APPL_TRACE_WARNING("%s: lidx(%d) invalid", __func__, p_cb->rcb[rc_handle].lidx);
+        return;
+      }
       rc_feat.peer_addr = p_cb->lcb[p_cb->rcb[rc_handle].lidx - 1].addr;
     } else {
       rc_feat.peer_addr = p_scb->PeerAddress();
