@@ -16,6 +16,23 @@
       "message": "Note to reviewers: Will have to add unit test coverage or bumble test in follow-up CL - no existing unit tests for this class (or any classes like this in the unit test dir), can\u0027t reliably trigger with Bumble BT or Pandora test. Have validated locally for now.\n\nAlso note only functional changes in onClientRegistered and unregisterClient (adjust logging there), other diff is due to autoformat.",
       "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0af39101_4c64545a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T18:51:01Z",
+      "side": 1,
+      "message": "Can you split the logic change from the format change ?\nWe should end up in 2 CL that will be way easier to review, and if anything goes wrong we will not have to revert the format change.",
+      "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
