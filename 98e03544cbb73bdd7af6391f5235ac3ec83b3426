@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83fd11af_1f90bceb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T06:24:19Z",
+      "side": 1,
+      "message": "@rwt@google.com @hallstrom@google.com \nThe new patchset has removed your +2 vote\n\nIf you still agree with the CL, can you vote again and fill go/bt-testing-exemption or provide the corresponding automated test.\nI assume this behavior should be easily reproduced in avatar testing",
+      "revId": "98e03544cbb73bdd7af6391f5235ac3ec83b3426",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
