@@ -261,6 +261,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbcbb0cc_67553704",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-14T21:59:29Z",
+      "side": 1,
+      "message": "go/proto-nullness says that no for the external protobuf compiler.\n\n[And it\u0027s indeed not annotated with a non null annotation](https://cs.android.com/android/platform/superproject/main/+/main:out/soong/.intermediates/external/pandora/bt-test-interfaces/pandora-proto-java/android_common/xref/srcjars.xref/pandora/HostProto.java;l\u003d7209;drc\u003d57b39d9314c2fa598986453e454cb16a6df9db6d)\n\nAs we are in a test, I think I would prefer to just disable this warning, as it makes less sense in a test.\n\nFor how to do it, I guess we could put somewhere an intellij configuration that disable it for this folder or annotate the class with `@SuppressWarnings(\"ConstantConditions\")` and it seems that we will [not be the first ones to do it](https://cs.android.com/search?q\u003d%22@SuppressWarnings(%5C%22ConstantConditions%5C%22)%22\u0026sq\u003d)",
+      "parentUuid": "4a0d439e_20346d91",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "42e9759b_ee4a17f3",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 4
