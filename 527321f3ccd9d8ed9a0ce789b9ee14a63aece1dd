@@ -131,6 +131,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "80fa2f6d_9aae91da",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T19:50:23Z",
+      "side": 1,
+      "message": "Well... stringbuilder is in java, sorry for the confusion 😂\nI guess in cpp we can use a stringstream  or simple string concatenation as you prefer.\n\nHere  is an example of stringstream usage:\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/le_audio/devices.cc;l\u003d2201;drc\u003d373e5fbdf27ba2047a65c6ae610a28141ab66456",
+      "parentUuid": "230d01f2_91078ea9",
+      "range": {
+        "startLine": 1080,
+        "startChar": 4,
+        "endLine": 1090,
+        "endChar": 7
+      },
+      "revId": "527321f3ccd9d8ed9a0ce789b9ee14a63aece1dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "37ca70cf_4820af56",
         "filename": "system/gd/hci/le_periodic_sync_manager.h",
         "patchSetId": 4
