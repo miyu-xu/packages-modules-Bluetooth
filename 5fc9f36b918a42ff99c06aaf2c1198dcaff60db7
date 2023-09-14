@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adf3ef49_e8d2471e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-14T11:14:43Z",
+      "side": 1,
+      "message": "Manually test on b/299231669#comment9. It work on basic use case. Meet also work fine.\n\nThanks!",
+      "revId": "5fc9f36b918a42ff99c06aaf2c1198dcaff60db7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
