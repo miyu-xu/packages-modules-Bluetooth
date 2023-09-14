@@ -123,6 +123,24 @@
       "parentUuid": "b8ccab94_b479d757",
       "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7451d45d_454a8591",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-14T07:06:24Z",
+      "side": 1,
+      "message": "Sorry, I didn\u0027t provide full context. I observed BT stack keeps reconfiguring LE scan parameters during inquiry because the preconfigured LE scan parameters by BT framework were different from the configuration of BT stack. I thought it is not intended behavior. Please check the details in b/294160434#comment42.",
+      "parentUuid": "a73fe437_f4888c7e",
+      "revId": "28aa7aa04a68abad92592ec5fa5bd148d3d343d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
