@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b560fcc_7d81bc1d",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T21:30:00Z",
+      "side": 1,
+      "message": "The only method used for the library is to turn bluetooth on and on.\n\nThis call should go away from within our own framework test, and once it does we can remove the dependency here.\n\nThe reason behind this is that turning bluetooth off and on take time + is flaky when done repeativly, especially since the test will not wait for it to happen before continuing, or because leaving the Bt in a bad state will fail all the test suite and not just the culprit CL.",
+      "parentUuid": "0460dbd0_4c07ba91",
+      "range": {
+        "startLine": 27,
+        "startChar": 9,
+        "endLine": 27,
+        "endChar": 32
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "211569a0_ac9a8cd5",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 4
