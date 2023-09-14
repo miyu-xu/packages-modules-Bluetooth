@@ -401,8 +401,7 @@ class PublishedAudioCapabilitiesBuilder {
     if (setting.id != LeAudioCodecIdLc3) return;
 
     const LeAudioCodecConfigBase config =
-        std::get<LeAudioCodecConfigBase>(setting.config);
-
+        LeAudioCodecConfigBase::FromLtvMap(setting.params);
     Add(setting.id, *config.sampling_frequency, *config.frame_duration,
         audio_channel_counts, *config.octets_per_codec_frame);
   }

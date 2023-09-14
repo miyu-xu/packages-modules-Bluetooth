@@ -880,11 +880,11 @@ types::LeAudioConfigurationStrategy LeAudioDeviceGroup::GetGroupStrategy(
   }
 
   auto device = GetFirstDevice();
-  auto channel_cnt =
+  auto channel_count_bitmap =
       device->GetLc3SupportedChannelCount(types::kLeAudioDirectionSink);
-  LOG_DEBUG("Channel count for group %d is %d (device %s)", group_id_,
-            channel_cnt, ADDRESS_TO_LOGGABLE_CSTR(device->address_));
-  if (channel_cnt == 1) {
+  LOG_DEBUG("Channel count bitmap for group %d (device %s) is %d", group_id_,
+            ADDRESS_TO_LOGGABLE_CSTR(device->address_), channel_count_bitmap);
+  if (channel_count_bitmap == 1) {
     return types::LeAudioConfigurationStrategy::STEREO_TWO_CISES_PER_DEVICE;
   }
 
@@ -1161,11 +1161,21 @@ void LeAudioDeviceGroup::CigConfiguration_::UnassignCis(
 }
 
 bool CheckIfStrategySupported(types::LeAudioConfigurationStrategy strategy,
-                              types::AudioLocations audio_locations,
-                              uint8_t requested_channel_count,
-                              uint8_t channel_count_mask) {
-  DLOG(INFO) << __func__ << " strategy: " << (int)strategy
-             << " locations: " << +audio_locations.to_ulong();
+                              const set_configurations::SetConfiguration& conf,
+                              const LeAudioDevice& device) {
+  /* If we required more ASEs per device which means we would like to
+   * create more CISes to one device, we should also check the allocation
+   * if it allows us to do this.
+   */
+  types::AudioLocations audio_locations = 0;
+  /* Check direction and if audio location allows to create more cise */
+  if (conf.direction == types::kLeAudioDirectionSink)
+    audio_locations = device.snk_audio_locations_;
+  else
+    audio_locations = device.src_audio_locations_;
+
+  LOG_DEBUG("strategy: %d, locations: %lu", (int)strategy,
+            audio_locations.to_ulong());
 
   switch (strategy) {
     case types::LeAudioConfigurationStrategy::MONO_ONE_CIS_PER_DEVICE:
@@ -1178,22 +1188,28 @@ bool CheckIfStrategySupported(types::LeAudioConfigurationStrategy strategy,
         return true;
       else
         return false;
-    case types::LeAudioConfigurationStrategy::STEREO_ONE_CIS_PER_DEVICE:
+    case types::LeAudioConfigurationStrategy::STEREO_ONE_CIS_PER_DEVICE: {
       if (!(audio_locations.to_ulong() &
             codec_spec_conf::kLeAudioLocationAnyLeft) ||
           !(audio_locations.to_ulong() &
             codec_spec_conf::kLeAudioLocationAnyRight))
         return false;
 
-      DLOG(INFO) << __func__ << " requested chan cnt "
-                 << +requested_channel_count
-                 << " chan mask: " << loghex(channel_count_mask);
+      /* TODO Make it no Lc3 specific */
+      auto channel_count_mask =
+          device.GetSupportedAudioChannelCounts(conf.direction);
+      auto requested_channel_count =
+          LeAudioCodecConfigBase::FromLtvMap(conf.codec.params)
+              .GetChannelCount();
+      LOG_DEBUG("requested chan cnt: %d, chan mask: %s",
+                requested_channel_count, loghex(channel_count_mask).c_str());
 
       /* Return true if requested channel count is set in the channel count
        * mask. In the channel_count_mask, bit0 is set when 1 channel is
        * supported.
        */
       return ((1 << (requested_channel_count - 1)) & channel_count_mask);
+    }
     default:
       return false;
   }
@@ -1264,32 +1280,17 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
 
       if (device->ases_.empty()) continue;
 
-      if (!device->GetCodecConfigurationSupportedPac(ent.direction, ent.codec))
+      if (!device->GetCodecConfigurationSupportedPac(ent.direction,
+                                                     ent.codec)) {
+        LOG_DEBUG("Insufficient PAC");
         continue;
+      }
 
       int needed_ase = std::min(static_cast<int>(max_required_ase_per_dev),
                                 static_cast<int>(ent.ase_cnt - active_ase_num));
 
-      /* If we required more ASEs per device which means we would like to
-       * create more CISes to one device, we should also check the allocation
-       * if it allows us to do this.
-       */
-
-      types::AudioLocations audio_locations = 0;
-      /* Check direction and if audio location allows to create more cise */
-      if (ent.direction == types::kLeAudioDirectionSink)
-        audio_locations = device->snk_audio_locations_;
-      else
-        audio_locations = device->src_audio_locations_;
-
-      /* TODO Make it no Lc3 specific */
-      if (!CheckIfStrategySupported(
-              strategy, audio_locations,
-              std::get<LeAudioCodecConfigBase>(ent.codec.config)
-                  .GetChannelCount(),
-              device->GetLc3SupportedChannelCount(ent.direction))) {
-        LOG_DEBUG(" insufficient device audio allocation: %lu",
-                  audio_locations.to_ulong());
+      if (!CheckIfStrategySupported(strategy, ent, *device)) {
+        LOG_DEBUG("Strategy not supported");
         continue;
       }
 
