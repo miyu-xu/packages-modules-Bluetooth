@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8182e95b_7f1706c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T05:35:21Z",
+      "side": 1,
+      "message": "What is the path for that ? I expect the call to be coming from `packages/modules/Bluetooth/framework/java/android/bluetooth/le/BluetoothLeScanner.java` aka from the app, why does the callingUid is not correct ?\nLooking at the [documentation](https://developer.android.com/reference/android/app/PendingIntent) of PendingIntent, I expect the identity to be correct. Are we doing something wrong that prevent this to happen as expected?\n```\nBy giving a PendingIntent to another application, you are granting\nit the right to perform the operation you have specified as if the \nother application was yourself (with the same permissions and \nidentity).\n```",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "a1e8b29657b93018f1da4b6f2e57644210ebf7c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "30b0cb2b_b7b161e6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -36,6 +59,29 @@
         "startChar": 52,
         "endLine": 219,
         "endChar": 80
+      },
+      "revId": "a1e8b29657b93018f1da4b6f2e57644210ebf7c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6d4f0ac_3cf22c59",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 3271,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T05:35:21Z",
+      "side": 1,
+      "message": "```suggestion\n            Log.d(\n                    TAG,\n                    \"startScan(PI) -\"\n                            + (\" UUID\u003d\" + uuid)\n                            + (\" Package\u003d\" + callingPackage)\n                            + (\" UID\u003d\" + callingUid));\n```",
+      "range": {
+        "startLine": 3264,
+        "startChar": 10,
+        "endLine": 3271,
+        "endChar": 40
       },
       "revId": "a1e8b29657b93018f1da4b6f2e57644210ebf7c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
