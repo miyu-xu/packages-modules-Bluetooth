@@ -224,29 +224,44 @@ public final class BluetoothGatt implements BluetoothProfile {
                 @SuppressLint("AndroidFrameworkRequiresPermission")
                 public void onClientRegistered(int status, int clientIf) {
                     if (DBG) {
-                        Log.d(TAG, "onClientRegistered() - status=" + status
-                                + " clientIf=" + clientIf);
+                        Log.d(
+                                TAG,
+                                "onClientRegistered() - status="
+                                        + status
+                                        + " clientIf="
+                                        + clientIf);
                     }
-                    if (VDBG) {
-                        synchronized (mStateLock) {
+                    mClientIf = clientIf;
+                    synchronized (mStateLock) {
+                        if (mConnState == CONN_STATE_CLOSED) {
+                            if (DBG) {
+                                Log.d(
+                                        TAG,
+                                        "Client registration completed after closed,"
+                                                + " unregistering");
+                            }
+                            unregisterApp();
+                            return;
+                        }
+                        if (VDBG) {
                             if (mConnState != CONN_STATE_CONNECTING) {
                                 Log.e(TAG, "Bad connection state: " + mConnState);
                             }
                         }
                     }
-                    mClientIf = clientIf;
                     if (status != GATT_SUCCESS) {
                         runOrQueueCallback(new Runnable() {
                             @Override
                             public void run() {
                                 final BluetoothGattCallback callback = mCallback;
                                 if (callback != null) {
-                                    callback.onConnectionStateChange(BluetoothGatt.this,
+                                    callback.onConnectionStateChange(
+                                            BluetoothGatt.this,
                                             GATT_FAILURE,
                                             BluetoothProfile.STATE_DISCONNECTED);
+                                    }
                                 }
-                            }
-                        });
+                            });
 
                         synchronized (mStateLock) {
                             mConnState = CONN_STATE_IDLE;
@@ -320,8 +335,8 @@ public final class BluetoothGatt implements BluetoothProfile {
                  * @hide
                  */
                 @Override
-                public void onClientConnectionState(int status, int clientIf,
-                        boolean connected, String address) {
+                public void onClientConnectionState(
+                        int status, int clientIf, boolean connected, String address) {
                     if (DBG) {
                         Log.d(TAG, "onClientConnectionState() - status=" + status
                                 + " clientIf=" + clientIf + " device=" + address);
@@ -416,8 +431,8 @@ public final class BluetoothGatt implements BluetoothProfile {
                  */
                 @Override
                 @SuppressLint("AndroidFrameworkRequiresPermission")
-                public void onCharacteristicRead(String address, int status, int handle,
-                        byte[] value) {
+                public void onCharacteristicRead(
+                        String address, int status, int handle, byte[] value) {
                     if (VDBG) {
                         Log.d(TAG, "onCharacteristicRead() - Device=" + address
                                 + " handle=" + handle + " Status=" + status);
@@ -465,9 +480,9 @@ public final class BluetoothGatt implements BluetoothProfile {
                                 if (status == 0) characteristic.setValue(value);
                                 callback.onCharacteristicRead(BluetoothGatt.this, characteristic,
                                         value, status);
+                                }
                             }
-                        }
-                    });
+                        });
                 }
 
                 /**
@@ -565,9 +580,9 @@ public final class BluetoothGatt implements BluetoothProfile {
                                 characteristic.setValue(value);
                                 callback.onCharacteristicChanged(BluetoothGatt.this,
                                         characteristic, value);
+                                }
                             }
-                        }
-                    });
+                        });
                 }
 
                 /**
@@ -592,7 +607,6 @@ public final class BluetoothGatt implements BluetoothProfile {
 
                     BluetoothGattDescriptor descriptor = getDescriptorById(mDevice, handle);
                     if (descriptor == null) return;
-
 
                     if ((status == GATT_INSUFFICIENT_AUTHENTICATION
                             || status == GATT_INSUFFICIENT_ENCRYPTION)
@@ -619,11 +633,11 @@ public final class BluetoothGatt implements BluetoothProfile {
                             final BluetoothGattCallback callback = mCallback;
                             if (callback != null) {
                                 if (status == 0) descriptor.setValue(value);
-                                callback.onDescriptorRead(BluetoothGatt.this, descriptor, status,
-                                        value);
+                                callback.onDescriptorRead(
+                                        BluetoothGatt.this, descriptor, status, value);
+                                }
                             }
-                        }
-                    });
+                        });
                 }
 
                 /**
@@ -632,8 +646,8 @@ public final class BluetoothGatt implements BluetoothProfile {
                  */
                 @Override
                 @SuppressLint("AndroidFrameworkRequiresPermission")
-                public void onDescriptorWrite(String address, int status, int handle,
-                        byte[] value) {
+                public void onDescriptorWrite(
+                        String address, int status, int handle, byte[] value) {
                     if (VDBG) {
                         Log.d(TAG,
                                 "onDescriptorWrite() - Device=" + address + " handle=" + handle);
@@ -1004,8 +1018,8 @@ public final class BluetoothGatt implements BluetoothProfile {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     private void unregisterApp() {
-        if (DBG) Log.d(TAG, "unregisterApp() - mClientIf=" + mClientIf);
         if (mService == null || mClientIf == 0) return;
+        if (DBG) Log.d(TAG, "unregisterApp() - mClientIf=" + mClientIf);
 
         try {
             mCallback = null;
