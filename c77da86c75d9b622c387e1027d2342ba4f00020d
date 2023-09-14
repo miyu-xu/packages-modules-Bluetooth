@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4603481_bf07cada",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T05:07:24Z",
+      "side": 1,
+      "message": "remove the empty line.\nCheckstyle has been updated to not allow this anymore",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 0
+      },
+      "revId": "c77da86c75d9b622c387e1027d2342ba4f00020d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccdefa00_76b80cce",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T05:07:24Z",
+      "side": 1,
+      "message": "I do not see the added value. The databaseManager lifetime is bigger than the ProfileService lifetime. There is no arm to keep the pointer up to the end",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 245,
+        "endChar": 32
+      },
+      "revId": "c77da86c75d9b622c387e1027d2342ba4f00020d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "072e977e_b6e08946",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-14T05:07:24Z",
+      "side": 1,
+      "message": "Potential NullPointerException here.\nWhat if we get a getConnectionPolicy call while we are stopping the profile ?\n\nThread 1 will check the if you are adding,\nThread 2 will put the variable to null\nThread 1 will proceed to the return and will crash",
+      "range": {
+        "startLine": 720,
+        "startChar": 15,
+        "endLine": 720,
+        "endChar": 31
+      },
+      "revId": "c77da86c75d9b622c387e1027d2342ba4f00020d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
