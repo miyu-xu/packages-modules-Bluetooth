@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d923df34_5b3a80bb",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-14T10:05:19Z",
+      "side": 1,
+      "message": "Great, will use them in next patchset.",
+      "parentUuid": "12541ded_923476da",
+      "revId": "de99a4ae793e97800cbc2e860e516714ae1e0c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3bc43d02_8c1b8613",
         "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
         "patchSetId": 1
@@ -48,6 +66,30 @@
       "writtenOn": "2023-09-14T03:08:36Z",
       "side": 1,
       "message": "nit: Consider functional style `and_then(|x| x.parse::\u003cu32\u003e())` for chained options.",
+      "range": {
+        "startLine": 190,
+        "startChar": 36,
+        "endLine": 190,
+        "endChar": 65
+      },
+      "revId": "de99a4ae793e97800cbc2e860e516714ae1e0c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "139a54d4_3a296a14",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-14T10:05:19Z",
+      "side": 1,
+      "message": "Ack. We can save the parsing logic with CARGO_PKG_VERSION_XXX env variables.",
+      "parentUuid": "3bc43d02_8c1b8613",
       "range": {
         "startLine": 190,
         "startChar": 36,
