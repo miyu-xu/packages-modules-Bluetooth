@@ -195,17 +195,16 @@ uint8_t constexpr FrameDurationConfig2Capability(uint8_t conf) {
   return (0x01 << (conf));
 }
 
-inline uint8_t GetAudioChannelCounts(std::bitset<32> allocation) {
+inline uint8_t GetAudioChannelCount(std::bitset<32> allocation) {
   /*
-   * BAP d09r07 B4.2.3 Audio_Channel_Allocation
-   * "(...) Audio_Channel_Allocation bitmap value of all zeros or the
-   * absence of the Audio_Channel_Allocation LTV structure within a
-   * Codec_Specific_Configuration field shall be interpreted as defining a
-   * single audio channel of Mono audio (a single channel of no specified
-   * Audio Location).
+   * BAP v1.0.1, 4.3.1 Codec_Specific_Capabilities
+   * "The Supported_Audio_Channel_Counts LTV structure defined in Bluetooth
+   * Assigned Numbers [2] may be present in the Codec_Specific_Capabilities
+   * field. The absence of the Supported_Audio_Channel_Counts LTV structure
+   * shall be interpreted as equivalent to a Supported_Audio_Channel_Counts
+   * value of 0x01 (one Audio Channel supported)."
    */
-  uint8_t audio_channel_counts = allocation.count() ?: 1;
-  return (0x01 << (audio_channel_counts - 1));
+  return allocation.count() ?: 1;
 }
 
 /* LTV Types - same values as in Codec Specific Configurations but 0x03 is
@@ -631,8 +630,15 @@ struct LeAudioCodecConfigBase {
 
   uint8_t GetChannelCount(void) const {
     if (channel_count) return channel_count;
-
-    return 0;
+    /*
+     * BAP v1.0.1, 4.3.1 Codec_Specific_Capabilities
+     * "The Supported_Audio_Channel_Counts LTV structure defined in Bluetooth
+     * Assigned Numbers [2] may be present in the Codec_Specific_Capabilities
+     * field. The absence of the Supported_Audio_Channel_Counts LTV structure
+     * shall be interpreted as equivalent to a Supported_Audio_Channel_Counts
+     * value of 0x01 (one Audio Channel supported)."
+     */
+    return 1;
   }
 
   LeAudioLtvMap GetAsLtvMap() const {
@@ -664,6 +670,54 @@ struct LeAudioCodecConfigBase {
     }
 
     return LeAudioLtvMap(values);
+  }
+
+  static LeAudioCodecConfigBase FromLtvMap(LeAudioLtvMap ltvs) {
+    LeAudioCodecConfigBase base;
+
+    auto vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeSamplingFreq);
+    if (vec_opt && (vec_opt->size() ==
+                    sizeof(decltype(base.sampling_frequency)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT8(base.sampling_frequency, ptr);
+    }
+
+    vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeFrameDuration);
+    if (vec_opt && (vec_opt->size() ==
+                    sizeof(decltype(base.frame_duration)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT8(base.frame_duration, ptr);
+    }
+
+    vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeAudioChannelAllocation);
+    if (vec_opt &&
+        (vec_opt->size() ==
+         sizeof(decltype(base.audio_channel_allocation)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT32(base.audio_channel_allocation, ptr);
+      base.channel_count =
+          std::bitset<32>(base.audio_channel_allocation.value()).count();
+    } else {
+      base.channel_count = 1;
+    }
+
+    vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeOctetsPerCodecFrame);
+    if (vec_opt &&
+        (vec_opt->size() ==
+         sizeof(decltype(base.octets_per_codec_frame)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT16(base.octets_per_codec_frame, ptr);
+    }
+
+    vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeCodecFrameBlocksPerSdu);
+    if (vec_opt &&
+        (vec_opt->size() ==
+         sizeof(decltype(base.codec_frames_blocks_per_sdu)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT8(base.codec_frames_blocks_per_sdu, ptr);
+    }
+
+    return base;
   }
 };
 
@@ -739,7 +793,8 @@ struct ase {
 
   /* Codec configuration */
   LeAudioCodecId codec_id;
-  LeAudioCodecConfigBase codec_config;
+  LeAudioLtvMap codec_config;
+
   uint8_t framing;
   uint8_t preferred_phy;
 

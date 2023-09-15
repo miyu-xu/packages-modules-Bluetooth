@@ -3081,6 +3081,8 @@ class LeAudioClientImpl : public LeAudioClient {
     uint16_t number_of_required_samples_per_channel =
         sw_enc_left->GetNumOfSamplesPerChannel();
     uint8_t bytes_per_sample = sw_enc_left->GetNumOfBytesPerSample();
+    LOG_INFO("JT@CC BYTES: %d", bytes_per_sample);
+
     if (data.size() < bytes_per_sample * 2 /* channels */ *
                           number_of_required_samples_per_channel) {
       LOG(ERROR) << __func__ << " Missing samples. Data size: " << +data.size()
@@ -3653,11 +3655,13 @@ class LeAudioClientImpl : public LeAudioClient {
             context_type, le_audio::types::kLeAudioDirectionSource);
 
     if (source_configuration) {
+      LOG_INFO("JT@CC BITS: %d", source_configuration->bits_per_sample);
       if (*source_configuration != current_source_codec_config) {
         current_source_codec_config = *source_configuration;
         reconfiguration_needed = true;
       }
     } else {
+      LOG_INFO("JT@CC BITS: ZERO");
       if (!current_source_codec_config.IsInvalid()) {
         current_source_codec_config = {0, 0, 0, 0};
         reconfiguration_needed = true;
