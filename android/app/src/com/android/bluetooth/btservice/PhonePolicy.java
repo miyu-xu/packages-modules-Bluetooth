@@ -92,6 +92,14 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
     private final HashSet<BluetoothDevice> mConnectOtherProfilesDeviceSet = new HashSet<>();
     @VisibleForTesting boolean mAutoConnectProfilesSupported;
 
+    /**
+     * Connection state bitmask as returned by getConnectionState.
+     */
+    @VisibleForTesting static final int CONNECTION_STATE_DISCONNECTED = 0;
+    @VisibleForTesting static final int CONNECTION_STATE_CONNECTED = 1;
+    @VisibleForTesting static final int CONNECTION_STATE_ENCRYPTED_BREDR = 2;
+    @VisibleForTesting static final int CONNECTION_STATE_ENCRYPTED_LE = 4;
+
     @Override
     public void onBluetoothStateChange(int prevState, int newState) {
         // Only act if the adapter has actually changed state from non-ON to ON.
@@ -653,7 +661,7 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
         }
 
         /* Make sure that device is still connected before connecting other profiles */
-        if (mAdapterService.getConnectionState(device) != BluetoothAdapter.STATE_CONNECTED) {
+        if (mAdapterService.getConnectionState(device) == CONNECTION_STATE_DISCONNECTED) {
             debugLog("processConnectOtherProfiles: device is not connected anymore " + device);
             return;
         }

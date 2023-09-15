@@ -460,10 +460,6 @@ public class PhonePolicyTest {
         when(mA2dpService.getConnectionState(bondedDevices[0])).thenReturn(
                 BluetoothProfile.STATE_DISCONNECTED);
 
-        // ACL is connected, lets simulate this.
-        when(mAdapterService.getConnectionState(bondedDevices[0]))
-                .thenReturn(BluetoothProfile.STATE_CONNECTED);
-
         // We send a connection successful for one profile since the re-connect *only* works if we
         // have already connected successfully over one of the profiles
         updateProfileConnectionStateHelper(bondedDevices[0], BluetoothProfile.HEADSET,
@@ -507,7 +503,7 @@ public class PhonePolicyTest {
         // ACL is disconnected just after HEADSET profile got connected and connectOtherProfile
         // was scheduled. Lets simulate this.
         when(mAdapterService.getConnectionState(bondedDevices[0]))
-                .thenReturn(BluetoothProfile.STATE_DISCONNECTED);
+                .thenReturn(mPhonePolicy.CONNECTION_STATE_DISCONNECTED);
 
         // We send a connection successful for one profile since the re-connect *only* works if we
         // have already connected successfully over one of the profiles
