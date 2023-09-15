@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0fbd0106_562718d5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-15T17:52:00Z",
+      "side": 1,
+      "message": "I agree this is a valid point. \nBut considering the severity of this issue, we\u0027re trying to get this fixed for QPR1(today). \nUnless there is critical logic issue, probably we can consider those as future improvements with another CL once Alice is back online.",
+      "parentUuid": "50298f78_cd223a2e",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 74
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d27494f7_7f1de7fb",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
         "patchSetId": 4
