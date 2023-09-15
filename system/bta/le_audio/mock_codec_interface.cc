@@ -27,10 +27,15 @@ struct CodecInterface::Impl : public MockCodecInterface {
 
   std::vector<int16_t>& GetDecodedSamples() { return output_channel_data_; }
   std::vector<int16_t> output_channel_data_;
+
+  // TODO: fix it so that we could return non-zero on GetNumOfBytesPerSample()
+  // CodecInterface::Status InitEncoder() { return output_channel_data_; }
 };
 
 CodecInterface::CodecInterface(const types::LeAudioCodecId& codec_id) {
   impl = new Impl(codec_id);
+  // How would the tester get the mock instance when the licent.cc instantiates
+  // this
 }
 CodecInterface::~CodecInterface() { delete impl; }
 bool CodecInterface::IsReady() { return impl->IsReady(); };

@@ -545,12 +545,12 @@ class LeAudioAseConfigurationTest : public Test {
 
     for (ase* ase = data.device->GetFirstActiveAse(); ase;
          ase = data.device->GetNextActiveAse(ase)) {
+      auto config_base = LeAudioCodecConfigBase::FromLtvMap(ase->codec_config);
+
       if (ase->direction == kLeAudioDirectionSink)
-        active_channel_num_snk +=
-            GetAudioChannelCounts(*ase->codec_config.audio_channel_allocation);
+        active_channel_num_snk += config_base.GetChannelCount();
       else
-        active_channel_num_src +=
-            GetAudioChannelCounts(*ase->codec_config.audio_channel_allocation);
+        active_channel_num_src += config_base.GetChannelCount();
     }
 
     bool result = true;
@@ -755,9 +755,12 @@ class LeAudioAseConfigurationTest : public Test {
         /* FIXME: Validate other codec parameters than LC3 if any */
         ASSERT_EQ(ase.codec_id, LeAudioCodecIdLc3);
         if (ase.codec_id == LeAudioCodecIdLc3) {
-          ASSERT_EQ(ase.codec_config.sampling_frequency, sampling_frequency);
-          ASSERT_EQ(ase.codec_config.frame_duration, frame_duration);
-          ASSERT_EQ(ase.codec_config.octets_per_codec_frame, octets_per_frame);
+          auto base_config =
+              ::le_audio::types::LeAudioCodecConfigBase::FromLtvMap(
+                  ase.codec_config);
+          ASSERT_EQ(base_config.sampling_frequency, sampling_frequency);
+          ASSERT_EQ(base_config.frame_duration, frame_duration);
+          ASSERT_EQ(base_config.octets_per_codec_frame, octets_per_frame);
         }
       }
     }
@@ -1470,9 +1473,12 @@ TEST_F(LeAudioAseConfigurationTest, test_reconnection_media) {
   /* Prepare reconfiguration */
   uint8_t number_of_active_ases = 1;  // Right one
   auto* ase = right->GetFirstActiveAseByDirection(kLeAudioDirectionSink);
+
+  auto base_config =
+      ::le_audio::types::LeAudioCodecConfigBase::FromLtvMap(ase->codec_config);
   BidirectionalPair<AudioLocations> group_audio_locations = {
-      .sink = *ase->codec_config.audio_channel_allocation,
-      .source = *ase->codec_config.audio_channel_allocation};
+      .sink = *base_config.audio_channel_allocation,
+      .source = *base_config.audio_channel_allocation};
 
   /* Get entry for the sink direction and use it to set configuration */
   BidirectionalPair<std::vector<uint8_t>> ccid_lists = {{}, {}};

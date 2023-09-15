@@ -811,6 +811,8 @@ class UnicastTestNoInit : public Test {
             ase.state = types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING;
 
             uint16_t cis_conn_hdl = ase.cis_conn_hdl;
+            auto config_base =
+                types::LeAudioCodecConfigBase::FromLtvMap(ase.codec_config);
 
             /* Copied from state_machine.cc ProcessHciNotifSetupIsoDataPath */
             if (ase.direction == le_audio::types::kLeAudioDirectionSource) {
@@ -825,11 +827,11 @@ class UnicastTestNoInit : public Test {
                   stream_conf->stream_params.source.stream_locations.end()) {
                 stream_conf->stream_params.source.stream_locations.emplace_back(
                     std::make_pair(ase.cis_conn_hdl,
-                                   *ase.codec_config.audio_channel_allocation));
+                                   *config_base.audio_channel_allocation));
 
                 stream_conf->stream_params.source.num_of_devices++;
                 stream_conf->stream_params.source.num_of_channels +=
-                    ase.codec_config.channel_count;
+                    config_base.channel_count;
 
                 LOG_INFO(
                     " Added Source Stream Configuration. CIS Connection "
@@ -837,8 +839,7 @@ class UnicastTestNoInit : public Test {
                     ", Audio Channel Allocation: %d"
                     ", Source Number Of Devices: %d"
                     ", Source Number Of Channels: %d",
-                    +ase.cis_conn_hdl,
-                    +(*ase.codec_config.audio_channel_allocation),
+                    +ase.cis_conn_hdl, +(*config_base.audio_channel_allocation),
                     +stream_conf->stream_params.source.num_of_devices,
                     +stream_conf->stream_params.source.num_of_channels);
               }
@@ -854,11 +855,11 @@ class UnicastTestNoInit : public Test {
                   stream_conf->stream_params.sink.stream_locations.end()) {
                 stream_conf->stream_params.sink.stream_locations.emplace_back(
                     std::make_pair(ase.cis_conn_hdl,
-                                   *ase.codec_config.audio_channel_allocation));
+                                   *config_base.audio_channel_allocation));
 
                 stream_conf->stream_params.sink.num_of_devices++;
                 stream_conf->stream_params.sink.num_of_channels +=
-                    ase.codec_config.channel_count;
+                    config_base.channel_count;
 
                 LOG_INFO(
                     " Added Sink Stream Configuration. CIS Connection Handle: "
@@ -866,8 +867,7 @@ class UnicastTestNoInit : public Test {
                     ", Audio Channel Allocation: %d"
                     ", Sink Number Of Devices: %d"
                     ", Sink Number Of Channels: %d",
-                    +ase.cis_conn_hdl,
-                    +(*ase.codec_config.audio_channel_allocation),
+                    +ase.cis_conn_hdl, +(*config_base.audio_channel_allocation),
                     +stream_conf->stream_params.sink.num_of_devices,
                     +stream_conf->stream_params.sink.num_of_channels);
               }
@@ -943,6 +943,8 @@ class UnicastTestNoInit : public Test {
               ase.pres_delay_max = 2500;
               ase.preferred_pres_delay_min = 2500;
               ase.preferred_pres_delay_max = 2500;
+              auto config_base =
+                  types::LeAudioCodecConfigBase::FromLtvMap(ase.codec_config);
 
               uint16_t cis_conn_hdl = ase.cis_conn_hdl;
 
@@ -960,55 +962,54 @@ class UnicastTestNoInit : public Test {
                   stream_conf->stream_params.source.stream_locations
                       .emplace_back(std::make_pair(
                           ase.cis_conn_hdl,
-                          *ase.codec_config.audio_channel_allocation));
+                          *config_base.audio_channel_allocation));
 
                   stream_conf->stream_params.source.num_of_devices++;
                   stream_conf->stream_params.source.num_of_channels +=
-                      ase.codec_config.channel_count;
+                      config_base.channel_count;
                   stream_conf->stream_params.source.audio_channel_allocation |=
-                      *ase.codec_config.audio_channel_allocation;
+                      *config_base.audio_channel_allocation;
 
                   if (stream_conf->stream_params.source.sample_frequency_hz ==
                       0) {
                     stream_conf->stream_params.source.sample_frequency_hz =
-                        ase.codec_config.GetSamplingFrequencyHz();
+                        config_base.GetSamplingFrequencyHz();
                   } else {
                     ASSERT_LOG(
                         stream_conf->stream_params.source.sample_frequency_hz ==
-                            ase.codec_config.GetSamplingFrequencyHz(),
+                            config_base.GetSamplingFrequencyHz(),
                         "sample freq mismatch: %d!=%d",
                         stream_conf->stream_params.source.sample_frequency_hz,
-                        ase.codec_config.GetSamplingFrequencyHz());
+                        config_base.GetSamplingFrequencyHz());
                   }
 
                   if (stream_conf->stream_params.source
                           .octets_per_codec_frame == 0) {
                     stream_conf->stream_params.source.octets_per_codec_frame =
-                        *ase.codec_config.octets_per_codec_frame;
+                        *config_base.octets_per_codec_frame;
                   } else {
                     ASSERT_LOG(stream_conf->stream_params.source
                                        .octets_per_codec_frame ==
-                                   *ase.codec_config.octets_per_codec_frame,
+                                   *config_base.octets_per_codec_frame,
                                "octets per frame mismatch: %d!=%d",
                                stream_conf->stream_params.source
                                    .octets_per_codec_frame,
-                               *ase.codec_config.octets_per_codec_frame);
+                               *config_base.octets_per_codec_frame);
                   }
 
                   if (stream_conf->stream_params.source
                           .codec_frames_blocks_per_sdu == 0) {
                     stream_conf->stream_params.source
                         .codec_frames_blocks_per_sdu =
-                        *ase.codec_config.codec_frames_blocks_per_sdu;
+                        *config_base.codec_frames_blocks_per_sdu;
                   } else {
-                    ASSERT_LOG(
-                        stream_conf->stream_params.source
-                                .codec_frames_blocks_per_sdu ==
-                            *ase.codec_config.codec_frames_blocks_per_sdu,
-                        "codec_frames_blocks_per_sdu: %d!=%d",
-                        stream_conf->stream_params.source
-                            .codec_frames_blocks_per_sdu,
-                        *ase.codec_config.codec_frames_blocks_per_sdu);
+                    ASSERT_LOG(stream_conf->stream_params.source
+                                       .codec_frames_blocks_per_sdu ==
+                                   *config_base.codec_frames_blocks_per_sdu,
+                               "codec_frames_blocks_per_sdu: %d!=%d",
+                               stream_conf->stream_params.source
+                                   .codec_frames_blocks_per_sdu,
+                               *config_base.codec_frames_blocks_per_sdu);
                   }
 
                   LOG_INFO(
@@ -1018,7 +1019,7 @@ class UnicastTestNoInit : public Test {
                       ", Source Number Of Devices: %d"
                       ", Source Number Of Channels: %d",
                       +ase.cis_conn_hdl,
-                      +(*ase.codec_config.audio_channel_allocation),
+                      +(*config_base.audio_channel_allocation),
                       +stream_conf->stream_params.source.num_of_devices,
                       +stream_conf->stream_params.source.num_of_channels);
                 }
@@ -1033,58 +1034,56 @@ class UnicastTestNoInit : public Test {
                 if (iter ==
                     stream_conf->stream_params.sink.stream_locations.end()) {
                   stream_conf->stream_params.sink.stream_locations.emplace_back(
-                      std::make_pair(
-                          ase.cis_conn_hdl,
-                          *ase.codec_config.audio_channel_allocation));
+                      std::make_pair(ase.cis_conn_hdl,
+                                     *config_base.audio_channel_allocation));
 
                   stream_conf->stream_params.sink.num_of_devices++;
                   stream_conf->stream_params.sink.num_of_channels +=
-                      ase.codec_config.channel_count;
+                      config_base.channel_count;
 
                   stream_conf->stream_params.sink.audio_channel_allocation |=
-                      *ase.codec_config.audio_channel_allocation;
+                      *config_base.audio_channel_allocation;
 
                   if (stream_conf->stream_params.sink.sample_frequency_hz ==
                       0) {
                     stream_conf->stream_params.sink.sample_frequency_hz =
-                        ase.codec_config.GetSamplingFrequencyHz();
+                        config_base.GetSamplingFrequencyHz();
                   } else {
                     ASSERT_LOG(
                         stream_conf->stream_params.sink.sample_frequency_hz ==
-                            ase.codec_config.GetSamplingFrequencyHz(),
+                            config_base.GetSamplingFrequencyHz(),
                         "sample freq mismatch: %d!=%d",
                         stream_conf->stream_params.sink.sample_frequency_hz,
-                        ase.codec_config.GetSamplingFrequencyHz());
+                        config_base.GetSamplingFrequencyHz());
                   }
 
                   if (stream_conf->stream_params.sink.octets_per_codec_frame ==
                       0) {
                     stream_conf->stream_params.sink.octets_per_codec_frame =
-                        *ase.codec_config.octets_per_codec_frame;
+                        *config_base.octets_per_codec_frame;
                   } else {
                     ASSERT_LOG(
                         stream_conf->stream_params.sink
                                 .octets_per_codec_frame ==
-                            *ase.codec_config.octets_per_codec_frame,
+                            *config_base.octets_per_codec_frame,
                         "octets per frame mismatch: %d!=%d",
                         stream_conf->stream_params.sink.octets_per_codec_frame,
-                        *ase.codec_config.octets_per_codec_frame);
+                        *config_base.octets_per_codec_frame);
                   }
 
                   if (stream_conf->stream_params.sink
                           .codec_frames_blocks_per_sdu == 0) {
                     stream_conf->stream_params.sink
                         .codec_frames_blocks_per_sdu =
-                        *ase.codec_config.codec_frames_blocks_per_sdu;
+                        *config_base.codec_frames_blocks_per_sdu;
                   } else {
-                    ASSERT_LOG(
-                        stream_conf->stream_params.sink
-                                .codec_frames_blocks_per_sdu ==
-                            *ase.codec_config.codec_frames_blocks_per_sdu,
-                        "codec_frames_blocks_per_sdu: %d!=%d",
-                        stream_conf->stream_params.sink
-                            .codec_frames_blocks_per_sdu,
-                        *ase.codec_config.codec_frames_blocks_per_sdu);
+                    ASSERT_LOG(stream_conf->stream_params.sink
+                                       .codec_frames_blocks_per_sdu ==
+                                   *config_base.codec_frames_blocks_per_sdu,
+                               "codec_frames_blocks_per_sdu: %d!=%d",
+                               stream_conf->stream_params.sink
+                                   .codec_frames_blocks_per_sdu,
+                               *config_base.codec_frames_blocks_per_sdu);
                   }
 
                   LOG_INFO(
@@ -1094,7 +1093,7 @@ class UnicastTestNoInit : public Test {
                       ", Sink Number Of Devices: %d"
                       ", Sink Number Of Channels: %d",
                       +ase.cis_conn_hdl,
-                      +(*ase.codec_config.audio_channel_allocation),
+                      +(*config_base.audio_channel_allocation),
                       +stream_conf->stream_params.sink.num_of_devices,
                       +stream_conf->stream_params.sink.num_of_channels);
                 }
@@ -1163,7 +1162,9 @@ class UnicastTestNoInit : public Test {
                       if (ases.sink) {
                         stream_conf->stream_params.sink.num_of_devices--;
                         stream_conf->stream_params.sink.num_of_channels -=
-                            ases.sink->codec_config.channel_count;
+                            ::le_audio::types::LeAudioCodecConfigBase::
+                                FromLtvMap(ases.sink->codec_config)
+                                    .channel_count;
 
                         LOG_INFO(
                             ", Source Number Of Devices: %d"
@@ -1185,7 +1186,9 @@ class UnicastTestNoInit : public Test {
                       if (ases.source) {
                         stream_conf->stream_params.source.num_of_devices--;
                         stream_conf->stream_params.source.num_of_channels -=
-                            ases.source->codec_config.channel_count;
+                            ::le_audio::types::LeAudioCodecConfigBase::
+                                FromLtvMap(ases.source->codec_config)
+                                    .channel_count;
 
                         LOG_INFO(
                             ", Source Number Of Devices: %d"
@@ -1243,7 +1246,9 @@ class UnicastTestNoInit : public Test {
                           if (ases.sink) {
                             stream_conf->stream_params.sink.num_of_devices--;
                             stream_conf->stream_params.sink.num_of_channels -=
-                                ases.sink->codec_config.channel_count;
+                                ::le_audio::types::LeAudioCodecConfigBase::
+                                    FromLtvMap(ases.sink->codec_config)
+                                        .channel_count;
 
                             LOG_INFO(
                                 " Sink Number Of Devices: %d"
@@ -1273,7 +1278,9 @@ class UnicastTestNoInit : public Test {
                           if (ases.source) {
                             stream_conf->stream_params.source.num_of_devices--;
                             stream_conf->stream_params.source.num_of_channels -=
-                                ases.source->codec_config.channel_count;
+                                ::le_audio::types::LeAudioCodecConfigBase::
+                                    FromLtvMap(ases.source->codec_config)
+                                        .channel_count;
 
                             LOG_INFO(
                                 ", Source Number Of Devices: %d"
@@ -1313,7 +1320,9 @@ class UnicastTestNoInit : public Test {
                         if (ases.sink) {
                           stream_conf->stream_params.sink.num_of_devices--;
                           stream_conf->stream_params.sink.num_of_channels -=
-                              ases.sink->codec_config.channel_count;
+                              ::le_audio::types::LeAudioCodecConfigBase::
+                                  FromLtvMap(ases.sink->codec_config)
+                                      .channel_count;
 
                           LOG_INFO(
                               " Sink Number Of Devices: %d"
@@ -1340,7 +1349,9 @@ class UnicastTestNoInit : public Test {
                         if (ases.source) {
                           stream_conf->stream_params.source.num_of_devices--;
                           stream_conf->stream_params.source.num_of_channels -=
-                              ases.source->codec_config.channel_count;
+                              ::le_audio::types::LeAudioCodecConfigBase::
+                                  FromLtvMap(ases.source->codec_config)
+                                      .channel_count;
 
                           LOG_INFO(
                               ", Source Number Of Devices: %d"
