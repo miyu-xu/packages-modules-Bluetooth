@@ -98,6 +98,30 @@
       },
       "revId": "e8eaca9cbdd0283f89ae6868aa4c48cb61f12783",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e1e5b1_51e93d91",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-15T17:39:36Z",
+      "side": 1,
+      "message": "Why does it makes the unit test easier ?\n\nYou should be able to call `isConnected` while still only mocking `getConnectionState`",
+      "parentUuid": "89ca32d1_edfb9ddf",
+      "range": {
+        "startLine": 664,
+        "startChar": 12,
+        "endLine": 664,
+        "endChar": 87
+      },
+      "revId": "e8eaca9cbdd0283f89ae6868aa4c48cb61f12783",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
