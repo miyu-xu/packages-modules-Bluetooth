@@ -88,6 +88,24 @@
       "parentUuid": "20f7c557_271ecc7f",
       "revId": "1d178eff9f79ebf7d70a22923e22331894708982",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23812cd0_c6ef1d47",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-09-15T21:43:25Z",
+      "side": 1,
+      "message": "After looking at the logs it look like after Bumble start advertising, Android never scan it. So it might be related",
+      "parentUuid": "032ff0ca_3eabd773",
+      "revId": "1d178eff9f79ebf7d70a22923e22331894708982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
