@@ -87,6 +87,42 @@
       "parentUuid": "cb2853cc_2ba28636",
       "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f7d8bd4_f0da85e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-15T17:37:17Z",
+      "side": 1,
+      "message": "While I agree less work and cleaner patch set overall on average, this patch is the priority to get in right now, so due to review time overhead thought safer to defer the other patch to a time not close to a release deadline (e.g. in a week or two). \n\nPlease feel free to reopen if you\u0027d prefer the formatting patch to be submitted first.",
+      "parentUuid": "69652139_69d967af",
+      "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b831ba53_c7b6eb9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-15T17:37:17Z",
+      "side": 1,
+      "message": "In a loop, yes, but:\n\n1) I don\u0027t always hit this issue since it is race condition, so\n2) was running in a loop of 100 iterations which takes ~3.5 seconds, and \n3) Though I can fairly reliably hit the race this CL is for, the timing isn\u0027t always the same.\n\nThis means the Bumble BT test could only be flaky but not broken if this test exists. I\u0027m looking to write a test that fails without this change and passes with it, i.e. reliable validation which is only feasible with unit test and mocking IBluetoothGatt. \n\nUnfortunately it\u0027s a bit more challenging to add a unit test, since in framework dir tests there\u0027s currently no usage of mocks, and need changes outside of just adding mockito library to Android.bp (now am working thru object access issues despite test and class under test in same package). \n\nI could just add a simpler version of the first Bumble test I mentioned if you\u0027d prefer, PLMK your thoughts (also happy to chat offline if more info needed to close this).",
+      "parentUuid": "787bd1b5_f16bcf0c",
+      "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
