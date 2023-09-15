@@ -188,6 +188,30 @@
       },
       "revId": "e8eaca9cbdd0283f89ae6868aa4c48cb61f12783",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "154f6102_90df9dde",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-15T21:31:28Z",
+      "side": 1,
+      "message": "A binder call to which the destination is the same process will be a bare function call.\n\nThe only thing that it does as extra here is that we recheck permissions, which for me is fine because it should be cached.\n\nAs `isConnected` calls in the end `getConnectionState`, we should be able to mock `getConnectionState` to change the behavior of `isConnected`",
+      "parentUuid": "0532a1d0_8bafc583",
+      "range": {
+        "startLine": 664,
+        "startChar": 12,
+        "endLine": 664,
+        "endChar": 87
+      },
+      "revId": "e8eaca9cbdd0283f89ae6868aa4c48cb61f12783",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
