@@ -22,6 +22,30 @@
       },
       "revId": "9324192160c967e7435661dbcddcb5df5b9cf0e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a2142f0_d25d1b26",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3327,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-15T15:37:43Z",
+      "side": 1,
+      "message": "Yes, we always had same bluetooth uuid\u003d1002. Confirmed the debug logs but I didn\u0027t include the log in the submit. Passing uid as parameter is good idea. Updated ScanClient constructor. Thanks.\n\n```\n    void continuePiStartScan(int scannerId, ScannerMap.App app) {\n        final PendingIntentInfo piInfo \u003d app.info;\n        if (DBG) {\n            int uid \u003d Binder.getCallingUid();\n            String packageName \u003d this.getPackageManager().getNameForUid(uid);\n            Log.d(\n                    TAG,\n                    \"continuePiStartScan -\"\n                            + (\" current UID\u003d\" + uid)\n                            + (\" current Package\u003d\" + packageName)\n                            + (\" UID\u003d\" + piInfo.callingUid)\n                            + (\" Package\u003d\" + piInfo.callingPackage)\n            );\n        }\n        final ScanClient scanClient \u003d\n                new ScanClient(scannerId, piInfo.settings, piInfo.filters, piInfo.callingUid);\n```\n\n```\nBtGatt.GattService: continuePiStartScan - current UID\u003d1002 current Package\u003dandroid.uid.bluetooth:1002 UID\u003d10109 Package\u003dcom.apps.myapplication\n```",
+      "parentUuid": "bd93815d_1c682c91",
+      "range": {
+        "startLine": 3327,
+        "startChar": 20,
+        "endLine": 3327,
+        "endChar": 30
+      },
+      "revId": "9324192160c967e7435661dbcddcb5df5b9cf0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
