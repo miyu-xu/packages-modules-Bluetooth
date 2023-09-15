@@ -16,6 +16,29 @@
       "message": "nit: I think now the commit message doesn\u0027t really reflect the content :p",
       "revId": "632b07334f513549a872d034643a90549e9c8cd0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18198ad1_b50b0a0b",
+        "filename": "framework/java/android/bluetooth/Flags.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-15T03:55:16Z",
+      "side": 1,
+      "message": "Since this code is in framework.... Are we allowed to access DeviceConfig there ? It is only a systemApi...\n\nDo we want to read the flag in the service and read it in framework with a binder call?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "632b07334f513549a872d034643a90549e9c8cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
