@@ -67,6 +67,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9696ab57_0935738a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-15T17:56:33Z",
+      "side": 1,
+      "message": "The prebuilt for QPR1 was already cut yesterday.",
+      "parentUuid": "0fbd0106_562718d5",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 74
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d27494f7_7f1de7fb",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
         "patchSetId": 4
