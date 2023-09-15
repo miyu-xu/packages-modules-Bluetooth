@@ -490,15 +490,14 @@ static void on_cl_rfc_init(tBTA_JV_RFCOMM_CL_INIT* p_init, uint32_t id) {
     LOG_ERROR("RFCOMM slot with id %u not found. p_init->status=%u", id,
               p_init->status);
     return;
-  }
-
-  if (p_init->status == BTA_JV_SUCCESS) {
-    slot->rfc_handle = p_init->handle;
-  } else {
+  } else if (p_init->status != BTA_JV_SUCCESS) {
     LOG_WARN("INIT unsuccessful, status %u. Cleaning up slot with id %u",
              p_init->status, slot->id);
     cleanup_rfc_slot(slot);
+    return;
   }
+
+  slot->rfc_handle = p_init->handle;
 }
 
 static void on_srv_rfc_listen_started(tBTA_JV_RFCOMM_START* p_start,
@@ -508,26 +507,24 @@ static void on_srv_rfc_listen_started(tBTA_JV_RFCOMM_START* p_start,
   if (!slot) {
     LOG_ERROR("RFCOMM slot with id %u not found", id);
     return;
-  }
-
-  if (p_start->status == BTA_JV_SUCCESS) {
-    slot->rfc_handle = p_start->handle;
-    btif_sock_connection_logger(
-        SOCKET_CONNECTION_STATE_LISTENING,
-        slot->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION,
-        slot->addr);
-    log_socket_connection_state(
-        slot->addr, slot->id, BTSOCK_RFCOMM,
-        android::bluetooth::SocketConnectionstateEnum::
-            SOCKET_CONNECTION_STATE_LISTENING,
-        0, 0, slot->app_uid, slot->scn,
-        slot->f.server ? android::bluetooth::SOCKET_ROLE_LISTEN
-                       : android::bluetooth::SOCKET_ROLE_CONNECTION);
-  } else {
+  } else if (p_start->status != BTA_JV_SUCCESS) {
     LOG_WARN("START unsuccessful, status %u. Cleaning up slot with id %u",
              p_start->status, slot->id);
     cleanup_rfc_slot(slot);
+    return;
   }
+
+  slot->rfc_handle = p_start->handle;
+  btif_sock_connection_logger(
+      SOCKET_CONNECTION_STATE_LISTENING,
+      slot->f.server ? SOCKET_ROLE_LISTEN : SOCKET_ROLE_CONNECTION, slot->addr);
+  log_socket_connection_state(slot->addr, slot->id, BTSOCK_RFCOMM,
+                              android::bluetooth::SocketConnectionstateEnum::
+                                  SOCKET_CONNECTION_STATE_LISTENING,
+                              0, 0, slot->app_uid, slot->scn,
+                              slot->f.server
+                                  ? android::bluetooth::SOCKET_ROLE_LISTEN
+                                  : android::bluetooth::SOCKET_ROLE_CONNECTION);
 }
 
 static uint32_t on_srv_rfc_connect(tBTA_JV_RFCOMM_SRV_OPEN* p_open,
@@ -609,17 +606,16 @@ static void on_rfc_close(UNUSED_ATTR tBTA_JV_RFCOMM_CLOSE* p_close,
 
   // rfc_handle already closed when receiving rfcomm close event from stack.
   rfc_slot_t* slot = find_rfc_slot_by_id(id);
-  if (slot) {
-    log_socket_connection_state(
-        slot->addr, slot->id, BTSOCK_RFCOMM,
-        android::bluetooth::SOCKET_CONNECTION_STATE_DISCONNECTING, 0, 0,
-        slot->app_uid, slot->scn,
-        slot->f.server ? android::bluetooth::SOCKET_ROLE_LISTEN
-                       : android::bluetooth::SOCKET_ROLE_CONNECTION);
-    cleanup_rfc_slot(slot);
-  } else {
+  if (!slot) {
     LOG_WARN("RFCOMM slot with id %u not found.", id);
   }
+  log_socket_connection_state(
+      slot->addr, slot->id, BTSOCK_RFCOMM,
+      android::bluetooth::SOCKET_CONNECTION_STATE_DISCONNECTING, 0, 0,
+      slot->app_uid, slot->scn,
+      slot->f.server ? android::bluetooth::SOCKET_ROLE_LISTEN
+                     : android::bluetooth::SOCKET_ROLE_CONNECTION);
+  cleanup_rfc_slot(slot);
 }
 
 static void on_rfc_write_done(tBTA_JV_RFCOMM_WRITE* p, uint32_t id) {
@@ -633,17 +629,15 @@ static void on_rfc_write_done(tBTA_JV_RFCOMM_WRITE* p, uint32_t id) {
   std::unique_lock<std::recursive_mutex> lock(slot_lock);
 
   rfc_slot_t* slot = find_rfc_slot_by_id(id);
-  if (slot) {
-    app_uid = slot->app_uid;
-    if (!slot->f.outgoing_congest) {
-      btsock_thread_add_fd(pth, slot->fd, BTSOCK_RFCOMM, SOCK_THREAD_FD_RD,
-                           slot->id);
-    }
-    slot->tx_bytes += p->len;
-  } else {
+  if (!slot) {
     LOG_ERROR("RFCOMM slot with id %u not found.", id);
+    return;
   }
-
+  app_uid = slot->app_uid;
+  if (!slot->f.outgoing_congest)
+    btsock_thread_add_fd(pth, slot->fd, BTSOCK_RFCOMM, SOCK_THREAD_FD_RD,
+                         slot->id);
+  slot->tx_bytes += p->len;
   uid_set_add_tx(uid_set, app_uid, p->len);
 }
 
@@ -651,14 +645,15 @@ static void on_rfc_outgoing_congest(tBTA_JV_RFCOMM_CONG* p, uint32_t id) {
   std::unique_lock<std::recursive_mutex> lock(slot_lock);
 
   rfc_slot_t* slot = find_rfc_slot_by_id(id);
-  if (slot) {
-    slot->f.outgoing_congest = p->cong ? 1 : 0;
-    if (!slot->f.outgoing_congest)
-      btsock_thread_add_fd(pth, slot->fd, BTSOCK_RFCOMM, SOCK_THREAD_FD_RD,
-                           slot->id);
-  } else {
+  if (!slot) {
     LOG_ERROR("RFCOMM slot with id %u not found.", id);
+    return;
   }
+
+  slot->f.outgoing_congest = p->cong ? 1 : 0;
+  if (!slot->f.outgoing_congest)
+    btsock_thread_add_fd(pth, slot->fd, BTSOCK_RFCOMM, SOCK_THREAD_FD_RD,
+                         slot->id);
 }
 
 static uint32_t rfcomm_cback(tBTA_JV_EVT event, tBTA_JV* p_data,
@@ -719,7 +714,9 @@ static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
       rfc_slot_t* rs = find_rfc_slot_by_id(id);
       int new_scn = p_data->scn;
 
-      if (rs && (new_scn != 0)) {
+      if (!rs) {
+        LOG_ERROR("RFCOMM slot with id %u not found. event:%d", id, event);
+      } else if (new_scn != 0) {
         rs->scn = new_scn;
         /* BTA_JvCreateRecordByUser will only create a record if a UUID is
          * specified,
@@ -752,13 +749,11 @@ static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
                                     MAX_RFC_SESSION, rfcomm_cback, rs->id);
           }
         }
-      } else if (rs) {
+      } else {
         APPL_TRACE_ERROR(
             "jv_dm_cback: Error: allocate channel %d, slot found:%p", rs->scn,
             rs);
         cleanup_rfc_slot(rs);
-      } else {
-        LOG_ERROR("RFCOMM slot with id %u not found. event:%d", id, event);
       }
       break;
     }
@@ -771,16 +766,16 @@ static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
       std::unique_lock<std::recursive_mutex> lock(slot_lock);
       rfc_slot_t* slot = find_rfc_slot_by_id(id);
 
-      if (slot && create_server_sdp_record(slot)) {
+      if (!slot) {
+        LOG_ERROR("RFCOMM slot with id %u not found. event:%d", id, event);
+      } else if (create_server_sdp_record(slot)) {
         // Start the rfcomm server after sdp & channel # assigned.
         BTA_JvRfcommStartServer(slot->security, slot->role, slot->scn,
                                 MAX_RFC_SESSION, rfcomm_cback, slot->id);
-      } else if (slot) {
+      } else {
         APPL_TRACE_ERROR("jv_dm_cback: cannot start server, slot found:%p",
                          slot);
         cleanup_rfc_slot(slot);
-      } else {
-        LOG_ERROR("RFCOMM slot with id %u not found. event:%d", id, event);
       }
       break;
     }
@@ -788,8 +783,11 @@ static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
     case BTA_JV_DISCOVERY_COMP_EVT: {
       std::unique_lock<std::recursive_mutex> lock(slot_lock);
       rfc_slot_t* slot = find_rfc_slot_by_id(id);
-      if (p_data->disc_comp.status == BTA_JV_SUCCESS && p_data->disc_comp.scn) {
-        if (slot && slot->f.doing_sdp_request) {
+      if (!slot) {
+        LOG_ERROR("RFCOMM slot with id %u not found. event:%d", id, event);
+      } else if (p_data->disc_comp.status == BTA_JV_SUCCESS &&
+                 p_data->disc_comp.scn) {
+        if (slot->f.doing_sdp_request) {
           // Establish the connection if we successfully looked up a channel
           // number to connect to.
           if (BTA_JvRfcommConnect(slot->security, slot->role,
@@ -801,7 +799,7 @@ static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
           } else {
             cleanup_rfc_slot(slot);
           }
-        } else if (slot) {
+        } else {
           // TODO(sharvil): this is really a logic error and we should probably
           // assert.
           LOG_ERROR(
@@ -809,10 +807,8 @@ static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id) {
               "request SDP record.",
               __func__, id);
         }
-      } else if (slot) {
-        cleanup_rfc_slot(slot);
       } else {
-        LOG_ERROR("RFCOMM slot with id %u not found. event:%d", id, event);
+        cleanup_rfc_slot(slot);
       }
 
       // Find the next slot that needs to perform an SDP request and service it.
