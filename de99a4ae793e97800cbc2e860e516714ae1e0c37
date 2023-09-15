@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d35b60_6c317d39",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-15T06:24:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d923df34_5b3a80bb",
+      "revId": "de99a4ae793e97800cbc2e860e516714ae1e0c37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bc43d02_8c1b8613",
