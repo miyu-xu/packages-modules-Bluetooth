@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d4aea0e_6da80f2c",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-15T22:36:53Z",
+      "side": 1,
+      "message": "Done in aosp/2754145",
+      "parentUuid": "2a3809f2_0f3a2eb1",
+      "range": {
+        "startLine": 610,
+        "startChar": 2,
+        "endLine": 621,
+        "endChar": 1
+      },
+      "revId": "12eeea8b3abb2832f8441063a27d9a0f628a2875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "035026f5_29cabd94",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-09-15T03:34:14Z",
       "side": 1,
       "message": "nit:\nsame, early return will make it obvious (not need to check twice for slot)\n```\nif (!slot) {\n  LOG\n} else if (create_server_sdp_record)\n  ...\n} else {\n  ...\n}\nbreak\n```",
+      "range": {
+        "startLine": 770,
+        "startChar": 6,
+        "endLine": 782,
+        "endChar": 7
+      },
+      "revId": "12eeea8b3abb2832f8441063a27d9a0f628a2875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "906b7150_59904311",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-15T22:36:53Z",
+      "side": 1,
+      "message": "Done in aosp/2754145",
+      "parentUuid": "035026f5_29cabd94",
       "range": {
         "startLine": 770,
         "startChar": 6,
