@@ -440,7 +440,8 @@ uint32_t LeAudioDeviceGroup::GetSduInterval(uint8_t direction) const {
     struct ase* ase = leAudioDevice->GetFirstActiveAseByDirection(direction);
     if (!ase) continue;
 
-    return ase->codec_config.GetFrameDurationUs();
+    return LeAudioCodecConfigBase::FromLtvMap(ase->codec_config)
+        .GetFrameDurationUs();
   }
 
   return 0;
@@ -1613,8 +1614,9 @@ void LeAudioDeviceGroup::RemoveCisFromStreamIfNeeded(
               auto ases_pair = leAudioDevice->GetAsesByCisConnHdl(cis_conn_hdl);
               if (ases_pair.get(dir) && cis_conn_hdl == pair.first) {
                 params.num_of_devices--;
-                params.num_of_channels -=
-                    ases_pair.get(dir)->codec_config.channel_count;
+                params.num_of_channels -= LeAudioCodecConfigBase::FromLtvMap(
+                                              ases_pair.get(dir)->codec_config)
+                                              .GetChannelCount();
                 params.audio_channel_allocation &= ~pair.second;
               }
               return (ases_pair.get(dir) && cis_conn_hdl == pair.first);

@@ -269,24 +269,26 @@ bool LeAudioDevice::ConfigureAses(
 
       ase->target_latency = ent.qos.target_latency;
       ase->codec_id = ent.codec.id;
-      /* TODO: find better way to not use LC3 explicitly */
-      ase->codec_config = std::get<LeAudioCodecConfigBase>(ent.codec.config);
+      /* TODO: find better way to not use LeAudioCodecConfigBase explicitly in
+       * SetConfiguration. */
+      auto base_config = std::get<LeAudioCodecConfigBase>(ent.codec.config);
 
       /*Let's choose audio channel allocation if not set */
-      ase->codec_config.audio_channel_allocation =
+      base_config.audio_channel_allocation =
           PickAudioLocation(strategy, audio_locations,
                             group_audio_locations_memo.get(ent.direction));
 
       /* Get default value if no requirement for specific frame blocks per sdu
        */
-      if (!ase->codec_config.codec_frames_blocks_per_sdu) {
-        ase->codec_config.codec_frames_blocks_per_sdu =
+      if (!base_config.codec_frames_blocks_per_sdu) {
+        base_config.codec_frames_blocks_per_sdu =
             GetMaxCodecFramesPerSduFromPac(pac);
       }
-      ase->max_sdu_size = codec_spec_caps::GetAudioChannelCounts(
-                              *ase->codec_config.audio_channel_allocation) *
-                          *ase->codec_config.octets_per_codec_frame *
-                          *ase->codec_config.codec_frames_blocks_per_sdu;
+
+      ase->max_sdu_size = base_config.GetChannelCount() *
+                          base_config.octets_per_codec_frame.value_or(0) *
+                          base_config.codec_frames_blocks_per_sdu.value_or(1);
+      ase->codec_config = base_config.GetAsLtvMap();
 
       ase->retrans_nb = ent.qos.retransmission_number;
       ase->max_transport_latency = ent.qos.max_transport_latency;
