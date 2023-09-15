@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d07e1f0a_2c94bb76",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-15T11:54:48Z",
+      "side": 1,
+      "message": "Isn\u0027t this the same as `!BluetoothDevice#isConnected()`?\n\nSince\n\n```\n    /**\n     * Returns whether there is an open connection to this device.\n     *\n     * @return True if there is at least one open connection to this device.\n     * @hide\n     */\n    @SystemApi\n    @RequiresLegacyBluetoothPermission\n    @RequiresBluetoothConnectPermission\n    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)\n    public boolean isConnected() {\n        if (DBG) log(\"isConnected()\");\n        final IBluetooth service \u003d getService();\n        final int defaultValue \u003d CONNECTION_STATE_DISCONNECTED;\n        if (service \u003d\u003d null || !isBluetoothEnabled()) {\n            Log.w(TAG, \"Proxy not attached to service\");\n            if (DBG) log(Log.getStackTraceString(new Throwable()));\n        } else {\n            try {\n                final SynchronousResultReceiver\u003cInteger\u003e recv \u003d SynchronousResultReceiver.get();\n                service.getConnectionState(this, mAttributionSource, recv);\n                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue)\n                        !\u003d CONNECTION_STATE_DISCONNECTED;\n            } catch (RemoteException | TimeoutException e) {\n                Log.e(TAG, e.toString() + \"\\n\" + Log.getStackTraceString(new Throwable()));\n            }\n        }\n        // BT is not enabled, we cannot be connected.\n        return false;\n    }\n```",
+      "range": {
+        "startLine": 664,
+        "startChar": 12,
+        "endLine": 664,
+        "endChar": 87
+      },
+      "revId": "e8eaca9cbdd0283f89ae6868aa4c48cb61f12783",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
