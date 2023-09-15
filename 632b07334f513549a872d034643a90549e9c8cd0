@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56f2e269_75da1ddc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-15T02:52:43Z",
+      "side": 1,
+      "message": "nit: I think now the commit message doesn\u0027t really reflect the content :p",
+      "revId": "632b07334f513549a872d034643a90549e9c8cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
