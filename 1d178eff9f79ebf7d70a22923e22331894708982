@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cfe0ac8_3521c01a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-15T09:24:15Z",
+      "side": 1,
+      "message": "Hi Charlie,\n\nCould you describe more about your investigation? Inside the flakiness link I only see some media crashes, how are they related to LE scan?",
+      "revId": "1d178eff9f79ebf7d70a22923e22331894708982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
