@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b82dd62_198d96dd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-09-15T00:17:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fb196363_dbc74f0f",
+      "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c882bef_7188890a",
@@ -48,6 +66,24 @@
       "writtenOn": "2023-09-14T23:00:41Z",
       "side": 1,
       "message": "Rename this to `create_uhid_for_suspend_wakesource`. We want to be clear WHY we\u0027re creating this uhid device.\n\nYou should also update the docstring here to explain the context behind why it\u0027s necessary.",
+      "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "faa8da62_a4ada8d0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1122,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-09-15T00:17:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1c882bef_7188890a",
       "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -69,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ac02a43_01615d63",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1138,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-09-15T00:17:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "87bf8a6f_eeefa9a4",
+      "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0af36fa6_88a1643c",
@@ -82,6 +136,24 @@
       "writtenOn": "2023-09-14T23:00:41Z",
       "side": 1,
       "message": "Unnecessary check. `self.uhid.clear()` should handle this check.",
+      "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f4e94af_de53e792",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1139,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-09-15T00:17:53Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0af36fa6_88a1643c",
       "revId": "331ff1b46215214006d8f3d6ecc023aee8a887f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
