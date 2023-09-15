@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd422614_8ac0592c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1875587
+      },
+      "writtenOn": "2023-09-15T06:09:00Z",
+      "side": 1,
+      "message": "Bluetooth will turn off and stop all profiles to reach BLE_ON state. During BLE_ON stage, the database is still available but the service aren\u0027t anymore.\nTherefore, we don\u0027t need to cleanup the database when profile service stop. \nI will abandoned this patch as it is not needed.",
+      "revId": "c77da86c75d9b622c387e1027d2342ba4f00020d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4603481_bf07cada",
