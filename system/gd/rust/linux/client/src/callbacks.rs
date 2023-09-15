@@ -1,6 +1,6 @@
 use crate::command_handler::SocketSchedule;
 use crate::dbus_iface::{
-    export_admin_policy_callback_dbus_intf, export_advertising_set_callback_dbus_intf,
+    export_admin_policy_callback_dbus_intf, export_advertising_set_callback_dbus_intf, export_battery_manager_callback_dbus_intf,
     export_bluetooth_callback_dbus_intf, export_bluetooth_connection_callback_dbus_intf,
     export_bluetooth_gatt_callback_dbus_intf, export_bluetooth_manager_callback_dbus_intf,
     export_bluetooth_media_callback_dbus_intf, export_gatt_server_callback_dbus_intf,
@@ -23,6 +23,7 @@ use btstack::bluetooth_gatt::{
     ScanResult,
 };
 use btstack::bluetooth_media::{BluetoothAudioDevice, IBluetoothMediaCallback};
+use btstack::battery_manager::{BatterySet, IBatteryManagerCallback};
 use btstack::bluetooth_qa::IBluetoothQACallback;
 use btstack::socket_manager::{
     BluetoothServerSocket, BluetoothSocket, IBluetoothSocketManager,
@@ -1417,6 +1418,50 @@ impl RPCProxy for MediaCallback {
     fn export_for_rpc(self: Box<Self>) {
         let cr = self.dbus_crossroads.clone();
         let iface = export_bluetooth_media_callback_dbus_intf(
+            self.dbus_connection.clone(),
+            &mut cr.lock().unwrap(),
+            Arc::new(Mutex::new(DisconnectWatcher::new())),
+        );
+        cr.lock().unwrap().insert(self.get_object_id(), &[iface], Arc::new(Mutex::new(self)));
+    }
+}
+
+pub(crate) struct BatteryManagerCallback {
+    objpath: String,
+    context: Arc<Mutex<ClientContext>>,
+
+    dbus_connection: Arc<SyncConnection>,
+    dbus_crossroads: Arc<Mutex<Crossroads>>,
+}
+
+impl BatteryManagerCallback {
+    pub(crate) fn new(
+        objpath: String,
+        context: Arc<Mutex<ClientContext>>,
+        dbus_connection: Arc<SyncConnection>,
+        dbus_crossroads: Arc<Mutex<Crossroads>>,
+    ) -> Self {
+        Self { objpath, context, dbus_connection, dbus_crossroads }
+    }
+}
+
+impl IBatteryManagerCallback for BatteryManagerCallback {
+    fn on_battery_info_updated(&mut self, remote_address: String, battery_set: BatterySet) {
+        let address = remote_address.to_lowercase();
+        if self.context.lock().unwrap().battery_address_filter.contains(&address) {
+            print_info!("Battery info for address {} updated: TODO BETTER INFO {}", address.clone(), battery_set.source_uuid);
+        }
+    }
+}
+
+impl RPCProxy for BatteryManagerCallback {
+    fn get_object_id(&self) -> String {
+        self.objpath.clone()
+    }
+
+    fn export_for_rpc(self: Box<Self>) {
+        let cr = self.dbus_crossroads.clone();
+        let iface = export_battery_manager_callback_dbus_intf(
             self.dbus_connection.clone(),
             &mut cr.lock().unwrap(),
             Arc::new(Mutex::new(DisconnectWatcher::new())),
