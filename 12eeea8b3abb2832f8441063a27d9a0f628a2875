@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4a81929_bf535c0e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-15T03:34:14Z",
+      "side": 1,
+      "message": "Feel free to fix nit in follow-up CL if you want",
+      "revId": "12eeea8b3abb2832f8441063a27d9a0f628a2875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a3809f2_0f3a2eb1",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-15T03:34:14Z",
+      "side": 1,
+      "message": "nit:\na early return is usually cleaner (same in all other places)\n```\nif (!slot) {\n  LOG\n  return\n}\n/* success logic */\n```",
+      "range": {
+        "startLine": 610,
+        "startChar": 2,
+        "endLine": 621,
+        "endChar": 1
+      },
+      "revId": "12eeea8b3abb2832f8441063a27d9a0f628a2875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "035026f5_29cabd94",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 782,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-15T03:34:14Z",
+      "side": 1,
+      "message": "nit:\nsame, early return will make it obvious (not need to check twice for slot)\n```\nif (!slot) {\n  LOG\n} else if (create_server_sdp_record)\n  ...\n} else {\n  ...\n}\nbreak\n```",
+      "range": {
+        "startLine": 770,
+        "startChar": 6,
+        "endLine": 782,
+        "endChar": 7
+      },
+      "revId": "12eeea8b3abb2832f8441063a27d9a0f628a2875",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
