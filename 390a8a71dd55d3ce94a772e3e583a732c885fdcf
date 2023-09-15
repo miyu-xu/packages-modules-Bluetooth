@@ -22,6 +22,30 @@
       },
       "revId": "390a8a71dd55d3ce94a772e3e583a732c885fdcf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0751cbdf_6d4eaee1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-15T10:16:01Z",
+      "side": 1,
+      "message": "Just realized that `getConnectionState()` returns a bitmask and in that case Alice\u0027s CL is correct",
+      "parentUuid": "b6669997_26f31a30",
+      "range": {
+        "startLine": 669,
+        "startChar": 12,
+        "endLine": 669,
+        "endChar": 87
+      },
+      "revId": "390a8a71dd55d3ce94a772e3e583a732c885fdcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
