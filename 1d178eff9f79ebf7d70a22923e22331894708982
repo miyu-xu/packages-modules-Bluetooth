@@ -16,6 +16,24 @@
       "message": "Hi Charlie,\n\nCould you describe more about your investigation? Inside the flakiness link I only see some media crashes, how are they related to LE scan?",
       "revId": "1d178eff9f79ebf7d70a22923e22331894708982",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c8fefba_648d2a03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-09-15T12:22:44Z",
+      "side": 1,
+      "message": "Hi,\n\nJust investigating by doing some abtd run. Doesn\u0027t mean I will revert this CL, it is just easier to debug and keep track.\n\nI\u0027ll abandon this revert if the result are not deterministic",
+      "parentUuid": "1cfe0ac8_3521c01a",
+      "revId": "1d178eff9f79ebf7d70a22923e22331894708982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
