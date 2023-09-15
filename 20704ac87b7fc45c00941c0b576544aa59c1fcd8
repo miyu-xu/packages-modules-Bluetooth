@@ -52,6 +52,24 @@
       "parentUuid": "60fce810_1e67a0d0",
       "revId": "20704ac87b7fc45c00941c0b576544aa59c1fcd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63709325_149ca670",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-15T03:46:44Z",
+      "side": 1,
+      "message": "Sorry to get back this late.\n\nI looked at it and it will be available to our java layer only if it\u0027s `Public` and this is WAI in a sense, because it considers the sysprop owner to be the platform and we are accessing it from outside the platform (as Bluetooth is a mainline module it\u0027s considered outside of the platform).\n\nHere the owner of the sysprop library should be our module but this is not something that we can express yet.\n\nHowever for this specific sysprop it will be set by the platform (Settings) and we are reading it from Bluetooth so we are crossing a stability boundary and so this sysprop should be `Public` for us to not break that in the future.\n\nHaving a stability guarantee for what looks like to me to be a feature flag seems sad. So I started looking what alternative could we have and I stumbled upon go/team-docs/apps-android-settings/howto/add_a_developer_option.md. And one of the example of something that should not go in developper options is `In-progress features that we want to flag off while in development.`.\nAnd we seems to be in this case.\n\nI wonder also if we want to put that outside of settings (an Activity in Bluetooth to allow toggling that).",
+      "parentUuid": "b65b3c5d_8ce4fae7",
+      "revId": "20704ac87b7fc45c00941c0b576544aa59c1fcd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
