@@ -315,7 +315,7 @@ static void btif_gatts_open_impl(int server_if, const RawAddress& address,
         break;
 
       case BT_DEVICE_TYPE_DUMO:
-        if (transport_param == BT_TRANSPORT_LE)
+        if (addr_type == BLE_ADDR_RANDOM)
           transport = BT_TRANSPORT_LE;
         else
           transport = BT_TRANSPORT_BR_EDR;
