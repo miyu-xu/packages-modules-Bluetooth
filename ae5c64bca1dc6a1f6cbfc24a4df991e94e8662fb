@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "698bfac5_6ea09995",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-15T18:59:07Z",
+      "side": 1,
+      "message": "just make this public and reuse these values",
+      "range": {
+        "startLine": 232,
+        "startChar": 0,
+        "endLine": 238,
+        "endChar": 63
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50298f78_cd223a2e",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 4
