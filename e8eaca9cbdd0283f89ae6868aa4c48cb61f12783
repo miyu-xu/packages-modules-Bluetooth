@@ -122,6 +122,30 @@
       },
       "revId": "e8eaca9cbdd0283f89ae6868aa4c48cb61f12783",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "062f80de_637fbafa",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-15T18:56:45Z",
+      "side": 1,
+      "message": "If we can figure out a way to use `BluetoothDevice.IsConnected()` it will make this CL a lot better",
+      "parentUuid": "10e1e5b1_51e93d91",
+      "range": {
+        "startLine": 664,
+        "startChar": 12,
+        "endLine": 664,
+        "endChar": 87
+      },
+      "revId": "e8eaca9cbdd0283f89ae6868aa4c48cb61f12783",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

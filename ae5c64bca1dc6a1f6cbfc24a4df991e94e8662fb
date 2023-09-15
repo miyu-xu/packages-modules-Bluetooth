@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8eef322d_e6a1cb2c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-15T18:56:45Z",
+      "side": 1,
+      "message": "these values are returned from native code to Java. The only place where it was defined was in BluetoothDevice.java as private variables. Since BluetoothDevice is an API class, the only way to make it public was to add @hide annotation so that this becomes a hidden API which can be a wrong indicator since we never want this API to become public. \n\nHowever, I do agree that these variable should exist in AdapterService where the `getConnectionState()` method was defined.",
+      "parentUuid": "9696ab57_0935738a",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 74
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d27494f7_7f1de7fb",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
         "patchSetId": 4
