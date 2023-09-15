@@ -70,6 +70,24 @@
       "parentUuid": "b65b3c5d_8ce4fae7",
       "revId": "20704ac87b7fc45c00941c0b576544aa59c1fcd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e13adec_643d1e21",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-09-15T22:04:07Z",
+      "side": 1,
+      "message": "Hi David, we discussed this via the mail thread with the developer setting team, and all teams get sync about this.",
+      "parentUuid": "63709325_149ca670",
+      "revId": "20704ac87b7fc45c00941c0b576544aa59c1fcd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
