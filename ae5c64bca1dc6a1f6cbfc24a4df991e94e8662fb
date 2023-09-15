@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ec17c7a_0d2fd313",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-15T22:30:50Z",
+      "side": 1,
+      "message": "Do agree unifying the definitions is a better way in terms of code cleanness. But like Alice mentioned in the description, the state is actually from the native layer, so IMO it\u0027s also not the best solution to let AdapterService API return some state defined from framework/BluetoothDevice. \nWe might need to think of a better way in the next, but that might not be in the scope of this CL and doesn\u0027t meet the purpose of this CL.",
+      "parentUuid": "81589f82_17993b38",
+      "range": {
+        "startLine": 10,
+        "startChar": 42,
+        "endLine": 10,
+        "endChar": 57
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "bfdbcc41_fd5d6dd1",
@@ -268,6 +292,30 @@
       "side": 1,
       "message": "`CONNECTION_STATE_ENCRYPTED_BREDR` always implies `CONNECTION_STATE_CONNECTED`\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;l\u003d881;drc\u003d2091109ac95d110aa51cea6198866585a1ccd01e\n\nAlso please don\u0027t resolve comments when the discussion is still in progress, if you disagree with me, I would like to be the one to resolve by acknowledging.",
       "parentUuid": "c4a6018a_0529e5ed",
+      "range": {
+        "startLine": 465,
+        "startChar": 28,
+        "endLine": 465,
+        "endChar": 73
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1865c156_9e4f5594",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-15T22:30:50Z",
+      "side": 1,
+      "message": "I think that\u0027s exactly what we want here, \u0027CONNECTION_STATE_ENCRYPTED_BREDR always implies CONNECTION_STATE_CONNECTED\u0027",
+      "parentUuid": "9755037f_e8e198ee",
       "range": {
         "startLine": 465,
         "startChar": 28,
