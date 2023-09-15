@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfdbcc41_fd5d6dd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-15T17:45:11Z",
+      "side": 1,
+      "message": "n",
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50298f78_cd223a2e",
@@ -19,6 +36,52 @@
         "startChar": 0,
         "endLine": 101,
         "endChar": 74
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d27494f7_7f1de7fb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-15T17:45:11Z",
+      "side": 1,
+      "message": "Is it not a bitmask ?\n\nShould this not be `PhonePolicy.CONNECTION_STATE_CONNECTED | PhonePolicy.CONNECTION_STATE_ENCRYPTED_BREDR` ?\n\nI think I understand why you are doing that, because `BluetoothProfile.STATE_CONNECTED` is 2 and `CONNECTION_STATE_ENCRYPTED_BREDR` as well.\n\nAnd we where using the wrong constant in the unit tests since the beginning.",
+      "range": {
+        "startLine": 465,
+        "startChar": 28,
+        "endLine": 465,
+        "endChar": 73
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f80244c4_37688572",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-15T17:45:11Z",
+      "side": 1,
+      "message": "nit: `PhonePolicy.CONNECTION_STATE_DISCONNECTED`",
+      "range": {
+        "startLine": 510,
+        "startChar": 28,
+        "endLine": 510,
+        "endChar": 70
       },
       "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
