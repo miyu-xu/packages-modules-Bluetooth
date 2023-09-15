@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4835d89e_926ebc29",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-15T05:16:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56f2e269_75da1ddc",
+      "revId": "632b07334f513549a872d034643a90549e9c8cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18198ad1_b50b0a0b",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-09-15T03:55:16Z",
       "side": 1,
       "message": "Since this code is in framework.... Are we allowed to access DeviceConfig there ? It is only a systemApi...\n\nDo we want to read the flag in the service and read it in framework with a binder call?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 37
+      },
+      "revId": "632b07334f513549a872d034643a90549e9c8cd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13169626_c86e2dfc",
+        "filename": "framework/java/android/bluetooth/Flags.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-15T05:16:36Z",
+      "side": 1,
+      "message": "Oh, I should locate it in Bluetooth App.",
+      "parentUuid": "18198ad1_b50b0a0b",
       "range": {
         "startLine": 19,
         "startChar": 0,
