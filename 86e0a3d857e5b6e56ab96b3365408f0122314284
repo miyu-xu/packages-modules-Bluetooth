@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aafe91a8_424ea226",
+        "filename": "android/app/src/com/android/bluetooth/Flags.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-15T05:18:40Z",
+      "side": 1,
+      "message": "Already 2024 ? 😄\nI didn\u0027t knew the timezone with Korea was so important",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "86e0a3d857e5b6e56ab96b3365408f0122314284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
