@@ -3606,7 +3606,9 @@ void btm_sec_connected(const RawAddress& bda, uint16_t handle,
     }
   }
 
-  p_dev_rec->device_type |= BT_DEVICE_TYPE_BREDR;
+  if (status == HCI_SUCCESS) {
+    p_dev_rec->device_type |= BT_DEVICE_TYPE_BREDR;
+  }
 
   addr_matched = (btm_sec_cb.pairing_bda == bda);
 
