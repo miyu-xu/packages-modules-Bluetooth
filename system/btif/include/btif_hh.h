@@ -95,6 +95,7 @@ typedef struct {
   uint8_t sub_class;
   uint8_t app_id;
   int fd;
+  int pipefds[2];
   bool ready_for_data;
   pthread_t hh_poll_thread_id;
   uint8_t hh_keep_polling;
