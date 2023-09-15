@@ -16,6 +16,24 @@
       "message": "Why not making a `Flags` file instead of putting that in `Utils` ?",
       "revId": "c7eb143956f9689ccf0a5863030ba705d12b984e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50497455_b7c17588",
+        "filename": "android/app/src/com/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1282,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-15T01:19:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c234259_ec2475b2",
+      "revId": "c7eb143956f9689ccf0a5863030ba705d12b984e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
