@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7e51abd_87c65171",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-09-15T00:01:46Z",
+      "side": 1,
+      "message": "nit: isLeAudioDymicSwitchSupported",
+      "range": {
+        "startLine": 200,
+        "startChar": 16,
+        "endLine": 200,
+        "endChar": 46
+      },
+      "revId": "7de99985c7133cb9c7a7f9f9d586e993465c752d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1298b6f5_89221255",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-09-15T00:01:46Z",
+      "side": 1,
+      "message": "Could we have a function to handle broadcast mode to enable unicast/broadcast together in case broadcast source enable make no sense as unicast disable?",
+      "range": {
+        "startLine": 209,
+        "startChar": 12,
+        "endLine": 209,
+        "endChar": 45
+      },
+      "revId": "7de99985c7133cb9c7a7f9f9d586e993465c752d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82867f99_d39c6943",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-09-15T00:01:46Z",
+      "side": 1,
+      "message": "As leAudioDynamicSwitchSupported is false, why we need to handle the leAudioSwitchStatus?",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 218,
+        "endChar": 9
+      },
+      "revId": "7de99985c7133cb9c7a7f9f9d586e993465c752d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
