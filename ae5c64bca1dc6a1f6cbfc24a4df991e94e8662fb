@@ -207,6 +207,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4a6018a_0529e5ed",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-15T19:33:44Z",
+      "side": 1,
+      "message": "I think the scope for this test is for BR/EDR only. Hence, `CONNECTION_STATE_ENCRYPTED_BREDR` is fine.",
+      "parentUuid": "d27494f7_7f1de7fb",
+      "range": {
+        "startLine": 465,
+        "startChar": 28,
+        "endLine": 465,
+        "endChar": 73
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f80244c4_37688572",
@@ -220,6 +244,30 @@
       "writtenOn": "2023-09-15T17:45:11Z",
       "side": 1,
       "message": "nit: `PhonePolicy.CONNECTION_STATE_DISCONNECTED`",
+      "range": {
+        "startLine": 510,
+        "startChar": 28,
+        "endLine": 510,
+        "endChar": 70
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a471f1a_d2a1f873",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-15T19:33:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f80244c4_37688572",
       "range": {
         "startLine": 510,
         "startChar": 28,
