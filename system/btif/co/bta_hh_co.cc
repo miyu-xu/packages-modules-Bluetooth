@@ -56,6 +56,9 @@ static const bthh_report_type_t map_rtype_uhid_hh[] = {
     BTHH_FEATURE_REPORT, BTHH_OUTPUT_REPORT, BTHH_INPUT_REPORT};
 
 static void* btif_hh_poll_event_thread(void* arg);
+void bta_hh_write_exit_poll_fd(btif_hh_device_t* p_dev);
+void bta_hh_open_exit_poll_fd(btif_hh_device_t* p_dev);
+void bta_hh_close_exit_poll_fd(btif_hh_device_t* p_dev);
 
 void uhid_set_non_blocking(int fd) {
   int opts = fcntl(fd, F_GETFL);
@@ -272,6 +275,10 @@ static inline pthread_t create_thread(void* (*start_routine)(void*),
 
 /* Internal function to close the UHID driver*/
 static void uhid_fd_close(btif_hh_device_t* p_dev) {
+  if (p_dev == NULL) {
+    APPL_TRACE_ERROR("%s: Error: p_dev is null", __func__);
+    return;
+  }
   if (p_dev->fd >= 0) {
     struct uhid_event ev = {};
     ev.type = UHID_DESTROY;
@@ -280,6 +287,7 @@ static void uhid_fd_close(btif_hh_device_t* p_dev) {
               ADDRESS_TO_LOGGABLE_CSTR(p_dev->bd_addr));
     close(p_dev->fd);
     p_dev->fd = -1;
+    bta_hh_close_exit_poll_fd(p_dev);
   }
 }
 
@@ -291,6 +299,7 @@ static bool uhid_fd_open(btif_hh_device_t* p_dev) {
       LOG_ERROR("Failed to open uhid, err:%s", strerror(errno));
       return false;
     }
+    bta_hh_open_exit_poll_fd(p_dev);
   }
 
   if (p_dev->hh_keep_polling == 0) {
@@ -311,7 +320,8 @@ static bool uhid_fd_open(btif_hh_device_t* p_dev) {
  ******************************************************************************/
 static void* btif_hh_poll_event_thread(void* arg) {
   btif_hh_device_t* p_dev = (btif_hh_device_t*)arg;
-  struct pollfd pfds[1];
+  struct pollfd pfds[2];
+  nfds_t fd_num = 0;
   pid_t pid = gettid();
 
   // This thread is created by bt_main_thread with RT priority. Lower the thread
@@ -333,6 +343,16 @@ static void* btif_hh_poll_event_thread(void* arg) {
   pfds[0].fd = p_dev->fd;
   pfds[0].events = POLLIN;
 
+  if (p_dev->pipefds[0] < 0 || p_dev->pipefds[1] < 0){
+    fd_num = 1;
+    pfds[1].fd = -1;
+    pfds[1].events = -1;
+  } else {
+    fd_num = 2;
+    pfds[1].fd = p_dev->pipefds[0];
+    pfds[1].events = POLLIN;
+    }
+
   // Set the uhid fd as non-blocking to ensure we never block the BTU thread
   uhid_set_non_blocking(p_dev->fd);
 
@@ -345,12 +365,19 @@ static void* btif_hh_poll_event_thread(void* arg) {
         LOG_ERROR("Polling interrupted");
         break;
       }
-      ret = poll(pfds, 1, BTA_HH_UHID_POLL_PERIOD_MS);
+
+      ret = poll(pfds, fd_num, BTA_HH_UHID_POLL_PERIOD_MS);
     } while (ret == -1 && errno == EINTR);
 
     if (ret < 0) {
       LOG_ERROR("Cannot poll for fds: %s\n", strerror(errno));
       break;
+    }
+    if (p_dev->pipefds[0] >= 0 && p_dev->pipefds[1] >= 0) {
+        if (pfds[1].revents & POLLIN) {
+            APPL_TRACE_DEBUG("%s: receive signal to exit poll thread", __func__);
+            break;
+        }
     }
     if (pfds[0].revents & POLLIN) {
       APPL_TRACE_DEBUG("%s: POLLIN", __func__);
@@ -369,6 +396,44 @@ static void* btif_hh_poll_event_thread(void* arg) {
   p_dev->hh_keep_polling = 0;
   uhid_fd_close(p_dev);
   return 0;
+}
+
+void bta_hh_write_exit_poll_fd(btif_hh_device_t* p_dev) {
+  if (p_dev == NULL) {
+    APPL_TRACE_ERROR("%s: Error: p_dev is null", __func__);
+    return;
+  }
+  if (p_dev->pipefds[1] >= 0) {
+    (void)write(p_dev->pipefds[1], "exit poll", strlen("exit poll"));
+  }
+}
+
+void bta_hh_open_exit_poll_fd(btif_hh_device_t* p_dev) {
+  if (p_dev == NULL) {
+    APPL_TRACE_ERROR("%s: Error: p_dev is null", __func__);
+    return;
+    }
+
+  if( -1 == pipe(p_dev->pipefds)) {
+    APPL_TRACE_ERROR("%s: Error: %s when create pipes\n", __func__, strerror(errno));
+  }
+
+  return;
+}
+
+void bta_hh_close_exit_poll_fd(btif_hh_device_t* p_dev) {
+  if (p_dev == NULL) {
+    APPL_TRACE_ERROR("%s: Error: p_dev is null", __func__);
+    return;
+  }
+
+  for (uint8_t i = 0; i < 2; i++) {
+    APPL_TRACE_DEBUG("%s: Closing pipefd = %d", __func__, p_dev->pipefds[i]);
+    if (p_dev->pipefds[i] >= 0) {
+        close(p_dev->pipefds[i]);
+        p_dev->pipefds[i] = -1;
+        }
+    }
 }
 
 int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
@@ -417,6 +482,9 @@ bool bta_hh_co_open(uint8_t dev_handle, uint8_t sub_class,
           p_dev->dev_status, ADDRESS_TO_LOGGABLE_CSTR(p_dev->bd_addr),
           p_dev->attr_mask, p_dev->sub_class, p_dev->app_id);
 
+      for (i = 0; i < 2; i++) {
+        p_dev->pipefds[i] = -1;
+      }
       if (!uhid_fd_open(p_dev)) {
         return false;
       }
@@ -494,6 +562,7 @@ void bta_hh_co_close(btif_hh_device_t* p_dev) {
 
   /* Stop the polling thread */
   if (p_dev->hh_keep_polling) {
+    bta_hh_write_exit_poll_fd(p_dev);
     p_dev->hh_keep_polling = 0;
     pthread_join(p_dev->hh_poll_thread_id, NULL);
     p_dev->hh_poll_thread_id = -1;
@@ -622,6 +691,7 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
     /* The HID report descriptor is corrupted. Close the driver. */
     close(p_dev->fd);
     p_dev->fd = -1;
+    bta_hh_close_exit_poll_fd(p_dev);
   }
 }
 
