@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa0ac74a_0a058f31",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-09-15T07:52:41Z",
+      "side": 1,
+      "message": "Fixing previously submitted description of exception when writeCharacteristic is called with value over max length. Should have been value, not notification.",
+      "revId": "403e2052fb815bc187db44e17c96d946eaa30e47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
