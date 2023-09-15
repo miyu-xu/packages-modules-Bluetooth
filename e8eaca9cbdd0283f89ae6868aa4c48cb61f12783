@@ -146,6 +146,30 @@
       },
       "revId": "e8eaca9cbdd0283f89ae6868aa4c48cb61f12783",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0532a1d0_8bafc583",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-15T19:03:56Z",
+      "side": 1,
+      "message": "Looked at the code and I understood Alice\u0027s point, since `BluetoothDevice` access `AdapterService` via IPC through `IBluetooth`. I don\u0027t think you can stub it easily in instrumentation tests. \n\nTo do that, the whole test needs to be re-architectured to use `ServiceRule` instead of mocking `AdapterService`. \n\nHence, I don\u0027t think that is in scope of this CL. \n\nMarking this as resolved.",
+      "parentUuid": "062f80de_637fbafa",
+      "range": {
+        "startLine": 664,
+        "startChar": 12,
+        "endLine": 664,
+        "endChar": 87
+      },
+      "revId": "e8eaca9cbdd0283f89ae6868aa4c48cb61f12783",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
