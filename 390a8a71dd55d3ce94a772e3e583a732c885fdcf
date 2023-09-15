@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6669997_26f31a30",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-15T10:12:50Z",
+      "side": 1,
+      "message": "I see that you are basically allowing `CONNECTING`, `DISCONNECTING`, and `CONNECTED` state. Should `DISCONNECTING` state be allowed?",
+      "range": {
+        "startLine": 669,
+        "startChar": 12,
+        "endLine": 669,
+        "endChar": 87
+      },
+      "revId": "390a8a71dd55d3ce94a772e3e583a732c885fdcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
