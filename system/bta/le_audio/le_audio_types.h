@@ -195,19 +195,6 @@ uint8_t constexpr FrameDurationConfig2Capability(uint8_t conf) {
   return (0x01 << (conf));
 }
 
-inline uint8_t GetAudioChannelCounts(std::bitset<32> allocation) {
-  /*
-   * BAP d09r07 B4.2.3 Audio_Channel_Allocation
-   * "(...) Audio_Channel_Allocation bitmap value of all zeros or the
-   * absence of the Audio_Channel_Allocation LTV structure within a
-   * Codec_Specific_Configuration field shall be interpreted as defining a
-   * single audio channel of Mono audio (a single channel of no specified
-   * Audio Location).
-   */
-  uint8_t audio_channel_counts = allocation.count() ?: 1;
-  return (0x01 << (audio_channel_counts - 1));
-}
-
 /* LTV Types - same values as in Codec Specific Configurations but 0x03 is
  * named differently.
  */
@@ -598,6 +585,10 @@ class LeAudioLtvMap {
   std::map<uint8_t, std::vector<uint8_t>> values;
 };
 
+/** LE Audio ASE codec configuration parameters, built from LTV types defined
+ * in the BT Assigned Numbers.
+ * NOTE: This base structure does not support the vendor specific parameters.
+ */
 struct LeAudioCodecConfigBase {
   static const std::map<uint8_t, uint32_t> sampling_freq_map;
   static const std::map<uint8_t, uint32_t> frame_duration_map;
@@ -608,7 +599,7 @@ struct LeAudioCodecConfigBase {
   std::optional<uint16_t> octets_per_codec_frame;
   std::optional<uint8_t> codec_frames_blocks_per_sdu;
 
-  uint8_t channel_count;
+  uint8_t allocated_channel_count = 1;
 
   /** Returns the sampling frequency representation in Hz */
   uint32_t GetSamplingFrequencyHz() const {
@@ -629,10 +620,8 @@ struct LeAudioCodecConfigBase {
     return 0;
   }
 
-  uint8_t GetChannelCount(void) const {
-    if (channel_count) return channel_count;
-
-    return 0;
+  uint8_t GetAllocatedChannelCount(void) const {
+    return allocated_channel_count;
   }
 
   LeAudioLtvMap GetAsLtvMap() const {
@@ -664,6 +653,54 @@ struct LeAudioCodecConfigBase {
     }
 
     return LeAudioLtvMap(values);
+  }
+
+  static LeAudioCodecConfigBase FromLtvMap(LeAudioLtvMap ltvs) {
+    LeAudioCodecConfigBase base;
+
+    auto vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeSamplingFreq);
+    if (vec_opt && (vec_opt->size() ==
+                    sizeof(decltype(base.sampling_frequency)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT8(base.sampling_frequency, ptr);
+    }
+
+    vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeFrameDuration);
+    if (vec_opt && (vec_opt->size() ==
+                    sizeof(decltype(base.frame_duration)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT8(base.frame_duration, ptr);
+    }
+
+    vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeAudioChannelAllocation);
+    if (vec_opt &&
+        (vec_opt->size() ==
+         sizeof(decltype(base.audio_channel_allocation)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT32(base.audio_channel_allocation, ptr);
+      base.allocated_channel_count =
+          std::bitset<32>(base.audio_channel_allocation.value()).count();
+    } else {
+      base.allocated_channel_count = 1;
+    }
+
+    vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeOctetsPerCodecFrame);
+    if (vec_opt &&
+        (vec_opt->size() ==
+         sizeof(decltype(base.octets_per_codec_frame)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT16(base.octets_per_codec_frame, ptr);
+    }
+
+    vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeCodecFrameBlocksPerSdu);
+    if (vec_opt &&
+        (vec_opt->size() ==
+         sizeof(decltype(base.codec_frames_blocks_per_sdu)::value_type))) {
+      auto ptr = vec_opt->data();
+      STREAM_TO_UINT8(base.codec_frames_blocks_per_sdu, ptr);
+    }
+
+    return base;
   }
 };
 
@@ -739,7 +776,8 @@ struct ase {
 
   /* Codec configuration */
   LeAudioCodecId codec_id;
-  LeAudioCodecConfigBase codec_config;
+  LeAudioLtvMap codec_config;
+
   uint8_t framing;
   uint8_t preferred_phy;
 
@@ -788,21 +826,27 @@ std::ostream& operator<<(std::ostream& os, const AudioContexts& contexts);
 namespace set_configurations {
 
 struct CodecConfigSetting {
+  /* Codec indentifier */
   types::LeAudioCodecId id;
 
   /* Codec Specific Configuration variant */
-  /* TODO: Support vendor parameters (use a generic LTV map) */
-  std::variant<types::LeAudioCodecConfigBase> config;
+  types::LeAudioLtvMap params;
 
-  /* TODO: Support vendor parameter getters/viewers */
+  /* Channel count per ISO stream (CIS or BIS) */
+  uint8_t channel_count_per_iso_stream;
+
   /* Sampling freqency requested for codec */
-  uint32_t GetConfigSamplingFrequency() const;
+  uint32_t GetSamplingFrequencyHz() const;
   /* Data fetch/feed interval for codec in microseconds */
-  uint32_t GetConfigDataIntervalUs() const;
+  uint32_t GetDataIntervalUs() const;
   /* Audio bit depth required for codec */
-  uint8_t GetConfigBitsPerSample() const;
+  uint8_t GetBitsPerSample() const;
   /* Audio channels number for stream */
-  uint8_t GetConfigChannelCount() const;
+  uint8_t GetChannelCountPerIsoStream() const;
+
+  /* TODO: Add vendor parameter or Ltv map viewers for
+   * vendor specific LTV types.
+   */
 };
 
 struct QosConfigSetting {
