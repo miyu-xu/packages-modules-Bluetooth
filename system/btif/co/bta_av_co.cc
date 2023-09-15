@@ -1457,7 +1457,7 @@ bool BtaAvCo::SetActivePeer(const RawAddress& peer_address) {
   if (peer_address.IsEmpty()) {
     // Reset the active peer;
     active_peer_ = nullptr;
-    memset(codec_config_, 0, sizeof(codec_config_));
+    // memset(codec_config_, 0, sizeof(codec_config_));
     return true;
   }
 
