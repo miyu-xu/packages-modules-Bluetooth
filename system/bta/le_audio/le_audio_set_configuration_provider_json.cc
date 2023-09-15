@@ -284,8 +284,8 @@ struct AudioSetConfigurationProviderJson {
         .audio_channel_allocation = audio_channel_allocation,
         .octets_per_codec_frame = octets_per_codec_frame,
         .codec_frames_blocks_per_sdu = codec_frames_blocks_per_sdu,
-        .channel_count =
-            (uint8_t)std::bitset<32>(audio_channel_allocation).count(),
+        .channel_count = le_audio::codec_spec_caps::GetAudioChannelCount(
+            audio_channel_allocation),
     });
     return codec;
   }
