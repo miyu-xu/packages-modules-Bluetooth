@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd93815d_1c682c91",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3327,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-15T05:04:47Z",
+      "side": 1,
+      "message": "2 questions:\nSince this is called from native, we will always have the btservice uuid.\nI think we should pass the uid as a parameter instead, and remove the if below",
+      "range": {
+        "startLine": 3327,
+        "startChar": 20,
+        "endLine": 3327,
+        "endChar": 30
+      },
+      "revId": "9324192160c967e7435661dbcddcb5df5b9cf0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
