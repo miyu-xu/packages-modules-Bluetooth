@@ -51,6 +51,42 @@
       "parentUuid": "0af39101_4c64545a",
       "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69652139_69d967af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-15T03:24:20Z",
+      "side": 1,
+      "message": "Why didn\u0027t you upload the format first and the change on top of it ? It would have been 0 work to do, only splitting the CL. and you wouldn\u0027t had to bypass the upload hook",
+      "parentUuid": "7530d8c4_4816a2df",
+      "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "787bd1b5_f16bcf0c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-15T03:24:20Z",
+      "side": 1,
+      "message": "Isn\u0027t the test just calling connectGatt then close immediately ?",
+      "parentUuid": "cb2853cc_2ba28636",
+      "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
