@@ -13,6 +13,7 @@ use bt_topshim::btif::{BtConnectionState, BtDiscMode, BtStatus, BtTransport};
 use bt_topshim::profiles::hid_host::BthhReportType;
 use bt_topshim::profiles::sdp::{BtSdpMpsRecord, BtSdpRecord};
 use bt_topshim::profiles::{gatt::LePhy, ProfileConnectionState};
+use btstack::battery_manager::IBatteryManager;
 use btstack::bluetooth::{BluetoothDevice, IBluetooth};
 use btstack::bluetooth_gatt::{GattWriteType, IBluetoothGatt, ScanSettings, ScanType};
 use btstack::bluetooth_media::{IBluetoothMedia, IBluetoothTelephony};
@@ -136,6 +137,19 @@ fn build_commands() -> HashMap<String, CommandOption> {
                  Connectable On/Off (e.g. adapter connectable on)",
             ),
             function_pointer: CommandHandler::cmd_adapter,
+        },
+    );
+    command_options.insert(
+        String::from("battery"),
+        CommandOption {
+            rules: vec![
+                String::from("battery status <address>"),
+                String::from("battery status-all <address>"),
+                String::from("battery track <address>"),
+                String::from("battery untrack <address>"),
+            ],
+            description: String::from("Log battery level updates"),
+            function_pointer: CommandHandler::cmd_battery,
         },
     );
     command_options.insert(
@@ -637,6 +651,76 @@ impl CommandHandler {
             _ => return Err(CommandError::InvalidArgs),
         }
 
+        Ok(())
+    }
+
+    fn cmd_battery(&mut self, args: &Vec<String>) -> CommandResult {
+        if !self.lock_context().adapter_ready {
+            return Err(self.adapter_not_ready());
+        }
+
+        let command = get_arg(args, 0)?;
+        let address = get_arg(args, 1)?.to_lowercase();
+
+        match &command[..] {
+            "status" => {
+                let battery_set = self.lock_context().battery_manager_dbus.as_ref().unwrap().get_battery_information(address.clone());
+                match battery_set {
+                    None => println!("Battery status for device {} could not be fetched", address.clone()),
+                    Some(set) => println!("TODO more info {}", set.address.clone()),
+                }
+            }
+            "status-all" => {
+                let battery_set = self.lock_context().battery_manager_dbus.as_ref().unwrap().get_battery_information(address.clone());
+                match battery_set {
+                    None => println!("Comprehensive battery status for device {} could not be fetched", address.clone()),
+                    Some(set) => {
+                        println!("Address {} from source {}: ", set.address.clone().to_lowercase(), set.source_info);
+                        print!("  ");
+                        for battery in set.batteries {
+                            if !battery.variant.is_empty() {
+                                print!("{}: {}%. ", battery.variant.clone(), battery.percentage);
+                            } else {
+                                print!("{}%. ", battery.percentage);
+                            }
+                        }
+                        println!();
+                    },
+                }
+            }
+            "track" => {
+                if self.lock_context().battery_address_filter.contains(&address) {
+                    return Err(CommandError::Failed(format!(
+                        "Already tracking {}", address.clone()
+                    )));
+                }
+                self.lock_context().battery_address_filter.insert(address.clone());
+
+                println!("Currently tracking:");
+                for addr in self.lock_context().battery_address_filter.iter() {
+                    println!("{}", addr);
+                }
+            }
+            "untrack" => {
+                if !self.lock_context().battery_address_filter.remove(&address) {
+                    return Err(CommandError::Failed(format!(
+                        "Not tracking {}", address.clone()
+                    )));
+                }
+                if self.lock_context().battery_address_filter.len() == 0 {
+                    println!("No longer tracking any addresses for battery status updates");
+                    return Ok(());
+                }
+
+                println!("Currently tracking:");
+                for addr in self.lock_context().battery_address_filter.iter() {
+                    println!("{}", addr);
+                }
+            }
+            other => {
+                println!("Invalid argument '{}'", other);
+            }
+        }
         Ok(())
     }
 
