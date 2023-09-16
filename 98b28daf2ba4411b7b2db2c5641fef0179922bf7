@@ -22,6 +22,29 @@
       },
       "revId": "98b28daf2ba4411b7b2db2c5641fef0179922bf7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49e7dac3_5720e04e",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-16T00:24:15Z",
+      "side": 1,
+      "message": "When writing from the struct to a uin8t[], there is only one memcpy, but there is 2 memcpy for the other way around.\n\nCan we do the same thing in both case ?",
+      "range": {
+        "startLine": 750,
+        "startChar": 2,
+        "endLine": 752,
+        "endChar": 78
+      },
+      "revId": "98b28daf2ba4411b7b2db2c5641fef0179922bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
