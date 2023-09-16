@@ -24,6 +24,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d86dcbfa_7f36b8f3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-16T00:17:08Z",
+      "side": 1,
+      "message": "Patchset 4 is for licensing + code format\n\nPatchset 5 is for code improvement change without logical change including:\n* early return\n* cpp initialization with language idioms\n* Use reference instead of pointer\n* osi_property_get replaced with osi_property_get_bool\n* hide address in logs\n* Fix build error and warning (unused variable, reorder-init-list)",
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7d981ec_06e77658",
