@@ -328,6 +328,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cfcbd906_bc7f4413",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 465,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-16T00:51:16Z",
+      "side": 1,
+      "message": "always implies in a sense that you cannot have `CONNECTION_STATE_ENCRYPTED_BREDR` without `CONNECTION_STATE_CONNECTED` bit set.\n\nSo I don\u0027t think that it\u0027s what we want.",
+      "parentUuid": "1865c156_9e4f5594",
+      "range": {
+        "startLine": 465,
+        "startChar": 28,
+        "endLine": 465,
+        "endChar": 73
+      },
+      "revId": "ae5c64bca1dc6a1f6cbfc24a4df991e94e8662fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f80244c4_37688572",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
         "patchSetId": 4
