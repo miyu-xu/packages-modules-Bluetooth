@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c64eee89_5a481bc7",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hogp.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-16T01:22:20Z",
+      "side": 1,
+      "message": "nit: `@assert_description`",
+      "range": {
+        "startLine": 312,
+        "startChar": 8,
+        "endLine": 312,
+        "endChar": 28
+      },
+      "revId": "079abf804536ad4129963082f352dfc365abcbfd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
