@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67f8455e_64cb98f8",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-16T00:21:01Z",
+      "side": 1,
+      "message": "Should we check the len to prevent being bigger  than `enc_key_value` ? \nShould we not call `btif_config_get_bin_length` and assume the length is always correct and always perfectly match the len of `enc_key_value`",
+      "range": {
+        "startLine": 471,
+        "startChar": 2,
+        "endLine": 473,
+        "endChar": 16
+      },
+      "revId": "98b28daf2ba4411b7b2db2c5641fef0179922bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
