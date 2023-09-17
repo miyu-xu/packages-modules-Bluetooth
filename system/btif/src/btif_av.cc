@@ -3573,8 +3573,9 @@ static void set_active_peer_int(uint8_t peer_sep,
                    ADDRESS_TO_LOGGABLE_CSTR(peer_address));
   BtifAvPeer* peer = nullptr;
   if (peer_sep == AVDT_TSEP_SNK) {
-    if (!btif_av_src_sink_coexist_enabled() || (btif_av_src_sink_coexist_enabled() &&
-      btif_av_both_enable() && (btif_av_sink.FindPeer(peer_address) == nullptr))) {
+    if (!btif_av_src_sink_coexist_enabled() ||
+        (btif_av_sink_active_peer().IsEmpty() || peer_address.IsEmpty()
+         || (btif_av_sink_active_peer() == peer_address))) {
       btif_av_source.SetActivePeer(peer_address,
                                       std::move(peer_ready_promise));
       BTIF_TRACE_ERROR("%s: Error setting %s as active Sink peer", __func__,
@@ -3583,8 +3584,9 @@ static void set_active_peer_int(uint8_t peer_sep,
     return;
   }
   if (peer_sep == AVDT_TSEP_SRC) {
-    if (!btif_av_src_sink_coexist_enabled() || (btif_av_src_sink_coexist_enabled() &&
-      btif_av_both_enable() && (btif_av_source.FindPeer(peer_address) == nullptr))) {
+    if (!btif_av_src_sink_coexist_enabled() ||
+        (btif_av_source_active_peer().IsEmpty()|| peer_address.IsEmpty()
+         || (btif_av_source_active_peer() == peer_address))) {
       btif_av_sink.SetActivePeer(peer_address,
                                     std::move(peer_ready_promise));
       BTIF_TRACE_ERROR("%s: Error setting %s as active Source peer", __func__,
