@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34c4bd24_cae61740",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-18T09:21:47Z",
+      "side": 1,
+      "message": "Hi, I\u0027ve checked the [pdl code](https://source.corp.google.com/h/chromium/chromiumos/codesearch/+/main:src/aosp/packages/modules/Bluetooth/upstream/system/pdl/hci/hci_packets.pdl;l\u003d5381) and the generated file in my local build, which both show that the extracted value is at most `0xfff`.\n\nThe core spec says the connection handle should be in range 0x0000 to 0x0EFF though, but I think 12 bits is ok.\n\n```code\nuint16_t GetConnectionHandle() const {ASSERT(was_validated_);auto to_bound \u003d begin();auto connection_handle_it \u003d to_bound + (/* Bits: */ 24 + /* Dynamic: */ 0) / 8;uint16_t connection_handle_value{};uint16_t* connection_handle_ptr \u003d \u0026connection_handle_value;auto extracted_value \u003d connection_handle_it.extract\u003cuint16_t\u003e();extracted_value \u0026\u003d 0xfff;*connection_handle_ptr \u003d static_cast\u003cuint16_t\u003e(extracted_value);return connection_handle_value;}\n```",
+      "revId": "dea3f6b7eaa42f832d6480fb13ebdfba2fec83e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
