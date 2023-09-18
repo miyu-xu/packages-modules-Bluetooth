@@ -16,6 +16,24 @@
       "message": "Will this not remove those tests from `v2/android-virtual-infra/test_mapping/presubmit-avd` on `aosp_cf_x86_64_phone-trunk_staging-userdebug` on `aosp-main` ?",
       "revId": "f0c7602de6df512f12c6a4057eede5e3aeb39751",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fbda708_489e636c",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2023-09-18T22:47:33Z",
+      "side": 0,
+      "message": "no, the tests will still run on aosp-main branch, as that branch has option `--test-mapping-ignore-keyword cf` set.",
+      "parentUuid": "9be4ae36_60c19df3",
+      "revId": "f0c7602de6df512f12c6a4057eede5e3aeb39751",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
