@@ -888,22 +888,23 @@ void handle_rc_connect(tBTA_AV_RC_OPEN* p_rc_open) {
 
   p_dev->rc_playing_uid = RC_INVALID_TRACK_ID;
 
-  if (btif_av_src_sink_coexist_enabled() &&
-      !btif_av_peer_is_connected_source(p_dev->rc_addr)) {
+  if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()
+      && !btif_av_peer_is_connected_source(p_dev->rc_addr)) {
     p_dev->launch_cmd_pending |= RC_PENDING_ACT_REPORT_CONN;
     LOG_VERBOSE("%s: pending rc connection event", __func__);
-    return;
+  } else {
+    if (bt_rc_ctrl_callbacks != NULL) {
+      do_in_jni_thread(FROM_HERE,
+                       base::BindOnce(bt_rc_ctrl_callbacks->connection_state_cb,
+                                      true, false, p_dev->rc_addr));
+    }
   }
-  if (bt_rc_ctrl_callbacks != NULL) {
-    do_in_jni_thread(FROM_HERE,
-                     base::BindOnce(bt_rc_ctrl_callbacks->connection_state_cb,
-                                    true, false, p_dev->rc_addr));
-    /* report connection state if remote device is AVRCP target */
-    handle_rc_ctrl_features(p_dev);
 
-    /* report psm if remote device is AVRCP target */
-    handle_rc_ctrl_psm(p_dev);
-  }
+  /* report connection state if remote device is AVRCP target */
+  handle_rc_ctrl_features(p_dev);
+
+  /* report psm if remote device is AVRCP target */
+  handle_rc_ctrl_psm(p_dev);
 }
 
 /***************************************************************************
