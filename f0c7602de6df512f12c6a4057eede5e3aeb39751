@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9be4ae36_60c19df3",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-18T22:44:54Z",
+      "side": 0,
+      "message": "Will this not remove those tests from `v2/android-virtual-infra/test_mapping/presubmit-avd` on `aosp_cf_x86_64_phone-trunk_staging-userdebug` on `aosp-main` ?",
+      "revId": "f0c7602de6df512f12c6a4057eede5e3aeb39751",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
