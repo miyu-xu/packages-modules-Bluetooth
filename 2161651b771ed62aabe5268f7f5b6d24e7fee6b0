@@ -216,6 +216,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3c1d69c_d1a7c80c",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-18T11:30:58Z",
+      "side": 1,
+      "message": "Adding `impl fmt::Debug for Box\u003c...\u003e` works to some extent, but it complains when the DBus exporter is located in a different crate than the Boxed callback, e.g. `IBluetoothMediaCallback` is defined in `btstack` but the DBus exporter is in `btadapterd`.\n\nThe error is:\n```\n`IBluetoothMediaCallback` is not defined in the current crate\n`std::alloc::Global` is not defined in the current crate\nimpl doesn\u0027t use only types from inside the current crate\n```\n[1] suggests there is a \"trait coherence rule\" which is violated.\n\nTherefore I\u0027m adding a function in the DBusArg trait in ps#3 to format the string instead. PTAL.\n\n[1] https://blog.yossarian.net/2022/07/25/age-encryption-in-python-with-pyrage",
+      "parentUuid": "a025846a_e85a8013",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4135eed3_dc520c06",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 1
