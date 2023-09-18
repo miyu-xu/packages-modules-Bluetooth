@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56438a76_444b532b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-18T22:46:26Z",
+      "side": 1,
+      "message": "Could you make sure all the changes are rebased correctly (All changes show up as indirect relations at the moment)",
+      "revId": "b66ccab827af7501d170f85bd36834166fd8e3ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
