@@ -39,6 +39,30 @@
       },
       "revId": "bf4f74ffdca06366ad7ce47d57bc8314ac531ed4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ac3c71f_117cbabb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1375,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-18T18:57:47Z",
+      "side": 1,
+      "message": "I agree. We should not sleep in test as this will still be flaky\n\nYou can do one step further and modify the scanmanager to take the looper as parameter of it\u0027s constructor.\nThat will allow test to pass a TestLooper and perfectly manipulate the messages.\n\nAlso... why is there a start and a constructor for scan manager ?",
+      "parentUuid": "db40eecc_820caffe",
+      "range": {
+        "startLine": 1375,
+        "startChar": 8,
+        "endLine": 1375,
+        "endChar": 34
+      },
+      "revId": "bf4f74ffdca06366ad7ce47d57bc8314ac531ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
