@@ -16,6 +16,24 @@
       "message": "Hi @ gkolodziejczyk,\n\nObserved this change(patch set 1) is causing systemui jank regression\n\nhttps://screenshot.googleplex.com/H9n3YzvkAP5brzt\n\nhttps://crystalball-presubmit.corp.google.com/dashboard/I23600010198596280?change_number\u003d2752755\u0026host\u003dandroid-review.googlesource.com\u0026patchset\u003d1\n\nPlease fix this regression before merging",
       "revId": "65da36472ac6ced1692ec9909bb0187068ca20b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dacff505_cf5158eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1261281
+      },
+      "writtenOn": "2023-09-18T17:14:59Z",
+      "side": 1,
+      "message": "Upon rerunning the test, did not report regression. Kindly ignore this.\n\nhttps://screenshot.googleplex.com/AHApHhscp3YwoJ6",
+      "parentUuid": "e6f1ff42_d1a4f37e",
+      "revId": "65da36472ac6ced1692ec9909bb0187068ca20b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
