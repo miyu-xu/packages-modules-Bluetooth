@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a59fc459_297b48b0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2023-09-18T23:00:30Z",
+      "side": 1,
+      "message": "ag/22755525 caused the merge conflict. I will need to deal with GoogleBluetoothInstrumentationTests in a separate change.",
+      "revId": "ec5e8f667f76d923114781ded029f1fd3b521705",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
