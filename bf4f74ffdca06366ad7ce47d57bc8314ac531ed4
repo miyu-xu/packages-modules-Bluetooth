@@ -16,6 +16,29 @@
       "message": "Rationale behind this fix is explained in the [bug](https://buganizer.corp.google.com/issues/300012915#comment2) filed!",
       "revId": "bf4f74ffdca06366ad7ce47d57bc8314ac531ed4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db40eecc_820caffe",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1375,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-18T18:05:51Z",
+      "side": 1,
+      "message": "This is just intended to wait until message executes on handler, right?\n\nCan we do something more similar to sendMessageWaitForProcessed here, e.g. wait on main looper to be idle instead of waiting on a CountdownLatch with no condition other than timeout?",
+      "range": {
+        "startLine": 1375,
+        "startChar": 8,
+        "endLine": 1375,
+        "endChar": 34
+      },
+      "revId": "bf4f74ffdca06366ad7ce47d57bc8314ac531ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
