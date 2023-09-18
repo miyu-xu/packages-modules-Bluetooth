@@ -889,8 +889,8 @@ void handle_rc_connect(tBTA_AV_RC_OPEN* p_rc_open) {
 
   p_dev->rc_playing_uid = RC_INVALID_TRACK_ID;
 
-  if (btif_av_src_sink_coexist_enabled() &&
-      !btif_av_peer_is_connected_source(p_dev->rc_addr)) {
+  if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()
+      && !btif_av_peer_is_connected_source(p_dev->rc_addr)) {
     p_dev->launch_cmd_pending |= RC_PENDING_ACT_REPORT_CONN;
     BTIF_TRACE_API("%s: pending rc connection event", __func__);
     return;
