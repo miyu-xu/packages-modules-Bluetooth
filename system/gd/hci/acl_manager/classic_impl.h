@@ -407,7 +407,7 @@ struct classic_impl : public security::ISecurityManagerListener {
     // HACK: Some failed SCO connections are reporting failures via
     //       ConnectComplete instead of ScoConnectionComplete.
     //       Drop such packets.
-    if (handle == 0xffff && link_type == LinkType::SCO) {
+    if (handle == 0xfff && link_type == LinkType::SCO) {
       LOG_ERROR(
           "ConnectionComplete with invalid handle(%u), link type(%u) and status(%d). Dropping packet.",
           handle,
