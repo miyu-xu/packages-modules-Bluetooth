@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a08de2b9_ed3f91ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-09-18T09:36:58Z",
+      "side": 1,
+      "message": "Rationale behind this fix is explained in the [bug](https://buganizer.corp.google.com/issues/300012915#comment2) filed!",
+      "revId": "bf4f74ffdca06366ad7ce47d57bc8314ac531ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
