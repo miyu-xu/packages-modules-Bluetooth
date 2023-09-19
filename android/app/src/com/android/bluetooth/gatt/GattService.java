@@ -660,6 +660,11 @@ public class GattService extends ProfileService {
             if (service == null) {
                 return;
             }
+            if (!Utils.checkConnectPermissionForDataDelivery(
+                    service, attributionSource, "GattService registerClient")) {
+                return;
+            }
+
             service.registerClient(uuid.getUuid(), callback, eatt_support, attributionSource);
         }
 
@@ -677,6 +682,10 @@ public class GattService extends ProfileService {
         private void unregisterClient(ParcelUuid uuid, AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
+                return;
+            }
+            if (!Utils.checkConnectPermissionForDataDelivery(
+                    service, attributionSource, "GattService unregisterClient")) {
                 return;
             }
             service.unregisterClient(uuid.getUuid(), attributionSource);
@@ -3415,7 +3424,6 @@ public class GattService extends ProfileService {
         }
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void unregAll(AttributionSource attributionSource) {
         for (UUID uuid : mClientMap.getAllAppsUuids()) {
             if (DBG) {
@@ -3605,14 +3613,8 @@ public class GattService extends ProfileService {
      * GATT Service functions - CLIENT
      *************************************************************************/
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     void registerClient(UUID uuid, IBluetoothGattCallback callback, boolean eatt_support,
             AttributionSource attributionSource) {
-        if (!Utils.checkConnectPermissionForDataDelivery(
-                this, attributionSource, "GattService registerClient")) {
-            return;
-        }
-
         if (DBG) {
             Log.d(TAG, "registerClient() - UUID=" + uuid);
         }
@@ -3620,13 +3622,7 @@ public class GattService extends ProfileService {
         mNativeInterface.gattClientRegisterApp(uuid, eatt_support);
     }
 
-    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     void unregisterClient(UUID uuid, AttributionSource attributionSource) {
-        if (!Utils.checkConnectPermissionForDataDelivery(
-                this, attributionSource, "GattService unregisterClient")) {
-            return;
-        }
-
         if (DBG) {
             Log.d(TAG, "unregisterClient() - UUID=" + uuid);
         }
