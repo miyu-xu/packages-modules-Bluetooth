@@ -24,6 +24,7 @@ android_test_helper_app {
         "androidx.test.ext.junit",
         "androidx.test.ext.truth",
         "androidx.test.rules",
+        "bluetooth-test-util-lib",
         "compatibility-device-util-axt",
         "grpc-java-lite",
         "grpc-java-okhttp-client-lite",
