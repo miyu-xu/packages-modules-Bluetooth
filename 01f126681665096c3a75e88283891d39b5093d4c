@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b47cfece_1e30e9d8",
+        "filename": "system/gd/hal/BUILD.gn",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-19T17:59:32Z",
+      "side": 1,
+      "message": "I saw you update //platform2 with the new USE flag. Make sure to update the commit id for platform2 in build.py so it gets used.",
+      "revId": "01f126681665096c3a75e88283891d39b5093d4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
