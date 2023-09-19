@@ -66,6 +66,7 @@ public final class BluetoothGatt implements BluetoothProfile {
     @UnsupportedAppUsage private volatile BluetoothGattCallback mCallback;
     private Handler mHandler;
     @UnsupportedAppUsage private int mClientIf;
+    private UUID mUuid;
     private BluetoothDevice mDevice;
     @UnsupportedAppUsage private boolean mAutoConnect;
 
@@ -1129,18 +1130,18 @@ public final class BluetoothGatt implements BluetoothProfile {
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     private boolean registerApp(
             BluetoothGattCallback callback, Handler handler, boolean eattSupport) {
-        if (DBG) Log.d(TAG, "registerApp()");
         if (mService == null) return false;
 
         mCallback = callback;
         mHandler = handler;
-        UUID uuid = UUID.randomUUID();
-        if (DBG) Log.d(TAG, "registerApp() - UUID=" + uuid);
+        mUuid = UUID.randomUUID();
+
+        Log.d(TAG, "registerApp() - UUID=" + mUuid);
 
         try {
             final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
             mService.registerClient(
-                    new ParcelUuid(uuid),
+                    new ParcelUuid(mUuid),
                     mBluetoothGattCallback,
                     eattSupport,
                     mAttributionSource,
@@ -1159,15 +1160,19 @@ public final class BluetoothGatt implements BluetoothProfile {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     private void unregisterApp() {
-        if (mService == null || mClientIf == 0) return;
-        if (DBG) Log.d(TAG, "unregisterApp() - mClientIf=" + mClientIf);
+        if (mService == null || mUuid == null) return;
+
+        UUID uuid = mUuid;
+        mCallback = null;
+        mClientIf = 0;
+        mUuid = null;
+
+        Log.d(TAG, "unregisterApp() - UUID=" + uuid);
 
         try {
-            mCallback = null;
             final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
-            mService.unregisterClient(mClientIf, mAttributionSource, recv);
+            mService.unregisterClient(new ParcelUuid(uuid), mAttributionSource, recv);
             recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
-            mClientIf = 0;
         } catch (RemoteException | TimeoutException e) {
             Log.e(TAG, "", e);
         }

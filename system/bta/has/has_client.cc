@@ -144,7 +144,7 @@ class HasClientImpl : public HasClient {
               initCb.Run();
             },
             initCb),
-        true);
+        kUuidHearingAccessService, true);
   }
 
   ~HasClientImpl() override = default;

@@ -70,6 +70,24 @@ tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(uint8_t client_if) {
 }
 /*******************************************************************************
  *
+ * Function         bta_gattc_cl_get_regcb
+ *
+ * Description      get registration control block by uuid.
+ *
+ * Returns          pointer to the regcb
+ *
+ ******************************************************************************/
+tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(const bluetooth::Uuid& uuid) {
+  uint8_t i = 0;
+  tBTA_GATTC_RCB* p_clrcb = &bta_gattc_cb.cl_rcb[0];
+
+  for (i = 0; i < BTA_GATTC_CL_MAX; i++, p_clrcb++) {
+    if (p_clrcb->in_use && p_clrcb->app_uuid == uuid) return p_clrcb;
+  }
+  return NULL;
+}
+/*******************************************************************************
+ *
  * Function         bta_gattc_num_reg_app
  *
  * Description      find the number of registered application.

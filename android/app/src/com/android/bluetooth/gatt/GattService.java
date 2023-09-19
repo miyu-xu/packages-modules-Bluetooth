@@ -365,11 +365,11 @@ public class GattService extends ProfileService {
     }
 
     class ClientDeathRecipient implements IBinder.DeathRecipient {
-        int mAppIf;
+        UUID mUuid;
         private String mPackageName;
 
-        ClientDeathRecipient(int appIf, String packageName) {
-            mAppIf = appIf;
+        ClientDeathRecipient(UUID uuid, String packageName) {
+            mUuid = uuid;
             mPackageName = packageName;
         }
 
@@ -377,12 +377,10 @@ public class GattService extends ProfileService {
         public void binderDied() {
             Log.d(
                     TAG,
-                    "Binder is dead - unregistering client ("
-                            + mPackageName
-                            + " "
-                            + mAppIf
-                            + ")!");
-            unregisterClient(mAppIf, getAttributionSource());
+                    "Binder is dead - unregistering client"
+                            + (" name=" + mPackageName)
+                            + (" uuid=" + mUuid));
+            unregisterClient(mUuid, getAttributionSource());
         }
     }
 
@@ -450,21 +448,24 @@ public class GattService extends ProfileService {
         }
 
         @Override
-        public void unregisterClient(int clientIf, AttributionSource attributionSource,
+        public void unregisterClient(
+                ParcelUuid uuid,
+                AttributionSource attributionSource,
                 SynchronousResultReceiver receiver) {
             try {
-                unregisterClient(clientIf, attributionSource);
+                unregisterClient(uuid, attributionSource);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
-        private void unregisterClient(int clientIf, AttributionSource attributionSource) {
+
+        private void unregisterClient(ParcelUuid uuid, AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
             }
-            service.unregisterClient(clientIf, attributionSource);
+            service.unregisterClient(uuid.getUuid(), attributionSource);
         }
 
         @Override
@@ -1721,7 +1722,7 @@ public class GattService extends ProfileService {
         if (app != null) {
             if (status == 0) {
                 app.id = clientIf;
-                app.linkToDeath(new ClientDeathRecipient(clientIf, app.name));
+                app.linkToDeath(new ClientDeathRecipient(uuid, app.name));
             } else {
                 mClientMap.remove(uuid);
             }
@@ -2257,9 +2258,9 @@ public class GattService extends ProfileService {
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void unregAll(AttributionSource attributionSource) {
-        for (Integer appId : mClientMap.getAllAppsIds()) {
-            Log.d(TAG, "unreg:" + appId);
-            unregisterClient(appId, attributionSource);
+        for (UUID uuid : mClientMap.getAllAppsUuids()) {
+            Log.d(TAG, "unregall: " + uuid);
+            unregisterClient(uuid, attributionSource);
         }
     }
 
@@ -2336,7 +2337,9 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)
-    void setAdvertisingParameters(int advertiserId, AdvertisingSetParameters parameters,
+    void setAdvertisingParameters(
+            int advertiserId,
+            AdvertisingSetParameters parameters,
             AttributionSource attributionSource) {
         if (!Utils.checkAdvertisePermissionForDataDelivery(
                 this, attributionSource, "GattService setAdvertisingParameters")) {
@@ -2418,20 +2421,19 @@ public class GattService extends ProfileService {
 
         Log.d(TAG, "registerClient() - UUID=" + uuid);
         mClientMap.add(uuid, null, callback, null, this, mTransitionalScanHelper);
-        mNativeInterface.gattClientRegisterApp(uuid.getLeastSignificantBits(),
-                uuid.getMostSignificantBits(), eatt_support);
+        mNativeInterface.gattClientRegisterApp(uuid, eatt_support);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void unregisterClient(int clientIf, AttributionSource attributionSource) {
+    void unregisterClient(UUID uuid, AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService unregisterClient")) {
             return;
         }
 
-        Log.d(TAG, "unregisterClient() - clientIf=" + clientIf);
-        mClientMap.remove(clientIf);
-        mNativeInterface.gattClientUnregisterApp(clientIf);
+        Log.d(TAG, "unregisterClient() - UUID=" + uuid);
+        mClientMap.remove(uuid);
+        mNativeInterface.gattClientUnregisterApp(uuid);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
@@ -2581,8 +2583,8 @@ public class GattService extends ProfileService {
 
         Integer connId = mClientMap.connIdByAddress(clientIf, address);
         if (connId != null) {
-            mNativeInterface.gattClientDiscoverServiceByUuid(connId, uuid.getLeastSignificantBits(),
-                    uuid.getMostSignificantBits());
+            mNativeInterface.gattClientDiscoverServiceByUuid(
+                    connId, uuid.getLeastSignificantBits(), uuid.getMostSignificantBits());
         } else {
             Log.e(TAG, "discoverServiceByUuid() - No connection for " + address + "...");
         }
@@ -2647,9 +2649,13 @@ public class GattService extends ProfileService {
             return;
         }
 
-        mNativeInterface.gattClientReadUsingCharacteristicUuid(connId,
-                uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), startHandle,
-                endHandle, authReq);
+        mNativeInterface.gattClientReadUsingCharacteristicUuid(
+                connId,
+                uuid.getLeastSignificantBits(),
+                uuid.getMostSignificantBits(),
+                startHandle,
+                endHandle,
+                authReq);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
@@ -3150,8 +3156,8 @@ public class GattService extends ProfileService {
             return;
         }
 
-        app.callback.onDescriptorWriteRequest(address, transId, offset, length, isPrep, needRsp,
-                handle, data);
+        app.callback.onDescriptorWriteRequest(
+                address, transId, offset, length, isPrep, needRsp, handle, data);
     }
 
     void onExecuteWrite(String address, int connId, int transId, int execWrite)
@@ -3242,8 +3248,8 @@ public class GattService extends ProfileService {
 
         Log.d(TAG, "registerServer() - UUID=" + uuid);
         mServerMap.add(uuid, null, callback, null, this, mTransitionalScanHelper);
-        mNativeInterface.gattServerRegisterApp(uuid.getLeastSignificantBits(),
-                uuid.getMostSignificantBits(), eatt_support);
+        mNativeInterface.gattServerRegisterApp(
+                uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), eatt_support);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)

@@ -140,7 +140,7 @@ class CsisClientImpl : public CsisClient {
               instance->dev_groups_ = DeviceGroups::Get();
             },
             initCb),
-        true);
+        kCsisServiceUuid, true);
 
     BTA_DmSirkSecCbRegister([](tBTA_DM_SEC_EVT event, tBTA_DM_SEC* p_data) {
       if (event != BTA_DM_SIRK_VERIFICATION_REQ_EVT) {

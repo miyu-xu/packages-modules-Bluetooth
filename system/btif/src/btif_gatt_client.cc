@@ -260,18 +260,18 @@ static bt_status_t btif_gattc_register_app(const Uuid& uuid,
                       uuid, client_id, status));
                 },
                 uuid),
-            eatt_support);
+            uuid, eatt_support);
       },
       uuid, eatt_support));
 }
 
-static void btif_gattc_unregister_app_impl(int client_if) {
-  BTA_GATTC_AppDeregister(client_if);
+static void btif_gattc_unregister_app_impl(const Uuid& uuid) {
+  BTA_GATTC_AppDeregister(uuid);
 }
 
-static bt_status_t btif_gattc_unregister_app(int client_if) {
+static bt_status_t btif_gattc_unregister_app(const Uuid& uuid) {
   CHECK_BTGATT_INIT();
-  return do_in_jni_thread(Bind(&btif_gattc_unregister_app_impl, client_if));
+  return do_in_jni_thread(Bind(&btif_gattc_unregister_app_impl, uuid));
 }
 
 void btif_gattc_open_impl(int client_if, RawAddress address,

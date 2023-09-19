@@ -35,7 +35,8 @@ struct gatt_interface_t {
                               uint16_t end_handle, btgatt_db_element_t** db,
                               int* count);
   void (*BTA_GATTC_AppRegister)(tBTA_GATTC_CBACK* p_client_cb,
-                                BtaAppRegisterCallback cb, bool eatt_support);
+                                BtaAppRegisterCallback cb,
+                                bluetooth::Uuid& uuid, bool eatt_support);
   void (*BTA_GATTC_Close)(uint16_t conn_id);
   void (*BTA_GATTC_ServiceSearchRequest)(uint16_t conn_id,
                                          const bluetooth::Uuid* p_srvc_uuid);

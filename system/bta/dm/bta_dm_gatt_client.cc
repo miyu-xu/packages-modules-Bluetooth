@@ -71,11 +71,11 @@ gatt_interface_t default_gatt_interface = {
         },
     .BTA_GATTC_AppRegister =
         [](tBTA_GATTC_CBACK* p_client_cb, BtaAppRegisterCallback cb,
-           bool eatt_support) {
+           bluetooth::Uuid& uuid, bool eatt_support) {
           gatt_history_.Push(base::StringPrintf("%-32s eatt_support:%c",
                                                 "GATTC_AppRegister",
                                                 (eatt_support) ? 'T' : 'F'));
-          BTA_GATTC_AppRegister(p_client_cb, cb, eatt_support);
+          BTA_GATTC_AppRegister(p_client_cb, cb, uuid, eatt_support);
         },
     .BTA_GATTC_Close =
         [](uint16_t conn_id) {
