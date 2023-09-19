@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6c2d7ea_3e3892f7",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-19T11:57:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a80f3cf_391e6c4c",
+      "range": {
+        "startLine": 20,
+        "startChar": 27,
+        "endLine": 20,
+        "endChar": 31
+      },
+      "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fc78e14_8f524995",
@@ -54,6 +78,24 @@
       "writtenOn": "2023-09-19T05:11:11Z",
       "side": 1,
       "message": "Potential solution: cast this to `Box\u003cdyn Any + Send\u003e`, downcast to `RpcProxy` and call `get_object_id`.",
+      "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "806d42e3_5814cbd0",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-19T11:57:40Z",
+      "side": 1,
+      "message": "I haven\u0027t been able to make this work, but I want to push this patch so bad :(\nIs it OK if we don\u0027t get the object_id? what information is contained inside it?",
+      "parentUuid": "1fc78e14_8f524995",
       "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

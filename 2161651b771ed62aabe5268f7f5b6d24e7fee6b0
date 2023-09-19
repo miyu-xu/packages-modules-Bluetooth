@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1f42f28_7b78dfdc",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-19T11:57:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "689dd493_fd98d0de",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc211977_a5ab685c",
@@ -232,6 +250,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3b1b270_44b94e71",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-19T11:57:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3c1d69c_d1a7c80c",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4135eed3_dc520c06",
@@ -263,6 +299,24 @@
       "side": 1,
       "message": "That\u0027s the plan but let\u0027s do the exporter one first.",
       "parentUuid": "4135eed3_dc520c06",
+      "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e582174_233ccb68",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-19T11:57:40Z",
+      "side": 1,
+      "message": "Done in the following CL",
+      "parentUuid": "9e0b5dc7_ee24b5b9",
       "revId": "2161651b771ed62aabe5268f7f5b6d24e7fee6b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
