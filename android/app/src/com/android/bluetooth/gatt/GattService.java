@@ -3616,8 +3616,7 @@ public class GattService extends ProfileService {
             Log.d(TAG, "registerClient() - UUID=" + uuid);
         }
         mClientMap.add(uuid, null, callback, null, this);
-        mNativeInterface.gattClientRegisterApp(uuid.getLeastSignificantBits(),
-                uuid.getMostSignificantBits(), eatt_support);
+        mNativeInterface.gattClientRegisterApp(uuid, eatt_support);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
@@ -3822,8 +3821,7 @@ public class GattService extends ProfileService {
 
         Integer connId = mClientMap.connIdByAddress(clientIf, address);
         if (connId != null) {
-            mNativeInterface.gattClientDiscoverServiceByUuid(connId, uuid.getLeastSignificantBits(),
-                    uuid.getMostSignificantBits());
+            mNativeInterface.gattClientDiscoverServiceByUuid(connId, uuid);
         } else {
             Log.e(TAG, "discoverServiceByUuid() - No connection for " + address + "...");
         }
@@ -3892,9 +3890,8 @@ public class GattService extends ProfileService {
             return;
         }
 
-        mNativeInterface.gattClientReadUsingCharacteristicUuid(connId,
-                uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), startHandle,
-                endHandle, authReq);
+        mNativeInterface.gattClientReadUsingCharacteristicUuid(
+                connId, uuid, startHandle, endHandle, authReq);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
@@ -4433,8 +4430,8 @@ public class GattService extends ProfileService {
             return;
         }
 
-        app.callback.onDescriptorWriteRequest(address, transId, offset, length, isPrep, needRsp,
-                handle, data);
+        app.callback.onDescriptorWriteRequest(
+                address, transId, offset, length, isPrep, needRsp, handle, data);
     }
 
     void onExecuteWrite(String address, int connId, int transId, int execWrite)
@@ -4537,8 +4534,7 @@ public class GattService extends ProfileService {
             Log.d(TAG, "registerServer() - UUID=" + uuid);
         }
         mServerMap.add(uuid, null, callback, null, this);
-        mNativeInterface.gattServerRegisterApp(uuid.getLeastSignificantBits(),
-                uuid.getMostSignificantBits(), eatt_support);
+        mNativeInterface.gattServerRegisterApp(uuid, eatt_support);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
