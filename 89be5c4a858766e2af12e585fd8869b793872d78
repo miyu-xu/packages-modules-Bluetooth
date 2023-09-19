@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5861eea_a7246a2e",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-19T19:28:11Z",
+      "side": 1,
+      "message": "This is the UUID param for service to be discovered (not the UUID from app entry) so we shouldn\u0027t need to touch these params (or rather, should be out of scope of this CL chain to keep the diff clean and focused on switch from clientIf to app entry UUID).",
+      "range": {
+        "startLine": 470,
+        "startChar": 24,
+        "endLine": 470,
+        "endChar": 85
+      },
+      "revId": "89be5c4a858766e2af12e585fd8869b793872d78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e0e73c0_9196c4ba",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-19T19:28:11Z",
+      "side": 1,
+      "message": "Characteristic UUID, not app UUID so would recommend out of scope of this CL chain as well.",
+      "range": {
+        "startLine": 492,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 46
+      },
+      "revId": "89be5c4a858766e2af12e585fd8869b793872d78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
