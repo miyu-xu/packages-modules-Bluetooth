@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7302b79_8e14f736",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 470,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-19T22:00:14Z",
+      "side": 1,
+      "message": "100% agree, this is not related to the specific fix.\nIt is just a cleanup to have the JNI logic for UUID not appear in the service.\n\nNothing in this CL is required to do the fix, but since this cl is not modifying any logic (like a code format), I thought it can be merged easily and independently of any change",
+      "parentUuid": "b5861eea_a7246a2e",
+      "range": {
+        "startLine": 470,
+        "startChar": 24,
+        "endLine": 470,
+        "endChar": 85
+      },
+      "revId": "89be5c4a858766e2af12e585fd8869b793872d78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e0e73c0_9196c4ba",
         "filename": "android/app/src/com/android/bluetooth/gatt/GattNativeInterface.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-19T19:28:11Z",
       "side": 1,
       "message": "Characteristic UUID, not app UUID so would recommend out of scope of this CL chain as well.",
+      "range": {
+        "startLine": 492,
+        "startChar": 0,
+        "endLine": 493,
+        "endChar": 46
+      },
+      "revId": "89be5c4a858766e2af12e585fd8869b793872d78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93351aee_cd429b50",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattNativeInterface.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-19T22:00:14Z",
+      "side": 1,
+      "message": "Same as the other comment. Resolving",
+      "parentUuid": "6e0e73c0_9196c4ba",
       "range": {
         "startLine": 492,
         "startChar": 0,
