@@ -4273,7 +4273,7 @@ static void bta_dm_gattc_register(void) {
           bta_dm_search_cb.client_if = BTA_GATTS_INVALID_IF;
         }
       }),
-      false);
+      bta_dm_search_cb.uuid, false);
 }
 
 /*******************************************************************************

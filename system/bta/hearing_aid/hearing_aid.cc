@@ -314,7 +314,7 @@ class HearingAidImpl : public HearingAid {
               initCb.Run();
             },
             initCb),
-        false);
+        HEARING_AID_UUID, false);
 
     IsoManager::GetInstance()->Start();
     IsoManager::GetInstance()->RegisterOnIsoTrafficActiveCallback(

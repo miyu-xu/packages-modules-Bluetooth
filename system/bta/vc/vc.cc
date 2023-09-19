@@ -97,7 +97,7 @@ class VolumeControlImpl : public VolumeControl {
               initCb.Run();
             },
             initCb),
-        true);
+        kVolumeControlUuid, true);
   }
 
   void StartOpportunisticConnect(const RawAddress& address) {
