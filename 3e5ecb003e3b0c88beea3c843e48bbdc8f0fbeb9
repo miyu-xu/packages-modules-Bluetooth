@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bee36555_5a54bd1f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1540113
+      },
+      "writtenOn": "2023-09-19T01:19:28Z",
+      "side": 1,
+      "message": "I\u0027ve rebase on the top of the branch and break the relation chain.",
+      "revId": "3e5ecb003e3b0c88beea3c843e48bbdc8f0fbeb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
