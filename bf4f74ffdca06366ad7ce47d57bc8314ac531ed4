@@ -87,6 +87,30 @@
       },
       "revId": "bf4f74ffdca06366ad7ce47d57bc8314ac531ed4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12252fa8_eb7f0d2b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1375,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-19T04:31:16Z",
+      "side": 1,
+      "message": "It looks start() and stop() are associated with BLE_ON and BLE_OFF in the previous design.\n\nbringUpBle() -\u003e startGattProfileService() -\u003e GattService::start() -\u003e ScanManager::start()",
+      "parentUuid": "486d3ef1_21464cd9",
+      "range": {
+        "startLine": 1375,
+        "startChar": 8,
+        "endLine": 1375,
+        "endChar": 34
+      },
+      "revId": "bf4f74ffdca06366ad7ce47d57bc8314ac531ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
