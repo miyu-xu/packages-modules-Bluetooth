@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5740f8c_105557a6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-19T22:00:56Z",
+      "side": 1,
+      "message": "would it be better to set this default as our max instead of 0? so the default path is to use WRITE_TYPE_NO_RESPONSE writeBassControlPoint(current behavior). otherwise using long write is the default.",
+      "revId": "2a886d361e0bede4b1344f4e508bf3d9cf8ae708",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9eacc46_21034919",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-19T22:00:56Z",
+      "side": 1,
+      "message": "can we define what 3 means here? and need to check to confirm if it\u0027s valid value after the update?",
+      "revId": "2a886d361e0bede4b1344f4e508bf3d9cf8ae708",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
