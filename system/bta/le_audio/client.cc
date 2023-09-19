@@ -1215,6 +1215,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (group_id == bluetooth::groups::kGroupUnknown) {
       if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
+        callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
         /* Nothing to do */
         return;
       }
@@ -1230,6 +1231,7 @@ class LeAudioClientImpl : public LeAudioClient {
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
     if (!group) {
       log::error("Invalid group: {}", static_cast<int>(group_id));
+      callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
       return;
     }
 
@@ -1248,6 +1250,7 @@ class LeAudioClientImpl : public LeAudioClient {
           LeAudioSourceAudioHalClient::AcquireUnicast();
       if (!le_audio_source_hal_client_) {
         log::error("could not acquire audio source interface");
+        callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
         return;
       }
     }
@@ -1256,6 +1259,7 @@ class LeAudioClientImpl : public LeAudioClient {
       le_audio_sink_hal_client_ = LeAudioSinkAudioHalClient::AcquireUnicast();
       if (!le_audio_sink_hal_client_) {
         log::error("could not acquire audio sink interface");
+        callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
         return;
       }
     }
@@ -1284,6 +1288,7 @@ class LeAudioClientImpl : public LeAudioClient {
     if (current_source_codec_config.IsInvalid() &&
         current_sink_codec_config.IsInvalid()) {
       log::error("Unsupported device configurations");
+      callbacks_->OnGroupStatus(group_id, GroupStatus::INACTIVE);
       return;
     }
 
