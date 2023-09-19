@@ -243,6 +243,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e6363c3_fcdf9a34",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T01:35:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ede8cc4_53ae417f",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 8
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "87348455_c03edd81",
