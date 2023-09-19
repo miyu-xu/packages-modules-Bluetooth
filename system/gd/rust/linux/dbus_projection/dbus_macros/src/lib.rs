@@ -756,20 +756,26 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
                 continue;
             }
 
-            let attr_args = attr.parse_meta().unwrap();
-            let dbus_method_name = if let Meta::List(meta_list) = attr_args {
-                Some(meta_list.nested[0].clone())
-            } else {
-                None
+            let meta_list = match attr.parse_meta().unwrap() {
+                Meta::List(meta_list) => meta_list,
+                _ => continue,
             };
 
-            if dbus_method_name.is_none() {
-                continue;
-            }
+            let dbus_method_name = meta_list.nested[0].clone();
+
+            // logging is default to disabled if not specified
+            let dbus_logging = if meta_list.nested.len() > 1 {
+                meta_list.nested[1].clone()
+            } else {
+                let token = quote! { DBusLog::Disable };
+                syn::parse2::<NestedMeta>(token).unwrap()
+            };
 
             let method_sig = method.sig.clone();
 
             let mut method_args = quote! {};
+            let mut args_debug = quote! {};
+            let mut args_debug_format = String::new();
 
             for input in method.sig.inputs {
                 if let FnArg::Typed(ref typed) = input {
@@ -779,9 +785,23 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
                         method_args = quote! {
                             #method_args DBusArg::to_dbus(#ident).unwrap(),
                         };
+
+                        args_debug = quote! {
+                            #args_debug &#ident,
+                        };
+
+                        if args_debug_format.len() != 0 {
+                            args_debug_format.push_str(", ");
+                        }
+                        args_debug_format.push_str("{:?}");
                     }
                 }
             }
+
+            let debug = quote! {
+                let args_formatted = format!(#args_debug_format, #args_debug);
+                DBusLog::log(#dbus_logging, "dbus out", #dbus_iface_name, #dbus_method_name, args_formatted.as_str());
+            };
 
             method_impls = quote! {
                 #method_impls
@@ -791,12 +811,14 @@ pub fn dbus_proxy_obj(attr: TokenStream, item: TokenStream) -> TokenStream {
                     let objpath__ = self.objpath.clone();
                     let conn__ = self.conn.clone();
 
+                    #debug
+
                     let proxy = dbus::nonblock::Proxy::new(
-                            remote__,
-                            objpath__,
-                            std::time::Duration::from_secs(2),
-                            conn__,
-                        );
+                        remote__,
+                        objpath__,
+                        std::time::Duration::from_secs(2),
+                        conn__,
+                    );
                     let future: dbus::nonblock::MethodReply<()> = proxy.method_call(
                         #dbus_iface_name,
                         #dbus_method_name,
