@@ -218,7 +218,7 @@ typedef struct {
                                  bool eatt_support);
 
   /** Unregister a client application from the stack */
-  bt_status_t (*unregister_client)(int client_if);
+  bt_status_t (*unregister_client)(const bluetooth::Uuid& uuid);
 
   /** Create a connection to a remote LE or dual-mode device */
   bt_status_t (*connect)(int client_if, const RawAddress& bd_addr,

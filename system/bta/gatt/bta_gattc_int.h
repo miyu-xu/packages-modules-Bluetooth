@@ -437,6 +437,7 @@ tBTA_GATTC_CLCB* bta_gattc_find_alloc_clcb(tGATT_IF client_if,
                                            const RawAddress& remote_bda,
                                            tBT_TRANSPORT transport);
 tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(uint8_t client_if);
+tBTA_GATTC_RCB* bta_gattc_cl_get_regcb(const bluetooth::Uuid& uuid);
 tBTA_GATTC_SERV* bta_gattc_find_srcb(const RawAddress& bda);
 tBTA_GATTC_SERV* bta_gattc_srcb_alloc(const RawAddress& bda);
 tBTA_GATTC_SERV* bta_gattc_find_scb_by_cid(uint16_t conn_id);

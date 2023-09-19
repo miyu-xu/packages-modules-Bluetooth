@@ -1318,9 +1318,11 @@ static void gattClientRegisterAppNative(JNIEnv* /* env */, jobject /* object */,
 }
 
 static void gattClientUnregisterAppNative(JNIEnv* /* env */,
-                                          jobject /* object */, jint clientIf) {
+                                          jobject /* object */, jlong uuid_lsb,
+                                          jlong uuid_msb) {
   if (!sGattIf) return;
-  sGattIf->client->unregister_client(clientIf);
+  Uuid uuid = from_java_uuid(uuid_msb, uuid_lsb);
+  sGattIf->client->unregister_client(uuid);
 }
 
 void btgattc_register_scanner_cb(const Uuid& app_uuid, uint8_t scannerId,

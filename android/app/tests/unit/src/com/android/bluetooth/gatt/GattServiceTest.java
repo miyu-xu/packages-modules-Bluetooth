@@ -348,8 +348,7 @@ public class GattServiceTest {
         boolean eattSupport = true;
 
         mService.registerClient(uuid, callback, eattSupport, mAttributionSource);
-        verify(mNativeInterface).gattClientRegisterApp(uuid.getLeastSignificantBits(),
-                uuid.getMostSignificantBits(), eattSupport);
+        verify(mNativeInterface).gattClientRegisterApp(uuid, eattSupport);
     }
 
     @Test
@@ -389,9 +388,9 @@ public class GattServiceTest {
 
         mService.readUsingCharacteristicUuid(clientIf, address, uuid, startHandle, endHandle,
                 authReq, mAttributionSource);
-        verify(mNativeInterface).gattClientReadUsingCharacteristicUuid(connId,
-                uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), startHandle,
-                endHandle, authReq);
+        verify(mNativeInterface)
+                .gattClientReadUsingCharacteristicUuid(
+                        connId, uuid, startHandle, endHandle, authReq);
     }
 
     @Test

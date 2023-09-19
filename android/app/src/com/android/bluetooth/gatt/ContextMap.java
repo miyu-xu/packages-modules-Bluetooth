@@ -319,6 +319,16 @@ public class ContextMap<C, T> {
         return appIds;
     }
 
+    List<UUID> getAllAppsUuids() {
+        List<UUID> appUuids = new ArrayList();
+        synchronized (mAppsLock) {
+            for (App entry : mApps) {
+                appUuids.add(entry.uuid);
+            }
+        }
+        return appUuids;
+    }
+
     /**
      * Add a new connection for a given application ID.
      */
