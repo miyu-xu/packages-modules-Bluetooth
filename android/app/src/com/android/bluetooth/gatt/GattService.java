@@ -828,26 +828,54 @@ public class GattService extends ProfileService {
         }
 
         @Override
-        public void clientConnect(int clientIf, String address, int addressType, boolean isDirect,
-                int transport, boolean opportunistic, int phy, AttributionSource attributionSource,
+        public void clientConnect(
+                ParcelUuid uuid,
+                String address,
+                int addressType,
+                boolean isDirect,
+                int transport,
+                boolean opportunistic,
+                int phy,
+                AttributionSource attributionSource,
                 SynchronousResultReceiver receiver) {
             try {
-                clientConnect(clientIf, address, addressType, isDirect, transport, opportunistic,
-                        phy, attributionSource);
+                clientConnect(
+                        uuid,
+                        address,
+                        addressType,
+                        isDirect,
+                        transport,
+                        opportunistic,
+                        phy,
+                        attributionSource);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
-        private void clientConnect(int clientIf, String address, int addressType, boolean isDirect,
-                int transport, boolean opportunistic, int phy,
+
+        private void clientConnect(
+                ParcelUuid uuid,
+                String address,
+                int addressType,
+                boolean isDirect,
+                int transport,
+                boolean opportunistic,
+                int phy,
                 AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
             }
-            service.clientConnect(clientIf, address, addressType, isDirect, transport,
-                    opportunistic, phy, attributionSource);
+            service.clientConnect(
+                    uuid.getUuid(),
+                    address,
+                    addressType,
+                    isDirect,
+                    transport,
+                    opportunistic,
+                    phy,
+                    attributionSource);
         }
 
         @Override
@@ -968,22 +996,32 @@ public class GattService extends ProfileService {
         }
 
         @Override
-        public void readCharacteristic(int clientIf, String address, int handle, int authReq,
-                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+        public void readCharacteristic(
+                ParcelUuid uuid,
+                String address,
+                int handle,
+                int authReq,
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
             try {
-                readCharacteristic(clientIf, address, handle, authReq, attributionSource);
+                readCharacteristic(uuid, address, handle, authReq, attributionSource);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
-        private void readCharacteristic(int clientIf, String address, int handle, int authReq,
+
+        private void readCharacteristic(
+                ParcelUuid uuid,
+                String address,
+                int handle,
+                int authReq,
                 AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
             }
-            service.readCharacteristic(clientIf, address, handle, authReq, attributionSource);
+            service.readCharacteristic(uuid.getUuid(), address, handle, authReq, attributionSource);
         }
 
         @Override
@@ -1009,64 +1047,105 @@ public class GattService extends ProfileService {
         }
 
         @Override
-        public void writeCharacteristic(int clientIf, String address, int handle, int writeType,
-                int authReq, byte[] value, AttributionSource attributionSource,
+        public void writeCharacteristic(
+                ParcelUuid uuid,
+                String address,
+                int handle,
+                int writeType,
+                int authReq,
+                byte[] value,
+                AttributionSource attributionSource,
                 SynchronousResultReceiver receiver) {
             try {
-                receiver.send(writeCharacteristic(clientIf, address, handle, writeType, authReq,
-                            value, attributionSource));
+                receiver.send(
+                        writeCharacteristic(
+                                uuid,
+                                address,
+                                handle,
+                                writeType,
+                                authReq,
+                                value,
+                                attributionSource));
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
-        private int writeCharacteristic(int clientIf, String address, int handle, int writeType,
-                int authReq, byte[] value, AttributionSource attributionSource) {
+
+        private int writeCharacteristic(
+                ParcelUuid uuid,
+                String address,
+                int handle,
+                int writeType,
+                int authReq,
+                byte[] value,
+                AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
             }
-            return service.writeCharacteristic(clientIf, address, handle, writeType, authReq, value,
-                    attributionSource);
+            return service.writeCharacteristic(
+                    uuid.getUuid(), address, handle, writeType, authReq, value, attributionSource);
         }
 
         @Override
-        public void readDescriptor(int clientIf, String address, int handle, int authReq,
-                AttributionSource attributionSource, SynchronousResultReceiver receiver) {
+        public void readDescriptor(
+                ParcelUuid uuid,
+                String address,
+                int handle,
+                int authReq,
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
             try {
-                readDescriptor(clientIf, address, handle, authReq, attributionSource);
+                readDescriptor(uuid, address, handle, authReq, attributionSource);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
-        private void readDescriptor(int clientIf, String address, int handle, int authReq,
+
+        private void readDescriptor(
+                ParcelUuid uuid,
+                String address,
+                int handle,
+                int authReq,
                 AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
             }
-            service.readDescriptor(clientIf, address, handle, authReq, attributionSource);
+            service.readDescriptor(uuid.getUuid(), address, handle, authReq, attributionSource);
         }
 
         @Override
-        public void writeDescriptor(int clientIf, String address, int handle, int authReq,
-                byte[] value, AttributionSource attributionSource,
+        public void writeDescriptor(
+                ParcelUuid uuid,
+                String address,
+                int handle,
+                int authReq,
+                byte[] value,
+                AttributionSource attributionSource,
                 SynchronousResultReceiver receiver) {
             try {
-                receiver.send(writeDescriptor(clientIf, address, handle, authReq, value,
-                            attributionSource));
+                receiver.send(
+                        writeDescriptor(uuid, address, handle, authReq, value, attributionSource));
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
-        private int writeDescriptor(int clientIf, String address, int handle, int authReq,
-                byte[] value, AttributionSource attributionSource) {
+
+        private int writeDescriptor(
+                ParcelUuid uuid,
+                String address,
+                int handle,
+                int authReq,
+                byte[] value,
+                AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return BluetoothStatusCodes.ERROR_PROFILE_SERVICE_NOT_BOUND;
             }
-            return service.writeDescriptor(clientIf, address, handle, authReq, value,
-                    attributionSource);
+            return service.writeDescriptor(
+                    uuid.getUuid(), address, handle, authReq, value, attributionSource);
         }
 
         @Override
@@ -3631,8 +3710,16 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void clientConnect(int clientIf, String address, int addressType, boolean isDirect,
-            int transport, boolean opportunistic, int phy, AttributionSource attributionSource) {
+    void clientConnect(
+            UUID uuid,
+            String address,
+            int addressType,
+            boolean isDirect,
+            int transport,
+            boolean opportunistic,
+            int phy,
+            AttributionSource attributionSource) {
+        int clientIf = 0; // TODO
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService clientConnect")) {
             return;
@@ -3825,8 +3912,13 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void readCharacteristic(int clientIf, String address, int handle, int authReq,
+    void readCharacteristic(
+            UUID uuid,
+            String address,
+            int handle,
+            int authReq,
             AttributionSource attributionSource) {
+        int clientIf = 0; // TODO
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService readCharacteristic")) {
             return;
@@ -3892,8 +3984,15 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    int writeCharacteristic(int clientIf, String address, int handle, int writeType, int authReq,
-            byte[] value, AttributionSource attributionSource) {
+    int writeCharacteristic(
+            UUID uuid,
+            String address,
+            int handle,
+            int writeType,
+            int authReq,
+            byte[] value,
+            AttributionSource attributionSource) {
+        int clientIf = 0; // TODO
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService writeCharacteristic")) {
             return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;
@@ -3936,8 +4035,13 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void readDescriptor(int clientIf, String address, int handle, int authReq,
+    void readDescriptor(
+            UUID uuid,
+            String address,
+            int handle,
+            int authReq,
             AttributionSource attributionSource) {
+        int clientIf = 0;
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService readDescriptor")) {
             return;
@@ -3969,8 +4073,14 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    int writeDescriptor(int clientIf, String address, int handle, int authReq, byte[] value,
+    int writeDescriptor(
+            UUID uuid,
+            String address,
+            int handle,
+            int authReq,
+            byte[] value,
             AttributionSource attributionSource) {
+        int clientIf = 0;
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService writeDescriptor")) {
             return BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION;

@@ -106,7 +106,7 @@ oneway interface IBluetoothGatt {
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void unregisterClient(in ParcelUuid appId, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
-    void clientConnect(in int clientIf, in String address, in int addressType, in boolean isDirect, in int transport, in boolean opportunistic, in int phy, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    void clientConnect(in ParcelUuid appId, in String address, in int addressType, in boolean isDirect, in int transport, in boolean opportunistic, in int phy, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void clientDisconnect(in int clientIf, in String address, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
@@ -120,17 +120,17 @@ oneway interface IBluetoothGatt {
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void discoverServiceByUuid(in int clientIf, in String address, in ParcelUuid uuid, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
-    void readCharacteristic(in int clientIf, in String address, in int handle, in int authReq, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    void readCharacteristic(in ParcelUuid appId, in String address, in int handle, in int authReq, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void readUsingCharacteristicUuid(in int clientIf, in String address, in ParcelUuid uuid,
                            in int startHandle, in int endHandle, in int authReq, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
-    void writeCharacteristic(in int clientIf, in String address, in int handle,
+    void writeCharacteristic(in ParcelUuid appId, in String address, in int handle,
                             in int writeType, in int authReq, in byte[] value, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
-    void readDescriptor(in int clientIf, in String address, in int handle, in int authReq, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
+    void readDescriptor(in ParcelUuid appId, in String address, in int handle, in int authReq, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
-    void writeDescriptor(in int clientIf, in String address, in int handle,
+    void writeDescriptor(in ParcelUuid appId, in String address, in int handle,
                             in int authReq, in byte[] value, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void registerForNotification(in int clientIf, in String address, in int handle, in boolean enable, in AttributionSource attributionSource, in SynchronousResultReceiver receiver);
