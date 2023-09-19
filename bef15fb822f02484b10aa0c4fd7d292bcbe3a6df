@@ -22,6 +22,30 @@
       },
       "revId": "bef15fb822f02484b10aa0c4fd7d292bcbe3a6df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77929fa8_462d8a4c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T17:43:23Z",
+      "side": 1,
+      "message": "Sure, I ended up returning the address directly. \n\nNext time, please try put all comments in one iteration and avoid adding extra comments in follow-up reviews.",
+      "parentUuid": "012ac656_63bef38f",
+      "range": {
+        "startLine": 39,
+        "startChar": 12,
+        "endLine": 39,
+        "endChar": 22
+      },
+      "revId": "bef15fb822f02484b10aa0c4fd7d292bcbe3a6df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
