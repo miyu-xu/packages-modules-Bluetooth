@@ -80,15 +80,21 @@ void BTA_GATTC_Disable(void) {
  */
 void BTA_GATTC_AppRegister(tBTA_GATTC_CBACK* p_client_cb,
                            BtaAppRegisterCallback cb, bool eatt_support) {
-  LOG_DEBUG("eatt_support=%d", eatt_support);
+  BTA_GATTC_AppRegister(p_client_cb, cb, Uuid::GetRandom(), eatt_support);
+}
+
+void BTA_GATTC_AppRegister(tBTA_GATTC_CBACK* p_client_cb,
+                           BtaAppRegisterCallback cb, const Uuid& uuid,
+                           bool eatt_support) {
+  LOG_DEBUG("uuid=%s eatt_support=%d", uuid.ToString().c_str(), eatt_support);
   if (!bta_sys_is_register(BTA_ID_GATTC)) {
     LOG_DEBUG("BTA_ID_GATTC not registered in BTA, registering it");
     bta_sys_register(BTA_ID_GATTC, &bta_gattc_reg);
   }
 
   do_in_main_thread(FROM_HERE,
-                    base::BindOnce(&bta_gattc_register, Uuid::GetRandom(),
-                                   p_client_cb, std::move(cb), eatt_support));
+                    base::BindOnce(&bta_gattc_register, uuid, p_client_cb,
+                                   std::move(cb), eatt_support));
 }
 
 static void app_deregister_impl(tGATT_IF client_if) {

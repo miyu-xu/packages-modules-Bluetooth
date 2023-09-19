@@ -258,7 +258,7 @@ static bt_status_t btif_gattc_register_app(const Uuid& uuid,
                       uuid, client_id, status));
                 },
                 uuid),
-            eatt_support);
+            uuid, eatt_support);
       },
       uuid, eatt_support));
 }
