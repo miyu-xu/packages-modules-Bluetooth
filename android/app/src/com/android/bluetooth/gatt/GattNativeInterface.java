@@ -322,7 +322,7 @@ public class GattNativeInterface {
     private native int gattClientGetDeviceTypeNative(String address);
     private native void gattClientRegisterAppNative(long appUuidLsb, long appUuidMsb,
             boolean eattSupport);
-    private native void gattClientUnregisterAppNative(int clientIf);
+    private native void gattClientUnregisterAppNative(long uuidLsb, long uuidMsb);
     private native void gattClientConnectNative(int clientIf, String address, int addressType,
             boolean isDirect, int transport, boolean opportunistic, int initiatingPhys);
     private native void gattClientDisconnectNative(int clientIf, String address, int connId);
@@ -410,11 +410,10 @@ public class GattNativeInterface {
                 uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), eattSupport);
     }
 
-    /**
-     * Unregister the client
-     */
-    public void gattClientUnregisterApp(int clientIf) {
-        gattClientUnregisterAppNative(clientIf);
+    /** Unregister the client */
+    public void gattClientUnregisterApp(UUID uuid) {
+        gattClientUnregisterAppNative(
+                uuid.getLeastSignificantBits(), uuid.getMostSignificantBits());
     }
 
     /**

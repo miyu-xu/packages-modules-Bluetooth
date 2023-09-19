@@ -579,11 +579,11 @@ public class GattService extends ProfileService {
     }
 
     class ClientDeathRecipient implements IBinder.DeathRecipient {
-        int mAppIf;
+        UUID mUuid;
         private String mPackageName;
 
-        ClientDeathRecipient(int appIf, String packageName) {
-            mAppIf = appIf;
+        ClientDeathRecipient(UUID uuid, String packageName) {
+            mUuid = uuid;
             mPackageName = packageName;
         }
 
@@ -592,13 +592,11 @@ public class GattService extends ProfileService {
             if (DBG) {
                 Log.d(
                         TAG,
-                        "Binder is dead - unregistering client ("
-                                + mPackageName
-                                + " "
-                                + mAppIf
-                                + ")!");
+                        "Binder is dead - unregistering client"
+                                + (" name=" + mPackageName)
+                                + (" uuid=" + mUuid));
             }
-            unregisterClient(mAppIf, getAttributionSource());
+            unregisterClient(mUuid, getAttributionSource());
         }
     }
 
@@ -666,21 +664,22 @@ public class GattService extends ProfileService {
         }
 
         @Override
-        public void unregisterClient(int clientIf, AttributionSource attributionSource,
+        public void unregisterClient(ParcelUuid uuid, AttributionSource attributionSource,
                 SynchronousResultReceiver receiver) {
             try {
-                unregisterClient(clientIf, attributionSource);
+                unregisterClient(uuid, attributionSource);
                 receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
         }
-        private void unregisterClient(int clientIf, AttributionSource attributionSource) {
+
+        private void unregisterClient(ParcelUuid uuid, AttributionSource attributionSource) {
             GattService service = getService();
             if (service == null) {
                 return;
             }
-            service.unregisterClient(clientIf, attributionSource);
+            service.unregisterClient(uuid.getUuid(), attributionSource);
         }
 
         @Override
@@ -2155,7 +2154,7 @@ public class GattService extends ProfileService {
         if (app != null) {
             if (status == 0) {
                 app.id = clientIf;
-                app.linkToDeath(new ClientDeathRecipient(clientIf, app.name));
+                app.linkToDeath(new ClientDeathRecipient(uuid, app.name));
             } else {
                 mClientMap.remove(uuid);
             }
@@ -3418,11 +3417,11 @@ public class GattService extends ProfileService {
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void unregAll(AttributionSource attributionSource) {
-        for (Integer appId : mClientMap.getAllAppsIds()) {
+        for (UUID uuid : mClientMap.getAllAppsUuids()) {
             if (DBG) {
-                Log.d(TAG, "unreg:" + appId);
+                Log.d(TAG, "unregall: " + uuid);
             }
-            unregisterClient(appId, attributionSource);
+            unregisterClient(uuid, attributionSource);
         }
     }
 
@@ -3541,7 +3540,9 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_ADVERTISE)
-    void setAdvertisingParameters(int advertiserId, AdvertisingSetParameters parameters,
+    void setAdvertisingParameters(
+            int advertiserId,
+            AdvertisingSetParameters parameters,
             AttributionSource attributionSource) {
         if (!Utils.checkAdvertisePermissionForDataDelivery(
                 this, attributionSource, "GattService setAdvertisingParameters")) {
@@ -3620,17 +3621,17 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
-    void unregisterClient(int clientIf, AttributionSource attributionSource) {
+    void unregisterClient(UUID uuid, AttributionSource attributionSource) {
         if (!Utils.checkConnectPermissionForDataDelivery(
                 this, attributionSource, "GattService unregisterClient")) {
             return;
         }
 
         if (DBG) {
-            Log.d(TAG, "unregisterClient() - clientIf=" + clientIf);
+            Log.d(TAG, "unregisterClient() - UUID=" + uuid);
         }
-        mClientMap.remove(clientIf);
-        mNativeInterface.gattClientUnregisterApp(clientIf);
+        mClientMap.remove(uuid);
+        mNativeInterface.gattClientUnregisterApp(uuid);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
