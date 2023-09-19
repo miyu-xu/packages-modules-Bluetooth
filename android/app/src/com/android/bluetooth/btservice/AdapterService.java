@@ -22,7 +22,6 @@ import static android.bluetooth.BluetoothDevice.TRANSPORT_AUTO;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 import static android.text.format.DateUtils.MINUTE_IN_MILLIS;
 import static android.text.format.DateUtils.SECOND_IN_MILLIS;
-
 import static com.android.bluetooth.Utils.callerIsSystem;
 import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
@@ -33,7 +32,6 @@ import static com.android.bluetooth.Utils.getBytesFromAddress;
 import static com.android.bluetooth.Utils.hasBluetoothPrivilegedPermission;
 import static com.android.bluetooth.Utils.isDualModeAudioEnabled;
 import static com.android.bluetooth.Utils.isPackageNameAccurate;
-
 import static java.util.Objects.requireNonNull;
 
 import android.annotation.NonNull;
@@ -2759,6 +2757,13 @@ public class AdapterService extends Service {
 
             DeviceProperties deviceProp = service.mRemoteDevices.getDeviceProperties(device);
             if (deviceProp == null || deviceProp.getBondState() != BluetoothDevice.BOND_BONDED) {
+                Log.w(
+                        TAG,
+                        device.getAddressForLogging()
+                                + " cannot be removed since "
+                                + ((deviceProp == null)
+                                        ? "properties are empty"
+                                        : "bond state is " + deviceProp.getBondState()));
                 return false;
             }
             service.mBondAttemptCallerInfo.remove(device.getAddress());
