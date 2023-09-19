@@ -28,17 +28,20 @@ import org.junit.rules.ExternalResource;
 import java.util.concurrent.TimeUnit;
 
 import pandora.HostGrpc;
+import pandora.HostProto;
+import pandora.SecurityGrpc;
 
 public final class PandoraDevice extends ExternalResource {
     private static final String TAG = PandoraDevice.class.getSimpleName();
 
-    private final String mAddress;
+    private final String mNetworkAddress;
+    private String mPublicBluetoothAddress;
     private final int mPort;
 
     private ManagedChannel mChannel;
 
-    public PandoraDevice(String address, int port) {
-        mAddress = address;
+    public PandoraDevice(String networkAddress, int port) {
+        mNetworkAddress = networkAddress;
         mPort = port;
     }
 
@@ -52,7 +55,7 @@ public final class PandoraDevice extends ExternalResource {
         // FactoryReset is killing the server and restarting all channels created before the server
         // restarted that cannot be reused
         ManagedChannel channel =
-                OkHttpChannelBuilder.forAddress(mAddress, mPort).usePlaintext().build();
+                OkHttpChannelBuilder.forAddress(mNetworkAddress, mPort).usePlaintext().build();
 
         HostGrpc.HostBlockingStub stub = HostGrpc.newBlockingStub(channel);
         stub.factoryReset(Empty.getDefaultInstance());
@@ -64,10 +67,13 @@ public final class PandoraDevice extends ExternalResource {
             throw new RuntimeException(e);
         }
 
-        mChannel = OkHttpChannelBuilder.forAddress(mAddress, mPort).usePlaintext().build();
+        mChannel = OkHttpChannelBuilder.forAddress(mNetworkAddress, mPort).usePlaintext().build();
         stub = HostGrpc.newBlockingStub(mChannel);
 
-        stub.withWaitForReady().readLocalAddress(Empty.getDefaultInstance());
+        HostProto.ReadLocalAddressResponse readLocalAddressResponse =
+                stub.withWaitForReady().readLocalAddress(Empty.getDefaultInstance());
+        mPublicBluetoothAddress =
+                Utils.addressStringFromByteString(readLocalAddressResponse.getAddress());
     }
 
     @Override
@@ -82,8 +88,25 @@ public final class PandoraDevice extends ExternalResource {
         }
     }
 
+    /**
+     * @return device's BR/EDR address as a byte string
+     */
+    public String getPublicBluetoothAddress() {
+        return mPublicBluetoothAddress;
+    }
+
     /** Get Pandora Host service */
     public HostGrpc.HostStub host() {
         return HostGrpc.newStub(mChannel);
+    }
+
+    /** Get blocking Pandora Host service */
+    public HostGrpc.HostBlockingStub hostBlocking() {
+        return HostGrpc.newBlockingStub(mChannel);
+    }
+
+    /** Get Pandora Security service */
+    public SecurityGrpc.SecurityStub security() {
+        return SecurityGrpc.newStub(mChannel);
     }
 }
