@@ -63,6 +63,30 @@
       },
       "revId": "bf4f74ffdca06366ad7ce47d57bc8314ac531ed4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "486d3ef1_21464cd9",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1375,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-09-19T01:46:22Z",
+      "side": 1,
+      "message": "Agreed. Used `waitForLooperToBeIdle` instead of sleeping to wait until message executes. \n\nOn ScanManager\u0027s start and constructor, unfortunately I have no idea :( This CL was just intended to tackle the test failure that was happening. But I could take a look outside the scope of this CL if it\u0027s problematic!",
+      "parentUuid": "0ac3c71f_117cbabb",
+      "range": {
+        "startLine": 1375,
+        "startChar": 8,
+        "endLine": 1375,
+        "endChar": 34
+      },
+      "revId": "bf4f74ffdca06366ad7ce47d57bc8314ac531ed4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
