@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a80f3cf_391e6c4c",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-19T04:20:45Z",
+      "side": 1,
+      "message": "note to myself to disable debug in later patchset",
+      "range": {
+        "startLine": 20,
+        "startChar": 27,
+        "endLine": 20,
+        "endChar": 31
+      },
+      "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
