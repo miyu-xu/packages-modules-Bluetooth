@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb164b69_87f3d7ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-19T21:24:03Z",
+      "side": 1,
+      "message": "Quick question: does this CL need to be in a topic like it is now, or is it better to keep them separate?",
+      "revId": "89d24f0b5b99b94d384a1b7ccb9a4cc57984fcfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

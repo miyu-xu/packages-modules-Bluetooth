@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33b32232_8f48300b",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 501,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-19T21:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1338951_a6966589",
+      "range": {
+        "startLine": 489,
+        "startChar": 3,
+        "endLine": 501,
+        "endChar": 1
+      },
+      "revId": "ef05c2d0e85b3a8a1d617c151fbb221df4ea49cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e99999d8_a5098dbb",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ce36f76_b38478c9",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 611,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-19T21:24:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e99999d8_a5098dbb",
+      "range": {
+        "startLine": 609,
+        "startChar": 3,
+        "endLine": 611,
+        "endChar": 3
+      },
+      "revId": "ef05c2d0e85b3a8a1d617c151fbb221df4ea49cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e74e9a15_e30b748b",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-09-16T00:46:09Z",
       "side": 1,
       "message": "nit: I would do one more step to move the smaller branch of the if first.\n\nit is usually easier to match the corresponding error log to the if. (cf go/c-readability-advice#handle-near-check)\n\nRight now the last cleanup_rfc_slot is hard to link to the correct if, but if you change the order you don\u0027t have the problem anymore:\n\n\n```\n      if (!slot) {\n        LOG_ERROR(\"RFCOMM slot with id %u not found. event:%d\", id, event);\n      } else if (p_data-\u003edisc_comp.status !\u003d BTA_JV_SUCCESS ||\n                 !p_data-\u003edisc_comp.scn) {\n        cleanup_rfc_slot(slot);\n      } else {\n        if (!slot-\u003ef.doing_sdp_request) {\n          // TODO(sharvil): this is really a logic error and we should probably\n          // assert.\n          LOG_ERROR(\n              \"%s SDP response returned but RFCOMM slot %d did not \"\n              \"request SDP record.\",\n              __func__, id);\n        } else {\n          // Establish the connection if we successfully looked up a channel\n          // number to connect to.\n          if (BTA_JvRfcommConnect(slot-\u003esecurity, slot-\u003erole,\n                                  p_data-\u003edisc_comp.scn, slot-\u003eaddr,\n                                  rfcomm_cback, slot-\u003eid) !\u003d BTA_JV_SUCCESS) {\n            cleanup_rfc_slot(slot);\n          } else {\n            slot-\u003escn \u003d p_data-\u003edisc_comp.scn;\n            slot-\u003ef.doing_sdp_request \u003d false;\n            if (!send_app_scn(slot)) {\n              cleanup_rfc_slot(slot);\n            }\n          }\n        }\n      }\n```\n\nThen by writing that we can notice that we keep nesting and nesting code.\n\nMaybe instead of doing an else nesting, we want to do else if case (cf go/tott/553)\n\nsomething like:\n```\n      if (!slot) {\n        LOG_ERROR(\"RFCOMM slot with id %u not found. event:%d\", id, event);\n      } else if (p_data-\u003edisc_comp.status !\u003d BTA_JV_SUCCESS ||\n                 !p_data-\u003edisc_comp.scn) {\n        cleanup_rfc_slot(slot);\n      } else if (!slot-\u003ef.doing_sdp_request) {\n        // TODO(sharvil): this is really a logic error and we should probably\n        // assert.\n        LOG_ERROR(\n            \"%s SDP response returned but RFCOMM slot %d did not \"\n            \"request SDP record.\",\n            __func__, id);\n      // Establish the connection if we successfully looked up a channel\n      // number to connect to.\n      } else if (BTA_JvRfcommConnect(slot-\u003esecurity, slot-\u003erole,\n                              p_data-\u003edisc_comp.scn, slot-\u003eaddr,\n                              rfcomm_cback, slot-\u003eid) !\u003d BTA_JV_SUCCESS) {\n        cleanup_rfc_slot(slot);\n      } else {\n        slot-\u003escn \u003d p_data-\u003edisc_comp.scn;\n        slot-\u003ef.doing_sdp_request \u003d false;\n        if (!send_app_scn(slot)) {\n          cleanup_rfc_slot(slot);\n        }\n      }\n```\n\n\nanother method could be to do early return and to put this code in a separate method",
+      "range": {
+        "startLine": 786,
+        "startChar": 4,
+        "endLine": 812,
+        "endChar": 7
+      },
+      "revId": "ef05c2d0e85b3a8a1d617c151fbb221df4ea49cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "568cf61f_5846c28d",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-19T21:24:03Z",
+      "side": 1,
+      "message": "Similar nesting problem also happening in case BTA_JV_GET_SCN_EVT.  I addressed the problem in both places",
+      "parentUuid": "e74e9a15_e30b748b",
       "range": {
         "startLine": 786,
         "startChar": 4,
