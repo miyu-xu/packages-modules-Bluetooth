@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "265ee9ae_768cd695",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-19T17:56:30Z",
+      "side": 1,
+      "message": "The mBumbleDevice will also be the same between test. Can we move it\u0027s initialisation here ? (and move it down after sAdapter)\n\n```suggestion\n    private BluetoothDevice mBumbleDevice \u003d sAdapter.getRemoteDevice(mBumble.getPublicBluetoothAddress();\n```",
+      "range": {
+        "startLine": 55,
+        "startChar": 28,
+        "endLine": 55,
+        "endChar": 41
+      },
+      "revId": "45a2b358e2ae1e102908027a0de3ecb047aec6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

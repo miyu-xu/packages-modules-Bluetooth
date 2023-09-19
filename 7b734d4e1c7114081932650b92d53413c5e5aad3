@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bed21206_50fb694f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-19T17:56:30Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Error Prone: [ProtoFieldNullComparison] Protobuf fields cannot be null.\n\n    [ProtoFieldNullComparison] Protobuf fields cannot be null.\n            assertThat(pairingEvent.getJustWorks()).isNotNull();\n                                                             ^\n        (see https://errorprone.info/bugpattern/ProtoFieldNullComparison)\n      Did you mean \u0027assertThat(pairingEvent.hasJustWorks()).isTrue();\u0027?",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 60
+      },
+      "revId": "7b734d4e1c7114081932650b92d53413c5e5aad3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
