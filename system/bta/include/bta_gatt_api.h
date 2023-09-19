@@ -463,6 +463,7 @@ void BTA_GATTC_AppRegister(tBTA_GATTC_CBACK* p_client_cb,
  *
  ******************************************************************************/
 void BTA_GATTC_AppDeregister(tGATT_IF client_if);
+void BTA_GATTC_AppDeregister(const bluetooth::Uuid& uuid);
 
 /*******************************************************************************
  *

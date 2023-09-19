@@ -106,6 +106,16 @@ static void app_deregister_impl(tGATT_IF client_if) {
     LOG_ERROR("Unknown GATT ID: %d, state: %d", client_if, bta_gattc_cb.state);
   }
 }
+static void app_deregister_uuid_impl(const Uuid& uuid) {
+  tBTA_GATTC_RCB* p_clreg = bta_gattc_cl_get_regcb(uuid);
+
+  if (p_clreg != nullptr) {
+    bta_gattc_deregister(p_clreg);
+  } else {
+    LOG_ERROR("Unknown GATT uuid: %s, state: %d", uuid.ToString().c_str(),
+              bta_gattc_cb.state);
+  }
+}
 /*******************************************************************************
  *
  * Function         BTA_GATTC_AppDeregister
@@ -120,6 +130,21 @@ static void app_deregister_impl(tGATT_IF client_if) {
  ******************************************************************************/
 void BTA_GATTC_AppDeregister(tGATT_IF client_if) {
   do_in_main_thread(FROM_HERE, base::BindOnce(&app_deregister_impl, client_if));
+}
+/*******************************************************************************
+ *
+ * Function         BTA_GATTC_AppDeregister
+ *
+ * Description      This function is called to deregister an application
+ *                  from BTA GATTC module.
+ *
+ * Parameters       uuid - application uuid.
+ *
+ * Returns          None
+ *
+ ******************************************************************************/
+void BTA_GATTC_AppDeregister(const Uuid& uuid) {
+  do_in_main_thread(FROM_HERE, base::BindOnce(&app_deregister_uuid_impl, uuid));
 }
 
 /*******************************************************************************
