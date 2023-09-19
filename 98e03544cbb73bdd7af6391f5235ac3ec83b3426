@@ -16,6 +16,23 @@
       "message": "@rwt@google.com @hallstrom@google.com \nThe new patchset has removed your +2 vote\n\nIf you still agree with the CL, can you vote again and fill go/bt-testing-exemption or provide the corresponding automated test.\nI assume this behavior should be easily reproduced in avatar testing",
       "revId": "98e03544cbb73bdd7af6391f5235ac3ec83b3426",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d474897_2aabdffc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-09-19T11:17:43Z",
+      "side": 1,
+      "message": "As I read through this code, there is no functional change, just the reason of failure is logged differently.",
+      "revId": "98e03544cbb73bdd7af6391f5235ac3ec83b3426",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
