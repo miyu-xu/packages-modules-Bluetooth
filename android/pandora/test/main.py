@@ -19,6 +19,7 @@ import avatar.cases.host_test
 import avatar.cases.le_host_test
 import avatar.cases.le_security_test
 import avatar.cases.security_test
+import a2dp_test
 import gatt_test
 import hfpclient_test
 import sdp_test
@@ -29,6 +30,7 @@ _TEST_CLASSES_LIST = [
     avatar.cases.le_host_test.LeHostTest,
     avatar.cases.security_test.SecurityTest,
     avatar.cases.le_security_test.LeSecurityTest,
+    a2dp_test.A2dpTest,
     sdp_test.SdpTest,
     smp_test.SmpTest,
     gatt_test.GattTest,
