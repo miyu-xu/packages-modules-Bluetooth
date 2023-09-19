@@ -91,6 +91,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7008ab39_fb93e30a",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "I still don\u0027t get why we don\u0027t want to toggle BT in every test case. We do this every time in our CTS tests and so far they are passing. \n\nIf a test fails because of instability related to BT toggling, then I think it is a bug we should fix.",
+      "parentUuid": "0b560fcc_7d81bc1d",
+      "range": {
+        "startLine": 27,
+        "startChar": 9,
+        "endLine": 27,
+        "endChar": 32
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "211569a0_ac9a8cd5",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 4
@@ -102,6 +126,24 @@
       "writtenOn": "2023-09-13T18:26:13Z",
       "side": 1,
       "message": "I think we need to be root to do this command.\n\nCan you add a [RootTargetPreparer](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/test/AndroidTest.xml;l\u003d18-20;drc\u003d6f81c7ba8cb7208f787aaf24f095f358810cb121) as well ?",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14e828fc_85b1306c",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "211569a0_ac9a8cd5",
       "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -248,6 +290,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6edf7e17_ef858fb4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4eb9a117_ebdbe256",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 52
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ac8227b8_995787fb",
@@ -301,6 +367,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0da03641_19106b13",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dbcbb0cc_67553704",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42e9759b_ee4a17f3",
@@ -348,6 +432,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b95e0a94_39250034",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Still asserting mAdapter is not null, but not using requiresNonNull()",
+      "parentUuid": "bd105a21_1239147a",
+      "range": {
+        "startLine": 88,
+        "startChar": 19,
+        "endLine": 88,
+        "endChar": 59
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e66cf50f_6d2b96d6",
@@ -379,6 +487,24 @@
       "side": 1,
       "message": "Agreed",
       "parentUuid": "e66cf50f_6d2b96d6",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30861086_d81d3d19",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Thinking about it away, the test should still assert that Bluetooth adapter is not null since this is a pre-condition to the test and we want it to fail gracefully",
+      "parentUuid": "e7b938c8_e0696f8c",
       "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -419,6 +545,30 @@
       "writtenOn": "2023-09-13T18:26:13Z",
       "side": 1,
       "message": "The BluetoothAdapter should already be enabled as it\u0027s part of the AndroidTest.xml setup commands.\n\nI think I would prefer for us to not do that, and just rely on each test letting the BluetoothAdapter in a correct state.\n\nSo I would prefer that we remove that.",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 84
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d91eaa55_317ae28e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Given that I want to toggle BT in every test, this is needed. Unless we change that decision, this code has to stay.",
+      "parentUuid": "857020fb_fcc97606",
       "range": {
         "startLine": 93,
         "startChar": 0,
@@ -482,6 +632,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "554c5481_20cddc1c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Since `ACTION_PAIRING_REQUEST` is sent as an ordered broadcast, it will be handled one-by-one based on receiver\u0027s priority. If the System Settings received it before this test, then the intent will be held by the System Settings instead of being delivered to this test.",
+      "parentUuid": "3ff200c8_3dac2ce8",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "582aeec9_7f2a57fd",
@@ -495,6 +663,30 @@
       "writtenOn": "2023-09-13T18:26:13Z",
       "side": 1,
       "message": "ditto: Remove the `Objects.requireNonNull`",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 35
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3ef904f_c1c1f037",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "582aeec9_7f2a57fd",
       "range": {
         "startLine": 104,
         "startChar": 12,
@@ -558,6 +750,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82f5db5b_9af9e72c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "I think toggling Bluetooth should be stable and we test it in CTS tests.\n\nHence, I think we should still toggle it.",
+      "parentUuid": "08ea2e79_bdf3ec38",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15d15c5f_07e27f4b",
@@ -598,6 +808,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b071dc75_b9fc78c5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15d15c5f_07e27f4b",
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1d673c3_5c261a1d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bd04b1a_709b2b0c",
+      "range": {
+        "startLine": 131,
+        "startChar": 16,
+        "endLine": 131,
+        "endChar": 34
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb044b22_a58f2cf1",
@@ -611,6 +863,30 @@
       "writtenOn": "2023-09-13T18:26:13Z",
       "side": 1,
       "message": "Use `pairingEvents.add(value)` instead as the queue is unbounded.",
+      "range": {
+        "startLine": 137,
+        "startChar": 23,
+        "endLine": 141,
+        "endChar": 25
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f26043f_5f92bdba",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "sure, but need to assert true",
+      "parentUuid": "cb044b22_a58f2cf1",
       "range": {
         "startLine": 137,
         "startChar": 23,
@@ -706,6 +982,30 @@
       "side": 1,
       "message": "Btw, as it\u0027s a bit bigger change, I can do it as a followup as well 😊",
       "parentUuid": "3ccff710_a52236cc",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 48
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59296ad1_43ffedb8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "I added some logs for now since I don\u0027t know exactly what to do at this moment.",
+      "parentUuid": "c5d369d0_8aedece5",
       "range": {
         "startLine": 144,
         "startChar": 0,
@@ -834,6 +1134,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a8b33d0_f3fdb9c6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "but I fixed it with suppress warnings",
+      "parentUuid": "3b3ee44f_a80ef912",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 51
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fff7754_911d5684",
@@ -905,6 +1229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f0b6451_9b704cfd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "My memory is vague, but I remember Assert gives me better error logging in sponge.\n\nBut I changed the latest to just log a line and return null. The use of poll() might still be questionable based on individual users of this library. I suggest we still wrap it if possible",
+      "parentUuid": "02681b53_dbb59287",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 5
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8548ce92_cb9cb6d8",
@@ -966,6 +1314,30 @@
       "side": 1,
       "message": "By `exclusive access to Bluetooth` I mostly mean that no one should be connecting and pairing Bluetooth devices while the test is running, which I think is a reasonable thing to ask.",
       "parentUuid": "fff69bff_a8931a4d",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 80
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97a6c60c_daaf6cff",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T00:32:46Z",
+      "side": 1,
+      "message": "Got it, but does having such a queue doesn\u0027t hurt us? Without a per-device queue, we would still need a global queue for all the intents anyway. I think this queue is rather a nice to have thing. \n\nThe fact that the stack emit a different intent for a different device is not the scope of this test. If a test cares about it, it should use a global queue.",
+      "parentUuid": "fa5e6802_2234d125",
       "range": {
         "startLine": 62,
         "startChar": 0,
