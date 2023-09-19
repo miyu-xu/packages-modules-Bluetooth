@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c01906a2_7b7ea72d",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-19T18:08:38Z",
+      "side": 1,
+      "message": "Can we use the LOG_ERROR construct of logging here. (We should likely stick to the newer convention)",
+      "range": {
+        "startLine": 404,
+        "startChar": 0,
+        "endLine": 406,
+        "endChar": 45
+      },
+      "revId": "5cc2a7231cf55417c45a0507bbe79bdf1caee934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
