@@ -22,6 +22,30 @@
       },
       "revId": "5cc2a7231cf55417c45a0507bbe79bdf1caee934",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e990de5_9a3eb5f1",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-19T18:16:03Z",
+      "side": 1,
+      "message": "It looks like the big majority of log in this file are done with `LOG(xxx) \u003c\u003c`\n\nWhere does the \"newer convention\" come ? I would be glad to see correct guideline for that but ....\n\nLOG_XXX are use since the begining of time\nLOG(XXX) are use since cpp migration (2016)\nXXX_TRACE_XXX are another convention\nDLOG are another one.",
+      "parentUuid": "c01906a2_7b7ea72d",
+      "range": {
+        "startLine": 404,
+        "startChar": 0,
+        "endLine": 406,
+        "endChar": 45
+      },
+      "revId": "5cc2a7231cf55417c45a0507bbe79bdf1caee934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
