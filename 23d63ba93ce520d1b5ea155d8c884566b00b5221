@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b34f4c1b_acdba172",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-19T05:11:11Z",
+      "side": 1,
+      "message": "Latest direction lgtm.",
+      "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a80f3cf_391e6c4c",
@@ -20,6 +37,40 @@
         "endLine": 20,
         "endChar": 31
       },
+      "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fc78e14_8f524995",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-19T05:11:11Z",
+      "side": 1,
+      "message": "Potential solution: cast this to `Box\u003cdyn Any + Send\u003e`, downcast to `RpcProxy` and call `get_object_id`.",
+      "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6eff5c81_e90ab863",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager_dbus.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-19T05:11:11Z",
+      "side": 1,
+      "message": "Can you replace this with a prelude so that we can just `use dbus_project::prelude::*`\n\nhttps://medium.com/pragmatic-programmers/organizing-your-imports-with-a-prelude-e8e83e8575e2",
       "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
