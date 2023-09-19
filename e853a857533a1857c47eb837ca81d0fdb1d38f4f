@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "11db5aee_3a0e800b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-19T22:20:25Z",
+      "side": 1,
+      "message": "Naive question... Do you need a device from bumble or can we simply create a device with any address ? something like `adapter.getRemoteDevice(\"11:22....\")`",
+      "range": {
+        "startLine": 79,
+        "startChar": 8,
+        "endLine": 85,
+        "endChar": 39
+      },
+      "revId": "e853a857533a1857c47eb837ca81d0fdb1d38f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0a4b42a_0454f3a3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-19T22:20:25Z",
+      "side": 1,
+      "message": "Instead of trying to hit the specific race condition, we can try to hit another one.\n\nFor example, after calling close, any call to `readRemoteRssi`, `requestMtu`, `bleSubrateRequest` should return false instantly (and forever).\nAfter calling close we should never call `onRegistered` within the callback neither\n\n`device.connectGatt` will create a new BluetoothGatt instance that reduce the probability of hitting the race condition",
+      "range": {
+        "startLine": 95,
+        "startChar": 12,
+        "endLine": 98,
+        "endChar": 93
+      },
+      "revId": "e853a857533a1857c47eb837ca81d0fdb1d38f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "610c1f26_8d018ed2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-19T22:20:25Z",
+      "side": 1,
+      "message": "Can this be a mock ?",
+      "range": {
+        "startLine": 135,
+        "startChar": 40,
+        "endLine": 135,
+        "endChar": 53
+      },
+      "revId": "e853a857533a1857c47eb837ca81d0fdb1d38f4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
