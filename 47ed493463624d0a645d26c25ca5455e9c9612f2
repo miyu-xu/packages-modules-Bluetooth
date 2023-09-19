@@ -969,6 +969,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8f5a4b7_f683914d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T17:38:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc1c0006_c455e779",
+      "range": {
+        "startLine": 137,
+        "startChar": 23,
+        "endLine": 141,
+        "endChar": 25
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20cdad72_813dcb26",
@@ -1373,6 +1397,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9519169_a9a830d6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T17:38:42Z",
+      "side": 1,
+      "message": "Well in that case polling is just an implementation detail. I think wrapping it is fine.",
+      "parentUuid": "0157fac8_572b3a79",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 5
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8548ce92_cb9cb6d8",
@@ -1482,6 +1530,30 @@
       "side": 1,
       "message": "I would prefer to have a single global queue directly inside the test than an abstraction on top of it for which I need to look at the implementation.",
       "parentUuid": "97a6c60c_daaf6cff",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 80
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53e5acf3_3f6136e4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T17:38:42Z",
+      "side": 1,
+      "message": "I still think we need a per device queue as this test does not care about other devices.",
+      "parentUuid": "af396b5e_590a400f",
       "range": {
         "startLine": 62,
         "startChar": 0,
