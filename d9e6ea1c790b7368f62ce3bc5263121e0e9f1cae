@@ -22,6 +22,30 @@
       },
       "revId": "d9e6ea1c790b7368f62ce3bc5263121e0e9f1cae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9e677d8_8308e5a8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-19T17:34:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a26f7615_d8747361",
+      "range": {
+        "startLine": 39,
+        "startChar": 23,
+        "endLine": 39,
+        "endChar": 36
+      },
+      "revId": "d9e6ea1c790b7368f62ce3bc5263121e0e9f1cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
