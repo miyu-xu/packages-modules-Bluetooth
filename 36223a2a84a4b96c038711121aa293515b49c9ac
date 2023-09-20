@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e87a47d4_19b2ea86",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-20T21:04:10Z",
+      "side": 1,
+      "message": "Add `mma -j` to make lint happy",
+      "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1378495_812f9b79",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-20T21:04:10Z",
+      "side": 1,
+      "message": "try:\n```\n(_data as Box\u003cstd::any::Any + Send\u003e).downcast_ref::\u003cBox\u003cdyn RpcProxy + Send\u003e().unwrap().get_object_id()\n```",
+      "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
