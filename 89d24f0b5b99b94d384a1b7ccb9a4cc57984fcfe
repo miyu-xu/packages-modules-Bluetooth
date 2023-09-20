@@ -16,6 +16,24 @@
       "message": "Quick question: does this CL need to be in a topic like it is now, or is it better to keep them separate?",
       "revId": "89d24f0b5b99b94d384a1b7ccb9a4cc57984fcfe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd795d7b_741903eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T06:51:09Z",
+      "side": 1,
+      "message": "Right now you have both a topic and a relation chain.\n\nRelation chain mean:\nThe current CL can not be merge if parent CL is not merged, parent CL can be merged independently (probably)\n\nThis is usually what you want when working on following change in the same repo.\n\nTopic mean:\nNone of the CL in this topic can be merge.\n\nThis is usually what you want when working on change in multiple repository (one in bluetooth and the other in Base for example).\n\nIn some case you want both. For example, you have a sequence of change, you decided to split them for readibility but still consider that they should be submitted as one entity. (it is discutable, but why not, everything happen)\n\n---\n\nIn this case, a relation chain looks enough to me.\nFirst CL can be merged, then this one. or both together by submitting the relation chain. Topic is not needed (but it is ok if you want to keep it, no harm done)",
+      "parentUuid": "bb164b69_87f3d7ef",
+      "revId": "89d24f0b5b99b94d384a1b7ccb9a4cc57984fcfe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
