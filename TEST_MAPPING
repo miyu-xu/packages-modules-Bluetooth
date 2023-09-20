@@ -9,8 +9,7 @@
       "keywords": ["cf"]
     },
     {
-      "name": "GoogleBluetoothInstrumentationTests",
-      "keywords": ["cf"]
+      "name": "GoogleBluetoothInstrumentationTests"
     },
     {
       "name": "FrameworkBluetoothTests"
