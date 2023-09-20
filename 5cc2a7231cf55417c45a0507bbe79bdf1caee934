@@ -46,6 +46,30 @@
       },
       "revId": "5cc2a7231cf55417c45a0507bbe79bdf1caee934",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0635782_5b2e55cb",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-09-20T07:43:23Z",
+      "side": 1,
+      "message": "I used `LOG(ERROR)` for consistency in the file, I agree that it would be great to have consistency between all Bluetooth stack but I think it would be better to do it in a separate change :)",
+      "parentUuid": "4e990de5_9a3eb5f1",
+      "range": {
+        "startLine": 404,
+        "startChar": 0,
+        "endLine": 406,
+        "endChar": 45
+      },
+      "revId": "5cc2a7231cf55417c45a0507bbe79bdf1caee934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
