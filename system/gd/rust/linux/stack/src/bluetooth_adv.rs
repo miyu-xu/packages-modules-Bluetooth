@@ -375,9 +375,6 @@ impl Into<bt_topshim::profiles::gatt::PeriodicAdvertisingParameters>
     }
 }
 
-/// Monotonically increasing counter for reg_id.
-static REG_ID_COUNTER: AtomicIsize = AtomicIsize::new(0);
-
 // Keeps information of an advertising set.
 #[derive(Debug, PartialEq, Copy, Clone)]
 pub(crate) struct AdvertisingSetInfo {
@@ -418,11 +415,8 @@ impl AdvertisingSetInfo {
         adv_timeout: u16,
         adv_events: u8,
         legacy: bool,
+        reg_id: RegId,
     ) -> Self {
-        let mut reg_id = REG_ID_COUNTER.fetch_add(1, Ordering::SeqCst) as RegId;
-        if reg_id == INVALID_REG_ID {
-            reg_id = REG_ID_COUNTER.fetch_add(1, Ordering::SeqCst) as RegId;
-        }
         AdvertisingSetInfo {
             adv_id: None,
             callback_id,
@@ -517,6 +511,13 @@ impl Advertisers {
             sets: HashMap::new(),
             suspend_mode: SuspendMode::Normal,
         }
+    }
+
+    // Returns the minimum unoccupied register ID from 0.
+    pub(crate) fn new_reg_id(&mut self) -> RegId {
+        (0..)
+            .find(|id| !self.sets.contains_key(id))
+            .expect("There must be an unoccupied register ID")
     }
 
     /// Adds an advertising set.
@@ -694,16 +695,6 @@ mod tests {
     }
 
     #[test]
-    fn test_new_advising_set_info() {
-        let mut uniq = HashSet::new();
-        for callback_id in 0..256 {
-            let s = AdvertisingSetInfo::new(callback_id, 0, 0, false);
-            assert_eq!(s.callback_id(), callback_id);
-            assert_eq!(uniq.insert(s.reg_id()), true);
-        }
-    }
-
-    #[test]
     fn test_iterate_adving_set_info() {
         let (tx, _rx) = crate::Stack::create_channel();
         let mut advertisers = Advertisers::new(tx.clone());
@@ -712,7 +703,8 @@ mod tests {
         for i in 0..size {
             let callback_id: CallbackId = i as CallbackId;
             let adv_id: AdvertiserId = i as AdvertiserId;
-            let mut s = AdvertisingSetInfo::new(callback_id, 0, 0, false);
+            let reg_id = advertisers.new_reg_id();
+            let mut s = AdvertisingSetInfo::new(callback_id, 0, 0, false, reg_id);
             s.set_adv_id(Some(adv_id));
             advertisers.add(s);
         }
