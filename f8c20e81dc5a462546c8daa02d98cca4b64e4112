@@ -106,6 +106,24 @@
       "parentUuid": "75c139bd_3e0b90dd",
       "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e4337ef_2764ef74",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-09-20T15:41:37Z",
+      "side": 1,
+      "message": "Yeah, it would be better fix to reset the bonded status when storage is cleared.",
+      "parentUuid": "2a70fddb_35d00628",
+      "revId": "f8c20e81dc5a462546c8daa02d98cca4b64e4112",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
