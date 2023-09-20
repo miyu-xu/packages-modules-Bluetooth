@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3000e97b_32a80235",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T20:35:20Z",
+      "side": 1,
+      "message": "Just asking for confirmation, You just copied the file and changed the class name, that\u0027s all ?",
+      "revId": "cba04ccfca9fd2b9f48a0c87afd3df3bacabb401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
