@@ -49,6 +49,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7c5a36c4_6cf44f4e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-20T23:40:30Z",
+      "side": 1,
+      "message": "`bondedIntent` ?",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 33
+      },
+      "revId": "45a2b358e2ae1e102908027a0de3ecb047aec6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb847cc_6a7ca4b2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-20T23:40:30Z",
+      "side": 1,
+      "message": "`isNotNull` is not needed, the second `assertThat` will do it already.",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 45
+      },
+      "revId": "45a2b358e2ae1e102908027a0de3ecb047aec6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "351fcf05_b0ce1ad0",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 11
