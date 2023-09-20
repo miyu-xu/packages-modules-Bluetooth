@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "272034af_f3d1f85e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-20T16:46:16Z",
+      "side": 1,
+      "message": "This doesn\u0027t look like to be a revert.\n\nWhy is this a revert + with a `DO NOT MERGE` ?",
+      "revId": "a96c5a3a15a7cf361ec4548b936da97bf563da0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
