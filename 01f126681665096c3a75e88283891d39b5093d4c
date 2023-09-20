@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e66533b_e449fe05",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-20T03:04:11Z",
+      "side": 1,
+      "message": "Please run build.py to clarify if it\u0027s related to this patch.\nI also suggest to modify build.py in this CL (e.g. the COMMON_MK_COMMIT) after you got cros CL landed.",
+      "revId": "01f126681665096c3a75e88283891d39b5093d4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b47cfece_1e30e9d8",
