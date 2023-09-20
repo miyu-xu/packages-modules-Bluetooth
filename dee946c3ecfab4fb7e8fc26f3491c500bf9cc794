@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4bb051a1_735ac5c7",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3508,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T20:52:27Z",
+      "side": 1,
+      "message": "You removed the declaration but not the initialization.\nCan you move this to the other CL too ?",
+      "range": {
+        "startLine": 3502,
+        "startChar": 0,
+        "endLine": 3508,
+        "endChar": 75
+      },
+      "revId": "dee946c3ecfab4fb7e8fc26f3491c500bf9cc794",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -161,6 +161,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7fbd94ff_00dd74dd",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T20:52:27Z",
+      "side": 1,
+      "message": "Sorry for the confusion but:\n\nIf len is not ENC_KEY_MATERIAL_LEN or if btif_storage_get_enc_key_material failed, the `sec_event` is bzeroed and the callback is still called with an empty bzero\u0027ed structure.\n\nIs it the intended behavior ?",
+      "parentUuid": "28bad973_4b1f4d8f",
+      "range": {
+        "startLine": 483,
+        "startChar": 4,
+        "endLine": 483,
+        "endChar": 63
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "69b97881_51829abe",
         "filename": "system/btif/src/btif_storage.cc",
         "patchSetId": 4
@@ -314,6 +338,30 @@
       "side": 1,
       "message": "Is there a property naming convention that should be used. Can you provide an example of a flag being used",
       "parentUuid": "97c95614_46df0ca5",
+      "range": {
+        "startLine": 3504,
+        "startChar": 24,
+        "endLine": 3504,
+        "endChar": 66
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b6f641c_e8be55e1",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3504,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T20:52:27Z",
+      "side": 1,
+      "message": "For property we should not have \"persist\" as there is no intention for the property to be added to developer options.\nSame \"vendor\" does not make any sense now since this is going to the upstream.\nA more appropriate name could have been:\n`bluetooth.gatt.encrypted_advertisement.enabled` and `bluetooth.gatt.encrypted_advertisement.log.enabled`\n\n\nBut since we are using the property to gate the feature, we should instead use a feature flag.\nSee aosp/2746036 for an example of how to add a flag.\nFeel free to do that in a separate CL as a pre-requisite to this topic.",
+      "parentUuid": "5b240980_7a6023c7",
       "range": {
         "startLine": 3504,
         "startChar": 24,
@@ -644,6 +692,30 @@
       "side": 1,
       "message": "GATT_SUCCESS will only be returned when the handle matches. If the handle matches then that char or descriptor should be present.",
       "parentUuid": "4922d5e2_8ea987e2",
+      "range": {
+        "startLine": 259,
+        "startChar": 13,
+        "endLine": 259,
+        "endChar": 25
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4be82c0_43c39a4d",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T20:52:27Z",
+      "side": 1,
+      "message": "\u003e that char or descriptor should be present.\n\nWhat \"should\" mean in this context ? Is this a fatal error if there is no char ?",
+      "parentUuid": "ffccb6af_35d5a407",
       "range": {
         "startLine": 259,
         "startChar": 13,
