@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3a1c808_1f090969",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-20T06:34:51Z",
+      "side": 1,
+      "message": "May I know why nested spawn is needed here?",
+      "range": {
+        "startLine": 399,
+        "startChar": 0,
+        "endLine": 401,
+        "endChar": 15
+      },
+      "revId": "88896246c5c7a51faa7a31b63db569be055ac429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
