@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "743650b5_41ee5c21",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-09-20T23:39:40Z",
+      "side": 1,
+      "message": "general naming thoughts: maybe it would be better to distinguish SWB vs LC3 vs aptx\n\nFor example, sometimes it is swb meaning aptx\n```\n    p_scb-\u003ecodec_lc3_settings \u003d BTA_AG_SCO_LC3_SETTINGS_T2;\n    p_scb-\u003ecodec_swb_settings \u003d BTA_AG_SCO_SWB_SETTINGS_Q0;\n```\nsometimes swb meaning LC3+APTX\n```\nswitch (swbCodec) {\ncase HeadsetHalConstants.BTHF_SWB_CODEC_LC3:\ncase HeadsetHalConstants.BTHF_SWB_CODEC_VENDOR_APTX:\n```\nIt would be confusing",
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ab1a5f1_aa649a29",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-09-20T23:39:40Z",
+      "side": 1,
+      "message": "`enableSwbCodec` calls `mNativeInterface.enableSwb`, then calls `enableSwbNative`, then calls `sBluetoothHfpInterface-\u003eEnableSwb`, then calls `enable_aptx_swb_codec`, which is a function to read init flag and whether that devices supports LC3\n```\nbt_status_t enable_aptx_swb_codec(bool enable, RawAddress* bd_addr) {\n  if (bluetooth::common::init_flags::aptx_voice_is_enabled() \u0026\u0026\n      (get_lc3_swb_codec_status(bd_addr) \u003d\u003d false)) {\n    LOG_INFO(\"%d\", enable);\n    aptx_swb_codec_status \u003d enable;\n    return BT_STATUS_SUCCESS;\n  }\n  return BT_STATUS_FAIL;\n}\n```\nthis might be better to not handled in Java layer, instead, to use or not to use aptx would be better to handle on native layer during feature exchange.\nFor the dependency on network info, please see [comment#309](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2678015/16/android/app/src/com/android/bluetooth/telephony/BluetoothCall.java#309)",
+      "range": {
+        "startLine": 1199,
+        "startChar": 8,
+        "endLine": 1199,
+        "endChar": 22
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b64951ab_edaaf983",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothCall.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-09-20T23:39:40Z",
+      "side": 1,
+      "message": "what would happen if we use aptx during non `PROPERTY_HIGH_DEF_AUDIO`?\nWill there be a voice quality downside?\nFor LC3, it is always enabled, whatever network it is.",
+      "range": {
+        "startLine": 309,
+        "startChar": 19,
+        "endLine": 309,
+        "endChar": 33
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
