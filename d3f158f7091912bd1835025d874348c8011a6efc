@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50534199_428b9f2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-09-20T07:41:44Z",
+      "side": 1,
+      "message": "NIT: why not just \"info\" log level ? I think warning should be reserved to serious violations",
+      "revId": "d3f158f7091912bd1835025d874348c8011a6efc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
