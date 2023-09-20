@@ -256,6 +256,7 @@ enum DeviceConnectionStates {
     ConnectingAfterRetry,  // Host initiated requests to missing profiles after timeout
     FullyConnected,        // All profiles (excluding AVRCP) are connected
     Disconnecting,         // Working towards disconnection of each connected profile
+    WaitingConnection,     // Waiting for new connections initiated by peer
 }
 
 pub struct BluetoothMedia {
@@ -605,7 +606,8 @@ impl BluetoothMedia {
                     info!("[{}]: state {:?}", DisplayAddress(&addr), state);
                     match state {
                         DeviceConnectionStates::ConnectingBeforeRetry
-                        | DeviceConnectionStates::ConnectingAfterRetry => {
+                        | DeviceConnectionStates::ConnectingAfterRetry
+                        | DeviceConnectionStates::WaitingConnection => {
                             self.delay_volume_update.insert(Profile::AvrcpController, volume);
                         }
                         DeviceConnectionStates::FullyConnected => {
@@ -779,7 +781,8 @@ impl BluetoothMedia {
                 );
                 match states.get(&addr).unwrap() {
                     DeviceConnectionStates::ConnectingBeforeRetry
-                    | DeviceConnectionStates::ConnectingAfterRetry => {
+                    | DeviceConnectionStates::ConnectingAfterRetry
+                    | DeviceConnectionStates::WaitingConnection => {
                         self.delay_volume_update.insert(Profile::Hfp, volume);
                     }
                     DeviceConnectionStates::FullyConnected => {
@@ -1193,17 +1196,46 @@ impl BluetoothMedia {
         if states.get(&addr).is_none() {
             states.insert(addr, DeviceConnectionStates::ConnectingBeforeRetry);
         }
-        if missing_profiles.is_empty()
-            || missing_profiles == HashSet::from([Profile::AvrcpController])
-        {
-            info!(
-                "[{}]: Fully connected, available profiles: {:?}, connected profiles: {:?}.",
-                DisplayAddress(&addr),
-                available_profiles,
-                connected_profiles
-            );
 
-            states.insert(addr, DeviceConnectionStates::FullyConnected);
+        if states.get(&addr).unwrap() != &DeviceConnectionStates::FullyConnected {
+            if available_profiles.is_empty() {
+                // Some headsets may start initiating connections to audio profiles before they are
+                // exposed to the stack. In this case, wait for either all critical profiles have been
+                // connected or some timeout to enter the |FullyConnected| state.
+                if connected_profiles.contains(&Profile::Hfp)
+                    && connected_profiles.contains(&Profile::A2dpSink)
+                {
+                    info!(
+                        "[{}]: Fully connected, available profiles: {:?}, connected profiles: {:?}.",
+                        DisplayAddress(&addr),
+                        available_profiles,
+                        connected_profiles
+                    );
+
+                    states.insert(addr, DeviceConnectionStates::FullyConnected);
+                } else {
+                    warn!(
+                        "[{}]: Connected profiles: {:?}, waiting for peer to initiate remaining connections.",
+                        DisplayAddress(&addr),
+                        connected_profiles
+                    );
+
+                    states.insert(addr, DeviceConnectionStates::WaitingConnection);
+                }
+            } else {
+                if missing_profiles.is_empty()
+                    || missing_profiles == HashSet::from([Profile::AvrcpController])
+                {
+                    info!(
+                        "[{}]: Fully connected, available profiles: {:?}, connected profiles: {:?}.",
+                        DisplayAddress(&addr),
+                        available_profiles,
+                        connected_profiles
+                    );
+
+                    states.insert(addr, DeviceConnectionStates::FullyConnected);
+                }
+            }
         }
 
         info!(
@@ -1300,6 +1332,12 @@ impl BluetoothMedia {
                 guard.insert(addr, None);
             }
             DeviceConnectionStates::Disconnecting => {}
+            DeviceConnectionStates::WaitingConnection => {
+                let task = topstack::get_runtime().spawn(async move {
+                    BluetoothMedia::wait_force_enter_connected(&txl, &addr, ts).await;
+                });
+                guard.insert(addr, Some((task, ts)));
+            }
         }
     }
 
@@ -1716,9 +1754,9 @@ impl BluetoothMedia {
     }
 
     // Force the media enters the FullyConnected state and then triggers a retry.
-    // This function is only used for qualification as a replacement of normal retry.
-    // Usually PTS initiates the connection of the necessary profiles, and Floss should notify
-    // CRAS of the new audio device regardless of the unconnected profiles.
+    // When this function is used for qualification as a replacement of normal retry,
+    // PTS could initiate the connection of the necessary profiles, and Floss should
+    // notify CRAS of the new audio device regardless of the unconnected profiles.
     // Still retry in the end because some test cases require that.
     fn force_enter_connected(&mut self, address: String) {
         let addr = match RawAddress::from_string(address.clone()) {
