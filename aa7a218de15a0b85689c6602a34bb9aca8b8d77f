@@ -123,6 +123,24 @@
       "parentUuid": "787bd1b5_f16bcf0c",
       "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a8c13f8_daf11302",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-20T19:11:39Z",
+      "side": 1,
+      "message": "Resolved offline.",
+      "parentUuid": "b831ba53_c7b6eb9b",
+      "revId": "aa7a218de15a0b85689c6602a34bb9aca8b8d77f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
