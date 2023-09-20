@@ -22,6 +22,30 @@
       },
       "revId": "88896246c5c7a51faa7a31b63db569be055ac429",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10267b7a_d8a13f58",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-20T10:05:57Z",
+      "side": 1,
+      "message": "This looks like not needed! Didn\u0027t notice that this is already in a async block. Thanks for catching this.",
+      "parentUuid": "d3a1c808_1f090969",
+      "range": {
+        "startLine": 399,
+        "startChar": 0,
+        "endLine": 401,
+        "endChar": 15
+      },
+      "revId": "88896246c5c7a51faa7a31b63db569be055ac429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
