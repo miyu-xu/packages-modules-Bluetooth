@@ -33,6 +33,24 @@
       "message": "Can you update the comment here about why this is `0xfff`? Also, prefer to use `0x0fff` instead of just `0xfff`",
       "revId": "dea3f6b7eaa42f832d6480fb13ebdfba2fec83e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76f3d073_8eccdb2b",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-20T06:56:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14e71189_6b7e704a",
+      "revId": "dea3f6b7eaa42f832d6480fb13ebdfba2fec83e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
