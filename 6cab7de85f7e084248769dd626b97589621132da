@@ -22,6 +22,30 @@
       },
       "revId": "6cab7de85f7e084248769dd626b97589621132da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ce22303_995e2d30",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1480,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-20T10:04:41Z",
+      "side": 1,
+      "message": "+melhuishj@google.com\n\nCould you take a look or provide more info about how to check if this is still needed?\n\nThanks",
+      "parentUuid": "bb5599d7_d379fcb0",
+      "range": {
+        "startLine": 1479,
+        "startChar": 12,
+        "endLine": 1480,
+        "endChar": 85
+      },
+      "revId": "6cab7de85f7e084248769dd626b97589621132da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
