@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8f47e8c_7dc984ee",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 473,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-20T06:13:02Z",
+      "side": 1,
+      "message": "The check is now len \u003d\u003d ENC_KEY_MATERIAL_LEN",
+      "parentUuid": "67f8455e_64cb98f8",
+      "range": {
+        "startLine": 471,
+        "startChar": 2,
+        "endLine": 473,
+        "endChar": 16
+      },
+      "revId": "98b28daf2ba4411b7b2db2c5641fef0179922bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "49e7dac3_5720e04e",
@@ -82,6 +106,30 @@
         "id": 1881060
       },
       "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49e7dac3_5720e04e",
+      "range": {
+        "startLine": 750,
+        "startChar": 2,
+        "endLine": 752,
+        "endChar": 78
+      },
+      "revId": "98b28daf2ba4411b7b2db2c5641fef0179922bf7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bc1223d_41a15111",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-20T06:13:02Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "49e7dac3_5720e04e",
