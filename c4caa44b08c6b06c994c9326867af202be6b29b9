@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39f0822e_e421d10c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-20T17:56:56Z",
+      "side": 1,
+      "message": "It looks like the only change relevant to this CL title is here:\n```\nsystem/BUILD.gn\n```\n\nCan the rest of the changes in the CL be broken into a subsequent CL ?",
+      "revId": "c4caa44b08c6b06c994c9326867af202be6b29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
