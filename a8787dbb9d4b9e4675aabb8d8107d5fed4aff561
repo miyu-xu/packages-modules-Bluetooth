@@ -16,6 +16,24 @@
       "message": "would like to understand a bit more, why do we need this check here?",
       "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "facd81d5_f4057051",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2165,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-20T06:29:43Z",
+      "side": 1,
+      "message": "Just to check if group was previously in ACTIVE set before setting active device to null. If group were not active nor in pending activation state - there were no active device set, so there is nothing to be done with handleGroupTransitToInactive.",
+      "parentUuid": "835e0607_8421c290",
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
