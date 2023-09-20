@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "681f4c41_595d1223",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_adv.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 704,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-20T12:11:59Z",
+      "side": 0,
+      "message": "Do you mind adding a new test case that adds and removes AdvertisingSetInfo from advertiser? Thank you.",
+      "range": {
+        "startLine": 697,
+        "startChar": 0,
+        "endLine": 704,
+        "endChar": 5
+      },
+      "revId": "0c849460eb813dd675d97cfc49fffd20f78b153f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
