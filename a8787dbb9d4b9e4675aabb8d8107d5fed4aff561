@@ -34,6 +34,42 @@
       "parentUuid": "835e0607_8421c290",
       "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d6aa15_b4f57452",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2165,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-20T17:48:41Z",
+      "side": 1,
+      "message": "So if the device is in pending activation state, we skipped to set it to inactive. But we might still proceed with creating broadcast if pending.\n\nWill this cause some potential race condition? I\u0027m thinking if it\u0027s pending active, and GROUP_STATUS_INACTIVE comes in, should we handle this case?",
+      "parentUuid": "facd81d5_f4057051",
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00076cbe_1fad7560",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2165,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-20T17:48:41Z",
+      "side": 1,
+      "message": "so if the device is in pending activation state,",
+      "parentUuid": "facd81d5_f4057051",
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
