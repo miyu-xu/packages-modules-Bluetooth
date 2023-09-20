@@ -115,6 +115,24 @@
       "message": "Can you replace this with a prelude so that we can just `use dbus_project::prelude::*`\n\nhttps://medium.com/pragmatic-programmers/organizing-your-imports-with-a-prelude-e8e83e8575e2",
       "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6fc0735_2d908843",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager_dbus.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-20T04:05:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6eff5c81_e90ab863",
+      "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
