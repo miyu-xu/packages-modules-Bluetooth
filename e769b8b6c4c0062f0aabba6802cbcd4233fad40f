@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "298d8d65_2bf96457",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-20T08:15:38Z",
+      "side": 1,
+      "message": "For the current Chrome, yes, it will need to wait some time. But with crrev/c/4862930 merged first, it won\u0027t need to add additional sleep as it shall watch the interface signal from Object Manager and only register clients after receiving such signal. As for btclient, I don\u0027t want to implement such signal watcher in here so just use 1 second for convenience.",
+      "parentUuid": "96914d0d_bd87734b",
+      "range": {
+        "startLine": 251,
+        "startChar": 12,
+        "endLine": 251,
+        "endChar": 53
+      },
+      "revId": "e769b8b6c4c0062f0aabba6802cbcd4233fad40f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8353c01_2142a3f2",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-20T03:59:50Z",
       "side": 1,
       "message": "For media case, \"export media interfaces until the services are available\", is this something you\u0027re planning for?\nif so, it seems reasonable in media case, but I was wondering if this is try for GATT case? I was expecting scanner and advertiser will be ready once the underlying Bluetooth stack is up.",
+      "range": {
+        "startLine": 1306,
+        "startChar": 20,
+        "endLine": 1307,
+        "endChar": 89
+      },
+      "revId": "e769b8b6c4c0062f0aabba6802cbcd4233fad40f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37efb141_2b3c11c1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-20T08:15:38Z",
+      "side": 1,
+      "message": "\u003e For media case, \"export media interfaces until the services are available\", is this something you\u0027re planning for?\n\nI think this should be implemented in this way but I haven\u0027t checked the libbluetooth API how to determine if the API is ready. And also, we only observe crash caused by exposing GATT interface too early but not in media interface. So I\u0027ll leave it as a TODO task for now.\n\n\u003e  I was wondering if this is try for GATT case? I was expecting scanner and advertiser will be ready once the underlying Bluetooth stack is up.\n\nI\u0027m not sure about the libbluetooth API, but at the bottom line, we should only expose it **after** [init_profiles](https://source.corp.google.com/h/chromium/chromiumos/codesearch/+/main:src/aosp/packages/modules/Bluetooth/upstream/system/gd/rust/linux/stack/src/bluetooth_gatt.rs;l\u003d1393?q\u003dsystem%2Fgd%2Frust%2Flinux%2Fstack%2Fsrc%2Fbluetooth_gatt.rs\u0026ss\u003dh%2Fchromium%2Fchromiumos%2Fcodesearch%2F%2B%2Frefs%2Fheads%2Fmain:src%2Faosp%2Fpackages%2Fmodules%2FBluetooth%2Fupstream%2F) is called, otherwise the self.gatt is None and cause panics in many API handler in unwrap. This is also what I did in the next CL.",
+      "parentUuid": "d8353c01_2142a3f2",
       "range": {
         "startLine": 1306,
         "startChar": 20,
