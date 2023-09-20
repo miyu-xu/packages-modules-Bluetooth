@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a06de68_6e780c9a",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-20T08:27:10Z",
+      "side": 1,
+      "message": "please update",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "04870b04dbe9c29cf6e83480f2d68c7291799e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c47eb48d_4c08ab9b",
         "filename": "system/bta/le_audio/device_groups.h",
         "patchSetId": 1
