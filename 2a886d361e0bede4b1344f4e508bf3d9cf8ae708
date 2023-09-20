@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63955164_0c0af9fe",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-20T06:50:14Z",
+      "side": 1,
+      "message": "Good idea, thank you!",
+      "parentUuid": "b5740f8c_105557a6",
+      "revId": "2a886d361e0bede4b1344f4e508bf3d9cf8ae708",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d9eacc46_21034919",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-09-19T22:00:56Z",
       "side": 1,
       "message": "can we define what 3 means here? and need to check to confirm if it\u0027s valid value after the update?",
+      "revId": "2a886d361e0bede4b1344f4e508bf3d9cf8ae708",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e59a470_67ec037a",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1044,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-20T06:50:14Z",
+      "side": 1,
+      "message": "This comes from: Core 5.3, 4.9.3 Write Characteristic Value. `This sub-procedure only writes the first (ATT_MTU – 3) octets of a Characteristic Value`\n\nWhat means that for single write (no response) this is the maximal attribute value len.\n\nps. Thank you for pointing this not defined value!",
+      "parentUuid": "d9eacc46_21034919",
       "revId": "2a886d361e0bede4b1344f4e508bf3d9cf8ae708",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
