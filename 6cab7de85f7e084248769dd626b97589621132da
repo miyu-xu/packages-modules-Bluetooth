@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb5599d7_d379fcb0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1480,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-20T04:15:21Z",
+      "side": 1,
+      "message": "Given the workaround has been there for a year, is it possible for us to revisit this bug?",
+      "range": {
+        "startLine": 1479,
+        "startChar": 12,
+        "endLine": 1480,
+        "endChar": 85
+      },
+      "revId": "6cab7de85f7e084248769dd626b97589621132da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
