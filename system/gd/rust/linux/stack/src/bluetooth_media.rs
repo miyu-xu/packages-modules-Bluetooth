@@ -690,18 +690,6 @@ impl BluetoothMedia {
                             self.hfp_cap.insert(addr, HfpCodecCapability::CVSD);
                         }
                         self.add_connected_profile(addr, uuid::Profile::Hfp);
-
-                        // Connect SCO if phone operations are enabled and an active call exists.
-                        // This is only used for Bluetooth HFP qualification.
-                        if self.phone_ops_enabled && self.phone_state.num_active > 0 {
-                            debug!("[{}]: Connect SCO due to active call.", DisplayAddress(&addr));
-                            self.start_sco_call_impl(
-                                addr.to_string(),
-                                false,
-                                HfpCodecCapability::NONE,
-                            );
-                        }
-
                         self.uhid_create(addr);
                     }
                     BthfConnectionState::Disconnected => {
@@ -962,9 +950,6 @@ impl BluetoothMedia {
                     return;
                 }
                 self.phone_state_change("".into());
-
-                debug!("[{}]: Start SCO call due to ATA", DisplayAddress(&addr));
-                self.start_sco_call_impl(addr.to_string(), false, HfpCodecCapability::NONE);
                 self.uhid_send_input_report(&addr);
             }
             HfpCallbacks::HangupCall(addr) => {
@@ -2786,19 +2771,6 @@ impl IBluetoothTelephony for BluetoothMedia {
             return false;
         }
         self.phone_state_change("".into());
-
-        // Find a connected HFP and try to establish an SCO.
-        if let Some(addr) = self.hfp_states.iter().find_map(|(addr, state)| {
-            if *state == BthfConnectionState::SlcConnected {
-                Some(addr.clone())
-            } else {
-                None
-            }
-        }) {
-            info!("Start SCO call due to call answered");
-            self.start_sco_call_impl(addr.to_string(), false, HfpCodecCapability::NONE);
-        }
-
         true
     }
 
