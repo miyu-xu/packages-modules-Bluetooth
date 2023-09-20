@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b08ff1a0_abd86154",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-20T10:54:38Z",
+      "side": 1,
+      "message": "LGTM. Loop in Jesse for GATT/Battery.",
+      "revId": "e769b8b6c4c0062f0aabba6802cbcd4233fad40f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "96914d0d_bd87734b",
         "filename": "system/gd/rust/linux/client/src/main.rs",
         "patchSetId": 2
