@@ -69,24 +69,6 @@ class AndroidInternal(val context: Context) : AndroidImplBase() {
         }
     }
 
-    override fun sendSMS(request: Empty, responseObserver: StreamObserver<Empty>) {
-        grpcUnary<Empty>(scope, responseObserver) {
-            val smsManager = SmsManager.getDefault()
-            val defaultSmsSub = SubscriptionManager.getDefaultSmsSubscriptionId()
-            telephonyManager = telephonyManager.createForSubscriptionId(defaultSmsSub)
-            val avdPhoneNumber = telephonyManager.getLine1Number()
-
-            smsManager.sendTextMessage(
-                avdPhoneNumber,
-                avdPhoneNumber,
-                generateAlphanumericString(DEFAULT_MESSAGE_LEN),
-                null,
-                null
-            )
-            Empty.getDefaultInstance()
-        }
-    }
-
     override fun sendPing(request: SendPingRequest, responseObserver: StreamObserver<Empty>) {
         grpcUnary<Empty>(scope, responseObserver) {
             val pingStatus =
