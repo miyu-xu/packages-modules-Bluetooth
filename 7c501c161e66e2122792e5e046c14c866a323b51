@@ -64,6 +64,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a352bad9_a0003ba9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AbstractionLayer.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7d981ec_06e77658",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 57
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dad5711c_1f2784e4",
@@ -123,6 +147,30 @@
       "writtenOn": "2023-09-16T00:15:11Z",
       "side": 1,
       "message": "Unused ?",
+      "range": {
+        "startLine": 402,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 31
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15b12f9a_2482afd8",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5b1ab27_7706c1b2",
       "range": {
         "startLine": 402,
         "startChar": 0,
@@ -248,6 +296,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0b013fe_0600c937",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e52ae96_ec376a41",
+      "range": {
+        "startLine": 55,
+        "startChar": 2,
+        "endLine": 55,
+        "endChar": 9
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bcd7e1d4_65ee8fce",
@@ -261,6 +333,30 @@
       "writtenOn": "2023-09-16T00:15:11Z",
       "side": 1,
       "message": "Can we delete `ENCR_KEY_MATERIAL_LEN` and use `ENC_KEY_MATERIAL_LEN` instead ?\nTo avoid defining twice a variable ?",
+      "range": {
+        "startLine": 109,
+        "startChar": 38,
+        "endLine": 109,
+        "endChar": 40
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a05db3c_ba0c6e78",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcd7e1d4_65ee8fce",
       "range": {
         "startLine": 109,
         "startChar": 38,
@@ -317,6 +413,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "716b610c_914833d9",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "acf61773_18bbb168",
+      "range": {
+        "startLine": 593,
+        "startChar": 0,
+        "endLine": 593,
+        "endChar": 80
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "870a89e6_8ad4f124",
@@ -330,6 +450,30 @@
       "writtenOn": "2023-09-16T00:15:11Z",
       "side": 1,
       "message": "is 16 for `ENC_KEY_LEN` ?\nIf so we should replace it everywhere",
+      "range": {
+        "startLine": 750,
+        "startChar": 72,
+        "endLine": 750,
+        "endChar": 74
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acc53720_5333b3ad",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "870a89e6_8ad4f124",
       "range": {
         "startLine": 750,
         "startChar": 72,
@@ -363,6 +507,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a08cb1d_e0814bc6",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "428d9b24_60aac514",
+      "range": {
+        "startLine": 751,
+        "startChar": 77,
+        "endLine": 751,
+        "endChar": 78
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f56344e5_6600e6e0",
@@ -376,6 +544,30 @@
       "writtenOn": "2023-09-16T00:15:11Z",
       "side": 1,
       "message": "The logic here is if key has changed, do some stuff.\n\nsince we are already using memcpy to save the value in the db_attr, wouldn\u0027t it be easier to do\n```\nmemcmp(db_attr.attr_value.encr_material, p_value-\u003eencr_material, sizeof(tGAP_BLE_ENCR_DATAKEY))\n``` \n\n?",
+      "range": {
+        "startLine": 788,
+        "startChar": 8,
+        "endLine": 814,
+        "endChar": 16
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ccce2e4_20ea8943",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "You changed the logic here compared to the first patchset. Is this intended ?\n\nBefore:\n* save db_attr key in tmp\n* write new key in db_attr\n* if new key !\u003d tmp \u003d\u003e do some stuff\n\nnow:\n* if new key !\u003d db_attr \u003d\u003e write new_key in db attr and do some stuff",
+      "parentUuid": "f56344e5_6600e6e0",
       "range": {
         "startLine": 788,
         "startChar": 8,
@@ -455,6 +647,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90d9d8b8_a758cc41",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1008,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "244c1df4_f78ce948",
+      "range": {
+        "startLine": 1000,
+        "startChar": 2,
+        "endLine": 1008,
+        "endChar": 3
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "64735abd_5066c988",
@@ -468,6 +684,30 @@
       "writtenOn": "2023-09-16T00:15:11Z",
       "side": 1,
       "message": "Should it be directly : \n\n`ENC_KEY_MATERIAL_LEN (ENC_KEY_LEN + ENC_IV_LEN)`\n\n?",
+      "range": {
+        "startLine": 71,
+        "startChar": 29,
+        "endLine": 71,
+        "endChar": 31
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "426d6171_7fa562dc",
+        "filename": "system/stack/include/gap_api.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-20T05:59:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "64735abd_5066c988",
       "range": {
         "startLine": 71,
         "startChar": 29,
