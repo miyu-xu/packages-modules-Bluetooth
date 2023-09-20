@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "c62c6a47_95a8d609",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-20T17:52:44Z",
+      "side": 1,
+      "message": "Yup -- that\u0027s the error:\n```\nERROR at //bt/system/gd/hal/BUILD.gn:30:11: No value named \"floss_rootcanal\" in scope \"use\"\n  if (use.floss_rootcanal) {\n          ^--------------\nSee //bt/system/gd/BUILD.gn:72:5: which caused the file to be included.\n    \"//bt/system/gd/hal:BluetoothHalSources_hci_host\",\n    ^------------------------------------------------\n    ```",
+      "parentUuid": "4e66533b_e449fe05",
+      "revId": "01f126681665096c3a75e88283891d39b5093d4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b47cfece_1e30e9d8",
