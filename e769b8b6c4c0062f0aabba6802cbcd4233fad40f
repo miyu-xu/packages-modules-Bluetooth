@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96914d0d_bd87734b",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-20T03:59:50Z",
+      "side": 1,
+      "message": "Does other client, like Chrome, also need this 1 second sleep before callback registration?",
+      "range": {
+        "startLine": 251,
+        "startChar": 12,
+        "endLine": 251,
+        "endChar": 53
+      },
+      "revId": "e769b8b6c4c0062f0aabba6802cbcd4233fad40f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8353c01_2142a3f2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1307,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-20T03:59:50Z",
+      "side": 1,
+      "message": "For media case, \"export media interfaces until the services are available\", is this something you\u0027re planning for?\nif so, it seems reasonable in media case, but I was wondering if this is try for GATT case? I was expecting scanner and advertiser will be ready once the underlying Bluetooth stack is up.",
+      "range": {
+        "startLine": 1306,
+        "startChar": 20,
+        "endLine": 1307,
+        "endChar": 89
+      },
+      "revId": "e769b8b6c4c0062f0aabba6802cbcd4233fad40f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
