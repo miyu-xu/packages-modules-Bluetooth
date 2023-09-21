@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a24b1a9a_583bf754",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-21T00:28:18Z",
+      "side": 1,
+      "message": "This seems like it is already covered in line 544 from the log?\n\nIf this also needed, would it make sense to combine with the check in that if statement?",
+      "range": {
+        "startLine": 543,
+        "startChar": 2,
+        "endLine": 543,
+        "endChar": 63
+      },
+      "revId": "f407fed52cb53f5bd3eacd318807120cf75c29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
