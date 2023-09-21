@@ -63,8 +63,9 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -151,31 +152,6 @@ public class AudioRoutingManagerTest {
         when(mHearingAidService.getHiSyncId(mHearingAidDevice)).thenReturn(mHearingAidHiSyncId);
         when(mHearingAidService.getConnectedPeerDevices(mHearingAidHiSyncId))
                 .thenReturn(connectedHearingAidDevices);
-
-        when(mA2dpService.getFallbackDevice())
-                .thenAnswer(
-                        invocation -> {
-                            if (!mDeviceConnectionStack.isEmpty()
-                                    && Objects.equals(
-                                            mA2dpDevice,
-                                            mDeviceConnectionStack.get(
-                                                    mDeviceConnectionStack.size() - 1))) {
-                                return mA2dpDevice;
-                            }
-                            return null;
-                        });
-        when(mHeadsetService.getFallbackDevice())
-                .thenAnswer(
-                        invocation -> {
-                            if (!mDeviceConnectionStack.isEmpty()
-                                    && Objects.equals(
-                                            mHeadsetDevice,
-                                            mDeviceConnectionStack.get(
-                                                    mDeviceConnectionStack.size() - 1))) {
-                                return mHeadsetDevice;
-                            }
-                            return null;
-                        });
     }
 
     @After
@@ -1143,6 +1119,50 @@ public class AudioRoutingManagerTest {
         verify(mHearingAidService, timeout(TIMEOUT_MS)).removeActiveDevice(false);
     }
 
+    @Test
+    public void testGetFallbackCandidates() {
+        BluetoothDevice deviceA = TestUtils.getTestDevice(mAdapter, 0);
+        BluetoothDevice deviceB = TestUtils.getTestDevice(mAdapter, 1);
+
+        // No connected device
+        assertThat(mAudioRoutingManager.getHfpFallbackCandidates().isEmpty()).isTrue();
+
+        // One connected device
+        headsetConnected(deviceA, true);
+        TestUtils.waitForLooperToFinishScheduledTask(mAudioRoutingManager.getHandlerLooper());
+        assertThat(mAudioRoutingManager.getHfpFallbackCandidates().contains(deviceA)).isTrue();
+
+        // Two connected devices
+        headsetConnected(deviceB, false);
+        TestUtils.waitForLooperToFinishScheduledTask(mAudioRoutingManager.getHandlerLooper());
+        assertThat(mAudioRoutingManager.getHfpFallbackCandidates().contains(deviceA)).isTrue();
+        assertThat(mAudioRoutingManager.getHfpFallbackCandidates().contains(deviceB)).isTrue();
+    }
+
+    @Test
+    public void testGetHfpFallbackCandidates_HasWatchDevice() {
+        BluetoothDevice deviceWatch = TestUtils.getTestDevice(mAdapter, 0);
+        BluetoothDevice deviceRegular = TestUtils.getTestDevice(mAdapter, 1);
+
+        // Make deviceWatch a watch
+        mDatabaseManager.setCustomMeta(
+                deviceWatch,
+                BluetoothDevice.METADATA_DEVICE_TYPE,
+                BluetoothDevice.DEVICE_TYPE_WATCH.getBytes());
+
+        // Has a connected watch device
+        headsetConnected(deviceWatch, false);
+        TestUtils.waitForLooperToFinishScheduledTask(mAudioRoutingManager.getHandlerLooper());
+        assertThat(mAudioRoutingManager.getHfpFallbackCandidates().isEmpty()).isTrue();
+
+        // Two connected devices with one watch
+        headsetConnected(deviceRegular, true);
+        TestUtils.waitForLooperToFinishScheduledTask(mAudioRoutingManager.getHandlerLooper());
+        assertThat(mAudioRoutingManager.getHfpFallbackCandidates().contains(deviceWatch)).isFalse();
+        assertThat(mAudioRoutingManager.getHfpFallbackCandidates().contains(deviceRegular))
+                .isTrue();
+    }
+
     /** Helper to indicate A2dp connected for a device. */
     private void a2dpConnected(BluetoothDevice device, boolean supportHfp) {
         mDatabaseManager.setProfileConnectionPolicy(
@@ -1329,6 +1349,7 @@ public class AudioRoutingManagerTest {
 
     private class TestDatabaseManager extends DatabaseManager {
         ArrayMap<BluetoothDevice, SparseIntArray> mProfileConnectionPolicy;
+        final Map<String, Map<Integer, byte[]>> mMetadataCache = new HashMap<>();
 
         TestDatabaseManager(AdapterService service) {
             super(service);
@@ -1376,6 +1397,26 @@ public class AudioRoutingManagerTest {
                 return BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
             }
             return policy.get(profile, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+        }
+
+        @Override
+        public boolean setCustomMeta(BluetoothDevice device, int key, byte[] newValue) {
+            Map<Integer, byte[]> metadata = mMetadataCache.get(device.getAddress());
+            if (metadata == null) {
+                metadata = new ArrayMap<>();
+                mMetadataCache.put(device.getAddress(), metadata);
+            }
+            metadata.put(key, newValue);
+            return true;
+        }
+
+        @Override
+        public byte[] getCustomMeta(BluetoothDevice device, int key) {
+            Map<Integer, byte[]> metadata = mMetadataCache.get(device.getAddress());
+            if (metadata == null) {
+                return null;
+            }
+            return metadata.get(key);
         }
     }
 }

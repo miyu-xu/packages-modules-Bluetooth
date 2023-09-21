@@ -332,12 +332,12 @@ public class AudioRoutingManager extends ActiveDeviceManager {
                 return;
             }
             mHearingAidConnectedDevices.add(device);
-            // New connected device: select it as active
-            if (setHearingAidActiveDevice(device)) {
-                setA2dpActiveDevice(null, true);
-                setHfpActiveDevice(null);
-                setLeAudioActiveDevice(null, true);
-            }
+        }
+        // New connected device: select it as active
+        if (setHearingAidActiveDevice(device)) {
+            setA2dpActiveDevice(null, true);
+            setHfpActiveDevice(null);
+            setLeAudioActiveDevice(null, true);
         }
     }
 
@@ -673,11 +673,11 @@ public class AudioRoutingManager extends ActiveDeviceManager {
                             hearingAidService.getConnectedPeerDevices(hiSyncId));
                 }
             }
-            if (device != null) {
-                setA2dpActiveDevice(null, true);
-                setHfpActiveDevice(null);
-                setLeAudioActiveDevice(null, true);
-            }
+        }
+        if (device != null) {
+            setA2dpActiveDevice(null, true);
+            setHfpActiveDevice(null);
+            setLeAudioActiveDevice(null, true);
         }
     }
 
@@ -849,27 +849,29 @@ public class AudioRoutingManager extends ActiveDeviceManager {
 
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
     private boolean setHfpActiveDevice(BluetoothDevice device) {
+        if (DBG) {
+            Log.d(TAG, "setHfpActiveDevice(" + device + ")");
+        }
         synchronized (mLock) {
-            if (DBG) {
-                Log.d(TAG, "setHfpActiveDevice(" + device + ")");
-            }
             if (mPendingActiveDevice != null) {
                 mHandler.removeCallbacksAndMessages(mPendingActiveDevice);
                 mPendingActiveDevice = null;
             }
-            final HeadsetService headsetService = mFactory.getHeadsetService();
-            if (headsetService == null) {
-                return false;
-            }
-            BluetoothSinkAudioPolicy audioPolicy = headsetService.getHfpCallAudioPolicy(device);
-            if (audioPolicy != null
-                    && audioPolicy.getActiveDevicePolicyAfterConnection()
-                            == BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED) {
-                return false;
-            }
-            if (!headsetService.setActiveDevice(device)) {
-                return false;
-            }
+        }
+        final HeadsetService headsetService = mFactory.getHeadsetService();
+        if (headsetService == null) {
+            return false;
+        }
+        BluetoothSinkAudioPolicy audioPolicy = headsetService.getHfpCallAudioPolicy(device);
+        if (audioPolicy != null
+                && audioPolicy.getActiveDevicePolicyAfterConnection()
+                        == BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED) {
+            return false;
+        }
+        if (!headsetService.setActiveDevice(device)) {
+            return false;
+        }
+        synchronized (mLock) {
             mHfpActiveDevice = device;
         }
         return true;
@@ -933,22 +935,22 @@ public class AudioRoutingManager extends ActiveDeviceManager {
                             + ")"
                             + (device == null ? " hasFallbackDevice=" + hasFallbackDevice : ""));
         }
+        final LeAudioService leAudioService = mFactory.getLeAudioService();
+        if (leAudioService == null) {
+            return false;
+        }
+        boolean success;
+        if (device == null) {
+            success = leAudioService.removeActiveDevice(hasFallbackDevice);
+        } else {
+            success = leAudioService.setActiveDevice(device);
+        }
+
+        if (!success) {
+            return false;
+        }
+
         synchronized (mLock) {
-            final LeAudioService leAudioService = mFactory.getLeAudioService();
-            if (leAudioService == null) {
-                return false;
-            }
-            boolean success;
-            if (device == null) {
-                success = leAudioService.removeActiveDevice(hasFallbackDevice);
-            } else {
-                success = leAudioService.setActiveDevice(device);
-            }
-
-            if (!success) {
-                return false;
-            }
-
             mLeAudioActiveDevice = device;
             if (device == null) {
                 mLeHearingAidActiveDevice = null;
@@ -1022,13 +1024,13 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         A2dpService a2dpService = mFactory.getA2dpService();
         BluetoothDevice a2dpFallbackDevice = null;
         if (a2dpService != null) {
-            a2dpFallbackDevice = a2dpService.getFallbackDevice();
+            a2dpFallbackDevice = getA2dpFallbackDevice();
         }
 
         HeadsetService headsetService = mFactory.getHeadsetService();
         BluetoothDevice headsetFallbackDevice = null;
         if (headsetService != null) {
-            headsetFallbackDevice = headsetService.getFallbackDevice();
+            headsetFallbackDevice = getHfpFallbackDevice();
         }
 
         List<BluetoothDevice> connectedDevices = new ArrayList<>();
@@ -1136,6 +1138,50 @@ public class AudioRoutingManager extends ActiveDeviceManager {
             mLeHearingAidActiveDevice = null;
             mPendingLeHearingAidActiveDevice.clear();
         }
+    }
+
+    /** Retrieves the most recently connected device in the A2DP connected devices list. */
+    public BluetoothDevice getA2dpFallbackDevice() {
+        DatabaseManager dbManager = mAdapterService.getDatabase();
+        synchronized (mLock) {
+            return dbManager != null
+                    ? dbManager.getMostRecentlyConnectedDevicesInList(mA2dpConnectedDevices)
+                    : null;
+        }
+    }
+
+    /** Retrieves the most recently connected device in the A2DP connected devices list. */
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    public BluetoothDevice getHfpFallbackDevice() {
+        DatabaseManager dbManager = mAdapterService.getDatabase();
+        return dbManager != null
+                ? dbManager.getMostRecentlyConnectedDevicesInList(getHfpFallbackCandidates())
+                : null;
+    }
+
+    @VisibleForTesting(visibility = VisibleForTesting.Visibility.PACKAGE)
+    List<BluetoothDevice> getHfpFallbackCandidates() {
+        List<BluetoothDevice> fallbackCandidates;
+        synchronized (mLock) {
+            fallbackCandidates = new ArrayList<>(mHfpConnectedDevices);
+        }
+        List<BluetoothDevice> uninterestedCandidates = new ArrayList<>();
+        for (BluetoothDevice device : fallbackCandidates) {
+            byte[] deviceType =
+                    mDbManager.getCustomMeta(device, BluetoothDevice.METADATA_DEVICE_TYPE);
+            BluetoothClass deviceClass = device.getBluetoothClass();
+            if ((deviceClass != null
+                            && deviceClass.getMajorDeviceClass()
+                                    == BluetoothClass.Device.WEARABLE_WRIST_WATCH)
+                    || (deviceType != null
+                            && BluetoothDevice.DEVICE_TYPE_WATCH.equals(new String(deviceType)))) {
+                uninterestedCandidates.add(device);
+            }
+        }
+        for (BluetoothDevice device : uninterestedCandidates) {
+            fallbackCandidates.remove(device);
+        }
+        return fallbackCandidates;
     }
 
     @VisibleForTesting
