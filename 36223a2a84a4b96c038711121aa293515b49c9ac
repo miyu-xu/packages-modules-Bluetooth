@@ -69,6 +69,24 @@
       "parentUuid": "e1378495_812f9b79",
       "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d0e4647_ad81778e",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-21T09:16:40Z",
+      "side": 1,
+      "message": "This can compile but crashes.\n```\n(_data as \u0026dyn std::any::Any).downcast_ref::\u003cBox\u003cdyn RPCProxy + Send\u003e\u003e().unwrap().get_object_id()\n```",
+      "parentUuid": "be8c4b43_4b12b173",
+      "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
