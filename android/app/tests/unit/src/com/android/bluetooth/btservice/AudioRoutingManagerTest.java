@@ -63,8 +63,9 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -151,31 +152,6 @@ public class AudioRoutingManagerTest {
         when(mHearingAidService.getHiSyncId(mHearingAidDevice)).thenReturn(mHearingAidHiSyncId);
         when(mHearingAidService.getConnectedPeerDevices(mHearingAidHiSyncId))
                 .thenReturn(connectedHearingAidDevices);
-
-        when(mA2dpService.getFallbackDevice())
-                .thenAnswer(
-                        invocation -> {
-                            if (!mDeviceConnectionStack.isEmpty()
-                                    && Objects.equals(
-                                            mA2dpDevice,
-                                            mDeviceConnectionStack.get(
-                                                    mDeviceConnectionStack.size() - 1))) {
-                                return mA2dpDevice;
-                            }
-                            return null;
-                        });
-        when(mHeadsetService.getFallbackDevice())
-                .thenAnswer(
-                        invocation -> {
-                            if (!mDeviceConnectionStack.isEmpty()
-                                    && Objects.equals(
-                                            mHeadsetDevice,
-                                            mDeviceConnectionStack.get(
-                                                    mDeviceConnectionStack.size() - 1))) {
-                                return mHeadsetDevice;
-                            }
-                            return null;
-                        });
     }
 
     @After
@@ -1329,6 +1305,7 @@ public class AudioRoutingManagerTest {
 
     private class TestDatabaseManager extends DatabaseManager {
         ArrayMap<BluetoothDevice, SparseIntArray> mProfileConnectionPolicy;
+        final Map<String, Map<Integer, byte[]>> mMetadataCache = new HashMap<>();
 
         TestDatabaseManager(AdapterService service) {
             super(service);
@@ -1376,6 +1353,26 @@ public class AudioRoutingManagerTest {
                 return BluetoothProfile.CONNECTION_POLICY_FORBIDDEN;
             }
             return policy.get(profile, BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
+        }
+
+        @Override
+        public boolean setCustomMeta(BluetoothDevice device, int key, byte[] newValue) {
+            Map<Integer, byte[]> metadata = mMetadataCache.get(device.getAddress());
+            if (metadata == null) {
+                metadata = new ArrayMap<>();
+                mMetadataCache.put(device.getAddress(), metadata);
+            }
+            metadata.put(key, newValue);
+            return true;
+        }
+
+        @Override
+        public byte[] getCustomMeta(BluetoothDevice device, int key) {
+            Map<Integer, byte[]> metadata = mMetadataCache.get(device.getAddress());
+            if (metadata == null) {
+                return null;
+            }
+            return metadata.get(key);
         }
     }
 }
