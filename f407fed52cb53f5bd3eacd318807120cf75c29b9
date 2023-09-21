@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee174e34_bb9c2e76",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-09-21T18:14:39Z",
+      "side": 1,
+      "message": "In principle yes, but if we don\u0027t add the device, The bit in `ble.in_controller_list` will not be set, so the remove function will not be called.",
+      "parentUuid": "c9b7aea3_cbcc6e40",
+      "revId": "f407fed52cb53f5bd3eacd318807120cf75c29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a24b1a9a_583bf754",
         "filename": "system/stack/btm/btm_ble_privacy.cc",
         "patchSetId": 7
