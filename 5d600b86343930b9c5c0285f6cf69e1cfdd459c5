@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a87f0f2_ee74b6e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-09-21T02:31:24Z",
+      "side": 1,
+      "message": "Follow up CL for the comment in aosp/2752022. I understood it as `start` not being needed, so did a quick code search and found out that `start` is only used once right after constructor in `GattService`. So merged `start` into the constructor. Let me know if this was the right direction!",
+      "revId": "5d600b86343930b9c5c0285f6cf69e1cfdd459c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
