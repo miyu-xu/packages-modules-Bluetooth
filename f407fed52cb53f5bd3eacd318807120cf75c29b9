@@ -90,6 +90,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d57df597_0e98c185",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-09-21T22:45:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "22e5dcfe_a081da77",
+      "revId": "f407fed52cb53f5bd3eacd318807120cf75c29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a24b1a9a_583bf754",
@@ -175,6 +193,30 @@
       "side": 1,
       "message": "Done",
       "parentUuid": "a9155a75_22cf84fe",
+      "range": {
+        "startLine": 543,
+        "startChar": 2,
+        "endLine": 543,
+        "endChar": 63
+      },
+      "revId": "f407fed52cb53f5bd3eacd318807120cf75c29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e22dda37_aaac8122",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-09-21T22:45:59Z",
+      "side": 1,
+      "message": "Resolved the wrong comment",
+      "parentUuid": "e85df75c_1a0e5c06",
       "range": {
         "startLine": 543,
         "startChar": 2,
