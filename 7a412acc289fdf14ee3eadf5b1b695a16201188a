@@ -16,6 +16,23 @@
       "message": "wait...",
       "revId": "7a412acc289fdf14ee3eadf5b1b695a16201188a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "356d18d7_1bdba028",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 5144,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-21T06:59:16Z",
+      "side": 1,
+      "message": "this is wrong. as STREAMING state we might get already when streaming...",
+      "revId": "7a412acc289fdf14ee3eadf5b1b695a16201188a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
