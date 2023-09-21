@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10173465_1a4657ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-09-21T07:02:57Z",
+      "side": 1,
+      "message": "If it inherits ActiveDeviceManager and has copied code, does the code build without @Override?",
+      "parentUuid": "db2039e3_ba49d558",
+      "revId": "cba04ccfca9fd2b9f48a0c87afd3df3bacabb401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23db9bc9_70e5198d",
         "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
         "patchSetId": 1
