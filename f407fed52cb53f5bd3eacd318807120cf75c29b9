@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39d58326_84a23e5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-09-21T18:15:34Z",
+      "side": 1,
+      "message": "Do you think we should have both? I can add the check to the remove resolving list function.",
+      "parentUuid": "ee174e34_bb9c2e76",
+      "revId": "f407fed52cb53f5bd3eacd318807120cf75c29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a24b1a9a_583bf754",
         "filename": "system/stack/btm/btm_ble_privacy.cc",
         "patchSetId": 7
