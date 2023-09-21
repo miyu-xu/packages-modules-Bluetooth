@@ -162,6 +162,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4af180ce_5b8198a9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1766,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-21T11:09:39Z",
+      "side": 1,
+      "message": "Acknowledged - Implementation LGTM + Whale and Frederic have verified the behavior.",
+      "parentUuid": "a9425870_dc8f8092",
+      "revId": "6449637414b0c24b71cec3d2686ae41e3480f34a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df4c9e57_5827dba1",
