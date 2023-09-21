@@ -100,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cde28fa_067dd7bd",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-21T09:13:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "806d42e3_5814cbd0",
+      "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6eff5c81_e90ab863",
@@ -149,6 +167,24 @@
       "side": 1,
       "message": "Please expand all the other macros and objects into this prelude. I\u0027d like to see all the individual `use dbus_projection::{dbus_generated, dbus_log_prelude::*, ...}` condensed into a single `use dbus_projection::prelude::*`",
       "parentUuid": "d6fc0735_2d908843",
+      "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2729610b_be621dbb",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager_dbus.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-21T09:13:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b0a5eb1_e7a71540",
       "revId": "23d63ba93ce520d1b5ea155d8c884566b00b5221",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
