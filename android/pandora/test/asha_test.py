@@ -147,7 +147,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         dut_ref, ref_dut = dut_ref_res.connection, ref_dut_res.connection
         assert_is_not_none(dut_ref)
         assert dut_ref
-        advertisement.cancel()
         return dut_ref, ref_dut
 
     async def is_device_connected(self, device: PandoraDevice, connection: Connection, timeout: float) -> bool:
@@ -323,6 +322,7 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
 
         # DUT initiates connection to Ref.
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
+        advertisement.cancel()
 
         # DUT starts pairing with the Ref.
         (secure, wait_security) = await asyncio.gather(
@@ -405,7 +405,6 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         DUT removes bond with Ref.
         Verify that DUT and Ref are disconnected and unbonded.
         """
-        raise signals.TestSkip("TODO: update rootcanal to retry")
 
         advertisement = await self.ref_advertise_asha(
             ref_device=self.ref_left, ref_address_type=ref_address_type, ear=Ear.LEFT
@@ -414,27 +413,18 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
 
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
 
-        secure = self.dut.security.Secure(connection=dut_ref, le=LE_LEVEL3)
-
+        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3)
         assert_equal(secure.WhichOneof("result"), "success")
-        await self.dut.aio.host.Disconnect(dut_ref)
-        await self.ref_left.aio.host.WaitDisconnection(ref_dut)
 
-        # delete the bond
+        # disconnect & delete the bond
+        await self.ref_left.aio.host.Disconnect(ref_dut)
         await self.dut.aio.security_storage.DeleteBond(random=self.ref_left.random_address)
 
         # DUT connect to REF again
-        dut_ref = (
-            await self.dut.aio.host.ConnectLE(own_address_type=dut_address_type, **ref.address_asdict())
-        ).connection
-        # TODO very likely there is a bug in android here
-        logging.debug("result should come out")
-
+        dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
         advertisement.cancel()
-        assert_is_not_none(dut_ref)
 
-        secure = await self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3)
-
+        secure = await self.ref_left.aio.security.Secure(connection=ref_dut, le=LE_LEVEL3)
         assert_equal(secure.WhichOneof("result"), "success")
 
     @avatar.parameterized(
@@ -454,6 +444,7 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type, ear=Ear.LEFT)
 
         _, _ = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
+        advertisement.cancel()
 
     @avatar.parameterized(
         (RANDOM, RANDOM),
@@ -571,6 +562,7 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
             )
             ref = await self.dut_scan_for_asha(dut_address_type=dut_address_type, ear=Ear.LEFT)
             dut_ref, _ = await self.dut_connect_to_ref(advertisement, ref, dut_address_type)
+            advertisement.cancel()
             await self.dut.aio.host.Disconnect(connection=dut_ref)
 
         await connect_and_disconnect()
@@ -825,6 +817,7 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
 
         # DUT initiates connection to Ref.
         dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
+        advertisement.cancel()
 
         # DUT starts pairing with the ref_left
         (secure, wait_security) = await asyncio.gather(
