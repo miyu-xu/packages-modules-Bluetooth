@@ -38,6 +38,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f2a6e5b_badad800",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-21T09:20:17Z",
+      "side": 1,
+      "message": "As errors in procedure errors might not be caught at compile time, if we do want to have this in m119, we\u0027d better have a way, automatically or not, to exercise all D-Bus methods even though it just prints some logs.",
+      "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1378495_812f9b79",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 4
@@ -84,6 +101,24 @@
       "writtenOn": "2023-09-21T09:16:40Z",
       "side": 1,
       "message": "This can compile but crashes.\n```\n(_data as \u0026dyn std::any::Any).downcast_ref::\u003cBox\u003cdyn RPCProxy + Send\u003e\u003e().unwrap().get_object_id()\n```",
+      "parentUuid": "be8c4b43_4b12b173",
+      "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bac8873_f5759ce5",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-09-21T09:20:17Z",
+      "side": 1,
+      "message": "Some thoughts for logging a trait object:\n\n1. For this CL, just do nothing if we don\u0027t have a quick way to print the trait object now. Abhishek, what do you think?\n\n2. In addition to casting, we might do manual tagging for these trait. For example, implement `fn type_name(\u0026self) -\u003e \u0026\u0027static str` for all trait objects.",
       "parentUuid": "be8c4b43_4b12b173",
       "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
