@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edec0086_3335fb04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-21T11:08:26Z",
+      "side": 1,
+      "message": "Generally LGTM",
+      "revId": "d7266c7326f06dda6a82b832251dde4f5eeaa1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db3d6c46_bba8e048",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 1134,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-21T11:08:26Z",
+      "side": 1,
+      "message": "Better define a constant for this.",
+      "range": {
+        "startLine": 1134,
+        "startChar": 23,
+        "endLine": 1134,
+        "endChar": 24
+      },
+      "revId": "d7266c7326f06dda6a82b832251dde4f5eeaa1d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
