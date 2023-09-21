@@ -110,6 +110,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1b1ccc26_eceffcb8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-21T08:12:37Z",
+      "side": 1,
+      "message": "1. Interface cannot have package private methods.\n2. It is easier to clean up code when ActiveDeviceManager is not needed any more.\n3. AudioRoutingManager supposed to be located in AudioService at the end.",
+      "parentUuid": "fcbf4e50_c96d68f5",
+      "revId": "cba04ccfca9fd2b9f48a0c87afd3df3bacabb401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23db9bc9_70e5198d",
         "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
         "patchSetId": 1
