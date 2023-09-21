@@ -766,4 +766,25 @@ bool AudioSetConfigurationProvider::CheckConfigurationIsBiDirSwb(
   return dir == le_audio::types::kLeAudioDirectionBoth;
 }
 
+bool AudioSetConfigurationProvider::CheckConfigurationIsDualBiDirSwb(
+    const set_configurations::AudioSetConfiguration& set_configuration) const {
+  bool single_dev_dual_bidir_swb = false;
+  bool dual_dev_dual_bidir_swb = false;
+
+  for (const auto& conf : set_configuration.confs) {
+    if (conf.codec.GetConfigSamplingFrequency() <
+        le_audio::LeAudioCodecConfiguration::kSampleRate32000) {
+      return false;
+    }
+    if (conf.device_cnt == 1 && conf.ase_cnt == 2) {
+      single_dev_dual_bidir_swb |= conf.direction;
+    } else if (conf.device_cnt == 2 && conf.ase_cnt == 2) {
+      dual_dev_dual_bidir_swb |= conf.direction;
+    }
+  }
+
+  return single_dev_dual_bidir_swb == le_audio::types::kLeAudioDirectionBoth ||
+         dual_dev_dual_bidir_swb == le_audio::types::kLeAudioDirectionBoth;
+}
+
 }  // namespace le_audio
