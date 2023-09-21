@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "22e5dcfe_a081da77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-09-21T21:13:50Z",
+      "side": 1,
+      "message": "Hi, I add the check for three resolving list related actions and updated the commit message. As I see these actions happen quite often, I move the log level to DEBUG.",
+      "parentUuid": "39d58326_84a23e5d",
+      "revId": "f407fed52cb53f5bd3eacd318807120cf75c29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a24b1a9a_583bf754",
         "filename": "system/stack/btm/btm_ble_privacy.cc",
         "patchSetId": 7
@@ -109,6 +127,30 @@
       "side": 1,
       "message": "Hi Christine, thanks for the comment. The check in line 544 returns the controller capability as well as line 549, while the privacy policy can be turned off by sysprop in floss, which is set from `BTM_BleConfigPrivacy`. So in that case, it will by pass the check and keep adding the address.",
       "parentUuid": "a24b1a9a_583bf754",
+      "range": {
+        "startLine": 543,
+        "startChar": 2,
+        "endLine": 543,
+        "endChar": 63
+      },
+      "revId": "f407fed52cb53f5bd3eacd318807120cf75c29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9155a75_22cf84fe",
+        "filename": "system/stack/btm/btm_ble_privacy.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 543,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-09-21T21:13:50Z",
+      "side": 1,
+      "message": "I updated the log message for this case. As the controller may support the privacy 1.2 mode, but the host stack can disable it.",
+      "parentUuid": "34c9341a_762d2c37",
       "range": {
         "startLine": 543,
         "startChar": 2,
