@@ -52,6 +52,24 @@
       "parentUuid": "08bec1a5_b404c1a7",
       "revId": "a96c5a3a15a7cf361ec4548b936da97bf563da0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "06aa5aa6_ed16d145",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1088076
+      },
+      "writtenOn": "2023-09-21T07:00:24Z",
+      "side": 1,
+      "message": "Done\n\nsomehow it\u0027s still showing as a revert. Anyway, it works.",
+      "parentUuid": "b00c8c04_9dc63801",
+      "revId": "a96c5a3a15a7cf361ec4548b936da97bf563da0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
