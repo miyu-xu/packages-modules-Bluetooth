@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f49529a2_306cfabb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-21T11:26:25Z",
+      "side": 1,
+      "message": "Generally LGTM",
+      "revId": "f36302abe434e699088f2f8646f7d33adee66e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da6f1fcc_13894ef2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 1237,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-21T11:26:25Z",
+      "side": 1,
+      "message": "Please handle the return value - Shall we rollback the value in the uhid structure on failure?",
+      "revId": "f36302abe434e699088f2f8646f7d33adee66e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
