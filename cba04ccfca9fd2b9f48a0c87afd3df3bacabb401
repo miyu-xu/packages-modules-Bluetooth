@@ -92,6 +92,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fcbf4e50_c96d68f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-09-21T07:21:39Z",
+      "side": 1,
+      "message": "Q) Why does it inherits ActiveDeviceManager?\n\nIs it better than making ActiveDeviceManager as an interface, and creating two Impl classes?",
+      "parentUuid": "0010ae75_822b665a",
+      "revId": "cba04ccfca9fd2b9f48a0c87afd3df3bacabb401",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23db9bc9_70e5198d",
         "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
         "patchSetId": 1
