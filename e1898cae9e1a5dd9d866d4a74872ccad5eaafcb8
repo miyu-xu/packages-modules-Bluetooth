@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "017fd5e5_70aa0c76",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-21T23:12:37Z",
+      "side": 1,
+      "message": "We can remove the function and directly do:\n\n```suggestion\n        BluetoothDevice device \u003d mAdapter.getRemoteLeDevice(BUMBLE_RPA, BluetoothDevice.ADDRESS_TYPE_RANDOM);\n```",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 51
+      },
+      "revId": "e1898cae9e1a5dd9d866d4a74872ccad5eaafcb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
