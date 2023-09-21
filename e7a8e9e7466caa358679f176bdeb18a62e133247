@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a406591_058ebb72",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-21T11:20:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4ba846f_66e9b0d0",
+      "revId": "e7a8e9e7466caa358679f176bdeb18a62e133247",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57aad849_35bd3360",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-09-08T22:20:36Z",
       "side": 1,
       "message": "```suggestion\n  const bool swb_supported \u003d hfp_hal_interface::get_swb_supported();\n```\n+ move the declaration \u0026 initialization closer to it\u0027s usage like this:\n\n```\n/* add features and network */\n  if (service_uuid \u003d\u003d UUID_SERVCLASS_AG_HANDSFREE) {\n    const bool swb_supported \u003d hfp_hal_interface::get_swb_supported();\n```\n\n\nOr since the variable is only used once, delete the variable and directly check it when needed:\n```\n    if (hfp_hal_interface::get_swb_supported()) features |\u003d BTA_AG_FEAT_SWB_SUPPORT; \n```",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 29
+      },
+      "revId": "e7a8e9e7466caa358679f176bdeb18a62e133247",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12be3ae0_a30fe1d2",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-21T11:20:42Z",
+      "side": 1,
+      "message": "Thanks for the suggestions, after discussing with Yuyang, directly change the value to avoid the conflict.",
+      "parentUuid": "57aad849_35bd3360",
       "range": {
         "startLine": 163,
         "startChar": 0,
