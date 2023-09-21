@@ -246,9 +246,9 @@ fn reverse_endianness(str: String, uppercase: bool) -> Result<String, String> {
     match u128::from_str_radix(&s, 16) {
         Ok(x) => {
             if uppercase {
-                Ok(format!("{:X}", x.swap_bytes()))
+                Ok(format!("{:0>32X}", x.swap_bytes()))
             } else {
-                Ok(format!("{:x}", x.swap_bytes()))
+                Ok(format!("{:0>32x}", x.swap_bytes()))
             }
         }
         Err(err) => Err(format!("Error converting link key: {}", err)),
