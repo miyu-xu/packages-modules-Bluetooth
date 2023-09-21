@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "127f2baf_c74b830a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-09-21T17:24:38Z",
+      "side": 1,
+      "message": "Conditional LGTM based on autotest results",
+      "revId": "0943ce7642a35feae76c1dcb10cb25204fa59a67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
