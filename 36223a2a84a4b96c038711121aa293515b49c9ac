@@ -33,6 +33,24 @@
       "message": "try:\n```\n(_data as Box\u003cstd::any::Any + Send\u003e).downcast_ref::\u003cBox\u003cdyn RpcProxy + Send\u003e().unwrap().get_object_id()\n```",
       "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be8c4b43_4b12b173",
+        "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 944,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-21T08:21:17Z",
+      "side": 1,
+      "message": "```\n(_data as Box\u003cstd::any::Any + Send\u003e).downcast_ref::\u003cBox\u003cdyn RPCProxy + Send\u003e\u003e().unwrap().get_object_id()\n```\n\nan `as` expression can only be used to convert between primitive types or to coerce to a specific trait object.\n\nI\u0027m pasting this again:\nI haven\u0027t been able to make this work, but I want to push this patch so bad :(\nIs it OK if we don\u0027t get the object_id? what information is contained inside it?\n\nI want to CP this to 119, but frankly I don\u0027t have the time to tinker with this.",
+      "parentUuid": "e1378495_812f9b79",
+      "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
