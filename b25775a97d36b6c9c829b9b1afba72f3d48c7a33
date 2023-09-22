@@ -22,6 +22,30 @@
       },
       "revId": "b25775a97d36b6c9c829b9b1afba72f3d48c7a33",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d06b3b_5566dd7e",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1288,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-22T22:16:12Z",
+      "side": 1,
+      "message": "Correct. I keep the log by pair \"key / value\", I find it easier to read and it still complies to the auto-format tool",
+      "parentUuid": "b273bc3f_da33e2c2",
+      "range": {
+        "startLine": 1288,
+        "startChar": 30,
+        "endLine": 1288,
+        "endChar": 31
+      },
+      "revId": "b25775a97d36b6c9c829b9b1afba72f3d48c7a33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
