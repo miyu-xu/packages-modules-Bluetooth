@@ -16,6 +16,24 @@
       "message": "I guess it\u0027s possible that after waiting, we have a non-empty available_profiles() since SDP is done by that time. In that case, probably we want to compare whether all available profiles are connected.\n\nSo maybe here can be\n```\nlet task \u003d topstack::get_runtime().spawn(async move {\n  BluetoothMedia::wait_retry(\u0026tasks, \u0026device_states, \u0026txl, \u0026addr, ts).await;\n  BluetoothMedia::wait_force_enter_connected(\u0026txl, \u0026addr, ts).await;\n});\n```\n\nWDYT?",
       "revId": "290d742236fee389dd71367dcaaa5e98e79029a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e234a15_9036be91",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1337,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-09-22T00:34:34Z",
+      "side": 1,
+      "message": "SGTM, thanks!",
+      "parentUuid": "e2f4e607_d32e9267",
+      "revId": "290d742236fee389dd71367dcaaa5e98e79029a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
