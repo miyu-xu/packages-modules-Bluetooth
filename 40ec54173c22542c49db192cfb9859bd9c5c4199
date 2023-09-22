@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee1af6c5_f92afcc1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-09-22T20:15:47Z",
+      "side": 1,
+      "message": "looks good on my side, let @aritrasen@google.com to confirm on bta_av",
+      "revId": "40ec54173c22542c49db192cfb9859bd9c5c4199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
