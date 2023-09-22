@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "80922f7c_472ba9ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 33
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-22T06:31:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d96c436_52329ff5",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 14
+      },
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa9bedff_72b060c2",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c284e025_7a716f7d",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-22T06:31:45Z",
+      "side": 1,
+      "message": "No need LE info so far. Will use it if needed.",
+      "parentUuid": "aa9bedff_72b060c2",
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbd493e0_e2cc2f93",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-09-07T23:58:03Z",
       "side": 1,
       "message": "```\ntime_t Used for time in seconds.  According to POSIX, it is an integer type.\n```\nWere milliseconds considered ?",
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1babc6f0_cbcf08b2",
+        "filename": "system/osi/include/stack_power_telemetry.h",
+        "patchSetId": 33
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-22T06:31:45Z",
+      "side": 1,
+      "message": "No need so far and I think also won\u0027t need millis in the future.",
+      "parentUuid": "cbd493e0_e2cc2f93",
       "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -77,6 +137,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "13547eb2_9c815c4d",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 33
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-22T06:31:45Z",
+      "side": 1,
+      "message": "I found this is a vector based object. But seems there\u0027s no api for me the get the latest in the vector. Should I use \"Pull\" function to do that? But it returns a whole snapshot of the circular buffer tho.",
+      "parentUuid": "b86537e7_156e4531",
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4d8576f7_fa7a72bb",
         "filename": "system/osi/src/stack_power_telemetry.cc",
         "patchSetId": 33
@@ -88,6 +166,24 @@
       "writtenOn": "2023-09-07T23:58:03Z",
       "side": 1,
       "message": "Why is `started` in the API when I assume it\u0027s not used during normal operation.",
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0967050_46237b23",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 33
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-22T06:31:45Z",
+      "side": 1,
+      "message": "Not sure who edited the code. But this is not used anymore.",
+      "parentUuid": "4d8576f7_fa7a72bb",
       "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
