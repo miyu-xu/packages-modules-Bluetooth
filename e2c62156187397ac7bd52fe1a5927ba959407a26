@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61f66353_724d693c",
+        "filename": "system/bta/include/bta_ag_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-09-22T01:37:11Z",
+      "side": 1,
+      "message": "C is `0b1100`, which will overwrite two other bit masks, might not be good.  \nI am okay to change to other value, or same as William\u0027s suggestion, but I am also thinking, in the original code\n```\n    if (hfp_hal_interface::get_swb_supported()) {\n      features |\u003d BTA_AG_FEAT_SWB;\n    }\n\n    if (features \u0026 BTA_AG_FEAT_CODEC) codec_supported \u003d true;\n    if (features \u0026 BTA_AG_FEAT_SWB) swb_supported \u003d true;\n\n    features \u0026\u003d BTA_AG_SDP_FEAT_SPEC; # \u003c- here, shouldn\u0027t features cleaned up to only have last 5 bits?\n```",
+      "range": {
+        "startLine": 55,
+        "startChar": 31,
+        "endLine": 55,
+        "endChar": 32
+      },
+      "revId": "e2c62156187397ac7bd52fe1a5927ba959407a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
