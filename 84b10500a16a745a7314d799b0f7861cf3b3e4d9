@@ -87,6 +87,30 @@
       },
       "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8bf66a0a_94e8a5e3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-22T12:54:15Z",
+      "side": 1,
+      "message": "Do you mean to create a new DBus interface in adhd similar to the \"org.chromium.bluetooth.BluetoothMedia\" defined in src/third_party/adhd/cras/src/server/cras_fl_media.c ?\n\nafaiu, the UHID open and close should affect the CRAS Floss media object.",
+      "parentUuid": "9b15499c_738a202c",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 46
+      },
+      "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
