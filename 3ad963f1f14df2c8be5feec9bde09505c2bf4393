@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb45aa5e_b26dd533",
+        "filename": "android/pandora/test/smp/smp_test_base.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-09-22T17:35:00Z",
+      "side": 1,
+      "message": "Do we want to test ctkd as well?\nIf we only want to test smp, how about disabling BR/EDR and only enable BLE?\n\nThe pandora server on Android still does not support dualmode peer device yet",
+      "revId": "3ad963f1f14df2c8be5feec9bde09505c2bf4393",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
