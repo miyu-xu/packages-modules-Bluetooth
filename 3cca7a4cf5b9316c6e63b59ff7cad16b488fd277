@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8a6c24a_e6b6c89c",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-22T13:48:09Z",
+      "side": 1,
+      "message": "Do we plan to change this properties in runtime?",
+      "revId": "3cca7a4cf5b9316c6e63b59ff7cad16b488fd277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
