@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a5edd176_bf661b04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-09-22T11:57:48Z",
+      "side": 1,
+      "message": "AVL floss pass after several retries, but probably that is due to my setup.\n\n2 CL tests (inq_mode_test) crash on upstream, but they don\u0027t crash on local. Most likely due to crrev/c/3832356.\n\nlogs only in `bluetooth.log` since it is debug level. Sampling from 6000 lines of code, 117 is newly added, so it\u0027s about 2% increase. About half of them is mentioning Register*, which probably won\u0027t happen as often in the real world except when adapter is toggled a lot.",
+      "parentUuid": "88892122_ecab8c24",
+      "revId": "36223a2a84a4b96c038711121aa293515b49c9ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1378495_812f9b79",
         "filename": "system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs",
         "patchSetId": 4
