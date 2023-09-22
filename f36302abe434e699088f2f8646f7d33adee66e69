@@ -33,6 +33,24 @@
       "message": "Please handle the return value - Shall we rollback the value in the uhid structure on failure?",
       "revId": "f36302abe434e699088f2f8646f7d33adee66e69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d77bb40_9c08bdcb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 11
+      },
+      "lineNbr": 1237,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-22T12:53:58Z",
+      "side": 1,
+      "message": "The mic volume is only used for mute/unmute, and volume saved in uhid is only used to set the volume back to previous value when unmuting.",
+      "parentUuid": "da6f1fcc_13894ef2",
+      "revId": "f36302abe434e699088f2f8646f7d33adee66e69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
