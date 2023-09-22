@@ -39,6 +39,30 @@
       },
       "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cda933a9_79e3d7ac",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-09-22T10:49:32Z",
+      "side": 1,
+      "message": "I\u0027m not sure for this.\nThis methods should be exported by the CRAS Bluetooth Media object, whose proxy is defined in IBluetoothMediaCallback (see https://chromium-review.googlesource.com/c/chromiumos/third_party/adhd/+/4876635).\nWhile, iiuc, the IBluetoothTelephony object is a Floss object.",
+      "parentUuid": "7f2902e0_87fd51a3",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 46
+      },
+      "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
