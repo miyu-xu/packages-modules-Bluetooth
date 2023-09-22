@@ -46,6 +46,30 @@
       },
       "revId": "e2c62156187397ac7bd52fe1a5927ba959407a26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73645385_7ac865e7",
+        "filename": "system/bta/include/bta_ag_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-22T10:32:08Z",
+      "side": 1,
+      "message": "This is because originally, we set swb_supported \u003d `true` using `BTA_AG_FEAT_SWB` (or `BTA_AG_FEAT_HF_IND`), which is before `features \u0026\u003d BTA_AG_SDP_FEAT_SPEC;`. So, after preserving last 6 bits by `features \u0026\u003d BTA_AG_SDP_FEAT_SPEC;` we still mark `BTA_AG_FEAT_SWB_SUPPORT` because of `swb_supported` \u003d `true`.\n\nI changed the value to `0x1000` and revise codeflow based on William\u0027s suggestion",
+      "parentUuid": "7d263215_c0407bb5",
+      "range": {
+        "startLine": 55,
+        "startChar": 31,
+        "endLine": 55,
+        "endChar": 32
+      },
+      "revId": "e2c62156187397ac7bd52fe1a5927ba959407a26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
