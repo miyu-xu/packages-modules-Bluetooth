@@ -34,6 +34,24 @@
       "parentUuid": "baa5a056_d5af18e2",
       "revId": "8084c34f7502348536f43dcffc864ed5ddadd473",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4b37bcb_3c9121ad",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1828,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-22T00:12:21Z",
+      "side": 0,
+      "message": "Hey Sal and Himanshu, what\u0027s the status on this CL? \n\nIs this still something we want to submit? \n\nI notice the linked bug is already closed as fixed.",
+      "parentUuid": "98825777_a00ba980",
+      "revId": "8084c34f7502348536f43dcffc864ed5ddadd473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
