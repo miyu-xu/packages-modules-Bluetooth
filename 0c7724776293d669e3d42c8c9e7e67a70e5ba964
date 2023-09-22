@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cb6bdba_bb44f301",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-09-22T03:30:53Z",
+      "side": 1,
+      "message": "Similar to aosp/2758685, cleaning up multiple managers that have the same behavior with ScanManager. They all have a separate start function and constructor, and the start functions are only used once in `GattService.start()` right after the constructor is called. \n\nAlso fixing some wrong documentations in `PeriodicScanManager`",
+      "revId": "0c7724776293d669e3d42c8c9e7e67a70e5ba964",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
