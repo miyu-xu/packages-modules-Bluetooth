@@ -16,6 +16,24 @@
       "message": "Do we plan to change this properties in runtime?",
       "revId": "3cca7a4cf5b9316c6e63b59ff7cad16b488fd277",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c18e116_ea6b7a78",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-09-22T16:41:57Z",
+      "side": 1,
+      "message": "No, it wouldn\u0027t be changed in runtime.",
+      "parentUuid": "b8a6c24a_e6b6c89c",
+      "revId": "3cca7a4cf5b9316c6e63b59ff7cad16b488fd277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
