@@ -111,6 +111,30 @@
       },
       "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebc4534c_e9e9b225",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-22T15:49:05Z",
+      "side": 1,
+      "message": "Hi @whalechang@google.com, any blocker of exporting yet another callback interface from CRAS?\nIn case that\u0027s not allowable, hi @enshuo@google.com, probably we may merge the Telephony and the Media interface together given that they actually share the same underlying structure, WDYT? No concern from my side.",
+      "parentUuid": "8bf66a0a_94e8a5e3",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 46
+      },
+      "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
