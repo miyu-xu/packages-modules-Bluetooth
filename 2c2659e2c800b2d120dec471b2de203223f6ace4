@@ -310,6 +310,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cea6909e_749c6642",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-22T00:13:21Z",
+      "side": 1,
+      "message": "Closing this comment. \n\nDiscussion on remaining issue is still underway and is outside the scope of this CL.",
+      "parentUuid": "ae8d4a5d_94ec996b",
+      "revId": "2c2659e2c800b2d120dec471b2de203223f6ace4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c880aff_62be674b",
