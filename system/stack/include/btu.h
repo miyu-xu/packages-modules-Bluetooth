@@ -33,9 +33,8 @@
 
 #include <cstdint>
 
-#include "bt_target.h"
 #include "common/message_loop_thread.h"
-#include "osi/include/alarm.h"
+#include "include/hardware/bluetooth.h"
 
 /* Global BTU data */
 extern uint8_t btu_trace_level;
@@ -53,4 +52,4 @@ bt_status_t do_in_main_thread_delayed(const base::Location& from_here,
 using BtMainClosure = std::function<void()>;
 void post_on_bt_main(BtMainClosure closure);
 
-#endif
+#endif  // BTU_H
