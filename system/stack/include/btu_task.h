@@ -16,40 +16,22 @@
  *
  ******************************************************************************/
 
-/******************************************************************************
- *
- *  this file contains the main Bluetooth Upper Layer definitions. The Broadcom
- *  implementations of L2CAP RFCOMM, SDP and the BTIf run as one GKI task. The
- *  btu_task switches between them.
- *
- ******************************************************************************/
+#pragma once
 
-#ifndef BTU_H
-#define BTU_H
-
-#include <base/functional/callback.h>
 #include <base/location.h>
-#include <base/threading/thread.h>
-
-#include <cstdint>
 
 #include "common/message_loop_thread.h"
 #include "include/hardware/bluetooth.h"
+#include "stack/include/btu.h"
 
-/* Global BTU data */
-extern uint8_t btu_trace_level;
+using bluetooth::common::MessageLoopThread;
 
-/* Functions provided by btu_task.cc
- ***********************************
-*/
 bluetooth::common::MessageLoopThread* get_main_thread();
 bt_status_t do_in_main_thread(const base::Location& from_here,
                               base::OnceClosure task);
 bt_status_t do_in_main_thread_delayed(const base::Location& from_here,
                                       base::OnceClosure task,
                                       const base::TimeDelta& delay);
-
-using BtMainClosure = std::function<void()>;
 void post_on_bt_main(BtMainClosure closure);
-
-#endif
+void main_thread_start_up();
+void main_thread_shut_down();
