@@ -33,9 +33,10 @@
 
 #include <cstdint>
 
-#include "bt_target.h"
+#include "include/hardware/bluetooth.h"
+// #include "internal_include/bt_target.h"
 #include "common/message_loop_thread.h"
-#include "osi/include/alarm.h"
+// #include "osi/include/alarm.h"
 
 /* Global BTU data */
 extern uint8_t btu_trace_level;
