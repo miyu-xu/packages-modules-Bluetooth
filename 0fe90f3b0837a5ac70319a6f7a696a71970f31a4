@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5842a00c_d2fdc0df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2050266
+      },
+      "writtenOn": "2023-09-24T06:26:09Z",
+      "side": 1,
+      "message": "2345015: Obtain remote device\u0027s own phonenumber from MessagesListing | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2345015",
+      "revId": "0fe90f3b0837a5ac70319a6f7a696a71970f31a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
