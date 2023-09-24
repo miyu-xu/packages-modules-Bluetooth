@@ -30,10 +30,8 @@
 #include "bt_target.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_types.h"
-#include "stack/include/sdp_api.h"
-#include "stack/include/sdpdefs.h"
-#include "stack/sdp/sdpint.h"
-#include "types/bluetooth/uuid.h"
+#include "stack/include/sdp_callback.h"
+#include "stack/sdp/sdp_discovery_db.h"
 
 /******************************************************************************/
 /*            L O C A L    F U N C T I O N     P R O T O T Y P E S            */
