@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1282bb4_fd43c814",
+        "filename": "android/app/jni/com_android_bluetooth_gatt.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 2271,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T18:43:03Z",
+      "side": 1,
+      "message": "This file contains a set of conflict markers",
+      "range": {
+        "startLine": 2271,
+        "startChar": 1,
+        "endLine": 2271,
+        "endChar": 7
+      },
+      "revId": "353c893491e29ab451ef8efb371d126a1066eecb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

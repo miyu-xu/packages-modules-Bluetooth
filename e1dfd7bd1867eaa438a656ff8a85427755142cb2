@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ceeccd4_946360f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T18:43:03Z",
+      "side": 1,
+      "message": "Patchset uploaded to address Licence and format issues",
+      "revId": "e1dfd7bd1867eaa438a656ff8a85427755142cb2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
