@@ -135,6 +135,30 @@
       },
       "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47d7bc10_e71c118e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-25T10:32:58Z",
+      "side": 1,
+      "message": "In the current design, there\u0027s no need to share telephony status with CRAS, since CRAS doesn\u0027t have the concept of a call.\n\nIf we really want to share the same underlying structure, we should think about why CRAS needs to know this information.\n\nThe only thing CRAS needs to know is whether the WebApp wants to use telephony. This is because CRAS needs to use this information to decide whether to use HFP or A2DP.\n\nhttps://docs.google.com/document/d/1yLvPMWNsT5JzCgC_KQ8TxtZehEpZnwcLnhTchj7IgB4/edit#bookmark\u003did.z59fw8wkjmkt\n\nBut I think we definitely don\u0027t need two callbacks here. We can definitely have one callback function, something like `on_telephony_use`, and send true/false to the `CRAS` callback.",
+      "parentUuid": "ebc4534c_e9e9b225",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 46
+      },
+      "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
