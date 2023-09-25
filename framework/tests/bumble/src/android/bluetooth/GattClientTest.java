@@ -69,7 +69,7 @@ public class GattClientTest {
         advertiseWithBumble();
 
         BluetoothDevice device =
-            mAdapter.getRemoteLeDevice(BUMBLE_RPA, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+                mAdapter.getRemoteLeDevice(BUMBLE_RPA, BluetoothDevice.ADDRESS_TYPE_RANDOM);
 
         for (int i = 0; i < 10; i++) {
             BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
@@ -100,7 +100,7 @@ public class GattClientTest {
         advertiseWithBumble();
 
         BluetoothDevice device =
-            mAdapter.getRemoteLeDevice(BUMBLE_RPA, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+                mAdapter.getRemoteLeDevice(BUMBLE_RPA, BluetoothDevice.ADDRESS_TYPE_RANDOM);
 
         for (int i = 0; i < 10; i++) {
             BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
@@ -115,6 +115,29 @@ public class GattClientTest {
 
             gatt.close();
         }
+    }
+
+    @Test
+    public void reconnectExistingClient() throws Exception {
+        advertiseWithBumble();
+
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(BUMBLE_RPA, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+
+        BluetoothGatt gatt = device.connectGatt(mContext, false, gattCallback);
+        verify(gattCallback, timeout(1000))
+                .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+        gatt.disconnect();
+        verify(gattCallback, timeout(1000))
+                .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+        gatt.connect();
+        verify(gattCallback, timeout(1000))
+                .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+        gatt.close();
     }
 
     private void advertiseWithBumble() {
