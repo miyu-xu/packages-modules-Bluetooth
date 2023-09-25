@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e311f1b0_b5965f32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-25T21:57:33Z",
+      "side": 1,
+      "message": "... in btif/\n\nAre the others going to disappear as well?",
+      "revId": "ea8f866cfbd3e2d226b541c04c0c6fd23d9428a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
