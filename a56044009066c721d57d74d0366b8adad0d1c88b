@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a967c008_987dc712",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 39
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-25T16:53:22Z",
+      "side": 1,
+      "message": "Thanks Eric...as you\u0027ve noticed I\u0027ve been prototyping this piece a bit to see how it could fit as a generalized module.",
+      "revId": "a56044009066c721d57d74d0366b8adad0d1c88b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

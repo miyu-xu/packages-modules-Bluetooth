@@ -153,6 +153,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac6622e9_84a681e3",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 33
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-25T16:53:22Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "13547eb2_9c815c4d",
+      "revId": "74e25b8b513d75331578f98a1e0f10ffb1452902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d8576f7_fa7a72bb",
