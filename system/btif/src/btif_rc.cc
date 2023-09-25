@@ -3542,6 +3542,10 @@ static void handle_app_attr_response(tBTA_AV_META_MSG* pmeta_msg,
                                       p_dev);
   } else {
     BTIF_TRACE_ERROR("%s: No Player application settings found", __func__);
+    /* when the remote device support player app setting, but the num attr
+     * is 0, then bluedroid will not get the first element attribute.
+     */
+    rc_ctrl_procedure_complete(p_dev);
   }
 }
 
