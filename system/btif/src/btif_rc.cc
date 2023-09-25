@@ -3283,6 +3283,10 @@ static void handle_app_attr_response(tBTA_AV_META_MSG* pmeta_msg, tAVRC_LIST_APP
     list_player_app_setting_value_cmd(p_dev->rc_app_settings.attrs[0].attr_id, p_dev);
   } else {
     log::error("No Player application settings found");
+    /* when the remote device support player app setting, but the num attr
+     * is 0, then bluedroid will not get the first element attribute.
+     */
+    rc_ctrl_procedure_complete(p_dev);
   }
 }
 
