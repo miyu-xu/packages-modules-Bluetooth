@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "747b9883_2ab49363",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T17:44:51Z",
+      "side": 1,
+      "message": "Don\u0027t you need to add the libosi here too ?",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 44
+      },
+      "revId": "3e26f18db124a6e4a18bb004a0072a238ae6c7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3ab5222_e028330f",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T17:44:51Z",
+      "side": 1,
+      "message": "not needed as this is coming from the libbluetooth_gd_defaults",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 44
+      },
+      "revId": "3e26f18db124a6e4a18bb004a0072a238ae6c7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40c86f89_f37ead19",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T17:44:51Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 44
+      },
+      "revId": "3e26f18db124a6e4a18bb004a0072a238ae6c7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eddd27b_fbf25837",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T17:44:51Z",
+      "side": 1,
+      "message": "same",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 44
+      },
+      "revId": "3e26f18db124a6e4a18bb004a0072a238ae6c7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
