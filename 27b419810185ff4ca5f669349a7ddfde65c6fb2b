@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c913982c_c2d5c51a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T20:49:55Z",
+      "side": 1,
+      "message": "LGTM.\nAdding bumble owner for validation.\n(Not voting +2 as it looks like I have code owner on this and I shouldn\u0027t have )\n\n@charliebout@google.com, can you review this change ?",
+      "revId": "27b419810185ff4ca5f669349a7ddfde65c6fb2b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
