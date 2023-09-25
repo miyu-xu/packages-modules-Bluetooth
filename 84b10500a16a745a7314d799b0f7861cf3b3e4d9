@@ -159,6 +159,30 @@
       },
       "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ed91852_0fa5993e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-09-25T10:38:10Z",
+      "side": 1,
+      "message": "If we only add callback, then add another interface is overkill to me. However, if eventually we find out we actually need a many callback for telephony in CRAS/Floss. Then we should definitely add another interface to support it.",
+      "parentUuid": "47d7bc10_e71c118e",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 46
+      },
+      "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
