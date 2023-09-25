@@ -92,6 +92,9 @@ cc_library_static {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
     ],
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+    ],
     host_supported: true,
     apex_available: [
         "com.android.btservices",
