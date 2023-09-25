@@ -46,6 +46,53 @@
       },
       "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dfc9c12_759c5be8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T23:07:07Z",
+      "side": 1,
+      "message": "It is to my understanding that `verify` will check all argument before applying the \"times\"\n\nSince the onConnectionStateChange is called twice with `STATE_CONNECTED` and once with `STATE_DISCONNECTED`, we should not need the 2 + 3",
+      "parentUuid": "19756658_296d3987",
+      "range": {
+        "startLine": 137,
+        "startChar": 29,
+        "endLine": 137,
+        "endChar": 42
+      },
+      "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bf656df_60a51f93",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T23:07:07Z",
+      "side": 1,
+      "message": "Add `verifyNoMoreInteractions(gattCallback)`. This will enforce the test to fail in the current implementation since the callback is triggered twice with connected but only checked once\n\nYou probably need to add an additional verify on STATE_DISCONNECTED with times 2 + timeout",
+      "range": {
+        "startLine": 141,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 5
+      },
+      "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
