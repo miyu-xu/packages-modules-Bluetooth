@@ -22,6 +22,30 @@
       },
       "revId": "25c5457dd28a739bb336c7123681621b8eff61e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff7bf23f_09c731af",
+        "filename": "pandora/interfaces/pandora_experimental/os.proto",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-09-25T18:11:42Z",
+      "side": 1,
+      "message": "I will follow up in another CL",
+      "parentUuid": "d4478784_71daae85",
+      "range": {
+        "startLine": 55,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 29
+      },
+      "revId": "25c5457dd28a739bb336c7123681621b8eff61e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
