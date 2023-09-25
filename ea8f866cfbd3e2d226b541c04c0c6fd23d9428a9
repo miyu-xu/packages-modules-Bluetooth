@@ -16,6 +16,24 @@
       "message": "... in btif/\n\nAre the others going to disappear as well?",
       "revId": "ea8f866cfbd3e2d226b541c04c0c6fd23d9428a9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9bfb15d_c2d00954",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-25T23:28:30Z",
+      "side": 1,
+      "message": "Yes they will...on an as-needed basis when a test is written that requires it.",
+      "parentUuid": "e311f1b0_b5965f32",
+      "revId": "ea8f866cfbd3e2d226b541c04c0c6fd23d9428a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
