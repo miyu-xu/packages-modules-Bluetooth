@@ -22,6 +22,30 @@
       },
       "revId": "851a471ae152cf3eab21c88715cd3f99a89ea5ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ae983f2_e221db36",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1181,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-09-25T22:10:49Z",
+      "side": 1,
+      "message": "Yes, we can go with suppress warning.",
+      "parentUuid": "44945a45_9616c5c0",
+      "range": {
+        "startLine": 1181,
+        "startChar": 0,
+        "endLine": 1181,
+        "endChar": 79
+      },
+      "revId": "851a471ae152cf3eab21c88715cd3f99a89ea5ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
