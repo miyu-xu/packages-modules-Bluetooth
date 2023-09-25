@@ -13,7 +13,7 @@ class PowerTelemetryTest : public ::testing::Test {
 
   void reset() {
     power_telemetry::GetInstance().pimpl_->idx_containers = 0;
-    for (int i = 0; i < kLogEntriesSize - 1; i++) {
+    for (int i = 0; i < kLogEntriesSize; i++) {
       power_telemetry::GetInstance().pimpl_->log_data_containers_[i] =
           LogDataContainer();
     }
@@ -63,6 +63,13 @@ TEST_F(PowerTelemetryTest, test_LogInqScanDetails) {
 
   power_telemetry::GetInstance().LogInqScanStarted();
   ASSERT_EQ(1, power_telemetry::GetInstance().pimpl_->inq_scan.count_);
+}
+
+TEST_F(PowerTelemetryTest, test_LogBleScan) {
+  reset();
+
+  power_telemetry::GetInstance().LogBleScan(10);
+  ASSERT_EQ(10, (int)power_telemetry::GetInstance().pimpl_->ble_scan.count_);
 }
 
 TEST_F(PowerTelemetryTest, test_LogBleAdvDetails) {
@@ -290,8 +297,6 @@ TEST_F(PowerTelemetryTest, test_feature_flag) {
   dummy_res.rem_bda = bdaddr;
   dummy_res.status = BTM_SUCCESS;
   void* p = &dummy_res;
-  power_telemetry::GetInstance().LogLinkDetails(handle, bdaddr, isConnected,
-                                                true);
 
   // Set feature flag to false
   // All function shouldn't work if flag is false
@@ -345,6 +350,9 @@ TEST_F(PowerTelemetryTest, test_feature_flag) {
   dummy_res.tx_power = 100;
   power_telemetry::GetInstance().LogTxPower(p);
   ASSERT_EQ(0, ldc.acl.link_details_map[handle].tx_power_level);
+
+  power_telemetry::GetInstance().LogBleScan(10);
+  ASSERT_EQ(0, (int)power_telemetry::GetInstance().pimpl_->ble_scan.count_);
 
   power_telemetry::GetInstance().LogBleAdvStarted();
   ASSERT_EQ(0, (int)ldc.adv_list.size());
