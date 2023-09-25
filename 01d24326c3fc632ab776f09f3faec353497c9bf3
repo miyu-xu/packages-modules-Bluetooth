@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3f205e2_a89d70ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T19:10:39Z",
+      "side": 1,
+      "message": "@hallstrom@google.com Have you filled go/bt-testing-exemption ?",
+      "revId": "01d24326c3fc632ab776f09f3faec353497c9bf3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
