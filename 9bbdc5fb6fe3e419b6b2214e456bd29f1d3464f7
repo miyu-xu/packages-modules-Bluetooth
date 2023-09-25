@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c64c748_eac87f2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-09-25T21:47:58Z",
+      "side": 1,
+      "message": "LGTM since this CL only removes flag.",
+      "revId": "9bbdc5fb6fe3e419b6b2214e456bd29f1d3464f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
