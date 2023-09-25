@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2f42bea_6a82c503",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 49
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T17:47:53Z",
+      "side": 1,
+      "message": "Naive question, does the following works ?\n```\n.rx.bytes \u003d l2c.rx.bytes_,\n```",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 14
+      },
+      "revId": "30ceb46694efad4d3404bc14250a4ae8778cabfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
