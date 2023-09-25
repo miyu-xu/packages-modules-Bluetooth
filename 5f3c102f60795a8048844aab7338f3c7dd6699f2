@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02992eaf_ddf58b2d",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1938,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-25T17:29:18Z",
+      "side": 1,
+      "message": "// Look up UUIDs using the currently connected address",
+      "revId": "5f3c102f60795a8048844aab7338f3c7dd6699f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a32e8051_96296255",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1951,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-25T17:29:18Z",
+      "side": 1,
+      "message": "// Look up UUIDs using the static address, as well, if it\u0027s different.",
+      "revId": "5f3c102f60795a8048844aab7338f3c7dd6699f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
