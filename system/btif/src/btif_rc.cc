@@ -3514,7 +3514,15 @@ static void handle_app_attr_response(tBTA_AV_META_MSG* pmeta_msg,
     list_player_app_setting_value_cmd(p_dev->rc_app_settings.attrs[0].attr_id,
                                       p_dev);
   } else {
+<<<<<<< PATCH SET (874ba7 fix not send get first element attribute)
+    BTIF_TRACE_ERROR("%s: No Player application settings found", __func__);
+    /* when the remote device support player app setting, but the num attr
+     * is 0, then bluedroid will not get the first element attribute.
+     */
+    rc_ctrl_procedure_complete(p_dev);
+=======
     LOG_ERROR("%s: No Player application settings found", __func__);
+>>>>>>> BASE      (7f2e59 Merge "Add wrapper for LE Multi-codec's HAL functions" into )
   }
 }
 
