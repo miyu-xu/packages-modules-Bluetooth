@@ -176,6 +176,7 @@ cc_defaults {
         "libbt_shim_ffi",
     ],
     include_dirs: [
+        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/types",
     ],
@@ -322,6 +323,7 @@ cc_test {
         "mts_defaults",
     ],
     include_dirs: [
+        "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/types",
     ],
@@ -392,6 +394,7 @@ cc_test {
         "libbluetooth-dumpsys-test",
         "libbluetooth-dumpsys-unittest",
         "libbluetooth-protos",
+        "libbluetooth-types",
         "libbluetooth_gd_unit_tests",
         "libbluetooth_hci_pdl",
         "libbluetooth_l2cap_pdl",
@@ -405,6 +408,7 @@ cc_test {
         "libchrome",
         "libflatbuffers-cpp",
         "libgmock",
+        "libosi",
     ],
     shared_libs: [
         "libcrypto",
