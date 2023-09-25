@@ -57,6 +57,30 @@
       },
       "revId": "22d6465677115421c3f2240025c6cacd7b5421f0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9652c581_cb4f8fda",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 31
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T17:48:07Z",
+      "side": 1,
+      "message": "Talked offline, keeping the check in all the places.",
+      "parentUuid": "cfac6977_399e1e3e",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 0
+      },
+      "revId": "22d6465677115421c3f2240025c6cacd7b5421f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
