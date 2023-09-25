@@ -21,6 +21,7 @@
 #include <cstdint>
 #include <memory>
 
+#include "osi/include/log.h"
 #include "types/raw_address.h"
 
 namespace power_telemetry {
@@ -64,7 +65,6 @@ class PowerTelemetry {
 
   void Dumpsys(int32_t fd);
 
- protected:
   std::unique_ptr<PowerTelemetryImpl> pimpl_;
 };
 
