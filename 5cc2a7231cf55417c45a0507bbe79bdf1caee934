@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "60a3bfca_5ad94153",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-09-25T08:46:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0516cad_b1172cb1",
+      "revId": "5cc2a7231cf55417c45a0507bbe79bdf1caee934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c01906a2_7b7ea72d",
@@ -119,6 +137,24 @@
       "writtenOn": "2023-09-22T16:09:45Z",
       "side": 1,
       "message": "...But this code unconditionally dereferences `peer_addr`.  However, this is hardly a new situation for this code, as several lines before this one also unconditionally dereference `peer_addr`.\n\nI don\u0027t know this code.  If it\u0027s impossible for `peer_addr` to be NULL, should we remove that logic to make it clearer?  And if it is possible for `peer_addr` to be NULL, then it seems like we need additional logic, much earlier in the function than right here, to make sure we don\u0027t crash from a null dereference.",
+      "revId": "5cc2a7231cf55417c45a0507bbe79bdf1caee934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fff4687_df946616",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-09-25T08:46:45Z",
+      "side": 1,
+      "message": "`peer_addr` can be NULL but with `AVRC_CLOSE_IND_EVT` only so there is no risk of crash here. I\u0027ll remove the check above, thanks",
+      "parentUuid": "0443c93c_a5cdb824",
       "revId": "5cc2a7231cf55417c45a0507bbe79bdf1caee934",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
