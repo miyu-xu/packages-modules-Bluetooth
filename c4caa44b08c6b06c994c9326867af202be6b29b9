@@ -34,6 +34,23 @@
       "parentUuid": "39f0822e_e421d10c",
       "revId": "c4caa44b08c6b06c994c9326867af202be6b29b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21e2e5e4_5f450d5a",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-25T22:02:40Z",
+      "side": 1,
+      "message": "What does the `std::underlying_type_t` provide that a normal static cast does not ?\n\ne.g.\n\nWhy not simply update with this form:\n```\nif (static_cast\u003ctBTM_BLE_EVT\u003e(p_cb-\u003edirected_conn) \u003d\u003d BTM_BLE_CONNECT_DIR_EVT ...\n```",
+      "revId": "c4caa44b08c6b06c994c9326867af202be6b29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
