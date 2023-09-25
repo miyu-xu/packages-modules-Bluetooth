@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dcbf70f5_927fb846",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T17:46:34Z",
+      "side": 1,
+      "message": "You do need it, cf presubmit build error:\n```\nld.lld: error: undefined symbol: _ZN15power_telemetry11GetInstanceEv\n\u003e\u003e\u003e referenced by hci_layer.cc:379 (packages/modules/Bluetooth/system/gd/hci/hci_layer.cc:379)\n.../packages/modules/Bluetooth/system/gd/libbluetooth_gd/linux_glibc_x86_64_static/obj/packages/modules/Bluetooth/system/gd/hci/hci_layer.o:(_ZN9bluetooth3hci8HciLayer4impl12on_hci_eventENS0_9EventViewE)\n\u003e\u003e\u003e referenced by hci_layer.cc:278 (packages/modules/Bluetooth/system/gd/hci/hci_layer.cc:278)\n...rmediates/packages/modules/Bluetooth/system/gd/libbluetooth_gd/linux_glibc_x86_64_static/obj/packages/modules/Bluetooth/system/gd/hci/hci_layer.o:(_ZN9bluetooth3hci8HciLayer4impl17send_next_commandEv)\n\n```",
+      "parentUuid": "747b9883_2ab49363",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 44
+      },
+      "revId": "3e26f18db124a6e4a18bb004a0072a238ae6c7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a3ab5222_e028330f",
         "filename": "system/gd/Android.bp",
         "patchSetId": 19
