@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da568423_cc61658a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1175,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T23:09:43Z",
+      "side": 1,
+      "message": "Does the following works instead ?\n\n```suggestion\n    @GuardedBy(\"mLock\")\n```",
+      "range": {
+        "startLine": 1175,
+        "startChar": 0,
+        "endLine": 1175,
+        "endChar": 71
+      },
+      "revId": "76635217eea6f22f7f94cce21a591d4375c64563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
