@@ -3,6 +3,109 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5c1f9771_e1aaa72e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-25T21:00:27Z",
+      "side": 1,
+      "message": "Maybe \nINACTIVE,\nGETTING_ACTIVE,\nACTIVE ?",
+      "range": {
+        "startLine": 122,
+        "startChar": 29,
+        "endLine": 122,
+        "endChar": 52
+      },
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1b60416_7331c393",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-25T21:00:27Z",
+      "side": 1,
+      "message": "wouldn\u0027t it be simpler to add bool in the descriptor like: `native_getting_active` ?\n\nAlso, do you handle case when before native returns with ACTIVE, the other group will try to be ACTIVE?",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 14
+      },
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "314772ce_ccd46ca6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1031,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-25T21:00:27Z",
+      "side": 1,
+      "message": "```suggestion\n                for (Map.Entry\u003cInteger, LeAudioGroupDescriptor\u003e entry : mGroupDescriptors.entrySet()) {\n                LeAudioGroupDescriptor descriptor \u003d entry.getValue();\n                if (descriptor.mActiveState !\u003d INACTIVE) {\n                   return false;\n                }\n             }\n             \n            return true;\n      }   \n                \n```",
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a134a71a_86f05ae6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-25T21:00:27Z",
+      "side": 1,
+      "message": "Maybe there is no need to change this function?",
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91da0b1d_c042a3f5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-25T21:00:27Z",
+      "side": 1,
+      "message": "why this is under `if  (groupId !\u003d LE_AUDIO_GROUP_ID_INVALID)` ?",
+      "range": {
+        "startLine": 1524,
+        "startChar": 12,
+        "endLine": 1524,
+        "endChar": 66
+      },
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "835e0607_8421c290",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1
