@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b412ad_81b33662",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-25T20:52:59Z",
+      "side": 1,
+      "message": "```suggestion\n        verify(gattCallback, timeout(1000).times(2))\n```\n\nif not you are gonna check the previous connection",
+      "range": {
+        "startLine": 137,
+        "startChar": 29,
+        "endLine": 137,
+        "endChar": 42
+      },
+      "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
