@@ -22,6 +22,30 @@
       },
       "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19756658_296d3987",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-09-25T21:05:18Z",
+      "side": 1,
+      "message": "Here we\u0027re gonna assert that `gattCallback` has been called 2 times *since* we call this `verify` function ; Which will not be satisfied\n\nIf there is a counter on `gattCallback` since the very beginning then we\u0027ll need to do `times(3)` here and `times(2)` line 133. wdyt ?",
+      "parentUuid": "54b412ad_81b33662",
+      "range": {
+        "startLine": 137,
+        "startChar": 29,
+        "endLine": 137,
+        "endChar": 42
+      },
+      "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
