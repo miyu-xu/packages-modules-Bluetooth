@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43a290e1_b5924294",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-09-25T20:30:03Z",
+      "side": 1,
+      "message": "I think this change is breaking car targets.\n\nmPhonePolicy is not guaranteed to be non-null on all targets, particularly cars. You need null checks on the usages.",
+      "revId": "c06001fd693a79a5245d4dbba1f55948e23feaf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aac9434a_4954866b",
