@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "101992bf_15dab472",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 23
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-26T17:02:04Z",
+      "side": 1,
+      "message": "nit: Remove one space.",
+      "range": {
+        "startLine": 7,
+        "startChar": 9,
+        "endLine": 7,
+        "endChar": 10
+      },
+      "revId": "a2aa9c1dae6bc38629abc4e36d5c8ec1c07df58a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7dc00664_8cbcb154",
         "filename": "android/pandora/mmi2grpc/mmi2grpc/_rootcanal.py",
         "patchSetId": 23
@@ -67,6 +90,29 @@
         "startChar": 4,
         "endLine": 81,
         "endChar": 45
+      },
+      "revId": "a2aa9c1dae6bc38629abc4e36d5c8ec1c07df58a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3c6bbf1_18c96f0b",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/_rootcanal.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-26T17:02:04Z",
+      "side": 1,
+      "message": "```suggestion\n        # Android is always first to connect to root-canal.\n```",
+      "range": {
+        "startLine": 104,
+        "startChar": 48,
+        "endLine": 104,
+        "endChar": 55
       },
       "revId": "a2aa9c1dae6bc38629abc4e36d5c8ec1c07df58a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -233,6 +279,46 @@
         "endLine": 42,
         "endChar": 71
       },
+      "revId": "a2aa9c1dae6bc38629abc4e36d5c8ec1c07df58a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5df86bb_3750792a",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-26T17:02:04Z",
+      "side": 1,
+      "message": "nit: Why did we changed from a set to a list ?",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 10
+      },
+      "revId": "a2aa9c1dae6bc38629abc4e36d5c8ec1c07df58a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e616d793_6713131e",
+        "filename": "android/pandora/server/configs/pts_bot_tests_config.json",
+        "patchSetId": 23
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-26T17:02:04Z",
+      "side": 1,
+      "message": "Could you remove it from the `pass` list ?\n\nSame thing for the other ones that are present twice in this file.\n\nThis will make more obvious which tests are new (and skipped) and which tests are being skipped because of the update.",
       "revId": "a2aa9c1dae6bc38629abc4e36d5c8ec1c07df58a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
