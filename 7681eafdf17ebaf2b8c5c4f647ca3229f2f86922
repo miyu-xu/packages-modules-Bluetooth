@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c3e1c9f_41198601",
+        "filename": "system/bta/dm/bta_dm_disc.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-26T18:19:04Z",
+      "side": 1,
+      "message": "I expected the other functions to end up here, as well.  It seems odd to only have the dumpsys function in bta_dm_disc.h",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 21
+      },
+      "revId": "7681eafdf17ebaf2b8c5c4f647ca3229f2f86922",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
