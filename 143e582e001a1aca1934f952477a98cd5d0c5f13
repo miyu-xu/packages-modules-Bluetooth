@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac8a963_6f2440cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-26T22:25:20Z",
+      "side": 1,
+      "message": "Right now this CL is not tested at presubmit because of the flag (which is intended)\nWith trunk stable policy this is expected, and the test will start to be run when the feature launch.\n\nBUT...\nIf we can think of a way to run this test by overriding the flag / overriding the mActiveDeviceManager... or anything, that would be better I think.\n\nNot blocking the change, still LGTM now.",
+      "revId": "143e582e001a1aca1934f952477a98cd5d0c5f13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
