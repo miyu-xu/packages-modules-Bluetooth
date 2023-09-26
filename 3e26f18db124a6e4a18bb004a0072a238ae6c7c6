@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f79ab5d2_4a11c6f9",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-26T04:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcbf70f5_927fb846",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 179,
+        "endChar": 44
+      },
+      "revId": "3e26f18db124a6e4a18bb004a0072a238ae6c7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a3ab5222_e028330f",
@@ -61,6 +85,30 @@
       "writtenOn": "2023-09-25T17:44:51Z",
       "side": 1,
       "message": "not needed as this is coming from the libbluetooth_gd_defaults",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 192,
+        "endChar": 44
+      },
+      "revId": "3e26f18db124a6e4a18bb004a0072a238ae6c7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea063760_5a07ab58",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-26T04:50:56Z",
+      "side": 1,
+      "message": "Still need this for this test. \"atest -c -v --host net_test_stack_acl\"",
+      "parentUuid": "a3ab5222_e028330f",
       "range": {
         "startLine": 192,
         "startChar": 0,
@@ -94,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27020a01_1d6d3b35",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-26T04:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40c86f89_f37ead19",
+      "range": {
+        "startLine": 208,
+        "startChar": 0,
+        "endLine": 208,
+        "endChar": 44
+      },
+      "revId": "3e26f18db124a6e4a18bb004a0072a238ae6c7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3eddd27b_fbf25837",
@@ -107,6 +179,30 @@
       "writtenOn": "2023-09-25T17:44:51Z",
       "side": 1,
       "message": "same",
+      "range": {
+        "startLine": 227,
+        "startChar": 0,
+        "endLine": 227,
+        "endChar": 44
+      },
+      "revId": "3e26f18db124a6e4a18bb004a0072a238ae6c7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "709cf1c1_b8edec85",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-26T04:50:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3eddd27b_fbf25837",
       "range": {
         "startLine": 227,
         "startChar": 0,
