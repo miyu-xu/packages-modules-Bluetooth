@@ -16,6 +16,69 @@
       "message": "chr",
       "revId": "35c013a205e0ee7ae03e8fb5aa4663520feada29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00d6efd4_c4bc0fff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-26T17:50:08Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "35c013a205e0ee7ae03e8fb5aa4663520feada29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9ef9733_f904dace",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-26T17:50:08Z",
+      "side": 1,
+      "message": "Why does this need to be 64-bit?  It\u0027s just being used to shift the service mask and compare against BTA_*_SERIVCE_ID defines.",
+      "range": {
+        "startLine": 662,
+        "startChar": 2,
+        "endLine": 662,
+        "endChar": 15
+      },
+      "revId": "35c013a205e0ee7ae03e8fb5aa4663520feada29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d301b207_c3c60595",
+        "filename": "system/osi/src/fixed_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-26T17:50:08Z",
+      "side": 1,
+      "message": "Should we add an assert here to make sure that the capacity doesn\u0027t end up smaller than the intended capacity?\nSomething like:\nCHECK(capacity \u003d\u003d (size_t)((unsigned int)capacity));",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 59
+      },
+      "revId": "35c013a205e0ee7ae03e8fb5aa4663520feada29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
