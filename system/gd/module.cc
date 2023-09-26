@@ -18,11 +18,11 @@
 #include "module.h"
 
 #include "common/init_flags.h"
-#include "os/wakelock_manager.h"
+// #include "os/wakelock_manager.h"
 
 using ::bluetooth::os::Handler;
 using ::bluetooth::os::Thread;
-using ::bluetooth::os::WakelockManager;
+// using ::bluetooth::os::WakelockManager;
 
 namespace bluetooth {
 
@@ -152,7 +152,7 @@ void ModuleDumper::DumpState(std::string* output) const {
   init_flags_builder.add_values(builder.CreateVector(flags));
   auto init_flags_offset = init_flags_builder.Finish();
 
-  auto wakelock_offset = WakelockManager::Get().GetDumpsysData(&builder);
+  //  auto wakelock_offset = WakelockManager::Get().GetDumpsysData(&builder);
 
   std::queue<DumpsysDataFinisher> queue;
   for (auto it = module_registry_.start_order_.rbegin(); it != module_registry_.start_order_.rend(); it++) {
@@ -164,7 +164,7 @@ void ModuleDumper::DumpState(std::string* output) const {
   DumpsysDataBuilder data_builder(builder);
   data_builder.add_title(title);
   data_builder.add_init_flags(init_flags_offset);
-  data_builder.add_wakelock_manager_data(wakelock_offset);
+  //  data_builder.add_wakelock_manager_data(wakelock_offset);
 
   while (!queue.empty()) {
     queue.front()(&data_builder);

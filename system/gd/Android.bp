@@ -90,6 +90,47 @@ cc_defaults {
     ],
 }
 
+cc_library {
+    name: "libbt-gd-module",
+    defaults: [
+        "gd_defaults",
+    ],
+    host_supported: true,
+    srcs: [
+        ":BluetoothOsHandlerSources",
+        "module.cc",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+    ],
+    static_libs: [
+        "libbluetooth-dumpsys",
+        "libbluetooth-protos",
+        "libbluetooth_rust_interop",
+        "libbt-platform-protos-lite",
+        "libbt_shim_bridge",
+        "libbt_shim_ffi",
+        "libstatslog_bt",
+    ],
+    shared_libs: [
+        "libchrome",
+        "libflatbuffers-cpp",
+    ],
+    target: {
+        linux: {
+            srcs: [":BluetoothOsSources_linux_threading"],
+        },
+        darwin: {
+            enabled: false,
+        },
+    },
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "31",
+    cflags: ["-Wno-unused-parameter"],
+}
+
 cc_defaults {
     name: "libbluetooth_gd_defaults",
     defaults: [
@@ -147,7 +188,7 @@ cc_defaults {
         ":BluetoothShimSources",
         ":BluetoothStorageSources",
         ":BluetoothSyspropsSources",
-        "module.cc",
+        //       "module.cc",
         "stack_manager.cc",
     ],
     generated_headers: [
@@ -165,11 +206,13 @@ cc_defaults {
         "libbluetooth_hci_pdl",
         "libbluetooth_l2cap_pdl",
         "libbluetooth_smp_pdl",
+        "libbt-gd-module",
         "libc++fs",
     ],
     static_libs: [
         "libbluetooth-dumpsys",
         "libbluetooth-protos",
+        //        "libbluetooth-gd-lite",
         "libbluetooth_rust_interop",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
@@ -332,6 +375,7 @@ cc_test {
         linux: {
             srcs: [
                 ":BluetoothOsTestSources_linux_generic",
+                ":BluetoothOsTestSources_linux_threading",
             ],
         },
         host: {
