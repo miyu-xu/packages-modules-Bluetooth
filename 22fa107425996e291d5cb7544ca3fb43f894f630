@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4111840c_a0c0e454",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-26T19:47:02Z",
+      "side": 1,
+      "message": "InOrder seemed better for this use case since ordering does matter, so I updated to use that instead in the latest patch set. PTAL and feel free to reopen this thread if further discussion needed.",
+      "parentUuid": "8dfc9c12_759c5be8",
+      "range": {
+        "startLine": 137,
+        "startChar": 29,
+        "endLine": 137,
+        "endChar": 42
+      },
+      "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0bf656df_60a51f93",
@@ -85,6 +109,30 @@
       "writtenOn": "2023-09-25T23:07:07Z",
       "side": 1,
       "message": "Add `verifyNoMoreInteractions(gattCallback)`. This will enforce the test to fail in the current implementation since the callback is triggered twice with connected but only checked once\n\nYou probably need to add an additional verify on STATE_DISCONNECTED with times 2 + timeout",
+      "range": {
+        "startLine": 141,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 5
+      },
+      "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a7cbf12_13e27833",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-26T19:47:02Z",
+      "side": 1,
+      "message": "Done and switched to loop format matching the other tests to add additional calls.",
+      "parentUuid": "0bf656df_60a51f93",
       "range": {
         "startLine": 141,
         "startChar": 4,
