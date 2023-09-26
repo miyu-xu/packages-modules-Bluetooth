@@ -437,10 +437,10 @@ static void btavrcp_get_folder_items_callback(
 
         ScopedLocalRef<jobject> mediaObj(
             sCallbackEnv.get(),
-            (jobject)sCallbackEnv->CallObjectMethod(
+            (jobject)sCallbackEnv->CallStaticObjectMethod(
                 sCallbacksObj, method_createFromNativeMediaItem, addr.get(),
-                uid, (jint)item->media.type, mediaName.get(),
-                attrIdArray.get(), attrValArray.get()));
+                uid, (jint)item->media.type, mediaName.get(), attrIdArray.get(),
+                attrValArray.get()));
         if (!mediaObj.get()) {
           ALOGE("%s failed to create AvrcpItem for type ITEM_MEDIA", __func__);
           return;
@@ -462,7 +462,7 @@ static void btavrcp_get_folder_items_callback(
         long long uid = *(long long*)item->folder.uid;
         ScopedLocalRef<jobject> folderObj(
             sCallbackEnv.get(),
-            (jobject)sCallbackEnv->CallObjectMethod(
+            (jobject)sCallbackEnv->CallStaticObjectMethod(
                 sCallbacksObj, method_createFromNativeFolderItem, addr.get(),
                 uid, (jint)item->folder.type, folderName.get(),
                 (jint)item->folder.playable));
@@ -502,7 +502,7 @@ static void btavrcp_get_folder_items_callback(
         }
         ScopedLocalRef<jobject> playerObj(
             sCallbackEnv.get(),
-            (jobject)sCallbackEnv->CallObjectMethod(
+            (jobject)sCallbackEnv->CallStaticObjectMethod(
                 sCallbacksObj, method_createFromNativePlayerItem, addr.get(),
                 id, playerName.get(), featureBitArray.get(), playStatus,
                 playerType));
