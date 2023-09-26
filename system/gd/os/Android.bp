@@ -8,9 +8,15 @@ package {
 }
 
 filegroup {
-    name: "BluetoothOsSources",
+    name: "BluetoothOsHandlerSources",
     srcs: [
         "handler.cc",
+    ],
+}
+
+filegroup {
+    name: "BluetoothOsSources",
+    srcs: [
         "system_properties_common.cc",
     ],
 }
@@ -62,10 +68,16 @@ filegroup {
         "linux_generic/alarm.cc",
         "linux_generic/files.cc",
         "linux_generic/reactive_semaphore.cc",
-        "linux_generic/reactor.cc",
         "linux_generic/repeating_alarm.cc",
-        "linux_generic/thread.cc",
         "linux_generic/wakelock_manager.cc",
+    ],
+}
+
+filegroup {
+    name: "BluetoothOsSources_linux_threading",
+    srcs: [
+        "linux_generic/reactor.cc",
+        "linux_generic/thread.cc",
     ],
 }
 
@@ -75,10 +87,16 @@ filegroup {
         "linux_generic/alarm_unittest.cc",
         "linux_generic/files_test.cc",
         "linux_generic/queue_unittest.cc",
-        "linux_generic/reactor_unittest.cc",
         "linux_generic/repeating_alarm_unittest.cc",
-        "linux_generic/thread_unittest.cc",
         "linux_generic/wakelock_manager_unittest.cc",
+    ],
+}
+
+filegroup {
+    name: "BluetoothOsTestSources_linux_threading",
+    srcs: [
+        "linux_generic/reactor_unittest.cc",
+        "linux_generic/thread_unittest.cc",
     ],
 }
 
