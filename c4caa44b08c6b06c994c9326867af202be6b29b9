@@ -69,6 +69,24 @@
       "parentUuid": "21e2e5e4_5f450d5a",
       "revId": "c4caa44b08c6b06c994c9326867af202be6b29b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9199c594_98a316c1",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-26T23:45:48Z",
+      "side": 1,
+      "message": "got it.  so anonymous enums don\u0027t mix with named enums.\n\nthx.",
+      "parentUuid": "7b2c2f3c_2c678b0b",
+      "revId": "c4caa44b08c6b06c994c9326867af202be6b29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
