@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6de42395_53279a31",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-26T02:26:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "e3484c65_ac9da924",
+      "range": {
+        "startLine": 42,
+        "startChar": 17,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "ca51887754a86151437a0967781a5a9a80d44e75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "957959c4_7b95ed62",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-26T00:10:41Z",
       "side": 0,
       "message": "Here\u0027s the usage.",
+      "range": {
+        "startLine": 479,
+        "startChar": 25,
+        "endLine": 479,
+        "endChar": 35
+      },
+      "revId": "ca51887754a86151437a0967781a5a9a80d44e75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4b93e4d_d0129eaf",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-26T02:26:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "957959c4_7b95ed62",
       "range": {
         "startLine": 479,
         "startChar": 25,
