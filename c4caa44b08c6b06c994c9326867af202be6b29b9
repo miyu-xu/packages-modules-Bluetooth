@@ -51,6 +51,24 @@
       "message": "What does the `std::underlying_type_t` provide that a normal static cast does not ?\n\ne.g.\n\nWhy not simply update with this form:\n```\nif (static_cast\u003ctBTM_BLE_EVT\u003e(p_cb-\u003edirected_conn) \u003d\u003d BTM_BLE_CONNECT_DIR_EVT ...\n```",
       "revId": "c4caa44b08c6b06c994c9326867af202be6b29b9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b2c2f3c_2c678b0b",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1588,
+      "author": {
+        "id": 1565288
+      },
+      "writtenOn": "2023-09-26T04:46:47Z",
+      "side": 1,
+      "message": "This doesn\u0027t work since `BTM_BLE_CONNECT_DIR_EVT` is a unnamed enum while `p_cb-\u003edirected_conn` is named enum `tBTM_BLE_EVT`. This causes compile error on C++20. The `std::underlying_type_t` usage referred to implementation of `base::to_underlying`:\nhttps://source.chromium.org/chromium/chromium/src/+/main:base/types/cxx23_to_underlying.h",
+      "parentUuid": "21e2e5e4_5f450d5a",
+      "revId": "c4caa44b08c6b06c994c9326867af202be6b29b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
