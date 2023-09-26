@@ -1702,6 +1702,8 @@ void DualModeController::SetEventFilter(CommandView command) {
   DEBUG(id_, "   filter_type={}",
         bluetooth::hci::FilterTypeText(command_view.GetFilterType()));
 
+  FATAL("event filter not supported");
+
   send_event_(bluetooth::hci::SetEventFilterCompleteBuilder::Create(
       kNumCommandPackets, ErrorCode::SUCCESS));
 }
