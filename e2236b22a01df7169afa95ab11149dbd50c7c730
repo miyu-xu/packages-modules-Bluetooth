@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9213c8b5_9bf373b1",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-09-26T21:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3440ac09_a90666c3",
+      "range": {
+        "startLine": 557,
+        "startChar": 21,
+        "endLine": 557,
+        "endChar": 39
+      },
+      "revId": "e2236b22a01df7169afa95ab11149dbd50c7c730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f99abb16_07dfc2eb",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b492dc08_5f2f8bce",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-09-26T21:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f99abb16_07dfc2eb",
+      "range": {
+        "startLine": 560,
+        "startChar": 50,
+        "endLine": 560,
+        "endChar": 56
+      },
+      "revId": "e2236b22a01df7169afa95ab11149dbd50c7c730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3bc49b7e_a4128bc6",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-09-26T18:18:54Z",
       "side": 1,
       "message": "Do we want to rate limit or cap the number of retries, e.g., if the native stack is prolonged busy or stuck?",
+      "range": {
+        "startLine": 561,
+        "startChar": 20,
+        "endLine": 561,
+        "endChar": 46
+      },
+      "revId": "e2236b22a01df7169afa95ab11149dbd50c7c730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edc2db95_9a6ff696",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-09-26T21:01:39Z",
+      "side": 1,
+      "message": "I think that\u0027ll add more complexity than is worth it at the moment. This \"busy\" issue rarely happens as it is, and the global 10 second timeout still applies.\n\nIf we find we\u0027re spamming the SDP layer then we can adjust (or just fix the SDP layer I suppose)",
+      "parentUuid": "3bc49b7e_a4128bc6",
       "range": {
         "startLine": 561,
         "startChar": 20,
