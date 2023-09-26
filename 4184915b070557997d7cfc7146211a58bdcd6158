@@ -22,6 +22,53 @@
       },
       "revId": "4184915b070557997d7cfc7146211a58bdcd6158",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b20d7c55_456881ff",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1366,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-09-26T16:38:28Z",
+      "side": 1,
+      "message": "Sorry I re-read the loop, that\u0027s where it should stay.",
+      "parentUuid": "de90cdb2_82626c80",
+      "range": {
+        "startLine": 1360,
+        "startChar": 16,
+        "endLine": 1366,
+        "endChar": 17
+      },
+      "revId": "4184915b070557997d7cfc7146211a58bdcd6158",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1e80f3d_96a8cc0e",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1372,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-09-26T16:38:28Z",
+      "side": 1,
+      "message": "Isn\u0027t that a regular thing to have audio manager disactivate device ? Why would it be warning log ?",
+      "range": {
+        "startLine": 1372,
+        "startChar": 20,
+        "endLine": 1372,
+        "endChar": 21
+      },
+      "revId": "4184915b070557997d7cfc7146211a58bdcd6158",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
