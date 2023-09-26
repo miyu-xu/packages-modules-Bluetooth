@@ -22,6 +22,30 @@
       },
       "revId": "30ceb46694efad4d3404bc14250a4ae8778cabfa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a438fd7_2c8e545a",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 49
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-09-26T07:12:17Z",
+      "side": 1,
+      "message": "I tried them in the unit test. And I believe they are the same.\n```\nldc.l2c_data.rx.bytes \u003d l2c.rx.bytes_;\nldc.l2c_data.tx.bytes \u003d l2c.tx.bytes_;\n```\n```\nldc.l2c_data \u003d {\n        .rx \u003d\n            {\n                .bytes \u003d l2c.rx.bytes_,\n            },\n        .tx \u003d\n            {\n                .bytes \u003d l2c.tx.bytes_,\n            },\n    };\n```",
+      "parentUuid": "f2f42bea_6a82c503",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 14
+      },
+      "revId": "30ceb46694efad4d3404bc14250a4ae8778cabfa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
