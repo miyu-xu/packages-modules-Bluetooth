@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20d4865d_c2b578f6",
+        "filename": "system/stack/sdp/sdp_server.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-26T02:32:25Z",
+      "side": 0,
+      "message": "I was testing a new tool, and I misread the feedback.  The message indicated the _contents_ of that header need re-inclusion, not that header file itself.",
+      "parentUuid": "6de42395_53279a31",
+      "range": {
+        "startLine": 42,
+        "startChar": 17,
+        "endLine": 42,
+        "endChar": 27
+      },
+      "revId": "ca51887754a86151437a0967781a5a9a80d44e75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "957959c4_7b95ed62",
