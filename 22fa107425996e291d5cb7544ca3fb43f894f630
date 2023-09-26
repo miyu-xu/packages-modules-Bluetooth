@@ -141,6 +141,30 @@
       },
       "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e390317e_3e14053a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-26T21:55:11Z",
+      "side": 1,
+      "message": "I don\u0027t like the loop as it make assume that this code can behave differently depending on the timing.\n\nBut in this test we are waiting for the callback to be completed, we should not have to worry about timing.\n\nHence I think we should not have a loop.\nwdyt ?",
+      "parentUuid": "4a7cbf12_13e27833",
+      "range": {
+        "startLine": 141,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 5
+      },
+      "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
