@@ -16,6 +16,29 @@
       "message": "Provide proper signature for callback",
       "revId": "75c3c5768c4aafd8b95c2db5f9de74dc3343a199",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75ea3ba4_559a4009",
+        "filename": "system/bta/sys/bta_sys_conn.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-26T00:05:43Z",
+      "side": 1,
+      "message": "Should we make this UNUSED while we\u0027re here?",
+      "range": {
+        "startLine": 328,
+        "startChar": 35,
+        "endLine": 328,
+        "endChar": 37
+      },
+      "revId": "75c3c5768c4aafd8b95c2db5f9de74dc3343a199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
