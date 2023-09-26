@@ -66,9 +66,6 @@ struct EventCallbacks {
                                         int retransmission_count,
                                         int packets_not_receive_count,
                                         int negative_acknowledgement_count);
-
-  EventCallbacks(const EventCallbacks&) = delete;
-  EventCallbacks& operator=(const EventCallbacks&) = delete;
 };
 
 // This interface lets us query for configuration properties of the stack that
@@ -125,9 +122,6 @@ struct HACK_ProfileInterface {
 
   // AVRCP hacks
   uint16_t (*AVRC_GetProfileVersion)();
-
-  HACK_ProfileInterface(const HACK_ProfileInterface&) = delete;
-  HACK_ProfileInterface& operator=(const HACK_ProfileInterface&) = delete;
 };
 
 // This class defines the overall interface expected by bluetooth::core.

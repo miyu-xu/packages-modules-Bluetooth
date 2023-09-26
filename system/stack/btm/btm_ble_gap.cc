@@ -1584,8 +1584,8 @@ static uint8_t btm_set_conn_mode_adv_init_addr(
 
     evt_type = p_cb->directed_conn;
 
-    if (p_cb->directed_conn == BTM_BLE_CONNECT_DIR_EVT ||
-        p_cb->directed_conn == BTM_BLE_CONNECT_LO_DUTY_DIR_EVT) {
+    if (static_cast<uint8_t>(p_cb->directed_conn) == BTM_BLE_CONNECT_DIR_EVT ||
+        static_cast<uint8_t>(p_cb->directed_conn) == BTM_BLE_CONNECT_LO_DUTY_DIR_EVT) {
       /* for privacy 1.2, convert peer address as static, own address set as ID
        * addr */
       if (btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_1_2 ||
