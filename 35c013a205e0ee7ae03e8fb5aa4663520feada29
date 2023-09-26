@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "24f47a70_557c9792",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-26T18:16:31Z",
+      "side": 1,
+      "message": "The problem is that there are 33(32 if start count at zero) defined service ids in a 32 bit value.\n\n```\n#define BTA_MAX_SERVICE_ID 33\n```",
+      "parentUuid": "a9ef9733_f904dace",
+      "range": {
+        "startLine": 662,
+        "startChar": 2,
+        "endLine": 662,
+        "endChar": 15
+      },
+      "revId": "35c013a205e0ee7ae03e8fb5aa4663520feada29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d301b207_c3c60595",
         "filename": "system/osi/src/fixed_queue.cc",
         "patchSetId": 1
