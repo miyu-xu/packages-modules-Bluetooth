@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3440ac09_a90666c3",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 557,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-09-26T18:18:54Z",
+      "side": 1,
+      "message": "nit: rename to `MSG_MAS_SDP_UNSUCCESSFUL`, since it handles both (organic) \"failures\" and \"busy\" statuses.",
+      "range": {
+        "startLine": 557,
+        "startChar": 21,
+        "endLine": 557,
+        "endChar": 39
+      },
+      "revId": "e2236b22a01df7169afa95ab11149dbd50c7c730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f99abb16_07dfc2eb",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 560,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-09-26T18:18:54Z",
+      "side": 1,
+      "message": "same nit: \"unsuccessful\" instead of \"failed\"",
+      "range": {
+        "startLine": 560,
+        "startChar": 50,
+        "endLine": 560,
+        "endChar": 56
+      },
+      "revId": "e2236b22a01df7169afa95ab11149dbd50c7c730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bc49b7e_a4128bc6",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-09-26T18:18:54Z",
+      "side": 1,
+      "message": "Do we want to rate limit or cap the number of retries, e.g., if the native stack is prolonged busy or stuck?",
+      "range": {
+        "startLine": 561,
+        "startChar": 20,
+        "endLine": 561,
+        "endChar": 46
+      },
+      "revId": "e2236b22a01df7169afa95ab11149dbd50c7c730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
