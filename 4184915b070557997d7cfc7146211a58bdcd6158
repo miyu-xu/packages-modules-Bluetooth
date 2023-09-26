@@ -117,6 +117,30 @@
       },
       "revId": "4184915b070557997d7cfc7146211a58bdcd6158",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89b9f90b_e16e4fca",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1372,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-09-26T17:05:50Z",
+      "side": 1,
+      "message": "As I follow the callbacks, one such case is when Audio Manager dies. This would already be big error logs nearby.",
+      "parentUuid": "56a2af79_3bdd4fe5",
+      "range": {
+        "startLine": 1372,
+        "startChar": 20,
+        "endLine": 1372,
+        "endChar": 21
+      },
+      "revId": "4184915b070557997d7cfc7146211a58bdcd6158",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
