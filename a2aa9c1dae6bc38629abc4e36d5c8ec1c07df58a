@@ -378,6 +378,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc962bc5_319b4eb2",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/gap.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-09-26T18:36:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "61969bc4_de87d68c",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 10
+      },
+      "revId": "a2aa9c1dae6bc38629abc4e36d5c8ec1c07df58a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e616d793_6713131e",
