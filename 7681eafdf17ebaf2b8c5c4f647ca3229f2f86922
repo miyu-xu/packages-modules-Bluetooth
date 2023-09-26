@@ -22,6 +22,30 @@
       },
       "revId": "7681eafdf17ebaf2b8c5c4f647ca3229f2f86922",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc8ac59e_55574355",
+        "filename": "system/bta/dm/bta_dm_disc.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-26T18:24:28Z",
+      "side": 1,
+      "message": "This is the eventual API for the service and device discovery module.\n\nFuture CLs will populate this header API with the proper API functions as the module is properly encapsulated.\n\nThere will be 3 more functions added to this file representing the existing discovery API. (start device discovery, cancel device discovery, get_fetch_uuids)",
+      "parentUuid": "7c3e1c9f_41198601",
+      "range": {
+        "startLine": 19,
+        "startChar": 5,
+        "endLine": 19,
+        "endChar": 21
+      },
+      "revId": "7681eafdf17ebaf2b8c5c4f647ca3229f2f86922",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
