@@ -1201,15 +1201,15 @@ int register_com_android_bluetooth_avrcp_controller(JNIEnv* env) {
       {"createFromNativeMediaItem",
        "([BJILjava/lang/String;[I[Ljava/lang/String;)"
        "Lcom/android/bluetooth/avrcpcontroller/AvrcpItem;",
-       &method_createFromNativeMediaItem, true},
+       &method_createFromNativeMediaItem},
       {"createFromNativeFolderItem",
        "([BJILjava/lang/String;I)"
        "Lcom/android/bluetooth/avrcpcontroller/AvrcpItem;",
-       &method_createFromNativeFolderItem, true},
+       &method_createFromNativeFolderItem},
       {"createFromNativePlayerItem",
        "([BILjava/lang/String;[BII)"
        "Lcom/android/bluetooth/avrcpcontroller/AvrcpPlayer;",
-       &method_createFromNativePlayerItem, true},
+       &method_createFromNativePlayerItem},
   };
   GET_JAVA_METHODS(
       env,

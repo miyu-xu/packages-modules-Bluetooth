@@ -246,7 +246,7 @@ public class AvrcpControllerNativeInterface {
     }
 
     // JNI Helper functions to convert native objects to java.
-    static AvrcpItem createFromNativeMediaItem(
+    AvrcpItem createFromNativeMediaItem(
             byte[] address, long uid, int type, String name, int[] attrIds, String[] attrVals) {
         BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
         if (VDBG) {
@@ -272,7 +272,7 @@ public class AvrcpControllerNativeInterface {
                 .build();
     }
 
-    static AvrcpItem createFromNativeFolderItem(
+    AvrcpItem createFromNativeFolderItem(
             byte[] address, long uid, int type, String name, int playable) {
         BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
         if (VDBG) {
@@ -298,7 +298,7 @@ public class AvrcpControllerNativeInterface {
                 .build();
     }
 
-    static AvrcpPlayer createFromNativePlayerItem(
+    AvrcpPlayer createFromNativePlayerItem(
             byte[] address,
             int id,
             String name,
