@@ -231,6 +231,30 @@
       },
       "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "993a3748_440c3912",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-26T04:36:55Z",
+      "side": 1,
+      "message": "\u003e If we really want to share the same underlying structure, we should think about why CRAS needs to know this information.\n\nJust want to clarify - They are shared *now*. Both `IBluetoothMedia` and `IBluetoothTelephony` are implemented for `BluetoothMedia`. BT Telephony is actually a subset of HFP from the perspective of both BT Spec and Android API, and we store all objects together. Merging the 2 interfaces should be straightforward.\n\nThe only reason that I defined the Telephony interface before is probably: The concept of Telephony is not applicable on CrOS and I don\u0027t want to export the experimental API through a stable (Media) interface. So now I don\u0027t have a strong reason to keep them separated (yet no strong reason to merge them though).\n\nBut anyway we need to keep the API clear. I don\u0027t think exporting Telephony callback through Media API is a good idea.",
+      "parentUuid": "e31e0312_867d822a",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 46
+      },
+      "revId": "84b10500a16a745a7314d799b0f7861cf3b3e4d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
