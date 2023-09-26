@@ -93,6 +93,30 @@
       },
       "revId": "4184915b070557997d7cfc7146211a58bdcd6158",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56a2af79_3bdd4fe5",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1372,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-26T16:44:00Z",
+      "side": 1,
+      "message": "This is warning as it was not initiated by LeAudioService and for now I do not know why it would be called autonomusly by audio manager.\nSetting device Inactive shall be done with setActiveDevice API",
+      "parentUuid": "b1e80f3d_96a8cc0e",
+      "range": {
+        "startLine": 1372,
+        "startChar": 20,
+        "endLine": 1372,
+        "endChar": 21
+      },
+      "revId": "4184915b070557997d7cfc7146211a58bdcd6158",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
