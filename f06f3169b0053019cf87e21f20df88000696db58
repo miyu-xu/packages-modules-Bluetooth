@@ -16,6 +16,24 @@
       "message": "These tests were originally failing on `udc-dev`. Did you run these tests against the `udc-dev` branch ?\n\nIf not can you do some abtd run and attach the result to the bug please ?",
       "revId": "f06f3169b0053019cf87e21f20df88000696db58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52381995_92f36cf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-09-27T18:11:10Z",
+      "side": 1,
+      "message": "See comment #10 on the bug",
+      "parentUuid": "2af4c808_5d2eb764",
+      "revId": "f06f3169b0053019cf87e21f20df88000696db58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
