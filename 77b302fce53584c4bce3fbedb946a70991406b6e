@@ -68,6 +68,24 @@
       "message": "Can we check for the size of mDevices instead?",
       "revId": "77b302fce53584c4bce3fbedb946a70991406b6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b5c97af_79fae98d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1904045
+      },
+      "writtenOn": "2023-09-27T07:00:48Z",
+      "side": 1,
+      "message": "mDeviceQueue is the statistical size of mDevices, since the hashmap is unordered, we need to use mDeviceQueue to synchronize management to facilitate subsequent deletion operations.",
+      "parentUuid": "332bf002_48328279",
+      "revId": "77b302fce53584c4bce3fbedb946a70991406b6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
