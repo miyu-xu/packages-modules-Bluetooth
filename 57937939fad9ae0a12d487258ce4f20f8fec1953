@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eac908d5_2f47becd",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-27T19:18:56Z",
+      "side": 1,
+      "message": "```\npackages/modules/Bluetooth/system/bta/dm/bta_dm_act.cc:391:16: error: use of undeclared identifier \u0027btif_config_get_bin_length\u0027\n  size_t len \u003d btif_config_get_bin_length(\"Adapter\", \"ENC_KEY_MATERIAL\");                                               \n               ^\n```\n\nThe include of btif_config is missing",
+      "range": {
+        "startLine": 391,
+        "startChar": 15,
+        "endLine": 391,
+        "endChar": 41
+      },
+      "revId": "57937939fad9ae0a12d487258ce4f20f8fec1953",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
