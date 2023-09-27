@@ -23,6 +23,7 @@ import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.ENTER_PR
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.EXPLICIT_CALL_TRANSFER;
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.VOICE_RECOGNITION_START;
 import static com.android.bluetooth.hfpclient.HeadsetClientStateMachine.VOICE_RECOGNITION_STOP;
+import static android.content.pm.PackageManager.FEATURE_WATCH;
 
 import static com.google.common.truth.Truth.assertThat;
 import static org.mockito.Mockito.*;
@@ -32,11 +33,13 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothAssignedNumbers;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
+import android.bluetooth.BluetoothHeadsetClientCall;
 import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -93,6 +96,7 @@ public class HeadsetClientStateMachineTest {
     @Mock private HeadsetClientService mHeadsetClientService;
     @Mock private AudioManager mAudioManager;
     @Mock private RemoteDevices mRemoteDevices;
+    @Mock private PackageManager mPackageManager;
 
     @Mock private NativeInterface mNativeInterface;
 
@@ -114,6 +118,8 @@ public class HeadsetClientStateMachineTest {
         when(mHeadsetClientService.getAudioManager()).thenReturn(
                 mAudioManager);
         when(mHeadsetClientService.getResources()).thenReturn(mMockHfpResources);
+        when(mHeadsetClientService.getPackageManager()).thenReturn(mPackageManager);
+        when(mPackageManager.hasSystemFeature(FEATURE_WATCH)).thenReturn(false);
         when(mMockHfpResources.getBoolean(R.bool.hfp_clcc_poll_during_call)).thenReturn(true);
         when(mMockHfpResources.getInteger(R.integer.hfp_clcc_poll_interval_during_call))
                 .thenReturn(2000);
@@ -462,7 +468,81 @@ public class HeadsetClientStateMachineTest {
                 intentArgument.getValue().getIntExtra(BluetoothHeadsetClient.EXTRA_IN_BAND_RING,
                         -1));
         Assert.assertEquals(false, mHeadsetClientStateMachine.getInBandRing());
+    }
 
+    /** TODO: fix it */
+    @LargeTest
+    @Test
+    @FlakyTest
+    public void testTodo() {
+        // Return true for priority.
+        when(mHeadsetClientService.getConnectionPolicy(any(BluetoothDevice.class)))
+                .thenReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED);
+
+        // Watch form factor.
+        when(mPackageManager.hasSystemFeature(FEATURE_WATCH)).thenReturn(true);
+
+        // Inject an event for when incoming connection is requested
+        StackEvent connStCh = new StackEvent(StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
+        connStCh.valueInt = HeadsetClientHalConstants.CONNECTION_STATE_CONNECTED;
+        connStCh.device = mTestDevice;
+        mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, connStCh);
+
+        int expectedBroadcastIndex = 1;
+        int expectedBroadcastMultiplePermissionsIndex = 1;
+
+        // Send a message to trigger SLC connection
+        StackEvent slcEvent = new StackEvent(StackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
+        slcEvent.valueInt = HeadsetClientHalConstants.CONNECTION_STATE_SLC_CONNECTED;
+        slcEvent.valueInt2 = HeadsetClientHalConstants.PEER_FEAT_ECS;
+        slcEvent.device = mTestDevice;
+        mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, slcEvent);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        setUpAndroidAt(false);
+
+        StackEvent event = new StackEvent(StackEvent.EVENT_TYPE_IN_BAND_RINGTONE);
+        event.valueInt = 0;
+        event.device = mTestDevice;
+
+        // Enable In Band Ring and verify state gets propagated.
+        StackEvent eventInBandRing = new StackEvent(StackEvent.EVENT_TYPE_IN_BAND_RINGTONE);
+        eventInBandRing.valueInt = 1;
+        eventInBandRing.device = mTestDevice;
+        mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, eventInBandRing);
+
+        // Simulate a new incoming phone call
+        StackEvent eventCallStatusUpdated = new StackEvent(StackEvent.EVENT_TYPE_CLIP);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+        mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, eventCallStatusUpdated);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        // Provide information about the new call
+        StackEvent eventIncomingCall = new StackEvent(StackEvent.EVENT_TYPE_CURRENT_CALLS);
+        eventIncomingCall.valueInt = 1; // index
+        eventIncomingCall.valueInt2 = 1; // direction
+        eventIncomingCall.valueInt3 = 4; // state
+        eventIncomingCall.valueInt4 = 0; // multi party
+        eventIncomingCall.valueString = "5551212"; // phone number
+        eventIncomingCall.device = mTestDevice;
+
+        mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, eventIncomingCall);
+
+        // Signal that the complete list of calls was received.
+        StackEvent eventCommandStatus = new StackEvent(StackEvent.EVENT_TYPE_CMD_RESULT);
+        eventCommandStatus.valueInt = AT_OK;
+        mHeadsetClientStateMachine.sendMessage(StackEvent.STACK_EVENT, eventCommandStatus);
+        TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
+
+        ArgumentCaptor<Intent> intentArgument = ArgumentCaptor.forClass(Intent.class);
+        // Verify that the new call is being registered with the inBandRing flag set.
+        Assert.assertEquals(
+                true,
+                ((BluetoothHeadsetClientCall)
+                                intentArgument
+                                        .getValue()
+                                        .getParcelableExtra(BluetoothHeadsetClient.EXTRA_CALL))
+                        .isInBandRing());
     }
 
     /* Utility function to simulate HfpClient is connected. */
