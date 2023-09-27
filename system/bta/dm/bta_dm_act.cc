@@ -66,7 +66,6 @@ using bluetooth::Uuid;
 
 void BTIF_dm_disable();
 void BTIF_dm_enable();
-void btm_ble_adv_init(void);
 void btm_ble_scanner_init(void);
 
 static uint8_t bta_dm_pin_cback(const RawAddress& bd_addr, DEV_CLASS dev_class,
@@ -356,10 +355,6 @@ void BTA_dm_on_hw_on() {
 #if (BLE_VND_INCLUDED == TRUE)
   BTM_BleReadControllerFeatures(bta_dm_ctrl_features_rd_cmpl_cback);
 #else
-  /* If VSC multi adv commands are available, advertising will be initialized
-   * when capabilities are read. If they are not available, initialize
-   * advertising here */
-  btm_ble_adv_init();
   /* Set controller features even if vendor support is not included */
   if (bta_dm_cb.p_sec_cback)
     bta_dm_cb.p_sec_cback(BTA_DM_LE_FEATURES_READ, NULL);
