@@ -65,7 +65,7 @@ void Link::OnDisconnection(hci::ErrorCode status) {
 }
 
 void Link::OnConnectionUpdate(
-    hci::ErrorCode hci_status,
+    hci::ErrorCode /* hci_status */,
     uint16_t connection_interval,
     uint16_t connection_latency,
     uint16_t supervision_timeout) {
@@ -98,9 +98,11 @@ void Link::OnReadRemoteVersionInformationComplete(
       hci_status, GetDevice(), lmp_version, manufacturer_name, sub_version);
 }
 
-void Link::OnLeReadRemoteFeaturesComplete(hci::ErrorCode hci_status, uint64_t features) {}
+void Link::OnLeReadRemoteFeaturesComplete(hci::ErrorCode /* hci_status*/, uint64_t /* features */) {
+}
 
-void Link::OnPhyUpdate(hci::ErrorCode hci_status, uint8_t tx_phy, uint8_t rx_phy) {}
+void Link::OnPhyUpdate(
+    hci::ErrorCode /* hci_status */, uint8_t /* tx_phy */, uint8_t /* rx_phy */) {}
 
 void Link::OnLeSubrateChange(
     hci::ErrorCode hci_status,
@@ -169,7 +171,8 @@ void Link::SendConnectionParameterUpdate(uint16_t conn_interval_min, uint16_t co
   update_request_signal_id_ = kInvalidSignalId;
 }
 
-std::shared_ptr<FixedChannelImpl> Link::AllocateFixedChannel(Cid cid, SecurityPolicy security_policy) {
+std::shared_ptr<FixedChannelImpl> Link::AllocateFixedChannel(
+    Cid cid, SecurityPolicy /* security_policy */) {
   auto channel = fixed_channel_allocator_.AllocateChannel(cid);
   data_pipeline_manager_.AttachChannel(cid, channel, l2cap::internal::DataPipelineManager::ChannelMode::BASIC);
   return channel;
@@ -308,7 +311,7 @@ void Link::on_connection_update_complete(SignalId signal_id, hci::ErrorCode erro
   signalling_manager_.SendConnectionParameterUpdateResponse(SignalId(), result);
 }
 
-void Link::OnPendingPacketChange(Cid local_cid, bool has_packet) {
+void Link::OnPendingPacketChange(Cid /* local_cid */, bool has_packet) {
   if (has_packet) {
     remaining_packets_to_be_sent_++;
   } else {
