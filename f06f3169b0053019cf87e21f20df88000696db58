@@ -52,6 +52,23 @@
       "parentUuid": "52381995_92f36cf2",
       "revId": "f06f3169b0053019cf87e21f20df88000696db58",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ccf0aaf_f798ab78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-09-27T18:17:22Z",
+      "side": 1,
+      "message": "Thanks Pomai!",
+      "revId": "f06f3169b0053019cf87e21f20df88000696db58",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
