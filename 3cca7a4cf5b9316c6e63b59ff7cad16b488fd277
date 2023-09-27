@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2ed682b_add58fee",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-09-27T13:46:17Z",
+      "side": 1,
+      "message": "if this is static, then we probably could do this filter logic only in the single place i.e. codecManager.\n\nAnyways - since this is follow up patch, lets keep it this way, we can change it during our refactor for multicodec.",
+      "parentUuid": "0c18e116_ea6b7a78",
+      "revId": "3cca7a4cf5b9316c6e63b59ff7cad16b488fd277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e991cdc_afc7a435",
