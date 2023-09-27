@@ -73,12 +73,15 @@ void ClassicPairingHandler::NotifyUiDisplayCancel() {
   user_interface_handler_->CallOn(user_interface_, &UI::Cancel, *GetRecord()->GetPseudoAddress());
 }
 
-void ClassicPairingHandler::OnPairingPromptAccepted(const bluetooth::hci::AddressWithType& address, bool confirmed) {
+void ClassicPairingHandler::OnPairingPromptAccepted(
+    [[maybe_unused]] const bluetooth::hci::AddressWithType& address,
+    [[maybe_unused]] bool confirmed) {
   // NOTE: This is not used by Classic, only by LE
   LOG_ALWAYS_FATAL("This is not supported by Classic Pairing Handler, only LE");
 }
 
-void ClassicPairingHandler::OnConfirmYesNo(const bluetooth::hci::AddressWithType& address, bool confirmed) {
+void ClassicPairingHandler::OnConfirmYesNo(
+    [[maybe_unused]] const bluetooth::hci::AddressWithType& address, bool confirmed) {
   if (confirmed) {
     GetChannel()->SendCommand(
         hci::UserConfirmationRequestReplyBuilder::Create(GetRecord()->GetPseudoAddress()->GetAddress()));
@@ -132,7 +135,8 @@ void ClassicPairingHandler::Initiate(
   }
 }
 
-void ClassicPairingHandler::OnNameRequestComplete(hci::Address address, bool success) {
+void ClassicPairingHandler::OnNameRequestComplete(
+    hci::Address address, [[maybe_unused]] bool success) {
   if (GetNameDbModule()->IsNameCached(address)) {
     auto remote_name = GetNameDbModule()->ReadCachedRemoteName(address);
     std::string tmp_name;

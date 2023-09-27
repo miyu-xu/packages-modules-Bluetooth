@@ -49,8 +49,9 @@ class LeCreditBasedDataController : public DataController {
   void OnPdu(packet::PacketView<true> pdu) override;
   std::unique_ptr<packet::BasePacketBuilder> GetNextPacket() override;
 
-  void EnableFcs(bool enabled) override {}
-  void SetRetransmissionAndFlowControlOptions(const RetransmissionAndFlowControlConfigurationOption& option) override {}
+  void EnableFcs([[maybe_unused]] bool enabled) override {}
+  void SetRetransmissionAndFlowControlOptions(
+      [[maybe_unused]] const RetransmissionAndFlowControlConfigurationOption& option) override {}
 
   // TODO: Set MTU and MPS from signalling channel
   void SetMtu(Mtu mtu);
