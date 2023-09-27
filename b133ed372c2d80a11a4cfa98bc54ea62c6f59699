@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ad88ad4_01db9871",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-27T14:01:37Z",
+      "side": 1,
+      "message": "This looks good but I\u0027m wondering why not check in telecom if device is",
+      "revId": "b133ed372c2d80a11a4cfa98bc54ea62c6f59699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
