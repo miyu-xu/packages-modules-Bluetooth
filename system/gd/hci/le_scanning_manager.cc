@@ -58,7 +58,8 @@ constexpr uint8_t kDataStatusBits = 5;
 // system properties
 const std::string kLeRxPathLossCompProperty = "bluetooth.hardware.radio.le_rx_path_loss_comp_db";
 
-const ModuleFactory LeScanningManager::Factory = ModuleFactory([]() { return new LeScanningManager(); });
+const ModuleFactory LeScanningManager::Factory =
+    ModuleFactory([]() { return new LeScanningManager(); });
 
 enum class ScanApiType {
   LEGACY = 1,
@@ -72,69 +73,85 @@ struct Scanner {
 };
 
 class NullScanningCallback : public ScanningCallback {
-  void OnScannerRegistered(const Uuid app_uuid, ScannerId scanner_id, ScanningStatus status) override {
+  void OnScannerRegistered(
+      const Uuid /* app_uuid */, ScannerId /* scanner_id */, ScanningStatus /* status */) override {
     LOG_INFO("OnScannerRegistered in NullScanningCallback");
   }
-  void OnSetScannerParameterComplete(ScannerId scanner_id, ScanningStatus status) override {
+  void OnSetScannerParameterComplete(
+      ScannerId /* scanner_id */, ScanningStatus /* status */) override {
     LOG_INFO("OnSetScannerParameterComplete in NullScanningCallback");
   }
   void OnScanResult(
-      uint16_t event_type,
-      uint8_t address_type,
-      Address address,
-      uint8_t primary_phy,
-      uint8_t secondary_phy,
-      uint8_t advertising_sid,
-      int8_t tx_power,
-      int8_t rssi,
-      uint16_t periodic_advertising_interval,
-      std::vector<uint8_t> advertising_data) override {
+      uint16_t /* event_type */,
+      uint8_t /* address_type */,
+      Address /* address */,
+      uint8_t /* primary_phy */,
+      uint8_t /* secondary_phy */,
+      uint8_t /* advertising_sid */,
+      int8_t /* tx_power */,
+      int8_t /* rssi */,
+      uint16_t /* periodic_advertising_interval */,
+      std::vector<uint8_t> /* advertising_data */) override {
     LOG_INFO("OnScanResult in NullScanningCallback");
   }
-  void OnTrackAdvFoundLost(AdvertisingFilterOnFoundOnLostInfo on_found_on_lost_info) override {
+  void OnTrackAdvFoundLost(
+      AdvertisingFilterOnFoundOnLostInfo /* on_found_on_lost_info */) override {
     LOG_INFO("OnTrackAdvFoundLost in NullScanningCallback");
   }
   void OnBatchScanReports(
-      int client_if, int status, int report_format, int num_records, std::vector<uint8_t> data) override {
+      int /* client_if */,
+      int /* status */,
+      int /* report_format */,
+      int /* num_records */,
+      std::vector<uint8_t> /* data */) override {
     LOG_INFO("OnBatchScanReports in NullScanningCallback");
   }
-  void OnBatchScanThresholdCrossed(int client_if) override {
+  void OnBatchScanThresholdCrossed(int /* client_if */) override {
     LOG_INFO("OnBatchScanThresholdCrossed in NullScanningCallback");
   }
   void OnTimeout() override {
     LOG_INFO("OnTimeout in NullScanningCallback");
   }
-  void OnFilterEnable(Enable enable, uint8_t status) override {
+  void OnFilterEnable(Enable /* enable */, uint8_t /* status */) override {
     LOG_INFO("OnFilterEnable in NullScanningCallback");
   }
-  void OnFilterParamSetup(uint8_t available_spaces, ApcfAction action, uint8_t status) override {
+  void OnFilterParamSetup(
+      uint8_t /* available_spaces */, ApcfAction /* action */, uint8_t /* status */) override {
     LOG_INFO("OnFilterParamSetup in NullScanningCallback");
   }
   void OnFilterConfigCallback(
-      ApcfFilterType filter_type, uint8_t available_spaces, ApcfAction action, uint8_t status) override {
+      ApcfFilterType /* filter_type */,
+      uint8_t /* available_spaces */,
+      ApcfAction /* action */,
+      uint8_t /* status */) override {
     LOG_INFO("OnFilterConfigCallback in NullScanningCallback");
   }
   void OnPeriodicSyncStarted(
-      int reg_id,
-      uint8_t status,
-      uint16_t sync_handle,
-      uint8_t advertising_sid,
-      AddressWithType address_with_type,
-      uint8_t phy,
-      uint16_t interval) override {
+      int /* reg_id */,
+      uint8_t /* status */,
+      uint16_t /* sync_handle */,
+      uint8_t /* advertising_sid */,
+      AddressWithType /* address_with_type */,
+      uint8_t /* phy */,
+      uint16_t /* interval */) override {
     LOG_INFO("OnPeriodicSyncStarted in NullScanningCallback");
   };
   void OnPeriodicSyncReport(
-      uint16_t sync_handle, int8_t tx_power, int8_t rssi, uint8_t status, std::vector<uint8_t> data) override {
+      uint16_t /* sync_handle */,
+      int8_t /* tx_power */,
+      int8_t /* rssi */,
+      uint8_t /* status */,
+      std::vector<uint8_t> /* data */) override {
     LOG_INFO("OnPeriodicSyncReport in NullScanningCallback");
   };
-  void OnPeriodicSyncLost(uint16_t sync_handle) override {
+  void OnPeriodicSyncLost(uint16_t /* sync_handle */) override {
     LOG_INFO("OnPeriodicSyncLost in NullScanningCallback");
   };
-  void OnPeriodicSyncTransferred(int pa_source, uint8_t status, Address address) override {
+  void OnPeriodicSyncTransferred(
+      int /* pa_source */, uint8_t /* status */, Address /* address */) override {
     LOG_INFO("OnPeriodicSyncTransferred in NullScanningCallback");
   };
-  void OnBigInfoReport(uint16_t sync_handle, bool encrypted) {
+  void OnBigInfoReport(uint16_t /* sync_handle */, bool /* encrypted */) {
     LOG_INFO("OnBigInfoReport in NullScanningCallback");
   };
 };
@@ -1557,7 +1574,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     scanning_callbacks_->OnBatchScanThresholdCrossed(static_cast<int>(batch_scan_config_.ref_value));
   }
 
-  void on_advertisement_tracking(VendorSpecificEventView event) {
+  void on_advertisement_tracking(VendorSpecificEventView /* event */) {
     auto view = LEAdvertisementTrackingEventView::Create(event);
     ASSERT(view.IsValid());
     uint8_t filter_index = view.GetApcfFilterIndex();
