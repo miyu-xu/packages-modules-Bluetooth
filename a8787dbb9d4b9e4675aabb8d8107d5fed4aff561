@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e522919_fb748b0b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-27T15:03:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5c1f9771_e1aaa72e",
+      "range": {
+        "startLine": 122,
+        "startChar": 29,
+        "endLine": 122,
+        "endChar": 52
+      },
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1b60416_7331c393",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-25T21:00:27Z",
       "side": 1,
       "message": "wouldn\u0027t it be simpler to add bool in the descriptor like: `native_getting_active` ?\n\nAlso, do you handle case when before native returns with ACTIVE, the other group will try to be ACTIVE?",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 14
+      },
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06735173_962f740c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-27T15:03:49Z",
+      "side": 1,
+      "message": "`wouldn\u0027t it be simpler to add bool in the descriptor like: native_getting_active ?` Main resaon why I made it an single value is a single state represented. Having double bools will open up to the potential violation of usage e.g. having mIsActive \u003d true and native_getting_active.",
+      "parentUuid": "e1b60416_7331c393",
       "range": {
         "startLine": 192,
         "startChar": 8,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87531d61_449df2e6",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1031,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-27T15:03:49Z",
+      "side": 1,
+      "message": "Make sense! Acknowledged",
+      "parentUuid": "314772ce_ccd46ca6",
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a134a71a_86f05ae6",
@@ -81,6 +147,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfcf6bc4_5ccf9cd7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-27T15:03:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a134a71a_86f05ae6",
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "91da0b1d_c042a3f5",
@@ -94,6 +178,30 @@
       "writtenOn": "2023-09-25T21:00:27Z",
       "side": 1,
       "message": "why this is under `if  (groupId !\u003d LE_AUDIO_GROUP_ID_INVALID)` ?",
+      "range": {
+        "startLine": 1524,
+        "startChar": 12,
+        "endLine": 1524,
+        "endChar": 66
+      },
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2a5ca2a_6a6ce045",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1524,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-27T15:03:49Z",
+      "side": 1,
+      "message": "After re-think, it can be optimized I think.",
+      "parentUuid": "91da0b1d_c042a3f5",
       "range": {
         "startLine": 1524,
         "startChar": 12,
@@ -171,6 +279,24 @@
       "side": 1,
       "message": "so if the device is in pending activation state,",
       "parentUuid": "facd81d5_f4057051",
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c334b373_46e86876",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2165,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-27T15:03:49Z",
+      "side": 1,
+      "message": "The idea here is to cover especially such scenario:\n\nPending Unicast failure\n- Unicast is getting active (mActiveState \u003d\u003d ACTIVE_STATE_PENDING_ACTIVE)\n- In meantime (before getting LeAudioStackEvent.GROUP_STATUS_INACTIVE or LeAudioStackEvent.GROUP_STATUS_ACTIVE a broadcast start request come\n- Broadcast is added to Queue\n- LeAudioStackEvent.GROUP_STATUS_INACTIVE comes because of some failure in stack\n- There is no sense to handleGroupTransitToInactive cause group wasn\u0027t previously activated\n- Check if there is queued broadcast and try to create it\n\nCould you point me what race could it be here, maybe I\u0027m not getting it - sorry ?\n\nps. thank you for pointing out to this - I\u0027ve forgot to set here group to INACTIVE.",
+      "parentUuid": "d6d6aa15_b4f57452",
       "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
