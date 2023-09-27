@@ -25,40 +25,44 @@ namespace os {
 using bluetooth::hci::Address;
 
 void LogMetricClassicPairingEvent(
-    const Address& address,
-    uint16_t handle,
-    uint32_t hci_cmd,
-    uint16_t hci_event,
-    uint16_t cmd_status,
-    uint16_t reason_code,
-    int64_t event_value) {}
+    const Address& /* address */,
+    uint16_t /* handle */,
+    uint32_t /* hci_cmd */,
+    uint16_t /* hci_event */,
+    uint16_t /* cmd_status */,
+    uint16_t /* reason_code */,
+    int64_t /* event_value */) {}
 
 void LogMetricSocketConnectionState(
-    const Address& address,
-    int port,
-    int type,
-    android::bluetooth::SocketConnectionstateEnum connection_state,
-    int64_t tx_bytes,
-    int64_t rx_bytes,
-    int uid,
-    int server_port,
-    android::bluetooth::SocketRoleEnum socket_role) {}
+    const Address& /* address */,
+    int /* port */,
+    int /* type */,
+    android::bluetooth::SocketConnectionstateEnum /* connection_state */,
+    int64_t /* tx_bytes */,
+    int64_t /* rx_bytes */,
+    int /* uid */,
+    int /* server_port */,
+    android::bluetooth::SocketRoleEnum /* socket_role */) {}
 
-void LogMetricHciTimeoutEvent(uint32_t hci_cmd) {}
+void LogMetricHciTimeoutEvent(uint32_t /* hci_cmd */) {}
 
 void LogMetricA2dpAudioUnderrunEvent(
-    const Address& address, uint64_t encoding_interval_millis, int num_missing_pcm_bytes) {}
+    const Address& /* address */,
+    uint64_t /* encoding_interval_millis */,
+    int /* num_missing_pcm_bytes */) {}
 
 void LogMetricA2dpAudioOverrunEvent(
-    const Address& address,
-    uint64_t encoding_interval_millis,
-    int num_dropped_buffers,
-    int num_dropped_encoded_frames,
-    int num_dropped_encoded_bytes) {}
+    const Address& /* address */,
+    uint64_t /* encoding_interval_millis */,
+    int /* num_dropped_buffers */,
+    int /* num_dropped_encoded_frames */,
+    int /* num_dropped_encoded_bytes */) {}
 
 void LogMetricHfpPacketLossStats(
-    const Address& address, int num_decoded_frames, double packet_loss_ratio, uint16_t codec_type) {
-}
+    const Address& /* address */,
+    int /* num_decoded_frames */,
+    double /* packet_loss_ratio */,
+    uint16_t /* codec_type */) {}
 
 void LogMetricMmcTranscodeRttStats(
     int maximum_rtt, double mean_rtt, int num_requests, int codec_type) {}
