@@ -35,6 +35,7 @@ package com.android.bluetooth.hfpclient;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
+import static android.content.pm.PackageManager.FEATURE_WATCH;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -389,7 +390,17 @@ public class HeadsetClientStateMachine extends StateMachine {
         logD("sendCallChangedIntent " + c);
         Intent intent = new Intent(BluetoothHeadsetClient.ACTION_CALL_CHANGED);
         intent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
-        intent.putExtra(BluetoothHeadsetClient.EXTRA_CALL, c);
+
+        if (mService != null
+                && mService.getPackageManager() != null
+                && mService.getPackageManager().hasSystemFeature(FEATURE_WATCH)) {
+            logD("Send legacy call");
+            intent.putExtra(
+                    BluetoothHeadsetClient.EXTRA_CALL, HeadsetClientService.toLegacyCall(c));
+        } else {
+            intent.putExtra(BluetoothHeadsetClient.EXTRA_CALL, c);
+        }
+
         Utils.sendBroadcast(mService, intent, BLUETOOTH_CONNECT,
                 Utils.getTempAllowlistBroadcastOptions());
         HfpClientConnectionService.onCallChanged(c.getDevice(), c);
