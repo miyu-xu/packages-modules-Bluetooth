@@ -50,7 +50,8 @@ class Filter {
    *
    * @return true if field was filtered successfully, false otherwise.
    */
-  virtual bool FilterField(const reflection::Field* field, flatbuffers::Table* table) {
+  virtual bool FilterField(
+      [[maybe_unused]] const reflection::Field* field, [[maybe_unused]] flatbuffers::Table* table) {
     return false;
   }
 
@@ -62,7 +63,9 @@ class Filter {
    * @param table The populated field data, if any
    *
    */
-  virtual void FilterObject(const reflection::Object* object, flatbuffers::Table* table){};
+  virtual void FilterObject(
+      [[maybe_unused]] const reflection::Object* object,
+      [[maybe_unused]] flatbuffers::Table* table){};
 
   /**
    * Given both reflection field data and the populated table data, if any,
@@ -72,7 +75,9 @@ class Filter {
    * @param table The populated field data, if any
    *
    */
-  virtual void FilterTable(const reflection::Schema* schema, flatbuffers::Table* table){};
+  virtual void FilterTable(
+      [[maybe_unused]] const reflection::Schema* schema,
+      [[maybe_unused]] flatbuffers::Table* table){};
 
   const dumpsys::ReflectionSchema& reflection_schema_;
 };
@@ -80,7 +85,8 @@ class Filter {
 class DeveloperPrivacyFilter : public Filter {
  public:
   DeveloperPrivacyFilter(const dumpsys::ReflectionSchema& reflection_schema) : Filter(reflection_schema) {}
-  void FilterInPlace(char* dumpsys_data) override { /* Nothing to do in this mode */
+  void FilterInPlace(
+      [[maybe_unused]] char* dumpsys_data) override { /* Nothing to do in this mode */
   }
 };
 

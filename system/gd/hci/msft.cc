@@ -78,7 +78,7 @@ struct MsftExtensionManager::impl {
     LOG_INFO("MsftExtensionManager stop()");
   }
 
-  void handle_rssi_event(MsftRssiEventPayloadView view) {
+  void handle_rssi_event([[maybe_unused]] MsftRssiEventPayloadView view) {
     LOG_WARN("The Microsoft MSFT_RSSI_EVENT is not supported yet.");
   }
 

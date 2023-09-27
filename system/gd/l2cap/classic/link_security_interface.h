@@ -95,25 +95,27 @@ class LinkSecurityInterfaceListener {
    * Each time when an ACL link is connected, security manager receives this callback to use LinkSecurityInterface
    * functions.
    */
-  virtual void OnLinkConnected(std::unique_ptr<LinkSecurityInterface>) {}
+  virtual void OnLinkConnected([[maybe_unused]] std::unique_ptr<LinkSecurityInterface>) {}
 
   /**
    * When an ACL link is disconnected, security manager receives this callback. The corresponding LinkSecurityInterface
    * is invalidated then.
    * @param remote
    */
-  virtual void OnLinkDisconnected(hci::Address remote) {}
+  virtual void OnLinkDisconnected([[maybe_unused]] hci::Address remote) {}
 
   /**
    * Invoked when AuthenticationComplete event is received for a given link
    */
-  virtual void OnAuthenticationComplete(hci::ErrorCode hci_status, hci::Address remote) {}
+  virtual void OnAuthenticationComplete(
+      [[maybe_unused]] hci::ErrorCode hci_status, [[maybe_unused]] hci::Address remote) {}
 
   /**
    * Invoked when EncryptionChange event is received for a given link
    * @param encrypted
    */
-  virtual void OnEncryptionChange(hci::Address remote, bool encrypted) {}
+  virtual void OnEncryptionChange(
+      [[maybe_unused]] hci::Address remote, [[maybe_unused]] bool encrypted) {}
 };
 
 }  // namespace classic
