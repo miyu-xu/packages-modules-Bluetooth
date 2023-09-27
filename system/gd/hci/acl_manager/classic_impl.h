@@ -780,9 +780,11 @@ struct classic_impl : public security::ISecurityManagerListener {
         std::move(builder), handler_->BindOnce(&check_command_status<RejectConnectionRequestStatusView>));
   }
 
-  void OnDeviceBonded(bluetooth::hci::AddressWithType device) override {}
-  void OnDeviceUnbonded(bluetooth::hci::AddressWithType device) override {}
-  void OnDeviceBondFailed(bluetooth::hci::AddressWithType device, security::PairingFailure status) override {}
+  void OnDeviceBonded(bluetooth::hci::AddressWithType /* device */) override {}
+  void OnDeviceUnbonded(bluetooth::hci::AddressWithType /* device */) override {}
+  void OnDeviceBondFailed(
+      bluetooth::hci::AddressWithType /* device */,
+      security::PairingFailure /* status */) override {}
 
   void set_security_module(security::SecurityModule* security_module) {
     security_manager_ = security_module->GetSecurityManager();
