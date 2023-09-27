@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b124b9b_21c908ce",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-09-27T14:55:35Z",
+      "side": 1,
+      "message": "Hi Łukasz,\n\nIn the latest patch,I already  filter them one time in codec manager",
+      "parentUuid": "f2ed682b_add58fee",
+      "revId": "3cca7a4cf5b9316c6e63b59ff7cad16b488fd277",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e991cdc_afc7a435",
