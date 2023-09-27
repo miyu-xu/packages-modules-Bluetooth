@@ -142,9 +142,9 @@ cc_library_shared {
         "libstatssocket",
         "libvndksupport",
     ],
-    sanitize: {
-        scs: true,
-    },
+    //    sanitize: {
+    //        scs: true,
+    //    },
     apex_available: [
         "com.android.btservices",
     ],
