@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "940881ae_89be6cc2",
+        "filename": "system/btif/test/btif_av_source_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-09-27T21:43:10Z",
+      "side": 1,
+      "message": "why is the name BtifBtif instead of just Btif?",
+      "range": {
+        "startLine": 23,
+        "startChar": 6,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "f43acfdbf7d86801505f663889dad8f7795e24ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
