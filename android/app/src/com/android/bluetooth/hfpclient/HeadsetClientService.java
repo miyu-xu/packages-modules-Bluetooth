@@ -247,7 +247,11 @@ public class HeadsetClientService extends ProfileService {
         }
     };
 
-    private static BluetoothHeadsetClientCall toLegacyCall(HfpClientCall call) {
+    /**
+     * Convert {@code HfpClientCall} to legacy {@code BluetoothHeadsetClientCall} still used by some
+     * clients.
+     */
+    public static BluetoothHeadsetClientCall toLegacyCall(HfpClientCall call) {
         if (call == null) return null;
         return new BluetoothHeadsetClientCall(call.getDevice(), call.getId(), call.getUUID(),
                 call.getState(), call.getNumber(), call.isMultiParty(), call.isOutgoing(),
