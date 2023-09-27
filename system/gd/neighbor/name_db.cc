@@ -94,7 +94,7 @@ void neighbor::NameDbModule::impl::ReadRemoteNameRequest(
           common::Unretained(this),
           address),
       handler_->BindOnce(
-          [&](uint64_t features) { LOG_WARN("UNIMPLEMENTED: ignoring host supported features"); }),
+          [&](uint64_t) { LOG_WARN("UNIMPLEMENTED: ignoring host supported features"); }),
       handler_->BindOnceOn(this, &NameDbModule::impl::OnRemoteNameResponse, address));
 }
 
