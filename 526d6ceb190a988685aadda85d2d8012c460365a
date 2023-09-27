@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69733df5_0e10f7dc",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1874,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-27T02:12:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37944371_0641deb8",
+      "range": {
+        "startLine": 1874,
+        "startChar": 12,
+        "endLine": 1874,
+        "endChar": 43
+      },
+      "revId": "526d6ceb190a988685aadda85d2d8012c460365a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06fd085b_0153453f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-26T17:17:16Z",
       "side": 1,
       "message": "I would prefer using the define here (HCI_INVALID_HANDLE), if that\u0027s the best way to check if LE is connected.",
+      "range": {
+        "startLine": 1877,
+        "startChar": 45,
+        "endLine": 1877,
+        "endChar": 51
+      },
+      "revId": "526d6ceb190a988685aadda85d2d8012c460365a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "562151ce_4b40dba7",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1877,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-09-27T02:12:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06fd085b_0153453f",
       "range": {
         "startLine": 1877,
         "startChar": 45,
