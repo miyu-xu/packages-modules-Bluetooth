@@ -394,12 +394,13 @@ class LeAudioDeviceGroup {
   const set_configurations::AudioSetConfiguration* GetActiveConfiguration(
       void) const;
   bool IsPendingConfiguration(void) const;
+  uint8_t GetPendingConfigurationDirection(void) const;
   const set_configurations::AudioSetConfiguration* GetConfiguration(
       types::LeAudioContextType ctx_type);
   const set_configurations::AudioSetConfiguration* GetCachedConfiguration(
       types::LeAudioContextType ctx_type) const;
   void InvalidateCachedConfigurations(void);
-  void SetPendingConfiguration(void);
+  void SetPendingConfiguration(uint8_t remote_direction_trigger);
   void ClearPendingConfiguration(void);
   void AddToAllowListNotConnectedGroupMembers(int gatt_if);
   void ApplyReconnectionMode(int gatt_if, tBTM_BLE_CONN_TYPE reconnection_mode);

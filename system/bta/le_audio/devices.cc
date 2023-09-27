@@ -1991,15 +1991,20 @@ void LeAudioDeviceGroup::RemoveCisFromStreamIfNeeded(
 }
 
 bool LeAudioDeviceGroup::IsPendingConfiguration(void) const {
-  return stream_conf.pending_configuration;
+  return stream_conf.pending_configuration_direction != 0;
 }
 
-void LeAudioDeviceGroup::SetPendingConfiguration(void) {
-  stream_conf.pending_configuration = true;
+uint8_t LeAudioDeviceGroup::GetPendingConfigurationDirection(void) const {
+  return stream_conf.pending_configuration_direction;
+}
+
+void LeAudioDeviceGroup::SetPendingConfiguration(
+    uint8_t remote_direction_trigger) {
+  stream_conf.pending_configuration_direction = remote_direction_trigger;
 }
 
 void LeAudioDeviceGroup::ClearPendingConfiguration(void) {
-  stream_conf.pending_configuration = false;
+  stream_conf.pending_configuration_direction = 0;
 }
 
 void LeAudioDeviceGroup::Disable(int gatt_if) {
@@ -2275,8 +2280,8 @@ void LeAudioDeviceGroup::Dump(int fd, int active_group_id) const {
          << (stream_conf.conf != nullptr ? stream_conf.conf->name : " unknown ")
          << "\n"
          << "      codec id: " << +(stream_conf.id.coding_format)
-         << ",\tpending_configuration: " << stream_conf.pending_configuration
-         << "\n"
+         << ",\tpending_configuration_direction: "
+         << stream_conf.pending_configuration_direction << "\n"
          << "      num of devices(connected): " << Size() << "("
          << NumOfConnected() << ")\n"
          << ",     num of sinks(connected): "

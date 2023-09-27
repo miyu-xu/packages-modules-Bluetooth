@@ -880,7 +880,7 @@ struct stream_parameters {
 };
 
 struct stream_configuration {
-  bool pending_configuration;
+  uint8_t pending_configuration_direction;
 
   types::LeAudioCodecId id;
 

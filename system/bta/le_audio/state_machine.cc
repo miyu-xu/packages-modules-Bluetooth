@@ -1730,7 +1730,10 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                cig_curr_max_trans_lat_mtos > rsp.max_transport_latency) ||
               (ase->direction == le_audio::types::kLeAudioDirectionSource &&
                cig_curr_max_trans_lat_stom > rsp.max_transport_latency)) {
-            group->SetPendingConfiguration();
+            // FIXME: We should use direction from client.cc otherwise for GAME,
+            //        use case we may end up with LIVE metadata from the local
+            //        sink metadata.
+            group->SetPendingConfiguration(ase->direction);
             StopStream(group);
             return;
           }

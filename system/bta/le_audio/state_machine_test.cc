@@ -4200,7 +4200,7 @@ TEST_F(StateMachineTest, StartStreamAfterConfigure) {
                   bluetooth::le_audio::GroupStreamStatus::CONFIGURED_BY_USER));
 
   // Start the configuration and stream Media content
-  group->SetPendingConfiguration();
+  group->SetPendingConfiguration(::le_audio::types::kLeAudioDirectionSink);
   LeAudioGroupStateMachine::Get()->ConfigureStream(
       group, context_type,
       {.sink = types::AudioContexts(context_type),
@@ -4571,7 +4571,7 @@ TEST_F(StateMachineTest, lateCisDisconnectedEvent_DuringReconfiguration) {
   ON_CALL(*mock_iso_manager_, DisconnectCis).WillByDefault(Return());
 
   /* Do reconfiguration */
-  group->SetPendingConfiguration();
+  group->SetPendingConfiguration(::le_audio::types::kLeAudioDirectionSink);
 
   // Validate GroupStreamStatus
   EXPECT_CALL(
@@ -5106,7 +5106,7 @@ TEST_F(StateMachineTest, StreamStartWithDifferentContextFromConfiguredState) {
                   bluetooth::le_audio::GroupStreamStatus::CONFIGURED_BY_USER));
 
   // Start the configuration and stream Media content
-  group->SetPendingConfiguration();
+  group->SetPendingConfiguration(::le_audio::types::kLeAudioDirectionSink);
   LeAudioGroupStateMachine::Get()->ConfigureStream(
       group, context_type,
       {.sink = types::AudioContexts(context_type),
