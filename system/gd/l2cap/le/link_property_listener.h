@@ -35,42 +35,52 @@ class LinkPropertyListener {
   /**
    * Invoked when an ACL link is connected.
    */
-  virtual void OnLinkConnected(hci::AddressWithType remote, uint16_t handle, hci::Role my_role) {}
+  virtual void OnLinkConnected(
+      [[maybe_unused]] hci::AddressWithType remote,
+      [[maybe_unused]] uint16_t handle,
+      [[maybe_unused]] hci::Role my_role) {}
 
   /**
    * Invoked when an ACL link is disconnected.
    */
-  virtual void OnLinkDisconnected(hci::AddressWithType remote) {}
+  virtual void OnLinkDisconnected([[maybe_unused]] hci::AddressWithType remote) {}
 
   /**
    * Invoked when received remote version information for a given link
    */
   virtual void OnReadRemoteVersionInformation(
-      hci::ErrorCode hci_status,
-      hci::AddressWithType remote,
-      uint8_t lmp_version,
-      uint16_t manufacturer_name,
-      uint16_t sub_version) {}
+      [[maybe_unused]] hci::ErrorCode hci_status,
+      [[maybe_unused]] hci::AddressWithType remote,
+      [[maybe_unused]] uint8_t lmp_version,
+      [[maybe_unused]] uint16_t manufacturer_name,
+      [[maybe_unused]] uint16_t sub_version) {}
 
   /**
    * Invoked when received connection update for a given link
    */
   virtual void OnConnectionUpdate(
-      hci::AddressWithType remote,
-      uint16_t connection_interval,
-      uint16_t connection_latency,
-      uint16_t supervision_timeout) {}
+      [[maybe_unused]] hci::AddressWithType remote,
+      [[maybe_unused]] uint16_t connection_interval,
+      [[maybe_unused]] uint16_t connection_latency,
+      [[maybe_unused]] uint16_t supervision_timeout) {}
 
   /**
    * Invoked when received PHY update for a given link
    */
-  virtual void OnPhyUpdate(hci::AddressWithType remote, uint8_t tx_phy, uint8_t rx_phy) {}
+  virtual void OnPhyUpdate(
+      [[maybe_unused]] hci::AddressWithType remote,
+      [[maybe_unused]] uint8_t tx_phy,
+      [[maybe_unused]] uint8_t rx_phy) {}
 
   /**
    * Invoked when received data length exchange for a given link
    */
   virtual void OnDataLengthChange(
-      hci::AddressWithType remote, uint16_t tx_octets, uint16_t tx_time, uint16_t rx_octets, uint16_t rx_time) {}
+      [[maybe_unused]] hci::AddressWithType remote,
+      [[maybe_unused]] uint16_t tx_octets,
+      [[maybe_unused]] uint16_t tx_time,
+      [[maybe_unused]] uint16_t rx_octets,
+      [[maybe_unused]] uint16_t rx_time) {}
 };
 
 }  // namespace le

@@ -17,6 +17,7 @@
  ******************************************************************************/
 
 #include "os/metrics.h"
+
 #include "os/log.h"
 
 namespace bluetooth {
@@ -25,116 +26,153 @@ namespace os {
 using bluetooth::hci::Address;
 
 void LogMetricClassicPairingEvent(
-    const Address& address,
-    uint16_t handle,
-    uint32_t hci_cmd,
-    uint16_t hci_event,
-    uint16_t cmd_status,
-    uint16_t reason_code,
-    int64_t event_value) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint16_t handle,
+    [[maybe_unused]] uint32_t hci_cmd,
+    [[maybe_unused]] uint16_t hci_event,
+    [[maybe_unused]] uint16_t cmd_status,
+    [[maybe_unused]] uint16_t reason_code,
+    [[maybe_unused]] int64_t event_value) {}
 
 void LogMetricSocketConnectionState(
-    const Address& address,
-    int port,
-    int type,
-    android::bluetooth::SocketConnectionstateEnum connection_state,
-    int64_t tx_bytes,
-    int64_t rx_bytes,
-    int uid,
-    int server_port,
-    android::bluetooth::SocketRoleEnum socket_role) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] int port,
+    [[maybe_unused]] int type,
+    [[maybe_unused]] android::bluetooth::SocketConnectionstateEnum connection_state,
+    [[maybe_unused]] int64_t tx_bytes,
+    [[maybe_unused]] int64_t rx_bytes,
+    [[maybe_unused]] int uid,
+    [[maybe_unused]] int server_port,
+    [[maybe_unused]] android::bluetooth::SocketRoleEnum socket_role) {}
 
-void LogMetricHciTimeoutEvent(uint32_t hci_cmd) {}
+void LogMetricHciTimeoutEvent([[maybe_unused]] uint32_t hci_cmd) {}
 
 void LogMetricA2dpAudioUnderrunEvent(
-    const Address& address, uint64_t encoding_interval_millis, int num_missing_pcm_bytes) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint64_t encoding_interval_millis,
+    [[maybe_unused]] int num_missing_pcm_bytes) {}
 
 void LogMetricA2dpAudioOverrunEvent(
-    const Address& address,
-    uint64_t encoding_interval_millis,
-    int num_dropped_buffers,
-    int num_dropped_encoded_frames,
-    int num_dropped_encoded_bytes) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint64_t encoding_interval_millis,
+    [[maybe_unused]] int num_dropped_buffers,
+    [[maybe_unused]] int num_dropped_encoded_frames,
+    [[maybe_unused]] int num_dropped_encoded_bytes) {}
 
 void LogMetricHfpPacketLossStats(
-    const Address& address, int num_decoded_frames, double packet_loss_ratio, uint16_t codec_type) {
-}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] int num_decoded_frames,
+    [[maybe_unused]] double packet_loss_ratio,
+    [[maybe_unused]] uint16_t codec_type) {}
 
 void LogMetricMmcTranscodeRttStats(
-    int maximum_rtt, double mean_rtt, int num_requests, int codec_type) {}
+    [[maybe_unused]] int maximum_rtt,
+    [[maybe_unused]] double mean_rtt,
+    [[maybe_unused]] int num_requests,
+    [[maybe_unused]] int codec_type) {}
 
-void LogMetricReadRssiResult(const Address& address, uint16_t handle, uint32_t cmd_status, int8_t rssi) {}
+void LogMetricReadRssiResult(
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint16_t handle,
+    [[maybe_unused]] uint32_t cmd_status,
+    [[maybe_unused]] int8_t rssi) {}
 
 void LogMetricReadFailedContactCounterResult(
-    const Address& address, uint16_t handle, uint32_t cmd_status, int32_t failed_contact_counter) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint16_t handle,
+    [[maybe_unused]] uint32_t cmd_status,
+    [[maybe_unused]] int32_t failed_contact_counter) {}
 
 void LogMetricReadTxPowerLevelResult(
-    const Address& address, uint16_t handle, uint32_t cmd_status, int32_t transmit_power_level) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint16_t handle,
+    [[maybe_unused]] uint32_t cmd_status,
+    [[maybe_unused]] int32_t transmit_power_level) {}
 
 void LogMetricRemoteVersionInfo(
-    uint16_t handle, uint8_t status, uint8_t version, uint16_t manufacturer_name, uint16_t subversion) {}
+    [[maybe_unused]] uint16_t handle,
+    [[maybe_unused]] uint8_t status,
+    [[maybe_unused]] uint8_t version,
+    [[maybe_unused]] uint16_t manufacturer_name,
+    [[maybe_unused]] uint16_t subversion) {}
 
 void LogMetricLinkLayerConnectionEvent(
-    const Address* address,
-    uint32_t connection_handle,
-    android::bluetooth::DirectionEnum direction,
-    uint16_t link_type,
-    uint32_t hci_cmd,
-    uint16_t hci_event,
-    uint16_t hci_ble_event,
-    uint16_t cmd_status,
-    uint16_t reason_code) {}
+    [[maybe_unused]] const Address* address,
+    [[maybe_unused]] uint32_t connection_handle,
+    [[maybe_unused]] android::bluetooth::DirectionEnum direction,
+    [[maybe_unused]] uint16_t link_type,
+    [[maybe_unused]] uint32_t hci_cmd,
+    [[maybe_unused]] uint16_t hci_event,
+    [[maybe_unused]] uint16_t hci_ble_event,
+    [[maybe_unused]] uint16_t cmd_status,
+    [[maybe_unused]] uint16_t reason_code) {}
 
 void LogMetricManufacturerInfo(
-    const Address& address,
-    android::bluetooth::AddressTypeEnum address_type,
-    android::bluetooth::DeviceInfoSrcEnum source_type,
-    const std::string& source_name,
-    const std::string& manufacturer,
-    const std::string& model,
-    const std::string& hardware_version,
-    const std::string& software_version) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] android::bluetooth::AddressTypeEnum address_type,
+    [[maybe_unused]] android::bluetooth::DeviceInfoSrcEnum source_type,
+    [[maybe_unused]] const std::string& source_name,
+    [[maybe_unused]] const std::string& manufacturer,
+    [[maybe_unused]] const std::string& model,
+    [[maybe_unused]] const std::string& hardware_version,
+    [[maybe_unused]] const std::string& software_version) {}
 
 void LogMetricSdpAttribute(
-    const Address& address,
-    uint16_t protocol_uuid,
-    uint16_t attribute_id,
-    size_t attribute_size,
-    const char* attribute_value) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint16_t protocol_uuid,
+    [[maybe_unused]] uint16_t attribute_id,
+    [[maybe_unused]] size_t attribute_size,
+    [[maybe_unused]] const char* attribute_value) {}
 
 void LogMetricSmpPairingEvent(
-    const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint16_t smp_cmd,
+    [[maybe_unused]] android::bluetooth::DirectionEnum direction,
+    [[maybe_unused]] uint16_t smp_fail_reason) {}
 
-void LogMetricA2dpPlaybackEvent(const Address& address, int playback_state, int audio_coding_mode) {}
+void LogMetricA2dpPlaybackEvent(
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] int playback_state,
+    [[maybe_unused]] int audio_coding_mode) {}
 
 void LogMetricBluetoothHalCrashReason(
-    const Address& address, uint32_t error_code, uint32_t vendor_error_code) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint32_t error_code,
+    [[maybe_unused]] uint32_t vendor_error_code) {}
 
-void LogMetricBluetoothLocalSupportedFeatures(uint32_t page_num, uint64_t features) {}
+void LogMetricBluetoothLocalSupportedFeatures(
+    [[maybe_unused]] uint32_t page_num, [[maybe_unused]] uint64_t features) {}
 
 void LogMetricBluetoothLocalVersions(
-    uint32_t lmp_manufacturer_name,
-    uint8_t lmp_version,
-    uint32_t lmp_subversion,
-    uint8_t hci_version,
-    uint32_t hci_reversion) {}
+    [[maybe_unused]] uint32_t lmp_manufacturer_name,
+    [[maybe_unused]] uint8_t lmp_version,
+    [[maybe_unused]] uint32_t lmp_subversion,
+    [[maybe_unused]] uint8_t hci_version,
+    [[maybe_unused]] uint32_t hci_reversion) {}
 
 void LogMetricBluetoothDisconnectionReasonReported(
-    uint32_t reason, const Address& address, uint32_t connection_handle) {}
+    [[maybe_unused]] uint32_t reason,
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint32_t connection_handle) {}
 
 void LogMetricBluetoothRemoteSupportedFeatures(
-    const Address& address, uint32_t page, uint64_t features, uint32_t connection_handle) {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] uint32_t page,
+    [[maybe_unused]] uint64_t features,
+    [[maybe_unused]] uint32_t connection_handle) {}
 
-void LogMetricBluetoothCodePathCounterMetrics(int32_t key, int64_t count) {}
+void LogMetricBluetoothCodePathCounterMetrics(
+    [[maybe_unused]] int32_t key, [[maybe_unused]] int64_t count) {}
 
 void LogMetricBluetoothLEConnectionMetricEvent(
-    const Address& address,
-    android::bluetooth::le::LeConnectionOriginType origin_type,
-    android::bluetooth::le::LeConnectionType connection_type,
-    android::bluetooth::le::LeConnectionState transaction_state,
-   std::vector<std::pair<os::ArgumentType, int>>& argument_list)  {}
+    [[maybe_unused]] const Address& address,
+    [[maybe_unused]] android::bluetooth::le::LeConnectionOriginType origin_type,
+    [[maybe_unused]] android::bluetooth::le::LeConnectionType connection_type,
+    [[maybe_unused]] android::bluetooth::le::LeConnectionState transaction_state,
+    [[maybe_unused]] std::vector<std::pair<os::ArgumentType, int>>& argument_list) {}
 
-void LogMetricBluetoothLEConnection(os::LEConnectionSessionOptions session_options) {}
+void LogMetricBluetoothLEConnection(
+    [[maybe_unused]] os::LEConnectionSessionOptions session_options) {}
 
 }  // namespace os
 }  // namespace bluetooth
