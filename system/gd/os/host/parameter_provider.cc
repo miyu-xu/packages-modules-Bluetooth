@@ -104,19 +104,19 @@ bluetooth_keystore::BluetoothKeystoreInterface* ParameterProvider::GetBtKeystore
   return nullptr;
 }
 
-void ParameterProvider::SetBtKeystoreInterface(bluetooth_keystore::BluetoothKeystoreInterface* bt_keystore) {}
+void ParameterProvider::SetBtKeystoreInterface(bluetooth_keystore::BluetoothKeystoreInterface*) {}
 
 bool ParameterProvider::IsCommonCriteriaMode() {
   return false;
 }
 
-void ParameterProvider::SetCommonCriteriaMode(bool enable) {}
+void ParameterProvider::SetCommonCriteriaMode(bool) {}
 
 int ParameterProvider::GetCommonCriteriaConfigCompareResult() {
   return 0b11;
 }
 
-void ParameterProvider::SetCommonCriteriaConfigCompareResult(int result) {}
+void ParameterProvider::SetCommonCriteriaConfigCompareResult(int) {}
 
 }  // namespace os
 }  // namespace bluetooth

@@ -37,7 +37,10 @@ namespace hci {
 namespace acl_manager {
 
 struct acl_connection {
-  acl_connection(AddressWithType address_with_type, AclConnection::QueueDownEnd* queue_down_end, os::Handler* handler)
+  acl_connection(
+      AddressWithType address_with_type,
+      AclConnection::QueueDownEnd* queue_down_end,
+      os::Handler* handler)
       : address_with_type_(address_with_type),
         assembler_(new acl_manager::assembler(address_with_type, queue_down_end, handler)) {}
   ~acl_connection() {
@@ -185,12 +188,15 @@ struct classic_impl : public security::ISecurityManagerListener {
         ASSERT_LOG(!crash_on_unknown_handle_, "Received command for unknown handle:0x%x", handle);
       if (remove_afterwards) remove(handle);
     }
-    void execute(const Address& address, std::function<void(ConnectionManagementCallbacks* callbacks)> execute) {
+    void execute(
+        const Address& address,
+        std::function<void(ConnectionManagementCallbacks* callbacks)> execute) {
       std::unique_lock<std::mutex> lock(acl_connections_guard_);
       auto callbacks = find_callbacks(address);
       if (callbacks != nullptr) execute(callbacks);
     }
-    bool send_packet_upward(uint16_t handle, std::function<void(struct acl_manager::assembler* assembler)> cb) {
+    bool send_packet_upward(
+        uint16_t handle, std::function<void(struct acl_manager::assembler* assembler)> cb) {
       std::unique_lock<std::mutex> lock(acl_connections_guard_);
       auto connection = acl_connections_.find(handle);
       if (connection != acl_connections_.end()) cb(connection->second.assembler_);
@@ -239,7 +245,8 @@ struct classic_impl : public security::ISecurityManagerListener {
   } connections;
 
  public:
-  bool send_packet_upward(uint16_t handle, std::function<void(struct acl_manager::assembler* assembler)> cb) {
+  bool send_packet_upward(
+      uint16_t handle, std::function<void(struct acl_manager::assembler* assembler)> cb) {
     return connections.send_packet_upward(handle, cb);
   }
 
@@ -257,7 +264,10 @@ struct classic_impl : public security::ISecurityManagerListener {
     switch (request.GetLinkType()) {
       case ConnectionRequestLinkType::SCO:
         client_handler_->CallOn(
-            client_callbacks_, &ConnectionCallbacks::HACK_OnScoConnectRequest, address, request.GetClassOfDevice());
+            client_callbacks_,
+            &ConnectionCallbacks::HACK_OnScoConnectRequest,
+            address,
+            request.GetClassOfDevice());
         return;
 
       case ConnectionRequestLinkType::ACL:
@@ -271,7 +281,10 @@ struct classic_impl : public security::ISecurityManagerListener {
 
       case ConnectionRequestLinkType::ESCO:
         client_handler_->CallOn(
-            client_callbacks_, &ConnectionCallbacks::HACK_OnEscoConnectRequest, address, request.GetClassOfDevice());
+            client_callbacks_,
+            &ConnectionCallbacks::HACK_OnEscoConnectRequest,
+            address,
+            request.GetClassOfDevice());
         return;
 
       case ConnectionRequestLinkType::UNKNOWN:
@@ -305,20 +318,29 @@ struct classic_impl : public security::ISecurityManagerListener {
     CreateConnectionRoleSwitch allow_role_switch = CreateConnectionRoleSwitch::ALLOW_ROLE_SWITCH;
     ASSERT(client_callbacks_ != nullptr);
     std::unique_ptr<CreateConnectionBuilder> packet = CreateConnectionBuilder::Create(
-        address, packet_type, page_scan_repetition_mode, clock_offset, clock_offset_valid, allow_role_switch);
+        address,
+        packet_type,
+        page_scan_repetition_mode,
+        clock_offset,
+        clock_offset_valid,
+        allow_role_switch);
 
     acl_scheduler_->EnqueueOutgoingAclConnection(
-        address, handler_->BindOnceOn(this, &classic_impl::actually_create_connection, address, std::move(packet)));
+        address,
+        handler_->BindOnceOn(
+            this, &classic_impl::actually_create_connection, address, std::move(packet)));
   }
 
-  void actually_create_connection(Address address, std::unique_ptr<CreateConnectionBuilder> packet) {
+  void actually_create_connection(
+      Address address, std::unique_ptr<CreateConnectionBuilder> packet) {
     if (is_classic_link_already_connected(address)) {
       LOG_WARN("already connected: %s", ADDRESS_TO_LOGGABLE_CSTR(address));
       acl_scheduler_->ReportOutgoingAclConnectionFailure();
       return;
     }
     acl_connection_interface_->EnqueueCommand(
-        std::move(packet), handler_->BindOnceOn(this, &classic_impl::on_create_connection_status, address));
+        std::move(packet),
+        handler_->BindOnceOn(this, &classic_impl::on_create_connection_status, address));
   }
 
   void on_create_connection_status(Address address, CommandStatusView status) {
@@ -375,19 +397,23 @@ struct classic_impl : public security::ISecurityManagerListener {
         AddressWithType{address, AddressType::PUBLIC_DEVICE_ADDRESS},
         queue_down_end,
         handler_,
-        connection->GetEventCallbacks([this](uint16_t handle) { this->connections.invalidate(handle); }));
+        connection->GetEventCallbacks(
+            [this](uint16_t handle) { this->connections.invalidate(handle); }));
     connections.execute(address, [=](ConnectionManagementCallbacks* callbacks) {
       if (delayed_role_change_ == nullptr) {
         callbacks->OnRoleChange(hci::ErrorCode::SUCCESS, current_role);
       } else if (delayed_role_change_->GetBdAddr() == address) {
         LOG_INFO("Sending delayed role change for %s",
                  ADDRESS_TO_LOGGABLE_CSTR(delayed_role_change_->GetBdAddr()));
-        callbacks->OnRoleChange(delayed_role_change_->GetStatus(), delayed_role_change_->GetNewRole());
+        callbacks->OnRoleChange(
+            delayed_role_change_->GetStatus(), delayed_role_change_->GetNewRole());
         delayed_role_change_.reset();
       }
     });
     client_handler_->Post(common::BindOnce(
-        &ConnectionCallbacks::OnConnectSuccess, common::Unretained(client_callbacks_), std::move(connection)));
+        &ConnectionCallbacks::OnConnectSuccess,
+        common::Unretained(client_callbacks_),
+        std::move(connection)));
   }
 
   void on_connection_complete(EventView packet) {
@@ -409,7 +435,8 @@ struct classic_impl : public security::ISecurityManagerListener {
     //       Drop such packets.
     if (handle == 0xffff && link_type == LinkType::SCO) {
       LOG_ERROR(
-          "ConnectionComplete with invalid handle(%u), link type(%u) and status(%d). Dropping packet.",
+          "ConnectionComplete with invalid handle(%u), link type(%u) and "
+          "status(%d). Dropping packet.",
           handle,
           link_type,
           status);
@@ -445,7 +472,8 @@ struct classic_impl : public security::ISecurityManagerListener {
                   "No matching connection to %s (%s)",
                   ADDRESS_TO_LOGGABLE_CSTR(address),
                   ErrorCodeText(status).c_str());
-              LOG_WARN("Firmware error after RemoteNameRequestCancel?");  // see b/184239841
+              LOG_WARN("Firmware error after RemoteNameRequestCancel?");  // see
+                                                                          // b/184239841
               remote_name_request_module->ReportRemoteNameRequestCancellation(address);
             },
             common::Unretained(remote_name_request_module_),
@@ -466,9 +494,11 @@ struct classic_impl : public security::ISecurityManagerListener {
   }
 
   void actually_cancel_connect(Address address) {
-    std::unique_ptr<CreateConnectionCancelBuilder> packet = CreateConnectionCancelBuilder::Create(address);
+    std::unique_ptr<CreateConnectionCancelBuilder> packet =
+        CreateConnectionCancelBuilder::Create(address);
     acl_connection_interface_->EnqueueCommand(
-        std::move(packet), handler_->BindOnce(&check_command_complete<CreateConnectionCancelCompleteView>));
+        std::move(packet),
+        handler_->BindOnce(&check_command_complete<CreateConnectionCancelCompleteView>));
   }
 
   static constexpr bool kRemoveConnectionAfterwards = true;
@@ -492,19 +522,22 @@ struct classic_impl : public security::ISecurityManagerListener {
   }
 
   void on_connection_packet_type_changed(EventView packet) {
-    ConnectionPacketTypeChangedView packet_type_changed = ConnectionPacketTypeChangedView::Create(packet);
+    ConnectionPacketTypeChangedView packet_type_changed =
+        ConnectionPacketTypeChangedView::Create(packet);
     if (!packet_type_changed.IsValid()) {
       LOG_ERROR("Received on_connection_packet_type_changed with invalid packet");
       return;
     } else if (packet_type_changed.GetStatus() != ErrorCode::SUCCESS) {
       auto status = packet_type_changed.GetStatus();
       std::string error_code = ErrorCodeText(status);
-      LOG_ERROR("Received on_connection_packet_type_changed with error code %s", error_code.c_str());
+      LOG_ERROR(
+          "Received on_connection_packet_type_changed with error code %s", error_code.c_str());
       return;
     }
     uint16_t handle = packet_type_changed.GetConnectionHandle();
-    connections.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
-      // We don't handle this event; we didn't do this in legacy stack either.
+    connections.execute(handle, [=](ConnectionManagementCallbacks*) {
+      // We don't handle this event; we didn't do this in legacy stack
+      // either.
     });
   }
 
@@ -539,19 +572,24 @@ struct classic_impl : public security::ISecurityManagerListener {
   }
 
   void on_change_connection_link_key_complete(EventView packet) {
-    ChangeConnectionLinkKeyCompleteView complete_view = ChangeConnectionLinkKeyCompleteView::Create(packet);
+    ChangeConnectionLinkKeyCompleteView complete_view =
+        ChangeConnectionLinkKeyCompleteView::Create(packet);
     if (!complete_view.IsValid()) {
-      LOG_ERROR("Received on_change_connection_link_key_complete with invalid packet");
+      LOG_ERROR(
+          "Received on_change_connection_link_key_complete with invalid "
+          "packet");
       return;
     } else if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
       auto status = complete_view.GetStatus();
       std::string error_code = ErrorCodeText(status);
-      LOG_ERROR("Received on_change_connection_link_key_complete with error code %s", error_code.c_str());
+      LOG_ERROR(
+          "Received on_change_connection_link_key_complete with error code %s", error_code.c_str());
       return;
     }
     uint16_t handle = complete_view.GetConnectionHandle();
-    connections.execute(
-        handle, [=](ConnectionManagementCallbacks* callbacks) { callbacks->OnChangeConnectionLinkKeyComplete(); });
+    connections.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
+      callbacks->OnChangeConnectionLinkKeyComplete();
+    });
   }
 
   void on_read_clock_offset_complete(EventView packet) {
@@ -581,7 +619,9 @@ struct classic_impl : public security::ISecurityManagerListener {
     uint16_t handle = mode_change_view.GetConnectionHandle();
     connections.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
       callbacks->OnModeChange(
-          mode_change_view.GetStatus(), mode_change_view.GetCurrentMode(), mode_change_view.GetInterval());
+          mode_change_view.GetStatus(),
+          mode_change_view.GetCurrentMode(),
+          mode_change_view.GetInterval());
     });
   }
 
@@ -620,7 +660,8 @@ struct classic_impl : public security::ISecurityManagerListener {
       uint32_t peak_bandwidth = complete_view.GetPeakBandwidth();
       uint32_t latency = complete_view.GetLatency();
       uint32_t delay_variation = complete_view.GetDelayVariation();
-      callbacks->OnQosSetupComplete(service_type, token_rate, peak_bandwidth, latency, delay_variation);
+      callbacks->OnQosSetupComplete(
+          service_type, token_rate, peak_bandwidth, latency, delay_variation);
     });
   }
 
@@ -644,7 +685,12 @@ struct classic_impl : public security::ISecurityManagerListener {
       uint32_t peak_bandwidth = complete_view.GetPeakBandwidth();
       uint32_t access_latency = complete_view.GetAccessLatency();
       callbacks->OnFlowSpecificationComplete(
-          flow_direction, service_type, token_rate, token_bucket_size, peak_bandwidth, access_latency);
+          flow_direction,
+          service_type,
+          token_rate,
+          token_bucket_size,
+          peak_bandwidth,
+          access_latency);
     });
   }
 
@@ -655,13 +701,19 @@ struct classic_impl : public security::ISecurityManagerListener {
       return;
     }
     uint16_t handle = flush_occurred_view.GetConnectionHandle();
-    connections.execute(handle, [=](ConnectionManagementCallbacks* callbacks) { callbacks->OnFlushOccurred(); });
+    connections.execute(
+        handle, [=](ConnectionManagementCallbacks* callbacks) { callbacks->OnFlushOccurred(); });
   }
 
   void on_read_remote_version_information(
-      hci::ErrorCode hci_status, uint16_t handle, uint8_t version, uint16_t manufacturer_name, uint16_t sub_version) {
+      hci::ErrorCode hci_status,
+      uint16_t handle,
+      uint8_t version,
+      uint16_t manufacturer_name,
+      uint16_t sub_version) {
     connections.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
-      callbacks->OnReadRemoteVersionInformationComplete(hci_status, version, manufacturer_name, sub_version);
+      callbacks->OnReadRemoteVersionInformationComplete(
+          hci_status, version, manufacturer_name, sub_version);
     });
   }
 
@@ -681,7 +733,10 @@ struct classic_impl : public security::ISecurityManagerListener {
     ASSERT_LOG(view.IsValid(), "Read remote extended features packet invalid");
     uint16_t handle = view.GetConnectionHandle();
     bluetooth::os::LogMetricBluetoothRemoteSupportedFeatures(
-        connections.get_address(handle), view.GetPageNumber(), view.GetExtendedLmpFeatures(), handle);
+        connections.get_address(handle),
+        view.GetPageNumber(),
+        view.GetExtendedLmpFeatures(),
+        handle);
     connections.execute(handle, [=](ConnectionManagementCallbacks* callbacks) {
       callbacks->OnReadRemoteExtendedFeaturesComplete(
           view.GetPageNumber(), view.GetMaximumPageNumber(), view.GetExtendedLmpFeatures());
@@ -765,7 +820,8 @@ struct classic_impl : public security::ISecurityManagerListener {
     std::unique_ptr<WriteDefaultLinkPolicySettingsBuilder> packet =
         WriteDefaultLinkPolicySettingsBuilder::Create(default_link_policy_settings);
     acl_connection_interface_->EnqueueCommand(
-        std::move(packet), handler_->BindOnce(&check_command_complete<WriteDefaultLinkPolicySettingsCompleteView>));
+        std::move(packet),
+        handler_->BindOnce(&check_command_complete<WriteDefaultLinkPolicySettingsCompleteView>));
   }
 
   void accept_connection(Address address) {
@@ -777,12 +833,13 @@ struct classic_impl : public security::ISecurityManagerListener {
 
   void reject_connection(std::unique_ptr<RejectConnectionRequestBuilder> builder) {
     acl_connection_interface_->EnqueueCommand(
-        std::move(builder), handler_->BindOnce(&check_command_status<RejectConnectionRequestStatusView>));
+        std::move(builder),
+        handler_->BindOnce(&check_command_status<RejectConnectionRequestStatusView>));
   }
 
-  void OnDeviceBonded(bluetooth::hci::AddressWithType device) override {}
-  void OnDeviceUnbonded(bluetooth::hci::AddressWithType device) override {}
-  void OnDeviceBondFailed(bluetooth::hci::AddressWithType device, security::PairingFailure status) override {}
+  void OnDeviceBonded(bluetooth::hci::AddressWithType) override {}
+  void OnDeviceUnbonded(bluetooth::hci::AddressWithType) override {}
+  void OnDeviceBondFailed(bluetooth::hci::AddressWithType, security::PairingFailure) override {}
 
   void set_security_module(security::SecurityModule* security_module) {
     security_manager_ = security_module->GetSecurityManager();
@@ -805,7 +862,9 @@ struct classic_impl : public security::ISecurityManagerListener {
   }
 
   void handle_unregister_callbacks(ConnectionCallbacks* callbacks, std::promise<void> promise) {
-    ASSERT_LOG(client_callbacks_ == callbacks, "Registered callback entity is different then unregister request");
+    ASSERT_LOG(
+        client_callbacks_ == callbacks,
+        "Registered callback entity is different then unregister request");
     client_callbacks_ = nullptr;
     client_handler_ = nullptr;
     promise.set_value();

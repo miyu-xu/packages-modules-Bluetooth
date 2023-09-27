@@ -58,7 +58,8 @@ constexpr uint8_t kDataStatusBits = 5;
 // system properties
 const std::string kLeRxPathLossCompProperty = "bluetooth.hardware.radio.le_rx_path_loss_comp_db";
 
-const ModuleFactory LeScanningManager::Factory = ModuleFactory([]() { return new LeScanningManager(); });
+const ModuleFactory LeScanningManager::Factory =
+    ModuleFactory([]() { return new LeScanningManager(); });
 
 enum class ScanApiType {
   LEGACY = 1,
@@ -72,69 +73,60 @@ struct Scanner {
 };
 
 class NullScanningCallback : public ScanningCallback {
-  void OnScannerRegistered(const Uuid app_uuid, ScannerId scanner_id, ScanningStatus status) override {
+  void OnScannerRegistered(const Uuid, ScannerId, ScanningStatus) override {
     LOG_INFO("OnScannerRegistered in NullScanningCallback");
   }
-  void OnSetScannerParameterComplete(ScannerId scanner_id, ScanningStatus status) override {
+  void OnSetScannerParameterComplete(ScannerId, ScanningStatus) override {
     LOG_INFO("OnSetScannerParameterComplete in NullScanningCallback");
   }
   void OnScanResult(
-      uint16_t event_type,
-      uint8_t address_type,
-      Address address,
-      uint8_t primary_phy,
-      uint8_t secondary_phy,
-      uint8_t advertising_sid,
-      int8_t tx_power,
-      int8_t rssi,
-      uint16_t periodic_advertising_interval,
-      std::vector<uint8_t> advertising_data) override {
+      uint16_t,
+      uint8_t,
+      Address,
+      uint8_t,
+      uint8_t,
+      uint8_t,
+      int8_t,
+      int8_t,
+      uint16_t,
+      std::vector<uint8_t>) override {
     LOG_INFO("OnScanResult in NullScanningCallback");
   }
-  void OnTrackAdvFoundLost(AdvertisingFilterOnFoundOnLostInfo on_found_on_lost_info) override {
+  void OnTrackAdvFoundLost(AdvertisingFilterOnFoundOnLostInfo) override {
     LOG_INFO("OnTrackAdvFoundLost in NullScanningCallback");
   }
-  void OnBatchScanReports(
-      int client_if, int status, int report_format, int num_records, std::vector<uint8_t> data) override {
+  void OnBatchScanReports(int, int, int, int, std::vector<uint8_t>) override {
     LOG_INFO("OnBatchScanReports in NullScanningCallback");
   }
-  void OnBatchScanThresholdCrossed(int client_if) override {
+  void OnBatchScanThresholdCrossed(int) override {
     LOG_INFO("OnBatchScanThresholdCrossed in NullScanningCallback");
   }
   void OnTimeout() override {
     LOG_INFO("OnTimeout in NullScanningCallback");
   }
-  void OnFilterEnable(Enable enable, uint8_t status) override {
+  void OnFilterEnable(Enable, uint8_t) override {
     LOG_INFO("OnFilterEnable in NullScanningCallback");
   }
-  void OnFilterParamSetup(uint8_t available_spaces, ApcfAction action, uint8_t status) override {
+  void OnFilterParamSetup(uint8_t, ApcfAction, uint8_t) override {
     LOG_INFO("OnFilterParamSetup in NullScanningCallback");
   }
-  void OnFilterConfigCallback(
-      ApcfFilterType filter_type, uint8_t available_spaces, ApcfAction action, uint8_t status) override {
+  void OnFilterConfigCallback(ApcfFilterType, uint8_t, ApcfAction, uint8_t) override {
     LOG_INFO("OnFilterConfigCallback in NullScanningCallback");
   }
   void OnPeriodicSyncStarted(
-      int reg_id,
-      uint8_t status,
-      uint16_t sync_handle,
-      uint8_t advertising_sid,
-      AddressWithType address_with_type,
-      uint8_t phy,
-      uint16_t interval) override {
+      int, uint8_t, uint16_t, uint8_t, AddressWithType, uint8_t, uint16_t) override {
     LOG_INFO("OnPeriodicSyncStarted in NullScanningCallback");
   };
-  void OnPeriodicSyncReport(
-      uint16_t sync_handle, int8_t tx_power, int8_t rssi, uint8_t status, std::vector<uint8_t> data) override {
+  void OnPeriodicSyncReport(uint16_t, int8_t, int8_t, uint8_t, std::vector<uint8_t>) override {
     LOG_INFO("OnPeriodicSyncReport in NullScanningCallback");
   };
-  void OnPeriodicSyncLost(uint16_t sync_handle) override {
+  void OnPeriodicSyncLost(uint16_t) override {
     LOG_INFO("OnPeriodicSyncLost in NullScanningCallback");
   };
-  void OnPeriodicSyncTransferred(int pa_source, uint8_t status, Address address) override {
+  void OnPeriodicSyncTransferred(int, uint8_t, Address) override {
     LOG_INFO("OnPeriodicSyncTransferred in NullScanningCallback");
   };
-  void OnBigInfoReport(uint16_t sync_handle, bool encrypted) {
+  void OnBigInfoReport(uint16_t, bool) {
     LOG_INFO("OnBigInfoReport in NullScanningCallback");
   };
 };
@@ -187,7 +179,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     le_scanning_interface_ = hci_layer_->GetLeScanningInterface(
         module_handler_->BindOn(this, &LeScanningManager::impl::handle_scan_results));
     periodic_sync_manager_.Init(le_scanning_interface_, module_handler_);
-    /* Check to see if the opcode is supported and C19 (support for extended advertising). */
+    /* Check to see if the opcode is supported and C19 (support for extended
+     * advertising). */
     if (controller_->IsSupported(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS) &&
         controller->SupportsBleExtendedAdvertising()) {
       api_type_ = ScanApiType::EXTENDED;
@@ -210,9 +203,11 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     total_num_of_advt_tracked_ = controller->GetVendorCapabilities().total_num_of_advt_tracked_;
     if (is_batch_scan_supported_) {
       vendor_specific_event_manager_->RegisterEventHandler(
-          VseSubeventCode::BLE_THRESHOLD, handler->BindOn(this, &LeScanningManager::impl::on_storage_threshold_breach));
+          VseSubeventCode::BLE_THRESHOLD,
+          handler->BindOn(this, &LeScanningManager::impl::on_storage_threshold_breach));
       vendor_specific_event_manager_->RegisterEventHandler(
-          VseSubeventCode::BLE_TRACKING, handler->BindOn(this, &LeScanningManager::impl::on_advertisement_tracking));
+          VseSubeventCode::BLE_TRACKING,
+          handler->BindOn(this, &LeScanningManager::impl::on_advertisement_tracking));
     }
     scanners_ = std::vector<Scanner>(kMaxAppNum + 1);
     for (size_t i = 0; i < scanners_.size(); i++) {
@@ -256,10 +251,12 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             LePeriodicAdvertisingSyncEstablishedView::Create(event));
         break;
       case SubeventCode::PERIODIC_ADVERTISING_REPORT:
-        periodic_sync_manager_.HandleLePeriodicAdvertisingReport(LePeriodicAdvertisingReportView::Create(event));
+        periodic_sync_manager_.HandleLePeriodicAdvertisingReport(
+            LePeriodicAdvertisingReportView::Create(event));
         break;
       case SubeventCode::PERIODIC_ADVERTISING_SYNC_LOST:
-        periodic_sync_manager_.HandleLePeriodicAdvertisingSyncLost(LePeriodicAdvertisingSyncLostView::Create(event));
+        periodic_sync_manager_.HandleLePeriodicAdvertisingSyncLost(
+            LePeriodicAdvertisingSyncLostView::Create(event));
         break;
       case SubeventCode::PERIODIC_ADVERTISING_SYNC_TRANSFER_RECEIVED:
         periodic_sync_manager_.HandleLePeriodicAdvertisingSyncTransferReceived(
@@ -273,7 +270,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             LeBigInfoAdvertisingReportView::Create(event));
         break;
       default:
-        LOG_ALWAYS_FATAL("Unknown advertising subevent %s", SubeventCodeText(event.GetSubeventCode()).c_str());
+        LOG_ALWAYS_FATAL(
+            "Unknown advertising subevent %s", SubeventCodeText(event.GetSubeventCode()).c_str());
     }
   }
 
@@ -395,9 +393,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
 
     for (LeExtendedAdvertisingResponseRaw& report : reports) {
-      uint16_t event_type = report.connectable_ | (report.scannable_ << kScannableBit) |
-                            (report.directed_ << kDirectedBit) | (report.scan_response_ << kScanResponseBit) |
-                            (report.legacy_ << kLegacyBit) | ((uint16_t)report.data_status_ << kDataStatusBits);
+      uint16_t event_type =
+          report.connectable_ | (report.scannable_ << kScannableBit) |
+          (report.directed_ << kDirectedBit) | (report.scan_response_ << kScanResponseBit) |
+          (report.legacy_ << kLegacyBit) | ((uint16_t)report.data_status_ << kDataStatusBits);
       process_advertising_package_content(
           event_type,
           (uint8_t)report.address_type_,
@@ -427,9 +426,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     // configure a filter accept list based e.g. on the service UUIDs
     // found in the report, we ignore the scan responses as we cannot be
     // certain that they will not be dropped by the filter.
-    // TODO(b/275754998): Improve the decision on what to do with scan responses: Only when used
-    // with hardware-filtering features should we ignore waiting for scan response, and make sure
-    // scan responses are still reported too.
+    // TODO(b/275754998): Improve the decision on what to do with scan
+    // responses: Only when used with hardware-filtering features should we
+    // ignore waiting for scan response, and make sure scan responses are still
+    // reported too.
     scanning_reassembler_.SetIgnoreScanResponses(
         filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY);
 
@@ -471,7 +471,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     parameter_vector.push_back(phy_scan_parameters);
     uint8_t phys_in_use = 1;
 
-    // The Host shall not issue set scan parameter command when scanning is enabled
+    // The Host shall not issue set scan parameter command when scanning is
+    // enabled
     stop_scan();
 
     if (le_address_manager_->GetAddressPolicy() != LeAddressManager::USE_PUBLIC_ADDRESS) {
@@ -508,7 +509,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     for (uint8_t i = 1; i <= kMaxAppNum; i++) {
       if (scanners_[i].in_use && scanners_[i].app_uuid == app_uuid) {
         LOG_ERROR("Application already registered %s", app_uuid.ToString().c_str());
-        scanning_callbacks_->OnScannerRegistered(app_uuid, 0x00, ScanningCallback::ScanningStatus::INTERNAL_ERROR);
+        scanning_callbacks_->OnScannerRegistered(
+            app_uuid, 0x00, ScanningCallback::ScanningStatus::INTERNAL_ERROR);
         return;
       }
     }
@@ -518,13 +520,15 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       if (!scanners_[i].in_use) {
         scanners_[i].app_uuid = app_uuid;
         scanners_[i].in_use = true;
-        scanning_callbacks_->OnScannerRegistered(app_uuid, i, ScanningCallback::ScanningStatus::SUCCESS);
+        scanning_callbacks_->OnScannerRegistered(
+            app_uuid, i, ScanningCallback::ScanningStatus::SUCCESS);
         return;
       }
     }
 
     LOG_ERROR("Unable to register scanner, max client reached:%d", kMaxAppNum);
-    scanning_callbacks_->OnScannerRegistered(app_uuid, 0x00, ScanningCallback::ScanningStatus::NO_RESOURCES);
+    scanning_callbacks_->OnScannerRegistered(
+        app_uuid, 0x00, ScanningCallback::ScanningStatus::NO_RESOURCES);
   }
 
   void unregister_scanner(ScannerId scanner_id) {
@@ -542,7 +546,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   }
 
   void scan(bool start) {
-    // On-resume flag should always be reset if there is an explicit start/stop call.
+    // On-resume flag should always be reset if there is an explicit start/stop
+    // call.
     scan_on_resume_ = false;
     if (start) {
       configure_scan();
@@ -579,7 +584,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       case ScanApiType::ANDROID_HCI:
       case ScanApiType::LEGACY:
         le_scanning_interface_->EnqueueCommand(
-            LeSetScanEnableBuilder::Create(Enable::ENABLED, Enable::DISABLED /* filter duplicates */),
+            LeSetScanEnableBuilder::Create(
+                Enable::ENABLED, Enable::DISABLED /* filter duplicates */),
             module_handler_->BindOnce(impl::check_status));
         break;
     }
@@ -602,13 +608,15 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       case ScanApiType::ANDROID_HCI:
       case ScanApiType::LEGACY:
         le_scanning_interface_->EnqueueCommand(
-            LeSetScanEnableBuilder::Create(Enable::DISABLED, Enable::DISABLED /* filter duplicates */),
+            LeSetScanEnableBuilder::Create(
+                Enable::DISABLED, Enable::DISABLED /* filter duplicates */),
             module_handler_->BindOnce(impl::check_status));
         break;
     }
   }
 
-  void set_scan_parameters(ScannerId scanner_id, LeScanType scan_type, uint16_t scan_interval, uint16_t scan_window) {
+  void set_scan_parameters(
+      ScannerId scanner_id, LeScanType scan_type, uint16_t scan_interval, uint16_t scan_window) {
     uint32_t max_scan_interval = kLeScanIntervalMax;
     uint32_t max_scan_window = kLeScanWindowMax;
     if (api_type_ == ScanApiType::EXTENDED) {
@@ -668,7 +676,9 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   }
 
   void scan_filter_parameter_setup(
-      ApcfAction action, uint8_t filter_index, AdvertisingFilterParameter advertising_filter_parameter) {
+      ApcfAction action,
+      uint8_t filter_index,
+      AdvertisingFilterParameter advertising_filter_parameter) {
     if (!is_filter_supported_) {
       LOG_WARN("Advertising filter is not supported");
       return;
@@ -703,7 +713,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           // Don't want to remove for a bonded device
           if (!is_bonded(entry->second.GetAddress())) {
             le_address_manager_->RemoveDeviceFromResolvingList(
-                static_cast<PeerAddressType>(entry->second.GetAddressType()), entry->second.GetAddress());
+                static_cast<PeerAddressType>(entry->second.GetAddressType()),
+                entry->second.GetAddress());
           }
           remove_me_later_map_.erase(filter_index);
         }
@@ -719,7 +730,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           // Don't want to remove for a bonded device
           if (!is_bonded(entry->second.GetAddress())) {
             le_address_manager_->RemoveDeviceFromResolvingList(
-                static_cast<PeerAddressType>(entry->second.GetAddressType()), entry->second.GetAddress());
+                static_cast<PeerAddressType>(entry->second.GetAddressType()),
+                entry->second.GetAddress());
           }
           remove_me_later_map_.erase(filter_index);
         }
@@ -731,7 +743,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
   }
 
-  void scan_filter_add(uint8_t filter_index, std::vector<AdvertisingPacketContentFilterCommand> filters) {
+  void scan_filter_add(
+      uint8_t filter_index, std::vector<AdvertisingPacketContentFilterCommand> filters) {
     if (!is_filter_supported_) {
       LOG_WARN("Advertising filter is not supported");
       return;
@@ -740,19 +753,26 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     ApcfAction apcf_action = ApcfAction::ADD;
     for (auto filter : filters) {
       /* If data is passed, both mask and data have to be the same length */
-      if (filter.data.size() != filter.data_mask.size() && filter.data.size() != 0 && filter.data_mask.size() != 0) {
+      if (filter.data.size() != filter.data_mask.size() && filter.data.size() != 0 &&
+          filter.data_mask.size() != 0) {
         LOG_ERROR("data and data_mask are of different size");
         continue;
       }
 
       switch (filter.filter_type) {
         case ApcfFilterType::BROADCASTER_ADDRESS: {
-          update_address_filter(apcf_action, filter_index, filter.address, filter.application_address_type, filter.irk);
+          update_address_filter(
+              apcf_action,
+              filter_index,
+              filter.address,
+              filter.application_address_type,
+              filter.irk);
           break;
         }
         case ApcfFilterType::SERVICE_UUID:
         case ApcfFilterType::SERVICE_SOLICITATION_UUID: {
-          update_uuid_filter(apcf_action, filter_index, filter.filter_type, filter.uuid, filter.uuid_mask);
+          update_uuid_filter(
+              apcf_action, filter_index, filter.filter_type, filter.uuid, filter.uuid_mask);
           break;
         }
         case ApcfFilterType::LOCAL_NAME: {
@@ -761,7 +781,12 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
         }
         case ApcfFilterType::MANUFACTURER_DATA: {
           update_manufacturer_data_filter(
-              apcf_action, filter_index, filter.company, filter.company_mask, filter.data, filter.data_mask);
+              apcf_action,
+              filter_index,
+              filter.company,
+              filter.company_mask,
+              filter.data,
+              filter.data_mask);
           break;
         }
         case ApcfFilterType::SERVICE_DATA: {
@@ -782,7 +807,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           break;
         }
         case ApcfFilterType::AD_TYPE: {
-          update_ad_type_filter(apcf_action, filter_index, filter.ad_type, filter.data, filter.data_mask);
+          update_ad_type_filter(
+              apcf_action, filter_index, filter.ad_type, filter.data, filter.data_mask);
           break;
         }
         default:
@@ -802,8 +828,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       std::array<uint8_t, 16> irk) {
     if (action != ApcfAction::CLEAR) {
       /*
-       * The vendor command (APCF Filtering 0x0157) takes Public (0) or Random (1)
-       * or Addresses type not applicable (2).
+       * The vendor command (APCF Filtering 0x0157) takes Public (0) or Random
+       * (1) or Addresses type not applicable (2).
        *
        * Advertising results have four types:
        * ￼    -  Public = 0
@@ -813,23 +839,25 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
        *
        * e.g. specifying PUBLIC (0) will only return results with a public
        * address. It will ignore resolved addresses, since they return PUBLIC
-       * IDENTITY (2). For this, Addresses type not applicable (0x02) must be specified.
-       * This should also cover if the RPA is derived from RANDOM STATIC.
+       * IDENTITY (2). For this, Addresses type not applicable (0x02) must be
+       * specified. This should also cover if the RPA is derived from RANDOM
+       * STATIC.
        */
       le_scanning_interface_->EnqueueCommand(
           LeAdvFilterBroadcasterAddressBuilder::Create(
               action, filter_index, address, ApcfApplicationAddressType::NOT_APPLICABLE),
           module_handler_->BindOnceOn(this, &impl::on_advertising_filter_complete));
       if (!is_empty_128bit(irk)) {
-        // If an entry exists for this filter index, replace data because the filter has been
-        // updated.
+        // If an entry exists for this filter index, replace data because the
+        // filter has been updated.
         auto entry = remove_me_later_map_.find(filter_index);
         // IRK Scanning
         if (entry != remove_me_later_map_.end()) {
           // Don't want to remove for a bonded device
           if (!is_bonded(entry->second.GetAddress())) {
             le_address_manager_->RemoveDeviceFromResolvingList(
-                static_cast<PeerAddressType>(entry->second.GetAddressType()), entry->second.GetAddress());
+                static_cast<PeerAddressType>(entry->second.GetAddressType()),
+                entry->second.GetAddress());
           }
           remove_me_later_map_.erase(filter_index);
         }
@@ -838,7 +866,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
         std::array<uint8_t, 16> empty_irk;
         le_address_manager_->AddDeviceToResolvingList(
             static_cast<PeerAddressType>(address_type), address, irk, empty_irk);
-        remove_me_later_map_.emplace(filter_index, AddressWithType(address, static_cast<AddressType>(address_type)));
+        remove_me_later_map_.emplace(
+            filter_index, AddressWithType(address, static_cast<AddressType>(address_type)));
       }
     } else {
       le_scanning_interface_->EnqueueCommand(
@@ -847,7 +876,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       auto entry = remove_me_later_map_.find(filter_index);
       if (entry != remove_me_later_map_.end()) {
         // TODO(optedoblivion): If not bonded
-        le_address_manager_->RemoveDeviceFromResolvingList(static_cast<PeerAddressType>(address_type), address);
+        le_address_manager_->RemoveDeviceFromResolvingList(
+            static_cast<PeerAddressType>(address_type), address);
         remove_me_later_map_.erase(filter_index);
       }
     }
@@ -863,7 +893,11 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   }
 
   void update_uuid_filter(
-      ApcfAction action, uint8_t filter_index, ApcfFilterType filter_type, Uuid uuid, Uuid uuid_mask) {
+      ApcfAction action,
+      uint8_t filter_index,
+      ApcfFilterType filter_type,
+      Uuid uuid,
+      Uuid uuid_mask) {
     std::vector<uint8_t> combined_data = {};
     if (action != ApcfAction::CLEAR) {
       uint8_t uuid_len = uuid.GetShortestRepresentationSize();
@@ -917,7 +951,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
   }
 
-  void update_local_name_filter(ApcfAction action, uint8_t filter_index, std::vector<uint8_t> name) {
+  void update_local_name_filter(
+      ApcfAction action, uint8_t filter_index, std::vector<uint8_t> name) {
     le_scanning_interface_->EnqueueCommand(
         LeAdvFilterLocalNameBuilder::Create(action, filter_index, name),
         module_handler_->BindOnceOn(this, &impl::on_advertising_filter_complete));
@@ -931,7 +966,9 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       std::vector<uint8_t> data,
       std::vector<uint8_t> data_mask) {
     if (data.size() != data_mask.size()) {
-      LOG_ERROR("manufacturer data mask should have the same length as manufacturer data");
+      LOG_ERROR(
+          "manufacturer data mask should have the same length as manufacturer "
+          "data");
       return;
     }
     std::vector<uint8_t> combined_data = {};
@@ -959,7 +996,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   }
 
   void update_service_data_filter(
-      ApcfAction action, uint8_t filter_index, std::vector<uint8_t> data, std::vector<uint8_t> data_mask) {
+      ApcfAction action,
+      uint8_t filter_index,
+      std::vector<uint8_t> data,
+      std::vector<uint8_t> data_mask) {
     if (data.size() != data_mask.size()) {
       LOG_ERROR("service data mask should have the same length as service data");
       return;
@@ -987,8 +1027,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       std::vector<uint8_t> meta_data) {
     LocalVersionInformation local_version_information = controller_->GetLocalVersionInformation();
 
-    // In QTI controller, transport discovery data filter are supported by default. Check is added
-    // to keep backward compatibility.
+    // In QTI controller, transport discovery data filter are supported by
+    // default. Check is added to keep backward compatibility.
     if (!is_transport_discovery_data_filter_supported_ &&
         !(local_version_information.manufacturer_name_ == LMP_COMPID_QTI)) {
       LOG_WARN("transport discovery data filter isn't supported");
@@ -1007,7 +1047,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
         (uint8_t)meta_data_type,
         meta_data.size());
 
-    // 0x02 Wi-Fi Alliance Neighbor Awareness Networking & meta_data_type is 0x01 for NAN Hash.
+    // 0x02 Wi-Fi Alliance Neighbor Awareness Networking & meta_data_type is
+    // 0x01 for NAN Hash.
     if (org_id == 0x02) {
       // meta data contains WIFI NAN hash, reverse it before sending controller.
       switch (meta_data_type) {
@@ -1033,8 +1074,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
               meta_data),
           module_handler_->BindOnceOn(this, &impl::on_advertising_filter_complete));
     } else {
-      // In QTI controller, transport discovery data filter are supported by default.
-      // keeping old version for backward compatibility
+      // In QTI controller, transport discovery data filter are supported by
+      // default. keeping old version for backward compatibility
       std::vector<uint8_t> combined_data = {};
       if (action != ApcfAction::CLEAR) {
         combined_data.push_back((uint8_t)org_id);
@@ -1133,7 +1174,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     batch_scan_config_.discard_rule = batch_scan_discard_rule;
     /* This command starts batch scanning, if enabled */
     batch_scan_set_scan_parameter(
-        scan_mode, duty_cycle_scan_window_slots, duty_cycle_scan_interval_slots, batch_scan_discard_rule);
+        scan_mode,
+        duty_cycle_scan_window_slots,
+        duty_cycle_scan_interval_slots,
+        batch_scan_discard_rule);
   }
 
   void batch_scan_disable() {
@@ -1195,7 +1239,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
   }
 
-  void batch_scan_read_results(ScannerId scanner_id, uint16_t total_num_of_records, BatchScanMode scan_mode) {
+  void batch_scan_read_results(
+      ScannerId scanner_id, uint16_t total_num_of_records, BatchScanMode scan_mode) {
     if (!is_batch_scan_supported_) {
       LOG_WARN("Batch scan is not supported");
       int status = static_cast<int>(ErrorCode::UNSUPPORTED_FEATURE_OR_PARAMETER_VALUE);
@@ -1217,15 +1262,21 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
 
     le_scanning_interface_->EnqueueCommand(
         LeBatchScanReadResultParametersBuilder::Create(static_cast<BatchScanDataRead>(scan_mode)),
-        module_handler_->BindOnceOn(this, &impl::on_batch_scan_read_result_complete, scanner_id, total_num_of_records));
+        module_handler_->BindOnceOn(
+            this, &impl::on_batch_scan_read_result_complete, scanner_id, total_num_of_records));
   }
 
   void start_sync(
-      uint8_t sid, const AddressWithType& address_with_type, uint16_t skip, uint16_t timeout, int request_id) {
+      uint8_t sid,
+      const AddressWithType& address_with_type,
+      uint16_t skip,
+      uint16_t timeout,
+      int request_id) {
     if (!is_periodic_advertising_sync_transfer_sender_supported_) {
       LOG_WARN("PAST sender not supported on this device");
       int status = static_cast<int>(ErrorCode::UNSUPPORTED_FEATURE_OR_PARAMETER_VALUE);
-      scanning_callbacks_->OnPeriodicSyncStarted(request_id, status, -1, sid, address_with_type, 0, 0);
+      scanning_callbacks_->OnPeriodicSyncStarted(
+          request_id, status, -1, sid, address_with_type, 0, 0);
       return;
     }
     PeriodicSyncStates request{
@@ -1254,7 +1305,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     periodic_sync_manager_.CancelCreateSync(sid, address);
   }
 
-  void transfer_sync(const Address& address, uint16_t service_data, uint16_t sync_handle, int pa_source) {
+  void transfer_sync(
+      const Address& address, uint16_t service_data, uint16_t sync_handle, int pa_source) {
     if (!is_periodic_advertising_sync_transfer_sender_supported_) {
       LOG_WARN("PAST sender not supported on this device");
       int status = static_cast<int>(ErrorCode::UNSUPPORTED_FEATURE_OR_PARAMETER_VALUE);
@@ -1268,10 +1320,12 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       scanning_callbacks_->OnPeriodicSyncTransferred(pa_source, status, address);
       return;
     }
-    periodic_sync_manager_.TransferSync(address, service_data, sync_handle, pa_source, connection_handle);
+    periodic_sync_manager_.TransferSync(
+        address, service_data, sync_handle, pa_source, connection_handle);
   }
 
-  void transfer_set_info(const Address& address, uint16_t service_data, uint8_t adv_handle, int pa_source) {
+  void transfer_set_info(
+      const Address& address, uint16_t service_data, uint8_t adv_handle, int pa_source) {
     if (!is_periodic_advertising_sync_transfer_sender_supported_) {
       LOG_WARN("PAST sender not supported on this device");
       int status = static_cast<int>(ErrorCode::UNSUPPORTED_FEATURE_OR_PARAMETER_VALUE);
@@ -1285,10 +1339,12 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       scanning_callbacks_->OnPeriodicSyncTransferred(pa_source, status, address);
       return;
     }
-    periodic_sync_manager_.SyncSetInfo(address, service_data, adv_handle, pa_source, connection_handle);
+    periodic_sync_manager_.SyncSetInfo(
+        address, service_data, adv_handle, pa_source, connection_handle);
   }
 
-  void sync_tx_parameters(const Address& address, uint8_t mode, uint16_t skip, uint16_t timeout, int reg_id) {
+  void sync_tx_parameters(
+      const Address& address, uint8_t mode, uint16_t skip, uint16_t timeout, int reg_id) {
     if (!is_periodic_advertising_sync_transfer_sender_supported_) {
       LOG_WARN("PAST sender not supported on this device");
       int status = static_cast<int>(ErrorCode::UNSUPPORTED_FEATURE_OR_PARAMETER_VALUE);
@@ -1314,7 +1370,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       scanning_callbacks_->OnTrackAdvFoundLost(on_found_on_lost_info);
       return;
     }
-    LOG_INFO("track_advertiser scanner_id %d, filter_index %d", (uint16_t)scanner_id, (uint16_t)filter_index);
+    LOG_INFO(
+        "track_advertiser scanner_id %d, filter_index %d",
+        (uint16_t)scanner_id,
+        (uint16_t)filter_index);
     tracker_id_map_[filter_index] = scanner_id;
   }
 
@@ -1334,7 +1393,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
         ASSERT(status_view.IsValid());
         if (status_view.GetStatus() != ErrorCode::SUCCESS) {
           LOG_INFO(
-              "Receive set scan parameter complete with error code %s", ErrorCodeText(status_view.GetStatus()).c_str());
+              "Receive set scan parameter complete with error code %s",
+              ErrorCodeText(status_view.GetStatus()).c_str());
         }
       } break;
       case (OpCode::LE_EXTENDED_SCAN_PARAMS): {
@@ -1376,13 +1436,16 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       case ApcfOpcode::ENABLE: {
         auto complete_view = LeAdvFilterEnableCompleteView::Create(status_view);
         ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterEnable(complete_view.GetApcfEnable(), (uint8_t)complete_view.GetStatus());
+        scanning_callbacks_->OnFilterEnable(
+            complete_view.GetApcfEnable(), (uint8_t)complete_view.GetStatus());
       } break;
       case ApcfOpcode::SET_FILTERING_PARAMETERS: {
         auto complete_view = LeAdvFilterSetFilteringParametersCompleteView::Create(status_view);
         ASSERT(complete_view.IsValid());
         scanning_callbacks_->OnFilterParamSetup(
-            complete_view.GetApcfAvailableSpaces(), complete_view.GetApcfAction(), (uint8_t)complete_view.GetStatus());
+            complete_view.GetApcfAvailableSpaces(),
+            complete_view.GetApcfAction(),
+            (uint8_t)complete_view.GetStatus());
       } break;
       case ApcfOpcode::BROADCASTER_ADDRESS: {
         auto complete_view = LeAdvFilterBroadcasterAddressCompleteView::Create(status_view);
@@ -1507,7 +1570,9 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     auto complete_view = LeBatchScanEnableCompleteView::Create(status_view);
     ASSERT(complete_view.IsValid());
     if (status_view.GetStatus() != ErrorCode::SUCCESS) {
-      LOG_INFO("Got batch scan enable complete, status %s", ErrorCodeText(status_view.GetStatus()).c_str());
+      LOG_INFO(
+          "Got batch scan enable complete, status %s",
+          ErrorCodeText(status_view.GetStatus()).c_str());
       batch_scan_config_.current_state = BatchScanState::ERROR_STATE;
     } else {
       batch_scan_config_.current_state = BatchScanState::ENABLED_STATE;
@@ -1532,29 +1597,37 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     auto complete_view = LeBatchScanReadResultParametersCompleteRawView::Create(status_view);
     ASSERT(complete_view.IsValid());
     if (complete_view.GetStatus() != ErrorCode::SUCCESS) {
-      LOG_INFO("Got batch scan read result complete, status %s", ErrorCodeText(status_view.GetStatus()).c_str());
+      LOG_INFO(
+          "Got batch scan read result complete, status %s",
+          ErrorCodeText(status_view.GetStatus()).c_str());
     }
     uint8_t num_of_records = complete_view.GetNumOfRecords();
     auto report_format = complete_view.GetBatchScanDataRead();
     if (num_of_records == 0) {
       scanning_callbacks_->OnBatchScanReports(
-          scanner_id, 0x00, (int)report_format, total_num_of_records, batch_scan_result_cache_[scanner_id]);
+          scanner_id,
+          0x00,
+          (int)report_format,
+          total_num_of_records,
+          batch_scan_result_cache_[scanner_id]);
       batch_scan_result_cache_.erase(scanner_id);
     } else {
       auto raw_data = complete_view.GetRawData();
       batch_scan_result_cache_[scanner_id].insert(
           batch_scan_result_cache_[scanner_id].end(), raw_data.begin(), raw_data.end());
       total_num_of_records += num_of_records;
-      batch_scan_read_results(scanner_id, total_num_of_records, static_cast<BatchScanMode>(report_format));
+      batch_scan_read_results(
+          scanner_id, total_num_of_records, static_cast<BatchScanMode>(report_format));
     }
   }
 
-  void on_storage_threshold_breach(VendorSpecificEventView event) {
+  void on_storage_threshold_breach([[maybe_unused]] VendorSpecificEventView event) {
     if (batch_scan_config_.ref_value == kInvalidScannerId) {
       LOG_WARN("storage threshold was not set !!");
       return;
     }
-    scanning_callbacks_->OnBatchScanThresholdCrossed(static_cast<int>(batch_scan_config_.ref_value));
+    scanning_callbacks_->OnBatchScanThresholdCrossed(
+        static_cast<int>(batch_scan_config_.ref_value));
   }
 
   void on_advertisement_tracking(VendorSpecificEventView event) {
@@ -1581,7 +1654,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       on_found_on_lost_info.time_stamp = info_view.GetTimestamp();
       auto adv_data = info_view.GetAdvPacket();
       on_found_on_lost_info.adv_packet.reserve(adv_data.size());
-      on_found_on_lost_info.adv_packet.insert(on_found_on_lost_info.adv_packet.end(), adv_data.begin(), adv_data.end());
+      on_found_on_lost_info.adv_packet.insert(
+          on_found_on_lost_info.adv_packet.end(), adv_data.begin(), adv_data.end());
       auto scan_rsp_data = info_view.GetScanResponse();
       on_found_on_lost_info.scan_response.reserve(scan_rsp_data.size());
       on_found_on_lost_info.scan_response.insert(
@@ -1724,7 +1798,8 @@ void LeScanningManager::Scan(bool start) {
 
 void LeScanningManager::SetScanParameters(
     ScannerId scanner_id, LeScanType scan_type, uint16_t scan_interval, uint16_t scan_window) {
-  CallOn(pimpl_.get(), &impl::set_scan_parameters, scanner_id, scan_type, scan_interval, scan_window);
+  CallOn(
+      pimpl_.get(), &impl::set_scan_parameters, scanner_id, scan_type, scan_interval, scan_window);
 }
 
 void LeScanningManager::SetScanFilterPolicy(LeScanningFilterPolicy filter_policy) {
@@ -1736,8 +1811,15 @@ void LeScanningManager::ScanFilterEnable(bool enable) {
 }
 
 void LeScanningManager::ScanFilterParameterSetup(
-    ApcfAction action, uint8_t filter_index, AdvertisingFilterParameter advertising_filter_parameter) {
-  CallOn(pimpl_.get(), &impl::scan_filter_parameter_setup, action, filter_index, advertising_filter_parameter);
+    ApcfAction action,
+    uint8_t filter_index,
+    AdvertisingFilterParameter advertising_filter_parameter) {
+  CallOn(
+      pimpl_.get(),
+      &impl::scan_filter_parameter_setup,
+      action,
+      filter_index,
+      advertising_filter_parameter);
 }
 
 void LeScanningManager::ScanFilterAdd(
@@ -1782,7 +1864,11 @@ void LeScanningManager::BatchScanReadReport(ScannerId scanner_id, BatchScanMode 
 }
 
 void LeScanningManager::StartSync(
-    uint8_t sid, const AddressWithType& address_with_type, uint16_t skip, uint16_t timeout, int reg_id) {
+    uint8_t sid,
+    const AddressWithType& address_with_type,
+    uint16_t skip,
+    uint16_t timeout,
+    int reg_id) {
   CallOn(pimpl_.get(), &impl::start_sync, sid, address_with_type, skip, timeout, reg_id);
 }
 

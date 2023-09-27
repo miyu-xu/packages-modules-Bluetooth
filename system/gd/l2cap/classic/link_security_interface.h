@@ -102,18 +102,18 @@ class LinkSecurityInterfaceListener {
    * is invalidated then.
    * @param remote
    */
-  virtual void OnLinkDisconnected(hci::Address remote) {}
+  virtual void OnLinkDisconnected(hci::Address) {}
 
   /**
    * Invoked when AuthenticationComplete event is received for a given link
    */
-  virtual void OnAuthenticationComplete(hci::ErrorCode hci_status, hci::Address remote) {}
+  virtual void OnAuthenticationComplete(hci::ErrorCode, hci::Address) {}
 
   /**
    * Invoked when EncryptionChange event is received for a given link
    * @param encrypted
    */
-  virtual void OnEncryptionChange(hci::Address remote, bool encrypted) {}
+  virtual void OnEncryptionChange(hci::Address, bool) {}
 };
 
 }  // namespace classic

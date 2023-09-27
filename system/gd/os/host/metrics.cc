@@ -17,6 +17,7 @@
  ******************************************************************************/
 
 #include "os/metrics.h"
+
 #include "os/log.h"
 
 namespace bluetooth {
@@ -25,116 +26,85 @@ namespace os {
 using bluetooth::hci::Address;
 
 void LogMetricClassicPairingEvent(
-    const Address& address,
-    uint16_t handle,
-    uint32_t hci_cmd,
-    uint16_t hci_event,
-    uint16_t cmd_status,
-    uint16_t reason_code,
-    int64_t event_value) {}
+    const Address&, uint16_t, uint32_t, uint16_t, uint16_t, uint16_t, int64_t) {}
 
 void LogMetricSocketConnectionState(
-    const Address& address,
-    int port,
-    int type,
-    android::bluetooth::SocketConnectionstateEnum connection_state,
-    int64_t tx_bytes,
-    int64_t rx_bytes,
-    int uid,
-    int server_port,
-    android::bluetooth::SocketRoleEnum socket_role) {}
+    const Address&,
+    int,
+    int,
+    android::bluetooth::SocketConnectionstateEnum,
+    int64_t,
+    int64_t,
+    int,
+    int,
+    android::bluetooth::SocketRoleEnum) {}
 
-void LogMetricHciTimeoutEvent(uint32_t hci_cmd) {}
+void LogMetricHciTimeoutEvent(uint32_t) {}
 
-void LogMetricA2dpAudioUnderrunEvent(
-    const Address& address, uint64_t encoding_interval_millis, int num_missing_pcm_bytes) {}
+void LogMetricA2dpAudioUnderrunEvent(const Address&, uint64_t, int) {}
 
-void LogMetricA2dpAudioOverrunEvent(
-    const Address& address,
-    uint64_t encoding_interval_millis,
-    int num_dropped_buffers,
-    int num_dropped_encoded_frames,
-    int num_dropped_encoded_bytes) {}
+void LogMetricA2dpAudioOverrunEvent(const Address&, uint64_t, int, int, int) {}
 
-void LogMetricHfpPacketLossStats(
-    const Address& address, int num_decoded_frames, double packet_loss_ratio, uint16_t codec_type) {
-}
+void LogMetricHfpPacketLossStats(const Address&, int, double, uint16_t) {}
 
-void LogMetricMmcTranscodeRttStats(
-    int maximum_rtt, double mean_rtt, int num_requests, int codec_type) {}
+void LogMetricMmcTranscodeRttStats(int, double, int, int) {}
 
-void LogMetricReadRssiResult(const Address& address, uint16_t handle, uint32_t cmd_status, int8_t rssi) {}
+void LogMetricReadRssiResult(const Address&, uint16_t, uint32_t, int8_t) {}
 
-void LogMetricReadFailedContactCounterResult(
-    const Address& address, uint16_t handle, uint32_t cmd_status, int32_t failed_contact_counter) {}
+void LogMetricReadFailedContactCounterResult(const Address&, uint16_t, uint32_t, int32_t) {}
 
-void LogMetricReadTxPowerLevelResult(
-    const Address& address, uint16_t handle, uint32_t cmd_status, int32_t transmit_power_level) {}
+void LogMetricReadTxPowerLevelResult(const Address&, uint16_t, uint32_t, int32_t) {}
 
-void LogMetricRemoteVersionInfo(
-    uint16_t handle, uint8_t status, uint8_t version, uint16_t manufacturer_name, uint16_t subversion) {}
+void LogMetricRemoteVersionInfo(uint16_t, uint8_t, uint8_t, uint16_t, uint16_t) {}
 
 void LogMetricLinkLayerConnectionEvent(
-    const Address* address,
-    uint32_t connection_handle,
-    android::bluetooth::DirectionEnum direction,
-    uint16_t link_type,
-    uint32_t hci_cmd,
-    uint16_t hci_event,
-    uint16_t hci_ble_event,
-    uint16_t cmd_status,
-    uint16_t reason_code) {}
+    const Address*,
+    uint32_t,
+    android::bluetooth::DirectionEnum,
+    uint16_t,
+    uint32_t,
+    uint16_t,
+    uint16_t,
+    uint16_t,
+    uint16_t) {}
 
 void LogMetricManufacturerInfo(
-    const Address& address,
-    android::bluetooth::AddressTypeEnum address_type,
-    android::bluetooth::DeviceInfoSrcEnum source_type,
-    const std::string& source_name,
-    const std::string& manufacturer,
-    const std::string& model,
-    const std::string& hardware_version,
-    const std::string& software_version) {}
+    const Address&,
+    android::bluetooth::AddressTypeEnum,
+    android::bluetooth::DeviceInfoSrcEnum,
+    const std::string&,
+    const std::string&,
+    const std::string&,
+    const std::string&,
+    const std::string&) {}
 
-void LogMetricSdpAttribute(
-    const Address& address,
-    uint16_t protocol_uuid,
-    uint16_t attribute_id,
-    size_t attribute_size,
-    const char* attribute_value) {}
+void LogMetricSdpAttribute(const Address&, uint16_t, uint16_t, size_t, const char*) {}
 
 void LogMetricSmpPairingEvent(
-    const Address& address, uint16_t smp_cmd, android::bluetooth::DirectionEnum direction, uint16_t smp_fail_reason) {}
+    const Address&, uint16_t, android::bluetooth::DirectionEnum, uint16_t) {}
 
-void LogMetricA2dpPlaybackEvent(const Address& address, int playback_state, int audio_coding_mode) {}
+void LogMetricA2dpPlaybackEvent(const Address&, int, int) {}
 
-void LogMetricBluetoothHalCrashReason(
-    const Address& address, uint32_t error_code, uint32_t vendor_error_code) {}
+void LogMetricBluetoothHalCrashReason(const Address&, uint32_t, uint32_t) {}
 
-void LogMetricBluetoothLocalSupportedFeatures(uint32_t page_num, uint64_t features) {}
+void LogMetricBluetoothLocalSupportedFeatures(uint32_t, uint64_t) {}
 
-void LogMetricBluetoothLocalVersions(
-    uint32_t lmp_manufacturer_name,
-    uint8_t lmp_version,
-    uint32_t lmp_subversion,
-    uint8_t hci_version,
-    uint32_t hci_reversion) {}
+void LogMetricBluetoothLocalVersions(uint32_t, uint8_t, uint32_t, uint8_t, uint32_t) {}
 
-void LogMetricBluetoothDisconnectionReasonReported(
-    uint32_t reason, const Address& address, uint32_t connection_handle) {}
+void LogMetricBluetoothDisconnectionReasonReported(uint32_t, const Address&, uint32_t) {}
 
-void LogMetricBluetoothRemoteSupportedFeatures(
-    const Address& address, uint32_t page, uint64_t features, uint32_t connection_handle) {}
+void LogMetricBluetoothRemoteSupportedFeatures(const Address&, uint32_t, uint64_t, uint32_t) {}
 
-void LogMetricBluetoothCodePathCounterMetrics(int32_t key, int64_t count) {}
+void LogMetricBluetoothCodePathCounterMetrics(int32_t, int64_t) {}
 
 void LogMetricBluetoothLEConnectionMetricEvent(
-    const Address& address,
-    android::bluetooth::le::LeConnectionOriginType origin_type,
-    android::bluetooth::le::LeConnectionType connection_type,
-    android::bluetooth::le::LeConnectionState transaction_state,
-   std::vector<std::pair<os::ArgumentType, int>>& argument_list)  {}
+    const Address&,
+    android::bluetooth::le::LeConnectionOriginType,
+    android::bluetooth::le::LeConnectionType,
+    android::bluetooth::le::LeConnectionState,
+    std::vector<std::pair<os::ArgumentType, int>>&) {}
 
-void LogMetricBluetoothLEConnection(os::LEConnectionSessionOptions session_options) {}
+void LogMetricBluetoothLEConnection(os::LEConnectionSessionOptions) {}
 
 }  // namespace os
 }  // namespace bluetooth
