@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee207aa3_afcee49f",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1443525
+      },
+      "writtenOn": "2023-09-28T19:44:04Z",
+      "side": 1,
+      "message": "Spec allows multiple instance of a given AD type but the Android APIs (both Scanner and Advertiser side) are all designed with assumption that a given AD type can occur only once in the Advertising Data. The above implementation is just an extension of that approach. Perhaps something can be added in documentation to clarify this further.",
+      "parentUuid": "ee56084e_5793216a",
+      "range": {
+        "startLine": 490,
+        "startChar": 12,
+        "endLine": 490,
+        "endChar": 25
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8773af24_d2a04f52",
         "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
         "patchSetId": 8
