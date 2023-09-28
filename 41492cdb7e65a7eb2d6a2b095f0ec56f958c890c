@@ -16,6 +16,52 @@
       "message": "I like the idea of checking.  Thanks for starting this!\n\nI prefer commenting out the variable name, since then the compiler checks if it\u0027s actually unused.  I would only use maybe_unused where it\u0027s too painful to know whether it\u0027s really unused.",
       "revId": "41492cdb7e65a7eb2d6a2b095f0ec56f958c890c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "babd81a7_07ff3e91",
+        "filename": "system/gd/att/att_module.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-28T16:42:05Z",
+      "side": 1,
+      "message": "l2cap::le::FixedChannelManager::RegistrationResult /* result */,",
+      "range": {
+        "startLine": 36,
+        "startChar": 21,
+        "endLine": 36,
+        "endChar": 78
+      },
+      "revId": "41492cdb7e65a7eb2d6a2b095f0ec56f958c890c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2473e71_ebdd6dc1",
+        "filename": "system/gd/common/audit_log.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-28T16:42:05Z",
+      "side": 1,
+      "message": "Here I understand using maybe_unused, because otherwise you have to have an #else",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "41492cdb7e65a7eb2d6a2b095f0ec56f958c890c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
