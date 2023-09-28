@@ -22,6 +22,30 @@
       },
       "revId": "6fdfcf2387b6018af68d77c9999fa39209251628",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a32ff24c_8fbc6882",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-09-28T18:23:33Z",
+      "side": 1,
+      "message": "I regarded the BtifMediaStats as a class only introduced for metric purpose, thus didn\u0027t want to use it as a state and make it multiple purpose.\n\nAlso, does the stats and accumulated_stats still matter？ I\u0027m a little confused about the purpose of BluetoothMetricsLogger and BtifMediaStats.",
+      "parentUuid": "8c63b2f7_5b211144",
+      "range": {
+        "startLine": 949,
+        "startChar": 26,
+        "endLine": 949,
+        "endChar": 51
+      },
+      "revId": "6fdfcf2387b6018af68d77c9999fa39209251628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
