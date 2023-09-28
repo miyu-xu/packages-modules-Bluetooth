@@ -113,6 +113,7 @@ class GAPProxy(ProfileProxy):
         """
 
         self.advertise = self.host.Advertise(
+            legacy=True,
             connectable=True,
             own_address_type=PUBLIC,
         )
@@ -1137,6 +1138,51 @@ class GAPProxy(ProfileProxy):
         """
 
         # TODO
+
+        return "OK"
+
+    @match_description
+    def _mmi_2004(self, digit: str, **kwargs):
+        """
+        Please confirm that 6 digit number is matched with (?P<digit>[0-9]+).
+        """
+
+        # TODO
+
+        return "OK"
+
+    @assert_description
+    def _mmi_503(self, **kwargs):
+        """
+        Please authorize that PTS to read Encrypted Data Key value.
+        """
+
+        return "OK"
+
+    @assert_description
+    def _mmi_500(self, **kwargs):
+        """
+        Please prepare IUT to send an advertising report using Encrypted
+        Advertising Data with payload 1.
+        """
+
+        self.advertise = self.host.Advertise(legacy=True,
+                                             own_address_type=PUBLIC,
+                                             data=DataTypes(encrypted_data=DataTypes(include_tx_power_level=True)))
+
+        return "OK"
+
+    @assert_description
+    def _mmi_501(self, **kwargs):
+        """
+        Please prepare IUT to send an advertising report using Encrypted
+        Advertising Data with payload 2.
+        """
+
+        self.advertise = self.host.Advertise(
+            legacy=True,
+            own_address_type=PUBLIC,
+            data=DataTypes(encrypted_data=DataTypes(complete_service_class_uuids16="1234")))
 
         return "OK"
 

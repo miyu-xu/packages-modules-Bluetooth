@@ -537,6 +537,18 @@ class Host(
                         BluetoothAssignedNumbers.GOOGLE,
                         dataTypesRequest.manufacturerSpecificData.toByteArray()
                     )
+
+                val encDataTypesRequest = dataTypesRequest.encryptedData
+                if (encDataTypesRequest.includeTxPowerLevel) {
+                    advertisingDataBuilder.setIncludeTxPowerLevel(true, true)
+                }
+
+                for (uuid16 in encDataTypesRequest.getCompleteServiceClassUuids16List()) {
+                    val parcel_uuid16 =
+                        ParcelUuid.fromString("0000${uuid16}-0000-1000-8000-00805F9B34FB")
+                    advertisingDataBuilder.addServiceUuid(parcel_uuid16, true)
+                }
+
                 val advertisingData = advertisingDataBuilder.build()
 
                 val ownAddressType =
