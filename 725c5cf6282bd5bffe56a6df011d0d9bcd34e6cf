@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa116f44_baf78dda",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-28T10:50:44Z",
+      "side": 1,
+      "message": "fyi: very small change but if we don\u0027t have this, cargo-fmt will create this diff everytime I run.",
+      "revId": "725c5cf6282bd5bffe56a6df011d0d9bcd34e6cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
