@@ -299,6 +299,24 @@
       "parentUuid": "d6d6aa15_b4f57452",
       "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b32c0ae_53a32459",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2165,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-28T02:50:29Z",
+      "side": 1,
+      "message": "thank you Grzegorz for the details. it\u0027s more clear to me now. and setting mActiveState to ACTIVE_STATE_INACTIVE does address my original concern that we\u0027re leaving the state as getting_active without any action.",
+      "parentUuid": "c334b373_46e86876",
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
