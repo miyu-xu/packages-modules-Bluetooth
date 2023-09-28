@@ -204,9 +204,10 @@ pub trait IBluetoothTelephony {
     fn set_signal_strength(&mut self, signal_strength: i32) -> bool;
     /// Sets the device battery level, 0 to 5.
     fn set_battery_level(&mut self, battery_level: i32) -> bool;
-    /// Enables/disables phone operations.
-    /// The call state is fully reset whenever this is called.
+    /// Enables/disables phone operations for mps qualification.
     fn set_phone_ops_enabled(&mut self, enable: bool);
+    /// The call state is fully reset whenever this is called.
+    fn set_mps_qualification_enabled(&mut self, enable: bool);
     /// Acts like the AG received an incoming call.
     fn incoming_call(&mut self, number: String) -> bool;
     /// Acts like dialing a call from the AG.
@@ -310,6 +311,7 @@ pub struct BluetoothMedia {
     phone_state: PhoneState,
     call_list: Vec<CallInfo>,
     phone_ops_enabled: bool,
+    mps_qualification_enabled: bool,
     memory_dialing_number: Option<String>,
     last_dialing_number: Option<String>,
     uhid: HashMap<RawAddress, UHid>,
@@ -362,6 +364,7 @@ impl BluetoothMedia {
             phone_state: PhoneState { num_active: 0, num_held: 0, state: CallState::Idle },
             call_list: vec![],
             phone_ops_enabled: false,
+            mps_qualification_enabled: false,
             memory_dialing_number: None,
             last_dialing_number: None,
             uhid: HashMap::new(),
@@ -658,7 +661,10 @@ impl BluetoothMedia {
 
                 // Per MPS v1.0, on receiving a pause key through AVRCP,
                 // central should pause the A2DP stream with an AVDTP suspend command.
-                if self.phone_ops_enabled && key == AVRCP_ID_PAUSE && value == AVRCP_STATE_PRESS {
+                if self.mps_qualification_enabled
+                    && key == AVRCP_ID_PAUSE
+                    && value == AVRCP_STATE_PRESS
+                {
                     self.suspend_audio_request_impl();
                 }
             }
@@ -957,12 +963,25 @@ impl BluetoothMedia {
                 };
             }
             HfpCallbacks::AnswerCall(addr) => {
-                if !self.answer_call_impl() {
-                    warn!("[{}]: answer_call triggered by ATA failed", DisplayAddress(&addr));
-                    return;
+                if self.mps_qualification_enabled {
+                    if !self.answer_call_impl() {
+                        warn!("[{}]: answer_call triggered by ATA failed", DisplayAddress(&addr));
+                        return;
+                    }
+                    self.phone_state_change("".into());
+
+                    debug!("[{}]: Start SCO call due to ATA", DisplayAddress(&addr));
+                    self.start_sco_call_impl(addr.to_string(), false, HfpCodecCapability::NONE);
+                } else if self.phone_ops_enabled {
+                    if !self.answer_call_impl() {
+                        warn!("[{}]: answer_call triggered by ATA failed", DisplayAddress(&addr));
+                        return;
+                    }
+                    self.phone_state_change("".into());
+                    self.uhid_send_input_report(&addr);
+                } else {
+                    warn!("[{}]: No flag enable for answer call", DisplayAddress(&addr));
                 }
-                self.phone_state_change("".into());
-                self.uhid_send_input_report(&addr);
             }
             HfpCallbacks::HangupCall(addr) => {
                 if !self.hangup_call_impl() {
@@ -1693,7 +1712,7 @@ impl BluetoothMedia {
     }
 
     fn try_a2dp_resume(&mut self) {
-        if !self.phone_ops_enabled {
+        if !self.mps_qualification_enabled {
             return;
         }
         // Make sure there is no any SCO connection and then resume the A2DP stream.
@@ -1706,7 +1725,7 @@ impl BluetoothMedia {
     }
 
     fn try_a2dp_suspend(&mut self) {
-        if !self.phone_ops_enabled {
+        if !self.mps_qualification_enabled {
             return;
         }
         // Suspend the A2DP stream if there is any.
@@ -1831,61 +1850,107 @@ impl BluetoothMedia {
     }
 
     fn answer_call_impl(&mut self) -> bool {
-        if !self.phone_ops_enabled || self.phone_state.state == CallState::Idle {
+        if !self.mps_qualification_enabled && !self.phone_ops_enabled {
             return false;
         }
-        // There must be exactly one incoming/dialing call in the list.
-        for c in self.call_list.iter_mut() {
-            if c.source == CallSource::CRAS {
-                continue;
+        if self.mps_qualification_enabled {
+            if self.phone_state.state == CallState::Idle {
+                return false;
             }
-
-            match c.state {
-                CallState::Incoming | CallState::Dialing | CallState::Alerting => {
-                    c.state = CallState::Active;
-                    self.phone_state.state = CallState::Idle;
-                    self.phone_state.num_active += 1;
-                    return true;
+            // There must be exactly one incoming/dialing call in the list.
+            for c in self.call_list.iter_mut() {
+                match c.state {
+                    CallState::Incoming | CallState::Dialing | CallState::Alerting => {
+                        c.state = CallState::Active;
+                        break;
+                    }
+                    _ => {}
                 }
-                _ => {}
+            }
+            self.phone_state.state = CallState::Idle;
+            self.phone_state.num_active += 1;
+            return true;
+        } else if self.phone_ops_enabled {
+            if self.phone_state.state == CallState::Idle {
+                return false;
+            }
+            // There must be exactly one incoming/dialing call in the list.
+            for c in self.call_list.iter_mut() {
+                if c.source == CallSource::CRAS {
+                    continue;
+                }
+
+                match c.state {
+                    CallState::Incoming | CallState::Dialing | CallState::Alerting => {
+                        c.state = CallState::Active;
+                        self.phone_state.state = CallState::Idle;
+                        self.phone_state.num_active += 1;
+                        return true;
+                    }
+                    _ => {}
+                }
             }
         }
         unreachable!("No call in Incoming/Dialing/Alerting state")
     }
 
     fn hangup_call_impl(&mut self) -> bool {
-        if !self.phone_ops_enabled {
+        if !self.mps_qualification_enabled && !self.phone_ops_enabled {
             return false;
         }
 
         let mut ret = false;
-        for c in self.call_list.iter_mut() {
-            if c.source == CallSource::CRAS {
-                continue;
-            }
-
-            match c.state {
-                CallState::Incoming | CallState::Dialing | CallState::Alerting => {
-                    ret = true;
-                }
-                CallState::Active => {
+        if self.mps_qualification_enabled {
+            match self.phone_state.state {
+                CallState::Idle if self.phone_state.num_active > 0 => {
                     self.phone_state.num_active -= 1;
-                    ret = true;
                 }
-                _ => {}
+                CallState::Incoming | CallState::Dialing | CallState::Alerting => {
+                    self.phone_state.state = CallState::Idle;
+                }
+                _ => {
+                    return false;
+                }
             }
-        }
+            // At this point, there must be exactly one incoming/dialing/alerting/active call to be
+            // removed.
+            self.call_list.retain(|x| match x.state {
+                CallState::Active
+                | CallState::Incoming
+                | CallState::Dialing
+                | CallState::Alerting => false,
+                _ => true,
+            });
+            ret = true;
+        } else if self.phone_ops_enabled {
+            for c in self.call_list.iter_mut() {
+                if c.source == CallSource::CRAS {
+                    continue;
+                }
 
-        self.call_list.retain(|x| match x.source {
-            CallSource::HID => false,
-            _ => true,
-        });
-        self.phone_state.state = CallState::Idle;
+                match c.state {
+                    CallState::Incoming | CallState::Dialing | CallState::Alerting => {
+                        ret = true;
+                    }
+                    CallState::Active => {
+                        self.phone_state.num_active -= 1;
+                        ret = true;
+                    }
+                    _ => {}
+                }
+            }
+
+            self.call_list.retain(|x| match x.source {
+                CallSource::HID => false,
+                _ => true,
+            });
+            self.phone_state.state = CallState::Idle;
+        }
         ret
     }
 
     fn dialing_call_impl(&mut self, number: String) -> bool {
-        if !self.phone_ops_enabled
+        if (!self.mps_qualification_enabled && !self.phone_ops_enabled)
             || self.phone_state.state != CallState::Idle
             || self.call_list.iter().any(|c| c.source == CallSource::HID)
         {
@@ -1903,7 +1968,9 @@ impl BluetoothMedia {
     }
 
     fn dialing_to_alerting(&mut self) -> bool {
-        if !self.phone_ops_enabled || self.phone_state.state != CallState::Dialing {
+        if (!self.mps_qualification_enabled && !self.phone_ops_enabled)
+            || self.phone_state.state != CallState::Dialing
+        {
             return false;
         }
         for c in self.call_list.iter_mut() {
@@ -1917,7 +1984,7 @@ impl BluetoothMedia {
     }
 
     fn release_held_impl(&mut self) -> bool {
-        if !self.phone_ops_enabled || self.phone_state.state != CallState::Idle {
+        if !self.mps_qualification_enabled || self.phone_state.state != CallState::Idle {
             return false;
         }
         self.call_list.retain(|x| x.state != CallState::Held);
@@ -1926,7 +1993,7 @@ impl BluetoothMedia {
     }
 
     fn release_active_accept_held_impl(&mut self) -> bool {
-        if !self.phone_ops_enabled || self.phone_state.state != CallState::Idle {
+        if !self.mps_qualification_enabled || self.phone_state.state != CallState::Idle {
             return false;
         }
         self.call_list.retain(|x| x.state != CallState::Active);
@@ -1944,7 +2011,7 @@ impl BluetoothMedia {
     }
 
     fn hold_active_accept_held_impl(&mut self) -> bool {
-        if !self.phone_ops_enabled || self.phone_state.state != CallState::Idle {
+        if !self.mps_qualification_enabled || self.phone_state.state != CallState::Idle {
             return false;
         }
 
@@ -1972,7 +2039,7 @@ impl BluetoothMedia {
     // a profile should not affect the others.
     // Allow partial profiles connection during qualification (phone operations are enabled).
     fn is_complete_profiles_required(&self) -> bool {
-        !self.phone_ops_enabled
+        !self.mps_qualification_enabled
     }
 
     // Force the media enters the FullyConnected state and then triggers a retry.
@@ -2731,6 +2798,7 @@ impl IBluetoothTelephony for BluetoothMedia {
     }
 
     fn set_phone_ops_enabled(&mut self, enable: bool) {
+        warn!("set_phone_ops_enabled");
         if self.phone_ops_enabled == enable {
             return;
         }
@@ -2758,24 +2826,74 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.phone_state_change("".into());
     }
 
+    fn set_mps_qualification_enabled(&mut self, enable: bool) {
+        warn!("set_mps_qualification_enabled");
+        if self.mps_qualification_enabled == enable {
+            return;
+        }
+
+        self.call_list = vec![];
+        self.phone_state.num_active = 0;
+        self.phone_state.num_held = 0;
+        self.phone_state.state = CallState::Idle;
+        self.memory_dialing_number = None;
+        self.last_dialing_number = None;
+        self.a2dp_has_interrupted_stream = false;
+
+        if !enable {
+            if self.hfp_states.values().any(|x| x == &BthfConnectionState::SlcConnected) {
+                self.call_list.push(CallInfo {
+                    index: 1,
+                    dir_incoming: false,
+                    source: CallSource::CRAS,
+                    state: CallState::Active,
+                    number: "".into(),
+                });
+                self.phone_state.num_active = 1;
+            }
+        }
+
+        self.mps_qualification_enabled = enable;
+        self.phone_state_change("".into());
+    }
+
     fn incoming_call(&mut self, number: String) -> bool {
-        if !self.phone_ops_enabled
-            || self.phone_state.state != CallState::Idle
-            || self.call_list.iter().any(|c| c.source == CallSource::HID)
-        {
+        if !self.mps_qualification_enabled && !self.phone_ops_enabled {
             return false;
         }
-        self.call_list.push(CallInfo {
-            index: self.new_call_index(),
-            dir_incoming: true,
-            source: CallSource::HID,
-            state: CallState::Incoming,
-            number: number.clone(),
-        });
-        self.phone_state.state = CallState::Incoming;
-        self.phone_state_change(number);
-        self.try_a2dp_suspend();
-        true
+        if self.mps_qualification_enabled {
+            if self.phone_state.state != CallState::Idle || self.phone_state.num_active > 0 {
+                return false;
+            }
+            self.call_list.push(CallInfo {
+                index: self.new_call_index(),
+                dir_incoming: true,
+                source: CallSource::CRAS,
+                state: CallState::Incoming,
+                number: number.clone(),
+            });
+            self.phone_state.state = CallState::Incoming;
+            self.phone_state_change(number);
+            self.try_a2dp_suspend();
+            return true;
+        } else if self.phone_ops_enabled {
+            if self.phone_state.state != CallState::Idle
+                || self.call_list.iter().any(|c| c.source == CallSource::HID)
+            {
+                return false;
+            }
+            self.call_list.push(CallInfo {
+                index: self.new_call_index(),
+                dir_incoming: true,
+                source: CallSource::HID,
+                state: CallState::Incoming,
+                number: number.clone(),
+            });
+            self.phone_state.state = CallState::Incoming;
+            self.phone_state_change(number);
+            return true;
+        }
+        unreachable!("No flag enable for incoming call.");
     }
 
     fn dialing_call(&mut self, number: String) -> bool {
