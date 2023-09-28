@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "202a5efb_bd2be1e3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-28T18:24:22Z",
+      "side": 1,
+      "message": "yes, updated, done",
+      "parentUuid": "ce359bd6_5149ff93",
+      "revId": "8a129d01945bd4a072502e0187d4df42bb1effc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfb69fc4_d0173ca5",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3edac2c0_100b88cf",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1064,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-28T18:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dfb69fc4_d0173ca5",
+      "range": {
+        "startLine": 1064,
+        "startChar": 0,
+        "endLine": 1064,
+        "endChar": 119
+      },
+      "revId": "8a129d01945bd4a072502e0187d4df42bb1effc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75248666_a9de36bc",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-09-28T14:34:29Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Lines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nLines longer than 100 characters should be wrapped to improve readability; see https://source.android.com/setup/contribute/code-style#limit-line-length for more details. See go/ayeaye-long-lines for ayeaye-specific info.",
+      "range": {
+        "startLine": 1114,
+        "startChar": 0,
+        "endLine": 1114,
+        "endChar": 121
+      },
+      "revId": "8a129d01945bd4a072502e0187d4df42bb1effc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f68fba1e_d0da64a3",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1114,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-28T18:24:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75248666_a9de36bc",
       "range": {
         "startLine": 1114,
         "startChar": 0,
