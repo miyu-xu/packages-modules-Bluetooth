@@ -46,6 +46,30 @@
       },
       "revId": "6fdfcf2387b6018af68d77c9999fa39209251628",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97e98d87_a4767752",
+        "filename": "system/btif/src/btif_a2dp_source.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-28T21:01:52Z",
+      "side": 1,
+      "message": "That sounds reasonable.  In that case, I would prefer sw_audio_is_encoding or somehting like that instead of started... But that\u0027s a nit.",
+      "parentUuid": "a32ff24c_8fbc6882",
+      "range": {
+        "startLine": 949,
+        "startChar": 26,
+        "endLine": 949,
+        "endChar": 51
+      },
+      "revId": "6fdfcf2387b6018af68d77c9999fa39209251628",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
