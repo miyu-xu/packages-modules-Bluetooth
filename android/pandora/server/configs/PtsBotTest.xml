@@ -22,6 +22,11 @@
         <!-- <option name="dep-module" value="scipy" /> -->
     </target_preparer>
 
+    <target_preparer class="com.android.tradefed.targetprep.RunCommandTargetPreparer">
+        <option name="run-command" value="device_config put bluetooth INIT_encrypted_advertising true" />
+        <option name="run-command" value="device_config put bluetooth INIT_encrypted_advertising_log true" />
+    </target_preparer>
+
     <test class="com.android.tradefed.testtype.pandora.PtsBotTest" >
         <!-- Creates a randomized temp dir for pts-bot binaries and avoid
              conflicts when running multiple pts-bot on the same machine -->
