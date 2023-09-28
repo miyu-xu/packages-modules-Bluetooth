@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "68ac8f6b_5e9f7c28",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-28T18:58:33Z",
+      "side": 1,
+      "message": "Does this mean to say we\u0027d expect the address type to change for a given device? Or just that it is propagated once set?",
+      "range": {
+        "startLine": 10,
+        "startChar": 13,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cbdcddac_6d187ccb",
@@ -14,6 +37,29 @@
       "writtenOn": "2023-09-28T09:47:42Z",
       "side": 1,
       "message": "Hi Christine,\n\nCould you take a look at this? I make it Floss only for now and let me know if it is free to make it universal.\n\nThanks!",
+      "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aa7fc3e_63335eaf",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1465,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-09-28T18:58:33Z",
+      "side": 1,
+      "message": "Does floss not use btif_config?",
+      "range": {
+        "startLine": 1465,
+        "startChar": 12,
+        "endLine": 1465,
+        "endChar": 31
+      },
       "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
