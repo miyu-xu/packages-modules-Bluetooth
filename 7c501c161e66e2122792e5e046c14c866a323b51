@@ -183,6 +183,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88af8f06_16f7ef03",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 483,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-28T19:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7fbd94ff_00dd74dd",
+      "range": {
+        "startLine": 483,
+        "startChar": 4,
+        "endLine": 483,
+        "endChar": 63
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69b97881_51829abe",
@@ -362,6 +386,30 @@
       "side": 1,
       "message": "For property we should not have \"persist\" as there is no intention for the property to be added to developer options.\nSame \"vendor\" does not make any sense now since this is going to the upstream.\nA more appropriate name could have been:\n`bluetooth.gatt.encrypted_advertisement.enabled` and `bluetooth.gatt.encrypted_advertisement.log.enabled`\n\n\nBut since we are using the property to gate the feature, we should instead use a feature flag.\nSee aosp/2746036 for an example of how to add a flag.\nFeel free to do that in a separate CL as a pre-requisite to this topic.",
       "parentUuid": "5b240980_7a6023c7",
+      "range": {
+        "startLine": 3504,
+        "startChar": 24,
+        "endLine": 3504,
+        "endChar": 66
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c8bf6d56_7949fd02",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3504,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-28T19:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b6f641c_e8be55e1",
       "range": {
         "startLine": 3504,
         "startChar": 24,
@@ -716,6 +764,30 @@
       "side": 1,
       "message": "\u003e that char or descriptor should be present.\n\nWhat \"should\" mean in this context ? Is this a fatal error if there is no char ?",
       "parentUuid": "ffccb6af_35d5a407",
+      "range": {
+        "startLine": 259,
+        "startChar": 13,
+        "endLine": 259,
+        "endChar": 25
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa237ae1_47192c1f",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-28T19:30:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4be82c0_43c39a4d",
       "range": {
         "startLine": 259,
         "startChar": 13,
