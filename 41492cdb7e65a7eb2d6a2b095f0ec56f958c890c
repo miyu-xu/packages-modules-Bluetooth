@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba88e9f5_90bbe278",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-28T18:57:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "57aa9da7_6856b936",
+      "revId": "41492cdb7e65a7eb2d6a2b095f0ec56f958c890c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "babd81a7_07ff3e91",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "415c9a16_7d482646",
+        "filename": "system/gd/att/att_module.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-28T18:57:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "babd81a7_07ff3e91",
+      "range": {
+        "startLine": 36,
+        "startChar": 21,
+        "endLine": 36,
+        "endChar": 78
+      },
+      "revId": "41492cdb7e65a7eb2d6a2b095f0ec56f958c890c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2473e71_ebdd6dc1",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-09-28T16:42:05Z",
       "side": 1,
       "message": "Here I understand using maybe_unused, because otherwise you have to have an #else",
+      "range": {
+        "startLine": 37,
+        "startChar": 6,
+        "endLine": 37,
+        "endChar": 18
+      },
+      "revId": "41492cdb7e65a7eb2d6a2b095f0ec56f958c890c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28e59c3b_6f9b1885",
+        "filename": "system/gd/common/audit_log.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-28T18:57:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b2473e71_ebdd6dc1",
       "range": {
         "startLine": 37,
         "startChar": 6,
