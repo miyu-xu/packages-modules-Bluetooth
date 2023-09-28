@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a592127d_9aefce8d",
+        "filename": "android/pandora/server/src/Host.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 556,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-09-28T22:46:48Z",
+      "side": 1,
+      "message": "Reminder to update this: should be true if scan_response data is configured",
+      "range": {
+        "startLine": 556,
+        "startChar": 38,
+        "endLine": 556,
+        "endChar": 75
+      },
+      "revId": "50e4725a89db13c28e91e8673bf1c5a7302a72cc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
