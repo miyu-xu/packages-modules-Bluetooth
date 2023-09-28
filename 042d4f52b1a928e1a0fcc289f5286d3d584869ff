@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "536260b6_2898365f",
+        "filename": "system/bta/le_audio/le_audio_set_configuration_provider_json.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-09-28T09:39:09Z",
+      "side": 1,
+      "message": "Hi, this seems wrong and cause Floss build error. Both variables are bool but the comparison constants are 3, which will never be true.",
+      "range": {
+        "startLine": 791,
+        "startChar": 2,
+        "endLine": 792,
+        "endChar": 75
+      },
+      "revId": "042d4f52b1a928e1a0fcc289f5286d3d584869ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
