@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6220202a_2c0e68ca",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-28T18:52:20Z",
+      "side": 1,
+      "message": "I tried doing this and I ran into a flaw where if the advertising data has a value that is the same as the AD Data Type value then it would return an iterator pointing to that instead of where the encrypted data is located.",
+      "parentUuid": "4b8e5fb9_49d2584f",
+      "range": {
+        "startLine": 373,
+        "startChar": 5,
+        "endLine": 383,
+        "endChar": 7
+      },
+      "revId": "16065387214bca7e1608b07987c1947d4e99d177",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0505c117_d233d353",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0b64fee_fc4611f1",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-28T18:52:20Z",
+      "side": 1,
+      "message": "Deleted. Unnecessary Log",
+      "parentUuid": "0505c117_d233d353",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 77
+      },
+      "revId": "16065387214bca7e1608b07987c1947d4e99d177",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "57defa57_55a9dbc4",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-09-27T17:39:19Z",
       "side": 1,
       "message": "I do not understand what are we tying to do here. You are comparing the content of the previous index + the value of the index to the size of the data ?",
+      "range": {
+        "startLine": 134,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 52
+      },
+      "revId": "16065387214bca7e1608b07987c1947d4e99d177",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "097d81ca_ebf75c45",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-09-28T18:52:20Z",
+      "side": 1,
+      "message": "I placed this as a check to ensure that the LTV format does not exceed the length of the packet itself. The previous index stores the L part of the LTV format, so I add it to the index to make sure that it does not exceed the length of the entire packet. This way there are less false positives in identifying encrypted data.",
+      "parentUuid": "57defa57_55a9dbc4",
       "range": {
         "startLine": 134,
         "startChar": 8,
