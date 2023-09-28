@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "856bc68c_2a54cd30",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1170,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-09-28T14:33:09Z",
+      "side": 1,
+      "message": "Is this for extending possibility to sync to the same device but different source ?",
+      "revId": "f403bdcfe603ebbec9db06f5226160ca90ef9d56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
