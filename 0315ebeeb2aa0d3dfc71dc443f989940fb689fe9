@@ -62,6 +62,75 @@
       },
       "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87f5bafe_7e043ac9",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2023-09-28T07:39:55Z",
+      "side": 1,
+      "message": "Could we rename this? Maybe `BTA_AG_SCO_APTX_SWB_SETTINGS_Q0`, etc?\nOtherwise we don\u0027t know the SWB settings is for aptX or LC3.",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 27
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea4ccbfc_94e23d7d",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2023-09-28T07:39:55Z",
+      "side": 1,
+      "message": "can we rename to explicitly say this is used for aptX?\nFor example - is_aptx_swb_codec",
+      "range": {
+        "startLine": 277,
+        "startChar": 7,
+        "endLine": 277,
+        "endChar": 19
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b376f130_12cd745a",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2023-09-28T07:39:55Z",
+      "side": 1,
+      "message": "If we are using only ESCO_CODEC_SWB_Q0 parameter, why we are adding Q1~Q3?",
+      "range": {
+        "startLine": 330,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 5
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
