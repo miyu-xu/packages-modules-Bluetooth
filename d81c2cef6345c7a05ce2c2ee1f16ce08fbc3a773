@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "690f9148_b009f82d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-09-28T16:20:57Z",
+      "side": 1,
+      "message": "my original comment is resolved, lgtm, +1. I will let Grzegorz decide how to address Lukasz\u0027s pending comments.",
+      "revId": "d81c2cef6345c7a05ce2c2ee1f16ce08fbc3a773",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
