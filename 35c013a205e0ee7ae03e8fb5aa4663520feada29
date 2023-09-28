@@ -82,6 +82,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "679e1249_b99a8701",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2023-09-28T08:49:30Z",
+      "side": 1,
+      "message": "yes tBTA_SERVICE_MASK also should be  uint64_t.updated same.  some depedent changed missed and updated now",
+      "parentUuid": "24f47a70_557c9792",
+      "range": {
+        "startLine": 662,
+        "startChar": 2,
+        "endLine": 662,
+        "endChar": 15
+      },
+      "revId": "35c013a205e0ee7ae03e8fb5aa4663520feada29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d301b207_c3c60595",
@@ -95,6 +119,30 @@
       "writtenOn": "2023-09-26T17:50:08Z",
       "side": 1,
       "message": "Should we add an assert here to make sure that the capacity doesn\u0027t end up smaller than the intended capacity?\nSomething like:\nCHECK(capacity \u003d\u003d (size_t)((unsigned int)capacity));",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 59
+      },
+      "revId": "35c013a205e0ee7ae03e8fb5aa4663520feada29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af20190a_524591af",
+        "filename": "system/osi/src/fixed_queue.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2023-09-28T08:49:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d301b207_c3c60595",
       "range": {
         "startLine": 56,
         "startChar": 0,
