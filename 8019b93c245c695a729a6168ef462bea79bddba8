@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "155e2c43_40be4f77",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-29T16:35:58Z",
+      "side": 1,
+      "message": "I\u0027m going to park this CL and break it up into smaller chunks.",
+      "revId": "8019b93c245c695a729a6168ef462bea79bddba8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d173c4ad_28a845d4",
@@ -31,6 +48,30 @@
       "writtenOn": "2023-09-29T16:08:10Z",
       "side": 1,
       "message": "did the width change?  There are quite a few unrelated formatting changes.",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 16
+      },
+      "revId": "8019b93c245c695a729a6168ef462bea79bddba8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26092454_a08af3b3",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-29T16:35:58Z",
+      "side": 1,
+      "message": "I think it\u0027s b/c no changes since we reduced the clang format.\n\nI accepted whatever the presubmit formatter suggested.",
+      "parentUuid": "d173c4ad_28a845d4",
       "range": {
         "startLine": 40,
         "startChar": 2,
@@ -64,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2498b36_23916de5",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 540,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-29T16:35:58Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dbc295a3_d2986348",
+      "range": {
+        "startLine": 539,
+        "startChar": 5,
+        "endLine": 540,
+        "endChar": 16
+      },
+      "revId": "8019b93c245c695a729a6168ef462bea79bddba8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7d1c5a1_e6b1e2f3",
@@ -77,6 +142,30 @@
       "writtenOn": "2023-09-29T16:08:10Z",
       "side": 1,
       "message": "I\u0027d prefer not to have these change in this CL.",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 58
+      },
+      "revId": "8019b93c245c695a729a6168ef462bea79bddba8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e0d8ada_7279618f",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-29T16:35:58Z",
+      "side": 1,
+      "message": "I\u0027ll have to re-do this with some kind of formatting beforehand then.",
+      "parentUuid": "a7d1c5a1_e6b1e2f3",
       "range": {
         "startLine": 77,
         "startChar": 0,
