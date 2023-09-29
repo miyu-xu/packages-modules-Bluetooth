@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b3daf41_642a6803",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-29T19:52:13Z",
+      "side": 1,
+      "message": "I think you have to file a bug, or piggy-back on another bug.",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "3a8fdf8e8abd284450a337f62f423fc842acec23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19ba5797_0b778e30",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-29T19:52:13Z",
+      "side": 1,
+      "message": "mma -j32\n\n(will no longer trigger the linter)",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 17
+      },
+      "revId": "3a8fdf8e8abd284450a337f62f423fc842acec23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
