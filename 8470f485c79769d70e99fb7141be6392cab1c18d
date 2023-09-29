@@ -16,6 +16,24 @@
       "message": "Nit: mention that GAP/ADV tests are no longer listed with PTS 8.5.1 if the casing is not respected",
       "revId": "8470f485c79769d70e99fb7141be6392cab1c18d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b168534b_34804a35",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-29T01:19:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "458db90e_f6db596a",
+      "revId": "8470f485c79769d70e99fb7141be6392cab1c18d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
