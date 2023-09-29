@@ -3713,8 +3713,8 @@ public class LeAudioService extends ProfileService {
                     throw new IllegalStateException("service is null");
                 }
                 enforceBluetoothPrivilegedPermission(service);
-                receiver.send(null);
                 service.setVolume(volume);
+                receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
