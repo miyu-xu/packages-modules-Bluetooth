@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70aee9f7_14189fcf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-09-29T18:17:48Z",
+      "side": 1,
+      "message": "I think this will solve the issue at hand, though I\u0027m curious the design trade-off between always shaving a packet off at the end if we extend past the desired size vs. just-in-time checking the size, removing as needed, and then re-adding the packet. I _feel like_ this is what the code was going for, but that return statement kept it from continuing to write the packet to the queue (or they forgot). Heck, they even returned the wrong, larger size, which implies to me either its an honest bug, or someone sometime thought \"oh, we\u0027re removing and then writing, so its the same size.\" Again, not totally sure though 😊",
+      "revId": "631ffd4f12139f5903fa28bbb8625c0ba105cb1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aead01a2_bd191e33",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-09-29T18:17:48Z",
+      "side": 1,
+      "message": "Out of curiosity, is the return statement necessary? Do we run into potential problems if we skip the below decoder alarm check?\n\nAs understand it, it seems like as long as `MAX_A2DP_DELAYED_START_FRAME_COUNT` is less than `MAX_INPUT_A2DP_FRAME_QUEUE_SZ`, then we should have begun decoding before we can hit max size. I\u0027m not sure if it\u0027s possible, but I\u0027d worry if something happens like we leave the queue full after we stop decoding though. We might get into a cycle where we keep getting new packets and adding them to the already full queue, and never restart decoding.",
+      "range": {
+        "startLine": 685,
+        "startChar": 4,
+        "endLine": 685,
+        "endChar": 15
+      },
+      "revId": "631ffd4f12139f5903fa28bbb8625c0ba105cb1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
