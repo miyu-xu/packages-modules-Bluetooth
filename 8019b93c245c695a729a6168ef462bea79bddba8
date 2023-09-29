@@ -82,6 +82,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf5f8ecf_66caf222",
+        "filename": "system/gd/hci/acl_manager/classic_impl.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-29T16:36:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "26092454_a08af3b3",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 16
+      },
+      "revId": "8019b93c245c695a729a6168ef462bea79bddba8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dbc295a3_d2986348",
@@ -166,6 +190,30 @@
       "side": 1,
       "message": "I\u0027ll have to re-do this with some kind of formatting beforehand then.",
       "parentUuid": "a7d1c5a1_e6b1e2f3",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 58
+      },
+      "revId": "8019b93c245c695a729a6168ef462bea79bddba8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44cc1d3d_63ea860a",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-09-29T16:36:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6e0d8ada_7279618f",
       "range": {
         "startLine": 77,
         "startChar": 0,
