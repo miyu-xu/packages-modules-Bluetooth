@@ -1212,6 +1212,14 @@ class GAPProxy(ProfileProxy):
 
         return "OK"
 
+    @assert_description
+    def _mmi_504(self, **kwargs):
+        """
+        Please do not authorize that PTS to read Encrypted Data Key value.
+        """
+
+        return "OK"
+
     def _auto_confirm_requests(self, times=None):
 
         def task():
