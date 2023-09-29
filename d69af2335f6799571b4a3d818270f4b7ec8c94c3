@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93e0b3b4_df2d6c75",
+        "filename": "system/bta/le_audio/hal_verifier.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-09-29T04:07:18Z",
+      "side": 1,
+      "message": "The verifier is used to make sure if the HAL transport supports broadcast or not. If the transport isn\u0027t AIDL, the broadcast doesn\u0027t work. Please configure your device broadcast property to false.",
+      "range": {
+        "startLine": 26,
+        "startChar": 44,
+        "endLine": 26,
+        "endChar": 45
+      },
+      "revId": "d69af2335f6799571b4a3d818270f4b7ec8c94c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
