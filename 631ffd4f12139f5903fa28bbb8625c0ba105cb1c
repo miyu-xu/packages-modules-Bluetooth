@@ -63,6 +63,30 @@
       },
       "revId": "631ffd4f12139f5903fa28bbb8625c0ba105cb1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e7f701f_64f08fde",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-09-29T18:44:33Z",
+      "side": 1,
+      "message": "Ah, perfect. I *hoped* we did that, but figured you knew and I didn\u0027t need to dig through code 😊",
+      "parentUuid": "adfb3613_11e700ff",
+      "range": {
+        "startLine": 685,
+        "startChar": 4,
+        "endLine": 685,
+        "endChar": 15
+      },
+      "revId": "631ffd4f12139f5903fa28bbb8625c0ba105cb1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
