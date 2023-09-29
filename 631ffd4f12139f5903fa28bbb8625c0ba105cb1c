@@ -39,6 +39,30 @@
       },
       "revId": "631ffd4f12139f5903fa28bbb8625c0ba105cb1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adfb3613_11e700ff",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 685,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-09-29T18:36:45Z",
+      "side": 1,
+      "message": "If the decoder alarm is stopped, the cleanup ensure queue is emptied as well. Since, the call takes a lock and the contant FRAME_COUNT is less than MAX_SIZE, this would never happen as quque is cleared when the decoder alarm is stopped/cleared out.",
+      "parentUuid": "aead01a2_bd191e33",
+      "range": {
+        "startLine": 685,
+        "startChar": 4,
+        "endLine": 685,
+        "endChar": 15
+      },
+      "revId": "631ffd4f12139f5903fa28bbb8625c0ba105cb1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
