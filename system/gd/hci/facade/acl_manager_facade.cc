@@ -16,6 +16,8 @@
 
 #include "hci/facade/acl_manager_facade.h"
 
+#include <hci/hci_packets.h>
+
 #include <condition_variable>
 #include <memory>
 #include <mutex>
@@ -27,7 +29,6 @@
 #include "hci/acl_manager.h"
 #include "hci/address.h"
 #include "hci/class_of_device.h"
-#include "hci/hci_packets.h"
 #include "packet/raw_builder.h"
 
 using ::grpc::ServerAsyncResponseWriter;
