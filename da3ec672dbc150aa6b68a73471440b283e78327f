@@ -22,6 +22,30 @@
       },
       "revId": "da3ec672dbc150aa6b68a73471440b283e78327f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c1d9368_c284467e",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2597,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-09-29T18:20:47Z",
+      "side": 1,
+      "message": "It\u0027s acutally pretty easy to trigger when the cilent stops the audio.\n\nYou may check https://b.corp.google.com/issues/300455937#comment8 for the actual log.\n\nThe case is that when the client closes the UIPC socket and also trigger the stop audio request. There will be two SUSPEND_STREAM_REQ triggered almost at the same time.\n\nThis is more a mitigation for the redundant log that might be misleading. Based on the interface design, it\u0027s unclear to me that if the client side is doing something wrong. Please help suggest if the actual fix is that the client shouldn\u0027t close the socket or trigger the stop audio request call.\n\nI can also add a log here but it probably won\u0027t bring much value as the stack actually works properly in the above case.",
+      "parentUuid": "efbf6d46_7862938d",
+      "range": {
+        "startLine": 2597,
+        "startChar": 8,
+        "endLine": 2597,
+        "endChar": 14
+      },
+      "revId": "da3ec672dbc150aa6b68a73471440b283e78327f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
