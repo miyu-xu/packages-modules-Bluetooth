@@ -197,7 +197,6 @@ cc_library {
     ],
     min_sdk_version: "31",
     static_libs: ["libchrome"],
-    cflags: ["-Wno-unused-parameter"],
 }
 
 cc_library {
@@ -214,7 +213,6 @@ cc_library {
     cflags: [
         "-DFUZZ_TARGET",
         "-DUSE_FAKE_TIMERS",
-        "-Wno-unused-parameter",
     ],
     static_libs: [
         "libbluetooth-types",
@@ -236,7 +234,6 @@ cc_library {
     ],
     cflags: [
         "-DUSE_FAKE_TIMERS",
-        "-Wno-unused-parameter",
     ],
     static_libs: [
         "libbluetooth-types",
@@ -330,7 +327,6 @@ cc_binary {
         address: true,
         cfi: true,
     },
-    cflags: ["-Wno-unused-parameter"],
 }
 
 cc_test {
@@ -435,7 +431,6 @@ cc_test {
         address: true,
     },
     min_sdk_version: "Tiramisu",
-    cflags: ["-Wno-unused-parameter"],
 }
 
 cc_test {
@@ -484,7 +479,6 @@ cc_test {
         },
     },
     min_sdk_version: "30",
-    cflags: ["-Wno-unused-parameter"],
 }
 
 cc_defaults {
@@ -547,7 +541,6 @@ cc_fuzz {
         cc: ["android-bluetooth-security@google.com"],
         componentid: 27441,
     },
-    cflags: ["-Wno-unused-parameter"],
 }
 
 cc_fuzz {
@@ -557,7 +550,6 @@ cc_fuzz {
         ":BluetoothHalFuzzSources",
         "hci/fuzz/hci_layer_fuzz_test.cc",
     ],
-    cflags: ["-Wno-unused-parameter"],
 }
 
 cc_fuzz {
@@ -570,7 +562,6 @@ cc_fuzz {
         cc: ["android-bluetooth-security@google.com"],
         componentid: 27441,
     },
-    cflags: ["-Wno-unused-parameter"],
 }
 
 cc_benchmark {
