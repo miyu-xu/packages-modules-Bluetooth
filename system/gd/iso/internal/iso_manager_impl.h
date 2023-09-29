@@ -16,12 +16,13 @@
 
 #pragma once
 
-#include "hci/controller.h"
-#include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
-#include "os/handler.h"
+#include <hci/hci_packets.h>
 
 #include <list>
+
+#include "hci/controller.h"
+#include "hci/hci_layer.h"
+#include "os/handler.h"
 
 namespace bluetooth {
 namespace iso {

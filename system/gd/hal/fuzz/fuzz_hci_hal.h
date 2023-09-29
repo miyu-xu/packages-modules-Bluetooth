@@ -16,9 +16,10 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include "fuzz/helpers.h"
 #include "hal/hci_hal.h"
-#include "hci/hci_packets.h"
 
 namespace bluetooth {
 namespace hal {

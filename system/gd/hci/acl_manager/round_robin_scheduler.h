@@ -16,13 +16,13 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
 #include <stdint.h>
 
 #include "common/bidi_queue.h"
 #include "common/multi_priority_queue.h"
 #include "hci/acl_manager.h"
 #include "hci/controller.h"
-#include "hci/hci_packets.h"
 #include "os/handler.h"
 
 namespace bluetooth {

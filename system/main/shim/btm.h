@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <cstddef>
 #include <cstdint>
 #include <functional>
@@ -28,7 +30,6 @@
 #include "gd/hci/le_scanning_manager.h"
 #include "gd/neighbor/inquiry.h"
 #include "gd/os/alarm.h"
-#include "hci/hci_packets.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/btm_api_types.h"
 #include "types/bluetooth/uuid.h"

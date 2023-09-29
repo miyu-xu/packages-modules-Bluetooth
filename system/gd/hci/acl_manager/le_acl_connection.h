@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <atomic>
 #include <memory>
 #include <variant>
@@ -23,7 +25,6 @@
 #include "hci/acl_manager/acl_connection.h"
 #include "hci/acl_manager/le_connection_management_callbacks.h"
 #include "hci/address_with_type.h"
-#include "hci/hci_packets.h"
 #include "hci/le_acl_connection_interface.h"
 
 namespace bluetooth {

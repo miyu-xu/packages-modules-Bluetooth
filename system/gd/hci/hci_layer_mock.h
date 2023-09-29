@@ -16,13 +16,13 @@
 #pragma once
 
 #include <gmock/gmock.h>
+#include <hci/hci_packets.h>
 
 #include <cstdint>
 
 #include "common/contextual_callback.h"
 #include "hci/address.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "module.h"
 #include "os/handler.h"
 

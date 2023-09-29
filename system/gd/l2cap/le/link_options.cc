@@ -16,9 +16,10 @@
 
 #include "l2cap/le/link_options.h"
 
+#include <hci/hci_packets.h>
+
 #include <cstdint>
 
-#include "hci/hci_packets.h"
 #include "l2cap/le/internal/link.h"
 
 namespace bluetooth {

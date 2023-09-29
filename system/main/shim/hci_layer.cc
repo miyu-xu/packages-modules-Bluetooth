@@ -19,12 +19,12 @@
 #include "hci/hci_layer.h"
 
 #include <base/functional/bind.h>
+#include <hci/hci_packets.h>
 
 #include <algorithm>
 #include <cstdint>
 
 #include "gd/common/init_flags.h"
-#include "hci/hci_packets.h"
 #include "hci/include/packet_fragmenter.h"
 #include "hci/le_acl_connection_interface.h"
 #include "hci/vendor_specific_event_manager.h"

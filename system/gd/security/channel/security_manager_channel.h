@@ -17,6 +17,8 @@
  */
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 #include <unordered_map>
 #include <vector>
@@ -24,7 +26,6 @@
 #include "common/contextual_callback.h"
 #include "hci/address_with_type.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "hci/security_interface.h"
 #include "l2cap/classic/l2cap_classic_module.h"
 #include "l2cap/classic/link_security_interface.h"

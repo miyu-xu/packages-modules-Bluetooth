@@ -18,6 +18,8 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <sstream>
 #include <string>
 #include <utility>
@@ -25,7 +27,6 @@
 #include "common/interfaces/ILoggable.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "hci/address.h"
-#include "hci/hci_packets.h"
 
 namespace bluetooth {
 namespace hci {

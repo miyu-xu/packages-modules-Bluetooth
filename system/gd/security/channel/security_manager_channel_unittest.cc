@@ -18,9 +18,9 @@
 #include "security/channel/security_manager_channel.h"
 
 #include <gtest/gtest.h>
+#include <hci/hci_packets.h>
 
 #include "hci/address.h"
-#include "hci/hci_packets.h"
 #include "packet/raw_builder.h"
 #include "security/smp_packets.h"
 #include "security/test/fake_hci_layer.h"

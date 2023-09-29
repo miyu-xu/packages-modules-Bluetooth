@@ -17,6 +17,7 @@
 #include "neighbor/inquiry.h"
 
 #include <gtest/gtest.h>
+#include <hci/hci_packets.h>
 #include <unistd.h>
 
 #include <algorithm>
@@ -30,7 +31,6 @@
 #include "hci/address.h"
 #include "hci/class_of_device.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "os/thread.h"
 #include "packet/raw_builder.h"
 

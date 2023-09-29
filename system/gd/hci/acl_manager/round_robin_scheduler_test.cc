@@ -17,12 +17,12 @@
 #include "hci/acl_manager/round_robin_scheduler.h"
 
 #include <gtest/gtest.h>
+#include <hci/hci_packets.h>
 
 #include "common/bidi_queue.h"
 #include "common/callback.h"
 #include "hci/acl_manager.h"
 #include "hci/controller.h"
-#include "hci/hci_packets.h"
 #include "os/handler.h"
 #include "os/log.h"
 #include "packet/raw_builder.h"

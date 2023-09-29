@@ -17,8 +17,9 @@
  */
 #include "iso_manager_impl.h"
 
+#include <hci/hci_packets.h>
+
 #include "common/bind.h"
-#include "hci/hci_packets.h"
 #include "iso/iso_manager.h"
 #include "os/handler.h"
 #include "os/log.h"

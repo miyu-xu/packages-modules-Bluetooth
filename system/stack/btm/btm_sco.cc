@@ -32,13 +32,14 @@
 
 #define LOG_TAG "btm_sco"
 
+#include <hci/hci_packets.h>
+
 #include "common/bidi_queue.h"
 #include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
 #include "embdrv/sbc/decoder/include/oi_codec_sbc.h"
 #include "embdrv/sbc/decoder/include/oi_status.h"
 #include "gd/hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "hci/include/hci_layer.h"
 #include "main/shim/entry.h"
 #include "main/shim/hci_layer.h"

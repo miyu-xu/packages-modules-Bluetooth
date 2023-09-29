@@ -15,13 +15,14 @@
  */
 #include "hci/le_scanning_reassembler.h"
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 #include <unordered_map>
 
 #include "hci/acl_manager.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "hci/le_periodic_sync_manager.h"
 #include "hci/le_scanning_interface.h"
 #include "hci/vendor_specific_event_manager.h"

@@ -18,6 +18,7 @@
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+#include <hci/hci_packets.h>
 
 #include <chrono>
 #include <mutex>
@@ -32,7 +33,6 @@
 #include "hci/address.h"
 #include "hci/controller_mock.h"
 #include "hci/hci_layer_fake.h"
-#include "hci/hci_packets.h"
 #include "os/handler.h"
 #include "os/log.h"
 #include "packet/bit_inserter.h"

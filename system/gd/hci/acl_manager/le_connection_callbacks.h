@@ -16,10 +16,12 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <memory>
+
 #include "hci/acl_manager/le_acl_connection.h"
 #include "hci/address_with_type.h"
-#include "hci/hci_packets.h"
 #include "os/handler.h"
 
 namespace bluetooth {

@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <chrono>
 #include <list>
 #include <map>

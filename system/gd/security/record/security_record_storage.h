@@ -17,9 +17,10 @@
  */
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <unordered_map>
 
-#include "hci/hci_packets.h"
 #include "os/handler.h"
 #include "os/utils.h"
 #include "security/record/security_record.h"

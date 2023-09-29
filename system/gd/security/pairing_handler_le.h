@@ -18,6 +18,8 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <array>
 #include <chrono>
 #include <condition_variable>
@@ -29,7 +31,6 @@
 
 #include "common/bind.h"
 #include "crypto_toolbox/crypto_toolbox.h"
-#include "hci/hci_packets.h"
 #include "hci/le_security_interface.h"
 #include "packet/packet_view.h"
 #include "security/ecdh_keys.h"

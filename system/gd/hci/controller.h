@@ -16,8 +16,9 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include "hci/address.h"
-#include "hci/hci_packets.h"
 #include "hci/le_rand_callback.h"
 #include "hci_controller_generated.h"
 #include "module.h"

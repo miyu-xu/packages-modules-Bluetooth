@@ -15,11 +15,12 @@
  */
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "common/callback.h"
 #include "hci/address_with_type.h"
-#include "hci/hci_packets.h"
 #include "hci/le_scanning_callback.h"
 #include "hci/uuid.h"
 #include "module.h"

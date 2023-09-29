@@ -15,6 +15,8 @@
  */
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <chrono>
 #include <memory>
 #include <utility>
@@ -22,7 +24,6 @@
 #include "common/callback.h"
 #include "common/init_flags.h"
 #include "hci/address_with_type.h"
-#include "hci/hci_packets.h"
 #include "hci/le_scanning_callback.h"
 #include "hci/le_scanning_interface.h"
 #include "hci/uuid.h"

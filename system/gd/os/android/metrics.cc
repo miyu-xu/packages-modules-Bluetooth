@@ -20,13 +20,13 @@
 
 #include "os/metrics.h"
 
+#include <hci/hci_packets.h>
 #include <statslog_bt.h>
 
 #include "common/audit_log.h"
-#include "metrics/metrics_state.h"
 #include "common/metric_id_manager.h"
 #include "common/strings.h"
-#include "hci/hci_packets.h"
+#include "metrics/metrics_state.h"
 #include "os/log.h"
 
 namespace bluetooth {

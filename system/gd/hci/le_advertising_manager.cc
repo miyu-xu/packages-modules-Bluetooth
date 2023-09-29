@@ -15,6 +15,8 @@
  */
 #include "hci/le_advertising_manager.h"
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 #include <mutex>
 
@@ -24,7 +26,6 @@
 #include "hci/acl_manager.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "hci/le_advertising_interface.h"
 #include "hci/vendor_specific_event_manager.h"
 #include "module.h"
