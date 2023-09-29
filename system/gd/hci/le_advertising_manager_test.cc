@@ -86,7 +86,7 @@ class TestController : public Controller {
  protected:
   void Start() override {}
   void Stop() override {}
-  void ListDependencies(ModuleList* list) const {}
+  void ListDependencies(ModuleList* /* list */) const {}
 
  private:
   std::set<OpCode> supported_opcodes_{};
@@ -114,18 +114,18 @@ class TestLeAddressManager : public LeAddressManager {
     return AddressPolicy::USE_STATIC_ADDRESS;
   }
 
-  void Unregister(LeAddressManagerCallback* callback) override {
+  void Unregister(LeAddressManagerCallback* /* callback */) override {
     if (!ignore_unregister_for_testing) {
       client_ = nullptr;
     }
     test_client_state_ = UNREGISTERED;
   }
 
-  void AckPause(LeAddressManagerCallback* callback) override {
+  void AckPause(LeAddressManagerCallback* /* callback */) override {
     test_client_state_ = PAUSED;
   }
 
-  void AckResume(LeAddressManagerCallback* callback) override {
+  void AckResume(LeAddressManagerCallback* /* callback */) override {
     test_client_state_ = RESUMED;
   }
 
@@ -221,9 +221,9 @@ class LeAdvertisingManagerTest : public ::testing::Test {
   const common::Callback<void(ErrorCode, uint8_t, uint8_t)> set_terminated_callback =
       common::Bind(&LeAdvertisingManagerTest::on_set_terminated, common::Unretained(this));
 
-  void on_scan(Address address, AddressType address_type) {}
+  void on_scan(Address /* address */, AddressType /* address_type */) {}
 
-  void on_set_terminated(ErrorCode error_code, uint8_t, uint8_t) {}
+  void on_set_terminated(ErrorCode /* error_code */, uint8_t, uint8_t) {}
 
   void sync_client_handler() {
     ASSERT(thread_.GetReactor()->WaitForIdle(2s));
@@ -1323,11 +1323,13 @@ TEST_F(LeExtendedAdvertisingAPITest, trigger_advertiser_callbacks_if_started_whi
       {},
       0,
       base::BindOnce(
-          [](std::promise<ErrorCode> promise, uint8_t status) { promise.set_value((ErrorCode)status); },
+          [](std::promise<ErrorCode> promise, uint8_t status) {
+            promise.set_value((ErrorCode)status);
+          },
           std::move(status_promise)),
-      base::Bind([](uint8_t _status) {}),
-      base::Bind([](Address _address, AddressType _address_type) {}),
-      base::Bind([](ErrorCode _status, uint8_t _unused_1, uint8_t _unused_2) {}),
+      base::Bind([](uint8_t /* _status */) {}),
+      base::Bind([](Address /* _address */, AddressType /* _address_type */) {}),
+      base::Bind([](ErrorCode /* _status */, uint8_t /* _unused_1 */, uint8_t /* _unused_2 */) {}),
       client_handler_);
 
   test_hci_layer_->GetCommand();
