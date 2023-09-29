@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efbf6d46_7862938d",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2597,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-09-29T18:06:30Z",
+      "side": 1,
+      "message": "This seems like it should be a rare enough occurrence that a log line here would be helpful.",
+      "range": {
+        "startLine": 2597,
+        "startChar": 8,
+        "endLine": 2597,
+        "endChar": 14
+      },
+      "revId": "da3ec672dbc150aa6b68a73471440b283e78327f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
