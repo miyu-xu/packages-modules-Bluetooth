@@ -16,6 +16,8 @@
 
 #include "hci/facade/le_initiator_address_facade.h"
 
+#include <hci/hci_packets.h>
+
 #include <condition_variable>
 #include <memory>
 #include <mutex>
@@ -25,7 +27,6 @@
 #include "common/bind.h"
 #include "grpc/grpc_event_queue.h"
 #include "hci/acl_manager.h"
-#include "hci/hci_packets.h"
 #include "packet/raw_builder.h"
 
 using ::grpc::ServerAsyncResponseWriter;

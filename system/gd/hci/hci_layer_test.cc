@@ -17,12 +17,12 @@
 #include "hci/hci_layer.h"
 
 #include <gtest/gtest.h>
+#include <hci/hci_packets.h>
 
 #include <list>
 #include <memory>
 
 #include "hal/hci_hal_fake.h"
-#include "hci/hci_packets.h"
 #include "module.h"
 #include "os/log.h"
 #include "os/thread.h"

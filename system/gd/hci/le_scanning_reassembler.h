@@ -16,6 +16,7 @@
 #pragma once
 
 #include <gtest/gtest_prod.h>
+#include <hci/hci_packets.h>
 
 #include <cstdint>
 #include <list>
@@ -23,7 +24,6 @@
 #include <vector>
 
 #include "hci/address_with_type.h"
-#include "hci/hci_packets.h"
 
 namespace bluetooth::hci {
 

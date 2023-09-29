@@ -15,7 +15,8 @@
  */
 #pragma once
 
-#include "hci/hci_packets.h"
+#include <hci/hci_packets.h>
+
 #include "hci/le_scanning_callback.h"
 #include "module.h"
 

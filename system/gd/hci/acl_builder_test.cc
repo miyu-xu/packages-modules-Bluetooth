@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-#include "hci/hci_packets.h"
-
 #include <gtest/gtest.h>
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "os/log.h"

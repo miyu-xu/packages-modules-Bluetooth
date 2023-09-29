@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <chrono>
 #include <list>
 #include <map>
@@ -30,7 +32,6 @@
 #include "common/contextual_callback.h"
 #include "hal/hci_hal.h"
 #include "hci/acl_connection_interface.h"
-#include "hci/hci_packets.h"
 #include "hci/le_acl_connection_interface.h"
 #include "hci/le_advertising_interface.h"
 #include "hci/le_iso_interface.h"

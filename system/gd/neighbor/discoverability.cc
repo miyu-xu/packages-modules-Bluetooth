@@ -17,11 +17,12 @@
 
 #include "neighbor/discoverability.h"
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "common/bind.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "module.h"
 #include "neighbor/scan.h"
 #include "os/handler.h"

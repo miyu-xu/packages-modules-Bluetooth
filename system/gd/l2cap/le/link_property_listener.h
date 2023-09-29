@@ -16,10 +16,11 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "hci/address_with_type.h"
-#include "hci/hci_packets.h"
 
 namespace bluetooth {
 namespace l2cap {

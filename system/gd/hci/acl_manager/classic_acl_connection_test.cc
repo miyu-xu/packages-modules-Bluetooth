@@ -18,6 +18,7 @@
 
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+#include <hci/hci_packets.h>
 
 #include <chrono>
 #include <cstdint>
@@ -31,7 +32,6 @@
 #include "hci/acl_connection_interface.h"
 #include "hci/acl_manager/connection_management_callbacks.h"
 #include "hci/address.h"
-#include "hci/hci_packets.h"
 #include "os/handler.h"
 #include "os/log.h"
 #include "os/thread.h"

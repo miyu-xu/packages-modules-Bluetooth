@@ -15,13 +15,14 @@
  */
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <array>
 #include <cstdint>
 #include <memory>
 
 #include "common/bind.h"
 #include "hci/address.h"
-#include "hci/hci_packets.h"
 #include "module.h"
 
 namespace bluetooth {

@@ -16,11 +16,12 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <array>
 #include <cstdint>
 
 #include "hci/acl_manager/connection_management_callbacks.h"
-#include "hci/hci_packets.h"
 
 namespace bluetooth {
 namespace hci {

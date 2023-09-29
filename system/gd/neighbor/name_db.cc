@@ -17,12 +17,13 @@
 
 #include "neighbor/name_db.h"
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 #include <unordered_map>
 #include <utility>
 
 #include "common/bind.h"
-#include "hci/hci_packets.h"
 #include "hci/remote_name_request.h"
 #include "module.h"
 #include "os/handler.h"

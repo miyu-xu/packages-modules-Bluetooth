@@ -16,6 +16,8 @@
 
 #include "hci/facade/facade.h"
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "blueberry/facade/hci/hci_facade.grpc.pb.h"
@@ -23,7 +25,6 @@
 #include "grpc/grpc_event_queue.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 
 using ::grpc::ServerAsyncResponseWriter;
 using ::grpc::ServerAsyncWriter;

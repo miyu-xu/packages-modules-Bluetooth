@@ -15,7 +15,8 @@
  */
 #pragma once
 
-#include "hci/hci_packets.h"
+#include <hci/hci_packets.h>
+
 #include "module.h"
 
 namespace bluetooth {

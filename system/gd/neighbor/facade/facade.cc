@@ -16,12 +16,13 @@
 
 #include "neighbor/facade/facade.h"
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "blueberry/facade/neighbor/facade.grpc.pb.h"
 #include "common/bind.h"
 #include "grpc/grpc_event_queue.h"
-#include "hci/hci_packets.h"
 #include "hci/remote_name_request.h"
 
 using ::grpc::ServerAsyncResponseWriter;

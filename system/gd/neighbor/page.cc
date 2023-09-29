@@ -17,11 +17,12 @@
 
 #include "neighbor/page.h"
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "common/bind.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "module.h"
 #include "neighbor/scan_parameters.h"
 #include "os/handler.h"

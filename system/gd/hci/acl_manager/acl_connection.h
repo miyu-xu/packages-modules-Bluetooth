@@ -16,10 +16,11 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "common/bidi_queue.h"
-#include "hci/hci_packets.h"
 
 namespace bluetooth {
 namespace hci {

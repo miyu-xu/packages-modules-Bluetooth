@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <functional>
 #include <future>
 #include <memory>
@@ -29,7 +31,6 @@
 #include "hci/address_with_type.h"
 #include "hci/distance_measurement_manager.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "hci/le_address_manager.h"
 #include "hci/le_scanning_manager.h"
 #include "module.h"

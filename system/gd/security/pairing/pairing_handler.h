@@ -17,11 +17,12 @@
  */
 #pragma once
 
+#include <hci/hci_packets.h>
 #include <neighbor/name_db.h>
+
 #include <utility>
 
 #include "hci/address_with_type.h"
-#include "hci/hci_packets.h"
 #include "neighbor/name_db.h"
 #include "security/channel/security_manager_channel.h"
 #include "security/pairing/oob_data.h"

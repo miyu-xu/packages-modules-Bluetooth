@@ -17,6 +17,7 @@
 #pragma once
 
 #include <base/strings/stringprintf.h>
+#include <hci/hci_packets.h>
 
 #include <atomic>
 #include <cstddef>
@@ -35,7 +36,6 @@
 #include "hci/acl_manager/round_robin_scheduler.h"
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "hci/le_address_manager.h"
 #include "os/alarm.h"
 #include "os/handler.h"

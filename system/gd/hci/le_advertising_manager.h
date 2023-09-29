@@ -15,11 +15,12 @@
  */
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "common/callback.h"
 #include "hci/address_with_type.h"
-#include "hci/hci_packets.h"
 #include "module.h"
 
 namespace bluetooth {

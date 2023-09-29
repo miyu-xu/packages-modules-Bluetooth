@@ -16,8 +16,8 @@
 
 #pragma once
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
+#include <hci/hci_packets.h>
 
-#include "hci/hci_packets.h"
 #include "storage/storage_module.h"
 
 namespace bluetooth {

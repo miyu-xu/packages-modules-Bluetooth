@@ -19,12 +19,12 @@
 #include "hci/address_with_type.h"
 
 #include <gtest/gtest.h>
+#include <hci/hci_packets.h>
 
 #include <map>
 #include <unordered_map>
 
 #include "hci/address.h"
-#include "hci/hci_packets.h"
 
 namespace bluetooth {
 namespace hci {

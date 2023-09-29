@@ -14,6 +14,8 @@
 
 #include "connection_shim.h"
 
+#include <hci/hci_packets.h>
+
 #include <algorithm>
 #include <cstdint>
 #include <iterator>
@@ -21,7 +23,6 @@
 
 #include "hci/acl_manager.h"
 #include "hci/address_with_type.h"
-#include "hci/hci_packets.h"
 #include "main/shim/entry.h"
 #ifndef TARGET_FLOSS
 #include "src/connection/ffi.rs.h"

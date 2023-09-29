@@ -17,10 +17,11 @@
 
 #include "neighbor/connectability.h"
 
+#include <hci/hci_packets.h>
+
 #include <memory>
 
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "module.h"
 #include "neighbor/scan.h"
 #include "os/handler.h"

@@ -15,9 +15,10 @@
  */
 #include "hci/vendor_specific_event_manager.h"
 
+#include <hci/hci_packets.h>
+
 #include "hci/controller.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 
 namespace bluetooth {
 namespace hci {

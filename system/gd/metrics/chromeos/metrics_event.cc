@@ -21,12 +21,12 @@
 #include <base/strings/string_number_conversions.h>
 #include <base/strings/string_util.h>
 #include <base/strings/stringprintf.h>
+#include <hci/hci_packets.h>
 
 #include <map>
 #include <utility>
 
 #include "gd/common/init_flags.h"
-#include "hci/hci_packets.h"
 #include "include/hardware/bluetooth.h"
 #include "include/hardware/bt_av.h"
 #include "include/hardware/bt_hf.h"

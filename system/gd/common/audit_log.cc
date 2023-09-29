@@ -16,8 +16,9 @@
 
 #include "common/audit_log.h"
 
+#include <hci/hci_packets.h>
+
 #include "common/strings.h"
-#include "hci/hci_packets.h"
 #include "os/log.h"
 
 namespace {

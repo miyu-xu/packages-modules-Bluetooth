@@ -15,7 +15,7 @@
  */
 
 #define PACKET_FUZZ_TESTING
-#include "hci/hci_packets.h"
+#include <hci/hci_packets.h>
 
 #include <memory>
 

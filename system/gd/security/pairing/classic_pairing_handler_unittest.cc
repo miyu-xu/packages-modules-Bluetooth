@@ -18,10 +18,11 @@
 #include "security/pairing/classic_pairing_handler.h"
 
 #include <gtest/gtest.h>
+#include <hci/hci_packets.h>
+
 #include <memory>
 #include <utility>
 
-#include "hci/hci_packets.h"
 #include "packet/raw_builder.h"
 #include "security/channel/security_manager_channel.h"
 #include "security/initial_informations.h"

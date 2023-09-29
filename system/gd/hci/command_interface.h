@@ -16,8 +16,9 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include "common/contextual_callback.h"
-#include "hci/hci_packets.h"
 #include "os/handler.h"
 #include "os/utils.h"
 

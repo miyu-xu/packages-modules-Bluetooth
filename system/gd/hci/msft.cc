@@ -16,10 +16,10 @@
 #include "hci/msft.h"
 
 #include <hardware/bt_common_types.h>
+#include <hci/hci_packets.h>
 
 #include "hal/hci_hal.h"
 #include "hci/hci_layer.h"
-#include "hci/hci_packets.h"
 #include "hci/vendor_specific_event_manager.h"
 
 namespace bluetooth {

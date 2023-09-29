@@ -18,7 +18,7 @@
 #include <memory>
 
 #define PACKET_TESTING  // Instantiate the tests in the packet files
-#include "hci/hci_packets.h"
+#include <hci/hci_packets.h>
 
 #include "os/log.h"
 #include "packet/bit_inserter.h"

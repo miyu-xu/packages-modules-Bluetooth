@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 #pragma once
-#include <vector>
+#include <hci/hci_packets.h>
 
-#include "hci/hci_packets.h"
+#include <vector>
 
 namespace bluetooth {
 namespace shim {

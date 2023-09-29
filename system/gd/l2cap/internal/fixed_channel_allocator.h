@@ -16,10 +16,11 @@
 
 #pragma once
 
+#include <hci/hci_packets.h>
+
 #include <type_traits>
 #include <unordered_map>
 
-#include "hci/hci_packets.h"
 #include "l2cap/cid.h"
 #include "os/handler.h"
 #include "os/log.h"
