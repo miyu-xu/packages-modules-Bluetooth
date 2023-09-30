@@ -51,6 +51,24 @@
       "parentUuid": "1f78fcd2_63dee8d1",
       "revId": "2c8e3e32d5aec01580540b5d5f3cfea1fe2f12d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "32c20517_f48df9c4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-30T05:51:17Z",
+      "side": 1,
+      "message": "\u003e So, I verified it on the device.\n\nYou mean Manual testing ?\nThen LGTM, I do not see how to automate the implementation of unit test across multi user",
+      "parentUuid": "8640e533_d9af0b85",
+      "revId": "2c8e3e32d5aec01580540b5d5f3cfea1fe2f12d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
