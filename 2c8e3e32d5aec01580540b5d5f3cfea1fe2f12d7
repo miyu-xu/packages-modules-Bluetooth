@@ -69,6 +69,24 @@
       "parentUuid": "8640e533_d9af0b85",
       "revId": "2c8e3e32d5aec01580540b5d5f3cfea1fe2f12d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fcbd10b_d77df128",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-09-30T05:56:00Z",
+      "side": 1,
+      "message": "Yes, I did manual testing on the device to confirm no permission exception and the downgraded scan client using pending intent.",
+      "parentUuid": "32c20517_f48df9c4",
+      "revId": "2c8e3e32d5aec01580540b5d5f3cfea1fe2f12d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
