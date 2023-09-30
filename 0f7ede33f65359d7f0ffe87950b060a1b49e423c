@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e3d155b_7f08c424",
+        "filename": "system/internal_include/stack_config.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-09-30T05:48:52Z",
+      "side": 1,
+      "message": "I do not think we should continue making the exception list grow\n\nEither there is a problem within the test and we should raise an issue  to the SIG. (since I do not see the point for blocking authorization at runtime, this test may end\u0027s up being deprecated)\nOr we should fix the implementation of the feature to find a way to still pass the associated test.\n\nFYI: I noticed that while trying to automate GAP/GAT/BV-11-C",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "0f7ede33f65359d7f0ffe87950b060a1b49e423c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
