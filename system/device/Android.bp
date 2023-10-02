@@ -102,4 +102,7 @@ cc_test {
     ],
     header_libs: ["libbluetooth_headers"],
     cflags: ["-Wno-unused-parameter"],
+    sanitize: {
+        never: true,
+    },
 }
