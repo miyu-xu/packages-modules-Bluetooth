@@ -31,6 +31,7 @@
 
 #include "bt_target.h"  // Must be first to define build configuration
 #include "bta/include/bta_jv_co.h"
+#include "bta/include/bta_rfcomm_scn.h"
 #include "bta/jv/bta_jv_int.h"
 #include "bta/sys/bta_sys.h"
 #include "osi/include/allocator.h"
@@ -638,6 +639,8 @@ void bta_jv_enable(tBTA_JV_DM_CBACK* p_cback) {
   bta_jv.status = status;
   bta_jv_cb.p_dm_cback(BTA_JV_ENABLE_EVT, &bta_jv, 0);
   memset(bta_jv_cb.free_psm_list, 0, sizeof(bta_jv_cb.free_psm_list));
+  memset(bta_jv_cb.scn_tracker, 0, sizeof(bta_jv_cb.scn_tracker));
+  bta_jv_cb.scn_search_index = 1;
 }
 
 /** Disables the BT device manager free the resources used by java */
@@ -718,10 +721,10 @@ void bta_jv_get_channel_id(
   switch (type) {
     case BTA_JV_CONN_TYPE_RFCOMM: {
       uint8_t scn = 0;
-      if (channel > 0 && !BTM_TryAllocateSCN(channel)) {
+      if (channel > 0 && !BTA_TryAllocateSCN(channel)) {
         LOG(ERROR) << "rfc channel=" << channel << " already in use or invalid";
       } else if (channel <= 0) {
-        scn = BTM_AllocateSCN();
+        scn = BTA_AllocateSCN();
         if (scn == 0) {
           LOG(ERROR) << "run out of rfc channels";
         }
@@ -762,7 +765,7 @@ void bta_jv_free_scn(int32_t type /* One of BTA_JV_CONN_TYPE_ */,
                      uint16_t scn) {
   switch (type) {
     case BTA_JV_CONN_TYPE_RFCOMM:
-      BTM_FreeSCN(scn);
+      BTA_FreeSCN(scn);
       break;
     case BTA_JV_CONN_TYPE_L2CAP:
       bta_jv_set_free_psm(scn);
