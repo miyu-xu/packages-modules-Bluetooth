@@ -3262,59 +3262,6 @@ static void btm_ble_observer_timer_timeout(UNUSED_ATTR void* data) {
 
 /*******************************************************************************
  *
- * Function         btm_ble_read_remote_features_complete
- *
- * Description      This function is called when the command complete message
- *                  is received from the HCI for the read LE remote feature
- *                  supported complete event.
- *
- * Returns          void
- *
- ******************************************************************************/
-void btm_ble_read_remote_features_complete(uint8_t* p, uint8_t length) {
-  uint16_t handle;
-  uint8_t status;
-
-  if (length < 3) {
-    goto err_out;
-  }
-
-  STREAM_TO_UINT8(status, p);
-  STREAM_TO_UINT16(handle, p);
-  handle = handle & 0x0FFF;  // only 12 bits meaningful
-
-  if (status != HCI_SUCCESS) {
-    if (status != HCI_ERR_UNSUPPORTED_REM_FEATURE) {
-      LOG_ERROR("Failed to read remote features status:%s",
-                hci_error_code_text(static_cast<tHCI_STATUS>(status)).c_str());
-      return;
-    }
-    LOG_WARN("Remote does not support reading remote feature");
-  }
-
-  if (status == HCI_SUCCESS) {
-    // BD_FEATURES_LEN additional bytes are read
-    // in acl_set_peer_le_features_from_handle
-    if (length < 3 + BD_FEATURES_LEN) {
-      goto err_out;
-    }
-
-    if (!acl_set_peer_le_features_from_handle(handle, p)) {
-      LOG_ERROR(
-          "Unable to find existing connection after read remote features");
-      return;
-    }
-  }
-
-  btsnd_hcic_rmt_ver_req(handle);
-  return;
-
-err_out:
-  LOG_ERROR("bogus event packet, too short");
-}
-
-/*******************************************************************************
- *
  * Function         btm_ble_write_adv_enable_complete
  *
  * Description      This function process the write adv enable command complete.
