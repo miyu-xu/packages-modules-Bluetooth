@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "6510ab0e_7749fa07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-02T13:05:13Z",
+      "side": 1,
+      "message": "Hi Christine! Thank you for review. In case of test cases, I forgot to attach them to this CL. This revision should include test cases for such change.",
+      "parentUuid": "890d61b4_fe58cd4d",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 30
+      },
+      "revId": "859470eff77dd3e519f987b632fcd210544d9a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "46c329dc_ad1392c6",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
