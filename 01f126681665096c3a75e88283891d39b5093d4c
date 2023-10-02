@@ -56,6 +56,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "216266d1_10e80b15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-10-02T07:24:34Z",
+      "side": 1,
+      "message": "Done. Platform2 CL: https://chromium-review.googlesource.com/c/chromiumos/platform2/+/4871578",
+      "parentUuid": "ccb8a4e0_ce91add6",
+      "revId": "01f126681665096c3a75e88283891d39b5093d4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "b47cfece_1e30e9d8",
         "filename": "system/gd/hal/BUILD.gn",
         "patchSetId": 3
