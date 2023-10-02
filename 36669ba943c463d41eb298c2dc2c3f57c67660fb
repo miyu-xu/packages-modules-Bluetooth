@@ -16,6 +16,29 @@
       "message": "Hi, please help review this. I made the change to not crash in this scenario based on Floss\u0027 preference. Let me know if this is ok or an alternative is to add an ASSERT on this.\nThanks!",
       "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b275ee_17bc405d",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-02T17:03:23Z",
+      "side": 1,
+      "message": "I would prefer this to be:\n\nif (!pending_) {\n  LOG_ERROR(...);\n} else if (received_feature) {\n  LOG_ERROR(...);\n} else {\n  LOG_INFO(...);\n  on_remote_host_supported_features...;\n}\n\nBut as I write that, I wonder why the pending_ flag being cleared (on line 104) isn\u0027t enough.  Have you looked for the place where the pending_ flag is set, but the callback isn\u0027t?",
+      "range": {
+        "startLine": 171,
+        "startChar": 11,
+        "endLine": 171,
+        "endChar": 12
+      },
+      "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
