@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdef2b5c_b462a017",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-02T16:57:44Z",
+      "side": 1,
+      "message": "nit: Unhandled?  The next one seems like Unexpected.",
+      "range": {
+        "startLine": 154,
+        "startChar": 18,
+        "endLine": 154,
+        "endChar": 28
+      },
+      "revId": "30e8144d23f51688b5e721646ae0a572f66af80d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
