@@ -16,75 +16,74 @@
  *
  */
 
-#include "stack/btm/btm_scn.h"
+#include "bta_rfcomm_scn.h"
 
 #include <gtest/gtest.h>
 
-#include "stack/btm/btm_int_types.h"  // tBTM_CB
-#include "stack/include/rfcdefs.h"    // RFCOMM_MAX_SCN
+#include "bta/jv/bta_jv_int.h"      // tBTA_JV_CB
+#include "stack/include/rfcdefs.h"  // RFCOMM_MAX_SCN
 
-extern tBTM_CB btm_cb;
+tBTA_JV_CB bta_jv_cb;
 
 using testing::Test;
 
-class BtmAllocateSCNTest : public Test {
+class BtaRfcommScnTest : public Test {
  public:
  protected:
   void SetUp() override {
-    btm_cb.btm_available_index = 1;
+    bta_jv_cb.scn_search_index = 1;
     for (int i = 0; i < RFCOMM_MAX_SCN; i++) {
-      btm_cb.btm_scn[i] = false;
+      bta_jv_cb.scn_tracker[i] = false;
     }
   }
 
   void TearDown() override {}
 };
 
-TEST_F(BtmAllocateSCNTest, scn_available_after_available_index) {
-  btm_cb.btm_available_index = 5;
+TEST_F(BtaRfcommScnTest, scn_available_after_available_index) {
+  bta_jv_cb.scn_search_index = 5;
   uint8_t occupied_idx[] = {1, 2, 3, 4, 5, 6, 7};
   for (uint8_t idx : occupied_idx) {
-    btm_cb.btm_scn[idx] = true;
+    bta_jv_cb.scn_tracker[idx] = true;
   }
 
-  uint8_t scn = BTM_AllocateSCN();
+  uint8_t scn = BTA_AllocateSCN();
   ASSERT_EQ(scn, 9);  // All indexes up to 7 are occupied; hence index 8 i.e.
                       // scn 9 should return
 }
 
-TEST_F(BtmAllocateSCNTest, scn_available_before_available_index) {
-  btm_cb.btm_available_index = 28;
+TEST_F(BtaRfcommScnTest, scn_available_before_available_index) {
+  bta_jv_cb.scn_search_index = 28;
   uint8_t occupied_idx[] = {26, 27, 28, 29};
   for (uint8_t idx : occupied_idx) {
-    btm_cb.btm_scn[idx] = true;
+    bta_jv_cb.scn_tracker[idx] = true;
   }
 
-  uint8_t scn = BTM_AllocateSCN();
+  uint8_t scn = BTA_AllocateSCN();
   ASSERT_EQ(scn, 2);  // All SCN from available to 30 are occupied; hence cycle
                       // to beginning.
 }
 
-TEST_F(BtmAllocateSCNTest, can_allocate_all_scns) {
+TEST_F(BtaRfcommScnTest, can_allocate_all_scns) {
   for (uint8_t scn = 2; scn <= RFCOMM_MAX_SCN; scn++) {
-    EXPECT_EQ(BTM_AllocateSCN(), scn);
+    EXPECT_EQ(BTA_AllocateSCN(), scn);
   }
 }
 
-TEST_F(BtmAllocateSCNTest, only_last_scn_available) {
+TEST_F(BtaRfcommScnTest, only_last_scn_available) {
   // Fill all relevant SCN except the last
   for (uint8_t scn = 2; scn < RFCOMM_MAX_SCN; scn++) {
-    btm_cb.btm_scn[scn - 1] = true;
+    bta_jv_cb.scn_tracker[scn - 1] = true;
   }
-
-  EXPECT_EQ(BTM_AllocateSCN(), RFCOMM_MAX_SCN);
+  EXPECT_EQ(BTA_AllocateSCN(), RFCOMM_MAX_SCN);
 }
 
-TEST_F(BtmAllocateSCNTest, no_scn_available) {
+TEST_F(BtaRfcommScnTest, no_scn_available) {
   for (int i = 1; i < RFCOMM_MAX_SCN;
        i++) {  // Fill all relevant SCN indexes (1 to 29)
-    btm_cb.btm_scn[i] = true;
+    bta_jv_cb.scn_tracker[i] = true;
   }
 
-  uint8_t scn = BTM_AllocateSCN();
+  uint8_t scn = BTA_AllocateSCN();
   EXPECT_EQ(scn, 0) << "scn = " << scn << "and not 0";
 }

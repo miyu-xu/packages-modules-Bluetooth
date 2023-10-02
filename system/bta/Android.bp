@@ -181,6 +181,7 @@ cc_library_static {
         "jv/bta_jv_act.cc",
         "jv/bta_jv_api.cc",
         "jv/bta_jv_cfg.cc",
+        "rfcomm/bta_rfcomm_scn.cc",
         "sdp/bta_sdp.cc",
         "sdp/bta_sdp_act.cc",
         "sdp/bta_sdp_api.cc",
@@ -337,6 +338,7 @@ cc_test {
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",
         ":TestFakeOsi",
+        ":TestMockBtaScn",
         ":TestMockBtaSdp",
         ":TestMockBtif",
         ":TestMockDevice",
@@ -410,6 +412,62 @@ cc_test {
         "test/bta_hf_client_add_record_test.cc",
         "test/bta_pan_test.cc",
         "test/bta_sdp_test.cc",
+    ],
+    shared_libs: [
+        "libbase",
+        "libcrypto",
+        "libcutils",
+        "liblog",
+    ],
+    static_libs: [
+        "libbluetooth-types",
+        "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
+        "libbt-common",
+        "libbt-platform-protos-lite",
+        "libbt_shim_bridge",
+        "libbt_shim_ffi",
+        "libbtcore",
+        "libbtdevice",
+        "libchrome",
+        "libcom.android.sysprop.bluetooth",
+        "libevent",
+        "libgmock",
+    ],
+    sanitize: {
+        address: true,
+        cfi: true,
+        misc_undefined: ["bounds"],
+    },
+    target: {
+        android: {
+            whole_static_libs: [
+                "libPlatformProperties",
+            ],
+        },
+    },
+    cflags: ["-Wno-unused-parameter"],
+}
+
+cc_test {
+    name: "bt_host_test_bta_scn",
+    defaults: [
+        "bluetooth_gtest_x86_asan_workaround",
+        "fluoride_bta_defaults",
+        "mts_defaults",
+    ],
+    test_suites: ["device-tests"],
+    host_supported: true,
+    include_dirs: [
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/gd",
+    ],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+    ],
+    srcs: [
+        "rfcomm/bta_rfcomm_scn.cc",
+        "test/bta_rfcomm_scn_test.cc",
     ],
     shared_libs: [
         "libbase",
