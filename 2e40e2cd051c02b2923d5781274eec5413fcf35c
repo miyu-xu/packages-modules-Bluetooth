@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59e78ca3_cb870495",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-02T22:11:46Z",
+      "side": 1,
+      "message": "I think it is reasonable to make an exception for encrypted data since the API already suggests that two distinct lists (encrypted and not encrypted) are maintained. This is also a feature that users may want to exercise (e.g. hide some service data from untrusted peers). From an implementation point of view it is not adding much work.",
+      "parentUuid": "ee207aa3_afcee49f",
+      "range": {
+        "startLine": 490,
+        "startChar": 12,
+        "endLine": 490,
+        "endChar": 25
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8773af24_d2a04f52",
         "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
         "patchSetId": 8
