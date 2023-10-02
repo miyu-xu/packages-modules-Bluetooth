@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46e692ab_f8ebeda7",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-02T17:06:38Z",
+      "side": 1,
+      "message": "Here\u0027s the only place I can find where it\u0027s set to true.",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 20
+      },
+      "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "50b275ee_17bc405d",
         "filename": "system/gd/hci/remote_name_request.cc",
         "patchSetId": 2
