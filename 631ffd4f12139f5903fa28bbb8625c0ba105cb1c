@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "750e4013_52e234d8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-10-02T15:59:09Z",
+      "side": 1,
+      "message": "We talked offline-- I\u0027ll leave it up to you whether you want to do the \"remove the last packet if needed\" or \"always remove the last packet when we\u0027re full\" strategy. Both will work, and both address this otherwise rare issue.",
+      "revId": "631ffd4f12139f5903fa28bbb8625c0ba105cb1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aead01a2_bd191e33",
