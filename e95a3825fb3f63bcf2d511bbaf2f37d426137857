@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac2669b0_35315ef5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-02T23:43:35Z",
+      "side": 1,
+      "message": "I\u0027m hoping that CL#2768489 will give you a similar result.",
+      "revId": "e95a3825fb3f63bcf2d511bbaf2f37d426137857",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
