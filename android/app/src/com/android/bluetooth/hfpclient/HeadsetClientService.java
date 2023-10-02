@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.hfpclient;
 
+import static android.content.pm.PackageManager.FEATURE_WATCH;
+
 import android.annotation.RequiresPermission;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHeadsetClient;
@@ -134,9 +136,12 @@ public class HeadsetClientService extends ProfileService {
             registerReceiver(mBroadcastReceiver, filter);
 
             // Start the HfpClientConnectionService to create connection with telecom when HFP
-            // connection is available.
-            Intent startIntent = new Intent(this, HfpClientConnectionService.class);
-            startService(startIntent);
+            // connection is available on non-wearable device.
+            if (getPackageManager() != null
+                    && !getPackageManager().hasSystemFeature(FEATURE_WATCH)) {
+                Intent startIntent = new Intent(this, HfpClientConnectionService.class);
+                startService(startIntent);
+            }
 
             // Create the thread on which all State Machines will run
             mSmThread = new HandlerThread("HeadsetClient.SM");
@@ -156,9 +161,12 @@ public class HeadsetClientService extends ProfileService {
                     return false;
                 }
 
-                // Stop the HfpClientConnectionService.
-                Intent stopIntent = new Intent(this, HfpClientConnectionService.class);
-                sHeadsetClientService.stopService(stopIntent);
+                // Stop the HfpClientConnectionService for non-wearables devices.
+                if (getPackageManager() != null
+                        && !getPackageManager().hasSystemFeature(FEATURE_WATCH)) {
+                    Intent stopIntent = new Intent(this, HfpClientConnectionService.class);
+                    sHeadsetClientService.stopService(stopIntent);
+                }
             }
 
             setHeadsetClientService(null);
