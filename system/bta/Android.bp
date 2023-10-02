@@ -121,6 +121,7 @@ cc_library_static {
         "pan/bta_pan_api.cc",
         "pan/bta_pan_ci.cc",
         "pan/bta_pan_main.cc",
+        "rfcomm/bta_rfcomm_scn.cc",
         "vc/device.cc",
         "vc/vc.cc",
     ],
@@ -409,6 +410,7 @@ cc_test {
         "test/bta_gatt_test.cc",
         "test/bta_hf_client_add_record_test.cc",
         "test/bta_pan_test.cc",
+        "test/bta_rfcomm_scn_test.cc",
         "test/bta_sdp_test.cc",
     ],
     shared_libs: [
