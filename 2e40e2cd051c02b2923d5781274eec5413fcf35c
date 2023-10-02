@@ -115,6 +115,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c6b6aef_9e552002",
+        "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 490,
+      "author": {
+        "id": 1443525
+      },
+      "writtenOn": "2023-10-02T23:36:07Z",
+      "side": 1,
+      "message": "This could be problem if we do scanning and advertising between two identical Android phones. It is not much work for Advertiser side, but on scanner side the stack does the decryption of the encrypted data and appends to the plaintext data and sends it to the framework as byte [] of adv_data. In the framework, this is populated into ScanRecord which cannot distinguish which AD types were encrypted and which were plaintext. There are existing public APIs like ScanRecord::getServiceData( ) which return only one of the AD type structure (either encrypted or plaintext: whatever was populated later in OTA adv data).\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/le/ScanRecord.java;l\u003d389?q\u003dScanRecord.java\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain\n\nSo, either we will need to have the above asymmetry on scanner and advertiser side API, OR for scanner, need to populate the \"encrypted\" meta-information from stack to framework and have a corresponding set of \"encrypted\" API in ScanRecord, for eg: ScanRecord::getServiceDataEncrypted( ).\n\nBTW, currently on scanner side there is no changes in framework/SDK API for this feature and the reason for that was to allow existing legacy Apps scan encrypted AD type without updating the App.",
+      "parentUuid": "59e78ca3_cb870495",
+      "range": {
+        "startLine": 490,
+        "startChar": 12,
+        "endLine": 490,
+        "endChar": 25
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8773af24_d2a04f52",
         "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
         "patchSetId": 8
