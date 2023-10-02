@@ -177,6 +177,10 @@ struct tBTM_PM_MCB {
 struct tACL_CONN {
   BD_FEATURES peer_le_features;
   bool peer_le_features_valid;
+  /* Wether "LE Read Remote Features complete" was processed */
+  bool remote_features_parsed{false};
+  /* Wether "Read Remote Version Information Complete" was processed */
+  bool remote_version_parsed{false};
   BD_FEATURES peer_lmp_feature_pages[HCI_EXT_FEATURES_PAGE_MAX + 1];
   bool peer_lmp_feature_valid[HCI_EXT_FEATURES_PAGE_MAX + 1];
 

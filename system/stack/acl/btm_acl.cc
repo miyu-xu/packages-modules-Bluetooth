@@ -487,6 +487,8 @@ void btm_acl_created(const RawAddress& bda, uint16_t hci_handle,
     } else {
       internal_.btm_establish_continue(p_acl);
     }
+
+    btsnd_hcic_rmt_ver_req(p_acl->hci_handle);
   }
 }
 
@@ -835,6 +837,19 @@ void BTM_default_block_role_switch() {
                                         ~HCI_ENABLE_CENTRAL_PERIPHERAL_SWITCH);
 }
 
+static void btm_acl_check_le_ready(tACL_CONN* p_acl_cb) {
+  if (p_acl_cb->remote_features_parsed && p_acl_cb->remote_version_parsed) {
+    LOG_INFO("LE ACL is ready for upper layers");
+    l2cble_notify_le_connection(p_acl_cb->remote_addr);
+  } else {
+    LOG_INFO(
+        "LE ACL not ready yet: handle:%04x, remote_features_parsed:%d, "
+        "remote_version_parsed:%d",
+        p_acl_cb->Handle(), p_acl_cb->remote_features_parsed,
+        p_acl_cb->remote_version_parsed);
+  }
+}
+
 /*******************************************************************************
  *
  * Function         btm_read_remote_version_complete
@@ -855,7 +870,7 @@ static void maybe_chain_more_commands_after_read_remote_version_complete(
 
   switch (p_acl_cb->transport) {
     case BT_TRANSPORT_LE:
-      l2cble_notify_le_connection(p_acl_cb->remote_addr);
+      btm_acl_check_le_ready(p_acl_cb);
       l2cble_use_preferred_conn_params(p_acl_cb->remote_addr);
       break;
     case BT_TRANSPORT_BR_EDR:
@@ -884,6 +899,7 @@ void btm_process_remote_version_complete(uint8_t status, uint16_t handle,
     LOG_WARN("Received remote version complete for unknown acl");
     return;
   }
+  p_acl_cb->remote_version_parsed = true;
 
   if (status == HCI_SUCCESS) {
     p_acl_cb->remote_version_info.lmp_version = lmp_version;
@@ -2518,6 +2534,7 @@ bool acl_set_peer_le_features_from_handle(uint16_t hci_handle,
 void btm_ble_read_remote_features_complete(uint8_t* p, uint8_t length) {
   uint16_t handle;
   uint8_t status;
+  tACL_CONN* p_acl;
 
   if (length < 3) {
     goto err_out;
@@ -2526,6 +2543,14 @@ void btm_ble_read_remote_features_complete(uint8_t* p, uint8_t length) {
   STREAM_TO_UINT8(status, p);
   STREAM_TO_UINT16(handle, p);
   handle = handle & 0x0FFF;  // only 12 bits meaningful
+
+  p_acl = internal_.acl_get_connection_from_handle(handle);
+  if (p_acl == nullptr) {
+    LOG_ERROR("Unable to find existing connection after read remote features");
+    return;
+  }
+
+  p_acl->remote_features_parsed = true;
 
   if (status != HCI_SUCCESS) {
     if (status != HCI_ERR_UNSUPPORTED_REM_FEATURE) {
@@ -2550,8 +2575,7 @@ void btm_ble_read_remote_features_complete(uint8_t* p, uint8_t length) {
     }
   }
 
-  btsnd_hcic_rmt_ver_req(handle);
-
+  btm_acl_check_le_ready(p_acl);
   return;
 
 err_out:
