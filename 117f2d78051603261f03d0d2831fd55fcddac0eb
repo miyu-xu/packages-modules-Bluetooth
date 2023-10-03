@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6171fe50_95cf6a77",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2243,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-10-03T14:34:37Z",
+      "side": 1,
+      "message": "When can this case be reached? Is it safe to just return without error?",
+      "range": {
+        "startLine": 2243,
+        "startChar": 8,
+        "endLine": 2243,
+        "endChar": 14
+      },
+      "revId": "117f2d78051603261f03d0d2831fd55fcddac0eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
