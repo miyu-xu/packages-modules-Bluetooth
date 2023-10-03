@@ -8,8 +8,8 @@ import os
 import sys
 
 from argparse import Namespace
-from mobly import suite_runner
-from typing import List, Tuple
+from mobly import suite_runner, base_test
+from typing import List, Tuple, Type
 
 _BUMBLE_BTSNOOP_FMT = 'bumble_btsnoop_{pid}_{instance}.log'
 
@@ -21,6 +21,7 @@ import avatar.cases.le_security_test
 import avatar.cases.security_test
 import gatt_test
 import hfpclient_test
+import pairing_tests
 import sdp_test
 import smp_test
 
@@ -36,6 +37,9 @@ _TEST_CLASSES_LIST = [
     hfpclient_test.HfpClientTest,
 ]
 
+
+def get_complete_test_class_list() -> list[Type[base_test.BaseTestClass]]:
+    return _TEST_CLASSES_LIST + pairing_tests.get_test_class_list()
 
 def _parse_cli_args() -> Tuple[Namespace, List[str]]:
     parser = argparse.ArgumentParser(description='Avatar test runner.')
@@ -57,4 +61,4 @@ if __name__ == "__main__":
         os.environ.setdefault('BUMBLE_SNOOPER', f'btsnoop:file:{ns.log_path}/{_BUMBLE_BTSNOOP_FMT}')
 
     # Run the test suite.
-    suite_runner.run_suite(_TEST_CLASSES_LIST, argv)  # type: ignore
+    suite_runner.run_suite(get_complete_test_class_list(), argv)  # type: ignore
