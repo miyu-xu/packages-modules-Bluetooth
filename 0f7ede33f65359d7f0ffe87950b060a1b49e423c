@@ -22,6 +22,23 @@
       },
       "revId": "0f7ede33f65359d7f0ffe87950b060a1b49e423c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35eb7c86_afbe0447",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-03T01:10:19Z",
+      "side": 1,
+      "message": "`return GATT_WRITE_NOT_PERMIT;` to keep the previous semantics for characteristics that are not `GATT_UUID_CHAR_CLIENT_CONFIG`",
+      "revId": "0f7ede33f65359d7f0ffe87950b060a1b49e423c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
