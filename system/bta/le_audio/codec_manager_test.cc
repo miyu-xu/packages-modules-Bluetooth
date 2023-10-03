@@ -291,7 +291,7 @@ TEST_F(CodecManagerTestAdsp, test_capabilities_none) {
   // Verify every context
   for (::le_audio::types::LeAudioContextType ctx_type :
        ::le_audio::types::kLeAudioContextAllTypesArray) {
-    ASSERT_EQ(nullptr, codec_manager->GetOffloadCodecConfig(ctx_type));
+    ASSERT_EQ(nullptr, codec_manager->GetCodecConfig(ctx_type));
   }
 }
 
@@ -316,7 +316,7 @@ TEST_F(CodecManagerTestAdsp, test_capabilities) {
             {bluetooth::le_audio::LE_AUDIO_CODEC_INDEX_SOURCE_LC3}};
     codec_manager->Start(offloading_preference);
 
-    auto cfg = codec_manager->GetOffloadCodecConfig(test_context);
+    auto cfg = codec_manager->GetCodecConfig(test_context);
     ASSERT_NE(nullptr, cfg);
     ASSERT_EQ(offload_capabilities.size(), cfg->size());
 
@@ -326,7 +326,7 @@ TEST_F(CodecManagerTestAdsp, test_capabilities) {
 }
 
 // TODO: Add the unit tests for:
-// GetBroadcastOffloadConfig
+// GetBroadcastConfig
 // UpdateBroadcastConnHandle
 
 /*----------------- HOST codec manager tests ------------------*/
