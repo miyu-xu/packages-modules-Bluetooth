@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51f82a16_c531a789",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 58
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-10-03T17:12:31Z",
+      "side": 1,
+      "message": "It seems like we should have:\n\n```\nuint16_t count_ \u003d 0;\n```\n\nlike we have for the other structs, to prevent these fields from being uninitialized.",
+      "revId": "43ed9717c8be4b131e8e73c84136bfb91003e108",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
