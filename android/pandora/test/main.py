@@ -37,7 +37,6 @@ _TEST_CLASSES_LIST = [
     hfpclient_test.HfpClientTest,
 ]
 
-
 def _parse_cli_args() -> Tuple[Namespace, List[str]]:
     parser = argparse.ArgumentParser(description='Avatar test runner.')
     parser.add_argument('-o', '--log_path', type=str, metavar='<PATH>', help='Path to the test configuration file.')
