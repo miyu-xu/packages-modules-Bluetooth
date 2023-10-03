@@ -1220,6 +1220,19 @@ class GAPProxy(ProfileProxy):
 
         return "OK"
 
+    @assert_description
+    def _mmi_505(self, **kwargs):
+        """
+        Please read Encrypted Data Key Material Characteristic
+        """
+
+        def secure():
+            self.security.Secure(connection=self.connection, le=LE_LEVEL3)
+
+        Thread(target=secure).start()
+
+        return "OK"
+
     def _auto_confirm_requests(self, times=None):
 
         def task():
