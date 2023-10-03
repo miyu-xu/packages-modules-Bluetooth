@@ -338,18 +338,18 @@ struct FourByteStruct : UnusedParentStruct (struct_type = FOUR_BYTE) {
 
 struct AtLeastFourByteStruct : UnusedParentStruct (struct_type = AT_LEAST_FOUR_BYTE) {
   four_bytes : 32,
-  struct_type : StructType,
+  inner_struct_type : StructType,
   _body_,
 }
 
-struct OnlyFourByteStruct : AtLeastFourByteStruct (struct_type = ZERO_BYTE) {
+struct OnlyFourByteStruct : AtLeastFourByteStruct (inner_struct_type = ZERO_BYTE) {
 }
 
-struct SixByteStruct : AtLeastFourByteStruct (struct_type = TWO_BYTE) {
+struct SixByteStruct : AtLeastFourByteStruct (inner_struct_type = TWO_BYTE) {
   two_more_bytes : 16,
 }
 
-struct EightByteStruct : AtLeastFourByteStruct (struct_type = FOUR_BYTE) {
+struct EightByteStruct : AtLeastFourByteStruct (inner_struct_type = FOUR_BYTE) {
   four_more_bytes : 32,
 }
 
@@ -443,11 +443,11 @@ struct FourByteStructNoZero : UnusedParentStructNoZero (struct_type = FOUR_BYTE,
 
 struct AtLeastFourByteStructNoZero : UnusedParentStructNoZero (struct_type = AT_LEAST_FOUR_BYTE) {
   four_bytes : 32,
-  struct_type : StructTypeNoZero,
+  inner_struct_type : StructTypeNoZero,
   _body_,
 }
 
-struct EightByteStructNoZero : AtLeastFourByteStructNoZero (struct_type = FOUR_BYTE, length = 9) {
+struct EightByteStructNoZero : AtLeastFourByteStructNoZero (inner_struct_type = FOUR_BYTE, length = 9) {
   four_more_bytes : 32,
 }
 
