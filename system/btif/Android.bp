@@ -513,6 +513,9 @@ cc_test {
     include_dirs: btifCommonIncludes,
     srcs: [
         ":TestCommonLogMsg",
+        ":TestCommonMockFunctions",
+        ":TestFakeOsi",
+        ":TestMockStack",
         "test/btif_hf_client_service_test.cc",
     ],
     header_libs: ["libbluetooth_headers"],
@@ -522,10 +525,10 @@ cc_test {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libchrome",
         "libcom.android.sysprop.bluetooth",
-        "libosi",
     ],
     cflags: [
         "-DBUILDCFG",
