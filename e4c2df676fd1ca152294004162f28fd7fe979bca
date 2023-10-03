@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e83d6e4_accab999",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-03T22:57:14Z",
+      "side": 1,
+      "message": "We should push this into the queue and throw it if it\u0027s a throwable",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cca0ff2f_b20d9480",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-03T22:57:14Z",
+      "side": 1,
+      "message": "We need to interrupt the `next` call when `onCompleted` is called, I suggest to push `null` into the queue to signal that (and Handle it in Next)",
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40b17f70_f6999863",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-03T22:57:14Z",
+      "side": 1,
+      "message": "Remove, RuntimeException are unchecked exceptions",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 52
+      },
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28647dec_2d70e8e8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-03T22:57:14Z",
+      "side": 1,
+      "message": "`return true` here, `hasNext` should not throw the exception.",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 47
+      },
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2109563_44be44f4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-03T22:57:14Z",
+      "side": 1,
+      "message": "```suggestion\n        return !mCompleted || !mQueue.isEmpty();\n```",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 47
+      },
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
