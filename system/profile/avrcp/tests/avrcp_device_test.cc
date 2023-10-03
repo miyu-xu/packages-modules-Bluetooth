@@ -1376,7 +1376,7 @@ TEST_F(AvrcpDeviceTest, volumeChangedTest) {
 
   EXPECT_CALL(vol_interface, DeviceConnected(test_device->GetAddress(), _))
       .Times(1)
-      .WillOnce(InvokeCb<1>(0x30));
+      .WillOnce(InvokeCb<1>(0x30, false));
   auto set_vol = SetAbsoluteVolumeRequestBuilder::MakeBuilder(0x30);
   EXPECT_CALL(response_cb, Call(_, false, matchPacket(std::move(set_vol))))
       .Times(1);
@@ -1415,7 +1415,7 @@ TEST_F(AvrcpDeviceTest, volumeChangedNonActiveTest) {
 
   EXPECT_CALL(vol_interface, DeviceConnected(test_device->GetAddress(), _))
       .Times(1)
-      .WillOnce(InvokeCb<1>(0x30));
+      .WillOnce(InvokeCb<1>(0x30, false));
   auto set_vol = SetAbsoluteVolumeRequestBuilder::MakeBuilder(0x30);
   EXPECT_CALL(response_cb, Call(_, false, matchPacket(std::move(set_vol))))
       .Times(1);
@@ -1465,8 +1465,21 @@ TEST_F(AvrcpDeviceTest, setVolumeOnceTest) {
   EXPECT_CALL(response_cb, Call(_, false, matchPacket(std::move(set_abs_vol))))
       .Times(1);
 
-  test_device->SetVolume(vol);
-  test_device->SetVolume(vol);
+  test_device->SetVolume(vol, false);
+  test_device->SetVolume(vol, false);
+}
+
+TEST_F(AvrcpDeviceTest, setVolumeForceUpdate) {
+  int vol = 0x48;
+
+  auto set_abs_vol = SetAbsoluteVolumeRequestBuilder::MakeBuilder(vol);
+
+  // Ensure that SetVolume is called twice.
+  EXPECT_CALL(response_cb, Call(_, false, matchPacket(std::move(set_abs_vol))))
+      .Times(2);
+
+  test_device->SetVolume(vol, true);
+  test_device->SetVolume(vol, true);
 }
 
 TEST_F(AvrcpDeviceTest, playPushedActiveDeviceTest) {

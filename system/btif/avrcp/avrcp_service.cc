@@ -276,8 +276,8 @@ class VolumeInterfaceWrapper : public VolumeInterface {
   }
 
   void DeviceConnected(const RawAddress& bdaddr, VolumeChangedCb cb) override {
-    auto cb_lambda = [](VolumeChangedCb cb, int8_t volume) {
-      do_in_main_thread(FROM_HERE, base::BindOnce(cb, volume));
+    auto cb_lambda = [](VolumeChangedCb cb, int8_t volume, bool force_send) {
+      do_in_main_thread(FROM_HERE, base::BindOnce(cb, volume, false));
     };
 
     auto bound_cb = base::Bind(cb_lambda, cb);

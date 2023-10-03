@@ -63,12 +63,12 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
     boolean mAbsoluteVolumeSupported = false;
 
     static int avrcpToSystemVolume(int avrcpVolume) {
-        return (int) Math.floor((double) avrcpVolume * sDeviceMaxVolume / AVRCP_MAX_VOL);
+        return (int) Math.round((double) avrcpVolume * sDeviceMaxVolume / AVRCP_MAX_VOL);
     }
 
     static int systemToAvrcpVolume(int deviceVolume) {
-        int avrcpVolume = (int) Math.ceil((double) deviceVolume
-                * AVRCP_MAX_VOL / sDeviceMaxVolume);
+        int avrcpVolume =
+                (int) Math.round((double) deviceVolume * AVRCP_MAX_VOL / sDeviceMaxVolume);
         if (avrcpVolume > 127) avrcpVolume = 127;
         return avrcpVolume;
     }
@@ -96,7 +96,8 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
             int avrcpVolume = systemToAvrcpVolume(savedVolume);
             mVolumeEventLogger.logd(TAG,
                     "switchVolumeDevice: Updating device volume: avrcpVolume=" + avrcpVolume);
-            mNativeInterface.sendVolumeChanged(device.getAddress(), avrcpVolume);
+            // As we just connected, send the volume even if it's the same as before disconnection.
+            mNativeInterface.sendVolumeChanged(device.getAddress(), avrcpVolume, true);
         }
     }
 
@@ -204,7 +205,7 @@ class AvrcpVolumeManager extends AudioDeviceCallback {
                         + " avrcpVolume=" + avrcpVolume
                         + " deviceVolume=" + deviceVolume
                         + " sDeviceMaxVolume=" + sDeviceMaxVolume);
-        mNativeInterface.sendVolumeChanged(device.getAddress(), avrcpVolume);
+        mNativeInterface.sendVolumeChanged(device.getAddress(), avrcpVolume, false);
         storeVolumeForDevice(device);
     }
 

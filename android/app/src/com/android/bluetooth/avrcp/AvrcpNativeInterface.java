@@ -258,10 +258,10 @@ public class AvrcpNativeInterface {
         mAvrcpService.deviceDisconnected(device);
     }
 
-    void sendVolumeChanged(String bdaddr, int volume) {
+    void sendVolumeChanged(String bdaddr, int volume, boolean forceSend) {
         d("sendVolumeChanged: volume=" + volume);
         String identityAddress = mAdapterService.getIdentityAddress(bdaddr);
-        sendVolumeChangedNative(identityAddress, volume);
+        sendVolumeChangedNative(identityAddress, volume, forceSend);
     }
 
     void setVolume(int volume) {
@@ -380,7 +380,7 @@ public class AvrcpNativeInterface {
 
     private native boolean disconnectDeviceNative(String bdaddr);
 
-    private native void sendVolumeChangedNative(String bdaddr, int volume);
+    private native void sendVolumeChangedNative(String bdaddr, int volume, boolean forceSend);
 
     private native void setBipClientStatusNative(String bdaddr, boolean connected);
 

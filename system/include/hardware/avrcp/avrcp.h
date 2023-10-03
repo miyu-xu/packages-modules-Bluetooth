@@ -153,7 +153,8 @@ class VolumeInterface {
  public:
   // TODO (apanicke): Investigate the best value type for volume. Right now it
   // is a value from 0-127 because thats what AVRCP uses.
-  using VolumeChangedCb = base::Callback<void(int8_t volume)>;
+  // Use force_send to bypass equal volume check.
+  using VolumeChangedCb = base::Callback<void(int8_t volume, bool force_send)>;
 
   // Indicate that a device has been connected that does not support absolute
   // volume.

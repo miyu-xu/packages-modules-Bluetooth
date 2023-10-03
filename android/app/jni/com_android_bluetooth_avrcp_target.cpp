@@ -879,7 +879,8 @@ static void volumeDeviceDisconnected(const RawAddress& address) {
 }
 
 static void sendVolumeChangedNative(JNIEnv* env, jobject /* object */,
-                                    jstring address, jint volume) {
+                                    jstring address, jint volume,
+                                    jboolean force_send) {
   const char* tmp_addr = env->GetStringUTFChars(address, 0);
   RawAddress bdaddr;
   bool success = RawAddress::FromString(tmp_addr, bdaddr);
@@ -889,7 +890,7 @@ static void sendVolumeChangedNative(JNIEnv* env, jobject /* object */,
 
   ALOGD("%s", __func__);
   if (volumeCallbackMap.find(bdaddr) != volumeCallbackMap.end()) {
-    volumeCallbackMap.find(bdaddr)->second.Run(volume & 0x7F);
+    volumeCallbackMap.find(bdaddr)->second.Run(volume & 0x7F, force_send);
   }
 }
 
@@ -1060,7 +1061,7 @@ int register_com_android_bluetooth_avrcp_target(JNIEnv* env) {
        (void*)connectDeviceNative},
       {"disconnectDeviceNative", "(Ljava/lang/String;)Z",
        (void*)disconnectDeviceNative},
-      {"sendVolumeChangedNative", "(Ljava/lang/String;I)V",
+      {"sendVolumeChangedNative", "(Ljava/lang/String;IZ)V",
        (void*)sendVolumeChangedNative},
       {"setBipClientStatusNative", "(Ljava/lang/String;Z)V",
        (void*)setBipClientStatusNative},
