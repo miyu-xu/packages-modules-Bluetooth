@@ -179,9 +179,9 @@ class L2capClassicModuleFacadeService : public L2capClassicModuleFacade::Service
   }
 
   ::grpc::Status SecurityLinkHold(
-      ::grpc::ServerContext* context,
+      ::grpc::ServerContext* /* context */,
       const blueberry::facade::BluetoothAddress* request,
-      ::google::protobuf::Empty* response) override {
+      ::google::protobuf::Empty* /* response */) override {
     hci::Address peer;
     ASSERT(hci::Address::FromString(request->address(), peer));
     auto entry = security_link_map_.find(peer);
@@ -194,9 +194,9 @@ class L2capClassicModuleFacadeService : public L2capClassicModuleFacade::Service
   }
 
   ::grpc::Status SecurityLinkEnsureAuthenticated(
-      ::grpc::ServerContext* context,
+      ::grpc::ServerContext* /* context */,
       const blueberry::facade::BluetoothAddress* request,
-      ::google::protobuf::Empty* response) override {
+      ::google::protobuf::Empty* /* response */) override {
     hci::Address peer;
     ASSERT(hci::Address::FromString(request->address(), peer));
     auto entry = security_link_map_.find(peer);
@@ -209,9 +209,9 @@ class L2capClassicModuleFacadeService : public L2capClassicModuleFacade::Service
   }
 
   ::grpc::Status SecurityLinkRelease(
-      ::grpc::ServerContext* context,
+      ::grpc::ServerContext* /* context */,
       const blueberry::facade::BluetoothAddress* request,
-      ::google::protobuf::Empty* response) override {
+      ::google::protobuf::Empty* /* response */) override {
     hci::Address peer;
     ASSERT(hci::Address::FromString(request->address(), peer));
     outgoing_pairing_remote_devices_.erase(peer);
@@ -225,9 +225,9 @@ class L2capClassicModuleFacadeService : public L2capClassicModuleFacade::Service
   }
 
   ::grpc::Status SecurityLinkDisconnect(
-      ::grpc::ServerContext* context,
+      ::grpc::ServerContext* /* context */,
       const blueberry::facade::BluetoothAddress* request,
-      ::google::protobuf::Empty* response) override {
+      ::google::protobuf::Empty* /* response */) override {
     hci::Address peer;
     ASSERT(hci::Address::FromString(request->address(), peer));
     outgoing_pairing_remote_devices_.erase(peer);
@@ -274,7 +274,7 @@ class L2capClassicModuleFacadeService : public L2capClassicModuleFacade::Service
         hci_status, remote, LinkSecurityInterfaceCallbackEventType::ON_AUTHENTICATION_COMPLETE);
   }
 
-  void OnEncryptionChange(hci::Address remote, bool encrypted) override {
+  void OnEncryptionChange(hci::Address remote, bool /* encrypted */) override {
     SecurityConnectionEventOccurred(
         hci::ErrorCode::SUCCESS, remote, LinkSecurityInterfaceCallbackEventType::ON_ENCRYPTION_CHANGE);
   }
@@ -330,8 +330,9 @@ class L2capClassicModuleFacadeService : public L2capClassicModuleFacade::Service
       channel_->Close();
     }
 
-    void on_l2cap_service_registration_complete(DynamicChannelManager::RegistrationResult registration_result,
-                                                std::unique_ptr<DynamicChannelService> service) {}
+    void on_l2cap_service_registration_complete(
+        DynamicChannelManager::RegistrationResult /* registration_result */,
+        std::unique_ptr<DynamicChannelService> /* service */) {}
 
     // invoked from Facade Handler
     void on_connection_open(std::unique_ptr<DynamicChannel> channel) {
@@ -381,7 +382,7 @@ class L2capClassicModuleFacadeService : public L2capClassicModuleFacade::Service
       }
     }
 
-    void on_connect_fail(DynamicChannelManager::ConnectionResult result) {}
+    void on_connect_fail(DynamicChannelManager::ConnectionResult /* result */) {}
 
     void on_incoming_packet() {
       auto packet = channel_->GetQueueUpEnd()->TryDequeue();
