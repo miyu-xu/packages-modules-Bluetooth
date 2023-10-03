@@ -13,9 +13,11 @@
 # limitations under the License.
 
 from .misc import br_edr_service_access_tests
+from .br_edr.legacy import tests as bredr_legacy_tests
 
 _test_class_list = [
     br_edr_service_access_tests.ServiceAccessTempBondingTest,
+    bredr_legacy_tests.BREDRLegacyTestClass,
 ]
 
 def get_test_class_list():
