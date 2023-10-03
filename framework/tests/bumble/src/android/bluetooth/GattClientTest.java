@@ -40,7 +40,6 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
-import io.grpc.stub.StreamObserver;
 
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -193,23 +192,7 @@ public class GattClientTest {
                         .setConnectable(true)
                         .build();
 
-        StreamObserver<AdvertiseResponse> responseObserver =
-                new StreamObserver<>() {
-                    @Override
-                    public void onNext(AdvertiseResponse response) {
-                        Log.i(TAG, "advertise observer: onNext");
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e(TAG, "advertise observer: on error " + e);
-                    }
-
-                    @Override
-                    public void onCompleted() {
-                        Log.i(TAG, "advertise observer: on completed");
-                    }
-                };
+        StreamObserverIterator<AdvertiseResponse> responseObserver = new StreamObserverIterator<>();
 
         mBumble.host().advertise(request, responseObserver);
     }
