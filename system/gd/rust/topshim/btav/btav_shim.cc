@@ -164,7 +164,7 @@ class VolumeInterfaceImpl : public VolumeInterface {
   void SetDeviceVolume(int8_t volume) {
     if (!volumeCb || volume < 0) return;
 
-    volumeCb.Run(volume);
+    volumeCb.Run(volume, false);
   }
 
  private:

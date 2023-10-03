@@ -297,7 +297,7 @@ class Device {
       uint8_t label, const std::shared_ptr<RegisterNotificationResponse>& pkt);
 
   // SET VOLUME
-  virtual void SetVolume(int8_t volume);
+  virtual void SetVolume(int8_t volume, bool force_send);
 
   /**
    * This function is called by Avrcp::ConnectionHandler to signify that

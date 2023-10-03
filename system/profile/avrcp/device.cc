@@ -617,10 +617,17 @@ void Device::HandleVolumeChanged(
   volume_interface_->SetVolume(volume_);
 }
 
-void Device::SetVolume(int8_t volume) {
+/**
+ * Sends desired volume to remote device.
+ *
+ * This is also called on device connection, so the new volume might be the same
+ * as the previous volume but we still want to inform the remote device to be in
+ * sync.
+ */
+void Device::SetVolume(int8_t volume, bool force_send) {
   // TODO (apanicke): Implement logic for Multi-AVRCP
   DEVICE_VLOG(1) << __func__ << ": volume=" << (int)volume;
-  if (volume == volume_) {
+  if (!force_send && volume == volume_) {
     DEVICE_LOG(WARNING)
         << __func__ << ": Ignoring volume change same as current volume level";
     return;
