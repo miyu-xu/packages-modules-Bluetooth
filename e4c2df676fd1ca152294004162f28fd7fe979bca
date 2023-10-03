@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2377b94a_23af0e01",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-03T23:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e83d6e4_accab999",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 19
+      },
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cca0ff2f_b20d9480",
@@ -43,6 +67,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a1100359_5066cdac",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-03T23:32:00Z",
+      "side": 1,
+      "message": "From the BlockingQueue java documentation:\nhttps://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html\n\n```\nA BlockingQueue does not accept null elements. Implementations throw NullPointerException on attempts to add, put or offer a null. A null is used as a sentinel value to indicate failure of poll operations. \n```\n\nWe could insert a specific error or a specific value instead ?",
+      "parentUuid": "cca0ff2f_b20d9480",
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40b17f70_f6999863",
         "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
         "patchSetId": 1
@@ -54,6 +96,30 @@
       "writtenOn": "2023-10-03T22:57:14Z",
       "side": 1,
       "message": "Remove, RuntimeException are unchecked exceptions",
+      "range": {
+        "startLine": 46,
+        "startChar": 28,
+        "endLine": 46,
+        "endChar": 52
+      },
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0837681a_54a26c60",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-03T23:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40b17f70_f6999863",
       "range": {
         "startLine": 46,
         "startChar": 28,
@@ -87,6 +153,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc333a77_db12e92c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-03T23:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28647dec_2d70e8e8",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 47
+      },
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5681bbd4_23202ac6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-03T23:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28647dec_2d70e8e8",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 47
+      },
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2109563_44be44f4",
@@ -100,6 +214,30 @@
       "writtenOn": "2023-10-03T22:57:14Z",
       "side": 1,
       "message": "```suggestion\n        return !mCompleted || !mQueue.isEmpty();\n```",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 47
+      },
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f415c75e_3ab50bfb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-03T23:32:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2109563_44be44f4",
       "range": {
         "startLine": 50,
         "startChar": 8,
