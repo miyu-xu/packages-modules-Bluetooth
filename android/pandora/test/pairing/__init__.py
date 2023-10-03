@@ -13,10 +13,11 @@
 # limitations under the License.
 
 from pairing.br_edr.misc import service_access_tests
-
+from pairing.br_edr.legacy import tests as br_edr_legacy_tests
 from .smp_test import SmpTest
 
 _test_class_list = [
+    br_edr_legacy_tests.BREDRLegacyTestClass,
     service_access_tests.ServiceAccessTempBondingTest,
     SmpTest,
 ]
