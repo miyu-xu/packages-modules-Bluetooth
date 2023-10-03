@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d314cd71_4e3ae858",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-03T18:13:47Z",
+      "side": 1,
+      "message": "Would you like us to move the entire functionality that involves decryption to le_scanning_manager.cc or only move the call to ProcessEncryptedData() to after we have retrieved the entire report in le_scanning_manager.cc?",
+      "parentUuid": "1102c810_db9fdb96",
+      "revId": "c02b8f936ca78139a8326402982887bfbd21b03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f5eabbb9_eec744cc",
         "filename": "system/gd/hci/le_scanning_reassembler.cc",
         "patchSetId": 5
