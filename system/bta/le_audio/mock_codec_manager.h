@@ -31,7 +31,7 @@ class MockCodecManager {
   virtual ~MockCodecManager() = default;
 
   MOCK_METHOD((le_audio::types::CodecLocation), GetCodecLocation, (), (const));
-  MOCK_METHOD((bool), IsOffloadDualBiDirSwbSupported, (), (const));
+  MOCK_METHOD((bool), IsDualBiDirSwbSupported, (), (const));
   MOCK_METHOD((void), UpdateActiveAudioConfig,
               (const le_audio::types::BidirectionalPair<
                    le_audio::stream_parameters>& stream_params,
@@ -39,11 +39,15 @@ class MockCodecManager {
                std::function<void(const ::le_audio::offload_config& config,
                                   uint8_t direction)>
                    update_receiver));
-  MOCK_METHOD((le_audio::set_configurations::AudioSetConfigurations*),
-              GetOffloadCodecConfig,
-              (le_audio::types::LeAudioContextType ctx_type), (const));
-  MOCK_METHOD((le_audio::broadcast_offload_config*), GetBroadcastOffloadConfig,
-              (), (const));
+  MOCK_METHOD((const le_audio::set_configurations::AudioSetConfigurations*),
+              GetCodecConfig, (le_audio::types::LeAudioContextType ctx_type),
+              (const));
+  MOCK_METHOD(
+      (bool), CheckCodecConfigIsBiDirSwb,
+      (const le_audio::set_configurations::AudioSetConfiguration& config),
+      (const));
+  MOCK_METHOD((le_audio::broadcast_offload_config*), GetBroadcastConfig, (),
+              (const));
   MOCK_METHOD(
       (void), UpdateBroadcastConnHandle,
       (const std::vector<uint16_t>& conn_handle,

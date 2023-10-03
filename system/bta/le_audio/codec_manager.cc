@@ -127,8 +127,16 @@ struct codec_manager_impl {
   }
   CodecLocation GetCodecLocation(void) const { return codec_location_; }
 
-  bool IsOffloadDualBiDirSwbSupported(void) const {
-    return offload_dual_bidirection_swb_supported_;
+  bool IsDualBiDirSwbSupported(void) const {
+    if (GetCodecLocation() == CodecLocation::ADSP) {
+      // Whether dual bidirection swb is supported for both software/offload
+      return offload_dual_bidirection_swb_supported_;
+    } else if (GetCodecLocation() == CodecLocation::HOST) {
+      // Whether dual bidirection swb is supported for software
+      return AudioSetConfigurationProvider::Get()->IsDualBiDirSwbSupported();
+    }
+
+    return false;
   }
 
   void UpdateActiveAudioConfig(
@@ -171,11 +179,26 @@ struct codec_manager_impl {
     }
   }
 
-  const AudioSetConfigurations* GetOffloadCodecConfig(
+  const AudioSetConfigurations* GetCodecConfig(
       types::LeAudioContextType ctx_type) {
-    return context_type_offload_config_map_.count(ctx_type)
-               ? &context_type_offload_config_map_[ctx_type]
-               : nullptr;
+    if (GetCodecLocation() == le_audio::types::CodecLocation::ADSP) {
+      LOG_VERBOSE("Get offload config for the context type: %d", (int)ctx_type);
+
+      // TODO: Need to have a mechanism to switch to software session if offload
+      // doesn't support.
+      return context_type_offload_config_map_.count(ctx_type)
+                 ? &context_type_offload_config_map_[ctx_type]
+                 : nullptr;
+    }
+
+    LOG_VERBOSE("Get software config for the context type: %d", (int)ctx_type);
+    return AudioSetConfigurationProvider::Get()->GetConfigurations(ctx_type);
+  }
+
+  bool CheckCodecConfigIsBiDirSwb(
+      const ::le_audio::set_configurations::AudioSetConfiguration& config) {
+    return AudioSetConfigurationProvider::Get()->CheckConfigurationIsBiDirSwb(
+        config);
   }
 
   void UpdateSupportedBroadcastConfig(
@@ -224,7 +247,7 @@ struct codec_manager_impl {
     }
   }
 
-  const broadcast_offload_config* GetBroadcastOffloadConfig() {
+  const broadcast_offload_config* GetBroadcastConfig() {
     if (supported_broadcast_config.empty()) {
       LOG_ERROR("There is no valid broadcast offload config");
       return nullptr;
@@ -575,12 +598,12 @@ types::CodecLocation CodecManager::GetCodecLocation(void) const {
   return pimpl_->codec_manager_impl_->GetCodecLocation();
 }
 
-bool CodecManager::IsOffloadDualBiDirSwbSupported(void) const {
+bool CodecManager::IsDualBiDirSwbSupported(void) const {
   if (!pimpl_->IsRunning()) {
     return false;
   }
 
-  return pimpl_->codec_manager_impl_->IsOffloadDualBiDirSwbSupported();
+  return pimpl_->codec_manager_impl_->IsDualBiDirSwbSupported();
 }
 
 void CodecManager::UpdateActiveAudioConfig(
@@ -593,19 +616,27 @@ void CodecManager::UpdateActiveAudioConfig(
         stream_params, delays_ms, update_receiver);
 }
 
-const AudioSetConfigurations* CodecManager::GetOffloadCodecConfig(
+const AudioSetConfigurations* CodecManager::GetCodecConfig(
     types::LeAudioContextType ctx_type) {
   if (pimpl_->IsRunning()) {
-    return pimpl_->codec_manager_impl_->GetOffloadCodecConfig(ctx_type);
+    return pimpl_->codec_manager_impl_->GetCodecConfig(ctx_type);
   }
 
   return nullptr;
 }
 
-const ::le_audio::broadcast_offload_config*
-CodecManager::GetBroadcastOffloadConfig() {
+bool CodecManager::CheckCodecConfigIsBiDirSwb(
+    const ::le_audio::set_configurations::AudioSetConfiguration& config) const {
   if (pimpl_->IsRunning()) {
-    return pimpl_->codec_manager_impl_->GetBroadcastOffloadConfig();
+    return pimpl_->codec_manager_impl_->CheckCodecConfigIsBiDirSwb(config);
+  }
+
+  return false;
+}
+
+const ::le_audio::broadcast_offload_config* CodecManager::GetBroadcastConfig() {
+  if (pimpl_->IsRunning()) {
+    return pimpl_->codec_manager_impl_->GetBroadcastConfig();
   }
 
   return nullptr;

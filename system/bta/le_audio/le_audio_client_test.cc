@@ -1438,6 +1438,12 @@ class UnicastTestNoInit : public Test {
     ASSERT_NE(mock_codec_manager_, nullptr);
     ON_CALL(*mock_codec_manager_, GetCodecLocation())
         .WillByDefault(Return(location));
+    // Regardless of the codec location, return all the possible configurations
+    ON_CALL(*mock_codec_manager_, GetCodecConfig)
+        .WillByDefault(Invoke([](types::LeAudioContextType ctx_type) {
+          return le_audio::AudioSetConfigurationProvider::Get()
+              ->GetConfigurations(ctx_type);
+        }));
   }
 
   void TearDown() override {
@@ -1832,7 +1838,7 @@ class UnicastTestNoInit : public Test {
     do_in_main_thread(FROM_HERE,
                       base::BindOnce(
                           [](LeAudioSourceAudioHalClient::Callbacks* cb) {
-                            cb->OnAudioResume();
+                            if (cb) cb->OnAudioResume();
                           },
                           unicast_source_hal_cb_));
 
