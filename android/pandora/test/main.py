@@ -23,6 +23,7 @@ import gatt_test
 import hfpclient_test
 import sdp_test
 import smp_test
+import pairing_tests.br_edr.legacy.legacy_pairing_tests
 
 _TEST_CLASSES_LIST = [
     cases.host_test.HostTest,
@@ -34,6 +35,7 @@ _TEST_CLASSES_LIST = [
     gatt_test.GattTest,
     asha_test.AshaTest,
     hfpclient_test.HfpClientTest,
+    pairing_tests.br_edr.legacy.legacy_pairing_tests.LegacyTestClass,
 ]
 
 
