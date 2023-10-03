@@ -23,6 +23,7 @@ import gatt_test
 import hfpclient_test
 import sdp_test
 import smp_test
+import pairing_tests.br_edr.legacy.tests as bredr_legacy_tests
 
 _TEST_CLASSES_LIST = [
     avatar.cases.host_test.HostTest,
@@ -34,8 +35,8 @@ _TEST_CLASSES_LIST = [
     gatt_test.GattTest,
     asha_test.AshaTest,
     hfpclient_test.HfpClientTest,
+    bredr_legacy_tests.BREDRLegacyTestClass,
 ]
-
 
 def _parse_cli_args() -> Tuple[Namespace, List[str]]:
     parser = argparse.ArgumentParser(description='Avatar test runner.')
