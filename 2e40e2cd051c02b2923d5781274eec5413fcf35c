@@ -348,6 +348,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc28cba5_eb117f41",
+        "filename": "system/gd/hci/le_advertising_manager.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-03T00:01:32Z",
+      "side": 1,
+      "message": "Gotcha, thanks Henri. I haven\u0027t read the spec to closely on this yet.\n\nWill resolve this one.",
+      "parentUuid": "8e46820e_57eadb7d",
+      "range": {
+        "startLine": 38,
+        "startChar": 23,
+        "endLine": 38,
+        "endChar": 25
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3c48dcf6_9ff0f1f4",
