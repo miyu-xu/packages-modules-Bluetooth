@@ -30,6 +30,7 @@ _PY_SOURCES=(
 
 _PANDORA_PYTHON_PATHS=(
   "${_BT_ROOT}/pandora/server/"
+  "${_TEST_ROOT}/"
   "${ANDROID_BUILD_TOP}/external/pandora/avatar/"
   "${ANDROID_BUILD_TOP}/external/python/bumble/"
   "${ANDROID_BUILD_TOP}/external/python/mobly/"
