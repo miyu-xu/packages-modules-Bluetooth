@@ -12,10 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from .br_edr.legacy import tests as br_edr_legacy_tests
 from .misc import br_edr_service_access_tests
 from .smp_test import SmpTest
 
 _test_class_list = [
+    br_edr_legacy_tests.BREDRLegacyTestClass,
     br_edr_service_access_tests.ServiceAccessTempBondingTest,
     SmpTest,
 ]
