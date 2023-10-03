@@ -33,10 +33,25 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG should never be NULL");
 
 #if defined(FUZZ_TARGET)
 
-#define LOG_VERBOSE_INT(...)
-#define LOG_DEBUG_INT(...)
-#define LOG_INFO_INT(...)
-#define LOG_WARN_INT(...)
+#define LOG_VERBOSE_INT(...)      \
+  do {                            \
+    fprintf(stderr, __VA_ARGS__); \
+  } while (false)
+
+#define LOG_DEBUG_INT(...)        \
+  do {                            \
+    fprintf(stderr, __VA_ARGS__); \
+  } while (false)
+
+#define LOG_INFO_INT(...)         \
+  do {                            \
+    fprintf(stderr, __VA_ARGS__); \
+  } while (false)
+
+#define LOG_WARN_INT(...)         \
+  do {                            \
+    fprintf(stderr, __VA_ARGS__); \
+  } while (false)
 
 #define LOG_ERROR_INT(...) do {     \
   fprintf(stderr, __VA_ARGS__);     \
