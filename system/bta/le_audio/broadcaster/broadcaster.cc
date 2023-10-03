@@ -464,66 +464,27 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
       subgroup_ltvs.push_back(ltv);
     }
 
-    if (CodecManager::GetInstance()->GetCodecLocation() ==
-        CodecLocation::ADSP) {
-      auto offload_config =
-          CodecManager::GetInstance()->GetBroadcastOffloadConfig();
-      if (offload_config == nullptr) {
-        LOG_ERROR("No valid broadcast offload config");
-        return;
-      }
-      BroadcastCodecWrapper codec_config(
-          {.coding_format = le_audio::types::kLeAudioCodingFormatLC3,
-           .vendor_company_id =
-               le_audio::types::kLeAudioVendorCompanyIdUndefined,
-           .vendor_codec_id = le_audio::types::kLeAudioVendorCodecIdUndefined},
-          {.num_channels =
-               static_cast<uint8_t>(offload_config->stream_map.size()),
-           .sample_rate = offload_config->sampling_rate,
-           .bits_per_sample = offload_config->bits_per_sample,
-           .data_interval_us = offload_config->frame_duration},
-          offload_config->octets_per_frame);
-      BroadcastQosConfig qos_config(offload_config->retransmission_number,
-                                    offload_config->max_transport_latency);
-
-      BroadcastStateMachineConfig msg = {
-          .is_public = is_public,
-          .broadcast_id = broadcast_id,
-          .broadcast_name = broadcast_name,
-          .streaming_phy = GetStreamingPhy(),
-          .codec_wrapper = codec_config,
-          .qos_config = qos_config,
-          .announcement = prepareBasicAnnouncement(codec_config, subgroup_ltvs),
-          .broadcast_code = std::move(broadcast_code)};
-      if (is_public) {
-        msg.public_announcement =
-            preparePublicAnnouncement(public_features, public_ltv);
-      }
-      pending_broadcasts_.push_back(
-          std::move(BroadcastStateMachine::CreateInstance(std::move(msg))));
-    } else {
-      auto codec_qos_pair =
-          le_audio::broadcaster::getStreamConfigForContext(context_type);
-      BroadcastStateMachineConfig msg = {
-          .is_public = is_public,
-          .broadcast_id = broadcast_id,
-          .broadcast_name = broadcast_name,
-          .streaming_phy = GetStreamingPhy(),
-          .codec_wrapper = codec_qos_pair.first,
-          .qos_config = codec_qos_pair.second,
-          .announcement =
-              prepareBasicAnnouncement(codec_qos_pair.first, subgroup_ltvs),
-          .broadcast_code = std::move(broadcast_code)};
-      if (is_public) {
-        msg.public_announcement =
-            preparePublicAnnouncement(public_features, public_ltv);
-      }
-      /* Create the broadcaster instance - we'll receive it's init state in the
-       * async callback
-       */
-      pending_broadcasts_.push_back(
-          std::move(BroadcastStateMachine::CreateInstance(std::move(msg))));
+    auto codec_qos_pair =
+        le_audio::broadcaster::getStreamConfigForContext(context_type);
+    BroadcastStateMachineConfig msg = {
+        .is_public = is_public,
+        .broadcast_id = broadcast_id,
+        .broadcast_name = broadcast_name,
+        .streaming_phy = GetStreamingPhy(),
+        .codec_wrapper = codec_qos_pair.first,
+        .qos_config = codec_qos_pair.second,
+        .announcement =
+            prepareBasicAnnouncement(codec_qos_pair.first, subgroup_ltvs),
+        .broadcast_code = std::move(broadcast_code)};
+    if (is_public) {
+      msg.public_announcement =
+          preparePublicAnnouncement(public_features, public_ltv);
     }
+    /* Create the broadcaster instance - we'll receive it's init state in the
+     * async callback
+     */
+    pending_broadcasts_.push_back(
+        std::move(BroadcastStateMachine::CreateInstance(std::move(msg))));
 
     LOG_INFO("CreateAudioBroadcast");
 

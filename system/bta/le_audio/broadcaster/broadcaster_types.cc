@@ -426,8 +426,30 @@ static const std::pair<const BroadcastCodecWrapper&, const BroadcastQosConfig&>
 static const std::pair<const BroadcastCodecWrapper&, const BroadcastQosConfig&>
     lc3_stereo_48_4_2 = {lc3_stereo_48_4, qos_config_4_65};
 
+// FIXME: Move the all static configurations to the CodecManager
 std::pair<const BroadcastCodecWrapper&, const BroadcastQosConfig&>
 getStreamConfigForContext(types::AudioContexts context) {
+  if (CodecManager::GetInstance()->GetCodecLocation() ==
+      types::CodecLocation::ADSP) {
+    auto offload_config = CodecManager::GetInstance()->GetBroadcastConfig();
+    if (offload_config != nullptr) {
+      BroadcastCodecWrapper codec_config(
+          {.coding_format = le_audio::types::kLeAudioCodingFormatLC3,
+           .vendor_company_id =
+               le_audio::types::kLeAudioVendorCompanyIdUndefined,
+           .vendor_codec_id = le_audio::types::kLeAudioVendorCodecIdUndefined},
+          {.num_channels =
+               static_cast<uint8_t>(offload_config->stream_map.size()),
+           .sample_rate = offload_config->sampling_rate,
+           .bits_per_sample = offload_config->bits_per_sample,
+           .data_interval_us = offload_config->frame_duration},
+          offload_config->codec_bitrate, offload_config->octets_per_frame);
+      BroadcastQosConfig qos_config(offload_config->retransmission_number,
+                                    offload_config->max_transport_latency);
+      return {codec_config, qos_config};
+    }
+  }
+
   const std::string* options =
       stack_config_get_interface()->get_pts_broadcast_audio_config_options();
   if (options) {

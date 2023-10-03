@@ -921,7 +921,7 @@ void LeAudioDeviceGroup::CigConfiguration::GenerateCisIds(
   }
 
   const set_configurations::AudioSetConfigurations* confs =
-      AudioSetConfigurationProvider::Get()->GetConfigurations(context_type);
+      CodecManager::GetInstance()->GetCodecConfig(context_type);
 
   uint8_t cis_count_bidir = 0;
   uint8_t cis_count_unidir_sink = 0;
@@ -1327,19 +1327,9 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
    * sampling rate matches with the sampling rate which is used
    * when all devices in the group are connected.
    */
-  bool dual_bidirection_swb_supported_ =
-      AudioSetConfigurationProvider::Get()->IsDualBiDirSwbSupported();
-  if (Size() > 1 &&
-      AudioSetConfigurationProvider::Get()->CheckConfigurationIsBiDirSwb(
-          *audio_set_conf)) {
-    if (!dual_bidirection_swb_supported_ ||
-        (CodecManager::GetInstance()->GetCodecLocation() ==
-             types::CodecLocation::ADSP &&
-         !CodecManager::GetInstance()->IsOffloadDualBiDirSwbSupported())) {
-      /* two conditions
-       * 1) dual bidirection swb is not supported for both software/offload
-       * 2) offload not supported
-       */
+  if (Size() > 1 && CodecManager::GetInstance()->CheckCodecConfigIsBiDirSwb(
+                        *audio_set_conf)) {
+    if (!CodecManager::GetInstance()->IsDualBiDirSwbSupported()) {
       return false;
     }
   }
@@ -1804,7 +1794,7 @@ const set_configurations::AudioSetConfiguration*
 LeAudioDeviceGroup::FindFirstSupportedConfiguration(
     LeAudioContextType context_type) const {
   const set_configurations::AudioSetConfigurations* confs =
-      AudioSetConfigurationProvider::Get()->GetConfigurations(context_type);
+      CodecManager::GetInstance()->GetCodecConfig(context_type);
 
   LOG_DEBUG("context type: %s,  number of connected devices: %d",
             bluetooth::common::ToString(context_type).c_str(),

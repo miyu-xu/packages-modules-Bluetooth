@@ -37,12 +37,12 @@ types::CodecLocation CodecManager::GetCodecLocation() const {
   return pimpl_->GetCodecLocation();
 }
 
-bool CodecManager::IsOffloadDualBiDirSwbSupported(void) const {
+bool CodecManager::IsDualBiDirSwbSupported(void) const {
   if (!pimpl_) {
     return false;
   }
 
-  return pimpl_->IsOffloadDualBiDirSwbSupported();
+  return pimpl_->IsDualBiDirSwbSupported();
 }
 
 void CodecManager::UpdateActiveAudioConfig(
@@ -56,16 +56,21 @@ void CodecManager::UpdateActiveAudioConfig(
                                            update_receiver);
 }
 
-const set_configurations::AudioSetConfigurations*
-CodecManager::GetOffloadCodecConfig(types::LeAudioContextType ctx_type) {
+const set_configurations::AudioSetConfigurations* CodecManager::GetCodecConfig(
+    types::LeAudioContextType ctx_type) {
   if (!pimpl_) return nullptr;
-  return pimpl_->GetOffloadCodecConfig(ctx_type);
+  return pimpl_->GetCodecConfig(ctx_type);
 }
 
-const ::le_audio::broadcast_offload_config*
-CodecManager::GetBroadcastOffloadConfig() {
+const ::le_audio::broadcast_offload_config* CodecManager::GetBroadcastConfig() {
   if (!pimpl_) return nullptr;
-  return pimpl_->GetBroadcastOffloadConfig();
+  return pimpl_->GetBroadcastConfig();
+}
+
+bool CodecManager::CheckCodecConfigIsBiDirSwb(
+    const ::le_audio::set_configurations::AudioSetConfiguration& config) const {
+  if (!pimpl_) return false;
+  return pimpl_->CheckCodecConfigIsBiDirSwb(config);
 }
 
 void CodecManager::UpdateBroadcastConnHandle(

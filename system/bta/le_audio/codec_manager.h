@@ -64,7 +64,7 @@ class CodecManager {
                  offloading_preference);
   void Stop(void);
   virtual types::CodecLocation GetCodecLocation(void) const;
-  virtual bool IsOffloadDualBiDirSwbSupported(void) const;
+  virtual bool IsDualBiDirSwbSupported(void) const;
   virtual void UpdateCisConfiguration(
       const std::vector<struct types::cis>& cises,
       const stream_parameters& stream_params, uint8_t direction);
@@ -75,9 +75,11 @@ class CodecManager {
       std::function<void(const offload_config& config, uint8_t direction)>
           update_receiver);
   virtual const ::le_audio::set_configurations::AudioSetConfigurations*
-  GetOffloadCodecConfig(::le_audio::types::LeAudioContextType ctx_type);
-  virtual const ::le_audio::broadcast_offload_config*
-  GetBroadcastOffloadConfig();
+  GetCodecConfig(::le_audio::types::LeAudioContextType ctx_type);
+  virtual bool CheckCodecConfigIsBiDirSwb(
+      const ::le_audio::set_configurations::AudioSetConfiguration& config)
+      const;
+  virtual const ::le_audio::broadcast_offload_config* GetBroadcastConfig();
   virtual void UpdateBroadcastConnHandle(
       const std::vector<uint16_t>& conn_handle,
       std::function<void(const ::le_audio::broadcast_offload_config& config)>
