@@ -23,6 +23,7 @@ import gatt_test
 import hfpclient_test
 import sdp_test
 import smp_test
+import pairing_tests
 
 _TEST_CLASSES_LIST = [
     avatar.cases.host_test.HostTest,
@@ -36,6 +37,9 @@ _TEST_CLASSES_LIST = [
     hfpclient_test.HfpClientTest,
 ]
 
+
+def get_complete_test_class_list():
+    return _TEST_CLASSES_LIST + pairing_tests.get_test_class_list()
 
 def _parse_cli_args() -> Tuple[Namespace, List[str]]:
     parser = argparse.ArgumentParser(description='Avatar test runner.')
@@ -57,4 +61,4 @@ if __name__ == "__main__":
         os.environ.setdefault('BUMBLE_SNOOPER', f'btsnoop:file:{ns.log_path}/{_BUMBLE_BTSNOOP_FMT}')
 
     # Run the test suite.
-    suite_runner.run_suite(_TEST_CLASSES_LIST, argv)  # type: ignore
+    suite_runner.run_suite(get_complete_test_class_list(), argv)  # type: ignore
