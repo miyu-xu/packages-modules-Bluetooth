@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3da5d26_7d535cd2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-04T11:47:16Z",
+      "side": 1,
+      "message": "My impression was that we see the address type being updated once we resolved the random address but I might be wrong.",
+      "parentUuid": "68ac8f6b_5e9f7c28",
+      "range": {
+        "startLine": 10,
+        "startChar": 13,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "cbdcddac_6d187ccb",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-09-28T18:58:33Z",
       "side": 1,
       "message": "Does floss not use btif_config?",
+      "range": {
+        "startLine": 1465,
+        "startChar": 12,
+        "endLine": 1465,
+        "endChar": 31
+      },
+      "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d16d0c8_fd0ca7b3",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1465,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-04T11:47:16Z",
+      "side": 1,
+      "message": "I\u0027m not sure I understand you correctly. Currently Floss doesn\u0027t interact with btif_config directly but only through bt_interface_t.",
+      "parentUuid": "2aa7fc3e_63335eaf",
       "range": {
         "startLine": 1465,
         "startChar": 12,
