@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fbad810d_51d73f1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-04T15:13:24Z",
+      "side": 1,
+      "message": "Changed codec_swb_settings to codec_aptx_settings",
+      "parentUuid": "743650b5_41ee5c21",
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ab1a5f1_aa649a29",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 16
@@ -31,6 +49,30 @@
       "writtenOn": "2023-09-20T23:39:40Z",
       "side": 1,
       "message": "`enableSwbCodec` calls `mNativeInterface.enableSwb`, then calls `enableSwbNative`, then calls `sBluetoothHfpInterface-\u003eEnableSwb`, then calls `enable_aptx_swb_codec`, which is a function to read init flag and whether that devices supports LC3\n```\nbt_status_t enable_aptx_swb_codec(bool enable, RawAddress* bd_addr) {\n  if (bluetooth::common::init_flags::aptx_voice_is_enabled() \u0026\u0026\n      (get_lc3_swb_codec_status(bd_addr) \u003d\u003d false)) {\n    LOG_INFO(\"%d\", enable);\n    aptx_swb_codec_status \u003d enable;\n    return BT_STATUS_SUCCESS;\n  }\n  return BT_STATUS_FAIL;\n}\n```\nthis might be better to not handled in Java layer, instead, to use or not to use aptx would be better to handle on native layer during feature exchange.\nFor the dependency on network info, please see [comment#309](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2678015/16/android/app/src/com/android/bluetooth/telephony/BluetoothCall.java#309)",
+      "range": {
+        "startLine": 1199,
+        "startChar": 8,
+        "endLine": 1199,
+        "endChar": 22
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3711958e_618944ea",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-04T15:13:24Z",
+      "side": 1,
+      "message": "AFAIK enabling/disabling AptX has to be done from Java layer as it is right now. \n\nThis function reads init flag and checks if LC3 is enabled only to know if it is allowed to enable AptX - if any of those two fails it returns fail status to indicate that the enabling/disabling did not happen. \n\nI might not fully understand what is the problem, so please elaborate, thank you.",
+      "parentUuid": "4ab1a5f1_aa649a29",
       "range": {
         "startLine": 1199,
         "startChar": 8,
@@ -66,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "09bee404_105ccbcb",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothCall.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-04T15:13:24Z",
+      "side": 1,
+      "message": "@quic_skodisha@quicinc.com",
+      "parentUuid": "b64951ab_edaaf983",
+      "range": {
+        "startLine": 309,
+        "startChar": 19,
+        "endLine": 309,
+        "endChar": 33
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "87f5bafe_7e043ac9",
         "filename": "system/bta/ag/bta_ag_int.h",
         "patchSetId": 16
@@ -77,6 +143,30 @@
       "writtenOn": "2023-09-28T07:39:55Z",
       "side": 1,
       "message": "Could we rename this? Maybe `BTA_AG_SCO_APTX_SWB_SETTINGS_Q0`, etc?\nOtherwise we don\u0027t know the SWB settings is for aptX or LC3.",
+      "range": {
+        "startLine": 211,
+        "startChar": 0,
+        "endLine": 217,
+        "endChar": 27
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4f86b04_f4750f3d",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-04T15:13:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "87f5bafe_7e043ac9",
       "range": {
         "startLine": 211,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45210412_8ac80db2",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-04T15:13:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea4ccbfc_94e23d7d",
+      "range": {
+        "startLine": 277,
+        "startChar": 7,
+        "endLine": 277,
+        "endChar": 19
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b376f130_12cd745a",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-09-28T07:39:55Z",
       "side": 1,
       "message": "If we are using only ESCO_CODEC_SWB_Q0 parameter, why we are adding Q1~Q3?",
+      "range": {
+        "startLine": 330,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 5
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40d59ac0_1f2fd1ed",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-04T15:13:24Z",
+      "side": 1,
+      "message": "@quic_skodisha@quicinc.com\nJust as a placeholder for now.",
+      "parentUuid": "b376f130_12cd745a",
       "range": {
         "startLine": 330,
         "startChar": 0,
