@@ -107,6 +107,7 @@ if (use.test) {
       "codec_server/hfp_lc3_mmc_encoder.cc",
       "test/hfp_lc3_mmc_encoder_test.cc",
       "test/mock/mock_embdrv_lc3.cc",
+      "//bt/system/test/mock/mock_common_address_obfuscator.cc",
       "//bt/system/test/mock/mock_osi_allocator.cc",
       "//bt/system/test/common/mock_functions.cc",
     ]
@@ -129,6 +130,7 @@ if (use.test) {
       "codec_server/hfp_lc3_mmc_decoder.cc",
       "test/hfp_lc3_mmc_decoder_test.cc",
       "test/mock/mock_embdrv_lc3.cc",
+      "//bt/system/test/mock/mock_common_address_obfuscator.cc",
       "//bt/system/test/mock/mock_osi_allocator.cc",
       "//bt/system/test/common/mock_functions.cc",
     ]
