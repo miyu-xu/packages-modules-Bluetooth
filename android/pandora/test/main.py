@@ -13,13 +13,14 @@ from typing import List, Tuple
 
 _BUMBLE_BTSNOOP_FMT = 'bumble_btsnoop_{pid}_{instance}.log'
 
+import a2dp_test
+
 # Import test cases modules.
 import asha_test
 import avatar.cases.host_test
 import avatar.cases.le_host_test
 import avatar.cases.le_security_test
 import avatar.cases.security_test
-import a2dp_test
 import gatt_test
 import hfpclient_test
 import sdp_test
