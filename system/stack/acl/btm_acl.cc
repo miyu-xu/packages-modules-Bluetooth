@@ -846,6 +846,8 @@ static void btm_acl_check_le_ready(tACL_CONN* p_acl_cb) {
   }
 }
 
+extern void bta_gattc_continue_discovery_if_needed(const RawAddress& bd_addr, tBT_TRANSPORT transport, uint16_t acl_handle);
+
 /*******************************************************************************
  *
  * Function         btm_read_remote_version_complete
@@ -866,8 +868,9 @@ static void maybe_chain_more_commands_after_read_remote_version_complete(
 
   switch (p_acl_cb->transport) {
     case BT_TRANSPORT_LE:
-      btm_acl_check_le_ready(p_acl_cb);
+      l2cble_notify_le_connection(p_acl_cb->remote_addr);
       l2cble_use_preferred_conn_params(p_acl_cb->remote_addr);
+      bta_gattc_continue_discovery_if_needed(p_acl_cb->remote_addr, p_acl_cb->transport, p_acl_cb->Handle());
       break;
     case BT_TRANSPORT_BR_EDR:
       /**
@@ -1610,6 +1613,23 @@ uint16_t BTM_GetMaxPacketSize(const RawAddress& addr) {
   }
 
   return (pkt_size);
+}
+
+/*******************************************************************************
+ *
+ * Function         BTM_RemoteVersionIsParsed
+ *
+ * Returns          Returns true if "LE Read remote version info" was already
+ *                  received on LE transport for this device.
+ *
+ ******************************************************************************/
+bool BTM_RemoteVersionIsParsed(const RawAddress& addr) {
+  const tACL_CONN* p_acl = internal_.btm_bda_to_acl(addr, BT_TRANSPORT_LE);
+  if (p_acl == nullptr) {
+    return false;
+  }
+
+  return p_acl->remote_version_parsed;
 }
 
 /*******************************************************************************
