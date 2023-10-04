@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad5fcc5_c4e9293a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1992,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-04T06:29:16Z",
+      "side": 1,
+      "message": "We also need to maintain two version here. Since this will also need qualification. \n\n```\nif self.mps_qualification_enabled {\n        self.call_list.retain(|x| x.state !\u003d CallState::Held);\n        self.phone_state.num_held \u003d 0;\n} else if(self.phone_ops_enabled) {\n        ....\n}\n```",
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcc686d4_0c279720",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2010,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-04T06:29:16Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c05525d7_d79db085",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2028,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-04T06:29:16Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
