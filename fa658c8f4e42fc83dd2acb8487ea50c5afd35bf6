@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1e81f0db_ba1400de",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-04T22:16:16Z",
+      "side": 1,
+      "message": "One way to fix it, could be to do a Spliterator instead of an Iterator as you don\u0027t need to implement `hasNext`\n\nAnd from the Spliterator we can either create a stream or convert it back to an Iterator https://github.com/streamsupport/streamsupport/blob/master/src/main/java/java8/util/Spliterators.java#L1361\n\nOr we can do like the link above and advance on `hasNext` and keep the value in the class",
+      "parentUuid": "cd203777_9566bfa4",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 0
+      },
+      "revId": "fa658c8f4e42fc83dd2acb8487ea50c5afd35bf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef945d3e_6a68de45",
         "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
         "patchSetId": 3
