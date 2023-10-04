@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "333ee87d_59a3cd07",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-04T19:18:40Z",
+      "side": 1,
+      "message": "Thanks for response. AFAIK we get the address type on auth complete for an LE device, or on call to create bond if we are initiator. \n\nThis answers my question though, just wanted to make sure we didn\u0027t expect address type to change once set.",
+      "parentUuid": "e3da5d26_7d535cd2",
+      "range": {
+        "startLine": 10,
+        "startChar": 13,
+        "endLine": 11,
+        "endChar": 17
+      },
+      "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "cbdcddac_6d187ccb",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "I\u0027m not sure I understand you correctly. Currently Floss doesn\u0027t interact with btif_config directly but only through bt_interface_t.",
       "parentUuid": "2aa7fc3e_63335eaf",
+      "range": {
+        "startLine": 1465,
+        "startChar": 12,
+        "endLine": 1465,
+        "endChar": 31
+      },
+      "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a447b51b_5a228586",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1465,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-04T19:18:40Z",
+      "side": 1,
+      "message": "Gotcha. So as an example right now there is a btif_get_address_type API in btif_dm.cc that reads from the config: https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;l\u003d4045?q\u003dbtif_config_get_int%20%22AddressType%22\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main\n\nYou already added the bt_property_type_t entry for address type here in this CL.\n\nAFAICT you should just be able to call btif_config_get_int in line 401 case instead of using additional storage, and still pipe it up thru bt_interface_t.",
+      "parentUuid": "0d16d0c8_fd0ca7b3",
       "range": {
         "startLine": 1465,
         "startChar": 12,
