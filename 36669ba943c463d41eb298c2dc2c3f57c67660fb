@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b73f45d_a4cee853",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-04T23:12:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "46e692ab_f8ebeda7",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 20
+      },
+      "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50b275ee_17bc405d",
@@ -126,6 +150,30 @@
       "side": 1,
       "message": "I should have acked this comment, you\u0027re correct.  I didn\u0027t ack it now because I\u0027m interested in the HCI logs.",
       "parentUuid": "a7885b2a_049d2377",
+      "range": {
+        "startLine": 171,
+        "startChar": 11,
+        "endLine": 171,
+        "endChar": 12
+      },
+      "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abe9a093_913874ab",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-04T23:12:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "146abf99_592b6504",
       "range": {
         "startLine": 171,
         "startChar": 11,
