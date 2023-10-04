@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21212db0_3d6eb7f9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-04T22:02:16Z",
+      "side": 1,
+      "message": "```suggestion\n    private static final Object COMPLETED_INDICATOR \u003d new Object();\n```",
+      "range": {
+        "startLine": 29,
+        "startChar": 32,
+        "endLine": 29,
+        "endChar": 51
+      },
+      "revId": "fa658c8f4e42fc83dd2acb8487ea50c5afd35bf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd203777_9566bfa4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-04T22:02:16Z",
+      "side": 1,
+      "message": "Thinking about it, this implementation of `hasNext` is wrong, as we will tell that we have an element event if it\u0027s the `sCompletedIndicator`\n\nSo this means that if the queue is empty, `hasNext` needs to wait to know if it\u0027s an element or the end of the stream.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 0
+      },
+      "revId": "fa658c8f4e42fc83dd2acb8487ea50c5afd35bf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef945d3e_6a68de45",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-04T22:02:16Z",
+      "side": 1,
+      "message": "`NoSuchElementException` is already a `RuntimeException`\n```suggestion\n                throw new NoSuchElementException(\"Iterator completed\");\n```",
+      "revId": "fa658c8f4e42fc83dd2acb8487ea50c5afd35bf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
