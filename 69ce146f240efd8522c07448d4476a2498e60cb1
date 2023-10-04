@@ -46,6 +46,30 @@
       },
       "revId": "69ce146f240efd8522c07448d4476a2498e60cb1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4317c568_612895f0",
+        "filename": "aconfig/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-04T07:04:52Z",
+      "side": 1,
+      "message": "Done\n\nI followed the codelab recommendation and used `com.android.bluetooth.flags` as a common package name",
+      "parentUuid": "663e9ea2_33a0c2f2",
+      "range": {
+        "startLine": 8,
+        "startChar": 14,
+        "endLine": 8,
+        "endChar": 42
+      },
+      "revId": "69ce146f240efd8522c07448d4476a2498e60cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
