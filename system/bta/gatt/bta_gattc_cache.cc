@@ -160,8 +160,16 @@ RobustCachingSupport GetRobustCachingSupport(const tBTA_GATTC_CLCB* p_clcb,
     // searching for it. Even if the hash was previously not present but is now,
     // we will still get the service changed indication, so there's no need to
     // speculatively check for the hash every time.
-    LOG_DEBUG("database hash characteristic not found, so UNSUPPORTED");
+    LOG_INFO(
+        "GetRobustCachingSupport database hash characteristic not found, so "
+        "UNSUPPORTED");
     return RobustCachingSupport::UNSUPPORTED;
+  }
+
+  if (p_clcb->transport == BT_TRANSPORT_LE &&
+      !BTM_RemoteVersionIsParsed(p_clcb->bda)) {
+    LOG_INFO("version info is not ready yet");
+    return RobustCachingSupport::W4_REMOTE_VERSION;
   }
 
   // This is workaround for the embedded devices being already on the market
