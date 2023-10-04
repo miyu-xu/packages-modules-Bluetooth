@@ -110,6 +110,30 @@
       },
       "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "146abf99_592b6504",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-04T17:30:46Z",
+      "side": 1,
+      "message": "I should have acked this comment, you\u0027re correct.  I didn\u0027t ack it now because I\u0027m interested in the HCI logs.",
+      "parentUuid": "a7885b2a_049d2377",
+      "range": {
+        "startLine": 171,
+        "startChar": 11,
+        "endLine": 171,
+        "endChar": 12
+      },
+      "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
