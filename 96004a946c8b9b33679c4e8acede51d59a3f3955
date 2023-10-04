@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73f80194_fbd4d09d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-04T09:42:02Z",
+      "side": 1,
+      "message": "fyi: as the chrome patch has merged, this shall be ready to merge as well.",
+      "revId": "96004a946c8b9b33679c4e8acede51d59a3f3955",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
