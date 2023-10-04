@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "098426cf_8514d744",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-04T17:39:12Z",
+      "side": 1,
+      "message": "No I\u0027ll do it here, not sure how I missed that, thank you!",
+      "parentUuid": "543fef93_307ade8c",
+      "range": {
+        "startLine": 182,
+        "startChar": 7,
+        "endLine": 183,
+        "endChar": 90
+      },
+      "revId": "44087512a10e56797a58017e2e5701004b01fa99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "10869996_eb95600c",
         "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
         "patchSetId": 2
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a918c905_ff01ec5e",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-04T17:39:12Z",
+      "side": 1,
+      "message": "No I\u0027ll do it here, not sure how I missed that, thank you!",
+      "parentUuid": "10869996_eb95600c",
+      "range": {
+        "startLine": 200,
+        "startChar": 8,
+        "endLine": 202,
+        "endChar": 49
+      },
+      "revId": "44087512a10e56797a58017e2e5701004b01fa99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56ce9fa6_8c81d29f",
         "filename": "system/profile/avrcp/device.cc",
         "patchSetId": 2
@@ -60,6 +108,30 @@
       "writtenOn": "2023-10-04T17:35:27Z",
       "side": 1,
       "message": "force_send is set to `true` only at a new connection. I understand from this, that our local cache is not erased between the connection.\n\nI don\u0027t have an issue with this CL and may say something wrong, but have you considered unsetting the `volume_` in  between the connection, so the first SetVolume will compare a volume to an uninitialized one and therefor, will not discard it.",
+      "range": {
+        "startLine": 630,
+        "startChar": 0,
+        "endLine": 630,
+        "endChar": 41
+      },
+      "revId": "44087512a10e56797a58017e2e5701004b01fa99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53db20f5_a6e4c716",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-04T17:39:12Z",
+      "side": 1,
+      "message": "I\u0027ll check why it\u0027s not already the case, there might be some tricky corner case. But that makes sense and I\u0027d prefer doing it your way!",
+      "parentUuid": "56ce9fa6_8c81d29f",
       "range": {
         "startLine": 630,
         "startChar": 0,
