@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35adc910_7b082f5d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-04T22:39:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21212db0_3d6eb7f9",
+      "range": {
+        "startLine": 29,
+        "startChar": 32,
+        "endLine": 29,
+        "endChar": 51
+      },
+      "revId": "fa658c8f4e42fc83dd2acb8487ea50c5afd35bf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cd203777_9566bfa4",
@@ -73,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc10da0c_e4f824b0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-04T22:39:51Z",
+      "side": 1,
+      "message": "Otherwise we just need to check if it is the `COMPLETED_ITERATOR` and return false in that case.",
+      "parentUuid": "1e81f0db_ba1400de",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 0
+      },
+      "revId": "fa658c8f4e42fc83dd2acb8487ea50c5afd35bf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef945d3e_6a68de45",
         "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
         "patchSetId": 3
@@ -84,6 +132,24 @@
       "writtenOn": "2023-10-04T22:02:16Z",
       "side": 1,
       "message": "`NoSuchElementException` is already a `RuntimeException`\n```suggestion\n                throw new NoSuchElementException(\"Iterator completed\");\n```",
+      "revId": "fa658c8f4e42fc83dd2acb8487ea50c5afd35bf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3d476d1_978fd2d3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-04T22:39:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef945d3e_6a68de45",
       "revId": "fa658c8f4e42fc83dd2acb8487ea50c5afd35bf6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
