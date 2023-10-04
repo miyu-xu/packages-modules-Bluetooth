@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "621a3f34_513d6a1a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1987,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-04T08:36:42Z",
+      "side": 1,
+      "message": "This is mapping to https://www.bluetooth.com/specifications/specs/hands-free-profile-1-8/ \u003e Three-Way Calling—Call Waiting Notification\n```\nIf the user rejects the call at the HF, the HF shall send the AT+CHLD command with parameter 0 to the\nAG.\n```",
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aad5fcc5_c4e9293a",
@@ -20,6 +37,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5cf660df_207fe4b2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2004,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-04T08:36:42Z",
+      "side": 1,
+      "message": "This is mapping to https://www.bluetooth.com/specifications/specs/hands-free-profile-1-8/ \u003e Three-Way Calling—Call Waiting Notification\n```\nIf the user accepts the call at the HF, the HF shall send the AT+CHLD with parameter 1 or 2 to the AG.\n```",
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bcc686d4_0c279720",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 5
@@ -31,6 +65,29 @@
       "writtenOn": "2023-10-04T06:29:16Z",
       "side": 1,
       "message": "ditto",
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f332bc53_a3223ff9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2027,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-04T08:36:42Z",
+      "side": 1,
+      "message": "Will this function ever be triggered? I can only trigger `release_held_impl` when hang up call. trigger `release_active_accept_held_impl` when answer call.",
+      "range": {
+        "startLine": 2027,
+        "startChar": 7,
+        "endLine": 2027,
+        "endChar": 35
+      },
       "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
