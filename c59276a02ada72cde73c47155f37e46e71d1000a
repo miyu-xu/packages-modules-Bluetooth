@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f772810_dbbde822",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1992,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-04T11:23:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aad5fcc5_c4e9293a",
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5cf660df_207fe4b2",
@@ -83,6 +101,24 @@
       "writtenOn": "2023-10-04T06:29:16Z",
       "side": 1,
       "message": "ditto",
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba63e5a7_c37638ad",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2010,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-04T11:23:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bcc686d4_0c279720",
       "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -158,6 +194,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48670239_eaca16bb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2027,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-04T11:23:48Z",
+      "side": 1,
+      "message": "I updated the commit to not support hold/resume behavior.\nSo this supports the different behavior you listed.\njust a comment, in Bluetooth specs AT+CHLD\u003d2 is mandatory when 3-way call is supported.",
+      "parentUuid": "193082fb_5d5c65fe",
+      "range": {
+        "startLine": 2027,
+        "startChar": 7,
+        "endLine": 2027,
+        "endChar": 35
+      },
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c05525d7_d79db085",
@@ -171,6 +231,24 @@
       "writtenOn": "2023-10-04T06:29:16Z",
       "side": 1,
       "message": "ditto",
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "632dea4d_53edc48d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2028,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-04T11:23:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c05525d7_d79db085",
       "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
