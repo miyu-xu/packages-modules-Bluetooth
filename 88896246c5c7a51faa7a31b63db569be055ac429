@@ -46,6 +46,30 @@
       },
       "revId": "88896246c5c7a51faa7a31b63db569be055ac429",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f854f95_68165b6d",
+        "filename": "system/gd/rust/linux/stack/src/battery_service.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-04T09:41:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10267b7a_d8a13f58",
+      "range": {
+        "startLine": 399,
+        "startChar": 0,
+        "endLine": 401,
+        "endChar": 15
+      },
+      "revId": "88896246c5c7a51faa7a31b63db569be055ac429",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
