@@ -95,6 +95,10 @@
 #include "stack_config.h"
 #include "types/raw_address.h"
 
+#ifdef OS_ANDROID
+#include <android/sysprop/BluetoothProperties.sysprop.h>
+#endif
+
 bool btif_get_device_type(const RawAddress& bda, int* p_device_type);
 
 using bluetooth::Uuid;
@@ -2934,8 +2938,26 @@ void btif_dm_get_local_class_of_device(DEV_CLASS device_class) {
     LOG_ERROR("%s: COD malformed, fewer than three numbers", __func__);
   }
 
-  LOG_DEBUG("%s: Using class of device '0x%x, 0x%x, 0x%x'", __func__,
-            device_class[0], device_class[1], device_class[2]);
+  LOG_DEBUG(
+      "%s: Using class of device '0x%x, 0x%x, 0x%x' from CoD system property",
+      __func__, device_class[0], device_class[1], device_class[2]);
+
+#ifdef OS_ANDROID
+  if (android::sysprop::BluetoothProperties::isProfileBapUnicastClientEnabled()
+          .value_or(false) ||
+      android::sysprop::BluetoothProperties::
+          isProfileBapBroadcastAssistEnabled()
+              .value_or(false) ||
+      android::sysprop::BluetoothProperties::
+          isProfileBapBroadcastSourceEnabled()
+              .value_or(false)) {
+    device_class[1] |= 0x01 << 6;
+
+    LOG_DEBUG(
+        "%s: Support LE Audio, Update class of device to '0x%x, 0x%x, 0x%x'",
+        __func__, device_class[0], device_class[1], device_class[2]);
+  }
+#endif
 }
 
 /*******************************************************************************
