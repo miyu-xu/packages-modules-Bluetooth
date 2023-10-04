@@ -83,6 +83,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66853def_9b0a7033",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverIterator.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-04T21:24:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1100359_5066cdac",
+      "revId": "e4c2df676fd1ca152294004162f28fd7fe979bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40b17f70_f6999863",
