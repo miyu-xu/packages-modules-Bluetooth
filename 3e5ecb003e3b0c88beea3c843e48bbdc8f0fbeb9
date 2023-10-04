@@ -16,6 +16,24 @@
       "message": "I\u0027ve rebase on the top of the branch and break the relation chain.",
       "revId": "3e5ecb003e3b0c88beea3c843e48bbdc8f0fbeb9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "932c0be5_716379b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-04T08:09:09Z",
+      "side": 1,
+      "message": "Do we need a relation chain between these changes? It looks like they\u0027re standalone changes with different bugs and I think it\u0027s best to not link them :)",
+      "parentUuid": "bee36555_5a54bd1f",
+      "revId": "3e5ecb003e3b0c88beea3c843e48bbdc8f0fbeb9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
