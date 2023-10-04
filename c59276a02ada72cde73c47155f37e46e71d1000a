@@ -136,6 +136,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "193082fb_5d5c65fe",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 2027,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-04T10:20:43Z",
+      "side": 1,
+      "message": "The use case we want to support here are\n1. Exist Incoming call \u003d\u003e Press the Answer/End call button will send hook-swtich\u003d1 to app\n  \n  mapping to `release_active_accept_held_impl`\n\n2. Exist Incoming call \u003d\u003e Press the Answer/End call twice button will send hook-swtich\u003d0 to app\n\n  mapping to `release_held_impl`\n3. No Exist Incoming call \u003d\u003e Press the Answer/End call button will send hook-swtich\u003d0 to app\n  \n  mapping to `hangup_call_impl`\n\n4. No Exist Incoming call \u003d\u003e Press the Answer/End call button twice should have no action.\n\n  should ignore this\n\nHold (2 secs) the Answer/End call button should always remain no function here. We are not support hold/resume in this stage.\n\nMay you help check whether this is current behavior?",
+      "parentUuid": "a293cc99_6732fb66",
+      "range": {
+        "startLine": 2027,
+        "startChar": 7,
+        "endLine": 2027,
+        "endChar": 35
+      },
+      "revId": "c59276a02ada72cde73c47155f37e46e71d1000a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c05525d7_d79db085",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 5
