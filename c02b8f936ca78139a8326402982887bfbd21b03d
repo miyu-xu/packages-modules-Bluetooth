@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdaa22c0_0022288e",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-04T18:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a64ceb9f_3682fd34",
+      "revId": "c02b8f936ca78139a8326402982887bfbd21b03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f5eabbb9_eec744cc",
@@ -84,6 +102,30 @@
       "writtenOn": "2023-10-03T00:34:41Z",
       "side": 1,
       "message": "You do not need to iterate on the data here, you can just check for the result of GetEncAdvFieldsInfo to know if advertising data is present.",
+      "range": {
+        "startLine": 131,
+        "startChar": 4,
+        "endLine": 143,
+        "endChar": 5
+      },
+      "revId": "c02b8f936ca78139a8326402982887bfbd21b03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2f5c2c6_2856e709",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-04T18:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f5eabbb9_eec744cc",
       "range": {
         "startLine": 131,
         "startChar": 4,
@@ -117,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fe7bb9a_bba34e5b",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-04T18:33:07Z",
+      "side": 1,
+      "message": "The output of ProcessEncryptedData here would contain both the decrypted data and the unencrypted data which is why we would clear it and reassign the value. Now we will reassign in le_scanning_manager if the output of ExtractEncryptedData is true.",
+      "parentUuid": "d801b1ad_04b46266",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 42
+      },
+      "revId": "c02b8f936ca78139a8326402982887bfbd21b03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3420f7fe_7b7c3476",
@@ -130,6 +196,24 @@
       "writtenOn": "2023-10-03T00:34:41Z",
       "side": 1,
       "message": "Please split this function with an helper used specifically to decrypt an encrypted AD type. The prototype may be\n```\n/// @param encrypted_data    Data part of an Encrypted Data AD type.\n/// @param key_material      Key material available for the peer device.\nstatic std::optional\u003cstd::vector\u003cuint8_t\u003e\u003e DecryptEncryptedData(\n    std::vector\u003cuint8_t\u003e const\u0026 encrypted_data,\n    std::vector\u003cstd::vector\u003cuint8_t\u003e const\u0026 key_material);\n```\nThis will let you add unit tests specifically for the crypto part.",
+      "revId": "c02b8f936ca78139a8326402982887bfbd21b03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa79f6d6_8ac19d2f",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-04T18:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3420f7fe_7b7c3476",
       "revId": "c02b8f936ca78139a8326402982887bfbd21b03d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -174,6 +258,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d02dc476_13838f32",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-04T18:33:07Z",
+      "side": 1,
+      "message": "The encrypted data key material is stored in bt_config.conf for the peer device. If there are multiple 24 byte key values stored in the bt_config.conf we iterate through them until decryption is successful.",
+      "parentUuid": "94f8f3af_1c99c065",
+      "range": {
+        "startLine": 201,
+        "startChar": 2,
+        "endLine": 202,
+        "endChar": 75
+      },
+      "revId": "c02b8f936ca78139a8326402982887bfbd21b03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6776cb3b_1350daec",
@@ -187,6 +295,30 @@
       "writtenOn": "2023-10-03T00:34:41Z",
       "side": 1,
       "message": "Move this check to the beginning of the function for an early return.",
+      "range": {
+        "startLine": 245,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 5
+      },
+      "revId": "c02b8f936ca78139a8326402982887bfbd21b03d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4bd44d7_b2b93190",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-04T18:33:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6776cb3b_1350daec",
       "range": {
         "startLine": 245,
         "startChar": 0,
