@@ -22,6 +22,30 @@
       },
       "revId": "117f2d78051603261f03d0d2831fd55fcddac0eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c6b69f4_81914644",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2243,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-04T08:29:12Z",
+      "side": 1,
+      "message": "Agreed with Paul on the simple return here, what about the vars that were set above?",
+      "parentUuid": "6171fe50_95cf6a77",
+      "range": {
+        "startLine": 2243,
+        "startChar": 8,
+        "endLine": 2243,
+        "endChar": 14
+      },
+      "revId": "117f2d78051603261f03d0d2831fd55fcddac0eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
