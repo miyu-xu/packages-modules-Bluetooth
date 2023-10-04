@@ -62,6 +62,30 @@
       },
       "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f97089cb_4a67b108",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-04T11:50:01Z",
+      "side": 1,
+      "message": "This is trying to protect the case where we received 2 consecutive `Remote Host Supported Features Notification` during RnR. Before the fix, we will call `on_remote_host_supported_features_notification_` twice but in the second time it always crash because the function is bind::once. This can\u0027t be protected by `pending_` as `pending_` should remain true until RnR is completed.",
+      "parentUuid": "50b275ee_17bc405d",
+      "range": {
+        "startLine": 171,
+        "startChar": 11,
+        "endLine": 171,
+        "endChar": 12
+      },
+      "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
