@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0158fc75_6ad43a2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-04T23:13:51Z",
+      "side": 1,
+      "message": "Is this the correct bug?\n\nI was looking for the HCI log to understand what\u0027s happening.  Could you send me the HCI log?  It\u0027s possible that we should have multiple callbacks here.",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "be70683000f18cba56729c4fa87b696f5eb7fc51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "72dd70f2_341366a8",
