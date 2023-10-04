@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21086378_6713b360",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-04T06:12:01Z",
+      "side": 1,
+      "message": "Q) What\u0027s the main purpose of using mDeviceQueue?\n\nIf it is for finding the lastly used device to limit the size of mDevices,\nthe # of mDeviceQueue must equal to the # of mDevices.",
+      "range": {
+        "startLine": 9,
+        "startChar": 134,
+        "endLine": 9,
+        "endChar": 146
+      },
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fb1d60c_49df619e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-04T06:12:01Z",
+      "side": 1,
+      "message": "-2 to prevent merging.",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c092c343_2e343f80",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-04T06:12:01Z",
+      "side": 1,
+      "message": "Shouldn\u0027t we pick the next priority to delete instead of just returning prop w/o removing?",
+      "range": {
+        "startLine": 305,
+        "startChar": 55,
+        "endLine": 305,
+        "endChar": 64
+      },
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8662aeba_cc7d14e6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-04T06:12:01Z",
+      "side": 1,
+      "message": "What about this instead?\n\n```\n} else {\n    mDeviceQueue.remove(key);\n    mDeviceQueue.offer(key);\n}\n```",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f19b3f6_7f421908",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-04T06:12:01Z",
+      "side": 1,
+      "message": "Should we call mDeviceQueue.remove(key) as well?",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
