@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72dd70f2_341366a8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-04T17:53:35Z",
+      "side": 1,
+      "message": "```\n7.1.19 Remote Name Request command\nWhen the HCI_Remote_Supported_Host_Features_Notification event is\nunmasked and when the HCI_Remote_Name_Request command initiates a\nconnection, the Link Manager shall read the remote LMP features mask pages\n0 and 1.\n```\n\nWould it be possible to change the API from once to repeating ?\n\n```\npackages/modules/Bluetooth/system/gd/hci/remote_name_request.h\n\nusing RemoteHostSupportedFeaturesCallback \u003d common::ContextualCallback\u003cvoid(uint64_t)\u003e;\n```",
+      "revId": "be70683000f18cba56729c4fa87b696f5eb7fc51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
