@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bcc6eb3_ba2b1c45",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeAdvertisingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-04T22:51:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83f07c07_c4c93f76",
+      "revId": "17c69ebfa48d8fca9ae1816904fa7fb21e4b1903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c95f942_15bd02d9",
@@ -85,6 +103,30 @@
       "writtenOn": "2023-10-04T22:21:06Z",
       "side": 1,
       "message": "nit:\n\n\n```suggestion\n            String addr \u003d\n                    Utils.addressStringFromByteString(addressType \u003d\u003d AdvertisingSetParameters.ADDRESS_TYPE_PUBLIC\n                            ? scanningResponse.getPublic()\n                            : scanningResponse.getRandom());\n```",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 94
+      },
+      "revId": "17c69ebfa48d8fca9ae1816904fa7fb21e4b1903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acd3d2cf_6b5781f8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeAdvertisingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-04T22:51:16Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "0c95f942_15bd02d9",
       "range": {
         "startLine": 79,
         "startChar": 0,
