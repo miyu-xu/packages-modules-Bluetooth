@@ -86,6 +86,30 @@
       },
       "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7885b2a_049d2377",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-04T17:25:33Z",
+      "side": 1,
+      "message": "Can you send me the HCI log for the failing case?  I\u0027m wondering if there should be multiple callbacks.",
+      "parentUuid": "f97089cb_4a67b108",
+      "range": {
+        "startLine": 171,
+        "startChar": 11,
+        "endLine": 171,
+        "endChar": 12
+      },
+      "revId": "36669ba943c463d41eb298c2dc2c3f57c67660fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
