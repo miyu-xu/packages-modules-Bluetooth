@@ -96,6 +96,24 @@
       "message": "Should we call mDeviceQueue.remove(key) as well?",
       "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f114d644_8c1bf6b6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-04T16:30:29Z",
+      "side": 1,
+      "message": "I have prepared aosp/2768571 for an unrelated issue which should cover this.",
+      "parentUuid": "5f19b3f6_7f421908",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
