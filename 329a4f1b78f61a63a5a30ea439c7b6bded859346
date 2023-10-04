@@ -3,6 +3,98 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e02e1d15_39246ecb",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "Please do not reference the storage handle by hardcoded value,\neither add an helper definition in the storage module, or make the handle macro definition available.\n\nSame for other occurrences in this file.",
+      "range": {
+        "startLine": 364,
+        "startChar": 78,
+        "endLine": 364,
+        "endChar": 97
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea44c017_5d9444ba",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 374,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "The copy is not necessary if the data is not mutated by ExtractEncryptedData",
+      "range": {
+        "startLine": 372,
+        "startChar": 6,
+        "endLine": 374,
+        "endChar": 43
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c818b85b_a21df598",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "It should be sufficient to check is_decrypt_success only, decrypted_data.empty() is redundant I believe.",
+      "range": {
+        "startLine": 383,
+        "startChar": 12,
+        "endLine": 383,
+        "endChar": 57
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ad14690_c054b4a6",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "this statement is not executed if the flag encrypted_advertising_log_is_enabled is not set.",
+      "range": {
+        "startLine": 390,
+        "startChar": 12,
+        "endLine": 390,
+        "endChar": 55
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "18c1eb72_5b912423",
         "filename": "system/gd/hci/le_scanning_decrypter.cc",
         "patchSetId": 6
@@ -14,6 +106,190 @@
       "writtenOn": "2023-10-04T20:51:30Z",
       "side": 1,
       "message": "Quick preliminary question: is it an issue if Encrypted AD types are decrypted using different keys in the storage? Currently you attempt to decrypt all ED using a unique key.\n\nThe file architecture could still be improved with the following changes:\n\n1. Reduce the helper function DecryptEncryptedData() to _just_ perform the decryption for one AD Encrypted Data element, with one key:\n```\n// Attempt to decrypt one Encrypted Data AD type, using the provided\n// key material. Appends the decrypted data to the output buffer.\nbool Decrypt(std::vector\u003cuint8_t\u003e const\u0026 data,\n             std::vector\u003cuint8_t\u003e const\u0026 key,\n             std::vector\u003cuint8_t\u003e const\u0026 iv,\n             std::vector\u003cuint8_t\u003e\u0026 output);\n``` \n\n2. I don\u0027t see it as necessary to keep the separate helper GetEncAdvFieldsInfo()\nExtractEncryptedData() should do the following:\n\n```\n// 1. extract key material from storage bin to the following variable.\n// This could be performed in an helper function `ExtractKeyMaterial()`\nstd::vector\u003cstd::pair\u003cstd::vector\u003cuint8_t\u003e, std::vector\u003cuint8_t\u003e\u003e\u003e keys_and_ivs;\n\nbool decrypt_failure \u003d false;\nstd::vector\u003cuint8_t\u003e decrypted_data;\n\n// 2. iterate over GAP data\nfor (..) {\n    ad_type \u003d ..;\n    data \u003d ..;\n    \n    if (ad_type \u003d\u003d AD_TYPE_ENCRYPTED_DATA) {\n       bool decrypted \u003d false;\n       for (auto const\u0026 [key, iv] : keys_and_ivs) {\n           if ((decrypted \u003d Decrypt(data, key, iv, decrypted_data)) {\n               break;\n           }\n       }\n       decrypt_failure |\u003d !decrypted;\n    }\n}\n```\n\nDepending on whether you intend to decrypt the data in place, or to a different buffer, you may adapt the logic to change where the decrypted data is produced.",
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61d3308f_c7832d63",
+        "filename": "system/gd/hci/le_scanning_decrypter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "should be const\u0026",
+      "range": {
+        "startLine": 40,
+        "startChar": 8,
+        "endLine": 40,
+        "endChar": 28
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dac5cf70_1c8c0108",
+        "filename": "system/gd/hci/le_scanning_decrypter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "should be const\u0026",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 28
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "463ad0b4_8c604f4d",
+        "filename": "system/gd/hci/le_scanning_decrypter.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "nit: please rename to `has_encrypted_data`",
+      "range": {
+        "startLine": 43,
+        "startChar": 14,
+        "endLine": 43,
+        "endChar": 28
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2a34898_1cf4e2c8",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "Please do not use the handle name by hardcoded value.",
+      "range": {
+        "startLine": 458,
+        "startChar": 77,
+        "endLine": 458,
+        "endChar": 95
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e99b2081_e79ed432",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "Please move this code under `if encrypted_advertising_is_enabled()` below/",
+      "range": {
+        "startLine": 454,
+        "startChar": 0,
+        "endLine": 467,
+        "endChar": 5
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d5b07cf_a365dc89",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "the copy is not necessary if the input buffer is not mutated",
+      "range": {
+        "startLine": 473,
+        "startChar": 6,
+        "endLine": 475,
+        "endChar": 44
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b2e8d4e_e1e3070a",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "It should be sufficient to check is_decrypt_success only, decrypted_data.empty() is redundant I believe.",
+      "range": {
+        "startLine": 484,
+        "startChar": 12,
+        "endLine": 484,
+        "endChar": 57
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8a113d2_dd3f1b9f",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 491,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-04T21:06:09Z",
+      "side": 1,
+      "message": "This statement is not executed if the flag encrypted_advertising_log_is_enabled is not set",
+      "range": {
+        "startLine": 491,
+        "startChar": 12,
+        "endLine": 491,
+        "endChar": 37
+      },
       "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
