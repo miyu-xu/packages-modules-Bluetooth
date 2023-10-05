@@ -22,6 +22,30 @@
       },
       "revId": "b3d4fb6b817a99fc868d353055ba63253afbf218",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22dc54a_2b8c73ac",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-05T22:25:15Z",
+      "side": 1,
+      "message": "Resolving given offline discussion. May be good to fork a separate bug for follow up test.",
+      "parentUuid": "bd9bbb42_7cc93d20",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 4
+      },
+      "revId": "b3d4fb6b817a99fc868d353055ba63253afbf218",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
