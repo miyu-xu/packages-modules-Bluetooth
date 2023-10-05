@@ -41,6 +41,7 @@
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/neighbor_inquiry.h"
+#include "stack/hid/hidh_int.h"
 #include "stack/include/avrc_api.h"
 #include "stack/include/bt_dev_class.h"
 #include "stack/include/bt_hdr.h"
@@ -49,6 +50,7 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/gap_api.h"
 #include "stack/include/gatt_api.h"
+#include "stack/include/hidh_api.h"
 #include "stack/include/sdp_status.h"
 #include "stack/sdp/sdpint.h"
 #include "types/raw_address.h"
@@ -61,6 +63,8 @@ using bluetooth::Uuid;
 using namespace bluetooth::legacy::stack::sdp;
 
 tBTM_CONTRL_STATE bta_dm_pm_obtain_controller_state(void);
+
+extern tHID_HOST_CTB hh_cb;
 
 namespace {
 constexpr char kBtmLogTag[] = "SDP";
@@ -96,6 +100,8 @@ static void bta_dm_free_sdp_db();
 static void bta_dm_execute_queued_request();
 static void bta_dm_search_cancel_notify();
 static void bta_dm_close_gatt_conn(UNUSED_ATTR tBTA_DM_MSG* p_data);
+
+static int find_device_handle_by_address(const RawAddress& bd_addr);
 
 TimestampedStringCircularBuffer disc_gatt_history_{50};
 
@@ -176,6 +182,14 @@ gatt_interface_t* gatt_interface = &default_gatt_interface;
 gatt_interface_t& get_gatt_interface() { return *gatt_interface; }
 
 }  // namespace
+
+static int find_device_handle_by_address(const RawAddress& bd_addr) {
+  int xx;
+  for (xx = 0; xx < HID_HOST_MAX_DEVICES; xx++) {
+    if (hh_cb.devices[xx].addr == bd_addr) break;
+  }
+  return xx;
+}
 
 void bta_dm_disc_disable_search_and_disc() { bta_dm_disable_search_and_disc(); }
 
@@ -1393,7 +1407,11 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
         LOG_INFO("bta_dm_discovery: starting SDP discovery on %s",
                  ADDRESS_TO_LOGGABLE_CSTR(bta_dm_search_cb.peer_bdaddr));
         bta_dm_search_cb.sdp_results = false;
-        bta_dm_find_services(bta_dm_search_cb.peer_bdaddr);
+        int dhandle =
+            find_device_handle_by_address(bta_dm_search_cb.peer_bdaddr);
+        if (dhandle == HID_HOST_MAX_DEVICES ||
+            !(hh_cb.devices[dhandle].attr_mask & HID_SDP_DISABLE))
+          bta_dm_find_services(bta_dm_search_cb.peer_bdaddr);
         return;
       }
     }
