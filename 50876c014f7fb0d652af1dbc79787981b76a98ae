@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbe6a34a_464d89d7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T11:32:51Z",
+      "side": 1,
+      "message": "\"Move\" indicates that this function is removed from one place and added to another. In this patch I see only adding a function but not removing it from the other place \n\nis this intended?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "50876c014f7fb0d652af1dbc79787981b76a98ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb283d91_590748fa",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2550,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T11:32:51Z",
+      "side": 1,
+      "message": "can you elaborate why for certain errors we proceed with reading version after that and for others not? It does not look clear.",
+      "revId": "50876c014f7fb0d652af1dbc79787981b76a98ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
