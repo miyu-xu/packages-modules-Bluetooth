@@ -158,6 +158,30 @@
       },
       "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "722dd3f0_79ed6be9",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1465,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-05T11:27:58Z",
+      "side": 1,
+      "message": "I\u0027m confused since in case 401 it is already using `btif_config_get_int`. Do you mean the macro `BTIF_STORAGE_KEY_ADDR_TYPE` should be changed to `BT_CONFIG_KEY_ADDR_TYPE` and defined in system/btif/include/btif_config.h?",
+      "parentUuid": "a447b51b_5a228586",
+      "range": {
+        "startLine": 1465,
+        "startChar": 12,
+        "endLine": 1465,
+        "endChar": 31
+      },
+      "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
