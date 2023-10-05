@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8618c79e_6894cdb0",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-05T18:52:36Z",
+      "side": 1,
+      "message": "To my knowledge, this property is only set on watch devices.\nI think it is weird we need it on floss too.\n\nWhy does only Phone, TV, Car does not need it, but Watch and Cros does ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 46
+      },
+      "revId": "872e99130fe724c73b214578baad3b81b44c1355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
