@@ -51,6 +51,24 @@
       "parentUuid": "58df8c6d_c099563f",
       "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53bfc38b_2e5a7b2d",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-05T17:58:27Z",
+      "side": 1,
+      "message": "Seems like the spec of c++ doesn\u0027t guarantee the size of enum. It only says \"at least as big as an int\". \n\nHow about we always use 1 byte, then cast the data back at the caller level?",
+      "parentUuid": "338ab5b7_f7ec084b",
+      "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
