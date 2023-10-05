@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "994f19e6_ad0dc645",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-05T22:35:48Z",
+      "side": 1,
+      "message": "I left some nits... I\u0027ll clean them up before submitting.",
+      "revId": "92488c9bbe70cdf1308051a3b8b5f96ae5568572",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
