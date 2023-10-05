@@ -70,6 +70,24 @@
       "parentUuid": "7c9ba95d_2f7e68d4",
       "revId": "e103df0232435d6b2408f71dc5f6f56a4c084f88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3362c308_f1bab272",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2023-10-05T19:08:34Z",
+      "side": 1,
+      "message": "The run with the upgraded flatbuffers worked for me locally as well.",
+      "parentUuid": "3cbe9be3_09e86194",
+      "revId": "e103df0232435d6b2408f71dc5f6f56a4c084f88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
