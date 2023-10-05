@@ -182,6 +182,30 @@
       },
       "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d00856a_741537f7",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1465,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-05T19:21:35Z",
+      "side": 1,
+      "message": "Right, sorry for the lack of clarity there. I realize you are already doing what I was trying to suggest here!\n\nResolving and approving.",
+      "parentUuid": "722dd3f0_79ed6be9",
+      "range": {
+        "startLine": 1465,
+        "startChar": 12,
+        "endLine": 1465,
+        "endChar": 31
+      },
+      "revId": "158b3d29ed5070602235fa39940f81fa26f5a9ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
