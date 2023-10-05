@@ -70,6 +70,54 @@
       },
       "revId": "badb772ec8545c97bdc63b5510be5e5981cd5652",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce4465f_8d3734b2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeAdvertisingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-05T21:05:58Z",
+      "side": 1,
+      "message": "Yes indeed my bad I\u0027ve made an assumption",
+      "parentUuid": "b86fbb8e_ab382aa5",
+      "range": {
+        "startLine": 83,
+        "startChar": 48,
+        "endLine": 83,
+        "endChar": 75
+      },
+      "revId": "badb772ec8545c97bdc63b5510be5e5981cd5652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fa3ae81_5ff98e4f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeAdvertisingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-05T21:05:58Z",
+      "side": 1,
+      "message": "My bad, I",
+      "parentUuid": "c523681c_9312da88",
+      "range": {
+        "startLine": 83,
+        "startChar": 48,
+        "endLine": 83,
+        "endChar": 75
+      },
+      "revId": "badb772ec8545c97bdc63b5510be5e5981cd5652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
