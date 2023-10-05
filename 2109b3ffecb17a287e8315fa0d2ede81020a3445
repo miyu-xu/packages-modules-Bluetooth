@@ -16,6 +16,23 @@
       "message": "Hi, please review this CL. Thanks!",
       "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58df8c6d_c099563f",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-05T09:51:26Z",
+      "side": 1,
+      "message": "Actually some of the calls to get devtype have prop-\u003elen \u003d 4, that have the risk of us only filling in one byte and leave the rest 3 bytes uninitialized. \nDo you think we should\n(a) Change all calls to use prop-\u003elen \u003d 1 as well?\n(b) Change all calls to initialize their prop-\u003eval to zero beforehand?\n(c) memset the prop-\u003eval to zero for the length of prop-\u003elen here?\n(d) abandon this change and just use prop-\u003elen \u003d 4 for every calls?",
+      "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
