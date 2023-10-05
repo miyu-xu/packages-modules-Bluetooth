@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3d6baea_a938c44b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverSpliterator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-05T19:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "957b7449_3aea3544",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 5
+      },
+      "revId": "19786f82ebbf04ffe7a81b963885c90623d8ca2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5fbf7ea5_f0582d5d",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03697f74_67801dfa",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverSpliterator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-05T19:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5fbf7ea5_f0582d5d",
+      "revId": "19786f82ebbf04ffe7a81b963885c90623d8ca2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "543c7b90_2f6ec224",
@@ -54,6 +96,30 @@
       "writtenOn": "2023-10-05T18:58:01Z",
       "side": 1,
       "message": "Can you move the `return true` after the `action.accept` ?",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 20
+      },
+      "revId": "19786f82ebbf04ffe7a81b963885c90623d8ca2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9723f0a5_e18f9ab2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverSpliterator.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-05T19:01:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "543c7b90_2f6ec224",
       "range": {
         "startLine": 74,
         "startChar": 0,
