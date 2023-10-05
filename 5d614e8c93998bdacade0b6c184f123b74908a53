@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2971b5fd_7270e82d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-10-05T19:02:49Z",
+      "side": 1,
+      "message": "This will fix the mouse. I was hoping it is doing similar thing as crrev/c/2361937.",
+      "revId": "5d614e8c93998bdacade0b6c184f123b74908a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
