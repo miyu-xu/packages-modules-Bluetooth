@@ -313,11 +313,17 @@ static int cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
         ret = btif_config_get_int(bdstr, BTIF_STORAGE_PATH_REMOTE_DEVCLASS,
                                   (int*)prop->val);
       break;
-    case BT_PROPERTY_TYPE_OF_DEVICE:
-      if (prop->len >= (int)sizeof(int))
-        ret = btif_config_get_int(bdstr, BTIF_STORAGE_PATH_REMOTE_DEVTYPE,
-                                  (int*)prop->val);
-      break;
+
+    case BT_PROPERTY_TYPE_OF_DEVICE: {
+      int val;
+
+      if (prop->len >= (int)sizeof(uint8_t)) {
+        ret =
+            btif_config_get_int(bdstr, BTIF_STORAGE_PATH_REMOTE_DEVTYPE, &val);
+        *(uint8_t*)prop->val = (uint8_t)val;
+      }
+    } break;
+
     case BT_PROPERTY_UUIDS: {
       char value[1280];
       int size = sizeof(value);
