@@ -23,9 +23,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Looper;
@@ -79,6 +76,12 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
 
     private static boolean sLeAudioEnabledByDefault = DeviceConfig.getBoolean(
             DeviceConfig.NAMESPACE_BLUETOOTH, CONFIG_LE_AUDIO_ENABLED_BY_DEFAULT, false);
+
+    private static final String HFP_AUTO_CONNECT = "HFP_AUTO_CONNECT";
+
+    @VisibleForTesting
+    static boolean isHfpAutoConnectEnabled =
+            DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH, HFP_AUTO_CONNECT, false);
 
     // Timeouts
     @VisibleForTesting static int sConnectOtherProfilesTimeoutMillis = 6000; // 6s
@@ -427,10 +430,9 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
                 connectOtherProfile(device);
             }
             if (nextState == BluetoothProfile.STATE_DISCONNECTED) {
-                if (profileId == BluetoothProfile.A2DP
-                        && (prevState == BluetoothProfile.STATE_CONNECTING
-                        || prevState == BluetoothProfile.STATE_DISCONNECTING)) {
-                    mDatabaseManager.setDisconnection(device);
+                if (prevState == BluetoothProfile.STATE_CONNECTING
+                        || prevState == BluetoothProfile.STATE_DISCONNECTING) {
+                    mDatabaseManager.setDisconnection(device, profileId);
                 }
                 handleAllProfilesDisconnected(device);
             }
@@ -451,7 +453,7 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
                 + isDualModeAudioEnabled());
 
         if (device != null) {
-            mDatabaseManager.setConnection(device, profileId == BluetoothProfile.A2DP);
+            mDatabaseManager.setConnection(device, profileId);
 
             if (isDualModeAudioEnabled()) return;
             if (profileId == BluetoothProfile.LE_AUDIO) {
@@ -486,7 +488,7 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
 
     private void processDeviceConnected(BluetoothDevice device) {
         debugLog("processDeviceConnected, device=" + device);
-        mDatabaseManager.setConnection(device, false);
+        mDatabaseManager.setConnection(device);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
@@ -547,28 +549,45 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
         mA2dpRetrySet.clear();
     }
 
+    @VisibleForTesting
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
-    private void autoConnect() {
+    void autoConnect() {
         if (mAdapterService.getState() != BluetoothAdapter.STATE_ON) {
             errorLog("autoConnect: BT is not ON. Exiting autoConnect");
             return;
         }
+        if (mAdapterService.isQuietModeEnabled()) {
+            Log.i(TAG, "autoConnect() - BT is in quiet mode. Not initiating autoConnect");
+            return;
+        }
 
-        if (!mAdapterService.isQuietModeEnabled()) {
-            debugLog("autoConnect: Initiate auto connection on BT on...");
-            final BluetoothDevice mostRecentlyActiveA2dpDevice =
-                    mDatabaseManager.getMostRecentlyConnectedA2dpDevice();
-            if (mostRecentlyActiveA2dpDevice == null) {
-                errorLog("autoConnect: most recently active a2dp device is null");
-                return;
-            }
+        Log.i(TAG, "autoConnect: Initiate auto connection on BT on...");
+        final BluetoothDevice mostRecentlyActiveA2dpDevice =
+                mDatabaseManager.getMostRecentlyConnectedA2dpDevice();
+        if (mostRecentlyActiveA2dpDevice != null) {
             debugLog("autoConnect: Device " + mostRecentlyActiveA2dpDevice
                     + " attempting auto connection");
             autoConnectHeadset(mostRecentlyActiveA2dpDevice);
             autoConnectA2dp(mostRecentlyActiveA2dpDevice);
             autoConnectHidHost(mostRecentlyActiveA2dpDevice);
+            return;
+        }
+
+        Log.d(TAG, "is HFP auto connect enabled: " + isHfpAutoConnectEnabled);
+        if (!isHfpAutoConnectEnabled) {
+            return;
+        }
+        Log.i(TAG, "autoConnect: most recently active a2dp device is null");
+
+        // if mostRecentlyActiveA2dpDevice is null,
+        // then auto connect to the most recently connected non-user disconnected HFP device
+        final BluetoothDevice mostRecentlyConnectedHfpDevice =
+                mDatabaseManager.getMostRecentlyActiveHfpDevice();
+        if (mostRecentlyConnectedHfpDevice == null) {
+            Log.i(TAG, "autoConnect: mostRecentlyConnectedHfpDevice is null");
         } else {
-            debugLog("autoConnect() - BT is in quiet mode. Not initiating auto connections");
+            Log.d(TAG, "autoConnect: Headset device: " + mostRecentlyConnectedHfpDevice);
+            autoConnectHeadset(mostRecentlyConnectedHfpDevice);
         }
     }
 
