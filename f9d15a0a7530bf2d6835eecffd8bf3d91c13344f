@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f41b839f_44a589c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-05T08:49:36Z",
+      "side": 1,
+      "message": "Gentle reminder~ Please review.",
+      "revId": "f9d15a0a7530bf2d6835eecffd8bf3d91c13344f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
