@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "47166db8_1b10deb3",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T10:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a06de68_6e780c9a",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "04870b04dbe9c29cf6e83480f2d68c7291799e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c47eb48d_4c08ab9b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-20T08:26:44Z",
       "side": 1,
       "message": "please update and and AOSP version for new file.",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "04870b04dbe9c29cf6e83480f2d68c7291799e78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6bf7a885_b6cb910e",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T10:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c47eb48d_4c08ab9b",
       "range": {
         "startLine": 2,
         "startChar": 13,
