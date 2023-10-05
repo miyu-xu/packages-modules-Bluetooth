@@ -6497,6 +6497,8 @@ public class AdapterService extends Service {
             mBatteryService.disconnect(device);
         }
 
+        mDatabaseManager.setIsDisconnectedByUser(device, true);
+
         return BluetoothStatusCodes.SUCCESS;
     }
 

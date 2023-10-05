@@ -58,6 +58,9 @@ public class Metadata {
     public long last_active_time;
     public boolean is_active_a2dp_device;
 
+    /** is device disconnected by the user. */
+    public boolean isUserDisconnectedDevice = false;
+
     @Embedded
     public AudioPolicyEntity audioPolicyMetadata;
 
@@ -432,18 +435,20 @@ public class Metadata {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(getAnonymizedAddress())
-            .append(" last_active_time=" + last_active_time)
-            .append(" {profile connection policy(")
-            .append(profileConnectionPolicies)
-            .append("), optional codec(support=")
-            .append(a2dpSupportsOptionalCodecs)
-            .append("|enabled=")
-            .append(a2dpOptionalCodecsEnabled)
-            .append("), custom metadata(")
-            .append(publicMetadata)
-            .append("), hfp client audio policy(")
-            .append(audioPolicyMetadata)
-            .append(")}");
+                .append(" last_active_time=" + last_active_time)
+                .append(" {profile connection policy(")
+                .append(profileConnectionPolicies)
+                .append("), optional codec(support=")
+                .append(a2dpSupportsOptionalCodecs)
+                .append("|enabled=")
+                .append(a2dpOptionalCodecsEnabled)
+                .append("), isUserDisconnectedDevice (")
+                .append(isUserDisconnectedDevice)
+                .append("), custom metadata(")
+                .append(publicMetadata)
+                .append("), hfp client audio policy(")
+                .append(audioPolicyMetadata)
+                .append(")}");
 
         return builder.toString();
     }
