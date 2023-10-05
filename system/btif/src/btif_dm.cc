@@ -91,6 +91,7 @@
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_log_history.h"
+#include "stack/include/hidh_api.h"
 #include "stack/sdp/sdpint.h"
 #include "stack_config.h"
 #include "types/raw_address.h"
@@ -2999,6 +3000,12 @@ bt_status_t btif_dm_get_adapter_property(bt_property_t* prop) {
  *
  ******************************************************************************/
 void btif_dm_get_remote_services(RawAddress remote_addr, const int transport) {
+  if (!(HID_HostGetAttr(remote_addr) & HID_SDP_DISABLE)) {
+    LOG_DEBUG(
+        "Skip service discovery for the HID device with HIDSDPDisable as "
+        "true.");
+    return;
+  }
   BTIF_TRACE_EVENT("%s: transport=%d, remote_addr=%s", __func__, transport,
                    ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
 
