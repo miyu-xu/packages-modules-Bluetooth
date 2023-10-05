@@ -25,6 +25,7 @@ import static com.android.server.bluetooth.BluetoothAirplaneModeListener.NOTIFIC
 import static com.android.server.bluetooth.BluetoothAirplaneModeListener.UNUSED;
 import static com.android.server.bluetooth.BluetoothAirplaneModeListener.USED;
 import static com.android.server.bluetooth.BluetoothAirplaneModeListener.WIFI_APM_STATE;
+
 import static org.mockito.Mockito.*;
 
 import android.content.Context;
@@ -38,6 +39,7 @@ import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
+import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
 import com.android.internal.util.test.FakeSettingsProvider;
 
 import org.junit.Assert;
@@ -62,6 +64,7 @@ public class BluetoothAirplaneModeListenerTest {
     @Mock private PackageManager mPackageManager;
     @Mock private Resources mResources;
     private MockContentResolver mContentResolver;
+    private FakeFeatureFlagsImpl mFakeFlagsImpl;
 
     static {
         // Required for reading DeviceConfig during BluetoothManagerService static init
@@ -74,6 +77,8 @@ public class BluetoothAirplaneModeListenerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
+        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
+
         mContentResolver = new MockContentResolver();
         mContentResolver.addProvider(Settings.AUTHORITY, new FakeSettingsProvider());
         when(mContext.getContentResolver()).thenReturn(mContentResolver);
@@ -83,9 +88,13 @@ public class BluetoothAirplaneModeListenerTest {
 
         BluetoothServerProxy.setInstanceForTesting(mBluetoothServerProxy);
 
-        mBluetoothAirplaneModeListener = new BluetoothAirplaneModeListener(
-                mBluetoothManagerService, Looper.getMainLooper(), mContext,
-                mBluetoothNotificationManager);
+        mBluetoothAirplaneModeListener =
+                new BluetoothAirplaneModeListener(
+                        mBluetoothManagerService,
+                        Looper.getMainLooper(),
+                        mContext,
+                        mBluetoothNotificationManager,
+                        mFeatureFlags);
         mBluetoothAirplaneModeListener.start(mHelper);
     }
 

@@ -6,3 +6,10 @@ flag {
     description: "Use the new implemention of satellite mode"
     bug: "289584302"
 }
+
+flag {
+    name: "airplane_ressources_in_app"
+    namespace: "bluetooth"
+    description: "User notification is done within app, not server"
+    bug: "303552318"
+}
