@@ -213,6 +213,30 @@
       },
       "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61038a96_d76290a0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-05T00:43:06Z",
+      "side": 1,
+      "message": "Agreed, PTAL at latest patch, I\u0027m hoping we\u0027re in alignment now.",
+      "parentUuid": "a9fb68b7_3a179850",
+      "range": {
+        "startLine": 141,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 5
+      },
+      "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
