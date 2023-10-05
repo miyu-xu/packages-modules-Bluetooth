@@ -49,6 +49,7 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/gap_api.h"
 #include "stack/include/gatt_api.h"
+#include "stack/include/hidh_api.h"
 #include "stack/include/sdp_status.h"
 #include "stack/sdp/sdpint.h"
 #include "types/raw_address.h"
@@ -1347,8 +1348,11 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
   /* Reset transport state for next discovery */
   bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
 
+  uint16_t attr_mask;
+  auto status = HID_HostGetAttr(remote_bd_addr, &attr_mask);
   /* if application wants to discover service */
-  if (bta_dm_search_cb.services) {
+  if (bta_dm_search_cb.services &&
+      (status == HID_ERR_INVALID || !(attr_mask & HID_SDP_DISABLE))) {
     BTM_LogHistory(kBtmLogTag, remote_bd_addr, "Discovery started ",
                    base::StringPrintf("Transport:%s",
                                       bt_transport_text(transport).c_str()));
@@ -1397,6 +1401,8 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
         return;
       }
     }
+  } else {
+    LOG_DEBUG("[XXXXX] skip service discov...");
   }
 
   /* name discovery and service discovery are done for this device */

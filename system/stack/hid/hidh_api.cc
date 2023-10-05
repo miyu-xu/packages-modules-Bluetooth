@@ -338,6 +338,25 @@ tHID_STATUS HID_HostDeregister(void) {
 
 /*******************************************************************************
  *
+ * Function         HID_HostGetAttr
+ *
+ * Description      This is called to get the attribute mask for the device.
+ *
+ * Returns          tHID_STATUS
+ *
+ ******************************************************************************/
+tHID_STATUS HID_HostGetAttr(const RawAddress& addr, uint16_t* attr_mask) {
+  for (int i = 0; i < HID_HOST_MAX_DEVICES; i++) {
+    if (hh_cb.devices[i].in_use && (hh_cb.devices[i].addr == addr)) {
+      *attr_mask = hh_cb.devices[i].attr_mask;
+      return (HID_SUCCESS);
+    }
+  }
+  return (HID_ERR_INVALID);
+}
+
+/*******************************************************************************
+ *
  * Function         HID_HostAddDev
  *
  * Description      This is called so HID-host may manage this device.
@@ -375,7 +394,10 @@ tHID_STATUS HID_HostAddDev(const RawAddress& addr, uint16_t attr_mask,
     hh_cb.devices[i].conn_tries = 0;
   }
 
-  if (attr_mask != HID_ATTR_MASK_IGNORE) hh_cb.devices[i].attr_mask = attr_mask;
+  if (attr_mask != HID_ATTR_MASK_IGNORE)
+    hh_cb.devices[i].attr_mask = attr_mask;
+  else
+    hh_cb.devices[i].attr_mask = 0;
 
   *handle = i;
 
