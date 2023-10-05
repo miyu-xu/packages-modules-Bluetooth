@@ -52,6 +52,24 @@
       "parentUuid": "57058b34_a9f5ca57",
       "revId": "e103df0232435d6b2408f71dc5f6f56a4c084f88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cbe9be3_09e86194",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2023-10-05T18:55:09Z",
+      "side": 1,
+      "message": "It took a while to get it set up I had to `cros workon` `floss_tools` for the sdk and `floss` for brya as well as cherry-pick https://crrev.com/c/4907466\n\nTo save time I ran:\n```\nUSE\u003d\"floss_upstream -cros-debug\" cros build-packages --autosetgov \u0027--board\u003dbrya\u0027 floss\nFEATURES\u003dtest USE\u003d\"floss_upstream -cros-debug\" emerge-brya floss\n```\n\nIt worked with the current flatbuffers. I am still running the build with the newer flatbuffers, but there will already be test coverage for that when the flatbuffer upgrade lands on CrOS.",
+      "parentUuid": "7c9ba95d_2f7e68d4",
+      "revId": "e103df0232435d6b2408f71dc5f6f56a4c084f88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
