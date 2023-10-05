@@ -33,6 +33,24 @@
       "message": "Actually some of the calls to get devtype have prop-\u003elen \u003d 4, that have the risk of us only filling in one byte and leave the rest 3 bytes uninitialized. \nDo you think we should\n(a) Change all calls to use prop-\u003elen \u003d 1 as well?\n(b) Change all calls to initialize their prop-\u003eval to zero beforehand?\n(c) memset the prop-\u003eval to zero for the length of prop-\u003elen here?\n(d) abandon this change and just use prop-\u003elen \u003d 4 for every calls?",
       "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "338ab5b7_f7ec084b",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-05T17:23:13Z",
+      "side": 1,
+      "message": "/** Bluetooth Device Type */\ntypedef enum {\n  BT_DEVICE_DEVTYPE_BREDR \u003d 0x1,\n  BT_DEVICE_DEVTYPE_BLE,\n  BT_DEVICE_DEVTYPE_DUAL\n} bt_device_type_t;\n\nI see a place where sizeof(bt_device_type_t) is used.  It looks like the size of this enum is ambiguous.  I think we should make the size the same everywhere.",
+      "parentUuid": "58df8c6d_c099563f",
+      "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
