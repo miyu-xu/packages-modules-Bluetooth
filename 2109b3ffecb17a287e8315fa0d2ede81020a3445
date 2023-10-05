@@ -69,6 +69,24 @@
       "parentUuid": "338ab5b7_f7ec084b",
       "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b446f80_52c91439",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-05T18:19:26Z",
+      "side": 1,
+      "message": "That sounds reasonable to me.  You can specify the size of an enum if you use an enum class, but it makes the change much larger.",
+      "parentUuid": "53bfc38b_2e5a7b2d",
+      "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
