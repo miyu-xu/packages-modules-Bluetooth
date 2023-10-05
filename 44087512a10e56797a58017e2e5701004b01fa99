@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea53ec9d_e093fd0a",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-05T12:27:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "098426cf_8514d744",
+      "range": {
+        "startLine": 182,
+        "startChar": 7,
+        "endLine": 183,
+        "endChar": 90
+      },
+      "revId": "44087512a10e56797a58017e2e5701004b01fa99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10869996_eb95600c",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "81356c88_1b535eff",
+        "filename": "android/app/src/com/android/bluetooth/avrcp/AvrcpVolumeManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-05T12:27:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a918c905_ff01ec5e",
+      "range": {
+        "startLine": 200,
+        "startChar": 8,
+        "endLine": 202,
+        "endChar": 49
+      },
+      "revId": "44087512a10e56797a58017e2e5701004b01fa99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56ce9fa6_8c81d29f",
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "I\u0027ll check why it\u0027s not already the case, there might be some tricky corner case. But that makes sense and I\u0027d prefer doing it your way!",
       "parentUuid": "56ce9fa6_8c81d29f",
+      "range": {
+        "startLine": 630,
+        "startChar": 0,
+        "endLine": 630,
+        "endChar": 41
+      },
+      "revId": "44087512a10e56797a58017e2e5701004b01fa99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a9d9449_b7615ff8",
+        "filename": "system/profile/avrcp/device.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-05T12:27:54Z",
+      "side": 1,
+      "message": "So it turns out with all my test devices the volume is already set at connection, which makes resetting it at disconnection useless.\n\nBut then that means that if the volume is set at connection and is equals, there is no issue, if it\u0027s not, then the reset will make it so we\u0027re able to send an update.",
+      "parentUuid": "53db20f5_a6e4c716",
       "range": {
         "startLine": 630,
         "startChar": 0,
