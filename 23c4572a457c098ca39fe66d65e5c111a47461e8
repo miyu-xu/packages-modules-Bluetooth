@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62eacf8_ad7756e8",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-05T04:57:35Z",
+      "side": 1,
+      "message": "I think this should simply be deleted.\nThe service is created while turning on, then deleted\nI don\u0027t see a situation where the adapter is ON and we didn\u0027t just started the MediaControlGattService.\n\nMeantime +2 since it is better to depend on the adapter than on the IBluetoothStataChangeCallback",
+      "range": {
+        "startLine": 810,
+        "startChar": 5,
+        "endLine": 823,
+        "endChar": 14
+      },
+      "revId": "23c4572a457c098ca39fe66d65e5c111a47461e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
