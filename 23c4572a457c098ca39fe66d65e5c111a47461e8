@@ -22,6 +22,30 @@
       },
       "revId": "23c4572a457c098ca39fe66d65e5c111a47461e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e935375e_695d35b7",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-05T17:01:55Z",
+      "side": 1,
+      "message": "Acknowledged, talked offline",
+      "parentUuid": "d62eacf8_ad7756e8",
+      "range": {
+        "startLine": 810,
+        "startChar": 5,
+        "endLine": 823,
+        "endChar": 14
+      },
+      "revId": "23c4572a457c098ca39fe66d65e5c111a47461e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
