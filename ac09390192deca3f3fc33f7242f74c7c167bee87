@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c8f628a_ef0d2bf2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-05T22:24:24Z",
+      "side": 1,
+      "message": "Approving given offline discussion about testing.",
+      "revId": "ac09390192deca3f3fc33f7242f74c7c167bee87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
