@@ -22,6 +22,30 @@
       },
       "revId": "872e99130fe724c73b214578baad3b81b44c1355",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "169af254_a5e8d971",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-10-05T18:53:30Z",
+      "side": 1,
+      "message": "Not sure, might due to controller behavior? \nSee b/301563951, we had a severe race with Pixel Buds.",
+      "parentUuid": "8618c79e_6894cdb0",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 46
+      },
+      "revId": "872e99130fe724c73b214578baad3b81b44c1355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
