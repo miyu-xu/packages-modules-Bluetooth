@@ -16,6 +16,29 @@
       "message": "Gentle reminder~ Please review.",
       "revId": "f9d15a0a7530bf2d6835eecffd8bf3d91c13344f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80469575_291c034c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1037,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-05T14:30:09Z",
+      "side": 1,
+      "message": "Q) Is this changed from `one A2dp device` to `all connected A2dp devices`?",
+      "range": {
+        "startLine": 1037,
+        "startChar": 16,
+        "endLine": 1037,
+        "endChar": 65
+      },
+      "revId": "f9d15a0a7530bf2d6835eecffd8bf3d91c13344f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
