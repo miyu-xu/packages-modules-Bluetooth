@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60e423ef_d2e5f043",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 2001,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-05T08:13:15Z",
+      "side": 1,
+      "message": "None, it\u0027s related to hold/resume behavior. Do you want me to remove this?",
+      "parentUuid": "9d034d97_1c3d887b",
+      "range": {
+        "startLine": 2000,
+        "startChar": 16,
+        "endLine": 2001,
+        "endChar": 46
+      },
+      "revId": "d7314758f0e8dfbe09478b156b230a1a8e04a7b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26086ae4_c98521ed",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 6
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-05T05:58:52Z",
       "side": 1,
       "message": "What kind of use case will fall into this?",
+      "range": {
+        "startLine": 2033,
+        "startChar": 20,
+        "endLine": 2035,
+        "endChar": 53
+      },
+      "revId": "d7314758f0e8dfbe09478b156b230a1a8e04a7b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "254668b7_a1b77559",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 2035,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-05T08:13:15Z",
+      "side": 1,
+      "message": "None, it\u0027s related to hold/resume behavior. Do you want me to remove this?",
+      "parentUuid": "26086ae4_c98521ed",
       "range": {
         "startLine": 2033,
         "startChar": 20,
