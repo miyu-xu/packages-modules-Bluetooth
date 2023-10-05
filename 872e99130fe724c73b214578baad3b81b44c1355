@@ -46,6 +46,30 @@
       },
       "revId": "872e99130fe724c73b214578baad3b81b44c1355",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "81992edf_03e32945",
+        "filename": "system/gd/sysprops/sysprops_module.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-05T20:31:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "169af254_a5e8d971",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 46
+      },
+      "revId": "872e99130fe724c73b214578baad3b81b44c1355",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
