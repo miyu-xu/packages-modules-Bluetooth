@@ -49,6 +49,7 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/gap_api.h"
 #include "stack/include/gatt_api.h"
+#include "stack/include/hidh_api.h"
 #include "stack/include/sdp_status.h"
 #include "stack/sdp/sdpint.h"
 #include "types/raw_address.h"
@@ -1393,7 +1394,10 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
         LOG_INFO("bta_dm_discovery: starting SDP discovery on %s",
                  ADDRESS_TO_LOGGABLE_CSTR(bta_dm_search_cb.peer_bdaddr));
         bta_dm_search_cb.sdp_results = false;
-        bta_dm_find_services(bta_dm_search_cb.peer_bdaddr);
+        if (!(HID_HostGetAttr(bta_dm_search_cb.peer_bdaddr) & HID_SDP_DISABLE))
+          bta_dm_find_services(bta_dm_search_cb.peer_bdaddr);
+        else
+          LOG_DEBUG("Skip SDP discovery for device with HIDSDPDisable.");
         return;
       }
     }
