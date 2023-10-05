@@ -166,6 +166,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7128810_8f074f1f",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-05T21:28:08Z",
+      "side": 1,
+      "message": "I think you misunderstand my remark.\nFrom what I understand, the purpose of encrypted_data_map is to help with the decryption of multiple AD Encrypted Data entries in the advertising report:\n\nfor example,\n\nAdv_Data:\n  - AD Len1\n    AD Type1 \n    Data1\n  - AD Len2\n    AD Encrypted\n    Data2\n  - AD Len3      \u003c\u003c more encrypted data\n    AD Encrypted\n    Data3\n\nI am suggesting having a handler for decrypting the entries one at a time, vs decrypting all together. Is there something I missed that would prevent that ?",
+      "parentUuid": "d8558d3a_e8f9c533",
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61d3308f_c7832d63",
         "filename": "system/gd/hci/le_scanning_decrypter.h",
         "patchSetId": 6
