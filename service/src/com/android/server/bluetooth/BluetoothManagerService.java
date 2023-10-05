@@ -435,6 +435,15 @@ class BluetoothManagerService {
         }
     }
 
+    /** Send Intent to the Notification Service in the Bluetooth app */
+    Unit sendAirplaneModeNotification(String notificationState) {
+        Intent intent = new Intent("android.bluetooth.airplane.NotificationHelper");
+        intent.setComponent(resolveSystemService(intent));
+        intent.putExtra("NOTIFICATION_STATE", notificationState);
+        mContext.startService(intent);
+        return Unit.INSTANCE;
+    }
+
     private static final Object ON_AIRPLANE_MODE_CHANGED_TOKEN = new Object();
     private static final Object ON_SATELLITE_MODE_CHANGED_TOKEN = new Object();
     private static final Object ON_SWITCH_USER_TOKEN = new Object();
@@ -731,7 +740,7 @@ class BluetoothManagerService {
 
         mBluetoothAirplaneModeListener =
                 new BluetoothAirplaneModeListener(
-                        this, mLooper, mContext, mBluetoothNotificationManager);
+                        this, mLooper, mContext, mBluetoothNotificationManager, mFeatureFlags);
 
         // Caching is necessary to prevent caller requiring the READ_DEVICE_CONFIG permission
         mUseNewSatelliteMode = mFeatureFlags.useNewSatelliteMode();
