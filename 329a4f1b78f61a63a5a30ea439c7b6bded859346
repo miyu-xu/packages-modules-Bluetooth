@@ -112,6 +112,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "378b7e2d_3ea1f777",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-05T19:29:48Z",
+      "side": 1,
+      "message": "It is not an issue if we try to perform decryption with different keys which is why we iterate through all the possible keys until decryption is successful. Do you want the function to individually decrypt AD types one by one? If so, why would that be preferred?",
+      "parentUuid": "18c1eb72_5b912423",
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61d3308f_c7832d63",
         "filename": "system/gd/hci/le_scanning_decrypter.h",
         "patchSetId": 6
