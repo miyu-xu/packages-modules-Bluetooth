@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e40843fe_974f9069",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverSpliterator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-05T21:00:32Z",
+      "side": 1,
+      "message": "nit: Remove",
+      "revId": "a3ec2c869a24ed810fe9a9cfc52cca325171424e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
