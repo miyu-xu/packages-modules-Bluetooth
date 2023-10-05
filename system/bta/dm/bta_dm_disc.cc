@@ -49,6 +49,7 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/gap_api.h"
 #include "stack/include/gatt_api.h"
+#include "stack/include/hidh_api.h"
 #include "stack/include/sdp_status.h"
 #include "stack/sdp/sdpint.h"
 #include "types/raw_address.h"
@@ -1347,8 +1348,16 @@ static void bta_dm_discover_device(const RawAddress& remote_bd_addr) {
   /* Reset transport state for next discovery */
   bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
 
-  /* if application wants to discover service */
-  if (bta_dm_search_cb.services) {
+  /* Get attribute mask by device address */
+  uint16_t attr_mask = 0;
+  HID_HostGetAttr(remote_bd_addr, &attr_mask);
+
+  /* if application wants to discover service and HIDSDPDisable attribute is
+     false. The HIDSDPDisable attribute indicates whether connection to the SDP
+     channel and Control or Interrupt channels are mutually exclusive. Classic
+     mouses with this attribute should not start SDP after they are already
+     connected to the Control or Interrupt channels */
+  if (bta_dm_search_cb.services && !(attr_mask & HID_SDP_DISABLE)) {
     BTM_LogHistory(kBtmLogTag, remote_bd_addr, "Discovery started ",
                    base::StringPrintf("Transport:%s",
                                       bt_transport_text(transport).c_str()));

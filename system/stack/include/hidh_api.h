@@ -126,6 +126,17 @@ tHID_STATUS HID_HostDeregister(void);
 
 /*******************************************************************************
  *
+ * Function         HID_HostGetAttr
+ *
+ * Description      This is called to get the attribute mask for the device.
+ *
+ * Returns          tHID_STATUS
+ *
+ ******************************************************************************/
+tHID_STATUS HID_HostGetAttr(const RawAddress& addr, uint16_t* attr_mask);
+
+/*******************************************************************************
+ *
  * Function         HID_HostAddDev
  *
  * Description      This is called so HID-host may manage this device.
