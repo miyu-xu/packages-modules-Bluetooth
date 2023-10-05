@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d814e143_7ba4f399",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeAdvertisingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-05T21:00:26Z",
+      "side": 1,
+      "message": "You should save this somewhere as it\u0027s caching values.",
+      "range": {
+        "startLine": 83,
+        "startChar": 48,
+        "endLine": 83,
+        "endChar": 75
+      },
+      "revId": "badb772ec8545c97bdc63b5510be5e5981cd5652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
