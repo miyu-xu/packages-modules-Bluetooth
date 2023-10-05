@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc668e79_fed23d88",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-05T21:24:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f54afe0_aadcee9b",
+      "range": {
+        "startLine": 869,
+        "startChar": 58,
+        "endLine": 869,
+        "endChar": 67
+      },
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a865e3e_e79aef69",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-10-05T11:27:09Z",
       "side": 1,
       "message": "I guess if p_clcb is not there then we should do clearing as in line 886",
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1e0e9a9_68b10f39",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-05T21:24:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a865e3e_e79aef69",
       "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de91a3d1_59f23ef1",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-05T21:24:06Z",
+      "side": 1,
+      "message": "there is some pattern for mapping connection id to ALC handle and client. I don\u0027t want to digg into it\u0027s details, or make any assumptions. Stays safe and keep it as separate variables.",
+      "parentUuid": "4636bd48_3ab039f5",
+      "range": {
+        "startLine": 886,
+        "startChar": 0,
+        "endLine": 887,
+        "endChar": 38
+      },
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dedc7086_6248e57b",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-10-05T11:27:09Z",
       "side": 1,
       "message": "to make it easy to read I would call here\n\n```\nbta_gattc_start_discover_internal(p_clcb);\nreturn;\n```",
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c61841f5_1d5cd0d5",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-05T21:24:06Z",
+      "side": 1,
+      "message": "Right now, I just moved code from bta_gattc_start_discover to this method, and would prefer to keep it as is.",
+      "parentUuid": "dedc7086_6248e57b",
       "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69706aca_472f2d50",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-05T21:24:06Z",
+      "side": 1,
+      "message": "Same as above. Will do cleanup in follow up patches.",
+      "parentUuid": "29ef6d00_a4f8fa09",
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fe43d16_c5e48b9e",
@@ -115,6 +217,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18d8bb15_5364f835",
+        "filename": "system/stack/acl/acl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-05T21:24:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fe43d16_c5e48b9e",
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5738b05_fc926e74",
@@ -128,6 +248,30 @@
       "writtenOn": "2023-10-05T11:27:09Z",
       "side": 1,
       "message": "nit: BTM_IsRemoteVersionKnown or BTM_IsRemoteVersionAvailable()",
+      "range": {
+        "startLine": 1613,
+        "startChar": 5,
+        "endLine": 1613,
+        "endChar": 30
+      },
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59f8d3d2_36f6cd94",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1613,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-05T21:24:06Z",
+      "side": 1,
+      "message": "Done, as discussed offline.",
+      "parentUuid": "d5738b05_fc926e74",
       "range": {
         "startLine": 1613,
         "startChar": 5,
