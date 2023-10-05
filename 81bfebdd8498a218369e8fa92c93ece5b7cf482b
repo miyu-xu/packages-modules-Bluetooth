@@ -69,6 +69,24 @@
       "parentUuid": "daadd85e_dd20fd02",
       "revId": "81bfebdd8498a218369e8fa92c93ece5b7cf482b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b95a9360_05975453",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-10-05T21:06:37Z",
+      "side": 1,
+      "message": "+1 - I hope to close on that dicussion soon to cut the path.",
+      "parentUuid": "52dcce86_9f068cab",
+      "revId": "81bfebdd8498a218369e8fa92c93ece5b7cf482b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
