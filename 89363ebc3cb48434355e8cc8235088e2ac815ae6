@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "75559a11_cfec307b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-05T21:29:10Z",
+      "side": 1,
+      "message": "Please also file go/bt-testing-exemption if no test can cover aside from manual.",
+      "parentUuid": "7f10378a_49796048",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "89363ebc3cb48434355e8cc8235088e2ac815ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a350d34_10bcf970",
         "filename": "system/stack/acl/acl.h",
         "patchSetId": 2
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-02T23:51:53Z",
       "side": 1,
       "message": "Please fix here and in line 182:\n\nPlease fix this ERROR reported by Common Typos: Common typo found: \"Wether\" -- should it be \"Whether\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"Wether\" -- should it be \"Whether\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 180,
+        "startChar": 5,
+        "endLine": 180,
+        "endChar": 11
+      },
+      "revId": "89363ebc3cb48434355e8cc8235088e2ac815ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ba06419_ad798a71",
+        "filename": "system/stack/acl/acl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-05T21:29:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a350d34_10bcf970",
       "range": {
         "startLine": 180,
         "startChar": 5,
