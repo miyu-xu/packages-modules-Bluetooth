@@ -22,6 +22,30 @@
       },
       "revId": "badb772ec8545c97bdc63b5510be5e5981cd5652",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c523681c_9312da88",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeAdvertisingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-05T21:04:19Z",
+      "side": 1,
+      "message": "We\u0027re only using it once this is why I haven\u0027t store it",
+      "parentUuid": "d814e143_7ba4f399",
+      "range": {
+        "startLine": 83,
+        "startChar": 48,
+        "endLine": 83,
+        "endChar": 75
+      },
+      "revId": "badb772ec8545c97bdc63b5510be5e5981cd5652",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
