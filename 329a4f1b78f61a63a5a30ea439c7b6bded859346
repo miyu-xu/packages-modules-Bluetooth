@@ -148,6 +148,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d8558d3a_e8f9c533",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-05T21:21:01Z",
+      "side": 1,
+      "message": "It is not possible to decrypt each AD type individually since the entire LTV value of the AD types are encrypted. There is no way to split the Encrypted Data into individual encrypted AD types. The packet looks like this\n(Length of Encrypted Data) + (Encrypted Data Type Value) + (Encrypted Data)\n\nEncrypted Data is composed of (LTV + LTV + LTV ...)",
+      "parentUuid": "0748abf5_89919d74",
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "61d3308f_c7832d63",
         "filename": "system/gd/hci/le_scanning_decrypter.h",
         "patchSetId": 6
