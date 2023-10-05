@@ -70,6 +70,30 @@
       },
       "revId": "6cab7de85f7e084248769dd626b97589621132da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79140f5c_303d8a6b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1480,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-05T05:29:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "72bb441f_0c72657f",
+      "range": {
+        "startLine": 1479,
+        "startChar": 12,
+        "endLine": 1480,
+        "endChar": 85
+      },
+      "revId": "6cab7de85f7e084248769dd626b97589621132da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
