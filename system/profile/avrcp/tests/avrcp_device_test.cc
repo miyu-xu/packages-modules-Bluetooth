@@ -1469,6 +1469,20 @@ TEST_F(AvrcpDeviceTest, setVolumeOnceTest) {
   test_device->SetVolume(vol);
 }
 
+TEST_F(AvrcpDeviceTest, setVolumeAfterReconnectionTest) {
+  int vol = 0x48;
+
+  auto set_abs_vol = SetAbsoluteVolumeRequestBuilder::MakeBuilder(vol);
+
+  // Ensure that SetVolume only been call once.
+  EXPECT_CALL(response_cb, Call(_, false, matchPacket(std::move(set_abs_vol))))
+      .Times(2);
+
+  test_device->SetVolume(vol);
+  test_device->DeviceDisconnected();
+  test_device->SetVolume(vol);
+}
+
 TEST_F(AvrcpDeviceTest, playPushedActiveDeviceTest) {
   MockMediaInterface interface;
   NiceMock<MockA2dpInterface> a2dp_interface;
