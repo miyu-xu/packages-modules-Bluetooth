@@ -219,6 +219,13 @@ class BluetoothManagerService {
 
     private BluetoothNotificationManager mBluetoothNotificationManager;
 
+    // TODO(b/303552318): Use aconfig flag when available on AOSP
+    static final boolean AIRPLANE_RESSOURCES_IN_APP =
+            DeviceConfig.getBoolean(
+                    DeviceConfig.NAMESPACE_BLUETOOTH,
+                    "com.android.bluetooth.airplane_ressources_in_app",
+                    false);
+
     // TODO(b/289584302): remove BluetoothSatelliteModeListener once use_new_satellite_mode ship
     private BluetoothSatelliteModeListener mBluetoothSatelliteModeListener;
 
@@ -437,6 +444,16 @@ class BluetoothManagerService {
         } else {
             r.run();
         }
+    }
+
+    /** Send Intent to the Notification Service in the Bluetooth app */
+    Unit sendAirplaneModeNotification(String notificationState) {
+        assert (AIRPLANE_RESSOURCES_IN_APP);
+        Intent intent = new Intent("android.bluetooth.airplane.NotificationHelper");
+        intent.setComponent(resolveSystemService(intent));
+        intent.putExtra("NOTIFICATION_STATE", notificationState);
+        mContext.startService(intent);
+        return Unit.INSTANCE;
     }
 
     private static final Object ON_AIRPLANE_MODE_CHANGED_TOKEN = new Object();
@@ -2868,7 +2885,7 @@ class BluetoothManagerService {
         return bOptions.toBundle();
     }
 
-    private ComponentName resolveSystemService(@NonNull Intent intent) {
+    ComponentName resolveSystemService(@NonNull Intent intent) {
         List<ResolveInfo> results = mContext.getPackageManager().queryIntentServices(intent, 0);
         if (results == null) {
             return null;
