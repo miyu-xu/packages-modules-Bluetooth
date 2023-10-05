@@ -189,6 +189,30 @@
       },
       "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9fb68b7_3a179850",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-05T00:34:03Z",
+      "side": 1,
+      "message": "The \"loop\" is not the issue, I wasn\u0027t clear enough sorry.\nI meant we don\u0027t need to do a test multiple time to be sure it works if the code is properly written.\n\nIn this case, and since we are removing any option for race condition (because we are waiting in each state), doing the test once or a thousand time will always be the same result.\nHence why I think we should only keep one occurence of reconnection (aka initial connection + close + 2nd Connection on the already existing one and that all)",
+      "parentUuid": "ca802d1a_fc60d939",
+      "range": {
+        "startLine": 141,
+        "startChar": 4,
+        "endLine": 141,
+        "endChar": 5
+      },
+      "revId": "22fa107425996e291d5cb7544ca3fb43f894f630",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
