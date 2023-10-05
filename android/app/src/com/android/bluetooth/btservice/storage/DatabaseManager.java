@@ -620,6 +620,7 @@ public class DatabaseManager {
             if (isA2dpDevice) {
                 metadata.is_active_a2dp_device = true;
             }
+            metadata.isUserDisconnectedDevice = false;
 
             Log.d(TAG, "Updating last connected time for device: " + device.getAnonymizedAddress()
                     + " to " + metadata.last_active_time);
@@ -634,6 +635,7 @@ public class DatabaseManager {
      */
     public void setDisconnection(BluetoothDevice device) {
         synchronized (mMetadataCache) {
+            Log.d(TAG, "setDisconnection: device " + device.getAnonymizedAddress());
             if (device == null) {
                 Log.e(TAG, "setDisconnection: device is null");
                 return;
@@ -982,8 +984,10 @@ public class DatabaseManager {
     }
 
     void createMetadata(String address, boolean isActiveA2dpDevice) {
+        Log.d(TAG, "createMetadata");
         Metadata data = new Metadata(address);
         data.is_active_a2dp_device = isActiveA2dpDevice;
+        data.isUserDisconnectedDevice = false;
         mMetadataCache.put(address, data);
         updateDatabase(data);
         logMetadataChange(data, "Metadata created");
@@ -1038,6 +1042,62 @@ public class DatabaseManager {
             }
         }
         return false;
+    }
+
+    /**
+     * Check whether a device is disconnected by the user.
+     *
+     * @param device {@link BluetoothDevice} going to check.
+     * @return true if a device is disconnected by the user, false otherwise.
+     */
+    public boolean isUserDisconnectedDevice(BluetoothDevice device) {
+        synchronized (mMetadataCache) {
+            if (device == null) {
+                Log.e(TAG, "device is null");
+                return false;
+            }
+
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.d(TAG, "isUserDisconnectedDevice: device " + device + " is not in cache");
+                return false;
+            }
+
+            Metadata data = mMetadataCache.get(address);
+            Log.d(TAG, device + " isUserDisconnectedDevice: " + data.isUserDisconnectedDevice);
+            return data.isUserDisconnectedDevice;
+        }
+    }
+
+    /**
+     * Set whether a device is disconnected by the user.
+     *
+     * @param device {@link BluetoothDevice} going to be set.
+     * @param isDisconnectedByUser true if the device is disconnected by the user, false otherwise.
+     */
+    public void setIsDisconnectedByUser(BluetoothDevice device, boolean isDisconnectedByUser) {
+        synchronized (mMetadataCache) {
+            if (device == null) {
+                Log.e(TAG, "setIsDisconnectedByUser: device is null");
+                return;
+            }
+            Log.d(TAG, "setIsDisconnectedByUser: device " + device);
+
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                return;
+            }
+            // Updates last connected time to either current time if connected or -1 if disconnected
+            Metadata metadata = mMetadataCache.get(address);
+            if (metadata.isUserDisconnectedDevice != isDisconnectedByUser) {
+                metadata.isUserDisconnectedDevice = isDisconnectedByUser;
+                Log.d(TAG, "setIsDisconnectedByUser: Updating setIsDisconnectedByUser to "
+                        + isDisconnectedByUser + " for device: " + device);
+                updateDatabase(metadata);
+            }
+        }
     }
 
     void migrateSettingsGlobal() {
