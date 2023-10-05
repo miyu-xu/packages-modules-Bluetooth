@@ -86,6 +86,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -139,6 +140,8 @@ public class LeAudioService extends ProfileService {
     LeAudioTmapGattServer mTmapGattServer;
     int mTmapRoleMask;
     int mUnicastGroupIdDeactivatedForBroadcastTransition = LE_AUDIO_GROUP_ID_INVALID;
+    Optional<Integer> mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
+    Optional<Boolean> mIsInCallQueuedDueToBroadcastDeactivation = Optional.empty();
     boolean mTmapStarted = false;
     private boolean mAwaitingBroadcastCreateResponse = false;
     private final LinkedList<BluetoothLeBroadcastSettings> mCreateBroadcastQueue =
@@ -365,6 +368,7 @@ public class LeAudioService extends ProfileService {
             return true;
         }
 
+        mIsInCallQueuedDueToBroadcastDeactivation = Optional.empty();
         mCreateBroadcastQueue.clear();
         mAwaitingBroadcastCreateResponse = false;
 
@@ -1013,6 +1017,27 @@ public class LeAudioService extends ProfileService {
     public int getMaximumSubgroupsPerBroadcast() {
         /* TODO: This is currently fixed to 1 */
         return 1;
+    }
+
+    private boolean areBroadcastsStopped() {
+        if (mBroadcastDescriptors == null) {
+            Log.e(TAG, "Invalid Broadcast Descriptors");
+            return false;
+        }
+
+        return mBroadcastDescriptors.values().stream()
+                .allMatch(d -> d.mState.equals(LeAudioStackEvent.BROADCAST_STATE_STOPPED));
+    }
+
+    private Optional<Integer> getFirstNotStoppedBroadcastId() {
+        for (Map.Entry<Integer, LeAudioBroadcastDescriptor> entry :
+                mBroadcastDescriptors.entrySet()) {
+            if (!entry.getValue().mState.equals(LeAudioStackEvent.BROADCAST_STATE_STOPPED)) {
+                return Optional.of(entry.getKey());
+            }
+        }
+
+        return Optional.empty();
     }
 
     private BluetoothDevice getLeadDeviceForTheGroup(Integer groupId) {
@@ -2137,7 +2162,15 @@ public class LeAudioService extends ProfileService {
                     break;
                 }
                 case LeAudioStackEvent.GROUP_STATUS_INACTIVE: {
-                    handleGroupTransitToInactive(groupId, false);
+                    handleGroupTransitToInactive(groupId,
+                            mBroadcastIdDeactivatedForUnicastTransition.isPresent());
+
+                    /* Check if broadcast was deactivated due to unicast */
+                    if (mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
+                        mUnicastGroupIdDeactivatedForBroadcastTransition = groupId;
+                        mIsInCallQueuedDueToBroadcastDeactivation = Optional.empty();
+                        startBroadcast(mBroadcastIdDeactivatedForUnicastTransition.get());
+                    }
 
                     if (!mCreateBroadcastQueue.isEmpty()) {
                         mUnicastGroupIdDeactivatedForBroadcastTransition = groupId;
@@ -2198,11 +2231,6 @@ public class LeAudioService extends ProfileService {
             }
             mBroadcastDescriptors.remove(broadcastId);
 
-            /* Restore the Unicast stream from before the Broadcast was started. */
-            if (mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID) {
-                transitionFromBroadcastToUnicast();
-            }
-
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE) {
             int broadcastId = stackEvent.valueInt1;
             int state = stackEvent.valueInt2;
@@ -2242,6 +2270,17 @@ public class LeAudioService extends ProfileService {
                                     previousDevice,
                                     getBroadcastProfile(true));
                         }
+                    }
+
+                    /* Restore the Unicast stream from before the Broadcast was started. */
+                    if (mUnicastGroupIdDeactivatedForBroadcastTransition
+                            != LE_AUDIO_GROUP_ID_INVALID) {
+                        if (mIsInCallQueuedDueToBroadcastDeactivation.isPresent()) {
+                            mLeAudioNativeInterface.setInCall(
+                                    mIsInCallQueuedDueToBroadcastDeactivation.get());
+                            mIsInCallQueuedDueToBroadcastDeactivation = Optional.empty();
+                        }
+                        transitionFromBroadcastToUnicast();
                     }
                     break;
                 case LeAudioStackEvent.BROADCAST_STATE_CONFIGURING:
@@ -2611,7 +2650,26 @@ public class LeAudioService extends ProfileService {
             Log.e(TAG, "Le Audio not initialized properly.");
             return;
         }
+
+        if (inCall && !areBroadcastsStopped()) {
+            Optional<Integer> broadcastId = getFirstNotStoppedBroadcastId();
+            if (broadcastId.isEmpty() || (mBroadcastDescriptors.get(broadcastId.get()) == null)) {
+                Log.e(TAG, "Can't stop broadcasting");
+                return;
+            }
+
+            mIsInCallQueuedDueToBroadcastDeactivation = Optional.of(true);
+            mBroadcastIdDeactivatedForUnicastTransition = Optional.of(broadcastId.get());
+            stopBroadcast(broadcastId.get());
+            return;
+        }
+
         mLeAudioNativeInterface.setInCall(inCall);
+
+        if (!inCall && mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
+            /* Broadcast shold be restored when group become inactive */
+            removeActiveDevice(false);
+        }
     }
 
     /**
