@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcd3d071_8df2f5c5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-05T20:48:10Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Build Warnings: method testDumpDoesNotCrash() is already defined in class HeadsetClientServiceTest\n\nAnalyzer Description: Reports warnings that originate from build.log in the build artifacts.\nOwner: farivar@google.com\n\n    method testDumpDoesNotCrash() is already defined in class HeadsetClientServiceTest\n        public void testDumpDoesNotCrash() throws Exception {\n                    ^\n\nThis finding was found on https://android-build.googleplex.com/builds/build-details/P63577181/targets/errorprone-trunk_staging, but may also be present on other builds.\n\nThis is a different branch than your cl originated on (it was automerged), and thus might better reflect the state of the code in the git_main branch.",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 57
+      },
+      "revId": "ebc4755a13e9060737bb1784f7f4fffab07469d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c7270e0_faf3e57a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-05T20:48:10Z",
+      "side": 1,
+      "message": "Can you keep using the doReturn pattern instead ?",
+      "range": {
+        "startLine": 200,
+        "startChar": 0,
+        "endLine": 200,
+        "endChar": 79
+      },
+      "revId": "ebc4755a13e9060737bb1784f7f4fffab07469d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5677a60c_08253587",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-05T20:48:10Z",
+      "side": 1,
+      "message": "`doStop()` to be symmetrical with the start",
+      "range": {
+        "startLine": 224,
+        "startChar": 20,
+        "endLine": 224,
+        "endChar": 21
+      },
+      "revId": "ebc4755a13e9060737bb1784f7f4fffab07469d5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
