@@ -16,6 +16,24 @@
       "message": "nit: Remove",
       "revId": "a3ec2c869a24ed810fe9a9cfc52cca325171424e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edadd677_108a49c3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StreamObserverSpliterator.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-05T21:03:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e40843fe_974f9069",
+      "revId": "a3ec2c869a24ed810fe9a9cfc52cca325171424e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
