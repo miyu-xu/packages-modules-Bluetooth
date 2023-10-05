@@ -336,6 +336,13 @@ tHID_STATUS HID_HostDeregister(void) {
   return (HID_SUCCESS);
 }
 
+uint16_t HID_HostGetAttr(const RawAddress& addr) {
+  for (int i = 0; i < HID_HOST_MAX_DEVICES; i++) {
+    if (hh_cb.devices[i].addr == addr) return hh_cb.devices[i].attr_mask;
+  }
+  return 0;
+}
+
 /*******************************************************************************
  *
  * Function         HID_HostAddDev

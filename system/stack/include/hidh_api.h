@@ -124,6 +124,8 @@ tHID_STATUS HID_HostRegister(tHID_HOST_DEV_CALLBACK* dev_cback);
  ******************************************************************************/
 tHID_STATUS HID_HostDeregister(void);
 
+uint16_t HID_HostGetAttr(const RawAddress& addr);
+
 /*******************************************************************************
  *
  * Function         HID_HostAddDev

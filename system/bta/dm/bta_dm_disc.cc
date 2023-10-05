@@ -49,6 +49,7 @@
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/gap_api.h"
 #include "stack/include/gatt_api.h"
+#include "stack/include/hidh_api.h"
 #include "stack/include/sdp_status.h"
 #include "stack/sdp/sdpint.h"
 #include "types/raw_address.h"
