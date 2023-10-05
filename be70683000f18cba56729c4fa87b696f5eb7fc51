@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ab905a3_8b5e5c84",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-05T17:46:19Z",
+      "side": 1,
+      "message": "According to the spec:\n\nWhen the HCI_Remote_Supported_Host_Features_Notification event is\nunmasked and when the HCI_Remote_Name_Request command initiates a\nconnection, the Link Manager shall read the remote LMP features mask pages\n0 and 1.\n\nI thought maybe we were getting two because of the two pages, so I wanted to see if the features were different.\n\nBut:\nThis event shall only be generated after the LMP extended features are read\nfrom the remote device during a connection initiated by an HCI_Remote_-\nName_Request command.",
+      "parentUuid": "77ee89f1_2cf12dd3",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "be70683000f18cba56729c4fa87b696f5eb7fc51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "72dd70f2_341366a8",
