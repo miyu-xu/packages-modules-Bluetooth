@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f54afe0_aadcee9b",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 869,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T11:27:09Z",
+      "side": 1,
+      "message": "transport seems to be not used here",
+      "range": {
+        "startLine": 869,
+        "startChar": 58,
+        "endLine": 869,
+        "endChar": 67
+      },
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a865e3e_e79aef69",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 881,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T11:27:09Z",
+      "side": 1,
+      "message": "I guess if p_clcb is not there then we should do clearing as in line 886",
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4636bd48_3ab039f5",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T11:27:09Z",
+      "side": 1,
+      "message": "do we really need 2 variables?\n\nWhy not to have just `disc_blocked_by_conn_id` and when it is non 0 it means it is blocked ?",
+      "range": {
+        "startLine": 886,
+        "startChar": 0,
+        "endLine": 887,
+        "endChar": 38
+      },
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dedc7086_6248e57b",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T11:27:09Z",
+      "side": 1,
+      "message": "to make it easy to read I would call here\n\n```\nbta_gattc_start_discover_internal(p_clcb);\nreturn;\n```",
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29ef6d00_a4f8fa09",
+        "filename": "system/bta/gatt/bta_gattc_act.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 910,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T11:27:09Z",
+      "side": 1,
+      "message": "lets use new LOG_INFO logs",
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fe43d16_c5e48b9e",
+        "filename": "system/stack/acl/acl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T11:27:09Z",
+      "side": 1,
+      "message": "nit: remote_version_is_known{false} or remote_version_is_available{false}",
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5738b05_fc926e74",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1613,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-05T11:27:09Z",
+      "side": 1,
+      "message": "nit: BTM_IsRemoteVersionKnown or BTM_IsRemoteVersionAvailable()",
+      "range": {
+        "startLine": 1613,
+        "startChar": 5,
+        "endLine": 1613,
+        "endChar": 30
+      },
+      "revId": "76f8ebdd35977cea16d40a7a27b23283b65b32d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
