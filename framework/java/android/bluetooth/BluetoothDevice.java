@@ -96,7 +96,7 @@ import java.util.concurrent.TimeoutException;
  */
 public final class BluetoothDevice implements Parcelable, Attributable {
     private static final String TAG = "BluetoothDevice";
-    private static final boolean DBG = false;
+    private static final boolean DBG = Log.isLoggable(TAG, Log.DEBUG);
 
     /**
      * Connection state bitmask as returned by getConnectionState.

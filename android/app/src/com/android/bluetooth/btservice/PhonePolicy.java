@@ -23,9 +23,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Looper;
@@ -547,28 +544,49 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
         mA2dpRetrySet.clear();
     }
 
+    @VisibleForTesting
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
-    private void autoConnect() {
+    void autoConnect() {
         if (mAdapterService.getState() != BluetoothAdapter.STATE_ON) {
             errorLog("autoConnect: BT is not ON. Exiting autoConnect");
             return;
         }
+        if (mAdapterService.isQuietModeEnabled()) {
+            Log.i(TAG, "autoConnect() - BT is in quiet mode. Not initiating autoConnect");
+            return;
+        }
 
-        if (!mAdapterService.isQuietModeEnabled()) {
-            debugLog("autoConnect: Initiate auto connection on BT on...");
-            final BluetoothDevice mostRecentlyActiveA2dpDevice =
-                    mDatabaseManager.getMostRecentlyConnectedA2dpDevice();
-            if (mostRecentlyActiveA2dpDevice == null) {
-                errorLog("autoConnect: most recently active a2dp device is null");
-                return;
-            }
-            debugLog("autoConnect: Device " + mostRecentlyActiveA2dpDevice
+        Log.i(TAG, "autoConnect: Initiate auto connection on BT on...");
+        final BluetoothDevice mostRecentlyConnectedA2dpDevice =
+                mDatabaseManager.getMostRecentlyConnectedA2dpDevice();
+        if (mostRecentlyConnectedA2dpDevice != null) {
+            debugLog("autoConnect: Device " + mostRecentlyConnectedA2dpDevice
                     + " attempting auto connection");
-            autoConnectHeadset(mostRecentlyActiveA2dpDevice);
-            autoConnectA2dp(mostRecentlyActiveA2dpDevice);
-            autoConnectHidHost(mostRecentlyActiveA2dpDevice);
+            autoConnectHeadset(mostRecentlyConnectedA2dpDevice);
+            autoConnectA2dp(mostRecentlyConnectedA2dpDevice);
+            autoConnectHidHost(mostRecentlyConnectedA2dpDevice);
+            return;
         } else {
-            debugLog("autoConnect() - BT is in quiet mode. Not initiating auto connections");
+            Log.i(TAG, "autoConnect: most recently active a2dp device is null");
+        }
+
+        // if mostRecentlyConnectedA2dpDevice is null,
+        // then auto connect to the most recently connected non-user disconnected HFP device
+        BluetoothDevice mostRecentlyConnectedHfpDevice;
+        final HeadsetService headsetService = mFactory.getHeadsetService();
+        if (headsetService != null) {
+            mostRecentlyConnectedHfpDevice =
+                    mDatabaseManager.getMostRecentlyConnectedDevices().stream()
+                            .filter(x -> headsetService.getConnectionPolicy(x)
+                                    == BluetoothProfile.CONNECTION_POLICY_ALLOWED
+                                    && !mDatabaseManager.isUserDisconnectedDevice(x))
+                            .findFirst().orElse(null);
+            if (mostRecentlyConnectedHfpDevice == null) {
+                Log.i(TAG, "no HFP device is CONNECTION_POLICY_ALLOWED and non-UserDisconnected ");
+            } else {
+                Log.d(TAG, "Headset auto connection: " + mostRecentlyConnectedHfpDevice);
+                autoConnectHeadset(mostRecentlyConnectedHfpDevice);
+            }
         }
     }
 
@@ -588,8 +606,9 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
         }
     }
 
+    @VisibleForTesting
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
-    private void autoConnectHeadset(BluetoothDevice device) {
+    void autoConnectHeadset(BluetoothDevice device) {
         final HeadsetService hsService = mFactory.getHeadsetService();
         if (hsService == null) {
             warnLog("autoConnectHeadset: service is null, failed to connect to " + device);

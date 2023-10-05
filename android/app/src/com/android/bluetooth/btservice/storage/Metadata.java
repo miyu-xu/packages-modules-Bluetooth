@@ -58,6 +58,11 @@ public class Metadata {
     public long last_active_time;
     public boolean is_active_a2dp_device;
 
+    /**
+     * is device connected in last bluetooth session
+     */
+    public boolean isUserDisconnectedDevice = false;
+
     @Embedded
     public AudioPolicyEntity audioPolicyMetadata;
 
@@ -439,6 +444,8 @@ public class Metadata {
             .append(a2dpSupportsOptionalCodecs)
             .append("|enabled=")
             .append(a2dpOptionalCodecsEnabled)
+            .append("), isUserDisconnectedDevice (")
+            .append(isUserDisconnectedDevice)
             .append("), custom metadata(")
             .append(publicMetadata)
             .append("), hfp client audio policy(")
