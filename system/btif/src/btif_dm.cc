@@ -707,9 +707,9 @@ static void btif_update_remote_properties(const RawAddress& bdaddr,
 
   /* device type */
   bt_property_t prop_name;
-  uint8_t remote_dev_type;
+  bt_device_type_t remote_dev_type;
   BTIF_STORAGE_FILL_PROPERTY(&prop_name, BT_PROPERTY_TYPE_OF_DEVICE,
-                             sizeof(uint8_t), &remote_dev_type);
+                             sizeof(bt_device_type_t), &remote_dev_type);
   if (btif_storage_get_remote_device_property(&bdaddr, &prop_name) ==
       BT_STATUS_SUCCESS) {
     dev_type = (bt_device_type_t)(remote_dev_type | device_type);
