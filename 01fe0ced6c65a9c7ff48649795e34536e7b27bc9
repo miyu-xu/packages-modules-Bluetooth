@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83e18333_a047d031",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-05T04:59:34Z",
+      "side": 1,
+      "message": "Would it be clearer to:\n1. Move this CL to the front of https://r.android.com/2705695\n2. In bluetooth_media.rs, this CL simply replaces all `self.phone_ops_enabled` with `self.phone_ops_enabled || self.mps_qualification_enabled`\n\nAfter the arrangement, in https://r.android.com/2705695 and https://r.android.com/c/2757305, fork every change into two implementations (one for phone_ops and another for mps_qual), and only change the phone_ops one.",
+      "revId": "01fe0ced6c65a9c7ff48649795e34536e7b27bc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7d79bc4_68e303cf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-05T04:59:34Z",
+      "side": 1,
+      "message": "The comments don\u0027t seem to be matched.",
+      "range": {
+        "startLine": 207,
+        "startChar": 0,
+        "endLine": 210,
+        "endChar": 62
+      },
+      "revId": "01fe0ced6c65a9c7ff48649795e34536e7b27bc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

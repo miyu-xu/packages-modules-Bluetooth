@@ -51,6 +51,24 @@
       "message": "```suggestion\n        info!(\"MPS qualification mode enabled\");\n```\n\n@chharry@google.com What is the prefer string you want here?",
       "revId": "f008f502e128d2207f4c6fa5840b12404f2b6091",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd2e6b9_f4c297b7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 2830,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-05T04:59:34Z",
+      "side": 1,
+      "message": "Whale\u0027s suggestion LGTM.",
+      "parentUuid": "2881c109_dfef4c42",
+      "revId": "f008f502e128d2207f4c6fa5840b12404f2b6091",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
