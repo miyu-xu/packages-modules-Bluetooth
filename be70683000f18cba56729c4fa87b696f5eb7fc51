@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "77ee89f1_2cf12dd3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-05T03:48:20Z",
+      "side": 1,
+      "message": "```\n\u003c HCI Command: Remote Name Request (0x01|0x0019) plen 10                                                                #32255 [hci0] 09:31:15.338099\n        Address: 38:18:4C:89:C5:20 (OUI 38-18-4C)\n        Page scan repetition mode: R1 (0x01)\n        Page scan mode: Mandatory (0x00)\n        Clock offset: 0x0000\n\u003e HCI Event: Command Status (0x0f) plen 4                                                                               #32256 [hci0] 09:31:15.339387\n      Remote Name Request (0x01|0x0019) ncmd 1\n        Status: Success (0x00)\n((Received some Advertising report here))\n\u003e HCI Event: Remote Host Supported Features (0x3d) plen 14                                                              #32284 [hci0] 09:31:15.766403\n        Address: 38:18:4C:89:C5:20 (OUI 38-18-4C)\n        Features: 0x03 0x00 0x00 0x00 0x00 0x00 0x00 0x00\n          Secure Simple Pairing (Host Support)\n          LE Supported (Host)\n\u003e HCI Event: Remote Host Supported Features (0x3d) plen 14                                                              #32285 [hci0] 09:31:15.800490\n        Address: 38:18:4C:89:C5:20 (OUI 38-18-4C)\n        Features: 0x03 0x00 0x00 0x00 0x00 0x00 0x00 0x00\n          Secure Simple Pairing (Host Support)\n          LE Supported (Host)\n```\n\nUpdated the bug number.\n\nBasically what we saw in the HCI log is we only sent one RnR but got 2 back-to-back RHSF.",
+      "parentUuid": "0158fc75_6ad43a2c",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "be70683000f18cba56729c4fa87b696f5eb7fc51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "72dd70f2_341366a8",
