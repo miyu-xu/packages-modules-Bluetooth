@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abed9d05_a85c9b38",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-06T21:51:33Z",
+      "side": 1,
+      "message": "nit: This looks odd with the latest change.",
+      "range": {
+        "startLine": 715,
+        "startChar": 16,
+        "endLine": 715,
+        "endChar": 32
+      },
+      "revId": "1b3a10451f165cb4514d11bd3362922c8585eec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
