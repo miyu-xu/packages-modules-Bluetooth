@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be141fe4_6d5f871b",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-06T17:29:35Z",
+      "side": 1,
+      "message": "I\u0027m surprised that this library and the next one are needed.  I think this could still be slimmed down a little.",
+      "range": {
+        "startLine": 480,
+        "startChar": 4,
+        "endLine": 480,
+        "endChar": 26
+      },
+      "revId": "5475ffa47f7a341036a4d9f701a9dd6f69f5e083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "352ea763_c90a32d0",
+        "filename": "system/bta/jv/bta_jv_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-06T17:29:35Z",
+      "side": 1,
+      "message": "scn_in_use?\nscn_used?\nscn_allocated?",
+      "range": {
+        "startLine": 125,
+        "startChar": 11,
+        "endLine": 125,
+        "endChar": 18
+      },
+      "revId": "5475ffa47f7a341036a4d9f701a9dd6f69f5e083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e04b2d1_b9d2b809",
+        "filename": "system/bta/test/bta_rfcomm_scn_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-06T17:29:35Z",
+      "side": 1,
+      "message": "It would make me feel better if the test didn\u0027t depend on the implementation.  Could we split the test into a separate CL and rewrite it to not touch bta_jv_cb directly?",
+      "range": {
+        "startLine": 34,
+        "startChar": 14,
+        "endLine": 34,
+        "endChar": 30
+      },
+      "revId": "5475ffa47f7a341036a4d9f701a9dd6f69f5e083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa956bec_83305410",
+        "filename": "system/bta/test/bta_rfcomm_scn_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-06T17:29:35Z",
+      "side": 1,
+      "message": "For example, this test would become something like:\n\n  uint8_t occupied_scn[] \u003d {2, 3, 4, 5, 6, 7, 8};\n  for (uint8_t scn : occupied_scn) {\n    ASSERT_TRUE(BTA_TryAllocateSCN(scn));\n  }\n\n  // All SCNs up to 8 are occupied, so the next allocation should return 9. \n  ASSERT_EQ(BTA_AllocateSCN(), 9);",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "5475ffa47f7a341036a4d9f701a9dd6f69f5e083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
