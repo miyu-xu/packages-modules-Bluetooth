@@ -343,6 +343,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "142dbd79_9d5bf593",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2286,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-06T22:21:32Z",
+      "side": 1,
+      "message": "Oh I missed the `local` part 👍\nCan you please document the minimal length of the input buffer in the function comment ?",
+      "parentUuid": "2afac61d_35c26d6d",
+      "range": {
+        "startLine": 2286,
+        "startChar": 39,
+        "endLine": 2286,
+        "endChar": 52
+      },
+      "revId": "0f7ede33f65359d7f0ffe87950b060a1b49e423c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa7625af_b3db1623",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 9
