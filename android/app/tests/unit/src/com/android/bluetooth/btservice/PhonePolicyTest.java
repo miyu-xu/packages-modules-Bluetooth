@@ -29,6 +29,7 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.os.HandlerThread;
 import android.os.ParcelUuid;
+import android.os.SystemProperties;
 
 import androidx.room.Room;
 import androidx.test.filters.MediumTest;
@@ -184,7 +185,7 @@ public class PhonePolicyTest {
         when(mAdapterService.isLeAudioAllowed(device)).thenReturn(true);
 
         // Auto connect to LE audio, HFP, A2DP
-        processInitProfilePriorities_LeAudioHelper(true, true, false);
+        processInitProfilePriorities_LeAudioHelper(true, true, false, false);
         verify(mLeAudioService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
                 .setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
         verify(mA2dpService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
@@ -193,7 +194,7 @@ public class PhonePolicyTest {
                 .setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
 
         // Does not auto connect and allow HFP and A2DP to be connected
-        processInitProfilePriorities_LeAudioHelper(true, false, false);
+        processInitProfilePriorities_LeAudioHelper(true, false, false, false);
         verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
                 .setProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO,
                         BluetoothProfile.CONNECTION_POLICY_ALLOWED);
@@ -204,8 +205,8 @@ public class PhonePolicyTest {
                 .setProfileConnectionPolicy(device, BluetoothProfile.HEADSET,
                         BluetoothProfile.CONNECTION_POLICY_ALLOWED);
 
-        // Auto connect to LE audio but disallow HFP and A2DP
-        processInitProfilePriorities_LeAudioHelper(false, true, false);
+        // Auto connect to HFP and A2DP but disallow LE Audio
+        processInitProfilePriorities_LeAudioHelper(false, true, false, false);
         verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
                 .setProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO,
                         BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
@@ -214,8 +215,8 @@ public class PhonePolicyTest {
         verify(mHeadsetService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
                 .setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
 
-        // Does not auto connect and disallow HFP and A2DP to be connected
-        processInitProfilePriorities_LeAudioHelper(false, false, false);
+        // Does not auto connect and disallow LE Audio to be connected
+        processInitProfilePriorities_LeAudioHelper(false, false, false, false);
         verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
                 .setProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO,
                         BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
@@ -233,7 +234,7 @@ public class PhonePolicyTest {
         when(mAdapterService.isLeAudioAllowed(device)).thenReturn(true);
 
         // Auto connect to LE audio, HFP, A2DP
-        processInitProfilePriorities_LeAudioHelper(true, true, true);
+        processInitProfilePriorities_LeAudioHelper(true, true, true, false);
         verify(mLeAudioService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
                 .setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
         verify(mA2dpService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
@@ -242,7 +243,7 @@ public class PhonePolicyTest {
                 .setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
 
         // Does not auto connect and allow HFP and A2DP to be connected
-        processInitProfilePriorities_LeAudioHelper(true, false, true);
+        processInitProfilePriorities_LeAudioHelper(true, false, true, false);
         verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
                 .setProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO,
                         BluetoothProfile.CONNECTION_POLICY_ALLOWED);
@@ -254,7 +255,7 @@ public class PhonePolicyTest {
                         BluetoothProfile.CONNECTION_POLICY_ALLOWED);
 
         // Auto connect to LE audio but disallow HFP and A2DP
-        processInitProfilePriorities_LeAudioHelper(false, true, true);
+        processInitProfilePriorities_LeAudioHelper(false, true, true, false);
         verify(mLeAudioService, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
                 .setConnectionPolicy(device, BluetoothProfile.CONNECTION_POLICY_ALLOWED);
         verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(1))
@@ -265,7 +266,7 @@ public class PhonePolicyTest {
                         BluetoothProfile.CONNECTION_POLICY_FORBIDDEN);
 
         // Does not auto connect and disallow HFP and A2DP to be connected
-        processInitProfilePriorities_LeAudioHelper(false, false, true);
+        processInitProfilePriorities_LeAudioHelper(false, false, true, false);
         verify(mDatabaseManager, timeout(ASYNC_CALL_TIMEOUT_MILLIS).times(2))
                 .setProfileConnectionPolicy(device, BluetoothProfile.LE_AUDIO,
                         BluetoothProfile.CONNECTION_POLICY_ALLOWED);
@@ -278,10 +279,16 @@ public class PhonePolicyTest {
     }
 
     private void processInitProfilePriorities_LeAudioHelper(
-            boolean dualModeEnabled, boolean autoConnect, boolean leAudioEnabledByDefault) {
+            boolean dualModeEnabled,
+            boolean autoConnect,
+            boolean leAudioEnabledByDefault,
+            boolean bypassLeAudioAllowlist) {
         Utils.setDualModeAudioStateForTesting(dualModeEnabled);
-        mPhonePolicy.setLeAudioEnabledByDefaultForTesting(leAudioEnabledByDefault);
+        mPhonePolicy.mLeAudioEnabledByDefault = leAudioEnabledByDefault;
         mPhonePolicy.mAutoConnectProfilesSupported = autoConnect;
+        SystemProperties.set(
+                PhonePolicy.BYPASS_LE_AUDIO_ALLOWLIST_PROPERTY,
+                Boolean.toString(bypassLeAudioAllowlist));
 
         BluetoothDevice device = getTestDevice(mAdapter, 0);
         // Mock the HFP, A2DP and LE audio services to return unknown connection policy
