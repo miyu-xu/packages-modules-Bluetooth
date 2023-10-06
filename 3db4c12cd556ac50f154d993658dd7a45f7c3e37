@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "184403da_15cbc2d6",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-06T10:51:32Z",
+      "side": 1,
+      "message": "Since it\u0027s a telephony method I think IBluetoothTelephony is a better place.",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 0
+      },
+      "revId": "3db4c12cd556ac50f154d993658dd7a45f7c3e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
