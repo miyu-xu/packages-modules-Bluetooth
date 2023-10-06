@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "731348f1_c55225ad",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-06T07:39:10Z",
+      "side": 1,
+      "message": "Please add a descriptive comment above public constant. For example,\n\n/// Unknown or invalid RSSI value.",
+      "range": {
+        "startLine": 505,
+        "startChar": 0,
+        "endLine": 505,
+        "endChar": 33
+      },
+      "revId": "209c1034b314a201fe3664d378d652db8b0e2c2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
