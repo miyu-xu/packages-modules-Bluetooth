@@ -303,6 +303,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "88c24e43_707e798b",
+        "filename": "framework/java/android/bluetooth/le/BluetoothLeAdvertiser.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-06T21:57:52Z",
+      "side": 1,
+      "message": "Only once which is why we check if the encryption bytes have already been added before adding them.",
+      "parentUuid": "6d907b04_bc6d2b5d",
+      "range": {
+        "startLine": 619,
+        "startChar": 16,
+        "endLine": 619,
+        "endChar": 36
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9164bf5d_433a2671",
@@ -326,6 +350,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10476534_7628a9d5",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 721,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-06T21:57:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9164bf5d_433a2671",
+      "range": {
+        "startLine": 721,
+        "startChar": 8,
+        "endLine": 721,
+        "endChar": 16
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c80415a7_ae8096f6",
@@ -339,6 +387,30 @@
       "writtenOn": "2023-10-02T23:11:59Z",
       "side": 1,
       "message": "nit: Drop to DEBUG",
+      "range": {
+        "startLine": 1769,
+        "startChar": 8,
+        "endLine": 1769,
+        "endChar": 12
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03f63dc8_ae2c80b1",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1769,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-06T21:57:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c80415a7_ae8096f6",
       "range": {
         "startLine": 1769,
         "startChar": 8,
@@ -443,6 +515,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f5ab6f0_310a3641",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-06T21:57:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c48dcf6_9ff0f1f4",
+      "range": {
+        "startLine": 400,
+        "startChar": 32,
+        "endLine": 400,
+        "endChar": 36
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "261bcfc3_af830c83",
@@ -466,6 +562,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "739a1222_072bac40",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 401,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-06T21:57:52Z",
+      "side": 1,
+      "message": "Yes, there are some logs that expose the intricacies of the encryption and decryption process including the key, iv, randomizer, etc. With this disabled we will not see those logs but the feature is still available.",
+      "parentUuid": "261bcfc3_af830c83",
+      "range": {
+        "startLine": 401,
+        "startChar": 8,
+        "endLine": 401,
+        "endChar": 33
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7465c5d8_c7de177f",
@@ -479,6 +599,30 @@
       "writtenOn": "2023-10-02T23:11:59Z",
       "side": 1,
       "message": "Is this needed or can we use flag defined elsewhere in this CL?",
+      "range": {
+        "startLine": 275,
+        "startChar": 0,
+        "endLine": 276,
+        "endChar": 39
+      },
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e137eaa_49d6a9bf",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-06T21:57:52Z",
+      "side": 1,
+      "message": "Deleted",
+      "parentUuid": "7465c5d8_c7de177f",
       "range": {
         "startLine": 275,
         "startChar": 0,
