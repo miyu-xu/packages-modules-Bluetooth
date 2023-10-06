@@ -71,6 +71,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac0b254d_f3eef447",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-06T03:53:21Z",
+      "side": 1,
+      "message": "please take another look, logic is updated:)",
+      "parentUuid": "4ce50005_2c76fa70",
+      "revId": "f23d27e2926c446cd475a99ab1aeda649c66150b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a73486af_46c65583",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-06T03:53:21Z",
+      "side": 1,
+      "message": "updated",
+      "parentUuid": "b06d882c_b8fd4a96",
+      "revId": "f23d27e2926c446cd475a99ab1aeda649c66150b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3b5513d6_8a065686",
@@ -84,6 +120,30 @@
       "writtenOn": "2023-08-31T21:32:31Z",
       "side": 1,
       "message": "This will fetch all devices, not only the last connected.\n\nSee the metadata is_active_a2dp in DatabaseManger to handle this case for a2dp device",
+      "range": {
+        "startLine": 678,
+        "startChar": 37,
+        "endLine": 678,
+        "endChar": 68
+      },
+      "revId": "f23d27e2926c446cd475a99ab1aeda649c66150b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6dc7d06_4a9c0a30",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 678,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-06T03:53:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b5513d6_8a065686",
       "range": {
         "startLine": 678,
         "startChar": 37,
