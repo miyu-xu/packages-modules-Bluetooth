@@ -22,6 +22,30 @@
       },
       "revId": "3db4c12cd556ac50f154d993658dd7a45f7c3e37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30bf6714_edd0a186",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-06T11:41:21Z",
+      "side": 1,
+      "message": "My understanding is that IBluetooth{Media|Telephony} are Floss local interfaces while IBluetooth{Media|Telephony}Callback are remote interface (RPCProxy) to remote objects.\nAs `on_telphony_use` is a CRAS method, I think it should be in IBluetoothTelephonyCallback.\nDo I misunderstand it?",
+      "parentUuid": "184403da_15cbc2d6",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 0
+      },
+      "revId": "3db4c12cd556ac50f154d993658dd7a45f7c3e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
