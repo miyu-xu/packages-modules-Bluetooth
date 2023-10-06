@@ -46,6 +46,30 @@
       },
       "revId": "3db4c12cd556ac50f154d993658dd7a45f7c3e37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1be922d7_0d36f877",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-06T12:26:58Z",
+      "side": 1,
+      "message": "`register_telephony_callback` belongs to `IBluetoothTelephony` and `on_telphony_use` belongs to `IBluetoothTelephonyCallback`. I don\u0027t think there\u0027s a collision.\n\nTo Floss\u0027s clients (e.g. CRAS), IBluetoothMedia/Callback and IBluetoothTelephony/Callback are 2 sets of APIs and they should not be coupled. That is, IBluetoothMedia controls media features and may generate some IBluetoothMediaCallback; While IBluetoothTelephony controls telephony features and may generate some IBluetoothTelephonyCallback.",
+      "parentUuid": "30bf6714_edd0a186",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 0
+      },
+      "revId": "3db4c12cd556ac50f154d993658dd7a45f7c3e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
