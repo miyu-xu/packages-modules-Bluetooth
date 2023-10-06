@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3927280_96b0f864",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 2001,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-06T08:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93460943_eeee67d5",
+      "range": {
+        "startLine": 2000,
+        "startChar": 16,
+        "endLine": 2001,
+        "endChar": 46
+      },
+      "revId": "d7314758f0e8dfbe09478b156b230a1a8e04a7b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26086ae4_c98521ed",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "Yes, Please remove them Thanks!",
       "parentUuid": "254668b7_a1b77559",
+      "range": {
+        "startLine": 2033,
+        "startChar": 20,
+        "endLine": 2035,
+        "endChar": 53
+      },
+      "revId": "d7314758f0e8dfbe09478b156b230a1a8e04a7b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcae889b_fe146285",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 2035,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-06T08:24:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8b5fe56b_f2225f14",
       "range": {
         "startLine": 2033,
         "startChar": 20,
