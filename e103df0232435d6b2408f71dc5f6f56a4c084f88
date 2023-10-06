@@ -88,6 +88,24 @@
       "parentUuid": "3cbe9be3_09e86194",
       "revId": "e103df0232435d6b2408f71dc5f6f56a4c084f88",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75ce2e49_5b983628",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1299283
+      },
+      "writtenOn": "2023-10-06T22:17:46Z",
+      "side": 1,
+      "message": "So it looks like there is a merge conflict when I go through the merge instructions likely due to https://crrev.com/c/4889316.\n\nWho would be a good person to handle a merge? This is blocking a bunch of package upgrades (flatbuffers and tensorflow which are blocking abseil-cpp, protobuf, and grpc).\n\nWhen I tried it locally, this is a clean cherry-pick.",
+      "parentUuid": "3362c308_f1bab272",
+      "revId": "e103df0232435d6b2408f71dc5f6f56a4c084f88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
