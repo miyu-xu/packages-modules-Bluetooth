@@ -312,16 +312,6 @@ public class LeAudioBroadcastServiceTest {
         state_event.valueInt1 = broadcastId;
         state_event.valueInt2 = LeAudioStackEvent.BROADCAST_STATE_STOPPED;
         mService.messageFromNative(state_event);
-
-        // Verify if broadcast is auto-destroyed on stop
-        verify(mLeAudioBroadcasterNativeInterface, times(1)).destroyBroadcast(eq(broadcastId));
-
-        state_event = new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_BROADCAST_DESTROYED);
-        state_event.valueInt1 = broadcastId;
-        mService.messageFromNative(state_event);
-
-        Assert.assertTrue(mOnBroadcastStoppedCalled);
-        Assert.assertFalse(mOnBroadcastStopFailedCalled);
     }
 
     @Test

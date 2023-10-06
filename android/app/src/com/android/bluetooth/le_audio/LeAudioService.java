@@ -2243,8 +2243,6 @@ public class LeAudioService extends ProfileService {
                                     getBroadcastProfile(true));
                         }
                     }
-
-                    destroyBroadcast(broadcastId);
                     break;
                 case LeAudioStackEvent.BROADCAST_STATE_CONFIGURING:
                     if (DBG) Log.d(TAG, "Broadcast broadcastId: " + broadcastId + " configuring.");
