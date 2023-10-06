@@ -96,6 +96,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9e73e3f_486e8a1a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-06T17:34:59Z",
+      "side": 1,
+      "message": "That makes sense.  Instead of introducing a new boolean, can we just remove the callback after calling it?  Then we can call the callback when it\u0027s valid, and print an error when it isn\u0027t.",
+      "parentUuid": "2e6505a7_63656ad0",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "be70683000f18cba56729c4fa87b696f5eb7fc51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "72dd70f2_341366a8",
