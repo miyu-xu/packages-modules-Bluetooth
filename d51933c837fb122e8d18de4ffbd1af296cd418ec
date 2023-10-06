@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1532a05c_6d70d588",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1397,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-06T07:22:41Z",
+      "side": 1,
+      "message": "Notes for SDP: \nhttps://docs.google.com/document/d/1jZkeQLdVkeFtStKTna5gJ22ssP_oNXU9Tt36D-woexY/edit#heading\u003dh.xgjl2srtytjt",
+      "parentUuid": "2a6d0186_f6653c52",
+      "revId": "d51933c837fb122e8d18de4ffbd1af296cd418ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba0e1244_82ccf830",
         "filename": "system/stack/hid/hidh_api.cc",
         "patchSetId": 5
