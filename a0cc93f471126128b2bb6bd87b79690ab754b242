@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dd513be_7d8b2a70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-10-06T06:27:02Z",
+      "side": 1,
+      "message": "I made some fix to the previous CL. Still WIP. All comments are welcomed.",
+      "revId": "a0cc93f471126128b2bb6bd87b79690ab754b242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

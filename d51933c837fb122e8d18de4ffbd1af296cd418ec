@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f03f897_f90f9111",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1397,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-10-06T06:27:02Z",
+      "side": 1,
+      "message": "I have to say I am still exploring the code. Based on the log, the initial SPD will run first (PSM: 1). It will read the flag and set it to true. Then all following SPD will be blocked. Only control and interrupt channels open. PSM: 17/19.\n\nBefore this fix, the request to connect control/interrupt channel will overlap with a SPD request. I guess that is making it disconnected.\n\nI am not entirely sure what could be missed if we skip the SPD here? It seems to be working. Do we need the SPD for HID at all?",
+      "parentUuid": "89bef9e2_19f586e9",
+      "revId": "d51933c837fb122e8d18de4ffbd1af296cd418ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba0e1244_82ccf830",
         "filename": "system/stack/hid/hidh_api.cc",
         "patchSetId": 5
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-06T02:59:32Z",
       "side": 1,
       "message": "I guess we should differentiate the case where the flag is zero and where the address is not found. Maybe implement an output parameter like the function `HID_HostAddDev` below?",
+      "revId": "d51933c837fb122e8d18de4ffbd1af296cd418ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84a8d162_f9338bdd",
+        "filename": "system/stack/hid/hidh_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-10-06T06:27:02Z",
+      "side": 1,
+      "message": "Agree. That would be more clear. For testing, return 0 just means no flags, so it would not have negative effects.",
+      "parentUuid": "ba0e1244_82ccf830",
       "revId": "d51933c837fb122e8d18de4ffbd1af296cd418ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
