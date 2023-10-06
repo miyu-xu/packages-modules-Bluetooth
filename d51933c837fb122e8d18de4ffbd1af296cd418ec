@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2a6d0186_f6653c52",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1397,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-06T07:03:28Z",
+      "side": 1,
+      "message": "Welp. I thought this is the piece of code that is responsible to do the very first SDP. But your snoop log just say otherwise.\nDo you know where the initial SDP is performed?\n\nI also don\u0027t understand the SDP in floss, there are more than one entry point and some services are searched more than once. I think there must be something wrong, but since it works nobody actually care to take a deeper look.\n\nBtw, there is also another bta_dm_find_services in this file, do we need to guard that one as well?",
+      "parentUuid": "1f03f897_f90f9111",
+      "revId": "d51933c837fb122e8d18de4ffbd1af296cd418ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ba0e1244_82ccf830",
         "filename": "system/stack/hid/hidh_api.cc",
         "patchSetId": 5
