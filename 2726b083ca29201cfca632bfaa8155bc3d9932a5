@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f4aec42_a517af25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-06T03:45:44Z",
+      "side": 1,
+      "message": "Hi, this will be used by the Diagnosis API which they want to know if a given address is a public address or not. In the case of public, they would like to check if its in the",
+      "revId": "2726b083ca29201cfca632bfaa8155bc3d9932a5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
