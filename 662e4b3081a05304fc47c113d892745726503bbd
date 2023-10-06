@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ced28b4_bc86f108",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 6500,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-06T19:21:00Z",
+      "side": 1,
+      "message": "is this method call when we are shutting down the stack too ?",
+      "range": {
+        "startLine": 6500,
+        "startChar": 0,
+        "endLine": 6500,
+        "endChar": 63
+      },
+      "revId": "662e4b3081a05304fc47c113d892745726503bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "104d4d1b_f96544f1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-06T19:21:00Z",
+      "side": 1,
+      "message": "This will not be the most recently connected hfp device, but one of the connected device during last session, picked at random.",
+      "range": {
+        "startLine": 587,
+        "startChar": 57,
+        "endLine": 587,
+        "endChar": 87
+      },
+      "revId": "662e4b3081a05304fc47c113d892745726503bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3b819c6_e83e105b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-06T19:21:00Z",
+      "side": 1,
+      "message": "should `isUserDisconnectedDevice` be updated here  too ?",
+      "range": {
+        "startLine": 652,
+        "startChar": 25,
+        "endLine": 652,
+        "endChar": 46
+      },
+      "revId": "662e4b3081a05304fc47c113d892745726503bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25b8a690_e4911d66",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 630,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-06T19:21:00Z",
+      "side": 1,
+      "message": "no need for timeout as the call is synchronous",
+      "range": {
+        "startLine": 630,
+        "startChar": 31,
+        "endLine": 630,
+        "endChar": 66
+      },
+      "revId": "662e4b3081a05304fc47c113d892745726503bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
