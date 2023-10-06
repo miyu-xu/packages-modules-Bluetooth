@@ -39,6 +39,30 @@
       },
       "revId": "f9d15a0a7530bf2d6835eecffd8bf3d91c13344f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b94b15fc_9fe33a6b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1037,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-06T06:24:34Z",
+      "side": 1,
+      "message": "Yes.\nBefore the change, it will add the most recently connected a2dp device -\u003e then get most recently connected device among a2dp and le audio.\n\nSo the result should be the same.",
+      "parentUuid": "80469575_291c034c",
+      "range": {
+        "startLine": 1037,
+        "startChar": 16,
+        "endLine": 1037,
+        "endChar": 65
+      },
+      "revId": "f9d15a0a7530bf2d6835eecffd8bf3d91c13344f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
