@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "245cb378_afc82b1b",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-06T17:10:43Z",
+      "side": 1,
+      "message": "It looks like the scn isn\u0027t getting set in the successful case where channel is greater than 0.  Maybe something like this?\n\n      uint8_t scn \u003d 0;\n      if (channel \u003e 0) {\n        if (BTM_TryAllocateSCN(channel)) {\n          scn \u003d static_cast\u003cuint8_t\u003e(channel);\n        } else {\n          LOG(ERROR) \u003c\u003c \"rfc channel\u003d\" \u003c\u003c channel \u003c\u003c \" already in use or invalid\";\n        }\n      } else {\n        scn \u003d BTM_AllocateSCN();\n        if (scn \u003d\u003d 0) {\n          LOG(ERROR) \u003c\u003c \"out of rfc channels\";\n        }\n      }",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 727,
+        "endChar": 7
+      },
+      "revId": "960286122d6a6521506a58c56bf0857f3e856649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
