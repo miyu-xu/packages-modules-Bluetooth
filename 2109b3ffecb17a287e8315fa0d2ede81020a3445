@@ -87,6 +87,24 @@
       "parentUuid": "53bfc38b_2e5a7b2d",
       "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4365165a_432d6398",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-06T05:19:31Z",
+      "side": 1,
+      "message": "Change of plan:\nInstead of replacing everything to 1 byte, I opt to change everything to 4 bytes because there are some places which assumes 4 byte of data, e.g. [1], and I don\u0027t want to break things. There are only 2 places that access this with 1 byte, and they are local, so it won\u0027t break things.\n\n[1] https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/topshim/src/btif.rs;l\u003d126;drc\u003db6b06802ca5db538ee2da2963add2e94b5b4abdc",
+      "parentUuid": "6b446f80_52c91439",
+      "revId": "2109b3ffecb17a287e8315fa0d2ede81020a3445",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
