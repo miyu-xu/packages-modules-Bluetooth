@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e6505a7_63656ad0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-06T10:33:00Z",
+      "side": 1,
+      "message": "Yeah so I think this is a bug in between the controllers, but since this only happened once I\u0027m not able to reproduce it, which means I\u0027m unable to collect the air log to identify who is the culprit so I\u0027m proposing this fix to make the stack more robust.",
+      "parentUuid": "2ab905a3_8b5e5c84",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "be70683000f18cba56729c4fa87b696f5eb7fc51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "72dd70f2_341366a8",
