@@ -43,6 +43,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b3e04055_7ae334f7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-06T05:02:48Z",
+      "side": 1,
+      "message": "Could you add a test for this issue?",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2efdeaab_8096ec86",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-06T05:02:48Z",
+      "side": 1,
+      "message": "After having aosp/2768571, is this still needed?",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c092c343_2e343f80",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 4
@@ -54,6 +88,30 @@
       "writtenOn": "2023-10-04T06:12:01Z",
       "side": 1,
       "message": "Shouldn\u0027t we pick the next priority to delete instead of just returning prop w/o removing?",
+      "range": {
+        "startLine": 305,
+        "startChar": 55,
+        "endLine": 305,
+        "endChar": 64
+      },
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58809ab1_ab4d2f21",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-06T05:02:48Z",
+      "side": 1,
+      "message": "Please ignore this, once we have aosp/2768571.",
+      "parentUuid": "c092c343_2e343f80",
       "range": {
         "startLine": 305,
         "startChar": 55,
@@ -112,6 +170,24 @@
       "side": 1,
       "message": "I have prepared aosp/2768571 for an unrelated issue which should cover this.",
       "parentUuid": "5f19b3f6_7f421908",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b20a427_f237f8c9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1171,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-06T05:02:48Z",
+      "side": 1,
+      "message": "Ack,",
+      "parentUuid": "f114d644_8c1bf6b6",
       "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
