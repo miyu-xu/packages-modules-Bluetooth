@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89bef9e2_19f586e9",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1397,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-06T02:59:32Z",
+      "side": 1,
+      "message": "QQ: Will this prevent any SDP, or just prevent SDP after HID is connected?\nPersonally I\u0027m OK even if it\u0027s the former though because that is still better than a non-operable device.\n\nQQ2: will this actually fix the problem \"mouse disconnects after pairing\"? IIUC by the time the HID profiles are connected, these SDP requests have all been queued so guarding it here doesn\u0027t matter in this case (it does matter on subsequent connection I think? Depends on whether HID_HostGetAttr is cached or not).",
+      "revId": "d51933c837fb122e8d18de4ffbd1af296cd418ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba0e1244_82ccf830",
+        "filename": "system/stack/hid/hidh_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-06T02:59:32Z",
+      "side": 1,
+      "message": "I guess we should differentiate the case where the flag is zero and where the address is not found. Maybe implement an output parameter like the function `HID_HostAddDev` below?",
+      "revId": "d51933c837fb122e8d18de4ffbd1af296cd418ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
