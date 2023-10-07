@@ -123,6 +123,24 @@
       "parentUuid": "ba0e1244_82ccf830",
       "revId": "d51933c837fb122e8d18de4ffbd1af296cd418ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e300c63_c4c999d7",
+        "filename": "system/stack/hid/hidh_api.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-10-07T00:31:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "84a8d162_f9338bdd",
+      "revId": "d51933c837fb122e8d18de4ffbd1af296cd418ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
