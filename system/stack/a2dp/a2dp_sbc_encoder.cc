@@ -429,6 +429,7 @@ static void a2dp_sbc_get_num_frame_iteration(uint8_t* num_of_iterations,
     a2dp_sbc_encoder_cb.stats.media_read_total_dropped_frames += delta;
 
     projected_nof = MAX_PCM_FRAME_NUM_PER_TICK;
+    a2dp_sbc_encoder_cb.feeding_state.counter = projected_nof * pcm_bytes_per_frame;
   }
 
   LOG_VERBOSE("%s: frames for available PCM data %u", __func__, projected_nof);
