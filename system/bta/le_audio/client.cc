@@ -416,7 +416,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (leAudioHealthStatus_) {
       leAudioHealthStatus_->AddStatisticForDevice(
-          address, LeAudioHealthDeviceStatType::VALID_CSIS);
+          leAudioDevice, LeAudioHealthDeviceStatType::VALID_CSIS);
     }
 
     group_add_node(group_id, address);
@@ -471,7 +471,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     if (leAudioHealthStatus_) {
       leAudioHealthStatus_->AddStatisticForGroup(
-          group_id, LeAudioHealthGroupStatType::STREAM_CREATE_SIGNALING_FAILED);
+          group, LeAudioHealthGroupStatType::STREAM_CREATE_SIGNALING_FAILED);
     }
 
     LOG_ERROR(
@@ -2442,8 +2442,7 @@ class LeAudioClientImpl : public LeAudioClient {
     LOG_ERROR("%s, %s", ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_),
               error_string.c_str());
     if (leAudioHealthStatus_) {
-      leAudioHealthStatus_->AddStatisticForDevice(leAudioDevice->address_,
-                                                  stat);
+      leAudioHealthStatus_->AddStatisticForDevice(leAudioDevice, stat);
     }
     DisconnectDevice(leAudioDevice);
   }
@@ -2820,7 +2819,7 @@ class LeAudioClientImpl : public LeAudioClient {
     leAudioDevice->notify_connected_after_read_ = true;
     if (leAudioHealthStatus_) {
       leAudioHealthStatus_->AddStatisticForDevice(
-          leAudioDevice->address_, LeAudioHealthDeviceStatType::VALID_DB);
+          leAudioDevice, LeAudioHealthDeviceStatType::VALID_DB);
     }
 
     /* If already known group id */
@@ -4945,8 +4944,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
         if (leAudioHealthStatus_ && (event->status != HCI_SUCCESS)) {
           leAudioHealthStatus_->AddStatisticForGroup(
-              leAudioDevice->group_id_,
-              LeAudioHealthGroupStatType::STREAM_CREATE_CIS_FAILED);
+              group, LeAudioHealthGroupStatType::STREAM_CREATE_CIS_FAILED);
         }
 
         groupStateMachine_->ProcessHciNotifCisEstablished(group, leAudioDevice,
@@ -5132,7 +5130,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
         if (leAudioHealthStatus_) {
           leAudioHealthStatus_->AddStatisticForGroup(
-              group_id, LeAudioHealthGroupStatType::STREAM_CREATE_SUCCESS);
+              group, LeAudioHealthGroupStatType::STREAM_CREATE_SUCCESS);
         }
 
         if (!group) {
