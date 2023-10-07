@@ -793,6 +793,7 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
+        ":TestMockMainShim",
         ":TestStubOsi",
         "le_audio/audio_hal_client/audio_hal_client_test.cc",
         "le_audio/audio_hal_client/audio_sink_hal_client.cc",
@@ -831,6 +832,7 @@ cc_test {
         ":audio_set_scenarios_json",
     ],
     generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
         "LeAudioSetConfigSchemas_h",
     ],
     shared_libs: [
@@ -844,6 +846,7 @@ cc_test {
         "libbluetooth-types",
         "libbluetooth_gd",
         "libbt-common",
+        "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
@@ -879,6 +882,7 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
+        ":TestMockMainShim",
         ":TestStubOsi",
         "gatt/database.cc",
         "gatt/database_builder.cc",
