@@ -314,6 +314,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "69f957d4_845aa19f",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-07T00:01:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4124de8f_07c52361",
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "61d3308f_c7832d63",
@@ -610,6 +628,30 @@
       "side": 1,
       "message": "You may use `complete_advertising_data.value()` to recover the reference to the vector. You do need to check `complete_advertising_data.has_value()` before attempting the decryption.",
       "parentUuid": "fc541d1a_a99cf100",
+      "range": {
+        "startLine": 473,
+        "startChar": 6,
+        "endLine": 475,
+        "endChar": 44
+      },
+      "revId": "329a4f1b78f61a63a5a30ea439c7b6bded859346",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e896a10_4477366b",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 2039159
+      },
+      "writtenOn": "2023-10-07T00:01:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa58c3ee_2f5bd164",
       "range": {
         "startLine": 473,
         "startChar": 6,
