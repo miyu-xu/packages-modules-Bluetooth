@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc6072f1_2aa86a23",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-07T00:37:13Z",
+      "side": 1,
+      "message": "I had in mind something like this:\n```\n    std::vector\u003cuint8_t\u003e decrypted_adv_data;\n\n    // Iterate through the advertising data, and decrypt AD Encrypted Data\n    // entries. The encrypted data is decrypted in place replacing the original\n    // data.\n    for (size_t position \u003d 0; position \u003c adv_data.len(); ) {\n      size_t ad_len \u003d adv_data[position];\n      if (ad_len \u003d\u003d 0 || (position + ad_len) \u003e adv_data.len()) {\n        break;\n      }\n\n      uint8_t ad_type \u003d adv_data[position + 1];\n      size_t prev_position \u003d position;\n      position +\u003d ad_len + 1;\n\n      if (ad_type !\u003d (uint8_t)GapDataType::ENCRYPTED_ADVERTISING_DATA) {\n        std::copy(decrypted_adv_data.end(), \n                  adv_data.begin() + prev_position,\n                  adv_data.begin() + prev_position + ad_len + 1);\n        continue;\n      }\n\n      std::vector\u003cuint8_t\u003e encrypted_data(\n          adv_data.begin() + prev_position + 2,\n          adv_data.begin() + prev_position + ad_len + 1);\n      std::optional\u003cstd::vector\u003cuint8_t\u003e\u003e decrypted_data \u003d {};\n      \n      // Iterate through the multiple enc data key char values to check\n      // and find the enc key which successfully decrypts the data.\n      for (auto const\u0026 [ky, iv] : key_and_ivs) {\n        decrypted_data \u003d Decrypt(encryped_data, key, iv);\n        if (decrypted_data.has_value()) break;\n      }\n\n      if (decrypted_data.has_value()) {\n        std::copy(decrypted_adv_data.end(), \n                  decrypted_data-\u003ebegin(), \n                  decrypted_data-\u003eend());\n      } else {\n        is_decryption_success \u003d false;\n        std::copy(decrypted_adv_data.end(), \n                  adv_data.begin() + prev_position,\n                  adv_data.begin() + prev_position + ad_len + 1);\n      }\n    }\n```",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 31
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99362910_82f559fe",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-07T00:37:13Z",
+      "side": 1,
+      "message": "`std::nullopt`",
+      "range": {
+        "startLine": 244,
+        "startChar": 33,
+        "endLine": 244,
+        "endChar": 47
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecba7c08_819166c1",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-07T00:37:13Z",
+      "side": 1,
+      "message": "nit: formatting",
+      "range": {
+        "startLine": 251,
+        "startChar": 2,
+        "endLine": 259,
+        "endChar": 3
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20aad358_977945c8",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-07T00:37:13Z",
+      "side": 1,
+      "message": "`return std::make_optional(out);`",
+      "range": {
+        "startLine": 298,
+        "startChar": 4,
+        "endLine": 298,
+        "endChar": 74
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ddb782b_ec7ab569",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-07T00:37:13Z",
+      "side": 1,
+      "message": "```\n} else {\n  LOG_INFO(\"Decryption NOT successful \");\n  return std::nullopt;\n}\n```",
+      "range": {
+        "startLine": 300,
+        "startChar": 2,
+        "endLine": 303,
+        "endChar": 24
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
