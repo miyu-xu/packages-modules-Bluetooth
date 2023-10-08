@@ -57,6 +57,10 @@
 #include "stack/include/srvc_api.h"
 #endif
 
+/**M: fixed cod is always 0 when using BLE scaning device@{*/
+#include "btif/include/btif_util.h"
+/**@}*/
+
 using bluetooth::Uuid;
 using namespace bluetooth::legacy::stack::sdp;
 
@@ -1679,6 +1683,11 @@ static void bta_dm_observe_results_cb(tBTM_INQ_RESULTS* p_inq,
   result.inq_res.ble_advertising_sid = p_inq->ble_advertising_sid;
   result.inq_res.ble_tx_power = p_inq->ble_tx_power;
   result.inq_res.ble_periodic_adv_int = p_inq->ble_periodic_adv_int;
+
+  /**M: fixed cod is always 0 when using BLE scaning device@{*/
+  memcpy(result.inq_res.dev_class, p_inq->dev_class, DEV_CLASS_LEN);
+  APPL_TRACE_DEBUG("cod is 0x%06x",devclass2uint(result.inq_res.dev_class));
+  /**@}*/
 
   /* application will parse EIR to find out remote device name */
   result.inq_res.p_eir = const_cast<uint8_t*>(p_eir);
