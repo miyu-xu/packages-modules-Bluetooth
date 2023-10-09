@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36fd244a_c4e63ba9",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2954,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-09T18:15:46Z",
+      "side": 1,
+      "message": "the idea is that we should set 0 to the LE audio bit if neither Broadcast nor Unicast is enabled, this line here enables the LE audio bit when they are enabled. \n\nShouldn\u0027t there be a place where the bit is flipped to 1 and we should flip it back to zero when not enabled?",
+      "range": {
+        "startLine": 2954,
+        "startChar": 4,
+        "endLine": 2954,
+        "endChar": 33
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d3e7a7fe_119d4a2a",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 5
