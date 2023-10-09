@@ -22,6 +22,30 @@
       },
       "revId": "1b3a10451f165cb4514d11bd3362922c8585eec8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8bb4deb6_72f575af",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 715,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-09T07:39:14Z",
+      "side": 1,
+      "message": "Got it. Removing the cast.",
+      "parentUuid": "abed9d05_a85c9b38",
+      "range": {
+        "startLine": 715,
+        "startChar": 16,
+        "endLine": 715,
+        "endChar": 32
+      },
+      "revId": "1b3a10451f165cb4514d11bd3362922c8585eec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
