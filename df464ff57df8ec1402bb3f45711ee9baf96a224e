@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb1bf3f0_0ae5fa94",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2246,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-09T18:21:51Z",
+      "side": 1,
+      "message": "are you planning another follow up CL to call destroyBroadcast() from profile management? didn\u0027t see this got called in other place to cleanup broadcast.",
+      "revId": "df464ff57df8ec1402bb3f45711ee9baf96a224e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
