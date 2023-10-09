@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3dfcb60_314f650f",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2943,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-09T18:12:18Z",
+      "side": 1,
+      "message": "same here",
+      "range": {
+        "startLine": 2943,
+        "startChar": 6,
+        "endLine": 2943,
+        "endChar": 14
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3e7a7fe_119d4a2a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2958,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-09T18:12:18Z",
+      "side": 1,
+      "message": "this is not needed for LOG_DEBUG is used as it will be included automatically",
+      "range": {
+        "startLine": 2958,
+        "startChar": 8,
+        "endLine": 2958,
+        "endChar": 16
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
