@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38fe0cda_9cb7ccf2",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-09T21:29:42Z",
+      "side": 1,
+      "message": "while you\u0027re here (or before you get here) can you clean up some of these unused defines?",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 6
+      },
+      "revId": "29cc0585ad5f1b3c119f69aa373aecee6260d725",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9c63431_56bae80b",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1231,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-09T21:29:42Z",
+      "side": 1,
+      "message": "bool ?  I think btif_config_set_bin returns bool.",
+      "range": {
+        "startLine": 1231,
+        "startChar": 6,
+        "endLine": 1231,
+        "endChar": 9
+      },
+      "revId": "29cc0585ad5f1b3c119f69aa373aecee6260d725",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
