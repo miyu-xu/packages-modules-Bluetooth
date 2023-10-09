@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a37bc62c_41afe993",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-09T18:45:19Z",
+      "side": 1,
+      "message": "Sorry bad rebase, fixed now.",
+      "parentUuid": "bbe6a34a_464d89d7",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 4
+      },
+      "revId": "50876c014f7fb0d652af1dbc79787981b76a98ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bb283d91_590748fa",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-10-05T11:32:51Z",
       "side": 1,
       "message": "can you elaborate why for certain errors we proceed with reading version after that and for others not? It does not look clear.",
+      "revId": "50876c014f7fb0d652af1dbc79787981b76a98ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d22d6250_5f3250bb",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2550,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-09T18:45:19Z",
+      "side": 1,
+      "message": "this is copy paste from btm_ble_gap.cc\n\nIf remote does not support reading remote features, we would treat it as successful read. If any other error happens, it\u0027s a failure.",
+      "parentUuid": "bb283d91_590748fa",
       "revId": "50876c014f7fb0d652af1dbc79787981b76a98ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
