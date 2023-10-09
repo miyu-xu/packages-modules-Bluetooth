@@ -49,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45cce8a6_ac9a5376",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2948,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-09T18:18:28Z",
+      "side": 1,
+      "message": "add `using android::sysprop::BluetoothProperties;` above and make this shorter",
+      "range": {
+        "startLine": 2948,
+        "startChar": 6,
+        "endLine": 2948,
+        "endChar": 43
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36fd244a_c4e63ba9",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 5
