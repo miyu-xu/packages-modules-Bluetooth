@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6bcd337_5e663547",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 6500,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-09T22:54:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "86cb54c7_ec8906af",
+      "range": {
+        "startLine": 6500,
+        "startChar": 0,
+        "endLine": 6500,
+        "endChar": 63
+      },
+      "revId": "662e4b3081a05304fc47c113d892745726503bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "104d4d1b_f96544f1",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6f8a1230_b664f668",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 587,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-09T22:54:37Z",
+      "side": 1,
+      "message": "Ack, that sounds right.",
+      "parentUuid": "a44dab00_97d237d7",
+      "range": {
+        "startLine": 587,
+        "startChar": 57,
+        "endLine": 587,
+        "endChar": 87
+      },
+      "revId": "662e4b3081a05304fc47c113d892745726503bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c3b819c6_e83e105b",
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "Here is for handling profile level disconnection, the function path is:\n`handleProfileConnectionStateChange`-\u003e`profileConnectionStateChanged`-\u003e`processProfileStateChanged`-\u003e`setDisconnection`\n\ntoggling 1 profile does not mean `isUserDisconnectedDevice`, so I did not add it here.",
       "parentUuid": "c3b819c6_e83e105b",
+      "range": {
+        "startLine": 652,
+        "startChar": 25,
+        "endLine": 652,
+        "endChar": 46
+      },
+      "revId": "662e4b3081a05304fc47c113d892745726503bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e85d37f8_e9f4637c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-09T22:54:37Z",
+      "side": 1,
+      "message": "So this path is trigger when the user turnoff its remote device ?\nIf it is the case, I think the stack should not try to reconnect to the hfp device.",
+      "parentUuid": "751b1a01_a89874f9",
       "range": {
         "startLine": 652,
         "startChar": 25,
