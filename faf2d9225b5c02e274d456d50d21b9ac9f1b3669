@@ -49,6 +49,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a62c8bf_f5d986d5",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2946,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-09T18:21:58Z",
+      "side": 1,
+      "message": "add a comment\n\nPer BAP 1.0.1, 8.2.3. Device discovery, the stack needs to set Class of Device (CoD) field Major Service Class bit 14 to 0b1 when Unicast Server, Unicast Client, Broadcast Source, Broadcast Sink, Scan Delegator, or Broadcast Assistant is supported on this device.",
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "45cce8a6_ac9a5376",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 5
