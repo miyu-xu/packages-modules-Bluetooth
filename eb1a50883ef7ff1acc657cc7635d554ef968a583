@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e2dc2ef_b45fe109",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-09T22:44:48Z",
+      "side": 1,
+      "message": "The problem in b/290914667 is that candidates for the secondary are cached prior to the pairing with primary. Only after pairing can we find out that this candidate is actually the same as the primary.\n\nThis fix is trying to rule out the candidate during the initial device discovery phase. However at this point, we may haven\u0027t paired with the primary, so BTM may not be able to resolve the candidate RPA.",
+      "revId": "eb1a50883ef7ff1acc657cc7635d554ef968a583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dcd5c15c_7c8e4564",
         "filename": "system/bta/csis/csis_client.cc",
         "patchSetId": 2
