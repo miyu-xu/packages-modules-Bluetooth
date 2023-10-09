@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8741903e_19084f02",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-09T18:48:12Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1cfafa5_ccf77786",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-09T18:48:12Z",
+      "side": 1,
+      "message": "Can we send all of the configuration commands here?  The commands don\u0027t look like they depend on the response from the previous command.  They can all just queue.",
+      "range": {
+        "startLine": 116,
+        "startChar": 6,
+        "endLine": 116,
+        "endChar": 51
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ebe9a38_dd882531",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-09T18:48:12Z",
+      "side": 1,
+      "message": "Would it be cleaner to make sure the old one gets stopped?  Is this a performance optimization?\n\nI expected the API to be reconfigure_, not start_distance_measurement_ if it could already be started.\n\nIs the frequency the only thing that needs to be updated?",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 46
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dd802fe_e298a44e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-09T18:48:12Z",
+      "side": 1,
+      "message": "I think remove should be added in the same CL as add.",
+      "range": {
+        "startLine": 141,
+        "startChar": 11,
+        "endLine": 141,
+        "endChar": 15
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a58fbca_91f6c097",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-09T18:48:12Z",
+      "side": 1,
+      "message": "nit: \"Got\" or \"Received\" or \"Invalid LeMetaEventView\"",
+      "range": {
+        "startLine": 175,
+        "startChar": 17,
+        "endLine": 175,
+        "endChar": 20
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54416b66_98aa35c5",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-09T18:48:12Z",
+      "side": 1,
+      "message": "This seems unused (the connection handle is set but never read).  Is it needed?",
+      "range": {
+        "startLine": 466,
+        "startChar": 13,
+        "endLine": 466,
+        "endChar": 30
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08e11849_3d763580",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-09T18:48:12Z",
+      "side": 1,
+      "message": "Can we add this one when it\u0027s used?  Right now, it\u0027s only used to see if there was already a CsTracker",
+      "range": {
+        "startLine": 467,
+        "startChar": 13,
+        "endLine": 467,
+        "endChar": 22
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
