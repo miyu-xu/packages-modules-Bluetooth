@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea184c22_2236f056",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 737,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d9950fdb_c3306c46",
+      "revId": "cb42b2b6b90bdf9d7559bcd1a31ac8884a9e24c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aebef592_4f81f363",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdf0e72a_649792ca",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 763,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aebef592_4f81f363",
+      "revId": "cb42b2b6b90bdf9d7559bcd1a31ac8884a9e24c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c80a845_4227d394",
@@ -48,6 +84,30 @@
       "writtenOn": "2023-10-06T10:45:55Z",
       "side": 1,
       "message": "Let\u0027s move the line #1721-1723 here.\n```suggestion\n        } else {\n            return false;\n        }\n```",
+      "range": {
+        "startLine": 1761,
+        "startChar": 9,
+        "endLine": 1762,
+        "endChar": 66
+      },
+      "revId": "cb42b2b6b90bdf9d7559bcd1a31ac8884a9e24c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f3fed1e_f9b42011",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 1762,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c80a845_4227d394",
       "range": {
         "startLine": 1761,
         "startChar": 9,
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7e0c7cd_161d7db3",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c7846ffe_655a7c46",
+      "range": {
+        "startLine": 1766,
+        "startChar": 0,
+        "endLine": 1768,
+        "endChar": 9
+      },
+      "revId": "cb42b2b6b90bdf9d7559bcd1a31ac8884a9e24c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34b4a98c_b16639d1",
@@ -94,6 +178,24 @@
       "writtenOn": "2023-10-06T10:45:55Z",
       "side": 1,
       "message": "Move this into the phone_ops_enabled branch.",
+      "revId": "cb42b2b6b90bdf9d7559bcd1a31ac8884a9e24c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b00bc1_5396b0bf",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34b4a98c_b16639d1",
       "revId": "cb42b2b6b90bdf9d7559bcd1a31ac8884a9e24c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -121,6 +223,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "543ba498_e63a1e20",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 1790,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dcf51af_fe207528",
+      "range": {
+        "startLine": 1790,
+        "startChar": 12,
+        "endLine": 1790,
+        "endChar": 23
+      },
+      "revId": "cb42b2b6b90bdf9d7559bcd1a31ac8884a9e24c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28910e90_1ec8ad05",
@@ -134,6 +260,24 @@
       "writtenOn": "2023-10-06T10:45:55Z",
       "side": 1,
       "message": "Please apply the change at line #2693 here as well. Or you may move both changes to the previous CL, both are good to me.",
+      "revId": "cb42b2b6b90bdf9d7559bcd1a31ac8884a9e24c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c21177ce_24b55920",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 13
+      },
+      "lineNbr": 2723,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28910e90_1ec8ad05",
       "revId": "cb42b2b6b90bdf9d7559bcd1a31ac8884a9e24c8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
