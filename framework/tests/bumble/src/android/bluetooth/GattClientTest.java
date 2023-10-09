@@ -45,15 +45,15 @@ import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.invocation.Invocation;
 
+import java.util.Collection;
+import java.util.UUID;
+
 import pandora.GattProto.GattCharacteristicParams;
 import pandora.GattProto.GattServiceParams;
 import pandora.GattProto.RegisterServiceRequest;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
 import pandora.HostProto.OwnAddressType;
-
-import java.util.Collection;
-import java.util.UUID;
 
 @RunWith(AndroidJUnit4.class)
 public class GattClientTest {
@@ -242,6 +242,56 @@ public class GattClientTest {
                 RegisterServiceRequest.newBuilder().setService(serviceParams).build();
 
         mBumble.gattBlocking().registerService(request);
+    }
+
+    @Test
+    public void multipleGattClients() throws Exception {
+        advertiseWithBumble();
+
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        BluetoothGattCallback gattCallbackA = mock(BluetoothGattCallback.class);
+        BluetoothGattCallback gattCallbackB = mock(BluetoothGattCallback.class);
+        InOrder inOrder = inOrder(gattCallbackA, gattCallbackB);
+
+        BluetoothGatt gattA = device.connectGatt(mContext, false, gattCallbackA);
+        inOrder.verify(gattCallbackA, timeout(1000))
+                .onConnectionStateChange(eq(gattA), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+        BluetoothGatt gattB = device.connectGatt(mContext, false, gattCallbackB);
+        inOrder.verify(gattCallbackB, timeout(1000))
+                .onConnectionStateChange(eq(gattB), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+        gattA.disconnect();
+        inOrder.verify(gattCallbackA, timeout(1000))
+                .onConnectionStateChange(
+                        eq(gattA), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+        gattA.connect();
+        inOrder.verify(gattCallbackA, timeout(1000))
+                .onConnectionStateChange(eq(gattA), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+        gattB.disconnect();
+        inOrder.verify(gattCallbackB, timeout(1000))
+                .onConnectionStateChange(
+                        eq(gattB), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+        gattB.close();
+        verifyNoMoreInteractions(gattCallbackB);
+
+        gattA.disconnect();
+        inOrder.verify(gattCallbackA, timeout(1000))
+                .onConnectionStateChange(
+                        eq(gattA), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+        gattA.connect();
+        inOrder.verify(gattCallbackA, timeout(1000))
+                .onConnectionStateChange(eq(gattA), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+        gattA.close();
+        verifyNoMoreInteractions(gattCallbackA);
     }
 
     private void advertiseWithBumble() {
