@@ -16,6 +16,23 @@
       "message": "Hi, @wescande@google.com\n\nThis is just the draft version, I tested it with the hikey960 build, and it worked,\nbut there are several points I am not sure, please help check and give suggestions:\n\n1. if the name of the property and the files name/structure are correct\n2. I define the same ble_vnd_is_included function in two files, bta_dm_act.cc and btm_ble_gap.cc, since I did not find a common place to define it:(\n3. I just deleted the call of btm_ble_adv_init, as I could not find where it is implemented.\n4. there are both \"#ifdef OS_ANDROID\" and \"#ifdef __ANDROID__\" used, I keep use the same style in the same file.\n5. I change the functions condifioned by BLE_VND_INCLUDED to be defined by default now, and just make the called places to be conditioned.",
       "revId": "6e03a74af3e6199d19371c8315db15d29aa60eaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfb02483_3bd92d7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1945845
+      },
+      "writtenOn": "2023-10-09T16:40:14Z",
+      "side": 1,
+      "message": "Lint is expecting a more specific test tag:\n```\n\"Test: m \u003ctarget\u003e\" or \"Test: atest \u003cautomated-test\u003e\" is required to be in the commit message.\n```",
+      "revId": "6e03a74af3e6199d19371c8315db15d29aa60eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
