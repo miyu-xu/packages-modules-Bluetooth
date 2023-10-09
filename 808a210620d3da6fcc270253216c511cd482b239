@@ -16,6 +16,74 @@
       "message": "Hi, please review this CL. Thanks!",
       "revId": "808a210620d3da6fcc270253216c511cd482b239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8e89387_1faed47d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-09T18:42:47Z",
+      "side": 1,
+      "message": "Thanks for the fix! I\u0027d also double check who is calling the 3s/3s value (as they are likely skipping looking up defaults from sysprop OR there is a new sysprop value being applied).",
+      "revId": "808a210620d3da6fcc270253216c511cd482b239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec125e18_68067cf4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1325,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-09T18:42:47Z",
+      "side": 1,
+      "message": "Prefer to use `.into()` instead of `as`. See the `try_into` in `start_scan`. You can log a failed attempt to set_scan_parameters if it has invalid values.",
+      "revId": "808a210620d3da6fcc270253216c511cd482b239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb0e2938_50405f24",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-09T18:42:47Z",
+      "side": 1,
+      "message": "Since this wants to be a i32 below, maybe skip the `try_into` here.",
+      "revId": "808a210620d3da6fcc270253216c511cd482b239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75dd7a44_8fd75ebd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1913,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-09T18:42:47Z",
+      "side": 1,
+      "message": "yinghsu@ has a plan for api versioning. Converting this to an `Option\u003cScanSetting\u003e` is probably good for next api-rev.\n\nAdd a `// TODO ` at the fn declaration",
+      "revId": "808a210620d3da6fcc270253216c511cd482b239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
