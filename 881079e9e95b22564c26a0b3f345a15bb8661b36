@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bb16c70_58b8eb34",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5253bf41_37d42a7b",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 111,
+        "endChar": 38
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ddaa57c0_120402ec",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ce83df1_a03b8bf3",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Will implement in the following patch.",
+      "parentUuid": "ddaa57c0_120402ec",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 33
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfb33a99_1b9a7a4c",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-07-24T16:12:34Z",
       "side": 1,
       "message": "Could you elaborate on the TODO here and attach a bug number if possible?",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 153,
+        "endChar": 15
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8b83141_f4e76bbc",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfb33a99_1b9a7a4c",
       "range": {
         "startLine": 153,
         "startChar": 8,
@@ -95,6 +167,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "635bb03a_348ca971",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Will implement send_le_cs_create_config in the following patch and we don\u0027t need testing properties anymore.",
+      "parentUuid": "24688e1b_95b8e2c0",
+      "range": {
+        "startLine": 159,
+        "startChar": 0,
+        "endLine": 159,
+        "endChar": 37
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7ee4867b_10835a02",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 1
@@ -106,6 +202,30 @@
       "writtenOn": "2023-07-24T16:12:34Z",
       "side": 1,
       "message": "@Roopa on our policy for system properties",
+      "range": {
+        "startLine": 160,
+        "startChar": 58,
+        "endLine": 160,
+        "endChar": 90
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ca3734d_90085e16",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7ee4867b_10835a02",
       "range": {
         "startLine": 160,
         "startChar": 58,
@@ -139,6 +259,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99a61353_77adfb79",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "742d67df_328aac4a",
+      "range": {
+        "startLine": 161,
+        "startChar": 91,
+        "endLine": 161,
+        "endChar": 95
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7489fc04_f7cc17ab",
@@ -152,6 +296,30 @@
       "writtenOn": "2023-07-24T16:12:34Z",
       "side": 1,
       "message": "this is a magic number, could you elaborate on how this is defined? maybe as a constant?",
+      "range": {
+        "startLine": 169,
+        "startChar": 20,
+        "endLine": 169,
+        "endChar": 41
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "926c03f7_217d8ded",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7489fc04_f7cc17ab",
       "range": {
         "startLine": 169,
         "startChar": 20,
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "33f2e2a2_d1f3337c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "288e77fb_c5a140ca",
+      "range": {
+        "startLine": 174,
+        "startChar": 4,
+        "endLine": 180,
+        "endChar": 0
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "734f54a5_1637ef13",
@@ -198,6 +390,30 @@
       "writtenOn": "2023-07-24T16:12:34Z",
       "side": 1,
       "message": "again, I think these should be defined in PDL",
+      "range": {
+        "startLine": 188,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 38
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0271871_23fd13a8",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "734f54a5_1637ef13",
       "range": {
         "startLine": 188,
         "startChar": 0,
@@ -231,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c78815f7_9b95b563",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b47a800e_f43d853d",
+      "range": {
+        "startLine": 264,
+        "startChar": 9,
+        "endLine": 264,
+        "endChar": 13
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b467416_d5a3fc85",
@@ -244,6 +484,30 @@
       "writtenOn": "2023-07-24T16:12:34Z",
       "side": 1,
       "message": "add bug number for TODO",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 271,
+        "endChar": 11
+      },
+      "revId": "881079e9e95b22564c26a0b3f345a15bb8661b36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66dc9b1b_e2e3e50c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 271,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-09T18:06:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "0b467416_d5a3fc85",
       "range": {
         "startLine": 271,
         "startChar": 0,
