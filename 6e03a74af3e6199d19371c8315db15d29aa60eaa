@@ -69,6 +69,24 @@
       "parentUuid": "7fa5b9fd_0a395f80",
       "revId": "6e03a74af3e6199d19371c8315db15d29aa60eaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d45c71c_095af5b7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-09T22:45:27Z",
+      "side": 1,
+      "message": "Hi\n\nThanks you for the patch, it is really clean !\nI have re-uploaded a patchset on top of yours to address some nit and some open point you put in the comment, please have a look and let me know what you think.\nAnswering you point below:\n1. Name looks good. 👍\n2. I would prefer one location too. I have made a slight change in the new patchset to address that.\n3. This is the content of `btm_ble_adv_init` in android T\n```\n  BleAdvertiserHciInterface::Initialize();\n  BleAdvertisingManager::Initialize(BleAdvertiserHciInterface::Get());\n  BleAdvertiserHciInterface::Get()-\u003eSetAdvertisingEventObserver(\n      (BleAdvertisingManagerImpl*)BleAdvertisingManager::Get().get());\n\n  if (BleAdvertiserHciInterface::Get()-\u003eQuirkAdvertiserZeroHandle()) {\n    // If handle 0 can\u0027t be used, register advertiser for it, but never use it.\n    // TODO: avoid generating/rotating RPA for it\n    BleAdvertisingManager::Get().get()-\u003eRegisterAdvertiser(base::DoNothing());\n  }\n```\nThis was removed in aosp/2656937 because multi adv was unused. I am pinging the CL author to have a look and ensure it is ok. (or we will need to revert the other CL)\n4. Looks like `__ANDROID__` is more commonly used, I updated it in the patchset\n5. That\u0027s perfect 👍",
+      "parentUuid": "65c0b9ea_e9ec6e3b",
+      "revId": "6e03a74af3e6199d19371c8315db15d29aa60eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

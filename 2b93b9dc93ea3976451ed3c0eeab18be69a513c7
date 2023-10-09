@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ed98d04_75604cf9",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3513,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-09T22:45:27Z",
+      "side": 1,
+      "message": "I think this should be reversed.",
+      "range": {
+        "startLine": 3513,
+        "startChar": 6,
+        "endLine": 3513,
+        "endChar": 25
+      },
+      "revId": "2b93b9dc93ea3976451ed3c0eeab18be69a513c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
