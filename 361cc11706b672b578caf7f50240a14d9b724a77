@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef3ce0ae_c417019b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-09T22:42:59Z",
+      "side": 1,
+      "message": "do we anticipate we might use similar logic for other switching cases, like recording? if yes, should we make this logic more generic? naming and grouping the controlling logics. what I\u0027m worried about is later we have to introduce another path like mIsRecordingQueuedDueToBroadcastDeactivation...",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c08926e0_e49e09ce",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-09T22:42:59Z",
+      "side": 1,
+      "message": "nit: \n```suggestion\n    private boolean areBroadcastsAllStopped() {\n```",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecd1cec4_4f884d9d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1034,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-09T22:42:59Z",
+      "side": 1,
+      "message": "need to check mBroadcastDescriptors null here?",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc8f6142_4df2c20d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2657,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-09T22:42:59Z",
+      "side": 1,
+      "message": "isn\u0027t mBroadcastDescriptors.get(broadcastId.get()) \u003d\u003d null redundant here, in case getFirstNotStoppedBroadcastId could return non-empty value? \n\nnit: and log doesn\u0027t seem reflect the check here.",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4541fc35_cc94e115",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2663,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-09T22:42:59Z",
+      "side": 1,
+      "message": "this is a more general improvement request. as we discussed, we\u0027d better not stop the broadcast completely in case of incoming call. instead can we consider to change broadcast to \u0027configured\u0027 state with a timeout? and if the call is resumed, we quickly set the broadcast state from \u0027configured\u0027 to \u0027streaming\u0027, if the call is still ongoing after the timeout, the timeout will trigger from \u0027configured\u0027 to \u0027idle\u0027.\nif you\u0027re planning to have this as another improvement, it\u0027s also fine to me.",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
