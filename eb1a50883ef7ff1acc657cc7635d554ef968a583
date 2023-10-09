@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcd5c15c_7c8e4564",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-09T21:26:56Z",
+      "side": 1,
+      "message": "This looks good for immediate patch verification, but shouldn\u0027t this be verbose log ?\n\nThis will be a logspam, every time remote advertises.",
+      "range": {
+        "startLine": 1322,
+        "startChar": 6,
+        "endLine": 1324,
+        "endChar": 80
+      },
+      "revId": "eb1a50883ef7ff1acc657cc7635d554ef968a583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed554682_4f346d0a",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1473,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-09T21:26:56Z",
+      "side": 1,
+      "message": "This looks good for immediate patch verification, but shouldn\u0027t this be verbose log ?",
+      "range": {
+        "startLine": 1473,
+        "startChar": 6,
+        "endLine": 1473,
+        "endChar": 14
+      },
+      "revId": "eb1a50883ef7ff1acc657cc7635d554ef968a583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
