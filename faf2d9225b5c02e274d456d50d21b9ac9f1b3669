@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fb54cc0_ae4cd6ff",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2863,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-10-09T19:26:50Z",
+      "side": 1,
+      "message": "Yes, we read the device property here, and set the LE audio bit below.",
+      "parentUuid": "883b4d48_616bb636",
+      "range": {
+        "startLine": 2863,
+        "startChar": 19,
+        "endLine": 2863,
+        "endChar": 43
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3dfcb60_314f650f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-09T18:12:18Z",
       "side": 1,
       "message": "same here",
+      "range": {
+        "startLine": 2943,
+        "startChar": 6,
+        "endLine": 2943,
+        "endChar": 14
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "932b436e_9e964019",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2943,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-10-09T19:26:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3dfcb60_314f650f",
       "range": {
         "startLine": 2943,
         "startChar": 6,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6e0c918_1bf4202b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2946,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-10-09T19:26:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a62c8bf_f5d986d5",
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45cce8a6_ac9a5376",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-10-09T18:18:28Z",
       "side": 1,
       "message": "add `using android::sysprop::BluetoothProperties;` above and make this shorter",
+      "range": {
+        "startLine": 2948,
+        "startChar": 6,
+        "endLine": 2948,
+        "endChar": 43
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "822d36c5_7d6eb84a",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2948,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-10-09T19:26:50Z",
+      "side": 1,
+      "message": "It doesn\u0027t work by this way.\n\n```\npackages/modules/Bluetooth/system/btif/src/btif_dm.cc:100:25: error: using declaration cannot refer to a namespace\nusing android::sysprop::BluetoothProperties;\n      ~~~~~~~~~~~~~~~~~~^\n```",
+      "parentUuid": "45cce8a6_ac9a5376",
       "range": {
         "startLine": 2948,
         "startChar": 6,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d62468d7_4dc13950",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2954,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-10-09T19:26:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36fd244a_c4e63ba9",
+      "range": {
+        "startLine": 2954,
+        "startChar": 4,
+        "endLine": 2954,
+        "endChar": 33
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d3e7a7fe_119d4a2a",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-10-09T18:12:18Z",
       "side": 1,
       "message": "this is not needed for LOG_DEBUG is used as it will be included automatically",
+      "range": {
+        "startLine": 2958,
+        "startChar": 8,
+        "endLine": 2958,
+        "endChar": 16
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e21bf535_c742b714",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2958,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-10-09T19:26:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d3e7a7fe_119d4a2a",
       "range": {
         "startLine": 2958,
         "startChar": 8,
