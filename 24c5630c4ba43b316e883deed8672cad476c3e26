@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec3d892b_0c30be73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-09T22:15:06Z",
+      "side": 1,
+      "message": "Just wanted to note that the JNI thread name is overrided by `callback_thread_event()` to `BT Service Callback Thread`.",
+      "revId": "24c5630c4ba43b316e883deed8672cad476c3e26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
