@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "44edb9e6_1d81254c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6f8af361_f5fcc255",
+      "range": {
+        "startLine": 9,
+        "startChar": 69,
+        "endLine": 9,
+        "endChar": 75
+      },
+      "revId": "077c87e374d7056c8c4fa4e968e6164ab64d251d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ee2ee66_51c68636",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-10-06T10:20:48Z",
       "side": 1,
       "message": "This function is for qualification only. You may leave only mps_qualification_enabled here.",
+      "revId": "077c87e374d7056c8c4fa4e968e6164ab64d251d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f4428be_afe4198e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1581,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ee2ee66_51c68636",
       "revId": "077c87e374d7056c8c4fa4e968e6164ab64d251d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e1b1a23_187c824e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1594,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "031c255b_8d4816eb",
+      "revId": "077c87e374d7056c8c4fa4e968e6164ab64d251d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5855d361_ea4db623",
@@ -71,6 +131,30 @@
       "writtenOn": "2023-10-06T10:20:48Z",
       "side": 1,
       "message": "```suggestion\n    // Allow partial profiles connection during qualification (MPS qualification mode is enabled).\n```",
+      "range": {
+        "startLine": 1858,
+        "startChar": 67,
+        "endLine": 1858,
+        "endChar": 89
+      },
+      "revId": "077c87e374d7056c8c4fa4e968e6164ab64d251d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "332101fe_1aab367a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1858,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-09T13:03:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5855d361_ea4db623",
       "range": {
         "startLine": 1858,
         "startChar": 67,
