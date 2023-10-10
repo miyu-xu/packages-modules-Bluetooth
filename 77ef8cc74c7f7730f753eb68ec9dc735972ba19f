@@ -16,6 +16,24 @@
       "message": "I feel like this would be easier to review with one non-no-op test, but I\u0027m assuming it\u0027s coming.",
       "revId": "77ef8cc74c7f7730f753eb68ec9dc735972ba19f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72e5cb89_96506fec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-10T17:57:35Z",
+      "side": 1,
+      "message": "point taken.\n\nThe idea of a `nop` test was to indicate clearly that this is not a real test.\n\nThe issue I foresee is if one or a small subset of tests are included, debate may ensue about the lack of testing or missing tests for all the other areas.",
+      "parentUuid": "fa5a1a1c_b71ba4ea",
+      "revId": "77ef8cc74c7f7730f753eb68ec9dc735972ba19f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
