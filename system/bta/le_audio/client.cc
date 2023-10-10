@@ -26,6 +26,7 @@
 #include "advertise_data_parser.h"
 #include "audio_hal_client/audio_hal_client.h"
 #include "audio_hal_interface/le_audio_software.h"
+#include "bt_types.h"
 #include "bta/csis/csis_types.h"
 #include "bta_api.h"
 #include "bta_gatt_api.h"
@@ -42,6 +43,7 @@
 #include "device/include/controller.h"
 #include "devices.h"
 #include "gatt/bta_gattc_int.h"
+#include "gatt_api.h"
 #include "gd/common/strings.h"
 #include "internal_include/stack_config.h"
 #include "le_audio_health_status.h"
@@ -348,6 +350,9 @@ class LeAudioClientImpl : public LeAudioClient {
     int ases_num = leAudioDevice->ases_.size();
     void* notify_flag_ptr = NULL;
 
+    tBTA_GATTC_MULTI multi_read;
+    multi_read.num_attr = ases_num;
+
     for (int i = 0; i < ases_num; i++) {
       /* Last read ase characteristic should issue connected state callback
        * to upper layer
@@ -359,9 +364,27 @@ class LeAudioClientImpl : public LeAudioClient {
             INT_TO_PTR(leAudioDevice->notify_connected_after_read_);
       }
 
-      BtaGattQueue::ReadCharacteristic(leAudioDevice->conn_id_,
-                                       leAudioDevice->ases_[i].hdls.val_hdl,
-                                       OnGattReadRspStatic, notify_flag_ptr);
+      if (i != 0 && (i % GATT_MAX_READ_MULTI_HANDLES == 0)) {
+        multi_read.num_attr = GATT_MAX_READ_MULTI_HANDLES;
+        BtaGattQueue::ReadMultiCharacteristic(
+            leAudioDevice->conn_id_, multi_read, OnGattReadMultiRspStatic,
+            notify_flag_ptr);
+        memset(multi_read.handles, GATT_MAX_READ_MULTI_HANDLES,
+               sizeof(uint16_t));
+      }
+      multi_read.handles[i % GATT_MAX_READ_MULTI_HANDLES] =
+          leAudioDevice->ases_[i].hdls.val_hdl;
+
+      // BtaGattQueue::ReadCharacteristic(leAudioDevice->conn_id_,
+      //                                  leAudioDevice->ases_[i].hdls.val_hdl,
+      //                                  OnGattReadRspStatic, notify_flag_ptr);
+    }
+
+    if (ases_num % GATT_MAX_READ_MULTI_HANDLES != 0) {
+      multi_read.num_attr = ases_num % GATT_MAX_READ_MULTI_HANDLES;
+      BtaGattQueue::ReadMultiCharacteristic(leAudioDevice->conn_id_, multi_read,
+                                            OnGattReadMultiRspStatic,
+                                            notify_flag_ptr);
     }
   }
 
@@ -4864,6 +4887,24 @@ class LeAudioClientImpl : public LeAudioClient {
           leAudioDevice->src_audio_locations_.to_ulong());
 
       instance->connectionReady(leAudioDevice);
+    }
+  }
+
+  static void OnGattReadMultiRspStatic(uint16_t conn_id, tGATT_STATUS status,
+                                       tBTA_GATTC_MULTI& handles, uint16_t len,
+                                       uint8_t* value, void* data) {
+    if (!instance) return;
+
+    if (status != GATT_SUCCESS) {
+      LOG_ERROR(
+          "UNSUCCESSFUL MULTI READ, TODO: implementfall back in the queue!?");
+      return;
+    }
+
+    for (int i = 0; i < handles.num_attr; i++) {
+      uint16_t hdl = handles.handles[i];
+      OnGattReadRspStatic(conn_id, status, hdl, 2, value + (i * 2),
+                          ((i == (handles.num_attr - 1)) ? data : nullptr));
     }
   }
 

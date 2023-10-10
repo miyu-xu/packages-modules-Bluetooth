@@ -1539,8 +1539,8 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       case AseState::BTA_LE_AUDIO_ASE_STATE_QOS_CONFIGURED:
         if (ase->id == 0x00) {
           /* Initial state of Ase - update id */
-          LOG(INFO) << __func__
-                    << ", discovered ase id: " << static_cast<int>(arh.id);
+          LOG(INFO) << __func__ << ", 🛑🛑🛑🛑 discovered ase id: "
+                    << static_cast<int>(arh.id);
           ase->id = arh.id;
         }
         break;
