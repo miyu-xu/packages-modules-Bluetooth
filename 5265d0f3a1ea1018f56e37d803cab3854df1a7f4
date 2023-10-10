@@ -22,6 +22,30 @@
       },
       "revId": "5265d0f3a1ea1018f56e37d803cab3854df1a7f4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "066bd760_ba2dce41",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/PlayerSettingsManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1880948
+      },
+      "writtenOn": "2023-10-10T11:24:51Z",
+      "side": 1,
+      "message": "Chatted about this, the current implementation of MediaSessionCompat makes it hard not to catch exceptions as they occur often. Will remove this catch when moving to new MediaSession classes.",
+      "parentUuid": "808248e1_d7d6ba4e",
+      "range": {
+        "startLine": 124,
+        "startChar": 17,
+        "endLine": 124,
+        "endChar": 26
+      },
+      "revId": "5265d0f3a1ea1018f56e37d803cab3854df1a7f4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
