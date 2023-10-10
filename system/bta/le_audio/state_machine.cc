@@ -744,6 +744,14 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     /* mark ASEs as not used. */
     leAudioDevice->DeactivateAllAses();
 
+    /* Update the current group audio context availability which could change
+     * due to disconnected group member.
+     */
+    group->ReloadAudioLocations();
+    group->ReloadAudioDirections();
+    group->UpdateAudioContextAvailability();
+    group->InvalidateCachedConfigurations();
+
     /* If group is in Idle and not transitioning, update the current group
      * audio context availability which could change due to disconnected group
      * member.
@@ -751,10 +759,6 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     if ((group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_IDLE) &&
         !group->IsInTransition()) {
       LOG_INFO("group: %d is in IDLE", group->group_id_);
-      group->ReloadAudioLocations();
-      group->ReloadAudioDirections();
-      group->UpdateAudioContextAvailability();
-      group->InvalidateCachedConfigurations();
 
       /* When OnLeAudioDeviceSetStateTimeout happens, group will transition
        * to IDLE, and after that an ACL disconnect will be triggered. We need
