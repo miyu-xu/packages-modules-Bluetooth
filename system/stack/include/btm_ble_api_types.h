@@ -319,7 +319,8 @@ typedef void(tBTM_RAND_ENC_CB)(tBTM_RAND_ENC* p1);
 typedef struct {
   uint8_t adv_inst_max; /* max adv instance supported in controller */
   uint8_t rpa_offloading;
-  uint16_t tot_scan_results_strg;
+  uint16_t tot_scan_results_strg; /* unused, present for vendor compatibility
+                                     reasons */
   uint8_t max_irk_list_sz;
   uint8_t filter_support;
   uint8_t max_filter;
