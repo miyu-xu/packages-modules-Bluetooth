@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7b9a173_3bc7a84d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-10T07:12:28Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this logic live somewehere up in Java, where profile connections are decided ?",
+      "revId": "3469e8cd6f0d893448fe99cdf574dcdf3284334e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
