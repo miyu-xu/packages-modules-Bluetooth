@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1c20276_13dcc72d",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-10T22:17:11Z",
+      "side": 1,
+      "message": "mService cannot be null.\n\nIf you are afraid of it being one day null, please add a requireNonNull in the constructor instead of adding a check at call time (easier to catch since the constructor is guarantee to be call in testing)",
+      "range": {
+        "startLine": 394,
+        "startChar": 12,
+        "endLine": 394,
+        "endChar": 20
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a682b0d2_6341a392",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-10T22:17:11Z",
+      "side": 1,
+      "message": "I don\u0027t see when the packageManager can be null and I think we should remove the check.\nIt is unlikely for bluetooth to be on before the package service. Even less likely a call can happen so early.\n\nBtw even the system server does not check for null for that:\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/services/java/com/android/server/SystemServer.java;l\u003d1260;drc\u003dfd07543465ebf7ec99cce68137e1349c012b2b31\n\nand this is happening for sure before bluetooth is started to be loaded (bluetooth is loaded in startOtherServices, while the link above is about bootstrapService.\n\n\nThe only time when it is null could be when using a mock in test, and I would like the test to be correctly implemented instead",
+      "range": {
+        "startLine": 395,
+        "startChar": 19,
+        "endLine": 395,
+        "endChar": 48
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cea1eb37_213bbad2",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-10T22:17:11Z",
+      "side": 1,
+      "message": "Naive Question, why is this a largeTest ? Does it take a long time to run ?",
+      "range": {
+        "startLine": 474,
+        "startChar": 5,
+        "endLine": 474,
+        "endChar": 14
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90507c92_9a28f3ee",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-10T22:17:11Z",
+      "side": 1,
+      "message": "FlakyTest ? what is Flaky ?\n\nWe usually don\u0027t plan on uploading flaky test. If this test is flaky, please fix it now.",
+      "range": {
+        "startLine": 476,
+        "startChar": 5,
+        "endLine": 476,
+        "endChar": 14
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8d24b16_0180599f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 498,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-10T22:17:11Z",
+      "side": 1,
+      "message": "Do you need to wait between EACH post ? Can\u0027t we wait only once after sending all messages ?",
+      "range": {
+        "startLine": 498,
+        "startChar": 0,
+        "endLine": 498,
+        "endChar": 81
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
