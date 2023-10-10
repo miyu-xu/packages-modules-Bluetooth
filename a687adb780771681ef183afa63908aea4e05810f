@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b1bb567_24c482a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-10T16:16:29Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60492086_18e8f9a3",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-10T16:16:29Z",
+      "side": 1,
+      "message": "Maybe it should be something like:\n\nif (cs_trackers_.find(connection_handle !\u003d cs_trackers_.end()) {\n  // LOG_WARN\n  // Remove the old one\n}\n\n// Create a cs tracker with role initiator\ncs_trackers_[connection_handle].address \u003d cs_remote_address;\n...",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 69
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7125c4ae_1b57637a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-10T16:16:29Z",
+      "side": 1,
+      "message": "If it\u0027s set up, should we send some commands to disable it?",
+      "range": {
+        "startLine": 144,
+        "startChar": 10,
+        "endLine": 144,
+        "endChar": 22
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c83242c_6a03dfbf",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-10T16:16:29Z",
+      "side": 1,
+      "message": "Is this still needed?  It looks redundant now that you\u0027re sending this command on line 116.",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 5
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1cd46d7_836f6325",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-10T16:16:29Z",
+      "side": 1,
+      "message": "This looks unnecessary.",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 5
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65688ca3_8fdca20d",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-10T16:16:29Z",
+      "side": 1,
+      "message": "We just set it up.  Should we tear it down?",
+      "range": {
+        "startLine": 299,
+        "startChar": 7,
+        "endLine": 299,
+        "endChar": 13
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
