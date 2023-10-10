@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "348cd625_c57620f3",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-10T07:45:26Z",
+      "side": 1,
+      "message": "This is exactly as Jakub wrote - nothing to add.",
+      "parentUuid": "8e1a60a2_e61e5eac",
+      "revId": "eb1a50883ef7ff1acc657cc7635d554ef968a583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dcd5c15c_7c8e4564",
         "filename": "system/bta/csis/csis_client.cc",
         "patchSetId": 2
@@ -49,6 +67,30 @@
       "writtenOn": "2023-10-09T21:26:56Z",
       "side": 1,
       "message": "This looks good for immediate patch verification, but shouldn\u0027t this be verbose log ?\n\nThis will be a logspam, every time remote advertises.",
+      "range": {
+        "startLine": 1322,
+        "startChar": 6,
+        "endLine": 1324,
+        "endChar": 80
+      },
+      "revId": "eb1a50883ef7ff1acc657cc7635d554ef968a583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffa9d7ae_e6635980",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1324,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-10T07:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dcd5c15c_7c8e4564",
       "range": {
         "startLine": 1322,
         "startChar": 6,
@@ -72,6 +114,30 @@
       "writtenOn": "2023-10-09T21:26:56Z",
       "side": 1,
       "message": "This looks good for immediate patch verification, but shouldn\u0027t this be verbose log ?",
+      "range": {
+        "startLine": 1473,
+        "startChar": 6,
+        "endLine": 1473,
+        "endChar": 14
+      },
+      "revId": "eb1a50883ef7ff1acc657cc7635d554ef968a583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c0dfb83_bebdf6e7",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1473,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-10T07:45:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed554682_4f346d0a",
       "range": {
         "startLine": 1473,
         "startChar": 6,
