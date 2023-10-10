@@ -16,6 +16,24 @@
       "message": "this shall be removed -",
       "revId": "106b45d301cbd93be610b2adde5f744d5d09f72f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca4a9be2_35aead0c",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-10T19:35:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6a9b5cd_88f8e2f0",
+      "revId": "106b45d301cbd93be610b2adde5f744d5d09f72f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
