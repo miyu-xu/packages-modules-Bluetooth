@@ -16,6 +16,24 @@
       "message": "Shouldn\u0027t this logic live somewehere up in Java, where profile connections are decided ?",
       "revId": "3469e8cd6f0d893448fe99cdf574dcdf3284334e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab259447_6e52dbc7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-10T17:24:59Z",
+      "side": 1,
+      "message": "Java has this check in isLeAudioAllowed from AdapterService, and this is being used by phonePolicy, while native layer lea doesn\u0027t have this knowledge. \n\nThis is being used for the next counter metrics CL aosp/2778307, so that we could log different metrics per allowlist.",
+      "parentUuid": "d7b9a173_3bc7a84d",
+      "revId": "3469e8cd6f0d893448fe99cdf574dcdf3284334e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
