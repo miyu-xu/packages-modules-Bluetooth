@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f388ba15_f001a926",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 474,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-10-10T22:41:40Z",
+      "side": 1,
+      "message": "FWIW, I don\u0027t think it\u0027s a large test and we can probably remove this annotation",
+      "parentUuid": "cea1eb37_213bbad2",
+      "range": {
+        "startLine": 474,
+        "startChar": 5,
+        "endLine": 474,
+        "endChar": 14
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "90507c92_9a28f3ee",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
         "patchSetId": 5
@@ -83,6 +107,30 @@
       "writtenOn": "2023-10-10T22:17:11Z",
       "side": 1,
       "message": "FlakyTest ? what is Flaky ?\n\nWe usually don\u0027t plan on uploading flaky test. If this test is flaky, please fix it now.",
+      "range": {
+        "startLine": 476,
+        "startChar": 5,
+        "endLine": 476,
+        "endChar": 14
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "952aef27_c6b5fea1",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 476,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-10-10T22:41:40Z",
+      "side": 1,
+      "message": "+1! If you\u0027re seeing flake, then lets get to the bottom of why.\n\nIf you\u0027re not sure if you\u0027re seeing flake, then make sure you can pass the test hundreds of times in a row. You can pass atest the `--iterations \u003ccount\u003e` flag, or even run atest with `--rerun-until-failure` indefinitely until a failure (or you give up).",
+      "parentUuid": "90507c92_9a28f3ee",
       "range": {
         "startLine": 476,
         "startChar": 5,
@@ -111,6 +159,52 @@
         "startChar": 0,
         "endLine": 498,
         "endChar": 81
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbce272e_95d2312b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-10-10T22:41:40Z",
+      "side": 1,
+      "message": "You may need to include a `times(X)` qualifier in here, since it\u0027s likely `sendBroadcast()` is being used for other intents too as you bring up the service and a connection. You\u0027ll want to make sure you grab the _right_ broadcast, not just any.",
+      "range": {
+        "startLine": 523,
+        "startChar": 8,
+        "endLine": 523,
+        "endChar": 37
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f3a6319_f705e192",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-10-10T22:41:40Z",
+      "side": 1,
+      "message": "This isn\u0027t applicable to the test and can be removed.",
+      "range": {
+        "startLine": 532,
+        "startChar": 8,
+        "endLine": 532,
+        "endChar": 79
       },
       "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
