@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e353414_111f0b51",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-10T08:34:29Z",
+      "side": 1,
+      "message": "Done, thanks",
+      "parentUuid": "f1cfafa5_ccf77786",
+      "range": {
+        "startLine": 116,
+        "startChar": 6,
+        "endLine": 116,
+        "endChar": 51
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7ebe9a38_dd882531",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-10-09T18:48:12Z",
       "side": 1,
       "message": "Would it be cleaner to make sure the old one gets stopped?  Is this a performance optimization?\n\nI expected the API to be reconfigure_, not start_distance_measurement_ if it could already be started.\n\nIs the frequency the only thing that needs to be updated?",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 46
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef127731_6c32b0ac",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-10T08:34:29Z",
+      "side": 1,
+      "message": "Yes we should disable CS -\u003e set config/parameter -\u003e enables CS when frequency changed. Yes, the frequency is the only parameter can be set by upper layer, we still need to convert it into CS parameters. I removed the frequency and related code, we can add it back when implement it. Let\u0027s focus on setup phase for this patch. Thanks!",
+      "parentUuid": "7ebe9a38_dd882531",
       "range": {
         "startLine": 117,
         "startChar": 0,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "755fb284_75f33c5f",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-10T08:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dd802fe_e298a44e",
+      "range": {
+        "startLine": 141,
+        "startChar": 11,
+        "endLine": 141,
+        "endChar": 15
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a58fbca_91f6c097",
@@ -100,6 +172,30 @@
       "writtenOn": "2023-10-09T18:48:12Z",
       "side": 1,
       "message": "nit: \"Got\" or \"Received\" or \"Invalid LeMetaEventView\"",
+      "range": {
+        "startLine": 175,
+        "startChar": 17,
+        "endLine": 175,
+        "endChar": 20
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30dc0897_83ee6dfb",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-10T08:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a58fbca_91f6c097",
       "range": {
         "startLine": 175,
         "startChar": 17,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "771113ad_87909684",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-10T08:34:29Z",
+      "side": 1,
+      "message": "You are right, thanks!",
+      "parentUuid": "54416b66_98aa35c5",
+      "range": {
+        "startLine": 466,
+        "startChar": 13,
+        "endLine": 466,
+        "endChar": 30
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08e11849_3d763580",
@@ -146,6 +266,30 @@
       "writtenOn": "2023-10-09T18:48:12Z",
       "side": 1,
       "message": "Can we add this one when it\u0027s used?  Right now, it\u0027s only used to see if there was already a CsTracker",
+      "range": {
+        "startLine": 467,
+        "startChar": 13,
+        "endLine": 467,
+        "endChar": 22
+      },
+      "revId": "55db1872b4ffc02ccab863e58f78be72532ec293",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed169f8b_fa31cd26",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 467,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-10T08:34:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "08e11849_3d763580",
       "range": {
         "startLine": 467,
         "startChar": 13,
