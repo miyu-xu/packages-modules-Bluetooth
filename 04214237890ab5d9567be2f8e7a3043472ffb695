@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9423fc2_ad6843f6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7506,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-10T01:10:41Z",
+      "side": 1,
+      "message": "I had a bit hard time to understand this part :p, wouldn\u0027t this be more readable if we put this in the else part?",
+      "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad54a4a1_8c1cec4e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7739,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-10T01:10:41Z",
+      "side": 1,
+      "message": "do we need to consider the new bypass flag here?",
+      "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "111e62eb_d0d894a6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7745,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-10T01:10:41Z",
+      "side": 1,
+      "message": "wondering if device is not in the list, don\u0027t we need to set setConnectionPolicy here? or we\u0027re intended to rely on phonePolicy to control that only.",
+      "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b60f61e_9d066bf9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-10T01:10:41Z",
+      "side": 1,
+      "message": "had the same question in another cl, shouldn\u0027t we set the default return as false?",
+      "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
