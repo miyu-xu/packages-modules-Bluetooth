@@ -87,6 +87,24 @@
       "parentUuid": "65c0b9ea_e9ec6e3b",
       "revId": "6e03a74af3e6199d19371c8315db15d29aa60eaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e985c3b4_12b70b99",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2023-10-10T05:47:04Z",
+      "side": 1,
+      "message": "The problem was found when we saw the CtsBluetoothTestCases module took about 3 hours to finish. But actually the problem could be found from the settings app or the logcat directly, no need to run the CtsBluetoothTestCases test.\n\nWith this change and the one on device/linaro/hikey here: https://android-review.googlesource.com/c/device/linaro/hikey/+/2778608, the crash should be gone away from the logcat, and it could be seen the bluetooth feature is enabled by default after booted up.\n\nBut you reminded me, I could run the CtsBluetoothTestCases tests for a check,",
+      "parentUuid": "ec79284d_101593f4",
+      "revId": "6e03a74af3e6199d19371c8315db15d29aa60eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

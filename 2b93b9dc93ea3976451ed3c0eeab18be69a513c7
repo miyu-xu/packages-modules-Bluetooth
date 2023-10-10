@@ -46,6 +46,30 @@
       },
       "revId": "2b93b9dc93ea3976451ed3c0eeab18be69a513c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1678797_d007a44f",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 3513,
+      "author": {
+        "id": 1041813
+      },
+      "writtenOn": "2023-10-10T05:47:04Z",
+      "side": 1,
+      "message": "Thanks for fixing this bug!",
+      "parentUuid": "0d14c2cf_2fd0cce6",
+      "range": {
+        "startLine": 3513,
+        "startChar": 6,
+        "endLine": 3513,
+        "endChar": 25
+      },
+      "revId": "2b93b9dc93ea3976451ed3c0eeab18be69a513c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
