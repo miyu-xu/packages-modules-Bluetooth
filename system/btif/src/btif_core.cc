@@ -477,8 +477,6 @@ void btif_get_adapter_property(bt_property_type_t type) {
     local_le_features.max_adv_instance = cmn_vsc_cb.adv_inst_max;
     local_le_features.max_irk_list_size = cmn_vsc_cb.max_irk_list_sz;
     local_le_features.rpa_offload_supported = cmn_vsc_cb.rpa_offloading;
-    local_le_features.scan_result_storage_size =
-        cmn_vsc_cb.tot_scan_results_strg;
     local_le_features.activity_energy_info_supported =
         cmn_vsc_cb.energy_support;
     local_le_features.version_supported = cmn_vsc_cb.version_supported;
