@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "210bd6f0_2ba4fccf",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7506,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-10-10T22:22:08Z",
+      "side": 1,
+      "message": "Agree with you. Let me refactor those naming to make it clear.\nmLeAudioAllowList: Allow list from server\nleAudioAllowDevices: Allow list from property.\n\nWill update in the next version.",
+      "parentUuid": "e9423fc2_ad6843f6",
+      "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad54a4a1_8c1cec4e",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 1
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dd3aad2e_641b82bc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7739,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-10-10T22:22:08Z",
+      "side": 1,
+      "message": "I think the function should have the single purpose to return if the device is in the allow list, and check the bypass flag in the control logic. Would not like combine multiple place with bypass flag.",
+      "parentUuid": "ad54a4a1_8c1cec4e",
+      "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "111e62eb_d0d894a6",
         "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
         "patchSetId": 1
@@ -48,6 +84,24 @@
       "writtenOn": "2023-10-10T01:10:41Z",
       "side": 1,
       "message": "wondering if device is not in the list, don\u0027t we need to set setConnectionPolicy here? or we\u0027re intended to rely on phonePolicy to control that only.",
+      "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1fce24a_654d123c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7745,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-10-10T22:22:08Z",
+      "side": 1,
+      "message": "PhonePolicy should be the only place to control the connectionPolicy, and the function is used to return the information, \"if the device is in the allow list.\" I will change the function name to improve the readibility.",
+      "parentUuid": "111e62eb_d0d894a6",
       "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
