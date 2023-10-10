@@ -696,7 +696,6 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
   CHECK(p_vcs_cplt_params->param_len >= BTM_VSC_CHIP_CAPABILITY_RSP_LEN);
   STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.adv_inst_max, p);
   STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.rpa_offloading, p);
-  STREAM_TO_UINT16(btm_cb.cmn_ble_vsc_cb.tot_scan_results_strg, p);
   STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.max_irk_list_sz, p);
   STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.filter_support, p);
   STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.max_filter, p);
@@ -767,8 +766,6 @@ static void btm_ble_vendor_capability_vsc_cmpl_cback(
       btm_cb.cmn_ble_vsc_cb.max_irk_list_sz > 0 &&
       controller_get_interface()->get_ble_resolving_list_max_size() == 0)
     btm_ble_resolving_list_init(btm_cb.cmn_ble_vsc_cb.max_irk_list_sz);
-
-  if (btm_cb.cmn_ble_vsc_cb.tot_scan_results_strg > 0) btm_ble_batchscan_init();
 
   if (p_ctrl_le_feature_rd_cmpl_cback != NULL)
     p_ctrl_le_feature_rd_cmpl_cback(static_cast<tHCI_STATUS>(status));
