@@ -240,6 +240,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c540541a_607182e0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-10T00:27:47Z",
+      "side": 1,
+      "message": "Understood, but I think the code is doing something we still does not want.\n\nScenario 1:\n* User is connected to device A, then to device B.\n* User toggle bluetooth off / on\n* The order of connected device returned by getMostRecentlyConnectedDevices is [B,A] so the code autoconnect on B (first in list)\n\nScenario 2:\n* User is connected to device A, then to device B.\n* User turn off B\n* User toggle bluetooth off / on\n* The order of connected device returned by getMostRecentlyConnectedDevices is still [B,A] so the code autoconnect on B (first in list) but B is no longer an active device so there will be no device to connect to.\n\n\nIf we handle the case of device B being remotely disconnected we would have this new scenario:\n\nScenario 3:\n* User is connected to device A, then to device B.\n* User turn off B\n* User toggle bluetooth off / on\n* The order of connected device returned by getMostRecentlyConnectedDevices is [A] so the code autoconnect on A",
+      "parentUuid": "15a7b060_6d6c2e45",
+      "range": {
+        "startLine": 652,
+        "startChar": 25,
+        "endLine": 652,
+        "endChar": 46
+      },
+      "revId": "662e4b3081a05304fc47c113d892745726503bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25b8a690_e4911d66",
         "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java",
         "patchSetId": 9
