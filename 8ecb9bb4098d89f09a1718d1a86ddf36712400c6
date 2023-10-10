@@ -33,6 +33,24 @@
       "message": "This is a great refactor effort. Executions / sec are sitting a little low at 54 (go/fuzzer-review-checklist#speed). Is there anything we can consider doing to improve this before merging?",
       "revId": "8ecb9bb4098d89f09a1718d1a86ddf36712400c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b21af480_bcb738dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2046576
+      },
+      "writtenOn": "2023-10-10T05:01:17Z",
+      "side": 1,
+      "message": "We analyzed the fuzzer code to see if we could increase the number of executions per second. We found that the module_init() function is the slowest function, as it internally generates list and appends to it which creates a large number of nested calls. This is why the function is taking so long to execute.",
+      "parentUuid": "70348df0_51b09451",
+      "revId": "8ecb9bb4098d89f09a1718d1a86ddf36712400c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
