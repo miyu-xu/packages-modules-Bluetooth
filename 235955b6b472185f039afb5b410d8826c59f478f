@@ -34,6 +34,24 @@
       "parentUuid": "1efa0258_75b03d2f",
       "revId": "235955b6b472185f039afb5b410d8826c59f478f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "824ecc3e_8e0c6c9e",
+        "filename": "android/app/src/com/android/bluetooth/airplane/NotificationHelperService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-10T01:21:39Z",
+      "side": 1,
+      "message": "Resolved with [aosp/2779443](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2779443)",
+      "parentUuid": "0e8e9074_ad58c8b1",
+      "revId": "235955b6b472185f039afb5b410d8826c59f478f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
