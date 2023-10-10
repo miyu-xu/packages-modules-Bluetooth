@@ -16,6 +16,24 @@
       "message": "Hi,William\n\nThanks very much for the new patchsets!\nI didn\u0027t know that the function ble_vnd_is_included defined in btm_ble_gap.cc could be used in bta_dm_act.cc directly.\n\nAnd as John suggested, I tested the CtsBluetoothTestCases module with this change, there are 24 failures:\n```\nSummary (Test executed with 1 devices.)\n-------\narm64-v8a CtsBluetoothTestCases: Passed: 411, Failed: 24, Ignored: 0, Assumption Failed: 74,    \n\n24 tests failed\n---------------\nandroid.bluetooth.cts.BluetoothConfigTest#testProfileEnabledValue\nandroid.bluetooth.cts.BluetoothConfigTest#testProfileEnabledValueInList\nandroid.bluetooth.cts.BluetoothCsipSetCoordinatorTest#testGetGroupUuidMapByDevice\nandroid.bluetooth.cts.BluetoothCsipSetCoordinatorTest#testGetConnectionState\nandroid.bluetooth.cts.BluetoothCsipSetCoordinatorTest#testCloseProfileProxy\nandroid.bluetooth.cts.BluetoothCsipSetCoordinatorTest#testGetAllGroupIds\nandroid.bluetooth.cts.BluetoothCsipSetCoordinatorTest#testGetDevicesMatchingConnectionStates\nandroid.bluetooth.cts.BluetoothCsipSetCoordinatorTest#testGetConnectedDevices\nandroid.bluetooth.cts.BluetoothCsipSetCoordinatorTest#testTestLockCallback\nandroid.bluetooth.cts.BluetoothCsipSetCoordinatorTest#testLockUnlockGroup\nandroid.bluetooth.cts.BluetoothLeScanTest#testScanFromSourceWithoutFilters\nandroid.bluetooth.cts.BluetoothLeScanTest#testBasicBleScan\nandroid.bluetooth.cts.BluetoothLeScanTest#testScanFromSourceWithFilters\nandroid.bluetooth.cts.BluetoothLeScanTest#testScanFilter\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testCloseProfileProxy\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testGetConnectedDevices\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testGetConnectionPolicy\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testGetConnectionState\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testGetDevicesMatchingConnectionStates\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testIsVolumeOffsetAvailable\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testRegisterUnregisterCallback\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testSetConnectionPolicy\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testSetVolumeOffset\nandroid.bluetooth.cts.BluetoothVolumeControlTest#testVolumeOffsetCallback\n\n```\nFor details please check the logs here: https://people.linaro.org/~yongqin.liu/logs/CtsBluetoothTestCases.zip\n\nI don\u0027t think they are related to this change, but please help check in case if there is any.",
       "revId": "fb145b12e79761a22bc7f42e47619654e975c9ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e2dbf66_99d3be84",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-10T17:40:54Z",
+      "side": 1,
+      "message": "Hi,\nThere are some known flakiness in the CtsBluetoothTestCases.\n\nI don\u0027t expect any change in this CL to impact the cts.\n\n**BUT**, in the log you linked in the comment, you are running the test as if `LE_AUDIO` and `LE_AUDIO_BROADCAST_ASSISTANT` were supported profiles while your config indicate otherwise:\n\n```\nBluetoothConfigTest (10088 2606)  E    Profile config does not match for profile: LE_AUDIO. Config currently return: true. Adapter support return: 11\nBluetoothConfigTest (10088 2606)  E    Profile config does not match for profile: LE_AUDIO_BROADCAST_ASSISTANT. Config currently return: true. Adapter support return: 11\n```\n\nFor the `BluetoothLeScanTest` it is expected because of this:\n```\nTo run the test, the device must be placed in an environment that has at least 3 beacons, all placed less than 5 meters away from the DUT.\n```\n\n\nfor `BluetoothCsipSetCoordinatorTest` and `BluetoothVolumeControlTest` I assume this should not be enable if the hardware does not support Le_audio",
+      "parentUuid": "b065b8fa_4254088b",
+      "revId": "fb145b12e79761a22bc7f42e47619654e975c9ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

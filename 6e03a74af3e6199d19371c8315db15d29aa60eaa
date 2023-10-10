@@ -105,6 +105,24 @@
       "parentUuid": "ec79284d_101593f4",
       "revId": "6e03a74af3e6199d19371c8315db15d29aa60eaa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91f7c5ed_8e76f27a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-10T17:40:54Z",
+      "side": 1,
+      "message": "There is no target in the CI to simulate a board that doesn\u0027t include the ble_vnd. None of the virtual device will really test this.\n\nSince the current pre-submit test are passing with this CL and it mostly a build change, I don\u0027t think we need to add more.\n\nResolving this comment and LGTM. Feel free to re-open if you disagree",
+      "parentUuid": "e985c3b4_12b70b99",
+      "revId": "6e03a74af3e6199d19371c8315db15d29aa60eaa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
