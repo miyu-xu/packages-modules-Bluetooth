@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fdf81414_d4391956",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7739,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-10T23:01:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "dd3aad2e_641b82bc",
+      "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "111e62eb_d0d894a6",
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "PhonePolicy should be the only place to control the connectionPolicy, and the function is used to return the information, \"if the device is in the allow list.\" I will change the function name to improve the readibility.",
       "parentUuid": "111e62eb_d0d894a6",
+      "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe9a9c1e_a9e9015a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 7745,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-10T23:01:24Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f1fce24a_654d123c",
       "revId": "04214237890ab5d9567be2f8e7a3043472ffb695",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
