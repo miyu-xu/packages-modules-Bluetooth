@@ -18,7 +18,6 @@
 package com.android.bluetooth.vc;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
-
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 
 import android.annotation.RequiresPermission;
@@ -637,6 +636,28 @@ public class VolumeControlService extends ProfileService {
     public int getGroupVolume(int groupId) {
         return mGroupVolumeCache.getOrDefault(groupId,
                         IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME);
+    }
+
+    /**
+     * {@hide}
+     *
+     * @param groupId
+     * @param active
+     */
+    public void setGroupActive(int groupId, boolean active) {
+        if (DBG) {
+            Log.d(TAG, "setGroupActive: " + groupId + ", active: " + active);
+        }
+        if (!active) {
+            return;
+        }
+
+        int groupVolume = getGroupVolume(groupId);
+        Boolean groupMute = getGroupMute(groupId);
+
+        if (groupVolume != IBluetoothVolumeControl.VOLUME_CONTROL_UNKNOWN_VOLUME) {
+            updateGroupCacheAndAudioSystem(groupId, groupVolume, groupMute);
+        }
     }
 
     /**
@@ -1384,6 +1405,25 @@ public class VolumeControlService extends ProfileService {
             }
         }
 
+        @Override
+        public void setGroupActive(
+                int groupId,
+                boolean active,
+                AttributionSource source,
+                SynchronousResultReceiver receiver) {
+            try {
+                Objects.requireNonNull(source, "source cannot be null");
+                Objects.requireNonNull(receiver, "receiver cannot be null");
+
+                VolumeControlService service = getService(source);
+                receiver.send(null);
+                if (service != null) {
+                    service.setGroupActive(groupId, active);
+                }
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
 
         @Override
         public void mute(BluetoothDevice device,  AttributionSource source,
