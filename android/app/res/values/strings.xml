@@ -253,6 +253,12 @@
     <string name="a2dp_sink_mbs_label">Bluetooth Audio</string>
     <string name="bluetooth_opp_file_limit_exceeded">Files bigger than 4GB cannot be transferred</string>
     <string name="bluetooth_connect_action">Connect to Bluetooth</string>
+
+     <!-- Do not translate. Link used in airplane mode notification. -->
+    <string name="apm_learn_more_link" translatable="false">
+            https://support.google.com/pixelphone/answer/12639358
+    </string>
+
     <string name="bluetooth_enabled_apm_title">Bluetooth on in airplane mode</string>
     <string name="bluetooth_enabled_apm_message">If you keep Bluetooth on, your device will remember to keep it on the next time you\'re in airplane mode</string>
     <string name="bluetooth_stays_on_title">Bluetooth stays on</string>
