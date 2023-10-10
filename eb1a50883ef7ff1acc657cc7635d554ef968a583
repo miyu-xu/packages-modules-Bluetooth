@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8e1a60a2_e61e5eac",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1320,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-10T07:26:09Z",
+      "side": 1,
+      "message": "You found one bud, either primary or secondary.\nAfter you bonded it, and connected CSIP profile you start scan.\n\nSo when you reach this code, you are for sure bonded to one bud, and the 2nd one is not bonded.\n\nso here, we check if the result matches (either by identity address or RPA) to already bonded bud, and if it\u0027s the case we want to skip it.\n\nif device is just cached, it won\u0027t have a link key known.",
+      "parentUuid": "6e2dc2ef_b45fe109",
+      "revId": "eb1a50883ef7ff1acc657cc7635d554ef968a583",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dcd5c15c_7c8e4564",
         "filename": "system/bta/csis/csis_client.cc",
         "patchSetId": 2
