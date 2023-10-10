@@ -35,7 +35,6 @@
 //       still applies, but crafting proper inclusion is out of scope
 //       for this effort.  This compilation unit may compile as-is, or
 //       may need attention to prune from (or add to ) the inclusion set.
-#include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <sys/types.h>
@@ -45,13 +44,6 @@
 
 #include "bt_target.h"
 #include "bta/include/bta_jv_api.h"
-#include "btif/include/btif_metrics_logging.h"
-#include "btif/include/btif_sock.h"
-#include "btif/include/btif_sock_l2cap.h"
-#include "btif/include/btif_sock_sdp.h"
-#include "btif/include/btif_sock_thread.h"
-#include "btif/include/btif_sock_util.h"
-#include "btif/include/btif_uid.h"
 #include "include/hardware/bt_sock.h"
 #include "osi/include/allocator.h"
 #include "osi/include/compat.h"
@@ -168,19 +160,6 @@ struct btsock_rfc_disconnect {
   bt_status_t operator()(const RawAddress* bd_addr) { return body(bd_addr); };
 };
 extern struct btsock_rfc_disconnect btsock_rfc_disconnect;
-
-// Name: btsock_rfc_init
-// Params: int poll_thread_handle, uid_set_t* set
-// Return: bt_status_t
-struct btsock_rfc_init {
-  static bt_status_t return_value;
-  std::function<bt_status_t(int poll_thread_handle, uid_set_t* set)> body{
-      [](int poll_thread_handle, uid_set_t* set) { return return_value; }};
-  bt_status_t operator()(int poll_thread_handle, uid_set_t* set) {
-    return body(poll_thread_handle, set);
-  };
-};
-extern struct btsock_rfc_init btsock_rfc_init;
 
 // Name: btsock_rfc_listen
 // Params: const char* service_name, const Uuid* service_uuid, int channel, int*

@@ -45,7 +45,6 @@ struct btsock_rfc_cleanup btsock_rfc_cleanup;
 struct btsock_rfc_connect btsock_rfc_connect;
 struct btsock_rfc_control_req btsock_rfc_control_req;
 struct btsock_rfc_disconnect btsock_rfc_disconnect;
-struct btsock_rfc_init btsock_rfc_init;
 struct btsock_rfc_listen btsock_rfc_listen;
 struct btsock_rfc_signaled btsock_rfc_signaled;
 
@@ -64,7 +63,6 @@ int bta_co_rfc_data_outgoing_size::return_value = 0;
 bt_status_t btsock_rfc_connect::return_value = BT_STATUS_SUCCESS;
 bt_status_t btsock_rfc_control_req::return_value = BT_STATUS_SUCCESS;
 bt_status_t btsock_rfc_disconnect::return_value = BT_STATUS_SUCCESS;
-bt_status_t btsock_rfc_init::return_value = BT_STATUS_SUCCESS;
 bt_status_t btsock_rfc_listen::return_value = BT_STATUS_SUCCESS;
 
 }  // namespace btif_sock_rfc
@@ -107,10 +105,6 @@ bt_status_t btsock_rfc_control_req(uint8_t dlci, const RawAddress& bd_addr,
 bt_status_t btsock_rfc_disconnect(const RawAddress* bd_addr) {
   inc_func_call_count(__func__);
   return test::mock::btif_sock_rfc::btsock_rfc_disconnect(bd_addr);
-}
-bt_status_t btsock_rfc_init(int poll_thread_handle, uid_set_t* set) {
-  inc_func_call_count(__func__);
-  return test::mock::btif_sock_rfc::btsock_rfc_init(poll_thread_handle, set);
 }
 bt_status_t btsock_rfc_listen(const char* service_name,
                               const Uuid* service_uuid, int channel,
