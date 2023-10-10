@@ -20,6 +20,9 @@
 
 #include <android/binder_manager.h>
 
+#include "gd/common/init_flags.h"
+#include "hal_version_manager.h"
+
 namespace bluetooth {
 namespace audio {
 namespace aidl {
@@ -89,6 +92,35 @@ BluetoothAudioClientInterface::GetAudioCapabilities(SessionType session_type) {
   return capabilities;
 }
 
+std::optional<IBluetoothAudioProviderFactory::ProviderInfo>
+BluetoothAudioClientInterface::GetProviderInfo() const {
+  return provider_info_;
+}
+
+std::optional<IBluetoothAudioProviderFactory::ProviderInfo>
+BluetoothAudioClientInterface::GetProviderInfo(SessionType session_type) {
+  std::optional<IBluetoothAudioProviderFactory::ProviderInfo> providerInfo;
+  if (!is_aidl_available()) {
+    return providerInfo;
+  }
+  auto provider_factory = IBluetoothAudioProviderFactory::fromBinder(
+      ::ndk::SpAIBinder(AServiceManager_waitForService(
+          kDefaultAudioProviderFactoryInterface.c_str())));
+
+  if (provider_factory == nullptr) {
+    LOG(ERROR) << __func__ << ", can't get provider info from unknown factory";
+    return providerInfo;
+  }
+
+  auto aidl_retval =
+      provider_factory->getProviderInfo(session_type, &providerInfo);
+  if (!aidl_retval.isOk()) {
+    LOG(FATAL) << __func__ << ": BluetoothAudioHal::getProviderInfo failure: "
+               << aidl_retval.getDescription();
+  }
+  return providerInfo;
+}
+
 void BluetoothAudioClientInterface::FetchAudioProvider() {
   if (!is_aidl_available()) {
     LOG(ERROR) << __func__ << ": aidl is not supported on this platform.";
@@ -106,26 +138,42 @@ void BluetoothAudioClientInterface::FetchAudioProvider() {
     return;
   }
 
-  capabilities_.clear();
-  auto aidl_retval = provider_factory->getProviderCapabilities(
-      transport_->GetSessionType(), &capabilities_);
-  if (!aidl_retval.isOk()) {
-    LOG(FATAL) << __func__
-               << ": BluetoothAudioHal::getProviderCapabilities failure: "
-               << aidl_retval.getDescription();
-    return;
+  if (HalVersionManager::GetHalVersion() >=
+      BluetoothAudioHalVersion::VERSION_AIDL_V4) {
+    provider_info_ = GetProviderInfo(transport_->GetSessionType());
+    if (!provider_info_.has_value()) {
+      LOG(WARNING) << __func__
+                   << ": SessionType=" << toString(transport_->GetSessionType())
+                   << " GetProviderInfo not supported by BluetoothAudioHal";
+    } else {
+      LOG(INFO) << __func__ << ": BluetoothAudioHal SessionType="
+                << toString(transport_->GetSessionType())
+                << " Provider name: " << provider_info_.value().name;
+    }
   }
-  if (capabilities_.empty()) {
-    LOG(WARNING) << __func__
-                 << ": SessionType=" << toString(transport_->GetSessionType())
-                 << " Not supported by BluetoothAudioHal";
-    return;
-  }
-  LOG(INFO) << __func__ << ": BluetoothAudioHal SessionType="
-            << toString(transport_->GetSessionType()) << " has "
-            << capabilities_.size() << " AudioCapabilities";
 
-  aidl_retval =
+  if (!provider_info_.has_value()) {
+    capabilities_.clear();
+    auto aidl_retval = provider_factory->getProviderCapabilities(
+        transport_->GetSessionType(), &capabilities_);
+    if (!aidl_retval.isOk()) {
+      LOG(FATAL) << __func__
+                 << ": BluetoothAudioHal::getProviderCapabilities failure: "
+                 << aidl_retval.getDescription();
+      return;
+    }
+    if (capabilities_.empty()) {
+      LOG(WARNING) << __func__
+                   << ": SessionType=" << toString(transport_->GetSessionType())
+                   << " Not supported by BluetoothAudioHal";
+      return;
+    }
+    LOG(INFO) << __func__ << ": BluetoothAudioHal SessionType="
+              << toString(transport_->GetSessionType()) << " has "
+              << capabilities_.size() << " AudioCapabilities";
+  }
+
+  auto aidl_retval =
       provider_factory->openProvider(transport_->GetSessionType(), &provider_);
   if (!aidl_retval.isOk()) {
     LOG(FATAL) << __func__ << ": BluetoothAudioHal::openProvider failure: "
@@ -213,7 +261,8 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
        audio_config_tag == AudioConfiguration::pcmConfig);
   bool is_a2dp_offload_audio_config =
       (is_a2dp_offload_session &&
-       audio_config_tag == AudioConfiguration::a2dpConfig);
+       (audio_config_tag == AudioConfiguration::a2dpConfig ||
+        audio_config_tag == AudioConfiguration::a2dp));
   bool is_leaudio_unicast_offload_audio_config =
       (is_leaudio_unicast_offload_session &&
        audio_config_tag == AudioConfiguration::leAudioConfig);
