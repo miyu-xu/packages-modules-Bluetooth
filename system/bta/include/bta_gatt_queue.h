@@ -49,11 +49,15 @@ class BtaGattQueue {
                               tGATT_WRITE_TYPE write_type, GATT_WRITE_OP_CB cb,
                               void* cb_data);
   static void ConfigureMtu(uint16_t conn_id, uint16_t mtu);
+  static void ReadMultiCharacteristic(uint16_t conn_id,
+                                      tBTA_GATTC_MULTI& p_read_multi,
+                                      GATT_READ_OP_CB cb, void* cb_data);
 
   /* Holds pending GATT operations */
   struct gatt_operation {
     uint8_t type;
     uint16_t handle;
+    tBTA_GATTC_MULTI handles;
     GATT_READ_OP_CB read_cb;
     void* read_cb_data;
     GATT_WRITE_OP_CB write_cb;
@@ -77,7 +81,9 @@ class BtaGattQueue {
                                      const uint8_t* value, void* data);
   static void gatt_configure_mtu_op_finished(uint16_t conn_id,
                                              tGATT_STATUS status, void* data);
-
+  static void gatt_read_multi_op_finished(uint16_t conn_id, tGATT_STATUS status,
+                                          uint16_t handle, uint16_t len,
+                                          uint8_t* value, void* data);
   // maps connection id to operations waiting for execution
   static std::unordered_map<uint16_t, std::list<gatt_operation>> gatt_op_queue;
   // contain connection ids that currently execute operations

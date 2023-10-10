@@ -31,6 +31,7 @@ constexpr uint8_t GATT_READ_DESC = 2;
 constexpr uint8_t GATT_WRITE_CHAR = 3;
 constexpr uint8_t GATT_WRITE_DESC = 4;
 constexpr uint8_t GATT_CONFIG_MTU = 5;
+constexpr uint8_t GATT_READ_MULTI = 6;
 
 struct gatt_read_op_data {
   GATT_READ_OP_CB cb;
@@ -109,6 +110,25 @@ void BtaGattQueue::gatt_configure_mtu_op_finished(uint16_t conn_id,
   }
 }
 
+void BtaGattQueue::gatt_read_multi_op_finished(uint16_t conn_id,
+                                               tGATT_STATUS status,
+                                               uint16_t handle, uint16_t len,
+                                               uint8_t* value, void* data) {
+  gatt_read_op_data* tmp = (gatt_read_op_data*)data;
+  GATT_READ_OP_CB tmp_cb = tmp->cb;
+  void* tmp_cb_data = tmp->cb_data;
+
+  osi_free(data);
+
+  mark_as_not_executing(conn_id);
+  gatt_execute_next_op(conn_id);
+
+  if (tmp_cb) {
+    tmp_cb(conn_id, status, 0 /* handle */, len, value, tmp_cb_data);
+    return;
+  }
+}
+
 void BtaGattQueue::gatt_execute_next_op(uint16_t conn_id) {
   APPL_TRACE_DEBUG("%s: conn_id=0x%x", __func__, conn_id);
   if (gatt_op_queue.empty()) {
@@ -174,6 +194,13 @@ void BtaGattQueue::gatt_execute_next_op(uint16_t conn_id) {
     BTA_GATTC_ConfigureMTU(conn_id, static_cast<uint16_t>(op.value[0] |
                                                           (op.value[1] << 8)),
                            gatt_configure_mtu_op_finished, data);
+  } else if (op.type == GATT_READ_MULTI) {
+    gatt_read_op_data* data =
+        (gatt_read_op_data*)osi_malloc(sizeof(gatt_read_op_data));
+    data->cb = op.read_cb;
+    data->cb_data = op.read_cb_data;
+    BTA_GATTC_ReadMultiple(conn_id, &op.handles, GATT_AUTH_REQ_NONE,
+                           gatt_read_multi_op_finished, data);
   }
 
   gatt_ops.pop_front();
@@ -234,5 +261,15 @@ void BtaGattQueue::ConfigureMtu(uint16_t conn_id, uint16_t mtu) {
                                 static_cast<uint8_t>(mtu >> 8)};
   gatt_op_queue[conn_id].push_back({.type = GATT_CONFIG_MTU,
                                     .value = std::move(value)});
+  gatt_execute_next_op(conn_id);
+}
+
+void BtaGattQueue::ReadMultiCharacteristic(uint16_t conn_id,
+                                           tBTA_GATTC_MULTI& handles,
+                                           GATT_READ_OP_CB cb, void* cb_data) {
+  gatt_op_queue[conn_id].push_back({.type = GATT_READ_MULTI,
+                                    .handles = handles,
+                                    .read_cb = cb,
+                                    .read_cb_data = cb_data});
   gatt_execute_next_op(conn_id);
 }

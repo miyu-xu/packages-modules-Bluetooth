@@ -26,6 +26,7 @@
 #include "advertise_data_parser.h"
 #include "audio_hal_client/audio_hal_client.h"
 #include "audio_hal_interface/le_audio_software.h"
+#include "bt_types.h"
 #include "bta/csis/csis_types.h"
 #include "bta_api.h"
 #include "bta_gatt_api.h"
@@ -348,6 +349,9 @@ class LeAudioClientImpl : public LeAudioClient {
     int ases_num = leAudioDevice->ases_.size();
     void* notify_flag_ptr = NULL;
 
+    tBTA_GATTC_MULTI multi_read;
+    multi_read.num_attr = ases_num;
+
     for (int i = 0; i < ases_num; i++) {
       /* Last read ase characteristic should issue connected state callback
        * to upper layer
@@ -359,9 +363,28 @@ class LeAudioClientImpl : public LeAudioClient {
             INT_TO_PTR(leAudioDevice->notify_connected_after_read_);
       }
 
-      BtaGattQueue::ReadCharacteristic(leAudioDevice->conn_id_,
-                                       leAudioDevice->ases_[i].hdls.val_hdl,
-                                       OnGattReadRspStatic, notify_flag_ptr);
+      if (i != 0 && (i % GATT_MAX_READ_MULTI_HANDLES == 0)) {
+        multi_read.num_attr = GATT_MAX_READ_MULTI_HANDLES;
+        BtaGattQueue::ReadMultiCharacteristic(
+            leAudioDevice->conn_id_, multi_read, nullptr, notify_flag_ptr);
+        memset(multi_read.handles, GATT_MAX_READ_MULTI_HANDLES,
+               sizeof(uint16_t));
+      }
+      multi_read.handles[i % GATT_MAX_READ_MULTI_HANDLES] =
+          leAudioDevice->ases_[i].hdls.val_hdl;
+
+      // BtaGattQueue::ReadCharacteristic(leAudioDevice->conn_id_,
+      //                                  leAudioDevice->ases_[i].hdls.val_hdl,
+      //                                  OnGattReadRspStatic, notify_flag_ptr);
+    }
+
+    if (ases_num % GATT_MAX_READ_MULTI_HANDLES != 0) {
+      // TODO: actually parse the received results properly for multiple results
+      // ?
+      //  pass the handles to the callbacks ?
+      multi_read.num_attr = ases_num % GATT_MAX_READ_MULTI_HANDLES;
+      BtaGattQueue::ReadMultiCharacteristic(leAudioDevice->conn_id_, multi_read,
+                                            nullptr, notify_flag_ptr);
     }
   }
 

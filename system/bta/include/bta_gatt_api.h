@@ -798,7 +798,8 @@ void BTA_GATTC_ExecuteWrite(uint16_t conn_id, bool is_execute);
  *
  ******************************************************************************/
 void BTA_GATTC_ReadMultiple(uint16_t conn_id, tBTA_GATTC_MULTI* p_read_multi,
-                            tGATT_AUTH_REQ auth_req);
+                            tGATT_AUTH_REQ auth_req, GATT_READ_OP_CB callback,
+                            void* cb_data);
 
 /*******************************************************************************
  *

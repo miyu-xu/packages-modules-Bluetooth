@@ -1103,14 +1103,24 @@ void bta_gattc_confirm(tBTA_GATTC_CLCB* p_clcb, const tBTA_GATTC_DATA* p_data) {
 /** read complete */
 static void bta_gattc_read_cmpl(tBTA_GATTC_CLCB* p_clcb,
                                 const tBTA_GATTC_OP_CMPL* p_data) {
-  GATT_READ_OP_CB cb = p_clcb->p_q_cmd->api_read.read_cb;
-  void* my_cb_data = p_clcb->p_q_cmd->api_read.read_cb_data;
+  GATT_READ_OP_CB cb;
+  void* my_cb_data;
+  uint16_t handle = 0;
 
-  /* if it was read by handle, return the handle requested, if read by UUID, use
-   * handle returned from remote
-   */
-  uint16_t handle = p_clcb->p_q_cmd->api_read.handle;
-  if (handle == 0) handle = p_data->p_cmpl->att_value.handle;
+  if (!p_clcb->p_q_cmd->api_read.is_multi_read) {
+    cb = p_clcb->p_q_cmd->api_read.read_cb;
+    my_cb_data = p_clcb->p_q_cmd->api_read.read_cb_data;
+
+    /* if it was read by handle, return the handle requested, if read by UUID,
+     * use handle returned from remote
+     */
+    uint16_t handle = p_clcb->p_q_cmd->api_read.handle;
+    if (handle == 0) handle = p_data->p_cmpl->att_value.handle;
+
+  } else {
+    cb = p_clcb->p_q_cmd->api_read_multi.read_cb;
+    my_cb_data = p_clcb->p_q_cmd->api_read_multi.read_cb_data;
+  }
 
   osi_free_and_reset((void**)&p_clcb->p_q_cmd);
 
