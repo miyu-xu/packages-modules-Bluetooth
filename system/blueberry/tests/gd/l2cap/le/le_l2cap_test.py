@@ -169,6 +169,7 @@ class LeL2capTest(gd_base_test.GdBaseTestClass):
         NOTE: Currently we need to establish at least one dynamic channel to allow update.
         """
         self._set_link_from_dut_and_open_channel()
+        time.sleep(5)
         self.cert_l2cap.get_control_channel().send(
             l2cap_packets.ConnectionParameterUpdateRequestBuilder(2, 0x10, 0x10, 0x0a, 0x64))
         assertThat(self.cert_l2cap.get_control_channel()).emits(
