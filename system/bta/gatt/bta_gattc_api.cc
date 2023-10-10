@@ -398,6 +398,7 @@ void BTA_GATTC_ReadCharacteristic(uint16_t conn_id, uint16_t handle,
 
   p_buf->hdr.event = BTA_GATTC_API_READ_EVT;
   p_buf->hdr.layer_specific = conn_id;
+  p_buf->is_multi_read = false;
   p_buf->auth_req = auth_req;
   p_buf->handle = handle;
   p_buf->read_cb = callback;
@@ -419,6 +420,7 @@ void BTA_GATTC_ReadUsingCharUuid(uint16_t conn_id, const Uuid& uuid,
 
   p_buf->hdr.event = BTA_GATTC_API_READ_EVT;
   p_buf->hdr.layer_specific = conn_id;
+  p_buf->is_multi_read = false;
   p_buf->auth_req = auth_req;
   p_buf->handle = 0;
   p_buf->uuid = uuid;
@@ -450,6 +452,7 @@ void BTA_GATTC_ReadCharDescr(uint16_t conn_id, uint16_t handle,
 
   p_buf->hdr.event = BTA_GATTC_API_READ_EVT;
   p_buf->hdr.layer_specific = conn_id;
+  p_buf->is_multi_read = false;
   p_buf->auth_req = auth_req;
   p_buf->handle = handle;
   p_buf->read_cb = callback;
@@ -471,20 +474,19 @@ void BTA_GATTC_ReadCharDescr(uint16_t conn_id, uint16_t handle,
  * Returns          None
  *
  ******************************************************************************/
-void BTA_GATTC_ReadMultiple(uint16_t conn_id, tBTA_GATTC_MULTI* p_read_multi,
-                            tGATT_AUTH_REQ auth_req) {
+void BTA_GATTC_ReadMultiple(uint16_t conn_id, tBTA_GATTC_MULTI& handles,
+                            tGATT_AUTH_REQ auth_req,
+                            GATT_READ_MULTI_OP_CB callback, void* cb_data) {
   tBTA_GATTC_API_READ_MULTI* p_buf =
       (tBTA_GATTC_API_READ_MULTI*)osi_calloc(sizeof(tBTA_GATTC_API_READ_MULTI));
 
   p_buf->hdr.event = BTA_GATTC_API_READ_MULTI_EVT;
   p_buf->hdr.layer_specific = conn_id;
+  p_buf->is_multi_read = true;
   p_buf->auth_req = auth_req;
-  p_buf->num_attr = p_read_multi->num_attr;
-
-  if (p_buf->num_attr > 0)
-    memcpy(p_buf->handles, p_read_multi->handles,
-           sizeof(uint16_t) * p_read_multi->num_attr);
-
+  p_buf->handles = handles;
+  p_buf->read_cb = callback;
+  p_buf->read_cb_data = cb_data;
   bta_sys_sendmsg(p_buf);
 }
 

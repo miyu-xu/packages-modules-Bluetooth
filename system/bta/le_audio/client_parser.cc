@@ -138,7 +138,7 @@ bool ParseAseStatusHeader(ase_rsp_hdr& arh, uint16_t len,
   STREAM_TO_UINT8(arh.id, value);
   STREAM_TO_UINT8(arh.state, value);
 
-  LOG(INFO) << "ASE status: "
+  LOG(INFO) << "🛑🛑🛑🛑 ASE status: "
             << "\tASE id: " << loghex(arh.id)
             << "\tASE state: " << ase_state_map_string[arh.state] << " ("
             << loghex(arh.state) << ")";
