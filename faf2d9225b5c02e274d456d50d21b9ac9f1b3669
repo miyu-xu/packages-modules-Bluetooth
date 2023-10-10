@@ -177,6 +177,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fcbcca06_a07e4098",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2948,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-10T21:54:31Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "822d36c5_7d6eb84a",
+      "range": {
+        "startLine": 2948,
+        "startChar": 6,
+        "endLine": 2948,
+        "endChar": 43
+      },
+      "revId": "faf2d9225b5c02e274d456d50d21b9ac9f1b3669",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36fd244a_c4e63ba9",
