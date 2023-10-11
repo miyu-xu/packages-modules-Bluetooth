@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "777fd10f_5611bec3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-11T10:56:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6996f5ae_8567e356",
+      "revId": "cd451d6acf0e6c9e59554f556faefbb874bd9154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "016ada9d_5f3ed897",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-11T03:27:14Z",
       "side": 1,
       "message": "print_info here would be useful to debug",
+      "revId": "cd451d6acf0e6c9e59554f556faefbb874bd9154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3acf4d68_f02f7f3c",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 1451,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-10-11T10:56:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "016ada9d_5f3ed897",
       "revId": "cd451d6acf0e6c9e59554f556faefbb874bd9154",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
