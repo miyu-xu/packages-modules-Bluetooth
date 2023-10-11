@@ -21,6 +21,7 @@
 #include <cstddef>
 
 #include "osi/include/osi.h"  // UNUSED_ATTR
+#include "stack/include/bt_uuid16.h"
 #include "stack/include/sdp_api.h"
 #include "stack/sdp/internal/sdp_api.h"
 #include "stack/sdp/sdpint.h"
