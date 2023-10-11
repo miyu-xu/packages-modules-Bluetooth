@@ -20,12 +20,12 @@
 
 #define LOG_TAG "a2dp_codec"
 
-#include "a2dp_codec_api.h"
-
 #include <base/logging.h>
 #include <inttypes.h>
 
 #include "a2dp_aac.h"
+#include "a2dp_codec_api.h"
+#include "a2dp_ext.h"
 #include "a2dp_sbc.h"
 #include "a2dp_vendor.h"
 
@@ -114,6 +114,13 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     btav_a2dp_codec_index_t codec_index,
     btav_a2dp_codec_priority_t codec_priority) {
   LOG_INFO("%s", A2DP_CodecIndexStr(codec_index));
+
+  // Hardware offload codec extensibility:
+  // management of the codec is moved under the ProviderInfo
+  // class of the aidl audio HAL client.
+  if (::bluetooth::audio::a2dp::supports_codec(codec_index)) {
+    return new A2dpCodecConfigExt(codec_index, true);
+  }
 
   A2dpCodecConfig* codec_config = nullptr;
   switch (codec_index) {
@@ -953,10 +960,19 @@ bool A2dpCodecs::setPeerSinkCodecCapabilities(
     const uint8_t* p_peer_codec_capabilities) {
   std::lock_guard<std::recursive_mutex> lock(codec_mutex_);
 
-  if (!A2DP_IsPeerSinkCodecValid(p_peer_codec_capabilities)) return false;
   A2dpCodecConfig* a2dp_codec_config =
       findSourceCodecConfig(p_peer_codec_capabilities);
   if (a2dp_codec_config == nullptr) return false;
+
+  // Bypass the validation for codecs that are offloaded:
+  // the stack does not need to know about the peer capabilities,
+  // since the validation and selection will be performed by the
+  // bluetooth audio HAL for offloaded codecs.
+  if (!::bluetooth::audio::a2dp::supports_codec(
+          a2dp_codec_config->codecIndex()) &&
+      !A2DP_IsPeerSinkCodecValid(p_peer_codec_capabilities))
+    return false;
+
   return a2dp_codec_config->setPeerCodecCapabilities(p_peer_codec_capabilities);
 }
 
@@ -1452,6 +1468,12 @@ btav_a2dp_codec_index_t A2DP_SourceCodecIndex(const uint8_t* p_codec_info) {
 
   LOG_VERBOSE("%s: codec_type = 0x%x", __func__, codec_type);
 
+  auto ext_codec_index =
+      bluetooth::audio::a2dp::source_codec_index(p_codec_info);
+  if (ext_codec_index.has_value()) {
+    return ext_codec_index.value();
+  }
+
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_SourceCodecIndexSbc(p_codec_info);
@@ -1474,6 +1496,11 @@ btav_a2dp_codec_index_t A2DP_SinkCodecIndex(const uint8_t* p_codec_info) {
 
   LOG_VERBOSE("%s: codec_type = 0x%x", __func__, codec_type);
 
+  auto ext_codec_index = bluetooth::audio::a2dp::sink_codec_index(p_codec_info);
+  if (ext_codec_index.has_value()) {
+    return ext_codec_index.value();
+  }
+
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_SinkCodecIndexSbc(p_codec_info);
@@ -1492,6 +1519,16 @@ btav_a2dp_codec_index_t A2DP_SinkCodecIndex(const uint8_t* p_codec_info) {
 }
 
 const char* A2DP_CodecIndexStr(btav_a2dp_codec_index_t codec_index) {
+  if ((codec_index >= BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MIN &&
+       codec_index < BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX) ||
+      (codec_index >= BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN &&
+       codec_index < BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX)) {
+    auto codec_index_str = bluetooth::audio::a2dp::codec_index_str(codec_index);
+    if (codec_index_str.has_value()) {
+      return codec_index_str.value();
+    }
+  }
+
   switch (codec_index) {
     case BTAV_A2DP_CODEC_INDEX_SOURCE_SBC:
       return A2DP_CodecIndexStrSbc();
@@ -1522,6 +1559,10 @@ bool A2DP_InitCodecConfig(btav_a2dp_codec_index_t codec_index,
   /* Default: no content protection info */
   p_cfg->num_protect = 0;
   p_cfg->protect_info[0] = 0;
+
+  if (::bluetooth::audio::a2dp::supports_codec(codec_index)) {
+    return ::bluetooth::audio::a2dp::codec_info(codec_index, p_cfg->codec_info);
+  }
 
   switch (codec_index) {
     case BTAV_A2DP_CODEC_INDEX_SOURCE_SBC:
