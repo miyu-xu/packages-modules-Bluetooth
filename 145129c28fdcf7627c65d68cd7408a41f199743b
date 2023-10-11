@@ -70,6 +70,30 @@
       },
       "revId": "145129c28fdcf7627c65d68cd7408a41f199743b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "706e32f0_0dd62d65",
+        "filename": "system/bta/jv/bta_jv_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-11T22:30:33Z",
+      "side": 1,
+      "message": "I agree that\u0027s better.  It\u0027s a good thing to think about for a follow-on CL.",
+      "parentUuid": "4fc56416_f92a0083",
+      "range": {
+        "startLine": 126,
+        "startChar": 2,
+        "endLine": 126,
+        "endChar": 9
+      },
+      "revId": "145129c28fdcf7627c65d68cd7408a41f199743b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
