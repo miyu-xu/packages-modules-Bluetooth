@@ -21,7 +21,6 @@
 #include <cstddef>
 
 #include "osi/include/allocator.h"
-#include "stack/include/sdp_api.h"
 #include "stack/sdp/internal/sdp_api.h"
 #include "stack/sdp/sdpint.h"
 #include "test/mock/mock_osi_allocator.h"
