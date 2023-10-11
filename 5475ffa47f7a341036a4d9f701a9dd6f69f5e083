@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7f50eab_4f2cdcac",
+        "filename": "system/bta/jv/bta_jv_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-11T22:10:38Z",
+      "side": 1,
+      "message": "None from me.",
+      "parentUuid": "cf25e38c_2394f6e2",
+      "range": {
+        "startLine": 125,
+        "startChar": 11,
+        "endLine": 125,
+        "endChar": 18
+      },
+      "revId": "5475ffa47f7a341036a4d9f701a9dd6f69f5e083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1e04b2d1_b9d2b809",
         "filename": "system/bta/test/bta_rfcomm_scn_test.cc",
         "patchSetId": 2

@@ -22,6 +22,30 @@
       },
       "revId": "145129c28fdcf7627c65d68cd7408a41f199743b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e074d89_10729117",
+        "filename": "system/bta/jv/bta_jv_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-11T22:10:38Z",
+      "side": 1,
+      "message": "I think this is out of scope for this change, since Pomai is just moving code around.  A uint32_t with a bit for each scn would also work...",
+      "parentUuid": "e37957f2_29c3cb68",
+      "range": {
+        "startLine": 126,
+        "startChar": 2,
+        "endLine": 126,
+        "endChar": 9
+      },
+      "revId": "145129c28fdcf7627c65d68cd7408a41f199743b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
