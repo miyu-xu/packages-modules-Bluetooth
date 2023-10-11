@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4a7ff00_b7c7b089",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-11T18:39:41Z",
+      "side": 1,
+      "message": "Thank you Alice, lgtm. would prefer to give some time to other reviewers to take a look as well.",
+      "revId": "6b117da0108459a6a00bedff26f9649db017a636",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
