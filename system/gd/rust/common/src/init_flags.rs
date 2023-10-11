@@ -386,6 +386,7 @@ init_flags!(
         rust_event_loop = true,
         sco_codec_select_lc3 = true,
         sco_codec_timeout_clear,
+        sco_managed_by_audio = false,
         sdp_serialization = true,
         sdp_skip_rnr_if_known = true,
         bluetooth_quality_report_callback = true,

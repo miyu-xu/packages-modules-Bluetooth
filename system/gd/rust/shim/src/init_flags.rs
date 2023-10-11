@@ -42,6 +42,7 @@ mod ffi {
         fn rust_event_loop_is_enabled() -> bool;
         fn sco_codec_select_lc3_is_enabled() -> bool;
         fn sco_codec_timeout_clear_is_enabled() -> bool;
+        fn sco_managed_by_audio_is_enabled() -> bool;
         fn sdp_serialization_is_enabled() -> bool;
         fn sdp_skip_rnr_if_known_is_enabled() -> bool;
         fn bluetooth_quality_report_callback_is_enabled() -> bool;
