@@ -21,6 +21,7 @@
 #include "audio_aidl_interfaces.h"
 #include "btif/include/btif_common.h"
 #include "codec_status_aidl.h"
+#include "provider_info.h"
 #include "transport_instance.h"
 
 namespace bluetooth {
@@ -210,6 +211,11 @@ BluetoothAudioSinkClientInterface* software_hal_interface = nullptr;
 BluetoothAudioSinkClientInterface* offloading_hal_interface = nullptr;
 BluetoothAudioSinkClientInterface* active_hal_interface = nullptr;
 
+// ProviderInfo for A2DP hardware offload encoding and decoding data paths,
+// if supported by the HAL and enabled. nullptr if not supported
+// or disabled.
+::bluetooth::audio::aidl::a2dp::ProviderInfo* provider_info;
+
 // Save the value if the remote reports its delay before this interface is
 // initialized
 uint16_t remote_delay = 0;
@@ -341,6 +347,9 @@ bool is_hal_force_disabled() {
 
 bool update_codec_offloading_capabilities(
     const std::vector<btav_a2dp_codec_config_t>& framework_preference) {
+  /* Load the provider information if supported by the HAL. */
+  provider_info =
+      ::bluetooth::audio::aidl::a2dp::ProviderInfo::GetProviderInfo();
   return ::bluetooth::audio::aidl::codec::UpdateOffloadingCapabilities(
       framework_preference);
 }
@@ -576,6 +585,47 @@ void set_low_latency_mode_allowed(bool allowed) {
     return;
   }
   active_hal_interface->SetLowLatencyModeAllowed(allowed);
+}
+
+/***
+ * Lookup the codec info in the list of supported offloaded sink codecs.
+ ***/
+std::optional<btav_a2dp_codec_index_t> sink_codec_index(
+    const uint8_t* p_codec_info) {
+  return provider_info ? provider_info->SinkCodecIndex(p_codec_info)
+                       : std::nullopt;
+}
+
+/***
+ * Lookup the codec info in the list of supported offloaded source codecs.
+ ***/
+std::optional<btav_a2dp_codec_index_t> source_codec_index(
+    const uint8_t* p_codec_info) {
+  return provider_info ? provider_info->SourceCodecIndex(p_codec_info)
+                       : std::nullopt;
+}
+
+/***
+ * Return the name of the codec which is assigned to the input index.
+ * The codec index must be in the ranges
+ * BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX or
+ * BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX.
+ * Returns nullopt if the codec_index is not assigned or codec extensibility
+ * is not supported or enabled.
+ ***/
+std::optional<const char*> codec_index_str(
+    btav_a2dp_codec_index_t codec_index) {
+  return provider_info ? provider_info->CodecIndexStr(codec_index)
+                       : std::nullopt;
+}
+
+/***
+ * Return true if the codec is supported for the session type
+ * A2DP_HARDWARE_ENCODING_DATAPATH or A2DP_HARDWARE_DECODING_DATAPATH.
+ ***/
+bool supports_codec(btav_a2dp_codec_index_t codec_index) {
+  return provider_info ? provider_info->SupportsCodec(codec_index)
+                       : false;
 }
 
 }  // namespace a2dp

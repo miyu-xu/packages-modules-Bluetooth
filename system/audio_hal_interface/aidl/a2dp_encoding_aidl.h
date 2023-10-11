@@ -85,6 +85,38 @@ void set_remote_delay(uint16_t delay_report);
  * Set low latency buffer mode allowed or disallowed
  ***/
 void set_low_latency_mode_allowed(bool allowed);
+
+/***
+ * Lookup the codec info in the list of supported offloaded sink codecs.
+ * Should not be called before update_codec_offloading_capabilities.
+ ***/
+std::optional<btav_a2dp_codec_index_t> sink_codec_index(
+    const uint8_t* p_codec_info);
+
+/***
+ * Lookup the codec info in the list of supported offloaded source codecs.
+ * Should not be called before update_codec_offloading_capabilities.
+ ***/
+std::optional<btav_a2dp_codec_index_t> source_codec_index(
+    const uint8_t* p_codec_info);
+
+/***
+ * Return the name of the codec which is assigned to the input index.
+ * The codec index must be in the ranges
+ * BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX or
+ * BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX.
+ * Returns nullopt if the codec_index is not assigned or codec extensibility
+ * is not supported or enabled.
+ * Should not be called before update_codec_offloading_capabilities.
+ ***/
+std::optional<const char*> codec_index_str(btav_a2dp_codec_index_t codec_index);
+
+/***
+ * Return true if the codec is supported for the session type
+ * A2DP_HARDWARE_ENCODING_DATAPATH or A2DP_HARDWARE_DECODING_DATAPATH.
+ ***/
+bool supports_codec(btav_a2dp_codec_index_t codec_index);
+
 }  // namespace a2dp
 }  // namespace aidl
 }  // namespace audio
