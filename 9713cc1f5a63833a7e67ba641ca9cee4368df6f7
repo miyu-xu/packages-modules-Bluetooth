@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "30e68c45_be478de2",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 18
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-11T22:13:37Z",
+      "side": 1,
+      "message": "I would prefer to avoid it as well until we really need it, do we have the usecase for multiple configs ?",
+      "parentUuid": "b12b8515_3700e603",
+      "range": {
+        "startLine": 24,
+        "startChar": 173,
+        "endLine": 24,
+        "endChar": 193
+      },
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c5d8f8d8_d8263eea",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
         "patchSetId": 18
