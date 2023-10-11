@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8279132a_f8f6e31e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-11T14:24:16Z",
+      "side": 1,
+      "message": "The setup phase needs to be performed only once for each connection. If the device keep connected, we don\u0027t need to erase the tracker.",
+      "parentUuid": "60492086_18e8f9a3",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 69
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7125c4ae_1b57637a",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-10-10T16:16:29Z",
       "side": 1,
       "message": "If it\u0027s set up, should we send some commands to disable it?",
+      "range": {
+        "startLine": 144,
+        "startChar": 10,
+        "endLine": 144,
+        "endChar": 22
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca8ea1ec_f692db8b",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-11T14:24:16Z",
+      "side": 1,
+      "message": "It was setup but not enable yet, I will implement enable/disable in following patch.",
+      "parentUuid": "7125c4ae_1b57637a",
       "range": {
         "startLine": 144,
         "startChar": 10,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6764c367_5d9392f8",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-11T14:24:16Z",
+      "side": 1,
+      "message": "After Initiator send LE_CS_Read_Remote_Supported_Capabilities, both Initiator and Reflector will receive LeCsReadRemoteSupportedCapabilitiesComplete. In this case the Reflector should sent LE_CS_Set_Default_Setting as well. You can find the sequence diagram on the HCI spec p92",
+      "parentUuid": "1c83242c_6a03dfbf",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 265,
+        "endChar": 5
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1cd46d7_836f6325",
@@ -110,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94857bac_43e8800f",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-11T14:24:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1cd46d7_836f6325",
+      "range": {
+        "startLine": 283,
+        "startChar": 0,
+        "endLine": 287,
+        "endChar": 5
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65688ca3_8fdca20d",
@@ -123,6 +219,30 @@
       "writtenOn": "2023-10-10T16:16:29Z",
       "side": 1,
       "message": "We just set it up.  Should we tear it down?",
+      "range": {
+        "startLine": 299,
+        "startChar": 7,
+        "endLine": 299,
+        "endChar": 13
+      },
+      "revId": "a687adb780771681ef183afa63908aea4e05810f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "425b13ba_e9bbaf53",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-11T14:24:16Z",
+      "side": 1,
+      "message": "The LE_CS_Security_Enable command is used by a Host to start or restart the Channel Sounding Security Start procedure in the local Controller. There is no disable command for it.",
+      "parentUuid": "65688ca3_8fdca20d",
       "range": {
         "startLine": 299,
         "startChar": 7,
