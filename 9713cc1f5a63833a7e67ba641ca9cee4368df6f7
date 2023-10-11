@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "202e895d_9a3572a2",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 18
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-11T22:18:14Z",
+      "side": 1,
+      "message": "Since we are not gonna add new configurations anytime soon, I guess we can leave the file at its previous location then",
+      "range": {
+        "startLine": 52,
+        "startChar": 9,
+        "endLine": 52,
+        "endChar": 41
+      },
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eac6de90_c8c07a6f",
         "filename": "framework/tests/bumble/Android.bp",
         "patchSetId": 18
