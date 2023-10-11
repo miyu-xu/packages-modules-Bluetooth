@@ -88,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c600ed3_a90a110d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1325,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-11T08:05:43Z",
+      "side": 1,
+      "message": "Move the conversion elsewhere to keep this part concise. Log the failure attempt there as well.",
+      "parentUuid": "382b521d_4de1dfcb",
+      "revId": "808a210620d3da6fcc270253216c511cd482b239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fb0e2938_50405f24",
@@ -123,6 +141,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "76429a1e_b011ea90",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-11T08:05:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c45d18fc_4adf1ec7",
+      "revId": "808a210620d3da6fcc270253216c511cd482b239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75dd7a44_8fd75ebd",
@@ -154,6 +190,24 @@
       "side": 1,
       "message": "ok, will ask yinghsu",
       "parentUuid": "75dd7a44_8fd75ebd",
+      "revId": "808a210620d3da6fcc270253216c511cd482b239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98b0e910_b1458f1c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1913,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-11T08:05:43Z",
+      "side": 1,
+      "message": "Move this to b/304681854",
+      "parentUuid": "85c9266e_23dc4e88",
       "revId": "808a210620d3da6fcc270253216c511cd482b239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
