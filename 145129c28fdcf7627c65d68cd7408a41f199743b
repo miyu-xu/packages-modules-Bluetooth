@@ -46,6 +46,30 @@
       },
       "revId": "145129c28fdcf7627c65d68cd7408a41f199743b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fc56416_f92a0083",
+        "filename": "system/bta/jv/bta_jv_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-11T22:12:53Z",
+      "side": 1,
+      "message": "Sorry I was just passing by! Feel free to resolve\n\n\u003e A uint32_t with a bit for each scn would also work...\nYes I was thinking of something like `std::bitset\u003cRFCOMM_MAX_SCN\u003e scn_in_use;`",
+      "parentUuid": "6e074d89_10729117",
+      "range": {
+        "startLine": 126,
+        "startChar": 2,
+        "endLine": 126,
+        "endChar": 9
+      },
+      "revId": "145129c28fdcf7627c65d68cd7408a41f199743b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
