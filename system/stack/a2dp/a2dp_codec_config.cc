@@ -20,12 +20,12 @@
 
 #define LOG_TAG "a2dp_codec"
 
-#include "a2dp_codec_api.h"
-
 #include <base/logging.h>
 #include <inttypes.h>
 
 #include "a2dp_aac.h"
+#include "a2dp_codec_api.h"
+#include "a2dp_ext.h"
 #include "a2dp_sbc.h"
 #include "a2dp_vendor.h"
 
@@ -114,6 +114,13 @@ A2dpCodecConfig* A2dpCodecConfig::createCodec(
     btav_a2dp_codec_index_t codec_index,
     btav_a2dp_codec_priority_t codec_priority) {
   LOG_INFO("%s", A2DP_CodecIndexStr(codec_index));
+
+  // Hardware offload codec extensibility:
+  // management of the codec is moved under the ProviderInfo
+  // class of the aidl audio HAL client.
+  if (::bluetooth::audio::a2dp::supports_codec(codec_index)) {
+    return new A2dpCodecConfigExt(codec_index, true);
+  }
 
   A2dpCodecConfig* codec_config = nullptr;
   switch (codec_index) {
@@ -1452,6 +1459,12 @@ btav_a2dp_codec_index_t A2DP_SourceCodecIndex(const uint8_t* p_codec_info) {
 
   LOG_VERBOSE("%s: codec_type = 0x%x", __func__, codec_type);
 
+  auto ext_codec_index =
+      bluetooth::audio::a2dp::source_codec_index(p_codec_info);
+  if (ext_codec_index.has_value()) {
+    return ext_codec_index.value();
+  }
+
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_SourceCodecIndexSbc(p_codec_info);
@@ -1474,6 +1487,11 @@ btav_a2dp_codec_index_t A2DP_SinkCodecIndex(const uint8_t* p_codec_info) {
 
   LOG_VERBOSE("%s: codec_type = 0x%x", __func__, codec_type);
 
+  auto ext_codec_index = bluetooth::audio::a2dp::sink_codec_index(p_codec_info);
+  if (ext_codec_index.has_value()) {
+    return ext_codec_index.value();
+  }
+
   switch (codec_type) {
     case A2DP_MEDIA_CT_SBC:
       return A2DP_SinkCodecIndexSbc(p_codec_info);
@@ -1492,6 +1510,16 @@ btav_a2dp_codec_index_t A2DP_SinkCodecIndex(const uint8_t* p_codec_info) {
 }
 
 const char* A2DP_CodecIndexStr(btav_a2dp_codec_index_t codec_index) {
+  if ((codec_index >= BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MIN &&
+       codec_index < BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX) ||
+      (codec_index >= BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN &&
+       codec_index < BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX)) {
+    auto codec_index_str = bluetooth::audio::a2dp::codec_index_str(codec_index);
+    if (codec_index_str.has_value()) {
+      return codec_index_str.value();
+    }
+  }
+
   switch (codec_index) {
     case BTAV_A2DP_CODEC_INDEX_SOURCE_SBC:
       return A2DP_CodecIndexStrSbc();
