@@ -19,6 +19,7 @@
 #include <vector>
 
 #include "audio_a2dp_hw/include/audio_a2dp_hw.h"
+#include "avdt_api.h"
 #include "common/message_loop_thread.h"
 
 namespace bluetooth {
@@ -61,6 +62,46 @@ void set_remote_delay(uint16_t delay_report);
 
 // Check whether OPUS is supported
 bool is_opus_supported();
+
+// Lookup the codec info in the list of supported offloaded sink codecs.
+std::optional<btav_a2dp_codec_index_t> sink_codec_index(
+    const uint8_t* p_codec_info);
+
+// Lookup the codec info in the list of supported offloaded source codecs.
+std::optional<btav_a2dp_codec_index_t> source_codec_index(
+    const uint8_t* p_codec_info);
+
+// Return the name of the codec which is assigned to the input index.
+// The codec index must be in the ranges
+// BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX or
+// BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MIN..BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX.
+// Returns nullopt if the codec_index is not assigned or codec extensibility
+// is not supported or enabled.
+std::optional<const char*> codec_index_str(btav_a2dp_codec_index_t codec_index);
+
+// Return true if the codec is supported for the session type
+// A2DP_HARDWARE_ENCODING_DATAPATH or A2DP_HARDWARE_DECODING_DATAPATH.
+bool supports_codec(btav_a2dp_codec_index_t codec_index);
+
+// Return the A2DP capabilities for the selected codec.
+bool codec_info(btav_a2dp_codec_index_t codec_index, uint8_t* codec_info);
+
+struct a2dp_configuration {
+  int remote_seid;
+  btav_a2dp_codec_index_t codec_index;
+  uint8_t codec_config[AVDT_CODEC_SIZE];
+};
+
+struct a2dp_remote_capabilities {
+  int seid;
+  uint8_t const* capabilities;
+};
+
+// Query the codec selection fromt the audio HAL.
+// The HAL is expected to pick the best audio configuration based on the
+// discovered remote SEPs.
+std::optional<a2dp_configuration> get_a2dp_configuration(
+    std::vector<a2dp_remote_capabilities> const& remote_seps);
 
 }  // namespace a2dp
 }  // namespace audio
