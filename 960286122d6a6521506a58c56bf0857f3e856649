@@ -46,6 +46,30 @@
       },
       "revId": "960286122d6a6521506a58c56bf0857f3e856649",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c3096ce_52928fa7",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-10-11T23:37:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50815c49_bff797cd",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 727,
+        "endChar": 7
+      },
+      "revId": "960286122d6a6521506a58c56bf0857f3e856649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
