@@ -22,6 +22,30 @@
       },
       "revId": "4074ee324cbfc45d883b6667812cd847bb539aeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a36c8217_7e013d00",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-11T19:43:46Z",
+      "side": 1,
+      "message": "I see, then I can remove the captor in that case if it is not necessary.",
+      "parentUuid": "340fd106_8578b8c9",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "4074ee324cbfc45d883b6667812cd847bb539aeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
