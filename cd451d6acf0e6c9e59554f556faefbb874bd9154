@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6996f5ae_8567e356",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 16
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-10-11T03:27:14Z",
+      "side": 1,
+      "message": "Please elaborate the purpose here in commit message:\ne.x\n- the new added telephony callback expose the \"in use\" state \n- main user is the audio server to decide which of HFP and A2DP to use for audio.",
+      "revId": "cd451d6acf0e6c9e59554f556faefbb874bd9154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "016ada9d_5f3ed897",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 16
+      },
+      "lineNbr": 1451,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-10-11T03:27:14Z",
+      "side": 1,
+      "message": "print_info here would be useful to debug",
+      "revId": "cd451d6acf0e6c9e59554f556faefbb874bd9154",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
