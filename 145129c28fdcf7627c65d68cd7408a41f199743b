@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e37957f2_29c3cb68",
+        "filename": "system/bta/jv/bta_jv_int.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-11T22:04:25Z",
+      "side": 1,
+      "message": "Should we static assert that `RFCOMM_MAX_SCN` is in `uint8_t` bounds ?\nI just looked up and it\u0027s only `30` at the moment, it may not be necessary then.\nOr since `RFCOMM_MAX_SCN` is very small, we can get rid of this `scn_search_index` and only use `RFCOMM_MAX_SCN` ?\nOr a bounded bits set ?",
+      "range": {
+        "startLine": 126,
+        "startChar": 2,
+        "endLine": 126,
+        "endChar": 9
+      },
+      "revId": "145129c28fdcf7627c65d68cd7408a41f199743b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
