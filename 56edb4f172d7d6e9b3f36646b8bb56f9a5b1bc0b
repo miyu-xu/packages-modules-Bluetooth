@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e2aefa6_b33ce0af",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-10-11T02:44:22Z",
+      "side": 1,
+      "message": "Separating the source is a good solution although a bit tricky.",
+      "revId": "56edb4f172d7d6e9b3f36646b8bb56f9a5b1bc0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
