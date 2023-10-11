@@ -376,7 +376,7 @@ types::LeAudioLtvMap BroadcastCodecWrapper::GetSubgroupCodecSpecData() const {
 
   if (codec_id.coding_format == kLeAudioCodecIdLc3.coding_format) {
     codec_spec_ltvs[codec_spec_conf::kLeAudioLtvTypeOctetsPerCodecFrame] =
-        UINT16_TO_VEC_UINT8(codec_frame_len);
+        UINT16_TO_VEC_UINT8(octets_per_codec_frame);
   }
 
   if (source_codec_config.num_channels == 1) {
@@ -400,7 +400,6 @@ std::ostream& operator<<(
      << ", SampleRate=" << +config.GetSampleRate()
      << ", BitsPerSample=" << +config.GetBitsPerSample()
      << ", DataIntervalUs=" << +config.GetDataIntervalUs() << "}";
-  os << ", Bitrate=" << +config.GetBitrate();
   os << "]";
   return os;
 }
