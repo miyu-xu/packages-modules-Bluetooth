@@ -94,6 +94,30 @@
       },
       "revId": "3db4c12cd556ac50f154d993658dd7a45f7c3e37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ab2cfa5_3b4fa2ce",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 15
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-11T10:27:34Z",
+      "side": 1,
+      "message": "LGTM. Thanks!",
+      "parentUuid": "4bea67a9_a9b5971c",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 0
+      },
+      "revId": "3db4c12cd556ac50f154d993658dd7a45f7c3e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
