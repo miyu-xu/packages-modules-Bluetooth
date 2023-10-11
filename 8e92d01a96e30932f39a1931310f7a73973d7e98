@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "32bb5170_dd084f29",
+        "filename": "pandora/server/bumble_experimental/dck.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-11T18:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "594741d7_426b48aa",
+      "revId": "8e92d01a96e30932f39a1931310f7a73973d7e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75fe0731_7d372187",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-10-06T18:18:43Z",
       "side": 1,
       "message": "typo: `__init__` instead of `init`.\n\nYou can also consider passing an array of `Characteristic` directly for clarity:\n```\nsuper().__init__([\n    Characteristic(...),\n    Characteristic(...),\n    ...\n])\n```",
+      "range": {
+        "startLine": 74,
+        "startChar": 21,
+        "endLine": 74,
+        "endChar": 36
+      },
+      "revId": "8e92d01a96e30932f39a1931310f7a73973d7e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be18143a_33210ce1",
+        "filename": "pandora/server/bumble_experimental/dck.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-11T18:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "75fe0731_7d372187",
       "range": {
         "startLine": 74,
         "startChar": 21,
