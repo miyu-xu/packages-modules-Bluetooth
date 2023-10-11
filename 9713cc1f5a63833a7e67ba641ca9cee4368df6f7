@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0afb3f89_cd10757b",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 18
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-11T21:48:12Z",
+      "side": 1,
+      "message": "Those are stable interfaces and should be stack agnostics. I am not sure this is something we would like to have",
+      "parentUuid": "09badcc3_6aa1b9d7",
+      "range": {
+        "startLine": 24,
+        "startChar": 173,
+        "endLine": 24,
+        "endChar": 193
+      },
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c5d8f8d8_d8263eea",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
         "patchSetId": 18
@@ -123,6 +147,24 @@
       "writtenOn": "2023-10-11T21:02:20Z",
       "side": 1,
       "message": "Missing `Gatt` and `Asha` hooks",
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df7afb9d_2b447d23",
+        "filename": "framework/tests/bumble/src/bumble_server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-11T21:48:12Z",
+      "side": 1,
+      "message": "I\u0027ve only added the one needed for this specific tests cases. But I can add the others :)",
+      "parentUuid": "40f9a25d_beb01c2c",
       "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
