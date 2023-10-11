@@ -26,12 +26,12 @@
 
 #include <vector>
 
-#include "bt_target.h"  // Must be first to define build configuration
 #include "bta/dm/bta_dm_int.h"
 #include "osi/include/allocator.h"
 #include "osi/include/compat.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_octets.h"
+#include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_api.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/main_thread.h"
