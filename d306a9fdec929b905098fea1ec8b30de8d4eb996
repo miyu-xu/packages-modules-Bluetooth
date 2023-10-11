@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ce06451_1fbaa796",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-11T22:34:24Z",
+      "side": 1,
+      "message": "This isn\u0027t needed if we remove the logging lines from the mocks.  Can you rebase on the latest mocks and abandon this CL?",
+      "revId": "d306a9fdec929b905098fea1ec8b30de8d4eb996",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
