@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3584e69_9b6c58b6",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1066,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-11T13:30:55Z",
+      "side": 0,
+      "message": "I guess it is possible, but in order to do that we should compare two logics btw. using AlarmManager + PendingIntent vs. posting a delayed message to a handler.\n\nTherefore I think that could be a future work item, but I don\u0027t think it is under the scope this of this CL.",
+      "parentUuid": "21638ee7_1ca03f11",
+      "range": {
+        "startLine": 1066,
+        "startChar": 46,
+        "endLine": 1066,
+        "endChar": 73
+      },
+      "revId": "374b6562c6a4017d00b38ce4943d4a090d05a725",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "950fb7fd_67433c51",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-11T07:37:05Z",
       "side": 0,
       "message": "Shouldn\u0027t we keep these lines?",
+      "range": {
+        "startLine": 1069,
+        "startChar": 0,
+        "endLine": 1070,
+        "endChar": 37
+      },
+      "revId": "374b6562c6a4017d00b38ce4943d4a090d05a725",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7e76f14_f7b6059f",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1070,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-11T13:30:55Z",
+      "side": 0,
+      "message": "It is done when msg `USER_TIMEOUT` is sent to the handler (L385), so not needed.",
+      "parentUuid": "950fb7fd_67433c51",
       "range": {
         "startLine": 1069,
         "startChar": 0,
