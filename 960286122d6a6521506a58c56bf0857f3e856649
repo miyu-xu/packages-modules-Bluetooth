@@ -22,6 +22,30 @@
       },
       "revId": "960286122d6a6521506a58c56bf0857f3e856649",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50815c49_bff797cd",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-11T22:43:53Z",
+      "side": 1,
+      "message": "Also can we use LOG_ERROR instead of LOG(ERROR) \u003c\u003c .. logging style.",
+      "parentUuid": "245cb378_afc82b1b",
+      "range": {
+        "startLine": 719,
+        "startChar": 0,
+        "endLine": 727,
+        "endChar": 7
+      },
+      "revId": "960286122d6a6521506a58c56bf0857f3e856649",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
