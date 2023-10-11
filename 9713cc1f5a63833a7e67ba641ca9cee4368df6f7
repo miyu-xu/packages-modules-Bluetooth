@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "022dd624_bb30ffa2",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-11T22:15:20Z",
+      "side": 1,
+      "message": "I\u0027ve tried both and it works. The main reason it\u0027s a `python_test_host` it\u0027s because it was one previously. The main difference between a `python_test_host` and a `python_binary_host` is that the second one doesn\u0027t have the field `test_options`, which I don\u0027t think it is really necessary in our case.\n@licorne what do you think ? I don\u0027t know if it has some effect for the presubmit configuration",
+      "parentUuid": "eac6de90_c8c07a6f",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 16
+      },
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "09badcc3_6aa1b9d7",
         "filename": "framework/tests/bumble/AndroidTest.xml",
         "patchSetId": 18
