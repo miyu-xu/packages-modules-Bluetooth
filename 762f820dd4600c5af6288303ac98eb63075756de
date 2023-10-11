@@ -16,6 +16,23 @@
       "message": "Bump -- does this still need to go in?",
       "revId": "762f820dd4600c5af6288303ac98eb63075756de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "822ed1b6_90b77cd9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-10-11T02:13:17Z",
+      "side": 1,
+      "message": "thanks for reviewing",
+      "revId": "762f820dd4600c5af6288303ac98eb63075756de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
