@@ -68,8 +68,12 @@ class BluetoothAudioClientInterface {
   bool IsValid() const { return provider_ != nullptr; }
 
   std::vector<AudioCapabilities> GetAudioCapabilities() const;
+
   static std::vector<AudioCapabilities> GetAudioCapabilities(
       SessionType session_type);
+  static std::optional<IBluetoothAudioProviderFactory::ProviderInfo>
+  GetProviderInfo(SessionType session_type);
+
   void StreamStarted(const BluetoothAudioCtrlAck& ack);
 
   void StreamSuspended(const BluetoothAudioCtrlAck& ack);
