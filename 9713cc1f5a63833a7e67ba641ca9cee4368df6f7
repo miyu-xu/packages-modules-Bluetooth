@@ -1,0 +1,130 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eac6de90_c8c07a6f",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-11T21:02:20Z",
+      "side": 1,
+      "message": "question: Why not a `python_binary_host` ? (If there is a reason please add a comment to explain why)",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 16
+      },
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09badcc3_6aa1b9d7",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 18
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-11T21:02:20Z",
+      "side": 1,
+      "message": "@licorne@google.com @charliebout@google.com An other solution to the config problem could be to add a secret `config` field to the Bumble gRPC `Reset` and `FactoryReset` requests ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 173,
+        "endLine": 24,
+        "endChar": 193
+      },
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5d8f8d8_d8263eea",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
+        "patchSetId": 18
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-11T21:02:20Z",
+      "side": 1,
+      "message": "question: how does works the cancellation of the stream ?",
+      "range": {
+        "startLine": 64,
+        "startChar": 8,
+        "endLine": 64,
+        "endChar": 98
+      },
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66867ed6_3c4bf761",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-11T21:02:20Z",
+      "side": 1,
+      "message": "suggest: rename to `BUMBLE_RANDOM_ADDRESS`",
+      "range": {
+        "startLine": 22,
+        "startChar": 31,
+        "endLine": 22,
+        "endChar": 41
+      },
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d632e5d0_921762b7",
+        "filename": "framework/tests/bumble/src/bumble_server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-11T21:02:20Z",
+      "side": 1,
+      "message": "Can you rather copy the whole file from bumble and own the `bumble_pandora_server` target by moving it somewhere in p/m/B ?",
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40f9a25d_beb01c2c",
+        "filename": "framework/tests/bumble/src/bumble_server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-11T21:02:20Z",
+      "side": 1,
+      "message": "Missing `Gatt` and `Asha` hooks",
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
