@@ -188,15 +188,17 @@ struct codec_manager_impl {
         continue;
       }
       auto& adsp_config = adsp_audio_set_conf.confs[0];
-      const types::LeAudioCodecConfigCore lc3_config =
-          std::get<types::LeAudioCodecConfigCore>(adsp_config.codec.config);
+
+      const types::LeAudioCodecConfigCore config_base =
+          types::LeAudioCodecConfigCore::FromLtvMap(adsp_config.codec.params);
       le_audio::broadcast_offload_config broadcast_config;
-      broadcast_config.stream_map.resize(lc3_config.channel_count);
+      broadcast_config.stream_map.resize(
+          config_base.GetChannelCountPerIsoStream());
       broadcast_config.bits_per_sample =
           LeAudioCodecConfiguration::kBitsPerSample16;
-      broadcast_config.sampling_rate = lc3_config.GetSamplingFrequencyHz();
-      broadcast_config.frame_duration = lc3_config.GetFrameDurationUs();
-      broadcast_config.octets_per_frame = *(lc3_config.octets_per_codec_frame);
+      broadcast_config.sampling_rate = config_base.GetSamplingFrequencyHz();
+      broadcast_config.frame_duration = config_base.GetFrameDurationUs();
+      broadcast_config.octets_per_frame = *(config_base.octets_per_codec_frame);
       broadcast_config.blocks_per_sdu = 1;
 
       int sample_rate = broadcast_config.sampling_rate;
@@ -385,22 +387,23 @@ struct codec_manager_impl {
   }
 
   bool IsLc3ConfigMatched(
-      const set_configurations::CodecConfigSetting& adsp_config,
-      const set_configurations::CodecConfigSetting& target_config) {
+      const set_configurations::CodecConfigSetting& target_config,
+      const set_configurations::CodecConfigSetting& adsp_config) {
     if (adsp_config.id.coding_format != types::kLeAudioCodingFormatLC3 ||
         target_config.id.coding_format != types::kLeAudioCodingFormatLC3) {
       return false;
     }
 
     const types::LeAudioCodecConfigCore adsp_lc3_config =
-        std::get<types::LeAudioCodecConfigCore>(adsp_config.config);
+        types::LeAudioCodecConfigCore::FromLtvMap(adsp_config.params);
     const types::LeAudioCodecConfigCore target_lc3_config =
-        std::get<types::LeAudioCodecConfigCore>(target_config.config);
+        types::LeAudioCodecConfigCore::FromLtvMap(target_config.params);
 
     if (adsp_lc3_config.sampling_frequency !=
             target_lc3_config.sampling_frequency ||
         adsp_lc3_config.frame_duration != target_lc3_config.frame_duration ||
-        adsp_lc3_config.channel_count != target_lc3_config.channel_count ||
+        adsp_config.GetChannelCountPerIsoStream() !=
+            target_config.GetChannelCountPerIsoStream() ||
         adsp_lc3_config.octets_per_codec_frame !=
             target_lc3_config.octets_per_codec_frame) {
       return false;

@@ -248,8 +248,8 @@ uint8_t get_num_of_devices_in_configuration(
 
 static bool IsCodecConfigurationSupported(
     const types::LeAudioLtvMap& pacs,
-    const LeAudioCodecConfigCore& lc3_config) {
-  const auto& reqs = lc3_config.GetAsLtvMap();
+    const LeAudioCodecConfigCore& core_config) {
+  const auto& reqs = core_config.GetAsLtvMap();
   uint8_t u8_req_val, u8_pac_val;
   uint16_t u16_req_val, u16_pac_val;
 
@@ -309,7 +309,7 @@ static bool IsCodecConfigurationSupported(
     return false;
   }
 
-  uint8_t required_audio_chan_num = lc3_config.GetChannelCount();
+  uint8_t required_audio_chan_num = core_config.GetChannelCountPerIsoStream();
   pac = pacs.Find(codec_spec_caps::kLeAudioLtvTypeSupportedAudioChannelCounts);
 
   /*
@@ -378,17 +378,17 @@ bool IsCodecConfigSettingSupported(
   switch (codec_id.coding_format) {
     case kLeAudioCodingFormatLC3:
       return IsCodecConfigurationSupported(
-          pac.codec_spec_caps,
-          std::get<LeAudioCodecConfigCore>(codec_capability_setting.config));
+          pac.codec_spec_caps, types::LeAudioCodecConfigCore::FromLtvMap(
+                                   codec_capability_setting.params));
     default:
       return false;
   }
 }
 
-uint32_t CodecConfigSetting::GetConfigSamplingFrequency() const {
+uint32_t CodecConfigSetting::GetSamplingFrequencyHz() const {
   switch (id.coding_format) {
     case kLeAudioCodingFormatLC3:
-      return std::get<types::LeAudioCodecConfigCore>(config)
+      return types::LeAudioCodecConfigCore::FromLtvMap(params)
           .GetSamplingFrequencyHz();
     default:
       LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
@@ -396,10 +396,10 @@ uint32_t CodecConfigSetting::GetConfigSamplingFrequency() const {
   }
 };
 
-uint32_t CodecConfigSetting::GetConfigDataIntervalUs() const {
+uint32_t CodecConfigSetting::GetDataIntervalUs() const {
   switch (id.coding_format) {
     case kLeAudioCodingFormatLC3:
-      return std::get<types::LeAudioCodecConfigCore>(config)
+      return types::LeAudioCodecConfigCore::FromLtvMap(params)
           .GetFrameDurationUs();
     default:
       LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
@@ -407,7 +407,7 @@ uint32_t CodecConfigSetting::GetConfigDataIntervalUs() const {
   }
 };
 
-uint8_t CodecConfigSetting::GetConfigBitsPerSample() const {
+uint8_t CodecConfigSetting::GetBitsPerSample() const {
   switch (id.coding_format) {
     case kLeAudioCodingFormatLC3:
       /* XXX LC3 supports 16, 24, 32 */
@@ -417,20 +417,6 @@ uint8_t CodecConfigSetting::GetConfigBitsPerSample() const {
       return 0;
   }
 };
-
-uint8_t CodecConfigSetting::GetConfigChannelCount() const {
-  switch (id.coding_format) {
-    case kLeAudioCodingFormatLC3:
-      LOG_DEBUG(
-          "count = %d",
-          static_cast<int>(
-              std::get<types::LeAudioCodecConfigCore>(config).channel_count));
-      return std::get<types::LeAudioCodecConfigCore>(config).channel_count;
-    default:
-      LOG_WARN(", invalid codec id: 0x%02x", id.coding_format);
-      return 0;
-  }
-}
 }  // namespace set_configurations
 
 namespace types {
