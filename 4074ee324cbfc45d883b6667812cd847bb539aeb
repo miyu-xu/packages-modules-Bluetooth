@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "340fd106_8578b8c9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-11T18:56:23Z",
+      "side": 1,
+      "message": "Most implementations don\u0027t utilize the BluetoothGatt instance returned in the callback, and rather would call getService on the existing instance. \n\nI would propose changing this to match the more typical call flow, or confirm with DCK if this is what they do.",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 38
+      },
+      "revId": "4074ee324cbfc45d883b6667812cd847bb539aeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
