@@ -1400,89 +1400,150 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
 
     ApcfOpcode apcf_opcode = status_view.GetApcfOpcode();
     switch (apcf_opcode) {
-      case ApcfOpcode::ENABLE: {
-        auto complete_view = LeAdvFilterEnableCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterEnable(complete_view.GetApcfEnable(), (uint8_t)complete_view.GetStatus());
-      } break;
-      case ApcfOpcode::SET_FILTERING_PARAMETERS: {
-        auto complete_view = LeAdvFilterSetFilteringParametersCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterParamSetup(
-            complete_view.GetApcfAvailableSpaces(), complete_view.GetApcfAction(), (uint8_t)complete_view.GetStatus());
-      } break;
-      case ApcfOpcode::BROADCASTER_ADDRESS: {
-        auto complete_view = LeAdvFilterBroadcasterAddressCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterConfigCallback(
-            ApcfFilterType::BROADCASTER_ADDRESS,
-            complete_view.GetApcfAvailableSpaces(),
-            complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
-      } break;
-      case ApcfOpcode::SERVICE_UUID: {
-        auto complete_view = LeAdvFilterServiceUuidCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterConfigCallback(
-            ApcfFilterType::SERVICE_UUID,
-            complete_view.GetApcfAvailableSpaces(),
-            complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
-      } break;
-      case ApcfOpcode::SERVICE_SOLICITATION_UUID: {
-        auto complete_view = LeAdvFilterSolicitationUuidCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterConfigCallback(
-            ApcfFilterType::SERVICE_SOLICITATION_UUID,
-            complete_view.GetApcfAvailableSpaces(),
-            complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
-      } break;
-      case ApcfOpcode::LOCAL_NAME: {
-        auto complete_view = LeAdvFilterLocalNameCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterConfigCallback(
-            ApcfFilterType::LOCAL_NAME,
-            complete_view.GetApcfAvailableSpaces(),
-            complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
-      } break;
-      case ApcfOpcode::MANUFACTURER_DATA: {
-        auto complete_view = LeAdvFilterManufacturerDataCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterConfigCallback(
-            ApcfFilterType::MANUFACTURER_DATA,
-            complete_view.GetApcfAvailableSpaces(),
-            complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
-      } break;
-      case ApcfOpcode::SERVICE_DATA: {
-        auto complete_view = LeAdvFilterServiceDataCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterConfigCallback(
-            ApcfFilterType::SERVICE_DATA,
-            complete_view.GetApcfAvailableSpaces(),
-            complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
-      } break;
-      case ApcfOpcode::TRANSPORT_DISCOVERY_DATA: {
-        auto complete_view = LeAdvFilterTransportDiscoveryDataCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterConfigCallback(
-            ApcfFilterType::TRANSPORT_DISCOVERY_DATA,
-            complete_view.GetApcfAvailableSpaces(),
-            complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
-      } break;
-      case ApcfOpcode::AD_TYPE: {
-        auto complete_view = LeAdvFilterADTypeCompleteView::Create(status_view);
-        ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterConfigCallback(
-            ApcfFilterType::AD_TYPE,
-            complete_view.GetApcfAvailableSpaces(),
-            complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
-      } break;
+      case ApcfOpcode::ENABLE:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterEnable(Enable{}, (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterEnableCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterEnable(
+              complete_view.GetApcfEnable(), (uint8_t)complete_view.GetStatus());
+        }
+        break;
+      case ApcfOpcode::SET_FILTERING_PARAMETERS:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterParamSetup(
+              0, ApcfAction{}, (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterSetFilteringParametersCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterParamSetup(
+              complete_view.GetApcfAvailableSpaces(),
+              complete_view.GetApcfAction(),
+              (uint8_t)complete_view.GetStatus());
+        }
+        break;
+      case ApcfOpcode::BROADCASTER_ADDRESS:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::BROADCASTER_ADDRESS,
+              0,
+              ApcfAction{},
+              (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterBroadcasterAddressCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::BROADCASTER_ADDRESS,
+              complete_view.GetApcfAvailableSpaces(),
+              complete_view.GetApcfAction(),
+              (uint8_t)complete_view.GetStatus());
+        }
+        break;
+      case ApcfOpcode::SERVICE_UUID:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::SERVICE_UUID, 0, ApcfAction{}, (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterServiceUuidCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::SERVICE_UUID,
+              complete_view.GetApcfAvailableSpaces(),
+              complete_view.GetApcfAction(),
+              (uint8_t)complete_view.GetStatus());
+        }
+        break;
+      case ApcfOpcode::SERVICE_SOLICITATION_UUID:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::SERVICE_SOLICITATION_UUID,
+              0,
+              ApcfAction{},
+              (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterSolicitationUuidCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::SERVICE_SOLICITATION_UUID,
+              complete_view.GetApcfAvailableSpaces(),
+              complete_view.GetApcfAction(),
+              (uint8_t)complete_view.GetStatus());
+        }
+        break;
+      case ApcfOpcode::LOCAL_NAME:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::LOCAL_NAME, 0, ApcfAction{}, (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterLocalNameCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::LOCAL_NAME,
+              complete_view.GetApcfAvailableSpaces(),
+              complete_view.GetApcfAction(),
+              (uint8_t)complete_view.GetStatus());
+        }
+        break;
+      case ApcfOpcode::MANUFACTURER_DATA:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::MANUFACTURER_DATA, 0, ApcfAction{}, (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterManufacturerDataCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::MANUFACTURER_DATA,
+              complete_view.GetApcfAvailableSpaces(),
+              complete_view.GetApcfAction(),
+              (uint8_t)complete_view.GetStatus());
+        }
+        break;
+      case ApcfOpcode::SERVICE_DATA:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::SERVICE_DATA, 0, ApcfAction{}, (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterServiceDataCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::SERVICE_DATA,
+              complete_view.GetApcfAvailableSpaces(),
+              complete_view.GetApcfAction(),
+              (uint8_t)complete_view.GetStatus());
+        }
+        break;
+      case ApcfOpcode::TRANSPORT_DISCOVERY_DATA:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::TRANSPORT_DISCOVERY_DATA,
+              0,
+              ApcfAction{},
+              (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterTransportDiscoveryDataCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::TRANSPORT_DISCOVERY_DATA,
+              complete_view.GetApcfAvailableSpaces(),
+              complete_view.GetApcfAction(),
+              (uint8_t)complete_view.GetStatus());
+        }
+        break;
+      case ApcfOpcode::AD_TYPE:
+        if (status_view.GetStatus() != ErrorCode::SUCCESS) {
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::AD_TYPE, 0, ApcfAction{}, (uint8_t)status_view.GetStatus());
+        } else {
+          auto complete_view = LeAdvFilterADTypeCompleteView::Create(status_view);
+          ASSERT(complete_view.IsValid());
+          scanning_callbacks_->OnFilterConfigCallback(
+              ApcfFilterType::AD_TYPE,
+              complete_view.GetApcfAvailableSpaces(),
+              complete_view.GetApcfAction(),
+              (uint8_t)complete_view.GetStatus());
+        }
+        break;
       default:
         LOG_WARN("Unexpected event type %s", OpCodeText(view.GetCommandOpCode()).c_str());
     }
