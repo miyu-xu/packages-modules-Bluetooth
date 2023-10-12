@@ -33,6 +33,24 @@
       "message": "Please check whether it is Okay to merge without a trunk stable flag.",
       "revId": "2585aebaefdc8ba9606aea52c528ffc1e5802168",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b347732_d315792c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-12T06:36:28Z",
+      "side": 1,
+      "message": "This is not a big behavioral change, but a more clear cleanup. So I think it is not needed to be behind a flag.",
+      "parentUuid": "20233634_ab1c5592",
+      "revId": "2585aebaefdc8ba9606aea52c528ffc1e5802168",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
