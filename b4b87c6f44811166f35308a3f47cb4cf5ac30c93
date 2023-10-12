@@ -1,0 +1,268 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d2761e_c68bcb8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "There is no flag for this change, but this is changing a big part of the feature.\n\nThere are a few changes that are not directly related to the feature but to code style / no-op change like:\n* code format\n* early return\n* modifying other method to be ready for the feature without modifying the behaviour (like adding the parameter for setDisconnection)\n\nCan you split the CL to have one CL with only no-op change and then the CL with the new feature",
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd71c11d_14893467",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "can the early return change made separately ?",
+      "range": {
+        "startLine": 553,
+        "startChar": 0,
+        "endLine": 553,
+        "endChar": 51
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9520ee39_95ed69ad",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "no need for else since you are returning in the `if`",
+      "range": {
+        "startLine": 568,
+        "startChar": 0,
+        "endLine": 568,
+        "endChar": 16
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "167d1867_09d0d699",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "Can you move the log after the null check, to not print the information twice",
+      "range": {
+        "startLine": 595,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 58
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "085d8dab_af4f544b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "Can this be done outside of the synchronized block ?",
+      "range": {
+        "startLine": 595,
+        "startChar": 11,
+        "endLine": 600,
+        "endChar": 49
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b90851fc_aded6a1c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "Move to after the device null check and eventually update the other log to have the profile too ?",
+      "range": {
+        "startLine": 673,
+        "startChar": 11,
+        "endLine": 674,
+        "endChar": 65
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e62f121_34ea075c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "Nit:\nI am not a fan of the switch case here\nwdyt about:\n`if (profileId \u003d\u003d BluetoothProfile.A2DP \u0026\u0026 metadata.is_active_a2dp_device) {` ?\nsame for headset ?\n\n\nThis is very much a personal preference so do as you estime is the best",
+      "range": {
+        "startLine": 689,
+        "startChar": 0,
+        "endLine": 689,
+        "endChar": 57
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fe6bf7e_0a864bbd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "I think we should do a check at the start of the method, before taking the synchronized block, to make it obvious that this is a no-op change for other profiles than headset / a2dp",
+      "range": {
+        "startLine": 708,
+        "startChar": 16,
+        "endLine": 710,
+        "endChar": 38
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6c948f5_60b633b7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "Does this logic works with multiples HFP devices where we disconnect the last connected (remotely or within the UI) and rely on the fallback to have the previous device as active ?",
+      "range": {
+        "startLine": 736,
+        "startChar": 17,
+        "endLine": 736,
+        "endChar": 37
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27e178f2_45cb2c23",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1084,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "This log does not add a lot of usefull information. Can you delete it ?",
+      "range": {
+        "startLine": 1084,
+        "startChar": 0,
+        "endLine": 1084,
+        "endChar": 37
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5441382a_fe729072",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "replace with `createMetadata(address, isActiveA2dpDevice, false)`",
+      "range": {
+        "startLine": 1084,
+        "startChar": 7,
+        "endLine": 1090,
+        "endChar": 52
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f2426c_de9f468e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "Most of the code change are happening in DatabaseManager but there is no test really checking the new behavior with is_headset_device",
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

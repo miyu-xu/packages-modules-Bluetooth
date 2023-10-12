@@ -286,6 +286,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0842e9b4_ea1df12b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T19:07:42Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a148bce0_7cdec6ce",
+      "range": {
+        "startLine": 652,
+        "startChar": 25,
+        "endLine": 652,
+        "endChar": 46
+      },
+      "revId": "662e4b3081a05304fc47c113d892745726503bbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "25b8a690_e4911d66",
