@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9db55f83_7070f071",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-12T06:26:23Z",
+      "side": 0,
+      "message": "nit: If Assume.assuemTrue() is in setUp(), then all the tests are automatically skipped.",
+      "range": {
+        "startLine": 166,
+        "startChar": 8,
+        "endLine": 166,
+        "endChar": 62
+      },
+      "revId": "0e31b6b34dd03e43ac37a4c8af9e5fac328e6eb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
