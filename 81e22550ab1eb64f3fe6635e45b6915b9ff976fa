@@ -22,6 +22,30 @@
       },
       "revId": "81e22550ab1eb64f3fe6635e45b6915b9ff976fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2a633bbf_5711898a",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-12T08:54:35Z",
+      "side": 1,
+      "message": "Good question. I just wanted to cover one failing scenario but we can be better here.",
+      "parentUuid": "0777e1de_99b0ef23",
+      "range": {
+        "startLine": 1256,
+        "startChar": 23,
+        "endLine": 1256,
+        "endChar": 24
+      },
+      "revId": "81e22550ab1eb64f3fe6635e45b6915b9ff976fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
