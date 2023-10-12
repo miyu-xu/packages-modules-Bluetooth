@@ -21,6 +21,9 @@
 /* maximum audio device address length */
 #define AUDIO_DEVICE_MAX_ADDRESS_LEN 32
 
+/* Audio attributes */
+#define AUDIO_ATTRIBUTES_TAGS_MAX_SIZE 256
+
 typedef enum {
   AUDIO_SOURCE_DEFAULT = 0,
   AUDIO_SOURCE_MIC = 1,
@@ -105,3 +108,31 @@ typedef struct sink_metadata {
   /** Array of metadata of each track connected to this sink. */
   struct record_track_metadata* tracks;
 } sink_metadata_t;
+
+/** Metadata of a playback track for an in stream. */
+typedef struct playback_track_metadata_v7 {
+  struct playback_track_metadata base;
+  audio_channel_mask_t channel_mask;
+  char tags[AUDIO_ATTRIBUTES_TAGS_MAX_SIZE]; /* UTF8 */
+} playback_track_metadata_v7_t;
+
+/** Metadata of a record track for an out stream. */
+typedef struct record_track_metadata_v7 {
+  struct record_track_metadata base;
+  audio_channel_mask_t channel_mask;
+  char tags[AUDIO_ATTRIBUTES_TAGS_MAX_SIZE]; /* UTF8 */
+} record_track_metadata_v7_t;
+
+/* HAL version 3.2 and higher only. */
+typedef struct source_metadata_v7 {
+  size_t track_count;
+  /** Array of metadata of each track connected to this source. */
+  struct playback_track_metadata_v7* tracks;
+} source_metadata_v7_t;
+
+/* HAL version 3.2 and higher only. */
+typedef struct sink_metadata_v7 {
+  size_t track_count;
+  /** Array of metadata of each track connected to this sink. */
+  struct record_track_metadata_v7* tracks;
+} sink_metadata_v7_t;
