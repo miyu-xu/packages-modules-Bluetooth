@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd991c7b_0e00053a",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 18
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-12T18:23:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d2c0dff_0d028dc4",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 16
+      },
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09badcc3_6aa1b9d7",
@@ -387,6 +411,24 @@
       "side": 1,
       "message": "I am not such a fan of doing this since the bumble server from github can also live on g3 and might/would be use",
       "parentUuid": "d632e5d0_921762b7",
+      "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb80e063_d6994f2a",
+        "filename": "framework/tests/bumble/src/bumble_server.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-12T18:23:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b7056bc_ceccf663",
       "revId": "9713cc1f5a63833a7e67ba641ca9cee4368df6f7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
