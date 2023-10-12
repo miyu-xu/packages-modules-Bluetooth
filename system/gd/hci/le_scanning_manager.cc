@@ -1387,6 +1387,53 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     }
   }
 
+  void send_empty_callback(LeAdvFilterCompleteView status_view) {
+    uint8_t status = static_cast<uint8_t>(status_view.GetStatus());
+    ApcfOpcode apcf_opcode = status_view.GetApcfOpcode();
+    switch (apcf_opcode) {
+      case ApcfOpcode::ENABLE:
+        scanning_callbacks_->OnFilterEnable(Enable{}, status);
+        break;
+      case ApcfOpcode::SET_FILTERING_PARAMETERS:
+        scanning_callbacks_->OnFilterParamSetup(0, ApcfAction{}, status);
+        break;
+      case ApcfOpcode::BROADCASTER_ADDRESS:
+        scanning_callbacks_->OnFilterConfigCallback(
+            ApcfFilterType::BROADCASTER_ADDRESS, 0, ApcfAction{}, status);
+        break;
+      case ApcfOpcode::SERVICE_UUID:
+        scanning_callbacks_->OnFilterConfigCallback(
+            ApcfFilterType::SERVICE_UUID, 0, ApcfAction{}, static_cast<uint8_t>(status));
+        break;
+      case ApcfOpcode::SERVICE_SOLICITATION_UUID:
+        scanning_callbacks_->OnFilterConfigCallback(
+            ApcfFilterType::SERVICE_SOLICITATION_UUID, 0, ApcfAction{}, status);
+        break;
+      case ApcfOpcode::LOCAL_NAME:
+        scanning_callbacks_->OnFilterConfigCallback(
+            ApcfFilterType::LOCAL_NAME, 0, ApcfAction{}, status);
+        break;
+      case ApcfOpcode::MANUFACTURER_DATA:
+        scanning_callbacks_->OnFilterConfigCallback(
+            ApcfFilterType::MANUFACTURER_DATA, 0, ApcfAction{}, status);
+        break;
+      case ApcfOpcode::SERVICE_DATA:
+        scanning_callbacks_->OnFilterConfigCallback(
+            ApcfFilterType::SERVICE_DATA, 0, ApcfAction{}, status);
+        break;
+      case ApcfOpcode::TRANSPORT_DISCOVERY_DATA:
+        scanning_callbacks_->OnFilterConfigCallback(
+            ApcfFilterType::TRANSPORT_DISCOVERY_DATA, 0, ApcfAction{}, status);
+        break;
+      case ApcfOpcode::AD_TYPE:
+        scanning_callbacks_->OnFilterConfigCallback(
+            ApcfFilterType::AD_TYPE, 0, ApcfAction{}, status);
+        break;
+      default:
+        LOG_WARN("Unexpected event type %s", OpCodeText(status_view.GetCommandOpCode()).c_str());
+    }
+  }
+
   void on_advertising_filter_complete(CommandCompleteView view) {
     ASSERT(view.IsValid());
     auto status_view = LeAdvFilterCompleteView::Create(view);
@@ -1396,20 +1443,23 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           "Got a Command complete %s, status %s",
           OpCodeText(view.GetCommandOpCode()).c_str(),
           ErrorCodeText(status_view.GetStatus()).c_str());
+      send_empty_callback(status_view);
+      return;
     }
 
+    auto status = static_cast<uint8_t>(status_view.GetStatus());
     ApcfOpcode apcf_opcode = status_view.GetApcfOpcode();
     switch (apcf_opcode) {
       case ApcfOpcode::ENABLE: {
         auto complete_view = LeAdvFilterEnableCompleteView::Create(status_view);
         ASSERT(complete_view.IsValid());
-        scanning_callbacks_->OnFilterEnable(complete_view.GetApcfEnable(), (uint8_t)complete_view.GetStatus());
+        scanning_callbacks_->OnFilterEnable(complete_view.GetApcfEnable(), status);
       } break;
       case ApcfOpcode::SET_FILTERING_PARAMETERS: {
         auto complete_view = LeAdvFilterSetFilteringParametersCompleteView::Create(status_view);
         ASSERT(complete_view.IsValid());
         scanning_callbacks_->OnFilterParamSetup(
-            complete_view.GetApcfAvailableSpaces(), complete_view.GetApcfAction(), (uint8_t)complete_view.GetStatus());
+            complete_view.GetApcfAvailableSpaces(), complete_view.GetApcfAction(), status);
       } break;
       case ApcfOpcode::BROADCASTER_ADDRESS: {
         auto complete_view = LeAdvFilterBroadcasterAddressCompleteView::Create(status_view);
@@ -1418,7 +1468,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             ApcfFilterType::BROADCASTER_ADDRESS,
             complete_view.GetApcfAvailableSpaces(),
             complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
+            status);
       } break;
       case ApcfOpcode::SERVICE_UUID: {
         auto complete_view = LeAdvFilterServiceUuidCompleteView::Create(status_view);
@@ -1427,7 +1477,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             ApcfFilterType::SERVICE_UUID,
             complete_view.GetApcfAvailableSpaces(),
             complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
+            status);
       } break;
       case ApcfOpcode::SERVICE_SOLICITATION_UUID: {
         auto complete_view = LeAdvFilterSolicitationUuidCompleteView::Create(status_view);
@@ -1436,7 +1486,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             ApcfFilterType::SERVICE_SOLICITATION_UUID,
             complete_view.GetApcfAvailableSpaces(),
             complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
+            status);
       } break;
       case ApcfOpcode::LOCAL_NAME: {
         auto complete_view = LeAdvFilterLocalNameCompleteView::Create(status_view);
@@ -1445,7 +1495,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             ApcfFilterType::LOCAL_NAME,
             complete_view.GetApcfAvailableSpaces(),
             complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
+            status);
       } break;
       case ApcfOpcode::MANUFACTURER_DATA: {
         auto complete_view = LeAdvFilterManufacturerDataCompleteView::Create(status_view);
@@ -1454,7 +1504,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             ApcfFilterType::MANUFACTURER_DATA,
             complete_view.GetApcfAvailableSpaces(),
             complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
+            status);
       } break;
       case ApcfOpcode::SERVICE_DATA: {
         auto complete_view = LeAdvFilterServiceDataCompleteView::Create(status_view);
@@ -1463,7 +1513,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             ApcfFilterType::SERVICE_DATA,
             complete_view.GetApcfAvailableSpaces(),
             complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
+            status);
       } break;
       case ApcfOpcode::TRANSPORT_DISCOVERY_DATA: {
         auto complete_view = LeAdvFilterTransportDiscoveryDataCompleteView::Create(status_view);
@@ -1472,7 +1522,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             ApcfFilterType::TRANSPORT_DISCOVERY_DATA,
             complete_view.GetApcfAvailableSpaces(),
             complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
+            status);
       } break;
       case ApcfOpcode::AD_TYPE: {
         auto complete_view = LeAdvFilterADTypeCompleteView::Create(status_view);
@@ -1481,7 +1531,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             ApcfFilterType::AD_TYPE,
             complete_view.GetApcfAvailableSpaces(),
             complete_view.GetApcfAction(),
-            (uint8_t)complete_view.GetStatus());
+            status);
       } break;
       default:
         LOG_WARN("Unexpected event type %s", OpCodeText(view.GetCommandOpCode()).c_str());
