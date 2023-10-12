@@ -36,7 +36,6 @@
 #include "bta/dm/bta_dm_gatt_client.h"
 #include "bta/dm/bta_dm_int.h"
 #include "bta/include/bta_api.h"
-#include "bta/include/bta_dm_ci.h"  // bta_dm_ci_rmt_oob
 #include "bta/include/bta_sdp_api.h"
 #include "bta/sys/bta_sys.h"
 #include "btif/include/btif_dm.h"
@@ -46,12 +45,10 @@
 #include "main/shim/acl_api.h"
 #include "main/shim/btm_api.h"
 #include "osi/include/allocator.h"
-#include "osi/include/compat.h"  // strlcpy
 #include "osi/include/fixed_queue.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
 #include "stack/btm/btm_dev.h"
-#include "stack/btm/btm_sec.h"
 #include "stack/gatt/connection_manager.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
