@@ -16,6 +16,40 @@
       "message": "Friendly ping on this. Thanks for your help!",
       "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63caef7c_e96f549e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-10-12T17:59:02Z",
+      "side": 1,
+      "message": "Hi Howard, what\u0027s the context behind this change? From the bug description \"Adding a `get_remote_rssi` api may work but might not be the optimal choice here.\" Are we just exposing it for testing purposes right now?",
+      "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e215530_5f447e6a",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-10-12T17:59:02Z",
+      "side": 1,
+      "message": "Set it equal to `i8::MAX`? Makes it more clear why we are choosing 127",
+      "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
