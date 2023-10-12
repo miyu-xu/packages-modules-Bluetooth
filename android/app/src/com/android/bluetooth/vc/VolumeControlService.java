@@ -83,6 +83,9 @@ public class VolumeControlService extends ProfileService {
     RemoteCallbackList<IBluetoothVolumeControlCallback> mCallbacks;
 
     @VisibleForTesting
+    RemoteCallbackList<IBluetoothVolumeControlCallback> mNewRegisteredCallbacks;
+
+    @VisibleForTesting
     static class VolumeControlOffsetDescriptor {
         Map<Integer, Descriptor> mVolumeOffsets;
 
@@ -119,6 +122,14 @@ public class VolumeControlService extends ProfileService {
             }
             d.mValue = value;
             return true;
+        }
+
+        int getFirstOffsetValue() {
+            if (size() == 0) {
+                return 0;
+            }
+            Descriptor descriptors[] = mVolumeOffsets.values().toArray(new Descriptor[size()]);
+            return descriptors[0].mValue;
         }
 
         int getValue(int id) {
@@ -253,6 +264,7 @@ public class VolumeControlService extends ProfileService {
         mGroupVolumeCache.clear();
         mGroupMuteCache.clear();
         mCallbacks = new RemoteCallbackList<IBluetoothVolumeControlCallback>();
+        mNewRegisteredCallbacks = new RemoteCallbackList<IBluetoothVolumeControlCallback>();
 
         // Mark service as started
         setVolumeControlService(this);
@@ -320,6 +332,12 @@ public class VolumeControlService extends ProfileService {
 
         if (mCallbacks != null) {
             mCallbacks.kill();
+            mCallbacks = null;
+        }
+
+        if (mNewRegisteredCallbacks != null) {
+            mNewRegisteredCallbacks.kill();
+            mNewRegisteredCallbacks = null;
         }
 
         return true;
@@ -699,6 +717,58 @@ public class VolumeControlService extends ProfileService {
         mVolumeControlNativeInterface.unmuteGroup(groupId);
     }
 
+    public void notifyNewUsersOfKnonwVolumeOffsets(IBluetoothVolumeControlCallback callback) {
+        if (DBG) {
+            Log.d(TAG, "notifyNewUsersOfKnonwVolumeOffsets");
+        }
+
+         if (!isAvailable()) {
+            Log.w(TAG, "notifyNewUsersOfKnonwVolumeOffsets: service is not available");
+            return;
+        }
+
+        if (mNewRegisteredCallbacks == null) {
+            Log.w(TAG, "notifyNewUsersOfKnonwVolumeOffsets: mNewRegisteredCallbacks not available");
+            return;
+        }
+
+        for (Map.Entry<BluetoothDevice, VolumeControlOffsetDescriptor> entry :
+                                                            mAudioOffsets.entrySet()) {
+            VolumeControlOffsetDescriptor descriptor = entry.getValue();
+            if (descriptor.size() == 0) {
+                continue;
+            }
+
+            BluetoothDevice device = entry.getKey();
+            int offset = descriptor.getFirstOffsetValue();
+
+            if (DBG) {
+                Log.d(TAG, "notifyNewUsersOfKnonwVolumeOffsets: " + device + ", " + offset);
+            }
+
+            int n = mNewRegisteredCallbacks.beginBroadcast();
+            for (int i = 0; i < n; i++) {
+                try {
+                    mNewRegisteredCallbacks.getBroadcastItem(i).onVolumeOffsetChanged(device, offset);
+                } catch (RemoteException e) {
+                    continue;
+                }
+            }
+            mNewRegisteredCallbacks.finishBroadcast();
+        }
+        /* User is notified, remove callback from temporary list */
+        mNewRegisteredCallbacks.unregister(callback);
+    }
+
+    /**
+     * {@hide}
+     */
+    public void registerCallbacks(IBluetoothVolumeControlCallback callback) {
+        mCallbacks.register(callback);
+        mNewRegisteredCallbacks.register(callback);
+        mHandler.post(() -> notifyNewUsersOfKnonwVolumeOffsets(callback));
+    }
+
     /**
      * {@hide}
      */
@@ -963,6 +1033,9 @@ public class VolumeControlService extends ProfileService {
     }
 
     void messageFromNative(VolumeControlStackEvent stackEvent) {
+        if (DBG) {
+            Log.d(TAG, "messageFromNative: " + stackEvent);
+        }
 
         if (stackEvent.type == VolumeControlStackEvent.EVENT_TYPE_VOLUME_STATE_CHANGED) {
             handleVolumeControlChanged(stackEvent.device, stackEvent.valueInt1,
@@ -1511,9 +1584,8 @@ public class VolumeControlService extends ProfileService {
                 }
 
                 enforceBluetoothPrivilegedPermission(service);
-
-                service.mCallbacks.register(callback);
                 receiver.send(null);
+                service.registerCallbacks(callback);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
