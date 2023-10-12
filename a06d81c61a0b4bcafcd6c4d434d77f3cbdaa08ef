@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99e717ff_d9ff4fde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-12T18:37:16Z",
+      "side": 1,
+      "message": "I assume the flag is not needed because you are directly calling below the flag check.\nSmart, I like it.",
+      "revId": "a06d81c61a0b4bcafcd6c4d434d77f3cbdaa08ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
