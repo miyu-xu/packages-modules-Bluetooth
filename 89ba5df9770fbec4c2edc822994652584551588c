@@ -16,6 +16,23 @@
       "message": "Adding classic audio DRI for vis",
       "revId": "89ba5df9770fbec4c2edc822994652584551588c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "37b0d017_92647226",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1869430
+      },
+      "writtenOn": "2023-10-12T21:01:54Z",
+      "side": 1,
+      "message": "this does not need to be public, i believe package access is enough",
+      "revId": "89ba5df9770fbec4c2edc822994652584551588c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
