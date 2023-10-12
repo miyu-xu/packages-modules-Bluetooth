@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9c7a6f34_2a37bb9c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-12T00:48:57Z",
+      "side": 1,
+      "message": "Presubmits seemed to catch issues (PTS bot did) so I think we should be fairly covered.",
+      "parentUuid": "2dec1e94_547dcecf",
+      "revId": "3185be6333f08dc8ea57db429caf1eac99343c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c4d1984b_6d5a6c93",
         "filename": "system/btif/src/btif_sock_rfc.cc",
         "patchSetId": 1
@@ -37,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44b9706b_c3059109",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-12T00:48:57Z",
+      "side": 1,
+      "message": "I don\u0027t think this is an error case handling ... It is if UUID is valid createRecordByUser ; if Uuid is null start Rfcomm server (and SDP record will be created later).\n\nI don\u0027t think it is related to behavior seen in line 769. In line 769 - we try to create an SDP record for the server - if it fails error out.",
+      "parentUuid": "c4d1984b_6d5a6c93",
+      "revId": "3185be6333f08dc8ea57db429caf1eac99343c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1b0ffc91_c8f34b14",
         "filename": "system/btif/src/btif_sock_rfc.cc",
         "patchSetId": 1
@@ -48,6 +84,30 @@
       "writtenOn": "2023-10-12T00:04:56Z",
       "side": 1,
       "message": "Are you missing a break here?\n\nSince this isn\u0027t an error condition, I think I like this better:\n\n       // Find the next slot that needs to perform an SDP request and service it.\n      slot \u003d find_rfc_slot_by_pending_sdp();\n      if (slot) {\n        BTA_JvStartDiscovery(slot-\u003eaddr, 1, \u0026slot-\u003eservice_uuid, slot-\u003eid);\n        slot-\u003ef.pending_sdp_request \u003d false;\n        slot-\u003ef.doing_sdp_request \u003d true;\n      }\n      \nYou could add an \"else\" to print the debug if you want.",
+      "range": {
+        "startLine": 788,
+        "startChar": 8,
+        "endLine": 788,
+        "endChar": 17
+      },
+      "revId": "3185be6333f08dc8ea57db429caf1eac99343c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d3c2967e_f5534895",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-12T00:48:57Z",
+      "side": 1,
+      "message": "I think that is fair. (indeed it is not an error condition).",
+      "parentUuid": "1b0ffc91_c8f34b14",
       "range": {
         "startLine": 788,
         "startChar": 8,
@@ -81,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1cbb6be_4e3dad60",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-12T00:48:57Z",
+      "side": 1,
+      "message": "Acknowledged. This TODO isn\u0027t actionable so removing it.",
+      "parentUuid": "80294fc8_c994c3a3",
+      "range": {
+        "startLine": 813,
+        "startChar": 7,
+        "endLine": 813,
+        "endChar": 20
+      },
+      "revId": "3185be6333f08dc8ea57db429caf1eac99343c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7e2e7fb_4b313595",
@@ -104,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea062ddf_d0621fcc",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-12T00:48:57Z",
+      "side": 1,
+      "message": "Not really. That was the original behavior as well.",
+      "parentUuid": "d7e2e7fb_4b313595",
+      "range": {
+        "startLine": 818,
+        "startChar": 4,
+        "endLine": 818,
+        "endChar": 10
+      },
+      "revId": "3185be6333f08dc8ea57db429caf1eac99343c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e91f6727_1e4db7b6",
@@ -117,6 +225,30 @@
       "writtenOn": "2023-10-12T00:04:56Z",
       "side": 1,
       "message": "cleanup_rfc_slot(slot);\nreturn;",
+      "range": {
+        "startLine": 822,
+        "startChar": 0,
+        "endLine": 822,
+        "endChar": 34
+      },
+      "revId": "3185be6333f08dc8ea57db429caf1eac99343c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "69aabddb_d3d47dcf",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 822,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-12T00:48:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e91f6727_1e4db7b6",
       "range": {
         "startLine": 822,
         "startChar": 0,
