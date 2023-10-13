@@ -582,7 +582,7 @@ TEST_F(BtaDmTest, bta_dm_sp_cback__BTM_SP_CFM_REQ_EVT_WithName) {
   bta_dm_enable([](tBTA_DM_SEC_EVT event, tBTA_DM_SEC* p_data) {
     callback_sent = true;
     cfm_req = p_data->cfm_req;
-  });
+  }, nullptr);
 
   bluetooth::legacy::testing::btm_set_local_io_caps(0xff);
 
@@ -633,7 +633,7 @@ TEST_F(BtaDmTest, bta_dm_sp_cback__BTM_SP_CFM_REQ_EVT_WithoutName_RNRSuccess) {
   bta_dm_enable([](tBTA_DM_SEC_EVT event, tBTA_DM_SEC* p_data) {
     callback_sent = true;
     cfm_req = p_data->cfm_req;
-  });
+  }, nullptr);
 
   bluetooth::legacy::testing::btm_set_local_io_caps(0xff);
 
@@ -674,7 +674,7 @@ TEST_F(BtaDmTest, bta_dm_sp_cback__BTM_SP_CFM_REQ_EVT_WithoutName_RNRFail) {
   bta_dm_enable([](tBTA_DM_SEC_EVT event, tBTA_DM_SEC* p_data) {
     callback_sent = true;
     cfm_req = p_data->cfm_req;
-  });
+  }, nullptr);
 
   bluetooth::legacy::testing::btm_set_local_io_caps(0xff);
 
@@ -721,7 +721,7 @@ TEST_F(BtaDmTest, bta_dm_sp_cback__BTM_SP_KEY_NOTIF_EVT) {
   bta_dm_enable([](tBTA_DM_SEC_EVT event, tBTA_DM_SEC* p_data) {
     callback_sent = true;
     key_notif = p_data->key_notif;
-  });
+  }, nullptr);
   bluetooth::legacy::testing::btm_set_local_io_caps(0xff);
 
   tBTM_SP_EVT_DATA data = {

@@ -346,6 +346,10 @@ extern tBTA_DM_CONNECTED_SRVCS bta_dm_conn_srvcs;
 
 #define BTA_DM_NUM_PM_TIMER 7
 
+typedef struct {
+  tBTA_DM_ACL_CBACK* p_acl_cback;
+} tBTA_DM_ACL_CB;
+
 /* DM control block */
 typedef struct {
   tBTA_DM_ACTIVE_LINK device_list;
@@ -517,6 +521,8 @@ extern const tBTA_DM_EIR_CONF* p_bta_dm_eir_cfg;
 /* DM control block */
 extern tBTA_DM_CB bta_dm_cb;
 
+extern tBTA_DM_ACL_CB bta_dm_acl_cb;
+
 /* DM search control block */
 extern tBTA_DM_SEARCH_CB bta_dm_search_cb;
 
@@ -526,7 +532,7 @@ extern tBTA_DM_DI_CB bta_dm_di_cb;
 bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg);
 void bta_dm_search_sm_disable(void);
 
-void bta_dm_enable(tBTA_DM_SEC_CBACK*);
+void bta_dm_enable(tBTA_DM_SEC_CBACK*, tBTA_DM_ACL_CBACK*);
 void bta_dm_disable();
 void bta_dm_ble_sirk_sec_cb_register(tBTA_DM_SEC_CBACK*);
 void bta_dm_ble_sirk_confirm_device_reply(const RawAddress& bd_addr,
