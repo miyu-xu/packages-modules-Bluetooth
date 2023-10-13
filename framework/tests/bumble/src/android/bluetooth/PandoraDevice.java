@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package android.bluetooth;
-
 import android.util.Log;
+
+import androidx.test.core.app.ApplicationProvider;
 
 import com.google.protobuf.Empty;
 
@@ -29,48 +29,45 @@ import java.util.concurrent.TimeUnit;
 
 import pandora.DckGrpc;
 import pandora.HostGrpc;
+import pandora.HostProto;
+import pandora.SecurityGrpc;
 
 public final class PandoraDevice extends ExternalResource {
     private static final String TAG = PandoraDevice.class.getSimpleName();
-
-    private final String mAddress;
+    private final String mNetworkAddress;
+    private String mPublicBluetoothAddress;
     private final int mPort;
-
     private ManagedChannel mChannel;
 
-    public PandoraDevice(String address, int port) {
-        mAddress = address;
+    public PandoraDevice(String networkAddress, int port) {
+        mNetworkAddress = networkAddress;
         mPort = port;
     }
-
     public PandoraDevice() {
         this("localhost", 7999);
     }
-
     @Override
     protected void before() {
         Log.i(TAG, "factoryReset");
         // FactoryReset is killing the server and restarting all channels created before the server
         // restarted that cannot be reused
         ManagedChannel channel =
-                OkHttpChannelBuilder.forAddress(mAddress, mPort).usePlaintext().build();
-
+                OkHttpChannelBuilder.forAddress(mNetworkAddress, mPort).usePlaintext().build();
         HostGrpc.HostBlockingStub stub = HostGrpc.newBlockingStub(channel);
         stub.factoryReset(Empty.getDefaultInstance());
-
         try {
             // terminate the channel
             channel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-        mChannel = OkHttpChannelBuilder.forAddress(mAddress, mPort).usePlaintext().build();
+        mChannel = OkHttpChannelBuilder.forAddress(mNetworkAddress, mPort).usePlaintext().build();
         stub = HostGrpc.newBlockingStub(mChannel);
-
-        stub.withWaitForReady().readLocalAddress(Empty.getDefaultInstance());
+        HostProto.ReadLocalAddressResponse readLocalAddressResponse =
+                stub.withWaitForReady().readLocalAddress(Empty.getDefaultInstance());
+        mPublicBluetoothAddress =
+                Utils.addressStringFromByteString(readLocalAddressResponse.getAddress());
     }
-
     @Override
     protected void after() {
         Log.i(TAG, "shutdown");
@@ -83,6 +80,21 @@ public final class PandoraDevice extends ExternalResource {
         }
     }
 
+    /**
+     * @return bumble as a remote device
+     */
+    public BluetoothDevice getRemoteDevice() {
+        return ApplicationProvider.getApplicationContext()
+                .getSystemService(BluetoothManager.class)
+                .getAdapter()
+                .getRemoteDevice(Utils.addressBytesFromString(mPublicBluetoothAddress));
+    }
+    /**
+     * @return device's BR/EDR address as a byte string
+     */
+    public String getPublicBluetoothAddress() {
+        return mPublicBluetoothAddress;
+    }
     /** Get Pandora Host service */
     public HostGrpc.HostStub host() {
         return HostGrpc.newStub(mChannel);
@@ -101,5 +113,10 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora Dck blocking service */
     public DckGrpc.DckBlockingStub dckBlocking() {
         return DckGrpc.newBlockingStub(mChannel);
+    }
+
+    /** Get Pandora Security service */
+    public SecurityGrpc.SecurityStub security() {
+        return SecurityGrpc.newStub(mChannel);
     }
 }
