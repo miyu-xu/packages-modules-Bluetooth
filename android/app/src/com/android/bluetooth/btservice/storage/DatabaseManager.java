@@ -982,8 +982,13 @@ public class DatabaseManager {
     }
 
     void createMetadata(String address, boolean isActiveA2dpDevice) {
-        Metadata data = new Metadata(address);
-        data.is_active_a2dp_device = isActiveA2dpDevice;
+        Metadata.Builder dataBuilder = new Metadata.Builder(address);
+
+        if (isActiveA2dpDevice) {
+            dataBuilder.setActiveA2dp();
+        }
+
+        Metadata data = dataBuilder.build();
         mMetadataCache.put(address, data);
         updateDatabase(data);
         logMetadataChange(data, "Metadata created");
