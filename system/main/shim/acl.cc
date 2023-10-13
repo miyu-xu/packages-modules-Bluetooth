@@ -891,6 +891,12 @@ struct shim::legacy::Acl::impl {
     handle_to_le_connection_map_[handle]->EnqueuePacket(std::move(packet));
   }
 
+  void CancelAllPendingClassicConnections(std::promise<void> promise) {
+    // Cancel all pending connections
+    GetAclManager()->CancelAllPendingClassicConnections();
+    promise.set_value();
+  }
+
   void DisconnectClassicConnections(std::promise<void> promise) {
     LOG_INFO("Disconnect gd acl shim classic connections");
     std::vector<HciHandle> disconnect_handles;
@@ -1855,6 +1861,14 @@ void shim::legacy::Acl::DumpConnectionHistory(int fd) const {
 }
 
 void shim::legacy::Acl::DisconnectAllForSuspend() {
+  {
+    std::promise<void> cancel_promise;
+    auto cancel_future = cancel_promise.get_future();
+    handler_->CallOn(pimpl_.get(),
+                     &Acl::impl::CancelAllPendingClassicConnections,
+                     std::move(cancel_promise));
+    cancel_future.wait();
+  }
   if (CheckForOrphanedAclConnections()) {
     std::promise<void> disconnect_promise;
     auto disconnect_future = disconnect_promise.get_future();

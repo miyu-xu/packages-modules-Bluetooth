@@ -161,6 +161,8 @@ struct classic_impl : public security::ISecurityManagerListener {
 
    public:
     bool crash_on_unknown_handle_ = false;
+    std::unordered_set<Address> pending_connection_addresses;
+
     bool is_empty() const {
       std::unique_lock<std::mutex> lock(acl_connections_guard_);
       return acl_connections_.empty();
@@ -297,6 +299,7 @@ struct classic_impl : public security::ISecurityManagerListener {
   }
 
   void create_connection(Address address) {
+    connections.pending_connection_addresses.insert(address);
     // TODO: Configure default connection parameters?
     uint16_t packet_type = 0x4408 /* DM 1,3,5 */ | 0x8810 /*DH 1,3,5 */;
     PageScanRepetitionMode page_scan_repetition_mode = PageScanRepetitionMode::R1;
@@ -325,6 +328,7 @@ struct classic_impl : public security::ISecurityManagerListener {
     ASSERT(status.IsValid());
     ASSERT(status.GetCommandOpCode() == OpCode::CREATE_CONNECTION);
     if (status.GetStatus() != hci::ErrorCode::SUCCESS /* = pending */) {
+      connections.pending_connection_addresses.erase(address);
       // something went wrong, but unblock queue and report to caller
       LOG_ERROR("Failed to create connection, reporting failure and continuing");
       ASSERT(client_callbacks_ != nullptr);
@@ -395,6 +399,7 @@ struct classic_impl : public security::ISecurityManagerListener {
     ASSERT(connection_complete.IsValid());
     auto status = connection_complete.GetStatus();
     auto address = connection_complete.GetBdAddr();
+    connections.pending_connection_addresses.erase(address);
 
     // TODO(b/261610529) - Some controllers incorrectly return connection
     // failures via HCI Connect Complete instead of SCO connect complete.
@@ -453,6 +458,13 @@ struct classic_impl : public security::ISecurityManagerListener {
             common::Unretained(remote_name_request_module_),
             address,
             status));
+  }
+
+  void cancel_all_pending_acl_connections() {
+    for (auto& address : connections.pending_connection_addresses) {
+      cancel_connect(address);
+    }
+    connections.pending_connection_addresses.clear();
   }
 
   void cancel_connect(Address address) {
