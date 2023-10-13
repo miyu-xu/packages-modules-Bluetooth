@@ -56,6 +56,11 @@ void btif_dm_cleanup(void);
 void bte_dm_evt(tBTA_DM_SEC_EVT event, tBTA_DM_SEC* p_data);
 
 /**
+ * BTIF callback for ACL up/down events
+ */
+void btif_dm_acl_evt(tBTA_DM_ACL_EVT event, tBTA_DM_ACL* p_data);
+
+/**
  * Notify BT disable being initiated. DM may chose to abort
  * pending commands, like pairing
  */
