@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a71a8b14_ba0d17ff",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T11:08:27Z",
+      "side": 1,
+      "message": "sorry my mistake, nvm.",
+      "parentUuid": "692082f3_de34adac",
+      "range": {
+        "startLine": 357,
+        "startChar": 8,
+        "endLine": 357,
+        "endChar": 77
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3dda1975_5f4a522d",
