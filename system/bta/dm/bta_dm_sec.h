@@ -22,6 +22,24 @@
 #include "bta/include/bta_api.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 
+typedef struct {
+  tBTA_DM_SEC_CBACK* p_sec_cback;
+  tBTA_DM_SEC_CBACK* p_sec_sirk_cback;
+/* Storage for pin code request parameters */
+  RawAddress pin_bd_addr;
+  DEV_CLASS pin_dev_class;
+  tBTA_DM_SEC_EVT pin_evt;
+  tBTM_IO_CAP loc_io_caps;    /* IO Capabilities of local device */
+  tBTM_IO_CAP rmt_io_caps;    /* IO Capabilities of remote device */
+  tBTM_AUTH_REQ loc_auth_req; /* Authentication required for local device */
+  tBTM_AUTH_REQ rmt_auth_req;
+  uint32_t num_val; /* the numeric value for comparison. If just_works, do not
+                       show this number to UI */
+  bool just_works;  /* true, if "Just Works" association model */
+} tBTA_DM_SEC_CB;
+
+extern tBTA_DM_SEC_CB bta_dm_sec_cb;
+
 void bta_dm_sec_enable(tBTA_DM_SEC_CBACK* p_sec_cback);
 
 void bta_dm_add_ble_device(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
