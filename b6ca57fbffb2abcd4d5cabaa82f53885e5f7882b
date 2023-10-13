@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a47a1e44_78f1edfc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T12:17:09Z",
+      "side": 1,
+      "message": "Thanks for the fast review!",
+      "parentUuid": "e5574da8_006d68e9",
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7570ecb_89bf1316",
@@ -55,6 +73,30 @@
       "side": 1,
       "message": "good suggestion",
       "parentUuid": "c7570ecb_89bf1316",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 10
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce9501ec_2b386600",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T12:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7d266729_b0ce9bc1",
       "range": {
         "startLine": 118,
         "startChar": 8,
@@ -173,6 +215,30 @@
       "side": 1,
       "message": "ack",
       "parentUuid": "3dda1975_5f4a522d",
+      "range": {
+        "startLine": 362,
+        "startChar": 85,
+        "endLine": 362,
+        "endChar": 86
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60cc54b1_ae1a32cf",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T12:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a16a386a_08f748e4",
       "range": {
         "startLine": 362,
         "startChar": 85,
@@ -308,6 +374,24 @@
       "side": 1,
       "message": "ack",
       "parentUuid": "4d5ade91_f01d8904",
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a631cb75_37cc744c",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T12:17:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d430687f_4c39f4be",
       "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
