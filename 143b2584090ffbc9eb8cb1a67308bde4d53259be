@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20781ac9_547ae2fc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T08:15:40Z",
+      "side": 1,
+      "message": "Hi Howard, could you do the initial review for this refactoring? Thanks!",
+      "revId": "143b2584090ffbc9eb8cb1a67308bde4d53259be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
