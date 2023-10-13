@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d580ae84_3c3f69d5",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-13T00:37:25Z",
+      "side": 1,
+      "message": "nit: Can we capture the return value and print it?",
+      "range": {
+        "startLine": 826,
+        "startChar": 6,
+        "endLine": 826,
+        "endChar": 25
+      },
+      "revId": "90ee810bfb8e3a9d188e5483fb2abfd3a4a2894b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56d37001_e1691969",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-13T00:37:25Z",
+      "side": 1,
+      "message": "nit: How do we know it didn\u0027t return BUSY or one of the others?",
+      "range": {
+        "startLine": 829,
+        "startChar": 40,
+        "endLine": 829,
+        "endChar": 54
+      },
+      "revId": "90ee810bfb8e3a9d188e5483fb2abfd3a4a2894b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
