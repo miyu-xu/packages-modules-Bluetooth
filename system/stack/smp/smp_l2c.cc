@@ -240,8 +240,7 @@ static void smp_br_connect_callback(uint16_t channel, const RawAddress& bd_addr,
   SMP_TRACE_EVENT("%s", __func__);
 
   if (transport != BT_TRANSPORT_BR_EDR) {
-    SMP_TRACE_WARNING("%s is called on unexpected transport %d", __func__,
-                      transport);
+    LOG_WARN("is called on unexpected transport %d", transport);
     return;
   }
 

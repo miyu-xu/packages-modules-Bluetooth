@@ -1,0 +1,133 @@
+/*
+ * Copyright (C) 2023 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package android.bluetooth;
+
+import static com.google.common.truth.Truth.assertThat;
+
+import android.content.Context;
+
+import android.content.BroadcastReceiver;
+import android.content.Intent;
+import android.os.ParcelUuid;
+import android.os.Parcelable;
+
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.runner.AndroidJUnit4;
+import android.content.IntentFilter;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
+import java.util.UUID;
+
+import com.android.compatibility.common.util.AdoptShellPermissionsRule;
+import com.google.protobuf.ByteString;
+
+import pandora.HostProto.ConnectRequest;
+import pandora.HostProto.ConnectResponse;
+
+import com.google.common.util.concurrent.SettableFuture;
+
+/** Test cases for {@link AdvertiseManager}. */
+@RunWith(AndroidJUnit4.class)
+public class SdpClientTest {
+    public class Explosion {}
+
+    private static final String TAG = "SdpClientTest";
+    private static final byte[] addr = {
+        (byte) 0x51, (byte) 0xF7, (byte) 0xA8, (byte) 0x75, (byte) 0xAC, (byte) 0x5E
+    };
+
+    private final Context mContext = ApplicationProvider.getApplicationContext();
+    private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
+    private final BluetoothAdapter mAdapter = mManager.getAdapter();
+
+    private SettableFuture<ArrayList<UUID>> future;
+
+    @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
+
+    @Rule public final PandoraDevice mBumble = new PandoraDevice();
+
+    private BroadcastReceiver mConnectionStateReceiver =
+            new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    BluetoothDevice device =
+                            (BluetoothDevice)
+                                    intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    if (BluetoothDevice.ACTION_UUID.equals(intent.getAction())) {
+                        Parcelable parcelable[] =
+                                (Parcelable[]) intent.getExtra(BluetoothDevice.EXTRA_UUID);
+                        if (parcelable != null) {
+                            ArrayList<UUID> list = new ArrayList<UUID>();
+                            // iterate over the Parcelable[], cast each Parcelable to ParcelUuid and
+                            // use ParcelUuid. getUuid()
+                            for (Parcelable p : parcelable) {
+                                ParcelUuid uuid = (ParcelUuid) p;
+                                list.add(uuid.getUuid());
+                            }
+                            future.set(list);
+                        }
+                    }
+                }
+            };
+
+    @Test
+    public void remoteConnectServiceDiscoveryTest() throws Exception {
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_UUID);
+        mContext.registerReceiver(mConnectionStateReceiver, filter);
+
+        future = SettableFuture.create();
+
+        connectWithBumble();
+
+        // Check the random address is valid
+        BluetoothDevice device = mAdapter.getRemoteDevice(addr);
+        assertThat(device).isNotNull();
+
+        // Get the identity address
+        BluetoothDevice device2 =
+                mAdapter.getRemoteDevice(
+                        Utils.addressBytesFromString(mBumble.getPublicBluetoothAddress()));
+
+        // Execute service discovery procedure
+        assertThat(device2.fetchUuidsWithSdp()).isTrue();
+
+        ArrayList<UUID> list = future.get();
+        assertThat(list.size() > 0);
+
+        mContext.unregisterReceiver(mConnectionStateReceiver);
+    }
+
+    private void connectWithBumble() {
+        String local_addr = mAdapter.getAddress();
+        byte[] local_bytes_addr = Utils.addressBytesFromString(local_addr);
+
+        ConnectRequest request =
+                ConnectRequest.newBuilder()
+                        .setAddress(ByteString.copyFrom(local_bytes_addr))
+                        .build();
+
+        StreamObserverSpliterator<ConnectResponse> observer = new StreamObserverSpliterator<>();
+
+        // Connect
+        mBumble.host().connect(request, observer);
+        observer.iterator().next();
+    }
+}
