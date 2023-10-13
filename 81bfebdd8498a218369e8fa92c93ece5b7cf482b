@@ -87,6 +87,24 @@
       "parentUuid": "52dcce86_9f068cab",
       "revId": "81bfebdd8498a218369e8fa92c93ece5b7cf482b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "28cd67e7_bb4f9a2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-13T01:20:29Z",
+      "side": 1,
+      "message": "Automerger update is submitted and it will disappear as soon as it reach prod.",
+      "parentUuid": "b95a9360_05975453",
+      "revId": "81bfebdd8498a218369e8fa92c93ece5b7cf482b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
