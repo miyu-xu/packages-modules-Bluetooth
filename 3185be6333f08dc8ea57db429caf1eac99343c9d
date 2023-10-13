@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e55336_d2d39c2f",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-13T00:32:09Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "44b9706b_c3059109",
+      "revId": "3185be6333f08dc8ea57db429caf1eac99343c9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b0ffc91_c8f34b14",
