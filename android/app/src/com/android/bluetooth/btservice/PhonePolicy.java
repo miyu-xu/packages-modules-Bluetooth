@@ -77,6 +77,12 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
     private static boolean sLeAudioEnabledByDefault = DeviceConfig.getBoolean(
             DeviceConfig.NAMESPACE_BLUETOOTH, CONFIG_LE_AUDIO_ENABLED_BY_DEFAULT, false);
 
+    private static final String HFP_AUTO_CONNECT = "HFP_AUTO_CONNECT";
+
+    @VisibleForTesting
+    static boolean sIsHfpAutoConnectEnabled =
+            DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH, HFP_AUTO_CONNECT, false);
+
     // Timeouts
     @VisibleForTesting static int sConnectOtherProfilesTimeoutMillis = 6000; // 6s
 
@@ -543,10 +549,11 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
         mA2dpRetrySet.clear();
     }
 
+    @VisibleForTesting
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
-    private void autoConnect() {
+    void autoConnect() {
         if (mAdapterService.getState() != BluetoothAdapter.STATE_ON) {
-            errorLog("autoConnect: BT is not ON. Exiting autoConnect");
+            Log.e(TAG, "autoConnect: BT is not ON. Exiting autoConnect");
             return;
         }
         if (mAdapterService.isQuietModeEnabled()) {
@@ -554,7 +561,6 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
             return;
         }
 
-        Log.i(TAG, "autoConnect: Initiate auto connection on BT on...");
         final BluetoothDevice mostRecentlyActiveA2dpDevice =
                 mDatabaseManager.getMostRecentlyConnectedA2dpDevice();
         if (mostRecentlyActiveA2dpDevice != null) {
@@ -563,7 +569,24 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
             autoConnectHeadset(mostRecentlyActiveA2dpDevice);
             autoConnectA2dp(mostRecentlyActiveA2dpDevice);
             autoConnectHidHost(mostRecentlyActiveA2dpDevice);
+            return;
         }
+
+        if (!sIsHfpAutoConnectEnabled) {
+            debugLog("HFP auto connect is not enabled");
+            return;
+        }
+
+        // Try to autoConnect with Hfp only if there was no a2dp valid device
+        final BluetoothDevice mostRecentlyConnectedHfpDevice =
+                mDatabaseManager.getMostRecentlyActiveHfpDevice();
+        if (mostRecentlyConnectedHfpDevice != null) {
+            debugLog("autoConnect: Headset device: " + mostRecentlyConnectedHfpDevice);
+            autoConnectHeadset(mostRecentlyConnectedHfpDevice);
+            return;
+        }
+        Log.i(TAG, "autoConnect: No device to reconnect to");
+
     }
 
     private void autoConnectA2dp(BluetoothDevice device) {
@@ -793,9 +816,5 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
 
     private static void warnLog(String msg) {
         Log.w(TAG, msg);
-    }
-
-    private static void errorLog(String msg) {
-        Log.e(TAG, msg);
     }
 }
