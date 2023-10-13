@@ -77,6 +77,12 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
     private static boolean sLeAudioEnabledByDefault = DeviceConfig.getBoolean(
             DeviceConfig.NAMESPACE_BLUETOOTH, CONFIG_LE_AUDIO_ENABLED_BY_DEFAULT, false);
 
+    private static final String HFP_AUTO_CONNECT = "HFP_AUTO_CONNECT";
+
+    @VisibleForTesting
+    static boolean sIsHfpAutoConnectEnabled =
+            DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH, HFP_AUTO_CONNECT, false);
+
     // Timeouts
     @VisibleForTesting static int sConnectOtherProfilesTimeoutMillis = 6000; // 6s
 
@@ -543,8 +549,9 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
         mA2dpRetrySet.clear();
     }
 
+    @VisibleForTesting
     @RequiresPermission(android.Manifest.permission.MODIFY_PHONE_STATE)
-    private void autoConnect() {
+    void autoConnect() {
         if (mAdapterService.getState() != BluetoothAdapter.STATE_ON) {
             errorLog("autoConnect: BT is not ON. Exiting autoConnect");
             return;
@@ -563,6 +570,24 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
             autoConnectHeadset(mostRecentlyActiveA2dpDevice);
             autoConnectA2dp(mostRecentlyActiveA2dpDevice);
             autoConnectHidHost(mostRecentlyActiveA2dpDevice);
+            return;
+        }
+
+        Log.d(TAG, "is HFP auto connect enabled: " + sIsHfpAutoConnectEnabled);
+        if (!sIsHfpAutoConnectEnabled) {
+            return;
+        }
+        Log.i(TAG, "autoConnect: most recently active a2dp device is null");
+
+        // if mostRecentlyActiveA2dpDevice is null,
+        // then auto connect to the most recently connected non-user disconnected HFP device
+        final BluetoothDevice mostRecentlyConnectedHfpDevice =
+                mDatabaseManager.getMostRecentlyActiveHfpDevice();
+        if (mostRecentlyConnectedHfpDevice == null) {
+            Log.i(TAG, "autoConnect: mostRecentlyConnectedHfpDevice is null");
+        } else {
+            Log.d(TAG, "autoConnect: Headset device: " + mostRecentlyConnectedHfpDevice);
+            autoConnectHeadset(mostRecentlyConnectedHfpDevice);
         }
     }
 
