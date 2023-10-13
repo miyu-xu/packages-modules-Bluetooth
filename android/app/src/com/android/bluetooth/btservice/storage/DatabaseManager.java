@@ -57,6 +57,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * The active device manager is responsible to handle a Room database
@@ -646,7 +647,7 @@ public class DatabaseManager {
             if (isA2dpDevice) {
                 resetActiveA2dpDevice();
             }
-            if (isHfpDevice) {
+            if (isHfpDevice && !PhonePolicy.sIsHfpMultiAutoConnectEnabled) {
                 resetActiveHfpDevice();
             }
 
@@ -844,6 +845,19 @@ public class DatabaseManager {
         }
 
         return null;
+    }
+
+    /**
+     * @return the list of device registered as HFP active
+     */
+    public List<BluetoothDevice> getMostRecentlyActiveHfpDevices() {
+        BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
+        synchronized (mMetadataCache) {
+            return mMetadataCache.entrySet().stream()
+                    .filter(x -> x.getValue().isActiveHfpDevice)
+                    .map(x -> adapter.getRemoteDevice(x.getValue().getAddress()))
+                    .collect(Collectors.toList());
+        }
     }
 
     /**

@@ -83,6 +83,12 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
     static boolean sIsHfpAutoConnectEnabled =
             DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH, HFP_AUTO_CONNECT, false);
 
+    private static boolean sIsHfpMultiAutoConnectEnabled =
+            DeviceConfig.getBoolean(
+                    DeviceConfig.NAMESPACE_BLUETOOTH,
+                    "com.android.bluetooth.hfp_multi_auto_connect",
+                    false);
+
     // Timeouts
     @VisibleForTesting static int sConnectOtherProfilesTimeoutMillis = 6000; // 6s
 
@@ -577,6 +583,18 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
             return;
         }
 
+        if (sIsHfpMultiAutoConnectEnabled) {
+            final List<BluetoothDevice> mostRecentlyConnectedHfpDevices =
+                    mDatabaseManager.getMostRecentlyActiveHfpDevices();
+            for (BluetoothDevice hfpDevice : mostRecentlyConnectedHfpDevices) {
+                debugLog("autoConnect: Headset device: " + hfpDevice);
+                autoConnectHeadset(hfpDevice);
+            }
+            if (mostRecentlyConnectedHfpDevices.size() == 0) {
+                Log.i(TAG, "autoConnect: No device to reconnect to");
+            }
+            return;
+        }
         // Try to autoConnect with Hfp only if there was no a2dp valid device
         final BluetoothDevice mostRecentlyConnectedHfpDevice =
                 mDatabaseManager.getMostRecentlyActiveHfpDevice();
