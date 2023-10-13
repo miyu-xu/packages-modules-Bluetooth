@@ -35,6 +35,8 @@
     <option name="test-tag" value="BumbleBluetoothTests" />
     <test class="com.android.tradefed.testtype.AndroidJUnitTest" >
         <option name="package" value="android.bluetooth" />
+        <option name="test-timeout" value="20000" />
+        <option name="shell-timeout" value="20000" />
     </test>
 
     <!-- Only run if the Bluetooth Mainline module is installed. -->
