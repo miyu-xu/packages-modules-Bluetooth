@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61516b4c_b72d2e0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T12:31:01Z",
+      "side": 1,
+      "message": "Hi Abhishek, I added some new rule to hcidoc. PTAL, thanks.\n\nHi Howard, thanks for reviewing the refactor. If you want to review the next CLs as well feel free to do so!",
+      "revId": "469e6355e60f577daacaf30057ee03afa9524185",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
