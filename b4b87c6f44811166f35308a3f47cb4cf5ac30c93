@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93501180_a56e9366",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "flag is added, code format will be included in another CL, \nFor early return and function signature change, I think that is better to put it in this change",
+      "parentUuid": "c4d2761e_c68bcb8f",
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dd71c11d_14893467",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 11
@@ -31,6 +49,30 @@
       "writtenOn": "2023-10-12T19:07:42Z",
       "side": 1,
       "message": "can the early return change made separately ?",
+      "range": {
+        "startLine": 553,
+        "startChar": 0,
+        "endLine": 553,
+        "endChar": 51
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f28d684_2b44c327",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "for the early return, there is no logic change included, and it is necessary, because otherwise all added code will be nested within that if statement.    \nIn future, I will separate them as two changes.",
+      "parentUuid": "dd71c11d_14893467",
       "range": {
         "startLine": 553,
         "startChar": 0,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2152969d_b1dd78c3",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 568,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9520ee39_95ed69ad",
+      "range": {
+        "startLine": 568,
+        "startChar": 0,
+        "endLine": 568,
+        "endChar": 16
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "167d1867_09d0d699",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-10-12T19:07:42Z",
       "side": 1,
       "message": "Can you move the log after the null check, to not print the information twice",
+      "range": {
+        "startLine": 595,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 58
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cbec016_6545c668",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "167d1867_09d0d699",
       "range": {
         "startLine": 595,
         "startChar": 0,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "27a2ae2e_dc8881ba",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 600,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "085d8dab_af4f544b",
+      "range": {
+        "startLine": 595,
+        "startChar": 11,
+        "endLine": 600,
+        "endChar": 49
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b90851fc_aded6a1c",
@@ -123,6 +237,30 @@
       "writtenOn": "2023-10-12T19:07:42Z",
       "side": 1,
       "message": "Move to after the device null check and eventually update the other log to have the profile too ?",
+      "range": {
+        "startLine": 673,
+        "startChar": 11,
+        "endLine": 674,
+        "endChar": 65
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "027745b9_3219acd5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b90851fc_aded6a1c",
       "range": {
         "startLine": 673,
         "startChar": 11,
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e825b621_3b657e97",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e62f121_34ea075c",
+      "range": {
+        "startLine": 689,
+        "startChar": 0,
+        "endLine": 689,
+        "endChar": 57
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8fe6bf7e_0a864bbd",
@@ -169,6 +331,30 @@
       "writtenOn": "2023-10-12T19:07:42Z",
       "side": 1,
       "message": "I think we should do a check at the start of the method, before taking the synchronized block, to make it obvious that this is a no-op change for other profiles than headset / a2dp",
+      "range": {
+        "startLine": 708,
+        "startChar": 16,
+        "endLine": 710,
+        "endChar": 38
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99843f7a_1f411224",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 710,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8fe6bf7e_0a864bbd",
       "range": {
         "startLine": 708,
         "startChar": 16,
@@ -204,6 +390,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fdaa7a6f_ea3d5f38",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Yes, when `AdapterService#handleActiveDeviceChange` is called, this function will be invoked \nSo as long as active device manager selects the next active device, this function will be invoked, see the added test",
+      "parentUuid": "c6c948f5_60b633b7",
+      "range": {
+        "startLine": 736,
+        "startChar": 17,
+        "endLine": 736,
+        "endChar": 37
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "27e178f2_45cb2c23",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
         "patchSetId": 11
@@ -215,6 +425,30 @@
       "writtenOn": "2023-10-12T19:07:42Z",
       "side": 1,
       "message": "This log does not add a lot of usefull information. Can you delete it ?",
+      "range": {
+        "startLine": 1084,
+        "startChar": 0,
+        "endLine": 1084,
+        "endChar": 37
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce554696_5f6453e9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1084,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27e178f2_45cb2c23",
       "range": {
         "startLine": 1084,
         "startChar": 0,
@@ -248,6 +482,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "168e095a_8c790dbd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1090,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5441382a_fe729072",
+      "range": {
+        "startLine": 1084,
+        "startChar": 7,
+        "endLine": 1090,
+        "endChar": 52
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "45f2426c_de9f468e",
@@ -261,6 +519,24 @@
       "writtenOn": "2023-10-12T19:07:42Z",
       "side": 1,
       "message": "Most of the code change are happening in DatabaseManager but there is no test really checking the new behavior with is_headset_device",
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb8754f2_632811b7",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-13T00:33:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45f2426c_de9f468e",
       "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
