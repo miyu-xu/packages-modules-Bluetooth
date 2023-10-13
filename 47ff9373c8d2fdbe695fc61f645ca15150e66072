@@ -68,6 +68,24 @@
       "parentUuid": "5e215530_5f447e6a",
       "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa87f21d_756db65a",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-10-13T00:31:46Z",
+      "side": 1,
+      "message": "Works for me! Howard can you add more description like how Ying explained it to me?",
+      "parentUuid": "f83b99d7_3385b030",
+      "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
