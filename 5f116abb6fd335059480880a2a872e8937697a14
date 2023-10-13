@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "692b9094_b89297b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-13T17:35:38Z",
+      "side": 1,
+      "message": "the code should be equivalent",
+      "revId": "5f116abb6fd335059480880a2a872e8937697a14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbfe39b7_749a59bb",
@@ -14,6 +31,24 @@
       "writtenOn": "2023-10-13T17:32:37Z",
       "side": 1,
       "message": "I am not sure this cast is problematic or not.\n\nWe have too many status classes define, not all of them are the same",
+      "revId": "5f116abb6fd335059480880a2a872e8937697a14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b1965fb_e6d41bf3",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-13T17:35:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbfe39b7_749a59bb",
       "revId": "5f116abb6fd335059480880a2a872e8937697a14",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
