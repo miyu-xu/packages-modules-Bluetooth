@@ -84,6 +84,10 @@ struct OddDisconnectionsRule {
     pending_supported_feat: HashMap<ConnectionHandle, NaiveDateTime>,
     pending_extended_feat: HashMap<ConnectionHandle, NaiveDateTime>,
 
+    /// When powering off, the controller might or might not reply disconnection request. Therefore
+    /// make this a special case.
+    pending_disconnect_due_to_host_power_off: HashSet<ConnectionHandle>,
+
     /// Pre-defined signals discovered in the logs.
     signals: Vec<Signal>,
 
@@ -107,6 +111,7 @@ impl OddDisconnectionsRule {
             apte_by_handle: HashMap::new(),
             pending_supported_feat: HashMap::new(),
             pending_extended_feat: HashMap::new(),
+            pending_disconnect_due_to_host_power_off: HashSet::new(),
             signals: vec![],
             reportable: vec![],
         }
@@ -179,12 +184,12 @@ impl OddDisconnectionsRule {
         &mut self,
         reason: DisconnectReason,
         handle: ConnectionHandle,
-        _packet: &Packet,
+        packet: &Packet,
     ) {
         // If reason is power off, the host might not wait for connection complete event
         if reason == DisconnectReason::RemoteDeviceTerminatedConnectionPowerOff {
-            self.active_handles.remove(&handle);
-            self.nocp_by_handle.remove(&handle);
+            self.process_disconn_complete_ev(handle, packet);
+            self.pending_disconnect_due_to_host_power_off.insert(handle);
         }
     }
 
@@ -279,6 +284,11 @@ impl OddDisconnectionsRule {
     }
 
     fn process_disconn_complete_ev(&mut self, handle: ConnectionHandle, packet: &Packet) {
+        // If previously host send disconnect with power off reason, disconnection has been handled.
+        if self.pending_disconnect_due_to_host_power_off.remove(&handle) {
+            return;
+        }
+
         self.active_handles.remove(&handle);
 
         // Check if this is a NOCP type disconnection and flag it.
@@ -508,6 +518,7 @@ impl OddDisconnectionsRule {
         self.apte_by_handle.clear();
         self.pending_supported_feat.clear();
         self.pending_extended_feat.clear();
+        self.pending_disconnect_due_to_host_power_off.clear();
     }
 }
 
