@@ -30,10 +30,10 @@ import com.android.internal.annotations.VisibleForTesting;
 
 import java.util.List;
 
-/**
- * MetadataDatabase is a Room database stores Bluetooth persistence data
- */
-@Database(entities = {Metadata.class}, version = 117)
+/** MetadataDatabase is a Room database stores Bluetooth persistence data */
+@Database(
+        entities = {Metadata.class},
+        version = 118)
 public abstract class MetadataDatabase extends RoomDatabase {
     /**
      * The metadata database file name
@@ -70,6 +70,7 @@ public abstract class MetadataDatabase extends RoomDatabase {
                 .addMigrations(MIGRATION_114_115)
                 .addMigrations(MIGRATION_115_116)
                 .addMigrations(MIGRATION_116_117)
+                .addMigrations(MIGRATION_117_118)
                 .allowMainThreadQueries()
                 .build();
     }
@@ -566,4 +567,23 @@ public abstract class MetadataDatabase extends RoomDatabase {
             }
         }
     };
+
+    @VisibleForTesting
+    static final Migration MIGRATION_117_118 =
+            new Migration(117, 118) {
+                @Override
+                public void migrate(SupportSQLiteDatabase database) {
+                    try {
+                        database.execSQL(
+                                "ALTER TABLE metadata ADD COLUMN `isActiveHfpDevice` "
+                                        + "INTEGER NOT NULL DEFAULT 0");
+                    } catch (SQLException ex) {
+                        // Check if user has new schema, but is just missing the version update
+                        Cursor cursor = database.query("SELECT * FROM metadata");
+                        if (cursor == null || cursor.getColumnIndex("isActiveHfpDevice") == -1) {
+                            throw ex;
+                        }
+                    }
+                }
+            };
 }

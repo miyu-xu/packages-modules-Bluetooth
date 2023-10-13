@@ -641,14 +641,18 @@ public class DatabaseManager {
         synchronized (mMetadataCache) {
             setConnection(device);
             boolean isA2dpDevice = profileId == BluetoothProfile.A2DP;
+            boolean isHfpDevice = profileId == BluetoothProfile.HEADSET;
 
             if (isA2dpDevice) {
                 resetActiveA2dpDevice();
             }
+            if (isHfpDevice) {
+                resetActiveHfpDevice();
+            }
 
             if (!mMetadataCache.containsKey(address)) {
                 Log.d(TAG, "setConnection: Creating new metadata entry for device: " + device);
-                createMetadata(address, isA2dpDevice);
+                createMetadata(address, isA2dpDevice, isHfpDevice);
                 return;
             }
             // Updates last_active_time to the current counter value and increments the counter
@@ -657,6 +661,9 @@ public class DatabaseManager {
             // Only update is_active_a2dp_device if an a2dp device is connected
             if (isA2dpDevice) {
                 metadata.is_active_a2dp_device = true;
+            }
+            if (isHfpDevice) {
+                metadata.isActiveHfpDevice = true;
             }
 
             updateDatabase(metadata);
@@ -685,8 +692,8 @@ public class DatabaseManager {
                         + "profileId: "
                         + BluetoothProfile.getProfileName(profileId));
 
-        if (profileId != BluetoothProfile.A2DP) {
-            // there is no change on metadata when profile is not A2DP
+        if (profileId != BluetoothProfile.A2DP && profileId != BluetoothProfile.HEADSET) {
+            // there is no change on metadata when profile is neither A2DP nor Headset
             return;
         }
 
@@ -704,6 +711,14 @@ public class DatabaseManager {
                         + device);
                 updateDatabase(metadata);
             }
+            if (profileId == BluetoothProfile.HEADSET && metadata.isActiveHfpDevice) {
+                metadata.isActiveHfpDevice = false;
+                Log.d(
+                        TAG,
+                        "setDisconnection: Updating isActiveHfpDevice to false for device: "
+                                + device);
+                updateDatabase(metadata);
+            }
         }
     }
 
@@ -718,6 +733,21 @@ public class DatabaseManager {
                 if (metadata.is_active_a2dp_device) {
                     Log.d(TAG, "resetActiveA2dpDevice");
                     metadata.is_active_a2dp_device = false;
+                    updateDatabase(metadata);
+                }
+            }
+        }
+    }
+
+    /** Remove hfpActiveDevice from the current active device in the connection order table */
+    private void resetActiveHfpDevice() {
+        synchronized (mMetadataCache) {
+            Log.d(TAG, "resetActiveHfpDevice()");
+            for (Map.Entry<String, Metadata> entry : mMetadataCache.entrySet()) {
+                Metadata metadata = entry.getValue();
+                if (metadata.isActiveHfpDevice) {
+                    Log.d(TAG, "resetActiveHfpDevice");
+                    metadata.isActiveHfpDevice = false;
                     updateDatabase(metadata);
                 }
             }
@@ -801,6 +831,36 @@ public class DatabaseManager {
                 }
             }
         }
+        return null;
+    }
+
+    /**
+     * Gets the last active HFP device
+     *
+     * @return the most recently active HFP device or null if the last hfp device was null
+     */
+    public BluetoothDevice getMostRecentlyActiveHfpDevice() {
+        Map.Entry<String, Metadata> entry;
+        synchronized (mMetadataCache) {
+            entry =
+                    mMetadataCache.entrySet().stream()
+                            .filter(x -> x.getValue().isActiveHfpDevice)
+                            .findFirst()
+                            .orElse(null);
+        }
+        if (entry != null) {
+            try {
+                return BluetoothAdapter.getDefaultAdapter()
+                        .getRemoteDevice(entry.getValue().getAddress());
+            } catch (IllegalArgumentException ex) {
+                Log.d(
+                        TAG,
+                        "getMostRecentlyActiveHfpDevice: Invalid address for "
+                                + "device "
+                                + entry.getValue().getAnonymizedAddress());
+            }
+        }
+
         return null;
     }
 
@@ -1034,10 +1094,17 @@ public class DatabaseManager {
     }
 
     void createMetadata(String address, boolean isActiveA2dpDevice) {
+        createMetadata(address, isActiveA2dpDevice, false);
+    }
+
+    void createMetadata(String address, boolean isActiveA2dpDevice, boolean isActiveHfpDevice) {
         Metadata.Builder dataBuilder = new Metadata.Builder(address);
 
         if (isActiveA2dpDevice) {
             dataBuilder.setActiveA2dp();
+        }
+        if (isActiveHfpDevice) {
+            dataBuilder.setActiveHfp();
         }
 
         Metadata data = dataBuilder.build();
@@ -1045,6 +1112,7 @@ public class DatabaseManager {
                 TAG,
                 "createMetadata: "
                         + (" address=" + data.getAnonymizedAddress())
+                        + (" isActiveHfpDevice=" + isActiveHfpDevice)
                         + (" isActiveA2dpDevice=" + isActiveA2dpDevice));
         mMetadataCache.put(address, data);
         updateDatabase(data);
