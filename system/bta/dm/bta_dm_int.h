@@ -522,9 +522,6 @@ extern tBTA_DM_SEARCH_CB bta_dm_search_cb;
 /* DI control block */
 extern tBTA_DM_DI_CB bta_dm_di_cb;
 
-bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg);
-void bta_dm_search_sm_disable(void);
-
 void bta_dm_enable(tBTA_DM_SEC_CBACK*);
 void bta_dm_disable();
 void bta_dm_ble_sirk_sec_cb_register(tBTA_DM_SEC_CBACK*);
@@ -552,9 +549,6 @@ void bta_dm_ble_passkey_reply(const RawAddress& bd_addr, bool accept,
 void bta_dm_ble_confirm_reply(const RawAddress&, bool);
 void bta_dm_ble_set_conn_params(const RawAddress&, uint16_t, uint16_t, uint16_t,
                                 uint16_t);
-void bta_dm_ble_observe(bool, uint8_t, tBTA_DM_SEARCH_CBACK*);
-void bta_dm_ble_scan(bool, uint8_t, bool);
-void bta_dm_ble_csis_observe(bool, tBTA_DM_SEARCH_CBACK*);
 void bta_dm_ble_update_conn_params(const RawAddress&, uint16_t, uint16_t,
                                    uint16_t, uint16_t, uint16_t, uint16_t);
 void bta_dm_ble_config_local_privacy(bool);
