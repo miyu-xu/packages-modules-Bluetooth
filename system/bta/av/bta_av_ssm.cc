@@ -167,7 +167,9 @@ static void bta_av_better_stream_state_machine(tBTA_AV_SCB* p_scb,
           event_handler1 = &bta_av_connect_req;
           break;
         case BTA_AV_SDP_DISC_FAIL_EVT:
-          event_handler1 = &bta_av_connect_req;
+          p_scb->state = BTA_AV_INIT_SST;  // New state
+          event_handler1 =
+              &bta_av_conn_failed;  // Previous call: &bta_av_connect_req;
           break;
         case BTA_AV_STR_DISC_OK_EVT:
           event_handler1 = &bta_av_disc_results;
