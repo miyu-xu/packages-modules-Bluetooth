@@ -37,6 +37,7 @@
 #include <cstdint>
 
 #include "bta/dm/bta_dm_int.h"
+#include "bta/dm/bta_dm_sec.h"
 #include "bta/gatt/bta_gattc_int.h"
 #include "bta/include/bta_dm_ci.h"
 #include "btif/include/btif_dm.h"
