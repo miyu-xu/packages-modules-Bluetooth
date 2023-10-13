@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a6d23bcc_c04a2e1a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-13T19:37:31Z",
+      "side": 1,
+      "message": "I recommend pulling all of sec out of act prior to making these changes.\n\ne.g.\naosp/2786423\n\nThen bta_dm_act is never touched again",
+      "revId": "510bf24694e1008cb166a2bea03512cec9aba636",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
