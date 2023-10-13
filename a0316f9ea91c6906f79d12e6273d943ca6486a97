@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba5b63f1_a40df62e",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1513,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-13T23:23:30Z",
+      "side": 0,
+      "message": "I am not sure about removing theses lines.\nThere were added for a specific reason:\nhttps://android-review.git.corp.google.com/c/platform/system/bt/+/955681\n\nMy knowledge is not good enough on this part of the stack to say if it is good or not, just raising a concern here.",
+      "range": {
+        "startLine": 1511,
+        "startChar": 1,
+        "endLine": 1513,
+        "endChar": 3
+      },
+      "revId": "a0316f9ea91c6906f79d12e6273d943ca6486a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
