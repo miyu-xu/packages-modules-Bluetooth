@@ -39,6 +39,30 @@
       },
       "revId": "143b2584090ffbc9eb8cb1a67308bde4d53259be",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eb119c5_2b379bda",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T11:00:10Z",
+      "side": 1,
+      "message": "Yes it can. For some reason I thought that makes the \"return\" less obvious though, as we emphasize to returning some value to last_address instead of exiting the function.\nBut I\u0027m OK with either case.",
+      "parentUuid": "d661d7af_55cf1b25",
+      "range": {
+        "startLine": 183,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 22
+      },
+      "revId": "143b2584090ffbc9eb8cb1a67308bde4d53259be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

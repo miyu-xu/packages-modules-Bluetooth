@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d266729_b0ce9bc1",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T11:00:10Z",
+      "side": 1,
+      "message": "good suggestion",
+      "parentUuid": "c7570ecb_89bf1316",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 10
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9a4a1a54_9a0fbb70",
         "filename": "floss/hcidoc/src/groups/connections.rs",
         "patchSetId": 2
@@ -54,6 +78,30 @@
       "writtenOn": "2023-10-13T10:51:02Z",
       "side": 1,
       "message": "Prefer to use the same style as previous similar case in this block, e.g. process_sync_conn_complete_ev",
+      "range": {
+        "startLine": 357,
+        "startChar": 8,
+        "endLine": 357,
+        "endChar": 77
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "692082f3_de34adac",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T11:00:10Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t get it. Could you elaborate?",
+      "parentUuid": "9a4a1a54_9a0fbb70",
       "range": {
         "startLine": 357,
         "startChar": 8,
@@ -89,6 +137,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a16a386a_08f748e4",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T11:00:10Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "3dda1975_5f4a522d",
+      "range": {
+        "startLine": 362,
+        "startChar": 85,
+        "endLine": 362,
+        "endChar": 86
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c45a0781_20b0b31a",
         "filename": "floss/hcidoc/src/groups/connections.rs",
         "patchSetId": 2
@@ -100,6 +172,30 @@
       "writtenOn": "2023-10-13T10:51:02Z",
       "side": 1,
       "message": "Not sure if we can do this\n\n```suggestion\n                        ConnectionManagementCommandChild::CreateConnection(cc) | ConnectionManagementCommandChild::AcceptConnectionRequest(cc)\u003d\u003e {\n                            self.process_classic_connection(cc.get_bd_addr(), packet);\n                        }\n```",
+      "range": {
+        "startLine": 452,
+        "startChar": 24,
+        "endLine": 457,
+        "endChar": 25
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "330b7a94_d9ebcade",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T11:00:10Z",
+      "side": 1,
+      "message": "Unfortunately no since the `cc` and `ac` have different data types.",
+      "parentUuid": "c45a0781_20b0b31a",
       "range": {
         "startLine": 452,
         "startChar": 24,
@@ -133,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68f99f56_390d7d46",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T11:00:10Z",
+      "side": 1,
+      "message": "We don\u0027t but `rustfmt` wants it.",
+      "parentUuid": "54cd195d_0ec47481",
+      "range": {
+        "startLine": 479,
+        "startChar": 36,
+        "endLine": 479,
+        "endChar": 37
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d5ade91_f01d8904",
@@ -146,6 +266,24 @@
       "writtenOn": "2023-10-13T10:51:02Z",
       "side": 1,
       "message": "append\n// End LeMetaEvent.specialize()",
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d430687f_4c39f4be",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T11:00:10Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "4d5ade91_f01d8904",
       "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
