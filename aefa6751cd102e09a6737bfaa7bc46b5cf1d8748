@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29901c3c_5add536b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T05:14:15Z",
+      "side": 1,
+      "message": "Thanks for the fix!",
+      "revId": "aefa6751cd102e09a6737bfaa7bc46b5cf1d8748",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6ec8dcd_c6100e87",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1355,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-13T05:14:15Z",
+      "side": 1,
+      "message": "nit: I think this line worth explaining. Could you add comment about hidsdpdisable, and why status \u003d\u003d invalid is permissible for service discovery?",
+      "revId": "aefa6751cd102e09a6737bfaa7bc46b5cf1d8748",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
