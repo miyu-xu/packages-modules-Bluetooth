@@ -104,7 +104,7 @@ void btm_dm_sec_init() {
 }
 
 /** Initialises the BT device security manager */
-void bta_dm_enable(tBTA_DM_SEC_CBACK* p_sec_cback) {
+void bta_dm_sec_enable(tBTA_DM_SEC_CBACK* p_sec_cback) {
   /* make sure security callback is saved - if no callback, do not erase the
   previous one,
   it could be an error recovery mechanism */
@@ -837,9 +837,10 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
       break;
 
     case BTM_LE_ADDR_ASSOC_EVT:
-      sec_event.proc_id_addr.pairing_bda = bda;
-      sec_event.proc_id_addr.id_addr = p_data->id_addr;
-      bta_dm_cb.p_sec_cback(BTA_DM_LE_ADDR_ASSOC_EVT, &sec_event);
+      tBTA_DM_ACL acl_event;
+      acl_event.proc_id_addr.pairing_bda = bda;
+      acl_event.proc_id_addr.id_addr = p_data->id_addr;
+      bta_dm_acl_cb.p_acl_cback(BTA_DM_LE_ADDR_ASSOC_EVT, &acl_event);
       break;
 
     default:
