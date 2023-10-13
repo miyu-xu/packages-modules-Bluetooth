@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fe996f1e_9b7a27cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T07:57:12Z",
+      "side": 1,
+      "message": "Hi Katherine, the context is Healthd is using RSSI in BlueZ and since we are switching to Floss, it\u0027s better to provide the same API for them.",
+      "parentUuid": "63caef7c_e96f549e",
+      "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5e215530_5f447e6a",
         "filename": "system/gd/rust/topshim/src/btif.rs",
         "patchSetId": 2
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "Works for me! Howard can you add more description like how Ying explained it to me?",
       "parentUuid": "f83b99d7_3385b030",
+      "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c45e2229_76ef3b55",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T07:57:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa87f21d_756db65a",
       "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
