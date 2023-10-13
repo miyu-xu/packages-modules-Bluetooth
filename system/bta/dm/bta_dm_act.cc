@@ -210,11 +210,13 @@ const tBTM_APPL_INFO bta_security = {
 static uint8_t btm_local_io_caps;
 
 /** Initialises the BT device manager */
-void bta_dm_enable(tBTA_DM_SEC_CBACK* p_sec_cback) {
+void bta_dm_enable(tBTA_DM_SEC_CBACK* p_sec_cback,
+                   tBTA_DM_ACL_CBACK *p_acl_cback) {
   /* make sure security callback is saved - if no callback, do not erase the
   previous one,
   it could be an error recovery mechanism */
   if (p_sec_cback != NULL) bta_dm_cb.p_sec_cback = p_sec_cback;
+  if (p_acl_cback != NULL) bta_dm_acl_cb.p_acl_cback = p_acl_cback;
 
   btm_local_io_caps = btif_storage_get_local_io_caps();
 }
@@ -245,6 +247,7 @@ void bta_dm_ble_sirk_confirm_device_reply(const RawAddress& bd_addr,
  ******************************************************************************/
 static void bta_dm_init_cb(void) {
   bta_dm_cb = {};
+  bta_dm_acl_cb = {};
   bta_dm_cb.disable_timer = alarm_new("bta_dm.disable_timer");
   bta_dm_cb.switch_delay_timer = alarm_new("bta_dm.switch_delay_timer");
   for (size_t i = 0; i < BTA_DM_NUM_PM_TIMER; i++) {
@@ -277,6 +280,7 @@ static void bta_dm_deinit_cb(void) {
     }
   }
   bta_dm_cb = {};
+  bta_dm_acl_cb = {};
 }
 
 void BTA_dm_on_hw_off() {
@@ -295,16 +299,22 @@ void BTA_dm_on_hw_off() {
 
 void BTA_dm_on_hw_on() {
   DEV_CLASS dev_class;
-  tBTA_DM_SEC_CBACK* temp_cback;
+  tBTA_DM_SEC_CBACK* temp_sec_cback;
+  tBTA_DM_ACL_CBACK* temp_acl_cback;
+
   uint8_t key_mask = 0;
   tBTA_BLE_LOCAL_ID_KEYS id_key;
 
-  /* save security callback */
-  temp_cback = bta_dm_cb.p_sec_cback;
+  /* save callbacks */
+  temp_sec_cback = bta_dm_cb.p_sec_cback;
+  temp_acl_cback = bta_dm_acl_cb.p_acl_cback;
+
   /* make sure the control block is properly initialized */
   bta_dm_init_cb();
-  /* and retrieve the callback */
-  bta_dm_cb.p_sec_cback = temp_cback;
+  /* and restore the callbacks */
+  bta_dm_cb.p_sec_cback = temp_sec_cback;
+  bta_dm_acl_cb.p_acl_cback = temp_acl_cback;
+
 
   /* hw is ready, go on with BTA DM initialization */
   alarm_free(bta_dm_search_cb.search_timer);
@@ -542,7 +552,7 @@ void bta_dm_process_remove_device(const RawAddress& bd_addr) {
 
   if (bta_dm_cb.p_sec_cback) {
     tBTA_DM_SEC sec_event;
-    sec_event.link_down.bd_addr = bd_addr;
+    sec_event.dev_unpair.bd_addr = bd_addr;
     bta_dm_cb.p_sec_cback(BTA_DM_DEV_UNPAIRED_EVT, &sec_event);
   }
 }
@@ -1272,14 +1282,13 @@ void bta_dm_acl_up(const RawAddress& bd_addr, tBT_TRANSPORT transport,
     device->set_both_device_ssr_capable();
   }
 
-  if (bta_dm_cb.p_sec_cback) {
-    tBTA_DM_SEC conn;
-    memset(&conn, 0, sizeof(tBTA_DM_SEC));
+  if (bta_dm_acl_cb.p_acl_cback) {
+    tBTA_DM_ACL conn{};
     conn.link_up.bd_addr = bd_addr;
     conn.link_up.transport_link_type = transport;
     conn.link_up.acl_handle = acl_handle;
 
-    bta_dm_cb.p_sec_cback(BTA_DM_LINK_UP_EVT, &conn);
+    bta_dm_acl_cb.p_acl_cback(BTA_DM_LINK_UP_EVT, &conn);
     LOG_DEBUG("Executed security callback for new connection available");
   }
   bta_dm_adjust_roles(true);
@@ -1293,12 +1302,12 @@ void BTA_dm_acl_up(const RawAddress bd_addr, tBT_TRANSPORT transport,
 
 static void bta_dm_acl_up_failed(const RawAddress bd_addr,
                                  tBT_TRANSPORT transport, tHCI_STATUS status) {
-  if (bta_dm_cb.p_sec_cback) {
-    tBTA_DM_SEC conn = {};
+  if (bta_dm_acl_cb.p_acl_cback) {
+    tBTA_DM_ACL conn = {};
     conn.link_up_failed.bd_addr = bd_addr;
     conn.link_up_failed.transport_link_type = transport;
     conn.link_up_failed.status = status;
-    bta_dm_cb.p_sec_cback(BTA_DM_LINK_UP_FAILED_EVT, &conn);
+    bta_dm_acl_cb.p_acl_cback(BTA_DM_LINK_UP_FAILED_EVT, &conn);
   }
 }
 
@@ -1378,14 +1387,20 @@ static void bta_dm_acl_down(const RawAddress& bd_addr,
     bta_dm_process_remove_device_no_callback(bd_addr);
   }
 
-  if (bta_dm_cb.p_sec_cback) {
-    tBTA_DM_SEC conn;
-    memset(&conn, 0, sizeof(tBTA_DM_SEC));
+  if (bta_dm_acl_cb.p_acl_cback) {
+    tBTA_DM_ACL conn{};
     conn.link_down.bd_addr = bd_addr;
     conn.link_down.transport_link_type = transport;
 
-    bta_dm_cb.p_sec_cback(BTA_DM_LINK_DOWN_EVT, &conn);
-    if (issue_unpair_cb) bta_dm_cb.p_sec_cback(BTA_DM_DEV_UNPAIRED_EVT, &conn);
+    bta_dm_acl_cb.p_acl_cback(BTA_DM_LINK_DOWN_EVT, &conn);
+  }
+
+  if (issue_unpair_cb && bta_dm_cb.p_sec_cback) {
+    tBTA_DM_SEC conn{};
+    conn.dev_unpair.bd_addr = bd_addr;
+    conn.dev_unpair.transport_link_type = transport;
+
+    bta_dm_cb.p_sec_cback(BTA_DM_DEV_UNPAIRED_EVT, &conn);
   }
 
   bta_dm_adjust_roles(true);
