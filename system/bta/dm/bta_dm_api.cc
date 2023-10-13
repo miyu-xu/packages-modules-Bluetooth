@@ -27,6 +27,7 @@
 #include <vector>
 
 #include "bt_target.h"  // Must be first to define build configuration
+#include "bta/dm/bta_dm_disc.h"
 #include "bta/dm/bta_dm_int.h"
 #include "osi/include/allocator.h"
 #include "osi/include/compat.h"
@@ -34,7 +35,11 @@
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_api.h"
 #include "stack/include/btm_client_interface.h"
+<<<<<<< PATCH SET (6055d6 IA2: Expose legacy device and service discovery API)
+#include "stack/include/btu_task.h"
+=======
 #include "stack/include/main_thread.h"
+>>>>>>> BASE      (da3e22 Merge "Fix an OOB bug in bnepu_process_peer_multicast_filter)
 #include "stack/include/sdp_api.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
