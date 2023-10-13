@@ -1005,7 +1005,8 @@ struct Controller::impl {
       case OpCode::LE_BATCH_SCAN:
         return vendor_capabilities_.total_scan_results_storage_ != 0x00;
       case OpCode::LE_ADV_FILTER:
-        return vendor_capabilities_.filtering_support_ == 0x01;
+        return vendor_capabilities_.filtering_support_ == 0x01 &&
+               vendor_capabilities_.max_filter_ > 0;
       case OpCode::LE_ENERGY_INFO:
         return vendor_capabilities_.activity_energy_info_support_ == 0x01;
       case OpCode::LE_EXTENDED_SCAN_PARAMS:
