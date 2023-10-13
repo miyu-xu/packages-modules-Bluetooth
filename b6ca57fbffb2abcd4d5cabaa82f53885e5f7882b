@@ -1,0 +1,153 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5574da8_006d68e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T10:51:02Z",
+      "side": 1,
+      "message": "Thanks for the refactor! Overall LGTM, just some minor style ssuggestions.",
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7570ecb_89bf1316",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T10:51:02Z",
+      "side": 1,
+      "message": "how about move these to a helper function like: `convert_sco_handle_to_address` then we can replace this function by something like\n\nprocess_accept_sync_connection(convert_sco_handle_to_address, packet)\n\nIf we are going to do this, probably rename `process_accept_sync_connection` to `process_sync_connection` as well.",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 121,
+        "endChar": 10
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4a1a54_9a0fbb70",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T10:51:02Z",
+      "side": 1,
+      "message": "Prefer to use the same style as previous similar case in this block, e.g. process_sync_conn_complete_ev",
+      "range": {
+        "startLine": 357,
+        "startChar": 8,
+        "endLine": 357,
+        "endChar": 77
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3dda1975_5f4a522d",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T10:51:02Z",
+      "side": 1,
+      "message": "remove this comma",
+      "range": {
+        "startLine": 362,
+        "startChar": 85,
+        "endLine": 362,
+        "endChar": 86
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c45a0781_20b0b31a",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T10:51:02Z",
+      "side": 1,
+      "message": "Not sure if we can do this\n\n```suggestion\n                        ConnectionManagementCommandChild::CreateConnection(cc) | ConnectionManagementCommandChild::AcceptConnectionRequest(cc)\u003d\u003e {\n                            self.process_classic_connection(cc.get_bd_addr(), packet);\n                        }\n```",
+      "range": {
+        "startLine": 452,
+        "startChar": 24,
+        "endLine": 457,
+        "endChar": 25
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54cd195d_0ec47481",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 479,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T10:51:02Z",
+      "side": 1,
+      "message": "do we need this comma?",
+      "range": {
+        "startLine": 479,
+        "startChar": 36,
+        "endLine": 479,
+        "endChar": 37
+      },
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d5ade91_f01d8904",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T10:51:02Z",
+      "side": 1,
+      "message": "append\n// End LeMetaEvent.specialize()",
+      "revId": "b6ca57fbffb2abcd4d5cabaa82f53885e5f7882b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

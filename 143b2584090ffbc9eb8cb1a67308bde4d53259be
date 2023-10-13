@@ -16,6 +16,29 @@
       "message": "Hi Howard, could you do the initial review for this refactoring? Thanks!",
       "revId": "143b2584090ffbc9eb8cb1a67308bde4d53259be",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d661d7af_55cf1b25",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-10-13T10:51:02Z",
+      "side": 1,
+      "message": "I think the original style can still fit with the return\n\nlet last_address \u003d match opcode {\n...\n_\u003d\u003e return\n};",
+      "range": {
+        "startLine": 183,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 22
+      },
+      "revId": "143b2584090ffbc9eb8cb1a67308bde4d53259be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
