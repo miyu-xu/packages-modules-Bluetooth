@@ -546,7 +546,6 @@ void bta_dm_close_acl(const RawAddress&, bool, tBT_TRANSPORT);
 void bta_dm_pm_btm_status(const RawAddress&, tBTM_PM_STATUS, uint16_t,
                           tHCI_STATUS);
 void bta_dm_pm_timer(const RawAddress&, tBTA_DM_PM_ACTION);
-void bta_dm_add_ampkey(tBTA_DM_MSG* p_data);
 
 void bta_dm_add_blekey(const RawAddress& bd_addr, tBTA_LE_KEY_VALUE blekey,
                        tBTM_LE_KEY_TYPE key_type);
