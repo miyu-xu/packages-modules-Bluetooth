@@ -471,6 +471,30 @@
       },
       "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64eea6df_081684d4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 532,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-10-13T17:16:48Z",
+      "side": 1,
+      "message": "LGTM as well",
+      "parentUuid": "b20a711a_654b47a7",
+      "range": {
+        "startLine": 532,
+        "startChar": 8,
+        "endLine": 532,
+        "endChar": 79
+      },
+      "revId": "101c4be26030cb38bceae1f8b065bbb2ccc1c291",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
