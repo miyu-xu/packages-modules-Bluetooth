@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbfe39b7_749a59bb",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-13T17:32:37Z",
+      "side": 1,
+      "message": "I am not sure this cast is problematic or not.\n\nWe have too many status classes define, not all of them are the same",
+      "revId": "5f116abb6fd335059480880a2a872e8937697a14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
