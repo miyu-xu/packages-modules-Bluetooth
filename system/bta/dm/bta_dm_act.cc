@@ -180,7 +180,6 @@ static void bta_dm_wait_for_acl_to_drain_cback(void* data);
 /** Initialises the BT device manager */
 void bta_dm_enable(tBTA_DM_SEC_CBACK* p_sec_cback,
                    tBTA_DM_ACL_CBACK *p_acl_cback) {
-
   if (p_acl_cback != NULL) bta_dm_acl_cb.p_acl_cback = p_acl_cback;
 
   bta_dm_sec_enable(p_sec_cback);
@@ -199,6 +198,8 @@ void bta_dm_enable(tBTA_DM_SEC_CBACK* p_sec_cback,
 static void bta_dm_init_cb(void) {
   bta_dm_cb = {};
   bta_dm_acl_cb = {};
+  bta_dm_sec_cb = {};
+
   bta_dm_cb.disable_timer = alarm_new("bta_dm.disable_timer");
   bta_dm_cb.switch_delay_timer = alarm_new("bta_dm.switch_delay_timer");
   for (size_t i = 0; i < BTA_DM_NUM_PM_TIMER; i++) {
@@ -232,6 +233,7 @@ static void bta_dm_deinit_cb(void) {
   }
   bta_dm_cb = {};
   bta_dm_acl_cb = {};
+  bta_dm_sec_cb = {};
 }
 
 void BTA_dm_on_hw_off() {
@@ -257,13 +259,14 @@ void BTA_dm_on_hw_on() {
   tBTA_BLE_LOCAL_ID_KEYS id_key;
 
   /* save callbacks */
-  temp_sec_cback = bta_dm_cb.p_sec_cback;
+  temp_sec_cback = bta_dm_sec_cb.p_sec_cback;
   temp_acl_cback = bta_dm_acl_cb.p_acl_cback;
 
   /* make sure the control block is properly initialized */
   bta_dm_init_cb();
+
   /* and restore the callbacks */
-  bta_dm_cb.p_sec_cback = temp_sec_cback;
+  bta_dm_sec_cb.p_sec_cback = temp_sec_cback;
   bta_dm_acl_cb.p_acl_cback = temp_acl_cback;
 
 
@@ -316,8 +319,8 @@ void BTA_dm_on_hw_on() {
     BTM_BleReadControllerFeatures(bta_dm_ctrl_features_rd_cmpl_cback);
   } else {
     /* Set controller features even if vendor support is not included */
-    if (bta_dm_cb.p_sec_cback)
-      bta_dm_cb.p_sec_cback(BTA_DM_LE_FEATURES_READ, NULL);
+    if (bta_dm_sec_cb.p_sec_cback)
+      bta_dm_sec_cb.p_sec_cback(BTA_DM_LE_FEATURES_READ, NULL);
   }
 
   btm_ble_scanner_init();
@@ -488,10 +491,10 @@ void bta_dm_process_remove_device(const RawAddress& bd_addr) {
   /* Conclude service search if it was pending */
   bta_dm_disc_remove_device(bd_addr);
 
-  if (bta_dm_cb.p_sec_cback) {
+  if (bta_dm_sec_cb.p_sec_cback) {
     tBTA_DM_SEC sec_event;
     sec_event.dev_unpair.bd_addr = bd_addr;
-    bta_dm_cb.p_sec_cback(BTA_DM_DEV_UNPAIRED_EVT, &sec_event);
+    bta_dm_sec_cb.p_sec_cback(BTA_DM_DEV_UNPAIRED_EVT, &sec_event);
   }
 }
 
@@ -873,12 +876,12 @@ static void bta_dm_acl_down(const RawAddress& bd_addr,
     bta_dm_acl_cb.p_acl_cback(BTA_DM_LINK_DOWN_EVT, &conn);
   }
 
-  if (issue_unpair_cb && bta_dm_cb.p_sec_cback) {
+  if (issue_unpair_cb && bta_dm_sec_cb.p_sec_cback) {
     tBTA_DM_SEC conn{};
     conn.dev_unpair.bd_addr = bd_addr;
     conn.dev_unpair.transport_link_type = transport;
 
-    bta_dm_cb.p_sec_cback(BTA_DM_DEV_UNPAIRED_EVT, &conn);
+    bta_dm_sec_cb.p_sec_cback(BTA_DM_DEV_UNPAIRED_EVT, &conn);
   }
 
   bta_dm_adjust_roles(true);
@@ -1722,8 +1725,8 @@ void bta_dm_ble_reset_id(void) {
 static void bta_dm_ctrl_features_rd_cmpl_cback(tHCI_STATUS result) {
   APPL_TRACE_DEBUG("%s  status = %d ", __func__, result);
   if (result == HCI_SUCCESS) {
-    if (bta_dm_cb.p_sec_cback)
-      bta_dm_cb.p_sec_cback(BTA_DM_LE_FEATURES_READ, NULL);
+    if (bta_dm_sec_cb.p_sec_cback)
+      bta_dm_sec_cb.p_sec_cback(BTA_DM_LE_FEATURES_READ, NULL);
   } else {
     APPL_TRACE_ERROR("%s Ctrl BLE feature read failed: status :%d", __func__,
                      result);

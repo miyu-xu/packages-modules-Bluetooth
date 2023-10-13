@@ -39,6 +39,8 @@ tBTA_DM_ACL_CB bta_dm_acl_cb;
 tBTA_DM_CB bta_dm_cb;
 tBTA_DM_DI_CB bta_dm_di_cb;
 
+tBTA_DM_SEC_CB bta_dm_sec_cb;
+
 #define DUMPSYS_TAG "shim::legacy::bta::dm"
 void DumpsysBtaDm(int fd) {
   LOG_DUMPSYS_TITLE(fd, DUMPSYS_TAG);
