@@ -50,6 +50,24 @@
       "message": "Set it equal to `i8::MAX`? Makes it more clear why we are choosing 127",
       "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f83b99d7_3385b030",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-13T00:02:17Z",
+      "side": 1,
+      "message": "Based on Core v5.3, Vol 4, E, 7.5.4. Valid RSSI is represent in 1-byte with the range:\n  + BR/EDR: -128 to 127\n  + LE: -127 to 20, 127\n\nFor an LE transport, the RSSI parameter returns the absolute receiver signal strength value in dBm to +/-6dB accuracy. If the RSSI cannot be read, the RSSI metric shall be set to 127.\n\nI am comfortable using 127 as an invalid RSSI value, but with a more descriptive comment.",
+      "parentUuid": "5e215530_5f447e6a",
+      "revId": "47ff9373c8d2fdbe695fc61f645ca15150e66072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
