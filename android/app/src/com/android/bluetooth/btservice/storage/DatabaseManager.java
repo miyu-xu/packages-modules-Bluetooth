@@ -801,7 +801,7 @@ public class DatabaseManager {
         boolean isPreferenceSet = false;
 
         synchronized (mMetadataCache) {
-            for (BluetoothDevice device: groupDevices) {
+            for (BluetoothDevice device : groupDevices) {
                 if (device == null) {
                     Log.e(TAG, "setPreferredAudioProfiles: device is null");
                     throw new IllegalArgumentException("setPreferredAudioProfiles: device is null");
@@ -894,8 +894,8 @@ public class DatabaseManager {
 
             Bundle modeToProfileBundle = new Bundle();
             if (outputOnlyProfile != 0) {
-                modeToProfileBundle.putInt(BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY,
-                        outputOnlyProfile);
+                modeToProfileBundle.putInt(
+                        BluetoothAdapter.AUDIO_MODE_OUTPUT_ONLY, outputOnlyProfile);
             }
             if (duplexProfile != 0) {
                 modeToProfileBundle.putInt(BluetoothAdapter.AUDIO_MODE_DUPLEX, duplexProfile);
@@ -982,8 +982,13 @@ public class DatabaseManager {
     }
 
     void createMetadata(String address, boolean isActiveA2dpDevice) {
-        Metadata data = new Metadata(address);
-        data.is_active_a2dp_device = isActiveA2dpDevice;
+        Metadata.Builder dataBuilder = new Metadata.Builder(address);
+
+        if (isActiveA2dpDevice) {
+            dataBuilder.setActiveA2dp();
+        }
+
+        Metadata data = dataBuilder.build();
         mMetadataCache.put(address, data);
         updateDatabase(data);
         logMetadataChange(data, "Metadata created");
