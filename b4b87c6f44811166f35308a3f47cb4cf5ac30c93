@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29e9dca3_a40240b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-13T21:50:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "93501180_a56e9366",
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dd71c11d_14893467",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "for the early return, there is no logic change included, and it is necessary, because otherwise all added code will be nested within that if statement.    \nIn future, I will separate them as two changes.",
       "parentUuid": "dd71c11d_14893467",
+      "range": {
+        "startLine": 553,
+        "startChar": 0,
+        "endLine": 553,
+        "endChar": 51
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ece1dca_158a5979",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-13T21:50:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5f28d684_2b44c327",
       "range": {
         "startLine": 553,
         "startChar": 0,
@@ -402,6 +444,30 @@
       "side": 1,
       "message": "Yes, when `AdapterService#handleActiveDeviceChange` is called, this function will be invoked \nSo as long as active device manager selects the next active device, this function will be invoked, see the added test",
       "parentUuid": "c6c948f5_60b633b7",
+      "range": {
+        "startLine": 736,
+        "startChar": 17,
+        "endLine": 736,
+        "endChar": 37
+      },
+      "revId": "b4b87c6f44811166f35308a3f47cb4cf5ac30c93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "468b77bc_90610f43",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 736,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-13T21:50:03Z",
+      "side": 1,
+      "message": "We manual tried it and it worked",
+      "parentUuid": "fdaa7a6f_ea3d5f38",
       "range": {
         "startLine": 736,
         "startChar": 17,
