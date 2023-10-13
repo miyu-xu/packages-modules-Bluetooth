@@ -33,6 +33,24 @@
       "message": "this does not need to be public, i believe package access is enough",
       "revId": "89ba5df9770fbec4c2edc822994652584551588c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc41e1bf_7265140f",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 2049111
+      },
+      "writtenOn": "2023-10-13T11:25:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37b0d017_92647226",
+      "revId": "89ba5df9770fbec4c2edc822994652584551588c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
