@@ -73,14 +73,14 @@ static BT_HDR* avct_lcb_msg_asmbl(tAVCT_LCB* p_lcb, BT_HDR* p_buf) {
   if (p_buf->len < avct_lcb_pkt_type_len[pkt_type] ||
       (sizeof(BT_HDR) + p_buf->offset + p_buf->len) > BT_DEFAULT_BUFFER_SIZE) {
     osi_free(p_buf);
-    AVCT_TRACE_WARNING("Bad length during reassembly");
+    LOG_WARN("Bad length during reassembly");
     p_ret = NULL;
   }
   /* single packet */
   else if (pkt_type == AVCT_PKT_TYPE_SINGLE) {
     /* if reassembly in progress drop message and process new single */
     if (p_lcb->p_rx_msg != NULL)
-      AVCT_TRACE_WARNING("Got single during reassembly");
+      LOG_WARN("Got single during reassembly");
 
     osi_free_and_reset((void**)&p_lcb->p_rx_msg);
 
@@ -90,7 +90,7 @@ static BT_HDR* avct_lcb_msg_asmbl(tAVCT_LCB* p_lcb, BT_HDR* p_buf) {
   else if (pkt_type == AVCT_PKT_TYPE_START) {
     /* if reassembly in progress drop message and process new start */
     if (p_lcb->p_rx_msg != NULL)
-      AVCT_TRACE_WARNING("Got start during reassembly");
+      LOG_WARN("Got start during reassembly");
 
     osi_free_and_reset((void**)&p_lcb->p_rx_msg);
 
@@ -129,7 +129,7 @@ static BT_HDR* avct_lcb_msg_asmbl(tAVCT_LCB* p_lcb, BT_HDR* p_buf) {
     /* if no reassembly in progress drop message */
     if (p_lcb->p_rx_msg == NULL) {
       osi_free(p_buf);
-      AVCT_TRACE_WARNING("Pkt type=%d out of order", pkt_type);
+      LOG_WARN("Pkt type=%d out of order", pkt_type);
       p_ret = NULL;
     } else {
       /* get size of buffer holding assembled message */
@@ -146,7 +146,7 @@ static BT_HDR* avct_lcb_msg_asmbl(tAVCT_LCB* p_lcb, BT_HDR* p_buf) {
       /* verify length */
       if ((p_lcb->p_rx_msg->offset + p_buf->len) > buf_len) {
         /* won't fit; free everything */
-        AVCT_TRACE_WARNING("%s: Fragmented message too big!", __func__);
+        LOG_WARN("%s: Fragmented message too big!", __func__);
         osi_free_and_reset((void**)&p_lcb->p_rx_msg);
         osi_free(p_buf);
         p_ret = NULL;
@@ -235,7 +235,7 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
     for (i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
       if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb) &&
           p_ccb->cc.role == AVCT_INT) {
-        AVCT_TRACE_DEBUG("%s, find int handle %d", __func__, i);
+        LOG_DEBUG("%s, find int handle %d", __func__, i);
         is_originater = true;
       }
     }
@@ -245,9 +245,9 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
       /* if ccb allocated and */
       /** M: to avoid avctp collision, make sure the collision can be checked @{
        */
-      AVCT_TRACE_DEBUG("%s, %d ccb to lcb, alloc %d, lcb %p, role %d, pid 0x%x",
-                       __func__, i, p_ccb->allocated, p_ccb->p_lcb,
-                       p_ccb->cc.role, p_ccb->cc.pid);
+      LOG_DEBUG("%s, %d ccb to lcb, alloc %d, lcb %p, role %d, pid 0x%x",
+                __func__, i, p_ccb->allocated, p_ccb->p_lcb, p_ccb->cc.role,
+                p_ccb->cc.pid);
       if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb)) {
         /* if bound to this lcb send connect confirm event */
         if (p_ccb->cc.role == AVCT_INT) {
@@ -265,8 +265,7 @@ void avct_lcb_open_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
                  avct_lcb_has_pid(p_lcb, p_ccb->cc.pid)) {
           /* bind ccb to lcb and send connect ind event  */
           if (is_originater) {
-            AVCT_TRACE_ERROR("%s, int exist, unbind acp handle:%d", __func__,
-                             i);
+            LOG_ERROR("%s, int exist, unbind acp handle:%d", __func__, i);
             p_ccb->p_lcb = NULL;
           } else {
             bind = true;
@@ -523,7 +522,7 @@ void avct_lcb_cong_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
  *
  ******************************************************************************/
 void avct_lcb_discard_msg(UNUSED_ATTR tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
-  AVCT_TRACE_WARNING("%s Dropping message", __func__);
+  LOG_WARN("%s Dropping message", __func__);
   osi_free_and_reset((void**)&p_data->ul_msg.p_buf);
 }
 
@@ -621,8 +620,7 @@ void avct_lcb_send_msg(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
       pkt_type = AVCT_PKT_TYPE_END;
     }
   }
-  AVCT_TRACE_DEBUG("%s tx_q_count:%zu", __func__,
-                   fixed_queue_length(p_lcb->tx_q));
+  LOG_DEBUG("%s tx_q_count:%zu", __func__, fixed_queue_length(p_lcb->tx_q));
   return;
 }
 
@@ -678,7 +676,7 @@ void avct_lcb_msg_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
 
   /* check for invalid cr_ipid */
   if (cr_ipid == AVCT_CR_IPID_INVALID) {
-    AVCT_TRACE_WARNING("Invalid cr_ipid %d", cr_ipid);
+    LOG_WARN("Invalid cr_ipid %d", cr_ipid);
     osi_free_and_reset((void**)&p_data->p_buf);
     return;
   }
@@ -706,7 +704,7 @@ void avct_lcb_msg_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
   }
 
   /* PID not found; drop message */
-  AVCT_TRACE_WARNING("No ccb for PID=%x", pid);
+  LOG_WARN("No ccb for PID=%x", pid);
   osi_free_and_reset((void**)&p_data->p_buf);
 
   /* if command send reject */

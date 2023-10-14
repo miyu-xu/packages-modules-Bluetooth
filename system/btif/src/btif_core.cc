@@ -268,7 +268,7 @@ static void btif_dut_mode_cback(UNUSED_ATTR tBTM_VSC_CMPL* p) {
  *
  ******************************************************************************/
 void btif_dut_mode_configure(uint8_t enable) {
-  BTIF_TRACE_DEBUG("%s", __func__);
+  LOG_DEBUG("%s", __func__);
 
   btif_dut_mode = enable;
   if (enable == 1) {
@@ -287,7 +287,7 @@ void btif_dut_mode_configure(uint8_t enable) {
  *
  ******************************************************************************/
 void btif_dut_mode_send(uint16_t opcode, uint8_t* buf, uint8_t len) {
-  BTIF_TRACE_DEBUG("%s", __func__);
+  LOG_DEBUG("%s", __func__);
   BTM_VendorSpecificCommand(opcode, len, buf, btif_dut_mode_cback);
 }
 
@@ -413,7 +413,7 @@ static bt_status_t btif_in_get_remote_device_properties(RawAddress* bd_addr) {
 }
 
 static void btif_core_storage_adapter_write(bt_property_t* prop) {
-  BTIF_TRACE_EVENT("type: %d, len %d, 0x%p", prop->type, prop->len, prop->val);
+  LOG_INFO("type: %d, len %d, 0x%p", prop->type, prop->len, prop->val);
   bt_status_t status = btif_storage_set_adapter_property(prop);
   GetInterfaceToProfiles()->events->invoke_adapter_properties_cb(status, 1,
                                                                  prop);
@@ -439,7 +439,7 @@ void btif_remote_properties_evt(bt_status_t status, RawAddress* remote_addr,
  ******************************************************************************/
 
 void btif_get_adapter_properties(void) {
-  BTIF_TRACE_EVENT("%s", __func__);
+  LOG_INFO("%s", __func__);
 
   btif_in_get_adapter_properties();
 }
@@ -453,7 +453,7 @@ void btif_get_adapter_properties(void) {
  ******************************************************************************/
 
 void btif_get_adapter_property(bt_property_type_t type) {
-  BTIF_TRACE_EVENT("%s %d", __func__, type);
+  LOG_INFO("%s %d", __func__, type);
 
   bt_status_t status = BT_STATUS_SUCCESS;
   char buf[512];
@@ -530,8 +530,7 @@ void btif_get_adapter_property(bt_property_type_t type) {
 
     prop.len = sizeof(bt_dynamic_audio_buffer_item_t);
     if (GetInterfaceToProfiles()->config->isA2DPOffloadEnabled() == false) {
-      BTIF_TRACE_DEBUG("%s Get buffer millis for A2DP software encoding",
-                       __func__);
+      LOG_DEBUG("%s Get buffer millis for A2DP software encoding", __func__);
       for (int i = 0; i < CODEC_TYPE_NUMBER; i++) {
         dynamic_audio_buffer_item.dab_item[i] = {
             .default_buffer_time = DEFAULT_BUFFER_TIME,
@@ -541,7 +540,7 @@ void btif_get_adapter_property(bt_property_type_t type) {
       memcpy(prop.val, &dynamic_audio_buffer_item, prop.len);
     } else {
       if (cmn_vsc_cb.dynamic_audio_buffer_support != 0) {
-        BTIF_TRACE_DEBUG("%s Get buffer millis for A2DP Offload", __func__);
+        LOG_DEBUG("%s Get buffer millis for A2DP Offload", __func__);
         tBTM_BT_DYNAMIC_AUDIO_BUFFER_CB
             bt_dynamic_audio_buffer_cb[CODEC_TYPE_NUMBER];
         BTM_BleGetDynamicAudioBuffer(bt_dynamic_audio_buffer_cb);
@@ -557,7 +556,7 @@ void btif_get_adapter_property(bt_property_type_t type) {
         }
         memcpy(prop.val, &dynamic_audio_buffer_item, prop.len);
       } else {
-        BTIF_TRACE_DEBUG("%s Don't support Dynamic Audio Buffer", __func__);
+        LOG_DEBUG("%s Don't support Dynamic Audio Buffer", __func__);
       }
     }
   } else {
@@ -589,8 +588,8 @@ bt_property_t* property_deep_copy(const bt_property_t* prop) {
  ******************************************************************************/
 
 void btif_set_adapter_property(bt_property_t* property) {
-  BTIF_TRACE_EVENT("btif_set_adapter_property type: %d, len %d, 0x%p",
-                   property->type, property->len, property->val);
+  LOG_INFO("btif_set_adapter_property type: %d, len %d, 0x%p", property->type,
+           property->len, property->val);
 
   switch (property->type) {
     case BT_PROPERTY_BDNAME: {
@@ -601,7 +600,7 @@ void btif_set_adapter_property(bt_property_t* property) {
       memcpy(bd_name, property->val, name_len);
       bd_name[name_len] = '\0';
 
-      BTIF_TRACE_EVENT("set property name : %s", (char*)bd_name);
+      LOG_INFO("set property name : %s", (char *)bd_name);
 
       BTA_DmSetDeviceName((const char*)bd_name);
 
@@ -610,7 +609,7 @@ void btif_set_adapter_property(bt_property_t* property) {
 
     case BT_PROPERTY_ADAPTER_SCAN_MODE: {
       bt_scan_mode_t mode = *(bt_scan_mode_t*)property->val;
-      BTIF_TRACE_EVENT("set property scan mode : %x", mode);
+      LOG_INFO("set property scan mode : %x", mode);
 
       if (BTA_DmSetVisibility(mode)) {
         btif_core_storage_adapter_write(property);
@@ -705,8 +704,7 @@ tBTA_SERVICE_MASK btif_get_enabled_services_mask(void) {
 void btif_enable_service(tBTA_SERVICE_ID service_id) {
   btif_enabled_services |= (1 << service_id);
 
-  BTIF_TRACE_DEBUG("%s: current services:0x%x", __func__,
-                   btif_enabled_services);
+  LOG_DEBUG("%s: current services:0x%x", __func__, btif_enabled_services);
 
   if (btif_is_enabled()) {
     btif_dm_enable_service(service_id, true);
@@ -724,8 +722,7 @@ void btif_enable_service(tBTA_SERVICE_ID service_id) {
 void btif_disable_service(tBTA_SERVICE_ID service_id) {
   btif_enabled_services &= (tBTA_SERVICE_MASK)(~(1 << service_id));
 
-  BTIF_TRACE_DEBUG("%s: Current Services:0x%x", __func__,
-                   btif_enabled_services);
+  LOG_DEBUG("%s: Current Services:0x%x", __func__, btif_enabled_services);
 
   if (btif_is_enabled()) {
     btif_dm_enable_service(service_id, false);
@@ -775,21 +772,20 @@ void DynamicAudiobufferSizeCompleteCallback(tBTM_VSC_CMPL* p_vsc_cmpl_params) {
 }
 
 bt_status_t btif_set_dynamic_audio_buffer_size(int codec, int size) {
-  BTIF_TRACE_DEBUG("%s", __func__);
+  LOG_DEBUG("%s", __func__);
 
   tBTM_BLE_VSC_CB cmn_vsc_cb;
   BTM_BleGetVendorCapabilities(&cmn_vsc_cb);
 
   if (!GetInterfaceToProfiles()->config->isA2DPOffloadEnabled()) {
-    BTIF_TRACE_DEBUG("%s Set buffer size (%d) for A2DP software encoding",
-                     __func__, size);
+    LOG_DEBUG("%s Set buffer size (%d) for A2DP software encoding", __func__,
+              size);
     GetInterfaceToProfiles()
         ->profileSpecific_HACK->btif_av_set_dynamic_audio_buffer_size(
             uint8_t(size));
   } else {
     if (cmn_vsc_cb.dynamic_audio_buffer_support != 0) {
-      BTIF_TRACE_DEBUG("%s Set buffer size (%d) for A2DP offload", __func__,
-                       size);
+      LOG_DEBUG("%s Set buffer size (%d) for A2DP offload", __func__, size);
       uint16_t firmware_tx_buffer_length_byte;
       uint8_t param[3] = {0};
       uint8_t* p_param = param;

@@ -32,7 +32,7 @@ extern tBTM_CB btm_cb;
  *
  ******************************************************************************/
 uint8_t BTM_AllocateSCN(void) {
-  BTM_TRACE_DEBUG("BTM_AllocateSCN");
+  LOG_DEBUG("BTM_AllocateSCN");
 
   // SCN can be allocated in the range of [1, RFCOMM_MAX_SCN]
   // btm_scn uses indexes 0 to RFCOMM_MAX_SCN-1 to track RFC ports
@@ -97,7 +97,7 @@ bool BTM_TryAllocateSCN(uint8_t scn) {
  *
  ******************************************************************************/
 bool BTM_FreeSCN(uint8_t scn) {
-  BTM_TRACE_DEBUG("BTM_FreeSCN ");
+  LOG_DEBUG("BTM_FreeSCN ");
   /* Since this isn't used by HFP, this function will only free valid SCNs
    * that aren't reserved for HFP, which is range [2, RFCOMM_MAX_SCN].
    */
