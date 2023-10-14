@@ -166,8 +166,8 @@ tBNEP_RESULT BNEP_Connect(const RawAddress& p_rem_bda, const Uuid& src_uuid,
      */
     p_bcb->con_state = BNEP_STATE_SEC_CHECKING;
 
-    BNEP_TRACE_API("BNEP initiating security procedures for src uuid %s",
-                   p_bcb->src_uuid.ToString().c_str());
+    LOG_INFO("BNEP initiating security procedures for src uuid %s",
+             p_bcb->src_uuid.ToString().c_str());
 
     bnep_sec_check_complete(&p_bcb->rem_bda, BT_TRANSPORT_BR_EDR, p_bcb);
   } else {
@@ -181,7 +181,7 @@ tBNEP_RESULT BNEP_Connect(const RawAddress& p_rem_bda, const Uuid& src_uuid,
       p_bcb->l2cap_cid = cid;
 
     } else {
-      BNEP_TRACE_ERROR("BNEP - Originate failed");
+      LOG_ERROR("BNEP - Originate failed");
       if (bnep_cb.p_conn_state_cb)
         (*bnep_cb.p_conn_state_cb)(p_bcb->handle, p_bcb->rem_bda,
                                    BNEP_CONN_FAILED, false);
@@ -298,7 +298,7 @@ tBNEP_RESULT BNEP_Disconnect(uint16_t handle) {
 
   if (p_bcb->con_state == BNEP_STATE_IDLE) return (BNEP_WRONG_HANDLE);
 
-  BNEP_TRACE_API("BNEP_Disconnect()  for handle %d", handle);
+  LOG_INFO("BNEP_Disconnect()  for handle %d", handle);
 
   L2CA_DisconnectReq(p_bcb->l2cap_cid);
 
@@ -344,8 +344,8 @@ tBNEP_RESULT BNEP_WriteBuf(uint16_t handle, const RawAddress& p_dest_addr,
   p_bcb = &(bnep_cb.bcb[handle - 1]);
   /* Check MTU size */
   if (p_buf->len > BNEP_MTU_SIZE) {
-    BNEP_TRACE_ERROR("%s length %d exceeded MTU %d", __func__, p_buf->len,
-                     BNEP_MTU_SIZE);
+    LOG_ERROR("%s length %d exceeded MTU %d", __func__, p_buf->len,
+              BNEP_MTU_SIZE);
     osi_free(p_buf);
     return (BNEP_MTU_EXCEDED);
   }
@@ -449,8 +449,7 @@ tBNEP_RESULT BNEP_Write(uint16_t handle, const RawAddress& p_dest_addr,
 
   /* Check MTU size. Consider the possibility of having extension headers */
   if (len > BNEP_MTU_SIZE) {
-    BNEP_TRACE_ERROR("%s length %d exceeded MTU %d", __func__, len,
-                     BNEP_MTU_SIZE);
+    LOG_ERROR("%s length %d exceeded MTU %d", __func__, len, BNEP_MTU_SIZE);
     return (BNEP_MTU_EXCEDED);
   }
 

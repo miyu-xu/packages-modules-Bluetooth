@@ -62,7 +62,7 @@ static void smp_br_data_received(uint16_t channel, const RawAddress& bd_addr,
  ******************************************************************************/
 void smp_l2cap_if_init(void) {
   tL2CAP_FIXED_CHNL_REG fixed_reg;
-  SMP_TRACE_EVENT("SMDBG l2c %s", __func__);
+  LOG_INFO("SMDBG l2c %s", __func__);
 
   fixed_reg.pL2CA_FixedConn_Cb = smp_connect_callback;
   fixed_reg.pL2CA_FixedData_Cb = smp_data_received;
@@ -157,19 +157,19 @@ static void smp_data_received(uint16_t channel, const RawAddress& bd_addr,
   uint8_t cmd;
 
   if (p_buf->len < 1) {
-    SMP_TRACE_WARNING("%s: smp packet length %d too short: must be at least 1",
-                      __func__, p_buf->len);
+    LOG_WARN("%s: smp packet length %d too short: must be at least 1", __func__,
+             p_buf->len);
     osi_free(p_buf);
     return;
   }
 
   STREAM_TO_UINT8(cmd, p);
 
-  SMP_TRACE_EVENT("%s: SMDBG l2c, cmd=0x%x", __func__, cmd);
+  LOG_INFO("%s: SMDBG l2c, cmd=0x%x", __func__, cmd);
 
   /* sanity check */
   if ((SMP_OPCODE_MAX < cmd) || (SMP_OPCODE_MIN > cmd)) {
-    SMP_TRACE_WARNING("Ignore received command with RESERVED code 0x%02x", cmd);
+    LOG_WARN("Ignore received command with RESERVED code 0x%02x", cmd);
     osi_free(p_buf);
     return;
   }
@@ -199,10 +199,9 @@ static void smp_data_received(uint16_t channel, const RawAddress& bd_addr,
                     false /* is_over_br */);
 
     if (cmd == SMP_OPCODE_CONFIRM) {
-      SMP_TRACE_DEBUG(
-          "in %s cmd = 0x%02x, peer_auth_req = 0x%02x,"
-          "loc_auth_req = 0x%02x",
-          __func__, cmd, p_cb->peer_auth_req, p_cb->loc_auth_req);
+      LOG_DEBUG("in %s cmd = 0x%02x, peer_auth_req = 0x%02x,"
+                "loc_auth_req = 0x%02x",
+                __func__, cmd, p_cb->peer_auth_req, p_cb->loc_auth_req);
 
       if ((p_cb->peer_auth_req & SMP_SC_SUPPORT_BIT) &&
           (p_cb->loc_auth_req & SMP_SC_SUPPORT_BIT)) {
@@ -237,11 +236,10 @@ static void smp_br_connect_callback(uint16_t channel, const RawAddress& bd_addr,
   tSMP_CB* p_cb = &smp_cb;
   tSMP_INT_DATA int_data;
 
-  SMP_TRACE_EVENT("%s", __func__);
+  LOG_INFO("%s", __func__);
 
   if (transport != BT_TRANSPORT_BR_EDR) {
-    SMP_TRACE_WARNING("%s is called on unexpected transport %d", __func__,
-                      transport);
+    LOG_WARN("%s is called on unexpected transport %d", __func__, transport);
     return;
   }
 
@@ -301,11 +299,11 @@ static void smp_br_data_received(uint16_t channel, const RawAddress& bd_addr,
   tSMP_CB* p_cb = &smp_cb;
   uint8_t* p = (uint8_t*)(p_buf + 1) + p_buf->offset;
   uint8_t cmd;
-  SMP_TRACE_EVENT("SMDBG l2c %s", __func__);
+  LOG_INFO("SMDBG l2c %s", __func__);
 
   if (p_buf->len < 1) {
-    SMP_TRACE_WARNING("%s: smp packet length %d too short: must be at least 1",
-                      __func__, p_buf->len);
+    LOG_WARN("%s: smp packet length %d too short: must be at least 1", __func__,
+             p_buf->len);
     osi_free(p_buf);
     return;
   }
@@ -314,7 +312,7 @@ static void smp_br_data_received(uint16_t channel, const RawAddress& bd_addr,
 
   /* sanity check */
   if ((SMP_OPCODE_MAX < cmd) || (SMP_OPCODE_MIN > cmd)) {
-    SMP_TRACE_WARNING("Ignore received command with RESERVED code 0x%02x", cmd);
+    LOG_WARN("Ignore received command with RESERVED code 0x%02x", cmd);
     osi_free(p_buf);
     return;
   }
