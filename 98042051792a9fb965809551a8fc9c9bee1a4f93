@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "913f504e_b898ecef",
+        "filename": "system/bta/dm/bta_dm_sec.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-14T06:53:14Z",
+      "side": 1,
+      "message": "add #pragma once",
+      "revId": "98042051792a9fb965809551a8fc9c9bee1a4f93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
