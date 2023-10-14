@@ -122,7 +122,7 @@ bt_status_t btif_storage_add_hid_device_info(
     uint8_t app_id, uint16_t vendor_id, uint16_t product_id, uint16_t version,
     uint8_t ctry_code, uint16_t ssr_max_latency, uint16_t ssr_min_tout,
     uint16_t dl_len, uint8_t* dsc_list) {
-  BTIF_TRACE_DEBUG("btif_storage_add_hid_device_info:");
+  LOG_DEBUG("btif_storage_add_hid_device_info:");
   std::string bdstr = remote_bd_addr->ToString();
   btif_config_set_int(bdstr, "HidAttrMask", attr_mask);
   btif_config_set_int(bdstr, "HidSubClass", sub_class);
@@ -151,7 +151,7 @@ bt_status_t btif_storage_load_bonded_hid_info(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
 
-    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    LOG_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
     int value;
     if (!btif_config_get_int(name, "HidAttrMask", &value)) continue;
@@ -399,7 +399,7 @@ void btif_storage_load_bonded_hearing_aids() {
       continue;
     }
 
-    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    LOG_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
     if (btif_in_fetch_bonded_device(name) != BT_STATUS_SUCCESS) {
       btif_storage_remove_hearing_aid(bd_addr);
@@ -680,7 +680,7 @@ void btif_storage_load_bonded_leaudio() {
       continue;
     }
 
-    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    LOG_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
     int value;
     bool autoconnect = false;
@@ -920,7 +920,7 @@ void btif_storage_load_bonded_groups(void) {
         btif_config_get_bin_length(name, BTIF_STORAGE_DEVICE_GROUP_BIN);
     if (buffer_size == 0) continue;
 
-    BTIF_TRACE_DEBUG("Grouped device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    LOG_DEBUG("Grouped device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
     std::vector<uint8_t> in(buffer_size);
     if (btif_config_get_bin(name, BTIF_STORAGE_DEVICE_GROUP_BIN, in.data(),
@@ -979,8 +979,7 @@ void btif_storage_load_bonded_csis_devices(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
 
-    BTIF_TRACE_DEBUG("Loading CSIS device:%s",
-                     ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    LOG_DEBUG("Loading CSIS device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
     int value;
     bool autoconnect = false;
@@ -1019,7 +1018,7 @@ bt_status_t btif_storage_load_hidd(void) {
   for (const auto& bd_addr : btif_config_get_paired_devices()) {
     auto name = bd_addr.ToString();
 
-    BTIF_TRACE_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    LOG_DEBUG("Remote device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     int value;
     if (btif_in_fetch_bonded_device(name) == BT_STATUS_SUCCESS) {
       if (btif_config_get_int(name, "HidDeviceCabled", &value)) {
@@ -1081,14 +1080,14 @@ bt_status_t btif_storage_remove_hidd(RawAddress* remote_bd_addr) {
  ******************************************************************************/
 void btif_storage_set_pce_profile_version(const RawAddress& remote_bd_addr,
                                           uint16_t peer_pce_version) {
-  BTIF_TRACE_DEBUG("peer_pce_version : 0x%x", peer_pce_version);
+  LOG_DEBUG("peer_pce_version : 0x%x", peer_pce_version);
 
   if (btif_config_set_bin(
           remote_bd_addr.ToString(), BT_CONFIG_KEY_PBAP_PCE_VERSION,
           (const uint8_t*)&peer_pce_version, sizeof(peer_pce_version))) {
   } else {
-    BTIF_TRACE_WARNING("Failed to store  peer_pce_version for %s",
-                       ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
+    LOG_WARN("Failed to store  peer_pce_version for %s",
+             ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
   }
 }
 
@@ -1110,8 +1109,8 @@ bool btif_storage_is_pce_version_102(const RawAddress& remote_bd_addr) {
   if (!btif_config_get_bin(remote_bd_addr.ToString(),
                            BT_CONFIG_KEY_PBAP_PCE_VERSION,
                            (uint8_t*)&pce_version, &version_value_size)) {
-    BTIF_TRACE_DEBUG("Failed to read cached peer PCE version for %s",
-                     ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
+    LOG_DEBUG("Failed to read cached peer PCE version for %s",
+              ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
     return entry_found;
   }
 
@@ -1119,8 +1118,8 @@ bool btif_storage_is_pce_version_102(const RawAddress& remote_bd_addr) {
     entry_found = true;
   }
 
-  BTIF_TRACE_DEBUG("read cached peer PCE version 0x%04x for %s", pce_version,
-                   ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
+  LOG_DEBUG("read cached peer PCE version 0x%04x for %s", pce_version,
+            ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));
 
   return entry_found;
 }
