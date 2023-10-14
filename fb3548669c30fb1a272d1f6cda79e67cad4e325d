@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f09a7e6f_efa7c247",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-14T00:11:10Z",
+      "side": 1,
+      "message": "Currently, these callbacks are not implemented / not handled by many clients. Although this move will remove the crash, it will leave these failures unobserved until a functional issue happens. \n\ne.g. https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/main/shim/le_scanning_manager.cc;l\u003d664?q\u003dOnFilterConfigCallback\u0026start\u003d11\n\nShould we go to each implementation of `OnFilterConfigCallback`, `OnFilterEnable` and  `OnFilterParamSetup` to add an assert there?",
+      "range": {
+        "startLine": 1400,
+        "startChar": 0,
+        "endLine": 1400,
+        "endChar": 43
+      },
+      "revId": "fb3548669c30fb1a272d1f6cda79e67cad4e325d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
