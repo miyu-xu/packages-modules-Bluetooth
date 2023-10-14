@@ -140,7 +140,7 @@ void bta_hd_api_disable(void) {
   if (ret == HID_SUCCESS) {
     status = BTA_HD_OK;
   } else {
-    APPL_TRACE_ERROR("%s: Failed to deregister HID device (%s)", __func__, ret);
+    APPL_TRACE_ERROR("%s: Failed to deregister HID device (%d)", __func__, ret);
   }
 
   tBTA_HD bta_hd;
