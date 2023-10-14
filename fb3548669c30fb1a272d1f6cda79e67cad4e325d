@@ -22,6 +22,30 @@
       },
       "revId": "fb3548669c30fb1a272d1f6cda79e67cad4e325d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c296572a_1095d737",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-14T00:11:53Z",
+      "side": 1,
+      "message": "Such assert will not increase the number of crashes, but distributed among each clients and produces cleaner stack traces",
+      "parentUuid": "f09a7e6f_efa7c247",
+      "range": {
+        "startLine": 1400,
+        "startChar": 0,
+        "endLine": 1400,
+        "endChar": 43
+      },
+      "revId": "fb3548669c30fb1a272d1f6cda79e67cad4e325d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
