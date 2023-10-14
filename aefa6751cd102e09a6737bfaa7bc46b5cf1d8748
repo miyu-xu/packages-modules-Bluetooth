@@ -33,6 +33,24 @@
       "message": "nit: I think this line worth explaining. Could you add comment about hidsdpdisable, and why status \u003d\u003d invalid is permissible for service discovery?",
       "revId": "aefa6751cd102e09a6737bfaa7bc46b5cf1d8748",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27ab0091_81f54b2e",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1355,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-10-14T01:45:28Z",
+      "side": 1,
+      "message": "Done. Actually there is no need to check return status, because if the device is not in cb, the mask will use the default value. There should be no impact.",
+      "parentUuid": "b6ec8dcd_c6100e87",
+      "revId": "aefa6751cd102e09a6737bfaa7bc46b5cf1d8748",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
