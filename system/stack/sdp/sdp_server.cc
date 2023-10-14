@@ -260,7 +260,7 @@ void sdp_server_handle_client_req(tCONN_CB* p_ccb, BT_HDR* p_msg) {
     default:
       sdpu_build_n_send_error(p_ccb, trans_num, SDP_INVALID_REQ_SYNTAX,
                               SDP_TEXT_BAD_PDU);
-      SDP_TRACE_WARNING("SDP - server got unknown PDU: 0x%x", pdu_id);
+      LOG_WARN("SDP - server got unknown PDU: 0x%x", pdu_id);
       break;
   }
 }
@@ -373,7 +373,7 @@ static void process_service_search(tCONN_CB* p_ccb, uint16_t trans_num,
   UINT16_TO_BE_STREAM(p_rsp, num_rsp_handles);
   UINT16_TO_BE_STREAM(p_rsp, cur_handles);
 
-  /*  SDP_TRACE_DEBUG("SDP Service Rsp: tothdl %d, curhdlr %d, start %d, end %d,
+  /*  LOG_DEBUG("SDP Service Rsp: tothdl %d, curhdlr %d, start %d, end %d,
      cont %d",
                        num_rsp_handles, cur_handles, cont_offset,
                        cont_offset + cur_handles-1, is_cont); */
@@ -468,7 +468,7 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
           pbap_pse_dynamic_version_upgrade_is_enabled()) {
     p_rec = sdp_upgrade_pse_record(p_rec, p_ccb->device_address);
   } else {
-    SDP_TRACE_WARNING("PBAP PSE dynamic version upgrade is not enabled");
+    LOG_WARN("PBAP PSE dynamic version upgrade is not enabled");
   }
 
   /* Free and reallocate buffer */
@@ -534,8 +534,7 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
                 dynamic_avrcp_version_enhancement_is_enabled()) {
           avrc_sdp_version = sdpu_is_avrcp_profile_description_list(
               p_attr_profile_desc_list_id);
-          SDP_TRACE_ERROR("avrc_sdp_version in SDP records %x",
-                          avrc_sdp_version);
+          LOG_ERROR("avrc_sdp_version in SDP records %x", avrc_sdp_version);
           sdpu_set_avrc_target_features(p_attr, &(p_ccb->device_address),
                                         avrc_sdp_version);
         }
@@ -575,8 +574,8 @@ static void process_service_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
                  attr_len) /* Not enough space for attr... so add partially */
       {
         if (attr_len >= SDP_MAX_ATTR_LEN) {
-          SDP_TRACE_ERROR("SDP attr too big: max_list_len=%d,attr_len=%d",
-                          max_list_len, attr_len);
+          LOG_ERROR("SDP attr too big: max_list_len=%d,attr_len=%d",
+                    max_list_len, attr_len);
           sdpu_build_n_send_error(p_ccb, trans_num, SDP_NO_RESOURCES, NULL);
           return;
         }
@@ -786,7 +785,7 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
             pbap_pse_dynamic_version_upgrade_is_enabled()) {
       p_rec = sdp_upgrade_pse_record(p_rec, p_ccb->device_address);
     } else {
-      SDP_TRACE_WARNING("PBAP PSE dynamic version upgrade is not enabled");
+      LOG_WARN("PBAP PSE dynamic version upgrade is not enabled");
     }
     /* Allow space for attribute sequence type and length */
     p_seq_start = p_rsp;
@@ -829,8 +828,7 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
                   p_attr_profile_desc_list_id != nullptr) {
             avrc_sdp_version = sdpu_is_avrcp_profile_description_list(
                 p_attr_profile_desc_list_id);
-            SDP_TRACE_ERROR("avrc_sdp_version in SDP records %x",
-                            avrc_sdp_version);
+            LOG_ERROR("avrc_sdp_version in SDP records %x", avrc_sdp_version);
             sdpu_set_avrc_target_features(p_attr, &(p_ccb->device_address),
                                           avrc_sdp_version);
           }
@@ -872,8 +870,8 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
                    attr_len) /* Not enough space for attr... so add partially */
         {
           if (attr_len >= SDP_MAX_ATTR_LEN) {
-            SDP_TRACE_ERROR("SDP attr too big: max_list_len=%d,attr_len=%d",
-                            max_list_len, attr_len);
+            LOG_ERROR("SDP attr too big: max_list_len=%d,attr_len=%d",
+                      max_list_len, attr_len);
             sdpu_build_n_send_error(p_ccb, trans_num, SDP_NO_RESOURCES, NULL);
             return;
           }
@@ -975,12 +973,12 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
           sdp_pbap_pse_dynamic_attributes_len_update(p_ccb, &attr_seq_sav,
                                                      &uid_seq);
     } else {
-      SDP_TRACE_WARNING("PBAP PSE dynamic version upgrade is not enabled");
+      LOG_WARN("PBAP PSE dynamic version upgrade is not enabled");
       p_ccb->pse_dynamic_attributes_len = 0;
     }
 
-    SDP_TRACE_DEBUG("p_ccb->list_len = %d pse_dynamic_attributes_len = %d",
-                    p_ccb->list_len, p_ccb->pse_dynamic_attributes_len);
+    LOG_DEBUG("p_ccb->list_len = %d pse_dynamic_attributes_len = %d",
+              p_ccb->list_len, p_ccb->pse_dynamic_attributes_len);
 
     /* Put in the sequence header (2 or 3 bytes) */
     if (p_ccb->list_len > 255) {
@@ -1026,7 +1024,7 @@ static void process_service_search_attr_req(tCONN_CB* p_ccb, uint16_t trans_num,
 
   p_ccb->cont_offset += len_to_send;
 
-  SDP_TRACE_DEBUG(
+  LOG_DEBUG(
       "p_ccb->pse_dynamic_attributes_len %d, cont_offset = %d, p_ccb->list_len "
       "= %d",
       p_ccb->pse_dynamic_attributes_len, p_ccb->cont_offset,
@@ -1069,7 +1067,7 @@ static bool is_device_in_allowlist_for_pbap(RawAddress remote_address,
   if (!check_for_1_2 &&
       interop_match_addr_or_name(INTEROP_ADV_PBAP_VER_1_1, &remote_address,
                                  &btif_storage_get_remote_device_property)) {
-    SDP_TRACE_DEBUG("device is in allowlist for pbap version < 1.2 ");
+    LOG_DEBUG("device is in allowlist for pbap version < 1.2 ");
     return true;
   }
   if (check_for_1_2) {
@@ -1077,15 +1075,14 @@ static bool is_device_in_allowlist_for_pbap(RawAddress remote_address,
       if (interop_match_addr_or_name(
               INTEROP_ADV_PBAP_VER_1_2, &remote_address,
               &btif_storage_get_remote_device_property)) {
-        SDP_TRACE_DEBUG("device is in allowlist for pbap version 1.2 ");
+        LOG_DEBUG("device is in allowlist for pbap version 1.2 ");
         return true;
       }
     } else {
       const char* p_name = BTM_SecReadDevName(remote_address);
       if ((p_name != NULL) &&
           interop_match_name(INTEROP_ADV_PBAP_VER_1_2, p_name)) {
-        SDP_TRACE_DEBUG(
-            "device is not paired & in allowlist for pbap version 1.2");
+        LOG_DEBUG("device is not paired & in allowlist for pbap version 1.2");
         return true;
       }
     }
@@ -1119,12 +1116,12 @@ static uint16_t sdp_pbap_pse_dynamic_attributes_len_update(
       is_device_in_allowlist_for_pbap(p_ccb->device_address, true);
   bool running_pts = osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
 
-  SDP_TRACE_DEBUG(
-      "remote BD Addr : %s is_pbap_102_supported = %d "
-      "is_pbap_101_allowlisted = %d is_pbap_102_allowlisted = %d "
-      "running_pts = %d",
-      ADDRESS_TO_LOGGABLE_CSTR(p_ccb->device_address), is_pbap_102_supported,
-      is_pbap_101_allowlisted, is_pbap_102_allowlisted, running_pts);
+  LOG_DEBUG("remote BD Addr : %s is_pbap_102_supported = %d "
+            "is_pbap_101_allowlisted = %d is_pbap_102_allowlisted = %d "
+            "running_pts = %d",
+            ADDRESS_TO_LOGGABLE_CSTR(p_ccb->device_address),
+            is_pbap_102_supported, is_pbap_101_allowlisted,
+            is_pbap_102_allowlisted, running_pts);
 
   if (is_pbap_101_allowlisted ||
       (!is_pbap_102_supported && !is_pbap_102_allowlisted && !running_pts)) {
@@ -1142,18 +1139,17 @@ static uint16_t sdp_pbap_pse_dynamic_attributes_len_update(
          UUID_SERVCLASS_PBAP_PSE)) {
       // PBAP PSE Record
       p_rec = sdp_upgrade_pse_record(p_rec, p_ccb->device_address);
-      SDP_TRACE_DEBUG("response has PBAP PSE record for allowlist device");
+      LOG_DEBUG("response has PBAP PSE record for allowlist device");
 
       int att_index;
       bool l2cap_psm_len_included = false, supp_attr_len_included = false;
       for (xx = p_ccb->cont_info.next_attr_index; xx < attr_seq->num_attr;
            xx++) {
-        SDP_TRACE_DEBUG(
-            "xx = %d attr_seq->num_attr = %d, "
-            "attr_seq->attr_entry[xx].start = %d , "
-            "attr_seq->attr_entry[xx].end = %d",
-            xx, attr_seq->num_attr, attr_seq->attr_entry[xx].start,
-            attr_seq->attr_entry[xx].end);
+        LOG_DEBUG("xx = %d attr_seq->num_attr = %d, "
+                  "attr_seq->attr_entry[xx].start = %d , "
+                  "attr_seq->attr_entry[xx].end = %d",
+                  xx, attr_seq->num_attr, attr_seq->attr_entry[xx].start,
+                  attr_seq->attr_entry[xx].end);
 
         for (att_index = 0; att_index < p_rec->num_attributes; att_index++) {
           tSDP_ATTRIBUTE cur_attr = p_rec->attribute[att_index];
@@ -1163,20 +1159,18 @@ static uint16_t sdp_pbap_pse_dynamic_attributes_len_update(
               cur_attr.id <= attr_seq->attr_entry[xx].end) {
             l2cap_psm_len_included = true;
             p_ccb->pse_dynamic_attributes_len += PBAP_GOEP_L2CAP_PSM_LEN;
-            SDP_TRACE_ERROR(
-                "ATTR_ID_GOEP_L2CAP_PSM requested,"
-                " need to change length by %d",
-                p_ccb->pse_dynamic_attributes_len);
+            LOG_ERROR("ATTR_ID_GOEP_L2CAP_PSM requested,"
+                      " need to change length by %d",
+                      p_ccb->pse_dynamic_attributes_len);
           } else if (cur_attr.id == ATTR_ID_PBAP_SUPPORTED_FEATURES &&
                      !supp_attr_len_included &&
                      cur_attr.id >= attr_seq->attr_entry[xx].start &&
                      cur_attr.id <= attr_seq->attr_entry[xx].end) {
             supp_attr_len_included = true;
             p_ccb->pse_dynamic_attributes_len += PBAP_SUPP_FEA_LEN;
-            SDP_TRACE_DEBUG(
-                "ATTR_ID_PBAP_SUPPORTED_FEATURES requested,"
-                " need to change length by %d",
-                p_ccb->pse_dynamic_attributes_len);
+            LOG_DEBUG("ATTR_ID_PBAP_SUPPORTED_FEATURES requested,"
+                      " need to change length by %d",
+                      p_ccb->pse_dynamic_attributes_len);
           }
         }
         if (p_ccb->pse_dynamic_attributes_len == PBAP_1_2_BL_LEN) break;
@@ -1184,8 +1178,8 @@ static uint16_t sdp_pbap_pse_dynamic_attributes_len_update(
       break;
     }
   }
-  SDP_TRACE_DEBUG("pse_dynamic_attributes_len = %d",
-                  p_ccb->pse_dynamic_attributes_len);
+  LOG_DEBUG("pse_dynamic_attributes_len = %d",
+            p_ccb->pse_dynamic_attributes_len);
   return p_ccb->pse_dynamic_attributes_len;
 }
 
@@ -1218,12 +1212,12 @@ static const tSDP_RECORD* sdp_upgrade_pse_record(const tSDP_RECORD* p_rec,
       is_device_in_allowlist_for_pbap(remote_address, true);
   bool running_pts = osi_property_get_bool(SDP_ENABLE_PTS_PBAP, false);
 
-  SDP_TRACE_DEBUG(
-      "%s remote BD Addr : %s is_pbap_102_supported : %d "
-      "is_pbap_101_allowlisted = %d is_pbap_102_allowlisted = %d "
-      "running_pts = %d",
-      __func__, ADDRESS_TO_LOGGABLE_CSTR(remote_address), is_pbap_102_supported,
-      is_pbap_101_allowlisted, is_pbap_102_allowlisted, running_pts);
+  LOG_DEBUG("%s remote BD Addr : %s is_pbap_102_supported : %d "
+            "is_pbap_101_allowlisted = %d is_pbap_102_allowlisted = %d "
+            "running_pts = %d",
+            __func__, ADDRESS_TO_LOGGABLE_CSTR(remote_address),
+            is_pbap_102_supported, is_pbap_101_allowlisted,
+            is_pbap_102_allowlisted, running_pts);
 
   if (is_pbap_101_allowlisted ||
       (!is_pbap_102_supported && !is_pbap_102_allowlisted && !running_pts)) {
@@ -1266,7 +1260,7 @@ static const tSDP_RECORD* sdp_upgrade_pse_record(const tSDP_RECORD* p_rec,
                                      UINT_DESC_TYPE, (uint32_t)2, temp);
 
   if (!status) {
-    SDP_TRACE_ERROR("FAILED");
+    LOG_ERROR("FAILED");
     return p_rec;
   }
   return &pbap_102_sdp_rec;
@@ -1283,11 +1277,11 @@ void update_pce_entry_to_interop_database(RawAddress remote_addr) {
   if (!interop_match_addr_or_name(INTEROP_ADV_PBAP_VER_1_2, &remote_addr,
                                   &btif_storage_get_remote_device_property)) {
     interop_database_add_addr(INTEROP_ADV_PBAP_VER_1_2, &remote_addr, 3);
-    SDP_TRACE_DEBUG("device: %s is added into interop list",
-                    ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
+    LOG_DEBUG("device: %s is added into interop list",
+              ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
   } else {
-    SDP_TRACE_WARNING("device: %s is already found on interop list",
-                      ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
+    LOG_WARN("device: %s is already found on interop list",
+             ADDRESS_TO_LOGGABLE_CSTR(remote_addr));
   }
 }
 
@@ -1305,7 +1299,7 @@ bool is_sdp_pbap_pce_disabled(RawAddress remote_address) {
   if (interop_match_addr_or_name(INTEROP_DISABLE_PCE_SDP_AFTER_PAIRING,
                                  &remote_address,
                                  &btif_storage_get_remote_device_property)) {
-    SDP_TRACE_DEBUG("device is denylisted for PCE SDP ");
+    LOG_DEBUG("device is denylisted for PCE SDP ");
     return true;
   } else {
     return false;
@@ -1327,11 +1321,10 @@ void sdp_save_local_pse_record_attributes(int32_t rfcomm_channel_number,
                                           int32_t profile_version,
                                           uint32_t supported_features,
                                           uint32_t supported_repositories) {
-  SDP_TRACE_WARNING(
-      "rfcomm_channel_number: 0x%x, l2cap_psm: 0x%x profile_version: 0x%x"
-      "supported_features: 0x%x supported_repositories:  0x%x",
-      rfcomm_channel_number, l2cap_psm, profile_version, supported_features,
-      supported_repositories);
+  LOG_WARN("rfcomm_channel_number: 0x%x, l2cap_psm: 0x%x profile_version: 0x%x"
+           "supported_features: 0x%x supported_repositories:  0x%x",
+           rfcomm_channel_number, l2cap_psm, profile_version,
+           supported_features, supported_repositories);
   sdpPseLocalRecord.rfcomm_channel_number = rfcomm_channel_number;
   sdpPseLocalRecord.l2cap_psm = l2cap_psm;
   sdpPseLocalRecord.profile_version = profile_version;

@@ -290,8 +290,8 @@ static void decode_controller_support() {
     }
   }
 
-  BTM_TRACE_DEBUG("Local supported SCO packet types: 0x%04x",
-                  btm_cb.btm_sco_pkt_types_supported);
+  LOG_DEBUG("Local supported SCO packet types: 0x%04x",
+            btm_cb.btm_sco_pkt_types_supported);
 
   BTM_acl_after_controller_started(controller_get_interface());
   btm_sec_dev_reset();
@@ -453,8 +453,8 @@ uint8_t* BTM_ReadDeviceClass(void) {
  ******************************************************************************/
 void BTM_VendorSpecificCommand(uint16_t opcode, uint8_t param_len,
                                uint8_t* p_param_buf, tBTM_VSC_CMPL_CB* p_cb) {
-  BTM_TRACE_EVENT("BTM: %s: Opcode: 0x%04X, ParamLen: %i.", __func__, opcode,
-                  param_len);
+  LOG_INFO("BTM: %s: Opcode: 0x%04X, ParamLen: %i.", __func__, opcode,
+           param_len);
 
   /* Send the HCI command (opcode will be OR'd with HCI_GRP_VENDOR_SPECIFIC) */
   btsnd_hcic_vendor_spec_cmd(opcode, param_len, p_param_buf, p_cb);
@@ -488,7 +488,7 @@ tBTM_STATUS BTM_RegisterForVSEvents(tBTM_VS_EVT_CB* p_cb, bool is_register) {
       /* Found callback in lookup table. If deregistering, clear the entry. */
       if (!is_register) {
         btm_cb.devcb.p_vend_spec_cb[i] = NULL;
-        BTM_TRACE_EVENT("BTM Deregister For VSEvents is successfully");
+        LOG_INFO("BTM Deregister For VSEvents is successfully");
       }
       return (BTM_SUCCESS);
     }
@@ -498,10 +498,10 @@ tBTM_STATUS BTM_RegisterForVSEvents(tBTM_VS_EVT_CB* p_cb, bool is_register) {
   if (is_register) {
     if (free_idx < BTM_MAX_VSE_CALLBACKS) {
       btm_cb.devcb.p_vend_spec_cb[free_idx] = p_cb;
-      BTM_TRACE_EVENT("BTM Register For VSEvents is successfully");
+      LOG_INFO("BTM Register For VSEvents is successfully");
     } else {
       /* No free entries available */
-      BTM_TRACE_ERROR("BTM_RegisterForVSEvents: too many callbacks registered");
+      LOG_ERROR("BTM_RegisterForVSEvents: too many callbacks registered");
 
       retval = BTM_NO_RESOURCES;
     }
@@ -522,7 +522,7 @@ tBTM_STATUS BTM_RegisterForVSEvents(tBTM_VS_EVT_CB* p_cb, bool is_register) {
 void btm_vendor_specific_evt(const uint8_t* p, uint8_t evt_len) {
   uint8_t i;
 
-  BTM_TRACE_DEBUG("BTM Event: Vendor Specific event from controller");
+  LOG_DEBUG("BTM Event: Vendor Specific event from controller");
 
   // Handle BQR events
   const uint8_t* bqr_ptr = p;
@@ -581,7 +581,7 @@ void btm_vendor_specific_evt(const uint8_t* p, uint8_t evt_len) {
  *
  ******************************************************************************/
 void BTM_WritePageTimeout(uint16_t timeout) {
-  BTM_TRACE_EVENT("BTM: BTM_WritePageTimeout: Timeout: %d.", timeout);
+  LOG_INFO("BTM: BTM_WritePageTimeout: Timeout: %d.", timeout);
 
   /* Send the HCI command */
   btsnd_hcic_write_page_tout(timeout);
@@ -596,7 +596,7 @@ void BTM_WritePageTimeout(uint16_t timeout) {
  *
  ******************************************************************************/
 void BTM_WriteVoiceSettings(uint16_t settings) {
-  BTM_TRACE_EVENT("BTM: BTM_WriteVoiceSettings: Settings: 0x%04x.", settings);
+  LOG_INFO("BTM: BTM_WriteVoiceSettings: Settings: 0x%04x.", settings);
 
   /* Send the HCI command */
   btsnd_hcic_write_voice_settings((uint16_t)(settings & 0x03ff));
@@ -620,7 +620,7 @@ void BTM_WriteVoiceSettings(uint16_t settings) {
 tBTM_STATUS BTM_EnableTestMode(void) {
   uint8_t cond;
 
-  BTM_TRACE_EVENT("BTM: BTM_EnableTestMode");
+  LOG_INFO("BTM: BTM_EnableTestMode");
 
   /* set auto accept connection as this is needed during test mode */
   /* Allocate a buffer to hold HCI command */
@@ -671,8 +671,8 @@ tBTM_STATUS BTM_DeleteStoredLinkKey(const RawAddress* bd_addr,
 
   bool delete_all_flag = !bd_addr;
 
-  BTM_TRACE_EVENT("BTM: BTM_DeleteStoredLinkKey: delete_all_flag: %s",
-                  delete_all_flag ? "true" : "false");
+  LOG_INFO("BTM: BTM_DeleteStoredLinkKey: delete_all_flag: %s",
+           delete_all_flag ? "true" : "false");
 
   btm_cb.devcb.p_stored_link_key_cmpl_cb = p_cb;
   if (!bd_addr) {

@@ -83,8 +83,8 @@ static bool avct_l2c_br_is_passive(tAVCT_BCB* p_bcb) {
 
   for (i = 0; i < AVCT_NUM_CONN; i++, p_ccb++) {
     if (p_ccb->allocated && (p_ccb->p_lcb == p_lcb)) {
-      AVCT_TRACE_DEBUG("Is bcb associated ccb control passive :0x%x",
-                       p_ccb->cc.control);
+      LOG_DEBUG("Is bcb associated ccb control passive :0x%x",
+                p_ccb->cc.control);
       if (p_ccb->cc.control & AVCT_PASSIVE) {
         is_passive = true;
         break;
@@ -132,7 +132,7 @@ void avct_l2c_br_connect_ind_cback(const RawAddress& bd_addr, uint16_t lcid,
         /* add channel ID to conflict ID */
         p_bcb->conflict_lcid = p_bcb->ch_lcid;
         result = L2CAP_CONN_OK;
-        AVCT_TRACE_DEBUG("Detected conflict_lcid:0x%x", p_bcb->conflict_lcid);
+        LOG_DEBUG("Detected conflict_lcid:0x%x", p_bcb->conflict_lcid);
       }
     }
   }
@@ -143,7 +143,7 @@ void avct_l2c_br_connect_ind_cback(const RawAddress& bd_addr, uint16_t lcid,
 
   /* If we reject the connection, send DisconnectReq */
   if (result != L2CAP_CONN_OK) {
-    AVCT_TRACE_DEBUG("Connection rejected to lcid:0x%x", lcid);
+    LOG_DEBUG("Connection rejected to lcid:0x%x", lcid);
     L2CA_DisconnectReq(lcid);
   }
 
@@ -162,7 +162,7 @@ void avct_br_on_l2cap_error(uint16_t lcid, uint16_t result) {
   if (p_bcb == nullptr) return;
 
   if (p_bcb->ch_state == AVCT_CH_CONN && p_bcb->conflict_lcid == lcid) {
-    AVCT_TRACE_DEBUG("Reset conflict_lcid:0x%x", p_bcb->conflict_lcid);
+    LOG_DEBUG("Reset conflict_lcid:0x%x", p_bcb->conflict_lcid);
     p_bcb->conflict_lcid = 0;
     return;
   }
@@ -201,14 +201,14 @@ void avct_l2c_br_connect_cfm_cback(uint16_t lcid, uint16_t result) {
     }
     /* else failure */
     else {
-      AVCT_TRACE_ERROR("Invoked with non OK status");
+      LOG_ERROR("Invoked with non OK status");
     }
   } else if (p_bcb->conflict_lcid == lcid) {
     /* we must be in AVCT_CH_CFG state for the ch_lcid channel */
     if (result == L2CAP_CONN_OK) {
       /* just in case the peer also accepts our connection - Send L2CAP
        * disconnect req */
-      AVCT_TRACE_DEBUG("Disconnect conflict_lcid:0x%x", p_bcb->conflict_lcid);
+      LOG_DEBUG("Disconnect conflict_lcid:0x%x", p_bcb->conflict_lcid);
       L2CA_DisconnectReq(lcid);
     }
     p_bcb->conflict_lcid = 0;
@@ -267,7 +267,7 @@ void avct_l2c_br_config_ind_cback(uint16_t lcid, tL2CAP_CFG_INFO* p_cfg) {
     p_lcb->peer_mtu = max_mtu;
   }
 
-  AVCT_TRACE_DEBUG("%s peer_mtu:%d use:%d", __func__, p_lcb->peer_mtu, max_mtu);
+  LOG_DEBUG("%s peer_mtu:%d use:%d", __func__, p_lcb->peer_mtu, max_mtu);
 }
 
 /*******************************************************************************
