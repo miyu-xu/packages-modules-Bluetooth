@@ -20,6 +20,7 @@
 
 // #include "bta/dm/bta_dm_int.h"
 #include "bta/include/bta_api.h"
+#include "bta/include/bta_sec_api.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 
 typedef struct {
