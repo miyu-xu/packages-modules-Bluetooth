@@ -134,8 +134,6 @@ typedef struct {
   BT_HDR_RIGID hdr;
   tSDP_RESULT sdp_result;
 } tBTA_DM_SDP_RESULT;
-
-
 typedef struct {
   BT_HDR_RIGID hdr;
   bool enable;
