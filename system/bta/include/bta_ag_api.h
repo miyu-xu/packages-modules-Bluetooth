@@ -1,6 +1,6 @@
 /******************************************************************************
  *
- *  Copyright 2003-2012 Broadcom Corporation
+ *
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -16,12 +16,6 @@
  *
  ******************************************************************************/
 
-/******************************************************************************
- *
- *  This is the public interface file for the audio gateway (AG) subsystem
- *  of BTA, Broadcom's Bluetooth application layer for mobile phones.
- *
- ******************************************************************************/
 #ifndef BTA_AG_API_H
 #define BTA_AG_API_H
 
