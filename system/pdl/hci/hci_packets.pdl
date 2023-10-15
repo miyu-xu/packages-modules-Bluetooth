@@ -5199,9 +5199,9 @@ packet LeCsSetProcedureParametersComplete : CommandComplete (command_op_code = L
 packet LeCsProcedureEnable : DistanceMeasurementCommand (op_code = LE_CS_PROCEDURE_ENABLE) {
   connection_handle: 12,
   _reserved_ : 4,
-  procedure_enable : 8,
   config_id : 2,
   _reserved_ : 6,
+  procedure_enable : 8,
 }
 
 packet LeCsProcedureEnableStatus : CommandStatus (command_op_code = LE_CS_PROCEDURE_ENABLE) {
