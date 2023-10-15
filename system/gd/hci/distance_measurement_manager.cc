@@ -225,7 +225,7 @@ struct DistanceMeasurementManager::impl {
   }
 
   void send_le_cs_set_default_settings(uint16_t connection_handle) {
-    uint8_t role_enable = ((uint8_t)CsRole::INITIATOR) | ((uint8_t)CsRole::INITIATOR);
+    uint8_t role_enable = (1 << (uint8_t)CsRole::INITIATOR) | 1 << ((uint8_t)CsRole::REFLECTOR);
     hci_layer_->EnqueueCommand(
         LeCsSetDefaultSettingsBuilder::Create(
             connection_handle,
@@ -257,11 +257,16 @@ struct DistanceMeasurementManager::impl {
   void on_cs_read_remote_supported_capabilities_complete(
       LeCsReadRemoteSupportedCapabilitiesCompleteView event_view) {
     if (!event_view.IsValid()) {
-      LOG_INFO("Get invalid LeCsReadRemoteSupportedCapabilitiesCompleteView");
+      LOG_WARN("Get invalid LeCsReadRemoteSupportedCapabilitiesCompleteView");
+      return;
+    } else if (event_view.GetStatus() != ErrorCode::SUCCESS) {
+      std::string error_code = ErrorCodeText(event_view.GetStatus());
+      LOG_WARN(
+          "Received LeCsReadRemoteSupportedCapabilitiesCompleteView with error code %s",
+          error_code.c_str());
       return;
     }
     uint16_t connection_handle = event_view.GetConnectionHandle();
-
     if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
       // Create a cs tracker with role reflector
       // TODO: Check ROLE via CS config. (b/304295768)
@@ -288,10 +293,13 @@ struct DistanceMeasurementManager::impl {
 
   void on_cs_security_enable_complete(LeCsSecurityEnableCompleteView event_view) {
     if (!event_view.IsValid()) {
-      LOG_INFO("get invalid LeCsSecurityEnableCompleteView");
+      LOG_WARN("get invalid LeCsSecurityEnableCompleteView");
+      return;
+    } else if (event_view.GetStatus() != ErrorCode::SUCCESS) {
+      std::string error_code = ErrorCodeText(event_view.GetStatus());
+      LOG_WARN("Received LeCsSecurityEnableCompleteView with error code %s", error_code.c_str());
       return;
     }
-
     uint16_t connection_handle = event_view.GetConnectionHandle();
     if (cs_trackers_.find(connection_handle) == cs_trackers_.end()) {
       LOG_WARN("Can't find cs tracker for connection_handle %d", connection_handle);

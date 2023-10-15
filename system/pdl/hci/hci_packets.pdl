@@ -4722,6 +4722,7 @@ packet LeRemoveIsoDataPathComplete : CommandComplete (command_op_code = LE_REMOV
 enum LeHostFeatureBits : 8 {
   CONNECTED_ISO_STREAM_HOST_SUPPORT = 32,
   CONNECTION_SUBRATING_HOST_SUPPORT = 38,
+  CHANNEL_SOUNDING_HOST_SUPPORT = 58, // CYDBG
 }
 
 packet LeSetHostFeature : Command (op_code = LE_SET_HOST_FEATURE) {
@@ -5199,9 +5200,9 @@ packet LeCsSetProcedureParametersComplete : CommandComplete (command_op_code = L
 packet LeCsProcedureEnable : DistanceMeasurementCommand (op_code = LE_CS_PROCEDURE_ENABLE) {
   connection_handle: 12,
   _reserved_ : 4,
-  procedure_enable : 8,
   config_id : 2,
   _reserved_ : 6,
+  procedure_enable : 8,
 }
 
 packet LeCsProcedureEnableStatus : CommandStatus (command_op_code = LE_CS_PROCEDURE_ENABLE) {
