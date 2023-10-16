@@ -43,6 +43,7 @@
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_ble_api_types.h"
+#include "stack/include/btm_sec_api.h"
 #include "stack/include/l2c_api.h"
 #include "stack/include/main_thread.h"
 #include "types/bluetooth/uuid.h"
