@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4e18c51_1c769b82",
+        "filename": "system/bta/ag/bta_ag_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-16T17:35:02Z",
+      "side": 0,
+      "message": "%p formatters will be removed in a follow up CL.",
+      "parentUuid": "7ec71bd4_1585a51b",
+      "range": {
+        "startLine": 110,
+        "startChar": 56,
+        "endLine": 110,
+        "endChar": 61
+      },
+      "revId": "4fa3df5a78055a4960d73d969518a8831d08e540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2282c485_e3ff2c6c",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 4
@@ -82,6 +106,30 @@
         "id": 1076123
       },
       "writtenOn": "2023-10-16T17:34:32Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "2282c485_e3ff2c6c",
+      "range": {
+        "startLine": 759,
+        "startChar": 65,
+        "endLine": 759,
+        "endChar": 69
+      },
+      "revId": "4fa3df5a78055a4960d73d969518a8831d08e540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90226dc3_1e90035d",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-16T17:35:02Z",
       "side": 0,
       "message": "Acknowledged",
       "parentUuid": "2282c485_e3ff2c6c",
@@ -129,6 +177,30 @@
         "id": 1076123
       },
       "writtenOn": "2023-10-16T17:34:32Z",
+      "side": 0,
+      "message": "Acknowledged",
+      "parentUuid": "147fc47e_6112c0c5",
+      "range": {
+        "startLine": 208,
+        "startChar": 25,
+        "endLine": 208,
+        "endChar": 34
+      },
+      "revId": "4fa3df5a78055a4960d73d969518a8831d08e540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8835826f_1358c653",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-16T17:35:02Z",
       "side": 0,
       "message": "Acknowledged",
       "parentUuid": "147fc47e_6112c0c5",
