@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9c8726c_deb765a0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-16T18:16:24Z",
+      "side": 1,
+      "message": "nit: Update to say:\n```\nThe handler of HciDevicePresence shall then start the adapter if\nfloss is enabled.\n```",
+      "revId": "8097d437f72ef6d1a1d2ed34d6d8c654516e0bc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb693ee0_65baa655",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-16T18:16:24Z",
+      "side": 1,
+      "message": "note to self: No need to check `floss_enabled` because `action_on_hci_presence_changed` checks it.",
+      "revId": "8097d437f72ef6d1a1d2ed34d6d8c654516e0bc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
