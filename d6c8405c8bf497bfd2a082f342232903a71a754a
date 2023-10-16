@@ -1,0 +1,251 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b92dd57_0452149d",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\nThe `BumbleBluetoothTests` source code can be found in the Android codebase at this\n```\nAnd same for others",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f0aeb1f_e1c65bed",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\nThe BumbleBluetoothTests source code can be found in the [AOSP][bumble-bluetooth-tests-code].\n```",
+      "range": {
+        "startLine": 7,
+        "startChar": 74,
+        "endLine": 8,
+        "endChar": 40
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05b476b8_30aba52e",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\nacloud create # Create a remote instance using the latest know good build image.\nacloud create --local-image # OR: Create a remote instance using a local image.\nacloud create --local-image --local-instance # OR: Create a local instance using a local image.\n```",
+      "range": {
+        "startLine": 32,
+        "startChar": 14,
+        "endLine": 32,
+        "endChar": 44
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "406ca044_2cf4e85a",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\nIf you wish to run a specific test file:\n```",
+      "range": {
+        "startLine": 45,
+        "startChar": 39,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6f6180b_5c1aedad",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\n  // A rule is something that live from a test setup through it\u0027s teardown.\n  // Here the `AdoptShellPermissionsRule` rule give shell permissions during the test.\n  @Rule @JvmField val mPermissionRule \u003d AdoptShellPermissionsRule()\n```",
+      "range": {
+        "startLine": 83,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 67
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1dafaa4_c18faf1a",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\n  // This rule setup a Bumble Pandora device for the duration of the test.\n  // Acting as a Pandora client, it can be interacted with through the Pandora APIs.\n  @Rule @JvmField val mBumble \u003d PandoraDevice()\n```",
+      "range": {
+        "startLine": 85,
+        "startChar": 2,
+        "endLine": 85,
+        "endChar": 47
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe8125cb_d29acd14",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\n            .setLegacy(true) // NOTE: As of now, Bumble only support legacy advertising.\n```",
+      "range": {
+        "startLine": 119,
+        "startChar": 12,
+        "endLine": 119,
+        "endChar": 28
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b330cf07_c28d7f62",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\n            .setConnectable(true) // Set as connectable, otherwise Android won\u0027t be able to establish a connection.\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 33
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c620438_e8f6bf6c",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\n            .setOwnAddressType(OwnAddressType.RANDOM) // Ask Bumble to advertise it\u0027s `RANDOM` address.\n```",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 53
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "677efa94_4dcb5804",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\n        // For the sake of simplicity, the Bumble `RANDOM` address has been fixed to an arbitrary constant value.\n        // Normal use cases would have performed an LE scan to find our Bumble device, using it\u0027s `Advertising data` for matching, eg. looking for the `DCK` UUID..\n        Utils.BUMBLE_RANDOM_ADDRESS,\n```",
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fd9daf6_4e23c84a",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:29:41Z",
+      "side": 1,
+      "message": "```suggestion\n        BluetoothDevice.ADDRESS_TYPE_RANDOM // Remember, Bumble advertising it\u0027s `RANDOM` address.\n```",
+      "range": {
+        "startLine": 132,
+        "startChar": 8,
+        "endLine": 132,
+        "endChar": 43
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
