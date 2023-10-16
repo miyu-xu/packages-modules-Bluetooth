@@ -42,7 +42,6 @@ import android.bluetooth.IBluetoothCallback;
 import android.bluetooth.IBluetoothManager;
 import android.bluetooth.IBluetoothManagerCallback;
 import android.bluetooth.IBluetoothProfileServiceConnection;
-import android.bluetooth.IBluetoothStateChangeCallback;
 import android.content.AttributionSource;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -151,8 +150,6 @@ class BluetoothManagerService {
     @VisibleForTesting static final int MESSAGE_DISABLE = 2;
     @VisibleForTesting static final int MESSAGE_HANDLE_ENABLE_DELAYED = 3;
     @VisibleForTesting static final int MESSAGE_HANDLE_DISABLE_DELAYED = 4;
-    @VisibleForTesting static final int MESSAGE_REGISTER_STATE_CHANGE_CALLBACK = 30;
-    @VisibleForTesting static final int MESSAGE_UNREGISTER_STATE_CHANGE_CALLBACK = 31;
     @VisibleForTesting static final int MESSAGE_BLUETOOTH_SERVICE_CONNECTED = 40;
     @VisibleForTesting static final int MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED = 41;
     @VisibleForTesting static final int MESSAGE_RESTART_BLUETOOTH_SERVICE = 42;
@@ -246,8 +243,6 @@ class BluetoothManagerService {
     private final ContentResolver mContentResolver;
     private final RemoteCallbackList<IBluetoothManagerCallback> mCallbacks =
             new RemoteCallbackList<IBluetoothManagerCallback>();
-    private final RemoteCallbackList<IBluetoothStateChangeCallback> mStateChangeCallbacks =
-            new RemoteCallbackList<IBluetoothStateChangeCallback>();
     private final BluetoothServiceBinder mBinder;
 
     private final ReentrantReadWriteLock mAdapterLock = new ReentrantReadWriteLock();
@@ -960,14 +955,6 @@ class BluetoothManagerService {
         synchronized (mCallbacks) {
             mCallbacks.unregister(callback);
         }
-    }
-
-    void registerStateChangeCallback(IBluetoothStateChangeCallback callback) {
-        mHandler.obtainMessage(MESSAGE_REGISTER_STATE_CHANGE_CALLBACK, callback).sendToTarget();
-    }
-
-    void unregisterStateChangeCallback(IBluetoothStateChangeCallback callback) {
-        mHandler.obtainMessage(MESSAGE_UNREGISTER_STATE_CHANGE_CALLBACK, callback).sendToTarget();
     }
 
     boolean isEnabled() {
@@ -1746,28 +1733,42 @@ class BluetoothManagerService {
         }
     }
 
-    private void sendBluetoothStateCallback(boolean isUp) {
-        synchronized (mStateChangeCallbacks) {
+    private void sendBluetoothOnCallback() {
+        synchronized (mCallbacks) {
             try {
-                int n = mStateChangeCallbacks.beginBroadcast();
+                int n = mCallbacks.beginBroadcast();
                 if (DBG) {
-                    Log.d(
-                            TAG,
-                            "Broadcasting onBluetoothStateChange("
-                                    + isUp
-                                    + ") to "
-                                    + n
-                                    + " receivers.");
+                    Log.d(TAG, "Broadcasting onBluetoothOn() to " + n + " receivers.");
                 }
                 for (int i = 0; i < n; i++) {
                     try {
-                        mStateChangeCallbacks.getBroadcastItem(i).onBluetoothStateChange(isUp);
+                        mCallbacks.getBroadcastItem(i).onBluetoothOn();
                     } catch (RemoteException e) {
-                        Log.e(TAG, "Unable to call onBluetoothStateChange() on callback #" + i, e);
+                        Log.e(TAG, "Unable to call onBluetoothOn() on callback #" + i, e);
                     }
                 }
             } finally {
-                mStateChangeCallbacks.finishBroadcast();
+                mCallbacks.finishBroadcast();
+            }
+        }
+    }
+
+    private void sendBluetoothOffCallback() {
+        synchronized (mCallbacks) {
+            try {
+                int n = mCallbacks.beginBroadcast();
+                if (DBG) {
+                    Log.d(TAG, "Broadcasting onBluetoothOff() to " + n + " receivers.");
+                }
+                for (int i = 0; i < n; i++) {
+                    try {
+                        mCallbacks.getBroadcastItem(i).onBluetoothOff();
+                    } catch (RemoteException e) {
+                        Log.e(TAG, "Unable to call onBluetoothOff() on callback #" + i, e);
+                    }
+                }
+            } finally {
+                mCallbacks.finishBroadcast();
             }
         }
     }
@@ -2129,33 +2130,6 @@ class BluetoothManagerService {
                                 BluetoothProtoEnums.ENABLE_DISABLE_REASON_RESTORE_USER_SETTING,
                                 mContext.getPackageName());
                     }
-                    break;
-
-                case MESSAGE_REGISTER_STATE_CHANGE_CALLBACK:
-                    IBluetoothStateChangeCallback regCallback =
-                            (IBluetoothStateChangeCallback)msg.obj;
-                    if (mState.oneOf(STATE_ON)) {
-                        try {
-                            regCallback.onBluetoothStateChange(true);
-                        } catch (RemoteException e) {
-                            Log.e(TAG, "REGISTER_STATE_CHANGE_CALLBACK: callback failed", e);
-                            break;
-                        }
-                    }
-                    mStateChangeCallbacks.register(regCallback);
-                    break;
-
-                case MESSAGE_UNREGISTER_STATE_CHANGE_CALLBACK:
-                    IBluetoothStateChangeCallback unregCallback =
-                            (IBluetoothStateChangeCallback)msg.obj;
-                    try {
-                        // LINT.IfChange
-                        unregCallback.onBluetoothStateChange(false);
-                        // LINT.ThenChange(/framework/tests/unit/src/android/bluetooth/BluetoothProfileConnectorTest.java)
-                    } catch (RemoteException e) {
-                        Log.e(TAG, "UNREGISTER_STATE_CHANGE_CALLBACK: callback failed", e);
-                    }
-                    mStateChangeCallbacks.unregister(unregCallback);
                     break;
 
                 case MESSAGE_ADD_PROXY_DELAYED:
@@ -2586,7 +2560,7 @@ class BluetoothManagerService {
 
         // Notify all proxy objects first of adapter state change
         if (newState == STATE_ON) {
-            sendBluetoothStateCallback(true);
+            sendBluetoothOnCallback();
         } else if (newState == STATE_OFF) {
             // If Bluetooth is off, send service down event to proxy objects, and unbind
             if (DBG) {
@@ -2609,7 +2583,7 @@ class BluetoothManagerService {
 
         if (prevBrEdrState != newBrEdrState) { // Only broadcast when there is a BrEdr state change.
             if (newBrEdrState == STATE_OFF) {
-                sendBluetoothStateCallback(false);
+                sendBluetoothOffCallback();
                 sendBrEdrDownCallback(mContext.getAttributionSource());
             }
             broadcastIntentStateChange(
