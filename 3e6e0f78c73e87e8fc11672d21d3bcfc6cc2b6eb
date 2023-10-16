@@ -117,6 +117,29 @@
       },
       "revId": "3e6e0f78c73e87e8fc11672d21d3bcfc6cc2b6eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be5606bf_d8056f07",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4181,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-16T17:43:57Z",
+      "side": 1,
+      "message": "PRI?",
+      "range": {
+        "startLine": 4181,
+        "startChar": 36,
+        "endLine": 4181,
+        "endChar": 38
+      },
+      "revId": "3e6e0f78c73e87e8fc11672d21d3bcfc6cc2b6eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
