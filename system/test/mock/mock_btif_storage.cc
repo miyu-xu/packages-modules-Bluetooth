@@ -24,7 +24,7 @@
 #include <string>
 
 #include "bta/include/bta_hearing_aid_api.h"
-#include "stack/btm/btm_int_types.h"
+#include "stack/include/btm_sec_api_types.h"
 #include "stack/include/bt_octets.h"
 #include "test/common/mock_functions.h"
 #include "types/ble_address_with_type.h"
