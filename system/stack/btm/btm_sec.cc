@@ -5131,6 +5131,9 @@ static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC* p_dev_rec) {
 
   LOG_VERBOSE("%s() link_key_type = 0x%x", __func__, p_dev_rec->link_key_type);
 
+  if(!l2cb.fixed_reg[L2CAP_SMP_BR_CID - L2CAP_FIRST_FIXED_CHNL].pL2CA_FixedData_Cb)
+    return false;
+
   if ((p_dev_rec->link_key_type != BTM_LKEY_TYPE_UNAUTH_COMB_P_256) &&
       (p_dev_rec->link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256))
     return false;
