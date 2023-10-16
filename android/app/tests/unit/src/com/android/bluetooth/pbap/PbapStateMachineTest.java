@@ -30,14 +30,12 @@ import androidx.test.InstrumentationRegistry;
 import androidx.test.filters.MediumTest;
 import androidx.test.runner.AndroidJUnit4;
 
-import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
 
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -82,8 +80,10 @@ public class PbapStateMachineTest {
 
     @After
     public void tearDown() throws Exception {
-        mHandlerThread.quitSafely();
-        TestUtils.clearAdapterService(mAdapterService);
+        if (mHandlerThread != null) {
+            mHandlerThread.quitSafely();
+            TestUtils.clearAdapterService(mAdapterService);
+        }
     }
 
     /**

@@ -39,7 +39,6 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 
 import org.junit.After;
-import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -79,10 +78,12 @@ public class BluetoothPbapServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        TestUtils.stopService(mServiceRule, BluetoothPbapService.class);
-        mService = BluetoothPbapService.getBluetoothPbapService();
-        assertThat(mService).isNull();
-        TestUtils.clearAdapterService(mAdapterService);
+        if (mService != null) {
+            TestUtils.stopService(mServiceRule, BluetoothPbapService.class);
+            mService = BluetoothPbapService.getBluetoothPbapService();
+            assertThat(mService).isNull();
+            TestUtils.clearAdapterService(mAdapterService);
+        }
     }
 
     @Test
