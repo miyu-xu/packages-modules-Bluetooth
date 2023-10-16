@@ -5058,6 +5058,14 @@ public class GattService extends ProfileService {
                 BluetoothStatsLog.BLUETOOTH_CONNECTION_STATE_CHANGED, connectionState,
                 0 /* deprecated */, profile, new byte[0],
                 mAdapterService.getMetricId(device), sessionIndex, connectionStatus);
+        MetricsLogger.getInstance()
+        .logGattClientConnectionState(
+            mAdapterService.getMetricId(device),
+            sessionIndex,
+            connectionState,
+            connectionStatus,
+            isDirect);
+
         if (DBG) {
             Log.d(TAG, "Gatt Logging: metric_id=" + mAdapterService.getMetricId(device)
                     + ", session_index=" + sessionIndex
