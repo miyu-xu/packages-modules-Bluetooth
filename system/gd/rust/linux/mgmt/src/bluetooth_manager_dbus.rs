@@ -89,6 +89,9 @@ impl IBluetoothManagerCallback for BluetoothManagerCallbackDBus {
     #[dbus_method("OnHciEnabledChanged")]
     fn on_hci_enabled_changed(&mut self, hci_interface: i32, enabled: bool) {}
 
+    #[dbus_method("OnHciEnabledUnchanged")]
+    fn on_hci_enabled_unchanged(&mut self, hci_interface: i32, enabled: bool) {}
+
     #[dbus_method("OnDefaultAdapterChanged")]
     fn on_default_adapter_changed(&mut self, hci_interface: i32) {}
 }

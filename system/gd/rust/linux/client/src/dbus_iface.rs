@@ -1167,6 +1167,9 @@ impl IBluetoothManagerCallback for IBluetoothManagerCallbackDBus {
     #[dbus_method("OnHciEnabledChanged", DBusLog::Disable)]
     fn on_hci_enabled_changed(&mut self, hci_interface: i32, enabled: bool) {}
 
+    #[dbus_method("OnHciEnabledUnchanged", DBusLog::Disable)]
+    fn on_hci_enabled_unchanged(&mut self, hci_interface: i32, enabled: bool) {}
+
     #[dbus_method("OnDefaultAdapterChanged", DBusLog::Disable)]
     fn on_default_adapter_changed(&mut self, hci_interface: i32) {}
 }

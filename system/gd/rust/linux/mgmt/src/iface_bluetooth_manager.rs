@@ -61,6 +61,9 @@ pub trait IBluetoothManagerCallback: RPCProxy {
     /// HCI device is enabled or disabled.
     fn on_hci_enabled_changed(&mut self, hci_interface: i32, enabled: bool);
 
+    /// Request to enable or disable HCI device is ignored.
+    fn on_hci_enabled_unchanged(&mut self, hci_interface: i32, enabled: bool);
+
     /// The default adapter has changed. At start-up, if the default adapter is
     /// already available, this won't be sent out. This will only be sent in two
     /// cases:
