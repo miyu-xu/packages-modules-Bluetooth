@@ -46,6 +46,30 @@
       },
       "revId": "a0316f9ea91c6906f79d12e6273d943ca6486a97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cc35445_6e2d207c",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1513,
+      "author": {
+        "id": 1985170
+      },
+      "writtenOn": "2023-10-16T20:22:26Z",
+      "side": 0,
+      "message": "I did 30+ manual (couldn\u0027t automate due to b/305273400) tests of disconnect \u0026 connect and ensured the media use-cases (browsing media \u0026 play audio) worked.",
+      "parentUuid": "654e6bfd_4be6d1f1",
+      "range": {
+        "startLine": 1511,
+        "startChar": 1,
+        "endLine": 1513,
+        "endChar": 3
+      },
+      "revId": "a0316f9ea91c6906f79d12e6273d943ca6486a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
