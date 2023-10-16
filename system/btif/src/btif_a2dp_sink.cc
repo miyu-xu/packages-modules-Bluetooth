@@ -23,6 +23,7 @@
 
 #include <base/functional/bind.h>
 #include <base/logging.h>
+#include <bta_av_co.h>
 
 #include <atomic>
 #include <mutex>
@@ -136,7 +137,7 @@ static std::atomic<int> btif_a2dp_sink_state{BTIF_A2DP_SINK_STATE_OFF};
 static void btif_a2dp_sink_init_delayed();
 static void btif_a2dp_sink_startup_delayed();
 static void btif_a2dp_sink_start_session_delayed(
-    std::promise<void> peer_ready_promise);
+    const RawAddress& peer_address, std::promise<void> peer_ready_promise);
 static void btif_a2dp_sink_end_session_delayed();
 static void btif_a2dp_sink_shutdown_delayed();
 static void btif_a2dp_sink_cleanup_delayed();
@@ -224,13 +225,85 @@ static void btif_a2dp_sink_startup_delayed() {
   // Nothing to do
 }
 
+static void btif_a2dp_sink_on_decode_complete(uint8_t* data, uint32_t len) {
+#ifdef __ANDROID__
+  BtifAvrcpAudioTrackWriteData(btif_a2dp_sink_cb.audio_track,
+                               reinterpret_cast<void*>(data), len);
+#endif
+}
+
+static bool btif_a2dp_sink_initialize_a2dp_control_block(
+    const RawAddress& peer_address) {
+  if (peer_address.IsEmpty()) {
+    LOG_ERROR("Peer address is empty. Control block cannot be initialized");
+    return false;
+  }
+  uint8_t* codec_config = get_codec_config_for_peer(peer_address);
+
+  btif_a2dp_sink_cb.decoder_interface = A2DP_GetDecoderInterface(codec_config);
+
+  if (btif_a2dp_sink_cb.decoder_interface == nullptr) {
+    LOG_ERROR("%s: cannot stream audio: no source decoder interface", __func__);
+    return false;
+  }
+
+  if (!btif_a2dp_sink_cb.decoder_interface->decoder_init(
+          btif_a2dp_sink_on_decode_complete)) {
+    LOG_ERROR("%s: failed to initialize decoder", __func__);
+    return false;
+  }
+
+  if (btif_a2dp_sink_cb.decoder_interface->decoder_configure != nullptr) {
+    btif_a2dp_sink_cb.decoder_interface->decoder_configure(codec_config);
+  }
+
+  int sample_rate = A2DP_GetTrackSampleRate(codec_config);
+  if (sample_rate == -1) {
+    LOG_ERROR("%s: cannot get the track frequency", __func__);
+    return false;
+  }
+  int bits_per_sample = A2DP_GetTrackBitsPerSample(codec_config);
+  if (bits_per_sample == -1) {
+    LOG_ERROR("%s: cannot get the bits per sample", __func__);
+    return false;
+  }
+  int channel_count = A2DP_GetTrackChannelCount(codec_config);
+  if (channel_count == -1) {
+    LOG_ERROR("%s: cannot get the channel count", __func__);
+    return false;
+  }
+  int channel_type = A2DP_GetSinkTrackChannelType(codec_config);
+  if (channel_type == -1) {
+    LOG_ERROR("%s: cannot get the Sink channel type", __func__);
+    return false;
+  }
+  btif_a2dp_sink_cb.sample_rate = sample_rate;
+  btif_a2dp_sink_cb.bits_per_sample = bits_per_sample;
+  btif_a2dp_sink_cb.channel_count = channel_count;
+
+  APPL_TRACE_DEBUG("%s: create audio track", __func__);
+  btif_a2dp_sink_cb.audio_track =
+#ifdef __ANDROID__
+      BtifAvrcpAudioTrackCreate(sample_rate, bits_per_sample, channel_count);
+#else
+      NULL;
+#endif
+  if (btif_a2dp_sink_cb.audio_track == nullptr) {
+    LOG_ERROR("%s: track creation failed", __func__);
+    return false;
+  }
+  LOG_INFO("A2DP sink control block initialized");
+  return true;
+}
+
 bool btif_a2dp_sink_start_session(const RawAddress& peer_address,
                                   std::promise<void> peer_ready_promise) {
   LOG(INFO) << __func__ << ": peer_address="
             << ADDRESS_TO_LOGGABLE_STR(peer_address);
   if (btif_a2dp_sink_cb.worker_thread.DoInThread(
-          FROM_HERE, base::BindOnce(btif_a2dp_sink_start_session_delayed,
-                                    std::move(peer_ready_promise)))) {
+          FROM_HERE,
+          base::BindOnce(btif_a2dp_sink_start_session_delayed, peer_address,
+                         std::move(peer_ready_promise)))) {
     return true;
   } else {
     // cannot set promise but triggers crash
@@ -242,11 +315,11 @@ bool btif_a2dp_sink_start_session(const RawAddress& peer_address,
 }
 
 static void btif_a2dp_sink_start_session_delayed(
-    std::promise<void> peer_ready_promise) {
+    const RawAddress& peer_address, std::promise<void> peer_ready_promise) {
   LOG(INFO) << __func__;
   LockGuard lock(g_mutex);
+  btif_a2dp_sink_initialize_a2dp_control_block(peer_address);
   peer_ready_promise.set_value();
-  // Nothing to do
 }
 
 bool btif_a2dp_sink_restart_session(const RawAddress& old_peer_address,
@@ -522,13 +595,6 @@ static void btif_a2dp_sink_audio_handle_start_decoding() {
             btif_decode_alarm_cb, nullptr);
 }
 
-static void btif_a2dp_sink_on_decode_complete(uint8_t* data, uint32_t len) {
-#ifdef __ANDROID__
-  BtifAvrcpAudioTrackWriteData(btif_a2dp_sink_cb.audio_track,
-                               reinterpret_cast<void*>(data), len);
-#endif
-}
-
 // Must be called while locked.
 static void btif_a2dp_sink_handle_inc_media(BT_HDR* p_msg) {
   if ((btif_av_get_peer_sep() == AVDT_TSEP_SNK) ||
@@ -604,64 +670,10 @@ static void btif_a2dp_sink_decoder_update_event(
                    p_buf->codec_info[3], p_buf->codec_info[4],
                    p_buf->codec_info[5], p_buf->codec_info[6]);
 
-  int sample_rate = A2DP_GetTrackSampleRate(p_buf->codec_info);
-  if (sample_rate == -1) {
-    LOG_ERROR("%s: cannot get the track frequency", __func__);
-    return;
-  }
-  int bits_per_sample = A2DP_GetTrackBitsPerSample(p_buf->codec_info);
-  if (bits_per_sample == -1) {
-    LOG_ERROR("%s: cannot get the bits per sample", __func__);
-    return;
-  }
-  int channel_count = A2DP_GetTrackChannelCount(p_buf->codec_info);
-  if (channel_count == -1) {
-    LOG_ERROR("%s: cannot get the channel count", __func__);
-    return;
-  }
-  int channel_type = A2DP_GetSinkTrackChannelType(p_buf->codec_info);
-  if (channel_type == -1) {
-    LOG_ERROR("%s: cannot get the Sink channel type", __func__);
-    return;
-  }
-  btif_a2dp_sink_cb.sample_rate = sample_rate;
-  btif_a2dp_sink_cb.bits_per_sample = bits_per_sample;
-  btif_a2dp_sink_cb.channel_count = channel_count;
-
   btif_a2dp_sink_cb.rx_flush = false;
   APPL_TRACE_DEBUG("%s: reset to Sink role", __func__);
 
   bta_av_co_save_codec(p_buf->codec_info);
-
-  btif_a2dp_sink_cb.decoder_interface =
-      A2DP_GetDecoderInterface(p_buf->codec_info);
-
-  if (btif_a2dp_sink_cb.decoder_interface == nullptr) {
-    LOG_ERROR("%s: cannot stream audio: no source decoder interface", __func__);
-    return;
-  }
-
-  if (!btif_a2dp_sink_cb.decoder_interface->decoder_init(
-          btif_a2dp_sink_on_decode_complete)) {
-    LOG_ERROR("%s: failed to initialize decoder", __func__);
-    return;
-  }
-
-  if (btif_a2dp_sink_cb.decoder_interface->decoder_configure != nullptr) {
-    btif_a2dp_sink_cb.decoder_interface->decoder_configure(p_buf->codec_info);
-  }
-
-  APPL_TRACE_DEBUG("%s: create audio track", __func__);
-  btif_a2dp_sink_cb.audio_track =
-#ifdef __ANDROID__
-      BtifAvrcpAudioTrackCreate(sample_rate, bits_per_sample, channel_count);
-#else
-      NULL;
-#endif
-  if (btif_a2dp_sink_cb.audio_track == nullptr) {
-    LOG_ERROR("%s: track creation failed", __func__);
-    return;
-  }
 }
 
 uint8_t btif_a2dp_sink_enqueue_buf(BT_HDR* p_pkt) {
