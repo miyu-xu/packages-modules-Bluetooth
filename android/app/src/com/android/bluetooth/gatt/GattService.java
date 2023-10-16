@@ -17,7 +17,6 @@
 package com.android.bluetooth.gatt;
 
 import static android.app.ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND_SERVICE;
-
 import static com.android.bluetooth.Utils.callerIsSystemOrActiveOrManagedUser;
 import static com.android.bluetooth.Utils.checkCallerTargetSdk;
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
@@ -80,7 +79,6 @@ import android.provider.Settings;
 import android.sysprop.BluetoothProperties;
 import android.text.format.DateUtils;
 import android.util.Log;
-
 import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
@@ -94,9 +92,6 @@ import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.util.NumberUtils;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
-
-import libcore.util.HexEncoding;
-
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -109,6 +104,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
+import libcore.util.HexEncoding;
 
 /**
  * Provides Bluetooth Gatt profile, as a service in
@@ -191,15 +187,15 @@ public class GattService extends ProfileService {
             UUID.fromString("00001846-0000-1000-8000-00805F9B34FB"), // CSIS
     };
 
-    /** Example raw beacons captured from a Blue Charm BC011 */
-    private static final String[] TEST_MODE_BEACONS =
-            new String[] {
-                "020106",
-                "0201060303AAFE1716AAFE10EE01626C7565636861726D626561636F6E730009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
-                "0201060303AAFE1716AAFE00EE626C7565636861726D31000000000001000009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
-                "0201060303AAFE1116AAFE20000BF017000008874803FB93540916802069080EFE13551109426C7565436861726D5F313639363835000000000000000000",
-                "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
-            };
+  /** Example raw beacons captured from a Blue Charm BC011 */
+  private static final String[] TEST_MODE_BEACONS =
+      new String[] {
+        "020106",
+        "0201060303AAFE1716AAFE10EE01626C7565636861726D626561636F6E730009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
+        "0201060303AAFE1716AAFE00EE626C7565636861726D31000000000001000009168020691E0EFE13551109426C7565436861726D5F313639363835000000",
+        "0201060303AAFE1116AAFE20000BF017000008874803FB93540916802069080EFE13551109426C7565436861726D5F313639363835000000000000000000",
+        "0201061AFF4C000215426C7565436861726D426561636F6E730EFE1355C509168020691E0EFE13551109426C7565436861726D5F31363936383500000000",
+      };
 
     /**
      * Keep the arguments passed in for the PendingIntent.
@@ -2184,7 +2180,7 @@ public class GattService extends ProfileService {
                     (status == BluetoothGatt.GATT_SUCCESS), address);
         }
         statsLogGattConnectionStateChange(
-                BluetoothProfile.GATT, address, clientIf, connectionState, status);
+                BluetoothProfile.GATT, address, clientIf, connectionState, status, false);
     }
 
     void onDisconnected(int clientIf, int connId, int status, String address)
@@ -2219,7 +2215,7 @@ public class GattService extends ProfileService {
         }
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT, address, clientIf,
-                BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTED, status);
+                BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTED, status, false);
     }
 
     void onClientPhyUpdate(int connId, int txPhy, int rxPhy, int status) throws RemoteException {
@@ -3675,7 +3671,7 @@ public class GattService extends ProfileService {
 
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT, address, clientIf,
-                BluetoothProtoEnums.CONNECTION_STATE_CONNECTING, -1);
+                BluetoothProtoEnums.CONNECTION_STATE_CONNECTING, -1, isDirect);
         mNativeInterface.gattClientConnect(clientIf, address, addressType, isDirect, transport,
                 opportunistic, phy);
     }
@@ -3693,7 +3689,7 @@ public class GattService extends ProfileService {
         }
         statsLogGattConnectionStateChange(
                 BluetoothProfile.GATT, address, clientIf,
-                BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTING, -1);
+                BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTING, -1, false);
         mNativeInterface.gattClientDisconnect(clientIf, address, connId != null ? connId : 0);
     }
 
@@ -4338,7 +4334,7 @@ public class GattService extends ProfileService {
         app.callback.onServerConnectionState((byte) 0, serverIf, connected, address);
         statsLogAppPackage(address, applicationUid, serverIf);
         statsLogGattConnectionStateChange(
-                BluetoothProfile.GATT_SERVER, address, serverIf, connectionState, -1);
+                BluetoothProfile.GATT_SERVER, address, serverIf, connectionState, -1, false);
     }
 
     void onServerReadCharacteristic(String address, int connId, int transId, int handle, int offset,
@@ -5052,12 +5048,19 @@ public class GattService extends ProfileService {
 
     private void statsLogGattConnectionStateChange(
             int profile, String address, int sessionIndex, int connectionState,
-            int connectionStatus) {
+            int connectionStatus, boolean isDirect) {
         BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
         BluetoothStatsLog.write(
                 BluetoothStatsLog.BLUETOOTH_CONNECTION_STATE_CHANGED, connectionState,
                 0 /* deprecated */, profile, new byte[0],
                 mAdapterService.getMetricId(device), sessionIndex, connectionStatus);
+        MetricsLogger.getInstance()
+        .logGattClientConnectionState(
+            mAdapterService.getMetricId(device),
+            sessionIndex,
+            connectionState,
+            connectionStatus,
+            isDirect);
         if (DBG) {
             Log.d(TAG, "Gatt Logging: metric_id=" + mAdapterService.getMetricId(device)
                     + ", session_index=" + sessionIndex
