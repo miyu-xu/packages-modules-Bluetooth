@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e5e321b_32469e2b",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-10-16T16:25:33Z",
+      "side": 1,
+      "message": "It looks like we\u0027re doing a bitwise OR of `CsRole::INITIATOR` with itself.  That\u0027s just going to be `CsRole::INITIATOR`.  Did we intend to use a second different value here?",
+      "revId": "26ee62bc7f62dfdede31e8db9e85972b8774e538",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
