@@ -46,6 +46,30 @@
       },
       "revId": "fb3548669c30fb1a272d1f6cda79e67cad4e325d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75a65588_b2574fec",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1400,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-16T16:13:23Z",
+      "side": 1,
+      "message": "Are you asking me to implement callbacks that crash for each client?",
+      "parentUuid": "c296572a_1095d737",
+      "range": {
+        "startLine": 1400,
+        "startChar": 0,
+        "endLine": 1400,
+        "endChar": 43
+      },
+      "revId": "fb3548669c30fb1a272d1f6cda79e67cad4e325d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
