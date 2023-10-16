@@ -16,6 +16,24 @@
       "message": "This is a good time to check if this changes anything.",
       "revId": "63e4627c2e9697c7ef7f83b8d823d7186f146266",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea70c271_cbe8c44c",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 769,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-16T21:00:37Z",
+      "side": 1,
+      "message": "I don\u0027t see anywhere that BTA_JvFreeChannel gets called with BTA_JV_CONN_TYPE_RFCOMM, so this isn\u0027t important for now.\n\nWe should probably figure out if it\u0027s important later.",
+      "parentUuid": "7aa989d6_6887ee10",
+      "revId": "63e4627c2e9697c7ef7f83b8d823d7186f146266",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
