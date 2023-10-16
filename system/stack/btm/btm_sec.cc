@@ -45,7 +45,11 @@
 #include "device/include/device_iot_config.h"
 #include "internal_include/bt_target.h"
 #include "l2c_api.h"
+<<<<<<< PATCH SET (79f551 Fix SMP over BR/EDR Issue)
+#include "l2c_int.h"
+=======
 #include "osi/include/allocator.h"
+>>>>>>> BASE      (c4293e Merge changes Ia4e9190c,Ifb8c7175 into main)
 #include "osi/include/properties.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_ble_sec.h"
@@ -4926,8 +4930,16 @@ static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC* p_dev_rec) {
 
   LOG_VERBOSE("link_key_type = 0x%x", p_dev_rec->sec_rec.link_key_type);
 
+<<<<<<< PATCH SET (79f551 Fix SMP over BR/EDR Issue)
+  if(!l2cb.fixed_reg[L2CAP_SMP_BR_CID - L2CAP_FIRST_FIXED_CHNL].pL2CA_FixedData_Cb)
+    return false;
+
+  if ((p_dev_rec->link_key_type != BTM_LKEY_TYPE_UNAUTH_COMB_P_256) &&
+      (p_dev_rec->link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256))
+=======
   if ((p_dev_rec->sec_rec.link_key_type != BTM_LKEY_TYPE_UNAUTH_COMB_P_256) &&
       (p_dev_rec->sec_rec.link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256))
+>>>>>>> BASE      (c4293e Merge changes Ia4e9190c,Ifb8c7175 into main)
     return false;
 
   if (!L2CA_GetPeerFeatures(p_dev_rec->bd_addr, &ext_feat, chnl_mask))
