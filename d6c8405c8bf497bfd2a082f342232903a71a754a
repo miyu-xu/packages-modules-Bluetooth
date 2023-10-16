@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9f046d14_1b68bbe1",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T17:42:16Z",
+      "side": 1,
+      "message": "I would point to this for an AOSP link:\nhttps://source.android.com/",
+      "parentUuid": "9221251f_f5a4a695",
+      "range": {
+        "startLine": 7,
+        "startChar": 74,
+        "endLine": 8,
+        "endChar": 40
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05b476b8_30aba52e",
         "filename": "framework/tests/bumble/doc/guide.md",
         "patchSetId": 5
