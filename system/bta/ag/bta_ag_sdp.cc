@@ -189,6 +189,9 @@ bool bta_ag_add_record(uint16_t service_uuid, const char* p_service_name,
     profile_uuid = UUID_SERVCLASS_HF_HANDSFREE;
     if (bluetooth::common::init_flags::hfp_dynamic_version_is_enabled()) {
       version = HFP_VERSION_1_6;
+      if (hfp_hal_interface::get_swb_supported()) {
+        version = HFP_VERSION_1_9;
+      }
     } else {
       version = get_default_hfp_version();
     }
