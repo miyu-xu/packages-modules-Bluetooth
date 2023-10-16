@@ -46,6 +46,7 @@
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/btm_api_types.h"
+#include "stack/include/btm_sec_api_types.h"
 #include "stack/include/sdpdefs.h"
 #include "stack/include/stack_metrics_logging.h"
 #include "stack/sdp/sdpint.h"
