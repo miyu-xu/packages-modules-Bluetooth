@@ -22,6 +22,30 @@
       },
       "revId": "a0316f9ea91c6906f79d12e6273d943ca6486a97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "654e6bfd_4be6d1f1",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1513,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-10-16T15:24:46Z",
+      "side": 0,
+      "message": "The change that added this was around my first few weeks of working on Bluetooth, so neither Sandeep or I have the best background on it (I know, I +1ed, but I don\u0027t trust old me!). But, it\u0027s clear it was a dirty solution that invalidates our active device abstraction.\n\n@Sandeep - Removing it doesn\u0027t show any immediate problems, does it? Can we run some continuous re-connection tests to search for crashes? I can help set this up tomorrow too if you want.",
+      "parentUuid": "ba5b63f1_a40df62e",
+      "range": {
+        "startLine": 1511,
+        "startChar": 1,
+        "endLine": 1513,
+        "endChar": 3
+      },
+      "revId": "a0316f9ea91c6906f79d12e6273d943ca6486a97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
