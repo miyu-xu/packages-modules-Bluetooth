@@ -37,6 +37,7 @@
 #include "osi/include/osi.h"
 #include "stack/include/bt_types.h"
 #include "types/bluetooth/uuid.h"
+#include "stack/include/btm_sec_api.h"
 #include "types/raw_address.h"
 
 #include <base/logging.h>
