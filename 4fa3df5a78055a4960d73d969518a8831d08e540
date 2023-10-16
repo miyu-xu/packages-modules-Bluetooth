@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec71bd4_1585a51b",
+        "filename": "system/bta/ag/bta_ag_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-16T16:59:58Z",
+      "side": 0,
+      "message": "I\u0027d rather just print if it\u0027s null or not, not the pointer.",
+      "range": {
+        "startLine": 110,
+        "startChar": 56,
+        "endLine": 110,
+        "endChar": 61
+      },
+      "revId": "4fa3df5a78055a4960d73d969518a8831d08e540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2282c485_e3ff2c6c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 759,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-16T16:59:58Z",
+      "side": 0,
+      "message": "same thing",
+      "range": {
+        "startLine": 759,
+        "startChar": 65,
+        "endLine": 759,
+        "endChar": 69
+      },
+      "revId": "4fa3df5a78055a4960d73d969518a8831d08e540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "147fc47e_6112c0c5",
+        "filename": "system/bta/hh/bta_hh_act.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-16T16:59:58Z",
+      "side": 0,
+      "message": "prefer not to print this.",
+      "range": {
+        "startLine": 208,
+        "startChar": 25,
+        "endLine": 208,
+        "endChar": 34
+      },
+      "revId": "4fa3df5a78055a4960d73d969518a8831d08e540",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
