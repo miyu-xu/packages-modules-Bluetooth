@@ -22,6 +22,30 @@
       },
       "revId": "527da2889318513c450f312509a787e721227601",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1bb3d29c_1ae8f65b",
+        "filename": "framework/tests/bumble/doc/overview.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T21:50:57Z",
+      "side": 1,
+      "message": "sa discussed offline, removed the comments since it is already in the guide.md section. Just kept one on the PandoraDevice",
+      "parentUuid": "b07f9822_ce7eabd9",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "527da2889318513c450f312509a787e721227601",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
