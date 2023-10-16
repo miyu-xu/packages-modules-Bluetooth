@@ -43,7 +43,6 @@ public final class BluetoothProfileConnector {
     private BluetoothProfile.ServiceListener mServiceListener;
     private final BluetoothProfile mProfileProxy;
     private Context mContext;
-    private final String mServiceName;
     private volatile IBinder mService;
 
     private static final int MESSAGE_SERVICE_CONNECTED = 100;
@@ -83,10 +82,9 @@ public final class BluetoothProfileConnector {
                 }
             };
 
-    BluetoothProfileConnector(BluetoothProfile profile, int profileId, String serviceName) {
+    BluetoothProfileConnector(BluetoothProfile profile, int profileId) {
         mProfileId = profileId;
         mProfileProxy = profile;
-        mServiceName = serviceName;
     }
 
     /** {@hide} */
@@ -107,8 +105,9 @@ public final class BluetoothProfileConnector {
                                 + mContext.getPackageName());
                 mCloseGuard.open("doUnbind");
                 try {
-                    return BluetoothAdapter.getDefaultAdapter().getBluetoothManager()
-                            .bindBluetoothProfileService(mProfileId, mServiceName, mConnection);
+                    return BluetoothAdapter.getDefaultAdapter()
+                            .getBluetoothManager()
+                            .bindBluetoothProfileService(mProfileId, mConnection);
                 } catch (RemoteException re) {
                     Log.e(
                             TAG,
