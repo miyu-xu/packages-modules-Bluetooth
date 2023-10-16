@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2743503e_e9b95033",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T18:05:01Z",
+      "side": 1,
+      "message": "To remove ?\n```suggestion\ninstead.\n```",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 78
+      },
+      "revId": "1caea2901789760bb68d2c966db934326f7310da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
