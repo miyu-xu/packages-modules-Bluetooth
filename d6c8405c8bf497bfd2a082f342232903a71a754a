@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b31d6378_e2a6425f",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T17:39:02Z",
+      "side": 1,
+      "message": "It\u0027s weird that AOSP links to something else than AOSP. If you would like a rephrase I\u0027d do this:\n\n\"[...] can be found in the BumbleBluetoothTests [repository][source-code]\"",
+      "parentUuid": "8f0aeb1f_e1c65bed",
+      "range": {
+        "startLine": 7,
+        "startChar": 74,
+        "endLine": 8,
+        "endChar": 40
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "05b476b8_30aba52e",
         "filename": "framework/tests/bumble/doc/guide.md",
         "patchSetId": 5
