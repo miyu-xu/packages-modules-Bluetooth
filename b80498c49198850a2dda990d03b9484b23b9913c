@@ -105,6 +105,29 @@
       "parentUuid": "1a40c4d2_e297954d",
       "revId": "b80498c49198850a2dda990d03b9484b23b9913c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf46cb8d_569048f7",
+        "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-16T15:15:20Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please use language idioms to initialize or assign\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease use language idioms to initialize or assign",
+      "range": {
+        "startLine": 133,
+        "startChar": 6,
+        "endLine": 133,
+        "endChar": 13
+      },
+      "revId": "b80498c49198850a2dda990d03b9484b23b9913c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
