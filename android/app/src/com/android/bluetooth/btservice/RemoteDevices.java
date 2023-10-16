@@ -46,9 +46,12 @@ import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.bas.BatteryService;
+import com.android.bluetooth.btservice.RemoteDevices.DeviceProperties;
+import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.hfp.HeadsetHalConstants;
 import com.android.internal.annotations.VisibleForTesting;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -669,6 +672,17 @@ public class RemoteDevices {
 
         public void setModelName(String modelName) {
             mModelName = modelName;
+            try {
+                DatabaseManager mDatabaseManager = mAdapterService.getDatabase();
+                if (mDatabaseManager != null) {
+                    mDatabaseManager.setCustomMeta(
+                            this.mDevice,
+                            BluetoothDevice.METADATA_MODEL_NAME,
+                            mModelName.getBytes("UTF-8"));
+                }
+            } catch (UnsupportedEncodingException uee) {
+                Log.e(TAG, "setModelName: UTF-8 not supported?!?"); // this should not happen
+            }
         }
 
         /**
