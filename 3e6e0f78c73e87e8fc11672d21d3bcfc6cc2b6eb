@@ -69,6 +69,30 @@
       },
       "revId": "3e6e0f78c73e87e8fc11672d21d3bcfc6cc2b6eb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f03d014_c60136ab",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 361,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-16T17:34:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "06ae6207_c10a30a0",
+      "range": {
+        "startLine": 361,
+        "startChar": 27,
+        "endLine": 361,
+        "endChar": 33
+      },
+      "revId": "3e6e0f78c73e87e8fc11672d21d3bcfc6cc2b6eb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
