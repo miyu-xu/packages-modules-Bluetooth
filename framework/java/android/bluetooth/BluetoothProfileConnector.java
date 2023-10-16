@@ -30,13 +30,13 @@ import android.util.CloseGuard;
 import android.util.Log;
 
 /**
- * Connector for Bluetooth profile proxies to bind manager service and
- * profile services
+ * Connector for Bluetooth profile proxies to bind manager service and profile services
+ *
  * @param <T> The Bluetooth profile interface for this connection.
  * @hide
  */
 @SuppressLint("AndroidFrameworkBluetoothPermission")
-public abstract class BluetoothProfileConnector<T> {
+public final class BluetoothProfileConnector {
     private final CloseGuard mCloseGuard = new CloseGuard();
     private final int mProfileId;
     private BluetoothProfile.ServiceListener mServiceListener;
@@ -44,7 +44,7 @@ public abstract class BluetoothProfileConnector<T> {
     private Context mContext;
     private final String mProfileName;
     private final String mServiceName;
-    private volatile T mService;
+    private volatile IBinder mService;
 
     private static final int MESSAGE_SERVICE_CONNECTED = 100;
     private static final int MESSAGE_SERVICE_DISCONNECTED = 101;
@@ -62,22 +62,20 @@ public abstract class BluetoothProfileConnector<T> {
 
     private final IBluetoothProfileServiceConnection mConnection =
             new IBluetoothProfileServiceConnection.Stub() {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder service) {
-            logDebug("Proxy object connected");
-            mService = getServiceInterface(service);
-            mHandler.sendMessage(mHandler.obtainMessage(
-                    MESSAGE_SERVICE_CONNECTED));
-        }
+                @Override
+                public void onServiceConnected(ComponentName className, IBinder service) {
+                    logDebug("Proxy object connected");
+                    mService = service;
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SERVICE_CONNECTED));
+                }
 
-        @Override
-        public void onServiceDisconnected(ComponentName className) {
-            logDebug("Proxy object disconnected");
-            doUnbind();
-            mHandler.sendMessage(mHandler.obtainMessage(
-                    MESSAGE_SERVICE_DISCONNECTED));
-        }
-    };
+                @Override
+                public void onServiceDisconnected(ComponentName className) {
+                    logDebug("Proxy object disconnected");
+                    doUnbind();
+                    mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SERVICE_DISCONNECTED));
+                }
+            };
 
     BluetoothProfileConnector(BluetoothProfile profile, int profileId, String profileName,
             String serviceName) {
@@ -167,18 +165,9 @@ public abstract class BluetoothProfileConnector<T> {
         }
     }
 
-    T getService() {
+    IBinder getService() {
         return mService;
     }
-
-    /**
-     * This abstract function is used to implement method to get the
-     * connected Bluetooth service interface.
-     * @param service the connected binder service.
-     * @return T the binder interface of {@code service}.
-     * @hide
-     */
-    public abstract T getServiceInterface(IBinder service);
 
     private void logDebug(String log) {
         Log.d(mProfileName, log);
