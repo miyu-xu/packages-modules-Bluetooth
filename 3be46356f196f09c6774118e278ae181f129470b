@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a46bd34_b032724a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-16T11:37:59Z",
+      "side": 1,
+      "message": "Have you verified this patch with the corresponding Floss ebuild change (e.g. w/ and w/o IUSE+\u003d\" +floss_mmc\") on a real ChromeOS device?",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "3be46356f196f09c6774118e278ae181f129470b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
