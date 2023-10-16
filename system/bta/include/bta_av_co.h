@@ -244,4 +244,12 @@ void bta_av_co_audio_update_mtu(tBTA_AV_HNDL bta_av_handle,
  ******************************************************************************/
 btav_a2dp_scmst_info_t bta_av_co_get_scmst_info(const RawAddress& peer_address);
 
+/**
+ *
+ * Retrieves the cached codec config for the input peer address.
+ * @param peer_address peer address of the remote device.
+ * @return the codec configuration for the corresponding peer address.
+ */
+uint8_t* get_codec_config_for_peer(const RawAddress& peer_address);
+
 #endif /* BTA_AV_CO_H */

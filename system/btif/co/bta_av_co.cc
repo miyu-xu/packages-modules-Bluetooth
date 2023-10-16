@@ -1477,6 +1477,7 @@ bool BtaAvCo::SetActivePeer(const RawAddress& peer_address) {
 }
 
 void BtaAvCo::SaveCodec(const uint8_t* new_codec_config) {
+  LOG(INFO) << __func__ << ": codec = " << A2DP_CodecInfoString(codec_config_);
   memcpy(codec_config_, new_codec_config, sizeof(codec_config_));
 }
 
@@ -2301,6 +2302,12 @@ btav_a2dp_scmst_info_t bta_av_co_get_scmst_info(
   }
 
   return scmst_info;
+}
+
+uint8_t* get_codec_config_for_peer(const RawAddress& peer_address) {
+  BtaAvCoPeer* p_peer = bta_av_co_cb.FindPeer(peer_address);
+  CHECK(p_peer != nullptr);
+  return p_peer->codec_config;
 }
 
 void btif_a2dp_codec_debug_dump(int fd) { bta_av_co_cb.DebugDump(fd); }
