@@ -51,17 +51,6 @@ public final class BluetoothProfileConnector extends Handler {
     private static final int MESSAGE_SERVICE_CONNECTED = 100;
     private static final int MESSAGE_SERVICE_DISCONNECTED = 101;
 
-    private final IBluetoothStateChangeCallback mBluetoothStateChangeCallback =
-            new IBluetoothStateChangeCallback.Stub() {
-        public void onBluetoothStateChange(boolean up) {
-            if (up) {
-                doBind();
-            } else {
-                doUnbind();
-            }
-        }
-    };
-
     private final IBluetoothProfileServiceConnection mConnection =
             new IBluetoothProfileServiceConnection.Stub() {
                 @Override
@@ -81,7 +70,7 @@ public final class BluetoothProfileConnector extends Handler {
                             "Proxy object disconnected for "
                                     + BluetoothProfile.getProfileName(mProfileId));
                     boolean bound = mBound;
-                    doUnbind();
+                    onBluetoothOff();
                     if (bound) {
                         sendEmptyMessage(MESSAGE_SERVICE_DISCONNECTED);
                     }
@@ -112,10 +101,10 @@ public final class BluetoothProfileConnector extends Handler {
     @Override
     public void finalize() {
         mCloseGuard.warnIfOpen();
-        doUnbind();
+        onBluetoothOff();
     }
 
-    private void doBind() {
+    void onBluetoothOn() {
         synchronized (mConnection) {
             if (!mBound) {
                 Log.d(
@@ -139,7 +128,7 @@ public final class BluetoothProfileConnector extends Handler {
         }
     }
 
-    private void doUnbind() {
+    void onBluetoothOff() {
         synchronized (mConnection) {
             if (mBound) {
                 Log.d(
@@ -183,12 +172,6 @@ public final class BluetoothProfileConnector extends Handler {
     public void connect(String packageName, BluetoothProfile.ServiceListener listener) {
         mPackageName = packageName;
         mServiceListener = listener;
-
-        try {
-            mBluetoothManager.registerStateChangeCallback(mBluetoothStateChangeCallback);
-        } catch (RemoteException re) {
-            Log.e(TAG, "Failed to register state change callback.", re);
-        }
     }
 
     /** @hide */
@@ -197,11 +180,6 @@ public final class BluetoothProfileConnector extends Handler {
             BluetoothProfile.ServiceListener listener = mServiceListener;
             mServiceListener = null;
             listener.onServiceDisconnected(mProfileId);
-        }
-        try {
-            mBluetoothManager.unregisterStateChangeCallback(mBluetoothStateChangeCallback);
-        } catch (RemoteException re) {
-            Log.e(TAG, "Failed to unregister state change callback", re);
         }
     }
 
