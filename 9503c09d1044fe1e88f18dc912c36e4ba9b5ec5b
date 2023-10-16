@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff472125_b8cc90b7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-16T15:53:12Z",
+      "side": 1,
+      "message": "offset",
+      "range": {
+        "startLine": 7,
+        "startChar": 52,
+        "endLine": 7,
+        "endChar": 58
+      },
+      "revId": "9503c09d1044fe1e88f18dc912c36e4ba9b5ec5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6ff9eac_66157dd7",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-16T15:53:12Z",
+      "side": 1,
+      "message": "Why can\u0027t you have mNewRegisteredCallbacks as argument to this method?",
+      "revId": "9503c09d1044fe1e88f18dc912c36e4ba9b5ec5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90588b9b_37bc06dd",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-16T15:53:12Z",
+      "side": 1,
+      "message": "Who is the new user in \"notifyNewUsersOf...\" ?\n\nShall this be \"notifyNewCallbackOf...\"",
+      "range": {
+        "startLine": 786,
+        "startChar": 8,
+        "endLine": 786,
+        "endChar": 42
+      },
+      "revId": "9503c09d1044fe1e88f18dc912c36e4ba9b5ec5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e856bc9_24f36493",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-16T15:53:12Z",
+      "side": 1,
+      "message": "The convention in most services is to have AIDL method and service method with exactly same, name.\n\nSo registerCallback should be calling registerCallback, no \"s\" at end of method name (singular)",
+      "range": {
+        "startLine": 1604,
+        "startChar": 24,
+        "endLine": 1604,
+        "endChar": 41
+      },
+      "revId": "9503c09d1044fe1e88f18dc912c36e4ba9b5ec5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
