@@ -45,6 +45,7 @@
 #include "device/include/device_iot_config.h"
 #include "internal_include/bt_target.h"
 #include "l2c_api.h"
+#include "l2c_int.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
 #include "stack/btm/btm_ble_int.h"
@@ -4925,6 +4926,9 @@ static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC* p_dev_rec) {
   uint8_t chnl_mask[L2CAP_FIXED_CHNL_ARRAY_SIZE];
 
   LOG_VERBOSE("link_key_type = 0x%x", p_dev_rec->sec_rec.link_key_type);
+
+  if(!l2cb.fixed_reg[L2CAP_SMP_BR_CID - L2CAP_FIRST_FIXED_CHNL].pL2CA_FixedData_Cb)
+    return false;
 
   if ((p_dev_rec->sec_rec.link_key_type != BTM_LKEY_TYPE_UNAUTH_COMB_P_256) &&
       (p_dev_rec->sec_rec.link_key_type != BTM_LKEY_TYPE_AUTH_COMB_P_256))
