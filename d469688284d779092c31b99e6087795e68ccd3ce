@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1d1691a_8baeb097",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:47:34Z",
+      "side": 1,
+      "message": "```suggestion\n[bumble-bluetooth-tests-code]: https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/framework/tests/bumble/\n```",
+      "range": {
+        "startLine": 194,
+        "startChar": 86,
+        "endLine": 194,
+        "endChar": 92
+      },
+      "revId": "d469688284d779092c31b99e6087795e68ccd3ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
