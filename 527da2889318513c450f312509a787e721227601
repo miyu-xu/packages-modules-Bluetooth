@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b07f9822_ce7eabd9",
+        "filename": "framework/tests/bumble/doc/overview.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T18:09:53Z",
+      "side": 1,
+      "message": "This need to be update with the new comments + `bumbleDevice` declaration is missing",
+      "range": {
+        "startLine": 22,
+        "startChar": 4,
+        "endLine": 22,
+        "endChar": 19
+      },
+      "revId": "527da2889318513c450f312509a787e721227601",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
