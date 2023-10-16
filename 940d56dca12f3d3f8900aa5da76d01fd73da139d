@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5446fbe_237b776a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-16T17:05:29Z",
+      "side": 1,
+      "message": "```suggestion\n        // 2. Advertise the host\u0027s (presumably the car\u0027s) Bluetooth capabilities using another\n        // gRPC call:\n        // - `hostBlocking()` accesses another gRPC service related to the host.\n        //   The following `advertise(...)` sends an advertise request to the server, setting\n        //   specific attributes.\n```",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 31
+      },
+      "revId": "940d56dca12f3d3f8900aa5da76d01fd73da139d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
