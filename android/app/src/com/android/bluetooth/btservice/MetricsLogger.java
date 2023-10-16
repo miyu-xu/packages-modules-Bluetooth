@@ -328,6 +328,16 @@ public class MetricsLogger {
                 BluetoothStatsLog.BLUETOOTH_HASHED_DEVICE_NAME_REPORTED, metricId, sha256);
     }
 
+
+    public static void logGattClientConnectionState(int metricId, int sessionIndex, int connectionState, int connectionStatus, boolean isDirect) {
+      // TODO(ahujapalash): add metrics implementation
+      Log.d(TAG, "Gatt Metrics Logging: session_index=" + sessionIndex
+          + ", connection state=" + connectionState
+          + ", connection status=" + connectionStatus
+          + ", is direct=" + isDirect);
+    }
+
+
     protected static byte[] getSha256(String name) {
         MessageDigest digest = null;
         try {
