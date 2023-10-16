@@ -52,6 +52,18 @@ impl BluetoothManager {
         }
     }
 
+    pub(crate) fn callback_hci_enabled_unchanged(&mut self, hci_device: i32, enabled: bool) {
+        if enabled {
+            warn!("Attempting to start {} when it is already started", hci_device);
+        } else {
+            warn!("Attempting to stop {} when it is already stopped", hci_device);
+        }
+
+        for (_, callback) in &mut self.callbacks {
+            callback.on_hci_enabled_unchanged(hci_device, enabled);
+        }
+    }
+
     pub(crate) fn callback_default_adapter_change(&mut self, hci_device: i32) {
         for (_, callback) in &mut self.callbacks {
             callback.on_default_adapter_changed(hci_device);
@@ -87,6 +99,7 @@ impl IBluetoothManager for BluetoothManager {
         // Ignore the request if adapter is already enabled or not present.
         if self.is_adapter_enabled(virt_hci) {
             warn!("Adapter {} is already enabled.", hci_interface);
+            self.callback_hci_enabled_unchanged(hci_interface, true);
             return;
         }
 
@@ -112,6 +125,7 @@ impl IBluetoothManager for BluetoothManager {
         // Ignore the request if adapter is already disabled.
         if !self.is_adapter_enabled(virt_hci) {
             warn!("Adapter {} is already stopped", hci_interface);
+            self.callback_hci_enabled_unchanged(hci_interface, false);
             return;
         }
 
