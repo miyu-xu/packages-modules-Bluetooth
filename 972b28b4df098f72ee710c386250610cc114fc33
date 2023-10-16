@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0e0813a_685198e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-16T18:20:26Z",
+      "side": 1,
+      "message": "Thanks for refactor. I did a cursory review and it LGTM (doesn\u0027t see like any major changes other than what commit describes)",
+      "revId": "972b28b4df098f72ee710c386250610cc114fc33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
