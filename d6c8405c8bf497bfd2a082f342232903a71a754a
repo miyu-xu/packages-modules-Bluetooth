@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81af9f56_10618661",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "Not sure we´d like to do something like this. We haven\u0027t done this for the Avatar documentation",
+      "parentUuid": "5b92dd57_0452149d",
+      "range": {
+        "startLine": 7,
+        "startChar": 4,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f0aeb1f_e1c65bed",
         "filename": "framework/tests/bumble/doc/guide.md",
         "patchSetId": 5
@@ -142,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c136920_388e6980",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05b476b8_30aba52e",
+      "range": {
+        "startLine": 32,
+        "startChar": 14,
+        "endLine": 32,
+        "endChar": 44
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "406ca044_2cf4e85a",
@@ -155,6 +203,30 @@
       "writtenOn": "2023-10-16T17:29:41Z",
       "side": 1,
       "message": "```suggestion\nIf you wish to run a specific test file:\n```",
+      "range": {
+        "startLine": 45,
+        "startChar": 39,
+        "endLine": 45,
+        "endChar": 41
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e2cb9bc_5135c53f",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "406ca044_2cf4e85a",
       "range": {
         "startLine": 45,
         "startChar": 39,
@@ -188,6 +260,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e6e7769_b0c84752",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f6f6180b_5c1aedad",
+      "range": {
+        "startLine": 83,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 67
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1dafaa4_c18faf1a",
@@ -201,6 +297,30 @@
       "writtenOn": "2023-10-16T17:29:41Z",
       "side": 1,
       "message": "```suggestion\n  // This rule setup a Bumble Pandora device for the duration of the test.\n  // Acting as a Pandora client, it can be interacted with through the Pandora APIs.\n  @Rule @JvmField val mBumble \u003d PandoraDevice()\n```",
+      "range": {
+        "startLine": 85,
+        "startChar": 2,
+        "endLine": 85,
+        "endChar": 47
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c968edf4_b3683239",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e1dafaa4_c18faf1a",
       "range": {
         "startLine": 85,
         "startChar": 2,
@@ -236,6 +356,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e390e5e9_652a74b7",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "is there any bug number for this we could add to the comment ?",
+      "parentUuid": "fe8125cb_d29acd14",
+      "range": {
+        "startLine": 119,
+        "startChar": 12,
+        "endLine": 119,
+        "endChar": 28
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b330cf07_c28d7f62",
         "filename": "framework/tests/bumble/doc/guide.md",
         "patchSetId": 5
@@ -247,6 +391,30 @@
       "writtenOn": "2023-10-16T17:29:41Z",
       "side": 1,
       "message": "```suggestion\n            .setConnectable(true) // Set as connectable, otherwise Android won\u0027t be able to establish a connection.\n```",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 33
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa7c662f_3f9b84df",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "I think this is obvious enough",
+      "parentUuid": "b330cf07_c28d7f62",
       "range": {
         "startLine": 120,
         "startChar": 12,
@@ -280,6 +448,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1ffe6c3_e405b7c4",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c620438_e8f6bf6c",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 53
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "677efa94_4dcb5804",
@@ -297,6 +489,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cc26a64_2f75db90",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "677efa94_4dcb5804",
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1fd9daf6_4e23c84a",
@@ -310,6 +520,30 @@
       "writtenOn": "2023-10-16T17:29:41Z",
       "side": 1,
       "message": "```suggestion\n        BluetoothDevice.ADDRESS_TYPE_RANDOM // Remember, Bumble advertising it\u0027s `RANDOM` address.\n```",
+      "range": {
+        "startLine": 132,
+        "startChar": 8,
+        "endLine": 132,
+        "endChar": 43
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9d52faa6_d4a816af",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:00:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fd9daf6_4e23c84a",
       "range": {
         "startLine": 132,
         "startChar": 8,
