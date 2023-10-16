@@ -48,17 +48,6 @@ public final class BluetoothProfileConnector {
     private static final int MESSAGE_SERVICE_CONNECTED = 100;
     private static final int MESSAGE_SERVICE_DISCONNECTED = 101;
 
-    private final IBluetoothStateChangeCallback mBluetoothStateChangeCallback =
-            new IBluetoothStateChangeCallback.Stub() {
-        public void onBluetoothStateChange(boolean up) {
-            if (up) {
-                doBind();
-            } else {
-                doUnbind();
-            }
-        }
-    };
-
     private final IBluetoothProfileServiceConnection mConnection =
             new IBluetoothProfileServiceConnection.Stub() {
                 @Override
@@ -78,7 +67,7 @@ public final class BluetoothProfileConnector {
                             TAG,
                             "Proxy object disconnected for "
                                     + BluetoothProfile.getProfileName(mProfileId));
-                    doUnbind();
+                    onBluetoothOff();
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SERVICE_DISCONNECTED));
                 }
             };
@@ -92,10 +81,10 @@ public final class BluetoothProfileConnector {
     @Override
     public void finalize() {
         mCloseGuard.warnIfOpen();
-        doUnbind();
+        onBluetoothOff();
     }
 
-    private boolean doBind() {
+    boolean onBluetoothOn() {
         synchronized (mConnection) {
             if (!mBound) {
                 Log.d(
@@ -122,7 +111,7 @@ public final class BluetoothProfileConnector {
         return true;
     }
 
-    private void doUnbind() {
+    void onBluetoothOff() {
         synchronized (mConnection) {
             if (mBound) {
                 Log.d(
@@ -152,7 +141,6 @@ public final class BluetoothProfileConnector {
     void connect(Context context, BluetoothProfile.ServiceListener listener) {
         mContext = context;
         mServiceListener = listener;
-        IBluetoothManager mgr = BluetoothAdapter.getDefaultAdapter().getBluetoothManager();
 
         // Preserve legacy compatibility where apps were depending on
         // registerStateChangeCallback() performing a permissions check which
@@ -162,14 +150,6 @@ public final class BluetoothProfileConnector {
                         != PackageManager.PERMISSION_GRANTED) {
             throw new SecurityException("Need BLUETOOTH permission");
         }
-
-        if (mgr != null) {
-            try {
-                mgr.registerStateChangeCallback(mBluetoothStateChangeCallback);
-            } catch (RemoteException re) {
-                Log.e(TAG, "Failed to register state change callback.", re);
-            }
-        }
     }
 
     void disconnect() {
@@ -177,14 +157,6 @@ public final class BluetoothProfileConnector {
             BluetoothProfile.ServiceListener listener = mServiceListener;
             mServiceListener = null;
             listener.onServiceDisconnected(mProfileId);
-        }
-        IBluetoothManager mgr = BluetoothAdapter.getDefaultAdapter().getBluetoothManager();
-        if (mgr != null) {
-            try {
-                mgr.unregisterStateChangeCallback(mBluetoothStateChangeCallback);
-            } catch (RemoteException re) {
-                Log.e(TAG, "Failed to unregister state change callback", re);
-            }
         }
     }
 
