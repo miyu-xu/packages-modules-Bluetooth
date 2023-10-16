@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e7c7d29_5335b877",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-16T18:02:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f046d14_1b68bbe1",
+      "range": {
+        "startLine": 7,
+        "startChar": 74,
+        "endLine": 8,
+        "endChar": 40
+      },
+      "revId": "d6c8405c8bf497bfd2a082f342232903a71a754a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05b476b8_30aba52e",
