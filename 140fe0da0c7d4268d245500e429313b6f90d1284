@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbd69962_aada74f1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-17T09:58:14Z",
+      "side": 1,
+      "message": "Shall we wait until the branch day to collect the complete CL list?",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 3
+      },
+      "revId": "140fe0da0c7d4268d245500e429313b6f90d1284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a25b7584_4ae7c0e3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-17T09:58:14Z",
+      "side": 1,
+      "message": "Shall we create a bug number for this kind of change? That could be used for tracing \"Change Log\".",
+      "range": {
+        "startLine": 13,
+        "startChar": 5,
+        "endLine": 13,
+        "endChar": 9
+      },
+      "revId": "140fe0da0c7d4268d245500e429313b6f90d1284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91559390_ec6517dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-17T09:58:14Z",
+      "side": 1,
+      "message": "Hi reviewers, please take a look at my comments (questions), thanks!",
+      "revId": "140fe0da0c7d4268d245500e429313b6f90d1284",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
