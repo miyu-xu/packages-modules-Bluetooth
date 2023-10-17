@@ -142,7 +142,8 @@ public class ScanManager {
     private final SparseBooleanArray mIsUidForegroundMap = new SparseBooleanArray();
     private boolean mScreenOn = false;
     @VisibleForTesting boolean mIsConnecting;
-    private int mProfilesConnecting, mProfilesConnected, mProfilesDisconnecting;
+    @VisibleForTesting int mProfilesConnecting;
+    private int mProfilesConnected, mProfilesDisconnecting;
 
     @VisibleForTesting
     static class UidImportance {
@@ -2011,6 +2012,10 @@ public class ScanManager {
      */
     public void handleBluetoothProfileConnectionStateChanged(
             int profile, int fromState, int toState) {
+        mHandler.post(() -> onBluetoothProfileConnectionStateChanged(profile, fromState, toState));
+    }
+
+    private void onBluetoothProfileConnectionStateChanged(int profile, int fromState, int toState) {
         boolean updatedConnectingState =
                 updateCountersAndCheckForConnectingState(toState, fromState);
         if (DBG) {
