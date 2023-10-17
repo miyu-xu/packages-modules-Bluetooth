@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a78946dd_08371203",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T00:48:52Z",
+      "side": 1,
+      "message": "I don",
+      "revId": "b425860ee1414ac076da64b5d408e9793208a731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5850a5c_df1fd60a",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T00:48:52Z",
+      "side": 1,
+      "message": "This is conflicting with hfp_dynamic_version_is_enabled feature that falsely advertise hfp as 1.6 to fix some interoperability",
+      "range": {
+        "startLine": 190,
+        "startChar": 39,
+        "endLine": 190,
+        "endChar": 69
+      },
+      "revId": "b425860ee1414ac076da64b5d408e9793208a731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc4dec0a_3159031b",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T00:48:52Z",
+      "side": 1,
+      "message": "What about this method ? the current default is 1.7",
+      "range": {
+        "startLine": 196,
+        "startChar": 16,
+        "endLine": 196,
+        "endChar": 39
+      },
+      "revId": "b425860ee1414ac076da64b5d408e9793208a731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
