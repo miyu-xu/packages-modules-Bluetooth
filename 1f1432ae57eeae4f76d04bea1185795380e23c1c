@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6e74475_c3f64032",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T01:26:22Z",
+      "side": 1,
+      "message": "The presubmit got a failure while running pts test:\n\nA2DP/SNK/SET/BV-05-I \n\n\nYou may want to investigate this prior to submitting the CL",
+      "revId": "1f1432ae57eeae4f76d04bea1185795380e23c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b26b75d9_1a676da5",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T01:26:22Z",
+      "side": 1,
+      "message": "func is not needed in LOG_xxx\n(same in all other LOG_xxx below)",
+      "range": {
+        "startLine": 246,
+        "startChar": 70,
+        "endLine": 246,
+        "endChar": 78
+      },
+      "revId": "1f1432ae57eeae4f76d04bea1185795380e23c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47499e02_6055e2de",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T01:26:22Z",
+      "side": 1,
+      "message": "I understand that this was just copied, but I am wondering why is the ifdef needed.\n\nDo you have any context ?",
+      "range": {
+        "startLine": 286,
+        "startChar": 7,
+        "endLine": 286,
+        "endChar": 18
+      },
+      "revId": "1f1432ae57eeae4f76d04bea1185795380e23c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13e4c99b_561adb90",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 664,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T01:26:22Z",
+      "side": 1,
+      "message": "This does no longer need to update the sample / channel_count / channel_type ?",
+      "range": {
+        "startLine": 664,
+        "startChar": 12,
+        "endLine": 664,
+        "endChar": 47
+      },
+      "revId": "1f1432ae57eeae4f76d04bea1185795380e23c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
