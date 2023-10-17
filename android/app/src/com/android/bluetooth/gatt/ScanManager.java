@@ -102,6 +102,7 @@ public class ScanManager {
     static final int MSG_REVERT_SCAN_MODE_UPGRADE = 9;
     static final int MSG_START_CONNECTING = 10;
     static final int MSG_STOP_CONNECTING = 11;
+    private static final int MSG_BT_PROFILE_CONN_STATE_CHANGED = 12;
     private static final String ACTION_REFRESH_BATCHED_SCAN =
             "com.android.bluetooth.gatt.REFRESH_BATCHED_SCAN";
 
@@ -142,7 +143,8 @@ public class ScanManager {
     private final SparseBooleanArray mIsUidForegroundMap = new SparseBooleanArray();
     private boolean mScreenOn = false;
     @VisibleForTesting boolean mIsConnecting;
-    private int mProfilesConnecting, mProfilesConnected, mProfilesDisconnecting;
+    @VisibleForTesting int mProfilesConnecting;
+    private int mProfilesConnected, mProfilesDisconnecting;
 
     @VisibleForTesting
     static class UidImportance {
@@ -374,6 +376,8 @@ public class ScanManager {
                 case MSG_STOP_CONNECTING:
                     handleClearConnectingState();
                     break;
+                case MSG_BT_PROFILE_CONN_STATE_CHANGED:
+                    handleProfileConnectionStateChanged(msg);
                 default:
                     // Shouldn't happen.
                     Log.e(TAG, "received an unkown message : " + msg.what);
@@ -897,6 +901,31 @@ public class ScanManager {
             }
             if (updatedScanParams) {
                 mScanNative.configureRegularScanParams();
+            }
+        }
+
+        private void handleProfileConnectionStateChanged(Message msg) {
+            int fromState = msg.arg1, toState = msg.arg2;
+            int profile = ((Integer) msg.obj).intValue();
+            boolean updatedConnectingState =
+                    updateCountersAndCheckForConnectingState(toState, fromState);
+            if (DBG) {
+                Log.d(
+                        TAG,
+                        "PROFILE_CONNECTION_STATE_CHANGE:"
+                                + (" profile=" + BluetoothProfile.getProfileName(profile))
+                                + (", prevState=" + fromState)
+                                + (", state=" + toState)
+                                + ("updatedConnectingState = " + updatedConnectingState));
+            }
+            if (updatedConnectingState) {
+                if (!mIsConnecting) {
+                    sendMessage(MSG_START_CONNECTING, null);
+                }
+            } else {
+                if (mIsConnecting) {
+                    sendMessage(MSG_STOP_CONNECTING, null);
+                }
             }
         }
     }
@@ -2011,25 +2040,15 @@ public class ScanManager {
      */
     public void handleBluetoothProfileConnectionStateChanged(
             int profile, int fromState, int toState) {
-        boolean updatedConnectingState =
-                updateCountersAndCheckForConnectingState(toState, fromState);
-        if (DBG) {
-            Log.d(
-                    TAG,
-                    "PROFILE_CONNECTION_STATE_CHANGE:"
-                            + (" profile=" + BluetoothProfile.getProfileName(profile))
-                            + (", prevState=" + fromState)
-                            + (", state=" + toState)
-                            + ("updatedConnectingState = " + updatedConnectingState));
+        if (mHandler == null) {
+            Log.d(TAG, "handleBluetoothProfileConnectionStateChanged: mHandler is null.");
+            return;
         }
-        if (updatedConnectingState) {
-            if (!mIsConnecting) {
-                sendMessage(MSG_START_CONNECTING, null);
-            }
-        } else {
-            if (mIsConnecting) {
-                sendMessage(MSG_STOP_CONNECTING, null);
-            }
-        }
+        mHandler.obtainMessage(
+                        MSG_BT_PROFILE_CONN_STATE_CHANGED,
+                        fromState,
+                        toState,
+                        Integer.valueOf(profile))
+                .sendToTarget();
     }
 }
