@@ -8,6 +8,7 @@ aconfig_declarations {
     package: "com.android.bluetooth.flags",
     srcs: [
         "hfp.aconfig",
+        "scan_manager.aconfig",
         "system_service.aconfig",
     ],
 }
