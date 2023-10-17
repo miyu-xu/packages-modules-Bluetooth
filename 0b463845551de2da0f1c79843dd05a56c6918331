@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "cad64d05_31c3eb71",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T17:58:13Z",
+      "side": 1,
+      "message": "That\u0027s correct, not all CL are tested and we should be better at this.",
+      "parentUuid": "509190a2_58717382",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 68
+      },
+      "revId": "0b463845551de2da0f1c79843dd05a56c6918331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "ea95af0f_8b9a012a",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 2
@@ -120,6 +144,30 @@
       "side": 1,
       "message": "TbsGatt constructor is called from within TbsService.start(), so probably do exactly what you wanted.",
       "parentUuid": "afd6a4ee_6178ec58",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 263,
+        "endChar": 75
+      },
+      "revId": "0b463845551de2da0f1c79843dd05a56c6918331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8acd571_08c1372c",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGatt.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T17:58:13Z",
+      "side": 1,
+      "message": "I see what you mean.\n\nI think it would be great to merge the init and the constructor, but in follow-up and not here",
+      "parentUuid": "7537ad16_12156a4f",
       "range": {
         "startLine": 261,
         "startChar": 0,
