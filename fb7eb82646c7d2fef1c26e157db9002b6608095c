@@ -132,6 +132,29 @@
       },
       "revId": "fb7eb82646c7d2fef1c26e157db9002b6608095c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9e0cf73_418d2301",
+        "filename": "framework/tests/bumble/doc/overview.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-10-17T21:19:30Z",
+      "side": 1,
+      "message": "Even if it\u0027s an overview, it\u0027s a bit weird to have an undefined variable. I would add it\u0027s declaration",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 4
+      },
+      "revId": "fb7eb82646c7d2fef1c26e157db9002b6608095c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
