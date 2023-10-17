@@ -29,7 +29,7 @@ public final class Flags {
     public static boolean audioRoutingCentralization() {
         return DeviceConfig.getBoolean(
                 DeviceConfig.NAMESPACE_BLUETOOTH,
-                "com.android.bluetooth.audio_routing_centalization",
+                "com.android.bluetooth.audio_routing_centralization",
                 false);
     }
 }
