@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad1f8fcd_1894a9d2",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-17T20:13:02Z",
+      "side": 1,
+      "message": "I\u0027d rather just add a CL on top that removes them.  I feel like we rarely get back to TODOs.",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "e8a50733b0a2487f08918a39d62adb258106e1ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "519ca18b_32fc1127",
+        "filename": "system/bta/dm/bta_dm_sec.h",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-17T20:13:02Z",
+      "side": 1,
+      "message": "Can we remove it?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 33
+      },
+      "revId": "e8a50733b0a2487f08918a39d62adb258106e1ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
