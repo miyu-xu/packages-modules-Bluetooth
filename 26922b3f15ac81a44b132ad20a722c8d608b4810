@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10e8e0b1_de46613e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-17T10:05:26Z",
+      "side": 0,
+      "message": "nit: why whitespace change ?",
+      "revId": "26922b3f15ac81a44b132ad20a722c8d608b4810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
