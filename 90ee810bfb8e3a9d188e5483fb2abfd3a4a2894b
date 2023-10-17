@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a25f9d82_17d1a1c6",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-17T20:35:44Z",
+      "side": 1,
+      "message": "https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/jv/bta_jv_api.cc;drc\u003d6b6ab1d9e99a94fde645f55a7ca82c07083d8add;l\u003d417\n\nThe implementation is only success or failure. We can refactor to return the value but it doesn\u0027t have any benefit.",
+      "parentUuid": "d580ae84_3c3f69d5",
+      "range": {
+        "startLine": 826,
+        "startChar": 6,
+        "endLine": 826,
+        "endChar": 25
+      },
+      "revId": "90ee810bfb8e3a9d188e5483fb2abfd3a4a2894b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56d37001_e1691969",
         "filename": "system/btif/src/btif_sock_rfc.cc",
         "patchSetId": 4
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-13T00:37:25Z",
       "side": 1,
       "message": "nit: How do we know it didn\u0027t return BUSY or one of the others?",
+      "range": {
+        "startLine": 829,
+        "startChar": 40,
+        "endLine": 829,
+        "endChar": 54
+      },
+      "revId": "90ee810bfb8e3a9d188e5483fb2abfd3a4a2894b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd66d3ac_7a7c3d19",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-17T20:35:44Z",
+      "side": 1,
+      "message": "https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/jv/bta_jv_api.cc;drc\u003d6b6ab1d9e99a94fde645f55a7ca82c07083d8add;l\u003d417\n\nThe implementation for BTA_JvRfcommConnect allows it to return only success and failure.",
+      "parentUuid": "56d37001_e1691969",
       "range": {
         "startLine": 829,
         "startChar": 40,
