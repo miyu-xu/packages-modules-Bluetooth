@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "46523fb6_3c2200a5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-17T08:59:32Z",
+      "side": 0,
+      "message": "I think the original logic move to below\n```\n        if self.mps_qualification_enabled {\n            if self.phone_state.state !\u003d CallState::Idle {\n                return false;\n            }\n            self.call_list.retain(|x| x.state !\u003d CallState::Held);\n            self.phone_state.num_held \u003d 0;\n        }\n```\n\nThe reason why this early return is mean for having no ops if no feature flag be enabled.",
+      "parentUuid": "bd1ce609_aa7afb51",
+      "range": {
+        "startLine": 2007,
+        "startChar": 15,
+        "endLine": 2007,
+        "endChar": 56
+      },
+      "revId": "0a52cf7f25574f55c1719738439cecf2dd9b3a95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce843c52_ffb8a9dc",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 9
@@ -37,6 +61,24 @@
       "writtenOn": "2023-10-17T08:38:48Z",
       "side": 0,
       "message": "why is this block removed. Is there a equivalent logic to replace this behavior? or it\u0027s not needed for some reason.\nI think this worth some explanation in commit message.",
+      "revId": "0a52cf7f25574f55c1719738439cecf2dd9b3a95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e24bcc6_4abd13da",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2938,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-17T08:59:32Z",
+      "side": 0,
+      "message": "Base on the original code. We should not change here, we should have same behavior for mps qualification.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/bluetooth_media.rs;l\u003d2565?q\u003dbluetooth_media.rs",
+      "parentUuid": "ce843c52_ffb8a9dc",
       "revId": "0a52cf7f25574f55c1719738439cecf2dd9b3a95",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
