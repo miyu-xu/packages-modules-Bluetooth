@@ -43,6 +43,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0bfb3bac_7d14dd35",
+        "filename": "system/bta/ag/bta_ag_sdp.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-10-17T07:08:17Z",
+      "side": 1,
+      "message": "I think we cannot reply to remote on 1.9 directly since we choose the host hfp version based on remote version. If remote not support 1.9 we cannot reply to them with 1.9.",
+      "range": {
+        "startLine": 192,
+        "startChar": 6,
+        "endLine": 194,
+        "endChar": 7
+      },
+      "revId": "b425860ee1414ac076da64b5d408e9793208a731",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bc4dec0a_3159031b",
         "filename": "system/bta/ag/bta_ag_sdp.cc",
         "patchSetId": 3
