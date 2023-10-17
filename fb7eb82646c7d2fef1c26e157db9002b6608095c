@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bddd6f0e_83d6761f",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-17T20:28:46Z",
+      "side": 1,
+      "message": "It\u0027s mostly a GATT test but looking for a DCK service. We can say we are doing a GATT test instead",
+      "parentUuid": "435bb518_0b84b5a9",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 11
+      },
+      "revId": "fb7eb82646c7d2fef1c26e157db9002b6608095c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8e28d97b_2acc7a7f",
         "filename": "framework/tests/bumble/doc/guide.md",
         "patchSetId": 12
