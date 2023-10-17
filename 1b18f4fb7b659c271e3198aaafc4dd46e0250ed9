@@ -24,6 +24,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f452e21_133dc0fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-17T20:16:52Z",
+      "side": 1,
+      "message": "I would have deferred the renaming step later in the process but is fine",
+      "revId": "1b18f4fb7b659c271e3198aaafc4dd46e0250ed9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54b602ca_5f98b49e",
@@ -43,6 +60,23 @@
         "endLine": 28,
         "endChar": 33
       },
+      "revId": "1b18f4fb7b659c271e3198aaafc4dd46e0250ed9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0db951a2_54ca1206",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-17T20:16:52Z",
+      "side": 1,
+      "message": "delete",
       "revId": "1b18f4fb7b659c271e3198aaafc4dd46e0250ed9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
