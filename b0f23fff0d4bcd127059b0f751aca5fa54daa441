@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f63f7e9c_06586494",
+        "filename": "system/bta/include/bta_api_data_types.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-17T20:21:16Z",
+      "side": 1,
+      "message": "needs\ncstdint\nstring\nbase/stringprintf",
+      "revId": "b0f23fff0d4bcd127059b0f751aca5fa54daa441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
