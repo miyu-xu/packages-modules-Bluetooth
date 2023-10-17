@@ -43,7 +43,7 @@ public final class BluetoothProfileConnector {
     private BluetoothProfile.ServiceListener mServiceListener;
     private final BluetoothProfile mProfileProxy;
     private Context mContext;
-    private volatile IBinder mService;
+    private boolean mBound = false;
 
     private static final int MESSAGE_SERVICE_CONNECTED = 100;
     private static final int MESSAGE_SERVICE_DISCONNECTED = 101;
@@ -67,7 +67,8 @@ public final class BluetoothProfileConnector {
                             TAG,
                             "Proxy object connected for "
                                     + BluetoothProfile.getProfileName(mProfileId));
-                    mService = service;
+                    mBound = true;
+                    mProfileProxy.onServiceConnected(service);
                     mHandler.sendMessage(mHandler.obtainMessage(MESSAGE_SERVICE_CONNECTED));
                 }
 
@@ -96,7 +97,7 @@ public final class BluetoothProfileConnector {
 
     private boolean doBind() {
         synchronized (mConnection) {
-            if (mService == null) {
+            if (!mBound) {
                 Log.d(
                         TAG,
                         "Binding service "
@@ -123,7 +124,7 @@ public final class BluetoothProfileConnector {
 
     private void doUnbind() {
         synchronized (mConnection) {
-            if (mService != null) {
+            if (mBound) {
                 Log.d(
                         TAG,
                         "Unbinding service "
@@ -141,7 +142,8 @@ public final class BluetoothProfileConnector {
                                     + BluetoothProfile.getProfileName(mProfileId),
                             re);
                 } finally {
-                    mService = null;
+                    mProfileProxy.onServiceDisconnected();
+                    mBound = false;
                 }
             }
         }
@@ -184,10 +186,6 @@ public final class BluetoothProfileConnector {
                 Log.e(TAG, "Failed to unregister state change callback", re);
             }
         }
-    }
-
-    IBinder getService() {
-        return mService;
     }
 
     @SuppressLint("AndroidFrameworkBluetoothPermission")

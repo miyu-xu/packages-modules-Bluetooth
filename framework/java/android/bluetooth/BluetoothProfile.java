@@ -24,6 +24,7 @@ import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
 import android.compat.annotation.UnsupportedAppUsage;
 import android.os.Build;
+import android.os.IBinder;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -385,11 +386,21 @@ public interface BluetoothProfile {
     @BtProfileState int getConnectionState(BluetoothDevice device);
 
     /**
-     * Releases any held resources.
+     * Called by the BluetoothAdapter when the Bluetooth service is connected
+     * with a Binder instance corresponding to the service associated with the
+     * profile
      *
      * @hide
      */
-    void close();
+    void onServiceConnected(IBinder service);
+
+    /**
+     * Called by the BluetoothAdapter when the Bluetooth service connection
+     * has been lost
+     *
+     * @hide
+     */
+    void onServiceDisconnected();
 
     /**
      * An interface for notifying BluetoothProfile IPC clients when they have
