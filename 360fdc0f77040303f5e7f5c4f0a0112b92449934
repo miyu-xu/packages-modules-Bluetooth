@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d150e28_52a2299a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T01:11:47Z",
+      "side": 1,
+      "message": "We should add a flag for this",
+      "revId": "360fdc0f77040303f5e7f5c4f0a0112b92449934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2dfc5fb_7130888c",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2015,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T01:11:47Z",
+      "side": 1,
+      "message": "can you use sendMessage with a new message ?",
+      "range": {
+        "startLine": 2015,
+        "startChar": 0,
+        "endLine": 2015,
+        "endChar": 99
+      },
+      "revId": "360fdc0f77040303f5e7f5c4f0a0112b92449934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4886ab1c_0c8a4e78",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2018,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-17T01:11:47Z",
+      "side": 1,
+      "message": "can you move it to inside of ClientHandler ?",
+      "range": {
+        "startLine": 2018,
+        "startChar": 17,
+        "endLine": 2018,
+        "endChar": 57
+      },
+      "revId": "360fdc0f77040303f5e7f5c4f0a0112b92449934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
