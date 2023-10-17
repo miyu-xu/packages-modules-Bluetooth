@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "db6e28b0_6c6d9f18",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-17T08:19:54Z",
+      "side": 1,
+      "message": "Added comments for some of them. Some of these values are pure numbers, so I do not add comments for them. Thanks.",
+      "parentUuid": "f48bdae6_feeb527c",
+      "revId": "817a3b5fd4480e5e67caa08fc5e4a3905bb81102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e8832e71_a84690e1",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-10-16T16:51:16Z",
       "side": 1,
       "message": "Enable ?",
+      "range": {
+        "startLine": 5204,
+        "startChar": 21,
+        "endLine": 5204,
+        "endChar": 22
+      },
+      "revId": "817a3b5fd4480e5e67caa08fc5e4a3905bb81102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c840cf5_d463cf0b",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 5204,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-17T08:19:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8832e71_a84690e1",
       "range": {
         "startLine": 5204,
         "startChar": 21,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cf76e26_aad15cd0",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 6747,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-17T08:19:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e6d19f4_0296885a",
+      "range": {
+        "startLine": 6744,
+        "startChar": 0,
+        "endLine": 6747,
+        "endChar": 1
+      },
+      "revId": "817a3b5fd4480e5e67caa08fc5e4a3905bb81102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3a90deec_0c7e8d6b",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-10-16T16:51:16Z",
       "side": 1,
       "message": "Enable ?",
+      "range": {
+        "startLine": 6755,
+        "startChar": 10,
+        "endLine": 6755,
+        "endChar": 26
+      },
+      "revId": "817a3b5fd4480e5e67caa08fc5e4a3905bb81102",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27614489_3121dda1",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 6755,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-17T08:19:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a90deec_0c7e8d6b",
       "range": {
         "startLine": 6755,
         "startChar": 10,
