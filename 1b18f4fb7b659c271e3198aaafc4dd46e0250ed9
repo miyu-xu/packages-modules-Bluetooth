@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aab4cd3_2a49eac9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 8
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-17T20:15:28Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 10,
+        "startChar": 11,
+        "endLine": 10,
+        "endChar": 29
+      },
+      "revId": "1b18f4fb7b659c271e3198aaafc4dd46e0250ed9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54b602ca_5f98b49e",
+        "filename": "system/btif/src/stack_manager.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-17T20:15:28Z",
+      "side": 1,
+      "message": "Can we remove it?",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 33
+      },
+      "revId": "1b18f4fb7b659c271e3198aaafc4dd46e0250ed9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
