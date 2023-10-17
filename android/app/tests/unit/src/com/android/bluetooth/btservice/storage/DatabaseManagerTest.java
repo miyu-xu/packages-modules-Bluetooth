@@ -47,6 +47,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
 
 import org.hamcrest.CoreMatchers;
 import org.junit.After;
@@ -106,7 +107,8 @@ public final class DatabaseManagerTest {
 
         when(mAdapterService.getPackageManager()).thenReturn(
                 InstrumentationRegistry.getTargetContext().getPackageManager());
-        mDatabaseManager = new DatabaseManager(mAdapterService);
+
+        mDatabaseManager = new DatabaseManager(mAdapterService, new FakeFeatureFlagsImpl());
 
         BluetoothDevice[] bondedDevices = {mTestDevice};
         doReturn(bondedDevices).when(mAdapterService).getBondedDevices();
