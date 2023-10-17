@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd1ce609_aa7afb51",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-10-17T08:38:48Z",
+      "side": 0,
+      "message": "why is this Idle check removed here and below?\nIt looks like the return value would be different before/after the change. What is the purpose of the return value here BTW, does that propagate to headset through any means (e.g AT command)?",
+      "range": {
+        "startLine": 2007,
+        "startChar": 15,
+        "endLine": 2007,
+        "endChar": 56
+      },
+      "revId": "0a52cf7f25574f55c1719738439cecf2dd9b3a95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce843c52_ffb8a9dc",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2938,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-10-17T08:38:48Z",
+      "side": 0,
+      "message": "why is this block removed. Is there a equivalent logic to replace this behavior? or it\u0027s not needed for some reason.\nI think this worth some explanation in commit message.",
+      "revId": "0a52cf7f25574f55c1719738439cecf2dd9b3a95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
