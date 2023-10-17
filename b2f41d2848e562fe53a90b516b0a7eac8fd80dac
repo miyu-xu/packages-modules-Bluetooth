@@ -16,6 +16,24 @@
       "message": "nit: Use full `RemoteFeatureNoReply`",
       "revId": "b2f41d2848e562fe53a90b516b0a7eac8fd80dac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebde9f70_ba732054",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-17T03:30:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1cfd1209_189133d4",
+      "revId": "b2f41d2848e562fe53a90b516b0a7eac8fd80dac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
