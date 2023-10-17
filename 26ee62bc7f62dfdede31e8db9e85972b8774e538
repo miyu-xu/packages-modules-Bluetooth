@@ -16,6 +16,24 @@
       "message": "It looks like we\u0027re doing a bitwise OR of `CsRole::INITIATOR` with itself.  That\u0027s just going to be `CsRole::INITIATOR`.  Did we intend to use a second different value here?",
       "revId": "26ee62bc7f62dfdede31e8db9e85972b8774e538",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "848d0e42_b15e26c2",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-10-17T09:35:35Z",
+      "side": 1,
+      "message": "Good catch, thanks!\nFixed by following patch\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2788073",
+      "parentUuid": "6e5e321b_32469e2b",
+      "revId": "26ee62bc7f62dfdede31e8db9e85972b8774e538",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
