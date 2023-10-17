@@ -16,6 +16,24 @@
       "message": "unrelated change?",
       "revId": "e8a50733b0a2487f08918a39d62adb258106e1ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4631bcc1_cf1c3500",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-17T22:23:10Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "b1707455_baeb52cf",
+      "revId": "e8a50733b0a2487f08918a39d62adb258106e1ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
