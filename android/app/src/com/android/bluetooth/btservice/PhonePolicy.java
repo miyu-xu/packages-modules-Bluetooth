@@ -39,6 +39,7 @@ import com.android.bluetooth.bas.BatteryService;
 import com.android.bluetooth.bass_client.BassClientService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
+import com.android.bluetooth.flags.FeatureFlags;
 import com.android.bluetooth.hap.HapClientService;
 import com.android.bluetooth.hearingaid.HearingAidService;
 import com.android.bluetooth.hfp.HeadsetService;
@@ -77,16 +78,11 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
     private static boolean sLeAudioEnabledByDefault = DeviceConfig.getBoolean(
             DeviceConfig.NAMESPACE_BLUETOOTH, CONFIG_LE_AUDIO_ENABLED_BY_DEFAULT, false);
 
-    private static final String HFP_AUTO_CONNECT = "HFP_AUTO_CONNECT";
-
-    @VisibleForTesting
-    static boolean sIsHfpAutoConnectEnabled =
-            DeviceConfig.getBoolean(DeviceConfig.NAMESPACE_BLUETOOTH, HFP_AUTO_CONNECT, false);
-
     // Timeouts
     @VisibleForTesting static int sConnectOtherProfilesTimeoutMillis = 6000; // 6s
 
     private DatabaseManager mDatabaseManager;
+    private final FeatureFlags mFeatureFlags;
     private final AdapterService mAdapterService;
     private final ServiceFactory mFactory;
     private final Handler mHandler;
@@ -172,10 +168,11 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
         resetStates();
     }
 
-    PhonePolicy(AdapterService service, ServiceFactory factory) {
+    PhonePolicy(AdapterService service, ServiceFactory factory, FeatureFlags featureFlags) {
         mAdapterService = service;
         mDatabaseManager = Objects.requireNonNull(mAdapterService.getDatabase(),
                 "DatabaseManager cannot be null when PhonePolicy starts");
+        mFeatureFlags = Objects.requireNonNull(featureFlags, "Feature Flags cannot be null");
         mFactory = factory;
         mHandler = new PhonePolicyHandler(service.getMainLooper());
         mAutoConnectProfilesSupported = SystemProperties.getBoolean(
@@ -618,7 +615,7 @@ class PhonePolicy implements AdapterService.BluetoothStateCallback {
             return;
         }
 
-        if (!sIsHfpAutoConnectEnabled) {
+        if (!mFeatureFlags.autoConnectOnHfpWhenNoA2dpDevice()) {
             debugLog("HFP auto connect is not enabled");
             return;
         }

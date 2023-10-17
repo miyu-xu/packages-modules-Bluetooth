@@ -18,7 +18,6 @@ package com.android.bluetooth.btservice;
 
 import static com.android.bluetooth.TestUtils.getTestDevice;
 import static com.android.bluetooth.TestUtils.waitForLooperToFinishScheduledTask;
-import static com.android.bluetooth.btservice.PhonePolicy.sIsHfpAutoConnectEnabled;
 
 import static org.mockito.Mockito.*;
 
@@ -39,6 +38,8 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.btservice.storage.MetadataDatabase;
+import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.le_audio.LeAudioService;
 
@@ -66,6 +67,7 @@ public class PhonePolicyTest {
     private BluetoothAdapter mAdapter;
     private PhonePolicy mPhonePolicy;
     private boolean mOriginalDualModeState;
+    private FakeFeatureFlagsImpl mFakeFlagsImpl;
 
     @Mock private AdapterService mAdapterService;
     @Mock private ServiceFactory mServiceFactory;
@@ -100,7 +102,10 @@ public class PhonePolicyTest {
         // Must be called to initialize services
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         PhonePolicy.sConnectOtherProfilesTimeoutMillis = CONNECT_OTHER_PROFILES_TIMEOUT_MILLIS;
-        mPhonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
+
+        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
+
+        mPhonePolicy = new PhonePolicy(mAdapterService, mServiceFactory, mFakeFlagsImpl);
         mOriginalDualModeState = Utils.isDualModeAudioEnabled();
     }
 
@@ -621,43 +626,39 @@ public class PhonePolicyTest {
      */
     @Test
     public void testAutoConnectHfpOnly() {
-        sIsHfpAutoConnectEnabled = true;
+        mFakeFlagsImpl.setFlag(Flags.FLAG_AUTO_CONNECT_ON_HFP_WHEN_NO_A2DP_DEVICE, true);
 
-        try {
-            // Return desired values from the mocked object(s)
-            doReturn(BluetoothAdapter.STATE_ON).when(mAdapterService).getState();
-            doReturn(false).when(mAdapterService).isQuietModeEnabled();
+        // Return desired values from the mocked object(s)
+        doReturn(BluetoothAdapter.STATE_ON).when(mAdapterService).getState();
+        doReturn(false).when(mAdapterService).isQuietModeEnabled();
 
-            MetadataDatabase mDatabase =
-                    Room.inMemoryDatabaseBuilder(
-                                    InstrumentationRegistry.getInstrumentation().getTargetContext(),
-                                    MetadataDatabase.class)
-                            .build();
-            DatabaseManager db = new DatabaseManager(mAdapterService);
-            doReturn(db).when(mAdapterService).getDatabase();
-            PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory);
+        MetadataDatabase mDatabase =
+                Room.inMemoryDatabaseBuilder(
+                                InstrumentationRegistry.getInstrumentation().getTargetContext(),
+                                MetadataDatabase.class)
+                        .build();
+        DatabaseManager db = new DatabaseManager(mAdapterService);
+        doReturn(db).when(mAdapterService).getDatabase();
+        PhonePolicy phonePolicy = new PhonePolicy(mAdapterService, mServiceFactory, mFakeFlagsImpl);
 
-            db.start(mDatabase);
-            TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
+        db.start(mDatabase);
+        TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
 
-            // Return a device that is HFP only
-            BluetoothDevice bondedDevice = getTestDevice(mAdapter, 0);
+        // Return a device that is HFP only
+        BluetoothDevice bondedDevice = getTestDevice(mAdapter, 0);
 
-            db.setConnection(bondedDevice, BluetoothProfile.HEADSET);
-            doReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED)
-                    .when(mHeadsetService)
-                    .getConnectionPolicy(eq(bondedDevice));
+        db.setConnection(bondedDevice, BluetoothProfile.HEADSET);
+        doReturn(BluetoothProfile.CONNECTION_POLICY_ALLOWED)
+                .when(mHeadsetService)
+                .getConnectionPolicy(eq(bondedDevice));
 
-            // wait for all MSG_UPDATE_DATABASE
-            TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
+        // wait for all MSG_UPDATE_DATABASE
+        TestUtils.waitForLooperToFinishScheduledTask(db.getHandlerLooper());
 
-            phonePolicy.autoConnect();
+        phonePolicy.autoConnect();
 
-            // Check that we got a request to connect over HFP for each device
-            verify(mHeadsetService).connect(eq(bondedDevice));
-        } finally {
-            sIsHfpAutoConnectEnabled = false;
-        }
+        // Check that we got a request to connect over HFP for each device
+        verify(mHeadsetService).connect(eq(bondedDevice));
     }
 
     /**
