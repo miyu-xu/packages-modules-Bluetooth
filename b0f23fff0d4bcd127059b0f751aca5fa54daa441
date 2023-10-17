@@ -16,6 +16,24 @@
       "message": "This erases the callback `bta_dm_acl_cb.p_acl_cback;` which is way it\u0027s \"saved\".\n\nThe new code removes this.\n\nIs that intended and/or still needed ?",
       "revId": "b0f23fff0d4bcd127059b0f751aca5fa54daa441",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82780a6e_e6818cff",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-17T22:22:07Z",
+      "side": 0,
+      "message": "Here I think in the original code, it only reset the data fields the control blocks, the callbacks are thus restored.\n\nacl callback is saved in bta_dm_acl_cb, which contains only p_acl_cback, \nwe are not doing anything on it.\n\n`bta_dm_sec_cb` is handled in bta_sec_on_hw_on.",
+      "parentUuid": "1b39d815_363ea180",
+      "revId": "b0f23fff0d4bcd127059b0f751aca5fa54daa441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
