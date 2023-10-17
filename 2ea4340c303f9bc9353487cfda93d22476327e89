@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c74c944_e11de3db",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-17T10:28:48Z",
+      "side": 1,
+      "message": "Can you please give example how to enable/disable allow list using properties, and how to set it up for development using \"adb setprop ...\" or \"adb shell device_config put ...\"",
+      "revId": "2ea4340c303f9bc9353487cfda93d22476327e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
