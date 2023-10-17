@@ -16,6 +16,24 @@
       "message": "The only indicator of security mode 3 is the `enable_encryption \u003d True` in the connect complete? That is odd. Maybe add a comment describing SecurityMode3 (either in the struct docstring or as a comment here)",
       "revId": "542d433f9f8f95dce762e2c1211e43de4af788a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7023ea5e_927a0d41",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-10-17T03:29:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "01cd7bde_f7df2d79",
+      "revId": "542d433f9f8f95dce762e2c1211e43de4af788a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
