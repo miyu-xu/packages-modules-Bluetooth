@@ -32,6 +32,7 @@
 #include "btif/include/stack_manager.h"
 #include "common/message_loop_thread.h"
 #include "osi/include/compat.h"
+#include "osi/include/osi.h"
 #include "stack/include/bt_dev_class.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/bt_name.h"
