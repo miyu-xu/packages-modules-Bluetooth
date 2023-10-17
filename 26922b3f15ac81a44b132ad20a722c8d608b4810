@@ -16,6 +16,24 @@
       "message": "nit: why whitespace change ?",
       "revId": "26922b3f15ac81a44b132ad20a722c8d608b4810",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8f5d5e6_af93c6bb",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-17T14:24:08Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "10e8e0b1_de46613e",
+      "revId": "26922b3f15ac81a44b132ad20a722c8d608b4810",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
