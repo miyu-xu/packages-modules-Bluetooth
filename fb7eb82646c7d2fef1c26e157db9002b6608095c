@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88b7694b_5622daaa",
+        "filename": "framework/tests/bumble/doc/asset/java-bumble-test-setup.png",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-10-17T20:19:09Z",
+      "side": 1,
+      "message": "nit: remove TF host from the diagram. No need to go into such details here.",
+      "revId": "fb7eb82646c7d2fef1c26e157db9002b6608095c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b1ff880_d57a4d52",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-10-17T20:19:09Z",
+      "side": 1,
+      "message": "nit: Lowercase",
+      "range": {
+        "startLine": 58,
+        "startChar": 16,
+        "endLine": 58,
+        "endChar": 20
+      },
+      "revId": "fb7eb82646c7d2fef1c26e157db9002b6608095c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "435bb518_0b84b5a9",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-10-17T20:19:09Z",
+      "side": 1,
+      "message": "Not sure if DCK is the best example since this is not a standard profile. But this can be addressed later.",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 11
+      },
+      "revId": "fb7eb82646c7d2fef1c26e157db9002b6608095c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e28d97b_2acc7a7f",
+        "filename": "framework/tests/bumble/doc/guide.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-10-17T20:19:09Z",
+      "side": 1,
+      "message": "nit: Uppercase",
+      "range": {
+        "startLine": 65,
+        "startChar": 26,
+        "endLine": 65,
+        "endChar": 29
+      },
+      "revId": "fb7eb82646c7d2fef1c26e157db9002b6608095c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbd1ec36_c507b62c",
+        "filename": "framework/tests/bumble/doc/overview.md",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-10-17T20:19:09Z",
+      "side": 1,
+      "message": "Would be great to add some comments in the code snippet to explain what each line/block is doing",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 23
+      },
+      "revId": "fb7eb82646c7d2fef1c26e157db9002b6608095c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
