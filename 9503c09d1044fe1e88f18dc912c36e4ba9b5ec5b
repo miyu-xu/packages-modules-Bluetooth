@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dcdc53a_ae44f9c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-17T08:30:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff472125_b8cc90b7",
+      "range": {
+        "startLine": 7,
+        "startChar": 52,
+        "endLine": 7,
+        "endChar": 58
+      },
+      "revId": "9503c09d1044fe1e88f18dc912c36e4ba9b5ec5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6ff9eac_66157dd7",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-10-16T15:53:12Z",
       "side": 1,
       "message": "Why can\u0027t you have mNewRegisteredCallbacks as argument to this method?",
+      "revId": "9503c09d1044fe1e88f18dc912c36e4ba9b5ec5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6775e59_b70b2b18",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-17T08:30:36Z",
+      "side": 1,
+      "message": "Actually I made it local one.",
+      "parentUuid": "c6ff9eac_66157dd7",
       "revId": "9503c09d1044fe1e88f18dc912c36e4ba9b5ec5b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a11367a6_e7f216d3",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 786,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-17T08:30:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90588b9b_37bc06dd",
+      "range": {
+        "startLine": 786,
+        "startChar": 8,
+        "endLine": 786,
+        "endChar": 42
+      },
+      "revId": "9503c09d1044fe1e88f18dc912c36e4ba9b5ec5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6e856bc9_24f36493",
@@ -77,6 +143,30 @@
       "writtenOn": "2023-10-16T15:53:12Z",
       "side": 1,
       "message": "The convention in most services is to have AIDL method and service method with exactly same, name.\n\nSo registerCallback should be calling registerCallback, no \"s\" at end of method name (singular)",
+      "range": {
+        "startLine": 1604,
+        "startChar": 24,
+        "endLine": 1604,
+        "endChar": 41
+      },
+      "revId": "9503c09d1044fe1e88f18dc912c36e4ba9b5ec5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1f712425_a2d79876",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1604,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-10-17T08:30:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6e856bc9_24f36493",
       "range": {
         "startLine": 1604,
         "startChar": 24,
