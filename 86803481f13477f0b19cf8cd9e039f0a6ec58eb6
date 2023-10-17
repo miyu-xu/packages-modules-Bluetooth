@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "360ce3b6_33807db8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-10-17T08:19:59Z",
+      "side": 1,
+      "message": "Hi Watsom,\n\nPlease help review the change under system/btif/src/btif_hf.cc\n\nWe enable 3-way call for floss, and this should not affect andiord.",
+      "revId": "86803481f13477f0b19cf8cd9e039f0a6ec58eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
