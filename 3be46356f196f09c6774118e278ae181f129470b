@@ -22,6 +22,30 @@
       },
       "revId": "3be46356f196f09c6774118e278ae181f129470b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae9318a9_85b55f2a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-10-18T00:11:46Z",
+      "side": 1,
+      "message": "Yes, the merging order should be:\n\n1. Make `floss_mmc` default -\u003e done\n2. Remove references in aosp -\u003e this CL\n3. Remove the use flag -\u003e crrev.com/c/4907418",
+      "parentUuid": "0a46bd34_b032724a",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "3be46356f196f09c6774118e278ae181f129470b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
