@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a814b896_7c9a847f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 26
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-18T21:31:55Z",
+      "side": 1,
+      "message": "looks good. my last comment is to split this CL into two\n1. isolate all the classic security APIs into a header (btm_sec_...)\n2. isolate all the ble security APIs into a header (btm_ble_sec_...)",
+      "revId": "8f8cf9f4b65d574c771bbda232d92cf3821d331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7671596a_492ce41a",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 26
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-18T21:31:55Z",
+      "side": 1,
+      "message": "delete",
+      "revId": "8f8cf9f4b65d574c771bbda232d92cf3821d331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2fb82a2_579696ef",
+        "filename": "system/stack/btm/btm_client_interface.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-18T21:31:55Z",
+      "side": 1,
+      "message": "remove empty lines",
+      "revId": "8f8cf9f4b65d574c771bbda232d92cf3821d331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1714c274_da810267",
+        "filename": "system/stack/include/btm_ble_sec_api.h",
+        "patchSetId": 26
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-18T21:31:55Z",
+      "side": 1,
+      "message": "Format should be like this:\n```\n/*\n * Copyright 2023 The Android Open Source Project\n *\n * Licensed under the Apache License, Version 2.0 (the \"License\");\n * you may not use this file except in compliance with the License.\n * You may obtain a copy of the License at\n *\n *      http://www.apache.org/licenses/LICENSE-2.0\n *\n * Unless required by applicable law or agreed to in writing, software\n * distributed under the License is distributed on an \"AS IS\" BASIS,\n * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n * See the License for the specific language governing permissions and\n * limitations under the License.\n */\n ```",
+      "revId": "8f8cf9f4b65d574c771bbda232d92cf3821d331a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
