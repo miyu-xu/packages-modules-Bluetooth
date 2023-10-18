@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ea5f649_2157d7bb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-18T02:16:50Z",
+      "side": 1,
+      "message": "May I ask how you determine the race condition? Is it possible to initiate it manually, or is there a specific stress test that addresses it?",
+      "revId": "b5e1f942c15cd9ecc880a610e3ac7ae9512aaac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
