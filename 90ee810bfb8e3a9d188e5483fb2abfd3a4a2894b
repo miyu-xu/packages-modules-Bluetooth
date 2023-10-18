@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab3451f1_78f1bc00",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-18T23:26:10Z",
+      "side": 1,
+      "message": "Acknowledged.\n\ntbh -- Since the callback passed here can never be null we don\u0027t ideally need to check it.",
+      "parentUuid": "4f36300d_a7c5db0f",
+      "range": {
+        "startLine": 826,
+        "startChar": 6,
+        "endLine": 826,
+        "endChar": 25
+      },
+      "revId": "90ee810bfb8e3a9d188e5483fb2abfd3a4a2894b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56d37001_e1691969",
