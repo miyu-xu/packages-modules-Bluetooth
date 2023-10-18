@@ -506,7 +506,7 @@ void avct_bcb_free_msg_ind(UNUSED_ATTR tAVCT_BCB* p_bcb,
 void avct_bcb_msg_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
   uint8_t* p;
   uint8_t label, type, cr_ipid;
-  uint16_t pid;
+  uint16_t pid = 0;
   tAVCT_CCB* p_ccb;
   tAVCT_LCB* p_lcb = avct_lcb_by_bcb(p_bcb);
 

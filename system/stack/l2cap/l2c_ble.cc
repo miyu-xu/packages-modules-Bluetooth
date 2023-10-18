@@ -1333,7 +1333,7 @@ void l2cble_process_rc_param_request_evt(uint16_t handle, uint16_t int_min,
     }
 
   } else {
-    LOG_WARN("No link to update connection parameter")
+    LOG_WARN("No link to update connection parameter");
   }
 }
 
