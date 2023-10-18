@@ -51,6 +51,7 @@ import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.le_audio.LeAudioService;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Test;
@@ -581,6 +582,13 @@ public class AudioRoutingManagerTest {
         verify(mHeadsetService, never()).setActiveDevice(mHeadsetDevice);
         assertThat(mAudioRoutingManager.getHfpActiveDevice()).isEqualTo(mHeadsetDevice);
         assertThat(mAudioRoutingManager.getHearingAidActiveDevices().isEmpty()).isTrue();
+    }
+
+    @Test
+    public void hearingAidActiveWithNull_clearHearingAidActiveDevices() {
+        hearingAidActiveDeviceChanged(null);
+        TestUtils.waitForLooperToFinishScheduledTask(mAudioRoutingManager.getHandlerLooper());
+        Assert.assertTrue(mAudioRoutingManager.getHearingAidActiveDevices().isEmpty());
     }
 
     /** One LE Audio is connected. */
