@@ -16,6 +16,24 @@
       "message": "May I ask how you determine the race condition? Is it possible to initiate it manually, or is there a specific stress test that addresses it?",
       "revId": "b5e1f942c15cd9ecc880a610e3ac7ae9512aaac2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "373506aa_bd585015",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-10-18T04:39:33Z",
+      "side": 1,
+      "message": "It happens sometime when I run the Avatar host_test https://cs.android.com/android/platform/superproject/main/+/main:external/pandora/avatar/avatar/cases/host_test.py?q\u003davatar%20host_test.\n\nBeside that, asyncio.Future https://docs.python.org/3/library/asyncio-future.html in the python is not thread-safe at all so we need to use call_soon_thread_safe when it\u0027s used by other threads.",
+      "parentUuid": "2ea5f649_2157d7bb",
+      "revId": "b5e1f942c15cd9ecc880a610e3ac7ae9512aaac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
