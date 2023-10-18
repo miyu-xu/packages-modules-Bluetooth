@@ -57,9 +57,9 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG should never be NULL");
 #include <log/log.h>
 #include <log/log_event_list.h>
 
-#if __has_include("src/init_flags.rs.h")
-
-#include "common/init_flags.h"
+namespace bluetooth::common::InitFlags {
+bool ::GetLogLevelForTag(char const*);
+} // bluetooth::common::InitFlags
 
 #define LOG_VERBOSE_INT(fmt, args...)                                                  \
   do {                                                                                 \
@@ -74,7 +74,6 @@ static_assert(LOG_TAG != nullptr, "LOG_TAG should never be NULL");
       ALOGD(fmt, ##args);                                                            \
     }                                                                                \
   } while (false)
-#endif /* __has_include("src/init_flags.rs.h") */
 
 #define LOG_INFO_INT(fmt, args...) ALOGI(fmt, ##args)
 #define LOG_WARN_INT(fmt, args...) ALOGW(fmt, ##args)

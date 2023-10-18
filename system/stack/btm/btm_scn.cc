@@ -17,6 +17,7 @@
 #define LOG_TAG "btm"
 
 #include <cstdint>
+#include "osi/include/log.h"
 #include "stack/btm/btm_int_types.h"  // tBTM_CB
 #include "stack/include/rfcdefs.h"    // PORT_MAX_RFC_PORTS
 

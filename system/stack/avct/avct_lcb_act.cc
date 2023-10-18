@@ -655,7 +655,7 @@ void avct_lcb_free_msg_ind(UNUSED_ATTR tAVCT_LCB* p_lcb,
 void avct_lcb_msg_ind(tAVCT_LCB* p_lcb, tAVCT_LCB_EVT* p_data) {
   uint8_t* p;
   uint8_t label, type, cr_ipid;
-  uint16_t pid;
+  uint16_t pid = 0;
   tAVCT_CCB* p_ccb;
 
   /* this p_buf is to be reported through p_msg_cback. The layer_specific
