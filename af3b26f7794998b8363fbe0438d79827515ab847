@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8a21f5e_7ad45e0b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-18T02:31:46Z",
+      "side": 1,
+      "message": "If move to constructor, this can be a final field",
+      "range": {
+        "startLine": 124,
+        "startChar": 25,
+        "endLine": 124,
+        "endChar": 38
+      },
+      "revId": "af3b26f7794998b8363fbe0438d79827515ab847",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f8e6b8c_b7011efc",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-18T02:31:46Z",
+      "side": 1,
+      "message": "Can you move it to a constructor parameter instead ?\nThat will facilitate injection of flags for testing",
+      "range": {
+        "startLine": 178,
+        "startChar": 8,
+        "endLine": 178,
+        "endChar": 21
+      },
+      "revId": "af3b26f7794998b8363fbe0438d79827515ab847",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48b6972c_c2b9693a",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 928,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-18T02:31:46Z",
+      "side": 1,
+      "message": "```suggestion\n                                + (\" prevState\u003d\" + fromState)\n                                + (\" state\u003d\" + toState)\n                                + (\" updatedConnectingState\u003d\" + updatedConnectingState));\n```",
+      "range": {
+        "startLine": 926,
+        "startChar": 31,
+        "endLine": 928,
+        "endChar": 90
+      },
+      "revId": "af3b26f7794998b8363fbe0438d79827515ab847",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d98ac9c5_944a2a84",
+        "filename": "flags/scan_manager.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-18T02:31:46Z",
+      "side": 1,
+      "message": "I am not a fan of \"scan_manager\" for the file name as I feel this is too narrow and too specific.\n\nShould we rename to gatt.aconfig ? ble.aconfig ?\n\nI do not have a strong opinion on this so feel free to push back or propose another name if you have a argument toward one or the other direction",
+      "revId": "af3b26f7794998b8363fbe0438d79827515ab847",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
