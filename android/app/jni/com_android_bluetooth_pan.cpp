@@ -21,8 +21,8 @@
 #include "utils/Log.h"
 
 #include <string.h>
+#include <log/log.h>
 
-#include <cutils/log.h>
 #define info(fmt, ...) ALOGI("%s(L%d): " fmt, __func__, __LINE__, ##__VA_ARGS__)
 #define debug(fmt, ...) \
   ALOGD("%s(L%d): " fmt, __func__, __LINE__, ##__VA_ARGS__)

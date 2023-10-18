@@ -19,7 +19,6 @@
 
 #include <android-base/logging.h>
 #include <android-base/stringprintf.h>
-#include <cutils/properties.h>
 #include <errno.h>
 #include <inttypes.h>
 #include <log/log.h>

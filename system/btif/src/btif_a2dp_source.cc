@@ -18,13 +18,9 @@
  ******************************************************************************/
 
 #define LOG_TAG "bt_btif_a2dp_source"
-#define ATRACE_TAG ATRACE_TAG_AUDIO
 
 #include <base/logging.h>
 #include <base/run_loop.h>
-#ifdef __ANDROID__
-#include <cutils/trace.h>
-#endif
 #include <inttypes.h>
 #include <limits.h>
 #include <string.h>
@@ -922,9 +918,6 @@ static void btif_a2dp_source_audio_handle_timer(void) {
   CHECK(btif_a2dp_source_cb.encoder_interface != nullptr);
   size_t transmit_queue_length =
       fixed_queue_length(btif_a2dp_source_cb.tx_audio_queue);
-#ifdef __ANDROID__
-  ATRACE_INT("btif TX queue", transmit_queue_length);
-#endif
   if (btif_a2dp_source_cb.encoder_interface->set_transmit_queue_length !=
       nullptr) {
     btif_a2dp_source_cb.encoder_interface->set_transmit_queue_length(

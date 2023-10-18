@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-#include <cutils/properties.h>
 #include <gtest/gtest.h>
 
 #include <string>
