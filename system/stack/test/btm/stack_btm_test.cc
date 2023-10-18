@@ -143,7 +143,7 @@ class StackBtmWithInitFreeTest : public StackBtmWithQueuesTest {
     StackBtmWithQueuesTest::SetUp();
     EXPECT_CALL(mock_hci_, GetScoQueueEnd())
         .WillOnce(Return(sco_queue_.GetUpEnd()));
-    btm_cb.Init(BTM_SEC_MODE_SC);
+    btm_cb.Init();
   }
   void TearDown() override {
     btm_cb.Free();
@@ -166,7 +166,7 @@ TEST_F(StackBtmTest, DynamicLifecycle) {
 TEST_F(StackBtmWithQueuesTest, InitFree) {
   EXPECT_CALL(mock_hci_, GetScoQueueEnd())
       .WillOnce(Return(sco_queue_.GetUpEnd()));
-  btm_cb.Init(0x1);
+  btm_cb.Init();
   btm_cb.Free();
 }
 

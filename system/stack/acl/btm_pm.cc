@@ -49,6 +49,8 @@
 #include "stack/include/btm_status.h"
 #include "types/raw_address.h"
 
+#include "stack/btm/btm_sec_int_types.h"
+
 void l2c_OnHciModeChangeSendPendingPackets(RawAddress remote);
 void btm_sco_chk_pend_unpark(tHCI_STATUS status, uint16_t handle);
 void btm_cont_rswitch_from_handle(uint16_t hci_handle);
@@ -842,7 +844,7 @@ static bool btm_pm_device_in_active_or_sniff_mode(void) {
   }
 
   /* Check BLE states */
-  if (!btm_cb.ble_ctr_cb.is_connection_state_idle()) {
+  if (!btm_sec_cb.ble_ctr_cb.is_connection_state_idle()) {
     BTM_TRACE_DEBUG("%s - BLE state is not idle", __func__);
     return true;
   }
