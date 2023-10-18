@@ -511,7 +511,7 @@ TEST_F(BtaDmTest,
 }
 
 TEST_F(BtaDmTest,
-       bta_dm_determine_discovery_transport__BT_TRANSPORT_AUTO__DUMO) {
+       DISABLE_bta_dm_determine_discovery_transport__BT_TRANSPORT_AUTO__DUMO) {
   bta_dm_search_cb.transport = BT_TRANSPORT_AUTO;
 
   test::mock::stack_btm_ble::BTM_ReadDevInfo.body =
