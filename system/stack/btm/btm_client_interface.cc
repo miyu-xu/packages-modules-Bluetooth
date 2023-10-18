@@ -24,6 +24,7 @@
 
 #include "stack/include/btm_api.h"
 
+#include "stack/include/btm_sec_api.h"
 
 #include "stack/include/btm_ble_api.h"
 #include "stack/include/btm_ble_sec_api.h"
