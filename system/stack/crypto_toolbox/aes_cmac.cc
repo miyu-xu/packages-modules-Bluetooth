@@ -112,8 +112,8 @@ static Octet16 cmac_aes_k_calculate(const Octet16& key) {
     /* Mi' := Mi (+) X  */
     xor_128((Octet16*)&cmac_cb.text[(cmac_cb.round - i) * OCTET16_LEN], x);
 
-    output = aes_128(key, &cmac_cb.text[(cmac_cb.round - i) * OCTET16_LEN],
-                     OCTET16_LEN);
+    output = aes_128(
+        key, *(Octet16*)&cmac_cb.text[(cmac_cb.round - i) * OCTET16_LEN]);
     x = output;
     i++;
   }
@@ -151,7 +151,7 @@ static void cmac_generate_subkey(const Octet16& key) {
   DVLOG(2) << __func__;
 
   Octet16 zero{};
-  Octet16 p = aes_128(key, zero.data(), OCTET16_LEN);
+  Octet16 p = aes_128(key, zero);
 
   Octet16 k1, k2;
   uint8_t* pp = p.data();
