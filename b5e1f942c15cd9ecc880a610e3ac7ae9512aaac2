@@ -34,6 +34,24 @@
       "parentUuid": "2ea5f649_2157d7bb",
       "revId": "b5e1f942c15cd9ecc880a610e3ac7ae9512aaac2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2780281f_4f9120ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-10-18T04:46:36Z",
+      "side": 1,
+      "message": "There are 2 threads in the pandora server code:\n\nserver + asyncio \u003c--------------\u003e floss_facade + dbus\n\nIf a race condition happens, any set_result in the `floss_facade` thread\nwon\u0027t be aware by the `server` thread and any await on such future will\nstuck in the original thread.",
+      "parentUuid": "373506aa_bd585015",
+      "revId": "b5e1f942c15cd9ecc880a610e3ac7ae9512aaac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
