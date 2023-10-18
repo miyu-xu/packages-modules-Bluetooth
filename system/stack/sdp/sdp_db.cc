@@ -23,12 +23,15 @@
  *
  ******************************************************************************/
 
+#define LOG_TAG "sdp"
+
 #include <string.h>
 
 #include <cstdint>
 
 #include "bt_target.h"
 #include "osi/include/allocator.h"
+#include "osi/include/log.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/sdpdefs.h"
 #include "stack/sdp/sdp_discovery_db.h"
