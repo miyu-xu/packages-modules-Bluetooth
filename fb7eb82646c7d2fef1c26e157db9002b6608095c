@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "465fd36d_73214a20",
+        "filename": "framework/tests/bumble/doc/asset/java-bumble-test-setup.png",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-18T13:44:57Z",
+      "side": 1,
+      "message": "Removed 👍",
+      "parentUuid": "88b7694b_5622daaa",
+      "revId": "fb7eb82646c7d2fef1c26e157db9002b6608095c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b1ff880_d57a4d52",
