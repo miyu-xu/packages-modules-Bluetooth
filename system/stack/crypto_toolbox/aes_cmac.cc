@@ -23,9 +23,9 @@
  ******************************************************************************/
 
 #include <base/logging.h>
-#include <base/strings/string_number_conversions.h>
 
-#include "check.h"
+#include <algorithm>
+
 #include "aes.h"
 #include "crypto_toolbox.h"
 #include "stack/include/bt_octets.h"
@@ -50,7 +50,6 @@ Octet16 const_Rb{0x87, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
  * length of OCTET16_LEN. Result is stored in first argument.
  */
 static void xor_128(Octet16* a, const Octet16& b) {
-  CHECK(a);
   uint8_t i, *aa = a->data();
   const uint8_t* bb = b.data();
 
@@ -210,9 +209,8 @@ Octet16 aes_cmac(const Octet16& key, const uint8_t* input, uint16_t length) {
   /* start calculation */
   Octet16 signature = cmac_aes_k_calculate(key);
 
-  /* clean up */
-  memset(&cmac_cb, 0, sizeof(tCMAC_CB));
-  // cmac_cb.text is auto-freed by alloca
+  /* Clean up. cmac_cb.text is auto-freed by alloca */
+  cmac_cb = tCMAC_CB{};
 
   return signature;
 }
