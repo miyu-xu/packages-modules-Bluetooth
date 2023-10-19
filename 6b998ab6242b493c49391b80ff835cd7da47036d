@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d2294aa_16087ef5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-19T21:12:31Z",
+      "side": 1,
+      "message": "@asoulier@google.com, is this ok to do that? \nCan you review this relation chain ?",
+      "revId": "6b998ab6242b493c49391b80ff835cd7da47036d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
