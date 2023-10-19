@@ -63,6 +63,7 @@ public class LeAudioStackEvent {
     static final int GROUP_STATUS_INACTIVE = 0;
     static final int GROUP_STATUS_ACTIVE = 1;
     static final int GROUP_STATUS_TURNED_IDLE_DURING_CALL = 2;
+    static final int GROUP_STATUS_CHANGE_REQUEST = 3;
 
     static final int GROUP_NODE_ADDED = 1;
     static final int GROUP_NODE_REMOVED = 2;
@@ -217,6 +218,8 @@ public class LeAudioStackEvent {
                         return "GROUP_STATUS_INACTIVE";
                     case GROUP_STATUS_TURNED_IDLE_DURING_CALL:
                         return "GROUP_STATUS_TURNED_IDLE_DURING_CALL";
+                    case GROUP_STATUS_CHANGE_REQUEST:
+                        return "GROUP_STATUS_CHANGE_REQUEST";
                     default:
                         break;
                 }

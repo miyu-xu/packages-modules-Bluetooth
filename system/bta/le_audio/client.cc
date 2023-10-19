@@ -231,6 +231,8 @@ class LeAudioClientImpl : public LeAudioClient {
         audio_sender_state_(AudioState::IDLE),
         in_call_(false),
         in_voip_call_(false),
+        sink_hal_listening_mode_(false),
+        group_change_requested_(false),
         current_source_codec_config({0, 0, 0, 0}),
         current_sink_codec_config({0, 0, 0, 0}),
         le_audio_source_hal_client_(nullptr),
@@ -1015,6 +1017,20 @@ class LeAudioClientImpl : public LeAudioClient {
 
   bool IsInVoipCall() override { return in_voip_call_; }
 
+  void SetSinkHalListeningMode(bool sink_hal_listening_mode) override {
+    if (!IS_FLAG_ENABLED(leaudio_broadcast_audio_handover_policies)) {
+      LOG_WARN(
+          "Listening mode is disabled, Set Sink HAL Listening mode "
+          "is ignored");
+      return;
+    }
+
+    LOG_DEBUG("sink_hal_listening_mode: %d", sink_hal_listening_mode);
+    sink_hal_listening_mode_ = sink_hal_listening_mode;
+  }
+
+  bool IsSinkHalListeningMode() override { return sink_hal_listening_mode_; }
+
   void SendAudioProfilePreferences(
       const int group_id, bool is_output_preference_le_audio,
       bool is_duplex_preference_le_audio) override {
@@ -1130,6 +1146,7 @@ class LeAudioClientImpl : public LeAudioClient {
       LOG_INFO("Active group_id changed %d -> %d", active_group_id_, group_id);
       auto group_id_to_close = active_group_id_;
       active_group_id_ = bluetooth::groups::kGroupUnknown;
+      group_change_requested_ = false;
 
       if (alarm_is_scheduled(suspend_timeout_)) alarm_cancel(suspend_timeout_);
 
@@ -1214,6 +1231,8 @@ class LeAudioClientImpl : public LeAudioClient {
 
     LOG_INFO("Active group_id changed %d -> %d", active_group_id_, group_id);
     active_group_id_ = group_id;
+    /* Reset group change request */
+    group_change_requested_ = false;
     callbacks_->OnGroupStatus(active_group_id_, GroupStatus::ACTIVE);
   }
 
@@ -3632,6 +3651,10 @@ class LeAudioClientImpl : public LeAudioClient {
     dprintf(fd, "  local sink metadata context type mask: %s\n",
             local_metadata_context_types_.sink.to_string().c_str());
     dprintf(fd, "  TBS state: %s\n", in_call_ ? " In call" : "No calls");
+    dprintf(fd, "  Sink Bluetooth HAL session listening: %s\n",
+            sink_hal_listening_mode_ ? "true" : "false");
+    dprintf(fd, "  Group change requested: %s\n",
+            group_change_requested_ ? "true" : "false");
     dprintf(fd, "  Start time: ");
     for (auto t : stream_start_history_queue_) {
       dprintf(fd, ", %d ms", static_cast<int>(t));
@@ -3656,7 +3679,13 @@ class LeAudioClientImpl : public LeAudioClient {
     if (active_group_id_ != bluetooth::groups::kGroupUnknown) {
       /* Bluetooth turned off while streaming */
       StopAudio();
+      SetSinkHalListeningMode(false);
       ClientAudioInterfaceRelease();
+    } else {
+      /* There may be not stopped Sink HAL client due to set Listening mode */
+      if (IsSinkHalListeningMode() && le_audio_sink_hal_client_) {
+        ClientAudioInterfaceRelease();
+      }
     }
     groupStateMachine_->Cleanup();
     aseGroups_.Cleanup();
@@ -4068,6 +4097,12 @@ class LeAudioClientImpl : public LeAudioClient {
       case AudioState::READY_TO_START:
       case AudioState::STARTED:
         audio_receiver_state_ = AudioState::READY_TO_RELEASE;
+        if (sink_hal_listening_mode_ && !group_change_requested_) {
+          LOG_INFO("Group: %d change request", active_group_id_);
+          group_change_requested_ = true;
+          callbacks_->OnGroupStatus(active_group_id_,
+                                    GroupStatus::CHANGE_REQUEST);
+        }
         break;
       case AudioState::RELEASING:
         return;
@@ -4115,6 +4150,17 @@ class LeAudioClientImpl : public LeAudioClient {
         kLogAfResume + "LocalSink",
         "r_state: " + ToString(audio_receiver_state_) +
             ", s_state: " + ToString(audio_sender_state_));
+
+    if (active_group_id_ == bluetooth::groups::kGroupUnknown) {
+      if (sink_hal_listening_mode_ && !group_change_requested_) {
+        LOG_INFO("Group: %d change request", active_group_id_);
+        group_change_requested_ = true;
+        callbacks_->OnGroupStatus(bluetooth::groups::kGroupUnknown,
+                                  GroupStatus::CHANGE_REQUEST);
+      }
+      CancelLocalAudioSinkStreamingRequest();
+      return;
+    }
 
     /* Stop the VBC close watchdog if needed */
     StopVbcCloseTimeout();
@@ -5397,6 +5443,10 @@ class LeAudioClientImpl : public LeAudioClient {
   /* Keep in call state. */
   bool in_call_;
   bool in_voip_call_;
+  /* Listen for streaming request on Bluetooth Sink HAL session */
+  bool sink_hal_listening_mode_;
+  /* Don't bother service about multiple request change */
+  bool group_change_requested_;
 
   /* Reconnection mode */
   tBTM_BLE_CONN_TYPE reconnection_mode_;
@@ -5462,11 +5512,18 @@ class LeAudioClientImpl : public LeAudioClient {
       le_audio_source_hal_client_->Stop();
       le_audio_source_hal_client_.reset();
     }
-    local_metadata_context_types_.sink.clear();
 
     if (le_audio_sink_hal_client_) {
-      le_audio_sink_hal_client_->Stop();
-      le_audio_sink_hal_client_.reset();
+      /* Keep session set up to monitor straming request. This is required if
+       * there is another LE Audio device streaming (e.g. Broadcast) and via
+       * the session callbacks special action from this Module would be
+       * required e.g. to Unicast handover.
+       */
+      if (!sink_hal_listening_mode_) {
+        local_metadata_context_types_.sink.clear();
+        le_audio_sink_hal_client_->Stop();
+        le_audio_sink_hal_client_.reset();
+      }
     }
     local_metadata_context_types_.source.clear();
     configuration_context_type_ = LeAudioContextType::UNINITIALIZED;
