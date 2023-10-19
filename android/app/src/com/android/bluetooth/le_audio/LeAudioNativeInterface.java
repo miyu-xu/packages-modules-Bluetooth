@@ -350,6 +350,19 @@ public class LeAudioNativeInterface {
     }
 
     /**
+     * Set sink HAL listening mode flag.
+     *
+     * @param sinkHalListeningMode true when LE Audio device should be listening for streaming
+     *     requests on sink HAL. false otherwise
+     */
+    public void setSinkHalListeningMode(boolean sinkHalListeningMode) {
+        if (DBG) {
+            Log.d(TAG, "setSinkHalListeningMode sinkHalListeningMode: " + sinkHalListeningMode);
+        }
+        setSinkHalListeningModeNative(sinkHalListeningMode);
+    }
+
+    /**
      * Sends the audio preferences for the groupId to the native stack.
      *
      * @param groupId is the groupId corresponding to the preferences
@@ -381,6 +394,8 @@ public class LeAudioNativeInterface {
             BluetoothLeAudioCodecConfig outputCodecConfig);
     private native void setCcidInformationNative(int ccid, int contextType);
     private native void setInCallNative(boolean inCall);
+
+    private native void setSinkHalListeningModeNative(boolean sinkHalListeningMode);
     /*package*/
     private native void sendAudioProfilePreferencesNative(int groupId,
             boolean isOutputPreferenceLeAudio, boolean isDuplexPreferenceLeAudio);
