@@ -402,6 +402,12 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
             }
 
             mLeAudioConnectedDevices.add(device);
+
+            if (!leAudioService.getAllBroadcastMetadata().isEmpty()) {
+                Log.d(TAG, "LE Audio Broadcast is running");
+                return;
+            }
+
             if (mHearingAidActiveDevices.isEmpty()
                     && mLeHearingAidActiveDevice == null
                     && mPendingLeHearingAidActiveDevice.isEmpty()) {
