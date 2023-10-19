@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c17c0cc3_ee26245c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-19T19:44:04Z",
+      "side": 1,
+      "message": "@sungsoo@google.com can you api review this change ?",
+      "revId": "c7223df663897cd55b2c24610fc10cc085745a57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
