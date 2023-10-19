@@ -1285,6 +1285,23 @@ public class LeAudioService extends ProfileService {
         mExposedActiveDevice = device;
     }
 
+    /**
+     * Send broadcast intent about LeAudio Broadcast active device.
+     * This is called when AudioManager confirms, LeAudio Broadcast device
+     * is added or removed.
+     */
+    @VisibleForTesting
+    void notifyBroadcastActiveDeviceChanged(BluetoothDevice device) {
+        if (DBG) {
+            Log.d(TAG, "Notify Active broadcast device changed." + device
+                    + ". Currently active broadcast device is " + mActiveAudioOutDevice);
+        }
+
+        mAdapterService.handleActiveDeviceChange(BluetoothProfile.LE_AUDIO_BROADCAST, device);
+        sentActiveDeviceChangeIntent(device);
+        mExposedActiveDevice = device;
+    }
+
     boolean isScannerNeeded() {
         if (mDeviceDescriptors.isEmpty() || !mBluetoothEnabled) {
             if (DBG) {
@@ -1373,7 +1390,8 @@ public class LeAudioService extends ProfileService {
 
             for (AudioDeviceInfo deviceInfo : addedDevices) {
                 if ((deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_HEADSET)
-                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)) {
+                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)
+                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_BROADCAST)) {
                     continue;
                 }
 
@@ -1408,7 +1426,13 @@ public class LeAudioService extends ProfileService {
                     continue;
                 }
 
-                notifyActiveDeviceChanged(device);
+                if (deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_HEADSET
+                        || deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_SPEAKER) {
+                    notifyActiveDeviceChanged(device);
+                } else if (deviceInfo.getType() == AudioDeviceInfo.TYPE_BLE_BROADCAST) {
+                    notifyBroadcastActiveDeviceChanged(device);
+                }
+
                 return;
             }
         }
@@ -1422,7 +1446,8 @@ public class LeAudioService extends ProfileService {
 
             for (AudioDeviceInfo deviceInfo : removedDevices) {
                 if ((deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_HEADSET)
-                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)) {
+                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)
+                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_BROADCAST)) {
                     continue;
                 }
 
@@ -2425,6 +2450,12 @@ public class LeAudioService extends ProfileService {
                             mAudioManager.handleBluetoothActiveDeviceChanged(mActiveAudioOutDevice,
                                     previousDevice,
                                     getBroadcastProfile(true));
+
+                            /* Follow Unicast path: Notify about inactive device as soon as
+                             * possible. When adding new device, wait with notification until
+                             * AudioManager is ready with adding the device.
+                             */
+                            notifyBroadcastActiveDeviceChanged(mActiveAudioOutDevice);
                         }
                     }
 
