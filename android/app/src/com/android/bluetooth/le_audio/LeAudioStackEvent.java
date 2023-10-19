@@ -40,8 +40,9 @@ public class LeAudioStackEvent {
     public static final int EVENT_TYPE_NATIVE_INITIALIZED = 9;
     public static final int EVENT_TYPE_HEALTH_BASED_DEV_RECOMMENDATION = 10;
     public static final int EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION = 11;
+    public static final int EVENT_TYPE_SINK_MONITORING_STATUS = 12;
     // -------- DO NOT PUT ANY NEW UNICAST EVENTS BELOW THIS LINE-------------
-    public static final int EVENT_TYPE_UNICAST_MAX = 12;
+    public static final int EVENT_TYPE_UNICAST_MAX = 13;
 
     // Broadcast related events
     public static final int EVENT_TYPE_BROADCAST_CREATED = EVENT_TYPE_UNICAST_MAX + 1;
@@ -65,6 +66,7 @@ public class LeAudioStackEvent {
     static final int GROUP_STATUS_INACTIVE = 0;
     static final int GROUP_STATUS_ACTIVE = 1;
     static final int GROUP_STATUS_TURNED_IDLE_DURING_CALL = 2;
+    static final int GROUP_STATUS_CHANGE_REQUEST = 3;
 
     static final int GROUP_NODE_ADDED = 1;
     static final int GROUP_NODE_REMOVED = 2;
@@ -170,6 +172,8 @@ public class LeAudioStackEvent {
                 return "EVENT_TYPE_HEALTH_BASED_DEV_RECOMMENDATION";
             case EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION:
                 return "EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION";
+            case EVENT_TYPE_SINK_MONITORING_STATUS:
+                return "EVENT_TYPE_SINK_MONITORING_STATUS";
             default:
                 return "EVENT_TYPE_UNKNOWN:" + type;
         }
@@ -239,6 +243,8 @@ public class LeAudioStackEvent {
                         return "GROUP_STATUS_INACTIVE";
                     case GROUP_STATUS_TURNED_IDLE_DURING_CALL:
                         return "GROUP_STATUS_TURNED_IDLE_DURING_CALL";
+                    case GROUP_STATUS_CHANGE_REQUEST:
+                        return "GROUP_STATUS_CHANGE_REQUEST";
                     default:
                         break;
                 }
