@@ -1368,7 +1368,8 @@ public class LeAudioService extends ProfileService {
 
             for (AudioDeviceInfo deviceInfo : addedDevices) {
                 if ((deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_HEADSET)
-                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)) {
+                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)
+                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_BROADCAST)) {
                     continue;
                 }
 
@@ -1417,7 +1418,8 @@ public class LeAudioService extends ProfileService {
 
             for (AudioDeviceInfo deviceInfo : removedDevices) {
                 if ((deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_HEADSET)
-                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)) {
+                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_SPEAKER)
+                        && (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLE_BROADCAST)) {
                     continue;
                 }
 
