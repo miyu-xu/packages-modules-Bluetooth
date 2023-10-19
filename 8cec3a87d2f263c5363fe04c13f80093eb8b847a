@@ -16,6 +16,24 @@
       "message": "nit: Move this in another commit ?",
       "revId": "8cec3a87d2f263c5363fe04c13f80093eb8b847a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "82acb2b6_49040601",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-19T04:05:16Z",
+      "side": 1,
+      "message": "We had an offline chat and agree this is not important to be moved in another commit.\n\nThere is only one caller of the constructor located in the AdapterService, and he immediately call start afterward.\nMeaning if the service was null, it would have crashed.",
+      "parentUuid": "a55e3d9c_a39aae97",
+      "revId": "8cec3a87d2f263c5363fe04c13f80093eb8b847a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
