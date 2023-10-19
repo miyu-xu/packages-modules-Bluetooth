@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44e0e309_0ee2982c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-19T04:09:04Z",
+      "side": 1,
+      "message": "Hi @joeo@google.com,\nI am trying to re-use what you defined in [this topic](https://android-review.git.corp.google.com/q/topic:%22aconfig_framework_circle%22) but I am not sure this is intended to be used in modules.\n\nCan you confirm that I am doing the right thing here ?",
+      "revId": "ae752415f29cb92214de59fb0fa600e55eecdff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
