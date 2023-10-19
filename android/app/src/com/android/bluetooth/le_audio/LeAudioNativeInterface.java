@@ -260,10 +260,11 @@ public class LeAudioNativeInterface {
     }
 
     @VisibleForTesting
-    void onUnicastMonitorModeStatus(int status) {
+    void onUnicastMonitorModeStatus(int direction, int status) {
         LeAudioStackEvent event =
                 new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_UNICAST_MONITOR_MODE_STATUS);
-        event.valueInt1 = status;
+        event.valueInt1 = direction;
+        event.valueInt2 = status;
 
         if (DBG) {
             Log.d(TAG, "onUnicastMonitorModeStatus: " + event);
