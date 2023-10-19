@@ -28,6 +28,70 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.Objects;
 
 /**
+ * Represents a supported source codec type for a Bluetooth A2DP device.
+ * See {@link BluetoothCodecConfig#getSupportedCodecTypes}.
+ */
+public final class BluetoothCodecType implements Parcelable {
+    private BluetoothCodecType(Parcel in) {
+        mNativeCodecType = in.readInt();
+        mCodecName = in.readString();
+    }
+
+    /**
+     * Create the bluetooth codec type from the static codec type index.
+     * @param codecType the static codec type
+     */
+    private BluetoothCodecType(@SourceCodecType int codecType) {
+        mNativeCodecType = codecType;
+        mCodecName = BluetoothCodecConfig.getCodecName(codecType);
+    }
+
+    /**
+     * Returns the codec name.
+     */
+    public @NonNull String getCodecName() {
+        return mCodecName;
+    }
+
+    @Override
+    public String toString() {
+        return mCodecName;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object o) {
+        if (o instanceof BluetoothCodecType) {
+            BluetoothCodecType other = (BluetoothCodecType) o;
+            return other.mNativeCodecType == mNativeCodecType;
+        }
+        return false;
+    }
+
+    /**
+     * @hide
+     */
+    public static @NonNull BluetoothCodecType createFromParcel(Parcel in) {
+        return new BluetoothCodecType(in);
+    }
+
+    /**
+     * Create the bluetooth codec type from the stati codec type index.
+     * @param codecType the static codec type
+     * @return the codec type if valid
+     * @hide
+     */
+    public static @Nullable BluetoothCodecType createFromType(@SourceCodecType codecType) {
+        if (codecType < BluetoothCodecConfig.SOURCE_CODEC_TYPE_MAX) {
+            return new BluetoothCodecType(codecType);
+        }
+        return null;
+    }
+
+    private int mNativeCodecType;
+    private String mCodecName;
+}
+
+/**
  * Represents the codec configuration for a Bluetooth A2DP source device.
  * <p>Contains the source codec type, the codec priority, the codec sample
  * rate, the codec bits per sample, and the codec channel mode.
@@ -48,48 +112,75 @@ public final class BluetoothCodecConfig implements Parcelable {
     /**
      * Source codec type SBC. This is the mandatory source codec
      * type.
+     * @deprecated Use the {@link BluetoothCodecType} values returned by
+     * {@link BluetoothCodeConfig#getSupportedCodecTypes} instead.
      */
+    @Deprecated
     public static final int SOURCE_CODEC_TYPE_SBC = 0;
 
     /**
      * Source codec type AAC.
+     * @deprecated Use the {@link BluetoothCodecType} values returned by
+     * {@link BluetoothCodeConfig#getSupportedCodecTypes} instead.
      */
+    @Deprecated
     public static final int SOURCE_CODEC_TYPE_AAC = 1;
 
     /**
      * Source codec type APTX.
+     * @deprecated Use the {@link BluetoothCodecType} values returned by
+     * {@link BluetoothCodeConfig#getSupportedCodecTypes} instead.
      */
+    @Deprecated
     public static final int SOURCE_CODEC_TYPE_APTX = 2;
 
     /**
      * Source codec type APTX HD.
+     * @deprecated Use the {@link BluetoothCodecType} values returned by
+     * {@link BluetoothCodeConfig#getSupportedCodecTypes} instead.
      */
+    @Deprecated
     public static final int SOURCE_CODEC_TYPE_APTX_HD = 3;
 
     /**
      * Source codec type LDAC.
+     * @deprecated Use the {@link BluetoothCodecType} values returned by
+     * {@link BluetoothCodeConfig#getSupportedCodecTypes} instead.
      */
+    @Deprecated
     public static final int SOURCE_CODEC_TYPE_LDAC = 4;
 
     /**
      * Source codec type LC3.
+     * @deprecated Use the {@link BluetoothCodecType} values returned by
+     * {@link BluetoothCodeConfig#getSupportedCodecTypes} instead.
      */
+    @Deprecated
     public static final int SOURCE_CODEC_TYPE_LC3 = 5;
 
     /**
      * Source codec type Opus.
+     * @deprecated Use the {@link BluetoothCodecType} values returned by
+     * {@link BluetoothCodeConfig#getSupportedCodecTypes} instead.
      */
+    @Deprecated
     public static final int SOURCE_CODEC_TYPE_OPUS = 6;
 
     /**
      * Source codec type invalid. This is the default value used for codec
      * type.
+     * @deprecated Use the {@link BluetoothCodecType} values returned by
+     * {@link BluetoothCodeConfig#getSupportedCodecTypes} instead.
      */
+    @Deprecated
     public static final int SOURCE_CODEC_TYPE_INVALID = 1000 * 1000;
 
     /**
      * Represents the count of valid source codec types.
+     * @deprecated Use the {@link BluetoothCodecType} values returned by
+     * {@link BluetoothCodeConfig#getSupportedCodecTypes} instead.
      */
+    @Deprecated
     private static final int SOURCE_CODEC_TYPE_MAX = 7;
 
     /** @hide */
@@ -224,7 +315,7 @@ public final class BluetoothCodecConfig implements Parcelable {
      */
     public static final int CHANNEL_MODE_STEREO = 0x1 << 1;
 
-    private final @SourceCodecType int mCodecType;
+    private final @Nullable BluetoothCodecType mCodecType;
     private @CodecPriority int mCodecPriority;
     private final @SampleRate int mSampleRate;
     private final @BitsPerSample int mBitsPerSample;
@@ -250,7 +341,8 @@ public final class BluetoothCodecConfig implements Parcelable {
      * @hide
      */
     @UnsupportedAppUsage
-    public BluetoothCodecConfig(@SourceCodecType int codecType, @CodecPriority int codecPriority,
+    public BluetoothCodecConfig(@Nullable BluetoothCodecType codecType,
+            @CodecPriority int codecPriority,
             @SampleRate int sampleRate, @BitsPerSample int bitsPerSample,
             @ChannelMode int channelMode, long codecSpecific1,
             long codecSpecific2, long codecSpecific3,
@@ -739,7 +831,7 @@ public final class BluetoothCodecConfig implements Parcelable {
      * values to 0.
      */
     public static final class Builder {
-        private int mCodecType = BluetoothCodecConfig.SOURCE_CODEC_TYPE_INVALID;
+        private @Nullable BluetoothCodecType mCodecType = null;
         private int mCodecPriority = BluetoothCodecConfig.CODEC_PRIORITY_DEFAULT;
         private int mSampleRate = BluetoothCodecConfig.SAMPLE_RATE_NONE;
         private int mBitsPerSample = BluetoothCodecConfig.BITS_PER_SAMPLE_NONE;
@@ -754,8 +846,22 @@ public final class BluetoothCodecConfig implements Parcelable {
          *
          * @param codecType of this codec
          * @return the same Builder instance
+         * @deprecated
          */
+        @Deprecated
         public @NonNull Builder setCodecType(@SourceCodecType int codecType) {
+            mCodecType = BluetoothCodecType.createFromType(codecType);
+            return this;
+        }
+
+        /**
+         * Set codec type for Bluetooth codec config.
+         *
+         * @param codecType of this codec
+         * @return the same Builder instance
+         */
+        @Deprecated
+        public @NonNull Builder setCodecType(@Nullable BluetoothCodecType codecType) {
             mCodecType = codecType;
             return this;
         }
