@@ -258,6 +258,19 @@ public class LeAudioNativeInterface {
         }
         sendMessageToService(event);
     }
+
+    @VisibleForTesting
+    void onSinkMonitoringStatus(int status) {
+        LeAudioStackEvent event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_UNICAST_MONITOR_MODE_STATUS);
+        event.valueInt1 = status;
+
+        if (DBG) {
+            Log.d(TAG, "onSinkMonitoringStatus: " + event);
+        }
+        sendMessageToService(event);
+    }
+
     /**
      * Initializes the native interface.
      *
@@ -367,6 +380,19 @@ public class LeAudioNativeInterface {
     }
 
     /**
+     * Set sink listening mode flag.
+     *
+     * @param sinkListeningMode true when LE Audio device should be listening for streaming status
+     *     on sink. false otherwise
+     */
+    public void setSinkListeningMode(boolean sinkListeningMode) {
+        if (DBG) {
+            Log.d(TAG, "setSinkListeningMode sinkListeningMode: " + sinkListeningMode);
+        }
+        setSinkListeningModeNative(sinkListeningMode);
+    }
+
+    /**
      * Sends the audio preferences for the groupId to the native stack.
      *
      * @param groupId is the groupId corresponding to the preferences
@@ -398,6 +424,8 @@ public class LeAudioNativeInterface {
             BluetoothLeAudioCodecConfig outputCodecConfig);
     private native void setCcidInformationNative(int ccid, int contextType);
     private native void setInCallNative(boolean inCall);
+
+    private native void setSinkListeningModeNative(boolean sinkListeningMode);
     /*package*/
     private native void sendAudioProfilePreferencesNative(int groupId,
             boolean isOutputPreferenceLeAudio, boolean isDuplexPreferenceLeAudio);
