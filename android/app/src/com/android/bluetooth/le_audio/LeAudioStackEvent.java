@@ -40,8 +40,9 @@ public class LeAudioStackEvent {
     public static final int EVENT_TYPE_NATIVE_INITIALIZED = 9;
     public static final int EVENT_TYPE_HEALTH_BASED_DEV_RECOMMENDATION = 10;
     public static final int EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION = 11;
+    public static final int EVENT_TYPE_SINK_MONITORING_STATUS = 12;
     // -------- DO NOT PUT ANY NEW UNICAST EVENTS BELOW THIS LINE-------------
-    public static final int EVENT_TYPE_UNICAST_MAX = 12;
+    public static final int EVENT_TYPE_UNICAST_MAX = 13;
 
     // Broadcast related events
     public static final int EVENT_TYPE_BROADCAST_CREATED = EVENT_TYPE_UNICAST_MAX + 1;
@@ -76,6 +77,12 @@ public class LeAudioStackEvent {
     static final int BROADCAST_STATE_PAUSED = 2;
     static final int BROADCAST_STATE_STOPPING = 3;
     static final int BROADCAST_STATE_STREAMING = 4;
+
+    // Do not modify without updating the HAL bt_le_audio.h files.
+    // Match up with StreamMonitoringStatus enum of bt_le_audio.h
+    static final int STATUS_STREAMING_REQUESTED = 0;
+    static final int STATUS_STREAMING = 1;
+    static final int STATUS_STREAM_SUSPENDED = 2;
 
     public int type = EVENT_TYPE_NONE;
     public BluetoothDevice device;
@@ -170,6 +177,8 @@ public class LeAudioStackEvent {
                 return "EVENT_TYPE_HEALTH_BASED_DEV_RECOMMENDATION";
             case EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION:
                 return "EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION";
+            case EVENT_TYPE_SINK_MONITORING_STATUS:
+                return "EVENT_TYPE_SINK_MONITORING_STATUS";
             default:
                 return "EVENT_TYPE_UNKNOWN:" + type;
         }
@@ -220,6 +229,17 @@ public class LeAudioStackEvent {
                         return "ACTION_CONSIDER_DISABLING";
                     case HEALTH_RECOMMENDATION_ACTION_INACTIVATE_GROUP:
                         return "ACTION_INACTIVATE_GROUP";
+                    default:
+                        return "UNKNOWN";
+                }
+            case EVENT_TYPE_SINK_MONITORING_STATUS:
+                switch (value) {
+                    case STATUS_STREAMING_REQUESTED:
+                        return "STREAMING_REQUESTED";
+                    case STATUS_STREAMING:
+                        return "STREAMING";
+                    case STATUS_STREAM_SUSPENDED:
+                        return "STREAM_SUSPENDED";
                     default:
                         return "UNKNOWN";
                 }
