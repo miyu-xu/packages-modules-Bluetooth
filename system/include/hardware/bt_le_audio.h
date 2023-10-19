@@ -64,6 +64,7 @@ enum class GroupStatus {
   INACTIVE = 0,
   ACTIVE,
   TURNED_IDLE_DURING_CALL,
+  CHANGE_REQUEST,
 };
 
 enum class GroupStreamStatus {
@@ -192,6 +193,9 @@ class LeAudioClientInterface {
 
   /* Set In call flag */
   virtual void SetInCall(bool in_call) = 0;
+
+  /* Set Sink HAL listening mode flag */
+  virtual void SetSinkHalListeningMode(bool sink_hal_listening_mode) = 0;
 
   /* Sends a preferred audio profiles change */
   virtual void SendAudioProfilePreferences(
