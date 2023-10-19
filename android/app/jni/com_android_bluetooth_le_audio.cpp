@@ -36,6 +36,7 @@ using bluetooth::le_audio::LeAudioBroadcasterCallbacks;
 using bluetooth::le_audio::LeAudioBroadcasterInterface;
 using bluetooth::le_audio::LeAudioClientCallbacks;
 using bluetooth::le_audio::LeAudioClientInterface;
+using bluetooth::le_audio::StreamMonitoringStatus;
 
 namespace android {
 static jmethodID method_onInitialized;
@@ -48,6 +49,7 @@ static jmethodID method_onAudioLocalCodecCapabilities;
 static jmethodID method_onAudioGroupCodecConf;
 static jmethodID method_onHealthBasedRecommendationAction;
 static jmethodID method_onHealthBasedGroupRecommendationAction;
+static jmethodID method_onSinkMonitoringStatus;
 
 static struct {
   jclass clazz;
@@ -309,6 +311,17 @@ class LeAudioClientCallbacksImpl : public LeAudioClientCallbacks {
     sCallbackEnv->CallVoidMethod(mCallbacksObj,
                                  method_onHealthBasedGroupRecommendationAction,
                                  (jint)group_id, (jint)action);
+  }
+
+  void OnSinkMonitoringStatus(StreamMonitoringStatus status) override {
+    LOG(INFO) << __func__;
+
+    std::shared_lock<std::shared_timed_mutex> lock(callbacks_mutex);
+    CallbackEnv sCallbackEnv(__func__);
+    if (!sCallbackEnv.valid() || mCallbacksObj == nullptr) return;
+
+    sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onSinkMonitoringStatus,
+                                 (jint)status);
   }
 };
 
@@ -574,6 +587,17 @@ static void setInCallNative(JNIEnv* /* env */, jobject /* object */,
   }
 
   sLeAudioClientInterface->SetInCall(inCall);
+}
+
+static void setSinkListeningModeNative(JNIEnv* /* env */, jobject /* object */,
+                                       jboolean sinkListeningMode) {
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sLeAudioClientInterface) {
+    LOG(ERROR) << __func__ << ": Failed to get the Bluetooth LeAudio Interface";
+    return;
+  }
+
+  sLeAudioClientInterface->SetSinkListeningMode(sinkListeningMode);
 }
 
 static void sendAudioProfilePreferencesNative(
@@ -1443,6 +1467,7 @@ int register_com_android_bluetooth_le_audio(JNIEnv* env) {
        (void*)setCodecConfigPreferenceNative},
       {"setCcidInformationNative", "(II)V", (void*)setCcidInformationNative},
       {"setInCallNative", "(Z)V", (void*)setInCallNative},
+      {"setSinkListeningModeNative", "(Z)V", (void*)setSinkListeningModeNative},
       {"sendAudioProfilePreferencesNative", "(IZZ)V",
        (void*)sendAudioProfilePreferencesNative},
   };
@@ -1475,6 +1500,7 @@ int register_com_android_bluetooth_le_audio(JNIEnv* env) {
        &method_onHealthBasedRecommendationAction},
       {"onHealthBasedGroupRecommendationAction", "(II)V",
        &method_onHealthBasedGroupRecommendationAction},
+      {"onSinkMonitoringStatus", "(I)V", &method_onSinkMonitoringStatus},
   };
   GET_JAVA_METHODS(env, "com/android/bluetooth/le_audio/LeAudioNativeInterface",
                    javaMethods);
