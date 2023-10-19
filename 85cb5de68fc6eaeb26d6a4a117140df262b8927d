@@ -22,6 +22,30 @@
       },
       "revId": "85cb5de68fc6eaeb26d6a4a117140df262b8927d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd5a59f1_7bde72bd",
+        "filename": "system/bta/rfcomm/bta_rfcomm_scn.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-10-19T22:35:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06a13908_bc03405e",
+      "range": {
+        "startLine": 112,
+        "startChar": 14,
+        "endLine": 112,
+        "endChar": 21
+      },
+      "revId": "85cb5de68fc6eaeb26d6a4a117140df262b8927d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
