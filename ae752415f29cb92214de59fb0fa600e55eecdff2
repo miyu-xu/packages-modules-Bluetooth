@@ -16,6 +16,23 @@
       "message": "Hi @joeo@google.com,\nI am trying to re-use what you defined in [this topic](https://android-review.git.corp.google.com/q/topic:%22aconfig_framework_circle%22) but I am not sure this is intended to be used in modules.\n\nCan you confirm that I am doing the right thing here ?",
       "revId": "ae752415f29cb92214de59fb0fa600e55eecdff2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13522b06_3f2f9905",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1890055
+      },
+      "writtenOn": "2023-10-19T17:24:02Z",
+      "side": 1,
+      "message": "Hi! Using aconfig flags from Mainline modules (or any apex modules that are not built as part of the platform) is not supported yet.",
+      "revId": "ae752415f29cb92214de59fb0fa600e55eecdff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
