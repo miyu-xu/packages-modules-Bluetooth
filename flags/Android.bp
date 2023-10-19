@@ -16,8 +16,10 @@ aconfig_declarations {
 java_aconfig_library {
     name: "bluetooth_flags_java_lib",
     aconfig_declarations: "bluetooth_aconfig_flags",
+    defaults: ["framework-minus-apex-aconfig-java-defaults"],
     visibility: [
         "//packages/modules/Bluetooth/android/app",
+        "//packages/modules/Bluetooth/framework:__subpackages__",
         "//packages/modules/Bluetooth/service:__subpackages__",
     ],
     apex_available: [
