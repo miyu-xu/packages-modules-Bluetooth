@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "420e352d_2a6ebaa2",
+        "filename": "flags/hap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2023-10-19T05:58:07Z",
+      "side": 1,
+      "message": "I think this flag is for HAP which only controls the presets. Volume control is handled by another profile VCP.",
+      "range": {
+        "startLine": 6,
+        "startChar": 51,
+        "endLine": 6,
+        "endChar": 70
+      },
+      "revId": "8786653362226776872fab4198742d6972109349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
