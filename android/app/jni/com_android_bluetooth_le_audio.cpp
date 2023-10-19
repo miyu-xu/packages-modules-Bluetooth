@@ -576,6 +576,18 @@ static void setInCallNative(JNIEnv* /* env */, jobject /* object */,
   sLeAudioClientInterface->SetInCall(inCall);
 }
 
+static void setSinkHalListeningModeNative(JNIEnv* /* env */,
+                                          jobject /* object */,
+                                          jboolean sinkHalListeningMode) {
+  std::shared_lock<std::shared_timed_mutex> lock(interface_mutex);
+  if (!sLeAudioClientInterface) {
+    LOG(ERROR) << __func__ << ": Failed to get the Bluetooth LeAudio Interface";
+    return;
+  }
+
+  sLeAudioClientInterface->SetSinkHalListeningMode(sinkHalListeningMode);
+}
+
 static void sendAudioProfilePreferencesNative(
     JNIEnv* /* env */, jint groupId, jboolean isOutputPreferenceLeAudio,
     jboolean isDuplexPreferenceLeAudio) {
@@ -1443,6 +1455,8 @@ int register_com_android_bluetooth_le_audio(JNIEnv* env) {
        (void*)setCodecConfigPreferenceNative},
       {"setCcidInformationNative", "(II)V", (void*)setCcidInformationNative},
       {"setInCallNative", "(Z)V", (void*)setInCallNative},
+      {"setSinkHalListeningModeNative", "(Z)V",
+       (void*)setSinkHalListeningModeNative},
       {"sendAudioProfilePreferencesNative", "(IZZ)V",
        (void*)sendAudioProfilePreferencesNative},
   };
