@@ -22,6 +22,30 @@
       },
       "revId": "8786653362226776872fab4198742d6972109349",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de4bf58d_106c782d",
+        "filename": "flags/hap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-19T17:36:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "420e352d_2a6ebaa2",
+      "range": {
+        "startLine": 6,
+        "startChar": 51,
+        "endLine": 6,
+        "endChar": 70
+      },
+      "revId": "8786653362226776872fab4198742d6972109349",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
