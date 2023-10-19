@@ -297,6 +297,21 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
                            Unretained(LeAudioClient::Get()), in_call));
   }
 
+  void SetSinkHalListeningMode(bool sink_hal_listening_mode) {
+    DVLOG(2) << __func__
+             << " sink_hal_listening_mode: " << sink_hal_listening_mode;
+    if (!initialized || !LeAudioClient::IsLeAudioClientRunning()) {
+      DVLOG(2) << __func__
+               << " Sink HAL listening mode set ignored, due to already started"
+                  " cleanup procedure or service being not read";
+      return;
+    }
+
+    do_in_main_thread(FROM_HERE, Bind(&LeAudioClient::SetSinkHalListeningMode,
+                                      Unretained(LeAudioClient::Get()),
+                                      sink_hal_listening_mode));
+  }
+
   void SendAudioProfilePreferences(int group_id,
                                    bool is_output_preference_le_audio,
                                    bool is_duplex_preference_le_audio) {
