@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a55e3d9c_a39aae97",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-19T03:33:39Z",
+      "side": 1,
+      "message": "nit: Move this in another commit ?",
+      "revId": "8cec3a87d2f263c5363fe04c13f80093eb8b847a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
