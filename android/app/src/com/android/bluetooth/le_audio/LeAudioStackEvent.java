@@ -77,6 +77,12 @@ public class LeAudioStackEvent {
     static final int BROADCAST_STATE_STOPPING = 3;
     static final int BROADCAST_STATE_STREAMING = 4;
 
+    // Do not modify without updating the HAL bt_le_audio.h files.
+    // Match up with StreamMonitoringStatus enum of bt_le_audio.h
+    static final int STATUS_STREAMING_REQUESTED = 0;
+    static final int STATUS_STREAMING = 1;
+    static final int STATUS_STREAM_SUSPENDED = 2;
+
     public int type = EVENT_TYPE_NONE;
     public BluetoothDevice device;
     public int valueInt1 = 0;
@@ -202,6 +208,17 @@ public class LeAudioStackEvent {
                         return "ACTION_DISABLE";
                     case HEALTH_RECOMMENDATION_ACTION_CONSIDER_DISABLING:
                         return "ACTION_CONSIDER_DISABLING";
+                    default:
+                        return "UNKNOWN";
+                }
+            case EVENT_TYPE_SINK_MONITORING_STATUS:
+                switch (value) {
+                    case STATUS_STREAMING_REQUESTED:
+                        return "STREAMING_REQUESTED";
+                    case STATUS_STREAMING:
+                        return "STREAMING";
+                    case STATUS_STREAM_SUSPENDED:
+                        return "STREAM_SUSPENDED";
                     default:
                         return "UNKNOWN";
                 }
