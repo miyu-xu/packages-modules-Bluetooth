@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea063de_5d6fdc51",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-19T23:10:45Z",
+      "side": 1,
+      "message": "What is the difference between BTM_SCO_CODEC_CVSD and UUID_CODEC_CVSD ?\nThis CL make the change from one to another like it was the same...\nIf they are the same, can we unify it before ?",
+      "range": {
+        "startLine": 489,
+        "startChar": 15,
+        "endLine": 489,
+        "endChar": 30
+      },
+      "revId": "8f72f1b014eb5c0f382fe28501489aa443636a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
