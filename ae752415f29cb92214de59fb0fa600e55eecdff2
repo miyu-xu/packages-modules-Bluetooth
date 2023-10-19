@@ -33,6 +33,24 @@
       "message": "Hi! Using aconfig flags from Mainline modules (or any apex modules that are not built as part of the platform) is not supported yet.",
       "revId": "ae752415f29cb92214de59fb0fa600e55eecdff2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34361a6a_acb0f5d4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-19T17:35:15Z",
+      "side": 1,
+      "message": "Can you elaborate ? It looks to work pretty well in automated tested and the flag appear properly on gantry too. What part is not supported ?\n\nDoes this apply to all of them or only to :\n* native flag ?\n* java flag ?\n* api flag ?\n\nThere are flag use in other modules like in wifi, uwb .... ( cf [search](https://cs.android.com/search?q\u003df:packages%2Fmodules%20f:flag\u0026sq\u003d))\n\nAlso, since bluetooth as not boarded any train yet, it is not really a true mainline module. Can this has an impact on it being supported ?",
+      "parentUuid": "13522b06_3f2f9905",
+      "revId": "ae752415f29cb92214de59fb0fa600e55eecdff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
