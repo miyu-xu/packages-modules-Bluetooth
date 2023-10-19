@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "25c04921_90bfa86d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-19T15:28:32Z",
+      "side": 1,
+      "message": "Maybe this naming is confusing here. This object here represent queued value that if set, should be forwarded to native: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2775609/1/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java#2276\n\nWhat about renaming it to `mQueuedInCallValue` ?",
+      "parentUuid": "ef3ce0ae_c417019b",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c08926e0_e49e09ce",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-09T22:42:59Z",
       "side": 1,
       "message": "nit: \n```suggestion\n    private boolean areBroadcastsAllStopped() {\n```",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f60c566_0259a217",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-19T15:28:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c08926e0_e49e09ce",
       "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f2e0d76f_f16ea313",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1034,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-19T15:28:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ecd1cec4_4f884d9d",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc8f6142_4df2c20d",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94ca8445_b1a63493",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2657,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-19T15:28:32Z",
+      "side": 1,
+      "message": "Yes, you are right - this can be upgraded because getFirstNotStoppedBroadcastId is taking care of checking BroadcastDescriptor existence.\n\nThanks!",
+      "parentUuid": "cc8f6142_4df2c20d",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4541fc35_cc94e115",
@@ -82,6 +154,24 @@
       "writtenOn": "2023-10-09T22:42:59Z",
       "side": 1,
       "message": "this is a more general improvement request. as we discussed, we\u0027d better not stop the broadcast completely in case of incoming call. instead can we consider to change broadcast to \u0027configured\u0027 state with a timeout? and if the call is resumed, we quickly set the broadcast state from \u0027configured\u0027 to \u0027streaming\u0027, if the call is still ongoing after the timeout, the timeout will trigger from \u0027configured\u0027 to \u0027idle\u0027.\nif you\u0027re planning to have this as another improvement, it\u0027s also fine to me.",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8fe7bb3_5d5057a2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2663,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-19T15:28:32Z",
+      "side": 1,
+      "message": "Ok, I\u0027ll include this in this CL.",
+      "parentUuid": "4541fc35_cc94e115",
       "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
