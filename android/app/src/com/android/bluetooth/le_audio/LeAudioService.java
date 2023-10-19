@@ -1099,8 +1099,8 @@ public class LeAudioService extends ProfileService {
                 || (oldSupportedByDeviceInput != newSupportedByDeviceInput)) {
             mActiveAudioInDevice = newSupportedByDeviceInput ? device : null;
             if (DBG) {
-                Log.d(TAG, " handleBluetoothActiveDeviceChanged  previousInDevice: "
-                        + previousInDevice + ", mActiveAudioInDevice" + mActiveAudioInDevice
+                Log.d(TAG, " handleBluetoothActiveDeviceChanged previousInDevice: "
+                        + previousInDevice + ", mActiveAudioInDevice: " + mActiveAudioInDevice
                         + " isLeOutput: false");
             }
 
@@ -1164,7 +1164,7 @@ public class LeAudioService extends ProfileService {
             mActiveAudioOutDevice = newSupportedByDeviceOutput ? device : null;
             if (DBG) {
                 Log.d(TAG, " handleBluetoothActiveDeviceChanged previousOutDevice: "
-                        + previousOutDevice + ", mActiveOutDevice: " + mActiveAudioOutDevice
+                        + previousOutDevice + ", mActiveAudioOutDevice: " + mActiveAudioOutDevice
                         + " isLeOutput: true");
             }
             return true;
@@ -1424,7 +1424,7 @@ public class LeAudioService extends ProfileService {
                     TAG,
                     "suppressNoisyIntent: "
                             + suppressNoisyIntent
-                            + ", hasFallbackDevice"
+                            + ", hasFallbackDevice: "
                             + hasFallbackDevice);
             final BluetoothProfileConnectionInfo connectionInfo;
             if (isAtLeastU()) {
