@@ -33,6 +33,7 @@ import android.bluetooth.BluetoothA2dp.OptionalCodecsSupportStatus;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothCodecConfig;
 import android.bluetooth.BluetoothCodecStatus;
+import android.bluetooth.BluetoothCodecType;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
@@ -1580,6 +1581,28 @@ public class A2dpService extends ProfileService {
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
+        }
+
+        @Override
+        public void getSupportedCodecTypes(
+                AttributionSource source, SynchronousResultReceiver receiver) {
+            receiver.send(
+                    new ArrayList<>(
+                            List.of(
+                                    BluetoothCodecType.createFromType(
+                                            BluetoothCodecConfig.SOURCE_CODEC_TYPE_SBC),
+                                    BluetoothCodecType.createFromType(
+                                            BluetoothCodecConfig.SOURCE_CODEC_TYPE_AAC),
+                                    BluetoothCodecType.createFromType(
+                                            BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX),
+                                    BluetoothCodecType.createFromType(
+                                            BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX_HD),
+                                    BluetoothCodecType.createFromType(
+                                            BluetoothCodecConfig.SOURCE_CODEC_TYPE_LDAC),
+                                    BluetoothCodecType.createFromType(
+                                            BluetoothCodecConfig.SOURCE_CODEC_TYPE_LC3),
+                                    BluetoothCodecType.createFromType(
+                                            BluetoothCodecConfig.SOURCE_CODEC_TYPE_OPUS))));
         }
 
         @Override
