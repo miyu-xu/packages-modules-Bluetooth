@@ -746,6 +746,37 @@ public final class BluetoothA2dp implements BluetoothProfile {
     }
 
     /**
+     * Returns the list of source codecs that are supported by the current platform.
+     *
+     * <p>The list always includes the mandatory SBC codec, and may include optional priorietary
+     * codecs.
+     *
+     * @return list of supported source codec types
+     */
+    @NonNull
+    @RequiresLegacyBluetoothPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
+    public List<BluetoothCodecType> getSupportedCodecTypes() {
+        Log.d(TAG, "getSupportedSourceCodecTypes()");
+        final IBluetoothA2dp service = getService();
+        List<BluetoothCodecType> defaultValue = new ArrayList<>();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver<List<BluetoothCodecType>> recv =
+                        SynchronousResultReceiver.get();
+                service.getSupportedCodecTypes(mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return defaultValue;
+    }
+
+    /**
      * Gets the current codec status (configuration and capability).
      *
      * @param device the remote Bluetooth device.
