@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f9084af_771a487c",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-19T04:41:40Z",
+      "side": 1,
+      "message": "I would prefer replacing with `featureFlag.audioRoutingCentralization()` instead of static flagging to facilitate testing by injecting the flag.\n\nBut that may require a bit more change that just changing the dependency\n\nNote that featureFlag is a variable added in the not yet merged aosp/2794593 (but should be merged very soon",
+      "revId": "4bca6523c10a7bba3a26d288891c8022368ee5e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8218caf_934a1aa5",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-19T04:41:40Z",
+      "side": 1,
+      "message": "I was thinking of splitting the files by area / profiles\nThe system service in an area in itself, but the app is not one.\n\nBut I have to admit that your flag does not belong to only one area ... Unless it is intended to only stays in a2dp ? In this case I would prefer a2dp.aconfig....\n\nIdk... comment open to discussion",
+      "range": {
+        "startLine": 10,
+        "startChar": 9,
+        "endLine": 10,
+        "endChar": 22
+      },
+      "revId": "4bca6523c10a7bba3a26d288891c8022368ee5e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
