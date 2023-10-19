@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a636df43_c04b5c44",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-19T21:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a9db022_9043a2f8",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 53
+      },
+      "revId": "181cb43be0394f3382cd3053e0d2499fd42b2465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c936fef_c1bc4855",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-19T20:35:38Z",
       "side": 1,
       "message": "Could we add a `getRemote()` function instead ? Which return the corresponding `BluetoothDevice` for this `PandoraDevice`:\n```java\n    public BluetoothDevice getRemote() {\n        BluetoothAdapter adapter \u003d ApplicationProvider\n                .getApplicationContext()\n                .getSystemService(BluetoothManager.class)\n                .getAdapter();\n                \n        return adapter.getRemoteDevice(\n                Utils.addressBytesFromString(mPublicBluetoothAddress));\n    }\n```",
+      "range": {
+        "startLine": 83,
+        "startChar": 18,
+        "endLine": 83,
+        "endChar": 43
+      },
+      "revId": "181cb43be0394f3382cd3053e0d2499fd42b2465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fce008e5_5da7b72b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-19T21:48:46Z",
+      "side": 1,
+      "message": "Ok...I will look into this",
+      "parentUuid": "0c936fef_c1bc4855",
       "range": {
         "startLine": 83,
         "startChar": 18,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41eb57dd_06d6a745",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-19T21:48:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "441ea305_861e4e10",
+      "range": {
+        "startLine": 89,
+        "startChar": 8,
+        "endLine": 89,
+        "endChar": 25
+      },
+      "revId": "181cb43be0394f3382cd3053e0d2499fd42b2465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "278d1c84_cb652d16",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-10-19T20:35:38Z",
       "side": 1,
       "message": "(not tested but should be close)\n```suggestion\n        // Connect\n        mBumble.hostBlocking().connect(\n                ConnectRequest.newBuilder()\n                        .setAddress(ByteString.copyFrom(local_bytes_addr))\n                        .build()\n        );\n```",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 35
+      },
+      "revId": "181cb43be0394f3382cd3053e0d2499fd42b2465",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22c7db83_ea39dc73",
+        "filename": "framework/tests/bumble/src/android/bluetooth/SdpClientTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-19T21:48:46Z",
+      "side": 1,
+      "message": "Yes, that works",
+      "parentUuid": "278d1c84_cb652d16",
       "range": {
         "startLine": 109,
         "startChar": 8,
