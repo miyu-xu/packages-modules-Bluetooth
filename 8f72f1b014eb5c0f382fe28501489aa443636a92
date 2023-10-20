@@ -22,6 +22,30 @@
       },
       "revId": "8f72f1b014eb5c0f382fe28501489aa443636a92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03889212_5f16e3e4",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-10-20T05:21:44Z",
+      "side": 1,
+      "message": "The values of UUID_* are followed by Bluetooth Sig. BTM_* only used in the BTM.\nThose values are different.\n\nThis function means that when we get the \"AT+BCS\" from remote, we should use UUID_* to distinguish the codec and map to BTM_*.\n\nI don\u0027t know why we have this design before. But I think it\u0027s fine to keep this. The logic here is reasonable to me.",
+      "parentUuid": "7ea063de_5d6fdc51",
+      "range": {
+        "startLine": 489,
+        "startChar": 15,
+        "endLine": 489,
+        "endChar": 30
+      },
+      "revId": "8f72f1b014eb5c0f382fe28501489aa443636a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
