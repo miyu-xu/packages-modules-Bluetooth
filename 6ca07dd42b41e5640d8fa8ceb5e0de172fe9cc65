@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ef93a0b_9efa2aff",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-20T14:14:15Z",
+      "side": 1,
+      "message": "unrelated?",
+      "range": {
+        "startLine": 660,
+        "startChar": 1,
+        "endLine": 660,
+        "endChar": 19
+      },
+      "revId": "6ca07dd42b41e5640d8fa8ceb5e0de172fe9cc65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
