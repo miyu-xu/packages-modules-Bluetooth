@@ -46,6 +46,30 @@
       },
       "revId": "6ca07dd42b41e5640d8fa8ceb5e0de172fe9cc65",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8b83a28_7fd22071",
+        "filename": "system/stack/avct/avct_lcb_act.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-20T15:57:44Z",
+      "side": 1,
+      "message": ":( Is 0 the correct value?",
+      "parentUuid": "ea6356a4_ee6ac829",
+      "range": {
+        "startLine": 660,
+        "startChar": 1,
+        "endLine": 660,
+        "endChar": 19
+      },
+      "revId": "6ca07dd42b41e5640d8fa8ceb5e0de172fe9cc65",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
