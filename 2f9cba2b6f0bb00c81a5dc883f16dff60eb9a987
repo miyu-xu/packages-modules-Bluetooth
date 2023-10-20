@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45f6801b_306fb18a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-20T18:30:21Z",
+      "side": 1,
+      "message": "If you want to launch the feature, I think we should launch it using the new flag process.",
+      "revId": "2f9cba2b6f0bb00c81a5dc883f16dff60eb9a987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
