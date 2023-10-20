@@ -22,6 +22,7 @@
 #include <base/functional/callback_forward.h>
 
 #include <cstdint>
+#include <vector>
 
 #include "device/include/esco_parameters.h"
 #include "stack/include/bt_lap.h"
@@ -33,18 +34,28 @@
 
 /* Message by message.... */
 
+enum hci_data_direction {
+  HOST_TO_CONTROLLER = 0,
+  CONTROLLER_TO_HOST = 1,
+};
+
 /* Disconnect */
 namespace bluetooth {
 namespace legacy {
 namespace hci {
-struct Interface {
-  // LINK_CONTROL 0x04xx
-  void (*StartInquiry)(const LAP inq_lap, uint8_t duration,
-                       uint8_t response_cnt);
-  void (*InquiryCancel)();
-  void (*Disconnect)(uint16_t handle, uint8_t reason);
-  void (*ChangeConnectionPacketType)(uint16_t handle, uint16_t packet_types);
-  void (*StartRoleSwitch)(const RawAddress& bd_addr, uint8_t role);
+class Interface {
+ public:
+  virtual void StartInquiry(const LAP inq_lap, uint8_t duration,
+                            uint8_t response_cnt) const;
+  virtual void InquiryCancel() const = 0;
+  virtual void Disconnect(uint16_t handle, uint8_t reason) const;
+  virtual void ChangeConnectionPacketType(uint16_t handle,
+                                          uint16_t packet_types) const;
+  virtual void StartRoleSwitch(const RawAddress& bd_addr, uint8_t role) const;
+  virtual void ConfigureDataPath(hci_data_direction data_path_direction,
+                                 uint8_t data_path_id,
+                                 std::vector<uint8_t> vendor_config) const;
+  virtual ~Interface() = default;
 };
 
 const Interface& GetInterface();
@@ -516,7 +527,7 @@ void btsnd_hcic_ble_set_default_periodic_advertising_sync_transfer_params(
     uint16_t conn_handle, uint8_t mode, uint16_t skip, uint16_t sync_timeout,
     uint8_t cte_type, base::OnceCallback<void(uint8_t*, uint16_t)> cb);
 
-void btsnd_hcic_configure_data_path(uint8_t data_path_direction,
+void btsnd_hcic_configure_data_path(hci_data_direction data_path_direction,
                                     uint8_t data_path_id,
                                     std::vector<uint8_t> vendor_config);
 
