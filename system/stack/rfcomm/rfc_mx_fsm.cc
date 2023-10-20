@@ -170,11 +170,9 @@ void rfc_mx_sm_state_idle(tRFC_MCB* p_mcb, tRFC_MX_EVENT event, void* p_data) {
       return;
 
     default:
-      RFCOMM_TRACE_ERROR("Mx error state %d event %d", p_mcb->state, event);
+      LOG_ERROR("Mx error state %d event %d", p_mcb->state, event);
       return;
   }
-  RFCOMM_TRACE_EVENT("RFCOMM MX ignored - evt:%d in state:%d", event,
-                     p_mcb->state);
 }
 
 /*******************************************************************************
@@ -189,10 +187,9 @@ void rfc_mx_sm_state_idle(tRFC_MCB* p_mcb, tRFC_MX_EVENT event, void* p_data) {
  ******************************************************************************/
 void rfc_mx_sm_state_wait_conn_cnf(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
                                    void* p_data) {
-  RFCOMM_TRACE_EVENT("%s: evt %d", __func__, event);
   switch (event) {
     case RFC_MX_EVENT_START_REQ:
-      RFCOMM_TRACE_ERROR("Mx error state %d event %d", p_mcb->state, event);
+      LOG_ERROR("Mx error state %d event %d", p_mcb->state, event);
       return;
 
     /* There is some new timing so that Config Ind comes before security is
@@ -226,11 +223,6 @@ void rfc_mx_sm_state_wait_conn_cnf(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
         uint16_t i;
         uint8_t handle;
 
-        RFCOMM_TRACE_DEBUG(
-            "RFCOMM MX retry as acceptor in collision case - evt:%d in "
-            "state:%d",
-            event, p_mcb->state);
-
         rfc_save_lcid_mcb(NULL, p_mcb->lcid);
         p_mcb->lcid = p_mcb->pending_lcid;
         rfc_save_lcid_mcb(p_mcb, p_mcb->lcid);
@@ -244,8 +236,6 @@ void rfc_mx_sm_state_wait_conn_cnf(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
             p_mcb->port_handles[i] = 0;
             p_mcb->port_handles[i + 1] = handle;
             rfc_cb.port.port[handle - 1].dlci += 1;
-            RFCOMM_TRACE_DEBUG("RFCOMM MX - DLCI:%d -> %d", i,
-                               rfc_cb.port.port[handle - 1].dlci);
           }
         }
 
@@ -258,8 +248,6 @@ void rfc_mx_sm_state_wait_conn_cnf(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
       LOG_ERROR("Received unexpected event:%hu in state:%hhu", event,
                 p_mcb->state);
   }
-  RFCOMM_TRACE_EVENT("RFCOMM MX ignored - evt:%d in state:%d", event,
-                     p_mcb->state);
 }
 
 /*******************************************************************************
@@ -274,12 +262,11 @@ void rfc_mx_sm_state_wait_conn_cnf(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
  ******************************************************************************/
 void rfc_mx_sm_state_configure(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
                                void* p_data) {
-  RFCOMM_TRACE_EVENT("%s: event %d", __func__, event);
   switch (event) {
     case RFC_MX_EVENT_START_REQ:
     case RFC_MX_EVENT_CONN_CNF:
 
-      RFCOMM_TRACE_ERROR("Mx error state %d event %d", p_mcb->state, event);
+      LOG_ERROR("Mx error state %d event %d", p_mcb->state, event);
       return;
 
     case RFC_MX_EVENT_CONF_IND:
@@ -307,8 +294,6 @@ void rfc_mx_sm_state_configure(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
       LOG_ERROR("Received unexpected event:%hu in state:%hhu", event,
                 p_mcb->state);
   }
-  RFCOMM_TRACE_EVENT("RFCOMM MX ignored - evt:%d in state:%d", event,
-                     p_mcb->state);
 }
 
 /*******************************************************************************
@@ -323,11 +308,10 @@ void rfc_mx_sm_state_configure(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
  ******************************************************************************/
 void rfc_mx_sm_sabme_wait_ua(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
                              UNUSED_ATTR void* p_data) {
-  RFCOMM_TRACE_EVENT("%s: event %d", __func__, event);
   switch (event) {
     case RFC_MX_EVENT_START_REQ:
     case RFC_MX_EVENT_CONN_CNF:
-      RFCOMM_TRACE_ERROR("Mx error state %d event %d", p_mcb->state, event);
+      LOG_ERROR("Mx error state %d event %d", p_mcb->state, event);
       return;
 
     /* workaround: we don't support reconfig */
@@ -371,8 +355,6 @@ void rfc_mx_sm_sabme_wait_ua(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
       LOG_ERROR("Received unexpected event:%hu in state:%hhu", event,
                 p_mcb->state);
   }
-  RFCOMM_TRACE_EVENT("RFCOMM MX ignored - evt:%d in state:%d", event,
-                     p_mcb->state);
 }
 
 /*******************************************************************************
@@ -387,7 +369,6 @@ void rfc_mx_sm_sabme_wait_ua(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
  ******************************************************************************/
 void rfc_mx_sm_state_wait_sabme(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
                                 void* p_data) {
-  RFCOMM_TRACE_EVENT("%s: event %d", __func__, event);
   switch (event) {
     case RFC_MX_EVENT_DISC_IND:
       p_mcb->state = RFC_MX_STATE_IDLE;
@@ -437,8 +418,6 @@ void rfc_mx_sm_state_wait_sabme(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
     default:
       LOG_WARN("RFCOMM MX ignored - evt:%d in state:%d", event, p_mcb->state);
   }
-  RFCOMM_TRACE_EVENT("RFCOMM MX ignored - evt:%d in state:%d", event,
-                     p_mcb->state);
 }
 
 /*******************************************************************************
@@ -453,8 +432,6 @@ void rfc_mx_sm_state_wait_sabme(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
  ******************************************************************************/
 void rfc_mx_sm_state_connected(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
                                UNUSED_ATTR void* p_data) {
-  RFCOMM_TRACE_EVENT("%s: event %d", __func__, event);
-
   switch (event) {
     case RFC_MX_EVENT_TIMEOUT:
     case RFC_MX_EVENT_CLOSE_REQ:
@@ -482,8 +459,6 @@ void rfc_mx_sm_state_connected(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
       LOG_ERROR("Received unexpected event:%hu in state:%hhu", event,
                 p_mcb->state);
   }
-  RFCOMM_TRACE_EVENT("RFCOMM MX ignored - evt:%d in state:%d", event,
-                     p_mcb->state);
 }
 
 /*******************************************************************************
@@ -500,7 +475,6 @@ void rfc_mx_sm_state_disc_wait_ua(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
                                   void* p_data) {
   BT_HDR* p_buf;
 
-  RFCOMM_TRACE_EVENT("%s: event %d", __func__, event);
   switch (event) {
     case RFC_MX_EVENT_UA:
     case RFC_MX_EVENT_DM:
@@ -562,8 +536,6 @@ void rfc_mx_sm_state_disc_wait_ua(tRFC_MCB* p_mcb, tRFC_MX_EVENT event,
       LOG_ERROR("Received unexpected event:%hu in state:%hhu", event,
                 p_mcb->state);
   }
-  RFCOMM_TRACE_EVENT("RFCOMM MX ignored - evt:%d in state:%d", event,
-                     p_mcb->state);
 }
 
 void rfc_on_l2cap_error(uint16_t lcid, uint16_t result) {
@@ -574,10 +546,6 @@ void rfc_on_l2cap_error(uint16_t lcid, uint16_t result) {
     /* if peer rejects our connect request but peer's connect request is pending
      */
     if (p_mcb->pending_lcid) {
-      RFCOMM_TRACE_DEBUG(
-          "RFCOMM_ConnectCnf retry as acceptor on pending LCID(0x%x)",
-          p_mcb->pending_lcid);
-
       /* remove mcb from mapping table */
       rfc_save_lcid_mcb(NULL, p_mcb->lcid);
 
@@ -595,8 +563,6 @@ void rfc_on_l2cap_error(uint16_t lcid, uint16_t result) {
           p_mcb->port_handles[i] = 0;
           p_mcb->port_handles[i + 1] = handle;
           rfc_cb.port.port[handle - 1].dlci += 1;
-          RFCOMM_TRACE_DEBUG("RFCOMM MX, port_handle=%d, DLCI[%d->%d]", handle,
-                             i, rfc_cb.port.port[handle - 1].dlci);
         }
       }
       rfc_mx_sm_execute(p_mcb, RFC_MX_EVENT_CONN_IND, nullptr);
