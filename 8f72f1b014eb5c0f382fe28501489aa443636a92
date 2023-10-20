@@ -46,6 +46,30 @@
       },
       "revId": "8f72f1b014eb5c0f382fe28501489aa443636a92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a9d924b_ff9c3378",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 489,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-20T22:13:14Z",
+      "side": 1,
+      "message": "UUID_CODEC_* will go from 1,2,3, to n. BTM_SCO_CODEC_* is 1,2, 4,to 2^n\nFirst one is used in +BAC command, second one is used in bit mask.",
+      "parentUuid": "03889212_5f16e3e4",
+      "range": {
+        "startLine": 489,
+        "startChar": 15,
+        "endLine": 489,
+        "endChar": 30
+      },
+      "revId": "8f72f1b014eb5c0f382fe28501489aa443636a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
