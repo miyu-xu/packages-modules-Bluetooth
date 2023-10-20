@@ -44,6 +44,7 @@ import com.android.bluetooth.btservice.ActiveDeviceManager;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.SilenceDeviceManager;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -77,6 +78,7 @@ public class A2dpServiceTest {
     private final BlockingQueue<Intent> mCodecConfigChangedQueue = new LinkedBlockingQueue<>();
     private final BlockingQueue<Intent> mActiveDeviceQueue = new LinkedBlockingQueue<>();
 
+    private FakeFeatureFlagsImpl mFakeFlagsImpl;
     @Mock private AdapterService mAdapterService;
     @Mock private ActiveDeviceManager mActiveDeviceManager;
     @Mock private A2dpNativeInterface mMockNativeInterface;
@@ -104,9 +106,9 @@ public class A2dpServiceTest {
         doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mSilenceDeviceManager).when(mAdapterService).getSilenceDeviceManager();
 
+        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
         mAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        mA2dpService = new A2dpService(mTargetContext, mMockNativeInterface);
+        mA2dpService = new A2dpService(mTargetContext, mMockNativeInterface, mFakeFlagsImpl);
         mA2dpService.doStart();
 
         // Override the timeout value to speed up the test
