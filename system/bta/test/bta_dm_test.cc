@@ -97,7 +97,6 @@ class BtaDmTest : public testing::Test {
     bluetooth::legacy::testing::bta_dm_deinit_cb();
     post_on_bt_main([]() { LOG_INFO("Main thread shutting down"); });
     main_thread_shut_down();
-    btm_client_interface = {};
   }
 
   std::unique_ptr<test::fake::FakeOsi> fake_osi_;
