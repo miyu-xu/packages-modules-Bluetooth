@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a586b24_3572ec1a",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-20T16:14:14Z",
+      "side": 1,
+      "message": "Checking that the process is running every 3s seems a bit wasteful. Maybe this should be every 30s or 60s.",
+      "revId": "23e1e954bc2108759b17e430ad708f2e4aa3f0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "615ebe3d_7aee2fdf",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-20T16:14:14Z",
+      "side": 1,
+      "message": "We should probably modify these `hci{}` to `adapter{}` to show they\u0027re virtual rather than real indexes.\n\nHowever, this seems like a larger refactor in this file too. Feel free to push this to a follow-on commit if so.",
+      "revId": "23e1e954bc2108759b17e430ad708f2e4aa3f0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08d812cf_eedd67ea",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-20T16:14:14Z",
+      "side": 1,
+      "message": "Please document what this call does (checks if process exist by sending `kill -0`). I was very concerned that this was trying to send SIGKILL.\n\nhttps://docs.rs/nix/latest/nix/sys/signal/fn.kill.html",
+      "revId": "23e1e954bc2108759b17e430ad708f2e4aa3f0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
