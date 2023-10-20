@@ -1,0 +1,28 @@
+cc_library {
+    name: "libbluetooth_logger",
+    host_supported: true,
+    apex_available: [
+        "com.android.btservices",
+    ],
+    export_include_dirs: [
+        "include",
+    ],
+    shared_libs: [
+        "libbase",
+        "liblog",
+    ],
+    srcs: [
+        "src/vlog_android.cc",
+    ],
+}
+
+cc_test_host {
+    name: "libbluetooth_logger_test",
+    srcs: [
+        "src/vlog_test.cc",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbluetooth_logger",
+    ],
+}
