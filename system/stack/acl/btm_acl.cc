@@ -31,6 +31,7 @@
  *
  *****************************************************************************/
 
+#include "hcimsgs.h"
 #define LOG_TAG "btm_acl"
 
 #include <base/logging.h>
@@ -80,6 +81,8 @@
   "bluetooth.core.acl.link_supervision_timeout"
 #endif
 
+using bluetooth::legacy::hci::GetInterface;
+
 void BTM_update_version_info(const RawAddress& bd_addr,
                              const remote_version_info& remote_version_info);
 
@@ -120,9 +123,6 @@ struct RoleChangeView {
 namespace {
 StackAclBtmAcl internal_;
 std::unique_ptr<RoleChangeView> delayed_role_change_ = nullptr;
-const bluetooth::legacy::hci::Interface& GetLegacyHciInterface() {
-  return bluetooth::legacy::hci::GetInterface();
-}
 }
 
 typedef struct {
@@ -193,8 +193,8 @@ void NotifyAclFeaturesReadComplete(tACL_CONN& p_acl,
 
 }  // namespace
 
-static void hci_btsnd_hcic_disconnect(tACL_CONN& p_acl, tHCI_STATUS reason,
-                                      std::string comment) {
+static void disconnect_acl(tACL_CONN& p_acl, tHCI_STATUS reason,
+                           std::string comment) {
   LOG_INFO("Disconnecting peer:%s reason:%s comment:%s",
            ADDRESS_TO_LOGGABLE_CSTR(p_acl.remote_addr),
            hci_error_code_text(reason).c_str(), comment.c_str());
@@ -218,8 +218,8 @@ static void hci_btsnd_hcic_disconnect(tACL_CONN& p_acl, tHCI_STATUS reason,
 }
 
 void StackAclBtmAcl::hci_start_role_switch_to_central(tACL_CONN& p_acl) {
-  GetLegacyHciInterface().StartRoleSwitch(
-      p_acl.remote_addr, static_cast<uint8_t>(HCI_ROLE_CENTRAL));
+  GetInterface().StartRoleSwitch(p_acl.remote_addr,
+                                 static_cast<uint8_t>(HCI_ROLE_CENTRAL));
   p_acl.set_switch_role_in_progress();
   p_acl.rs_disc_pending = BTM_SEC_RS_PENDING;
 }
@@ -489,17 +489,6 @@ void btm_acl_create_failed(const RawAddress& bda, tBT_TRANSPORT transport,
   BTA_dm_acl_up_failed(bda, transport, hci_status);
 }
 
-void btm_configure_data_path(uint8_t direction, uint8_t path_id,
-                             std::vector<uint8_t> vendor_config) {
-  if (direction != btm_data_direction::CONTROLLER_TO_HOST &&
-      direction != btm_data_direction::HOST_TO_CONTROLLER) {
-    LOG_WARN("Unknown data direction");
-    return;
-  }
-
-  btsnd_hcic_configure_data_path(direction, path_id, vendor_config);
-}
-
 /*******************************************************************************
  *
  * Function         btm_acl_removed
@@ -714,9 +703,8 @@ void btm_acl_encrypt_change(uint16_t handle, uint8_t status,
     /* If a disconnect is pending, issue it now that role switch has completed
      */
     if (p->rs_disc_pending == BTM_SEC_DISC_PENDING) {
-      hci_btsnd_hcic_disconnect(
-          *p, HCI_ERR_PEER_USER,
-          "stack::acl::btm_acl::encrypt after role switch");
+      disconnect_acl(*p, HCI_ERR_PEER_USER,
+                     "stack::acl::btm_acl::encrypt after role switch");
     }
     p->rs_disc_pending = BTM_SEC_RS_NOT_PENDING; /* reset flag */
   }
@@ -1465,8 +1453,8 @@ void StackAclBtmAcl::btm_acl_role_changed(tHCI_STATUS hci_status,
 
   /* If a disconnect is pending, issue it now that role switch has completed */
   if (p_acl->rs_disc_pending == BTM_SEC_DISC_PENDING) {
-    hci_btsnd_hcic_disconnect(*p_acl, HCI_ERR_PEER_USER,
-                              "stack::acl::btm_acl::role after role switch");
+    disconnect_acl(*p_acl, HCI_ERR_PEER_USER,
+                   "stack::acl::btm_acl::role after role switch");
   }
   p_acl->rs_disc_pending = BTM_SEC_RS_NOT_PENDING; /* reset flag */
 }
@@ -1528,8 +1516,7 @@ bool StackAclBtmAcl::change_connection_packet_types(
   }
 
   link.pkt_types_mask = packet_type_mask;
-  bluetooth::legacy::hci::GetInterface().ChangeConnectionPacketType(
-      link.Handle(), link.pkt_types_mask);
+  GetInterface().ChangeConnectionPacketType(link.Handle(), link.pkt_types_mask);
   LOG_DEBUG("Started change connection packet type:0x%04x address:%s",
             link.pkt_types_mask, ADDRESS_TO_LOGGABLE_CSTR(link.RemoteAddress()));
   return true;
@@ -2162,8 +2149,8 @@ tBTM_STATUS btm_remove_acl(const RawAddress& bd_addr, tBT_TRANSPORT transport) {
     return BTM_SUCCESS;
   }
 
-  hci_btsnd_hcic_disconnect(*p_acl, HCI_ERR_PEER_USER,
-                            "stack::acl::btm_acl::btm_remove_acl");
+  disconnect_acl(*p_acl, HCI_ERR_PEER_USER,
+                 "stack::acl::btm_acl::btm_remove_acl");
   return BTM_SUCCESS;
 }
 
@@ -2659,7 +2646,7 @@ void acl_disconnect_after_role_switch(uint16_t conn_handle, tHCI_STATUS reason,
   tACL_CONN* p_acl = internal_.acl_get_connection_from_handle(conn_handle);
   if (p_acl == nullptr) {
     LOG_ERROR("Sending disconnect for unknown acl:%hu PLEASE FIX", conn_handle);
-    GetLegacyHciInterface().Disconnect(conn_handle, reason);
+    GetInterface().Disconnect(conn_handle, reason);
     return;
   }
 
@@ -2674,7 +2661,7 @@ void acl_disconnect_after_role_switch(uint16_t conn_handle, tHCI_STATUS reason,
   } else {
     LOG_DEBUG("Sending acl disconnect reason:%s [%hu]",
               hci_error_code_text(reason).c_str(), reason);
-    hci_btsnd_hcic_disconnect(*p_acl, reason, comment);
+    disconnect_acl(*p_acl, reason, comment);
   }
 }
 
