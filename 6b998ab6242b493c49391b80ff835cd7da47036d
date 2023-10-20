@@ -69,6 +69,24 @@
       "parentUuid": "7868b910_555fb69f",
       "revId": "6b998ab6242b493c49391b80ff835cd7da47036d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1954442_e99f4139",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-20T22:14:47Z",
+      "side": 1,
+      "message": "agree, have a flag would be better for trunk stable case",
+      "parentUuid": "f0e79b6c_d8551949",
+      "revId": "6b998ab6242b493c49391b80ff835cd7da47036d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
