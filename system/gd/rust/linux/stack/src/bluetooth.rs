@@ -97,6 +97,9 @@ pub trait IBluetooth {
     /// Cleans up the bluetooth interface. Should always be called after disable.
     fn cleanup(&mut self);
 
+    /// Cleans up the pid file only. This can happen when received SIGINT.
+    fn cleanup_pid(&mut self);
+
     /// Returns the Bluetooth address of the local adapter.
     fn get_address(&self) -> String;
 
@@ -1910,6 +1913,17 @@ impl IBluetooth for Bluetooth {
 
     fn cleanup(&mut self) {
         self.intf.lock().unwrap().cleanup();
+    }
+
+    fn cleanup_pid(&mut self) {
+        match self.remove_pid_file() {
+            Err(err) => warn!("remove_pid_file() error: {}", err),
+            _ => (),
+        }
+
+        // Let the signal notifier know we are turned off.
+        *self.sig_notifier.enabled.lock().unwrap() = false;
+        self.sig_notifier.enabled_notify.notify_all();
     }
 
     fn get_address(&self) -> String {

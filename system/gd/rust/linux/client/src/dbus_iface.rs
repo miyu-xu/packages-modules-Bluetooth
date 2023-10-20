@@ -765,6 +765,10 @@ impl IBluetooth for BluetoothDBus {
         // Not implemented by server
     }
 
+    fn cleanup_pid(&mut self) {
+        // Not implemented by server
+    }
+
     #[dbus_method("GetAddress")]
     fn get_address(&self) -> String {
         dbus_generated!()

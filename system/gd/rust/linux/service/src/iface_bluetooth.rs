@@ -477,6 +477,11 @@ impl IBluetooth for IBluetoothDBus {
         dbus_generated!()
     }
 
+    // Not exposed over D-Bus. The stack is automatically cleaned up received SIGINT.
+    fn cleanup_pid(&mut self) {
+        dbus_generated!()
+    }
+
     #[dbus_method("GetAddress", DBusLog::Disable)]
     fn get_address(&self) -> String {
         dbus_generated!()

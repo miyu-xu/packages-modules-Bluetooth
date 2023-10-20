@@ -327,8 +327,25 @@ extern "C" fn handle_sigterm(_signum: i32) {
 }
 
 extern "C" fn handle_sigint(_signum: i32) {
+    log::error!("sfz handle_sigint.");
     // Assumed this is from HAL Host, which is likely caused by chipset error.
     // In this case, don't crash the daemon and don't try to power off the adapter.
-    log::debug!("Sigint completed");
+    let guard = SIG_DATA.lock().unwrap();
+    if let Some((tx, notifier)) = guard.as_ref() {
+        log::error!("sfz SIGINT cleaning up the PID.");
+        let txl = tx.clone();
+        tokio::spawn(async move {
+            // Send the cleanup pid message here.
+            let _ = txl.send(Message::CleanupPid).await;
+        });
+
+        let guard = notifier.thread_attached.lock().unwrap();
+        if *guard {
+            log::error!("sfz Waiting for stack to clean up PID for {:?}", STACK_CLEANUP_TIMEOUT_MS);
+            let _ = notifier.thread_notify.wait_timeout(guard, STACK_CLEANUP_TIMEOUT_MS);
+        }
+    }
+
+    log::error!("sfz Sigint completed");
     std::process::exit(0);
 }

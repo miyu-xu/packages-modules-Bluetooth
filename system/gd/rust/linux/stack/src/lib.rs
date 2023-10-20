@@ -65,6 +65,7 @@ pub enum Message {
     // Shuts down the stack.
     Shutdown,
     Cleanup,
+    CleanupPid,
 
     // Adapter is enabled and ready.
     AdapterReady,
@@ -217,6 +218,10 @@ impl Stack {
 
                 Message::Cleanup => {
                     bluetooth.lock().unwrap().cleanup();
+                }
+
+                Message::CleanupPid=> {
+                    bluetooth.lock().unwrap().cleanup_pid();
                 }
 
                 Message::AdapterReady => {
