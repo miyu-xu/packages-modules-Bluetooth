@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "47c730f8_320f9182",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-20T18:01:19Z",
+      "side": 1,
+      "message": "could you help to fix those lint typos? the rest looks fine to me.",
+      "revId": "b5227fc3b38503c62b4f318df6fb196eefe8479d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
