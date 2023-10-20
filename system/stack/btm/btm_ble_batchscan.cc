@@ -75,9 +75,6 @@ void btm_ble_batchscan_filter_track_adv_vse_cback(uint8_t len,
   STREAM_TO_UINT8(sub_event, p);
   len -= 1;
 
-  BTM_TRACE_EVENT(
-      "btm_ble_batchscan_filter_track_adv_vse_cback called with event:%x",
-      sub_event);
   if (HCI_VSE_SUBCODE_BLE_THRESHOLD_SUB_EVT == sub_event &&
       NULL != ble_batchscan_cb.p_thres_cback) {
     ble_batchscan_cb.p_thres_cback(ble_batchscan_cb.ref_value);
@@ -151,10 +148,6 @@ void btm_ble_batchscan_filter_track_adv_vse_cback(uint8_t len,
       STREAM_TO_UINT8(adv_data.advertiser_state, p);
     }
 
-    BTM_TRACE_EVENT("track_adv_vse_cback called: %d, %d, %d",
-                    adv_data.filt_index, adv_data.addr_type,
-                    adv_data.advertiser_state);
-
     // Make sure the device is known
     BTM_SecAddBleDevice(adv_data.bd_addr, BT_DEVICE_TYPE_BLE,
                         to_ble_addr_type(adv_data.addr_type));
@@ -165,7 +158,7 @@ void btm_ble_batchscan_filter_track_adv_vse_cback(uint8_t len,
   return;
 
 err_out:
-  BTM_TRACE_ERROR("malformatted packet detected");
+  LOG_ERROR("malformatted packet detected");
 
   osi_free_and_reset((void **) &adv_data.p_adv_pkt_data);
   osi_free_and_reset((void **) &adv_data.p_scan_rsp_data);
@@ -173,7 +166,7 @@ err_out:
 
 void feat_enable_cb(uint8_t* p, uint16_t len) {
   if (len < 2) {
-    BTM_TRACE_ERROR("%s: wrong length", __func__);
+    LOG_ERROR("%s: wrong length", __func__);
     return;
   }
 
@@ -183,13 +176,13 @@ void feat_enable_cb(uint8_t* p, uint16_t len) {
 
   uint8_t expected_opcode = BTM_BLE_BATCH_SCAN_ENB_DISAB_CUST_FEATURE;
   if (subcode != expected_opcode) {
-    BTM_TRACE_ERROR("%s: bad subcode, expected: %d got: %d", __func__,
-                    expected_opcode, subcode);
+    LOG_ERROR("%s: bad subcode, expected: %d got: %d", __func__,
+              expected_opcode, subcode);
     return;
   }
 
   if (ble_batchscan_cb.cur_state != BTM_BLE_SCAN_ENABLE_CALLED)
-    BTM_TRACE_ERROR("%s: state should be ENABLE_CALLED", __func__);
+    LOG_ERROR("%s: state should be ENABLE_CALLED", __func__);
 
   ble_batchscan_cb.cur_state = BTM_BLE_SCAN_ENABLED_STATE;
 }
@@ -197,7 +190,7 @@ void feat_enable_cb(uint8_t* p, uint16_t len) {
 void storage_config_cb(Callback<void(uint8_t /* status */)> cb, uint8_t* p,
                        uint16_t len) {
   if (len < 2) {
-    BTM_TRACE_ERROR("%s: wrong length", __func__);
+    LOG_ERROR("%s: wrong length", __func__);
     return;
   }
 
@@ -207,8 +200,8 @@ void storage_config_cb(Callback<void(uint8_t /* status */)> cb, uint8_t* p,
 
   uint8_t expected_opcode = BTM_BLE_BATCH_SCAN_SET_STORAGE_PARAM;
   if (subcode != expected_opcode) {
-    BTM_TRACE_ERROR("%s: bad subcode, expected: %d got: %d", __func__,
-                    expected_opcode, subcode);
+    LOG_ERROR("%s: bad subcode, expected: %d got: %d", __func__,
+              expected_opcode, subcode);
     return;
   }
 
@@ -218,7 +211,7 @@ void storage_config_cb(Callback<void(uint8_t /* status */)> cb, uint8_t* p,
 void param_enable_cb(Callback<void(uint8_t /* status */)> cb, uint8_t* p,
                      uint16_t len) {
   if (len < 2) {
-    BTM_TRACE_ERROR("%s: wrong length", __func__);
+    LOG_ERROR("%s: wrong length", __func__);
     return;
   }
 
@@ -228,8 +221,8 @@ void param_enable_cb(Callback<void(uint8_t /* status */)> cb, uint8_t* p,
 
   uint8_t expected_opcode = BTM_BLE_BATCH_SCAN_SET_PARAMS;
   if (subcode != expected_opcode) {
-    BTM_TRACE_ERROR("%s: bad subcode: 0x%02x 0x%02x", __func__, expected_opcode,
-                    subcode);
+    LOG_ERROR("%s: bad subcode: 0x%02x 0x%02x", __func__, expected_opcode,
+              subcode);
     return;
   }
 
@@ -239,7 +232,7 @@ void param_enable_cb(Callback<void(uint8_t /* status */)> cb, uint8_t* p,
 void disable_cb(base::Callback<void(uint8_t /* status */)> cb, uint8_t* p,
                 uint16_t len) {
   if (len < 2) {
-    BTM_TRACE_ERROR("%s: wrong length", __func__);
+    LOG_ERROR("%s: wrong length", __func__);
     return;
   }
 
@@ -249,19 +242,19 @@ void disable_cb(base::Callback<void(uint8_t /* status */)> cb, uint8_t* p,
 
   uint8_t expected_opcode = BTM_BLE_BATCH_SCAN_SET_PARAMS;
   if (subcode != expected_opcode) {
-    BTM_TRACE_ERROR("%s: bad subcode: 0x%02x 0x%02x", __func__, expected_opcode,
-                    subcode);
+    LOG_ERROR("%s: bad subcode: 0x%02x 0x%02x", __func__, expected_opcode,
+              subcode);
     return;
   }
 
   if (ble_batchscan_cb.cur_state != BTM_BLE_SCAN_DISABLE_CALLED) {
-    BTM_TRACE_ERROR("%s: state should be DISABLE_CALLED", __func__);
+    LOG_ERROR("%s: state should be DISABLE_CALLED", __func__);
   }
 
   if (BTM_SUCCESS == status) {
     ble_batchscan_cb.cur_state = BTM_BLE_SCAN_DISABLED_STATE;
   } else {
-    BTM_TRACE_ERROR("%s: Invalid state after disabled", __func__);
+    LOG_ERROR("%s: Invalid state after disabled", __func__);
     ble_batchscan_cb.cur_state = BTM_BLE_SCAN_INVALID_STATE;
   }
 
@@ -290,7 +283,7 @@ void btm_ble_read_batchscan_reports(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
 void read_reports_cb(std::vector<uint8_t> data_all, uint8_t num_records_all,
                      tBTM_BLE_SCAN_REP_CBACK cb, uint8_t* p, uint16_t len) {
   if (len < 2) {
-    BTM_TRACE_ERROR("%s: wrong length", __func__);
+    LOG_ERROR("%s: wrong length", __func__);
     return;
   }
 
@@ -300,22 +293,19 @@ void read_reports_cb(std::vector<uint8_t> data_all, uint8_t num_records_all,
 
   uint8_t expected_opcode = BTM_BLE_BATCH_SCAN_READ_RESULTS;
   if (subcode != expected_opcode) {
-    BTM_TRACE_ERROR("%s: bad subcode, expected: %d got: %d", __func__,
-                    expected_opcode, subcode);
+    LOG_ERROR("%s: bad subcode, expected: %d got: %d", __func__,
+              expected_opcode, subcode);
     return;
   }
 
   if (len < 4) {
-    BTM_TRACE_ERROR("%s: wrong length", __func__);
+    LOG_ERROR("%s: wrong length", __func__);
     return;
   }
 
   uint8_t report_format, num_records;
   STREAM_TO_UINT8(report_format, p);
   STREAM_TO_UINT8(num_records, p);
-
-  BTM_TRACE_DEBUG("%s: status=%d,len=%d,rec=%d", __func__, status, len - 4,
-                  num_records);
 
   if (num_records == 0) {
     cb.Run(BTM_SUCCESS, report_format, num_records_all, data_all);
@@ -427,17 +417,13 @@ void BTM_BleSetStorageConfig(uint8_t batch_scan_full_max,
     return;
   }
 
-  BTM_TRACE_EVENT("%s: %d, %d, %d, %d, %d", __func__,
-                  ble_batchscan_cb.cur_state, ref_value, batch_scan_full_max,
-                  batch_scan_trunc_max, batch_scan_notify_threshold);
-
   ble_batchscan_cb.p_thres_cback = p_thres_cback;
   ble_batchscan_cb.ref_value = ref_value;
 
   if (batch_scan_full_max > BTM_BLE_ADV_SCAN_FULL_MAX ||
       batch_scan_trunc_max > BTM_BLE_ADV_SCAN_TRUNC_MAX ||
       batch_scan_notify_threshold > BTM_BLE_ADV_SCAN_THR_MAX) {
-    BTM_TRACE_ERROR("Illegal set storage config params");
+    LOG_ERROR("Illegal set storage config params");
     cb.Run(BTM_ILLEGAL_VALUE);
     return;
   }
@@ -461,16 +447,11 @@ void BTM_BleEnableBatchScan(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
                             tBLE_ADDR_TYPE addr_type,
                             tBTM_BLE_DISCARD_RULE discard_rule,
                             Callback<void(uint8_t /* status */)> cb) {
-  BTM_TRACE_EVENT("%s: %d, %d, %d, %d, %d", __func__, scan_mode, scan_interval,
-                  scan_window, addr_type, discard_rule);
 
   if (!can_do_batch_scan()) {
     cb.Run(BTM_ERR_PROCESSING);
     return;
   }
-
-  BTM_TRACE_DEBUG("%s: %d, %x, %x, %d, %d", __func__, scan_mode, scan_interval,
-                  scan_window, discard_rule, ble_batchscan_cb.cur_state);
 
   /* Only 16 bits will be used for scan interval and scan window as per
    * agreement with Google */
@@ -485,7 +466,7 @@ void BTM_BleEnableBatchScan(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
       (BTM_BLE_DISCARD_OLD_ITEMS == discard_rule ||
        BTM_BLE_DISCARD_LOWER_RSSI_ITEMS == discard_rule)) {
   } else {
-    BTM_TRACE_ERROR("%s: Illegal enable scan params", __func__);
+    LOG_ERROR("%s: Illegal enable scan params", __func__);
     cb.Run(BTM_ILLEGAL_VALUE);
     return;
   }
@@ -509,7 +490,6 @@ void BTM_BleEnableBatchScan(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
 
 /* This function is called to disable batch scanning */
 void BTM_BleDisableBatchScan(base::Callback<void(uint8_t /* status */)> cb) {
-  BTM_TRACE_EVENT(" BTM_BleDisableBatchScan");
 
   if (!can_do_batch_scan()) {
     cb.Run(BTM_ERR_PROCESSING);
@@ -528,10 +508,8 @@ void BTM_BleReadScanReports(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
                             tBTM_BLE_SCAN_REP_CBACK cb) {
   uint8_t read_scan_mode = 0;
 
-  BTM_TRACE_EVENT("%s; %d", __func__, scan_mode);
-
   if (!can_do_batch_scan()) {
-    BTM_TRACE_ERROR("Controller does not support batch scan");
+    LOG_ERROR("Controller does not support batch scan");
     cb.Run(BTM_ERR_PROCESSING, 0, 0, {});
     return;
   }
@@ -545,8 +523,8 @@ void BTM_BleReadScanReports(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
    * scan */
   if (scan_mode != BTM_BLE_BATCH_SCAN_MODE_PASS &&
       scan_mode != BTM_BLE_BATCH_SCAN_MODE_ACTI) {
-    BTM_TRACE_ERROR("Illegal read scan params: %d, %d, %d", read_scan_mode,
-                    scan_mode, ble_batchscan_cb.cur_state);
+    LOG_ERROR("Illegal read scan params: %d, %d, %d", read_scan_mode, scan_mode,
+              ble_batchscan_cb.cur_state);
     cb.Run(BTM_ILLEGAL_VALUE, 0, 0, {});
     return;
   }
@@ -559,10 +537,9 @@ void BTM_BleReadScanReports(tBTM_BLE_BATCH_SCAN_MODE scan_mode,
 /* This function is called to setup the callback for tracking */
 void BTM_BleTrackAdvertiser(tBTM_BLE_TRACK_ADV_CBACK* p_track_cback,
                             tBTM_BLE_REF_VALUE ref_value) {
-  BTM_TRACE_EVENT("%s:", __func__);
 
   if (!can_do_batch_scan()) {
-    BTM_TRACE_ERROR("Controller does not support batch scan");
+    LOG_ERROR("Controller does not support batch scan");
 
     tBTM_BLE_TRACK_ADV_DATA track_adv_data;
     memset(&track_adv_data, 0, sizeof(tBTM_BLE_TRACK_ADV_DATA));
@@ -582,7 +559,7 @@ void BTM_BleTrackAdvertiser(tBTM_BLE_TRACK_ADV_CBACK* p_track_cback,
  * This function initialize the batch scan control block.
  **/
 void btm_ble_batchscan_init(void) {
-  BTM_TRACE_EVENT(" btm_ble_batchscan_init");
+
   memset(&ble_batchscan_cb, 0, sizeof(tBTM_BLE_BATCH_SCAN_CB));
   memset(&ble_advtrack_cb, 0, sizeof(tBTM_BLE_ADV_TRACK_CB));
   BTM_RegisterForVSEvents(btm_ble_batchscan_filter_track_adv_vse_cback, true);

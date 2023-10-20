@@ -114,8 +114,6 @@ void btm_update_scanner_filter_policy(tBTM_BLE_SFP scan_policy) {
   uint32_t scan_window =
       !p_inq->scan_window ? BTM_BLE_GAP_DISC_SCAN_WIN : p_inq->scan_window;
 
-  BTM_TRACE_EVENT("%s", __func__);
-
   p_inq->sfp = scan_policy;
   p_inq->scan_type = p_inq->scan_type == BTM_BLE_SCAN_MODE_NONE
                          ? BTM_BLE_SCAN_MODE_ACTI
