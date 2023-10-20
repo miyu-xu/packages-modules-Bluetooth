@@ -36,6 +36,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9035e04c_c9c88df9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-20T20:01:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "25c04921_90bfa86d",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "222843d6_39474d18",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-20T20:01:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "25c04921_90bfa86d",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c08926e0_e49e09ce",
@@ -172,6 +208,24 @@
       "side": 1,
       "message": "Ok, I\u0027ll include this in this CL.",
       "parentUuid": "4541fc35_cc94e115",
+      "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84318528_0d0eda63",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2663,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-20T20:01:02Z",
+      "side": 1,
+      "message": "Awesome, thank you!",
+      "parentUuid": "d8fe7bb3_5d5057a2",
       "revId": "361cc11706b672b578caf7f50240a14d9b724a77",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05bc7cfc_71776dc3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-20T20:01:02Z",
+      "side": 1,
+      "message": "please help to resolve the merge conflict and typo errors, it seems this conflicted with some recent change aosp/2781470.\nAlso could you add some manual test cases you\u0027ve done in the CL description?",
+      "revId": "9d9ddd201329614f4bc4ad1fd753e58798d9f44d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
