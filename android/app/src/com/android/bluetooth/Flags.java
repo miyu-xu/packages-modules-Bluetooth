@@ -16,20 +16,25 @@
 
 package com.android.bluetooth;
 
-import android.provider.DeviceConfig;
+import com.android.bluetooth.flags.FeatureFlags;
+import com.android.bluetooth.flags.FeatureFlagsImpl;
+import com.android.internal.annotations.VisibleForTesting;
 
 /**
  * Device config flags for Bluetooth app.
  *
  * @hide
  */
-// TODO: Use aconfig flag when available
 public final class Flags {
+    private static FeatureFlags sFeatureFlags = new FeatureFlagsImpl();
+
+    @VisibleForTesting
+    public static void setFeatureFlags(FeatureFlags featureFlags) {
+        sFeatureFlags = featureFlags;
+    }
+
     /** A flag for centralizing audio routing of Bluetooth module. (b/299023147) */
     public static boolean audioRoutingCentralization() {
-        return DeviceConfig.getBoolean(
-                DeviceConfig.NAMESPACE_BLUETOOTH,
-                "com.android.bluetooth.audio_routing_centalization",
-                false);
+        return sFeatureFlags.audioRoutingCentralization();
     }
 }
