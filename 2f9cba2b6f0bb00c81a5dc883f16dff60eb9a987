@@ -16,6 +16,24 @@
       "message": "If you want to launch the feature, I think we should launch it using the new flag process.",
       "revId": "2f9cba2b6f0bb00c81a5dc883f16dff60eb9a987",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d585908_08f81580",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-20T18:57:09Z",
+      "side": 1,
+      "message": "this feature has already been flagged with init_flag. Since we\u0027re still waiting the flagging guideline update, I\u0027m not sure how ready it\u0027s now.\n\nare you suggesting to replace the init_flag with new aconfig for le_audio_health_status?",
+      "parentUuid": "45f6801b_306fb18a",
+      "revId": "2f9cba2b6f0bb00c81a5dc883f16dff60eb9a987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
