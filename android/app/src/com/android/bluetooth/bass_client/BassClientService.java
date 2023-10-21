@@ -56,6 +56,7 @@ import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
+import com.android.bluetooth.flags.FeatureFlagsImpl;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -96,6 +97,7 @@ public class BassClientService extends ProfileService {
     private AdapterService mAdapterService;
     private DatabaseManager mDatabaseManager;
     private BluetoothAdapter mBluetoothAdapter = null;
+    private FeatureFlagsImpl mFeatureFlags = null;
 
     /* Caching the PeriodicAdvertisementResult from Broadcast source */
     /* This is stored at service so that each device state machine can access
@@ -346,6 +348,7 @@ public class BassClientService extends ProfileService {
         mDatabaseManager = Objects.requireNonNull(mAdapterService.getDatabase(),
                 "DatabaseManager cannot be null when BassClientService starts");
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        mFeatureFlags = new FeatureFlagsImpl();
 
         // Setup Handler to handle local broadcast use cases.
         mHandler = new Handler(Looper.getMainLooper());
@@ -443,6 +446,9 @@ public class BassClientService extends ProfileService {
         if (mSyncHandleToBroadcastIdMap != null) {
             mSyncHandleToBroadcastIdMap.clear();
             mSyncHandleToBroadcastIdMap = null;
+        }
+        if (mFeatureFlags != null) {
+            mFeatureFlags = null;
         }
         return true;
     }
@@ -701,8 +707,10 @@ public class BassClientService extends ProfileService {
                 return null;
             }
             log("Creating a new state machine for " + device);
-            stateMachine = BassObjectsFactory.getInstance().makeStateMachine(
-                    device, this, mStateMachinesThread.getLooper());
+            stateMachine =
+                    BassObjectsFactory.getInstance()
+                            .makeStateMachine(
+                                    device, this, mStateMachinesThread.getLooper(), mFeatureFlags);
             mStateMachines.put(device, stateMachine);
             return stateMachine;
         }
@@ -1536,6 +1544,7 @@ public class BassClientService extends ProfileService {
         private static final int MSG_SOURCE_REMOVED = 10;
         private static final int MSG_SOURCE_REMOVED_FAILED = 11;
         private static final int MSG_RECEIVESTATE_CHANGED = 12;
+        private static final int MSG_SOURCE_LOST = 13;
 
         private final RemoteCallbackList<IBluetoothLeBroadcastAssistantCallback>
                 mCallbacks = new RemoteCallbackList<>();
@@ -1660,6 +1669,9 @@ public class BassClientService extends ProfileService {
                     BluetoothLeBroadcastReceiveState state =
                             (BluetoothLeBroadcastReceiveState) param.mObj2;
                     callback.onReceiveStateChanged(sink, sourceId, state);
+                    break;
+                case MSG_SOURCE_LOST:
+                    callback.onSourceLost(sourceId);
                     break;
                 default:
                     Log.e(TAG, "Invalid msg: " + msg.what);
@@ -1809,6 +1821,11 @@ public class BassClientService extends ProfileService {
                             + Arrays.toString(state.getBadCode())
                             + subgroupState);
             obtainMessage(MSG_RECEIVESTATE_CHANGED, 0, sourceId, param).sendToTarget();
+        }
+
+        void notifySourceLost(int broadcastId) {
+            sEventLogger.logd(TAG, "notifySourceLost: " + ", broadcastId: " + broadcastId);
+            obtainMessage(MSG_SOURCE_LOST, 0, broadcastId).sendToTarget();
         }
     }
 
