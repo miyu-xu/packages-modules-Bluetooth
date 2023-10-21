@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7135aaa6_a91a673b",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-21T05:13:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a586b24_3572ec1a",
+      "revId": "23e1e954bc2108759b17e430ad708f2e4aa3f0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "615ebe3d_7aee2fdf",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bc94b0a_f695d111",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-21T05:13:43Z",
+      "side": 1,
+      "message": "Ack, will upload a clean up CL",
+      "parentUuid": "615ebe3d_7aee2fdf",
+      "revId": "23e1e954bc2108759b17e430ad708f2e4aa3f0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "08d812cf_eedd67ea",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-10-20T16:14:14Z",
       "side": 1,
       "message": "Please document what this call does (checks if process exist by sending `kill -0`). I was very concerned that this was trying to send SIGKILL.\n\nhttps://docs.rs/nix/latest/nix/sys/signal/fn.kill.html",
+      "revId": "23e1e954bc2108759b17e430ad708f2e4aa3f0f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d878509_d42f23bd",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 771,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-21T05:13:43Z",
+      "side": 1,
+      "message": "Done. Also left more doc for the other errnos.",
+      "parentUuid": "08d812cf_eedd67ea",
       "revId": "23e1e954bc2108759b17e430ad708f2e4aa3f0f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
