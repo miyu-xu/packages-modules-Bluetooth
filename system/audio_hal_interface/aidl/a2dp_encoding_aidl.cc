@@ -713,6 +713,62 @@ get_a2dp_configuration(
   return std::make_optional(a2dp_configuration);
 }
 
+/***
+ * Query the codec parameters from the audio HAL.
+ * The HAL is expected to parse the codec configuration
+ * received from the peer and decide whether accept
+ * the it or not.
+ ***/
+uint8_t parse_a2dp_configuration(
+    btav_a2dp_codec_index_t codec_index, const uint8_t* codec_info,
+    std::optional<::bluetooth::audio::a2dp::a2dp_codec_parameters>&
+        codec_parameters) {
+  std::vector<uint8_t> configuration;
+  uint8_t status = A2DP_FAIL;
+  CodecParameters codec_parameters_aidl;
+
+  if (provider_info == nullptr) {
+    LOG(ERROR) << __func__ << "provider_info is null";
+    return status;
+  }
+
+  auto codec_id = provider_info->GetCodecId(codec_index);
+  if (!codec_id.has_value()) {
+    return status;
+  }
+
+  std::copy(codec_info, codec_info + AVDT_CODEC_SIZE,
+            std::back_inserter(configuration));
+
+  auto a2dp_status = active_hal_interface->ParseA2dpConfiguration(
+      codec_id.value(), configuration, &codec_parameters_aidl);
+
+  if (!a2dp_status.has_value()) {
+    LOG(ERROR) << __func__ << "ParseA2dpConfiguration failed";
+    return status;
+  }
+  status = static_cast<uint8_t>(a2dp_status.value());
+
+  ::bluetooth::audio::a2dp::a2dp_codec_parameters params;
+  params.channel_mode = static_cast<uint8_t>(codec_parameters_aidl.channelMode);
+  params.sampling_frequency_hz = codec_parameters_aidl.samplingFrequencyHz;
+  params.bit_depth = codec_parameters_aidl.bitdepth;
+  params.min_bitrate = codec_parameters_aidl.minBitrate;
+  params.max_bitrate = codec_parameters_aidl.maxBitrate;
+  params.low_latency = codec_parameters_aidl.lowLatency;
+  params.lossless = codec_parameters_aidl.lossless;
+  for (auto& controller_data : codec_parameters_aidl.controllerData) {
+    ::bluetooth::audio::a2dp::a2dp_length_type_value altv = {};
+    altv.type = static_cast<uint8_t>(controller_data.type);
+    std::copy(controller_data.value.begin(), controller_data.value.end(),
+              std::back_inserter(altv.value));
+    params.controller_data.push_back(altv);
+  }
+  codec_parameters = std::make_optional(params);
+
+  return status;
+}
+
 }  // namespace a2dp
 }  // namespace aidl
 }  // namespace audio
