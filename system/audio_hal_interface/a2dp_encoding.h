@@ -97,11 +97,50 @@ struct a2dp_remote_capabilities {
   uint8_t const* capabilities;
 };
 
+struct a2dp_codec_parameters {
+  uint8_t channel_mode;
+  int sampling_frequency_hz;
+  int bit_depth;
+  int min_bitrate;
+  int max_bitrate;
+  bool low_latency;
+  bool lossless;
+  std::vector<uint8_t> vendor_specific_parameters;
+
+  inline std::string toString() const {
+    std::ostringstream os;
+    os << "A2dpCodecParameters{";
+    os << "channel_mode: " << static_cast<int>(channel_mode);
+    os << ", sampling_frequency_hz: " << sampling_frequency_hz;
+    os << ", bit_depth: " << bit_depth;
+    os << ", min_bitrate: " << min_bitrate;
+    os << ", max_bitrate: " << max_bitrate;
+    os << ", low_latency: " << low_latency;
+    os << ", lossless: " << lossless;
+    os << ", vendor_specific_parameters: ";
+    for (auto x : vendor_specific_parameters) {
+      os << std::hex << std::setw(2) << std::setfill('0')
+         << static_cast<int>(x);
+    }
+    os << "}";
+    return os.str();
+  }
+};
+
 // Query the codec selection fromt the audio HAL.
 // The HAL is expected to pick the best audio configuration based on the
 // discovered remote SEPs.
 std::optional<a2dp_configuration> get_a2dp_configuration(
     std::vector<a2dp_remote_capabilities> const& remote_seps);
+
+// Query the codec parameters from the audio HAL.
+// The HAL is expected to parse the codec configuration
+// received from the peer and decide whether accept
+// the it or not.
+uint8_t parse_a2dp_configuration(
+    btav_a2dp_codec_index_t codec_index, const uint8_t* codec_info,
+    std::optional<::bluetooth::audio::a2dp::a2dp_codec_parameters>&
+        codec_parameters);
 
 }  // namespace a2dp
 }  // namespace audio

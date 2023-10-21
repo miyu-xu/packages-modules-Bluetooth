@@ -335,4 +335,13 @@ bool ProviderInfo::CodecCapabilities(btav_a2dp_codec_index_t codec_index,
       codec_info);
 }
 
+std::optional<const CodecId> ProviderInfo::GetCodecId(
+    btav_a2dp_codec_index_t codec_index) const {
+  auto it = assigned_codec_indexes.find(codec_index);
+  if (it == assigned_codec_indexes.end()) {
+    return std::nullopt;
+  }
+  return it->second->id;
+}
+
 }  // namespace bluetooth::audio::aidl::a2dp
