@@ -215,6 +215,21 @@ std::optional<a2dp_configuration> get_a2dp_configuration(
              : std::nullopt;
 }
 
+// Query the codec parameters from the audio HAL.
+// The HAL is expected to parse the codec configuration
+// received from the peer and decide whether accept
+// the it or not.
+uint8_t parse_a2dp_configuration(
+    btav_a2dp_codec_index_t codec_index, const uint8_t* codec_info,
+    std::optional<::bluetooth::audio::a2dp::a2dp_codec_parameters>&
+        codec_parameters) {
+  return (HalVersionManager::GetHalTransport() ==
+          BluetoothAudioHalTransport::AIDL)
+             ? aidl::a2dp::parse_a2dp_configuration(codec_index, codec_info,
+                                                    codec_parameters)
+             : A2DP_FAIL;
+}
+
 }  // namespace a2dp
 }  // namespace audio
 }  // namespace bluetooth
