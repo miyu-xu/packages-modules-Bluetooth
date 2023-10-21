@@ -70,10 +70,19 @@ impl VirtualHciIndex {
     pub(crate) fn to_i32(&self) -> i32 {
         self.0
     }
+    pub fn to_logging(&self) -> VirtualHciIndexLogging {
+        VirtualHciIndexLogging(self)
+    }
 }
 impl Display for VirtualHciIndex {
     fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
         self.0.fmt(f)
+    }
+}
+pub struct VirtualHciIndexLogging<'a>(pub &'a VirtualHciIndex);
+impl<'a> Display for VirtualHciIndexLogging<'a> {
+    fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
+        write!(f, "VirtHci{}", self.0.to_i32())
     }
 }
 
@@ -84,10 +93,19 @@ impl RealHciIndex {
     pub(crate) fn to_i32(&self) -> i32 {
         self.0
     }
+    pub fn to_logging(&self) -> RealHciIndexLogging {
+        RealHciIndexLogging(self)
+    }
 }
 impl Display for RealHciIndex {
     fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
         self.0.fmt(f)
+    }
+}
+pub struct RealHciIndexLogging<'a>(pub &'a RealHciIndex);
+impl<'a> Display for RealHciIndexLogging<'a> {
+    fn fmt(&self, f: &mut Formatter) -> std::fmt::Result {
+        write!(f, "RealHci{}", self.0.to_i32())
     }
 }
 
@@ -411,7 +429,7 @@ fn configure_hci(hci_tx: mpsc::Sender<Message>) {
                                 {
                                     for hci in interfaces {
                                         let hci = RealHciIndex(hci.into());
-                                        debug!("IndexList response: {}", hci);
+                                        debug!("IndexList response: {}", hci.to_logging());
                                         // We need devpath for an index or we don't use it.
                                         if let Some(d) = config_util::get_devpath_for_hci(hci) {
                                             let _ = hci_tx
@@ -426,13 +444,17 @@ fn configure_hci(hci_tx: mpsc::Sender<Message>) {
                                                 .await
                                                 .unwrap();
                                         } else {
-                                            error!("IndexList: Could not get devpath for {}", hci);
+                                            error!(
+                                                "IndexList: Could not get devpath for {}",
+                                                hci.to_logging()
+                                            );
                                         }
                                     }
                                 }
                             }
                             MgmtEvent::IndexAdded(hci) => {
                                 let hci = RealHciIndex(hci.into());
+                                debug!("IndexAdded: {}", hci.to_logging());
                                 // We need devpath for an index or we don't use it.
                                 if let Some(d) = config_util::get_devpath_for_hci(hci) {
                                     let _ = hci_tx
@@ -447,11 +469,15 @@ fn configure_hci(hci_tx: mpsc::Sender<Message>) {
                                         .await
                                         .unwrap();
                                 } else {
-                                    error!("IndexAdded: Could not get devpath for {}", hci);
+                                    error!(
+                                        "IndexAdded: Could not get devpath for {}",
+                                        hci.to_logging()
+                                    );
                                 }
                             }
                             MgmtEvent::IndexRemoved(hci) => {
                                 let hci = RealHciIndex(hci.into());
+                                debug!("IndexRemoved: {}", hci.to_logging());
                                 let devpath =
                                     config_util::get_devpath_for_hci(hci).unwrap_or(String::new());
                                 // Only send presence removed if the device is removed
@@ -716,8 +742,11 @@ pub async fn mainloop(
 
                 // All actions and the resulting state changes should be logged for debugging.
                 info!(
-                    "[hci{}]: Action={:?}, Previous State({:?}), Next State({:?})",
-                    hci, adapter_action, prev_state, next_state
+                    "{}: Action={:?}, Previous State({:?}), Next State({:?})",
+                    hci.to_logging(),
+                    adapter_action,
+                    prev_state,
+                    next_state
                 );
 
                 // Only emit enabled event for certain transitions
@@ -744,7 +773,11 @@ pub async fn mainloop(
                                 .expect("invalid pid file")
                                 .parse::<i32>()
                                 .unwrap_or(0);
-                            debug!("Sending bluetooth started action for pid={}, hci={}", pid, hci);
+                            debug!(
+                                "Sending bluetooth started action for {}, pid={}",
+                                hci.to_logging(),
+                                pid
+                            );
                             let _ = context
                                 .tx
                                 .send_timeout(
@@ -756,15 +789,22 @@ pub async fn mainloop(
                                 .await
                                 .unwrap();
                             let handle = tokio::spawn(async move {
-                                debug!("[hci{}]: Spawned process monitor", hci);
+                                debug!("{}: Spawned process monitor", hci.to_logging());
                                 loop {
                                     tokio::time::sleep(PID_RUNNING_CHECK_PERIOD).await;
                                     // Check if process exists by sending kill -0.
                                     match nix::sys::signal::kill(Pid::from_raw(pid), None) {
                                         Err(nix::errno::Errno::ESRCH) => {
-                                            warn!("[hci{}]: Process died; Removing PID file", hci);
+                                            warn!(
+                                                "{}: Process died; Removing PID file",
+                                                hci.to_logging()
+                                            );
                                             if let Err(e) = std::fs::remove_file(path) {
-                                                warn!("[hci{}]: Failed to remove: {}", hci, e);
+                                                warn!(
+                                                    "{}: Failed to remove: {}",
+                                                    hci.to_logging(),
+                                                    e
+                                                );
                                             }
                                             break;
                                         }
@@ -774,7 +814,11 @@ pub async fn mainloop(
                                             //           or unsupported signal number.
                                             //   EPERM: The process does not have permission to send
                                             //          the signal to any receiving process.
-                                            error!("[hci{}]: Failed to send signal: {}", hci, e);
+                                            error!(
+                                                "{}: Failed to send signal: {}",
+                                                hci.to_logging(),
+                                                e
+                                            );
                                             break;
                                         }
                                         _ => {}
@@ -789,7 +833,7 @@ pub async fn mainloop(
                                 .insert(fname.clone(), handle)
                             {
                                 Some(handle) => {
-                                    warn!("[hci{}]: Aborting old handler", hci);
+                                    warn!("{}: Aborting old handler", hci.to_logging());
                                     handle.abort();
                                 }
                                 None => {}
@@ -800,7 +844,7 @@ pub async fn mainloop(
                 }
                 (inotify::EventMask::DELETE, Some(fname)) => {
                     if let Some(hci) = get_hci_index_from_pid_path(&fname) {
-                        debug!("Sending bluetooth stopped action for hci={}", hci);
+                        debug!("Sending bluetooth stopped action for {}", hci.to_logging());
                         context
                             .tx
                             .send_timeout(
@@ -814,7 +858,10 @@ pub async fn mainloop(
                         match context.state_machine.process_monitor.lock().unwrap().remove(fname) {
                             Some(handle) => handle.abort(),
                             None => {
-                                warn!("[hci{}]: Process exited but process monitor not found", hci)
+                                warn!(
+                                    "{}: Process exited but process monitor not found",
+                                    hci.to_logging()
+                                )
                             }
                         }
                     }
@@ -830,8 +877,8 @@ pub async fn mainloop(
             // Handle command timeouts
             Message::CommandTimeout(hci) => {
                 debug!(
-                    "Expired action on hci{:?} state{:?}",
-                    hci,
+                    "{}: Expired action, state={:?}",
+                    hci.to_logging(),
                     context.state_machine.get_process_state(hci)
                 );
                 let timeout_action = context.state_machine.action_on_command_timeout(hci);
@@ -842,7 +889,7 @@ pub async fn mainloop(
             }
 
             Message::SetDesiredDefaultAdapter(hci) => {
-                debug!("Changing desired default adapter to {}", hci);
+                debug!("Changing desired default adapter to {}", hci.to_logging());
                 match context.state_machine.set_desired_default_adapter(hci) {
                     AdapterChangeAction::NewDefaultAdapter(new_hci) => {
                         context
@@ -1256,7 +1303,7 @@ impl StateMachineInternal {
     /// as we expect this device to disappear and reappear.
     fn reset_hci(&mut self, hci: RealHciIndex) {
         if !config_util::reset_hci_device(hci) {
-            error!("Attempted reset recovery of hci{} and failed.", hci.to_i32());
+            error!("Attempted reset recovery of {} and failed.", hci.to_logging());
         }
     }
 
@@ -1316,7 +1363,7 @@ impl StateMachineInternal {
     /// Returns an action to reset or cancel timer if we are stopping bluetooth process.
     pub fn action_stop_bluetooth(&mut self, hci: VirtualHciIndex) -> CommandTimeoutAction {
         if !self.is_known(hci) {
-            warn!("Attempting to stop unknown hci{}", hci.to_i32());
+            warn!("Attempting to stop unknown device {}", hci.to_logging());
             return CommandTimeoutAction::DoNothing;
         }
 
@@ -1340,7 +1387,7 @@ impl StateMachineInternal {
     /// Returns an action to reset timer if we are restarting bluetooth process
     pub fn action_restart_bluetooth(&mut self, hci: VirtualHciIndex) -> CommandTimeoutAction {
         if !self.is_known(hci) {
-            warn!("Attempting to restart unknown hci{}", hci);
+            warn!("Attempting to restart unknown device {}", hci.to_logging());
             return CommandTimeoutAction::DoNothing;
         }
 
@@ -1355,7 +1402,7 @@ impl StateMachineInternal {
                 CommandTimeoutAction::ResetTimer
             }
             ProcessState::TurningOn => {
-                debug!("hci{} is already starting.", hci);
+                debug!("{} is already starting.", hci.to_logging());
                 CommandTimeoutAction::DoNothing
             }
             _ => CommandTimeoutAction::DoNothing,
@@ -1370,7 +1417,7 @@ impl StateMachineInternal {
         hci: VirtualHciIndex,
     ) -> CommandTimeoutAction {
         if !self.is_known(hci) {
-            warn!("Unknown hci{} is started; capturing that process", hci.to_i32());
+            warn!("Unknown device {} is started; capturing that process", hci.to_logging());
             self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::Off);
         }
 
@@ -1400,7 +1447,7 @@ impl StateMachineInternal {
                 CommandTimeoutAction::CancelTimer
             }
             ProcessState::Restarting => {
-                debug!("hci{} restarting", hci.to_i32());
+                debug!("{} restarting", hci.to_logging());
                 self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::TurningOn);
                 self.process_manager.start(hci, self.get_real_hci_by_virtual_id(hci));
                 CommandTimeoutAction::ResetTimer
@@ -1414,8 +1461,8 @@ impl StateMachineInternal {
                 // of retrying a start.
                 if restart_count >= RESET_ON_RESTART_COUNT {
                     warn!(
-                        "hci{} stopped unexpectedly. After {} restarts, trying a reset recovery.",
-                        hci.to_i32(),
+                        "{} stopped unexpectedly. After {} restarts, trying a reset recovery.",
+                        hci.to_logging(),
                         restart_count
                     );
                     // Reset the restart count since we're attempting a reset now.
@@ -1430,8 +1477,8 @@ impl StateMachineInternal {
                     CommandTimeoutAction::CancelTimer
                 } else {
                     warn!(
-                        "hci{} stopped unexpectedly, try restarting (attempt #{})",
-                        hci.to_i32(),
+                        "{} stopped unexpectedly, try restarting (attempt #{})",
+                        hci.to_logging(),
                         restart_count + 1
                     );
                     self.modify_state(hci, |s: &mut AdapterState| {
@@ -1444,8 +1491,8 @@ impl StateMachineInternal {
             }
             ProcessState::On | ProcessState::TurningOn | ProcessState::Off => {
                 warn!(
-                    "hci{} stopped unexpectedly from {:?}. Adapter present? {}",
-                    hci.to_i32(),
+                    "{} stopped unexpectedly from {:?}. Adapter present? {}",
+                    hci.to_logging(),
                     state,
                     present
                 );
@@ -1471,7 +1518,7 @@ impl StateMachineInternal {
             // If Floss is not enabled, just send |Stop| to process manager and end the state
             // machine actions.
             ProcessState::TurningOn if !floss_enabled => {
-                warn!("Timed out turning on but floss is disabled: {}", hci);
+                warn!("{}: Timed out turning on but floss is disabled", hci.to_logging());
                 self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::Off);
                 self.process_manager.stop(hci, self.get_real_hci_by_virtual_id(hci));
                 StateMachineTimeoutActions::Noop
@@ -1486,8 +1533,8 @@ impl StateMachineInternal {
                 // of retrying a start.
                 if restart_count >= RESET_ON_RESTART_COUNT {
                     warn!(
-                        "hci{} timed out while starting (present={}). After {} restarts, trying a reset recovery.",
-                        hci.to_i32(), present, restart_count
+                        "{} timed out while starting (present={}). After {} restarts, trying a reset recovery.",
+                        hci.to_logging(), present, restart_count
                     );
                     // Reset the restart count since we're attempting a reset now.
                     self.modify_state(hci, |s: &mut AdapterState| {
@@ -1501,8 +1548,8 @@ impl StateMachineInternal {
                     StateMachineTimeoutActions::Noop
                 } else {
                     warn!(
-                        "hci{} timed out while starting (present={}), try restarting (attempt #{})",
-                        hci.to_i32(),
+                        "{} timed out while starting (present={}), try restarting (attempt #{})",
+                        hci.to_logging(),
                         present,
                         restart_count + 1
                     );
@@ -1516,7 +1563,7 @@ impl StateMachineInternal {
                 }
             }
             ProcessState::TurningOff => {
-                info!("Killing bluetooth {}", hci);
+                info!("Killing bluetooth {}", hci.to_logging());
                 self.process_manager.stop(hci, self.get_real_hci_by_virtual_id(hci));
                 StateMachineTimeoutActions::RetryStop
             }

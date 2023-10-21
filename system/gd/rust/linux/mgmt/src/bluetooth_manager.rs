@@ -42,9 +42,9 @@ impl BluetoothManager {
 
     pub(crate) fn callback_hci_enabled_change(&mut self, hci: VirtualHciIndex, enabled: bool) {
         if enabled {
-            warn!("Started {}", hci);
+            warn!("Started {}", hci.to_logging());
         } else {
-            warn!("Stopped {}", hci);
+            warn!("Stopped {}", hci.to_logging());
         }
 
         for (_, callback) in &mut self.callbacks {
@@ -74,10 +74,10 @@ impl BluetoothManager {
 impl IBluetoothManager for BluetoothManager {
     fn start(&mut self, hci: i32) {
         let hci = VirtualHciIndex(hci);
-        warn!("Starting {}", hci);
+        warn!("Starting {}", hci.to_logging());
 
         if !config_util::modify_hci_n_enabled(hci, true) {
-            error!("Config is not successfully modified");
+            error!("{}: Config is not successfully modified", hci.to_logging());
         }
 
         // Store that this adapter is meant to be started in state machine.
@@ -85,12 +85,12 @@ impl IBluetoothManager for BluetoothManager {
 
         // Ignore the request if adapter is already enabled or not present.
         if self.is_adapter_enabled(hci) {
-            warn!("Adapter {} is already enabled.", hci);
+            warn!("{} is already enabled.", hci.to_logging());
             return;
         }
 
         if !self.is_adapter_present(hci) {
-            warn!("Adapter {} is not present.", hci);
+            warn!("{} is not present.", hci.to_logging());
             return;
         }
 
@@ -99,10 +99,10 @@ impl IBluetoothManager for BluetoothManager {
 
     fn stop(&mut self, hci: i32) {
         let hci = VirtualHciIndex(hci);
-        warn!("Stopping {}", hci);
+        warn!("Stopping {}", hci.to_logging());
 
         if !config_util::modify_hci_n_enabled(hci, false) {
-            error!("Config is not successfully modified");
+            error!("{}: Config is not successfully modified", hci.to_logging());
         }
 
         // Store that this adapter is meant to be stopped in state machine.
@@ -110,7 +110,7 @@ impl IBluetoothManager for BluetoothManager {
 
         // Ignore the request if adapter is already disabled.
         if !self.is_adapter_enabled(hci) {
-            warn!("Adapter {} is already stopped", hci);
+            warn!("{} is already stopped", hci.to_logging());
             return;
         }
 

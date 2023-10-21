@@ -173,7 +173,7 @@ pub fn get_devpath_for_hci(hci: RealHciIndex) -> Option<String> {
     match std::fs::canonicalize(format!("{}/hci{}/device", HCI_DEVICES_DIR, hci).as_str()) {
         Ok(p) => Some(p.into_os_string().into_string().ok()?),
         Err(e) => {
-            log::debug!("Failed to get devpath for hci{} with error: {}", hci, e);
+            log::debug!("Failed to get devpath for {} with error: {}", hci.to_logging(), e);
             None
         }
     }
