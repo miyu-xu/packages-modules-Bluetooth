@@ -83,6 +83,8 @@ import androidx.test.filters.MediumTest;
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
+import com.android.bluetooth.flags.FeatureFlags;
 
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
@@ -118,6 +120,7 @@ public class BassClientStateMachineTest {
     private HandlerThread mHandlerThread;
     private StubBassClientStateMachine mBassClientStateMachine;
     private BluetoothDevice mTestDevice;
+    private FakeFeatureFlagsImpl mFakeFlagsImpl;
 
     @Mock private AdapterService mAdapterService;
     @Mock private BassClientService mBassClientService;
@@ -128,6 +131,7 @@ public class BassClientStateMachineTest {
         TestUtils.setAdapterService(mAdapterService);
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
+        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
         BluetoothMethodProxy.setInstanceForTesting(mMethodProxy);
         doNothing().when(mMethodProxy).periodicAdvertisingManagerTransferSync(
                 any(), any(), anyInt(), anyInt());
@@ -138,8 +142,13 @@ public class BassClientStateMachineTest {
         // Set up thread and looper
         mHandlerThread = new HandlerThread("BassClientStateMachineTestHandlerThread");
         mHandlerThread.start();
-        mBassClientStateMachine = new StubBassClientStateMachine(mTestDevice,
-                mBassClientService, mHandlerThread.getLooper(), CONNECTION_TIMEOUT_MS);
+        mBassClientStateMachine =
+                new StubBassClientStateMachine(
+                        mTestDevice,
+                        mBassClientService,
+                        mHandlerThread.getLooper(),
+                        CONNECTION_TIMEOUT_MS,
+                        mFakeFlagsImpl);
         mBassClientStateMachine.start();
     }
 
@@ -1904,9 +1913,13 @@ public class BassClientStateMachineTest {
         int mMsgArg2;
         Object mMsgObj;
 
-        StubBassClientStateMachine(BluetoothDevice device, BassClientService service, Looper looper,
-                int connectTimeout) {
-            super(device, service, looper, connectTimeout);
+        StubBassClientStateMachine(
+                BluetoothDevice device,
+                BassClientService service,
+                Looper looper,
+                int connectTimeout,
+                FeatureFlags featureFlags) {
+            super(device, service, looper, connectTimeout, featureFlags);
         }
 
         @Override
