@@ -713,6 +713,63 @@ get_a2dp_configuration(
   return std::make_optional(a2dp_configuration);
 }
 
+/***
+ * Query the codec parameters from the audio HAL.
+ * The HAL is expected to parse the codec parameters
+ * received from the peer and decide whether accept
+ * the configuration or not.
+ ***/
+std::optional<::bluetooth::audio::a2dp::a2dp_codec_parameters>
+parse_a2dp_configuration(btav_a2dp_codec_index_t codec_index,
+                         const uint8_t* codec_info, uint8_t* status) {
+  std::vector<uint8_t> configuration;
+  // std::optional<const CodecId> codec_id;
+  std::optional<A2dpStatus> a2dp_status;
+  CodecParameters codec_parameters_aidl;
+
+  if (provider_info == nullptr) {
+    LOG(ERROR) << __func__ << "provider_info is null";
+    return std::nullopt;
+  }
+
+  auto codec_id = provider_info->GetCodecId(codec_index);
+  if (!codec_id.has_value()) {
+    *status = AVDT_ERR_UNSUP_CFG;
+    return std::nullopt;
+  }
+
+  std::copy(codec_info, codec_info + AVDT_CODEC_SIZE,
+            std::back_inserter(configuration));
+
+  a2dp_status = active_hal_interface->ParseA2dpConfiguration(
+      codec_id.value(), configuration, &codec_parameters_aidl);
+
+  if (!a2dp_status.has_value()) {
+    LOG(ERROR) << __func__ << "ParseA2dpConfiguration failed";
+    return std::nullopt;
+  }
+  *status = static_cast<uint8_t>(a2dp_status.value());
+
+  ::bluetooth::audio::a2dp::a2dp_codec_parameters codec_parameters;
+  codec_parameters.channel_mode =
+      static_cast<uint8_t>(codec_parameters_aidl.channelMode);
+  codec_parameters.sampling_frequency_hz =
+      codec_parameters_aidl.samplingFrequencyHz;
+  codec_parameters.bit_depth = codec_parameters_aidl.bitdepth;
+  codec_parameters.min_bitrate = codec_parameters_aidl.minBitrate;
+  codec_parameters.max_bitrate = codec_parameters_aidl.maxBitrate;
+  codec_parameters.low_latency = codec_parameters_aidl.lowLatency;
+  codec_parameters.lossless = codec_parameters_aidl.lossless;
+  for (auto& controller_data : codec_parameters_aidl.controllerData) {
+    ::bluetooth::audio::a2dp::a2dp_length_type_value altv = {};
+    altv.type = static_cast<uint8_t>(controller_data.type);
+    std::copy(controller_data.value.begin(), controller_data.value.end(),
+              std::back_inserter(altv.value));
+    codec_parameters.controller_data.push_back(altv);
+  }
+  return std::make_optional(codec_parameters);
+}
+
 }  // namespace a2dp
 }  // namespace aidl
 }  // namespace audio

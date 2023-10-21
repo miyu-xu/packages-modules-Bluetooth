@@ -1248,6 +1248,29 @@ void BtaAvCo::ProcessSetConfig(tBTA_AV_HNDL bta_av_handle,
     }
   }
 
+  // Bypass the validation for codecs that are offloaded:
+  // the stack does not need to know about the peer capabilities,
+  // since the validation and selection will be performed by the
+  // bluetooth audio HAL for offloaded codecs.
+  auto codec_index = A2DP_SourceCodecIndex(p_codec_info);
+  if (::bluetooth::audio::a2dp::supports_codec(codec_index)) {
+    APPL_TRACE_DEBUG(
+        "%s: offloaded codec %s is supported. Passing the remote \
+                     codec configuration to the provider for verification.",
+        __func__, A2DP_CodecIndexStr(codec_index));
+    auto codec_parameters = ::bluetooth::audio::a2dp::parse_a2dp_configuration(
+        codec_index, p_codec_info, &status);
+    if (codec_parameters.has_value()) {
+      ::bluetooth::audio::a2dp::a2dp_codec_parameters params =
+          codec_parameters.value();
+      LOG(INFO) << __func__
+                << ": peer_address=" << ADDRESS_TO_LOGGABLE_STR(peer_address)
+                << ", parsed codec parameters from the provider="
+                << params.toString()
+                << ", status: " << static_cast<int>(status);
+    }
+  }
+
   if (status == A2DP_SUCCESS) {
     bool codec_config_supported = false;
 
