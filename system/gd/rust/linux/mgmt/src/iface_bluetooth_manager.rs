@@ -51,6 +51,8 @@ pub trait IBluetoothManager {
     /// Returns Floss API verion.The MSB 16-bit is the major version and
     /// LSB 16-bit is the minor version
     fn get_floss_api_version(&mut self) -> u32;
+
+    fn set_tablet_mode(&mut self, tablet_mode: bool);
 }
 
 /// Interface of Bluetooth Manager callbacks.
