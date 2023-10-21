@@ -1099,6 +1099,11 @@ public class BassClientStateMachine extends StateMachine {
         @Override
         public void onSyncLost(int syncHandle) {
             log("OnSyncLost" + syncHandle);
+            int broadcastId = mService.getBroadcastIdForSyncHandle(syncHandle);
+            if (broadcastId != BassConstants.INVALID_BROADCAST_ID) {
+                log("Notify broadcast source lost, broadcast id: " + broadcastId);
+                mService.getCallbacks().notifySourceLost(broadcastId);
+            }
             cancelActiveSync(syncHandle);
         }
 
