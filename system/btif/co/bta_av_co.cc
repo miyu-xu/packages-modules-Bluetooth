@@ -1248,6 +1248,29 @@ void BtaAvCo::ProcessSetConfig(tBTA_AV_HNDL bta_av_handle,
     }
   }
 
+  // Check whether provider supports received codec.
+  // If supported, let the provider parse the configuration.
+  auto codec_index = A2DP_SourceCodecIndex(p_codec_info);
+  if (::bluetooth::audio::a2dp::supports_codec(codec_index)) {
+    APPL_TRACE_DEBUG(
+        "%s: offloaded codec %s is supported. Passing the remote \
+                     codec configuration to the provider for verification.",
+        __func__, A2DP_CodecIndexStr(codec_index));
+    std::optional<::bluetooth::audio::a2dp::a2dp_codec_parameters>
+        a2dp_codec_parameters;
+    uint8_t status = ::bluetooth::audio::a2dp::parse_a2dp_configuration(
+        codec_index, p_codec_info, a2dp_codec_parameters);
+    if (a2dp_codec_parameters.has_value()) {
+      ::bluetooth::audio::a2dp::a2dp_codec_parameters codec_parameters =
+          a2dp_codec_parameters.value();
+      LOG(INFO) << __func__
+                << ": peer_address=" << ADDRESS_TO_LOGGABLE_STR(peer_address)
+                << ", parsed codec parameters from the provider="
+                << codec_parameters.toString()
+                << ", status: " << static_cast<int>(status);
+    }
+  }
+
   if (status == A2DP_SUCCESS) {
     bool codec_config_supported = false;
 

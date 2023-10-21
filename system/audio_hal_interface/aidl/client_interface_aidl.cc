@@ -140,6 +140,30 @@ BluetoothAudioClientInterface::GetA2dpConfiguration(
   return configuration;
 }
 
+std::optional<A2dpStatus> BluetoothAudioClientInterface::ParseA2dpConfiguration(
+    const CodecId& codec_id, const std::vector<uint8_t>& configuration,
+    CodecParameters* codec_parameters) const {
+  A2dpStatus a2dp_status;
+
+  if (provider_ == nullptr) {
+    LOG(ERROR)
+        << __func__
+        << ", can not parse A2DP configuration because of unknown provider";
+    return std::nullopt;
+  }
+
+  auto aidl_retval = provider_->parseA2dpConfiguration(
+      codec_id, configuration, codec_parameters, &a2dp_status);
+
+  if (!aidl_retval.isOk()) {
+    LOG(ERROR) << __func__ << ", parseA2dpConfiguration failure: "
+               << aidl_retval.getDescription();
+    return std::nullopt;
+  }
+
+  return std::make_optional(a2dp_status);
+}
+
 void BluetoothAudioClientInterface::FetchAudioProvider() {
   if (!is_aidl_available()) {
     LOG(ERROR) << __func__ << ": aidl is not supported on this platform.";

@@ -97,6 +97,13 @@ class ProviderInfo {
   bool CodecCapabilities(btav_a2dp_codec_index_t codec_index,
                          uint8_t* codec_info) const;
 
+  /***
+   * Return the CodecId for the selected codec index.
+   * Returns nullopt if the codec is not supported.
+   ***/
+  std::optional<const CodecId> GetCodecId(
+      btav_a2dp_codec_index_t codec_index) const;
+
   const std::vector<CodecInfo> source_codecs;
   const std::vector<CodecInfo> sink_codecs;
 
