@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ffe6905_06868e9b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T01:38:58Z",
+      "side": 1,
+      "message": "Hi @rongxuan@google.com,\n\n* I re-uploaded a patchset to rebase your change and have access to the aconfig feature.\n* I removed your change to turn the flag default to on\n* I have uploaded aosp/2798893 to have a trunk stable flag for this feature.\n\nResolving this comment as I addressed the main point here.",
+      "parentUuid": "b085ce86_7647c57a",
+      "revId": "2f9cba2b6f0bb00c81a5dc883f16dff60eb9a987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "487db194_2c7b4072",
