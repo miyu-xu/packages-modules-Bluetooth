@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9a1e867c_ca8458f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T07:24:02Z",
+      "side": 1,
+      "message": "Opened b/307006275 to ask support for floss build.\n\nI do not know how to make it work for floss, if you have the time/knowledge, please help.",
+      "revId": "71d4989e442265df6828d7081774773e99e20c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62c271e9_80e72f52",
         "filename": "system/bta/le_audio/le_audio_client_test.cc",
         "patchSetId": 1
