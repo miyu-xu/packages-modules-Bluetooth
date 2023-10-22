@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e5503e8_10c8e1fc",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by API Test Coverage: This CL adds new API(s), but it doesn\u0027t include any CTS/GTS test to test them. Please add CTS/GTS test(s) in a change and include the change in the same topic. After adding that change, you may need to upload a new patchset such as updating...\n\nAnalyzer Description: Validates new APIs are tested by CTS/GTS.\nOwner: android-tooltopia@google.com\n\nThis CL adds new API(s), but it doesn\u0027t include any CTS/GTS test to test them. Please add CTS/GTS test(s) in a change and include the change in the same topic. After adding that change, you may need to upload a new patchset such as updating commit message to rerun this presubmit test. If you are unable to add CTS/GTS test(s) now, please file a tracking bug via go/new-api-coverage-bug and add \"API-Coverage-Bug: \u003cbug id\u003e\" in this CL\u0027s commit message to pass this presubmit. Refer to b/269059598 for bug  examples. For more information, please refer to go/api-test-coverage.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68f90ff3_2fb3b36b",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "I am not sure we want this to be nullable in the current code implementation... see other comments",
+      "range": {
+        "startLine": 252,
+        "startChar": 19,
+        "endLine": 252,
+        "endChar": 27
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "899d690c_4fef720d",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "What about:\n\n```suggestion\n        return (\"{codecName:\" + mCodecType.getCodecName())\n                + (\",mCodecType:\" + mCodecType.getNativeCodecType())\n                + (\",mCodecPriority:\" + mCodecPriority)\n                + (\",mSampleRate:\" + String.format(\"0x%x\", mSampleRate) + \"(\" + sampleRateStr + \")\")\n                + (\",mBitsPerSample:\" + String.format(\"0x%x\", mBitsPerSample) + \"(\" + bitsPerSampleStr + \")\")\n                + (\",mChannelMode:\" + String.format(\"0x%x\", mChannelMode) + \"(\" + channelModeStr + \")\")\n                + (\",mCodecSpecific1:\" + mCodecSpecific1)\n                + (\",mCodecSpecific2:\" + mCodecSpecific2)\n                + (\",mCodecSpecific3:\" + mCodecSpecific3)\n                + (\",mCodecSpecific4:\" + mCodecSpecific4)\n                + \"}\";\n```\n\n\n😊",
+      "range": {
+        "startLine": 432,
+        "startChar": 8,
+        "endLine": 461,
+        "endChar": 22
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9b4bcd5_7e117a8c",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "crash if mCodecType is null",
+      "range": {
+        "startLine": 493,
+        "startChar": 21,
+        "endLine": 493,
+        "endChar": 31
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6caaf37_bc38c7aa",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 539,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "crash if mCodecType is null",
+      "range": {
+        "startLine": 539,
+        "startChar": 15,
+        "endLine": 539,
+        "endChar": 25
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0909be32_9e10d2fd",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "crash if mCodecType is null",
+      "range": {
+        "startLine": 555,
+        "startChar": 15,
+        "endLine": 555,
+        "endChar": 25
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45544b40_bd4493b7",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "crash if mCodecType is null",
+      "range": {
+        "startLine": 740,
+        "startChar": 30,
+        "endLine": 740,
+        "endChar": 40
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90b494f1_9845f071",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 774,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "crash if mCodecType is null",
+      "range": {
+        "startLine": 774,
+        "startChar": 30,
+        "endLine": 774,
+        "endChar": 40
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db903f06_59ad15ad",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 777,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "crash if mCodecType is null",
+      "range": {
+        "startLine": 777,
+        "startChar": 16,
+        "endLine": 777,
+        "endChar": 26
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b01f7cb8_3d482cd1",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "2023 ?",
+      "range": {
+        "startLine": 2,
+        "startChar": 17,
+        "endLine": 2,
+        "endChar": 21
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e27ab82_761164c9",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "Should we make it package private and access it here ?",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84e398cd_bb4ea890",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "Is this required ?",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 7
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00bd2bf9_e31288f5",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:04:00Z",
+      "side": 1,
+      "message": "The private are usually higher in the file.\n\nThere is some line in the guide style about that, but I think this go before the constructor, and after the final static field.",
+      "range": {
+        "startLine": 131,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 30
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
