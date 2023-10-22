@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44e69e3f_072e7cad",
+        "filename": "system/bta/le_audio/devices.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 988,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T01:34:15Z",
+      "side": 1,
+      "message": "This is not formatted as the hook is configured. Can you make sure you are using the proper parameter when formatting the code ?",
+      "range": {
+        "startLine": 987,
+        "startChar": 55,
+        "endLine": 988,
+        "endChar": 56
+      },
+      "revId": "42a1d31ec6c22b0c32083e66b78e6a7ad6076a92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
