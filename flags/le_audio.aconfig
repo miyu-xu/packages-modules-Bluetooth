@@ -1,0 +1,8 @@
+package: "com.android.bluetooth.flags"
+
+flag {
+    name: "leaudio_enable_health_based_actions"
+    namespace: "bluetooth"
+    description: "Le audio device and group health actions for fallback mechanism"
+    bug: "290845728"
+}
