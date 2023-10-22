@@ -1,0 +1,8 @@
+package: "com.android.bluetooth.flags"
+
+flag {
+    name: "leaudio_enable_health_based_actions"
+    namespace: "bluetooth"
+    description: "Auto connect to hfp device is there is no a2dp device to connect to"
+    bug: "290845728"
+}
