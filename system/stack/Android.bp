@@ -707,6 +707,7 @@ cc_test {
         "libstatssocket",
         "libutils",
         "libz",
+        "server_configurable_flags",
     ],
     static_libs: [
         "android.hardware.audio.common-V2-ndk",

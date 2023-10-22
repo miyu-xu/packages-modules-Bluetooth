@@ -8,6 +8,7 @@ aconfig_declarations {
     package: "com.android.bluetooth.flags",
     srcs: [
         "hfp.aconfig",
+        "le_audio.aconfig",
         "system_service.aconfig",
     ],
 }
@@ -18,6 +19,19 @@ java_aconfig_library {
     visibility: [
         "//packages/modules/Bluetooth/android/app",
         "//packages/modules/Bluetooth/service:__subpackages__",
+    ],
+    apex_available: [
+        "com.android.btservices",
+    ],
+    min_sdk_version: "Tiramisu",
+}
+
+cc_aconfig_library {
+    name: "bluetooth_flags_c_lib",
+    aconfig_declarations: "bluetooth_aconfig_flags",
+    host_supported: true,
+    visibility: [
+        "//packages/modules/Bluetooth/system:__subpackages__",
     ],
     apex_available: [
         "com.android.btservices",
