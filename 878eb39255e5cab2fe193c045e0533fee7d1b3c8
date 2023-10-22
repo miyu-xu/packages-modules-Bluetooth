@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca1f94f2_53c30824",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 11
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T01:29:08Z",
+      "side": 1,
+      "message": "This is not properly format and is now generating error when uploading change.\nPlease fix the format (in this case the list is not ordered) in follow-up CL.\nPlease run the repo hook when uploading CLs to avoid this in futur change",
+      "range": {
+        "startLine": 42,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 26
+      },
+      "revId": "878eb39255e5cab2fe193c045e0533fee7d1b3c8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
