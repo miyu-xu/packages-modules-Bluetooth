@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "94c4fa6d_9b3d256d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T05:12:22Z",
+      "side": 1,
+      "message": "I dislike this pattern for multiple reason. @aritrasen@google.com had almost the same request as you and I will copy here what I told him in our private chat:\n\n\u003e* The field is not final (I love final field, that give me trust)\n* There is no possibility to forget to initialize it in test if you put it in the constructor. (you guarantee that the flag will always be put in test)\n* This solution is adding an extra function\n\nAlso, I made a comparaison with what we are doing for the AdapterService:\n\u003e [...]this is how we are doing for AdapterService, setting a static and then restoring it.\nBut it keep bitting us, especially when one test fail and doesn\u0027t restore the variable, all the following test will crash.\n\u003e \n\u003e I do not want it to be the same again and to have profile / test relying on a static context that is not managed in the same test / profile.\n\u003e \n\u003e Having the flags as parameter of the constructor is in my opinion the best way to  control its usage\n\n\nThere is also a mention about caching in the doc: go/java-flagging-codelab#examine-the-code-that-reads-the-flags-and-add-new-flags:\n```\nNote: DeviceConfig values are cached per-process, so just check the flag. Don\u0027t attempt to build your own caching on top of flags.\n```\nWhich is not what we are doing here as this is a wrapper more than a caching, but we are kind of caching the static variable.\n\n\nLet me know what to think and if I am really wrong or not",
+      "parentUuid": "e1538ebd_ad57f171",
+      "revId": "4bca6523c10a7bba3a26d288891c8022368ee5e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8218caf_934a1aa5",
         "filename": "flags/Android.bp",
         "patchSetId": 3
