@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c271e9_80e72f52",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2815,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-22T04:39:49Z",
+      "side": 1,
+      "message": "@rongxuan@google.com:\nThis means that the test will be **IGNORED** as long as the flag is disabled (aka until released of the flag). As per the trunk stable guideline, you should run the test locally while the feature is in development.\n\nPutting the flag to true for test can manually be done by command shell, but you can also implement a test that will force the flag to true.\nThis can be done by using a provider instead of the static context.\nFor example, instead of getting the flag with `com::android::bluetooth::flags::leaudio_enable_health_based_actions()`, it would be fetched in 2 step\n```\n// get the provider during initialization of the stack\nnamespace bt_flags \u003d com::android::bluetooth::flags;\nbt_flags::flag_provider_interface* provider \u003d bt_flags::provider_.get();\n// Then get the flag with:\nprovider-\u003eleaudio_enable_health_based_actions()\n```\n\nWhile testing, we should fake the provider and initialize the stack with the fake.\nIn the custom provider you can override the flag you want to test. \nSee aosp/2790874 for an example in PhonePolicy, in java, where the constructor has been updated to take a flag provider in parameter.",
+      "range": {
+        "startLine": 2815,
+        "startChar": 18,
+        "endLine": 2815,
+        "endChar": 40
+      },
+      "revId": "71d4989e442265df6828d7081774773e99e20c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
