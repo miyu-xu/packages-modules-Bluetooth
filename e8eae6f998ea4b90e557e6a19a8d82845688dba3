@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a769236_9963496a",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T17:32:28Z",
+      "side": 1,
+      "message": "nit: We could avoid the \"fall through after code\".\nDo no feel mandatory to take this comment into account\n\n```suggestion\n                case HeadsetClientHalConstants.AUDIO_STATE_CONNECTED, HeadsetClientHalConstants.AUDIO_STATE_CONNECTED_LC3, HeadsetClientHalConstants.AUDIO_STATE_CONNECTED_MSBC:\n                    mAudioSWB \u003d state \u003d\u003d HeadsetClientHalConstants.AUDIO_STATE_CONNECTED_LC3;\n                    mAudioWbs \u003d state \u003d\u003d HeadsetClientHalConstants.AUDIO_STATE_CONNECTED_MSBC;\n```",
+      "range": {
+        "startLine": 1792,
+        "startChar": 16,
+        "endLine": 1800,
+        "endChar": 69
+      },
+      "revId": "e8eae6f998ea4b90e557e6a19a8d82845688dba3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
