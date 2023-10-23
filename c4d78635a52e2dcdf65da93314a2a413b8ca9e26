@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "917b3dd8_140a19ed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-23T04:02:01Z",
+      "side": 1,
+      "message": "1. For adapter_index, distinguish a Bluetooth adapter (controller) by other attributes like address provide better clarity for Floss clients using Bluetooth functionality. Therefore, adapter_index (or virtual_index in this patch) might not be necessary for these client and btadapted itself.\n\n2. For hci_index, it\u0027s being used between daemons and layers/modules of the Bluetooth stacks.\n\nWhile this could alleviate naming confusion between layers, but the adapter_index (or virtual_index) itself doesn\u0027t appear to be something btadapterd needs to manage. I\u0027m okayish for this patch, but would suggest we have a clear design on this before refactoring it.",
+      "revId": "c4d78635a52e2dcdf65da93314a2a413b8ca9e26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
