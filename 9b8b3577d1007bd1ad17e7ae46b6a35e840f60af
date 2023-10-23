@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a540d027_6789d5cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T17:49:55Z",
+      "side": 1,
+      "message": "Adding myles for hal review.\nAdding jack for vis as per recent bluetooth breakage.\n\nI am not able to validate this change",
+      "revId": "9b8b3577d1007bd1ad17e7ae46b6a35e840f60af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
