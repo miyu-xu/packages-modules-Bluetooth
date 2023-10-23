@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be28e003_6325c8b8",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-23T23:14:14Z",
+      "side": 1,
+      "message": "Have you thought about using the GetLocalVersionInformation() command from controller.h to only skip it for Realtek?\n\nSomething like:\nif (GetLocalVersionInformation().company_identifier_ !\u003d kRealtekCompanyId) {\n  ASSERT(pending_ \u003d\u003d true);\n}",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "000956ab56a2b39f3ab6b6a7ec2c91f74892ee33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "459abf98_d0ba56b8",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-23T23:14:14Z",
+      "side": 1,
+      "message": "Do you still want to handle it?\n\nI was expecting\n\n#else\n  LOG_WARN(\"Unexpected response with no request pending\");\n  return;\n#endif",
+      "revId": "000956ab56a2b39f3ab6b6a7ec2c91f74892ee33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
