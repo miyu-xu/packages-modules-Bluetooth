@@ -132,7 +132,14 @@ struct RemoteNameRequestModule::impl {
 
   void on_start_remote_name_request_status(
       Address address, CompletionCallback on_completion, CommandStatusView status) {
+    // TODO(b/294961421): Remove the ifded when firmware fix in place. Realtek controllers
+    // unexpectedly sent a Remote Name Req Complete HCI event without the corresponding HCI command.
+#ifndef TARGET_FLOSS
     ASSERT(pending_ == true);
+#else
+    LOG_WARN("Unexpected remote name response with no request pending");
+    return;
+#endif
     ASSERT(status.GetCommandOpCode() == OpCode::REMOTE_NAME_REQUEST);
     LOG_INFO(
         "Got status %hhu when starting remote name request to to %s",
