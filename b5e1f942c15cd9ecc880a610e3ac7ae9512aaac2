@@ -77,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dbd30d3_2061e704",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-10-23T14:35:49Z",
+      "side": 1,
+      "message": "Thanks! Done",
+      "parentUuid": "ddbb4280_d625e313",
+      "range": {
+        "startLine": 87,
+        "startChar": 37,
+        "endLine": 87,
+        "endChar": 85
+      },
+      "revId": "b5e1f942c15cd9ecc880a610e3ac7ae9512aaac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b32b4c04_b77b6635",
@@ -90,6 +114,30 @@
       "writtenOn": "2023-10-18T08:16:08Z",
       "side": 1,
       "message": "I don\u0027t see the definition of `waited_connection`. It looks like a typo of `waited_connections` and might lead to duplicated observer registrations and unwanted concurrency while Connect is called multiple times (even sequentially).\n\nPlease also update the set waited_connection earlier.",
+      "range": {
+        "startLine": 184,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 47
+      },
+      "revId": "b5e1f942c15cd9ecc880a610e3ac7ae9512aaac2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9d0d39f_903ac663",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-10-23T14:35:49Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "b32b4c04_b77b6635",
       "range": {
         "startLine": 184,
         "startChar": 0,
