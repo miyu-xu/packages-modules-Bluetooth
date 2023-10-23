@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "841b1bd2_63f969c7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-23T03:07:49Z",
+      "side": 1,
+      "message": "What\u0027s your proposal for ProfileServices? (e.g. A2dpService)\nShould it create an instance of FeatureFlagsImpl in the constructor?",
+      "parentUuid": "94c4fa6d_9b3d256d",
+      "revId": "4bca6523c10a7bba3a26d288891c8022368ee5e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8218caf_934a1aa5",
         "filename": "flags/Android.bp",
         "patchSetId": 3
