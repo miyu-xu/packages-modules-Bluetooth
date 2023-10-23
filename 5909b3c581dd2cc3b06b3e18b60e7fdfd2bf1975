@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "483162d9_4fa06c14",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PandoraDevice.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-23T21:09:40Z",
+      "side": 1,
+      "message": "Do we need to do this here ? `getRemoteDevice` does accept a string as input",
+      "range": {
+        "startLine": 92,
+        "startChar": 33,
+        "endLine": 92,
+        "endChar": 61
+      },
+      "revId": "5909b3c581dd2cc3b06b3e18b60e7fdfd2bf1975",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
