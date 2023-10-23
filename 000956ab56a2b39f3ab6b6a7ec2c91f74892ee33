@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64a3a839_d9586e26",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-10-23T23:35:21Z",
+      "side": 1,
+      "message": "No, but I took a deeper look after seeing your comment and want to suggest not to use GetLocalVersionInformation() as it requires the RemoteNameRequestModule to hold or at least request the controller instance. Given the patch is temporary (we had RTL ack the problem and is working on a fix), I\u0027d suggest stay simple.",
+      "parentUuid": "be28e003_6325c8b8",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "000956ab56a2b39f3ab6b6a7ec2c91f74892ee33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "459abf98_d0ba56b8",
         "filename": "system/gd/hci/remote_name_request.cc",
         "patchSetId": 2
@@ -37,6 +61,24 @@
       "writtenOn": "2023-10-23T23:14:14Z",
       "side": 1,
       "message": "Do you still want to handle it?\n\nI was expecting\n\n#else\n  LOG_WARN(\"Unexpected response with no request pending\");\n  return;\n#endif",
+      "revId": "000956ab56a2b39f3ab6b6a7ec2c91f74892ee33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3a64e0a_e2d54d7e",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-10-23T23:35:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "459abf98_d0ba56b8",
       "revId": "000956ab56a2b39f3ab6b6a7ec2c91f74892ee33",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
