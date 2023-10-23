@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b2d2db15_ce4a49b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-23T23:44:46Z",
+      "side": 1,
+      "message": "okay, sg, let\u0027s wait a bit for Abhishek\u0027s confirmation about their plan to support this then.",
+      "parentUuid": "b718c80b_0148ae96",
+      "revId": "71d4989e442265df6828d7081774773e99e20c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2763b71c_2911a142",
         "filename": "flags/le_audio.aconfig",
         "patchSetId": 1
