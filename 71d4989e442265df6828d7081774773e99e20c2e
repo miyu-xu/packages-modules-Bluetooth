@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b718c80b_0148ae96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T23:02:58Z",
+      "side": 1,
+      "message": "We can use ifndef meantime to decouple this. Like we are doing for sysprop, but I wanted to give a bit of time for anybody to pick this up since there is no emergency for merging this. (Unless there is one ?)\n\nI know that @licorne@google.com tried an implementation of `sysprop` for Floss but there has been pushback from floss team, maybe @abhishekpandit@google.com know some more stuff around it.\nI assumed that implementing for aconfig will be the same kind of thing.",
+      "parentUuid": "3389878b_35ff4d57",
+      "revId": "71d4989e442265df6828d7081774773e99e20c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2763b71c_2911a142",
         "filename": "flags/le_audio.aconfig",
         "patchSetId": 1
@@ -49,6 +67,24 @@
       "writtenOn": "2023-10-23T21:11:19Z",
       "side": 1,
       "message": "could you help to update the description?\nmaybe \"Le audio device and group health actions for fallback mechanism\"",
+      "revId": "71d4989e442265df6828d7081774773e99e20c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da7eec14_9e0cb0f0",
+        "filename": "flags/le_audio.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T23:02:58Z",
+      "side": 1,
+      "message": "Done.\nSorry this was what I copied the flag from.",
+      "parentUuid": "2763b71c_2911a142",
       "revId": "71d4989e442265df6828d7081774773e99e20c2e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
