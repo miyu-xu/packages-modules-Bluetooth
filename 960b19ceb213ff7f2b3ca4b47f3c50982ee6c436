@@ -33,6 +33,23 @@
       "message": "Presubmit error \"v2/mokey-core-devs/device-boot-health-check-mokey\" seems not related with CL:\n```\npid: 2865, tid: 2872, name: Signal Catcher  \u003e\u003e\u003e com.android.phone \u003c\u003c\u003c\nuid: 1001\nsignal 6 (SIGABRT), code -1 (SI_QUEUE), fault addr --------\nAbort message: \u0027java.lang.String com.android.providers.telephony.protobuf.nano.CodedInputByteBufferNano.readString()@0x812791f0-81279438\nbyte com.android.providers.telephony.protobuf.nano.CodedInputByteBufferNano.readRawByte()@0x81279448-81279520\ncom.android.providers.telephony.nano.CarrierIdProto$CarrierAttribute com.android.providers.telephony.nano.CarrierIdProto$CarrierAttribute.clear()@0x81279530-81279654\nint com.android.providers.telephony.protobuf.nano.CodedInputByteBufferNano.getPosition()@0x81279660-8127968a\nvoid com.android.providers.telephony.protobuf.nano.MessageNano.\u003cinit\u003e()@0x81279698-812796fa\n```\n\nStart a rerun for this test case.",
       "revId": "960b19ceb213ff7f2b3ca4b47f3c50982ee6c436",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30f7f205_30c98d8b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956242
+      },
+      "writtenOn": "2023-10-23T19:43:48Z",
+      "side": 1,
+      "message": "Re-run pass `v2/mokey-core-devs/device-boot-health-check-mokey on mokey_go32-trunk_staging-userdebug`:\nhttps://android-build.corp.google.com/abtd/run/L31100000963657907/",
+      "revId": "960b19ceb213ff7f2b3ca4b47f3c50982ee6c436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
