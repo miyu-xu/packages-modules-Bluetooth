@@ -92,6 +92,30 @@
       },
       "revId": "95d428a04a04a81b4f4127b24dafb67f38a60872",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "888e96ff_34f56d04",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1717,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-23T18:21:06Z",
+      "side": 1,
+      "message": "I would prefer not adding special method for this, let\u0027s just use `setParameters` for aptx voice",
+      "parentUuid": "666d352d_1f1910f4",
+      "range": {
+        "startLine": 1717,
+        "startChar": 11,
+        "endLine": 1717,
+        "endChar": 40
+      },
+      "revId": "95d428a04a04a81b4f4127b24dafb67f38a60872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

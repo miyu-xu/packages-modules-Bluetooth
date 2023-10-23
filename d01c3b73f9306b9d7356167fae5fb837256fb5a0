@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b232813_fe665c48",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1643,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-23T18:21:06Z",
+      "side": 0,
+      "message": "this method is removed",
+      "range": {
+        "startLine": 1643,
+        "startChar": 8,
+        "endLine": 1643,
+        "endChar": 74
+      },
+      "revId": "d01c3b73f9306b9d7356167fae5fb837256fb5a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12216107_bfb03880",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1644,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-23T18:21:06Z",
+      "side": 0,
+      "message": "These changes require audio framework and audio HAL changes as well. Have we planned for this?\n\nOr should this behind a flag?",
+      "range": {
+        "startLine": 1639,
+        "startChar": 4,
+        "endLine": 1644,
+        "endChar": 98
+      },
+      "revId": "d01c3b73f9306b9d7356167fae5fb837256fb5a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
