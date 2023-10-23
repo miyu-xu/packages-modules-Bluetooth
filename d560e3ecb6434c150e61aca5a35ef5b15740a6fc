@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b897fac_5dc9e555",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-23T06:13:14Z",
+      "side": 1,
+      "message": "Are the routing rules being changed by this CL?",
+      "range": {
+        "startLine": 545,
+        "startChar": 16,
+        "endLine": 545,
+        "endChar": 70
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
