@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de4ccd03_4eba88ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956242
+      },
+      "writtenOn": "2023-10-23T18:00:34Z",
+      "side": 1,
+      "message": "Will merge ag/25152321 first and then this one",
+      "revId": "960b19ceb213ff7f2b3ca4b47f3c50982ee6c436",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
