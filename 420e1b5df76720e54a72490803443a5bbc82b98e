@@ -16,6 +16,92 @@
       "message": "hi William, those 2 flags are added for LEA planned API changes. could you help to take a look? thanks.",
       "revId": "420e1b5df76720e54a72490803443a5bbc82b98e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ced00971_2c8ddc40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T23:52:25Z",
+      "side": 1,
+      "message": "this CL will directly conflict with the other le_audio flag CL.\nDo you mind putting it on top of each other ?",
+      "revId": "420e1b5df76720e54a72490803443a5bbc82b98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be78cf8b_7aac07fc",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T23:52:25Z",
+      "side": 1,
+      "message": "Are you sure you want to go with `lea` for flag name ? I think `le_audio` would be more explicit",
+      "range": {
+        "startLine": 4,
+        "startChar": 11,
+        "endLine": 4,
+        "endChar": 14
+      },
+      "revId": "420e1b5df76720e54a72490803443a5bbc82b98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "713f1245_f6381c04",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T23:52:25Z",
+      "side": 1,
+      "message": "Can you create a flag bug within this component: [1387432](https://b.corp.google.com/issues?q\u003dstatus:open%20componentid:1387432\u0026s\u003dcreated_time:desc)",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "420e1b5df76720e54a72490803443a5bbc82b98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4420c648_4ff4079a",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T23:52:25Z",
+      "side": 1,
+      "message": "Can you create a flag bug within this component: [1387432](https://b.corp.google.com/issues?q\u003dstatus:open%20componentid:1387432\u0026s\u003dcreated_time:desc)",
+      "range": {
+        "startLine": 14,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 19
+      },
+      "revId": "420e1b5df76720e54a72490803443a5bbc82b98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
