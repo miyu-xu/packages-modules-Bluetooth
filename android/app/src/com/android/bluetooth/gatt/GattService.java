@@ -61,6 +61,7 @@ import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PackageManager.PackageInfoFlags;
 import android.content.res.Resources;
@@ -294,6 +295,7 @@ public class GattService extends ProfileService {
     private String mExposureNotificationPackage;
     private Handler mTestModeHandler;
     private ActivityManager mActivityManager;
+    private PackageManager mPackageManager;
     private final Object mTestModeLock = new Object();
 
     public GattService(Context ctx) {
@@ -367,6 +369,7 @@ public class GattService extends ProfileService {
                 .createDistanceMeasurementManager(mAdapterService);
 
         mActivityManager = getSystemService(ActivityManager.class);
+        mPackageManager = mAdapterService.getPackageManager();
 
         return true;
     }
@@ -3646,9 +3649,9 @@ public class GattService extends ProfileService {
         }
         statsLogAppPackage(address, attributionSource.getUid(), clientIf);
 
+        String packageName = mPackageManager.getPackagesForUid(attributionSource.getUid())[0];
         boolean isForegroundService =
-                mActivityManager.getUidImportance(attributionSource.getUid())
-                        == IMPORTANCE_FOREGROUND_SERVICE;
+                mActivityManager.getPackageImportance(packageName) == IMPORTANCE_FOREGROUND_SERVICE;
 
         if (isDirect) {
             MetricsLogger.getInstance().count(BluetoothProtoEnums.GATT_CLIENT_CONNECT_IS_DIRECT, 1);
@@ -4567,7 +4570,8 @@ public class GattService extends ProfileService {
             Log.d(TAG, "serverConnect() - address=" + address);
         }
 
-        int importance = mActivityManager.getUidImportance(attributionSource.getUid());
+        String packageName = mPackageManager.getPackagesForUid(attributionSource.getUid())[0];
+        int importance = mActivityManager.getPackageImportance(packageName);
         if (importance == IMPORTANCE_FOREGROUND_SERVICE) {
             MetricsLogger.getInstance()
                     .count(
