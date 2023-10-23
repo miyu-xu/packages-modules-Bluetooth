@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1220e1a_653d9a0e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1717,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-23T18:00:15Z",
+      "side": 1,
+      "message": "Do audio framework has a API for Aptx, I don\u0027t see this `setBluetoothHeadsetProperties` in [AudioManager](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:frameworks/base/media/java/android/media/AudioManager.java;l\u003d3707?q\u003dsetBluetoothHeadsetProperties\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main)",
+      "range": {
+        "startLine": 1717,
+        "startChar": 11,
+        "endLine": 1717,
+        "endChar": 40
+      },
+      "revId": "95d428a04a04a81b4f4127b24dafb67f38a60872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
