@@ -123,6 +123,24 @@
       "parentUuid": "a1954442_e99f4139",
       "revId": "6b998ab6242b493c49391b80ff835cd7da47036d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75c3ae0a_aca089bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T17:27:58Z",
+      "side": 1,
+      "message": "Ack, looks like flag is manager like this:\n```\nbool get_swb_supported() {\n  return osi_property_get_bool(\"bluetooth.hfp.swb.supported\", false) \u0026\u0026\n         bluetooth::common::init_flags::sco_codec_select_lc3_is_enabled();\n}\n```",
+      "parentUuid": "7ea5be68_d4747736",
+      "revId": "6b998ab6242b493c49391b80ff835cd7da47036d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
