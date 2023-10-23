@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59071069_86dd0f4d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2007,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-10-23T08:00:00Z",
+      "side": 0,
+      "message": "ah I see, so it\u0027s like we\u0027re changing the handling behavior for \"state !\u003d Idle\" when phone_ops_enabled \u003d\u003d True.",
+      "parentUuid": "46523fb6_3c2200a5",
+      "range": {
+        "startLine": 2007,
+        "startChar": 15,
+        "endLine": 2007,
+        "endChar": 56
+      },
+      "revId": "0a52cf7f25574f55c1719738439cecf2dd9b3a95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce843c52_ffb8a9dc",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 9
