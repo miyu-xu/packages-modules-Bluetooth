@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5d473e17_939675f6",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetNativeInterface.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-23T18:13:57Z",
+      "side": 1,
+      "message": "Could we remove these two methods always use the higher quality codec when it is available? \n\nThis optimization is bit unnecessary.",
+      "range": {
+        "startLine": 580,
+        "startChar": 0,
+        "endLine": 582,
+        "endChar": 76
+      },
+      "revId": "95d428a04a04a81b4f4127b24dafb67f38a60872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edc56a2b_26b75020",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-23T18:13:57Z",
+      "side": 1,
+      "message": "Could we remove this check and always use the higher quality codec when it is available? \n\nThis optimization is bit unnecessary.",
+      "range": {
+        "startLine": 679,
+        "startChar": 28,
+        "endLine": 679,
+        "endChar": 78
+      },
+      "revId": "95d428a04a04a81b4f4127b24dafb67f38a60872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1220e1a_653d9a0e",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 18
