@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d74a2866_87e0b06a",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-23T23:38:29Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "64a3a839_d9586e26",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 20
+      },
+      "revId": "000956ab56a2b39f3ab6b6a7ec2c91f74892ee33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "459abf98_d0ba56b8",
