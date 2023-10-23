@@ -362,7 +362,6 @@ void BTA_DmCloseACL(const RawAddress& bd_addr, bool remove_dev,
  ******************************************************************************/
 void BTA_DmBleObserve(bool start, uint8_t duration,
                       tBTA_DM_SEARCH_CBACK* p_results_cb) {
-  APPL_TRACE_API("%s:start = %d ", __func__, start);
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_ble_observe, start,
                                               duration, p_results_cb));
 }
@@ -384,7 +383,6 @@ void BTA_DmBleObserve(bool start, uint8_t duration,
  *
  ******************************************************************************/
 void BTA_DmBleScan(bool start, uint8_t duration_sec, bool low_latency_scan) {
-  APPL_TRACE_API("%s:start = %d ", __func__, start);
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_ble_scan, start,
                                               duration_sec, low_latency_scan));
 }
@@ -403,7 +401,6 @@ void BTA_DmBleScan(bool start, uint8_t duration_sec, bool low_latency_scan) {
  *
  ******************************************************************************/
 void BTA_DmBleCsisObserve(bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb) {
-  APPL_TRACE_API("%s:enable = %d ", __func__, observe);
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_ble_csis_observe, observe,
                                               p_results_cb));
 }
@@ -417,7 +414,7 @@ void BTA_DmBleCsisObserve(bool observe, tBTA_DM_SEARCH_CBACK* p_results_cb) {
  * Returns          void
  *
  ******************************************************************************/
-void BTA_VendorInit(void) { APPL_TRACE_API("BTA_VendorInit"); }
+void BTA_VendorInit(void) {}
 
 /*******************************************************************************
  *
@@ -429,7 +426,6 @@ void BTA_VendorInit(void) { APPL_TRACE_API("BTA_VendorInit"); }
  *
  ******************************************************************************/
 void BTA_DmClearEventFilter(void) {
-  APPL_TRACE_API("BTA_DmClearEventFilter");
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_clear_event_filter));
 }
 
@@ -443,7 +439,6 @@ void BTA_DmClearEventFilter(void) {
  *
  ******************************************************************************/
 void BTA_DmClearEventMask(void) {
-  APPL_TRACE_API("BTA_DmClearEventMask");
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_clear_event_mask));
 }
 
@@ -457,7 +452,6 @@ void BTA_DmClearEventMask(void) {
  *
  ******************************************************************************/
 void BTA_DmClearFilterAcceptList(void) {
-  APPL_TRACE_API("BTA_DmClearFilterAcceptList");
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_clear_filter_accept_list));
 }
 
@@ -471,7 +465,6 @@ void BTA_DmClearFilterAcceptList(void) {
  *
  ******************************************************************************/
 void BTA_DmLeRand(LeRandCallback cb) {
-  APPL_TRACE_API("BTA_DmLeRand");
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_le_rand, std::move(cb)));
 }
 
@@ -485,12 +478,10 @@ void BTA_DmLeRand(LeRandCallback cb) {
  *
  ******************************************************************************/
 void BTA_DmDisconnectAllAcls() {
-  APPL_TRACE_API("BTA_DmLeRand");
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_disconnect_all_acls));
 }
 
 void BTA_DmSetEventFilterConnectionSetupAllDevices() {
-  APPL_TRACE_API("BTA_DmSetEventFilterConnectionSetupAllDevices");
   do_in_main_thread(
       FROM_HERE,
       base::BindOnce(bta_dm_set_event_filter_connection_setup_all_devices));
@@ -499,7 +490,6 @@ void BTA_DmSetEventFilterConnectionSetupAllDevices() {
 void BTA_DmAllowWakeByHid(
     std::vector<RawAddress> classic_hid_devices,
     std::vector<std::pair<RawAddress, uint8_t>> le_hid_devices) {
-  APPL_TRACE_API("BTA_DmAllowWakeByHid");
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_allow_wake_by_hid,
                                               std::move(classic_hid_devices),
                                               std::move(le_hid_devices)));
@@ -507,20 +497,17 @@ void BTA_DmAllowWakeByHid(
 
 void BTA_DmRestoreFilterAcceptList(
     std::vector<std::pair<RawAddress, uint8_t>> le_devices) {
-  APPL_TRACE_API("BTA_DmRestoreFilterAcceptList");
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_restore_filter_accept_list,
                                               std::move(le_devices)));
 }
 
 void BTA_DmSetDefaultEventMaskExcept(uint64_t mask, uint64_t le_mask) {
-  APPL_TRACE_API("BTA_DmSetDefaultEventMaskExcept");
   do_in_main_thread(
       FROM_HERE,
       base::BindOnce(bta_dm_set_default_event_mask_except, mask, le_mask));
 }
 
 void BTA_DmSetEventFilterInquiryResultAllDevices() {
-  APPL_TRACE_API("BTA_DmSetEventFilterInquiryResultAllDevices");
   do_in_main_thread(
       FROM_HERE,
       base::BindOnce(bta_dm_set_event_filter_inquiry_result_all_devices));
@@ -536,7 +523,6 @@ void BTA_DmSetEventFilterInquiryResultAllDevices() {
  *
  ******************************************************************************/
 void BTA_DmBleResetId(void) {
-  APPL_TRACE_API("BTA_DmBleResetId");
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_ble_reset_id));
 }
 
@@ -559,7 +545,6 @@ void BTA_DmBleResetId(void) {
 void BTA_DmBleSubrateRequest(const RawAddress& bd_addr, uint16_t subrate_min,
                              uint16_t subrate_max, uint16_t max_latency,
                              uint16_t cont_num, uint16_t timeout) {
-  APPL_TRACE_API("%s", __func__);
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_ble_subrate_request,
                                               bd_addr, subrate_min, subrate_max,
                                               max_latency, cont_num, timeout));

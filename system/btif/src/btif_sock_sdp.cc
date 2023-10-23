@@ -89,9 +89,6 @@ static const tBTA_OP_FMT bta_ops_obj_fmt[OBEX_PUSH_NUM_FORMATS] = {
 // Returns true if successful, otherwise false.
 static bool create_base_record(const uint32_t sdp_handle, const char* name,
                                const uint16_t channel, const bool with_obex) {
-  APPL_TRACE_DEBUG("create_base_record: scn: %d, name: %s, with_obex: %d",
-                   channel, name, with_obex);
-
   // Setup the protocol list and add it.
   tSDP_PROTOCOL_ELEM proto_list[SDP_MAX_LIST_ELEMS];
   int num_proto_elements = with_obex ? 3 : 2;
@@ -131,14 +128,10 @@ static bool create_base_record(const uint32_t sdp_handle, const char* name,
           sdp_handle, ATTR_ID_BROWSE_GROUP_LIST, 1, &list))
     goto error;
 
-  APPL_TRACE_DEBUG(
-      "create_base_record: successfully created base service "
-      "record, handle: 0x%08x, scn: %d, name: %s, with_obex: %d",
-      sdp_handle, channel, name, with_obex);
   return true;
 
 error:
-  APPL_TRACE_ERROR(
+  LOG_ERROR(
       "create_base_record: failed to create base service "
       "record, stage: %s, scn: %d, name: %s, with_obex: %d",
       stage, channel, name, with_obex);
@@ -150,14 +143,10 @@ error:
 // class sequence.
 static int add_sdp_by_uuid(const char* name, const Uuid& uuid,
                            const uint16_t channel) {
-  APPL_TRACE_DEBUG("%s: uuid: %s, scn: %d, service_name: %s", __func__,
-                   uuid.ToString().c_str(), channel, name);
-
   uint32_t handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
   if (handle == 0) {
-    APPL_TRACE_ERROR(
-        "%s: failed to create sdp record, scn: %d, service_name: %s", __func__,
-        channel, name);
+    LOG_ERROR("%s: failed to create sdp record, scn: %d, service_name: %s",
+              __func__, channel, name);
     return 0;
   }
 
@@ -188,10 +177,6 @@ static int add_sdp_by_uuid(const char* name, const Uuid& uuid,
           &type_buf_ptr))
     goto error;
 
-  APPL_TRACE_DEBUG(
-      "%s: service registered successfully, service_name: %s, handle: 0x%08x",
-      __func__, name, handle);
-
   {
     // Write the custom 128-bit UUID to EIR
     tBTA_CUSTOM_UUID curr = {uuid, handle};
@@ -202,19 +187,17 @@ static int add_sdp_by_uuid(const char* name, const Uuid& uuid,
 
 error:
   get_legacy_stack_sdp_api()->handle.SDP_DeleteRecord(handle);
-  APPL_TRACE_ERROR("%s: failed to register service stage: %s, service_name: %s",
-                   __func__, stage, name);
+  LOG_ERROR("%s: failed to register service stage: %s, service_name: %s",
+            __func__, stage, name);
   return 0;
 }
 
 // Registers a service with the given |name| and |channel| in the SDP
 // database as a PBAP protocol.
 static int add_pbap_sdp(const char* name, const int channel) {
-  APPL_TRACE_DEBUG("add_pbap_sdp: scn %d, service_name %s", channel, name);
-
   uint32_t handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
   if (handle == 0) {
-    APPL_TRACE_ERROR(
+    LOG_ERROR(
         "add_pbap_sdp: failed to create sdp record, "
         "service_name: %s",
         name);
@@ -249,16 +232,12 @@ static int add_pbap_sdp(const char* name, const int channel) {
 
   // Notify the system that we've got a new service class UUID.
   bta_sys_add_uuid(UUID_SERVCLASS_PBAP_PSE);
-  APPL_TRACE_DEBUG(
-      "add_pbap_sdp: service registered successfully, "
-      "service_name: %s, handle: 0x%08x",
-      name, handle);
 
   return handle;
 
 error:
   get_legacy_stack_sdp_api()->handle.SDP_DeleteRecord(handle);
-  APPL_TRACE_ERROR(
+  LOG_ERROR(
       "add_pbap_sdp: failed to register PBAP service, stage: %s, "
       "service_name: %s",
       stage, name);
@@ -267,11 +246,9 @@ error:
 // Registers a service with the given |name| and |channel| as an OBEX Push
 // protocol.
 static int add_ops_sdp(const char* name, const int channel) {
-  APPL_TRACE_DEBUG("add_ops_sdp: scn %d, service_name %s", channel, name);
-
   uint32_t handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
   if (handle == 0) {
-    APPL_TRACE_ERROR(
+    LOG_ERROR(
         "add_ops_sdp: failed to create sdp record, "
         "service_name: %s",
         name);
@@ -325,16 +302,12 @@ static int add_ops_sdp(const char* name, const int channel) {
 
   // Notify the system that we've got a new service class UUID.
   bta_sys_add_uuid(UUID_SERVCLASS_OBEX_OBJECT_PUSH);
-  APPL_TRACE_DEBUG(
-      "ad_maps_sdp: service registered successfully, "
-      "service_name: %s, handle 0x%08x)",
-      name, handle);
 
   return handle;
 
 error:
   get_legacy_stack_sdp_api()->handle.SDP_DeleteRecord(handle);
-  APPL_TRACE_ERROR(
+  LOG_ERROR(
       "add_ops_sdp: failed to register OPS service, "
       "stage: %s, service_name: %s",
       stage, name);
@@ -344,11 +317,9 @@ error:
 // Registers a service with the given |name| and |channel| as a serial port
 // profile protocol.
 static int add_spp_sdp(const char* name, const int channel) {
-  APPL_TRACE_DEBUG("add_spp_sdp: scn %d, service_name %s", channel, name);
-
   int handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
   if (handle == 0) {
-    APPL_TRACE_ERROR(
+    LOG_ERROR(
         "add_spp_sdp: failed to create sdp record, "
         "service_name: %s",
         name);
@@ -372,16 +343,11 @@ static int add_spp_sdp(const char* name, const int channel) {
           handle, UUID_SERVCLASS_SERIAL_PORT, SPP_PROFILE_VERSION))
     goto error;
 
-  APPL_TRACE_DEBUG(
-      "add_spp_sdp: service registered successfully, "
-      "service_name: %s, handle 0x%08x)",
-      name, handle);
-
   return handle;
 
 error:
   get_legacy_stack_sdp_api()->handle.SDP_DeleteRecord(handle);
-  APPL_TRACE_ERROR(
+  LOG_ERROR(
       "add_spp_sdp: failed to register SPP service, "
       "stage: %s, service_name: %s",
       stage, name);
@@ -394,9 +360,6 @@ error:
 // number if the |uuid| matches one of the preregistered bluez SDP records.
 static int add_rfc_sdp_by_uuid(const char* name, const Uuid& uuid,
                                const int channel) {
-  APPL_TRACE_DEBUG("%s: uuid: %s, service_name: %s, channel: %d", __func__,
-                   uuid.ToString().c_str(), name, channel);
-
   /*
    * Bluetooth Socket API relies on having preregistered bluez sdp records for
    * HSAG, HFAG, OPP & PBAP that are mapped to rc chan 10, 11,12 & 19. Today
@@ -479,8 +442,6 @@ int add_rfc_sdp_rec(const char* name, Uuid uuid, const int channel) {
 
 // Deletes an SDP record with the given |handle|.
 void del_rfc_sdp_rec(int handle) {
-  APPL_TRACE_DEBUG("del_rfc_sdp_rec: handle:0x%x", handle);
-
   if ((handle != -1) && (handle != 0)) {
     // Remove the custom 128-bit UUID from EIR
     const tBTA_CUSTOM_UUID curr = {Uuid::kEmpty, (uint32_t)handle};

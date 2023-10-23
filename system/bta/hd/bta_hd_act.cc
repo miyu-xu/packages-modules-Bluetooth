@@ -88,8 +88,6 @@ void bta_hd_api_enable(tBTA_HD_DATA* p_data) {
   tBTA_HD_STATUS status = BTA_HD_ERROR;
   tHID_STATUS ret;
 
-  APPL_TRACE_API("%s", __func__);
-
   HID_DevInit();
 
   memset(&bta_hd_cb, 0, sizeof(tBTA_HD_CB));
@@ -101,7 +99,7 @@ void bta_hd_api_enable(tBTA_HD_DATA* p_data) {
   if (ret == HID_SUCCESS) {
     status = BTA_HD_OK;
   } else {
-    APPL_TRACE_ERROR("%s: Failed to register HID device (%d)", __func__, ret);
+    LOG_ERROR("%s: Failed to register HID device (%d)", __func__, ret);
   }
 
   /* signal BTA call back event */
@@ -123,8 +121,6 @@ void bta_hd_api_disable(void) {
   tBTA_HD_STATUS status = BTA_HD_ERROR;
   tHID_STATUS ret;
 
-  APPL_TRACE_API("%s", __func__);
-
   /* service is not enabled */
   if (bta_hd_cb.p_cback == NULL) return;
 
@@ -139,8 +135,8 @@ void bta_hd_api_disable(void) {
   if (ret == HID_SUCCESS) {
     status = BTA_HD_OK;
   } else {
-    APPL_TRACE_ERROR("%s: Failed to deregister HID device (%s)", __func__,
-                     hid_status_text(ret).c_str());
+    LOG_ERROR("%s: Failed to deregister HID device (%s)", __func__,
+              hid_status_text(ret).c_str());
   }
 
   tBTA_HD bta_hd;
@@ -164,8 +160,6 @@ void bta_hd_register_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_REGISTER_APP* p_app_data = (tBTA_HD_REGISTER_APP*)p_data;
   bool use_report_id = FALSE;
 
-  APPL_TRACE_API("%s", __func__);
-
   ret.reg_status.in_use = FALSE;
 
   /* Check if len doesn't exceed BTA_HD_APP_DESCRIPTOR_LEN and descriptor
@@ -174,7 +168,7 @@ void bta_hd_register_act(tBTA_HD_DATA* p_data) {
   if (p_app_data->d_len > BTA_HD_APP_DESCRIPTOR_LEN ||
       !check_descriptor(p_app_data->d_data, p_app_data->d_len,
                         &use_report_id)) {
-    APPL_TRACE_ERROR("%s: Descriptor is too long or malformed", __func__);
+    LOG_ERROR("%s: Descriptor is too long or malformed", __func__);
     ret.reg_status.status = BTA_HD_ERROR;
     (*bta_hd_cb.p_cback)(BTA_HD_REGISTER_APP_EVT, &ret);
     bluetooth::shim::CountCounterMetrics(
@@ -230,8 +224,6 @@ void bta_hd_register_act(tBTA_HD_DATA* p_data) {
 void bta_hd_unregister_act() {
   tBTA_HD_STATUS status = BTA_HD_OK;
 
-  APPL_TRACE_API("%s", __func__);
-
   // application is no longer registered so we do not want incoming connections
   HID_DevSetIncomingPolicy(FALSE);
 
@@ -257,8 +249,6 @@ void bta_hd_unregister_act() {
  *
  ******************************************************************************/
 void bta_hd_unregister2_act(tBTA_HD_DATA* p_data) {
-  APPL_TRACE_API("%s", __func__);
-
   // close first
   bta_hd_close_act(p_data);
 
@@ -284,17 +274,15 @@ void bta_hd_connect_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_DEVICE_CTRL* p_ctrl = (tBTA_HD_DEVICE_CTRL*)p_data;
   tBTA_HD cback_data;
 
-  APPL_TRACE_API("%s", __func__);
-
   ret = HID_DevPlugDevice(p_ctrl->addr);
   if (ret != HID_SUCCESS) {
-    APPL_TRACE_WARNING("%s: HID_DevPlugDevice returned %d", __func__, ret);
+    LOG_WARN("%s: HID_DevPlugDevice returned %d", __func__, ret);
     return;
   }
 
   ret = HID_DevConnect();
   if (ret != HID_SUCCESS) {
-    APPL_TRACE_WARNING("%s: HID_DevConnect returned %d", __func__, ret);
+    LOG_WARN("%s: HID_DevConnect returned %d", __func__, ret);
     return;
   }
 
@@ -317,12 +305,10 @@ void bta_hd_disconnect_act() {
   tHID_STATUS ret;
   tBTA_HD cback_data;
 
-  APPL_TRACE_API("%s", __func__);
-
   ret = HID_DevDisconnect();
 
   if (ret != HID_SUCCESS) {
-    APPL_TRACE_WARNING("%s: HID_DevDisconnect returned %d", __func__, ret);
+    LOG_WARN("%s: HID_DevDisconnect returned %d", __func__, ret);
     return;
   }
 
@@ -344,8 +330,6 @@ void bta_hd_disconnect_act() {
 void bta_hd_add_device_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_DEVICE_CTRL* p_ctrl = (tBTA_HD_DEVICE_CTRL*)p_data;
 
-  APPL_TRACE_API("%s", __func__);
-
   HID_DevPlugDevice(p_ctrl->addr);
 }
 
@@ -360,8 +344,6 @@ void bta_hd_add_device_act(tBTA_HD_DATA* p_data) {
  ******************************************************************************/
 void bta_hd_remove_device_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_DEVICE_CTRL* p_ctrl = (tBTA_HD_DEVICE_CTRL*)p_data;
-
-  APPL_TRACE_API("%s", __func__);
 
   HID_DevUnplugDevice(p_ctrl->addr);
 }
@@ -379,8 +361,6 @@ void bta_hd_send_report_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_SEND_REPORT* p_report = (tBTA_HD_SEND_REPORT*)p_data;
   uint8_t channel;
   uint8_t report_id;
-
-  APPL_TRACE_VERBOSE("%s", __func__);
 
   channel = p_report->use_intr ? HID_CHANNEL_INTR : HID_CHANNEL_CTRL;
   report_id =
@@ -407,12 +387,10 @@ void bta_hd_report_error_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_REPORT_ERR* p_report = (tBTA_HD_REPORT_ERR*)p_data;
   tHID_STATUS ret;
 
-  APPL_TRACE_API("%s: error = %d", __func__, p_report->error);
-
   ret = HID_DevReportError(p_report->error);
 
   if (ret != HID_SUCCESS) {
-    APPL_TRACE_WARNING("%s: HID_DevReportError returned %d", __func__, ret);
+    LOG_WARN("%s: HID_DevReportError returned %d", __func__, ret);
   }
 }
 
@@ -428,15 +406,12 @@ void bta_hd_report_error_act(tBTA_HD_DATA* p_data) {
 void bta_hd_vc_unplug_act() {
   tHID_STATUS ret;
 
-  APPL_TRACE_API("%s", __func__);
-
   bta_hd_cb.vc_unplug = TRUE;
 
   ret = HID_DevVirtualCableUnplug();
 
   if (ret != HID_SUCCESS) {
-    APPL_TRACE_WARNING("%s: HID_DevVirtualCableUnplug returned %d", __func__,
-                       ret);
+    LOG_WARN("%s: HID_DevVirtualCableUnplug returned %d", __func__, ret);
   }
 
   /* trigger PM */
@@ -456,8 +431,6 @@ void bta_hd_vc_unplug_act() {
 void bta_hd_open_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_CBACK_DATA* p_cback = (tBTA_HD_CBACK_DATA*)p_data;
   tBTA_HD cback_data;
-
-  APPL_TRACE_API("%s", __func__);
 
   HID_DevPlugDevice(p_cback->addr);
   bta_sys_conn_open(BTA_ID_HD, 1, p_cback->addr);
@@ -481,8 +454,6 @@ void bta_hd_close_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_CBACK_DATA* p_cback = (tBTA_HD_CBACK_DATA*)p_data;
   tBTA_HD cback_data;
   tBTA_HD_EVT cback_event = BTA_HD_CLOSE_EVT;
-
-  APPL_TRACE_API("%s", __func__);
 
   bta_sys_conn_close(BTA_ID_HD, 1, p_cback->addr);
 
@@ -513,8 +484,6 @@ void bta_hd_intr_data_act(tBTA_HD_DATA* p_data) {
   uint16_t len = p_msg->len;
   uint8_t* p_buf = (uint8_t*)(p_msg + 1) + p_msg->offset;
   tBTA_HD_INTR_DATA ret;
-
-  APPL_TRACE_API("%s", __func__);
 
   if (bta_hd_cb.use_report_id || bta_hd_cb.boot_mode) {
     if (len < 1) {
@@ -551,8 +520,6 @@ void bta_hd_get_report_act(tBTA_HD_DATA* p_data) {
   BT_HDR* p_msg = p_cback->p_data;
   uint8_t* p_buf = (uint8_t*)(p_msg + 1) + p_msg->offset;
   tBTA_HD_GET_REPORT ret = {0, 0, 0};
-
-  APPL_TRACE_API("%s", __func__);
 
   uint16_t remaining_len = p_msg->len;
   if (remaining_len < 1) {
@@ -600,8 +567,6 @@ void bta_hd_set_report_act(tBTA_HD_DATA* p_data) {
   uint8_t* p_buf = (uint8_t*)(p_msg + 1) + p_msg->offset;
   tBTA_HD_SET_REPORT ret = {0, 0, 0, NULL};
 
-  APPL_TRACE_API("%s", __func__);
-
   if (len < 1) {
     return;
   }
@@ -642,8 +607,6 @@ void bta_hd_set_protocol_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_CBACK_DATA* p_cback = (tBTA_HD_CBACK_DATA*)p_data;
   tBTA_HD cback_data;
 
-  APPL_TRACE_API("%s", __func__);
-
   bta_hd_cb.boot_mode = (p_cback->data == HID_PAR_PROTOCOL_BOOT_MODE);
   cback_data.set_protocol = p_cback->data;
 
@@ -662,8 +625,6 @@ void bta_hd_set_protocol_act(tBTA_HD_DATA* p_data) {
 void bta_hd_vc_unplug_done_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_CBACK_DATA* p_cback = (tBTA_HD_CBACK_DATA*)p_data;
   tBTA_HD cback_data;
-
-  APPL_TRACE_API("%s", __func__);
 
   bta_sys_conn_close(BTA_ID_HD, 1, p_cback->addr);
 
@@ -687,8 +648,6 @@ void bta_hd_vc_unplug_done_act(tBTA_HD_DATA* p_data) {
 void bta_hd_suspend_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_CBACK_DATA* p_cback = (tBTA_HD_CBACK_DATA*)p_data;
 
-  APPL_TRACE_API("%s", __func__);
-
   bta_sys_idle(BTA_ID_HD, 1, p_cback->addr);
 }
 
@@ -703,8 +662,6 @@ void bta_hd_suspend_act(tBTA_HD_DATA* p_data) {
  ******************************************************************************/
 void bta_hd_exit_suspend_act(tBTA_HD_DATA* p_data) {
   tBTA_HD_CBACK_DATA* p_cback = (tBTA_HD_CBACK_DATA*)p_data;
-
-  APPL_TRACE_API("%s", __func__);
 
   bta_sys_busy(BTA_ID_HD, 1, p_cback->addr);
   bta_sys_idle(BTA_ID_HD, 1, p_cback->addr);
@@ -723,8 +680,6 @@ static void bta_hd_cback(const RawAddress& bd_addr, uint8_t event,
                          uint32_t data, BT_HDR* pdata) {
   tBTA_HD_CBACK_DATA* p_buf = NULL;
   uint16_t sm_event = BTA_HD_INVALID_EVT;
-
-  APPL_TRACE_API("%s: event=%d", __func__, event);
 
   switch (event) {
     case HID_DHOST_EVT_OPEN:

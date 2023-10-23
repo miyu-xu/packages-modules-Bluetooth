@@ -55,7 +55,7 @@
  *
  ******************************************************************************/
 uint8_t bta_pan_co_init(uint8_t* q_level) {
-  BTIF_TRACE_API("bta_pan_co_init");
+  LOG_VERBOSE("bta_pan_co_init");
 
   /* set the q_level to 30 buffers */
   *q_level = 30;
@@ -76,11 +76,9 @@ uint8_t bta_pan_co_init(uint8_t* q_level) {
  *
  ******************************************************************************/
 void bta_pan_co_close(uint16_t handle, uint8_t app_id) {
-  BTIF_TRACE_API("bta_pan_co_close:app_id:%d, handle:%d", app_id, handle);
+  LOG_VERBOSE("bta_pan_co_close:app_id:%d, handle:%d", app_id, handle);
   btpan_conn_t* conn = btpan_find_conn_handle(handle);
   if (conn && conn->state == PAN_STATE_OPEN) {
-    BTIF_TRACE_DEBUG("bta_pan_co_close");
-
     // let bta close event reset this handle as it needs
     // the handle to find the connection upon CLOSE
     // conn->handle = -1;
@@ -119,15 +117,15 @@ void bta_pan_co_tx_path(uint16_t handle, uint8_t app_id) {
   bool ext;
   bool forward;
 
-  BTIF_TRACE_API("%s, handle:%d, app_id:%d", __func__, handle, app_id);
+  LOG_VERBOSE("%s, handle:%d, app_id:%d", __func__, handle, app_id);
 
   btpan_conn_t* conn = btpan_find_conn_handle(handle);
   if (!conn) {
-    BTIF_TRACE_ERROR("%s: cannot find pan connection", __func__);
+    LOG_ERROR("%s: cannot find pan connection", __func__);
     return;
   } else if (conn->state != PAN_STATE_OPEN) {
-    BTIF_TRACE_ERROR("%s: conn is not opened, conn:%p, conn->state:%d",
-                     __func__, conn, conn->state);
+    LOG_ERROR("%s: conn is not opened, conn:%p, conn->state:%d", __func__, conn,
+              conn->state);
     return;
   }
 
@@ -135,10 +133,6 @@ void bta_pan_co_tx_path(uint16_t handle, uint8_t app_id) {
     /* read next data buffer from pan */
     p_buf = bta_pan_ci_readbuf(handle, src, dst, &protocol, &ext, &forward);
     if (p_buf) {
-      BTIF_TRACE_DEBUG(
-          "%s, calling btapp_tap_send, "
-          "p_buf->len:%d, offset:%d",
-          __func__, p_buf->len, p_buf->offset);
       if (is_empty_eth_addr(conn->eth_addr) && is_valid_bt_eth_addr(src)) {
         VLOG(1) << __func__ << " pan bt peer addr: "
                 << ADDRESS_TO_LOGGABLE_STR(conn->peer)
@@ -168,7 +162,7 @@ void bta_pan_co_tx_path(uint16_t handle, uint8_t app_id) {
  ******************************************************************************/
 void bta_pan_co_rx_path(UNUSED_ATTR uint16_t handle,
                         UNUSED_ATTR uint8_t app_id) {
-  BTIF_TRACE_API("bta_pan_co_rx_path not used");
+  LOG_VERBOSE("bta_pan_co_rx_path not used");
 }
 
 /*******************************************************************************
@@ -187,7 +181,7 @@ void bta_pan_co_rx_path(UNUSED_ATTR uint16_t handle,
  ******************************************************************************/
 void bta_pan_co_rx_flow(UNUSED_ATTR uint16_t handle, UNUSED_ATTR uint8_t app_id,
                         UNUSED_ATTR bool enable) {
-  BTIF_TRACE_API("bta_pan_co_rx_flow, enabled:%d, not used", enable);
+  LOG_VERBOSE("bta_pan_co_rx_flow, enabled:%d, not used", enable);
   btpan_conn_t* conn = btpan_find_conn_handle(handle);
   if (!conn || conn->state != PAN_STATE_OPEN) return;
   btpan_set_flow_control(enable);
@@ -207,7 +201,7 @@ void bta_pan_co_pfilt_ind(UNUSED_ATTR uint16_t handle,
                           UNUSED_ATTR tBTA_PAN_STATUS result,
                           UNUSED_ATTR uint16_t len,
                           UNUSED_ATTR uint8_t* p_filters) {
-  BTIF_TRACE_API("bta_pan_co_pfilt_ind");
+  LOG_VERBOSE("bta_pan_co_pfilt_ind");
 }
 
 /*******************************************************************************
@@ -224,5 +218,5 @@ void bta_pan_co_mfilt_ind(UNUSED_ATTR uint16_t handle,
                           UNUSED_ATTR tBTA_PAN_STATUS result,
                           UNUSED_ATTR uint16_t len,
                           UNUSED_ATTR uint8_t* p_filters) {
-  BTIF_TRACE_API("bta_pan_co_mfilt_ind");
+  LOG_VERBOSE("bta_pan_co_mfilt_ind");
 }

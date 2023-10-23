@@ -67,7 +67,6 @@ static btsdp_callbacks_t* bt_sdp_callbacks = NULL;
 
 static void btif_sdp_search_comp_evt(uint16_t event, char* p_param) {
   tBTA_SDP_SEARCH_COMP* evt_data = (tBTA_SDP_SEARCH_COMP*)p_param;
-  BTIF_TRACE_DEBUG("%s:  event = %d", __func__, event);
 
   if (event != BTA_SDP_SEARCH_COMP_EVT) return;
 
@@ -118,8 +117,6 @@ static void sdp_dm_cback(tBTA_SDP_EVT event, tBTA_SDP* p_data,
 }
 
 static bt_status_t init(btsdp_callbacks_t* callbacks) {
-  BTIF_TRACE_DEBUG("Sdp Search %s", __func__);
-
   bt_sdp_callbacks = callbacks;
   sdp_server_init();
 
@@ -129,8 +126,6 @@ static bt_status_t init(btsdp_callbacks_t* callbacks) {
 }
 
 static bt_status_t deinit() {
-  BTIF_TRACE_DEBUG("Sdp Search %s", __func__);
-
   bt_sdp_callbacks = NULL;
   sdp_server_cleanup();
   btif_disable_service(BTA_SDP_SERVICE_ID);
@@ -148,7 +143,7 @@ static const btsdp_interface_t sdp_if = {
     remove_sdp_record};
 
 const btsdp_interface_t* btif_sdp_get_interface(void) {
-  BTIF_TRACE_DEBUG("%s", __func__);
+  
   return &sdp_if;
 }
 
@@ -162,8 +157,6 @@ const btsdp_interface_t* btif_sdp_get_interface(void) {
  *
  ******************************************************************************/
 bt_status_t btif_sdp_execute_service(bool b_enable) {
-  BTIF_TRACE_DEBUG("%s enable:%d", __func__, b_enable);
-
   if (b_enable) {
     BTA_SdpEnable(sdp_dm_cback);
   } else {
