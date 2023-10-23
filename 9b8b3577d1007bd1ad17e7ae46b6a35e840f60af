@@ -16,6 +16,29 @@
       "message": "Adding myles for hal review.\nAdding jack for vis as per recent bluetooth breakage.\n\nI am not able to validate this change",
       "revId": "9b8b3577d1007bd1ad17e7ae46b6a35e840f60af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d1de646_dbc85336",
+        "filename": "system/audio_hal_interface/hal_version_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-23T17:50:42Z",
+      "side": 1,
+      "message": "Add V4 here ?",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 51
+      },
+      "revId": "9b8b3577d1007bd1ad17e7ae46b6a35e840f60af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
