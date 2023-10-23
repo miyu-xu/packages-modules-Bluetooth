@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd23d8c8_5bec2a85",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-23T21:13:59Z",
+      "side": 1,
+      "message": "hi William, those 2 flags are added for LEA planned API changes. could you help to take a look? thanks.",
+      "revId": "420e1b5df76720e54a72490803443a5bbc82b98e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
