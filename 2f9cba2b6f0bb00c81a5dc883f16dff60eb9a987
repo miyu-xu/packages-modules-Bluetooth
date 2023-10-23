@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cdb86952_b53608bb",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1736,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-23T20:49:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "487db194_2c7b4072",
+      "range": {
+        "startLine": 1736,
+        "startChar": 0,
+        "endLine": 1736,
+        "endChar": 68
+      },
+      "revId": "2f9cba2b6f0bb00c81a5dc883f16dff60eb9a987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a0973bc_ee1845b5",
@@ -108,6 +132,30 @@
       "writtenOn": "2023-10-22T01:33:29Z",
       "side": 1,
       "message": "This is not formatted as the hook is configured. Can you make sure you are using the proper parameter when formatting the code ?",
+      "range": {
+        "startLine": 181,
+        "startChar": 53,
+        "endLine": 183,
+        "endChar": 52
+      },
+      "revId": "2f9cba2b6f0bb00c81a5dc883f16dff60eb9a987",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "327672bb_f98179d7",
+        "filename": "system/bta/le_audio/le_audio_health_status_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-23T20:49:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a0973bc_ee1845b5",
       "range": {
         "startLine": 181,
         "startChar": 53,

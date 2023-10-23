@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5927bc5a_a12d98d2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 1785,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-23T20:49:19Z",
+      "side": 1,
+      "message": "this is introduced by auto hook format tool. if i modify this line, it will cause other format compliant.\nto make this code logic more readable, I\u0027m keeping this.\nnot sure if we have a better way to resolve this, and I don\u0027t think we should remove BluetoothProtoEnums either.",
+      "revId": "9972f89c71bae893d57b6341bfa09d89c7ed924e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
