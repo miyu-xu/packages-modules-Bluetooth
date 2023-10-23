@@ -20,6 +20,41 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3389878b_35ff4d57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-23T21:11:19Z",
+      "side": 1,
+      "message": "wondering what\u0027s the next step of this and any possibility we can decouple this to unblock our native usage?",
+      "parentUuid": "9a1e867c_ca8458f2",
+      "revId": "71d4989e442265df6828d7081774773e99e20c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2763b71c_2911a142",
+        "filename": "flags/le_audio.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-23T21:11:19Z",
+      "side": 1,
+      "message": "could you help to update the description?\nmaybe \"Le audio device and group health actions for fallback mechanism\"",
+      "revId": "71d4989e442265df6828d7081774773e99e20c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "62c271e9_80e72f52",
         "filename": "system/bta/le_audio/le_audio_client_test.cc",
         "patchSetId": 1
@@ -31,6 +66,30 @@
       "writtenOn": "2023-10-22T04:39:49Z",
       "side": 1,
       "message": "@rongxuan@google.com:\nThis means that the test will be **IGNORED** as long as the flag is disabled (aka until released of the flag). As per the trunk stable guideline, you should run the test locally while the feature is in development.\n\nPutting the flag to true for test can manually be done by command shell, but you can also implement a test that will force the flag to true.\nThis can be done by using a provider instead of the static context.\nFor example, instead of getting the flag with `com::android::bluetooth::flags::leaudio_enable_health_based_actions()`, it would be fetched in 2 step\n```\n// get the provider during initialization of the stack\nnamespace bt_flags \u003d com::android::bluetooth::flags;\nbt_flags::flag_provider_interface* provider \u003d bt_flags::provider_.get();\n// Then get the flag with:\nprovider-\u003eleaudio_enable_health_based_actions()\n```\n\nWhile testing, we should fake the provider and initialize the stack with the fake.\nIn the custom provider you can override the flag you want to test. \nSee aosp/2790874 for an example in PhonePolicy, in java, where the constructor has been updated to take a flag provider in parameter.",
+      "range": {
+        "startLine": 2815,
+        "startChar": 18,
+        "endLine": 2815,
+        "endChar": 40
+      },
+      "revId": "71d4989e442265df6828d7081774773e99e20c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8262a11_388352f9",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2815,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-23T21:11:19Z",
+      "side": 1,
+      "message": "thanks William for this effort and sharing those details.\nI\u0027ve tested with your new flag locally, it looks good to enable/disable this feature.",
+      "parentUuid": "62c271e9_80e72f52",
       "range": {
         "startLine": 2815,
         "startChar": 18,
