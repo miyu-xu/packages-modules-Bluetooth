@@ -105,6 +105,24 @@
       "parentUuid": "1aae062c_7b386f2d",
       "revId": "6b998ab6242b493c49391b80ff835cd7da47036d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea5be68_d4747736",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-10-23T07:30:24Z",
+      "side": 1,
+      "message": "system/btif/src/btif_hf_client.cc#1086\nI\u0027ll check the hfp version \u003e\u003d 1.9 and check the feature flag \u0026 system prop.\n\nI think HFPC should use the same feature flag and system prop as HFP. If we want to disable LC3 on the device, should also disable the AG and HF role on the device at the same time.",
+      "parentUuid": "a1954442_e99f4139",
+      "revId": "6b998ab6242b493c49391b80ff835cd7da47036d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
