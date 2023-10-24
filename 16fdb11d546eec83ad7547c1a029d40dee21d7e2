@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9acac51b_e5a15fd2",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T00:52:45Z",
+      "side": 1,
+      "message": "I don\u0027t think the equal is valid for your futur usecase of codec with name.\nShouldn\u0027t you only compare the name ?",
+      "range": {
+        "startLine": 77,
+        "startChar": 47,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "16fdb11d546eec83ad7547c1a029d40dee21d7e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0361e3a_31365026",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T00:52:45Z",
+      "side": 1,
+      "message": "typo `static`",
+      "range": {
+        "startLine": 98,
+        "startChar": 48,
+        "endLine": 98,
+        "endChar": 53
+      },
+      "revId": "16fdb11d546eec83ad7547c1a029d40dee21d7e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0393d1bc_06378821",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T00:52:45Z",
+      "side": 1,
+      "message": "This is public and hide. Do we need it to be public or the package visibility will be enough ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 12
+      },
+      "revId": "16fdb11d546eec83ad7547c1a029d40dee21d7e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
