@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ef1a672_2a18948e",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-24T17:02:48Z",
+      "side": 1,
+      "message": "Rather than do this, why not just convert this to `VirtHci{}` and convert where the underlying value is wanted to use just `.to_i32()`. I think the only case where you want the non-logging value is in `config_util`",
+      "revId": "4d4d5b45b6863758f2f1b4c57cdaf6d56b597d4e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
