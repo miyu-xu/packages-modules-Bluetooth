@@ -12,6 +12,7 @@ aconfig_declarations {
         "bta_dm.aconfig",
         "framework.aconfig",
         "gap.aconfig",
+        "hal.aconfig",
         "hap.aconfig",
         "hfp.aconfig",
         "leaudio.aconfig",
