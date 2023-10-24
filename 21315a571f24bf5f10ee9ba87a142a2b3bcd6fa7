@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afaae209_51c8198a",
+        "filename": "system/internal_include/bt_trace.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-24T22:58:41Z",
+      "side": 1,
+      "message": "remove?  Maybe in the next CL?",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 253,
+        "endChar": 32
+      },
+      "revId": "21315a571f24bf5f10ee9ba87a142a2b3bcd6fa7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
