@@ -316,6 +316,9 @@
     },
     {
       "name": "net_test_types"
+    },
+    {
+      "name": "bluetooth_audio_hal_version_test"
     }
   ],
   "postsubmit": [
