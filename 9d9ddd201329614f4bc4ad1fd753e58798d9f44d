@@ -16,6 +16,24 @@
       "message": "please help to resolve the merge conflict and typo errors, it seems this conflicted with some recent change aosp/2781470.\nAlso could you add some manual test cases you\u0027ve done in the CL description?",
       "revId": "9d9ddd201329614f4bc4ad1fd753e58798d9f44d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f2a16c43_c3e61101",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-24T12:17:55Z",
+      "side": 1,
+      "message": "Sure, thank you for the reminder!",
+      "parentUuid": "05bc7cfc_71776dc3",
+      "revId": "9d9ddd201329614f4bc4ad1fd753e58798d9f44d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
