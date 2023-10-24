@@ -22,6 +22,30 @@
       },
       "revId": "e8eae6f998ea4b90e557e6a19a8d82845688dba3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4495d161_ad491382",
+        "filename": "android/app/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1800,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-10-24T03:21:37Z",
+      "side": 1,
+      "message": "I think it much better. Modified.",
+      "parentUuid": "4a769236_9963496a",
+      "range": {
+        "startLine": 1792,
+        "startChar": 16,
+        "endLine": 1800,
+        "endChar": 69
+      },
+      "revId": "e8eae6f998ea4b90e557e6a19a8d82845688dba3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
