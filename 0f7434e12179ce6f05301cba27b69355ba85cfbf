@@ -16,6 +16,24 @@
       "message": "nit: ifdef",
       "revId": "0f7434e12179ce6f05301cba27b69355ba85cfbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4e750f9_161f140c",
+        "filename": "system/gd/hci/remote_name_request.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-10-24T00:02:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1f2b044_46d6911e",
+      "revId": "0f7434e12179ce6f05301cba27b69355ba85cfbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
