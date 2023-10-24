@@ -49,6 +49,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1ace25d6_16ae2272",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-24T18:21:11Z",
+      "side": 1,
+      "message": "Even if it\u0027s in the same package as it\u0027s in an application Android/ART doesn\u0027t let us access it at runtime.",
+      "parentUuid": "38b856d4_b7c49966",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 10
+      },
+      "revId": "8408b5b81423cd6d5a3be47c7e5973f623be99cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c7dc497_cd1910f5",
         "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
         "patchSetId": 2
@@ -60,6 +84,30 @@
       "writtenOn": "2023-10-24T17:50:32Z",
       "side": 1,
       "message": "Do we need this ?\nDoesn\u0027t the test will fail at presubmit ?",
+      "range": {
+        "startLine": 2042,
+        "startChar": 0,
+        "endLine": 2042,
+        "endChar": 100
+      },
+      "revId": "8408b5b81423cd6d5a3be47c7e5973f623be99cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e6913e5_457a6107",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2042,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-24T18:21:11Z",
+      "side": 1,
+      "message": "Unfortunately no, as the test uses a Fake of the BluetoothManagerService that copy this behavior so I wanted to make it explicit that if you remove this here you need to update the test.\n\nDo you want me to add a comment explaining that?",
+      "parentUuid": "1c7dc497_cd1910f5",
       "range": {
         "startLine": 2042,
         "startChar": 0,
