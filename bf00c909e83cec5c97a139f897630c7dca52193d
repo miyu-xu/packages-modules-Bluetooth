@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d64f400f_3474bf93",
+        "filename": "system/test/mock/mock_stack_avrc_sdp.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-24T21:08:38Z",
+      "side": 1,
+      "message": "Did you want these commented out?  Should we commit this after the latest change?",
+      "range": {
+        "startLine": 62,
+        "startChar": 26,
+        "endLine": 62,
+        "endChar": 41
+      },
+      "revId": "bf00c909e83cec5c97a139f897630c7dca52193d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
