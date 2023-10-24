@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86e81d69_7df58f88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-10-24T11:49:04Z",
+      "side": 1,
+      "message": "Note:We chose not to import specific items from files like \"Btstatus\" and \"glib_call.\" Instead, we imported entire files to keep the code consistent with clients written by Google(advertising_client, scanner_client). For instance, we use \"from floss.pandora.floss import floss_enums\" rather than \"from floss.pandora.floss.floss_enums import BtStatus\" (even though import specific class will be better in clean code and performance perspective).",
+      "revId": "9980d9d118e644aeb3678064ce93ae8a6c3cd27e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
