@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4ded4e9_3a064026",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 927,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-24T18:36:50Z",
+      "side": 1,
+      "message": "I notice previously this was MSG_STOP_CONNECTING - just want to confirm the messages in different scenarios are as expected, can you please confirm before I approve?\n\nIf this is correct, I think the if statements could be combined to a single check here.",
+      "range": {
+        "startLine": 927,
+        "startChar": 34,
+        "endLine": 927,
+        "endChar": 54
+      },
+      "revId": "749a9ceb05b2f9bb9740db154abfb724e2ed84ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97d8cbe5_795ac50b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 1381,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-24T18:36:50Z",
+      "side": 1,
+      "message": "Thanks for writing a test for this!",
+      "range": {
+        "startLine": 1381,
+        "startChar": 16,
+        "endLine": 1381,
+        "endChar": 77
+      },
+      "revId": "749a9ceb05b2f9bb9740db154abfb724e2ed84ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
