@@ -16,6 +16,24 @@
       "message": "Hi Chris,\n\nDid you had a look into the Presubmit failure ? I am afraid the test has flakiness:\n```\norg.junit.runners.model.TestTimedOutException: test timed out after 300000 milliseconds\n\tat jdk.internal.misc.Unsafe.park(Native Method)\n\tat java.util.concurrent.locks.LockSupport.park(LockSupport.java:211)\n\tat com.google.common.util.concurrent.AbstractFuture.get(AbstractFuture.java:561)\n\tat com.google.common.util.concurrent.AbstractFuture$TrustedFuture.get(AbstractFuture.java:111)\n\tat com.google.common.util.concurrent.SettableFuture.get(SettableFuture.java:0)\n\tat android.bluetooth.SdpClientTest.remoteConnectServiceDiscoveryTest(SdpClientTest.java:102)\n```",
       "revId": "dcf1e574265af07ca70659c4511ea5b90e3889b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7b77e9b_30abfe44",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-24T17:42:29Z",
+      "side": 1,
+      "message": "I set up Avatar office hours to help guide through bumble flakiness",
+      "parentUuid": "fed4c01b_45b0f3e5",
+      "revId": "dcf1e574265af07ca70659c4511ea5b90e3889b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
