@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a7feab0_8c6b19f7",
+        "filename": "system/stack/btm/btm_int_types.h",
+        "patchSetId": 27
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-24T01:52:06Z",
+      "side": 1,
+      "message": "nit: Remove",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 0
+      },
+      "revId": "2bf4fd920a3c13abbad7362a25cdfd93301bee9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a73fc1a_30bd9f25",
+        "filename": "system/stack/test/btm/stack_btm_test.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-24T01:52:06Z",
+      "side": 1,
+      "message": "nit: remove",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 20
+      },
+      "revId": "2bf4fd920a3c13abbad7362a25cdfd93301bee9c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
