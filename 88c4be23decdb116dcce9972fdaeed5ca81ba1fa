@@ -472,6 +472,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7d1afc19_6e477513",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T00:38:08Z",
+      "side": 1,
+      "message": "You put done but you are still looking at SOURCE_CODEC_TYPE_OPUS",
+      "parentUuid": "55fc1a46_b5607ff1",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 68
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "84e398cd_bb4ea890",
         "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
         "patchSetId": 6
