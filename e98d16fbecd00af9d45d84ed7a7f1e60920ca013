@@ -190,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e15971b_1efe4b91",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T01:16:12Z",
+      "side": 1,
+      "message": "No, it will be the bug that will \"hold\" the flag.\nMeaning that all futur CL that reference this flag should ideally also reference the flag bug.\nConsider the flag bug as an \"umbrella\" bug for all future changes.",
+      "parentUuid": "e011c6fd_7382c5a6",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "e98d16fbecd00af9d45d84ed7a7f1e60920ca013",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2a45273e_edf97180",
