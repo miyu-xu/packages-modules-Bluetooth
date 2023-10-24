@@ -19,6 +19,7 @@ package com.android.bluetooth.le_audio;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
+
 import static com.android.bluetooth.Utils.enforceBluetoothPrivilegedPermission;
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
@@ -1272,8 +1273,36 @@ public class LeAudioService extends ProfileService {
             return false;
         }
 
+        if (allLeAudioDevicesConnected()) {
+            Log.d(TAG, "isScannerNeeded: all devices connected, scanner not needed");
+            return false;
+        }
+
         if (DBG) {
             Log.d(TAG, "isScannerNeeded: true");
+        }
+        return true;
+    }
+
+    boolean allLeAudioDevicesConnected() {
+        synchronized (mGroupLock) {
+            for (Map.Entry<BluetoothDevice, LeAudioDeviceDescriptor> deviceEntry :
+                    mDeviceDescriptors.entrySet()) {
+                LeAudioDeviceDescriptor deviceDescriptor = deviceEntry.getValue();
+
+                if (deviceDescriptor.mStateMachine == null) {
+                    /* Lack of state machine means device is not connected */
+                    return false;
+                }
+
+                if (!deviceDescriptor
+                        .mStateMachine
+                        .getCurrentState()
+                        .getName()
+                        .equals("Connected")) {
+                    return false;
+                }
+            }
         }
         return true;
     }
