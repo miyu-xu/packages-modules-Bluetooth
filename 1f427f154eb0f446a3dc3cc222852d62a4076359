@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b710a5e_3af6aa05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-24T16:54:10Z",
+      "side": 1,
+      "message": "nit: Use `floss:` as prefix.",
+      "revId": "1f427f154eb0f446a3dc3cc222852d62a4076359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1e130be_3fd61eed",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-24T16:54:10Z",
+      "side": 1,
+      "message": "`ReadIndexList` will not return HCI if it is currently in use via `HCI_USERCHANNEL`. Can you confirm whether we correctly handle the case of btmanagerd restarting while there are existing btadapterd instances running?",
+      "revId": "1f427f154eb0f446a3dc3cc222852d62a4076359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
