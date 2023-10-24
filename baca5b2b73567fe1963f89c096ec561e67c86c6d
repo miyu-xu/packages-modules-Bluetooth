@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc3c205c_865afe4d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-24T01:14:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "856c197b_49b4ea67",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "baca5b2b73567fe1963f89c096ec561e67c86c6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b49c4e8_339169f4",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-24T01:01:45Z",
       "side": 1,
       "message": "Should this be flagged too ?",
+      "range": {
+        "startLine": 1102,
+        "startChar": 12,
+        "endLine": 1106,
+        "endChar": 13
+      },
+      "revId": "baca5b2b73567fe1963f89c096ec561e67c86c6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c957794_ddeb8f4d",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-24T01:14:34Z",
+      "side": 1,
+      "message": "Acknowledged, will do, still testing this change.",
+      "parentUuid": "1b49c4e8_339169f4",
       "range": {
         "startLine": 1102,
         "startChar": 12,
