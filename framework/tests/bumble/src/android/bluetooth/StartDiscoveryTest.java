@@ -1,0 +1,81 @@
+/*
+ * Copyright (C) 2023 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package android.bluetooth;
+
+import static com.google.common.truth.Truth.assertThat;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.runner.AndroidJUnit4;
+
+import com.android.compatibility.common.util.AdoptShellPermissionsRule;
+
+import com.google.common.util.concurrent.SettableFuture;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+/** Test cases for {@link DeviceDiscoveryManager}. */
+@RunWith(AndroidJUnit4.class)
+public class StartDiscoveryTest {
+    private static final String TAG = "StartDiscoveryTest";
+
+    private final Context mContext = ApplicationProvider.getApplicationContext();
+    private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
+    private final BluetoothAdapter mAdapter = mManager.getAdapter();
+
+    private SettableFuture<String> mFutureIntent;
+
+    @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
+
+    @Rule public final PandoraDevice mBumble = new PandoraDevice();
+
+    private BroadcastReceiver mConnectionStateReceiver =
+            new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(intent.getAction())) {
+                        mFutureIntent.set(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+                    } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(
+                            intent.getAction())) {
+                        mFutureIntent.set(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+                    }
+                }
+            };
+
+    @Test
+    public void startDeviceDiscoveryTest() throws Exception {
+        IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        mContext.registerReceiver(mConnectionStateReceiver, filter);
+
+        mFutureIntent = SettableFuture.create();
+        assertThat(mAdapter.startDiscovery()).isTrue();
+        assertThat(mFutureIntent.get()).isEqualTo(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+
+        // Wait for device discovery to complete
+        mFutureIntent = SettableFuture.create();
+        assertThat(mFutureIntent.get()).isEqualTo(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+
+        mContext.unregisterReceiver(mConnectionStateReceiver);
+    }
+}
