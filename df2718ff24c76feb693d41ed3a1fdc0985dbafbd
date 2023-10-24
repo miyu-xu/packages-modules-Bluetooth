@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54310030_1868fc16",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-24T20:36:53Z",
+      "side": 1,
+      "message": "nit: Since this appears to already be on the handler, would it make sense to call handleClearConnecting state directly here instead to make the handling consistent between line 930 and 934?",
+      "range": {
+        "startLine": 934,
+        "startChar": 20,
+        "endLine": 934,
+        "endChar": 70
+      },
+      "revId": "df2718ff24c76feb693d41ed3a1fdc0985dbafbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
