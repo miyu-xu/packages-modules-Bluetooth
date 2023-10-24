@@ -74,6 +74,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cb0342a3_51b7a4e6",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T01:10:20Z",
+      "side": 1,
+      "message": "Yes, they should call it as soon as possible.\n\nideally, the profilesServices should no longer be called on there own with a startIntent, but be created with a direct call from the constructor, I would like at this point the flag to be a parameter to the constructor.\n\nMeantime, creating an instance of FeatureFlagsImpl looks like the best alternative...\nWdyt ?",
+      "parentUuid": "841b1bd2_63f969c7",
+      "revId": "4bca6523c10a7bba3a26d288891c8022368ee5e4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8218caf_934a1aa5",
         "filename": "flags/Android.bp",
         "patchSetId": 3
