@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ad68757_7f236fce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-24T08:22:39Z",
+      "side": 1,
+      "message": "I\u0027m just wondering if there should be a \"warning\" when LeAudio HAL version would be",
+      "revId": "ac2e66ce2681f6b9c2768ed7cc7036e7f9bacd81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
