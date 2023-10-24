@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20ab7b09_3b426eb7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T18:46:39Z",
+      "side": 1,
+      "message": "Or merged them together ?\nI think it is reasonable since the change is still very contained.\nBy doing so the whole change will be tracked as flagged, but right now only part of it is officially flagged, and if we reverting one, we will not revert the whole changes\n\nHappy to chat about it if you want",
+      "parentUuid": "fef697dc_ba808c66",
+      "revId": "749a9ceb05b2f9bb9740db154abfb724e2ed84ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4ded4e9_3a064026",
         "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
         "patchSetId": 13
