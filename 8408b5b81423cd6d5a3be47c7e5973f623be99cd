@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dedd022_6ee08f29",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T18:27:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1ace25d6_16ae2272",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 10
+      },
+      "revId": "8408b5b81423cd6d5a3be47c7e5973f623be99cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c7dc497_cd1910f5",
@@ -108,6 +132,30 @@
       "side": 1,
       "message": "Unfortunately no, as the test uses a Fake of the BluetoothManagerService that copy this behavior so I wanted to make it explicit that if you remove this here you need to update the test.\n\nDo you want me to add a comment explaining that?",
       "parentUuid": "1c7dc497_cd1910f5",
+      "range": {
+        "startLine": 2042,
+        "startChar": 0,
+        "endLine": 2042,
+        "endChar": 100
+      },
+      "revId": "8408b5b81423cd6d5a3be47c7e5973f623be99cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6e32b94_12cdf700",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2042,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T18:27:48Z",
+      "side": 1,
+      "message": "No, thanks for the explanation, we are good !",
+      "parentUuid": "5e6913e5_457a6107",
       "range": {
         "startLine": 2042,
         "startChar": 0,
