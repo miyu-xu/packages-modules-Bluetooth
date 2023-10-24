@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7de4b7b9_7c245245",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-24T01:12:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62a3afa7_aaa5ae12",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "e98d16fbecd00af9d45d84ed7a7f1e60920ca013",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "129a5606_3bb4c347",
@@ -73,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7165d11_a139938a",
+        "filename": "flags/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-24T01:12:06Z",
+      "side": 1,
+      "message": "cool, aosp/2798674, still wip for cts test with flags.",
+      "parentUuid": "129a5606_3bb4c347",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 54
+      },
+      "revId": "e98d16fbecd00af9d45d84ed7a7f1e60920ca013",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a9b432c9_a7a5c4cb",
         "filename": "flags/leaudio.aconfig",
         "patchSetId": 2
@@ -84,6 +132,30 @@
       "writtenOn": "2023-10-24T00:59:06Z",
       "side": 1,
       "message": "can you replace with 307406671 ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "e98d16fbecd00af9d45d84ed7a7f1e60920ca013",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e011c6fd_7382c5a6",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-24T01:12:06Z",
+      "side": 1,
+      "message": "ah, i thought this was the bug id, updated.",
+      "parentUuid": "a9b432c9_a7a5c4cb",
       "range": {
         "startLine": 7,
         "startChar": 10,
@@ -107,6 +179,30 @@
       "writtenOn": "2023-10-24T00:59:06Z",
       "side": 1,
       "message": "can you replace with 307408418 ?",
+      "range": {
+        "startLine": 14,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 19
+      },
+      "revId": "e98d16fbecd00af9d45d84ed7a7f1e60920ca013",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "92deeb8e_9590c27b",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-24T01:12:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2a45273e_edf97180",
       "range": {
         "startLine": 14,
         "startChar": 10,
