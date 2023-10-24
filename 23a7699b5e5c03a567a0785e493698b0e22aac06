@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f350683e_4166e82c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-24T22:20:08Z",
+      "side": 1,
+      "message": "It should be \n```\nHID host should not start SDP ...\n```",
+      "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06f77a16_9c60d217",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1360,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-24T22:20:08Z",
+      "side": 1,
+      "message": "It would be a good idea to check this condition separately and log it.",
+      "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8e5ec87_d630fa49",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-24T22:20:08Z",
+      "side": 1,
+      "message": "Should we send back an error if the service discovery is blocked?",
+      "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63ef1fe4_8cede448",
+        "filename": "system/stack/hid/hidh_api.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-24T22:20:08Z",
+      "side": 1,
+      "message": "I wonder if it would have been simpler to return a boolean from here to inform the Service Discovery module if it should proceed with service discovery or not.\nThe Service Discovery module should not need to know what HID attributes are.",
+      "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
