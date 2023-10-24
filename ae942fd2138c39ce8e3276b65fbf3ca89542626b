@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a50cab5_a8ebb933",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-24T20:19:15Z",
+      "side": 1,
+      "message": "What is the bug? We need to understand the problem before allowing the scanning interval to be reduced to 1/4 the original value.",
+      "revId": "ae942fd2138c39ce8e3276b65fbf3ca89542626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
