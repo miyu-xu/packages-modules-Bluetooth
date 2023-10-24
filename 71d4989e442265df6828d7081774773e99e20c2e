@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "763a3421_d0843ca6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T23:41:15Z",
+      "side": 1,
+      "message": "Looks like the implementation may take a while.\nI have flag with ifdef android meantime, to not block this and allow other native flag to go in",
+      "parentUuid": "b2d2db15_ce4a49b1",
+      "revId": "71d4989e442265df6828d7081774773e99e20c2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2763b71c_2911a142",

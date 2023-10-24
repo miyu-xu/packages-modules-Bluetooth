@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "850f80dd_1a5c4cff",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T23:41:15Z",
+      "side": 1,
+      "message": "FYI:\nWe usually doesn\u0027t change the CL author even when doing a rebase with conflict\n(see diff patchset 3 to 4).\n\nI fixed that in patchset 6",
+      "revId": "072dbf0a149eabd8f1baebe0daeaf1ec15ad15ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "2d2bf14c_bdfd3737",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
