@@ -46,6 +46,30 @@
       },
       "revId": "df2718ff24c76feb693d41ed3a1fdc0985dbafbd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e491eefc_c63713ef",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 934,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-10-24T20:52:49Z",
+      "side": 1,
+      "message": "Making it a direct call based on our offline sync. Recording the reasoning here --\n\n\"Generally Android handlers should handle things in order, so MSG_STOP_CONNECTION should be executed next even if another event is queued just after, so in practice it shouldn\u0027t be much different than calling the method directly at the same time\"\n\nAlso since Flags gives a certain degree of protection against regressions, we should be able to test this in a controlled manner (and avoid any unexpected regression).",
+      "parentUuid": "80ab62ab_6d3f6f3e",
+      "range": {
+        "startLine": 934,
+        "startChar": 20,
+        "endLine": 934,
+        "endChar": 70
+      },
+      "revId": "df2718ff24c76feb693d41ed3a1fdc0985dbafbd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
