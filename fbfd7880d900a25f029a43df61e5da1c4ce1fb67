@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a54cb26c_2be70220",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-24T03:29:59Z",
+      "side": 1,
+      "message": "Question: will this patch introduce a 3-second scanning window regression?\n\nYing: No, this patch will not introduce a 3-second scanning window or 100% scanning duty cycle regression. Let\u0027s wait for Archie\u0027s feedback.\n\nThe 3-second scanning window is a default value from libbluetooth [1]. Chrome has its own settings, which is empty currently [2]. The issue that causing 3-second scanning window has been fixed in floss daemon (b/298602709). \n\nOlder versions of Chrome (before [3]) are not expected to be deployed with the new Floss daemon that includes this patch. However, even if they are deployed together, there will be no regression because the Floss daemon interprets an empty ScanSettings object from Chrome as absl::nullopt [4]. This will cause the Floss daemon to use proper default scanning window, which is not affected by this patch.\n\nIn short, there is no need to worry about version skew between Chrome and the Floss daemon with this patch.\n\n[1] https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/hci/le_scanning_manager.cc;l\u003d46?q\u003dbluetooth%20scan%20window%204800\n\n[2] https://source.chromium.org/chromium/chromium/src/+/main:device/bluetooth/floss/floss_lescan_client.h;l\u003d40;drc\u003dabbfc06e9b070c9ea64af2b233624646cef00252;bpv\u003d1;bpt\u003d1\n\n[3] https://chromium-review.googlesource.com/c/chromium/src/+/4957282\n\n[4] https://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/gd/rust/linux/dbus_projection/dbus_macros/src/lib.rs;l\u003d1326;bpv\u003d1",
+      "revId": "fbfd7880d900a25f029a43df61e5da1c4ce1fb67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
