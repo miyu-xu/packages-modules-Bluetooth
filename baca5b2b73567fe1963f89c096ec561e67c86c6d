@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "856c197b_49b4ea67",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T01:01:45Z",
+      "side": 1,
+      "message": "can you also reference b/307406671 ?  since you are working with this flaag: leaudio_broadcast_monitor_source_sync_status",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "baca5b2b73567fe1963f89c096ec561e67c86c6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b49c4e8_339169f4",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1106,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T01:01:45Z",
+      "side": 1,
+      "message": "Should this be flagged too ?",
+      "range": {
+        "startLine": 1102,
+        "startChar": 12,
+        "endLine": 1106,
+        "endChar": 13
+      },
+      "revId": "baca5b2b73567fe1963f89c096ec561e67c86c6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
