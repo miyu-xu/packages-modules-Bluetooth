@@ -17,6 +17,7 @@
 
 #include <base/functional/bind.h>
 #include <base/strings/string_number_conversions.h>
+#include <com_android_bluetooth_flags.h>
 #include <lc3.h>
 
 #include <deque>
@@ -249,7 +250,7 @@ class LeAudioClientImpl : public LeAudioClient {
       reconnection_mode_ = BTM_BLE_BKG_CONNECT_ALLOW_LIST;
     }
 
-    if (bluetooth::common::InitFlags::IsLeAudioHealthBasedActionsEnabled()) {
+    if (com::android::bluetooth::flags::leaudio_enable_health_based_actions()) {
       LOG_INFO("Loading health status module");
       leAudioHealthStatus_ = LeAudioHealthStatus::Get();
       leAudioHealthStatus_->RegisterCallback(
