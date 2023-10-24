@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c38f92d7_d5e44c9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-10-24T18:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7faa3e1a_464f9c81",
+      "revId": "89fc1262a0086effce5162a1ec05e18a77c3b478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9a3aa67d_1e7e02d9",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9e274ab_d17d0b0c",
+        "filename": "system/gd/rust/linux/mgmt/src/iface_bluetooth_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-10-24T18:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a3aa67d_1e7e02d9",
+      "revId": "89fc1262a0086effce5162a1ec05e18a77c3b478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1459025_9fe46beb",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-10-24T16:50:34Z",
       "side": 1,
       "message": "Merge into match here instead with tablet_mode:\n\n```\nmatch (tablet_mode, suspend_imminent.get_reason()) {\n  // No wakes allowed on tablet mode\n  (true, _) \u003d\u003e SuspendType::NoWakesAllowed,\n  \n  // When not in tablet mode, choose wake type based on suspend reason\n  (false, SuspendImminent_Reason::IDLE) \u003d\u003e SuspendType::AllowWakeFromHid,\n  (false, SuspendImminent_Reason::LID_CLOSED) \u003d\u003e SuspendType::NoWakesAllowed,\n  (false, SuspendImminent_Reason::OTHER) \u003d\u003e SuspendType::Other,\n}\n```",
+      "revId": "89fc1262a0086effce5162a1ec05e18a77c3b478",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d6879d44_b61fc191",
+        "filename": "system/gd/rust/linux/mgmt/src/powerd_suspend_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-10-24T18:04:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1459025_9fe46beb",
       "revId": "89fc1262a0086effce5162a1ec05e18a77c3b478",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
