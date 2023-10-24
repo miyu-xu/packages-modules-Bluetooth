@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a289036a_1c756cc6",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-24T17:48:32Z",
+      "side": 1,
+      "message": "I think you wanted to write\n```suggestion\n    /** @hide */\n```\nBut...\nI am not sure it matter since the whole BluetoothProfileConnector is hidden\n\n\n---------\n\n\nPlease fix this WARNING reported by Error Prone: [InvalidInlineTag] Tag name `hide` is unknown. If this is a commonly-used custom tag, please click \u0027not useful\u0027 and file a bug.\n\n    [InvalidInlineTag] Tag name `hide` is unknown. If this is a commonly-used custom tag, please click \u0027not useful\u0027 and file a bug.\n        /** {@hide} */\n            ^\n        (see https://errorprone.info/bugpattern/InvalidInlineTag)",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 18
+      },
+      "revId": "8408b5b81423cd6d5a3be47c7e5973f623be99cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
