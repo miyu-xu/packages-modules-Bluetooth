@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fb7a97f_a4ba0020",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-24T15:12:10Z",
+      "side": 1,
+      "message": "what about checking connection state `deviceDescriptor.mStateMachine.getConnectionState()` ?",
+      "revId": "72149cd76b89234e123b4a16072f76d7e5c55982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
