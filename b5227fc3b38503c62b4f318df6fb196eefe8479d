@@ -16,6 +16,24 @@
       "message": "could you help to fix those lint typos? the rest looks fine to me.",
       "revId": "b5227fc3b38503c62b4f318df6fb196eefe8479d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9687068c_9c1beb38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-10-24T12:18:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "47c730f8_320f9182",
+      "revId": "b5227fc3b38503c62b4f318df6fb196eefe8479d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
