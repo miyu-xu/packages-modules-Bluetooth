@@ -49,3 +49,8 @@ typedef struct {
   uint16_t product_id;
   interop_feature_t feature;
 } interop_hid_multitouch_t;
+
+typedef struct {
+  char uuid[37];
+  interop_feature_t feature;
+} interop_uuid_entry_t;
