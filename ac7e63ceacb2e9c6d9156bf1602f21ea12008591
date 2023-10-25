@@ -46,6 +46,30 @@
       },
       "revId": "ac7e63ceacb2e9c6d9156bf1602f21ea12008591",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa052d8a_7cd80e64",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T22:26:57Z",
+      "side": 1,
+      "message": "Ack, Too late for that then ^^\u0027",
+      "parentUuid": "24345626_39be45ff",
+      "range": {
+        "startLine": 252,
+        "startChar": 7,
+        "endLine": 252,
+        "endChar": 14
+      },
+      "revId": "ac7e63ceacb2e9c6d9156bf1602f21ea12008591",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
