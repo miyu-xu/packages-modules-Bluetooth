@@ -105,10 +105,6 @@ static void btu_hcif_create_conn_cancel_complete(const uint8_t* p,
 static void btu_hcif_read_local_oob_complete(const uint8_t* p,
                                              uint16_t evt_len);
 
-/* Simple Pairing Events */
-static void btu_hcif_io_cap_request_evt(const uint8_t* p);
-static void btu_hcif_io_cap_response_evt(const uint8_t* p);
-
 static void btu_ble_ll_conn_param_upd_evt(uint8_t* p, uint16_t evt_len);
 static void btu_ble_proc_ltk_req(uint8_t* p, uint16_t evt_len);
 static void btu_hcif_encryption_key_refresh_cmpl_evt(uint8_t* p);
@@ -130,8 +126,6 @@ static void btu_hcif_log_event_metrics(uint8_t evt_code,
 
   RawAddress bda = RawAddress::kEmpty;
   switch (evt_code) {
-    case HCI_IO_CAPABILITY_REQUEST_EVT:
-    case HCI_IO_CAPABILITY_RESPONSE_EVT:
     case HCI_LINK_KEY_REQUEST_EVT:
     case HCI_LINK_KEY_NOTIFICATION_EVT:
     case HCI_USER_PASSKEY_REQUEST_EVT:
@@ -302,12 +296,6 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
       break;
     case HCI_RMT_HOST_SUP_FEAT_NOTIFY_EVT:
       btu_hcif_sec_rmt_host_support_feat_evt(p);
-      break;
-    case HCI_IO_CAPABILITY_REQUEST_EVT:
-      btu_hcif_io_cap_request_evt(p);
-      break;
-    case HCI_IO_CAPABILITY_RESPONSE_EVT:
-      btu_hcif_io_cap_response_evt(p);
       break;
     case HCI_USER_CONFIRMATION_REQUEST_EVT:
       btu_hcif_proc_sp_req_evt(BTM_SP_CFM_REQ_EVT, p);
@@ -1549,52 +1537,6 @@ static void btu_hcif_read_clock_off_comp_evt(uint8_t* p) {
 
   btm_sec_update_clock_offset(handle, clock_offset);
 }
-
-/**********************************************
- * Simple Pairing Events
- **********************************************/
-
-/*******************************************************************************
- *
- * Function         btu_hcif_io_cap_request_evt
- *
- * Description      Process event HCI_IO_CAPABILITY_REQUEST_EVT
- *
- * Returns          void
- *
- ******************************************************************************/
-static void btu_hcif_io_cap_request_evt(const uint8_t* p) {
-  RawAddress bda;
-  STREAM_TO_BDADDR(bda, p);
-  btm_io_capabilities_req(bda);
-}
-
-/*******************************************************************************
- *
- * Function         btu_hcif_io_cap_request_evt
- *
- * Description      Process event HCI_IO_CAPABILITY_REQUEST_EVT
- *
- * Returns          void
- *
- ******************************************************************************/
-static void btu_hcif_io_cap_response_evt(const uint8_t* p) {
-  tBTM_SP_IO_RSP evt_data;
-
-  STREAM_TO_BDADDR(evt_data.bd_addr, p);
-
-  uint8_t io_cap;
-  STREAM_TO_UINT8(io_cap, p);
-  evt_data.io_cap = static_cast<tBTM_IO_CAP>(io_cap);
-
-  STREAM_TO_UINT8(evt_data.oob_data, p);
-  STREAM_TO_UINT8(evt_data.auth_req, p);
-  btm_io_capabilities_rsp(evt_data);
-}
-
-/**********************************************
- * End of Simple Pairing Events
- **********************************************/
 
 static void read_encryption_key_size_complete_after_key_refresh(uint8_t status, uint16_t handle, uint8_t key_size) {
   if (status == HCI_ERR_INSUFFCIENT_SECURITY) {
