@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "341c0b17_ef3384d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T18:05:33Z",
+      "side": 1,
+      "message": "Build failure to to visibility issue:\n```\nmodule \"CtsBluetoothTestCases\" variant \"android_common\": depends on //packages/modules/Bluetooth/framework/tests/util:bluetooth-test-util-lib which is not visible to this module\nYou may need to add \"//cts/tests/tests/bluetooth\" to its visibility\n```",
+      "revId": "7499cd170b83b8b018a2ecf2713eb6c5e05bebb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
