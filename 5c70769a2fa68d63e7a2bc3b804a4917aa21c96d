@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "369d8bc3_eaaafb5a",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-25T12:00:50Z",
+      "side": 1,
+      "message": "You may implement ToString trait for VirtualHciIndex enhances code cleanliness and prevents repetitive formatting.\n```\nimpl ToString for VirtualHciIndex {\n  fn to_string(\u0026self) -\u003e String {\n    format!(\"hci{}\", self.0)\n  }\n}\n\n// Example usage:\n// let str \u003d hci.to_string();\n```",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 49
+      },
+      "revId": "5c70769a2fa68d63e7a2bc3b804a4917aa21c96d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
