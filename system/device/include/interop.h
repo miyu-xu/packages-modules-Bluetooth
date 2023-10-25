@@ -334,6 +334,11 @@ typedef enum {
   // need we initiate connection after signalling timeout
   INTEROP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT,
 
+  // Certain devices have issue where they cannot handle ATT traffic during SMP
+  // key exchange. For those devices, queued ATT writes are delayed until after
+  // both encryption complete and SMP key exchange completed.
+  INTEROP_DELAY_ATT_TRAFFIC_DURING_PAIRING,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
@@ -403,3 +408,7 @@ bool interop_get_allowlisted_media_players_list(list_t* p_bl_devices);
 
 // Return feature's enum value according to feature'name.
 int interop_feature_name_to_feature_id(const char* feature_name);
+
+// Check if a given |UUID| and |name| combination matches a known
+// interoperability workaround.
+bool interop_match_uuid_and_name(const char* uuidString, const char* name);
