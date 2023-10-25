@@ -69,6 +69,30 @@
       },
       "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b862752_33676d88",
+        "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-25T00:54:38Z",
+      "side": 1,
+      "message": "Another reason why I did not do a move without changing the code is because the CTS codebase still use \"cts\" in all its folder structure and class names, which does not fit into our directory structure.",
+      "parentUuid": "8f5a35b1_b4ced146",
+      "range": {
+        "startLine": 66,
+        "startChar": 26,
+        "endLine": 66,
+        "endChar": 48
+      },
+      "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
