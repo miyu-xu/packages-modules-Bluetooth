@@ -15,6 +15,7 @@
  *  limitations under the License.
  *
  ******************************************************************************/
+#define LOG_TAG "OsiConfig"
 
 #include "osi/include/config.h"
 
@@ -31,10 +32,12 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#include <fstream>
 #include <sstream>
 #include <type_traits>
 
 #include "check.h"
+#include "common/strings.h"
 
 void section_t::Set(std::string key, std::string value) {
   for (entry_t& entry : entries) {
@@ -68,7 +71,7 @@ bool config_t::Has(const std::string& key) {
   return Find(key) != sections.end();
 }
 
-static bool config_parse(FILE* fp, config_t* config);
+static bool config_parse(std::ifstream& config_file, config_t* config);
 
 template <typename T,
           class = typename std::enable_if<std::is_same<
@@ -108,7 +111,8 @@ std::unique_ptr<config_t> config_new(const char* filename) {
     return nullptr;
   }
 
-  if (!config_parse(fp, config.get())) {
+  std::ifstream config_file(filename);
+  if (!config_parse(config_file, config.get())) {
     config.reset();
   }
 
@@ -477,53 +481,37 @@ error2:
   return false;
 }
 
-static char* trim(char* str) {
-  while (isspace(*str)) ++str;
-
-  if (!*str) return str;
-
-  char* end_str = str + strlen(str) - 1;
-  while (end_str > str && isspace(*end_str)) --end_str;
-
-  end_str[1] = '\0';
-  return str;
-}
-
-static bool config_parse(FILE* fp, config_t* config) {
-  CHECK(fp != nullptr);
+static bool config_parse(std::ifstream& config_file, config_t* config) {
   CHECK(config != nullptr);
 
-  int line_num = 0;
-  char line[4096];
-  char section[4096];
-  strcpy(section, CONFIG_DEFAULT_SECTION);
-
-  while (fgets(line, sizeof(line), fp)) {
-    char* line_ptr = trim(line);
-    ++line_num;
+  std::string line;
+  std::string section = CONFIG_DEFAULT_SECTION;
+  while (std::getline(config_file, line)) {
+    line = bluetooth::common::StringTrim(std::move(line));
 
     // Skip blank and comment lines.
-    if (*line_ptr == '\0' || *line_ptr == '#') continue;
+    if (line.front() == '\0' || line.front() == '#') {
+      continue;
+    }
 
-    if (*line_ptr == '[') {
-      size_t len = strlen(line_ptr);
-      if (line_ptr[len - 1] != ']') {
-        VLOG(1) << __func__ << ": unterminated section name on line "
-                << line_num;
+    if (line.front() == '[') {
+      if (line.back() != ']') {
+        LOG(WARNING) << __func__ << ": no key/value separator found on line "
+                     << line.c_str();
         return false;
       }
-      strncpy(section, line_ptr + 1, len - 2);  // NOLINT (len < 4096)
-      section[len - 2] = '\0';
+      // Read 'text' from '[text]', hence -2
+      section = line.substr(1, line.size() - 2);
     } else {
-      char* split = strchr(line_ptr, '=');
-      if (!split) {
-        VLOG(1) << __func__ << ": no key/value separator found on line "
-                << line_num;
+      auto tokens = bluetooth::common::StringSplit(line, "=", 2);
+      if (tokens.size() != 2) {
+        LOG(WARNING) << __func__ << ": no key/value separator found on line "
+                     << line.c_str();
         return false;
       }
-
-      *split = '\0';
-      config_set_string(config, section, trim(line_ptr), trim(split + 1));
+      tokens[0] = bluetooth::common::StringTrim(std::move(tokens[0]));
+      tokens[1] = bluetooth::common::StringTrim(std::move(tokens[1]));
+      config_set_string(config, section, tokens[0], tokens[1]);
     }
   }
   return true;
