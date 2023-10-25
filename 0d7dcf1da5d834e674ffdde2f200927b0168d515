@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e3eea76_7f96d4fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-25T12:37:14Z",
+      "side": 1,
+      "message": "Android TV have a separate branch, where they have the continuous scan windows and interval with no pauses. Android TV doesn\u0027t care about battery usage as they are connected to socket all day.\n\nSo this patch can\u0027t get into main branch, but the tv branch should already have something similar.",
+      "revId": "0d7dcf1da5d834e674ffdde2f200927b0168d515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
