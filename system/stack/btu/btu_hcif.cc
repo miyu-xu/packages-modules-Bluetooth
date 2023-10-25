@@ -1320,6 +1320,14 @@ static void btu_hcif_hdl_command_status(uint16_t opcode, uint8_t status,
       btm_pm_proc_cmd_status(static_cast<tHCI_STATUS>(status));
       break;
 
+    // Command status not yet handled by GD layer
+    case HCI_READ_RMT_CLOCK_OFFSET:    // 0x041f
+    case HCI_CHANGE_CONN_PACKET_TYPE:  // 0x040f
+      if (status != HCI_SUCCESS) {
+        LOG_WARN("Received bad command status for opcode:0x%02x status:%s",
+                 opcode, hci_status_code_text(status).c_str());
+      }
+
     default:
       LOG_ERROR("Command status for opcode:0x%02x should not be handled here",
                 opcode);
