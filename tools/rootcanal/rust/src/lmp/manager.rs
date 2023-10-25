@@ -21,6 +21,7 @@ use std::rc::{Rc, Weak};
 use std::task::{Context, Poll};
 
 use thiserror::Error;
+use pdl_runtime::Packet as _;
 
 use crate::ffi::ControllerOps;
 use crate::future::noop_waker;
@@ -28,8 +29,6 @@ use crate::lmp::procedure;
 use crate::num_hci_command_packets;
 use crate::packets::{hci, lmp};
 
-use hci::Packet as _;
-use lmp::Packet as _;
 
 struct Link {
     peer: Cell<hci::Address>,
