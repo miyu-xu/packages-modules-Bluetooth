@@ -20,7 +20,6 @@
 
 #include "stack/include/btm_api.h"
 #include "stack/include/btm_ble_api_types.h"
-#include "stack/include/btm_ble_sec_api.h"
 #include "stack/include/btm_ble_sec_api_types.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/btm_sec_api.h"
@@ -38,7 +37,7 @@ tBTM_STATUS BTM_BleGetEnergyInfo(tBTM_BLE_ENERGY_INFO_CBACK* p_ener_cback) {
   return BTM_SUCCESS;
 }
 
-struct btm_client_interface_t btm_client_interface = {
+struct btm_client_interface_t default_btm_client_interface = {
     .lifecycle = {
         .BTM_PmRegister = [](uint8_t mask, uint8_t* p_pm_id,
                              tBTM_PM_STATUS_CBACK* p_cb) -> tBTM_STATUS {
@@ -235,6 +234,13 @@ struct btm_client_interface_t btm_client_interface = {
         },
 };
 
+struct btm_client_interface_t fake_btm_client_interface =
+    default_btm_client_interface;
+
+void reset_fake_btm_client_interface() {
+  fake_btm_client_interface = default_btm_client_interface;
+}
+
 struct btm_client_interface_t& get_btm_client_interface() {
-  return btm_client_interface;
+  return fake_btm_client_interface;
 }

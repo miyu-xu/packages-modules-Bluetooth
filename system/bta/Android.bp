@@ -340,6 +340,7 @@ cc_test {
         ":TestCommonLogMsg",
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",
+        ":TestFakeBtm",
         ":TestFakeOsi",
         ":TestMockBtaScn",
         ":TestMockBtaSdp",
