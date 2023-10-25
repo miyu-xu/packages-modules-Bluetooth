@@ -25,7 +25,9 @@
 #include <cstdint>
 #include <string>
 
+#include "btm_sec_api_types.h"
 #include "test/common/mock_functions.h"
+#include "types/raw_address.h"
 
 // Original usings
 
@@ -295,9 +297,9 @@ void NotifyBondingCanceled(tBTM_STATUS btm_status) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_sec::NotifyBondingCanceled(btm_status);
 }
-void btm_create_conn_cancel_complete(const uint8_t* p, uint16_t evt_len) {
+void btm_create_conn_cancel_complete(uint8_t status, RawAddress bd_addr) {
   inc_func_call_count(__func__);
-  test::mock::stack_btm_sec::btm_create_conn_cancel_complete(p, evt_len);
+  test::mock::stack_btm_sec::btm_create_conn_cancel_complete(status, bd_addr);
 }
 const uint8_t* btm_get_dev_class(const RawAddress& bda) {
   inc_func_call_count(__func__);
