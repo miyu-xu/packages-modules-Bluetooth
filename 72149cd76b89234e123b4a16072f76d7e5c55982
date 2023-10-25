@@ -16,6 +16,24 @@
       "message": "what about checking connection state `deviceDescriptor.mStateMachine.getConnectionState()` ?",
       "revId": "72149cd76b89234e123b4a16072f76d7e5c55982",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41e88aca_33f30d61",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1298,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-10-25T16:06:06Z",
+      "side": 1,
+      "message": "Done. It still doesn\u0027t account for the ACL being disconnected, but looks much nicer than string comparison.",
+      "parentUuid": "4fb7a97f_a4ba0020",
+      "revId": "72149cd76b89234e123b4a16072f76d7e5c55982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
