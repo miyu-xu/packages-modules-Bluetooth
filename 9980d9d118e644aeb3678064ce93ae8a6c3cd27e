@@ -16,6 +16,24 @@
       "message": "Note:We chose not to import specific items from files like \"Btstatus\" and \"glib_call.\" Instead, we imported entire files to keep the code consistent with clients written by Google(advertising_client, scanner_client). For instance, we use \"from floss.pandora.floss import floss_enums\" rather than \"from floss.pandora.floss.floss_enums import BtStatus\" (even though import specific class will be better in clean code and performance perspective).",
       "revId": "9980d9d118e644aeb3678064ce93ae8a6c3cd27e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "278f3870_0e69d38c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-10-25T09:46:44Z",
+      "side": 1,
+      "message": "Resolved based on John\u0027s comment in this CL\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2801134",
+      "parentUuid": "86e81d69_7df58f88",
+      "revId": "9980d9d118e644aeb3678064ce93ae8a6c3cd27e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
