@@ -46,6 +46,30 @@
       },
       "revId": "5c70769a2fa68d63e7a2bc3b804a4917aa21c96d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa072a9_30455b0b",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-25T18:02:43Z",
+      "side": 1,
+      "message": "`impl Display` is equivalent to `impl ToString`. I think `{}` is generally expected to be used for logging so using `to_i32()` explicitly is probably better for clarity.",
+      "parentUuid": "79a9bc4c_300ba3c8",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 49
+      },
+      "revId": "5c70769a2fa68d63e7a2bc3b804a4917aa21c96d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
