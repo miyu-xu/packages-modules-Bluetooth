@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5cc3716e_75a6b8b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-25T07:22:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b710a5e_3af6aa05",
+      "revId": "1f427f154eb0f446a3dc3cc222852d62a4076359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b1e130be_3fd61eed",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-24T16:54:10Z",
       "side": 1,
       "message": "`ReadIndexList` will not return HCI if it is currently in use via `HCI_USERCHANNEL`. Can you confirm whether we correctly handle the case of btmanagerd restarting while there are existing btadapterd instances running?",
+      "revId": "1f427f154eb0f446a3dc3cc222852d62a4076359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e432e08_e0fe8485",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-25T07:22:50Z",
+      "side": 1,
+      "message": "What\u0027s your expected behavior here?\n\nOn started, btmanagerd lists the PID directory so it\u0027s aware of the running (virtual) index 0, however, the real index doesn\u0027t present until btadaperd is disabled. From btmanagerd\u0027s perspective it couldn\u0027t and shouldn\u0027t map the virtual index to any devpath or real index.\n\nBut Floss actually assumes the real \u003d virtual in this case[1][2][3][4], it\u0027s not quite correct. We probably need to define a way to map the orphan btadapterd to a real index (add more info in pid file name?).\n\n1:https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/gd/rust/linux/mgmt/src/state_machine.rs;l\u003d221;drc\u003d8274613c2709c58ea4016a2e893afd3b8ba2d44e\n2:https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/gd/rust/linux/mgmt/src/state_machine.rs;l\u003d1058;drc\u003d8274613c2709c58ea4016a2e893afd3b8ba2d44e\n3:https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/gd/rust/linux/mgmt/src/state_machine.rs;l\u003d1388;drc\u003d8274613c2709c58ea4016a2e893afd3b8ba2d44e\n4:https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/gd/rust/linux/mgmt/src/state_machine.rs;l\u003d1461;drc\u003d8274613c2709c58ea4016a2e893afd3b8ba2d44e",
+      "parentUuid": "b1e130be_3fd61eed",
       "revId": "1f427f154eb0f446a3dc3cc222852d62a4076359",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
