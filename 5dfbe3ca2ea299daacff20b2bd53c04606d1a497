@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d654028e_f8976d8c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2023-10-25T12:04:30Z",
+      "side": 1,
+      "message": "Only a nit.",
+      "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34154308_4eb7e85e",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2023-10-25T12:04:30Z",
+      "side": 1,
+      "message": "Avoiding using formatted string in logging function.  See https://google.github.io/styleguide/pyguide.html#3101-logging\n```suggestion\n                        logging.info(\u0027%s calling connect_all_enabled_profiles\u0027, address)\n```",
+      "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
