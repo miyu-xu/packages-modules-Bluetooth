@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b19e3b0e_ceb0582b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T00:07:09Z",
+      "side": 1,
+      "message": "I missed that part since I was looking at patchset 3.\n\nI think we should do that in different step to keep the cl atomic.\nOne commit \u003d one purpose.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 0
+      },
+      "revId": "d9f69d290f2727de210791fc9fe6f629919f7e4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
