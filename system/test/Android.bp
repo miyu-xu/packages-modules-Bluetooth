@@ -573,6 +573,11 @@ filegroup {
 }
 
 filegroup {
+    name: "TestFakeBtm",
+    srcs: ["fake/fake_stack_btm_interface.cc"],
+}
+
+filegroup {
     name: "TestCommonBtifTraceLevel",
     srcs: ["common/btif_trace_level.cc"],
 }
