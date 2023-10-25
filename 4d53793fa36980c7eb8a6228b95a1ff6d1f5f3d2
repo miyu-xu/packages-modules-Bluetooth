@@ -93,6 +93,30 @@
       },
       "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25124138_46150f09",
+        "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-25T00:55:31Z",
+      "side": 1,
+      "message": "If I move and modify the path later, I need to add extra CTS CLs to change the include path and method names.",
+      "parentUuid": "2b862752_33676d88",
+      "range": {
+        "startLine": 66,
+        "startChar": 26,
+        "endLine": 66,
+        "endChar": 48
+      },
+      "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
