@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cb3343f_90dea172",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T21:16:03Z",
+      "side": 1,
+      "message": "Why is this persist  ?\n\nWhat this property will be set to and when ?\n\nWe shouldn\u0027t use property to release code and this more looks like a \"release to some device\" property",
+      "range": {
+        "startLine": 252,
+        "startChar": 7,
+        "endLine": 252,
+        "endChar": 14
+      },
+      "revId": "ac7e63ceacb2e9c6d9156bf1602f21ea12008591",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
