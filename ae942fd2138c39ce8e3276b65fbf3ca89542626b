@@ -16,6 +16,24 @@
       "message": "What is the bug? We need to understand the problem before allowing the scanning interval to be reduced to 1/4 the original value.",
       "revId": "ae942fd2138c39ce8e3276b65fbf3ca89542626b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eb08db5_fc6c4541",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1837219
+      },
+      "writtenOn": "2023-10-25T03:09:22Z",
+      "side": 1,
+      "message": "Hi Himanshu ，\nThe bug id is: b/296800718.",
+      "parentUuid": "7a50cab5_a8ebb933",
+      "revId": "ae942fd2138c39ce8e3276b65fbf3ca89542626b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
