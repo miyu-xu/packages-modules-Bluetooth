@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be3fd8d9_6db4aed5",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T21:30:33Z",
+      "side": 1,
+      "message": "Instead of having this error, wouldn\u0027t it be better to have a const reference in parameter and make this error impossible to happen ?",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 5
+      },
+      "revId": "a9317d72df05080bc4ed996429b28a4d0a30fa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e50cc867_2ff996c4",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T21:30:33Z",
+      "side": 1,
+      "message": "Same as above, what about a const reference in parameter to make this impossible ?",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 5
+      },
+      "revId": "a9317d72df05080bc4ed996429b28a4d0a30fa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d7590a8_48236939",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T21:30:33Z",
+      "side": 1,
+      "message": "typo, extra Space",
+      "range": {
+        "startLine": 125,
+        "startChar": 17,
+        "endLine": 125,
+        "endChar": 18
+      },
+      "revId": "a9317d72df05080bc4ed996429b28a4d0a30fa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3fc7605_b251402b",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T21:30:33Z",
+      "side": 1,
+      "message": "No space after the first `:` but space after the second one",
+      "range": {
+        "startLine": 292,
+        "startChar": 59,
+        "endLine": 292,
+        "endChar": 60
+      },
+      "revId": "a9317d72df05080bc4ed996429b28a4d0a30fa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1911a295_0e4552f9",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T21:30:33Z",
+      "side": 1,
+      "message": "LOG_XXXX already contains the function name in the macro, we don\u0027t need to repeat it",
+      "range": {
+        "startLine": 292,
+        "startChar": 15,
+        "endLine": 292,
+        "endChar": 45
+      },
+      "revId": "a9317d72df05080bc4ed996429b28a4d0a30fa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1851ea0a_e5ac303b",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T21:30:33Z",
+      "side": 1,
+      "message": "Same as abovce, function name + space issue",
+      "range": {
+        "startLine": 329,
+        "startChar": 0,
+        "endLine": 329,
+        "endChar": 72
+      },
+      "revId": "a9317d72df05080bc4ed996429b28a4d0a30fa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5930c6_6ad0e3a1",
+        "filename": "system/bta/le_audio/le_audio_health_status.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T21:30:33Z",
+      "side": 1,
+      "message": "I had a hard time reading this out... what about something like this ?\n\n```\nandroid::bluetooth::CodePathCounterKeyEnum key;  \n  if (in_allowlist) {\n    switch (type) {\n      case LeAudioHealthGroupStatType::STREAM_CREATE_SUCCESS:\n        key \u003d android::bluetooth::CodePathCounterKeyEnum::LE_AUDIO_ALLOWLIST_GROUP_HEALTH_STATUS_GOOD;\n        break;\n      case LeAudioHealthGroupStatType::STREAM_CREATE_CIS_FAILED:\n        key \u003d android::bluetooth::CodePathCounterKeyEnum::LE_AUDIO_ALLOWLIST_GROUP_HEALTH_STATUS_BAD_ONCE_CIS_FAILED\n        break;\n      case LeAudioHealthGroupStatType::STREAM_CREATE_SIGNALING_FAILED:\n        key \u003d android::bluetooth::CodePathCounterKeyEnum::LE_AUDIO_ALLOWLIST_GROUP_HEALTH_STATUS_BAD_ONCE_SIGNALING_FAILED;\n        break;\n      default:\n        LOG_ERROR(\"Metric unhandled %d\", type);\n        return;\n    }\n  } else {\n    switch (type) {\n      case LeAudioHealthGroupStatType::STREAM_CREATE_SUCCESS:\n        key \u003d android::bluetooth::CodePathCounterKeyEnum::LE_AUDIO_NONALLOWLIST_GROUP_HEALTH_STATUS_GOOD;\n        break;\n      case LeAudioHealthGroupStatType::STREAM_CREATE_CIS_FAILED:\n        key \u003d android::bluetooth::CodePathCounterKeyEnum::LE_AUDIO_NONALLOWLIST_GROUP_HEALTH_STATUS_BAD_ONCE_CIS_FAILED;\n      break;\n      case LeAudioHealthGroupStatType::STREAM_CREATE_SIGNALING_FAILED:\n        key \u003d android::bluetooth::CodePathCounterKeyEnum::LE_AUDIO_NONALLOWLIST_GROUP_HEALTH_STATUS_BAD_ONCE_SIGNALING_FAILED\n        break;\n      default:\n        return;\n    }\n  }\n  bluetooth::shim::CountCounterMetrics(key, 1);\n```\n\n\n\nor something like this:\n```\n#define CodeKeyEnum android::bluetooth::CodePathCounterKeyEnum\nwitch (type) {\n      case LeAudioHealthGroupStatType::STREAM_CREATE_SUCCESS:\n        bluetooth::shim::CountCounterMetrics(\n            in_allowlist ? CodeKeyEnum::LE_AUDIO_ALLOWLIST_GROUP_HEALTH_STATUS_GOOD\n                         : CodeKeyEnum::LE_AUDIO_NONALLOWLIST_GROUP_HEALTH_STATUS_GOOD,\n            1);\n        break;\n    etc...\n```\n\n\nOr a mix of both ?",
+      "range": {
+        "startLine": 331,
+        "startChar": 3,
+        "endLine": 360,
+        "endChar": 5
+      },
+      "revId": "a9317d72df05080bc4ed996429b28a4d0a30fa67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
