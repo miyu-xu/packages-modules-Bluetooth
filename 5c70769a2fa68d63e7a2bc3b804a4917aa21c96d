@@ -22,6 +22,30 @@
       },
       "revId": "5c70769a2fa68d63e7a2bc3b804a4917aa21c96d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79a9bc4c_300ba3c8",
+        "filename": "system/gd/rust/linux/mgmt/src/config_util.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-25T12:35:21Z",
+      "side": 1,
+      "message": "Not quite sure which format is the best for the common traits such as `Display` and `ToString`. This is also a reason I defined `to_logging()` in patch 1, which is less confusing.\n\nExcept `VirtHci{}` we have `hci{}` for device path, and also `HCI\u003d{}` for process invoker. I\u0027d prefer the current style, though not a strong opinion.",
+      "parentUuid": "369d8bc3_eaaafb5a",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 49
+      },
+      "revId": "5c70769a2fa68d63e7a2bc3b804a4917aa21c96d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
