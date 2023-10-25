@@ -22,6 +22,30 @@
       },
       "revId": "ac7e63ceacb2e9c6d9156bf1602f21ea12008591",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24345626_39be45ff",
+        "filename": "system/bta/le_audio/devices.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-25T21:31:08Z",
+      "side": 1,
+      "message": "this property is not introduced by this CL. \nIt was used for le audio device allow list and many other places like below:\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:device/google/shusky/device-shiba.mk;l\u003d190?q\u003d%22persist.bluetooth.leaudio.allow_list%22\u0026ct\u003dos\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20branch:main\n\nand I\u0027m sharing the design doc for this to give you more context:",
+      "parentUuid": "6cb3343f_90dea172",
+      "range": {
+        "startLine": 252,
+        "startChar": 7,
+        "endLine": 252,
+        "endChar": 14
+      },
+      "revId": "ac7e63ceacb2e9c6d9156bf1602f21ea12008591",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
