@@ -34,6 +34,24 @@
       "parentUuid": "917b3dd8_140a19ed",
       "revId": "c4d78635a52e2dcdf65da93314a2a413b8ca9e26",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "70c9e7d9_ee2a5c6f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-25T01:11:41Z",
+      "side": 1,
+      "message": "Filed b/307625503 for the refactor task. Let\u0027s submit this patch for now.",
+      "parentUuid": "67bb33be_31168043",
+      "revId": "c4d78635a52e2dcdf65da93314a2a413b8ca9e26",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
