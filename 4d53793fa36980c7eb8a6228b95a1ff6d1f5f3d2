@@ -117,6 +117,30 @@
       },
       "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51ff2df1_0f7f16f2",
+        "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T01:10:15Z",
+      "side": 1,
+      "message": "But with the \"only one CL\" that squash all the changes, it is impossible to see what you are changing to what was already here.\nWe are already loosing history by moving across git, this CL will hide unexpected change.\n\nYou are also duplicating the code and leaving the migration as a TODO for later, that will be low priority so maybe never done.",
+      "parentUuid": "25124138_46150f09",
+      "range": {
+        "startLine": 66,
+        "startChar": 26,
+        "endLine": 66,
+        "endChar": 48
+      },
+      "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
