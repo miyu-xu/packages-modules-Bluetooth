@@ -34,6 +34,24 @@
       "parentUuid": "a54cb26c_2be70220",
       "revId": "fbfd7880d900a25f029a43df61e5da1c4ce1fb67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e49a915a_c099fdc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-25T04:32:04Z",
+      "side": 1,
+      "message": "Thanks for the information. We can remove the hardcoded settings after landing [3]. As explained above, the version skew for this case is expected and Floss interprets it as a None as no OPTION_KEY is in the dictionary, it\u0027s safe to have this patch landed on AOSP first.",
+      "parentUuid": "5ddd0a94_192b4564",
+      "revId": "fbfd7880d900a25f029a43df61e5da1c4ce1fb67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
