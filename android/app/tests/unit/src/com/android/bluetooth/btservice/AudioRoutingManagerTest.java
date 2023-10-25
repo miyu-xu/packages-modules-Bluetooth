@@ -36,6 +36,7 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.content.Context;
 import android.media.AudioManager;
+import android.os.test.TestLooper;
 import android.util.ArrayMap;
 import android.util.SparseIntArray;
 
@@ -87,6 +88,7 @@ public class AudioRoutingManagerTest {
             AudioRoutingManager.A2DP_HFP_SYNC_CONNECTION_TIMEOUT_MS + 2_000;
     private boolean mOriginalDualModeAudioState;
     private TestDatabaseManager mDatabaseManager;
+    private TestLooper mTestLooper;
 
     @Mock private AdapterService mAdapterService;
     @Mock private ServiceFactory mServiceFactory;
@@ -103,6 +105,7 @@ public class AudioRoutingManagerTest {
         TestUtils.setAdapterService(mAdapterService);
 
         mDatabaseManager = new TestDatabaseManager(mAdapterService, new FakeFeatureFlagsImpl());
+        mTestLooper = new TestLooper();
 
         when(mAdapterService.getSystemService(Context.AUDIO_SERVICE)).thenReturn(mAudioManager);
         when(mAdapterService.getSystemServiceName(AudioManager.class))
@@ -112,6 +115,8 @@ public class AudioRoutingManagerTest {
         when(mServiceFactory.getHeadsetService()).thenReturn(mHeadsetService);
         when(mServiceFactory.getHearingAidService()).thenReturn(mHearingAidService);
         when(mServiceFactory.getLeAudioService()).thenReturn(mLeAudioService);
+        when(mServiceFactory.getLooper(any())).thenReturn(mTestLooper.getLooper());
+        mTestLooper.startAutoDispatch();
 
         mAudioRoutingManager = new AudioRoutingManager(mAdapterService, mServiceFactory);
         mAudioRoutingManager.start();
@@ -149,6 +154,7 @@ public class AudioRoutingManagerTest {
     @After
     public void tearDown() throws Exception {
         mAudioRoutingManager.cleanup();
+        mTestLooper.stopAutoDispatchAndIgnoreExceptions();
         TestUtils.clearAdapterService(mAdapterService);
         Utils.setDualModeAudioStateForTesting(mOriginalDualModeAudioState);
     }
@@ -172,6 +178,18 @@ public class AudioRoutingManagerTest {
         headsetConnected(mA2dpHeadsetDevice, true);
         verify(mA2dpService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
         verify(mHeadsetService, timeout(TIMEOUT_MS)).setActiveDevice(mA2dpHeadsetDevice);
+    }
+
+    @Test
+    public void a2dpAndHfpConnectedAtTheSameTime_setA2dpActiveShouldBeCalled() {
+        mTestLooper.stopAutoDispatchAndIgnoreExceptions();
+        when(mAudioManager.getMode()).thenReturn(AudioManager.MODE_IN_CALL);
+
+        a2dpConnected(mA2dpHeadsetDevice, true);
+        headsetConnected(mA2dpHeadsetDevice, true);
+        mTestLooper.dispatchAll();
+        verify(mA2dpService).setActiveDevice(mA2dpHeadsetDevice);
+        verify(mHeadsetService).setActiveDevice(mA2dpHeadsetDevice);
     }
 
     /** Two A2DP are connected. Should set the second one active. */

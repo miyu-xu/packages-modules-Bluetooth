@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.btservice;
 
+import android.os.Looper;
+
 import com.android.bluetooth.a2dp.A2dpService;
 import com.android.bluetooth.avrcp.AvrcpTargetService;
 import com.android.bluetooth.bas.BatteryService;
@@ -92,5 +94,9 @@ public class ServiceFactory {
 
     public BatteryService getBatteryService() {
         return BatteryService.getBatteryService();
+    }
+
+    public Looper getLooper(Looper looper) {
+        return looper;
     }
 }
