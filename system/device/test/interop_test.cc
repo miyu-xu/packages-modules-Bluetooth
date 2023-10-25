@@ -91,6 +91,13 @@ CK87BT = Name_Based                                                             
 [INTEROP_UPDATE_HID_SSR_MAX_LAT]                                                             \n\
 00:1B:DC-0x0012 = SSR_Max_Lat_Based                                                          \n\
 DC:2C:26-0x0000 = SSR_Max_Lat_Based                                                          \n\
+                                                                                             \n\
+# Certain devices have issue where they cannot handle ATT traffic during SMP key exchange.   \n\
+# For those devices, queued ATT writes are delayed until after both encryption complete and  \n\
+# SMP key exchange completed.                                                                \n\
+[INTEROP_DELAY_ATT_TRAFFIC_DURING_PAIRING]                                                   \n\
+00005aa0-0000-1000-8000-00805f9b34fb--ORN = Uuid_And_Name_Based                              \n\
+0000fe72-0000-1000-8000-00805f9b34fb--ORN = Uuid_And_Name_Based                              \n\
 ";
 #endif
 
