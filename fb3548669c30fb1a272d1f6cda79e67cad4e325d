@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "366c1568_b5b0198e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-25T19:08:11Z",
+      "side": 1,
+      "message": "I like this change, but a couple things:\n1) Similar concerns to Jack on silent failure (will let that be resolved in other thread)\n2) How do we test this adequately to ensure no regressions?",
+      "revId": "fb3548669c30fb1a272d1f6cda79e67cad4e325d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f09a7e6f_efa7c247",
         "filename": "system/gd/hci/le_scanning_manager.cc",
         "patchSetId": 2
