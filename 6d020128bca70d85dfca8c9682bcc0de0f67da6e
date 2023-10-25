@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8af1a8d3_c7beffba",
+        "filename": "system/audio_hal_interface/aidl/a2dp_encoding_aidl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-25T08:46:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5803541_14b83ca7",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 69
+      },
+      "revId": "6d020128bca70d85dfca8c9682bcc0de0f67da6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea296d08_a44595db",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90c5aebc_72d0130d",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1254,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-25T08:46:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea296d08_a44595db",
+      "range": {
+        "startLine": 1251,
+        "startChar": 0,
+        "endLine": 1254,
+        "endChar": 46
+      },
+      "revId": "6d020128bca70d85dfca8c9682bcc0de0f67da6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed9be5d3_e3828fce",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-10-24T15:49:27Z",
       "side": 1,
       "message": "nit: `codec_parameters-\u003etoString()`",
+      "range": {
+        "startLine": 1269,
+        "startChar": 19,
+        "endLine": 1269,
+        "endChar": 36
+      },
+      "revId": "6d020128bca70d85dfca8c9682bcc0de0f67da6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f223360_8e5be309",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1269,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-25T08:46:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed9be5d3_e3828fce",
       "range": {
         "startLine": 1269,
         "startChar": 19,
