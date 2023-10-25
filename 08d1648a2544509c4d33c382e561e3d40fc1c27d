@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd6fffad_0d29a908",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T23:46:19Z",
+      "side": 1,
+      "message": "LGTM from flag point of view. Not giving +1 since I leave the le audio code owner giving owner review of the code",
+      "revId": "08d1648a2544509c4d33c382e561e3d40fc1c27d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
