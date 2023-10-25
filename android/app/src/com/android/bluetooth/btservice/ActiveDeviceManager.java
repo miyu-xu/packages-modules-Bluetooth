@@ -273,8 +273,9 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                         Log.d(TAG, "A2DP activation is suspended until HFP connected: "
                                 + device);
                     }
-
-                    mHandler.removeCallbacksAndMessages(mPendingActiveDevice);
+                    if (mPendingActiveDevice != null) {
+                        mHandler.removeCallbacksAndMessages(mPendingActiveDevice);
+                    }
                     mPendingActiveDevice = device;
                     // Activate A2DP if HFP is failed to connect.
                     mHandler.postDelayed(
@@ -346,7 +347,9 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
                         Log.d(TAG, "HFP activation is suspended until A2DP connected: "
                                 + device);
                     }
-                    mHandler.removeCallbacksAndMessages(mPendingActiveDevice);
+                    if (mPendingActiveDevice != null) {
+                        mHandler.removeCallbacksAndMessages(mPendingActiveDevice);
+                    }
                     mPendingActiveDevice = device;
                     // Activate HFP if A2DP is failed to connect.
                     mHandler.postDelayed(
@@ -774,7 +777,7 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
 
         mHandlerThread = new HandlerThread("BluetoothActiveDeviceManager");
         mHandlerThread.start();
-        mHandler = new Handler(mHandlerThread.getLooper());
+        mHandler = new Handler(mFactory.getLooper(mHandlerThread.getLooper()));
 
         mAudioManager.registerAudioDeviceCallback(mAudioManagerAudioDeviceCallback, mHandler);
         mAdapterService.registerBluetoothStateCallback((command) -> mHandler.post(command), this);
@@ -802,10 +805,10 @@ public class ActiveDeviceManager implements AdapterService.BluetoothStateCallbac
      */
     @VisibleForTesting
     public Looper getHandlerLooper() {
-        if (mHandlerThread == null) {
+        if (mHandler == null) {
             return null;
         }
-        return mHandlerThread.getLooper();
+        return mHandler.getLooper();
     }
 
     private boolean setA2dpActiveDevice(@NonNull BluetoothDevice device) {
