@@ -71,8 +71,6 @@ struct BTM_update_version_info BTM_update_version_info;
 struct NotifyBondingCanceled NotifyBondingCanceled;
 struct btm_create_conn_cancel_complete btm_create_conn_cancel_complete;
 struct btm_get_dev_class btm_get_dev_class;
-struct btm_io_capabilities_req btm_io_capabilities_req;
-struct btm_io_capabilities_rsp btm_io_capabilities_rsp;
 struct btm_proc_sp_req_evt btm_proc_sp_req_evt;
 struct btm_read_local_oob_complete btm_read_local_oob_complete;
 struct btm_rem_oob_req btm_rem_oob_req;
@@ -300,14 +298,6 @@ void btm_create_conn_cancel_complete(uint8_t status, RawAddress bd_addr) {
 const uint8_t* btm_get_dev_class(const RawAddress& bda) {
   inc_func_call_count(__func__);
   return test::mock::stack_btm_sec::btm_get_dev_class(bda);
-}
-void btm_io_capabilities_req(RawAddress p) {
-  inc_func_call_count(__func__);
-  test::mock::stack_btm_sec::btm_io_capabilities_req(p);
-}
-void btm_io_capabilities_rsp(const tBTM_SP_IO_RSP evt_data) {
-  inc_func_call_count(__func__);
-  test::mock::stack_btm_sec::btm_io_capabilities_rsp(evt_data);
 }
 void btm_proc_sp_req_evt(tBTM_SP_EVT event, RawAddress bd_addr,
                          uint32_t value) {
