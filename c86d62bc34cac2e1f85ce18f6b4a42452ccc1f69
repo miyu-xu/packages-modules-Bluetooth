@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0883f65a_df790972",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-25T08:50:44Z",
+      "side": 0,
+      "message": "Q) Why times(1) are removed?",
+      "range": {
+        "startLine": 1019,
+        "startChar": 29,
+        "endLine": 1019,
+        "endChar": 37
+      },
+      "revId": "c86d62bc34cac2e1f85ce18f6b4a42452ccc1f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
