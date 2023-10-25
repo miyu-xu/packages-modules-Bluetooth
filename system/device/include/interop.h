@@ -334,6 +334,16 @@ typedef enum {
   // need we initiate connection after signalling timeout
   INTEROP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT,
 
+  // Fake interop used for testing to unblock
+  // INTEROP_DELAY_ATT_TRAFFIC_DURING_PAIRING UUID will be likely used in future
+  // so this can later be removed
+  INTEROP_FAKE_UUID,
+
+  // Certain devices have issue where they cannot handle ATT traffic during SMP
+  // key exchange. For those devices, queued ATT writes are delayed until after
+  // both encryption complete and SMP key exchange completed.
+  INTEROP_DELAY_ATT_TRAFFIC_DURING_PAIRING,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
@@ -403,3 +413,17 @@ bool interop_get_allowlisted_media_players_list(list_t* p_bl_devices);
 
 // Return feature's enum value according to feature'name.
 int interop_feature_name_to_feature_id(const char* feature_name);
+
+// Check if a given remote device |uuid| matches a known workaround.
+// UUID should be xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx format.
+bool interop_match_uuid(const interop_feature_t feature, const char* uuid);
+
+// Check if a given remote device |uuid| AND |name| matches a known workaround.
+// UUID should be xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx format.
+// Name comparisons are case sensitive and do not allow for partial matches.
+// If |name| is "TEST" and a workaround exists for "TESTING", then this function
+// will return false. But, if |name| is "TESTING" and a workaround exists for
+// "TEST", this function will return true.
+// |name| cannot be null and must be null terminated.
+bool interop_match_uuid_and_name(const interop_feature_t feature,
+                                 const char* uuid, const char* name);
