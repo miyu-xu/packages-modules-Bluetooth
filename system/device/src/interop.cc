@@ -125,6 +125,7 @@ static std::map<std::string, int> feature_name_id_map;
 #define SSR_MAX_LAT_BASED "SSR_Max_Lat_Based"
 #define VERSION_BASED "Version_Based"
 #define LMP_VERSION_BASED "LMP_Version_Based"
+#define UUID_BASED "Uuid_Based"
 
 typedef struct {
   char* key;
@@ -163,6 +164,7 @@ typedef enum {
   INTEROP_BL_TYPE_VERSION,
   INTEROP_BL_TYPE_LMP_VERSION,
   INTEROP_BL_TYPE_ADDR_RANGE,
+  INTEROP_BL_TYPE_UUID,
 } interop_bl_type;
 
 typedef enum {
@@ -183,6 +185,7 @@ typedef struct {
     interop_version_t version_entry;
     interop_lmp_version_t lmp_version_entry;
     interop_addr_range_entry_t addr_range_entry;
+    interop_uuid_entry_t uuid_entry;
   } entry_type;
 
 } interop_db_entry_t;
@@ -256,6 +259,15 @@ bool interop_match_vendor_product_ids(const interop_feature_t feature,
 bool interop_match_addr_get_max_lat(const interop_feature_t feature,
                                     const RawAddress* addr, uint16_t* max_lat) {
   return interop_database_match_addr_get_max_lat(feature, addr, max_lat);
+}
+
+bool interop_match_uuid(const interop_feature_t feature, const char* uuid) {
+  return interop_database_match_uuid(feature, uuid);
+}
+
+bool interop_match_uuid_and_name(const interop_feature_t feature,
+                                 const char* uuid, const char* name) {
+  return interop_database_match_uuid_and_name(feature, uuid, name);
 }
 
 void interop_database_add(const uint16_t feature, const RawAddress* addr,
@@ -393,6 +405,8 @@ static const char* interop_feature_string_(const interop_feature_t feature) {
     CASE_RETURN_STR(INTEROP_HFP_1_7_ALLOWLIST);
     CASE_RETURN_STR(INTEROP_HFP_1_9_ALLOWLIST);
     CASE_RETURN_STR(INTEROP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT);
+    CASE_RETURN_STR(INTEROP_DELAY_ATT_TRAFFIC_DURING_PAIRING);
+    CASE_RETURN_STR(INTEROP_FAKE_UUID);
   }
   return UNKNOWN_INTEROP_FEATURE;
 }
@@ -762,6 +776,16 @@ static bool interop_database_match(interop_db_entry_t* entry,
         }
         break;
       }
+      case INTEROP_BL_TYPE_UUID: {
+        interop_uuid_entry_t* src = &entry->entry_type.uuid_entry;
+        interop_uuid_entry_t* cur = &db_entry->entry_type.uuid_entry;
+
+        if ((src->feature == cur->feature) &&
+            (strcasestr(src->uuid, cur->uuid) == src->uuid)) {
+          found = true;
+        }
+        break;
+      }
       default:
         LOG_ERROR("bl_type: %d not handled", db_entry->bl_type);
         break;
@@ -905,6 +929,11 @@ static bool get_addr_lmp_ver(char* str, char* bdaddrstr, uint8_t* lmp_ver,
   return false;
 }
 
+// TODO: This method needs to accept a map of key value pairs for a given
+// feature and entry type unordered_map containers are faster than map
+// containers to access individual elements by their key, although they are
+// generally less efficient for range iteration through a subset of their
+// elements. -> use standard map
 static bool load_to_database(int feature, const char* key, const char* value,
                              interop_entry_type entry_type) {
   if (!strncasecmp(value, ADDR_BASED, strlen(ADDR_BASED))) {
@@ -1139,6 +1168,15 @@ static bool load_to_database(int feature, const char* key, const char* value,
     entry->entry_type.addr_range_entry.addr_end = addr_end;
     entry->entry_type.addr_range_entry.feature = (interop_feature_t)feature;
     interop_database_add_(entry, false);
+  } else if (!strncasecmp(value, UUID_BASED, strlen(UUID_BASED))) {
+    interop_db_entry_t* entry =
+        (interop_db_entry_t*)osi_calloc(sizeof(interop_db_entry_t));
+    entry->bl_type = INTEROP_BL_TYPE_UUID;
+    entry->bl_entry_type = entry_type;
+    strlcpy(entry->entry_type.uuid_entry.uuid, key,
+            sizeof(entry->entry_type.uuid_entry.uuid));
+    entry->entry_type.uuid_entry.feature = (interop_feature_t)feature;
+    interop_database_add_(entry, false);
   }
 
   LOG_VERBOSE("feature:: %d, key :: %s, value :: %s", feature, key, value);
@@ -1159,6 +1197,8 @@ static void load_config() {
     if ((feature = interop_feature_name_to_feature_id(sec.name.c_str())) !=
         -1) {
       for (const entry_t& entry : sec.entries) {
+        LOG_INFO("entry, key: %s, value: %s", entry.key.c_str(),
+                 entry.value.c_str());
         load_to_database(feature, entry.key.c_str(), entry.value.c_str(),
                          INTEROP_ENTRY_TYPE_STATIC);
       }
@@ -1414,6 +1454,60 @@ bool interop_database_match_addr_get_max_lat(const interop_feature_t feature,
     return true;
   }
 
+  return false;
+}
+
+bool interop_database_match_uuid(const interop_feature_t feature,
+                                 const char* uuid) {
+  interop_db_entry_t entry;
+
+  entry.bl_type = INTEROP_BL_TYPE_UUID;
+
+  entry.entry_type.uuid_entry.feature = feature;
+  // TODO: Const-ify 37 len
+  strlcpy(entry.entry_type.uuid_entry.uuid, uuid, 37);
+  LOG_WARN("entry UUID %s uuid %s", entry.entry_type.uuid_entry.uuid, uuid);
+
+  if (interop_database_match(
+          &entry, NULL,
+          (interop_entry_type)(INTEROP_ENTRY_TYPE_STATIC |
+                               INTEROP_ENTRY_TYPE_DYNAMIC))) {
+    LOG_WARN("Device with uuid: %s is a match for interop workaround %s", uuid,
+             interop_feature_string_(feature));
+    return true;
+  }
+  return false;
+}
+
+bool interop_database_match_uuid_and_name(const interop_feature_t feature,
+                                          const char* uuid, const char* name) {
+  interop_db_entry_t entry;
+
+  entry.bl_type =
+      INTEROP_BL_TYPE_UUID;  // TODO: Should this be | other entry type?
+
+  entry.entry_type.uuid_entry.feature = feature;
+  strlcpy(entry.entry_type.uuid_entry.uuid, uuid, 37);
+  entry.entry_type.name_entry.feature = feature;
+
+  char trim_name[KEY_MAX_LENGTH] = {'\0'};
+  CHECK(name);
+
+  strlcpy(trim_name, name, KEY_MAX_LENGTH);
+  entry.bl_type = INTEROP_BL_TYPE_NAME;
+  strlcpy(entry.entry_type.name_entry.name, trim(trim_name), KEY_MAX_LENGTH);
+  entry.entry_type.name_entry.length = strlen(entry.entry_type.name_entry.name);
+
+  //  TODO: Actually need to match 2 entries from same line
+  if (interop_database_match(
+          &entry, NULL,
+          (interop_entry_type)(INTEROP_ENTRY_TYPE_STATIC |
+                               INTEROP_ENTRY_TYPE_DYNAMIC))) {
+    LOG_WARN(
+        "Device with uuid: %s name: %s is a match for interop workaround %s",
+        uuid, name, interop_feature_string_(feature));
+    return true;
+  }
   return false;
 }
 
