@@ -69,6 +69,24 @@
       "parentUuid": "b1e130be_3fd61eed",
       "revId": "1f427f154eb0f446a3dc3cc222852d62a4076359",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84757399_9bf37daa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-25T17:59:37Z",
+      "side": 1,
+      "message": "I think if you start writing the virtual index and sysfs path to the config file, you can recover from such a scenario.\n\nWe will need to implement a migration for the `btmangagerd.json` file and then store the following per adapter:\n* Sticky Virtual Index\n* Current Real Index\n* Current sysfs path\n\nThe sysfs path is used to identify where the device is plugged in and can be used to disambiguate if we ever have two controllers switch real indicies (which could happen if we support external BT dongles).\n\nThe start-up ordering for btmanagerd would change a bit too:\n* First load up the config and create internal data for virt index mapping.\n* Then ReadIndexList\n* Then apply HciPresense + Pid scanning.",
+      "parentUuid": "2e432e08_e0fe8485",
+      "revId": "1f427f154eb0f446a3dc3cc222852d62a4076359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
