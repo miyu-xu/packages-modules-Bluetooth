@@ -588,6 +588,14 @@ class Host(
     override fun scan(request: ScanRequest, responseObserver: StreamObserver<ScanningResponse>) {
         Log.d(TAG, "scan")
         grpcServerStream(scope, responseObserver) {
+            val ownAddressType = request.ownAddressType
+            if (
+                ownAddressType != OwnAddressType.RANDOM &&
+                    ownAddressType != OwnAddressType.RESOLVABLE_OR_RANDOM
+            ) {
+                throw RuntimeException("scan: Unsupported OwnAddressType: $ownAddressType")
+            }
+            
             callbackFlow {
                 val callback =
                     object : ScanCallback() {
