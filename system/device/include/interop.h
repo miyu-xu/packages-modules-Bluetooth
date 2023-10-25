@@ -334,6 +334,10 @@ typedef enum {
   // need we initiate connection after signalling timeout
   INTEROP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT,
 
+  // Fake interop used for testing to unblock
+  // TODO: UUID interop will be used in future so this can later be removed
+  INTEROP_FAKE_UUID,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
@@ -403,3 +407,7 @@ bool interop_get_allowlisted_media_players_list(list_t* p_bl_devices);
 
 // Return feature's enum value according to feature'name.
 int interop_feature_name_to_feature_id(const char* feature_name);
+
+// Check if a given remote device |uuid| matches a known workaround.
+// UUID should be xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx format.
+bool interop_match_uuid(const interop_feature_t feature, const char* uuid);
