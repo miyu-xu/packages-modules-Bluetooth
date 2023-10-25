@@ -22,6 +22,30 @@
       },
       "revId": "bf00c909e83cec5c97a139f897630c7dca52193d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb9d53ca_cfe64e97",
+        "filename": "system/test/mock/mock_stack_avrc_sdp.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-25T17:28:52Z",
+      "side": 1,
+      "message": "version 7.0 does this...just catching up on my revisions.\n\nFor now \"-Wno-unused-parameter\" will be needed on most tests.\n\nAs tests are converted and mocks updated/removed, I expect that unused will be turned back off",
+      "parentUuid": "d64f400f_3474bf93",
+      "range": {
+        "startLine": 62,
+        "startChar": 26,
+        "endLine": 62,
+        "endChar": 41
+      },
+      "revId": "bf00c909e83cec5c97a139f897630c7dca52193d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
