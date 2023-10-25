@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ae388134_66f1d998",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-25T19:55:09Z",
+      "side": 1,
+      "message": "1) That was my concern, as well.  That\u0027s why I would like the callers to implement the callbacks if they care.\n\n2) What kinds of regressions are you thinking of?  This change ensures that the callbacks are always sent, even if the status is not success.",
+      "parentUuid": "366c1568_b5b0198e",
+      "revId": "fb3548669c30fb1a272d1f6cda79e67cad4e325d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f09a7e6f_efa7c247",
         "filename": "system/gd/hci/le_scanning_manager.cc",
         "patchSetId": 2
