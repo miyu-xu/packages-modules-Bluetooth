@@ -45,6 +45,30 @@
       },
       "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f5a35b1_b4ced146",
+        "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-25T00:48:51Z",
+      "side": 1,
+      "message": "I am thinking of creating this library first and then add a separate CL to point CTS to use this library. The planned CLs are like this:\n\n1. This CL to add bluetooth-framework-test-utils to p/m/B\n2. A CL topic to modify CTS to use this library and verify CTS works. If any fixes are needed, make fixes in this library as well and put it in the same topic. \n3. Remove bluetooth-test-util-lib from cts folder\n\nIn this way, we can revert 2 quickly if something goes wrong with CTS instead of reverting a big topic that involve 1 and 3. \n\nBut I agree the title of this commit can be improved.",
+      "parentUuid": "c3367e16_4cdc25f8",
+      "range": {
+        "startLine": 66,
+        "startChar": 26,
+        "endLine": 66,
+        "endChar": 48
+      },
+      "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
