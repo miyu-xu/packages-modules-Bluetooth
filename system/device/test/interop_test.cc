@@ -91,6 +91,17 @@ CK87BT = Name_Based                                                             
 [INTEROP_UPDATE_HID_SSR_MAX_LAT]                                                             \n\
 00:1B:DC-0x0012 = SSR_Max_Lat_Based                                                          \n\
 DC:2C:26-0x0000 = SSR_Max_Lat_Based                                                          \n\
+                                                                                             \n\
+# This is a fake UUID interop for testing                                                    \n\
+[INTEROP_FAKE_UUID]                                                                          \n\
+00005aa0-0000-1000-8000-00805f9b34fb = Uuid_Based                                            \n\
+                                                                                             \n\
+# Certain devices have issue where they cannot handle ATT traffic during SMP key exchange.   \n\
+# For those devices, queued ATT writes are delayed until after both encryption complete and  \n\
+# SMP key exchange completed.                                                                \n\
+[INTEROP_DELAY_ATT_TRAFFIC_DURING_PAIRING]                                                   \n\
+00005aa0-0000-1000-8000-00805f9b34fb = Uuid_Based,ORN = Name_Based                           \n\
+0000fe72-0000-1000-8000-00805f9b34fb = Uuid_Based,ORN = Name_Based                           \n\
 ";
 #endif
 
@@ -833,4 +844,24 @@ TEST_F(InteropTest, test_dynamic_did_version) {
                                               did_version));
 
   module_clean_up(&interop_module);
+}
+
+TEST_F(InteropTest, test_uuid) {
+  module_init(&interop_module);
+
+  EXPECT_TRUE(interop_database_match_uuid(
+      INTEROP_FAKE_UUID, "00005aa0-0000-1000-8000-00805f9b34fb"));
+
+  EXPECT_FALSE(interop_database_match_uuid(
+      INTEROP_FAKE_UUID, "0000fef2-0000-1000-8000-00805f9b34fb"));
+
+  module_clean_up(&interop_module);
+}
+
+TEST_F(InteropTest, test_delay_att_traffic_during_pairing) {
+  module_init(&interop_module);
+
+  EXPECT_TRUE(interop_database_match_uuid_and_name(
+      INTEROP_DELAY_ATT_TRAFFIC_DURING_PAIRING,
+      "00005aa0-0000-1000-8000-00805f9b34fb", "ORN"));
 }
