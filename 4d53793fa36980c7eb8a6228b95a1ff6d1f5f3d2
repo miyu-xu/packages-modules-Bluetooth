@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62ac3c08_e1095974",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T00:04:22Z",
+      "side": 1,
+      "message": "Can we put the cts CL in the same topic ?",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 48
+      },
+      "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3367e16_4cdc25f8",
+        "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-25T00:04:22Z",
+      "side": 1,
+      "message": "This is not the current code in the [cts](https://cs.android.com/android/platform/superproject/main/+/main:cts/tests/tests/bluetooth/bluetoothTestUtilLib/src/android/bluetooth/cts/TestUtils.java;l\u003d61;drc\u003de4fe45f2850c3612b795f88cbccaa9b8cc7658ce)\n\nYou are doing more than a move.\n\nIdeally this should be 3 Cls.\n* A raw move without code change\n* A format CL that only re-format the whole file with no-op.\n* Any new code change required to make it work in the new environement",
+      "range": {
+        "startLine": 66,
+        "startChar": 26,
+        "endLine": 66,
+        "endChar": 48
+      },
+      "revId": "4d53793fa36980c7eb8a6228b95a1ff6d1f5f3d2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
