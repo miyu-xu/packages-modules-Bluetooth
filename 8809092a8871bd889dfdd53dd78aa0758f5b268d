@@ -3,6 +3,52 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad9727bd_d753671f",
+        "filename": "framework/tests/lib/src/android/bluetooth/EnableBluetoothRule.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-25T16:45:19Z",
+      "side": 1,
+      "message": "Could you use either`assertThat([...]).isTrue()` or `assertTrue` ?",
+      "range": {
+        "startLine": 68,
+        "startChar": 3,
+        "endLine": 74,
+        "endChar": 5
+      },
+      "revId": "8809092a8871bd889dfdd53dd78aa0758f5b268d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74ad4e45_c92c5445",
+        "filename": "framework/tests/lib/src/android/bluetooth/EnableBluetoothRule.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-10-25T16:45:19Z",
+      "side": 1,
+      "message": "This function will introduce flakiness until b/234892968 is resolved",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 5
+      },
+      "revId": "8809092a8871bd889dfdd53dd78aa0758f5b268d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3995c08c_633521a5",
         "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
         "patchSetId": 6
