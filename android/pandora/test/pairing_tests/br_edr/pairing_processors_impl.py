@@ -49,3 +49,29 @@ class BREDRLegacyPairingProcessor(IPairingProcessor):
 
     async def reject_pairing(self):
         await self.process_pairing(b'123456', b'654321')
+
+class BREDRJustworksPairingProcessor(IPairingProcessor):
+
+    async def process_pairing(self, accept):
+        expected_pairing_method = 'just_works'
+
+        responder_pairing_fut = asyncio.create_task(anext(self._resp_pairing_event_stream))
+        responder_ev = await asyncio.wait_for(responder_pairing_fut, timeout=10.0)
+        logging.debug(f'responder_ev.method_variant():{responder_ev.method_variant()}')
+        assert_equal(responder_ev.method_variant(), expected_pairing_method)
+
+        init_pairing_fut = asyncio.create_task(anext(self._init_pairing_event_stream))
+        init_ev = await asyncio.wait_for(init_pairing_fut, timeout=10.0)
+        logging.debug(f'init_ev.method_variant():{init_ev.method_variant()}')
+        assert_equal(init_ev.method_variant(), expected_pairing_method)
+
+        init_ev_ans = PairingEventAnswer(event=init_ev, confirm=True)
+        self._init_pairing_event_stream.send_nowait(init_ev_ans)
+        responder_ev_ans = PairingEventAnswer(event=responder_ev, confirm=True)
+        self._resp_pairing_event_stream.send_nowait(responder_ev_ans)
+
+    async def accept_pairing(self):
+        await self.process_pairing(True)
+
+    async def reject_pairing(self):
+        await self.process_pairing(False)
