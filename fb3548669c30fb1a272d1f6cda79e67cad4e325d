@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a66f8f8f_305904e4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-26T19:08:59Z",
+      "side": 1,
+      "message": "1) Fair enough, maybe we can add at least a warning or error log here for now if we don\u0027t crash, until we have the callbacks properly utilized? (Again, fine to close this one with Jack in other thread)\n\n2) Good point, it is a fairly simple change. I guess I\u0027m just being cautious of changing the logic here since it\u0027s adding new callback events. I\u0027ll just resolve this for now since we should have common scan scenarios covered by test.\n\nI\u0027ll approve this once we get Jack\u0027s buyin on the other thread.",
+      "parentUuid": "ae388134_66f1d998",
+      "revId": "fb3548669c30fb1a272d1f6cda79e67cad4e325d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f09a7e6f_efa7c247",
