@@ -57,6 +57,9 @@ if __name__ == "__main__":
         os.environ.setdefault('BUMBLE_SNOOPER', f'btsnoop:file:{ns.log_path}/{_BUMBLE_BTSNOOP_FMT}')
 
     test_class_list = _TEST_CLASSES_LIST + pairing_tests.get_test_class_list()
+    
+    with open('test_class_list.txt', 'w') as of:
+        of.write(str(test_class_list))
 
     # Run the test suite.
-    suite_runner.run_suite(_TEST_CLASSES_LIST, argv)  # type: ignore
+    suite_runner.run_suite(test_class_list, argv)  # type: ignore
