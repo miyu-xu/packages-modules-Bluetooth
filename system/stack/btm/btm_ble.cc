@@ -39,6 +39,7 @@
 #include "osi/include/properties.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
+#include "stack/btm/btm_sec_cb.h"
 #include "stack/btm/btm_sec_int_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/crypto_toolbox/crypto_toolbox.h"
@@ -1404,7 +1405,7 @@ tBTM_STATUS btm_ble_set_encryption(const RawAddress& bd_addr,
  *
  ******************************************************************************/
 void btm_ble_ltk_request(uint16_t handle, uint8_t rand[8], uint16_t ediv) {
-  tBTM_SEC_CB* p_cb = &btm_sec_cb;
+  class tBTM_SEC_CB* p_cb = &btm_sec_cb;
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev_by_handle(handle);
 
   LOG_VERBOSE("btm_ble_ltk_request");
@@ -1425,7 +1426,7 @@ void btm_ble_ltk_request(uint16_t handle, uint8_t rand[8], uint16_t ediv) {
  */
 tBTM_STATUS btm_ble_start_encrypt(const RawAddress& bda, bool use_stk,
                                   Octet16* p_stk) {
-  tBTM_SEC_CB* p_cb = &btm_sec_cb;
+  class tBTM_SEC_CB* p_cb = &btm_sec_cb;
   tBTM_SEC_DEV_REC* p_rec = btm_find_dev(bda);
   BT_OCTET8 dummy_rand = {0};
 
@@ -1539,7 +1540,7 @@ void btm_ble_link_encrypted(const RawAddress& bd_addr, uint8_t encr_enable) {
 void btm_ble_ltk_request_reply(const RawAddress& bda, bool use_stk,
                                const Octet16& stk) {
   tBTM_SEC_DEV_REC* p_rec = btm_find_dev(bda);
-  tBTM_SEC_CB* p_cb = &btm_sec_cb;
+  class tBTM_SEC_CB* p_cb = &btm_sec_cb;
 
   if (p_rec == NULL) {
     LOG_ERROR("btm_ble_ltk_request_reply received for unknown device");

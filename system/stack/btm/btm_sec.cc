@@ -47,6 +47,7 @@
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
 #include "stack/btm/btm_dev.h"
+#include "stack/btm/btm_sec_cb.h"
 #include "stack/btm/btm_sec_int_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/acl_api.h"
@@ -4220,7 +4221,7 @@ void btm_sec_link_key_request(const uint8_t* p_event) {
  *
  ******************************************************************************/
 static void btm_sec_pairing_timeout(UNUSED_ATTR void* data) {
-  tBTM_SEC_CB* p_cb = &btm_sec_cb;
+  class tBTM_SEC_CB* p_cb = &btm_sec_cb;
   tBTM_SEC_DEV_REC* p_dev_rec;
   tBTM_AUTH_REQ auth_req = (btm_sec_cb.devcb.loc_io_caps == BTM_IO_CAP_NONE)
                                ? BTM_AUTH_AP_NO
@@ -4329,7 +4330,7 @@ static void btm_sec_pairing_timeout(UNUSED_ATTR void* data) {
  ******************************************************************************/
 void btm_sec_pin_code_request(const uint8_t* p_event) {
   tBTM_SEC_DEV_REC* p_dev_rec;
-  tBTM_SEC_CB* p_cb = &btm_sec_cb;
+  class tBTM_SEC_CB* p_cb = &btm_sec_cb;
   RawAddress p_bda;
 
   STREAM_TO_BDADDR(p_bda, p_event);
