@@ -907,6 +907,22 @@ void bta_dm_encrypt_cback(const RawAddress* bd_addr, tBT_TRANSPORT transport,
           (p_callback) ? 'T' : 'F');
       bta_status = BTA_BUSY;
       break;
+    case BTM_ERR_KEY_MISSING:
+      LOG_WARN(
+          "Unable to encrypt link peer:%s transport:%s status:%s callback:%c");
+          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
+          (p_callback) ? 'T' : 'F');
+        if (transport == BT_TRANSPORT_LE) {
+          if (get_btm_client_interface().security.BTM_SetEncryption(
+                  *bd_addr, transport, bta_dm_encrypt_cback, NULL,
+                  BTM_BLE_SEC_ENCRYPT_MITM) == BTM_CMD_STARTED) {
+          LOG_DEBUG(
+            "Started encryption with MITM protection due to key missing");
+        }
+      }
+      bta_status = BTA_FAILURE;
+      break;
     default:
       LOG_ERROR(
           "Failed to encrypt link peer:%s transport:%s status:%s callback:%c",
