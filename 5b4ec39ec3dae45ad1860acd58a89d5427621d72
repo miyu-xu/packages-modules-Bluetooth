@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dff8d1f_91ed1477",
+        "filename": "system/build/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-26T21:47:28Z",
+      "side": 1,
+      "message": "I don\u0027t think this work as per https://cs.android.com/android/platform/superproject/main/+/main:system/logging/liblog/include/log/log_main.h;l\u003d199-207\n\nyou are still defining the macro but you are putting it to 0",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 25
+      },
+      "revId": "5b4ec39ec3dae45ad1860acd58a89d5427621d72",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
