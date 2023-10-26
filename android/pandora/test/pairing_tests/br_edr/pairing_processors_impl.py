@@ -116,3 +116,35 @@ class BREDRNumericComparisonPairingProcessor(IPairingProcessor):
 
     async def reject_pairing(self):
         await self.process_pairing(False)
+
+
+class BREDRNumericComparisonJustworksPairingProcessor(IPairingProcessor):
+    async def process_pairing(self, confirm):
+        init_pairing_fut = asyncio.create_task(anext(self._init_pairing_event_stream))
+        init_ev = await asyncio.wait_for(init_pairing_fut, timeout=10.0)
+        logging.debug(f'init_ev.method_variant():{init_ev.method_variant()}')
+
+        responder_pairing_fut = asyncio.create_task(anext(self._resp_pairing_event_stream))
+        responder_ev = await asyncio.wait_for(responder_pairing_fut, timeout=10.0)
+        logging.debug(f'responder_ev.method_variant():{responder_ev.method_variant()}')
+
+        if init_ev.method_variant() == 'numeric_comparison':
+            assert_equal(responder_ev.method_variant(), 'just_works')
+        else:
+            assert_equal(init_ev.method_variant(), 'just_works')
+            assert_equal(responder_ev.method_variant(), 'numeric_comparison')
+
+            # this assert is still failing test_dedicated_pairing_ref_initiate_1
+            # TODO: investigate
+            # assert_equal(responder_ev.method_variant(), 'numeric_comparison')
+
+        init_ev_ans = PairingEventAnswer(event=init_ev, confirm=confirm)
+        self._init_pairing_event_stream.send_nowait(init_ev_ans)
+        responder_ev_ans = PairingEventAnswer(event=responder_ev, confirm=confirm)
+        self._resp_pairing_event_stream.send_nowait(responder_ev_ans)
+
+    async def accept_pairing(self):
+        await self.process_pairing(True)
+
+    async def reject_pairing(self):
+        await self.process_pairing(False)
