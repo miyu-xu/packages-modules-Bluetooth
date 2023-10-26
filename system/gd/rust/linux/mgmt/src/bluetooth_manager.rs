@@ -43,6 +43,11 @@ impl BluetoothManager {
     }
 
     pub(crate) fn callback_hci_device_change(&mut self, hci: VirtualHciIndex, present: bool) {
+        if present {
+            warn!("Presented {}", hci);
+        } else {
+            warn!("Unpresented {}", hci);
+        }
         for (_, callback) in &mut self.callbacks {
             callback.on_hci_device_changed(hci.to_i32(), present);
         }
