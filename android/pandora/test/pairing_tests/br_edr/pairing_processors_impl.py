@@ -15,7 +15,7 @@
 import asyncio
 import logging
 
-from mobly.asserts import assert_equal, fail, assert_true
+from mobly.asserts import assert_equal, assert_is_not_none, assert_true, fail
 from pairing_tests.interfaces import IPairingProcessor
 from pandora.security_pb2 import LEVEL2, PairingEventAnswer
 
@@ -50,8 +50,8 @@ class BREDRLegacyPairingProcessor(IPairingProcessor):
     async def reject_pairing(self):
         await self.process_pairing(b'123456', b'654321')
 
-class BREDRJustworksPairingProcessor(IPairingProcessor):
 
+class BREDRJustworksPairingProcessor(IPairingProcessor):
     async def process_pairing(self, accept):
         expected_pairing_method = 'just_works'
 
@@ -76,8 +76,8 @@ class BREDRJustworksPairingProcessor(IPairingProcessor):
     async def reject_pairing(self):
         await self.process_pairing(False)
 
-class BREDRNumericComparisonPairingProcessor(IPairingProcessor):
 
+class BREDRNumericComparisonPairingProcessor(IPairingProcessor):
     async def process_pairing(self, confirm):
         expected_pairing_method = 'numeric_comparison'
 
@@ -95,7 +95,7 @@ class BREDRNumericComparisonPairingProcessor(IPairingProcessor):
         assert_equal(responder_ev.method_variant(), expected_pairing_method)
         logging.debug(f'responder_ev.numeric_comparison:{responder_ev.numeric_comparison}')
 
-        _confirm = (responder_ev.numeric_comparison == init_ev.numeric_comparison)
+        _confirm = responder_ev.numeric_comparison == init_ev.numeric_comparison
 
         assert_true(_confirm, "numeric value received on both devices are not the same")
 
@@ -142,6 +142,45 @@ class BREDRNumericComparisonJustworksPairingProcessor(IPairingProcessor):
         self._init_pairing_event_stream.send_nowait(init_ev_ans)
         responder_ev_ans = PairingEventAnswer(event=responder_ev, confirm=confirm)
         self._resp_pairing_event_stream.send_nowait(responder_ev_ans)
+
+    async def accept_pairing(self):
+        await self.process_pairing(True)
+
+    async def reject_pairing(self):
+        await self.process_pairing(False)
+
+
+class BREDRPasskeyNotifEntryPairingProcessor(IPairingProcessor):
+    async def process_pairing(self, confirm):
+        init_pairing_fut = asyncio.create_task(anext(self._init_pairing_event_stream))
+        init_ev = await asyncio.wait_for(init_pairing_fut, timeout=10.0)
+        logging.debug(f'init_ev.method_variant():{init_ev.method_variant()}')
+
+        responder_pairing_fut = asyncio.create_task(anext(self._resp_pairing_event_stream))
+        responder_ev = await asyncio.wait_for(responder_pairing_fut, timeout=10.0)
+        logging.debug(f'responder_ev.method_variant():{responder_ev.method_variant()}')
+
+        if init_ev.method_variant() == 'passkey_entry_notification':
+            assert_equal(responder_ev.method_variant(), 'passkey_entry_request')
+            passkey = init_ev.passkey_entry_notification
+            entry_ev = responder_ev
+            entry_stream = self._resp_pairing_event_stream
+        elif init_ev.method_variant() == 'passkey_entry_request':
+            assert_equal(responder_ev.method_variant(), 'passkey_entry_notification')
+            passkey = responder_ev.passkey_entry_notification
+            entry_ev = init_ev
+            entry_stream = self._init_pairing_event_stream
+        else:
+            fail(f"unexpected pairing event received:{init_ev.method_variant()}")
+
+        assert_is_not_none(passkey)
+
+        logging.debug(f'>>> passkey: {passkey}')
+
+        if confirm:
+            entry_stream.send_nowait(PairingEventAnswer(event=entry_ev, passkey=passkey))
+        else:
+            entry_stream.send_nowait(PairingEventAnswer(event=entry_ev, passkey=passkey + 1))
 
     async def accept_pairing(self):
         await self.process_pairing(True)
