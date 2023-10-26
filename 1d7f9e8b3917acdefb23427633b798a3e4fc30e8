@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a8aed6d9_de205bd9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-26T06:56:30Z",
+      "side": 1,
+      "message": "My first thought when seeing this code was - Why do we need to get call `mFactory.getLooper()` when we already can get the looper from `HandlerThread.getLooper()`? I think we should clearly see that the code choose only one of them.",
+      "range": {
+        "startLine": 780,
+        "startChar": 19,
+        "endLine": 780,
+        "endChar": 79
+      },
+      "revId": "1d7f9e8b3917acdefb23427633b798a3e4fc30e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "56ebb538_db37e079",
         "filename": "android/app/src/com/android/bluetooth/btservice/ServiceFactory.java",
         "patchSetId": 3
