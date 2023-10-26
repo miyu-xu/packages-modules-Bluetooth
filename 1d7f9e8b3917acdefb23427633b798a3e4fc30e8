@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07f940f4_5ac27b5f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T07:46:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0303d70_047bad58",
+      "range": {
+        "startLine": 778,
+        "startChar": 8,
+        "endLine": 780,
+        "endChar": 79
+      },
+      "revId": "1d7f9e8b3917acdefb23427633b798a3e4fc30e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5acd21a6_b28b509b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T07:46:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8aed6d9_de205bd9",
+      "range": {
+        "startLine": 780,
+        "startChar": 19,
+        "endLine": 780,
+        "endChar": 79
+      },
+      "revId": "1d7f9e8b3917acdefb23427633b798a3e4fc30e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56ebb538_db37e079",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-10-26T06:52:12Z",
       "side": 1,
       "message": "The `getLooper` seems not belong to this class, since this class is for service objects. How about creating a proxy class or test class?",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 56
+      },
+      "revId": "1d7f9e8b3917acdefb23427633b798a3e4fc30e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fffd679_3f4d9083",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ServiceFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T07:46:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56ebb538_db37e079",
       "range": {
         "startLine": 37,
         "startChar": 3,
