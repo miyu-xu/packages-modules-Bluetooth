@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea6409eb_de14eb39",
+        "filename": "android/pandora/test/pairing_tests/br_edr/legacy/tests.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-10-26T18:13:09Z",
+      "side": 1,
+      "message": "`create_l2cap_connector()` has been removed in the upstream",
+      "range": {
+        "startLine": 246,
+        "startChar": 46,
+        "endLine": 246,
+        "endChar": 68
+      },
+      "revId": "b552acd7c5e2bb961edbed7871d8b74b20a981bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
