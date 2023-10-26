@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26357ade_61947e6e",
+        "filename": "system/stack/btm/btm_sec_int_types.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-10-26T18:11:09Z",
+      "side": 1,
+      "message": "Instead of extern, can it be a `getBtmSecControlBlock()` function, or even class method so that mock can be conducted easier?",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 30
+      },
+      "revId": "3604b9a72a3fd684aea70e7e619df16f8035da01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
