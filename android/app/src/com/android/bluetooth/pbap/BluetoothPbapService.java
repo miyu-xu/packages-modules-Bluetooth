@@ -72,6 +72,7 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.InteropUtil;
 import com.android.bluetooth.btservice.ProfileService;
+import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.sdp.SdpManagerNativeInterface;
 import com.android.bluetooth.util.DevicePolicyUtils;
@@ -191,6 +192,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
     private Thread mThreadUpdateSecVersionCounter;
 
     private static BluetoothPbapService sBluetoothPbapService;
+    @VisibleForTesting static ServiceFactory sServiceFactory = new ServiceFactory();
 
     private static final String PBAP_NOTIFICATION_ID = "pbap_notification";
     private static final String PBAP_NOTIFICATION_NAME = "BT_PBAP_ADVANCE_SUPPORT";
@@ -468,7 +470,6 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
                 sNotificationManager.cancelAll();
             }
         }
-
     }
     private class PbapHandler extends Handler {
         private PbapHandler(Looper looper) {
@@ -711,7 +712,8 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
         mContactsLoaded = false;
         mHandlerThread = new HandlerThread("PbapHandlerThread");
         mHandlerThread.start();
-        mSessionStatusHandler = new PbapHandler(mHandlerThread.getLooper());
+        mSessionStatusHandler =
+                new PbapHandler(sServiceFactory.getLooper(mHandlerThread.getLooper()));
         IntentFilter filter = new IntentFilter();
         filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
         filter.addAction(BluetoothDevice.ACTION_CONNECTION_ACCESS_REPLY);
