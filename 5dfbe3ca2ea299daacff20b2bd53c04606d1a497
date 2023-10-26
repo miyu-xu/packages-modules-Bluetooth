@@ -33,6 +33,24 @@
       "message": "Avoiding using formatted string in logging function.  See https://google.github.io/styleguide/pyguide.html#3101-logging\n```suggestion\n                        logging.info(\u0027%s calling connect_all_enabled_profiles\u0027, address)\n```",
       "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04fe0df5_997217fa",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-10-26T06:48:57Z",
+      "side": 1,
+      "message": "I\u0027m doing this intentionally. f-string provides the better readability but just a little bit slower. I\u0027m curious about if there any other reason that we don\u0027t want to use it?",
+      "parentUuid": "34154308_4eb7e85e",
+      "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
