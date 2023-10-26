@@ -46,6 +46,30 @@
       },
       "revId": "3604b9a72a3fd684aea70e7e619df16f8035da01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b66be28_46a6f0ea",
+        "filename": "system/stack/btm/btm_sec_int_types.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-10-26T18:14:36Z",
+      "side": 1,
+      "message": "Sounds good!",
+      "parentUuid": "5a8791c3_5ffda898",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 30
+      },
+      "revId": "3604b9a72a3fd684aea70e7e619df16f8035da01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
