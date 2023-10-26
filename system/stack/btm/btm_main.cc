@@ -27,7 +27,7 @@
 
 #include "bt_target.h"
 #include "btm_int_types.h"
-#include "btm_sec_int_types.h"
+#include "btm_sec_cb.h"
 #include "main/shim/dumpsys.h"
 #include "osi/include/log.h"
 #include "stack/include/btm_client_interface.h"
@@ -38,7 +38,7 @@
 /* Global BTM control block structure
 */
 tBTM_CB btm_cb;
-tBTM_SEC_CB btm_sec_cb;
+class tBTM_SEC_CB btm_sec_cb;
 
 /*******************************************************************************
  *
