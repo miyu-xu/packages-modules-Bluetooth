@@ -22,6 +22,30 @@
       },
       "revId": "b552acd7c5e2bb961edbed7871d8b74b20a981bf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15f065ba_19215639",
+        "filename": "android/pandora/test/pairing_tests/br_edr/legacy/tests.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-26T18:14:12Z",
+      "side": 1,
+      "message": "Can you suggest what is the alternative?",
+      "parentUuid": "ea6409eb_de14eb39",
+      "range": {
+        "startLine": 246,
+        "startChar": 46,
+        "endLine": 246,
+        "endChar": 68
+      },
+      "revId": "b552acd7c5e2bb961edbed7871d8b74b20a981bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
