@@ -87,6 +87,24 @@
       "parentUuid": "2e432e08_e0fe8485",
       "revId": "1f427f154eb0f446a3dc3cc222852d62a4076359",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b640403_ba106912",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-26T03:19:00Z",
+      "side": 1,
+      "message": "Sounds like something we could discuss together in b/307625503. Updated the bug. Any other action item for this patch?",
+      "parentUuid": "84757399_9bf37daa",
+      "revId": "1f427f154eb0f446a3dc3cc222852d62a4076359",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
