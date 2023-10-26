@@ -693,8 +693,11 @@ pub async fn mainloop(
 
                         prev_state = context.state_machine.get_process_state(hci);
                         let adapter_change_action;
-                        (next_state, adapter_change_action) =
+                        let timeout_action;
+                        (next_state, adapter_change_action, timeout_action) =
                             context.state_machine.action_on_hci_presence_changed(hci, *present);
+
+                        cmd_timeout.lock().unwrap().handle_timeout_action(hci, timeout_action);
 
                         match adapter_change_action {
                             AdapterChangeAction::NewDefaultAdapter(new_hci) => {
@@ -1499,19 +1502,19 @@ impl StateMachineInternal {
         &mut self,
         hci: VirtualHciIndex,
         present: bool,
-    ) -> (ProcessState, AdapterChangeAction) {
+    ) -> (ProcessState, AdapterChangeAction, CommandTimeoutAction) {
         let prev_present = self.get_state(hci, |a: &AdapterState| Some(a.present)).unwrap_or(false);
         let prev_state = self.get_process_state(hci);
 
         // No-op if same as previous present.
         if prev_present == present {
-            return (prev_state, AdapterChangeAction::DoNothing);
+            return (prev_state, AdapterChangeAction::DoNothing, CommandTimeoutAction::DoNothing);
         }
 
         self.modify_state(hci, |a: &mut AdapterState| a.present = present);
         let floss_enabled = self.get_floss_enabled();
 
-        let next_state =
+        let (next_state, timeout_action) =
             match self.get_state(hci, |a: &AdapterState| Some((a.state, a.config_enabled))) {
                 // Start the adapter if present, config is enabled and floss is enabled.
                 Some((ProcessState::Off, true)) if floss_enabled && present => {
@@ -1523,9 +1526,9 @@ impl StateMachineInternal {
                     self.modify_state(hci, |a: &mut AdapterState| a.restart_count = 0);
 
                     self.action_start_bluetooth(hci);
-                    ProcessState::TurningOn
+                    (ProcessState::TurningOn, CommandTimeoutAction::ResetTimer)
                 }
-                _ => prev_state,
+                _ => (prev_state, CommandTimeoutAction::DoNothing),
             };
 
         let default_adapter = VirtualHciIndex(self.default_adapter.load(Ordering::Relaxed));
@@ -1537,16 +1540,18 @@ impl StateMachineInternal {
         //   2) The current default adapter is no longer present or enabled.
         //      * Switch to the lowest numbered adapter present or do nothing.
         //
-        return if present && hci == desired_adapter && hci != default_adapter {
-            (next_state, AdapterChangeAction::NewDefaultAdapter(desired_adapter))
+        let adapter_change_action = if present && hci == desired_adapter && hci != default_adapter {
+            AdapterChangeAction::NewDefaultAdapter(desired_adapter)
         } else if !present && hci == default_adapter {
             match self.get_lowest_available_adapter() {
-                Some(v) => (next_state, AdapterChangeAction::NewDefaultAdapter(v)),
-                None => (next_state, AdapterChangeAction::DoNothing),
+                Some(v) => AdapterChangeAction::NewDefaultAdapter(v),
+                None => AdapterChangeAction::DoNothing,
             }
         } else {
-            (next_state, AdapterChangeAction::DoNothing)
+            AdapterChangeAction::DoNothing
         };
+
+        (next_state, adapter_change_action, timeout_action)
     }
 }
 
