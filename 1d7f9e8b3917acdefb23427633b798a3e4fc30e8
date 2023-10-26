@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0303d70_047bad58",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 780,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-26T06:52:12Z",
+      "side": 1,
+      "message": "How about making `mFactory.getLooper()` get no arguments and return null as default? \nThen we create HandlerThread only when the getLooper returns not null.\n\nReasons are:\n1) `getLooper(Looper)` returns the given looper feels somewhat not natural to me\n2) We can prevent unnecessary `mHandlerThread` creation in test",
+      "range": {
+        "startLine": 778,
+        "startChar": 8,
+        "endLine": 780,
+        "endChar": 79
+      },
+      "revId": "1d7f9e8b3917acdefb23427633b798a3e4fc30e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56ebb538_db37e079",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ServiceFactory.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-26T06:52:12Z",
+      "side": 1,
+      "message": "The `getLooper` seems not belong to this class, since this class is for service objects. How about creating a proxy class or test class?",
+      "range": {
+        "startLine": 37,
+        "startChar": 3,
+        "endLine": 37,
+        "endChar": 56
+      },
+      "revId": "1d7f9e8b3917acdefb23427633b798a3e4fc30e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
