@@ -650,6 +650,13 @@ pub async fn mainloop(
 
                         let action = context.state_machine.action_on_bluetooth_started(*pid, hci);
                         cmd_timeout.lock().unwrap().handle_timeout_action(hci, action);
+
+                        if context.state_machine.has_queued_present(hci) {
+                            context.state_machine.modify_state(hci, |a: &mut AdapterState| {
+                                a.has_queued_present = false;
+                            });
+                            bluetooth_manager.lock().unwrap().callback_hci_device_change(hci, true);
+                        }
                     }
                     AdapterStateActions::BluetoothStopped(i) => {
                         hci = *i;
@@ -715,7 +722,22 @@ pub async fn mainloop(
                             AdapterChangeAction::DoNothing => (),
                         };
 
-                        bluetooth_manager.lock().unwrap().callback_hci_device_change(hci, *present);
+                        // If present switched to true and we're turning on the adapter,
+                        // defer the callback until the next BluetoothStarted or CommandTimeout
+                        // so the clients won't get an unexpected state change after present.
+                        let queue_present = *present && next_state == ProcessState::TurningOn;
+
+                        if !queue_present {
+                            bluetooth_manager
+                                .lock()
+                                .unwrap()
+                                .callback_hci_device_change(hci, *present);
+                        }
+                        // Always modify_state to make sure it's reset on queue_present=false,
+                        // e.g., when a hci is removed while its presence is still queued.
+                        context.state_machine.modify_state(hci, |a: &mut AdapterState| {
+                            a.has_queued_present = queue_present;
+                        });
                     }
                 };
 
@@ -843,6 +865,13 @@ pub async fn mainloop(
                 match timeout_action {
                     StateMachineTimeoutActions::Noop => (),
                     _ => cmd_timeout.lock().unwrap().set_next(hci),
+                }
+
+                if context.state_machine.has_queued_present(hci) {
+                    context.state_machine.modify_state(hci, |a: &mut AdapterState| {
+                        a.has_queued_present = false;
+                    });
+                    bluetooth_manager.lock().unwrap().callback_hci_device_change(hci, true);
                 }
             }
 
@@ -1017,6 +1046,9 @@ pub struct AdapterState {
     /// Whether this hci device is listed as present.
     pub present: bool,
 
+    /// Whether we have queued present=true event.
+    pub has_queued_present: bool,
+
     /// Whether this hci device is configured to be enabled.
     pub config_enabled: bool,
 
@@ -1032,6 +1064,7 @@ impl AdapterState {
             real_hci,
             virt_hci,
             present: false,
+            has_queued_present: false,
             config_enabled: false,
             pid: 0,
             restart_count: 0,
@@ -1238,6 +1271,10 @@ impl StateMachineInternal {
         self.modify_state(hci, move |a: &mut AdapterState| {
             a.config_enabled = enabled;
         });
+    }
+
+    fn has_queued_present(&self, hci: VirtualHciIndex) -> bool {
+        self.get_state(hci, |a: &AdapterState| Some(a.has_queued_present)).unwrap_or(false)
     }
 
     fn get_process_state(&self, hci: VirtualHciIndex) -> ProcessState {
