@@ -26,6 +26,7 @@ import smp_test
 import pairing_tests.br_edr.legacy.tests as bredr_legacy_tests
 import pairing_tests.br_edr.ssp.display_output_and_yes_no_input.tests as bredr_ssp_displayyesno_tests
 import pairing_tests.br_edr.ssp.display_output_only.tests as bredr_ssp_displayonly_tests
+import pairing_tests.br_edr.ssp.keyboard_input_only.tests as bredr_ssp_keyboardonly_tests
 
 _TEST_CLASSES_LIST = [
     avatar.cases.host_test.HostTest,
@@ -40,6 +41,7 @@ _TEST_CLASSES_LIST = [
     bredr_legacy_tests.BREDRLegacyTestClass,
     bredr_ssp_displayyesno_tests.BREDRDisplayYesNoTestClass,
     bredr_ssp_displayonly_tests.BREDRDisplayOnlyTestClass,
+    bredr_ssp_keyboardonly_tests.BREDRKeyboardOnlyTestClass,
 ]
 
 def _parse_cli_args() -> Tuple[Namespace, List[str]]:
