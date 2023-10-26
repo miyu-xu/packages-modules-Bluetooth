@@ -139,8 +139,9 @@ void bta_dm_add_device(std::unique_ptr<tBTA_DM_API_ADD_DEVICE> msg) {
 
   if (msg->link_key_known) p_lc = &msg->link_key;
 
-  auto add_result = BTM_SecAddDevice(msg->bd_addr, p_dc, msg->bd_name, nullptr,
-                                     p_lc, msg->key_type, msg->pin_length);
+  auto add_result = get_btm_client_interface().security.BTM_SecAddDevice(
+      msg->bd_addr, p_dc, msg->bd_name, nullptr, p_lc, msg->key_type,
+      msg->pin_length);
   if (!add_result) {
     LOG(ERROR) << "BTA_DM: Error adding device "
                << ADDRESS_TO_LOGGABLE_STR(msg->bd_addr);
@@ -625,7 +626,8 @@ static void bta_dm_remove_sec_dev_entry(const RawAddress& remote_bd_addr) {
           remote_bd_addr, BT_TRANSPORT_BR_EDR)) {
     LOG_VERBOSE("%s ACL is not down. Schedule for  Dev Removal when ACL closes",
                 __func__);
-    BTM_SecClearSecurityFlags(remote_bd_addr);
+    get_btm_client_interface().security.BTM_SecClearSecurityFlags(
+        remote_bd_addr);
     for (int i = 0; i < bta_dm_cb.device_list.count; i++) {
       auto& dev = bta_dm_cb.device_list.peer_device[i];
       if (dev.peer_bdaddr == remote_bd_addr) {
