@@ -22,6 +22,30 @@
       },
       "revId": "c86d62bc34cac2e1f85ce18f6b4a42452ccc1f69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba10ac68_4286f0cf",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1019,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 0,
+      "message": "Since it is the same.",
+      "parentUuid": "0883f65a_df790972",
+      "range": {
+        "startLine": 1019,
+        "startChar": 29,
+        "endLine": 1019,
+        "endChar": 37
+      },
+      "revId": "c86d62bc34cac2e1f85ce18f6b4a42452ccc1f69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

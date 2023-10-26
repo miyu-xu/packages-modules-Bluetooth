@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0cf129a_6bed954e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6d1f3a1_cc924cd2",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 17
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ba6b901b_5eb1870b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-25T08:50:44Z",
       "side": 1,
       "message": "This part seems same. If they will be the same in the future, can we merge them if possible? (e.g. using switch() in the runnable)",
+      "range": {
+        "startLine": 209,
+        "startChar": 28,
+        "endLine": 213,
+        "endChar": 29
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6343c34_0568abd1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "These are a temporary change that will be removed soon in the follow-up CLs.",
+      "parentUuid": "ba6b901b_5eb1870b",
       "range": {
         "startLine": 209,
         "startChar": 28,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a9f6931_79819d3b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1145,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "To remove the xxxConectedDevices in the outer class.",
+      "parentUuid": "fda514fe_f623b916",
+      "range": {
+        "startLine": 1145,
+        "startChar": 21,
+        "endLine": 1145,
+        "endChar": 84
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d85008b0_be9b7cec",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-10-25T08:50:44Z",
       "side": 1,
       "message": "For profiles, let\u0027s print them as strings (\"A2DP\") for easier debugging.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothProfile.java;l\u003d488\n\nHere and others",
+      "range": {
+        "startLine": 1156,
+        "startChar": 85,
+        "endLine": 1156,
+        "endChar": 92
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12a2bb3f_2b922230",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1156,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d85008b0_be9b7cec",
       "range": {
         "startLine": 1156,
         "startChar": 85,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0834144_e9eabb26",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1159,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b3a008d5_c9cbd3c8",
+      "range": {
+        "startLine": 1159,
+        "startChar": 12,
+        "endLine": 1159,
+        "endChar": 61
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c75f462_5ac6f889",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-10-25T08:50:44Z",
       "side": 1,
       "message": "Let\u0027s remove xxx and fix it to be a debug log",
+      "range": {
+        "startLine": 1179,
+        "startChar": 16,
+        "endLine": 1179,
+        "endChar": 65
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc2f277a_7144a070",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1179,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c75f462_5ac6f889",
       "range": {
         "startLine": 1179,
         "startChar": 16,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08ae921d_2ff36656",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1211,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "AudioRoutingHandler doesn\u0027t require any lock, and at the end, the mLock would be removed.",
+      "parentUuid": "748a413c_e14e691a",
+      "range": {
+        "startLine": 1211,
+        "startChar": 33,
+        "endLine": 1211,
+        "endChar": 43
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54d48406_ce7b16f4",
@@ -175,6 +343,30 @@
       "writtenOn": "2023-10-25T08:50:44Z",
       "side": 1,
       "message": "Shouldn\u0027t we allow `CONNECTION_POLICY_UNKNOWN` too?",
+      "range": {
+        "startLine": 1228,
+        "startChar": 40,
+        "endLine": 1228,
+        "endChar": 65
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7a28a29_9e4ff92e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1228,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "I think we don\u0027t connected if CONNECTION_POLICY_ALLOWED.\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/AdapterService.java;drc\u003d057ea3af57754fe816efec8d87da84f65157e4a9;bpv\u003d1;bpt\u003d1;l\u003d1664?q\u003dCONNECTION_POLICY_UNKNOWN\u0026sq\u003dgit:googleplex-android%2Fplatform%2Fsuperproject%2Fmain@main",
+      "parentUuid": "54d48406_ce7b16f4",
       "range": {
         "startLine": 1228,
         "startChar": 40,
@@ -208,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ee76a0a_c4ca93ba",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1260,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f8ba0cb_4791dcd4",
+      "range": {
+        "startLine": 1260,
+        "startChar": 28,
+        "endLine": 1260,
+        "endChar": 29
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "50984da7_71080f45",
@@ -231,6 +447,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f847b9c_f771f1d2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1261,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "Having the info of connected profiles and supported profiles per device would make it easier that handles the activation of devices.\nFYI, A2DP and HFP should be activated together. and if dual mode on, LEA also can be activated together.",
+      "parentUuid": "50984da7_71080f45",
+      "range": {
+        "startLine": 1261,
+        "startChar": 21,
+        "endLine": 1261,
+        "endChar": 39
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8195e885_ef701a64",
@@ -244,6 +484,30 @@
       "writtenOn": "2023-10-25T08:50:44Z",
       "side": 1,
       "message": "Let\u0027s merge those two conditions with `||`.",
+      "range": {
+        "startLine": 1272,
+        "startChar": 28,
+        "endLine": 1274,
+        "endChar": 87
+      },
+      "revId": "d560e3ecb6434c150e61aca5a35ef5b15740a6fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97bb2bc5_d88223a1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1274,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-26T05:59:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8195e885_ef701a64",
       "range": {
         "startLine": 1272,
         "startChar": 28,
