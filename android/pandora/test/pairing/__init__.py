@@ -12,11 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from pairing.br_edr.legacy.tests import BREDRLegacyTestClass
 from pairing.br_edr.misc.service_access_tests import ServiceAccessTempBondingTest
+from pairing.br_edr.legacy.tests import BREDRLegacyTestClass
+
+from pairing.br_edr.ssp.no_output_no_input.tests import BREDRNoOutputNoInputTestClass
+
 from pairing.smp_test import SmpTest
 
 _test_class_list = [
+    BREDRNoOutputNoInputTestClass,
     BREDRLegacyTestClass,
     ServiceAccessTempBondingTest,
     SmpTest,
