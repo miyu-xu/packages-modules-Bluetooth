@@ -22,6 +22,57 @@
       },
       "revId": "fb47c372d574467e723ffe8dde1565c754300934",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1c71320_f639b2ce",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-26T22:08:36Z",
+      "side": 1,
+      "message": "We should not autonomously start repairing. Specification clearly mandates asking user before initiating repairing.",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccc73591_550d3e68",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-26T22:08:36Z",
+      "side": 1,
+      "message": "\u003e link is maintained and data can be transmitted\nThe proposed change does not match the intention to prevent data exchange.\nMaintaining the link is fine as long as the data transmission is not allowed. Link is needed to be maintained for any possible repairing attempt.",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fdbff4b_d2619b1a",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-26T22:08:36Z",
+      "side": 1,
+      "message": "What happens if the encryption request fails again?",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
