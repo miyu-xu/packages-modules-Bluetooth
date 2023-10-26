@@ -25,6 +25,9 @@ import sdp_test
 import smp_test
 import pairing_tests
 
+import pairing_tests.ble.legacy.display_output_and_yes_no_input.tests as ble_legacy_displayyesno_tests
+
+
 _TEST_CLASSES_LIST = [
     avatar.cases.host_test.HostTest,
     avatar.cases.le_host_test.LeHostTest,
