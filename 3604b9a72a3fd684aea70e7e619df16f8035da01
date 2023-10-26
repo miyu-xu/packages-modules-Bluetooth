@@ -22,6 +22,30 @@
       },
       "revId": "3604b9a72a3fd684aea70e7e619df16f8035da01",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a8791c3_5ffda898",
+        "filename": "system/stack/btm/btm_sec_int_types.h",
+        "patchSetId": 29
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-26T18:13:22Z",
+      "side": 1,
+      "message": "This is a intermediate state. In the end, this data structure will be completely become un-accessible from outside of security module and thus extern will not be needed.\n\nJsut wait for a while.",
+      "parentUuid": "26357ade_61947e6e",
+      "range": {
+        "startLine": 248,
+        "startChar": 0,
+        "endLine": 248,
+        "endChar": 30
+      },
+      "revId": "3604b9a72a3fd684aea70e7e619df16f8035da01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
