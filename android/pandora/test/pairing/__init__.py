@@ -14,9 +14,11 @@
 
 from pairing.br_edr.misc import service_access_tests
 from pairing.br_edr.legacy import tests as br_edr_legacy_tests
+from pairing.br_edr.ssp.no_output_no_input.tests import BREDRNoOutputNoInputTestClass
 from .smp_test import SmpTest
 
 _test_class_list = [
+    BREDRNoOutputNoInputTestClass,
     br_edr_legacy_tests.BREDRLegacyTestClass,
     service_access_tests.ServiceAccessTempBondingTest,
     SmpTest,
