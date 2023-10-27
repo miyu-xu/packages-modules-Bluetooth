@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "387bd09d_d5a144cc",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1529,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-27T07:14:59Z",
+      "side": 1,
+      "message": "Considering the principle of minimizing the scope of code changes and avoiding the return of superfluous values, I suggest we handle of the ResetTimer action directly within this function. For example:\n\n```\nlet action \u003d self.action_start_bluetooth(hci);\ncmd_timeout.lock().unwrap().handle_timeout_action(hci, action);\n```",
+      "range": {
+        "startLine": 1528,
+        "startChar": 20,
+        "endLine": 1529,
+        "endChar": 79
+      },
+      "revId": "fbcd024d1919ad9c87da2186d945cee5e6dc0344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
