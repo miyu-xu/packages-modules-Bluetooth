@@ -142,7 +142,6 @@ cc_library_shared {
         "libnativehelper",
         "libstatssocket",
         "libvndksupport",
-        "server_configurable_flags",
     ],
     sanitize: {
         scs: true,
