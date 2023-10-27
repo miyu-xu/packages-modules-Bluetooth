@@ -70,6 +70,24 @@
       "parentUuid": "276c5f61_e1c78fb8",
       "revId": "6aa85895203d8c37cd5f749a120cac7a88adf3e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bee2e0f6_4da19fd2",
+        "filename": "android/pandora/test/avatar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-27T22:57:29Z",
+      "side": 1,
+      "message": "Resolving this per offline discussion: document the usage of PYTHONPATH else where in a follow up change.  but I dont know whether this change works or not.",
+      "parentUuid": "9afd20e5_8bba7a13",
+      "revId": "6aa85895203d8c37cd5f749a120cac7a88adf3e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
