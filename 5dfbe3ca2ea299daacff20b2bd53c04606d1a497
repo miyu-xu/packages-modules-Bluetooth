@@ -87,6 +87,24 @@
       "parentUuid": "2a5f6e0f_d52de18b",
       "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4fd00e71_214cf61c",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-10-27T08:08:18Z",
+      "side": 1,
+      "message": "I think there are only very few speed improved but with bad readability so I choose to go for this way. After do some search on the moma, it seems that there are also some security issues if we f-string in the logging function. So I agree to not use f-string in this cases.\nhttps://groups.google.com/a/google.com/g/ops-sword-eng/c/CfatuNZanl8/m/ljH5x20zAQAJ\n\nBut I feel we need to have better way to log the string. Because the string like\n\n```\nlogging.info(\u0027Hi this is an example var1 is %s var2 is %s so the function returns %s\u0027, var1, var2, var3)\n```\n\nCause high cognitive load. There are some discussions on the internet:\nhttps://discuss.python.org/t/safer-logging-methods-for-f-strings-and-new-style-formatting/13802, may be we can look for better way to do this in the future.",
+      "parentUuid": "296c675b_86f133d0",
+      "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
