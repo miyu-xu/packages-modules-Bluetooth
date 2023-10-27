@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f05d33_987cbf9b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-27T23:58:04Z",
+      "side": 1,
+      "message": "nit: maximum?",
+      "range": {
+        "startLine": 14,
+        "startChar": 10,
+        "endLine": 14,
+        "endChar": 17
+      },
+      "revId": "eda120848beb8d34eb08c8b660b46eb40662c2c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61c5ff7d_0bad4ad2",
+        "filename": "system/btif/src/btif_le_audio.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-27T23:58:04Z",
+      "side": 1,
+      "message": "I\u0027m surprised the indenting wasn\u0027t updated to match.  Did clang-format run?",
+      "range": {
+        "startLine": 154,
+        "startChar": 15,
+        "endLine": 154,
+        "endChar": 17
+      },
+      "revId": "eda120848beb8d34eb08c8b660b46eb40662c2c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
