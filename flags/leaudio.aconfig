@@ -13,3 +13,10 @@ flag {
     description: "Allow volume control for connected devices"
     bug: "307408418"
 }
+
+flag {
+    name: "leaudio_broadcast_audio_handover_policies"
+    namespace: "bluetooth"
+    description: "Support le audio broadcast audio routing policies"
+    bug: "308171251"
+}
