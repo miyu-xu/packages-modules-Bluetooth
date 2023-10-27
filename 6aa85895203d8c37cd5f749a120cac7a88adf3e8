@@ -16,6 +16,24 @@
       "message": "Why is change needed?\n\nWill it break local runs?\n\nThe bug is titled \"Clarify PYTHONPATH used in avatar.sh\", where can I find the any clarification on how it is used?",
       "revId": "6aa85895203d8c37cd5f749a120cac7a88adf3e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4239b25b_2583a282",
+        "filename": "android/pandora/test/avatar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-27T21:27:14Z",
+      "side": 1,
+      "message": "This change is not really needed, it just moves something to make it clearer, it should change nothing and local runs will still work.\n\nIt clarifies by not defining PYTHONPATH for `run` and showing this is only used for `lint`.\nDon\u0027t pay too much attention to the bug, it\u0027s mostly here for me.",
+      "parentUuid": "5ab724be_4fa9873c",
+      "revId": "6aa85895203d8c37cd5f749a120cac7a88adf3e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
