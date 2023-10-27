@@ -37,6 +37,12 @@
 #include "test/common/mock_functions.h"
 #include "types/bt_transport.h"
 
+#ifdef DLOG
+#undef DLOG
+#endif
+
+#define DLOG LOG
+
 using ::le_audio::DeviceConnectState;
 using ::le_audio::codec_spec_caps::kLeAudioCodecChannelCountSingleChannel;
 using ::le_audio::codec_spec_caps::kLeAudioCodecChannelCountTwoChannel;
@@ -2109,6 +2115,10 @@ TEST_F(StateMachineTest, testStreamMultipleConversational) {
   ASSERT_EQ(1, get_func_call_count("alarm_cancel"));
 }
 
+MATCHER_P(dataPathDirIsEq, expected, "") {
+  return (arg.data_path_dir == expected);
+}
+
 TEST_F(StateMachineTest, testFailedStreamMultipleConversational) {
   /* Testing here CIS Failed to be established */
   const auto context_type = kContextTypeConversational;
@@ -2133,8 +2143,27 @@ TEST_F(StateMachineTest, testFailedStreamMultipleConversational) {
 
   EXPECT_CALL(*mock_iso_manager_, CreateCig(_, _)).Times(1);
   EXPECT_CALL(*mock_iso_manager_, EstablishCis(_)).Times(AtLeast(1));
-  EXPECT_CALL(*mock_iso_manager_, SetupIsoDataPath(_, _)).Times(0);
-  EXPECT_CALL(*mock_iso_manager_, RemoveIsoDataPath(_, _)).Times(0);
+
+  /* Bidirectional CIS data path is configured in tw ocalls and removed for both
+   * directions with a single call.
+   */
+  EXPECT_CALL(*mock_iso_manager_,
+              SetupIsoDataPath(
+                  _, dataPathDirIsEq(
+                         bluetooth::hci::iso_manager::kIsoDataPathDirectionIn)))
+      .Times(1);
+  EXPECT_CALL(
+      *mock_iso_manager_,
+      SetupIsoDataPath(
+          _, dataPathDirIsEq(
+                 bluetooth::hci::iso_manager::kIsoDataPathDirectionOut)))
+      .Times(1);
+  EXPECT_CALL(
+      *mock_iso_manager_,
+      RemoveIsoDataPath(
+          _, bluetooth::hci::iso_manager::kRemoveIsoDataPathDirectionOutput |
+                 bluetooth::hci::iso_manager::kRemoveIsoDataPathDirectionInput))
+      .Times(1);
 
   /* This check is the major one in this test, as we want to make sure,
    * it will not be called twice but only once (when both bidirectional ASEs are
@@ -4562,7 +4591,7 @@ TEST_F(StateMachineTest, testAttachDeviceToTheConversationalStream) {
 
   auto* leAudioDevice = group->GetFirstDevice();
   LeAudioDevice* lastDevice;
-  LeAudioDevice* fistDevice = leAudioDevice;
+  LeAudioDevice* firstDevice = leAudioDevice;
 
   auto expected_devices_written = 0;
   while (leAudioDevice) {
@@ -4581,10 +4610,43 @@ TEST_F(StateMachineTest, testAttachDeviceToTheConversationalStream) {
     leAudioDevice = group->GetNextDevice(leAudioDevice);
   }
   ASSERT_EQ(expected_devices_written, num_devices);
+  ASSERT_NE(nullptr, firstDevice);
+  ASSERT_NE(nullptr, lastDevice);
 
   EXPECT_CALL(*mock_iso_manager_, CreateCig(_, _)).Times(1);
   EXPECT_CALL(*mock_iso_manager_, EstablishCis(_)).Times(1);
-  EXPECT_CALL(*mock_iso_manager_, SetupIsoDataPath(_, _)).Times(4);
+
+  EXPECT_CALL(*mock_iso_manager_,
+              SetupIsoDataPath(
+                  _, dataPathDirIsEq(
+                         bluetooth::hci::iso_manager::kIsoDataPathDirectionIn)))
+      .Times(2);
+
+  // Make sure the Out data path is set before we declare that we are ready
+  {
+    ::testing::InSequence seq;
+    EXPECT_CALL(*mock_iso_manager_,
+                SetupIsoDataPath(
+                    UNIQUE_CIS_CONN_HANDLE(leaudio_group_id, 0),
+                    dataPathDirIsEq(
+                        bluetooth::hci::iso_manager::kIsoDataPathDirectionOut)))
+        .Times(1);
+    EXPECT_CALL(ase_ctp_handler,
+                AseCtpReceiverStartReadyHandler(firstDevice, _, _, _))
+        .Times(1);
+  }
+  {
+    ::testing::InSequence seq;
+    EXPECT_CALL(*mock_iso_manager_,
+                SetupIsoDataPath(
+                    UNIQUE_CIS_CONN_HANDLE(leaudio_group_id, 1),
+                    dataPathDirIsEq(
+                        bluetooth::hci::iso_manager::kIsoDataPathDirectionOut)))
+        .Times(1);
+    EXPECT_CALL(ase_ctp_handler,
+                AseCtpReceiverStartReadyHandler(lastDevice, _, _, _))
+        .Times(1);
+  }
 
   InjectInitialIdleNotification(group);
 
@@ -4599,9 +4661,19 @@ TEST_F(StateMachineTest, testAttachDeviceToTheConversationalStream) {
             types::AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
   testing::Mock::VerifyAndClearExpectations(&mock_iso_manager_);
 
+  // Verify data path removal on the second bidirectional CIS
+  EXPECT_CALL(
+      *mock_iso_manager_,
+      RemoveIsoDataPath(
+          UNIQUE_CIS_CONN_HANDLE(leaudio_group_id, 1),
+          bluetooth::hci::iso_manager::kRemoveIsoDataPathDirectionOutput |
+              bluetooth::hci::iso_manager::kRemoveIsoDataPathDirectionInput))
+      .Times(1);
+
   // Inject CIS and ACL disconnection of first device
   InjectCisDisconnected(group, lastDevice, HCI_ERR_CONNECTION_TOUT);
   InjectAclDisconnected(group, lastDevice);
+  testing::Mock::VerifyAndClearExpectations(&mock_iso_manager_);
 
   // Check if group keeps streaming
   ASSERT_EQ(group->GetState(),
@@ -4626,7 +4698,25 @@ TEST_F(StateMachineTest, testAttachDeviceToTheConversationalStream) {
       .Times(AtLeast(3));
 
   EXPECT_CALL(*mock_iso_manager_, EstablishCis(_)).Times(1);
-  EXPECT_CALL(*mock_iso_manager_, SetupIsoDataPath(_, _)).Times(2);
+  EXPECT_CALL(*mock_iso_manager_,
+              SetupIsoDataPath(
+                  _, dataPathDirIsEq(
+                         bluetooth::hci::iso_manager::kIsoDataPathDirectionIn)))
+      .Times(1);
+  // Make sure the Out data path is set before we declare that we are ready
+  {
+    ::testing::InSequence seq;
+    EXPECT_CALL(*mock_iso_manager_,
+                SetupIsoDataPath(
+                    UNIQUE_CIS_CONN_HANDLE(leaudio_group_id, 1),
+                    dataPathDirIsEq(
+                        bluetooth::hci::iso_manager::kIsoDataPathDirectionOut)))
+        .Times(1);
+    EXPECT_CALL(ase_ctp_handler,
+                AseCtpReceiverStartReadyHandler(lastDevice, _, _, _))
+        .Times(1);
+  }
+
   LeAudioGroupStateMachine::Get()->AttachToStream(
       group, lastDevice, {.sink = {call_ccid}, .source = {call_ccid}});
 
@@ -4646,7 +4736,7 @@ TEST_F(StateMachineTest, testAttachDeviceToTheConversationalStream) {
   ASSERT_NE(std::find(ccids->begin(), ccids->end(), call_ccid), ccids->end());
 
   /* Verify that ASE of first device are still good*/
-  auto ase = fistDevice->GetFirstActiveAse();
+  auto ase = firstDevice->GetFirstActiveAse();
   ASSERT_NE(ase->max_transport_latency, 0);
   ASSERT_NE(ase->retrans_nb, 0);
 

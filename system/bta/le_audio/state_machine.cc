@@ -608,24 +608,28 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
     AddCisToStreamConfiguration(group, ase);
 
-    ase = leAudioDevice->GetFirstActiveAseByCisAndDataPathState(
-        CisState::CONNECTED, DataPathState::IDLE);
-    if (!ase) {
-      leAudioDevice = group->GetNextActiveDeviceByCisAndDataPathState(
-          leAudioDevice, CisState::CONNECTED, DataPathState::IDLE);
+    // ase = leAudioDevice->GetFirstActiveAseByCisAndDataPathState(
+    //     CisState::CONNECTED, DataPathState::IDLE);
+    // if (!ase) {
+    //   if (group->IsGroupStreamReady()) {
+    //     state_machine_callbacks_->StatusReportCb(group->group_id_,
+    //                                              GroupStreamStatus::STREAMING);
+    //     return;
+    //   }
+    //   ase = leAudioDevice->GetFirstActiveAseByCisAndDataPathState(
+    //       CisState::CONNECTED, DataPathState::IDLE);
+    // }
 
-      if (!leAudioDevice) {
-        state_machine_callbacks_->StatusReportCb(group->group_id_,
-                                                 GroupStreamStatus::STREAMING);
-        return;
-      }
+    // if (ase) {
+    //   PrepareDataPath(group->group_id_, ase);
+    // }
 
-      ase = leAudioDevice->GetFirstActiveAseByCisAndDataPathState(
-          CisState::CONNECTED, DataPathState::IDLE);
+    if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING &&
+        !group->GetFirstActiveDeviceByCisAndDataPathState(
+            CisState::CONNECTED, DataPathState::IDLE)) {
+      /* No more transition for group */
+      cancel_watchdog_if_needed(group->group_id_);
     }
-
-    ASSERT_LOG(ase, "shouldn't be called without an active ASE");
-    PrepareDataPath(group->group_id_, ase);
   }
 
   void ProcessHciNotifRemoveIsoDataPath(LeAudioDeviceGroup* group,
@@ -867,6 +871,16 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     if (ases_pair.sink) ases_pair.sink->cis_state = CisState::CONNECTED;
     if (ases_pair.source) ases_pair.source->cis_state = CisState::CONNECTED;
 
+    if (ases_pair.sink &&
+        (ases_pair.sink->data_path_state == DataPathState::IDLE)) {
+      PrepareDataPath(group->group_id_, ases_pair.sink);
+    }
+
+    if (ases_pair.source &&
+        (ases_pair.source->data_path_state == DataPathState::IDLE)) {
+      PrepareDataPath(group->group_id_, ases_pair.source);
+    }
+
     if (osi_property_get_bool("persist.bluetooth.iso_link_quality_report",
                               false)) {
       leAudioDevice->link_quality_timer =
@@ -904,12 +918,19 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
     /* Cis establishment may came after setting group state to streaming, e.g.
      * for autonomous scenario when ase is sink */
-    if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING &&
-        group->GetFirstActiveDeviceByCisAndDataPathState(CisState::CONNECTED,
-                                                         DataPathState::IDLE)) {
+    LOG_ERROR("JT@CC IsGroupStreamReady 111: %s ?",
+              bluetooth::common::ToString(group->GetState()).c_str());
+    if (group->GetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING &&
+        group->IsGroupStreamReady()) {
+      LOG_ERROR("JT@CC IsGroupStreamReady 111: Yes");
+
+      group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+
       /* No more transition for group */
       cancel_watchdog_if_needed(group->group_id_);
-      PrepareDataPath(group);
+
+      state_machine_callbacks_->StatusReportCb(group->group_id_,
+                                               GroupStreamStatus::STREAMING);
     }
   }
 
@@ -1518,17 +1539,17 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
                                                 std::move(param));
   }
 
-  static inline void PrepareDataPath(LeAudioDeviceGroup* group) {
-    auto* leAudioDevice = group->GetFirstActiveDeviceByCisAndDataPathState(
-        CisState::CONNECTED, DataPathState::IDLE);
-    LOG_ASSERT(leAudioDevice)
-        << __func__ << " Shouldn't be called without an active device.";
+  // static inline void PrepareDataPath(LeAudioDeviceGroup* group) {
+  //   auto* leAudioDevice = group->GetFirstActiveDeviceByCisAndDataPathState(
+  //       CisState::CONNECTED, DataPathState::IDLE);
+  //   LOG_ASSERT(leAudioDevice)
+  //       << __func__ << " Shouldn't be called without an active device.";
 
-    auto* ase = leAudioDevice->GetFirstActiveAseByCisAndDataPathState(
-        CisState::CONNECTED, DataPathState::IDLE);
-    LOG_ASSERT(ase) << __func__ << " shouldn't be called without an active ASE";
-    PrepareDataPath(group->group_id_, ase);
-  }
+  //   auto* ase = leAudioDevice->GetFirstActiveAseByCisAndDataPathState(
+  //       CisState::CONNECTED, DataPathState::IDLE);
+  //   LOG_ASSERT(ase) << __func__ << " shouldn't be called without an active
+  //   ASE"; PrepareDataPath(group->group_id_, ase);
+  // }
 
   static void ReleaseDataPath(LeAudioDeviceGroup* group) {
     LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
@@ -2594,12 +2615,22 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
 
         if (group->GetState() == AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
           /* We are here because of the reconnection of the single device. */
-          PrepareDataPath(group);
           return;
         }
 
-        if (leAudioDevice->IsReadyToCreateStream())
+        LOG_ERROR("JT@CC IsReadyToCreateStream: ?");
+        if (leAudioDevice->IsReadyToCreateStream()) {
+          LOG_ERROR("JT@CC IsReadyToCreateStream: Yes");
           ProcessGroupEnable(group);
+          return;
+        }
+
+        LOG_ERROR("JT@CC IsGroupStreamReady: ?");
+        if (group->IsGroupStreamReady()) {
+          LOG_ERROR("JT@CC IsGroupStreamReady: Yes");
+          state_machine_callbacks_->StatusReportCb(
+              group->group_id_, GroupStreamStatus::STREAMING);
+        }
 
         break;
 
@@ -2628,30 +2659,29 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           if (!group->GetFirstActiveDeviceByCisAndDataPathState(
                   CisState::CONNECTED, DataPathState::IDLE))
             return;
-          PrepareDataPath(group);
+          // PrepareDataPath(group);
           return;
         }
 
-        /* Last node is in streaming state */
-        group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
-
-        /* Not all CISes establish evens came */
+        /* Not all CISes establish events will came */
         if (!group->IsGroupStreamReady()) return;
 
         if (group->GetTargetState() ==
             AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
           /* No more transition for group */
           cancel_watchdog_if_needed(group->group_id_);
-          PrepareDataPath(group);
 
-          return;
-        } else {
-          LOG_ERROR(", invalid state transition, from: %s, to: %s",
-                    ToString(group->GetState()).c_str(),
-                    ToString(group->GetTargetState()).c_str());
-          StopStream(group);
+          /* Last node is in streaming state */
+          group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+
+          state_machine_callbacks_->StatusReportCb(
+              group->group_id_, GroupStreamStatus::STREAMING);
           return;
         }
+        LOG_ERROR(", invalid state transition, from: %s, to: %s",
+                  ToString(group->GetState()).c_str(),
+                  ToString(group->GetTargetState()).c_str());
+        StopStream(group);
 
         break;
       }
@@ -2876,14 +2906,17 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_ENABLING);
     }
 
-    /* At this point all of the active ASEs within group are enabled. The server
-     * might perform autonomous state transition for Sink ASE and skip Enabling
-     * state notification and transit to Streaming directly. So check the group
-     * state, because we might be ready to create CIS. */
-    if (group->HaveAllActiveDevicesAsesTheSameState(
-            AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING)) {
-      group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
-    }
+    // /* At this point all of the active ASEs within group are enabled. The
+    // server
+    //  * might perform autonomous state transition for Sink ASE and skip
+    //  Enabling
+    //  * state notification and transit to Streaming directly. So check the
+    //  group
+    //  * state, because we might be ready to create CIS. */
+    // if (group->HaveAllActiveDevicesAsesTheSameState(
+    //         AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING)) {
+    //   group->SetState(AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING);
+    // }
 
     if (group->GetTargetState() != AseState::BTA_LE_AUDIO_ASE_STATE_STREAMING) {
       LOG_ERROR(", invalid state transition, from: %s , to: %s ",
@@ -2893,6 +2926,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       return;
     }
 
+    /* Try to create CIS */
     if (!CisCreate(group)) {
       StopStream(group);
     }
