@@ -52,6 +52,24 @@
       "parentUuid": "4239b25b_2583a282",
       "revId": "6aa85895203d8c37cd5f749a120cac7a88adf3e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9afd20e5_8bba7a13",
+        "filename": "android/pandora/test/avatar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-10-27T21:34:36Z",
+      "side": 1,
+      "message": "\u003e Can you please add some comments to help others understand how the code runs locally and in CI?\n\nIt\u0027s a great idea to document that, but I don\u0027t think this script is the correct place for this and that it\u0027s out of scope for this change and for my bug.\n\nI you think it\u0027s important could you open a bug for us to discuss what should we document and where should we put it?\n\nThis change is just a quick win to avoid someone getting confused in the future of the relationship between the `run` subcommand and the `export PYTHONPATH`",
+      "parentUuid": "276c5f61_e1c78fb8",
+      "revId": "6aa85895203d8c37cd5f749a120cac7a88adf3e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
