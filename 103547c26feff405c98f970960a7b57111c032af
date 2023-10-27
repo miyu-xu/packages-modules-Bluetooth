@@ -16,6 +16,24 @@
       "message": "Do you think we can decouple this CL from this chain? or we can do this from LE audio side?\n\nthe reason is\n1. for the change in ActiveDeviceManager, it would be preferred to flag with aconfig flag in trunk stable release. e.g. aosp/2790874 as a reference.\n2. I\u0027m planning to introduce such change for all LEA and non-LEA devices in ActiveDeviceManager. if possible, I can include this as part of it and flag it properly.",
       "revId": "103547c26feff405c98f970960a7b57111c032af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2cb2efa_e8735e62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-27T00:29:31Z",
+      "side": 1,
+      "message": "as we discussed, I\u0027m thinking to add one change under feature flag for this file soon, then you can rebase your rest of CLs on that.",
+      "parentUuid": "0d4061c8_e30d6bfd",
+      "revId": "103547c26feff405c98f970960a7b57111c032af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
