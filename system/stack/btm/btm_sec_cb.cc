@@ -29,6 +29,10 @@
 #include "stack/include/main_thread.h"
 #include "types/raw_address.h"
 
+namespace {
+bluetooth::stack::btm::SecurityEventParser event_parser;
+}
+
 void tBTM_SEC_CB::Init(uint8_t initial_security_mode) {
   memset(&cfg, 0, sizeof(cfg));
   memset(&devcb, 0, sizeof(devcb));
@@ -59,10 +63,9 @@ void tBTM_SEC_CB::Init(uint8_t initial_security_mode) {
     *((tBTM_SEC_DEV_REC*)ptr) = {};
     osi_free(ptr);
   });
-  bluetooth::stack::btm::SecurityEventParser event_parser_;
   hci_ = bluetooth::shim::GetHciLayer()->GetSecurityInterface(
       get_main_thread()->BindOn(
-          &event_parser_,
+          &event_parser,
           &bluetooth::stack::btm::SecurityEventParser::OnSecurityEvent));
 }
 
