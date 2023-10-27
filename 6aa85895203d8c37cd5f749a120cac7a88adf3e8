@@ -34,6 +34,24 @@
       "parentUuid": "5ab724be_4fa9873c",
       "revId": "6aa85895203d8c37cd5f749a120cac7a88adf3e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "276c5f61_e1c78fb8",
+        "filename": "android/pandora/test/avatar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-27T21:29:05Z",
+      "side": 1,
+      "message": "Can you please add some comments to help others understand how the code runs locally and in CI?\n\nI think this will help clarify the purpose of PYTHONPATH.",
+      "parentUuid": "4239b25b_2583a282",
+      "revId": "6aa85895203d8c37cd5f749a120cac7a88adf3e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
