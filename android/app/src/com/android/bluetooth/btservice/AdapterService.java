@@ -696,9 +696,11 @@ public class AdapterService extends Service {
         }
 
         if (Flags.audioRoutingCentralization()) {
-            mActiveDeviceManager = new AudioRoutingManager(this, new ServiceFactory());
+            mActiveDeviceManager =
+                    new AudioRoutingManager(this, new ServiceFactory(), featureFlags);
         } else {
-            mActiveDeviceManager = new ActiveDeviceManager(this, new ServiceFactory());
+            mActiveDeviceManager =
+                    new ActiveDeviceManager(this, new ServiceFactory(), featureFlags);
         }
         mActiveDeviceManager.start();
 
