@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ab724be_4fa9873c",
+        "filename": "android/pandora/test/avatar.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-27T20:00:11Z",
+      "side": 1,
+      "message": "Why is change needed?\n\nWill it break local runs?\n\nThe bug is titled \"Clarify PYTHONPATH used in avatar.sh\", where can I find the any clarification on how it is used?",
+      "revId": "6aa85895203d8c37cd5f749a120cac7a88adf3e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
