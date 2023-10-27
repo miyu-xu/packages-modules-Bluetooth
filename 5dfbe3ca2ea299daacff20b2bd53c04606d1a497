@@ -69,6 +69,24 @@
       "parentUuid": "04fe0df5_997217fa",
       "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "296c675b_86f133d0",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-27T07:25:44Z",
+      "side": 1,
+      "message": "Thanks for information. Some sophisticated logging systems handle the uninterpolated format string differently. Avoid using f-string reduce the risk of producing error in this case makes sense.",
+      "parentUuid": "2a5f6e0f_d52de18b",
+      "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
