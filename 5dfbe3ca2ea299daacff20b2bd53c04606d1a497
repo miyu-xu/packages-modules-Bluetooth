@@ -51,6 +51,24 @@
       "parentUuid": "34154308_4eb7e85e",
       "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a5f6e0f_d52de18b",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2023-10-27T06:34:25Z",
+      "side": 1,
+      "message": "It is defined in Google Python style guide. \nIt disallows the use of formatted string in logging function. Consider the case that the log level is set to exclude info and debug, if you write a formatted log message, the Python interpreter needs to compose the message before calling the function and it turns out useless. logging functions are designed the way to compose log message after the log level matches.",
+      "parentUuid": "04fe0df5_997217fa",
+      "revId": "5dfbe3ca2ea299daacff20b2bd53c04606d1a497",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
