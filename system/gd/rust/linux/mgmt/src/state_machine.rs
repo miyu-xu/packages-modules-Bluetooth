@@ -630,17 +630,17 @@ pub async fn mainloop(
                     AdapterStateActions::StopBluetooth(i) => {
                         hci = *i;
                         prev_state = context.state_machine.get_process_state(hci);
-                        next_state = ProcessState::TurningOff;
 
-                        let action = context.state_machine.action_stop_bluetooth(hci);
+                        let action;
+                        (next_state, action) = context.state_machine.action_stop_bluetooth(hci);
                         cmd_timeout.lock().unwrap().handle_timeout_action(hci, action);
                     }
                     AdapterStateActions::RestartBluetooth(i) => {
                         hci = *i;
                         prev_state = context.state_machine.get_process_state(hci);
-                        next_state = ProcessState::Restarting;
 
-                        let action = context.state_machine.action_restart_bluetooth(hci);
+                        let action;
+                        (next_state, action) = context.state_machine.action_restart_bluetooth(hci);
                         cmd_timeout.lock().unwrap().handle_timeout_action(hci, action);
                     }
                     AdapterStateActions::BluetoothStarted(pid, i) => {
@@ -661,9 +661,10 @@ pub async fn mainloop(
                     AdapterStateActions::BluetoothStopped(i) => {
                         hci = *i;
                         prev_state = context.state_machine.get_process_state(hci);
-                        next_state = ProcessState::Off;
 
-                        let action = context.state_machine.action_on_bluetooth_stopped(hci);
+                        let action;
+                        (next_state, action) =
+                            context.state_machine.action_on_bluetooth_stopped(hci);
                         cmd_timeout.lock().unwrap().handle_timeout_action(hci, action);
                     }
 
@@ -1337,7 +1338,7 @@ impl StateMachineInternal {
         return AdapterChangeAction::DoNothing;
     }
 
-    /// Returns an action to reset timer if we are starting bluetooth process.
+    /// Returns the next state and an action to reset timer if we are starting bluetooth process.
     pub fn action_start_bluetooth(
         &mut self,
         hci: VirtualHciIndex,
@@ -1362,11 +1363,14 @@ impl StateMachineInternal {
         }
     }
 
-    /// Returns an action to reset or cancel timer if we are stopping bluetooth process.
-    pub fn action_stop_bluetooth(&mut self, hci: VirtualHciIndex) -> CommandTimeoutAction {
+    /// Returns the next state and an action to reset or cancel timer if we are stopping bluetooth process.
+    pub fn action_stop_bluetooth(
+        &mut self,
+        hci: VirtualHciIndex,
+    ) -> (ProcessState, CommandTimeoutAction) {
         if !self.is_known(hci) {
             warn!("Attempting to stop unknown device {}", hci);
-            return CommandTimeoutAction::DoNothing;
+            return (ProcessState::Off, CommandTimeoutAction::DoNothing);
         }
 
         let state = self.get_process_state(hci);
@@ -1374,41 +1378,54 @@ impl StateMachineInternal {
             ProcessState::On => {
                 self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::TurningOff);
                 self.process_manager.stop(hci, self.get_real_hci_by_virtual_id(hci));
-                CommandTimeoutAction::ResetTimer
+                (ProcessState::TurningOff, CommandTimeoutAction::ResetTimer)
             }
             ProcessState::TurningOn => {
                 self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::Off);
                 self.process_manager.stop(hci, self.get_real_hci_by_virtual_id(hci));
-                CommandTimeoutAction::CancelTimer
+                (ProcessState::Off, CommandTimeoutAction::CancelTimer)
             }
             // Otherwise no op
-            _ => CommandTimeoutAction::DoNothing,
+            _ => (state, CommandTimeoutAction::DoNothing),
         }
     }
 
-    /// Returns an action to reset timer if we are restarting bluetooth process
-    pub fn action_restart_bluetooth(&mut self, hci: VirtualHciIndex) -> CommandTimeoutAction {
+    /// Returns the next state and an action to reset timer if we are restarting bluetooth process
+    pub fn action_restart_bluetooth(
+        &mut self,
+        hci: VirtualHciIndex,
+    ) -> (ProcessState, CommandTimeoutAction) {
         if !self.is_known(hci) {
             warn!("Attempting to restart unknown device {}", hci);
-            return CommandTimeoutAction::DoNothing;
+            return (ProcessState::Off, CommandTimeoutAction::DoNothing);
         }
 
         let state = self.get_process_state(hci);
         let present = self.get_state(hci, move |a: &AdapterState| Some(a.present)).unwrap_or(false);
         let floss_enabled = self.get_floss_enabled();
 
-        match state {
-            ProcessState::On if present && floss_enabled => {
-                self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::Restarting);
+        if !present || !floss_enabled {
+            return (ProcessState::Off, CommandTimeoutAction::DoNothing);
+        }
+
+        let next_state = match state {
+            ProcessState::On => {
                 self.process_manager.stop(hci, self.get_real_hci_by_virtual_id(hci));
-                CommandTimeoutAction::ResetTimer
+                ProcessState::Restarting
+            }
+            ProcessState::TurningOff | ProcessState::Restarting => ProcessState::Restarting,
+            ProcessState::Off => {
+                self.process_manager.start(hci, self.get_real_hci_by_virtual_id(hci));
+                ProcessState::TurningOn
             }
             ProcessState::TurningOn => {
-                debug!("{} is already starting.", hci);
-                CommandTimeoutAction::DoNothing
+                self.process_manager.stop(hci, self.get_real_hci_by_virtual_id(hci));
+                self.process_manager.start(hci, self.get_real_hci_by_virtual_id(hci));
+                ProcessState::TurningOn
             }
-            _ => CommandTimeoutAction::DoNothing,
-        }
+        };
+        self.modify_state(hci, |s: &mut AdapterState| s.state = next_state);
+        (next_state, CommandTimeoutAction::ResetTimer)
     }
 
     /// Handles a bluetooth started event. Always return the acction to cancel timer even with
@@ -1432,10 +1449,13 @@ impl StateMachineInternal {
         CommandTimeoutAction::CancelTimer
     }
 
-    /// Returns an action to cancel timer if the event is expected.
+    /// Returns the next state and an action to cancel (turned off) or reset timer (restarting).
     /// If unexpected, Bluetooth probably crashed, returns an action to reset the timer to restart
     /// timeout.
-    pub fn action_on_bluetooth_stopped(&mut self, hci: VirtualHciIndex) -> CommandTimeoutAction {
+    pub fn action_on_bluetooth_stopped(
+        &mut self,
+        hci: VirtualHciIndex,
+    ) -> (ProcessState, CommandTimeoutAction) {
         let state = self.get_process_state(hci);
         let (present, config_enabled) = self
             .get_state(hci, move |a: &AdapterState| Some((a.present, a.config_enabled)))
@@ -1446,13 +1466,12 @@ impl StateMachineInternal {
             // Normal shut down behavior.
             ProcessState::TurningOff => {
                 self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::Off);
-                CommandTimeoutAction::CancelTimer
+                (ProcessState::Off, CommandTimeoutAction::CancelTimer)
             }
-            ProcessState::Restarting => {
-                debug!("{} restarting", hci);
+            ProcessState::Restarting if floss_enabled && config_enabled => {
                 self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::TurningOn);
                 self.process_manager.start(hci, self.get_real_hci_by_virtual_id(hci));
-                CommandTimeoutAction::ResetTimer
+                (ProcessState::TurningOn, CommandTimeoutAction::ResetTimer)
             }
             // Running bluetooth stopped unexpectedly.
             ProcessState::On if floss_enabled && config_enabled => {
@@ -1475,7 +1494,7 @@ impl StateMachineInternal {
                         .get_state(hci, |a: &AdapterState| Some(a.real_hci))
                         .unwrap_or(RealHciIndex(hci.to_i32()));
                     self.reset_hci(real_hci);
-                    CommandTimeoutAction::CancelTimer
+                    (ProcessState::Off, CommandTimeoutAction::CancelTimer)
                 } else {
                     warn!(
                         "{} stopped unexpectedly, try restarting (attempt #{})",
@@ -1487,21 +1506,24 @@ impl StateMachineInternal {
                         s.restart_count = s.restart_count + 1;
                     });
                     self.process_manager.start(hci, self.get_real_hci_by_virtual_id(hci));
-                    CommandTimeoutAction::ResetTimer
+                    (ProcessState::TurningOn, CommandTimeoutAction::ResetTimer)
                 }
             }
-            ProcessState::On | ProcessState::TurningOn | ProcessState::Off => {
+            ProcessState::On
+            | ProcessState::TurningOn
+            | ProcessState::Off
+            | ProcessState::Restarting => {
                 warn!(
-                    "{} stopped unexpectedly from {:?}. Adapter present? {}",
-                    hci, state, present
+                    "{} stopped unexpectedly from {:?}. Adapter present={}, Floss enabled={}",
+                    hci, state, present, floss_enabled
                 );
                 self.modify_state(hci, |s: &mut AdapterState| s.state = ProcessState::Off);
-                CommandTimeoutAction::CancelTimer
+                (ProcessState::Off, CommandTimeoutAction::CancelTimer)
             }
         }
     }
 
-    /// Triggered on Bluetooth start/stop timeout.  Return the actions that the
+    /// Triggered on Bluetooth start/stop timeout. Return the actions that the
     /// state machine has taken, for the external context to reset the timer.
     pub fn action_on_command_timeout(
         &mut self,
@@ -1862,7 +1884,7 @@ mod tests {
             state_machine.action_on_bluetooth_started(0, DEFAULT_ADAPTER);
             assert_eq!(
                 state_machine.action_on_bluetooth_stopped(DEFAULT_ADAPTER),
-                CommandTimeoutAction::ResetTimer
+                (ProcessState::TurningOn, CommandTimeoutAction::ResetTimer)
             );
             assert_eq!(state_machine.get_process_state(DEFAULT_ADAPTER), ProcessState::TurningOn);
         });
@@ -1881,7 +1903,7 @@ mod tests {
             state_machine.action_on_hci_presence_changed(DEFAULT_ADAPTER, false);
             assert_eq!(
                 state_machine.action_on_bluetooth_stopped(DEFAULT_ADAPTER),
-                CommandTimeoutAction::ResetTimer
+                (ProcessState::TurningOn, CommandTimeoutAction::ResetTimer)
             );
             assert_eq!(state_machine.get_process_state(DEFAULT_ADAPTER), ProcessState::TurningOn);
         });
@@ -1897,7 +1919,7 @@ mod tests {
             state_machine.set_floss_enabled(false);
             assert_eq!(
                 state_machine.action_on_bluetooth_stopped(DEFAULT_ADAPTER),
-                CommandTimeoutAction::CancelTimer
+                (ProcessState::Off, CommandTimeoutAction::CancelTimer)
             );
             assert_eq!(state_machine.get_process_state(DEFAULT_ADAPTER), ProcessState::Off);
         });

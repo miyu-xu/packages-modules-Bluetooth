@@ -11,7 +11,7 @@ use crate::iface_bluetooth_manager::{
     AdapterWithEnabled, IBluetoothManager, IBluetoothManagerCallback,
 };
 use crate::state_machine::{
-    state_to_enabled, AdapterState, Message, StateMachineProxy, VirtualHciIndex,
+    state_to_enabled, AdapterState, Message, ProcessState, StateMachineProxy, VirtualHciIndex,
 };
 use crate::{config_util, migrate};
 
@@ -76,10 +76,13 @@ impl BluetoothManager {
     }
 
     pub(crate) fn restart_available_adapters(&mut self) {
-        self.get_available_adapters()
-            .into_iter()
-            .filter(|adapter| adapter.enabled)
-            .map(|adapter| VirtualHciIndex(adapter.hci_interface))
+        self.proxy
+            .get_valid_adapters()
+            .iter()
+            // Note the difference between state_to_enabled - This function aims to make sure the
+            // configuration is reloaded, so we don't need to bother TurningOff/Off adapters.
+            .filter(|a| a.state == ProcessState::TurningOn || a.state == ProcessState::On)
+            .map(|a| a.virt_hci)
             .for_each(|virt_hci| self.proxy.restart_bluetooth(virt_hci));
     }
 }
