@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b24148d_78a2187d",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-28T00:44:07Z",
+      "side": 0,
+      "message": "This is for after the flag is removed.",
+      "range": {
+        "startLine": 108,
+        "startChar": 12,
+        "endLine": 108,
+        "endChar": 39
+      },
+      "revId": "c0a125a49a1cae485cd91ceaa27a4559068dd917",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
