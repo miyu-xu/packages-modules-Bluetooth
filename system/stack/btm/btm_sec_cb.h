@@ -19,6 +19,7 @@
 
 #include <cstdint>
 
+#include "hci/security_interface.h"
 #include "internal_include/bt_target.h"
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
@@ -42,6 +43,9 @@ class tBTM_SEC_CB {
   BT_OCTET8 enc_rand; /* received rand value from LTK request*/
   uint16_t ediv{0};   /* received ediv value from LTK request */
   uint8_t key_size{0};
+
+  //  Interface with HCI to send commands and receive pairing events.
+  bluetooth::hci::SecurityInterface* hci_{};
 
  public:
   /*****************************************************

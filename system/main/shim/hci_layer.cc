@@ -66,9 +66,6 @@ bool is_valid_event_code(bluetooth::hci::EventCode event_code) {
     case bluetooth::hci::EventCode::INQUIRY_COMPLETE:
     case bluetooth::hci::EventCode::INQUIRY_RESULT:
     case bluetooth::hci::EventCode::AUTHENTICATION_COMPLETE:
-    case bluetooth::hci::EventCode::ENCRYPTION_CHANGE:
-    case bluetooth::hci::EventCode::CHANGE_CONNECTION_LINK_KEY_COMPLETE:
-    case bluetooth::hci::EventCode::CENTRAL_LINK_KEY_COMPLETE:
     case bluetooth::hci::EventCode::READ_REMOTE_SUPPORTED_FEATURES_COMPLETE:
     case bluetooth::hci::EventCode::QOS_SETUP_COMPLETE:
     case bluetooth::hci::EventCode::HARDWARE_ERROR:
@@ -76,10 +73,6 @@ bool is_valid_event_code(bluetooth::hci::EventCode event_code) {
     case bluetooth::hci::EventCode::ROLE_CHANGE:
     case bluetooth::hci::EventCode::NUMBER_OF_COMPLETED_PACKETS:
     case bluetooth::hci::EventCode::MODE_CHANGE:
-    case bluetooth::hci::EventCode::RETURN_LINK_KEYS:
-    case bluetooth::hci::EventCode::PIN_CODE_REQUEST:
-    case bluetooth::hci::EventCode::LINK_KEY_REQUEST:
-    case bluetooth::hci::EventCode::LINK_KEY_NOTIFICATION:
     case bluetooth::hci::EventCode::LOOPBACK_COMMAND:
     case bluetooth::hci::EventCode::DATA_BUFFER_OVERFLOW:
     case bluetooth::hci::EventCode::READ_CLOCK_OFFSET_COMPLETE:
@@ -92,17 +85,8 @@ bool is_valid_event_code(bluetooth::hci::EventCode event_code) {
     case bluetooth::hci::EventCode::SYNCHRONOUS_CONNECTION_CHANGED:
     case bluetooth::hci::EventCode::SNIFF_SUBRATING:
     case bluetooth::hci::EventCode::EXTENDED_INQUIRY_RESULT:
-    case bluetooth::hci::EventCode::ENCRYPTION_KEY_REFRESH_COMPLETE:
-    case bluetooth::hci::EventCode::IO_CAPABILITY_REQUEST:
-    case bluetooth::hci::EventCode::IO_CAPABILITY_RESPONSE:
-    case bluetooth::hci::EventCode::USER_CONFIRMATION_REQUEST:
-    case bluetooth::hci::EventCode::USER_PASSKEY_REQUEST:
-    case bluetooth::hci::EventCode::REMOTE_OOB_DATA_REQUEST:
-    case bluetooth::hci::EventCode::SIMPLE_PAIRING_COMPLETE:
     case bluetooth::hci::EventCode::LINK_SUPERVISION_TIMEOUT_CHANGED:
     case bluetooth::hci::EventCode::ENHANCED_FLUSH_COMPLETE:
-    case bluetooth::hci::EventCode::USER_PASSKEY_NOTIFICATION:
-    case bluetooth::hci::EventCode::KEYPRESS_NOTIFICATION:
     case bluetooth::hci::EventCode::NUMBER_OF_COMPLETED_DATA_BLOCKS:
       return true;
     default:
