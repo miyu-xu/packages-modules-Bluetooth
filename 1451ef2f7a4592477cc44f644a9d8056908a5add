@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e885d5_a3959ada",
+        "filename": "system/gd/packet/endian_inserter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-28T16:47:03Z",
+      "side": 1,
+      "message": "Why does it have to be named `trivial` ?\n\nThe is_trivial check is also a clue",
+      "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "790311a0_8a5d9bcf",
+        "filename": "system/gd/packet/endian_inserter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-28T16:47:03Z",
+      "side": 1,
+      "message": "TrivialBits ?",
+      "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4c70aaa_dfbdc481",
+        "filename": "system/gd/packet/endian_inserter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-28T16:47:03Z",
+      "side": 1,
+      "message": "why no std::enable_if\u003cstd::is_trivial",
+      "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
