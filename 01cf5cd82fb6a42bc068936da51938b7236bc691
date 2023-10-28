@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d600b6_968dc4de",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-28T01:00:47Z",
+      "side": 1,
+      "message": "With the behavior changes documented here: https://developer.android.com/about/versions/14/behavior-changes-all#mtu-set-to-517\n\nGiven the expected behavior is for any input param, 517 is requested, I think we would still expect requestMtu to be true in this case as it currently is in line 200. \n\nAlso see b/289176641, so this one may be a lower priority.",
+      "range": {
+        "startLine": 196,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 53
+      },
+      "revId": "01cf5cd82fb6a42bc068936da51938b7236bc691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4a99911_8680ad59",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-28T01:00:47Z",
+      "side": 1,
+      "message": "Good question - that would more strictly support the BT spec in terms of API contract, but I think it\u0027s good to keep the current behavior here since apps already may expect this to return true based on that - not all developers may be aware it is not allowed to change multiple times on a single connection according to the spec (nit: test name is a bit misleading due to this). \n\nThis was previously discussed in another forum, IIRC the conclusion was to simply trigger the callback with the current MTU on the link to retain the current behavior (though we could consider that as part of future feature, we\u0027d want to also update the documentation if so).\n\nWDYT?",
+      "range": {
+        "startLine": 232,
+        "startChar": 17,
+        "endLine": 232,
+        "endChar": 26
+      },
+      "revId": "01cf5cd82fb6a42bc068936da51938b7236bc691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
