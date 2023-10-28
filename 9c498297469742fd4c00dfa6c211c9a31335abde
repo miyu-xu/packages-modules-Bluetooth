@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "89c60c7c_ece356b0",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1408,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-28T04:29:47Z",
+      "side": 1,
+      "message": "I think it\u0027s needed because it\u0027s not in a namespace. I added it because it wouldn\u0027t compile without it.",
+      "parentUuid": "5c251e67_e4cf8463",
+      "revId": "9c498297469742fd4c00dfa6c211c9a31335abde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "26559ce4_ae079f97",
         "filename": "system/stack/btm/btm_main.cc",
         "patchSetId": 4

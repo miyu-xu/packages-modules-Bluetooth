@@ -16,6 +16,24 @@
       "message": "Should we also move this to sec_cb.h?\nin the end, we may need to merge the two.",
       "revId": "58ad9d95557cfb1db628ed0ea2bace22c303dc75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88c0df17_52f898f9",
+        "filename": "system/stack/btm/btm_sec_int_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-28T04:29:47Z",
+      "side": 0,
+      "message": "I didn\u0027t move it because a lot more places depend on this.  They find the security device record and then do something with it.  I wanted to separate just the control block out.  The final organization is totally up to you.  I just didn\u0027t want to make the dependencies too hard to manage.",
+      "parentUuid": "ebb31eab_9f114324",
+      "revId": "58ad9d95557cfb1db628ed0ea2bace22c303dc75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
