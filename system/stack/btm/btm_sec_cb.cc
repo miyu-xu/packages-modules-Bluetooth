@@ -21,15 +21,19 @@
 
 #include <cstdint>
 
+#include "hci/hci_layer.h"
 #include "internal_include/bt_trace.h"
 #include "internal_include/stack_config.h"
+#include "main/shim/entry.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "osi/include/fixed_queue.h"
 #include "osi/include/list.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/security_device_record.h"
+#include "stack/btm/security_event_parser.h"
 #include "stack/include/bt_psm_types.h"
+#include "stack/include/main_thread.h"
 #include "types/raw_address.h"
 
 void tBTM_SEC_CB::Init(uint8_t initial_security_mode) {
@@ -55,6 +59,10 @@ void tBTM_SEC_CB::Init(uint8_t initial_security_mode) {
     *((tBTM_SEC_DEV_REC*)ptr) = {};
     osi_free(ptr);
   });
+  hci_ = bluetooth::shim::GetHciLayer()->GetSecurityInterface(
+      get_main_thread()->BindOn(
+          &event_parser,
+          &bluetooth::stack::btm::SecurityEventParser::OnSecurityEvent));
 }
 
 void tBTM_SEC_CB::Free() {
