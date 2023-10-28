@@ -29,6 +29,7 @@
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
 #include "hci/include/packet_fragmenter.h"
+#include "hci/security_interface.h"
 #include "hci/vendor_specific_event_manager.h"
 #include "main/shim/entry.h"
 #include "os/log.h"
@@ -258,6 +259,16 @@ static bool event_already_registered_in_le_scanning_manager(
     bluetooth::hci::EventCode event_code) {
   for (auto event : bluetooth::hci::AclConnectionEvents) {
     if (event == event_code) {
+      return true;
+    }
+  }
+  return false;
+}
+
+static bool event_already_registered_for_security(
+    bluetooth::hci::EventCode event_code) {
+  for (auto code : bluetooth::hci::SecurityEvents) {
+    if (code == event_code) {
       return true;
     }
   }
@@ -531,6 +542,8 @@ void bluetooth::shim::hci_on_reset_complete() {
     } else if (event_already_registered_in_le_advertising_manager(event_code)) {
       continue;
     } else if (event_already_registered_in_le_scanning_manager(event_code)) {
+      continue;
+    } else if (event_already_registered_for_security(event_code)) {
       continue;
     }
 
