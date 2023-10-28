@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c5f6c21_0b9a9364",
+        "filename": "system/stack/btm/btm_sec_cb.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-28T00:55:03Z",
+      "side": 1,
+      "message": "class is not needed when the type is defined with `class`",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 102,
+        "endChar": 12
+      },
+      "revId": "9c498297469742fd4c00dfa6c211c9a31335abde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

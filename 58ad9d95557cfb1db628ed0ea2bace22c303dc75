@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebb31eab_9f114324",
+        "filename": "system/stack/btm/btm_sec_int_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-28T00:55:03Z",
+      "side": 0,
+      "message": "Should we also move this to sec_cb.h?\nin the end, we may need to merge the two.",
+      "revId": "58ad9d95557cfb1db628ed0ea2bace22c303dc75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
