@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "871440de_8913da3b",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-28T00:31:39Z",
+      "side": 1,
+      "message": "Insert flag here.",
+      "range": {
+        "startLine": 270,
+        "startChar": 2,
+        "endLine": 270,
+        "endChar": 5
+      },
+      "revId": "afb3d4b539ca27a77298c4d7652f12f68af38ea5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58ca715b_161eec4e",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-28T00:31:39Z",
+      "side": 1,
+      "message": "Insert the same flag here.",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 6
+      },
+      "revId": "afb3d4b539ca27a77298c4d7652f12f68af38ea5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
