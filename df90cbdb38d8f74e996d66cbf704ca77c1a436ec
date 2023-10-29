@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f784340a_276acdc3",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-29T12:15:09Z",
+      "side": 1,
+      "message": "This will probably run earlier than the AudioRoutingManager\u0027s logic, which is different from before. Why is this call moved to this file from AudioRoutingManager?",
+      "range": {
+        "startLine": 154,
+        "startChar": 16,
+        "endLine": 156,
+        "endChar": 17
+      },
+      "revId": "df90cbdb38d8f74e996d66cbf704ca77c1a436ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
