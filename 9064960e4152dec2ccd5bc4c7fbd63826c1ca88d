@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19c5992c_387f30ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T21:53:30Z",
+      "side": 1,
+      "message": "You will need to add a flag, please use this component to open a bug tracking the flag.\nFeel free to create the flag in a previous CL in the relation chain\n\nhttps://b.corp.google.com/issues?q\u003dstatus:open%20componentid:1387432\u0026s\u003dcreated_time:desc",
+      "revId": "9064960e4152dec2ccd5bc4c7fbd63826c1ca88d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "59afb63d_0f1d2294",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T21:53:30Z",
+      "side": 1,
+      "message": "I would also be happy to add some null check and JNI error check.\n\nIf this method is called during presubmit test, I would even like having a fatal failure if a method goes away.",
+      "range": {
+        "startLine": 334,
+        "startChar": 0,
+        "endLine": 342,
+        "endChar": 52
+      },
+      "revId": "9064960e4152dec2ccd5bc4c7fbd63826c1ca88d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e389c7a5_837c5aaa",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T21:53:30Z",
+      "side": 1,
+      "message": "are you sure about this semi-colon ?",
+      "range": {
+        "startLine": 344,
+        "startChar": 9,
+        "endLine": 344,
+        "endChar": 10
+      },
+      "revId": "9064960e4152dec2ccd5bc4c7fbd63826c1ca88d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "863a893b_7252c44b",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 12
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T21:53:30Z",
+      "side": 1,
+      "message": "Isn\u0027t the goal to ask the Hal to check what is supported in offload ?\n\nIt is fine by me to do that in another CL too, to keep CL smaller",
+      "range": {
+        "startLine": 346,
+        "startChar": 42,
+        "endLine": 346,
+        "endChar": 74
+      },
+      "revId": "9064960e4152dec2ccd5bc4c7fbd63826c1ca88d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
