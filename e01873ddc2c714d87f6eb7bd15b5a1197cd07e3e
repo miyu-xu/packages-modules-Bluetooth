@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a8f3f38_2d6a585d",
+        "filename": "system/Android.mk",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T18:42:23Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by If This Then That: Changes in the preceding block may need to be reflected in these files: /system/blueberry/tests/gd/cert/gd_device.py If this does not apply, add \u0027NO_IFTTT\u003dsome reason...\u0027 to your commit message",
+      "range": {
+        "startLine": 89,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 54
+      },
+      "revId": "e01873ddc2c714d87f6eb7bd15b5a1197cd07e3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
