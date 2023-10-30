@@ -43,6 +43,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77ceeb14_19d1ae85",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-10-30T08:30:24Z",
+      "side": 1,
+      "message": "Since it use BTM_BLE_SEC_ENCRYPT_MITM level, so the security level of the link can be checked.\nTherefore, unless the IO capabilities of the remote device is NoInputNoOutput, it will not be automatically repaired and will have to be confirmed by the user.\n\nI have a question.\nCan you share where the specification you mentioned is?",
+      "parentUuid": "e1c71320_f639b2ce",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ccc73591_550d3e68",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -60,6 +78,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2cc7d24a_b2b96877",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-10-30T08:30:24Z",
+      "side": 1,
+      "message": "Because apps have paired through createBond, it will send the data assuming that it is encrypted.\nIn general, apps do not always check whether the link is bonded or not when sending data.\n\nIf the encryption is released by key missing and the data is not transmitted due to it, the app is not known why it cannot communicate data without a callback related to success of encryption.\nTherefore, I think that BT stack have to send a callback related to enctyption success for the implementation you talked about.\nDo you think this structure is better?",
+      "parentUuid": "ccc73591_550d3e68",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fdbff4b_d2619b1a",
         "filename": "system/bta/dm/bta_dm_sec.cc",
         "patchSetId": 3
@@ -71,6 +107,24 @@
       "writtenOn": "2023-10-26T22:08:36Z",
       "side": 1,
       "message": "What happens if the encryption request fails again?",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "120ef964_90dbe545",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-10-30T08:30:24Z",
+      "side": 1,
+      "message": "At the first key missing, the central already removes the BTM_SEC_LE_LINK_KEY_KNOWN flag. Therefore, instead of simply encrypting, it will induce repairing,\nBecause of it, the encryption will not fail again due to the same cause(key missing).",
+      "parentUuid": "6fdbff4b_d2619b1a",
       "revId": "fb47c372d574467e723ffe8dde1565c754300934",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
