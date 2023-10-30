@@ -239,12 +239,7 @@ void BTA_dm_on_hw_off() {
   /* reinitialize the control block */
   bta_dm_deinit_cb();
 
-  /* hw is ready, go on with BTA DM initialization */
-  alarm_free(bta_dm_search_cb.search_timer);
-  alarm_free(bta_dm_search_cb.gatt_close_timer);
-  osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
-  fixed_queue_free(bta_dm_search_cb.pending_discovery_queue, osi_free);
-  bta_dm_search_cb = {};
+  bta_dm_disc_stop();
 }
 
 void BTA_dm_on_hw_on() {
@@ -256,12 +251,8 @@ void BTA_dm_on_hw_on() {
   /* make sure the control block is properly initialized */
   bta_dm_init_cb();
 
-  /* hw is ready, go on with BTA DM initialization */
-  alarm_free(bta_dm_search_cb.search_timer);
-  alarm_free(bta_dm_search_cb.gatt_close_timer);
-  osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
-  fixed_queue_free(bta_dm_search_cb.pending_discovery_queue, osi_free);
-  bta_dm_search_cb = {};
+  bta_dm_disc_stop();
+
   /*
    * TODO: Should alarm_free() the bta_dm_search_cb timers during
    * graceful shutdown.

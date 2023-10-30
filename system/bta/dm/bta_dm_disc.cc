@@ -2362,6 +2362,18 @@ bool bta_dm_search_sm_execute(const BT_HDR_RIGID* p_msg) {
   return true;
 }
 
+static void bta_dm_disc_reset() {
+  alarm_free(bta_dm_search_cb.search_timer);
+  alarm_free(bta_dm_search_cb.gatt_close_timer);
+  osi_free_and_reset((void**)&bta_dm_search_cb.p_pending_search);
+  fixed_queue_free(bta_dm_search_cb.pending_discovery_queue, osi_free);
+  bta_dm_search_cb = {};
+}
+
+void bta_dm_disc_start() { bta_dm_disc_reset(); }
+
+void bta_dm_disc_stop() { bta_dm_disc_reset(); }
+
 #define DUMPSYS_TAG "shim::legacy::bta::dm"
 void DumpsysBtaDmDisc(int fd) {
   auto copy = search_state_history_.Pull();
