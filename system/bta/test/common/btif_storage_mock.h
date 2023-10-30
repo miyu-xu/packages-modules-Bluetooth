@@ -18,7 +18,6 @@
 
 #include <gmock/gmock.h>
 
-#include "include/hardware/bluetooth.h"
 #include "types/raw_address.h"
 
 namespace bluetooth {
@@ -52,8 +51,6 @@ class BtifStorageInterface {
                                     std::vector<uint8_t>& presets_bin,
                                     uint8_t& active_preset) = 0;
   virtual void RemoveLeaudioHas(const RawAddress& address) = 0;
-  virtual bt_status_t GetRemoteDeviceProperty(const RawAddress* address,
-                                              bt_property_t* property) = 0;
 
   virtual ~BtifStorageInterface() = default;
 };
@@ -94,8 +91,6 @@ class MockBtifStorageInterface : public BtifStorageInterface {
               (const RawAddress& address, uint8_t active_preset), (override));
   MOCK_METHOD((void), RemoveLeaudioHas, (const RawAddress& address),
               (override));
-  MOCK_METHOD((bt_status_t), GetRemoteDeviceProperty,
-              (const RawAddress* address, bt_property_t* property), (override));
 };
 
 /**
