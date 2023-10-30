@@ -46,6 +46,30 @@
       },
       "revId": "5d73cd3816b4595e814498b3a4ca256990dfc4a1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60d2b432_bc9f23d5",
+        "filename": "system/gd/crypto_toolbox/crypto_toolbox.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T17:07:32Z",
+      "side": 1,
+      "message": "That\u0027s my point.  Why not just let them do it?",
+      "parentUuid": "78791f23_3b6b217a",
+      "range": {
+        "startLine": 79,
+        "startChar": 2,
+        "endLine": 79,
+        "endChar": 5
+      },
+      "revId": "5d73cd3816b4595e814498b3a4ca256990dfc4a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
