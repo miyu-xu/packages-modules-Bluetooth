@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f08e47b8_1436db42",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-30T12:43:41Z",
+      "side": 1,
+      "message": "nit: avoiding repetitive function calls\n\nlet prev_enabled \u003d state_to_enabled(prev_state);\nlet next_enabled \u003d state_to_enabled(next_state);\nif prev_neabled !\u003d next_enabled {\n  ...\n}",
+      "range": {
+        "startLine": 729,
+        "startChar": 19,
+        "endLine": 733,
+        "endChar": 88
+      },
+      "revId": "bd853cbf22f2a20ab0a24ab3459f7d9b3c3ea136",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
