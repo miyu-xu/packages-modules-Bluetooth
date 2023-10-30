@@ -213,7 +213,7 @@ static void bta_av_avrc_sdp_cback(UNUSED_ATTR uint16_t status) {
  *
  ******************************************************************************/
 static void bta_av_rc_ctrl_cback(uint8_t handle, uint8_t event,
-                                 UNUSED_ATTR uint16_t result,
+                                 uint16_t result,
                                  const RawAddress* peer_addr) {
   uint16_t msg_event = 0;
 
@@ -240,6 +240,26 @@ static void bta_av_rc_ctrl_cback(uint8_t handle, uint8_t event,
 
     msg_event = BTA_AV_AVRC_OPEN_EVT;
   } else if (event == AVRC_CLOSE_IND_EVT) {
+    if (result == L2CAP_CONN_NO_RESOURCES) {
+      tHCI_ROLE cur_role;
+      APPL_TRACE_EVENT("%s: handle: %d rejected by remote peer", __func__, handle);
+      tBTA_AV_SCB* p_scb = bta_av_cb.p_scb[bta_av_cb.rcb[handle].shdl - 1];
+      /*According AVRCP Spec 4.1.1, add retry connect mechanism*/
+      if (BTM_GetRole(*peer_addr, &cur_role) == BTM_SUCCESS
+          && cur_role == HCI_ROLE_CENTRAL) {
+        /* MASTER: reconnect immediately */
+        APPL_TRACE_EVENT("%s: handle: %d MASTER reconnect immediately", __func__, handle);
+        bta_sys_start_timer(p_scb->avrc_ct_timer, 1,
+                BTA_AV_AVRC_TIMER_EVT, p_scb->hndl);
+      } else {
+        /* SLAVE: reconnect after 100~1000ms */
+        uint64_t delay_time = osi_rand()%900 + 100;
+        APPL_TRACE_EVENT("%s: handle: %d SLAVE: reconnect after %lu", __func__, handle, delay_time);
+        bta_sys_start_timer(p_scb->avrc_ct_timer, delay_time,
+                BTA_AV_AVRC_TIMER_EVT, p_scb->hndl);
+      }
+      return;
+    }
     msg_event = BTA_AV_AVRC_CLOSE_EVT;
   } else if (event == AVRC_BROWSE_OPEN_IND_EVT) {
     msg_event = BTA_AV_AVRC_BROWSE_OPEN_EVT;
