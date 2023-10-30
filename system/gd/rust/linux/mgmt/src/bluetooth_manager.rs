@@ -1,4 +1,4 @@
-use log::{error, info, warn};
+use log::{error, warn};
 
 use std::collections::HashMap;
 use std::process::Command;
@@ -154,6 +154,7 @@ impl IBluetoothManager for BluetoothManager {
     }
 
     fn set_floss_enabled(&mut self, enabled: bool) {
+        warn!("Set floss enabeld to {}", enabled);
         let prev = self.proxy.set_floss_enabled(enabled);
         config_util::write_floss_enabled(enabled);
 
@@ -218,6 +219,7 @@ impl IBluetoothManager for BluetoothManager {
 /// Implementation of IBluetoothExperimental
 impl IBluetoothExperimental for BluetoothManager {
     fn set_ll_privacy(&mut self, enabled: bool) -> bool {
+        warn!("Set floss ll privacy to {}", enabled);
         let current_status = match config_util::read_floss_ll_privacy_enabled() {
             Ok(true) => true,
             _ => false,
@@ -227,7 +229,6 @@ impl IBluetoothExperimental for BluetoothManager {
             return true;
         }
 
-        info!("Set floss ll privacy to {}", enabled);
         if let Err(e) = config_util::write_floss_ll_privacy_enabled(enabled) {
             error!("Failed to write ll privacy status: {}", e);
             return false;
@@ -239,7 +240,7 @@ impl IBluetoothExperimental for BluetoothManager {
     }
 
     fn set_devcoredump(&mut self, enabled: bool) -> bool {
-        info!("Set floss devcoredump to {}", enabled);
+        warn!("Set floss devcoredump to {}", enabled);
         config_util::write_coredump_state_to_file(enabled)
     }
 }
