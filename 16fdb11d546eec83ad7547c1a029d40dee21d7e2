@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6405f5fc_312493e5",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T21:10:15Z",
+      "side": 1,
+      "message": "It depends who is the customer of this API.\n\nIf this is for public (3p application), I expect some people to hard-code some value and to re-use them across multiple device.\n\nIf this is system only, then I am fine with it",
+      "parentUuid": "58f6d839_f3a48d68",
+      "range": {
+        "startLine": 77,
+        "startChar": 47,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "16fdb11d546eec83ad7547c1a029d40dee21d7e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0361e3a_31365026",
         "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
         "patchSetId": 11
