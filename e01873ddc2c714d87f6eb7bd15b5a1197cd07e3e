@@ -22,6 +22,30 @@
       },
       "revId": "e01873ddc2c714d87f6eb7bd15b5a1197cd07e3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2be6ba53_2dbef05b",
+        "filename": "system/gd/cert/run",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T23:38:54Z",
+      "side": 0,
+      "message": "The latest python version recommend venv instead of virtualenv. Hence deprecating the older use cases. \n\nSince venv is always included in Python now, there is no need to install it other than upgrading your Python installation.",
+      "parentUuid": "6a15e263_84498d30",
+      "range": {
+        "startLine": 66,
+        "startChar": 9,
+        "endLine": 66,
+        "endChar": 100
+      },
+      "revId": "e01873ddc2c714d87f6eb7bd15b5a1197cd07e3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
