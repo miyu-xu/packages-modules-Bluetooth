@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09960695_7b9f5ac5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T21:26:35Z",
+      "side": 1,
+      "message": "Could we add Java side tests as well?",
+      "revId": "78f6f1e9382bbdcbc13781f5f660ecefd446e89d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
