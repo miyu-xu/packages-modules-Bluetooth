@@ -34,6 +34,24 @@
       "parentUuid": "302efc5b_35674a8a",
       "revId": "55ed209b4fb8d861dfea59698cf918aa29ac7e89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2610d4e9_ff82f4c9",
+        "filename": "system/stack/smp/smp_keys.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-10-30T23:41:18Z",
+      "side": 1,
+      "message": "agreed. @jpawlowski@google.com can you please take a look?",
+      "parentUuid": "b84a05fb_5fa082b1",
+      "revId": "55ed209b4fb8d861dfea59698cf918aa29ac7e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
