@@ -700,6 +700,10 @@ pub async fn mainloop(
                         }
 
                         prev_state = context.state_machine.get_process_state(hci);
+                        let prev_present = context
+                            .state_machine
+                            .get_state(hci, |a: &AdapterState| Some(a.present))
+                            .unwrap_or(false);
                         let adapter_change_action;
                         let timeout_action;
                         (next_state, adapter_change_action, timeout_action) =
@@ -722,22 +726,24 @@ pub async fn mainloop(
                             AdapterChangeAction::DoNothing => (),
                         };
 
-                        // If present switched to true and we're turning on the adapter,
-                        // defer the callback until the next BluetoothStarted or CommandTimeout
-                        // so the clients won't get an unexpected state change after present.
-                        let queue_present = *present && next_state == ProcessState::TurningOn;
+                        if prev_present != *present {
+                            // If present switched to true and we're turning on the adapter,
+                            // defer the callback until the next BluetoothStarted or CommandTimeout
+                            // so the clients won't get an unexpected state change after present.
+                            let queue_present = *present && next_state == ProcessState::TurningOn;
 
-                        // Always modify_state to make sure it's reset on queue_present=false,
-                        // e.g., when a hci is removed while its presence is still queued.
-                        context.state_machine.modify_state(hci, |a: &mut AdapterState| {
-                            a.has_queued_present = queue_present;
-                        });
+                            // Always modify_state to make sure it's reset on queue_present=false,
+                            // e.g., when a hci is removed while its presence is still queued.
+                            context.state_machine.modify_state(hci, |a: &mut AdapterState| {
+                                a.has_queued_present = queue_present;
+                            });
 
-                        if !queue_present {
-                            bluetooth_manager
-                                .lock()
-                                .unwrap()
-                                .callback_hci_device_change(hci, *present);
+                            if !queue_present {
+                                bluetooth_manager
+                                    .lock()
+                                    .unwrap()
+                                    .callback_hci_device_change(hci, *present);
+                            }
                         }
                     }
                 };
