@@ -22,6 +22,30 @@
       },
       "revId": "df90cbdb38d8f74e996d66cbf704ca77c1a436ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "216d0af1_62fb4637",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-30T00:11:02Z",
+      "side": 1,
+      "message": "This is for making the handling of disconnection in AudioROutingManager be more consistent.",
+      "parentUuid": "f784340a_276acdc3",
+      "range": {
+        "startLine": 154,
+        "startChar": 16,
+        "endLine": 156,
+        "endChar": 17
+      },
+      "revId": "df90cbdb38d8f74e996d66cbf704ca77c1a436ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
