@@ -3,6 +3,144 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3f3ed015_7d5a1f7a",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T21:38:08Z",
+      "side": 1,
+      "message": "please add \"{\" and \"}\" to all if-else conditionals to prevent formatting change from breaking the code in the future.",
+      "range": {
+        "startLine": 78,
+        "startChar": 6,
+        "endLine": 86,
+        "endChar": 14
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f37bf704_2c2330a8",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T21:38:08Z",
+      "side": 1,
+      "message": "Could this function use \"gd/common/strings.h\"\n\n```\n// Split |str| into at most |max_token| tokens delimited by |delim|, unlimited tokens when |max_token| is 0\nstd::vector\u003cstd::string\u003e StringSplit(const std::string\u0026 str, const std::string\u0026 delim, size_t max_token \u003d 0);\n```",
+      "range": {
+        "startLine": 95,
+        "startChar": 19,
+        "endLine": 95,
+        "endChar": 35
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1e51901_167f11df",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T21:38:08Z",
+      "side": 1,
+      "message": "p_s !\u003d nullptr",
+      "range": {
+        "startLine": 98,
+        "startChar": 9,
+        "endLine": 98,
+        "endChar": 12
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44ab1c49_249a2c89",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T21:38:08Z",
+      "side": 1,
+      "message": "*p_s !\u003d \u0027\\0\u0027",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 20
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41704ec7_9f12eb5c",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T21:38:08Z",
+      "side": 1,
+      "message": "nullptr",
+      "range": {
+        "startLine": 104,
+        "startChar": 15,
+        "endLine": 104,
+        "endChar": 19
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd69b89a_02fe0620",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T21:38:08Z",
+      "side": 1,
+      "message": "not needed for LOG_X marcos",
+      "range": {
+        "startLine": 605,
+        "startChar": 14,
+        "endLine": 605,
+        "endChar": 22
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dba09581_6dc0601e",
         "filename": "system/btif/src/btif_hf.cc",
         "patchSetId": 19
