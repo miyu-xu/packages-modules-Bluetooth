@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c5feb4a_077196d3",
+        "filename": "system/stack/crypto_toolbox/crypto_toolbox.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-10-30T21:15:03Z",
+      "side": 1,
+      "message": "The only tricky part that would be nice to test",
+      "revId": "e9382164c0a6beab92e79af7c97dd68b0f3b2557",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
