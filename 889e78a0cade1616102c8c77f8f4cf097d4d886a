@@ -164,6 +164,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb52e972_f8e28723",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Currently we have no LC3 tests in HFP",
+      "parentUuid": "671377e2_5209a4b9",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9e5e11d8_cb7680ac",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
         "patchSetId": 12
@@ -175,6 +193,24 @@
       "writtenOn": "2023-08-24T14:09:04Z",
       "side": 1,
       "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled regardless of headset supporting Aptx voice codec.\n\nIf headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3cc49b3d_9b800757",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1230,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "9e5e11d8_cb7680ac",
       "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -196,6 +232,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dc12977_97d2bfe9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1795,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "3a90d215_775c1768",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ea23e620_c1db5796",
@@ -209,6 +263,24 @@
       "writtenOn": "2023-08-24T14:09:04Z",
       "side": 1,
       "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled regardless of headset supporting Aptx voice codec.\n\nIf headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "36e361f5_3d07d275",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 2314,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "ea23e620_c1db5796",
       "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -230,6 +302,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e181f1eb_c66aed46",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 656,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "63fcb726_281a5f86",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "42d00a6d_62e2e2d9",
@@ -247,6 +337,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4a59371_d51078eb",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1182,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "42d00a6d_62e2e2d9",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06ffff00_d665a033",
@@ -260,6 +368,24 @@
       "writtenOn": "2023-08-24T14:09:04Z",
       "side": 1,
       "message": "We should check if headset supports LC3 codec. If yes, LC3 codec should be enabled. If headset supports only Aptx voice codec, we need to select Aptx voice codec.",
+      "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ce13d7c_6d0962ea",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1845,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "06ffff00_d665a033",
       "revId": "889e78a0cade1616102c8c77f8f4cf097d4d886a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

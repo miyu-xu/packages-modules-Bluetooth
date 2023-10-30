@@ -22,6 +22,30 @@
       },
       "revId": "a9ed229c7ecd7c6676858ab6315028872ee1c6ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a546c68_78a2503c",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 14
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "8485d6b8_6d586ba1",
+      "range": {
+        "startLine": 42,
+        "startChar": 16,
+        "endLine": 42,
+        "endChar": 23
+      },
+      "revId": "a9ed229c7ecd7c6676858ab6315028872ee1c6ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

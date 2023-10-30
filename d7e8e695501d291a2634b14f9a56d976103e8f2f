@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46de0243_e76593af",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "60613057_4649a83c",
+      "range": {
+        "startLine": 195,
+        "startChar": 87,
+        "endLine": 195,
+        "endChar": 88
+      },
+      "revId": "d7e8e695501d291a2634b14f9a56d976103e8f2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d0c5e942_1e2728b0",

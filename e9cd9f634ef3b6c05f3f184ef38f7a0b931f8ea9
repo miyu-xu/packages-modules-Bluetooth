@@ -830,6 +830,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "3d2019dc_6c528cd2",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1842,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dfaf443_80aa772a",
+      "range": {
+        "startLine": 1842,
+        "startChar": 0,
+        "endLine": 1842,
+        "endChar": 42
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "7a11177d_6ba6e6a2",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetSystemInterface.java",
         "patchSetId": 3
@@ -1103,6 +1127,30 @@
       "side": 1,
       "message": "I made the change. Please confirm that it is correct. Is there a way for us to test it? Thank you",
       "parentUuid": "d0298c41_b8d2b9c7",
+      "range": {
+        "startLine": 1276,
+        "startChar": 13,
+        "endLine": 1276,
+        "endChar": 23
+      },
+      "revId": "e9cd9f634ef3b6c05f3f184ef38f7a0b931f8ea9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77a5862d_09e95eb7",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1276,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "143c8bd9_2973f375",
       "range": {
         "startLine": 1276,
         "startChar": 13,

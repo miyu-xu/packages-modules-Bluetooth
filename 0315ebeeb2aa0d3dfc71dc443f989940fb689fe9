@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cb3c356_d982c5d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fbad810d_51d73f1e",
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ab1a5f1_aa649a29",
@@ -83,6 +101,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dad56859_076c90ed",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetService.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 1199,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "3711958e_618944ea",
+      "range": {
+        "startLine": 1199,
+        "startChar": 8,
+        "endLine": 1199,
+        "endChar": 22
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b64951ab_edaaf983",
@@ -120,6 +162,30 @@
       "side": 1,
       "message": "@quic_skodisha@quicinc.com",
       "parentUuid": "b64951ab_edaaf983",
+      "range": {
+        "startLine": 309,
+        "startChar": 19,
+        "endLine": 309,
+        "endChar": 33
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e4f3f1_78a447da",
+        "filename": "android/app/src/com/android/bluetooth/telephony/BluetoothCall.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "09bee404_105ccbcb",
       "range": {
         "startLine": 309,
         "startChar": 19,
@@ -261,6 +327,30 @@
       "side": 1,
       "message": "@quic_skodisha@quicinc.com\nJust as a placeholder for now.",
       "parentUuid": "b376f130_12cd745a",
+      "range": {
+        "startLine": 330,
+        "startChar": 0,
+        "endLine": 333,
+        "endChar": 5
+      },
+      "revId": "0315ebeeb2aa0d3dfc71dc443f989940fb689fe9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3694e94c_bbb41ddc",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "40d59ac0_1f2fd1ed",
       "range": {
         "startLine": 330,
         "startChar": 0,

@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a844010f_fcaa5c8b",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetNativeInterface.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "5d473e17_939675f6",
+      "range": {
+        "startLine": 580,
+        "startChar": 0,
+        "endLine": 582,
+        "endChar": 76
+      },
+      "revId": "95d428a04a04a81b4f4127b24dafb67f38a60872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "edc56a2b_26b75020",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-23T18:13:57Z",
       "side": 1,
       "message": "Could we remove this check and always use the higher quality codec when it is available? \n\nThis optimization is bit unnecessary.",
+      "range": {
+        "startLine": 679,
+        "startChar": 28,
+        "endLine": 679,
+        "endChar": 78
+      },
+      "revId": "95d428a04a04a81b4f4127b24dafb67f38a60872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d0476e1_b5e9e74e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "edc56a2b_26b75020",
       "range": {
         "startLine": 679,
         "startChar": 28,
@@ -108,6 +156,30 @@
       "side": 1,
       "message": "I would prefer not adding special method for this, let\u0027s just use `setParameters` for aptx voice",
       "parentUuid": "666d352d_1f1910f4",
+      "range": {
+        "startLine": 1717,
+        "startChar": 11,
+        "endLine": 1717,
+        "endChar": 40
+      },
+      "revId": "95d428a04a04a81b4f4127b24dafb67f38a60872",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84a1141d_bcff75a4",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 1717,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "@siyuanh@google.com Done\n@licorne@google.com I had to switch back to setParameters. As Jack said, we shouldn\u0027t modify audio framework and create a special case method just for aptx voice.\n\nPower management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "888e96ff_34f56d04",
       "range": {
         "startLine": 1717,
         "startChar": 11,

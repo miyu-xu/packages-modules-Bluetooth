@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7fe3998c_d8a6bfa8",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d363431f_02eaf521",
+      "revId": "c730ae81d3f0577549978bfb612f4b0cbaa5e48b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "240a5894_f7d22295",
@@ -121,6 +139,24 @@
       "side": 1,
       "message": "As I understand, this change would need to go into vendor code. Since vendor can\u0027t be updated for OTA SPs, how this can be achieved.",
       "parentUuid": "c2dee3aa_07f13835",
+      "revId": "c730ae81d3f0577549978bfb612f4b0cbaa5e48b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a9bf4c_00d4dc2e",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 11
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Power management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "4ac5d0c2_8f1e99ae",
       "revId": "c730ae81d3f0577549978bfb612f4b0cbaa5e48b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

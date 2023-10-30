@@ -46,6 +46,30 @@
       },
       "revId": "e2f0443123a65e5c6933da586171429f984780f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f74bd1be_154bbfd9",
+        "filename": "android/app/jni/com_android_bluetooth_hfp.cpp",
+        "patchSetId": 10
+      },
+      "lineNbr": 949,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Enabling/Disabling is part of power management - enable aptx only for particular type of call and this way save power. \n\nPower management code moved to topic: https://android-review.git.corp.google.com/q/topic:%22aptx_voice_power_management%22",
+      "parentUuid": "efb09214_c6061814",
+      "range": {
+        "startLine": 949,
+        "startChar": 16,
+        "endLine": 949,
+        "endChar": 31
+      },
+      "revId": "e2f0443123a65e5c6933da586171429f984780f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

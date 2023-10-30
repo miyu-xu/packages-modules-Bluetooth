@@ -191,6 +191,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba3d1cc4_7dd8fcd1",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-30T14:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c37d405_67bd916e",
+      "range": {
+        "startLine": 117,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 0
+      },
+      "revId": "4751b67fb63d91a6efbed394a1522840eec3e6ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0447d328_b596b956",
