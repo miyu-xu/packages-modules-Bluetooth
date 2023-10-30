@@ -126,6 +126,7 @@ class AdvertisingFilterParameter {
   uint8_t rssi_low_thresh;
   uint16_t onlost_timeout;
   uint16_t num_of_tracking_entries;
+  uint8_t duty_cycle;
 };
 
 }  // namespace hci

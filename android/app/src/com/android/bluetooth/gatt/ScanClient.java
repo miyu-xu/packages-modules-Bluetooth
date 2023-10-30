@@ -36,6 +36,7 @@ import java.util.Objects;
     public boolean started = false;
     public int appUid;
     public List<ScanFilter> filters;
+    public int dutyCycle;
     // App associated with the scan client died.
     public boolean appDied;
     public boolean hasLocationPermission;

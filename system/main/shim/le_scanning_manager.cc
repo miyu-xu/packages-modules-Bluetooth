@@ -225,6 +225,7 @@ void BleScannerInterfaceImpl::ScanFilterParamSetup(
       advertising_filter_parameter.num_of_tracking_entries =
           filt_param->num_of_tracking_entries;
     }
+    advertising_filter_parameter.duty_cycle = filt_param->duty_cycle;
   }
 
   bluetooth::shim::GetScanning()->ScanFilterParameterSetup(

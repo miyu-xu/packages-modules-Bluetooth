@@ -428,6 +428,21 @@ public class ScanManager {
                 return;
             }
 
+            int scanWindowMs = mScanNative.getScanWindowMillis(client.settings);
+            int scanIntervalMs = mScanNative.getScanIntervalMillis(client.settings);
+            client.dutyCycle = scanWindowMs * 100 / scanIntervalMs;
+            if (DBG) {
+                Log.i(
+                        TAG,
+                        "handleStartScan, scannerId:"
+                                + client.scannerId
+                                + ", scanWindowMs:"
+                                + scanWindowMs
+                                + "ms, scanIntervalMs"
+                                + scanIntervalMs
+                                + "ms, dutyCycle: "
+                                + client.dutyCycle);
+            }
             if (!mScanNative.isExemptFromAutoBatchScanUpdate(client)) {
                 if (mScreenOn) {
                     clearAutoBatchScanClient(client);
@@ -1517,8 +1532,8 @@ public class ScanManager {
                                 : ALL_PASS_FILTER_INDEX_REGULAR_SCAN;
                 resetCountDownLatch();
                 // Don't allow Onfound/onlost with all pass
-                configureFilterParamter(scannerId, client, ALL_PASS_FILTER_SELECTION, filterIndex,
-                        0);
+                configureFilterParameter(
+                        scannerId, client, ALL_PASS_FILTER_SELECTION, filterIndex, 0);
                 waitForCallback();
             } else {
                 Deque<Integer> clientFilterIndices = new ArrayDeque<Integer>();
@@ -1548,8 +1563,8 @@ public class ScanManager {
                             }
                         }
                     }
-                    configureFilterParamter(scannerId, client, featureSelection, filterIndex,
-                            trackEntries);
+                    configureFilterParameter(
+                            scannerId, client, featureSelection, filterIndex, trackEntries);
                     waitForCallback();
                     clientFilterIndices.add(filterIndex);
                 }
@@ -1658,8 +1673,12 @@ public class ScanManager {
         }
 
         // Configure filter parameters.
-        private void configureFilterParamter(int scannerId, ScanClient client, int featureSelection,
-                int filterIndex, int numOfTrackingEntries) {
+        private void configureFilterParameter(
+                int scannerId,
+                ScanClient client,
+                int featureSelection,
+                int filterIndex,
+                int numOfTrackingEntries) {
             int deliveryMode = getDeliveryMode(client);
             int rssiThreshold = Byte.MIN_VALUE;
             ScanSettings settings = client.settings;
@@ -1668,13 +1687,36 @@ public class ScanManager {
             int onFoundCount = getOnFoundOnLostSightings(settings);
             onLostTimeout = 10000;
             if (DBG) {
-                Log.d(TAG, "configureFilterParamter " + onFoundTimeout + " " + onLostTimeout + " "
-                        + onFoundCount + " " + numOfTrackingEntries);
+                Log.d(
+                        TAG,
+                        "configureFilterParameter "
+                                + scannerId
+                                + " "
+                                + onFoundTimeout
+                                + " "
+                                + onLostTimeout
+                                + " "
+                                + onFoundCount
+                                + " "
+                                + numOfTrackingEntries
+                                + " "
+                                + client.dutyCycle);
             }
             FilterParams filtValue =
-                    new FilterParams(scannerId, filterIndex, featureSelection, LIST_LOGIC_TYPE,
-                            FILTER_LOGIC_TYPE, rssiThreshold, rssiThreshold, deliveryMode,
-                            onFoundTimeout, onLostTimeout, onFoundCount, numOfTrackingEntries);
+                    new FilterParams(
+                            scannerId,
+                            filterIndex,
+                            featureSelection,
+                            LIST_LOGIC_TYPE,
+                            FILTER_LOGIC_TYPE,
+                            rssiThreshold,
+                            rssiThreshold,
+                            deliveryMode,
+                            onFoundTimeout,
+                            onLostTimeout,
+                            onFoundCount,
+                            numOfTrackingEntries,
+                            client.dutyCycle);
             mNativeInterface.gattClientScanFilterParamAdd(filtValue);
         }
 

@@ -497,6 +497,12 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       own_address_type_ = OwnAddressType::PUBLIC_DEVICE_ADDRESS;
     }
 
+    uint32_t duty_cycle = window_ms_ * 100 / interval_ms_;
+    LOG_INFO(
+        "le_scan_window_: %d, le_scan_interval_: %d, duty_cycle:%u",
+        (uint16_t)window_ms_,
+        (uint16_t)interval_ms_,
+        duty_cycle);
     switch (api_type_) {
       case ScanApiType::EXTENDED:
         le_scanning_interface_->EnqueueCommand(
@@ -710,6 +716,9 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
                 advertising_filter_parameter.onlost_timeout,
                 advertising_filter_parameter.num_of_tracking_entries),
             module_handler_->BindOnceOn(this, &impl::on_advertising_filter_complete));
+        if (is_set_duty_cycle_supported_ && advertising_filter_parameter.duty_cycle != 0) {
+          apcf_set_duty_cycle(filter_index, advertising_filter_parameter.duty_cycle);
+        }
         break;
       case ApcfAction::DELETE:
         tracker_id_map_.erase(filter_index);
@@ -1100,6 +1109,21 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
         module_handler_->BindOnceOn(this, &impl::on_advertising_filter_complete));
   }
 
+  void apcf_set_duty_cycle(uint8_t filter_index, int duty_cycle) {
+    if (duty_cycle < 0 || duty_cycle > 100) {
+      LOG_WARN("Invalid duty_cycle %d", duty_cycle);
+      return;
+    }
+
+    if (!is_set_duty_cycle_supported_) {
+      LOG_WARN("APCF set duty cycle is not supported");
+      return;
+    }
+    le_scanning_interface_->EnqueueCommand(
+        LeAdvFilterSetDutyCycleBuilder::Create(filter_index, duty_cycle),
+        module_handler_->BindOnceOn(this, &impl::on_advertising_filter_complete));
+  }
+
   void batch_scan_set_storage_parameter(
       uint8_t batch_scan_full_max,
       uint8_t batch_scan_truncated_max,
@@ -1483,6 +1507,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
             complete_view.GetApcfAction(),
             (uint8_t)complete_view.GetStatus());
       } break;
+      case ApcfOpcode::SET_DUTY_CYCLE: {
+        auto complete_view = LeAdvFilterSetDutyCycleCompleteView::Create(status_view);
+        ASSERT(complete_view.IsValid());
+      } break;
       default:
         LOG_WARN("Unexpected event type %s", OpCodeText(view.GetCommandOpCode()).c_str());
     }
@@ -1507,11 +1535,14 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     is_transport_discovery_data_filter_supported_ =
         complete_view.GetTransportDiscoveryDataFilter() == 1;
     is_ad_type_filter_supported_ = complete_view.GetAdTypeFilter() == 1;
+    is_set_duty_cycle_supported_ = complete_view.GetSetDutyCycle() == 1;
     LOG_INFO(
         "set is_ad_type_filter_supported_ to %d & "
-        "is_transport_discovery_data_filter_supported_ to %d",
+        "is_transport_discovery_data_filter_supported_ to %d & "
+        "is_set_duty_cycle_supported_ to %d",
         is_ad_type_filter_supported_,
-        is_transport_discovery_data_filter_supported_);
+        is_transport_discovery_data_filter_supported_,
+        is_set_duty_cycle_supported_);
   }
 
   void on_batch_scan_complete(CommandCompleteView view) {
@@ -1670,6 +1701,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   bool is_batch_scan_supported_ = false;
   bool is_periodic_advertising_sync_transfer_sender_supported_ = false;
   bool is_transport_discovery_data_filter_supported_ = false;
+  bool is_set_duty_cycle_supported_ = false;
 
   LeScanType le_scan_type_ = LeScanType::ACTIVE;
   uint32_t interval_ms_{1000};

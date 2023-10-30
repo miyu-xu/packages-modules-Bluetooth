@@ -1611,6 +1611,9 @@ static void gattClientScanFilterParamAddNative(JNIEnv* env,
   methodId = env->GetMethodID(filtparam.get(), "getRSSILowValue", "()I");
   filt_params->rssi_low_thres = env->CallIntMethod(params, methodId);
 
+  methodId = env->GetMethodID(filtparam.get(), "getDutyCycle", "()I");
+  filt_params->duty_cycle = env->CallIntMethod(params, methodId);
+
   sGattIf->scanner->ScanFilterParamSetup(
       client_if, add_scan_filter_params_action, filt_index,
       std::move(filt_params), base::Bind(&scan_filter_param_cb, client_if));

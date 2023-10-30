@@ -89,6 +89,7 @@ typedef struct {
   uint16_t lost_timeout;
   uint8_t found_timeout_cnt;
   uint16_t num_of_tracking_entries;
+  uint8_t duty_cycle;
 } btgatt_filt_param_setup_t;
 
 // Advertising Packet Content Filter
