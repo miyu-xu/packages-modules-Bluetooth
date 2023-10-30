@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d03d066_de923a3f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1251,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T22:28:13Z",
+      "side": 1,
+      "message": "```suggestion\n        return leAudioService !\u003d null \u0026\u0026 !leAudioService.getAllBroadcastMetadata().isEmpty();\n```",
+      "range": {
+        "startLine": 1248,
+        "startChar": 8,
+        "endLine": 1251,
+        "endChar": 21
+      },
+      "revId": "9661a7ee17045962c15f9422bb303e0e15030cba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
