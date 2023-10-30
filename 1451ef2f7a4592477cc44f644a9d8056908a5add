@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da5f8dbc_e4d04886",
+        "filename": "system/gd/packet/endian_inserter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T18:56:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69abaa4d_e29a4255",
+      "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "790311a0_8a5d9bcf",
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "num_bits from the Trivial type.",
       "parentUuid": "790311a0_8a5d9bcf",
+      "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3c7779b_5938da2c",
+        "filename": "system/gd/packet/endian_inserter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T18:56:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "21bf31d0_28c30833",
       "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +156,24 @@
       "side": 1,
       "message": "I think it\u0027s because we only allow vectors of trivial types in PDL, so we\u0027ve never run into this.",
       "parentUuid": "842a1228_7f92dd55",
+      "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d3d26f0_581da58c",
+        "filename": "system/gd/packet/endian_inserter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T18:56:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d6c5f25b_a6a0839e",
       "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
