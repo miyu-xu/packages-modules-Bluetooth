@@ -46,6 +46,30 @@
       },
       "revId": "3c9be90d015ee3512c22d40a3e4d12f8d675e10b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7b49d5a_57435884",
+        "filename": "system/stack/crypto_toolbox/aes_cmac.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T20:57:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "418d1891_6ba69947",
+      "range": {
+        "startLine": 52,
+        "startChar": 20,
+        "endLine": 52,
+        "endChar": 27
+      },
+      "revId": "3c9be90d015ee3512c22d40a3e4d12f8d675e10b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
