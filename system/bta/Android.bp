@@ -423,6 +423,7 @@ cc_test {
         "ag/bta_ag_rfc.cc",
         "ag/bta_ag_sco.cc",
         "ag/bta_ag_sdp.cc",
+        "ag/bta_ag_swb_aptx.cc",
         "ar/bta_ar.cc",
         "av/bta_av_aact.cc",
         "av/bta_av_act.cc",
@@ -460,6 +461,7 @@ cc_test {
         "sys/bta_sys_main.cc",
         "sys/utl.cc",
         "test/bta_ag_sco_test.cc",
+        "test/bta_ag_test.cc",
         "test/bta_api_test.cc",
         "test/bta_av_test.cc",
         "test/bta_disc_test.cc",
@@ -474,6 +476,7 @@ cc_test {
     shared_libs: [
         "libbase",
         "libcrypto",
+        "libcutils",
         "libcutils",
         "liblog",
     ],
@@ -490,7 +493,9 @@ cc_test {
         "libchrome",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libevent",
+        "libflagtest",
         "libgmock",
+        "server_configurable_flags",
     ],
     sanitize: {
         address: true,
