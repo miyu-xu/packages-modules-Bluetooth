@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c5e14f8_3f5baad8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T23:37:37Z",
+      "side": 1,
+      "message": "b/289176641 is an API change that will render this test obsolete / or, depending on how the migration to one API to another is done, will make this test pass.\n\nFor now, this test show that the stack return true (aka request is registered) but there is no callback.",
+      "parentUuid": "c4d600b6_968dc4de",
+      "range": {
+        "startLine": 196,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 53
+      },
+      "revId": "01cf5cd82fb6a42bc068936da51938b7236bc691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f4a99911_8680ad59",
         "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-28T01:00:47Z",
       "side": 1,
       "message": "Good question - that would more strictly support the BT spec in terms of API contract, but I think it\u0027s good to keep the current behavior here since apps already may expect this to return true based on that - not all developers may be aware it is not allowed to change multiple times on a single connection according to the spec (nit: test name is a bit misleading due to this). \n\nThis was previously discussed in another forum, IIRC the conclusion was to simply trigger the callback with the current MTU on the link to retain the current behavior (though we could consider that as part of future feature, we\u0027d want to also update the documentation if so).\n\nWDYT?",
+      "range": {
+        "startLine": 232,
+        "startChar": 17,
+        "endLine": 232,
+        "endChar": 26
+      },
+      "revId": "01cf5cd82fb6a42bc068936da51938b7236bc691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1427f30_d974efc0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T23:37:37Z",
+      "side": 1,
+      "message": "\u003e it\u0027s good to keep the current behavior here since apps already may expect this to return true based on that \n\nThis can be solved by an app compat change impact app that target V+\n\n\u003e  test name is a bit misleading due to this\n\nI agree, we are never rejecting anything, not even when we do not process the initial MTU request and upgrade it to `517`\n\n\u003e the conclusion was to simply trigger the callback with the current MTU\n\nThen the call should not trigger any code path / change and return asap from the GattService, maybe without even talking to native.\n\n\n----\n\n\nThis test, in the current situation, does the same behavior if we request 1 or 2 times the MTU, so in the current state of the art, I don\u0027t even think we need it.",
+      "parentUuid": "f4a99911_8680ad59",
       "range": {
         "startLine": 232,
         "startChar": 17,
