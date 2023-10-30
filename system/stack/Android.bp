@@ -668,7 +668,6 @@ cc_fuzz {
 cc_test {
     name: "net_test_stack",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -750,7 +749,6 @@ cc_test {
 cc_test {
     name: "net_test_stack_rfcomm",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -837,7 +835,6 @@ cc_test {
 cc_test {
     name: "net_test_stack_smp",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -910,7 +907,6 @@ cc_test {
 cc_test {
     name: "net_test_stack_ad_parser",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -937,7 +933,6 @@ cc_test {
 cc_test {
     name: "net_test_gatt_conn_multiplexing",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -983,7 +978,6 @@ cc_test {
 cc_test {
     name: "net_test_stack_gatt_native",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1048,7 +1042,6 @@ cc_test {
 cc_test {
     name: "net_test_stack_avdtp",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1115,7 +1108,6 @@ cc_test {
 cc_test {
     name: "net_test_stack_a2dp_codecs_native",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1231,7 +1223,6 @@ cc_test {
 cc_test {
     name: "net_test_stack_a2dp_native",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1275,7 +1266,6 @@ cc_test {
 cc_test {
     name: "net_test_stack_gatt_sr_hash_native",
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1343,7 +1333,6 @@ cc_test {
         unit_test: true,
     },
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1396,7 +1385,6 @@ cc_test {
         unit_test: true,
     },
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1463,7 +1451,6 @@ cc_test {
         unit_test: true,
     },
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1588,7 +1575,6 @@ cc_test {
     test_suites: ["general-tests"],
     host_supported: true,
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1636,7 +1622,6 @@ cc_test {
     test_suites: ["general-tests"],
     host_supported: true,
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1703,7 +1688,6 @@ cc_test {
     test_suites: ["general-tests"],
     host_supported: true,
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1774,7 +1758,6 @@ cc_test {
     test_suites: ["general-tests"],
     host_supported: true,
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1868,7 +1851,6 @@ cc_test {
     test_suites: ["general-tests"],
     host_supported: true,
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -1957,7 +1939,6 @@ cc_test {
     test_suites: ["general-tests"],
     host_supported: true,
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -2044,7 +2025,6 @@ cc_test {
     test_suites: ["general-tests"],
     host_supported: true,
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_defaults",
         "mts_defaults",
     ],

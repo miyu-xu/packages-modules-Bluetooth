@@ -336,7 +336,6 @@ cc_test {
     name: "bluetooth_test_gd_unit",
     test_suites: ["general-tests"],
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "gd_defaults",
         "mts_defaults",
     ],
@@ -440,7 +439,6 @@ cc_test {
     name: "bluetooth_packet_parser_test",
     test_suites: ["general-tests"],
     defaults: [
-        "bluetooth_gtest_x86_asan_workaround",
         "gd_defaults",
         "mts_defaults",
     ],
