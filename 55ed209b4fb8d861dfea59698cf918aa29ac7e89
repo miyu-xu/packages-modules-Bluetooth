@@ -16,6 +16,24 @@
       "message": "can we move the data from p_cb-\u003ediv with addresses?\nThis way of rewriting makes the code vulnerable to issues arising from difference in endianness",
       "revId": "55ed209b4fb8d861dfea59698cf918aa29ac7e89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b84a05fb_5fa082b1",
+        "filename": "system/stack/smp/smp_keys.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T23:32:28Z",
+      "side": 1,
+      "message": "For example, if the 16-bit value d is 0x1234 and the 16-bit value r is 0xABCD,\nthen d’ is 0x000000000000000000000000ABCD1234.\n\nI didn\u0027t want to depend on the endianness of the hardware.  This is a quote from the spec, and it makes me feel better than memcpy.",
+      "parentUuid": "302efc5b_35674a8a",
+      "revId": "55ed209b4fb8d861dfea59698cf918aa29ac7e89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
