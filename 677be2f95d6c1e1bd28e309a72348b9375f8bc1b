@@ -16,6 +16,29 @@
       "message": "@huirong.liao@mediatek.com, are the failures here caught by any unit test already?",
       "revId": "677be2f95d6c1e1bd28e309a72348b9375f8bc1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0a96b0b_87c05a04",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-10-30T17:52:37Z",
+      "side": 1,
+      "message": "typedef enum {\n  BTIF_A2DP_SINK_FOCUS_NOT_GRANTED \u003d 0,\n  BTIF_A2DP_SINK_FOCUS_GRANTED \u003d 1\n} btif_a2dp_sink_focus_state_t;\n\nThe enum has only 0 and 1 defined, how does changing this to \"\u003e\u003d\" matter?",
+      "range": {
+        "startLine": 693,
+        "startChar": 26,
+        "endLine": 693,
+        "endChar": 40
+      },
+      "revId": "677be2f95d6c1e1bd28e309a72348b9375f8bc1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
