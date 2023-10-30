@@ -3,6 +3,190 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc3605f2_cb2e9bee",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-30T22:31:27Z",
+      "side": 1,
+      "message": "nit: maybe add a comment to annotate that this is LC3 SWB",
+      "range": {
+        "startLine": 154,
+        "startChar": 20,
+        "endLine": 154,
+        "endChar": 34
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0399315_e808be91",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-30T22:31:27Z",
+      "side": 1,
+      "message": "nit: maybe `mHasSwbAptXEnabled` would be better, I am open to other people\u0027s ideas as well",
+      "range": {
+        "startLine": 155,
+        "startChar": 20,
+        "endLine": 155,
+        "endChar": 38
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "970eacd2_e3b4e5e0",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1651,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-30T22:31:27Z",
+      "side": 1,
+      "message": "nit: I know in qcom HAL, there is keyword `bt_swb`, like [link](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:vendor/qcom/sw5100/codeaurora/audio-hal/primary-hal/hal/AudioDevice.cpp;l\u003d2017?q\u003d%22bt_swb%22), just would like to confirm the `bt_swb` actually matches with `aptx` codec",
+      "range": {
+        "startLine": 1651,
+        "startChar": 26,
+        "endLine": 1651,
+        "endChar": 32
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2c7f36e_65304e75",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1809,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-30T22:31:27Z",
+      "side": 1,
+      "message": "nit: maybe use `prevSwbLC3` and `prevSwbAptx`",
+      "range": {
+        "startLine": 1809,
+        "startChar": 16,
+        "endLine": 1809,
+        "endChar": 23
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3092b009_c3dddb3b",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-30T22:31:27Z",
+      "side": 1,
+      "message": "nit: use filename `bta_ag_swb_aptx` or `bta_ag_aptx` might be better, because SWB LC3 is not handled here, only aptx is here",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 22
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b7ae5ad_19ab0e9a",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-30T22:31:27Z",
+      "side": 1,
+      "message": "nit: maybe LOG_INFO, as this codec message is important",
+      "range": {
+        "startLine": 851,
+        "startChar": 4,
+        "endLine": 851,
+        "endChar": 15
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f766f02_483d0844",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-30T22:31:27Z",
+      "side": 1,
+      "message": "nit: log_XXX already has function name",
+      "range": {
+        "startLine": 689,
+        "startChar": 59,
+        "endLine": 689,
+        "endChar": 67
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da5cc2da_ce913da0",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-30T22:31:27Z",
+      "side": 1,
+      "message": "nit: same as above, also following",
+      "range": {
+        "startLine": 708,
+        "startChar": 18,
+        "endLine": 708,
+        "endChar": 26
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3f3ed015_7d5a1f7a",
         "filename": "system/bta/ag/bta_ag_swb.cc",
         "patchSetId": 19
