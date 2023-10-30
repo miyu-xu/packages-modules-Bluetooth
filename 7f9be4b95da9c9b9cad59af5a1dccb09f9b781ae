@@ -39,6 +39,30 @@
       },
       "revId": "7f9be4b95da9c9b9cad59af5a1dccb09f9b781ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe004953_a284bdf3",
+        "filename": "system/gd/hci/acl_manager/le_impl.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 1154,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-10-30T08:45:09Z",
+      "side": 1,
+      "message": "I agree with your opinion.\nEven if the background connection is canceled, I think the timer for the existing direct connection should be maintained.\nHowever, this will need big change of gd stack.\nThis problem is quite critical because once it occurs, it does not recover until BT off.\nAre you discussing modifications for this in Google?",
+      "parentUuid": "390e6e05_5a9d772b",
+      "range": {
+        "startLine": 1154,
+        "startChar": 8,
+        "endLine": 1154,
+        "endChar": 53
+      },
+      "revId": "7f9be4b95da9c9b9cad59af5a1dccb09f9b781ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
