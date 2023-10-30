@@ -104,6 +104,24 @@
       "parentUuid": "e4c70aaa_dfbdc481",
       "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6c5f25b_a6a0839e",
+        "filename": "system/gd/packet/endian_inserter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T18:22:53Z",
+      "side": 1,
+      "message": "I think it\u0027s because we only allow vectors of trivial types in PDL, so we\u0027ve never run into this.",
+      "parentUuid": "842a1228_7f92dd55",
+      "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
