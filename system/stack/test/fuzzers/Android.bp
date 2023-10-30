@@ -69,6 +69,5 @@ cc_defaults {
         "libprotobuf-cpp-lite",
         "libstatssocket",
         "libutils",
-        "server_configurable_flags",
     ],
 }
