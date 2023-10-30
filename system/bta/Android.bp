@@ -296,6 +296,7 @@ cc_test {
         "libevent",
         "libflagtest",
         "libgmock",
+        "libosi",
         "server_configurable_flags",
     ],
     data: [
