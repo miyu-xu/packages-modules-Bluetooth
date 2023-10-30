@@ -65,7 +65,6 @@ android_test {
         "configs/pts_bot_tests_config_auto.json",
     ],
     test_suites: [
-        "device-tests",
         "general-tests",
     ],
     min_sdk_version: "Tiramisu",
