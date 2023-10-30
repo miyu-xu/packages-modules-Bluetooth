@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21bf31d0_28c30833",
+        "filename": "system/gd/packet/endian_inserter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T16:36:21Z",
+      "side": 1,
+      "message": "num_bits from the Trivial type.",
+      "parentUuid": "790311a0_8a5d9bcf",
+      "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e4c70aaa_dfbdc481",
         "filename": "system/gd/packet/endian_inserter.h",
         "patchSetId": 1
@@ -66,6 +84,24 @@
       "writtenOn": "2023-10-28T16:47:03Z",
       "side": 1,
       "message": "why no std::enable_if\u003cstd::is_trivial",
+      "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "842a1228_7f92dd55",
+        "filename": "system/gd/packet/endian_inserter.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T16:36:21Z",
+      "side": 1,
+      "message": "Good question.  I\u0027m not sure.",
+      "parentUuid": "e4c70aaa_dfbdc481",
       "revId": "1451ef2f7a4592477cc44f644a9d8056908a5add",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
