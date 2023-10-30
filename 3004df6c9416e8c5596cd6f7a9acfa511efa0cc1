@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e98d4c27_8b87f3d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T23:56:27Z",
+      "side": 1,
+      "message": "Please use aconfig flag",
+      "revId": "3004df6c9416e8c5596cd6f7a9acfa511efa0cc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b92e73c_62f2b733",
         "filename": "system/stack/btm/btm_sco.cc",
         "patchSetId": 5
