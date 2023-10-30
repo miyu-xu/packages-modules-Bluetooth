@@ -30,10 +30,22 @@ public class FilterParams {
     private int mLostTimeOut;
     private int mFoundTimeOutCnt;
     private int mNumOfTrackEntries;
+    private int mDutyCycle;
 
-    public FilterParams(int clientIf, int filtIndex, int featSeln, int listLogicType,
-            int filtLogicType, int rssiHighThres, int rssiLowThres, int delyMode, int foundTimeout,
-            int lostTimeout, int foundTimeoutCnt, int numOfTrackingEntries) {
+    public FilterParams(
+            int clientIf,
+            int filtIndex,
+            int featSeln,
+            int listLogicType,
+            int filtLogicType,
+            int rssiHighThres,
+            int rssiLowThres,
+            int delyMode,
+            int foundTimeout,
+            int lostTimeout,
+            int foundTimeoutCnt,
+            int numOfTrackingEntries,
+            int dutyCycle) {
 
         mClientIf = clientIf;
         mFiltIndex = filtIndex;
@@ -47,6 +59,7 @@ public class FilterParams {
         mLostTimeOut = lostTimeout;
         mFoundTimeOutCnt = foundTimeoutCnt;
         mNumOfTrackEntries = numOfTrackingEntries;
+        mDutyCycle = dutyCycle;
     }
 
     public int getClientIf() {
@@ -97,5 +110,8 @@ public class FilterParams {
         return mNumOfTrackEntries;
     }
 
+    public int getDutyCycle() {
+        return mDutyCycle;
+    }
 }
 

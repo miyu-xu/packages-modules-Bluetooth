@@ -45,21 +45,23 @@ public class FilterParamsTest {
         int lostTimeOut = 9;
         int foundTimeOutCnt = 10;
         int numOfTrackEntries = 11;
+        int dutyCycle = 12;
 
-        FilterParams filterParams = new FilterParams(
-                clientIf,
-                filtIndex,
-                featSeln,
-                listLogicType,
-                filtLogicType,
-                rssiHighValue,
-                rssiLowValue,
-                delyMode,
-                foundTimeOut,
-                lostTimeOut,
-                foundTimeOutCnt,
-                numOfTrackEntries
-        );
+        FilterParams filterParams =
+                new FilterParams(
+                        clientIf,
+                        filtIndex,
+                        featSeln,
+                        listLogicType,
+                        filtLogicType,
+                        rssiHighValue,
+                        rssiLowValue,
+                        delyMode,
+                        foundTimeOut,
+                        lostTimeOut,
+                        foundTimeOutCnt,
+                        numOfTrackEntries,
+                        dutyCycle);
 
         assertThat(filterParams).isNotNull();
 
@@ -75,5 +77,6 @@ public class FilterParamsTest {
         assertThat(filterParams.getLostTimeout()).isEqualTo(lostTimeOut);
         assertThat(filterParams.getFoundTimeOutCnt()).isEqualTo(foundTimeOutCnt);
         assertThat(filterParams.getNumOfTrackEntries()).isEqualTo(numOfTrackEntries);
+        assertThat(filterParams.getDutyCycle()).isEqualTo(dutyCycle);
     }
 }

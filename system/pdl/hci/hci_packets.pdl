@@ -5479,6 +5479,7 @@ enum ApcfOpcode : 8 {
   SERVICE_DATA = 0x07,
   TRANSPORT_DISCOVERY_DATA = 0x08,
   AD_TYPE = 0x09,
+  SET_DUTY_CYCLE = 0xFE,
   READ_EXTENDED_FEATURES = 0xFF,
 }
 
@@ -5679,6 +5680,14 @@ packet LeAdvFilterADTypeComplete : LeAdvFilterComplete (apcf_opcode = AD_TYPE) {
   apcf_available_spaces : 8,
 }
 
+packet LeAdvFilterSetDutyCycle : LeAdvFilter (apcf_opcode = SET_DUTY_CYCLE) {
+  apcf_filter_index : 8,
+  apcf_duty_cycle : 8,
+}
+
+packet LeAdvFilterSetDutyCycleComplete : LeAdvFilterComplete (apcf_opcode = SET_DUTY_CYCLE) {
+}
+
 packet LeAdvFilterReadExtendedFeatures : LeAdvFilter (apcf_opcode = READ_EXTENDED_FEATURES) {
 }
 
@@ -5689,7 +5698,8 @@ test LeAdvFilterReadExtendedFeatures {
 packet LeAdvFilterReadExtendedFeaturesComplete : LeAdvFilterComplete (apcf_opcode = READ_EXTENDED_FEATURES) {
   transport_discovery_data_filter : 1,
   ad_type_filter : 1,
-  _reserved_ : 14,
+  set_duty_cycle : 1,
+  _reserved_ : 13,
 }
 
 test LeAdvFilterReadExtendedFeaturesComplete {
