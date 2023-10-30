@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "de5daf0d_5f1b988e",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 1408,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T20:24:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89c60c7c_ece356b0",
+      "revId": "9c498297469742fd4c00dfa6c211c9a31335abde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26559ce4_ae079f97",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb5c0b24_c324c412",
+        "filename": "system/stack/btm/btm_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T20:24:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26559ce4_ae079f97",
+      "revId": "9c498297469742fd4c00dfa6c211c9a31335abde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0c5f6c21_0b9a9364",
@@ -66,6 +102,30 @@
       "writtenOn": "2023-10-28T00:55:03Z",
       "side": 1,
       "message": "class is not needed when the type is defined with `class`",
+      "range": {
+        "startLine": 102,
+        "startChar": 7,
+        "endLine": 102,
+        "endChar": 12
+      },
+      "revId": "9c498297469742fd4c00dfa6c211c9a31335abde",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d6fe6d7_1b466916",
+        "filename": "system/stack/btm/btm_sec_cb.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-30T20:24:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c5f6c21_0b9a9364",
       "range": {
         "startLine": 102,
         "startChar": 7,
