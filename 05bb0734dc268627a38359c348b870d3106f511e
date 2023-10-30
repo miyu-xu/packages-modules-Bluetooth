@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39dc604b_bf697505",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-30T13:39:09Z",
+      "side": 1,
+      "message": "mple",
+      "revId": "05bb0734dc268627a38359c348b870d3106f511e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ae0b444_d7b84dce",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-30T13:39:09Z",
+      "side": 1,
+      "message": "Adapters affected:  \n  case 1. present \u0026\u0026 TurningOn\n  case 2. present \u0026\u0026 On\n  case 3. !present \u0026\u0026 On\n\nAs the intention of this function is changed, calling this function as restart_available_adapters might not be appropriate, please either refactor get_available_adpaters() or change name of this function. Maybe just `restart_adapters()`.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 86,
+        "endChar": 5
+      },
+      "revId": "05bb0734dc268627a38359c348b870d3106f511e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c5a1de2_6ee7e032",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-30T13:39:09Z",
+      "side": 1,
+      "message": "I was wondering `CommandTimeoutAction::DoNothing` is more appropriate in ProcessState::Restarting. WDYT?",
+      "range": {
+        "startLine": 1423,
+        "startChar": 12,
+        "endLine": 1427,
+        "endChar": 13
+      },
+      "revId": "05bb0734dc268627a38359c348b870d3106f511e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97a2e0d9_6d446d5b",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1432,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-10-30T13:39:09Z",
+      "side": 1,
+      "message": "`CommandTimeoutAction::ResetTimer` for `ProcessState::TurningOn` seems reasonable. Is this a bug fix?",
+      "range": {
+        "startLine": 1428,
+        "startChar": 12,
+        "endLine": 1432,
+        "endChar": 13
+      },
+      "revId": "05bb0734dc268627a38359c348b870d3106f511e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
