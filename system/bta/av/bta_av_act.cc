@@ -227,7 +227,15 @@ static void bta_av_avrc_sdp_cback(tSDP_STATUS /* status */) {
  * Returns          void
  *
  ******************************************************************************/
+<<<<<<< HEAD   (5323f31677c7dfa04de2e6e9fce1012ef4edaff2 Merge cherrypicks of ['googleplex-android-review.googlesourc)
 static void bta_av_rc_ctrl_cback(uint8_t handle, uint8_t event, uint16_t /* result */,
+||||||| BASE   (eb5d6b6c72d9bc5220f95c949b658813b628f0f1 Merge "[Invisalign2] Encapsulate tBTM_SEC_CB::change_pairing)
+static void bta_av_rc_ctrl_cback(uint8_t handle, uint8_t event,
+                                 UNUSED_ATTR uint16_t result,
+=======
+static void bta_av_rc_ctrl_cback(uint8_t handle, uint8_t event,
+                                 uint16_t result,
+>>>>>>> CHANGE (f95b4a5cb3cf5bc858317b08cc91f99d9cf7c190 Add avrcp connection refused then retry connect mechanism)
                                  const RawAddress* peer_addr) {
   uint16_t msg_event = 0;
 
@@ -252,6 +260,27 @@ static void bta_av_rc_ctrl_cback(uint8_t handle, uint8_t event, uint16_t /* resu
 
     msg_event = BTA_AV_AVRC_OPEN_EVT;
   } else if (event == AVRC_CLOSE_IND_EVT) {
+    if (result == L2CAP_CONN_NO_RESOURCES) {
+      tHCI_ROLE cur_role;
+      LOG_VERBOSE("%s: handle: %d rejected by remote peer", __func__, handle);
+      tBTA_AV_SCB* p_scb = bta_av_cb.p_scb[bta_av_cb.rcb[handle].shdl - 1];
+      /*According AVRCP Spec 4.1.1, add retry connect mechanism*/
+      if (BTM_GetRole(*peer_addr, &cur_role) == BTM_SUCCESS
+          && cur_role == HCI_ROLE_CENTRAL) {
+        /* MASTER: reconnect immediately */
+        LOG_VERBOSE("%s: handle: %d MASTER reconnect immediately", __func__, handle);
+        bta_sys_start_timer(p_scb->avrc_ct_timer, 1,
+                BTA_AV_AVRC_TIMER_EVT, p_scb->hndl);
+      } else {
+        /* SLAVE: reconnect after 100~1000ms */
+        uint64_t delay_time = osi_rand()%900 + 100;
+        LOG_VERBOSE("%s: handle: %d SLAVE: reconnect after %lu",
+                    __func__, handle, static_cast<unsigned long>(delay_time));
+        bta_sys_start_timer(p_scb->avrc_ct_timer, delay_time,
+                BTA_AV_AVRC_TIMER_EVT, p_scb->hndl);
+      }
+      return;
+    }
     msg_event = BTA_AV_AVRC_CLOSE_EVT;
   } else if (event == AVRC_BROWSE_OPEN_IND_EVT) {
     msg_event = BTA_AV_AVRC_BROWSE_OPEN_EVT;
