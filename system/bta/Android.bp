@@ -406,6 +406,7 @@ cc_test {
         "sys/bta_sys_main.cc",
         "sys/utl.cc",
         "test/bta_ag_sco_test.cc",
+        "test/bta_ag_test.cc",
         "test/bta_api_test.cc",
         "test/bta_av_test.cc",
         "test/bta_disc_test.cc",
@@ -420,6 +421,7 @@ cc_test {
     shared_libs: [
         "libbase",
         "libcrypto",
+        "libcutils",
         "libcutils",
         "liblog",
         "server_configurable_flags",
@@ -437,6 +439,7 @@ cc_test {
         "libchrome",
         "libcom.android.sysprop.bluetooth",
         "libevent",
+        "libflagtest",
         "libgmock",
     ],
     sanitize: {
