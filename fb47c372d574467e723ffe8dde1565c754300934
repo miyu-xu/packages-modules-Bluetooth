@@ -61,6 +61,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5b0d163_499a66b5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-30T16:45:54Z",
+      "side": 1,
+      "message": "See \"5.2.2.3 Secure Simple Pairing after authentication failure, Generic Access Profile, BLUETOOTH CORE SPECIFICATION Version 5.4 | Vol 3, Part C\" for BR/EDR.\n\n\"2.4.4.2 Encryption setup using LTK, Security Manager Specification, BLUETOOTH CORE SPECIFICATION Version 5.4 | Vol 3, Part H\" for LE.",
+      "parentUuid": "77ceeb14_19d1ae85",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ccc73591_550d3e68",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
@@ -96,6 +114,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93f31e05_e060b3ca",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-30T16:45:54Z",
+      "side": 1,
+      "message": "The description of change does not match the change. That is, even with the proposed changes the remote device is not disconnected immediately.\n\nA better solution would have been to not inform the applications of the reconnection until the agreed security level is not reinstated.",
+      "parentUuid": "2cc7d24a_b2b96877",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6fdbff4b_d2619b1a",
         "filename": "system/bta/dm/bta_dm_sec.cc",
         "patchSetId": 3
@@ -125,6 +161,24 @@
       "side": 1,
       "message": "At the first key missing, the central already removes the BTM_SEC_LE_LINK_KEY_KNOWN flag. Therefore, instead of simply encrypting, it will induce repairing,\nBecause of it, the encryption will not fail again due to the same cause(key missing).",
       "parentUuid": "6fdbff4b_d2619b1a",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f831398a_b0587577",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-10-30T16:45:54Z",
+      "side": 1,
+      "message": "This does not sound robust. Its just inviting issues due to future changes. If we intend to repair we should just do that. Any changes in the other parts of code can cause this logic to go out of control.",
+      "parentUuid": "120ef964_90dbe545",
       "revId": "fb47c372d574467e723ffe8dde1565c754300934",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
