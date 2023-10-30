@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dba09581_6dc0601e",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T21:30:25Z",
+      "side": 1,
+      "message": "Could we use LOG_INFO instead since this is a key event during call handling",
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cf50ad0_cb54fd22",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-10-30T21:30:25Z",
+      "side": 1,
+      "message": "__func__ not needed with LOG_XXX style logging as it will be added automatically",
+      "range": {
+        "startLine": 716,
+        "startChar": 12,
+        "endLine": 716,
+        "endChar": 20
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
