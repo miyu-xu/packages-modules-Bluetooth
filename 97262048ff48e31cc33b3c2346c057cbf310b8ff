@@ -16,6 +16,23 @@
       "message": "Should this b A config flag instead?",
       "revId": "97262048ff48e31cc33b3c2346c057cbf310b8ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b5eca4f_7ecc0af3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-10-30T22:55:53Z",
+      "side": 1,
+      "message": "maybe we need to have either system property or ask whether it is a Qualcomm HAL, because init flag will have the same value on all devices, then we may select aptx on non-qualcomm phone",
+      "revId": "97262048ff48e31cc33b3c2346c057cbf310b8ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
