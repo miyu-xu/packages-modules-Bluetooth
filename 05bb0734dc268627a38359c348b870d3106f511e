@@ -83,6 +83,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0b592750_22d898c7",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-30T14:03:21Z",
+      "side": 1,
+      "message": "LGTM. That means keeping the original timeout as is. Will fix.",
+      "parentUuid": "0c5a1de2_6ee7e032",
+      "range": {
+        "startLine": 1423,
+        "startChar": 12,
+        "endLine": 1427,
+        "endChar": 13
+      },
+      "revId": "05bb0734dc268627a38359c348b870d3106f511e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "97a2e0d9_6d446d5b",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 5
@@ -94,6 +118,30 @@
       "writtenOn": "2023-10-30T13:39:09Z",
       "side": 1,
       "message": "`CommandTimeoutAction::ResetTimer` for `ProcessState::TurningOn` seems reasonable. Is this a bug fix?",
+      "range": {
+        "startLine": 1428,
+        "startChar": 12,
+        "endLine": 1432,
+        "endChar": 13
+      },
+      "revId": "05bb0734dc268627a38359c348b870d3106f511e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c69a913_34ae13eb",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1432,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-30T14:03:21Z",
+      "side": 1,
+      "message": "Should be a bug fix, but originally it was never called because `restart_available_adapters` only restarted the `ProcessState::On` adapters.",
+      "parentUuid": "97a2e0d9_6d446d5b",
       "range": {
         "startLine": 1428,
         "startChar": 12,
