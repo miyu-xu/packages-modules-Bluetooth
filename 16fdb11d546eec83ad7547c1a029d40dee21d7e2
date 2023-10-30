@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "58f6d839_f3a48d68",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-30T18:11:05Z",
+      "side": 1,
+      "message": "I don\u0027t expect that the native codec type will be the same always for a given offloaded codec, just 1. that it is unique locally, 2. that it does not overlap with fixed codec types (SBC, AAC, APTX etc.).\n\nAre you ok with this definition ?",
+      "parentUuid": "94555048_518edb6d",
+      "range": {
+        "startLine": 77,
+        "startChar": 47,
+        "endLine": 82,
+        "endChar": 21
+      },
+      "revId": "16fdb11d546eec83ad7547c1a029d40dee21d7e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d0361e3a_31365026",
         "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
         "patchSetId": 11
@@ -85,6 +109,30 @@
       "writtenOn": "2023-10-24T00:52:45Z",
       "side": 1,
       "message": "typo `static`",
+      "range": {
+        "startLine": 98,
+        "startChar": 48,
+        "endLine": 98,
+        "endChar": 53
+      },
+      "revId": "16fdb11d546eec83ad7547c1a029d40dee21d7e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47b71afa_a8caeaef",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-10-30T18:11:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0361e3a_31365026",
       "range": {
         "startLine": 98,
         "startChar": 48,
