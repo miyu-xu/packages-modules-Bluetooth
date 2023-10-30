@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ecba526_1ce0c289",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-30T16:59:08Z",
+      "side": 1,
+      "message": "spelling+nit: `warn!(\"Set Floss Enabled\u003d{}\")`",
+      "revId": "19a199f09361f4de83fd490e422db0621a53bad1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
