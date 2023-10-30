@@ -16,6 +16,23 @@
       "message": "I have a dual mode change in flight (aosp/2506454) that will conflict with this. I\u0027m going to be OOO for 4 working days after today, so if you could hold off until that change goes in, that would be great!",
       "revId": "7ce989c8386d08a6771b7fc2065b4b99995d5025",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e277f591_e73354b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-30T23:56:50Z",
+      "side": 1,
+      "message": "Please use aconfig flag",
+      "revId": "7ce989c8386d08a6771b7fc2065b4b99995d5025",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
