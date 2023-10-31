@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb27341b_45241b16",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-10-31T01:51:03Z",
+      "side": 1,
+      "message": "You may want to remove the delayed activation events in mHandler when activates the broadcasting audio.\n\n```\nif (mPendingActiveDevice !\u003d null) {\n    mHandler.removeCallbacksAndMessages(mPendingActiveDevice);\n}\n```",
+      "revId": "856c93bdde0f96b3b4621aa10b057a3b7bc2339b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
