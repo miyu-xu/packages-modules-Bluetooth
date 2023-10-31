@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d891fa8_f508fa98",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-10-31T00:05:57Z",
+      "side": 1,
+      "message": "note: Remember to remove the WIP",
+      "revId": "f140264d6a51f8e61481d5213d4a4e6ef650832f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
