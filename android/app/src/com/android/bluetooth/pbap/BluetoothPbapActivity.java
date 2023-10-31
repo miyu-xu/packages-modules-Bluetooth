@@ -36,6 +36,8 @@ import static android.view.WindowManager.LayoutParams.SYSTEM_FLAG_HIDE_NON_SYSTE
 
 import android.bluetooth.AlertActivity;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
+import android.bluetooth.BluetoothProtoEnums;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -53,6 +55,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -66,6 +69,9 @@ public class BluetoothPbapActivity extends AlertActivity
     private static final String TAG = "BluetoothPbapActivity";
 
     private static final boolean V = BluetoothPbapService.VERBOSE;
+
+    // Increased by one when a new error metric log is created in this file.
+    private static final int CONTENT_PROFILE_ERROR_METRIC_NEXT_TAG = 1;
 
     private static final int BLUETOOTH_OBEX_AUTHKEY_MAX_LENGTH = 16;
 
@@ -118,6 +124,12 @@ public class BluetoothPbapActivity extends AlertActivity
         } else {
             Log.e(TAG, "Error: this activity may be started only with intent "
                     + "PBAP_ACCESS_REQUEST or PBAP_AUTH_CHALL ");
+            BluetoothStatsLog.write(
+                    BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED,
+                    BluetoothProfile.PBAP,
+                    BluetoothProtoEnums.BLUETOOTH_PBAP_ACTIVITY,
+                    BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__LOG_ERROR,
+                    0);
             finish();
         }
         IntentFilter filter = new IntentFilter(BluetoothPbapService.USER_CONFIRM_TIMEOUT_ACTION);
