@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "678e7907_d8bc3afd",
+        "filename": "sysprop/hfp.sysprop",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T22:18:55Z",
+      "side": 1,
+      "message": "shouldn\u0027t it be Readonly ? to not add an api",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 21
+      },
+      "revId": "047a14b6015210b969035e3b5a188f4cbbc542c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
