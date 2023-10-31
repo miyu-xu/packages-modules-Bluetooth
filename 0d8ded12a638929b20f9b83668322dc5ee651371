@@ -22,6 +22,30 @@
       },
       "revId": "0d8ded12a638929b20f9b83668322dc5ee651371",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4089c4ef_d91784cf",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T19:05:49Z",
+      "side": 1,
+      "message": "This CL only serve as an example to show that `atLeast(x)` is needed and without it, it crash.\n\n----\n\n\u003e Alternatively I think you could consider using inOrder to match each call.\n\nIf `inOrder` works, it will only make the issue hidden, not fix anything\n\n\u003e If we\u0027re looking to change the behavior to return false on second call to requestMtu, we should probably discuss that in team sync.\n\nThis question should be addressed in aosp/2807236, I do not target that here",
+      "parentUuid": "ebb68bd7_53dce4ef",
+      "range": {
+        "startLine": 217,
+        "startChar": 27,
+        "endLine": 217,
+        "endChar": 53
+      },
+      "revId": "0d8ded12a638929b20f9b83668322dc5ee651371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
