@@ -1665,7 +1665,7 @@ void btsnd_hcic_vendor_spec_cmd(uint16_t opcode, uint8_t len, uint8_t* p_data,
                      base::Unretained(p_cmd_cplt_cback), v_opcode));
 }
 
-void btsnd_hcic_configure_data_path(hci_data_direction data_path_direction,
+void btsnd_hcic_configure_data_path(hci_data_direction_t data_path_direction,
                                     uint8_t data_path_id,
                                     std::vector<uint8_t> vendor_config) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
@@ -1703,7 +1703,7 @@ class InterfaceImpl : public Interface {
   void StartRoleSwitch(const RawAddress& bd_addr, uint8_t role) const override {
     btsnd_hcic_switch_role(bd_addr, role);
   }
-  void ConfigureDataPath(hci_data_direction data_path_direction,
+  void ConfigureDataPath(hci_data_direction_t data_path_direction,
                          uint8_t data_path_id,
                          std::vector<uint8_t> vendor_config) const override {
     btsnd_hcic_configure_data_path(data_path_direction, data_path_id,

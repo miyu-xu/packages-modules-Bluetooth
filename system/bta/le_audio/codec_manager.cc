@@ -105,9 +105,9 @@ struct codec_manager_impl {
     }
 
     LOG_INFO("LeAudioCodecManagerImpl: configure_data_path for encode");
-    GetInterface().ConfigureDataPath(hci_data_direction::HOST_TO_CONTROLLER,
+    GetInterface().ConfigureDataPath(hci_data_direction_t::HOST_TO_CONTROLLER,
                                      kIsoDataPathPlatformDefault, {});
-    GetInterface().ConfigureDataPath(hci_data_direction::CONTROLLER_TO_HOST,
+    GetInterface().ConfigureDataPath(hci_data_direction_t::CONTROLLER_TO_HOST,
                                      kIsoDataPathPlatformDefault, {});
     SetCodecLocation(CodecLocation::ADSP);
   }
@@ -118,9 +118,9 @@ struct codec_manager_impl {
   }
   ~codec_manager_impl() {
     if (GetCodecLocation() != CodecLocation::HOST) {
-      GetInterface().ConfigureDataPath(hci_data_direction::HOST_TO_CONTROLLER,
+      GetInterface().ConfigureDataPath(hci_data_direction_t::HOST_TO_CONTROLLER,
                                        kIsoDataPathHci, {});
-      GetInterface().ConfigureDataPath(hci_data_direction::CONTROLLER_TO_HOST,
+      GetInterface().ConfigureDataPath(hci_data_direction_t::CONTROLLER_TO_HOST,
                                        kIsoDataPathHci, {});
     }
     le_audio::AudioSetConfigurationProvider::Cleanup();

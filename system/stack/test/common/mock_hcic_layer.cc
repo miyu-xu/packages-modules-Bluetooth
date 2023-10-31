@@ -125,7 +125,7 @@ class MockInterface : public Interface {
     FAIL();
   }
   virtual void ConfigureDataPath(
-      hci_data_direction data_path_direction, uint8_t data_path_id,
+      hci_data_direction_t data_path_direction, uint8_t data_path_id,
       std::vector<uint8_t> vendor_config) const override {
     FAIL();
   }

@@ -34,7 +34,7 @@
 
 /* Message by message.... */
 
-enum hci_data_direction {
+enum hci_data_direction_t {
   HOST_TO_CONTROLLER = 0,
   CONTROLLER_TO_HOST = 1,
 };
@@ -51,7 +51,7 @@ class Interface {
                                           uint16_t packet_types) const = 0;
   virtual void StartRoleSwitch(const RawAddress& bd_addr,
                                uint8_t role) const = 0;
-  virtual void ConfigureDataPath(hci_data_direction data_path_direction,
+  virtual void ConfigureDataPath(hci_data_direction_t data_path_direction,
                                  uint8_t data_path_id,
                                  std::vector<uint8_t> vendor_config) const = 0;
   virtual ~Interface() = default;
@@ -522,7 +522,7 @@ void btsnd_hcic_ble_set_default_periodic_advertising_sync_transfer_params(
     uint16_t conn_handle, uint8_t mode, uint16_t skip, uint16_t sync_timeout,
     uint8_t cte_type, base::OnceCallback<void(uint8_t*, uint16_t)> cb);
 
-void btsnd_hcic_configure_data_path(hci_data_direction data_path_direction,
+void btsnd_hcic_configure_data_path(hci_data_direction_t data_path_direction,
                                     uint8_t data_path_id,
                                     std::vector<uint8_t> vendor_config);
 

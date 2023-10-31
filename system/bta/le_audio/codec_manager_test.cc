@@ -112,21 +112,21 @@ TEST_F(CodecManagerTestAdsp, test_init) {
 
 TEST_F(CodecManagerTestAdsp, test_start) {
   EXPECT_CALL(bluetooth::legacy::hci::testing::GetMock(),
-              ConfigureDataPath(hci_data_direction::HOST_TO_CONTROLLER,
+              ConfigureDataPath(hci_data_direction_t::HOST_TO_CONTROLLER,
                                 kIsoDataPathPlatformDefault, _))
       .Times(1);
   EXPECT_CALL(bluetooth::legacy::hci::testing::GetMock(),
-              ConfigureDataPath(hci_data_direction::CONTROLLER_TO_HOST,
+              ConfigureDataPath(hci_data_direction_t::CONTROLLER_TO_HOST,
                                 kIsoDataPathPlatformDefault, _))
       .Times(1);
 
   // Verify data path is reset on Stop()
   EXPECT_CALL(bluetooth::legacy::hci::testing::GetMock(),
-              ConfigureDataPath(hci_data_direction::HOST_TO_CONTROLLER,
+              ConfigureDataPath(hci_data_direction_t::HOST_TO_CONTROLLER,
                                 kIsoDataPathHci, _))
       .Times(1);
   EXPECT_CALL(bluetooth::legacy::hci::testing::GetMock(),
-              ConfigureDataPath(hci_data_direction::CONTROLLER_TO_HOST,
+              ConfigureDataPath(hci_data_direction_t::CONTROLLER_TO_HOST,
                                 kIsoDataPathHci, _))
       .Times(1);
 
@@ -292,21 +292,21 @@ TEST_F(CodecManagerTestHost, test_init) {
 
 TEST_F(CodecManagerTestHost, test_start) {
   EXPECT_CALL(bluetooth::legacy::hci::testing::GetMock(),
-              ConfigureDataPath(hci_data_direction::HOST_TO_CONTROLLER,
+              ConfigureDataPath(hci_data_direction_t::HOST_TO_CONTROLLER,
                                 kIsoDataPathPlatformDefault, _))
       .Times(0);
   EXPECT_CALL(bluetooth::legacy::hci::testing::GetMock(),
-              ConfigureDataPath(hci_data_direction::CONTROLLER_TO_HOST,
+              ConfigureDataPath(hci_data_direction_t::CONTROLLER_TO_HOST,
                                 kIsoDataPathPlatformDefault, _))
       .Times(0);
 
   // Verify data path is NOT reset on Stop() for the Host encoding session
   EXPECT_CALL(bluetooth::legacy::hci::testing::GetMock(),
-              ConfigureDataPath(hci_data_direction::HOST_TO_CONTROLLER,
+              ConfigureDataPath(hci_data_direction_t::HOST_TO_CONTROLLER,
                                 kIsoDataPathHci, _))
       .Times(0);
   EXPECT_CALL(bluetooth::legacy::hci::testing::GetMock(),
-              ConfigureDataPath(hci_data_direction::CONTROLLER_TO_HOST,
+              ConfigureDataPath(hci_data_direction_t::CONTROLLER_TO_HOST,
                                 kIsoDataPathHci, _))
       .Times(0);
 
