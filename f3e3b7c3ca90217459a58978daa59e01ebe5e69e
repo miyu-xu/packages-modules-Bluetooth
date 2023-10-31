@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc9ee9a9_b7e937cd",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-10-31T10:36:56Z",
+      "side": 1,
+      "message": "Should return be used instead? Although the result is the same in this case.",
+      "range": {
+        "startLine": 347,
+        "startChar": 8,
+        "endLine": 347,
+        "endChar": 13
+      },
+      "revId": "f3e3b7c3ca90217459a58978daa59e01ebe5e69e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
