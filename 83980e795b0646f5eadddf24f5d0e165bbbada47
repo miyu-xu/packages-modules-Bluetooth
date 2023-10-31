@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e4019eb_54cb54b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-10-31T12:03:06Z",
+      "side": 1,
+      "message": "Q) It seems all the LE hearing aid code are deleted. Can we rely only on LeAudioService and not on HapClientService?",
+      "revId": "83980e795b0646f5eadddf24f5d0e165bbbada47",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
