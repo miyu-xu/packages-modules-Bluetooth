@@ -36,6 +36,8 @@ import static android.view.WindowManager.LayoutParams.SYSTEM_FLAG_HIDE_NON_SYSTE
 
 import android.bluetooth.AlertActivity;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProfile;
+import android.bluetooth.BluetoothProtoEnums;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -54,14 +56,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.bluetooth.BluetoothMethodProxy;
+import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.R;
+import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 import com.android.internal.annotations.VisibleForTesting;
 
 /**
- * PbapActivity shows two dialogues: One for accepting incoming pbap request and
- * the other prompts the user to enter a session key for authentication with a
- * remote Bluetooth device.
+ * PbapActivity shows two dialogues: One for accepting incoming pbap request and the other prompts
+ * the user to enter a session key for authentication with a remote Bluetooth device.
  */
+// Next tag value for ContentProfileErrorReportUtils.report(): 1
 public class BluetoothPbapActivity extends AlertActivity
         implements Preference.OnPreferenceChangeListener, TextWatcher {
     private static final String TAG = "BluetoothPbapActivity";
@@ -117,8 +121,15 @@ public class BluetoothPbapActivity extends AlertActivity
             showPbapDialog(DIALOG_YES_NO_AUTH);
             mCurrentDialog = DIALOG_YES_NO_AUTH;
         } else {
-            Log.e(TAG, "Error: this activity may be started only with intent "
-                    + "PBAP_ACCESS_REQUEST or PBAP_AUTH_CHALL ");
+            Log.e(
+                    TAG,
+                    "Error: this activity may be started only with intent "
+                            + "PBAP_ACCESS_REQUEST or PBAP_AUTH_CHALL ");
+            ContentProfileErrorReportUtils.report(
+                    BluetoothProfile.PBAP,
+                    BluetoothProtoEnums.BLUETOOTH_PBAP_ACTIVITY,
+                    BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__LOG_ERROR,
+                    0);
             finish();
         }
         IntentFilter filter = new IntentFilter(BluetoothPbapService.USER_CONFIRM_TIMEOUT_ACTION);
