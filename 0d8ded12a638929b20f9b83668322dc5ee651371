@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebb68bd7_53dce4ef",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-10-31T17:38:39Z",
+      "side": 1,
+      "message": "Since calling from same client in this one, a single verify line with times(2) would be validating current behavior. Alternatively I think you could consider using inOrder to match each call. \n\nIf we\u0027re looking to change the behavior to return false on second call to requestMtu, we should probably discuss that in team sync.",
+      "range": {
+        "startLine": 217,
+        "startChar": 27,
+        "endLine": 217,
+        "endChar": 53
+      },
+      "revId": "0d8ded12a638929b20f9b83668322dc5ee651371",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
