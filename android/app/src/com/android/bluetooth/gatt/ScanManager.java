@@ -452,6 +452,7 @@ public class ScanManager {
                         Message msg = obtainMessage(MSG_SCAN_TIMEOUT);
                         msg.obj = client;
                         // Only one timeout message should exist at any time
+                        removeMessages(MSG_SCAN_TIMEOUT, client);
                         sendMessageDelayed(msg, mAdapterService.getScanTimeoutMillis());
                         if (DBG) {
                             Log.d(TAG,
