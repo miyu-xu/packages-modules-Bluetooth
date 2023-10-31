@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "65a93fa0_16ac4c8c",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-31T05:16:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "559dcdf3_e6bc2a91",
+      "revId": "7ccff808b81aee1302a6b3b692ea08a851b30e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f9b13f30_4f649c49",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-30T16:56:13Z",
       "side": 1,
       "message": "Why always execute `modify_state`? If necessary, add a comment\n\n```\nif !queue_present {\n  ...\n} else {\n  ...\n}\n```",
+      "revId": "7ccff808b81aee1302a6b3b692ea08a851b30e37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02b88515_8330ce88",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 735,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-31T05:16:44Z",
+      "side": 1,
+      "message": "When a hci is removed while its presence is still queued, we would need to reset the flag. Added comment.",
+      "parentUuid": "f9b13f30_4f649c49",
       "revId": "7ccff808b81aee1302a6b3b692ea08a851b30e37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
