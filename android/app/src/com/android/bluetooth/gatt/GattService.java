@@ -284,6 +284,11 @@ public class GattService extends ProfileService {
      */
     private final HashMap<String, Integer> mPermits = new HashMap<>();
 
+    /**
+     * HashMap keeping track of pending disconnects for each of the UUID's
+     */
+    private final Set<UUID> mConnected = new HashSet<>();
+
     private AdapterService mAdapterService;
     private BluetoothAdapterProxy mBluetoothAdapterProxy;
     AdvertiseManager mAdvertiseManager;
@@ -5069,6 +5074,36 @@ public class GattService extends ProfileService {
             int profile, String address, int sessionIndex, int connectionState,
             int connectionStatus) {
         BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
+        ClientMap.App app = mClientMap.getById(sessionIndex);
+        if (app != null) {
+          if (connectionState == BluetoothProtoEnums.CONNECTION_STATE_CONNECTED) {
+            synchronized (mConnected) {
+              Log.d(TAG, "Gatt Logging (Prototype): app id=" + app.id
+                        + " app uuid=" + app.uuid
+                        + " connection state=" + connectionState
+                        + " connection reason code=" + connectionStatus
+                        + " cid=" + mClientMap.connIdByAddress(sessionIndex, address)
+                        + " metric_id=" + mAdapterService.getMetricId(device));
+              mConnected.add(app.uuid);
+            }
+          } else if (connectionState == BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTING) {
+            synchronized (mConnected) {
+              mConnected.remove(app.uuid);
+            }
+          } else if (connectionState == BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTED) {
+            synchronized (mConnected) {
+               if (mConnected.contains(app.uuid)) {
+                    Log.d(TAG, "Gatt Logging (Prototype): app id=" + app.id
+                              + " app uuid=" + app.uuid
+                              + " connection state=" + connectionState
+                              + " connection reason code=" + connectionStatus
+                              + " cid=" + mClientMap.connIdByAddress(sessionIndex, address)
+                              + " metric_id=" + mAdapterService.getMetricId(device));
+               } 
+               mConnected.remove(app.uuid);
+            }
+          }
+        }
         BluetoothStatsLog.write(
                 BluetoothStatsLog.BLUETOOTH_CONNECTION_STATE_CHANGED, connectionState,
                 0 /* deprecated */, profile, new byte[0],
