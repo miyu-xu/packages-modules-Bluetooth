@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12d7b25e_e2323560",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 1603,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T18:28:45Z",
+      "side": 1,
+      "message": "You are missing to enforce the permission:\n```\nenforceBluetoothPrivilegedPermission(service);\n```",
+      "range": {
+        "startLine": 1603,
+        "startChar": 0,
+        "endLine": 1603,
+        "endChar": 62
+      },
+      "revId": "c5563139e9379bc25f50b4b49683bea646fe85e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
