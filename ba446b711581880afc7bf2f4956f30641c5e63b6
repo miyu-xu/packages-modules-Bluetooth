@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57291262_b0e8089d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-31T21:25:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "33479e67_291b3c9e",
+      "range": {
+        "startLine": 9,
+        "startChar": 32,
+        "endLine": 10,
+        "endChar": 32
+      },
+      "revId": "ba446b711581880afc7bf2f4956f30641c5e63b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c644ccc7_db158d6a",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "374ed896_fbb4eda6",
+        "filename": "system/blueberry/tests/gd/l2cap/classic/cert_l2cap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-31T21:25:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c644ccc7_db158d6a",
+      "range": {
+        "startLine": 202,
+        "startChar": 52,
+        "endLine": 202,
+        "endChar": 74
+      },
+      "revId": "ba446b711581880afc7bf2f4956f30641c5e63b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecbc4177_80a9388e",
@@ -84,6 +132,30 @@
       "writtenOn": "2023-10-31T18:22:35Z",
       "side": 1,
       "message": "this assert happens on the main test thread",
+      "range": {
+        "startLine": 212,
+        "startChar": 0,
+        "endLine": 212,
+        "endChar": 56
+      },
+      "revId": "ba446b711581880afc7bf2f4956f30641c5e63b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dd52aaf_34c71cdd",
+        "filename": "system/blueberry/tests/gd/l2cap/classic/cert_l2cap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-10-31T21:25:20Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ecbc4177_80a9388e",
       "range": {
         "startLine": 212,
         "startChar": 0,
