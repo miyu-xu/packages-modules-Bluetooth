@@ -16,6 +16,9 @@ use bt_packets::hci::{
 
 /// Valid values are in the range 0x0000-0x0EFF.
 type ConnectionHandle = u16;
+/// The same ACL connection might have multiple simultaneous instances of the same profiles. Use
+/// ProfileId to distinguish them. CID and RFCOMM port can be used as a ProfileId, for example.
+type ProfileId = u16;
 
 const INVALID_TS: NaiveDateTime = NaiveDateTime::MAX;
 
@@ -185,7 +188,8 @@ struct AclInformation {
     end_time: NaiveDateTime,
     handle: ConnectionHandle,
     initiator: InitiatorType,
-    profiles: HashMap<ProfileType, Vec<ProfileInformation>>,
+    active_profiles: HashMap<(ProfileType, ProfileId), ProfileInformation>,
+    inactive_profiles: Vec<ProfileInformation>,
 }
 
 impl AclInformation {
@@ -195,18 +199,9 @@ impl AclInformation {
             end_time: INVALID_TS,
             handle: handle,
             initiator: InitiatorType::Unknown,
-            profiles: HashMap::new(),
+            active_profiles: HashMap::new(),
+            inactive_profiles: vec![],
         }
-    }
-
-    fn get_or_allocate_profile(&mut self, profile_type: &ProfileType) -> &mut ProfileInformation {
-        if !self.profiles.contains_key(profile_type)
-            || self.profiles.get(profile_type).unwrap().last().unwrap().end_time != INVALID_TS
-        {
-            self.profiles.insert(*profile_type, vec![ProfileInformation::new(*profile_type)]);
-        }
-
-        return self.profiles.get_mut(profile_type).unwrap().last_mut().unwrap();
     }
 
     fn report_start(&mut self, initiator: InitiatorType, ts: NaiveDateTime) {
@@ -216,13 +211,9 @@ impl AclInformation {
 
     fn report_end(&mut self, ts: NaiveDateTime) {
         // disconnect the active profiles
-        let profile_types: Vec<ProfileType> = self.profiles.keys().cloned().collect();
-        for profile_type in profile_types {
-            if let Some(profile) = self.profiles.get(&profile_type).unwrap().last() {
-                if profile.end_time == INVALID_TS {
-                    self.report_profile_end(profile_type, ts);
-                }
-            }
+        for (_, mut profile) in self.active_profiles.drain() {
+            profile.report_end(ts);
+            self.inactive_profiles.push(profile);
         }
         self.end_time = ts;
     }
@@ -230,20 +221,31 @@ impl AclInformation {
     fn report_profile_start(
         &mut self,
         profile_type: ProfileType,
+        profile_id: ProfileId,
         initiator: InitiatorType,
         ts: NaiveDateTime,
     ) {
         let mut profile = ProfileInformation::new(profile_type);
         profile.report_start(initiator, ts);
-        if !self.profiles.contains_key(&profile_type) {
-            self.profiles.insert(profile_type, vec![]);
+        let old_profile = self.active_profiles.insert((profile_type, profile_id), profile);
+        if let Some(profile) = old_profile {
+            self.inactive_profiles.push(profile);
         }
-        self.profiles.get_mut(&profile_type).unwrap().push(profile);
     }
 
-    fn report_profile_end(&mut self, profile_type: ProfileType, ts: NaiveDateTime) {
-        let profile = self.get_or_allocate_profile(&profile_type);
+    fn report_profile_end(
+        &mut self,
+        profile_type: ProfileType,
+        profile_id: ProfileId,
+        ts: NaiveDateTime,
+    ) {
+        let profile_option = self.active_profiles.remove(&(profile_type, profile_id));
+        let mut profile = match profile_option {
+            Some(profile) => profile,
+            None => ProfileInformation::new(profile_type),
+        };
         profile.report_end(ts);
+        self.inactive_profiles.push(profile);
     }
 }
 
@@ -257,10 +259,11 @@ impl fmt::Display for AclInformation {
             timestamp_info = print_start_end_timestamps(self.start_time, self.end_time)
         );
 
-        for (_profile_type, profiles) in self.profiles.iter() {
-            for profile in profiles {
-                let _ = write!(f, "{}", profile);
-            }
+        for profile in self.inactive_profiles.iter() {
+            let _ = write!(f, "{}", profile);
+        }
+        for (_, profile) in self.active_profiles.iter() {
+            let _ = write!(f, "{}", profile);
         }
 
         Ok(())
@@ -421,7 +424,8 @@ impl InformationalRule {
         let acl_handle = acl.handle;
         // We need to listen the HCI commands to determine the correct initiator.
         // Here we just assume host for simplicity.
-        acl.report_profile_start(ProfileType::HFP, InitiatorType::Host, ts);
+        // Use hardcoded value for profile id since there can only be one HFP connection.
+        acl.report_profile_start(ProfileType::HFP, 0, InitiatorType::Host, ts);
 
         self.sco_handles.insert(handle, acl_handle);
     }
@@ -431,7 +435,7 @@ impl InformationalRule {
         if self.sco_handles.contains_key(&handle) {
             let acl_handle = self.sco_handles[&handle];
             let conn = self.get_or_allocate_connection(&acl_handle);
-            conn.report_profile_end(ProfileType::HFP, ts);
+            conn.report_profile_end(ProfileType::HFP, 0, ts);
             return;
         }
 
@@ -465,21 +469,23 @@ impl InformationalRule {
         &mut self,
         handle: ConnectionHandle,
         profile_type: ProfileType,
+        profile_id: ProfileId,
         initiator: InitiatorType,
         ts: NaiveDateTime,
     ) {
         let conn = self.get_or_allocate_connection(&handle);
-        conn.report_profile_start(profile_type, initiator, ts);
+        conn.report_profile_start(profile_type, profile_id, initiator, ts);
     }
 
     fn _report_profile_end(
         &mut self,
         handle: ConnectionHandle,
         profile_type: ProfileType,
+        profile_id: ProfileId,
         ts: NaiveDateTime,
     ) {
         let conn = self.get_or_allocate_connection(&handle);
-        conn.report_profile_end(profile_type, ts);
+        conn.report_profile_end(profile_type, profile_id, ts);
     }
 
     fn process_gap_data(&mut self, address: &Address, data: &GapData) {
