@@ -16,6 +16,24 @@
       "message": "You may want to remove the delayed activation events in mHandler when activates the broadcasting audio.\n\n```\nif (mPendingActiveDevice !\u003d null) {\n    mHandler.removeCallbacksAndMessages(mPendingActiveDevice);\n}\n```",
       "revId": "856c93bdde0f96b3b4621aa10b057a3b7bc2339b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9dbe1145_c40314c8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ActiveDeviceManager.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-10-31T17:47:51Z",
+      "side": 1,
+      "message": "my thought was we\u0027re skipping both A2dp and Hfp, so we might not have this pending active device? is the worry that we might hit some race condition, starting broadcast in the middle of profiles connection?\nto avoid this, sure, I\u0027m adding this check for a2dp and hfp to be safe.",
+      "parentUuid": "eb27341b_45241b16",
+      "revId": "856c93bdde0f96b3b4621aa10b057a3b7bc2339b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
