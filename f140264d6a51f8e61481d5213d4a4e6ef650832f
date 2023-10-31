@@ -16,6 +16,24 @@
       "message": "note: Remember to remove the WIP",
       "revId": "f140264d6a51f8e61481d5213d4a4e6ef650832f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f3f8d84_da66ae80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-31T06:14:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d891fa8_f508fa98",
+      "revId": "f140264d6a51f8e61481d5213d4a4e6ef650832f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
