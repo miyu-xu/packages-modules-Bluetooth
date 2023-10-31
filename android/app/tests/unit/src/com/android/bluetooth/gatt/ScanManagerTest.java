@@ -290,6 +290,13 @@ public class ScanManagerTest {
         return scanSettings;
     }
 
+    private Message createMessage(int what, Object obj) {
+        Message message = new Message();
+        message.what = what;
+        message.obj = obj;
+        return message;
+    }
+
     private Message createStartStopScanMessage(boolean isStartScan, Object obj) {
         Message message = new Message();
         message.what = isStartScan ? ScanManager.MSG_START_BLE_SCAN : ScanManager.MSG_STOP_BLE_SCAN;
@@ -580,7 +587,7 @@ public class ScanManagerTest {
             // Turn on screen
             sendMessageWaitForProcessed(createScreenOnOffMessage(true));
             assertThat(client.settings.getScanMode()).isEqualTo(expectedScanMode);
-            // Set as backgournd app
+            // Set as background app
             sendMessageWaitForProcessed(createImportanceMessage(false));
             assertThat(client.settings.getScanMode()).isEqualTo(expectedScanMode);
             // Set as foreground app
@@ -635,6 +642,33 @@ public class ScanManagerTest {
     }
 
     @Test
+    public void testScanTimeoutResetForNewScan() {
+        mTestLooper.stopAutoDispatchAndIgnoreExceptions();
+        // Set filtered scan flag
+        final boolean isFiltered = false;
+        when(mAdapterService.getScanTimeoutMillis()).thenReturn((long) DELAY_SCAN_TIMEOUT_MS);
+        // Turn on screen
+        mHandler.sendMessage(createScreenOnOffMessage(true));
+        mTestLooper.dispatchAll();
+        // Create scan client
+        ScanClient client = createScanClient(0, isFiltered, SCAN_MODE_LOW_POWER);
+
+        // Send start scan message and scan timeout message to the message queue
+        mHandler.sendMessage(createStartStopScanMessage(true, client));
+        mHandler.sendMessage(createMessage(ScanManager.MSG_SCAN_TIMEOUT, client));
+        assertThat(mHandler.hasMessages(ScanManager.MSG_SCAN_TIMEOUT, client)).isTrue();
+
+        // Dispatch the start scan message only and wait for new scan timeout message to be added
+        mTestLooper.dispatchNext();
+        testSleep(DELAY_SCAN_TIMEOUT_MS + DELAY_ASYNC_MS);
+
+        // Since the already sent scan timeout message was removed before adding a new one, removing
+        // once more would lead to no scan timeout messages remaining in the queue
+        mHandler.removeMessages(ScanManager.MSG_SCAN_TIMEOUT, client);
+        assertThat(mHandler.hasMessages(ScanManager.MSG_SCAN_TIMEOUT, client)).isFalse();
+    }
+
+    @Test
     public void testSwitchForeBackgroundUnfilteredScan() {
         // Set filtered scan flag
         final boolean isFiltered = false;
@@ -660,7 +694,7 @@ public class ScanManagerTest {
             assertThat(mScanManager.getRegularScanQueue().contains(client)).isTrue();
             assertThat(mScanManager.getSuspendedScanQueue().contains(client)).isFalse();
             assertThat(client.settings.getScanMode()).isEqualTo(ScanMode);
-            // Set as backgournd app
+            // Set as background app
             sendMessageWaitForProcessed(createImportanceMessage(false));
             assertThat(mScanManager.getRegularScanQueue().contains(client)).isTrue();
             assertThat(mScanManager.getSuspendedScanQueue().contains(client)).isFalse();
@@ -699,7 +733,7 @@ public class ScanManagerTest {
             assertThat(mScanManager.getRegularScanQueue().contains(client)).isTrue();
             assertThat(mScanManager.getSuspendedScanQueue().contains(client)).isFalse();
             assertThat(client.settings.getScanMode()).isEqualTo(ScanMode);
-            // Set as backgournd app
+            // Set as background app
             sendMessageWaitForProcessed(createImportanceMessage(false));
             assertThat(mScanManager.getRegularScanQueue().contains(client)).isTrue();
             assertThat(mScanManager.getSuspendedScanQueue().contains(client)).isFalse();
