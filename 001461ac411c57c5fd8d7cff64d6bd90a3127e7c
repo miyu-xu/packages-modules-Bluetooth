@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1037d658_4ef92dd8",
+        "filename": "system/bta/ag/bta_ag_swb_aptx.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T22:14:34Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please don\u0027t use std::stoi* functions. Exceptions are disabled by default on Android and your code will abort. Consider atoi() if -1 is suitable for reporting errors, \u003candroid-base/parseint.h\u003e for C++, or the strtol()/scanf() family otherwi...\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease don\u0027t use std::stoi* functions. Exceptions are disabled by default on Android and your code will abort. Consider atoi() if -1 is suitable for reporting errors, \u003candroid-base/parseint.h\u003e for C++, or the strtol()/scanf() family otherwise.",
+      "range": {
+        "startLine": 100,
+        "startChar": 51,
+        "endLine": 100,
+        "endChar": 61
+      },
+      "revId": "001461ac411c57c5fd8d7cff64d6bd90a3127e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
