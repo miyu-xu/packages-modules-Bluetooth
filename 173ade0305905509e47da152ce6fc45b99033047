@@ -185,6 +185,52 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fab17beb_17a8bb6a",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T03:44:27Z",
+      "side": 1,
+      "message": "updated to aosp header",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 65
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59d1992b_2572f786",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T03:44:27Z",
+      "side": 1,
+      "message": "removed as redundant with switch logs",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 45
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f3ed015_7d5a1f7a",
@@ -198,6 +244,30 @@
       "writtenOn": "2023-10-30T21:38:08Z",
       "side": 1,
       "message": "please add \"{\" and \"}\" to all if-else conditionals to prevent formatting change from breaking the code in the future.",
+      "range": {
+        "startLine": 78,
+        "startChar": 6,
+        "endLine": 86,
+        "endChar": 14
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a524564d_c0f14c73",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T03:44:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f3ed015_7d5a1f7a",
       "range": {
         "startLine": 78,
         "startChar": 6,
@@ -295,6 +365,29 @@
         "startChar": 15,
         "endLine": 104,
         "endChar": 19
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7544597c_d3f7965d",
+        "filename": "system/bta/include/bta_ag_swb.h",
+        "patchSetId": 19
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T03:44:27Z",
+      "side": 1,
+      "message": "updated to aosp header",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 65
       },
       "revId": "173ade0305905509e47da152ce6fc45b99033047",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
