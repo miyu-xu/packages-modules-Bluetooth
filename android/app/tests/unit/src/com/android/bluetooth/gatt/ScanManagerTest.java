@@ -580,7 +580,7 @@ public class ScanManagerTest {
             // Turn on screen
             sendMessageWaitForProcessed(createScreenOnOffMessage(true));
             assertThat(client.settings.getScanMode()).isEqualTo(expectedScanMode);
-            // Set as backgournd app
+            // Set as background app
             sendMessageWaitForProcessed(createImportanceMessage(false));
             assertThat(client.settings.getScanMode()).isEqualTo(expectedScanMode);
             // Set as foreground app
@@ -635,6 +635,38 @@ public class ScanManagerTest {
     }
 
     @Test
+    public void testScanTimeoutResetForNewScan() {
+        mTestLooper.stopAutoDispatchAndIgnoreExceptions();
+        // Set filtered scan flag
+        final boolean isFiltered = false;
+        when(mAdapterService.getScanTimeoutMillis()).thenReturn((long) DELAY_SCAN_TIMEOUT_MS);
+        // Turn on screen
+        mHandler.sendMessage(createScreenOnOffMessage(true));
+        mTestLooper.dispatchAll();
+        // Create scan client
+        ScanClient client = createScanClient(0, isFiltered, SCAN_MODE_LOW_POWER);
+
+        // Put a timeout message in the queue to emulate the scan being started already
+        Message timeoutMessage = mHandler.obtainMessage(ScanManager.MSG_SCAN_TIMEOUT, client);
+        mHandler.sendMessageDelayed(timeoutMessage, DELAY_SCAN_TIMEOUT_MS / 2);
+        mHandler.sendMessage(createStartStopScanMessage(true, client));
+
+        // Dispatching all messages only runs start scan
+        assertThat(mTestLooper.dispatchAll()).isEqualTo(1);
+        mTestLooper.moveTimeForward(DELAY_SCAN_TIMEOUT_MS / 2);
+        assertThat(mHandler.hasMessages(ScanManager.MSG_SCAN_TIMEOUT, client)).isTrue();
+
+        // After restarting the scan, we can check that the initial timeout message is not triggered
+        assertThat(mTestLooper.dispatchAll()).isEqualTo(0);
+
+        // After timeout, the next message that is run should be a timeout message
+        mTestLooper.moveTimeForward(DELAY_SCAN_TIMEOUT_MS / 2 + 1);
+        Message nextMessage = mTestLooper.nextMessage();
+        assertThat(nextMessage.what).isEqualTo(ScanManager.MSG_SCAN_TIMEOUT);
+        assertThat(nextMessage.obj).isEqualTo(client);
+    }
+
+    @Test
     public void testSwitchForeBackgroundUnfilteredScan() {
         // Set filtered scan flag
         final boolean isFiltered = false;
@@ -660,7 +692,7 @@ public class ScanManagerTest {
             assertThat(mScanManager.getRegularScanQueue().contains(client)).isTrue();
             assertThat(mScanManager.getSuspendedScanQueue().contains(client)).isFalse();
             assertThat(client.settings.getScanMode()).isEqualTo(ScanMode);
-            // Set as backgournd app
+            // Set as background app
             sendMessageWaitForProcessed(createImportanceMessage(false));
             assertThat(mScanManager.getRegularScanQueue().contains(client)).isTrue();
             assertThat(mScanManager.getSuspendedScanQueue().contains(client)).isFalse();
@@ -699,7 +731,7 @@ public class ScanManagerTest {
             assertThat(mScanManager.getRegularScanQueue().contains(client)).isTrue();
             assertThat(mScanManager.getSuspendedScanQueue().contains(client)).isFalse();
             assertThat(client.settings.getScanMode()).isEqualTo(ScanMode);
-            // Set as backgournd app
+            // Set as background app
             sendMessageWaitForProcessed(createImportanceMessage(false));
             assertThat(mScanManager.getRegularScanQueue().contains(client)).isTrue();
             assertThat(mScanManager.getSuspendedScanQueue().contains(client)).isFalse();
