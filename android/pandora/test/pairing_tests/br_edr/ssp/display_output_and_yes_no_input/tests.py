@@ -31,6 +31,7 @@ from pandora.security_pb2 import (
 )
 
 import bumble
+from bumble import l2cap
 from bumble.hci import Address
 
 class BREDRDisplayYesNoTestClass(base_test.BaseTestClass):
@@ -252,9 +253,17 @@ class BREDRDisplayYesNoTestClass(base_test.BaseTestClass):
         android_addr = Address.from_string_for_transport(str(self.dut.address), Address.PUBLIC_DEVICE_ADDRESS)
         bumble_acl_connection = self.ref.device.find_connection_by_bd_addr(android_addr)
 
+        logging.debug("before accessing HID service")
+
+        import time
+        time.sleep(0.5)
+
         async def access_l2cap_service(psm):
-            connector = bumble_acl_connection.create_l2cap_connector(psm)
-            return await connector()
+            logging.debug("starting accessing HID service")
+
+            # connector = bumble_acl_connection.create_l2cap_connector(psm)
+            connector = bumble_acl_connection.create_l2cap_channel(spec=l2cap.ClassicChannelSpec(psm))
+            return await connector
 
         # start accessing hid interrupt service
         hid_interrupt_psm = 0x13
