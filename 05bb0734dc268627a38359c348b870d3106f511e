@@ -105,6 +105,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b88c56b_767dcffa",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-31T05:17:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b592750_22d898c7",
+      "range": {
+        "startLine": 1423,
+        "startChar": 12,
+        "endLine": 1427,
+        "endChar": 13
+      },
+      "revId": "05bb0734dc268627a38359c348b870d3106f511e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97a2e0d9_6d446d5b",
@@ -142,6 +166,30 @@
       "side": 1,
       "message": "Should be a bug fix, but originally it was never called because `restart_available_adapters` only restarted the `ProcessState::On` adapters.",
       "parentUuid": "97a2e0d9_6d446d5b",
+      "range": {
+        "startLine": 1428,
+        "startChar": 12,
+        "endLine": 1432,
+        "endChar": 13
+      },
+      "revId": "05bb0734dc268627a38359c348b870d3106f511e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52355c54_4e1d3157",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1432,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-10-31T05:17:23Z",
+      "side": 1,
+      "message": "I noticed that we usually get `BluetoothStarted` and `BluetoothStopped` after this because the original `TurningOn` eventually completed. The events are:\n1. pid file created (caused by original `TurningOn`)\n2. pid file removed (caused by the `stop` call here)\n3. pid file created (caused by the `start` call here)\n\nThe current state machine implementation we\u0027ll do:\n1. pid file created \u003d Got `BluetoothStarted` on `TurningOn` -\u003e Turned `On` successfully\n2. pid file removed \u003d Got `BluetoothStopped` on `On` -\u003e Unexpectedly turned `Off`, try restarted (but we already called `start` so it\u0027s no-op)\n3. pid file created \u003d Got `BluetoothStarted` on `TurningOn` -\u003e Turned `On` successfully\n\nSo eventually we still restarted and got `On`, but the log would be confusing. I\u0027m thinking whether we should:\n1. Don\u0027t do anything here and change to a new state `WaitingRestarting`\n2. In `action_on_bluetooth_started`, if the previous state is `WaitingRestarting`, call `stop` and change to `Restarting`\n\n@yinghsu@google.com and @jiangzp@google.com, WDYT?",
+      "parentUuid": "8c69a913_34ae13eb",
       "range": {
         "startLine": 1428,
         "startChar": 12,
