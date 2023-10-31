@@ -32,16 +32,20 @@
 
 package com.android.bluetooth.pbap;
 
+import android.bluetooth.BluetoothProfile;
+import android.bluetooth.BluetoothProtoEnums;
 import android.util.Log;
 
+import com.android.bluetooth.BluetoothStatsLog;
+import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.obex.Authenticator;
 import com.android.obex.PasswordAuthentication;
 
 /**
- * BluetoothPbapAuthenticator is a used by BluetoothObexServer for obex
- * authentication procedure.
+ * BluetoothPbapAuthenticator is a used by BluetoothObexServer for obex authentication procedure.
  */
+// Next tag value for ContentProfileErrorReportUtils.report(): 1
 public class BluetoothPbapAuthenticator implements Authenticator {
     private static final String TAG = "PbapAuthenticator";
 
@@ -80,6 +84,12 @@ public class BluetoothPbapAuthenticator implements Authenticator {
                 try {
                     wait();
                 } catch (InterruptedException e) {
+                    ContentProfileErrorReportUtils.report(
+                            BluetoothProfile.PBAP,
+                            BluetoothProtoEnums.BLUETOOTH_PBAP_AUTHENTICATOR,
+                            BluetoothStatsLog
+                                    .BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED__TYPE__EXCEPTION,
+                            0);
                     Log.e(TAG, "Interrupted while waiting on isChallenged or AuthCancelled");
                 }
             }
