@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d31d45ed_645feebc",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T01:34:16Z",
+      "side": 1,
+      "message": "```suggestion\n                    sendEmptyMessage(MESSAGE_SERVICE_CONNECTED);\n```",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 76
+      },
+      "revId": "3058e1fa356828ad84837b6f1ba95f7194319924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e7cba50_b7f50949",
+        "filename": "framework/java/android/bluetooth/BluetoothProfileConnector.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T01:34:16Z",
+      "side": 1,
+      "message": "```suggestion\n                        sendEmptyMessage(MESSAGE_SERVICE_DISCONNECTED);\n```",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 83
+      },
+      "revId": "3058e1fa356828ad84837b6f1ba95f7194319924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91039b31_e017d8de",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothProfileConnectorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T01:34:16Z",
+      "side": 1,
+      "message": "Use test looper for every test instead ?",
+      "range": {
+        "startLine": 102,
+        "startChar": 48,
+        "endLine": 102,
+        "endChar": 69
+      },
+      "revId": "3058e1fa356828ad84837b6f1ba95f7194319924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c3d2337_acb28f65",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothProfileConnectorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T01:34:16Z",
+      "side": 1,
+      "message": "Dispatch looper event before ?",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 130,
+        "endChar": 41
+      },
+      "revId": "3058e1fa356828ad84837b6f1ba95f7194319924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f92d5e63_6dd805a8",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothProfileConnectorTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T01:34:16Z",
+      "side": 1,
+      "message": "Do we want to check what is performed on the handler / check if there are remaining task during turndown",
+      "range": {
+        "startLine": 147,
+        "startChar": 0,
+        "endLine": 147,
+        "endChar": 29
+      },
+      "revId": "3058e1fa356828ad84837b6f1ba95f7194319924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
