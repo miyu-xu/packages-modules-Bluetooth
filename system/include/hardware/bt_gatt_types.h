@@ -31,6 +31,11 @@ __BEGIN_DECLS
 #define BTGATT_SERVICE_TYPE_PRIMARY 0
 #define BTGATT_SERVICE_TYPE_SECONDARY 1
 
+/**
+ * GATT max attribute length
+ */
+#define GATT_MAX_ATTR_LEN 512
+
 /** GATT ID adding instance id tracking to the UUID */
 typedef struct {
   bluetooth::Uuid uuid;
