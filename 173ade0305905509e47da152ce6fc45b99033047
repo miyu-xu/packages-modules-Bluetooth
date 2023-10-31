@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "34673506_c4807971",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "As those are only private variables I renamed both to mHasSwbLc3Enabled and mHasSwbAptXEnabled",
+      "parentUuid": "fc3605f2_cb2e9bee",
+      "range": {
+        "startLine": 154,
+        "startChar": 20,
+        "endLine": 154,
+        "endChar": 34
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f0399315_e808be91",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 19
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-30T22:31:27Z",
       "side": 1,
       "message": "nit: maybe `mHasSwbAptXEnabled` would be better, I am open to other people\u0027s ideas as well",
+      "range": {
+        "startLine": 155,
+        "startChar": 20,
+        "endLine": 155,
+        "endChar": 38
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ebf68116_33e69b2d",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f0399315_e808be91",
       "range": {
         "startLine": 155,
         "startChar": 20,
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a9a7c31_f82f60ea",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1809,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2c7f36e_65304e75",
+      "range": {
+        "startLine": 1809,
+        "startChar": 16,
+        "endLine": 1809,
+        "endChar": 23
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3092b009_c3dddb3b",
@@ -106,6 +178,30 @@
       "writtenOn": "2023-10-30T22:31:27Z",
       "side": 1,
       "message": "nit: use filename `bta_ag_swb_aptx` or `bta_ag_aptx` might be better, because SWB LC3 is not handled here, only aptx is here",
+      "range": {
+        "startLine": 68,
+        "startChar": 12,
+        "endLine": 68,
+        "endChar": 22
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5310ec8_88e602e0",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 19
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3092b009_c3dddb3b",
       "range": {
         "startLine": 68,
         "startChar": 12,
@@ -139,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1492de6_bb3236a9",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 851,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b7ae5ad_19ab0e9a",
+      "range": {
+        "startLine": 851,
+        "startChar": 4,
+        "endLine": 851,
+        "endChar": 15
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f766f02_483d0844",
@@ -162,6 +282,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4e398bc_18c6479b",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 689,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f766f02_483d0844",
+      "range": {
+        "startLine": 689,
+        "startChar": 59,
+        "endLine": 689,
+        "endChar": 67
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da5cc2da_ce913da0",
@@ -175,6 +319,30 @@
       "writtenOn": "2023-10-30T22:31:27Z",
       "side": 1,
       "message": "nit: same as above, also following",
+      "range": {
+        "startLine": 708,
+        "startChar": 18,
+        "endLine": 708,
+        "endChar": 26
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a67066_1827cf0b",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 708,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da5cc2da_ce913da0",
       "range": {
         "startLine": 708,
         "startChar": 18,
@@ -303,6 +471,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "799d25d5_e4114da4",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done, please check",
+      "parentUuid": "f37bf704_2c2330a8",
+      "range": {
+        "startLine": 95,
+        "startChar": 19,
+        "endLine": 95,
+        "endChar": 35
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a1e51901_167f11df",
         "filename": "system/bta/ag/bta_ag_swb.cc",
         "patchSetId": 19
@@ -347,6 +539,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2903211_3b5fea67",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1e51901_167f11df",
+      "range": {
+        "startLine": 98,
+        "startChar": 9,
+        "endLine": 98,
+        "endChar": 12
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1523f3fb_69a2e05a",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44ab1c49_249a2c89",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 20
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "41704ec7_9f12eb5c",
@@ -360,6 +600,30 @@
       "writtenOn": "2023-10-30T21:38:08Z",
       "side": 1,
       "message": "nullptr",
+      "range": {
+        "startLine": 104,
+        "startChar": 15,
+        "endLine": 104,
+        "endChar": 19
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9deb186d_291bb9ef",
+        "filename": "system/bta/ag/bta_ag_swb.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "41704ec7_9f12eb5c",
       "range": {
         "startLine": 104,
         "startChar": 15,
@@ -416,6 +680,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd981f5e_d415083f",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 605,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cd69b89a_02fe0620",
+      "range": {
+        "startLine": 605,
+        "startChar": 14,
+        "endLine": 605,
+        "endChar": 22
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dba09581_6dc0601e",
@@ -433,6 +721,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1902d9d_0bdcb21a",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dba09581_6dc0601e",
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0cf50ad0_cb54fd22",
@@ -446,6 +752,30 @@
       "writtenOn": "2023-10-30T21:30:25Z",
       "side": 1,
       "message": "__func__ not needed with LOG_XXX style logging as it will be added automatically",
+      "range": {
+        "startLine": 716,
+        "startChar": 12,
+        "endLine": 716,
+        "endChar": 20
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "25af5207_4ef99641",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-10-31T21:44:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cf50ad0_cb54fd22",
       "range": {
         "startLine": 716,
         "startChar": 12,
