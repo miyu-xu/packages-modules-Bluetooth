@@ -35,6 +35,7 @@ import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.BroadcastOptions;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothProtoEnums;
 import android.bluetooth.BluetoothStatusCodes;
 import android.bluetooth.IBluetooth;
@@ -1253,22 +1254,16 @@ class BluetoothManagerService {
 
     boolean enable(String packageName) {
         if (isSatelliteModeOn()) {
-            Log.d(TAG, "enable(): not enabling - satellite mode is on.");
+            Log.d(TAG, "enable(" + packageName + "): not enabling - satellite mode is on.");
             return false;
         }
 
-        if (DBG) {
-            Log.d(
-                    TAG,
-                    "enable("
-                            + packageName
-                            + "):  mAdapter="
-                            + mAdapter
-                            + " isBinding="
-                            + isBinding()
-                            + " mState="
-                            + mState);
-        }
+        Log.d(
+                TAG,
+                ("enable(" + packageName + "):")
+                        + (" mAdapter=" + mAdapter)
+                        + (" isBinding=" + isBinding())
+                        + (" mState=" + mState));
 
         synchronized (mReceiver) {
             mQuietEnableExternal = false;
@@ -1279,21 +1274,15 @@ class BluetoothManagerService {
                     BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST,
                     packageName);
         }
-        if (DBG) {
-            Log.d(TAG, "enable returning");
-        }
         return true;
     }
 
     boolean disable(String packageName, boolean persist) {
-        if (DBG) {
-            Log.d(
-                    TAG,
-                    "disable():"
-                            + (" mAdapter=" + mAdapter)
-                            + (" persist=" + persist)
-                            + (" isBinding=" + isBinding()));
-        }
+        Log.d(
+                TAG,
+                ("disable(" + packageName + ", " + persist + "):")
+                        + (" mAdapter=" + mAdapter)
+                        + (" isBinding=" + isBinding()));
 
         synchronized (mReceiver) {
             mBluetoothAirplaneModeListener.notifyUserToggledBluetooth(false);
@@ -1310,9 +1299,7 @@ class BluetoothManagerService {
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
     void unbindAndFinish() {
-        if (DBG) {
-            Log.d(TAG, "unbindAndFinish(): mAdapter=" + mAdapter + " isBinding=" + isBinding());
-        }
+        Log.d(TAG, "unbindAndFinish(): mAdapter=" + mAdapter + " isBinding=" + isBinding());
 
         mAdapterLock.writeLock().lock();
         try {
@@ -1337,36 +1324,31 @@ class BluetoothManagerService {
 
     boolean bindBluetoothProfileService(
             int bluetoothProfile, String serviceName, IBluetoothProfileServiceConnection proxy) {
+        String logHeader =
+                "bindBluetoothProfileService("
+                        + (BluetoothProfile.getProfileName(bluetoothProfile) + ",")
+                        + (serviceName + ",")
+                        + (proxy + ",")
+                        + "): ";
         if (!mState.oneOf(BluetoothAdapter.STATE_ON)) {
             if (DBG) {
-                Log.d(
-                        TAG,
-                        "Trying to bind to profile: "
-                                + bluetoothProfile
-                                + ", while Bluetooth was disabled");
+                Log.d(TAG, logHeader + "while Bluetooth was disabled");
             }
             return false;
         }
         synchronized (mProfileServices) {
             if (!mSupportedProfileList.contains(bluetoothProfile)) {
-                Log.w(
-                        TAG,
-                        "Cannot bind profile: "
-                                + bluetoothProfile
-                                + ", not in supported profiles list");
+                Log.d(TAG, logHeader + "profile not supported");
                 return false;
             }
             ProfileServiceConnections psc = mProfileServices.get(bluetoothProfile);
             if (psc == null) {
                 if (DBG) {
-                    Log.d(
-                            TAG,
-                            "Creating new ProfileServiceConnections object for"
-                                    + " profile: "
-                                    + bluetoothProfile);
+                    Log.d(TAG, logHeader + "Create new ProfileServiceConnections");
                 }
                 psc = new ProfileServiceConnections(new Intent(serviceName));
                 if (!psc.bindService(DEFAULT_REBIND_COUNT)) {
+                    Log.e(TAG, logHeader + "Fail to binService");
                     return false;
                 }
 
@@ -2718,8 +2700,6 @@ class BluetoothManagerService {
             dumpProto(fd);
             return;
         }
-        String errorMsg = null;
-
         writer.println("Bluetooth Status");
         writer.println("  enabled: " + isEnabled());
         writer.println("  state: " + mState);
@@ -2780,17 +2760,14 @@ class BluetoothManagerService {
         }
 
         if (mAdapter == null) {
-            errorMsg = "Bluetooth Service not connected";
+            writer.println("Bluetooth Service not connected");
         } else {
             try {
                 // TODO(b/239890880): system_server cannot make non-oneway call
                 mAdapter.getAdapterBinder().asBinder().dump(fd, args);
             } catch (RemoteException re) {
-                errorMsg = "RemoteException while dumping Bluetooth Service";
+                writer.println("RemoteException while dumping Bluetooth Service");
             }
-        }
-        if (errorMsg != null) {
-            writer.println(errorMsg);
         }
     }
 
