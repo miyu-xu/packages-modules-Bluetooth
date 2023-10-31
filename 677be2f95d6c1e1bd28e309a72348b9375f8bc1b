@@ -39,6 +39,30 @@
       },
       "revId": "677be2f95d6c1e1bd28e309a72348b9375f8bc1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7629dc1d_8be8cb45",
+        "filename": "system/btif/src/btif_a2dp_sink.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1988982
+      },
+      "writtenOn": "2023-10-31T02:48:48Z",
+      "side": 1,
+      "message": "Sorry about that I modify the wrong place\nOriginally I wanted to modify line 689 to \"\u003e\u003d\".And I found have been modified by cl 2658879\nSo I will remove this change, tks",
+      "parentUuid": "c0a96b0b_87c05a04",
+      "range": {
+        "startLine": 693,
+        "startChar": 26,
+        "endLine": 693,
+        "endChar": 40
+      },
+      "revId": "677be2f95d6c1e1bd28e309a72348b9375f8bc1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
