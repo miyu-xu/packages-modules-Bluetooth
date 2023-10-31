@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "313c9602_989dd84c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1988982
+      },
+      "writtenOn": "2023-10-31T03:13:01Z",
+      "side": 1,
+      "message": "have been modify in cl 2658879, please help abandon this change",
+      "revId": "e4aa7b9071e1ffad4011106d0d2006554a849942",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
