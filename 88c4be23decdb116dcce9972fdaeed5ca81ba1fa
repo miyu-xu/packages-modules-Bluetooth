@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc7850a6_5f4c0e02",
+        "filename": "framework/api/current.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T17:37:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e5503e8_10c8e1fc",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68f90ff3_2fb3b36b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-22T05:04:00Z",
       "side": 1,
       "message": "I am not sure we want this to be nullable in the current code implementation... see other comments",
+      "range": {
+        "startLine": 252,
+        "startChar": 19,
+        "endLine": 252,
+        "endChar": 27
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14159dd8_1b37587e",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T17:37:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "68f90ff3_2fb3b36b",
       "range": {
         "startLine": 252,
         "startChar": 19,
@@ -531,6 +579,30 @@
       "writtenOn": "2023-10-22T05:04:00Z",
       "side": 1,
       "message": "Is this required ?",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 7
+      },
+      "revId": "88c4be23decdb116dcce9972fdaeed5ca81ba1fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb9ec5a7_475e2796",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-10-31T17:37:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "84e398cd_bb4ea890",
       "range": {
         "startLine": 111,
         "startChar": 0,
