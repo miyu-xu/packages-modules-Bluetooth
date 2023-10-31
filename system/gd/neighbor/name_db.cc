@@ -78,6 +78,7 @@ void neighbor::NameDbModule::impl::ReadRemoteNameRequest(
   std::list<PendingRemoteNameRead> tmp;
   address_to_pending_read_map_[address] = std::move(tmp);
   address_to_pending_read_map_[address].push_back({std::move(callback), handler});
+  LOG_INFO("Sending Remote Name Request to %s", address.ToColonSepHexString().c_str());
 
   // TODO(cmanton) Use remote name request defaults for now
   hci::PageScanRepetitionMode page_scan_repetition_mode = hci::PageScanRepetitionMode::R1;
@@ -87,12 +88,7 @@ void neighbor::NameDbModule::impl::ReadRemoteNameRequest(
       address,
       hci::RemoteNameRequestBuilder::Create(
           address, page_scan_repetition_mode, clock_offset, clock_offset_valid),
-      handler_->BindOnce(
-          [](neighbor::NameDbModule::impl* self, hci::Address address, hci::ErrorCode status) {
-            self->OnRemoteNameResponse(address, status, {});
-          },
-          common::Unretained(this),
-          address),
+      handler_->BindOnce([](hci::ErrorCode /* status */) {}),
       handler_->BindOnce([&](uint64_t /* features */) {
         LOG_WARN("UNIMPLEMENTED: ignoring host supported features");
       }),
@@ -101,6 +97,7 @@ void neighbor::NameDbModule::impl::ReadRemoteNameRequest(
 
 void neighbor::NameDbModule::impl::OnRemoteNameResponse(
     hci::Address address, hci::ErrorCode status, RemoteName name) {
+  LOG_INFO("Received Remote Name Response from %s", address.ToColonSepHexString().c_str());
   ASSERT(address_to_pending_read_map_.find(address) != address_to_pending_read_map_.end());
   if (status == hci::ErrorCode::SUCCESS) {
     address_to_name_map_[address] = name;
