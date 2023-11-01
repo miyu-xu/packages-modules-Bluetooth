@@ -22,17 +22,11 @@
 #include <base/logging.h>
 #include <string.h>
 
-#include <algorithm>
-#include <vector>
-
-#include "bind_helpers.h"
-#include "bt_target.h"
 #include "btm_ble_api.h"
-#include "btm_dev.h"
+#include "os/log.h"
 #include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/include/btu_hcif.h"
-#include "stack/include/main_thread.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
