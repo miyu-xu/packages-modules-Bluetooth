@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ecb7d89_f1b2b161",
+        "filename": "framework/tests/util/src/android/bluetooth/cts/BTAdapterUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-01T21:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca3eb7c9_1b39c1a9",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 84
+      },
+      "revId": "f0854956b4a61ac96701a347035460992ceab9a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "932b2c21_8d65e272",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0d2c5e3_de02e1d8",
+        "filename": "framework/tests/util/src/android/bluetooth/cts/BTAdapterUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-01T21:49:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "932b2c21_8d65e272",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 84
+      },
+      "revId": "f0854956b4a61ac96701a347035460992ceab9a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9042bda0_96825980",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-01T17:46:52Z",
       "side": 1,
       "message": "looks like there are more usage of the constructor with one bool as parameter:\n```\npackages/modules/Permission/tests/cts/permission/src/android/permission/cts/NearbyDevicesPermissionTest.java:88: error: no suitable constructor found for EnableBluetoothRule(boolean)\npublic static final EnableBluetoothRule sEnableBluetoothRule \u003d new EnableBluetoothRule(true);\n^\nconstructor EnableBluetoothRule.EnableBluetoothRule() is not applicable\n```",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 5
+      },
+      "revId": "f0854956b4a61ac96701a347035460992ceab9a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8a42cbc_3298fa26",
+        "filename": "framework/tests/util/src/android/bluetooth/cts/EnableBluetoothRule.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-01T21:49:31Z",
+      "side": 1,
+      "message": "You are right! Created an overload",
+      "parentUuid": "9042bda0_96825980",
       "range": {
         "startLine": 64,
         "startChar": 2,
