@@ -1,0 +1,199 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eee49e4_c31cddb5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:51:41Z",
+      "side": 1,
+      "message": "You might want to run `cargo format` to prevent format issues.",
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "511c65e9_8fbafd18",
+        "filename": "floss/hcidoc/packets/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:51:41Z",
+      "side": 1,
+      "message": "should this change be in the previous CL?",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 14
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f754c9dd_79d64796",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:51:41Z",
+      "side": 1,
+      "message": "nit: I might be wrong but I guess you can convert from Cid to ProfileID by host_cid.into() simply just pass host_cid to the below function.",
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5908a227_ec5b541b",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:51:41Z",
+      "side": 1,
+      "message": "better to separate them from HID_Control and HID_Interrupt?",
+      "range": {
+        "startLine": 415,
+        "startChar": 36,
+        "endLine": 415,
+        "endChar": 39
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c611fb41_26be0935",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:51:41Z",
+      "side": 1,
+      "message": "How about using AVCTP here? This will align with the assigned number[1] and actually AVRCP is under AVCTP.\n\n[1] https://www.bluetooth.com/specifications/assigned-numbers/",
+      "range": {
+        "startLine": 417,
+        "startChar": 36,
+        "endLine": 417,
+        "endChar": 41
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2027d3e_663b9223",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:51:41Z",
+      "side": 1,
+      "message": "If the above is adopted, use AVDTP here.",
+      "range": {
+        "startLine": 418,
+        "startChar": 36,
+        "endLine": 418,
+        "endChar": 40
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4b85afcf_dc8da2da",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:51:41Z",
+      "side": 1,
+      "message": "nit: while reviewing, I didn\u0027t get what the disc meant. (I thought it was for description 😂). IMO, report_l2cap_disconn is the minimum. Prefer report_l2cap_disconn_rsp",
+      "range": {
+        "startLine": 661,
+        "startChar": 7,
+        "endLine": 661,
+        "endChar": 24
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b1f2f69_a4e3cd18",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:51:41Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by RustFormatter: Please reformat the following line(s) to:\n\nAnalyzer Description: Offers Rust formatting Suggestions\nOwner: chiw@google.com\n\nPlease reformat the following line(s) to:\n\n                        _ \u003d\u003e AclContent::None,\n                    },\n                    BasicFrameChild::GroupFrame(gf) \u003d\u003e match gf.specialize() {\n                        GroupFrameChild::Payload(p) \u003d\u003e {\n                            AclContent::ConnectionlessData(gf.get_psm(), p.to_vec())\n                        }\n                        _ \u003d\u003e AclContent::None,\n                    },\n                    BasicFrameChild::Payload(p) \u003d\u003e AclContent::StandardData(p.to_vec()),",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 0
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56143bff_47243958",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:51:41Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by RustFormatter: Please reformat the following line(s) to:\n\nAnalyzer Description: Offers Rust formatting Suggestions\nOwner: chiw@google.com\n\nPlease reformat the following line(s) to:\n\n                    _ \u003d\u003e AclContent::None,\n                },\n                Err(_) \u003d\u003e AclContent::None,\n            },\n            _ \u003d\u003e AclContent::None,",
+      "range": {
+        "startLine": 391,
+        "startChar": 0,
+        "endLine": 395,
+        "endChar": 0
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
