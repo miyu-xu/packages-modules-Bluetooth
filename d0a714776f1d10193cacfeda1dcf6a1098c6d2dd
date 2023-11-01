@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01a60259_d9478c2e",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-01T19:21:42Z",
+      "side": 1,
+      "message": "I think this warning can be silence but i do not know how\n\n-----\n\nPlease fix this WARNING reported by AndroidLint: \n\nMust be one of: BluetoothCodecConfig.SOURCE_CODEC_TYPE_SBC, BluetoothCodecConfig.SOURCE_CODEC_TYPE_AAC, BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX, BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX_HD, BluetoothCodecConfig.SOURCE_CODEC_TYPE_LDAC, BluetoothCodecConfig.SOURCE_CODEC_TYPE_LC3, BluetoothCodecConfig.SOURCE_CODEC_TYPE_OPUS, BluetoothCodecConfig.SOURCE_CODEC_TYPE_INVALID\n\n            return mCodecType \u003d\u003d null ? SOURCE_CODEC_TYPE_INVALID : mCodecType.getNativeCodecType();\n                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nEnsures that when parameter in a method only allows a specific set of constants, calls obey those rules.\n\nLocal repro steps at go/ayeaye-android-lint\n\nThis warning was found on the git_main branch",
+      "range": {
+        "startLine": 531,
+        "startChar": 65,
+        "endLine": 531,
+        "endChar": 96
+      },
+      "revId": "d0a714776f1d10193cacfeda1dcf6a1098c6d2dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
