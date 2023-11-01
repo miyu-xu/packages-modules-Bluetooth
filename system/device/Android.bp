@@ -52,6 +52,7 @@ cc_test {
     ],
     shared_libs: [
         "liblog",
+        "server_configurable_flags",
     ],
     static_libs: [
         "libbluetooth-types",
