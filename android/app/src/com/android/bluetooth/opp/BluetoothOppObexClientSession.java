@@ -109,21 +109,13 @@ public class BluetoothOppObexClientSession implements BluetoothOppObexSession {
         }
         if (mThread != null) {
             mInterrupted = true;
-            try {
-                mThread.interrupt();
-                if (V) {
-                    Log.v(TAG, "waiting for thread to terminate");
-                }
-                mThread.join();
-                mThread = null;
-            } catch (InterruptedException e) {
-                if (V) {
-                    Log.v(TAG, "Interrupted waiting for thread to join");
-                }
+            if (V) {
+                Log.v(TAG, "Interrupt thread to terminate it");
             }
+            mThread.interrupt();
+            mThread = null;
         }
         BluetoothOppUtility.cancelNotification(mContext);
-        mCallback = null;
     }
 
     @Override
@@ -235,11 +227,10 @@ public class BluetoothOppObexClientSession implements BluetoothOppObexSession {
                 // Log outgoing OPP transfer if more than one file is accepted by remote
                 MetricsLogger.logProfileConnectionEvent(BluetoothMetricsProto.ProfileId.OPP);
             }
-            Message msg = Message.obtain(mCallback);
-            msg.what = BluetoothOppObexSession.MSG_SESSION_COMPLETE;
-            msg.obj = mInfo;
-            msg.sendToTarget();
-
+            mCallback
+                    .obtainMessage(BluetoothOppObexSession.MSG_SESSION_COMPLETE, mInfo)
+                    .sendToTarget();
+            mCallback = null;
         }
 
         private void disconnect() {
