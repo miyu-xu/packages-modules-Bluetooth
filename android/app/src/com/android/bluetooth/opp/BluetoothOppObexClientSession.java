@@ -109,21 +109,13 @@ public class BluetoothOppObexClientSession implements BluetoothOppObexSession {
         }
         if (mThread != null) {
             mInterrupted = true;
-            try {
-                mThread.interrupt();
-                if (V) {
-                    Log.v(TAG, "waiting for thread to terminate");
-                }
-                mThread.join();
-                mThread = null;
-            } catch (InterruptedException e) {
-                if (V) {
-                    Log.v(TAG, "Interrupted waiting for thread to join");
-                }
+            if (V) {
+                Log.v(TAG, "Interrupt thread to terminate it");
             }
+            mThread.interrupt();
+            mThread = null;
         }
         BluetoothOppUtility.cancelNotification(mContext);
-        mCallback = null;
     }
 
     @Override
@@ -239,7 +231,7 @@ public class BluetoothOppObexClientSession implements BluetoothOppObexSession {
             msg.what = BluetoothOppObexSession.MSG_SESSION_COMPLETE;
             msg.obj = mInfo;
             msg.sendToTarget();
-
+            mCallback = null;
         }
 
         private void disconnect() {
