@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dbf47052_8f9f41fb",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T10:02:05Z",
+      "side": 1,
+      "message": "That is correct to some extent. But I forecasted we will have potential problem distinguishing RFCOMM dlci and L2CAP CID from each other. Maybe we can avoid that by declaring ProfileId as enum like this\n```\nenum ProfileId {\n  L2capCid(CID),\n  RfcommDlci(DLCI),\n  Others(ProfileType), // e.g. for HFP\n}\n```\nWDYT?",
+      "parentUuid": "2b36159b_e7556e92",
+      "range": {
+        "startLine": 191,
+        "startChar": 43,
+        "endLine": 191,
+        "endChar": 52
+      },
+      "revId": "2d0c52af38f8c3e5412eb52c675456f4a1de88a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a5d48a04_0e6b5389",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-01T09:56:15Z",
       "side": 1,
       "message": "```suggestion\n        let profile_option \u003d self.active_profiles.remove(\u0026(profile_type, profile_id)).unwrap_or(ProfileInformation::new(profile_type));\n```",
+      "range": {
+        "startLine": 242,
+        "startChar": 7,
+        "endLine": 246,
+        "endChar": 10
+      },
+      "revId": "2d0c52af38f8c3e5412eb52c675456f4a1de88a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0cc0183_a4e4988f",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T10:02:05Z",
+      "side": 1,
+      "message": "Thanks. will implement this one.",
+      "parentUuid": "a5d48a04_0e6b5389",
       "range": {
         "startLine": 242,
         "startChar": 7,
