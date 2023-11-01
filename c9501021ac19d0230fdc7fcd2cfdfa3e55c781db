@@ -16,6 +16,24 @@
       "message": "I am fine with this change, but would like PM\u0027s confirmation that this is the behavior we would like to make",
       "revId": "c9501021ac19d0230fdc7fcd2cfdfa3e55c781db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2895473e_cb30ed37",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-01T00:48:30Z",
+      "side": 1,
+      "message": "Let me go with this CL, and discuss later if any comments comes.",
+      "parentUuid": "4b54385e_070584e9",
+      "revId": "c9501021ac19d0230fdc7fcd2cfdfa3e55c781db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
