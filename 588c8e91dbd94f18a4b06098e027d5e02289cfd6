@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "51636b9f_1a4bd744",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T21:48:08Z",
+      "side": 1,
+      "message": "hi Sungsoo, could you help for the API review and vote? I\u0027ve also shared the new API design doc separately. thank you!",
+      "revId": "588c8e91dbd94f18a4b06098e027d5e02289cfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
