@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57ee9283_069f36a0",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-01T21:10:20Z",
+      "side": 1,
+      "message": "Unused code?",
+      "range": {
+        "startLine": 374,
+        "startChar": 0,
+        "endLine": 382,
+        "endChar": 3
+      },
+      "revId": "3fb31f82450945cbba7b32b61fefee47b355a681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "946e59c8_3d6f7767",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1095,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-01T21:10:20Z",
+      "side": 1,
+      "message": "V2 code?",
+      "range": {
+        "startLine": 1094,
+        "startChar": 0,
+        "endLine": 1095,
+        "endChar": 73
+      },
+      "revId": "3fb31f82450945cbba7b32b61fefee47b355a681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
