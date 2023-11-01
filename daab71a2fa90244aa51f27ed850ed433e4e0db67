@@ -152,6 +152,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ebf777f6_8f95b407",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T10:55:24Z",
+      "side": 1,
+      "message": "nit: should this be rx?",
+      "range": {
+        "startLine": 868,
+        "startChar": 31,
+        "endLine": 868,
+        "endChar": 33
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0b1f2f69_a4e3cd18",
         "filename": "floss/hcidoc/src/parser.rs",
         "patchSetId": 1
