@@ -1,0 +1,129 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18ef38a2_fdf45b44",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T02:05:48Z",
+      "side": 1,
+      "message": "Could you please explain this with a bit more details? It is not very clear what the issue you fix here.",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 67
+      },
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "652fd5e7_5faf2e7a",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T02:05:48Z",
+      "side": 1,
+      "message": "What is the difference between available and valid? If an adapter is present, but not enabled, will it be enabled after the restart?",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e73d33df_b4da5903",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1397,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T02:05:48Z",
+      "side": 1,
+      "message": "The old state is TurningOff. Is this a bug fix or part of the new design?",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cf1b8e0_3de0528b",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T02:05:48Z",
+      "side": 1,
+      "message": "If the adapter is turning off, should we just do nothing and let the adapter to keep off? I think this is a design issue. I am thinking the restart action should keep status unchanged. If the adapter is off/turning off, it should keep off?",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b98dd6ea_8b6760f5",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1430,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T02:05:48Z",
+      "side": 1,
+      "message": "Same idea here. If the adapter is already off, this could be no-op. If the user later starts the adapter, the new configuration will be loaded. WDYT.",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52fc03f8_2126c09b",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T02:05:48Z",
+      "side": 1,
+      "message": "Thanks for the fix here. I originally think if the state is turning on, it should load the new configure.",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "809d7aac_75e5fc2b",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T02:05:48Z",
+      "side": 1,
+      "message": "I was not sure if we could call stop/start back to back. What are the messages that would generated between these two calls,e.g. PidChange? I am actually not quite clear how the state machine handle this.",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
