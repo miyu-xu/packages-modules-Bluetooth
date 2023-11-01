@@ -135,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b571b016_bbb1d92d",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T23:16:28Z",
+      "side": 1,
+      "message": "I also don\u0027t have a strong opinion. I just think this may simplify the state machine. I will leave it to you. But maybe mention this in the commit message.",
+      "parentUuid": "3bebd603_6409291a",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b98dd6ea_8b6760f5",
@@ -152,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b2bea7c_9ade40fa",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1430,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T23:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b98dd6ea_8b6760f5",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52fc03f8_2126c09b",
@@ -165,6 +201,24 @@
       "writtenOn": "2023-11-01T02:05:48Z",
       "side": 1,
       "message": "Thanks for the fix here. I originally think if the state is turning on, it should load the new configure.",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13721f45_029a75eb",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1434,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T23:16:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "52fc03f8_2126c09b",
       "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
