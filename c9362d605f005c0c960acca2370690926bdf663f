@@ -16,6 +16,24 @@
       "message": "Note: trunk stable flagging is more likely to be used for this feature.",
       "revId": "c9362d605f005c0c960acca2370690926bdf663f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10edfd7f_3a467ca1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-01T17:30:18Z",
+      "side": 1,
+      "message": "Added the aconfig flag a2dp_offload_codec_extensibility https://r.android.com/2812785",
+      "parentUuid": "bb21c148_5cbec8b3",
+      "revId": "c9362d605f005c0c960acca2370690926bdf663f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
