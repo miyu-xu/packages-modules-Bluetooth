@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6849882e_eba9afdd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-01T17:45:16Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Bug Validation: \"Bug: \u003cbug_id\u003e\" is required to be in the commit message.\n\nAnalyzer Description: Validates that commit messages contains the required bug information.\nOwner: ayeaye-team@google.com\n\n\"Bug: \u003cbug_id\u003e\" is required to be in the commit message.",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ff77fffb_fdbe1273",
         "filename": "system/btif/include/btif_storage.h",
         "patchSetId": 10
@@ -26,6 +49,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74f4204a_060b19c3",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1755,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-01T17:45:16Z",
+      "side": 1,
+      "message": "Nit: Please add description (or remove empty comment field, but ideally the former).",
+      "range": {
+        "startLine": 1755,
+        "startChar": 3,
+        "endLine": 1755,
+        "endChar": 14
+      },
+      "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8c95ec8a_0b35f4bd",
         "filename": "system/btif/src/btif_storage.cc",
         "patchSetId": 10
@@ -42,6 +88,29 @@
         "startChar": 29,
         "endLine": 1768,
         "endChar": 49
+      },
+      "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c1ea4123_7b36cc97",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1028,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-01T17:45:16Z",
+      "side": 1,
+      "message": "Please add default case (log a warning is sufficient for default).",
+      "range": {
+        "startLine": 1028,
+        "startChar": 2,
+        "endLine": 1028,
+        "endChar": 8
       },
       "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
