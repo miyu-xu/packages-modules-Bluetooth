@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4441713_5ebb1f6a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-01T18:49:36Z",
+      "side": 1,
+      "message": "is the value defined by the spec ?\nOr is arbitrary set by android ?\n\nIsn\u0027t it more risky to unify to 512 instead of 600 ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
