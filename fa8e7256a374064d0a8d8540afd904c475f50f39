@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a41b4be5_bcc4ac85",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T18:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bbb1fd0_3175de0f",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 50
+      },
+      "revId": "fa8e7256a374064d0a8d8540afd904c475f50f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95423b89_003f4519",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-31T22:09:52Z",
       "side": 1,
       "message": "Remove if you add the constructor",
+      "range": {
+        "startLine": 450,
+        "startChar": 5,
+        "endLine": 452,
+        "endChar": 9
+      },
+      "revId": "fa8e7256a374064d0a8d8540afd904c475f50f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "620ad479_a4696d75",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T18:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95423b89_003f4519",
       "range": {
         "startLine": 450,
         "startChar": 5,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d189b92_9b5811f0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1121,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T18:07:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8c49de2_88671693",
+      "range": {
+        "startLine": 1114,
+        "startChar": 6,
+        "endLine": 1121,
+        "endChar": 13
+      },
+      "revId": "fa8e7256a374064d0a8d8540afd904c475f50f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "594924e0_f3f12e90",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-10-31T21:49:38Z",
       "side": 1,
       "message": "Could we add a test for onSyncLost()?",
+      "range": {
+        "startLine": 216,
+        "startChar": 0,
+        "endLine": 216,
+        "endChar": 67
+      },
+      "revId": "fa8e7256a374064d0a8d8540afd904c475f50f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5c04ad7_0864737c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T18:07:06Z",
+      "side": 1,
+      "message": "Adding this in BassClientStateMachineTest",
+      "parentUuid": "594924e0_f3f12e90",
       "range": {
         "startLine": 216,
         "startChar": 0,
@@ -130,6 +226,30 @@
       "side": 1,
       "message": "Yes there are, cf [hfp test](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/btservice/PhonePolicyTest.java;l\u003d636;drc\u003d3a0964fde0fc3e55a648b34df6ed89319e8cd4b2).\n\nBut if this test is passing, without setting the flag, this is an indication that the code covered by the flag is not triggered.\n\nReading a fake flag that is not set in test will have a crash",
       "parentUuid": "82c80e0b_a51fe74d",
+      "range": {
+        "startLine": 123,
+        "startChar": 33,
+        "endLine": 123,
+        "endChar": 47
+      },
+      "revId": "fa8e7256a374064d0a8d8540afd904c475f50f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c741189_0efd2269",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T18:07:06Z",
+      "side": 1,
+      "message": "yes, the flag control can be achieved by mFakeFlagsImpl. We can set the flag per test cases. in the new unit test I added in the next version, I will set the flag to true to validate this.",
+      "parentUuid": "8f27ed85_9e27843c",
       "range": {
         "startLine": 123,
         "startChar": 33,
