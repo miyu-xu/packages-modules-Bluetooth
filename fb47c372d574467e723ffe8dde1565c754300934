@@ -95,6 +95,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cef5adfe_0aa4b523",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-11-01T08:29:31Z",
+      "side": 1,
+      "message": "I made a issue tracker for it. \nhttps://issuetracker.google.com/308725703",
+      "parentUuid": "c3bd6dc9_57d728e4",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccc73591_550d3e68",
