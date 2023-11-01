@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79bc48eb_b1aa786b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4066,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T22:13:56Z",
+      "side": 1,
+      "message": "do you think we can put this behind the flag?\nif (com::android::bluetooth::flags::leaudio_broadcast_audio_handover_policies()) {\n....\n}\n\nwe just need to make sure with flag disabled or enabled, ideally the unicast logic flow is not affected.",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db944e62_543ebf01",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4120,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T22:13:56Z",
+      "side": 1,
+      "message": "do you think we can put this behind the flag?",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0d66b81_ee2afa07",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 5444,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T22:13:56Z",
+      "side": 1,
+      "message": "do you think we can put this behind the flag?",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
