@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8ec1c3de_f9e76dbc",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T23:39:11Z",
+      "side": 1,
+      "message": "I guess I am confused because you mentioned `in the log`, so I was looking for logs. Maybe be more specific as `when logging the result inside mainloop`. And also add that now we change to take the next state from function return.",
+      "parentUuid": "64694c48_38a587f3",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 67
+      },
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "652fd5e7_5faf2e7a",
         "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
         "patchSetId": 6
@@ -79,6 +103,24 @@
       "side": 1,
       "message": "If it\u0027s not enabled, then line #84 should filter it out.\n\n\u003e What is the difference between available and valid?\n\n`get_available_adapters` is actually the implementation of the DBus method `GetAvailableAdapters` which uses `get_valid_adapters` too. I believe the target adapters are different between these 2 function - `get_available_adapters` treat `On` and `TurningOff` as enabled since https://r.android.com/2808093, while here we don\u0027t need to (or shouldn\u0027t) restart a `TurningOff` adapter.",
       "parentUuid": "652fd5e7_5faf2e7a",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "abad4f45_026c55e4",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-01T23:39:11Z",
+      "side": 1,
+      "message": "I agree with Ying, the function name change would be helpful. Given that `restart` could mean that an OFF adapter can be turned to ON.",
+      "parentUuid": "75795658_f3aa1174",
       "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
