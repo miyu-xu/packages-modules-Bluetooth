@@ -68,6 +68,29 @@
       },
       "revId": "f0854956b4a61ac96701a347035460992ceab9a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da520041_3a9b9646",
+        "filename": "framework/tests/util/src/android/bluetooth/cts/TestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-01T18:04:13Z",
+      "side": 1,
+      "message": "The formatter does not allow this in switch statement:\n```\nframework/tests/util/src/android/bluetooth/cts/TestUtils.java:73:40: error: : expected\nframework/tests/util/src/android/bluetooth/cts/TestUtils.java:73:41: error: illegal start of expression\n```",
+      "range": {
+        "startLine": 73,
+        "startChar": 39,
+        "endLine": 73,
+        "endChar": 43
+      },
+      "revId": "f0854956b4a61ac96701a347035460992ceab9a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
