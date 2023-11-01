@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60ac6bcf_51d5f49d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4066,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T22:16:26Z",
+      "side": 1,
+      "message": "or we can have the flag in the next CL where we set sink mode in LeAudioService.",
+      "parentUuid": "79bc48eb_b1aa786b",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db944e62_543ebf01",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
