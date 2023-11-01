@@ -16,6 +16,52 @@
       "message": "Hi, please review this CL. thanks!",
       "revId": "2d0c52af38f8c3e5412eb52c675456f4a1de88a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b36159b_e7556e92",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T09:56:15Z",
+      "side": 1,
+      "message": "nit: Is profileId along enough to be a unique key here? IIUC, ACL handle+CID should be unique at the same time. But feel free to leave it unchanged if this is easier to implement.",
+      "range": {
+        "startLine": 191,
+        "startChar": 43,
+        "endLine": 191,
+        "endChar": 52
+      },
+      "revId": "2d0c52af38f8c3e5412eb52c675456f4a1de88a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5d48a04_0e6b5389",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-01T09:56:15Z",
+      "side": 1,
+      "message": "```suggestion\n        let profile_option \u003d self.active_profiles.remove(\u0026(profile_type, profile_id)).unwrap_or(ProfileInformation::new(profile_type));\n```",
+      "range": {
+        "startLine": 242,
+        "startChar": 7,
+        "endLine": 246,
+        "endChar": 10
+      },
+      "revId": "2d0c52af38f8c3e5412eb52c675456f4a1de88a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
