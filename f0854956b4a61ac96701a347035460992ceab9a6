@@ -45,6 +45,29 @@
       },
       "revId": "f0854956b4a61ac96701a347035460992ceab9a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9042bda0_96825980",
+        "filename": "framework/tests/util/src/android/bluetooth/cts/EnableBluetoothRule.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-01T17:46:52Z",
+      "side": 1,
+      "message": "looks like there are more usage of the constructor with one bool as parameter:\n```\npackages/modules/Permission/tests/cts/permission/src/android/permission/cts/NearbyDevicesPermissionTest.java:88: error: no suitable constructor found for EnableBluetoothRule(boolean)\npublic static final EnableBluetoothRule sEnableBluetoothRule \u003d new EnableBluetoothRule(true);\n^\nconstructor EnableBluetoothRule.EnableBluetoothRule() is not applicable\n```",
+      "range": {
+        "startLine": 64,
+        "startChar": 2,
+        "endLine": 67,
+        "endChar": 5
+      },
+      "revId": "f0854956b4a61ac96701a347035460992ceab9a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
