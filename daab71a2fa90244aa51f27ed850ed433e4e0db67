@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3be094f6_10e224cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T11:16:26Z",
+      "side": 1,
+      "message": "Thanks for the suggestion. I move some of the files between patches and apparently missed formatting one file.",
+      "parentUuid": "4eee49e4_c31cddb5",
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "511c65e9_8fbafd18",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-11-01T10:51:41Z",
       "side": 1,
       "message": "should this change be in the previous CL?",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 14
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da656936_db51febc",
+        "filename": "floss/hcidoc/packets/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T11:16:26Z",
+      "side": 1,
+      "message": "yeah, correct.",
+      "parentUuid": "511c65e9_8fbafd18",
       "range": {
         "startLine": 5,
         "startChar": 13,
@@ -60,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "39f733f7_2841da03",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T11:16:26Z",
+      "side": 1,
+      "message": "Currently since both of host_cid and profile_id are u16, they are interchangeable, so the code like this also works\n```\nlet profile_id \u003d host_cid;\n```\nI don\u0027t remember why I did this probably some data type juggling from previous iteration of the patch.",
+      "parentUuid": "f754c9dd_79d64796",
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5908a227_ec5b541b",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -71,6 +131,30 @@
       "writtenOn": "2023-11-01T10:51:41Z",
       "side": 1,
       "message": "better to separate them from HID_Control and HID_Interrupt?",
+      "range": {
+        "startLine": 415,
+        "startChar": 36,
+        "endLine": 415,
+        "endChar": 39
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a178d114_057ad6ef",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T11:16:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "5908a227_ec5b541b",
       "range": {
         "startLine": 415,
         "startChar": 36,
@@ -106,6 +190,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "710059bb_79c061de",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T11:16:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "c611fb41_26be0935",
+      "range": {
+        "startLine": 417,
+        "startChar": 36,
+        "endLine": 417,
+        "endChar": 41
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b2027d3e_663b9223",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -117,6 +225,30 @@
       "writtenOn": "2023-11-01T10:51:41Z",
       "side": 1,
       "message": "If the above is adopted, use AVDTP here.",
+      "range": {
+        "startLine": 418,
+        "startChar": 36,
+        "endLine": 418,
+        "endChar": 40
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "523e323c_6205450b",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T11:16:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "b2027d3e_663b9223",
       "range": {
         "startLine": 418,
         "startChar": 36,
@@ -152,6 +284,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5dbb91ac_bae84061",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T11:16:26Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "4b85afcf_dc8da2da",
+      "range": {
+        "startLine": 661,
+        "startChar": 7,
+        "endLine": 661,
+        "endChar": 24
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ebf777f6_8f95b407",
         "filename": "floss/hcidoc/src/groups/informational.rs",
         "patchSetId": 1
@@ -163,6 +319,30 @@
       "writtenOn": "2023-11-01T10:55:24Z",
       "side": 1,
       "message": "nit: should this be rx?",
+      "range": {
+        "startLine": 868,
+        "startChar": 31,
+        "endLine": 868,
+        "endChar": 33
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6f0d803_668498cd",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T11:16:26Z",
+      "side": 1,
+      "message": "Oops, you got me.",
+      "parentUuid": "ebf777f6_8f95b407",
       "range": {
         "startLine": 868,
         "startChar": 31,
