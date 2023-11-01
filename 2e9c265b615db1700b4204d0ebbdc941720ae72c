@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6fef31b_2c5fd68b",
+        "filename": "framework/tests/util/src/android/bluetooth/test_utils/TestUtils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-01T23:19:12Z",
+      "side": 1,
+      "message": "can we not move the deprecated ?",
+      "range": {
+        "startLine": 237,
+        "startChar": 5,
+        "endLine": 237,
+        "endChar": 15
+      },
+      "revId": "2e9c265b615db1700b4204d0ebbdc941720ae72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
