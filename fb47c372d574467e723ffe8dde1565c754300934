@@ -77,6 +77,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3bd6dc9_57d728e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-11-01T07:56:22Z",
+      "side": 1,
+      "message": "I checked the specification you talked about. I understood it clearly, so I will cancel this commit.\nHowever, even in the current AOSP, any notification is not given to the user when encryption setup fails.\nI think it seems to need to be fixed.\nI will register a new issueTracker related to it.",
+      "parentUuid": "d5b0d163_499a66b5",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ccc73591_550d3e68",
@@ -130,6 +148,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e59c6b89_afa37cb5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-11-01T07:56:22Z",
+      "side": 1,
+      "message": "I agree with you. I suggested a fix to solve the problem written in the description.\nHowever, I found out that it is a modification that does not conform to the spec you mentioned.",
+      "parentUuid": "93f31e05_e060b3ca",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6fdbff4b_d2619b1a",
@@ -179,6 +215,24 @@
       "side": 1,
       "message": "This does not sound robust. Its just inviting issues due to future changes. If we intend to repair we should just do that. Any changes in the other parts of code can cause this logic to go out of control.",
       "parentUuid": "120ef964_90dbe545",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2600d115_44ad3fd1",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 917,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-11-01T07:56:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f831398a_b0587577",
       "revId": "fb47c372d574467e723ffe8dde1565c754300934",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
