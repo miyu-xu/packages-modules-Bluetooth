@@ -34,6 +34,24 @@
       "parentUuid": "0d4061c8_e30d6bfd",
       "revId": "103547c26feff405c98f970960a7b57111c032af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80f11c4b_164b3c45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T21:59:29Z",
+      "side": 1,
+      "message": "I\u0027ve merged the change in aosp/2808463. and it\u0027s behind the flag which you can enable manually by \nadb shell device_config put bluetooth com.android.bluetooth.flags.leaudio_broadcast_audio_handover_policies true\n\nyou can abandon this commit, and rebased on my merged CL. going forward you can use the same flag for your handover policy changes.",
+      "parentUuid": "c2cb2efa_e8735e62",
+      "revId": "103547c26feff405c98f970960a7b57111c032af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
