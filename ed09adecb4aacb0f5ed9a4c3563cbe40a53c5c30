@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52a49591_1a2e8cc4",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-01T15:48:56Z",
+      "side": 1,
+      "message": "If this is only used for UNUSED_ATTR, I\u0027d prefer just commenting out the parameters.\n\nvoid foo(int /* my_unused_parameter */) {\n}",
+      "range": {
+        "startLine": 44,
+        "startChar": 33,
+        "endLine": 44,
+        "endChar": 44
+      },
+      "revId": "ed09adecb4aacb0f5ed9a4c3563cbe40a53c5c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
