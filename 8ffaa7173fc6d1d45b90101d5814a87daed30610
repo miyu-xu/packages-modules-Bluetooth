@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "64694c48_38a587f3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-01T12:48:49Z",
+      "side": 1,
+      "message": "To be concrete, the below sample change in mainloop aims to fix it. Basically in most cases, we only handle the state change (with `modify_state`) in the `action_xxxx` functions, and the mainloop only logs the result or triggers callbacks.\n\nHowever to log the result inside mainloop we have to either (1) query the result with `get_state` or (2) let the `action_xxxx` functions return the next state. (2) is already used in some other places in this file (refer to `StartBluetooth` and `HciDevicePresence`) thus I chose it.\n```\n-next_state \u003d ProcessState::TurningOff;\n-let action \u003d context.state_machine.action_stop_bluetooth(hci);\n+let action;\n+(next_state, action) \u003d context.state_machine.action_stop_bluetooth(hci);\n```",
+      "parentUuid": "18ef38a2_fdf45b44",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 67
+      },
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "652fd5e7_5faf2e7a",
         "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
         "patchSetId": 6
@@ -37,6 +61,24 @@
       "writtenOn": "2023-11-01T02:05:48Z",
       "side": 1,
       "message": "What is the difference between available and valid? If an adapter is present, but not enabled, will it be enabled after the restart?",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75795658_f3aa1174",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-01T12:48:49Z",
+      "side": 1,
+      "message": "If it\u0027s not enabled, then line #84 should filter it out.\n\n\u003e What is the difference between available and valid?\n\n`get_available_adapters` is actually the implementation of the DBus method `GetAvailableAdapters` which uses `get_valid_adapters` too. I believe the target adapters are different between these 2 function - `get_available_adapters` treat `On` and `TurningOff` as enabled since https://r.android.com/2808093, while here we don\u0027t need to (or shouldn\u0027t) restart a `TurningOff` adapter.",
+      "parentUuid": "652fd5e7_5faf2e7a",
       "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -71,6 +113,24 @@
       "writtenOn": "2023-11-01T02:05:48Z",
       "side": 1,
       "message": "If the adapter is turning off, should we just do nothing and let the adapter to keep off? I think this is a design issue. I am thinking the restart action should keep status unchanged. If the adapter is off/turning off, it should keep off?",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3bebd603_6409291a",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-01T12:48:49Z",
+      "side": 1,
+      "message": "Indeed it\u0027s a design issue. To me \"restart\" means \"stop\"+\"start\" and if it\u0027s originally stopped, then \"restart\" equals \"start\" - I think I\u0027m affected by some command line tools such as systemctl.\n\nIf the caller prefers to do nothing to TurningOff/Off adapters, then it could filter out those adapters just like what I did in the `restart_available_adapters` function.\n\nI have no strong opinion. If you prefer unchanged then I could revert this line.",
+      "parentUuid": "5cf1b8e0_3de0528b",
       "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -122,6 +182,24 @@
       "writtenOn": "2023-11-01T02:05:48Z",
       "side": 1,
       "message": "I was not sure if we could call stop/start back to back. What are the messages that would generated between these two calls,e.g. PidChange? I am actually not quite clear how the state machine handle this.",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea36f669_bd96c284",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-01T12:48:49Z",
+      "side": 1,
+      "message": "Hi Zhengping, PTAL https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2808096/comment/97a2e0d9_6d446d5b/\n\n\u003e What are the messages that would generated between these two calls,e.g. PidChange?\n\nIf the btadapterd got killed before a pid file is created, then no event. If not, a BluetoothStarted + a BluetoothStopped.",
+      "parentUuid": "809d7aac_75e5fc2b",
       "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
