@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f65f915_d89e30c7",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-01T22:21:30Z",
+      "side": 1,
+      "message": "we might consider to put the flag for this.\nif (mFeatureFlags.leaudioBroadcastAudioHandoverPolicies()) {\n...\n}\n\nyou can check my recent API CLs for reference. I\u0027ll let you do your best judgement for this file if any place we can put under the flag and be safe if flag is not there or disabled.",
+      "revId": "bdcbbd1b17164fca05784b49d4280a2bce93e490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
