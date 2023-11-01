@@ -32,9 +32,8 @@
 #include <base/strings/stringprintf.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/hci/enums.pb.h>
-#include <string.h>
 
-#include <type_traits>
+#include <string>
 
 #include "btif/include/btif_storage.h"
 #include "common/metrics.h"
