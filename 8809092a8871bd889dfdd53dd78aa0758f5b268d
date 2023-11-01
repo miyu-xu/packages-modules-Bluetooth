@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3657754_a0d731fd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-01T07:36:58Z",
+      "side": 1,
+      "message": "Per William\u0027s comment, I split this CL into 3 smaller CLs. \n\nPlease move our review to https://r.android.com/2813242 instead",
+      "revId": "8809092a8871bd889dfdd53dd78aa0758f5b268d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad9727bd_d753671f",
@@ -14,6 +31,30 @@
       "writtenOn": "2023-10-25T16:45:19Z",
       "side": 1,
       "message": "Could you use either`assertThat([...]).isTrue()` or `assertTrue` ?",
+      "range": {
+        "startLine": 68,
+        "startChar": 3,
+        "endLine": 74,
+        "endChar": 5
+      },
+      "revId": "8809092a8871bd889dfdd53dd78aa0758f5b268d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f1e0e0d_94785a41",
+        "filename": "framework/tests/lib/src/android/bluetooth/EnableBluetoothRule.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-01T07:36:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ad9727bd_d753671f",
       "range": {
         "startLine": 68,
         "startChar": 3,
@@ -72,6 +113,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9e2cd00_cec534b8",
+        "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-01T07:36:58Z",
+      "side": 1,
+      "message": "Yes, unfortunately it is currently being used in CTS. I can mark it as deprecated and we get rid of its use cases first before removing this function.",
+      "parentUuid": "3995c08c_633521a5",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 63
+      },
+      "revId": "8809092a8871bd889dfdd53dd78aa0758f5b268d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee0ca318_4f34bb5f",
         "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
         "patchSetId": 6
@@ -83,6 +148,30 @@
       "writtenOn": "2023-10-25T16:40:45Z",
       "side": 1,
       "message": "These are a Rule in BumbleBluetoothTest hence I don\u0027t think we\u0027ll need it here",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 0
+      },
+      "revId": "8809092a8871bd889dfdd53dd78aa0758f5b268d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e81acfcd_c143c8eb",
+        "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-01T07:36:58Z",
+      "side": 1,
+      "message": "These are still used in CTS tests. We can move the rule from bumble to here and replace CTS use case with the new rule",
+      "parentUuid": "ee0ca318_4f34bb5f",
       "range": {
         "startLine": 163,
         "startChar": 0,
@@ -118,6 +207,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0371e90c_8059bf4d",
+        "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-01T07:36:58Z",
+      "side": 1,
+      "message": "As the comments suggested, many CTS tests current depends on this assert behavior to fail gracefully when BT accidentally becomes not available. \n\nHence it is marked as deprecated, but still kept here",
+      "parentUuid": "7d99e799_0032a570",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 202,
+        "endChar": 5
+      },
+      "revId": "8809092a8871bd889dfdd53dd78aa0758f5b268d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "32fd91f0_60d25ef8",
         "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
         "patchSetId": 6
@@ -129,6 +242,30 @@
       "writtenOn": "2023-10-25T16:40:45Z",
       "side": 1,
       "message": "I don\u0027t really like the idea of having and helper function to sleep. First it\u0027ll ease developers to use it instead of finding the reason to sleep and second doing the `try catch` into the test directly is not that bad I guess.",
+      "range": {
+        "startLine": 333,
+        "startChar": 4,
+        "endLine": 345,
+        "endChar": 5
+      },
+      "revId": "8809092a8871bd889dfdd53dd78aa0758f5b268d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a87ee92_6629ecfe",
+        "filename": "framework/tests/lib/src/android/bluetooth/TestUtils.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-01T07:36:58Z",
+      "side": 1,
+      "message": "yes, but this is used by many tests in CTS, once we get rid of the use cases we should remove this method",
+      "parentUuid": "32fd91f0_60d25ef8",
       "range": {
         "startLine": 333,
         "startChar": 4,
