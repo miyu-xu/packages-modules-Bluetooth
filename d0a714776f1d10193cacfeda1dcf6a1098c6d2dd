@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "682b5a3c_d0f218d2",
+        "filename": "android/app/jni/com_android_bluetooth_a2dp.cpp",
+        "patchSetId": 18
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-01T19:24:13Z",
+      "side": 1,
+      "message": "is it missing the `;` at the end ? \n```\n11-01 18:01:12.072  3357  3357 F DEBUG   : Abort message: \u0027No pending exception expected: java.lang.NoSuchMethodError: no static or non-static method \"Lcom/android/bluetooth/a2dp/A2dpNativeInterface;.getSupportedCodecTypesNative()[android/bluetooth/BluetoothCodecType\"\n```",
+      "range": {
+        "startLine": 511,
+        "startChar": 29,
+        "endLine": 511,
+        "endChar": 47
+      },
+      "revId": "d0a714776f1d10193cacfeda1dcf6a1098c6d2dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "01a60259_d9478c2e",
         "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
         "patchSetId": 18
