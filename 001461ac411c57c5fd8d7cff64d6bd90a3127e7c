@@ -22,6 +22,30 @@
       },
       "revId": "001461ac411c57c5fd8d7cff64d6bd90a3127e7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a65c7352_06e5ad5d",
+        "filename": "system/bta/ag/bta_ag_swb_aptx.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-01T11:39:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1037d658_4ef92dd8",
+      "range": {
+        "startLine": 100,
+        "startChar": 51,
+        "endLine": 100,
+        "endChar": 61
+      },
+      "revId": "001461ac411c57c5fd8d7cff64d6bd90a3127e7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
