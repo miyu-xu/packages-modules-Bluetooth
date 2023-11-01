@@ -16,11 +16,11 @@
  *
  ******************************************************************************/
 
-#include "base/logging.h"
-
 #include "device/include/esco_parameters.h"
 
+#include "base/logging.h"
 #include "check.h"
+#include "hci/controller.h"
 
 static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
     // CVSD D1
@@ -295,6 +295,22 @@ enh_esco_params_t esco_parameters_for_codec(esco_codec_t codec, bool offload) {
   CHECK(codec >= 0) << "codec index " << (int)codec << "< 0";
   CHECK(codec < ESCO_NUM_CODECS)
       << "codec index " << (int)codec << " > " << ESCO_NUM_CODECS;
+
+  bluetooth::hci::Controller controller;
+  auto codecIds = controller.GetLocalSupportedBrEdrCodecIds();
+  if (std::find(codecIds.begin(), codecIds.end(), ESCO_CODING_FORMAT_LC3) ==
+      codecIds.end()) {
+    LOG_INFO("BT controller does not support LC3, use DSP codec instead");
+    if (codec == ESCO_CODEC_LC3_T1 || codec == ESCO_CODEC_LC3_T2) {
+      enh_esco_params_t param = default_esco_parameters[codec];
+      param.input_coding_format.coding_format = ESCO_CODING_FORMAT_LC3;
+      param.output_coding_format.coding_format = ESCO_CODING_FORMAT_LC3;
+      param.input_bandwidth = TXRX_64KBITS_RATE;
+      param.output_bandwidth = TXRX_64KBITS_RATE;
+      return param;
+    }
+  }
+
   if (offload) {
     return default_esco_parameters[codec];
   }
