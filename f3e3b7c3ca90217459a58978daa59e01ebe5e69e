@@ -22,6 +22,30 @@
       },
       "revId": "f3e3b7c3ca90217459a58978daa59e01ebe5e69e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b93b19b9_386db95e",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 2021467
+      },
+      "writtenOn": "2023-11-01T08:49:04Z",
+      "side": 1,
+      "message": "Acknowledged. Huirong is on long vacation, could you help modify \"break\" to \"return\"?\nThank you very much.",
+      "parentUuid": "fc9ee9a9_b7e937cd",
+      "range": {
+        "startLine": 347,
+        "startChar": 8,
+        "endLine": 347,
+        "endChar": 13
+      },
+      "revId": "f3e3b7c3ca90217459a58978daa59e01ebe5e69e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
