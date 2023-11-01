@@ -32,9 +32,8 @@
 #include <base/strings/stringprintf.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/enums.pb.h>
 #include <frameworks/proto_logging/stats/enums/bluetooth/hci/enums.pb.h>
-#include <string.h>
 
-#include <type_traits>
+#include <string>
 
 #include "btif/include/btif_storage.h"
 #include "common/metrics.h"
@@ -42,9 +41,7 @@
 #include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
 #include "l2c_api.h"
-#include "osi/include/allocator.h"
-#include "osi/include/compat.h"
-#include "osi/include/osi.h"
+#include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec_cb.h"
