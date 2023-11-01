@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbcb5f58_b666e73f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T10:04:22Z",
+      "side": 1,
+      "message": "Feel free to skip that, it\u0027s very long indeed and totally unfun.",
+      "parentUuid": "079bcbac_05feffed",
+      "revId": "6239df18c96ab41ffb14d99ff31cfb5b934dd85c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0be258b9_a14a9373",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-11-01T10:01:40Z",
       "side": 1,
       "message": "nit: 2023",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 15
+      },
+      "revId": "6239df18c96ab41ffb14d99ff31cfb5b934dd85c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "65ea2949_b1f4701f",
+        "filename": "floss/hcidoc/packets/Cargo.toml",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-01T10:04:22Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "0be258b9_a14a9373",
       "range": {
         "startLine": 25,
         "startChar": 11,
