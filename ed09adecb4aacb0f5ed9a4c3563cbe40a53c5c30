@@ -22,6 +22,30 @@
       },
       "revId": "ed09adecb4aacb0f5ed9a4c3563cbe40a53c5c30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "835937f0_1dc9ff22",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-01T17:07:46Z",
+      "side": 1,
+      "message": "Agreed, or we can convert it into something like compiler.h",
+      "parentUuid": "52a49591_1a2e8cc4",
+      "range": {
+        "startLine": 44,
+        "startChar": 33,
+        "endLine": 44,
+        "endChar": 44
+      },
+      "revId": "ed09adecb4aacb0f5ed9a4c3563cbe40a53c5c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
