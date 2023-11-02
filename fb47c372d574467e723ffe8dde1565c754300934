@@ -115,6 +115,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "847e893d_d82c6c62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1120880
+      },
+      "writtenOn": "2023-11-02T10:41:27Z",
+      "side": 1,
+      "message": "I have a question.\n\nThe spec says that the user shall be notified of the encryption setup failure.\nCurrently, there is no notification in AOSP structure.\n\nHowever, if the codes I suggested are applied, if encryption fail occurs, pairing popup for new pairing will occur. Isn\u0027t this rather matched to the spec?\n\nOf course, I limited key missing case. However, this can be modified.",
+      "parentUuid": "cef5adfe_0aa4b523",
+      "revId": "fb47c372d574467e723ffe8dde1565c754300934",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ccc73591_550d3e68",
         "filename": "/COMMIT_MSG",
         "patchSetId": 3
