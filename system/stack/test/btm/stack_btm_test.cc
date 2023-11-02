@@ -28,7 +28,6 @@
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sco.h"
 #include "stack/btm/btm_sec.h"
-#include "stack/btm/btm_sec_cb.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/btm_client_interface.h"
@@ -115,10 +114,10 @@ class StackBtmWithInitFreeTest : public StackBtmWithQueuesTest {
         .WillOnce(Return(sco_queue_.GetUpEnd()));
 
     btm_cb.Init();
-    btm_sec_cb.Init(BTM_SEC_MODE_SC);
+    // btm_sec_cb.Init(BTM_SEC_MODE_SC);
   }
   void TearDown() override {
-    btm_sec_cb.Free();
+    // btm_sec_cb.Free();
     btm_cb.Free();
     StackBtmWithQueuesTest::TearDown();
   }

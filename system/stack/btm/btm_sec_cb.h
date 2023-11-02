@@ -19,9 +19,9 @@
 
 #include <cstdint>
 
+#include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "osi/include/list.h"
-#include "stack/btm/btm_ble_int_types.h"
 #include "stack/btm/btm_sec_int_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_octets.h"
@@ -33,14 +33,9 @@ class tBTM_SEC_CB {
   tBTM_CFG cfg; /* Device configuration */
 
   /*****************************************************
-  **      Device control
+  **     Local Device control block (on security)
   *****************************************************/
   tBTM_SEC_DEVCB devcb;
-
-  /*****************************************************
-  **      BLE Device controllers
-  *****************************************************/
-  tBTM_BLE_CB ble_ctr_cb;
 
  private:
   friend void btm_ble_ltk_request_reply(const RawAddress& bda, bool use_stk,
