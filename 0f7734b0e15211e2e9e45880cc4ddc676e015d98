@@ -22,6 +22,30 @@
       },
       "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d55c3fc_e7710d33",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-02T08:53:59Z",
+      "side": 1,
+      "message": "512 bytes is the value set by the bluetooth spec, so I believe we should unify to 512. Write or notify operations with attribute length longer than 512 doesn\u0027t work, and this value will be used to filter those cases as well.",
+      "parentUuid": "c4441713_5ebb1f6a",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
