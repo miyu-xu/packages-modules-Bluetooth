@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95735b6e_14530b02",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexClientSession.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-02T12:59:38Z",
+      "side": 1,
+      "message": "Why is this changed?",
+      "range": {
+        "startLine": 230,
+        "startChar": 12,
+        "endLine": 232,
+        "endChar": 36
+      },
+      "revId": "eeafab9fe40e859dbf5182c75fc59ca00df7b0ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
