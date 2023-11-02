@@ -69,6 +69,30 @@
       },
       "revId": "d0a714776f1d10193cacfeda1dcf6a1098c6d2dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b8fcfdf_7afdb60f",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-02T17:34:28Z",
+      "side": 1,
+      "message": "I actually think you should be able to address this warning. Perhaps try adding @SourceCodecType annotation to the native method as well and ensure it doesn\u0027t return null? WDYT?\n\nhttps://g3doc.corp.google.com/company/teams/android-api-council/guidelines/index.md?cl\u003dhead#annotations",
+      "parentUuid": "01a60259_d9478c2e",
+      "range": {
+        "startLine": 531,
+        "startChar": 65,
+        "endLine": 531,
+        "endChar": 96
+      },
+      "revId": "d0a714776f1d10193cacfeda1dcf6a1098c6d2dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

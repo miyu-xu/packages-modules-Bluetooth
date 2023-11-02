@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68d64e79_2d57e2bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-02T17:34:28Z",
+      "side": 1,
+      "message": "Hey Henri, is there a design doc for this",
+      "revId": "b9869b68c5f8eb056a3354bf61faa011345f9f12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3b4f2e9_7e4fcb1e",
+        "filename": "framework/java/android/bluetooth/BluetoothA2dp.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 752,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-02T17:34:28Z",
+      "side": 1,
+      "message": "nit: typo",
+      "range": {
+        "startLine": 752,
+        "startChar": 85,
+        "endLine": 752,
+        "endChar": 96
+      },
+      "revId": "b9869b68c5f8eb056a3354bf61faa011345f9f12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08873847_f164bcce",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-02T17:34:28Z",
+      "side": 1,
+      "message": "Have you considered adding a SOURCE_CODEC_TYPE_NONE or _UNKNOWN so this does not need to be nullable?\n\nOr is there a reason @Nullable is preferred here for return type?\n\nFWIW Nullable may make sense looking at BluetoothCodecType class, just want to confirm the thinking on this method contract decision.",
+      "range": {
+        "startLine": 572,
+        "startChar": 11,
+        "endLine": 572,
+        "endChar": 20
+      },
+      "revId": "b9869b68c5f8eb056a3354bf61faa011345f9f12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
