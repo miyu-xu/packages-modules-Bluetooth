@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fcf22c7_8c90e722",
+        "filename": "floss/hcidoc/packets/lib.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:05:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da656936_db51febc",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 14
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f754c9dd_79d64796",
@@ -114,6 +138,24 @@
       "side": 1,
       "message": "Currently since both of host_cid and profile_id are u16, they are interchangeable, so the code like this also works\n```\nlet profile_id \u003d host_cid;\n```\nI don\u0027t remember why I did this probably some data type juggling from previous iteration of the patch.",
       "parentUuid": "f754c9dd_79d64796",
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9eb1199f_1cb3d576",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:05:22Z",
+      "side": 1,
+      "message": "Not used since ProfileId now is enum so we need to build the profile_id explicitly",
+      "parentUuid": "39f733f7_2841da03",
       "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -155,6 +197,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "5908a227_ec5b541b",
+      "range": {
+        "startLine": 415,
+        "startChar": 36,
+        "endLine": 415,
+        "endChar": 39
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e96420c_674c0248",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:05:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a178d114_057ad6ef",
       "range": {
         "startLine": 415,
         "startChar": 36,
@@ -212,6 +278,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64d050b5_9d26f377",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:05:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "710059bb_79c061de",
+      "range": {
+        "startLine": 417,
+        "startChar": 36,
+        "endLine": 417,
+        "endChar": 41
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2027d3e_663b9223",
@@ -249,6 +339,30 @@
       "side": 1,
       "message": "Ack",
       "parentUuid": "b2027d3e_663b9223",
+      "range": {
+        "startLine": 418,
+        "startChar": 36,
+        "endLine": 418,
+        "endChar": 40
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6be07847_fc284e20",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:05:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "523e323c_6205450b",
       "range": {
         "startLine": 418,
         "startChar": 36,
@@ -306,6 +420,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a37a038_db41655f",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:05:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5dbb91ac_bae84061",
+      "range": {
+        "startLine": 661,
+        "startChar": 7,
+        "endLine": 661,
+        "endChar": 24
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ebf777f6_8f95b407",
@@ -353,6 +491,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3eb310b0_0365d4e6",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 868,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:05:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6f0d803_668498cd",
+      "range": {
+        "startLine": 868,
+        "startChar": 31,
+        "endLine": 868,
+        "endChar": 33
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b1f2f69_a4e3cd18",
@@ -376,6 +538,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7d8c97e_6302f842",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 390,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:05:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b1f2f69_a4e3cd18",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 390,
+        "endChar": 0
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "56143bff_47243958",
@@ -389,6 +575,30 @@
       "writtenOn": "2023-11-01T10:51:41Z",
       "side": 1,
       "message": "Please fix this WARNING reported by RustFormatter: Please reformat the following line(s) to:\n\nAnalyzer Description: Offers Rust formatting Suggestions\nOwner: chiw@google.com\n\nPlease reformat the following line(s) to:\n\n                    _ \u003d\u003e AclContent::None,\n                },\n                Err(_) \u003d\u003e AclContent::None,\n            },\n            _ \u003d\u003e AclContent::None,",
+      "range": {
+        "startLine": 391,
+        "startChar": 0,
+        "endLine": 395,
+        "endChar": 0
+      },
+      "revId": "daab71a2fa90244aa51f27ed850ed433e4e0db67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f3291a7_35ead061",
+        "filename": "floss/hcidoc/src/parser.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:05:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "56143bff_47243958",
       "range": {
         "startLine": 391,
         "startChar": 0,
