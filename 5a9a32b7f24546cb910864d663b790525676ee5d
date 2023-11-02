@@ -16,6 +16,29 @@
       "message": "hi Sungsoo, could you help for the API review and vote? thank you!",
       "revId": "5a9a32b7f24546cb910864d663b790525676ee5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bd7bc09_e49dee4f",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastMetadata.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-02T23:57:06Z",
+      "side": 1,
+      "message": "What are the valid range of RSSI if not 0x7F?\n\nPlease document it and use @IntRange",
+      "range": {
+        "startLine": 352,
+        "startChar": 12,
+        "endLine": 352,
+        "endChar": 42
+      },
+      "revId": "5a9a32b7f24546cb910864d663b790525676ee5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
