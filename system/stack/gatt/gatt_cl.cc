@@ -1127,7 +1127,10 @@ void gatt_process_mtu_rsp(tGATT_TCB& tcb, tGATT_CLCB* p_clcb, uint16_t len,
     if (tcb.pending_user_mtu_exchange_value > tcb.max_user_mtu) {
       tcb.max_user_mtu =
           std::min(tcb.pending_user_mtu_exchange_value, tcb.payload_size);
+    } else if (tcb.pending_user_mtu_exchange_value == 0) {
+      tcb.max_user_mtu = tcb.payload_size;
     }
+
     tcb.pending_user_mtu_exchange_value = 0;
 
     LOG_INFO("MTU Exchange resulted in: %d", tcb.payload_size);
