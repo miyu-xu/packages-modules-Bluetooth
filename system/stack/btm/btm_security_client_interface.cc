@@ -20,8 +20,11 @@
 #include "stack/include/security_client_callbacks.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
+#include "stack/btm/btm_sec_cb.h"
 
 static SecurityClientInterface security = {
+  .BTM_Sec_Init = BTM_Sec_Init,
+  .BTM_Sec_Free = BTM_Sec_Free,
   .BTM_SecAddDevice = BTM_SecAddDevice,
   .BTM_SecAddRmtNameNotifyCallback = BTM_SecAddRmtNameNotifyCallback,
   .BTM_SecDeleteDevice = BTM_SecDeleteDevice,
