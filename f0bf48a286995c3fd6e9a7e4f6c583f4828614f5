@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4de9f146_e0f0e906",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-11-02T04:12:06Z",
+      "side": 1,
+      "message": "Swapping line 730 and 738 so that the daemon updates its internal state machine before notifying upper layer.",
+      "range": {
+        "startLine": 730,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 27
+      },
+      "revId": "f0bf48a286995c3fd6e9a7e4f6c583f4828614f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b854030c_84fc4252",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-11-02T04:12:06Z",
+      "side": 1,
+      "message": "Whether the \u0027present\u0027 notification is being deferred until adapter is ready.",
+      "range": {
+        "startLine": 1049,
+        "startChar": 8,
+        "endLine": 1049,
+        "endChar": 50
+      },
+      "revId": "f0bf48a286995c3fd6e9a7e4f6c583f4828614f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
