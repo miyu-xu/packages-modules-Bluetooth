@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc4afd27_c3e78c6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-02T18:43:17Z",
+      "side": 1,
+      "message": "similar CL has been merged to aosp:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2813856\n\nwe can abandon this.",
+      "revId": "6f5a23304115935c55d674ee3d96453f898f20cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
