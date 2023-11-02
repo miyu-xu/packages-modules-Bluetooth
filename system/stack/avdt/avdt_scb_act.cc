@@ -687,11 +687,18 @@ void avdt_scb_hdl_setconfig_rsp(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
     // Delay reporting is sent before open request (i.e., in configured state).
     avdt_scb_snd_snk_delay_rpt_req(p_scb, p_data);
 
-    /* initiate open */
-    single.seid = p_scb->peer_seid;
-    tAVDT_SCB_EVT avdt_scb_evt;
-    avdt_scb_evt.msg.single = single;
-    avdt_scb_event(p_scb, AVDT_SCB_API_OPEN_REQ_EVT, &avdt_scb_evt);
+    if (!(p_scb->curr_cfg.psc_mask & AVDT_PSC_DELAY_RPT)) {
+      /* initiate open */
+      single.seid = p_scb->peer_seid;
+      tAVDT_SCB_EVT avdt_scb_evt;
+      avdt_scb_evt.msg.single = single;
+      avdt_scb_event(p_scb, AVDT_SCB_API_OPEN_REQ_EVT, &avdt_scb_evt);
+    } else {
+      alarm_set_on_mloop(p_scb->delay_report_timer,
+                         AVDT_DELAY_REPORT_TIMEOUT_MS,
+                         avdt_delay_report_timer_timeout, p_scb);
+    }
+
   }
 }
 
@@ -849,6 +856,7 @@ void avdt_scb_snd_delay_rpt_req(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
  *
  ******************************************************************************/
 void avdt_scb_hdl_delay_rpt_cmd(AvdtpScb* p_scb, tAVDT_SCB_EVT* p_data) {
+  alarm_cancel(p_scb->delay_report_timer);
   (*p_scb->stream_config.p_avdt_ctrl_cback)(
       avdt_scb_to_hdl(p_scb),
       p_scb->p_ccb ? p_scb->p_ccb->peer_addr : RawAddress::kEmpty,

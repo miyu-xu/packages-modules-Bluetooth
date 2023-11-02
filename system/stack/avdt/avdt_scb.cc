@@ -853,6 +853,8 @@ AvdtpScb* avdt_scb_alloc(uint8_t peer_id,
   for (int i = 0; i < AVDT_NUM_SEPS; i++, p_scb++) {
     if (!p_scb->allocated) {
       p_scb->Allocate(&avdtp_cb.ccb[peer_id], avdtp_stream_config);
+      p_scb->delay_report_timer =
+          alarm_new("avdt_scb.delay_report_timer");
       LOG_VERBOSE("%s: allocated (handle=%d, psc_mask:0x%x)", __func__,
                   p_scb->ScbHandle(), avdtp_stream_config.cfg.psc_mask);
       return p_scb;
@@ -885,6 +887,7 @@ void AvdtpScb::Allocate(AvdtpCcb* p_avdtp_ccb,
  ******************************************************************************/
 void avdt_scb_dealloc(AvdtpScb* p_scb, UNUSED_ATTR tAVDT_SCB_EVT* p_data) {
   LOG_VERBOSE("%s: hdl=%d", __func__, avdt_scb_to_hdl(p_scb));
+  alarm_free(p_scb->delay_report_timer);
   p_scb->Recycle();
 }
 
