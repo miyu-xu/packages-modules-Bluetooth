@@ -197,6 +197,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "520b49a2_5d4a6f92",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-11-02T05:15:12Z",
+      "side": 1,
+      "message": "Offline discussion: original design for TurningOff and Off is sound, we\u0027ll maintain existing behavior for them.",
+      "parentUuid": "b571b016_bbb1d92d",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b98dd6ea_8b6760f5",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 6
