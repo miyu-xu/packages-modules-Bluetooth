@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfca9a03_5e5d23b8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-02T22:17:53Z",
+      "side": 1,
+      "message": "Acknowledged, good to know !\n\nPlease see my other comment then",
+      "parentUuid": "3d55c3fc_e7710d33",
+      "range": {
+        "startLine": 7,
+        "startChar": 33,
+        "endLine": 7,
+        "endChar": 55
+      },
+      "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "127f03c3_847cf288",
@@ -84,6 +108,29 @@
       "writtenOn": "2023-11-02T22:14:47Z",
       "side": 1,
       "message": "FYI: If floss build failure valid, might have to check what\u0027s needed to ensure floss stays building correctly.",
+      "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bc32bfb_19051a8a",
+        "filename": "system/include/hardware/bt_gatt_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-02T22:17:53Z",
+      "side": 1,
+      "message": "Since 512 is defined by the spec, can you quote the spec chapter here in the comment so it\u0027s easier to find ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 28
+      },
       "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
