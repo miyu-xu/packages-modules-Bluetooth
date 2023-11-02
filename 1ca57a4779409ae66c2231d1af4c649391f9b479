@@ -16,6 +16,24 @@
       "message": "Could you assert that Bumble is correctly discovered ?",
       "revId": "1ca57a4779409ae66c2231d1af4c649391f9b479",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7501e7e_e7414cab",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StartDiscoveryTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-02T15:52:23Z",
+      "side": 1,
+      "message": "Yes, I could.\n\nI deterministically found that bumble advertises every 2 seconds resulting in a total of 7 inquiry responses.\n\nI was going to do this as a follow on CL by providing a second @Test within this file to ensure that a bumble response was received.\n\nThe idea behind splitting it up is to provide data separating the failure where the android stack successfully starts/stop inquiry from the possible lack of any inquiry responses that may occur\n\nThe lack of inquiry responses is a valid tests should the device be isolated in some fashion (in a sealed box, remote from any other transmitter, etc.)",
+      "parentUuid": "57697683_be63b5dd",
+      "revId": "1ca57a4779409ae66c2231d1af4c649391f9b479",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
