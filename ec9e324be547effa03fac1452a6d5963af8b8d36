@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43ade86f_0e93c21b",
+        "filename": "system/stack/btm/btm_sco.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-02T07:03:02Z",
+      "side": 1,
+      "message": "nit: how about add const, I can understand the reason why `\u0026` is dropped",
+      "revId": "ec9e324be547effa03fac1452a6d5963af8b8d36",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
