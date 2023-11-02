@@ -18,7 +18,6 @@
 
 #define LOG_TAG "bt_bta_gattc"
 
-#include <base/logging.h>
 #include <base/strings/string_number_conversions.h>
 #include <dirent.h>
 #include <sys/stat.h>
@@ -27,7 +26,10 @@
 #include <vector>
 
 #include "bta/gatt/bta_gattc_int.h"
-#include "osi/include/log.h"
+#include "gatt/database.h"
+#include "os/log.h"
+#include "stack/include/gattdefs.h"
+#include "types/bluetooth/uuid.h"
 
 using gatt::StoredAttribute;
 using std::string;
@@ -165,6 +167,67 @@ gatt::Database bta_gattc_hash_load(const Octet16& hash) {
   return bta_gattc_load_db(fname);
 }
 
+void StoredAttribute::SerializeStoredAttribute(const StoredAttribute& attr,
+                                               std::vector<uint8_t> bytes) {
+  size_t padding_needed = StoredAttribute::kSizeOnDisk;
+  // handle
+  bytes.push_back(attr.handle & 0xff);
+  bytes.push_back(attr.handle >> 8);
+  auto uuid = attr.type.To128BitLE();
+  bytes.insert(bytes.cend(), uuid.cbegin(), uuid.cend());
+  padding_needed -= sizeof(attr.handle) - sizeof(attr.type);
+
+  ASSERT(attr.type.Is16Bit());
+  switch (attr.type.As16Bit()) {
+    /* primary or secondary service definition */
+    case GATT_UUID_PRI_SERVICE:
+    case GATT_UUID_SEC_SERVICE:
+      uuid = attr.value.service.uuid.To128BitLE();
+      bytes.insert(bytes.cend(), uuid.cbegin(), uuid.cend());
+      bytes.push_back(attr.value.service.end_handle & 0xff);
+      bytes.push_back(attr.value.service.end_handle >> 8);
+      padding_needed -= sizeof(attr.value.service.uuid) -
+                        sizeof(attr.value.service.end_handle);
+      break;
+    case GATT_UUID_INCLUDE_SERVICE:
+      /* included service definition */
+      bytes.push_back(attr.value.included_service.handle & 0xff);
+      bytes.push_back(attr.value.included_service.handle >> 8);
+      padding_needed -= sizeof(attr.value.included_service.handle);
+      bytes.push_back(attr.value.included_service.end_handle & 0xff);
+      bytes.push_back(attr.value.included_service.end_handle >> 8);
+      padding_needed -= sizeof(attr.value.included_service.end_handle);
+      uuid = attr.value.included_service.uuid.To128BitLE();
+      bytes.insert(bytes.cend(), uuid.cbegin(), uuid.cend());
+      padding_needed -= sizeof(attr.value.included_service.uuid);
+      break;
+    case GATT_UUID_CHAR_DECLARE:
+      /* characteristic definition */
+      bytes.push_back(attr.value.characteristic.properties);
+      padding_needed -= sizeof(attr.value.characteristic.properties);
+      bytes.push_back(attr.value.characteristic.value_handle & 0xff);
+      bytes.push_back(attr.value.characteristic.value_handle >> 8);
+      padding_needed -= sizeof(attr.value.characteristic.value_handle);
+      uuid = attr.value.characteristic.uuid.To128BitLE();
+      bytes.insert(bytes.cend(), uuid.cbegin(), uuid.cend());
+      padding_needed -= sizeof(attr.value.characteristic.uuid);
+      break;
+    case GATT_UUID_CHAR_EXT_PROP:
+      /* for descriptor we store value only for
+       * «Characteristic Extended Properties» */
+      bytes.push_back(attr.value.characteristic_extended_properties & 0xff);
+      bytes.push_back(attr.value.characteristic_extended_properties >> 8);
+      padding_needed -= sizeof(attr.value.characteristic_extended_properties);
+      break;
+    default:
+      LOG_WARN("Unhandled type UUID %d", attr.type.As16Bit());
+  }
+  // padding
+  for (size_t i = 0; i < padding_needed; i++) {
+    bytes.push_back(0);
+  }
+}
+
 /*******************************************************************************
  *
  * Function         bta_gattc_store_db
@@ -201,7 +264,14 @@ static bool bta_gattc_store_db(const char* fname,
     return false;
   }
 
-  if (fwrite(attr.data(), sizeof(StoredAttribute), num_attr, fd) != num_attr) {
+  std::vector<uint8_t> db_bytes;
+  db_bytes.reserve(num_attr * StoredAttribute::kSizeOnDisk);
+  for (const auto attribute : attr) {
+    StoredAttribute::SerializeStoredAttribute(attribute, db_bytes);
+  }
+
+  if (fwrite(db_bytes.data(), sizeof(uint8_t), db_bytes.size(), fd) !=
+      db_bytes.size()) {
     LOG(ERROR) << __func__ << ": can't write GATT cache attributes: " << fname;
     fclose(fd);
     return false;

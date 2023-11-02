@@ -290,4 +290,81 @@ TEST(GattCacheTest,
   // LOG(ERROR) << " " << base::HexEncode(&attr, len);
   EXPECT_EQ(memcmp(binary_form, &attr, len), 0);
 }
+/* This test makes sure that Descriptor represented in StoredAttribute have
+ * proper binary format. */
+TEST(
+    GattCacheTest,
+    stored_attribute_serialized_to_binary_characteristic_extended_properties_test) {
+  StoredAttribute attr;
+
+  attr = {.handle = 0x0003,
+          .type = Uuid::FromString("2900"),
+          .value = {.characteristic_extended_properties = 0x0001}};
+
+  std::vector<uint8_t> serialized;
+  StoredAttribute::SerializeStoredAttribute(attr, serialized);
+
+  constexpr size_t len = StoredAttribute::kSizeOnDisk;
+  // clang-format off
+  uint8_t binary_form[len] = {
+      /*handle */ 0x03, 0x00,
+      /* type */ 0x00, 0x00, 0x29, 0x00, 0x00, 0x00, 0x10, 0x00, 0x80, 0x00, 0x00, 0x80, 0x5F, 0x9B, 0x34, 0xFB,
+      /* characteristic extended properties */ 0x01, 0x00,
+      /* clear padding    */ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+                             0x00, 0x00, 0x00, 0x00};
+  // clang-format on
+
+  // useful for debugging:
+  // LOG(ERROR) << " " << base::HexEncode(&attr, len);
+  EXPECT_EQ(memcmp(binary_form, serialized.data(), len), 0);
+}
+
+// Example from Bluetooth SPEC V5.2, Vol 3, Part G, APPENDIX B
+TEST(GattDatabaseTest, serialized_hash_test) {
+  DatabaseBuilder builder;
+  builder.AddService(0x0001, 0x0005, Uuid::From16Bit(0x1800), true);
+  builder.AddService(0x0006, 0x000D, Uuid::From16Bit(0x1801), true);
+  builder.AddService(0x000E, 0x0013, Uuid::From16Bit(0x1808), true);
+  builder.AddService(0x0014, 0xFFFF, Uuid::From16Bit(0x180F), false);
+
+  builder.AddCharacteristic(0x0002, 0x0003, Uuid::From16Bit(0x2A00), 0x0A);
+  builder.AddCharacteristic(0x0004, 0x0005, Uuid::From16Bit(0x2A01), 0x02);
+
+  builder.AddCharacteristic(0x0007, 0x0008, Uuid::From16Bit(0x2A05), 0x20);
+  builder.AddDescriptor(0x0009, Uuid::From16Bit(0x2902));
+  builder.AddCharacteristic(0x000A, 0x000B, Uuid::From16Bit(0x2B29), 0x0A);
+  builder.AddCharacteristic(0x000C, 0x000D, Uuid::From16Bit(0x2B2A), 0x02);
+
+  builder.AddIncludedService(0x000F, Uuid::From16Bit(0x180F), 0x0014, 0x0016);
+  builder.AddCharacteristic(0x0010, 0x0011, Uuid::From16Bit(0x2A18), 0xA2);
+  builder.AddDescriptor(0x0012, Uuid::From16Bit(0x2902));
+  builder.AddDescriptor(0x0013, Uuid::From16Bit(0x2900));
+
+  builder.AddCharacteristic(0x0015, 0x0016, Uuid::From16Bit(0x2A19), 0x02);
+
+  // set characteristic extended properties descriptor values
+  std::vector<uint16_t> descriptorValues = {0x0000};
+  builder.SetValueOfDescriptors(descriptorValues);
+
+  Database db = builder.Build();
+
+  auto serialized = db.Serialize();
+  std::vector<uint8_t> bytes;
+  for (auto attr : serialized) {
+    StoredAttribute::SerializeStoredAttribute(attr, bytes);
+  }
+  std::vector<StoredAttribute> attr_from_disk(serialized.size());
+  std::copy(bytes.cbegin(), bytes.cend(), (uint8_t*)attr_from_disk.data());
+  bool is_successful = false;
+  Database db_from_disk =
+      gatt::Database::Deserialize(attr_from_disk, &is_successful);
+  ASSERT_TRUE(is_successful);
+  is_successful = false;
+  Database db_from_serialized =
+      gatt::Database::Deserialize(serialized, &is_successful);
+  ASSERT_TRUE(is_successful);
+
+  EXPECT_EQ(db_from_disk.Hash(), db_from_serialized.Hash());
+}
+
 }  // namespace gatt
