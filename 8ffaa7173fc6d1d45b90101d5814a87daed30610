@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ae9ef75_60315418",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-02T13:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8ec1c3de_f9e76dbc",
+      "range": {
+        "startLine": 13,
+        "startChar": 10,
+        "endLine": 13,
+        "endChar": 67
+      },
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "652fd5e7_5faf2e7a",
@@ -125,6 +149,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2198190_65d26753",
+        "filename": "system/gd/rust/linux/mgmt/src/bluetooth_manager.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-02T13:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "abad4f45_026c55e4",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e73d33df_b4da5903",
@@ -138,6 +180,24 @@
       "writtenOn": "2023-11-01T02:05:48Z",
       "side": 1,
       "message": "The old state is TurningOff. Is this a bug fix or part of the new design?",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0114619c_f4a6eb68",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1397,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-02T13:13:22Z",
+      "side": 1,
+      "message": "Bug fix (wrong logging) as the commit message said.",
+      "parentUuid": "e73d33df_b4da5903",
       "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -209,6 +269,24 @@
       "side": 1,
       "message": "Offline discussion: original design for TurningOff and Off is sound, we\u0027ll maintain existing behavior for them.",
       "parentUuid": "b571b016_bbb1d92d",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a36730b_7db9ddcd",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1427,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-02T13:13:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "520b49a2_5d4a6f92",
       "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -314,6 +392,24 @@
       "side": 1,
       "message": "Hi Zhengping, PTAL https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2808096/comment/97a2e0d9_6d446d5b/\n\n\u003e What are the messages that would generated between these two calls,e.g. PidChange?\n\nIf the btadapterd got killed before a pid file is created, then no event. If not, a BluetoothStarted + a BluetoothStopped.",
       "parentUuid": "809d7aac_75e5fc2b",
+      "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e56d597_ed9e6378",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 1436,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-02T13:13:22Z",
+      "side": 1,
+      "message": "Marking this thread as resolved.",
+      "parentUuid": "ea36f669_bd96c284",
       "revId": "8ffaa7173fc6d1d45b90101d5814a87daed30610",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
