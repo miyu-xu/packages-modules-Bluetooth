@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0a8229e_dd46bb4a",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1463,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-02T23:56:51Z",
+      "side": 1,
+      "message": "Should we call stop here?",
+      "revId": "6e7c6cc884a3220d4b2beb0e92eccb4dfb86dce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
