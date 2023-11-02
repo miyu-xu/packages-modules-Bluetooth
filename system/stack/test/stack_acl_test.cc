@@ -21,7 +21,7 @@
 #include "common/init_flags.h"
 #include "stack/acl/acl.h"
 #include "stack/btm/btm_int_types.h"
-#include "stack/btm/btm_sec_cb.h"
+// #include "stack/btm/btm_sec_cb.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/acl_hci_link_interface.h"
@@ -30,7 +30,7 @@
 #include "types/raw_address.h"
 
 tBTM_CB btm_cb;
-tBTM_SEC_CB btm_sec_cb;
+// tBTM_SEC_CB btm_sec_cb;
 
 namespace {
 const char* test_flags[] = {
