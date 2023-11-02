@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "316cac55_fa4f797b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-02T10:32:51Z",
+      "side": 1,
+      "message": "LGTM! Need approval from code owners! Thanks for making hcidoc more useful!",
+      "revId": "d4c5236fd0329c2114969d7974872641708b1730",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
