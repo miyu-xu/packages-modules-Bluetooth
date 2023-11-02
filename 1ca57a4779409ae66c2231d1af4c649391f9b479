@@ -34,6 +34,29 @@
       "parentUuid": "57697683_be63b5dd",
       "revId": "1ca57a4779409ae66c2231d1af4c649391f9b479",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "659ddefc_e0014cd6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/StartDiscoveryTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-11-02T16:10:25Z",
+      "side": 1,
+      "message": "If the future is created after the intent `ACTION_DISCOVERY_FINISHED` is sent then we\u0027d hang forever. Could we consider using two Future instead ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 8,
+        "endLine": 76,
+        "endChar": 48
+      },
+      "revId": "1ca57a4779409ae66c2231d1af4c649391f9b479",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
