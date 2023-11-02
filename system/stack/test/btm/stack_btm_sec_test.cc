@@ -25,6 +25,7 @@
 #include <vector>
 
 #include "hci/hci_layer_mock.h"
+#include "stack/btm/btm_ble_int_types.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/btm/btm_sec_cb.h"
@@ -36,7 +37,7 @@
 using testing::Return;
 using testing::Test;
 
-extern tBTM_SEC_CB btm_sec_cb;
+// extern tBTM_SEC_CB btm_sec_cb;
 
 constexpr size_t kBtmSecMaxDeviceRecords =
     static_cast<size_t>(BTM_SEC_MAX_DEVICE_RECORDS + 1);

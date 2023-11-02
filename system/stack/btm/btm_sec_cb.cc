@@ -15,6 +15,8 @@
  *
  */
 
+#include <iostream>
+
 #include "stack/btm/btm_sec_cb.h"
 
 #include <cstdint>
@@ -25,15 +27,32 @@
 #include "stack/btm/security_device_record.h"
 #include "types/raw_address.h"
 
+// static_assert((size_t) (&(((tBTM_SEC_CB *) (NULL)) -> connecting_dc)) + sizeof(DEV_CLASS) <= sizeof(tBTM_SEC_CB));
+
+// static_assert(sizeof(tBTM_SEC_CB) == 2624);
+
+template<typename T, typename U> constexpr size_t offsetOf(U T::*member)
+{
+    return (size_t)&((T*)nullptr->*member) - 0;
+}
+
+// static_assert(offsetOf(&tBTM_SEC_CB::connecting_dc) + sizeof(DEV_CLASS) <= sizeof(tBTM_SEC_CB));
+
 void tBTM_SEC_CB::Init(uint8_t initial_security_mode) {
+
+  std::cout << "offset of tBTM_SEC_CB::connecting_dc: " << offsetOf(&tBTM_SEC_CB::connecting_dc) << std::endl;
+  std::cout << "offset of tBTM_SEC_CB::sec_serv_rec: " << offsetOf(&tBTM_SEC_CB::sec_serv_rec) << std::endl;
+
+  std::cout << sizeof(tBTM_SEC_CB) << std::endl;
+
+  // *this = {};
   memset(&cfg, 0, sizeof(cfg));
   memset(&devcb, 0, sizeof(devcb));
-  memset(&ble_ctr_cb, 0, sizeof(ble_ctr_cb));
   memset(&enc_rand, 0, sizeof(enc_rand));
   memset(&api, 0, sizeof(api));
   memset(&pin_code, 0, sizeof(pin_code));
   memset(sec_serv_rec, 0, sizeof(sec_serv_rec));
-
+  // sec_serv_rec = (tBTM_SEC_SERV_REC*) malloc(sizeof(tBTM_SEC_SERV_REC) * BTM_SEC_MAX_SERVICE_RECORDS);
   connecting_bda = RawAddress::kEmpty;
   memset(&connecting_dc, 0, sizeof(connecting_dc));
 
@@ -50,6 +69,7 @@ void tBTM_SEC_CB::Init(uint8_t initial_security_mode) {
     *((tBTM_SEC_DEV_REC*)ptr) = {};
     osi_free(ptr);
   });
+
 }
 
 void tBTM_SEC_CB::Free() {

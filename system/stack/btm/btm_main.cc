@@ -38,7 +38,7 @@
 /* Global BTM control block structure
 */
 tBTM_CB btm_cb;
-tBTM_SEC_CB btm_sec_cb;
+tBTM_SEC_CB btm_sec_cb{};
 
 /*******************************************************************************
  *
