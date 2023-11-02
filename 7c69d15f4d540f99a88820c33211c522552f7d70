@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "325a38b5_22838d41",
+        "filename": "system/stack/include/hcimsgs.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-02T23:41:56Z",
+      "side": 1,
+      "message": "Not `hci_data_direction_t` as per convention ?",
+      "revId": "7c69d15f4d540f99a88820c33211c522552f7d70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5a7c14e_e6249af3",
+        "filename": "system/stack/test/hci/stack_hci_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-02T23:41:56Z",
+      "side": 0,
+      "message": "Shoot...I think I got to this one first",
+      "revId": "a0d7938364b558c36d0bc72454697da54bf24056",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
