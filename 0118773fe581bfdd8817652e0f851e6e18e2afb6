@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e10ac430_c65a7732",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-11-02T16:13:51Z",
+      "side": 1,
+      "message": "Could we consider merging `CancelDiscoveryTest` and `StartDiscoveryTest` into one and unique file ? It will avoid code redundancy for the filters and the `ConnectionStateReceiver` and in the future if the intent changes it\u0027ll be easier to maintain.",
+      "revId": "0118773fe581bfdd8817652e0f851e6e18e2afb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83757c1f_d63acd0c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/CancelDiscoveryTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-11-02T16:13:51Z",
+      "side": 1,
+      "message": "If the future is created after the intent ACTION_DISCOVERY_FINISHED is sent then we\u0027d hang forever. Could we consider using two Future instead ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 7,
+        "endLine": 76,
+        "endChar": 48
+      },
+      "revId": "0118773fe581bfdd8817652e0f851e6e18e2afb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
