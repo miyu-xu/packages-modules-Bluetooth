@@ -1582,6 +1582,7 @@ void bta_av_save_caps(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   tAVDT_SEP_INFO* p_info = &p_scb->sep_info[p_scb->sep_info_idx];
   uint8_t old_wait = p_scb->wait;
   bool getcap_done = false;
+  tA2DP_CODEC_TYPE codec_type;
 
   LOG_VERBOSE(
       "%s: peer %s bta_handle:0x%x num_seps:%d sep_info_idx:%d wait:0x%x",
@@ -1591,6 +1592,41 @@ void bta_av_save_caps(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
               A2DP_CodecInfoString(p_scb->peer_cap.codec_info).c_str());
 
   cfg = p_scb->peer_cap;
+  codec_type = A2DP_GetCodecType(p_scb->peer_cap.codec_info);
+  APPL_TRACE_DEBUG("%s: codec_type: %x", __func__, codec_type);
+  if (codec_type == A2DP_MEDIA_CT_SBC) {
+      //minbitpool < 2, then set minbitpool = 2
+      if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) < A2DP_SBC_IE_MIN_BITPOOL) {
+        p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET] = A2DP_SBC_IE_MIN_BITPOOL;
+        APPL_TRACE_DEBUG("%s: Set min bitpool: %x", __func__,
+                             p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+      }
+
+      //minbitpool > 250, then set minbitpool = 250
+      if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) > A2DP_SBC_IE_MAX_BITPOOL) {
+          p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET] = A2DP_SBC_IE_MAX_BITPOOL;
+          APPL_TRACE_DEBUG("%s: Set min bitpool: %x", __func__,
+                               p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+      }
+
+      //maxbitpool > 250, then set maxbitpool = 250
+      if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]) > A2DP_SBC_IE_MAX_BITPOOL) {
+          p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET] = A2DP_SBC_IE_MAX_BITPOOL;
+          APPL_TRACE_DEBUG("%s: Set max bitpool: %x", __func__,
+                               p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]);
+      }
+
+      //minbitpool > maxbitpool, then set maxbitpool = minbitpool
+      if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) >
+            (p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET])) {
+          p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET] =
+                          p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET];
+          APPL_TRACE_WARNING("%s min bitpool value received for SBC is more than DUT supported Max bitpool"
+                              "Clamping the max bitpool configuration further from %d to %d.", __func__,
+                               p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET],
+                               p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+      }
+  }
   /* let application know the capability of the SNK */
   if (p_scb->p_cos->getcfg(p_scb->hndl, p_scb->PeerAddress(), cfg.codec_info,
                            &p_scb->sep_info_idx, p_info->seid, &cfg.num_protect,
@@ -1733,6 +1769,7 @@ void bta_av_getcap_results(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   AvdtpSepConfig cfg = p_scb->cfg;
   uint8_t media_type = A2DP_GetMediaType(p_scb->peer_cap.codec_info);
   tAVDT_SEP_INFO* p_info = &p_scb->sep_info[p_scb->sep_info_idx];
+  tA2DP_CODEC_TYPE codec_type;
 
   cfg.num_codec = 1;
   cfg.num_protect = p_scb->peer_cap.num_protect;
@@ -1747,6 +1784,41 @@ void bta_av_getcap_results(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   LOG_VERBOSE("%s: codec: %s", __func__,
               A2DP_CodecInfoString(p_scb->cfg.codec_info).c_str());
 
+  codec_type = A2DP_GetCodecType(p_scb->peer_cap.codec_info);
+  APPL_TRACE_DEBUG("%s: codec_type: %x", __func__, codec_type);
+  if (codec_type == A2DP_MEDIA_CT_SBC) {
+      //minbitpool < 2, then set minbitpool = 2
+      if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) < A2DP_SBC_IE_MIN_BITPOOL) {
+        p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET] = A2DP_SBC_IE_MIN_BITPOOL;
+        APPL_TRACE_DEBUG("%s: Set min bitpool: %x", __func__,
+                             p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+      }
+
+      //minbitpool > 250, then set minbitpool = 250
+      if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) > A2DP_SBC_IE_MAX_BITPOOL) {
+          p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET] = A2DP_SBC_IE_MAX_BITPOOL;
+          APPL_TRACE_DEBUG("%s: Set min bitpool: %x", __func__,
+                               p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+      }
+
+      //maxbitpool > 250, then set maxbitpool = 250
+      if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]) > A2DP_SBC_IE_MAX_BITPOOL) {
+          p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET] = A2DP_SBC_IE_MAX_BITPOOL;
+          APPL_TRACE_DEBUG("%s: Set max bitpool: %x", __func__,
+                               p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET]);
+      }
+
+      //minbitpool > maxbitpool, then set maxbitpool = minbitpool
+      if ((p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]) >
+            (p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET])) {
+          p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET] =
+                          p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET];
+          APPL_TRACE_WARNING("%s min bitpool value received for SBC is more than DUT supported Max bitpool"
+                              "Clamping the max bitpool configuration further from %d to %d.", __func__,
+                               p_scb->peer_cap.codec_info[A2DP_SBC_IE_MAX_BITPOOL_OFFSET],
+                               p_scb->peer_cap.codec_info[A2DP_SBC_IE_MIN_BITPOOL_OFFSET]);
+      }
+  }
   /* if codec present and we get a codec configuration */
   if ((p_scb->peer_cap.num_codec != 0) && (media_type == p_scb->media_type) &&
       (p_scb->p_cos->getcfg(p_scb->hndl, p_scb->PeerAddress(), cfg.codec_info,
