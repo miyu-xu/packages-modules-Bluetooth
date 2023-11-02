@@ -81,6 +81,30 @@
       },
       "revId": "6239df18c96ab41ffb14d99ff31cfb5b934dd85c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13fc2cd1_6fedb8ed",
+        "filename": "floss/hcidoc/packets/Cargo.toml",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-02T09:03:44Z",
+      "side": 1,
+      "message": "I got the error \n```\nthis version of Cargo is older than the `2023` edition, and only supports `2015`, `2018`, and `2021` editions.\n```\n\nProbably this is not what the edition field is for.\nSince I copied everything from the bt_packets crate which version is 2018, I\u0027m going to keep them as is.",
+      "parentUuid": "65ea2949_b1f4701f",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 15
+      },
+      "revId": "6239df18c96ab41ffb14d99ff31cfb5b934dd85c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
