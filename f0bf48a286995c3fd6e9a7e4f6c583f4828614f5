@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c5512ea_ad6d1e2f",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 740,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-02T13:10:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4de9f146_e0f0e906",
+      "range": {
+        "startLine": 730,
+        "startChar": 0,
+        "endLine": 740,
+        "endChar": 27
+      },
+      "revId": "f0bf48a286995c3fd6e9a7e4f6c583f4828614f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b854030c_84fc4252",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-02T04:12:06Z",
       "side": 1,
       "message": "Whether the \u0027present\u0027 notification is being deferred until adapter is ready.",
+      "range": {
+        "startLine": 1049,
+        "startChar": 8,
+        "endLine": 1049,
+        "endChar": 50
+      },
+      "revId": "f0bf48a286995c3fd6e9a7e4f6c583f4828614f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "158a6040_8227d692",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-02T13:10:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b854030c_84fc4252",
       "range": {
         "startLine": 1049,
         "startChar": 8,
