@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2b5eec7_25115a4a",
+        "filename": "android/app/res/values/strings.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-03T01:35:46Z",
+      "side": 1,
+      "message": "Should it be in `strings.xml` then? What about `config.xml` ?",
+      "range": {
+        "startLine": 257,
+        "startChar": 10,
+        "endLine": 257,
+        "endChar": 68
+      },
+      "revId": "85d17c0841b87a026b7adedc2ac4c9d11d4ca209",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
