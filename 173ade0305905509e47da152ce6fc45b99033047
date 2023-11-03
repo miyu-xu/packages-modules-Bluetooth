@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0094448b_4c770ef2",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1651,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-11-03T00:41:58Z",
+      "side": 1,
+      "message": "bt_swb should be Aptx codec FWIACT in this CL. Can you confirm @quic_skodisha@quicinc.com?",
+      "parentUuid": "970eacd2_e3b4e5e0",
+      "range": {
+        "startLine": 1651,
+        "startChar": 26,
+        "endLine": 1651,
+        "endChar": 32
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2c7f36e_65304e75",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 19

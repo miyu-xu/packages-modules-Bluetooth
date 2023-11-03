@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "82737c8b_5d4f1e00",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-11-03T00:41:58Z",
+      "side": 1,
+      "message": "nit: remove extra line",
+      "revId": "5be55d419287e8a2f70b91f07d4fad16c15c7656",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
