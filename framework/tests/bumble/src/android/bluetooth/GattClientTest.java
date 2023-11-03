@@ -30,6 +30,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import android.bluetooth.le.BluetoothLeScanner;
 import android.content.Context;
+import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -45,7 +46,12 @@ import org.mockito.InOrder;
 import org.mockito.invocation.Invocation;
 
 import java.util.Collection;
+import java.util.List;
 
+import pandora.GattProto.GattCharacteristicParams;
+import pandora.GattProto.GattServiceParams;
+import pandora.GattProto.RegisterServiceRequest;
+import pandora.GattProto.RegisterServiceResponse;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
 import pandora.HostProto.OwnAddressType;
@@ -56,6 +62,8 @@ public class GattClientTest {
     private static final int ANDROID_MTU = 517;
     private static final int MTU_REQUESTED = 23;
     private static final int ANOTHER_MTU_REQUESTED = 42;
+
+    private static final String GAP_UUID = "00001800-0000-1000-8000-00805f9b34fb";
 
     @ClassRule public static final AdoptShellPermissionsRule PERM = new AdoptShellPermissionsRule();
 
@@ -145,6 +153,165 @@ public class GattClientTest {
 
         gatt.close();
         verifyNoMoreInteractions(gattCallback);
+    }
+
+    @Test
+    public void clientGattDiscoverServices() throws Exception {
+        advertiseWithBumble();
+
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+        BluetoothGatt gatt = device.connectGatt(mContext, false, gattCallback);
+
+        try {
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+            gatt.discoverServices();
+            verify(gattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            boolean foundExpectedUUID = false;
+            for (BluetoothGattService cService : gatt.getServices()) {
+                // GAP uuid, provided by Pandora -- we should always find this
+                if (cService.getUuid().toString().equals(GAP_UUID)) {
+                    foundExpectedUUID = true;
+                }
+                Log.i(TAG, "Found service with uuid: " + cService.getUuid().toString());
+            }
+
+            assertThat(foundExpectedUUID).isTrue();
+
+        } finally {
+            gatt.disconnect();
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(
+                            any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+            gatt.close();
+        }
+    }
+
+    @Test
+    public void clientGattReadCharacteristics() throws Exception {
+        advertiseWithBumble();
+
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+        BluetoothGatt gatt = device.connectGatt(mContext, false, gattCallback);
+
+        try {
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+            gatt.discoverServices();
+            verify(gattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            BluetoothGattService firstService = gatt.getServices().get(0);
+
+            List<BluetoothGattCharacteristic> characteristics = firstService.getCharacteristics();
+
+            gatt.readCharacteristic(characteristics.get(0));
+
+            verify(gattCallback, timeout(1000)).onCharacteristicRead(any(), any(), any(), anyInt());
+
+        } finally {
+            gatt.disconnect();
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(
+                            any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+            gatt.close();
+        }
+    }
+
+    @Test
+    public void clientGattWriteCharacteristic() throws Exception {
+        registerWritableGattService();
+        advertiseWithBumble();
+
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+        BluetoothGatt gatt = device.connectGatt(mContext, false, gattCallback);
+
+        try {
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+            gatt.discoverServices();
+            verify(gattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            BluetoothGattService service = null;
+            BluetoothGattCharacteristic characteristic = null;
+
+            for (BluetoothGattService cService : gatt.getServices()) {
+                for (BluetoothGattCharacteristic cCharacteristic : cService.getCharacteristics()) {
+                    if ((cCharacteristic.getProperties()
+                                    & BluetoothGattCharacteristic.PROPERTY_WRITE)
+                            != 0) {
+                        service = cService;
+                        characteristic = cCharacteristic;
+                        break;
+                    }
+                }
+                if (characteristic != null) break;
+            }
+
+            byte[] newValue = new byte[1];
+            newValue[0] = (byte) 13;
+
+            gatt.writeCharacteristic(
+                    characteristic, newValue, BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);
+
+            verify(gattCallback, timeout(1000))
+                    .onCharacteristicWrite(
+                            any(), eq(characteristic), eq(BluetoothGatt.GATT_SUCCESS));
+
+        } finally {
+            gatt.disconnect();
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(
+                            any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+            gatt.close();
+        }
+    }
+
+    private void registerWritableGattService() {
+
+        String cUuidString = "11111111-1111-1111-1111-111111111111";
+        String sUuidString = "00000000-0000-0000-0000-000000000000";
+
+        GattCharacteristicParams cParams =
+                GattCharacteristicParams.newBuilder()
+                        .setProperties(BluetoothGattCharacteristic.PROPERTY_WRITE)
+                        .setUuid(cUuidString)
+                        .build();
+
+        GattServiceParams sParams =
+                GattServiceParams.newBuilder()
+                        .addCharacteristics(cParams)
+                        .setUuid(sUuidString)
+                        .build();
+
+        RegisterServiceRequest request =
+                RegisterServiceRequest.newBuilder().setService(sParams).build();
+
+        StreamObserverSpliterator<RegisterServiceResponse> responseObserver =
+                new StreamObserverSpliterator<>();
+
+        mBumble.gattBlocking().registerService(request);
     }
 
     private void advertiseWithBumble() {
