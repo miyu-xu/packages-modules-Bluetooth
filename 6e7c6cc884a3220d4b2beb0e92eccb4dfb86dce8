@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fff5e916_4a7f9960",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1404,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-03T00:00:04Z",
+      "side": 1,
+      "message": "TurningOn means pid file is not generated yet? What is the difference to set TurningOff and Off for this state?",
+      "revId": "6e7c6cc884a3220d4b2beb0e92eccb4dfb86dce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0a8229e_dd46bb4a",
         "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
         "patchSetId": 7
