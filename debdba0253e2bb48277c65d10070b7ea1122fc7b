@@ -16,6 +16,24 @@
       "message": "This is a real test failure:\n\nnet_test_stack_btm64.StackBtmSecWithInitFreeTest#btm_sec_encrypt_change\nCreation timestamp\t2023-11-02 03:26 UTC-7\nComplete timestamp\t2023-11-02 03:26 UTC-7\nElapsed time\t233 milliseconds\nStack trace\n\nThere were 3 failures:\n  No test results.\n\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\u003d\n\u003d\u003d869899\u003d\u003dERROR: AddressSanitizer: global-buffer-overflow on address 0x561ca93c3f90 at pc 0x561ca6c78783 bp 0x7ffde8c7ac70 sp 0x7ffde8c7a440\nWRITE of size 3 at 0x561ca93c3f90 thread T0\n    #0 0x561ca6c78782  (/tmp/bazel-test-suite.zip11232459614982430121/android-bazel-suite/out/atest_bazel_workspace/packages/modules/Bluetooth/system/stack/net_test_stack_btm/host/testcases/net_test_stack_btm/x86_64/net_test_stack_btm64+0x1b40782)",
       "revId": "debdba0253e2bb48277c65d10070b7ea1122fc7b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e6b2013_2448f3aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-03T20:51:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85517149_1d3ff9e5",
+      "revId": "debdba0253e2bb48277c65d10070b7ea1122fc7b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
