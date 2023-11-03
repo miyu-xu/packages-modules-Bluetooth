@@ -16,6 +16,24 @@
       "message": "nit: remove extra line",
       "revId": "5be55d419287e8a2f70b91f07d4fad16c15c7656",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3acc8c98_e5c52132",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-03T07:26:29Z",
+      "side": 1,
+      "message": "[FAILED] checkstyle_hook hook\n    Checkstyle ends with 1 errors.\n    Running Checkstyle on 5aa5649df4fb6e07015a31505219746bca9d232e commit\n    ERRORS:\n      [platform/packages/modules/Bluetooth] android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java:20:1: \u0027com.android.modules.utils.build.SdkLevel.isAtLeastU\u0027 should be separated from previous imports.\n\ncheckstyle does not like it together ;/ should I do it anyway?",
+      "parentUuid": "82737c8b_5d4f1e00",
+      "revId": "5be55d419287e8a2f70b91f07d4fad16c15c7656",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
