@@ -87,6 +87,30 @@
       },
       "revId": "588c8e91dbd94f18a4b06098e027d5e02289cfd6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c79606e5_1f89fcc2",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-03T01:56:18Z",
+      "side": 1,
+      "message": "yes, there is, onSourceLost is paired with onSourceFound(broadcastBluetoothLeBroadcastMetadata), and the broadcastId can be get from broadcastBluetoothLeBroadcastMetadata by API getBroadcastId(). when source is found and notified to app, we need more info about the source, while when source lost, we only needs the identifier.\n\nWe didn\u0027t notify onSourceLost() with the whole metadata is because when sync lost is triggered from native stack, we don\u0027t have all info to build metadata, and it also doesn\u0027t make that sense to fake one since the App only needs broadcast Id(the source identifier) to remove the stale source.",
+      "parentUuid": "8ecbe78c_3a4d5497",
+      "range": {
+        "startLine": 468,
+        "startChar": 18,
+        "endLine": 468,
+        "endChar": 29
+      },
+      "revId": "588c8e91dbd94f18a4b06098e027d5e02289cfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
