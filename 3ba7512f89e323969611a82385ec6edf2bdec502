@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c2d6119_bf31ab49",
+        "filename": "framework/tests/util/src/android/bluetooth/test_utils/TestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-03T05:01:48Z",
+      "side": 1,
+      "message": "Missed one ?",
+      "range": {
+        "startLine": 252,
+        "startChar": 8,
+        "endLine": 265,
+        "endChar": 9
+      },
+      "revId": "3ba7512f89e323969611a82385ec6edf2bdec502",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
