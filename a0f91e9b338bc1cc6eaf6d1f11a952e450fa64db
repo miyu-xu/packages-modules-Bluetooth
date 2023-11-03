@@ -94,6 +94,30 @@
       },
       "revId": "a0f91e9b338bc1cc6eaf6d1f11a952e450fa64db",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4d6e361_ad595fd6",
+        "filename": "system/gd/rust/common/src/init_flags.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-11-03T00:06:02Z",
+      "side": 1,
+      "message": "If aptx_voice flag is false, then the sysprop should not matter. (aptx_voice \u0026\u0026 aptx_swb_power_management) should be the mechanism to flag the mobile network code.",
+      "parentUuid": "8cbc5049_d90abb53",
+      "range": {
+        "startLine": 405,
+        "startChar": 8,
+        "endLine": 405,
+        "endChar": 18
+      },
+      "revId": "a0f91e9b338bc1cc6eaf6d1f11a952e450fa64db",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
