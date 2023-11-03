@@ -39,6 +39,30 @@
       },
       "revId": "588c8e91dbd94f18a4b06098e027d5e02289cfd6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c76ea281_ccfb42e4",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-03T00:34:12Z",
+      "side": 1,
+      "message": "A1) onSourceRemoved is the callback for removeSource, so app can request to remove the remote source and get the callback with status; onSourceLost is when the sync is lost with the remote source. e.g. remote source shut down or OOR. It\u0027s triggered from native stack layer.\n\nA2) both onSourceAdded and onSourceRemoved are used between broadcast assistant and sinks. the source Id info is from the remote sink devices receiver state. While onSourceLost is used between broadcast assistant and remote source, broadcastID is the one to represent the remote source. so if the operations are triggered from app layers for addSource or removeSource, we need the sink devices to confirm with source id. if operation is triggered from assistant native stack, app needs the broadcast id to decide if it should remove the target source, in this case no sink device involved.",
+      "parentUuid": "42acb186_db7ae865",
+      "range": {
+        "startLine": 468,
+        "startChar": 18,
+        "endLine": 468,
+        "endChar": 29
+      },
+      "revId": "588c8e91dbd94f18a4b06098e027d5e02289cfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
