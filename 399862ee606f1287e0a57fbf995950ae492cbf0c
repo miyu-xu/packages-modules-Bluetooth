@@ -16,6 +16,24 @@
       "message": "Remove",
       "revId": "399862ee606f1287e0a57fbf995950ae492cbf0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9e5a84b_0e8e6a64",
+        "filename": "system/stack/test/btm/stack_btm_sec_test.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-03T21:07:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1aa72907_fe4d0f2a",
+      "revId": "399862ee606f1287e0a57fbf995950ae492cbf0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
