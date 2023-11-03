@@ -30,6 +30,7 @@ import org.junit.rules.ExternalResource;
 import java.util.concurrent.TimeUnit;
 
 import pandora.DckGrpc;
+import pandora.GATTGrpc;
 import pandora.HostGrpc;
 import pandora.HostProto;
 import pandora.SecurityGrpc;
@@ -115,8 +116,19 @@ public final class PandoraDevice extends ExternalResource {
         return DckGrpc.newBlockingStub(mChannel);
     }
 
+<<<<<<< PATCH SET (0ff1c2 Add Bumble test for GATT Characteristic Read/Write)
+    /** Get Pandora GATT service */
+    public GATTGrpc.GATTStub gatt() {
+        return GATTGrpc.newStub(mChannel);
+    }
+
+    /** Get Pandora GATT blocking service */
+    public GATTGrpc.GATTBlockingStub gattBlocking() {
+        return GATTGrpc.newBlockingStub(mChannel);
+=======
     /** Get Pandora Security service */
     public SecurityGrpc.SecurityStub security() {
         return SecurityGrpc.newStub(mChannel);
+>>>>>>> BASE      (c50f9f Merge "Refactoring: Audio Routing Handler (Step 7)" into mai)
     }
 }
