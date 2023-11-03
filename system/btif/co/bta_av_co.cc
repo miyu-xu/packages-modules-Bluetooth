@@ -664,6 +664,13 @@ class BtaAvCo {
       const A2dpCodecConfig& codec_config, BtaAvCoPeer* p_peer);
 
   /**
+   * Let the HAL provider select codec configuration.
+   *
+   * @param p_peer the peer to use
+   */
+  const BtaAvCoSep* ProviderSelectSourceCodec(BtaAvCoPeer* p_peer);
+
+  /**
    * Check if a peer SEP has content protection enabled.
    *
    * @param p_sep the peer SEP to check
@@ -1849,6 +1856,48 @@ bool BtaAvCo::AudioSepHasContentProtection(const BtaAvCoSep* p_sep) {
   return true;
 }
 
+const BtaAvCoSep* BtaAvCo::ProviderSelectSourceCodec(BtaAvCoPeer* p_peer) {
+  const BtaAvCoSep* p_sink = nullptr;
+  std::vector<::bluetooth::audio::a2dp::a2dp_remote_capabilities>
+      a2dp_remote_caps_v;
+  // Get all codec capabilities into a vector
+  for (size_t index = 0; index < p_peer->num_sup_sinks; index++) {
+    p_sink = &p_peer->sinks[index];
+    LOG_VERBOSE("seid: %d, sep info idx: %d", p_sink->seid,
+                p_sink->sep_info_idx);
+    ::bluetooth::audio::a2dp::a2dp_remote_capabilities a2dp_remote_cap = {
+        .seid = p_sink->seid, .capabilities = p_sink->codec_caps};
+    LOG_VERBOSE("%s", a2dp_remote_cap.toString().c_str());
+    a2dp_remote_caps_v.push_back(a2dp_remote_cap);
+  }
+  // Pass all gathered codec capabilities to the provider
+  if (!a2dp_remote_caps_v.empty()) {
+    auto provider_a2dp_configuration =
+        ::bluetooth::audio::a2dp::get_a2dp_configuration(a2dp_remote_caps_v);
+
+    if (provider_a2dp_configuration.has_value()) {
+      ::bluetooth::audio::a2dp::a2dp_configuration a2dp_conf =
+          provider_a2dp_configuration.value();
+
+      LOG_INFO("Provider configuration: %s", a2dp_conf.toString().c_str());
+
+      // Find the peer Sink for the codec
+      p_sink = FindPeerSink(p_peer, a2dp_conf.codec_index);
+      if (p_sink == nullptr) {
+        // The peer Sink device does not support this codec
+        return p_sink;
+      }
+
+      p_peer->p_sink = p_sink;
+
+      SaveNewCodecConfig(p_peer, a2dp_conf.codec_config, p_sink->num_protect,
+                         p_sink->protect_info);
+    }
+  }
+
+  return p_sink;
+}
+
 const BtaAvCoSep* BtaAvCo::SelectSourceCodec(BtaAvCoPeer* p_peer) {
   const BtaAvCoSep* p_sink = nullptr;
 
@@ -1856,6 +1905,9 @@ const BtaAvCoSep* BtaAvCo::SelectSourceCodec(BtaAvCoPeer* p_peer) {
   // This is needed to update the selectable parameters for each codec.
   // NOTE: The selectable codec info is used only for informational purpose.
   UpdateAllSelectableSourceCodecs(p_peer);
+
+  p_sink = ProviderSelectSourceCodec(p_peer);
+  if (p_sink != nullptr) return p_sink;
 
   // Select the codec
   for (const auto& iter : p_peer->GetCodecs()->orderedSourceCodecs()) {
