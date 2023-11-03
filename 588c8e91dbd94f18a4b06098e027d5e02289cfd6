@@ -63,6 +63,30 @@
       },
       "revId": "588c8e91dbd94f18a4b06098e027d5e02289cfd6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ecbe78c_3a4d5497",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-03T01:17:33Z",
+      "side": 1,
+      "message": "Thanks you for the answers.\nHaving a broadcastId only here looks the API not very matched.\nI was expecting there would be some callback with broadcast ID that I can get when the remote source(?) created.\nWhat are the APIs that I can get the lost remove source with the broadcast ID?",
+      "parentUuid": "c76ea281_ccfb42e4",
+      "range": {
+        "startLine": 468,
+        "startChar": 18,
+        "endLine": 468,
+        "endChar": 29
+      },
+      "revId": "588c8e91dbd94f18a4b06098e027d5e02289cfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
