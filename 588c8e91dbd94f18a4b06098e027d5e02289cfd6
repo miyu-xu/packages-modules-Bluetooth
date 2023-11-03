@@ -16,6 +16,29 @@
       "message": "hi Sungsoo, could you help for the API review and vote? I\u0027ve also shared the new API design doc separately. thank you!",
       "revId": "588c8e91dbd94f18a4b06098e027d5e02289cfd6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42acb186_db7ae865",
+        "filename": "framework/java/android/bluetooth/BluetoothLeBroadcastAssistant.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-03T00:09:05Z",
+      "side": 1,
+      "message": "Q1) What\u0027s the different between onSourceRemoved and onSourceLost?\nQ2) onSourceAdded and onSourceRemoved use srouceId, but onSourceLost uses broadcastId. And it looks broadcastId is used in here only. How we can know which source it is with broadcastId (not sourceId) which is only used in this method?",
+      "range": {
+        "startLine": 468,
+        "startChar": 18,
+        "endLine": 468,
+        "endChar": 29
+      },
+      "revId": "588c8e91dbd94f18a4b06098e027d5e02289cfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
