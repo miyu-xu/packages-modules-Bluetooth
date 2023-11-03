@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c017bec8_6b48ec0a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4066,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-03T15:32:54Z",
+      "side": 1,
+      "message": "Thank you for pointing this out Rongxuan! I\u0027ll try to include it in next Patchset.",
+      "parentUuid": "b739db81_7956b295",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db944e62_543ebf01",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
