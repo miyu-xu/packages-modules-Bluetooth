@@ -16,6 +16,46 @@
       "message": "hi Sungsoo, could you help for the API review and vote? thank you!",
       "revId": "83a08eb7b4a2083409caf2d4093dd955c85a6779",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "754b778e_8786eb1d",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 654,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-03T00:02:39Z",
+      "side": 1,
+      "message": "Q) what happens if we call mVolumeControlNativeInterface.setVolume(device, volume) in this case?",
+      "revId": "83a08eb7b4a2083409caf2d4093dd955c85a6779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "026f6e47_d00cd96b",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-03T00:02:39Z",
+      "side": 1,
+      "message": "Is it true even it has a valid group id?",
+      "range": {
+        "startLine": 661,
+        "startChar": 24,
+        "endLine": 661,
+        "endChar": 88
+      },
+      "revId": "83a08eb7b4a2083409caf2d4093dd955c85a6779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
