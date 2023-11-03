@@ -190,6 +190,30 @@
       },
       "revId": "06d327fc26055505b88ea2a49ab743e3567e79c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b34835f9_c203deec",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetHalConstants.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-03T17:26:07Z",
+      "side": 1,
+      "message": "Acknowledged\n\nSince there is no msbc we shouldn\u0027t block for AptX Voice too I guess",
+      "parentUuid": "c9020107_48e52129",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 45
+      },
+      "revId": "06d327fc26055505b88ea2a49ab743e3567e79c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
