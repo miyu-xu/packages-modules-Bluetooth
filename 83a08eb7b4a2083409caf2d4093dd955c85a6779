@@ -143,6 +143,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ec4be1fe_97b7104f",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-03T02:03:54Z",
+      "side": 1,
+      "message": "I see your point, to avoid the confusion, maybe I can update the log message and change \u0027warning\u0027 to \u0027info\u0027 to be something like:\nLog.i(TAG, \"Setting individual device volume\");\n\nBut I\u0027d prefer to keep this log here, setting per device volume is some new use case which we\u0027d like to pay attention to, I\u0027d like to make sure this is logged in case debug level is omitted.",
+      "parentUuid": "86565b32_137dcd93",
+      "range": {
+        "startLine": 661,
+        "startChar": 24,
+        "endLine": 661,
+        "endChar": 88
+      },
+      "revId": "83a08eb7b4a2083409caf2d4093dd955c85a6779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "943353a9_e83fdd1e",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 4
