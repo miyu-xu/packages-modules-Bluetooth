@@ -30,6 +30,7 @@ import org.junit.rules.ExternalResource;
 import java.util.concurrent.TimeUnit;
 
 import pandora.DckGrpc;
+import pandora.GATTGrpc;
 import pandora.HostGrpc;
 import pandora.HostProto;
 import pandora.SecurityGrpc;
@@ -113,6 +114,16 @@ public final class PandoraDevice extends ExternalResource {
     /** Get Pandora Dck blocking service */
     public DckGrpc.DckBlockingStub dckBlocking() {
         return DckGrpc.newBlockingStub(mChannel);
+    }
+
+    /** Get Pandora GATT service */
+    public GATTGrpc.GATTStub gatt() {
+        return GATTGrpc.newStub(mChannel);
+    }
+
+    /** Get Pandora GATT blocking service */
+    public GATTGrpc.GATTBlockingStub gattBlocking() {
+        return GATTGrpc.newBlockingStub(mChannel);
     }
 
     /** Get Pandora Security service */
