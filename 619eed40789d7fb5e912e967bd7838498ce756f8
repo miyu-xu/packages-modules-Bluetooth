@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a12ad4c4_ebec065b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-03T03:05:15Z",
+      "side": 1,
+      "message": "Patchset 7/8 summaries:\n\n- Commit message revised\n- Fix action_stop_bluetooth - TurningOn should be no-op\n- action_restart_bluetooth - Only affect TurningOn/On",
+      "revId": "619eed40789d7fb5e912e967bd7838498ce756f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

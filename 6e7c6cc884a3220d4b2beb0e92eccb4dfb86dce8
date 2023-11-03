@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff54482e_61b97bb1",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1404,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-03T03:05:15Z",
+      "side": 1,
+      "message": "`TurningOff` means \"waiting for pid file to be deleted\". But in this state we can\u0027t be sure whether the pid file is created or not, so we shouldn\u0027t set `TurningOff`.\n\nThis reminds me that per the current design, `stop` a `TurningOn` adapter should be no-op: `TurningOn` belongs to a disabled state, while the client shouldn\u0027t disable a disabled adapter.\n\nI\u0027m fixing this in this patch as well. (This should be something in https://r.android.com/c/2808093, but it\u0027s already merged)",
+      "parentUuid": "fff5e916_4a7f9960",
+      "revId": "6e7c6cc884a3220d4b2beb0e92eccb4dfb86dce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0a8229e_dd46bb4a",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-11-02T23:56:51Z",
       "side": 1,
       "message": "Should we call stop here?",
+      "revId": "6e7c6cc884a3220d4b2beb0e92eccb4dfb86dce8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "809a01b6_61f35896",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 7
+      },
+      "lineNbr": 1463,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-03T03:05:15Z",
+      "side": 1,
+      "message": "Thanks for catching this!",
+      "parentUuid": "b0a8229e_dd46bb4a",
       "revId": "6e7c6cc884a3220d4b2beb0e92eccb4dfb86dce8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
