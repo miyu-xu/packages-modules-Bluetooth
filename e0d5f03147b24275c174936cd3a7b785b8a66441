@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3f840b28_6a2f3dd0",
+        "filename": "system/bta/gatt/bta_gattc_db_storage.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-03T19:36:04Z",
+      "side": 1,
+      "message": "@cmanton@google.com This padding byte was a tricky one, but I saw it flip in the tests.",
+      "range": {
+        "startLine": 202,
+        "startChar": 8,
+        "endLine": 202,
+        "endChar": 44
+      },
+      "revId": "e0d5f03147b24275c174936cd3a7b785b8a66441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
