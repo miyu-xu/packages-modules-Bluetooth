@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d48b214_32792416",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4120,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-03T15:38:12Z",
+      "side": 1,
+      "message": "This scenario would make no sense if there is not set listening mode. But maybe to be sure that this handover feature would not have any impact it\u0027ll be a good idea to put this also under flag.",
+      "parentUuid": "db944e62_543ebf01",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f0d66b81_ee2afa07",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
