@@ -22,6 +22,23 @@
       },
       "revId": "e0d5f03147b24275c174936cd3a7b785b8a66441",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d7bb48f_c04d8488",
+        "filename": "system/bta/gatt/database.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-03T20:04:59Z",
+      "side": 1,
+      "message": "Can we formulate this based on the sizes of some fields? instead of hardcoding it this way?",
+      "revId": "e0d5f03147b24275c174936cd3a7b785b8a66441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
