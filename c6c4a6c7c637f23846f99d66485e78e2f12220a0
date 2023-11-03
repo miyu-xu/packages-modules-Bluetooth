@@ -16,6 +16,23 @@
       "message": "Hi, please review this CL. Thanks!",
       "revId": "c6c4a6c7c637f23846f99d66485e78e2f12220a0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f00f2122_4ade95ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-03T05:50:00Z",
+      "side": 1,
+      "message": "Hi Chris, kind ping. Thanks.",
+      "revId": "c6c4a6c7c637f23846f99d66485e78e2f12220a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
