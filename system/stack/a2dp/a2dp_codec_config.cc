@@ -670,15 +670,16 @@ bool A2dpCodecs::init() {
     LOG_ERROR("%s: no Source codecs were initialized", __func__);
   } else {
     for (auto iter : ordered_source_codecs_) {
-      LOG_INFO("%s: initialized Source codec %s", __func__,
-               iter->name().c_str());
+      LOG_INFO("%s: initialized Source codec %s, idx %d", __func__,
+               iter->name().c_str(), iter->codecIndex());
     }
   }
   if (ordered_sink_codecs_.empty()) {
     LOG_ERROR("%s: no Sink codecs were initialized", __func__);
   } else {
     for (auto iter : ordered_sink_codecs_) {
-      LOG_INFO("%s: initialized Sink codec %s", __func__, iter->name().c_str());
+      LOG_INFO("%s: initialized Sink codec %s, idx %d", __func__,
+               iter->name().c_str(), iter->codecIndex());
     }
   }
 

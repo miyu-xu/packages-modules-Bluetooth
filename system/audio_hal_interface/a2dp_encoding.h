@@ -98,11 +98,42 @@ struct a2dp_configuration {
   std::vector<uint8_t> codec_config;
   btav_a2dp_codec_config_t codec_parameters;
   std::vector<uint8_t> vendor_specific_parameters;
+
+  inline std::string toString() const {
+    std::ostringstream os;
+    os << "A2dpConfiguration{";
+    os << "remote_seid: " << remote_seid;
+    os << "codec_index: " << codec_index;
+    os << ", codec_config: {";
+    for (int i = 0; i < AVDT_CODEC_SIZE; i++) {
+      os << std::hex << std::setw(2) << std::setfill('0')
+         << static_cast<int>(codec_config[i]);
+    }
+    os << "}";
+    os << "}";
+    return os.str();
+  }
 };
 
 struct a2dp_remote_capabilities {
   int seid;
   uint8_t const* capabilities;
+
+  inline std::string toString() const {
+    std::ostringstream os;
+    os << "A2dpRemoteCapabilities{";
+    os << "seid: " << seid;
+    os << ", capabilities: {";
+    if (capabilities != nullptr) {
+      for (int i = 0; i < AVDT_CODEC_SIZE; i++) {
+        os << std::hex << std::setw(2) << std::setfill('0')
+           << static_cast<int>(capabilities[i]);
+      }
+    }
+    os << "}";
+    os << "}";
+    return os.str();
+  }
 };
 
 // Query the codec selection fromt the audio HAL.
