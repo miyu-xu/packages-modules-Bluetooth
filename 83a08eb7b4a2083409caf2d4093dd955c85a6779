@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7a847dd_52935fc6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-03T01:12:48Z",
+      "side": 1,
+      "message": "LGTM for the added APIs.",
+      "revId": "83a08eb7b4a2083409caf2d4093dd955c85a6779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "754b778e_8786eb1d",
@@ -90,6 +107,30 @@
       "side": 1,
       "message": "yes, there would be the case that one bud should also have valid group id. But from this API, we allow the app to set per device volume even when the device has a valid group id.",
       "parentUuid": "026f6e47_d00cd96b",
+      "range": {
+        "startLine": 661,
+        "startChar": 24,
+        "endLine": 661,
+        "endChar": 88
+      },
+      "revId": "83a08eb7b4a2083409caf2d4093dd955c85a6779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86565b32_137dcd93",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 661,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-03T01:12:48Z",
+      "side": 1,
+      "message": "It has a valid group id, but it is not a part of the group.\nThis makes me confused.\n\nAlso, if we need to warn this whenever isGroupOp is false, why do we get isGroupOp arg? I think this shouldn\u0027t be a warning log and the log in L637 would be enough.",
+      "parentUuid": "ea997f4e_392c04a4",
       "range": {
         "startLine": 661,
         "startChar": 24,
