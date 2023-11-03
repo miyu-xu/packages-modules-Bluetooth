@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b790d382_e7ce28bf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-11-03T00:43:21Z",
+      "side": 1,
+      "message": "Do we need tests for LC3 using SWB? I see only Aptx tests here.",
+      "revId": "d72867c8d46e1ce217ccdcdcbe44dd2ab97a303d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
