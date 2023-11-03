@@ -22,6 +22,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.runner.AndroidJUnit4;
@@ -33,6 +34,11 @@ import com.google.common.util.concurrent.SettableFuture;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
+
+import pandora.HostProto.DiscoverabilityMode;
+import pandora.HostProto.SetDiscoverabilityModeRequest;
 
 /** Test cases for {@link DeviceDiscoveryManager}. */
 @RunWith(AndroidJUnit4.class)
@@ -50,6 +56,29 @@ public class DeviceDiscoveryTest {
 
     @Rule public final PandoraDevice mBumble = new PandoraDevice();
 
+    public class DeviceFoundData {
+        BluetoothDevice mBluetoothDevice;
+        BluetoothClass mBluetoothClass;
+        String mName;
+        Short mRssi;
+        String mIsCoordinatedSetMember;
+
+        public DeviceFoundData(
+                BluetoothDevice bluetoothDevice,
+                BluetoothClass bluetoothClass,
+                String name,
+                Short rssi,
+                String isCoordinatedSetMember) {
+            mBluetoothDevice = bluetoothDevice;
+            mBluetoothClass = bluetoothClass;
+            mName = name;
+            mRssi = rssi;
+            mIsCoordinatedSetMember = isCoordinatedSetMember;
+        }
+    }
+
+    private ArrayList<DeviceFoundData> mDeviceFoundData;
+
     private BroadcastReceiver mConnectionStateReceiver =
             new BroadcastReceiver() {
                 @Override
@@ -61,6 +90,16 @@ public class DeviceDiscoveryTest {
                             intent.getAction())) {
                         mFutureDiscoveryFinishedIntent.set(
                                 BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+                    } else if (BluetoothDevice.ACTION_FOUND.equals(intent.getAction())) {
+                        mDeviceFoundData.add(
+                                new DeviceFoundData(
+                                        intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE),
+                                        intent.getParcelableExtra(BluetoothDevice.EXTRA_CLASS),
+                                        intent.getStringExtra(BluetoothDevice.EXTRA_NAME),
+                                        intent.getShortExtra(
+                                                BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE),
+                                        intent.getStringExtra(
+                                                BluetoothDevice.EXTRA_IS_COORDINATED_SET_MEMBER)));
                     }
                 }
             };
@@ -104,5 +143,38 @@ public class DeviceDiscoveryTest {
                 .isEqualTo(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
 
         mContext.unregisterReceiver(mConnectionStateReceiver);
+    }
+
+    @Test
+    public void checkDeviceIsDiscoveredTest() throws Exception {
+        mFutureDiscoveryStartedIntent = SettableFuture.create();
+        mFutureDiscoveryFinishedIntent = SettableFuture.create();
+        mDeviceFoundData = new ArrayList<DeviceFoundData>();
+
+        // Ensure remote device is discoverable
+        mBumble.hostBlocking()
+                .setDiscoverabilityMode(
+                        SetDiscoverabilityModeRequest.newBuilder()
+                                .setMode(DiscoverabilityMode.DISCOVERABLE_GENERAL)
+                                .build());
+
+        IntentFilter filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+        filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        filter.addAction(BluetoothDevice.ACTION_FOUND);
+        mContext.registerReceiver(mConnectionStateReceiver, filter);
+
+        assertThat(mAdapter.startDiscovery()).isTrue();
+        assertThat(mFutureDiscoveryStartedIntent.get())
+                .isEqualTo(BluetoothAdapter.ACTION_DISCOVERY_STARTED);
+
+        // Wait for device discovery to complete
+        assertThat(mFutureDiscoveryFinishedIntent.get())
+                .isEqualTo(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+
+        mContext.unregisterReceiver(mConnectionStateReceiver);
+
+        // Ensure we received at least one inquiry response
+        assertThat(!mDeviceFoundData.isEmpty());
+        Log.i(TAG, "Found inquiry results count:" + mDeviceFoundData.size());
     }
 }
