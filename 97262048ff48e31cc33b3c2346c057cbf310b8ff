@@ -69,6 +69,24 @@
       "parentUuid": "f1f9020d_dbf5dc6b",
       "revId": "97262048ff48e31cc33b3c2346c057cbf310b8ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3965e21c_30b3da8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-03T07:10:20Z",
+      "side": 1,
+      "message": "I wanted to abandon this change for aconfig flag, I think we don\u0027t need it anymore?",
+      "parentUuid": "bf40d6c5_fb11f090",
+      "revId": "97262048ff48e31cc33b3c2346c057cbf310b8ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
