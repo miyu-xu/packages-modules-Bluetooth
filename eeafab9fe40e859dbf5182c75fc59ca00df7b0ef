@@ -22,6 +22,30 @@
       },
       "revId": "eeafab9fe40e859dbf5182c75fc59ca00df7b0ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "977bcfba_7c6c0d80",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexClientSession.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-03T00:15:12Z",
+      "side": 1,
+      "message": "Reverted the change.\nJust for readability since mCallback shouldn\u0027t be null here.",
+      "parentUuid": "95735b6e_14530b02",
+      "range": {
+        "startLine": 230,
+        "startChar": 12,
+        "endLine": 232,
+        "endChar": 36
+      },
+      "revId": "eeafab9fe40e859dbf5182c75fc59ca00df7b0ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

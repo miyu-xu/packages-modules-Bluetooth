@@ -22,6 +22,30 @@
       },
       "revId": "3ccce24c7bf519ae034f5e1b7c7eaccffd27210a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04cd5292_3b5fe872",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexClientSession.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-03T00:15:12Z",
+      "side": 0,
+      "message": "This is used in the mThread. So it should be null when it finishes.",
+      "parentUuid": "fe60ff5e_09c321b2",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 25
+      },
+      "revId": "3ccce24c7bf519ae034f5e1b7c7eaccffd27210a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
