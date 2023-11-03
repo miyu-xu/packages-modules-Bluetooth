@@ -22,6 +22,30 @@
       },
       "revId": "019e429fad538a1842b07016a132e0cb687bb458",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f133570_46f0d697",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1272,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-03T07:38:12Z",
+      "side": 1,
+      "message": "Don\u0027t we end up in A2dpCodecExt::setCodecConfig from another than acceptor path as well? For example wouldn\u0027t user config trigger this function as well?",
+      "parentUuid": "20aa4356_b7fbecac",
+      "range": {
+        "startLine": 1251,
+        "startChar": 0,
+        "endLine": 1272,
+        "endChar": 3
+      },
+      "revId": "019e429fad538a1842b07016a132e0cb687bb458",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
