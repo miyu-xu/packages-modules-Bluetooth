@@ -277,6 +277,10 @@ class A2dpCodecs {
   // Returns the Source codec if found, otherwise nullptr.
   A2dpCodecConfig* findSourceCodecConfig(const uint8_t* p_codec_info);
 
+  // Finds the Source codec that corresponds to the A2DP codec index.
+  // Returns the Source codec if found, otherwise nullptr.
+  A2dpCodecConfig* findSourceCodecConfig(btav_a2dp_codec_index_t codec_index);
+
   // Finds the Sink codec that corresponds to the A2DP over-the-air
   // |p_codec_info| information.
   // Returns the Sink codec if found, otherwise nullptr.
@@ -291,6 +295,12 @@ class A2dpCodecs {
   // no codec is selected.
   A2dpCodecConfig* getCurrentCodecConfig() const {
     return current_codec_config_;
+  }
+
+  // Selects the codec config.
+  // /!\ Must only be used with offloaded codecs.
+  void setCurrentCodecConfig(A2dpCodecConfig *codec_config) {
+    current_codec_config_ = codec_config;
   }
 
   // Gets the list of Source codecs ordered by priority: higher priority first.

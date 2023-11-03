@@ -341,7 +341,9 @@ bool btif_a2dp_source_init(void) {
 
 static void btif_a2dp_source_init_delayed(void) {
   LOG_INFO("%s", __func__);
-  // Nothing to do
+  if (true /* XXX flag */) {
+    bluetooth::audio::a2dp::init(&btif_a2dp_source_thread);
+  }
 }
 
 bool btif_a2dp_source_startup(void) {
