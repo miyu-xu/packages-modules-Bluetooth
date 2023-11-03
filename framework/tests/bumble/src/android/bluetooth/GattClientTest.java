@@ -44,6 +44,7 @@ import org.mockito.InOrder;
 import org.mockito.invocation.Invocation;
 
 import java.util.Collection;
+import java.util.List;
 
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
@@ -141,6 +142,122 @@ public class GattClientTest {
 
         gatt.close();
         verifyNoMoreInteractions(gattCallback);
+    }
+
+    @Test
+    public void clientGattDiscoverServices() throws Exception {
+        advertiseWithBumble();
+
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        for (int i = 0; i < 3; i++) {
+            BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+            BluetoothGatt gatt = device.connectGatt(mContext, false, gattCallback);
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+            gatt.discoverServices();
+            verify(gattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            gatt.disconnect();
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(
+                            any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+            gatt.close();
+        }
+    }
+
+    @Test
+    public void clientGattReadCharacteristics() throws Exception {
+        advertiseWithBumble();
+
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        for (int i = 0; i < 3; i++) {
+            BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+            BluetoothGatt gatt = device.connectGatt(mContext, false, gattCallback);
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+            gatt.discoverServices();
+            verify(gattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            BluetoothGattService firstService = gatt.getServices().get(0);
+
+            List<BluetoothGattCharacteristic> characteristics = firstService.getCharacteristics();
+
+            gatt.readCharacteristic(characteristics.get(0));
+
+            verify(gattCallback, timeout(1000)).onCharacteristicRead(any(), any(), any(), anyInt());
+
+            gatt.disconnect();
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(
+                            any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+            gatt.close();
+        }
+    }
+
+    @Test
+    public void clientGattWriteCharacteristic() throws Exception {
+        advertiseWithBumble();
+
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        for (int i = 0; i < 3; i++) {
+            BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+            BluetoothGatt gatt = device.connectGatt(mContext, false, gattCallback);
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+            gatt.discoverServices();
+            verify(gattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            BluetoothGattService service = null;
+            BluetoothGattCharacteristic characteristic = null;
+
+            for (BluetoothGattService cService : gatt.getServices()) {
+                for (BluetoothGattCharacteristic cCharacteristic : cService.getCharacteristics()) {
+                    if ((cCharacteristic.getProperties()
+                                    & BluetoothGattCharacteristic.PROPERTY_WRITE)
+                            != 0) {
+                        service = cService;
+                        characteristic = cCharacteristic;
+                        break;
+                    }
+                }
+                if (characteristic != null) break;
+            }
+
+            if (characteristic != null) {
+                byte[] newValue = new byte[1];
+                newValue[0] = (byte) 13;
+
+                gatt.writeCharacteristic(
+                        characteristic, newValue, BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);
+
+                verify(gattCallback, timeout(1000))
+                        .onCharacteristicWrite(any(), any(), eq(BluetoothGatt.GATT_SUCCESS));
+            }
+
+            gatt.disconnect();
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(
+                            any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+            gatt.close();
+        }
     }
 
     private void advertiseWithBumble() {
