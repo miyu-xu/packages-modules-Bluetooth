@@ -17,6 +17,7 @@
 package com.android.bluetooth.hfp;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+
 import static com.android.modules.utils.build.SdkLevel.isAtLeastU;
 
 import android.annotation.RequiresPermission;
@@ -34,6 +35,7 @@ import android.media.AudioManager;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.PhoneStateListener;
@@ -162,6 +164,8 @@ public class HeadsetStateMachine extends StateMachine {
 
     private BluetoothSinkAudioPolicy mHsClientAudioPolicy;
 
+    private final boolean mSupportLc3SwbProperty;
+
     // Keys are AT commands, and values are the company IDs.
     private static final Map<String, Integer> VENDOR_SPECIFIC_AT_COMMAND_COMPANY_ID;
 
@@ -209,6 +213,8 @@ public class HeadsetStateMachine extends StateMachine {
             Log.i(TAG, "Audio Policy found in database!");
             mHsClientAudioPolicy = storedAudioPolicy;
         }
+
+        mSupportLc3SwbProperty = SystemProperties.getBoolean("bluetooth.hfp.support_lc3_swb", true);
 
         // Create phonebook helper
         mPhonebook = new AtPhonebook(mHeadsetService, mNativeInterface);
@@ -1640,7 +1646,11 @@ public class HeadsetStateMachine extends StateMachine {
                 + " Name=" + getCurrentDeviceName()
                 + " hasNrecEnabled=" + mHasNrecEnabled
                 + " hasWbsEnabled=" + mHasWbsEnabled);
-        am.setParameters("bt_lc3_swb=" + (mHasSwbEnabled ? "on" : "off"));
+        if (mSupportLc3SwbProperty) {
+            am.setParameters("bt_lc3_swb=" + (mHasSwbEnabled ? "on" : "off"));
+        } else {
+            am.setParameters("bt_swb=" + (mHasSwbEnabled ? "on" : "off"));
+        }
         am.setBluetoothHeadsetProperties(getCurrentDeviceName(), mHasNrecEnabled, mHasWbsEnabled);
     }
 
