@@ -56,6 +56,52 @@
       },
       "revId": "83a08eb7b4a2083409caf2d4093dd955c85a6779",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "943353a9_e83fdd1e",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-03T00:03:03Z",
+      "side": 1,
+      "message": "my previous experience about hidden API is `@hide`, no `{}`, for example, [LeAudioService.java](https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;l\u003d99?q\u003d@hide\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main)",
+      "range": {
+        "startLine": 716,
+        "startChar": 7,
+        "endLine": 716,
+        "endChar": 14
+      },
+      "revId": "83a08eb7b4a2083409caf2d4093dd955c85a6779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77f384ef_e2fd3085",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 718,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-03T00:03:03Z",
+      "side": 1,
+      "message": "nit: maybe add a description",
+      "range": {
+        "startLine": 718,
+        "startChar": 14,
+        "endLine": 718,
+        "endChar": 20
+      },
+      "revId": "83a08eb7b4a2083409caf2d4093dd955c85a6779",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
