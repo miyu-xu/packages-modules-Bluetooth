@@ -22,6 +22,30 @@
       },
       "revId": "3ba7512f89e323969611a82385ec6edf2bdec502",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f0eb64b7_ced9ccc1",
+        "filename": "framework/tests/util/src/android/bluetooth/test_utils/TestUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-04T01:01:25Z",
+      "side": 1,
+      "message": "this was not kept there because `BluetoothCtsServiceConnector` is not deprecated yet, but I do have to fix the Error Prone finding.",
+      "parentUuid": "2c2d6119_bf31ab49",
+      "range": {
+        "startLine": 252,
+        "startChar": 8,
+        "endLine": 265,
+        "endChar": 9
+      },
+      "revId": "3ba7512f89e323969611a82385ec6edf2bdec502",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
