@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "029ba153_c274b878",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 24
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-04T03:40:00Z",
+      "side": 1,
+      "message": "This need to be static now (we got a regression by having it shared)",
+      "range": {
+        "startLine": 425,
+        "startChar": 9,
+        "endLine": 425,
+        "endChar": 34
+      },
+      "revId": "4675260f863ec8bdeeba0df0dc5faf70e10aa3ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
