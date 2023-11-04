@@ -21,6 +21,12 @@
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
 
+enum tBLE_RAND_ADDRESS_TYPE : uint8_t {
+  BTM_BLE_ADDR_PSEUDO = 0,  // non-resolvable random private address
+  BTM_BLE_ADDR_RRA = 1,     // resolvable random private address
+  BTM_BLE_ADDR_STATIC = 2,  // random static address
+};
+
 /*******************************************************************************
  *
  * Function         btm_ble_init_pseudo_addr
