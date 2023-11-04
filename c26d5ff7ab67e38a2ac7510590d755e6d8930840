@@ -22,6 +22,30 @@
       },
       "revId": "c26d5ff7ab67e38a2ac7510590d755e6d8930840",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dab52a25_bb69bf9f",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-04T00:28:07Z",
+      "side": 1,
+      "message": "Never mind.  You did it correctly.",
+      "parentUuid": "a58a59cc_e3dc97bf",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 32
+      },
+      "revId": "c26d5ff7ab67e38a2ac7510590d755e6d8930840",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
