@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3fcaea2_efa7a91e",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-04T00:57:20Z",
+      "side": 1,
+      "message": "Should we move this after the definition of LOG_TAG?",
+      "revId": "bbe63130cd6cb89ce8e4d63e54bdaf0e381955c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
