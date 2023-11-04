@@ -16,6 +16,24 @@
       "message": "Not `hci_data_direction_t` as per convention ?",
       "revId": "7c69d15f4d540f99a88820c33211c522552f7d70",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "543afb39_da060a4f",
+        "filename": "system/stack/include/hcimsgs.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-04T00:44:46Z",
+      "side": 1,
+      "message": "Good point.  When we have PDL, there will be no such thing, so I wasn\u0027t worried about it.  Since there\u0027s a merge conflict, I\u0027ll fix it.",
+      "parentUuid": "325a38b5_22838d41",
+      "revId": "7c69d15f4d540f99a88820c33211c522552f7d70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
