@@ -1231,9 +1231,9 @@ class CsisClientImpl : public CsisClient {
     }
 
     DLOG(INFO) << __func__ << " LTK "
-               << base::HexEncode(p_dev_rec->ble.keys.pltk.data(), 16);
+               << base::HexEncode(p_dev_rec->ble_key_info.keys.pltk.data(), 16);
     DLOG(INFO) << __func__ << " IRK "
-               << base::HexEncode(p_dev_rec->ble.keys.irk.data(), 16);
+               << base::HexEncode(p_dev_rec->ble_key_info.keys.irk.data(), 16);
 
     /* Calculate salt CSIS d1.0r05 4.3 */
     Octet16 zero_key;
@@ -1248,9 +1248,10 @@ class CsisClientImpl : public CsisClient {
 
     /* Create K = LTK */
     DLOG(INFO) << "K (le) "
-               << base::HexEncode(p_dev_rec->ble.keys.pltk.data(), 16) << "\n";
+               << base::HexEncode(p_dev_rec->ble_key_info.keys.pltk.data(), 16)
+               << "\n";
 
-    Octet16 T = crypto_toolbox::aes_cmac(s1, p_dev_rec->ble.keys.pltk);
+    Octet16 T = crypto_toolbox::aes_cmac(s1, p_dev_rec->ble_key_info.keys.pltk);
     DLOG(INFO) << "T (le)" << base::HexEncode(T.data(), 16) << "\n";
 
     std::string msg2 = "csis";
