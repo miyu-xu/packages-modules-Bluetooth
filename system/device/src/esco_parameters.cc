@@ -21,6 +21,9 @@
 #include "base/logging.h"
 #include "check.h"
 #include "hci/controller.h"
+#ifdef __ANDROID__
+#include <com_android_bluetooth_flags.h>
+#endif
 
 static const enh_esco_params_t default_esco_parameters[ESCO_NUM_CODECS] = {
     // CVSD D1
@@ -299,8 +302,17 @@ enh_esco_params_t esco_parameters_for_codec(esco_codec_t codec, bool offload) {
   bluetooth::hci::Controller controller;
   auto codecIds = controller.GetLocalSupportedBrEdrCodecIds();
 
-  if (std::find(codecIds.begin(), codecIds.end(), ESCO_CODING_FORMAT_LC3) ==
-      codecIds.end()) {
+  bool use_dsp_when_controller_not_support = false;
+#ifdef __ANDROID__
+  use_dsp_when_controller_not_support = com::android::bluetooth::flags::
+      use_dsp_codec_when_controller_does_not_support();
+  LOG_INFO("use_dsp_codec_when_controller_does_not_support = %s",
+           use_dsp_when_controller_not_support ? "true" : "false");
+#endif
+
+  if (use_dsp_when_controller_not_support &&
+      std::find(codecIds.begin(), codecIds.end(), ESCO_CODING_FORMAT_LC3) ==
+          codecIds.end()) {
     LOG_INFO("BT controller does not support LC3, use DSP codec instead");
     if (codec == ESCO_CODEC_LC3_T1 || codec == ESCO_CODEC_LC3_T2) {
       enh_esco_params_t param = default_esco_parameters[codec];
