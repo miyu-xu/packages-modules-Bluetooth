@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd606c7f_a596456c",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 18
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-05T06:43:28Z",
+      "side": 1,
+      "message": "Automatic test worked.\nNeed to validate behavior first to merge",
+      "range": {
+        "startLine": 206,
+        "startChar": 12,
+        "endLine": 223,
+        "endChar": 13
+      },
+      "revId": "d2d4e9d6cba249535bdd9f64add29132860d8825",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
