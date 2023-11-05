@@ -24,6 +24,8 @@
 
 #define LOG_TAG "ble"
 
+#include "stack/include/btm_ble_addr.h"
+
 #include <base/functional/bind.h>
 #include <string.h>
 

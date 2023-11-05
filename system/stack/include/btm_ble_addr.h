@@ -50,3 +50,18 @@ bool btm_identity_addr_to_random_pseudo_from_address_with_type(
     tBLE_BD_ADDR* address_with_type, bool refresh);
 
 bool maybe_resolve_address(RawAddress* bda, tBLE_ADDR_TYPE* bda_type);
+
+/* BLE address mapping with CS feature */
+bool btm_random_pseudo_to_identity_addr(RawAddress* random_pseudo,
+                                        tBLE_ADDR_TYPE* p_identity_addr_type);
+void btm_ble_refresh_peer_resolvable_private_addr(const RawAddress& pseudo_bda,
+                                                  const RawAddress& rra,
+                                                  tBLE_RAND_ADDR_TYPE type);
+bool btm_ble_read_resolving_list_entry(tBTM_SEC_DEV_REC* p_dev_rec);
+
+bool btm_ble_addr_resolvable(const RawAddress& rpa,
+                             tBTM_SEC_DEV_REC* p_dev_rec);
+
+void btm_ble_resolving_list_load_dev(tBTM_SEC_DEV_REC& p_dev_rec);
+void btm_ble_resolving_list_remove_dev(tBTM_SEC_DEV_REC* p_dev_rec);
+void btm_ble_resolving_list_init(uint8_t max_irk_list_sz);

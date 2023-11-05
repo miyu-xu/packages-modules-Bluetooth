@@ -30,9 +30,10 @@
 #include "main/shim/acl_api.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
-#include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/include/bt_octets.h"
+#include "stack/include/btm_api.h"
+#include "stack/include/btm_ble_addr.h"
 #include "types/raw_address.h"
 
 extern tBTM_CB btm_cb;
