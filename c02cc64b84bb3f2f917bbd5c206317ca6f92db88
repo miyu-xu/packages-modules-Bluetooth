@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "80ad3c25_8b2c21f9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1944471
+      },
+      "writtenOn": "2023-11-05T14:51:42Z",
+      "side": 1,
+      "message": "Hi Sungsoo, could you help with the API review vote?",
+      "revId": "c02cc64b84bb3f2f917bbd5c206317ca6f92db88",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
