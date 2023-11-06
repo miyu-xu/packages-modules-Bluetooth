@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d47c1b99_a5de4d90",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2019,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-06T21:18:55Z",
+      "side": 1,
+      "message": "I think it would be better to put an INFO/WARNING log here to know what kind of command does not have `\u003d` sign to help possible debug",
+      "range": {
+        "startLine": 2019,
+        "startChar": 12,
+        "endLine": 2019,
+        "endChar": 31
+      },
+      "revId": "62785c101e0cfcd6e59aaa40f17a39b45cbbcd6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97b61c0f_87fe7a8e",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-06T21:18:55Z",
+      "side": 1,
+      "message": "Previously, there is a `return` statement, so command without `\u003d` will not hit `broadcastVendorSpecificEventIntent`.\nNow, with this change, if it is a `VENDOR_SPECIFIC_AT_COMMAND_COMPANY_ID` without `\u003d` sign, it will hit `broadcastVendorSpecificEventIntent`. \nIs this an intentional change? if it is, then maybe add a feature flag:)",
+      "range": {
+        "startLine": 2020,
+        "startChar": 12,
+        "endLine": 2020,
+        "endChar": 21
+      },
+      "revId": "62785c101e0cfcd6e59aaa40f17a39b45cbbcd6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b9c0815_628a26a8",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadset.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-06T21:18:55Z",
+      "side": 1,
+      "message": "nit: from the code, we know \"+CGMI\" is asking for `MANUFACTURER` information, so maybe we can put it in the comment? This would possibly make code more readable :) Same for following commands\nWelcome other people\u0027s idea as well.",
+      "range": {
+        "startLine": 274,
+        "startChar": 7,
+        "endLine": 274,
+        "endChar": 35
+      },
+      "revId": "62785c101e0cfcd6e59aaa40f17a39b45cbbcd6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
