@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e8548f0_4edbd31c",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-06T10:57:38Z",
+      "side": 1,
+      "message": "For the sake of stability, could we please not share the mutable, static global-scoped variables/instances between the tests? Could we just put it into the class which implements `testing::Test` and limit its life time to a single test life time?\n\nI noticed that `ccc_stored_byte_val_` got in already without being noticed, but let\u0027s not put any more of these if not necessary.",
+      "range": {
+        "startLine": 95,
+        "startChar": 13,
+        "endLine": 95,
+        "endChar": 27
+      },
+      "revId": "f5d714d259681fe789d13d38f0867157ab9a671e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
