@@ -45,6 +45,7 @@ cc_library_static {
     ],
     whole_static_libs: [
         "bluetooth_flags_c_lib",
+        "server_configurable_flags",
     ],
     // TODO(mcchou): Remove socket_utils sources after platform specific
     // dependencies are abstracted.
