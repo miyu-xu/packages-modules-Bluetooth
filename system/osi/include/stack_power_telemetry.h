@@ -30,6 +30,7 @@ struct PowerTelemetryImpl;
 class PowerTelemetry {
  public:
   PowerTelemetry();
+  ~PowerTelemetry();
 
   void RecordLogDataContainer();
   void LogScanStarted();
