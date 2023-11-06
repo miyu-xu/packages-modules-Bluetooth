@@ -22,6 +22,30 @@
       },
       "revId": "081bbc2f1e51827497917b4dc5ed6a9457522dc4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8114b5f_b445c170",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-06T22:54:08Z",
+      "side": 1,
+      "message": "This is the strange part. I think some library indirectly included `androidx.test.ext.junit`, but I think if we  have a direct dependency to it, shouldn\u0027t we add it here as well?",
+      "parentUuid": "cab74146_92d99804",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 34
+      },
+      "revId": "081bbc2f1e51827497917b4dc5ed6a9457522dc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
