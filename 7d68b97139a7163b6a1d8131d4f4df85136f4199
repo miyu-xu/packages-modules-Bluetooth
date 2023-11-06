@@ -46,6 +46,30 @@
       },
       "revId": "7d68b97139a7163b6a1d8131d4f4df85136f4199",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7b27a52_2808f653",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1652,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-06T21:30:25Z",
+      "side": 1,
+      "message": "I send a access request for the doc attached in the bug. I will take a look. Thanks for the information!",
+      "parentUuid": "83175c78_78a9ecc6",
+      "range": {
+        "startLine": 1652,
+        "startChar": 30,
+        "endLine": 1652,
+        "endChar": 36
+      },
+      "revId": "7d68b97139a7163b6a1d8131d4f4df85136f4199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
