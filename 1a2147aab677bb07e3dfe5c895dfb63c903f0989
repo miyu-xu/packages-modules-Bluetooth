@@ -16,6 +16,24 @@
       "message": "Hi Eric,\n\nWe are no longer turning flag on using init_flags.\nWe need to migrate this to a trunk stable flag and to launch a progressive ramp-up (with a/b testing) there",
       "revId": "1a2147aab677bb07e3dfe5c895dfb63c903f0989",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "048a9c57_400e26ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T19:39:05Z",
+      "side": 1,
+      "message": "See go/android-flags, and go/bt-flags.\n\nLet me know if you need more explanation on it.\n\nYou can find example of native flag here: aosp/2798893\n(Lucky you, you should not have to change a lot of stuff in bp since this first CL did it for you)",
+      "parentUuid": "d35daa5f_107a81ff",
+      "revId": "1a2147aab677bb07e3dfe5c895dfb63c903f0989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
