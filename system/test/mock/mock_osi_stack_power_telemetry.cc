@@ -51,6 +51,7 @@ namespace osi_stack_power_telemetry {}  // namespace osi_stack_power_telemetry
 struct power_telemetry::PowerTelemetryImpl {};
 
 power_telemetry::PowerTelemetry::PowerTelemetry() {}
+power_telemetry::PowerTelemetry::~PowerTelemetry() {}
 
 void power_telemetry::PowerTelemetry::RecordLogDataContainer() {
   inc_func_call_count(__func__);
