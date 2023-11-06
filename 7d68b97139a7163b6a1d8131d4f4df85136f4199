@@ -22,6 +22,30 @@
       },
       "revId": "7d68b97139a7163b6a1d8131d4f4df85136f4199",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83175c78_78a9ecc6",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1652,
+      "author": {
+        "id": 1727487
+      },
+      "writtenOn": "2023-11-06T21:03:01Z",
+      "side": 1,
+      "message": "It is true that QCOM\u0027s default implementation uses Aptx. However I modified this on our device in ag/25191108: https://screenshot.googleplex.com/68Z647ACmdJYWXE\n\nRegardless, `bt_lc3_swb` is also not correct for QCOM since that is specific to using LC3 encoder/decoder in the SWB and is different from raw PCM, which is want we want to do in the bug tagged to this CL.\n\n`bt_swb` sounds correct to me, and what QCOM does of it in their proprietary code with Aptx is up to them I would say.",
+      "parentUuid": "bc330168_e5eca1b9",
+      "range": {
+        "startLine": 1652,
+        "startChar": 30,
+        "endLine": 1652,
+        "endChar": 36
+      },
+      "revId": "7d68b97139a7163b6a1d8131d4f4df85136f4199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
