@@ -1,0 +1,19 @@
+//############################################################
+// Bluetooth Robolectric test target.                        #
+//############################################################
+
+// Include the testing libraries
+
+//include $(BUILD_STATIC_JAVA_LIBRARY)
+
+//############################################################
+// Bluetooth runner target to run the previous target.       #
+//############################################################
+
+// ANDROIDMK TRANSLATION ERROR: unsupported assignment to LOCAL_TEST_PACKAGE
+// LOCAL_TEST_PACKAGE := Bluetooth
+
+// ANDROIDMK TRANSLATION ERROR: unsupported assignment to LOCAL_INSTRUMENT_SOURCE_DIRS
+// LOCAL_INSTRUMENT_SOURCE_DIRS := $(dir $(LOCAL_PATH))../src
+
+//include external/robolectric-shadows/run_robotests.mk
