@@ -34,6 +34,29 @@
       "parentUuid": "d35daa5f_107a81ff",
       "revId": "1a2147aab677bb07e3dfe5c895dfb63c903f0989",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d21b9db_0a875c69",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T19:40:12Z",
+      "side": 1,
+      "message": "Mmmm why do we want to have an additional sysprop that toggle this ?\n\nIn which scenario this should be disabled ?",
+      "range": {
+        "startLine": 160,
+        "startChar": 32,
+        "endLine": 160,
+        "endChar": 65
+      },
+      "revId": "1a2147aab677bb07e3dfe5c895dfb63c903f0989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
