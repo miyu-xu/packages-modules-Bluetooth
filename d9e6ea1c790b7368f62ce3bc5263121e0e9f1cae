@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f150de7_67a6b4cb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-06T22:07:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55feb490_226a26fd",
+      "range": {
+        "startLine": 54,
+        "startChar": 36,
+        "endLine": 54,
+        "endChar": 49
+      },
+      "revId": "d9e6ea1c790b7368f62ce3bc5263121e0e9f1cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52b199e0_31281ac1",
@@ -96,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74106246_092dd53e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-06T22:07:05Z",
+      "side": 1,
+      "message": "Should we synchronize on the queue object?",
+      "parentUuid": "52b199e0_31281ac1",
+      "range": {
+        "startLine": 56,
+        "startChar": 25,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "d9e6ea1c790b7368f62ce3bc5263121e0e9f1cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae07b6d7_fd64f677",
         "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
         "patchSetId": 1
@@ -107,6 +155,30 @@
       "writtenOn": "2023-09-19T17:55:36Z",
       "side": 1,
       "message": "If we want to create a abstraction to store intent for device, I would go one step further and have a constructor that take everything needed.\n* The context to register.\n* The list of device we are interested\n* The list of intent to listen for\n\nthen the abstraction is reponsible for registering, adding the priority, the filter etc...\n\n**BUT**\n\nEven with above modification, this pattern looks very weird to me.",
+      "range": {
+        "startLine": 64,
+        "startChar": 24,
+        "endLine": 64,
+        "endChar": 52
+      },
+      "revId": "d9e6ea1c790b7368f62ce3bc5263121e0e9f1cae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a450258_f09c0580",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-06T22:07:05Z",
+      "side": 1,
+      "message": "Per offline chat, some more thoughts are needed for this particular design.",
+      "parentUuid": "ae07b6d7_fd64f677",
       "range": {
         "startLine": 64,
         "startChar": 24,
