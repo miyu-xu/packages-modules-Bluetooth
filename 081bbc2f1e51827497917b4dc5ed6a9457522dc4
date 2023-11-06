@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab74146_92d99804",
+        "filename": "framework/tests/bumble/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-11-06T22:43:28Z",
+      "side": 1,
+      "message": "Is the lib necessary ? `androidx.test.ext.junit.runners.AndroidJUnit4` is already imported in the Kotlin file and it is working properly",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 34
+      },
+      "revId": "081bbc2f1e51827497917b4dc5ed6a9457522dc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
