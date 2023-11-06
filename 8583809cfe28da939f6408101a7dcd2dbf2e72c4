@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51a0f3ea_5edebf42",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-06T20:25:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a75b556_4195372d",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 8
+      },
+      "revId": "8583809cfe28da939f6408101a7dcd2dbf2e72c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c75bef9c_250b798f",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-06T04:59:59Z",
       "side": 1,
       "message": "suggestion: add the full intent without the `DeviceFoundData` wrapper",
+      "range": {
+        "startLine": 95,
+        "startChar": 32,
+        "endLine": 102,
+        "endChar": 97
+      },
+      "revId": "8583809cfe28da939f6408101a7dcd2dbf2e72c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "843399b9_871d10cb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DeviceDiscoveryTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-06T20:25:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c75bef9c_250b798f",
       "range": {
         "startLine": 95,
         "startChar": 32,
