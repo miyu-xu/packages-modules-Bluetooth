@@ -43,6 +43,9 @@ cc_library_static {
         "fluoride_defaults",
         "fluoride_osi_defaults",
     ],
+    shared_libs: [
+        "server_configurable_flags",
+    ],
     whole_static_libs: [
         "bluetooth_flags_c_lib",
     ],
