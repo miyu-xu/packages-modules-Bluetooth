@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "026ceea2_775157ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-06T18:15:58Z",
+      "side": 1,
+      "message": "Canary flag for trivial fix to prototype my understanding of flagging",
+      "revId": "7faa63621ee4580f9d6c5c78e101a53c01b3d473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
