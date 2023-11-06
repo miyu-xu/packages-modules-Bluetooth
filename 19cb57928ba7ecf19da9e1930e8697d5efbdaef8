@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f08e614_a064c5a1",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexClientSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-06T05:46:12Z",
+      "side": 1,
+      "message": "How can we ensure that `mCallback` is not accessed anymore?",
+      "range": {
+        "startLine": 234,
+        "startChar": 12,
+        "endLine": 234,
+        "endChar": 29
+      },
+      "revId": "19cb57928ba7ecf19da9e1930e8697d5efbdaef8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
