@@ -95,6 +95,7 @@ cc_library_static {
     static_libs: [
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
+        "server_configurable_flags",
     ],
 }
 
