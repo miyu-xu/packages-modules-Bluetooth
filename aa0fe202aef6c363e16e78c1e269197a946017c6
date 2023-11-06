@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "959d11c5_32dfa363",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T19:30:12Z",
+      "side": 1,
+      "message": "Cleanup done with aosp/2816000",
+      "parentUuid": "6670c8e4_0c7b66eb",
+      "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2bda919_c1b19e99",
@@ -90,6 +108,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16c8799e_8eb32de3",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T19:30:12Z",
+      "side": 1,
+      "message": "FYI, You can run these test on a virtual device after setting the correct system properties",
+      "parentUuid": "4eaad839_a83a64f4",
+      "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e95c524b_e682166e",
         "filename": "system/bta/le_audio/le_audio_client_test.cc",
         "patchSetId": 8
@@ -101,6 +137,24 @@
       "writtenOn": "2023-11-06T12:00:16Z",
       "side": 1,
       "message": "would be great to have a way to always run those tests as it was before this change.",
+      "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b53ba825_d18ec95b",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T19:30:12Z",
+      "side": 1,
+      "message": "I agree, it would be great.\n\nUnfortunately I don\u0027t have time to dig into the native implementation of our stack to identify the correct structure to pass the flag around.\n\nIf you know where to inject it, please do, I will be happy to be added as a reviewer if needed",
+      "parentUuid": "e95c524b_e682166e",
       "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
