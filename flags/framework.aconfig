@@ -6,3 +6,10 @@ flag {
     description: "Support more device types in bt device metadata"
     bug: "289584302"
 }
+
+flag {
+    name: "keep_stopped_media_browser_service"
+    namespace: "backstage_power"
+    description: "Do not start stopped media browser services"
+    bug: "238433770"
+}
