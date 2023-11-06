@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec0f24b_45cc8c4f",
+        "filename": "system/audio_hal_interface/aidl/le_audio_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 462,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-06T17:02:34Z",
+      "side": 1,
+      "message": "now we have \"Config\" struct with parameter name `stack_capability`.\n\nEither this is `stack_config` or maybe struct name should be different?",
+      "range": {
+        "startLine": 462,
+        "startChar": 24,
+        "endLine": 462,
+        "endChar": 40
+      },
+      "revId": "c47abea9600dbc15ecdec860ae57fa1f76d5edd0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
