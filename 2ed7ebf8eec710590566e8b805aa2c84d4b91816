@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "658c4b63_881ae187",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-06T15:47:29Z",
+      "side": 1,
+      "message": "We could log this outside the try catch block",
+      "range": {
+        "startLine": 496,
+        "startChar": 12,
+        "endLine": 505,
+        "endChar": 50
+      },
+      "revId": "2ed7ebf8eec710590566e8b805aa2c84d4b91816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f413f10_313bd56a",
+        "filename": "framework/java/android/bluetooth/MetricsUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-06T15:47:29Z",
+      "side": 1,
+      "message": "You seem to have missing imports here - eg: IBluetooth",
+      "revId": "2ed7ebf8eec710590566e8b805aa2c84d4b91816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "236d8deb_ac36a844",
+        "filename": "framework/java/android/bluetooth/MetricsUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-06T15:47:29Z",
+      "side": 1,
+      "message": "lets just call it `SocketMetrics` instead. Eventually we might have a lot of metrics stuff and this file might get out of hand that way.",
+      "revId": "2ed7ebf8eec710590566e8b805aa2c84d4b91816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48db426b_dbd65924",
+        "filename": "framework/java/android/bluetooth/MetricsUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-06T15:47:29Z",
+      "side": 1,
+      "message": "lets keep it package protected and not public. \n\n(We don\u0027t need it to be API public).",
+      "revId": "2ed7ebf8eec710590566e8b805aa2c84d4b91816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a70da68_55919bbb",
+        "filename": "framework/java/android/bluetooth/MetricsUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-06T15:47:29Z",
+      "side": 1,
+      "message": "Instead of passing it here - I would rather use --\n```\n        IBluetooth bluetoothProxy \u003d\n                BluetoothAdapter.getDefaultAdapter().getBluetoothService();\n```\n\nThe reason being since it is a singleton entity shared across.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 38
+      },
+      "revId": "2ed7ebf8eec710590566e8b805aa2c84d4b91816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
