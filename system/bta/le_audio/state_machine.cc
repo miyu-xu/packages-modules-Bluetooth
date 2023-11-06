@@ -886,14 +886,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     /* All CISes created. Send start ready for source ASE before we can go
      * to streaming state.
      */
-    struct ase* ase = leAudioDevice->GetFirstActiveAse();
-    ASSERT_LOG(ase != nullptr,
-               "shouldn't be called without an active ASE, device %s, group "
-               "id: %d, cis handle 0x%04x",
-               ADDRESS_TO_LOGGABLE_CSTR(leAudioDevice->address_), event->cig_id,
-               event->cis_conn_hdl);
-
-    PrepareAndSendReceiverStartReady(leAudioDevice, ase);
+    PrepareAndSendReceiverStartReady(leAudioDevice);
   }
 
   static void WriteToControlPoint(LeAudioDevice* leAudioDevice,
@@ -2440,22 +2433,25 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
     }
   }
 
-  void PrepareAndSendReceiverStartReady(LeAudioDevice* leAudioDevice,
-                                        struct ase* ase) {
+  void PrepareAndSendReceiverStartReady(LeAudioDevice* leAudioDevice) {
     std::vector<uint8_t> ids;
-    std::vector<uint8_t> value;
     std::stringstream stream;
 
-    stream << kLogAseStartReadyOp;
+    struct ase* ase = leAudioDevice->GetFirstActiveAseByDirection(
+        le_audio::types::kLeAudioDirectionSource);
+    if (!ase) {
+      LOG_VERBOSE("No active sink ASE in current configuration.");
+      return;
+    }
 
+    stream << kLogAseStartReadyOp;
     do {
-      if (ase->direction == le_audio::types::kLeAudioDirectionSource) {
-        stream << "ASE_ID " << +ase->id << ",";
-        ids.push_back(ase->id);
-      }
-    } while ((ase = leAudioDevice->GetNextActiveAse(ase)));
+      stream << "ASE_ID " << +ase->id << ",";
+      ids.push_back(ase->id);
+    } while ((ase = leAudioDevice->GetNextActiveAseWithSameDirection(ase)));
 
     if (ids.size() > 0) {
+      std::vector<uint8_t> value;
       le_audio::client_parser::ascs::PrepareAseCtpAudioReceiverStartReady(
           ids, value);
       WriteToControlPoint(leAudioDevice, value);
@@ -2504,11 +2500,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           /* All CISes created. Send start ready for source ASE before we can go
            * to streaming state.
            */
-          struct ase* ase = leAudioDevice->GetFirstActiveAse();
-          ASSERT_LOG(ase != nullptr,
-                     "shouldn't be called without an active ASE, device %s",
-                     leAudioDevice->address_.ToString().c_str());
-          PrepareAndSendReceiverStartReady(leAudioDevice, ase);
+          PrepareAndSendReceiverStartReady(leAudioDevice);
 
           return;
         }
