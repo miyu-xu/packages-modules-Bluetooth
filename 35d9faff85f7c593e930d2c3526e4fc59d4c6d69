@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16210dad_ddda05ce",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-06T17:41:39Z",
+      "side": 1,
+      "message": "We are already in \"LE Audio\" namespace, so why have \"LE audio\" repeated so many times in constant names ?",
+      "range": {
+        "startLine": 183,
+        "startChar": 20,
+        "endLine": 183,
+        "endChar": 27
+      },
+      "revId": "35d9faff85f7c593e930d2c3526e4fc59d4c6d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cee0fcd_923ba992",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 790,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-06T17:41:39Z",
+      "side": 1,
+      "message": "NIT: I don\u0027t linke those names, but I can\u0027t come up with anything better.\nGuessing what\u0027s the difference between \"CodecConfig\" vs \"CodecConfigSetting\" vs \"LeAudioCoreCodecConfig\" is going to be not fun in few years",
+      "range": {
+        "startLine": 790,
+        "startChar": 7,
+        "endLine": 790,
+        "endChar": 25
+      },
+      "revId": "35d9faff85f7c593e930d2c3526e4fc59d4c6d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "028a28f6_60706be4",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 794,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-06T17:41:39Z",
+      "side": 1,
+      "message": "Is there non-LeAudio version, i.e. \"CoreCodecConfig\" defined somewhere else ? Why do we need \"LeAudio\" in this name ?",
+      "range": {
+        "startLine": 794,
+        "startChar": 22,
+        "endLine": 794,
+        "endChar": 30
+      },
+      "revId": "35d9faff85f7c593e930d2c3526e4fc59d4c6d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
