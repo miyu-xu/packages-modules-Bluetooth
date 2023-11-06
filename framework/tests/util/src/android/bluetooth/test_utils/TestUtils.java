@@ -34,6 +34,7 @@ import java.lang.reflect.Method;
 import java.time.Duration;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -191,6 +192,23 @@ public class TestUtils {
         PackageManager pm = context.getPackageManager();
         return pm.hasSystemFeature(PackageManager.FEATURE_TELEVISION)
                 || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
+    }
+
+    /**
+     * Wait and verify that an item has been received. This method is not thread safe as multiple
+     * wait on the same queue may lead to undefined result
+     *
+     * @param timeout the time to wait for the item
+     * @param queue the queue for the item
+     * @return the received intent
+     */
+    public static <T> T waitForItem(Duration timeout, BlockingQueue<T> queue) {
+        try {
+            return queue.poll(timeout.toMillis(), TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            Log.e(TAG, "Cannot obtain an item from the queue: " + e.getMessage());
+        }
+        return null;
     }
 
     /** Boilerplate class for profile listener */
