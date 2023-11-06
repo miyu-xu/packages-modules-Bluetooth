@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d35daa5f_107a81ff",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T19:36:01Z",
+      "side": 1,
+      "message": "Hi Eric,\n\nWe are no longer turning flag on using init_flags.\nWe need to migrate this to a trunk stable flag and to launch a progressive ramp-up (with a/b testing) there",
+      "revId": "1a2147aab677bb07e3dfe5c895dfb63c903f0989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
