@@ -22,6 +22,30 @@
       },
       "revId": "4675260f863ec8bdeeba0df0dc5faf70e10aa3ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a34ce450_ddeaddc3",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 24
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-06T11:36:04Z",
+      "side": 1,
+      "message": "I removed it here and added it to static lib in: aosp/2679780",
+      "parentUuid": "029ba153_c274b878",
+      "range": {
+        "startLine": 425,
+        "startChar": 9,
+        "endLine": 425,
+        "endChar": 34
+      },
+      "revId": "4675260f863ec8bdeeba0df0dc5faf70e10aa3ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
