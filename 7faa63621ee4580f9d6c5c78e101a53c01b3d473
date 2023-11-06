@@ -79,6 +79,29 @@
       },
       "revId": "7faa63621ee4580f9d6c5c78e101a53c01b3d473",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91a27b07_49ae619f",
+        "filename": "flags/core.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T18:53:59Z",
+      "side": 1,
+      "message": "Can you create the bug in the [Flag](https://b.corp.google.com/issues/new?component\u003d1387432\u0026template\u003d1839586) component ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "7faa63621ee4580f9d6c5c78e101a53c01b3d473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
