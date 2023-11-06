@@ -609,6 +609,7 @@ cc_test {
         "libcutils",
         "libgmock",
         "libosi",
+        "server_configurable_flags",
     ],
     sanitize: {
         cfi: true,
