@@ -100,6 +100,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d5d59fcd_82f7ed8a",
+        "filename": "flags/core.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T20:07:03Z",
+      "side": 1,
+      "message": "sound good to me.\nFlag also have a temporary lifetime as they should be deleted once they are shipped",
+      "parentUuid": "90d08c7e_2b3d78a0",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "7faa63621ee4580f9d6c5c78e101a53c01b3d473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bc5c2a54_ea6deefe",
