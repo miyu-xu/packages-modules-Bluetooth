@@ -1,5 +1,57 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf66036d_6816abe0",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-06T12:00:16Z",
+      "side": 1,
+      "message": "looks like this is not valid anymore.",
+      "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2bda919_c1b19e99",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-06T12:00:16Z",
+      "side": 1,
+      "message": "ditto.\n\nCan we make those tests running on the host?\n\nnow when I run `atest --host bluetooth_le_audio_client_test`, those tests are IGNORED.",
+      "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e95c524b_e682166e",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-06T12:00:16Z",
+      "side": 1,
+      "message": "would be great to have a way to always run those tests as it was before this change.",
+      "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
