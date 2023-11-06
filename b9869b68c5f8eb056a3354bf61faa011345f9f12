@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7df2d93f_3e882886",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 19
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-06T19:53:52Z",
+      "side": 1,
+      "message": "Thanks!",
+      "parentUuid": "aa22b01b_5c0399de",
+      "revId": "b9869b68c5f8eb056a3354bf61faa011345f9f12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3b4f2e9_7e4fcb1e",
@@ -120,6 +138,30 @@
       "side": 1,
       "message": "There is already a SOURCE_CODEC_TYPE_INVALID; but for the purpose of BluetoothCodecType I prefer having the invariant that it always represents a valid codec, when non-null",
       "parentUuid": "08873847_f164bcce",
+      "range": {
+        "startLine": 572,
+        "startChar": 11,
+        "endLine": 572,
+        "endChar": 20
+      },
+      "revId": "b9869b68c5f8eb056a3354bf61faa011345f9f12",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "baf6d34c_8bb0ce67",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-06T19:53:52Z",
+      "side": 1,
+      "message": "sgtm",
+      "parentUuid": "b16fde2a_477ce301",
       "range": {
         "startLine": 572,
         "startChar": 11,

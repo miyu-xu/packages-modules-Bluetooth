@@ -117,6 +117,30 @@
       },
       "revId": "d0a714776f1d10193cacfeda1dcf6a1098c6d2dd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e71f279b_69980bf8",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 18
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-06T19:53:52Z",
+      "side": 1,
+      "message": "Gotcha - thanks for the reasoning on this Henri, makes sense. \n\nYou can probably just use @SuppressLint if you want to silence the warning (FWIW generally I would advise against this but not sure how else to approach in this case).",
+      "parentUuid": "090598f6_a30e75d7",
+      "range": {
+        "startLine": 531,
+        "startChar": 65,
+        "endLine": 531,
+        "endChar": 96
+      },
+      "revId": "d0a714776f1d10193cacfeda1dcf6a1098c6d2dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
