@@ -96,13 +96,12 @@ TEST_F(PowerTelemetryTest, test_LogTxPower) {
 
   LogDataContainer& ldc =
       power_telemetry::GetInstance().pimpl_->GetCurrentLogDataContainer();
-  tBTM_TX_POWER_RESULT dummy_res;
+  std::unique_ptr<tBTM_TX_POWER_RESULT> dummy_res;
   dummy_res.rem_bda = bdaddr;
 
   // Failed Case. Shouldn't crash if no init data
   dummy_res.status = BTM_SUCCESS;
-  void* p = &dummy_res;
-  power_telemetry::GetInstance().LogTxPower(p);
+  power_telemetry::GetInstance().LogTxPower((void*)&dummy_res);
 
   // init data
   power_telemetry::GetInstance().LogLinkDetails(handle, bdaddr, isConnected,
@@ -110,14 +109,14 @@ TEST_F(PowerTelemetryTest, test_LogTxPower) {
 
   // Successful case
   dummy_res.tx_power = 100;
-  power_telemetry::GetInstance().LogTxPower(p);
+  power_telemetry::GetInstance().LogTxPower((void*)&dummy_res);
   ASSERT_EQ(dummy_res.tx_power,
             ldc.acl.link_details_map[handle].tx_power_level);
 
   // Failed case
   dummy_res.tx_power = 99;
   dummy_res.status = BTM_UNDEFINED;
-  power_telemetry::GetInstance().LogTxPower(p);
+  power_telemetry::GetInstance().LogTxPower((void*)&dummy_res);
   ASSERT_NE(dummy_res.tx_power,
             ldc.acl.link_details_map[handle].tx_power_level);
 }
@@ -287,10 +286,9 @@ TEST_F(PowerTelemetryTest, test_feature_flag) {
   isConnected = true;
   LogDataContainer& ldc =
       power_telemetry::GetInstance().pimpl_->GetCurrentLogDataContainer();
-  tBTM_TX_POWER_RESULT dummy_res;
+  std::unique_ptr<tBTM_TX_POWER_RESULT> dummy_res;
   dummy_res.rem_bda = bdaddr;
   dummy_res.status = BTM_SUCCESS;
-  void* p = &dummy_res;
   power_telemetry::GetInstance().LogLinkDetails(handle, bdaddr, isConnected,
                                                 true);
 
@@ -344,7 +342,7 @@ TEST_F(PowerTelemetryTest, test_feature_flag) {
   ASSERT_EQ(1, (int)ldc.acl.link_details_map.count(handle));
 
   dummy_res.tx_power = 100;
-  power_telemetry::GetInstance().LogTxPower(p);
+  power_telemetry::GetInstance().LogTxPower((void*)&dummy_res);
   ASSERT_EQ(0, ldc.acl.link_details_map[handle].tx_power_level);
 
   power_telemetry::GetInstance().LogBleScan(10);
