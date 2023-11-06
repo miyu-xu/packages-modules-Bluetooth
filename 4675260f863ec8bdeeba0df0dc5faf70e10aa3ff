@@ -46,6 +46,30 @@
       },
       "revId": "4675260f863ec8bdeeba0df0dc5faf70e10aa3ff",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe6489b2_d5658603",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 24
+      },
+      "lineNbr": 425,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T18:57:47Z",
+      "side": 1,
+      "message": "Thanks, that\u0027s perfect,",
+      "parentUuid": "a34ce450_ddeaddc3",
+      "range": {
+        "startLine": 425,
+        "startChar": 9,
+        "endLine": 425,
+        "endChar": 34
+      },
+      "revId": "4675260f863ec8bdeeba0df0dc5faf70e10aa3ff",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
