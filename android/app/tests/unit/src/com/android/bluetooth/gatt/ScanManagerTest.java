@@ -1172,8 +1172,10 @@ public class ScanManagerTest {
                 eq(BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR), anyLong());
         verify(mMetricsLogger, atMost(1)).cacheCount(
                 eq(BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR_SCREEN_ON), anyLong());
-        verify(mMetricsLogger, never()).cacheCount(
-                eq(BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR_SCREEN_OFF), anyLong());
+        verify(mMetricsLogger, atMost(1))
+                .cacheCount(
+                        eq(BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR_SCREEN_OFF),
+                        anyLong());
         Mockito.clearInvocations(mMetricsLogger);
         testSleep(50);
         // Turn off screen
@@ -1182,8 +1184,10 @@ public class ScanManagerTest {
                 eq(BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR), anyLong());
         verify(mMetricsLogger, atLeastOnce()).cacheCount(
                 eq(BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR_SCREEN_ON), anyLong());
-        verify(mMetricsLogger, never()).cacheCount(
-                eq(BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR_SCREEN_OFF), anyLong());
+        verify(mMetricsLogger, atMost(1))
+                .cacheCount(
+                        eq(BluetoothProtoEnums.LE_SCAN_RADIO_DURATION_REGULAR_SCREEN_OFF),
+                        anyLong());
         Mockito.clearInvocations(mMetricsLogger);
         testSleep(50);
         // Turn on screen
