@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dcfa8683_81bddbd1",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-06T13:07:21Z",
+      "side": 1,
+      "message": "Most of this looks like it belongs in security.  I\u0027m missing the big picture, here.",
+      "range": {
+        "startLine": 97,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 19
+      },
+      "revId": "ea1e8cf9247f0f18c181830ee837d679228b2231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
