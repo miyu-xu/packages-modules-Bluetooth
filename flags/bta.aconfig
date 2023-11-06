@@ -1,0 +1,8 @@
+package: "com.android.bluetooth.flags"
+
+flag {
+    name: "bta_dm_search_inquiry_result_callback_nullptr"
+    namespace: "bluetooth"
+    description: "bta_dm_search_result: Check if callback is non-null before executing b/309463889"
+    bug: "309491712"
+}
