@@ -22,6 +22,30 @@
       },
       "revId": "f5d714d259681fe789d13d38f0867157ab9a671e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c3366706_420baf6a",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-06T11:01:04Z",
+      "side": 1,
+      "message": "Nevermind, I didn\u0027t notice it was merged already.",
+      "parentUuid": "8e8548f0_4edbd31c",
+      "range": {
+        "startLine": 95,
+        "startChar": 13,
+        "endLine": 95,
+        "endChar": 27
+      },
+      "revId": "f5d714d259681fe789d13d38f0867157ab9a671e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
