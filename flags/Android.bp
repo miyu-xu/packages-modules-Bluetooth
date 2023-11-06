@@ -15,6 +15,7 @@ aconfig_declarations {
         "hap.aconfig",
         "hfp.aconfig",
         "leaudio.aconfig",
+        "system.aconfig",
         "system_service.aconfig",
     ],
 }
