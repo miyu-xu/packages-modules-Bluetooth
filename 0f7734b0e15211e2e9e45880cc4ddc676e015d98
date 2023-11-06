@@ -119,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d452aa7c_92be74b2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-06T19:47:10Z",
+      "side": 1,
+      "message": "Thanks Kihong. Should be okay to add in a separate CL.",
+      "parentUuid": "3809be50_749ba162",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 30
+      },
+      "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4156f3b_af969539",
@@ -150,6 +174,24 @@
       "side": 1,
       "message": "Thanks for letting me know! I\u0027m looking into doing this and will fix it soon.",
       "parentUuid": "d4156f3b_af969539",
+      "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aee25488_f0157551",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-06T19:47:10Z",
+      "side": 1,
+      "message": "Great! Resolving.",
+      "parentUuid": "7728bc21_ced727f6",
       "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
