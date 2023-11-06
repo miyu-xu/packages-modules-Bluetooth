@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6670c8e4_0c7b66eb",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T19:13:32Z",
+      "side": 1,
+      "message": "Correct, good catch",
+      "parentUuid": "bf66036d_6816abe0",
+      "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e2bda919_c1b19e99",
         "filename": "system/bta/le_audio/le_audio_client_test.cc",
         "patchSetId": 8
@@ -48,6 +66,24 @@
       "writtenOn": "2023-11-06T12:00:16Z",
       "side": 1,
       "message": "ditto.\n\nCan we make those tests running on the host?\n\nnow when I run `atest --host bluetooth_le_audio_client_test`, those tests are IGNORED.",
+      "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4eaad839_a83a64f4",
+        "filename": "system/bta/le_audio/le_audio_client_test.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T19:13:32Z",
+      "side": 1,
+      "message": "The test are ignored if the flag does not match what is expected for the test. This is because the flag use here is a static flag, and the test is anotated with `REQUIRES_FLAGS_ENABLED` or `REQUIRES_FLAGS_DISABLED`.\n\nThe documentation provide example to modify a flag value by injection: go/class-method-override#injection. This example is for Java but I assume cpp can follow the same pattern.\n\nYou just need to identify the entry point into which inject the flag\n\n\nPseudo code for something like this should be:\n```\nnamespace bt_flags \u003d com::android::bluetooth::flags;\n[…]\nconst bt_flags::flag_provider_interface\u0026 mProvider\n\nFoo(bt_flags::flag_provider_interface\u0026 provider) {\n    mProvider \u003d provider\n}\n[…]\nif (provider.myInjectedFlags()) {\n    // new code\n}\n```",
+      "parentUuid": "e2bda919_c1b19e99",
       "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
