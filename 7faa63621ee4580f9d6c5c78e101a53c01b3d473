@@ -16,6 +16,69 @@
       "message": "Canary flag for trivial fix to prototype my understanding of flagging",
       "revId": "7faa63621ee4580f9d6c5c78e101a53c01b3d473",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5f4bb33_5ad9c6b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T18:52:40Z",
+      "side": 1,
+      "message": "Adding a new file require editing the Android.bp to add the file in the list.",
+      "revId": "7faa63621ee4580f9d6c5c78e101a53c01b3d473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "483096ea_a4165b94",
+        "filename": "flags/core.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T18:52:40Z",
+      "side": 1,
+      "message": "`Core` seems a bit wide.\n\nI don\u0027t know what exactly this flag with gate.\nIs it related to sdp ? Would you prefer to have a `sdp.aconfig` file ?\n\n(FYI: this is not a strong pushback, I am open to any suggestion / or even core if you think this capture the best the area it belongs to )",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "7faa63621ee4580f9d6c5c78e101a53c01b3d473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc5c2a54_ea6deefe",
+        "filename": "flags/core.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-06T18:52:40Z",
+      "side": 1,
+      "message": "This is an empty bug that has no context",
+      "range": {
+        "startLine": 6,
+        "startChar": 89,
+        "endLine": 6,
+        "endChar": 98
+      },
+      "revId": "7faa63621ee4580f9d6c5c78e101a53c01b3d473",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
