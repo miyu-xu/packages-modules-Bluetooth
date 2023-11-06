@@ -18,6 +18,7 @@
 
 #include "osi/include/stack_power_telemetry.h"
 
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 #include <sys/stat.h>
 #include <time.h>
@@ -43,8 +44,9 @@ constexpr int64_t kTrafficLogTime = 120;  // 120seconds
 constexpr uint8_t kLogEntriesSize{15};
 constexpr std::string_view kLogPerChannelProperty =
     "bluetooth.powertelemetry.log_per_channel.enabled";
-bool power_telemerty_enabled_ =
-    bluetooth::common::init_flags::bluetooth_power_telemetry_is_enabled();
+constexpr std::string_view kPowerTelemetryEnabledProperty =
+    "bluetooth.powertelemetry.enabled";
+bool power_telemerty_enabled_ = IS_FLAG_ENABLED(bluetooth_power_telemetry);
 
 std::string GetTimeString(time_t tstamp) {
   char buffer[15];
@@ -74,8 +76,8 @@ ChannelType PsmToChannelType(const uint16_t& psm) {
 }
 
 struct Duration {
-  time_t begin;
-  time_t end;
+  time_t begin = 0;
+  time_t end = 0;
 };
 
 struct DataTransfer {
@@ -85,14 +87,14 @@ struct DataTransfer {
 };
 
 struct LinkDetails {
-  RawAddress bd_addr;
+  RawAddress bd_addr = RawAddress::kEmpty;
   uint16_t handle = 0;
   Duration duration;
   uint8_t tx_power_level = 0;
 };
 
 struct ChannelDetails {
-  RawAddress bd_addr;
+  RawAddress bd_addr = RawAddress::kEmpty;
   int32_t psm = 0;
   struct {
     uint16_t cid = 0;
@@ -102,7 +104,7 @@ struct ChannelDetails {
   DataTransfer data_transfer;
   Duration duration;
   struct {
-    time_t last_data_sent;
+    time_t last_data_sent = 0;
   } rx, tx;
 };
 
@@ -122,7 +124,7 @@ struct ScanDetails {
 };
 
 struct SniffData {
-  RawAddress bd_addr;
+  RawAddress bd_addr = RawAddress::kEmpty;
   uint32_t sniff_count = 0, active_count = 0;
   time_t sniff_duration_ts = 0, active_duration_ts = 0;
   time_t last_mode_change_ts = get_current_time();
@@ -151,6 +153,11 @@ struct power_telemetry::PowerTelemetryImpl {
     traffic_logged_ts_ = get_current_time();
     log_per_channel_ = osi_property_get_bool(
         std::string(kLogPerChannelProperty).c_str(), false);
+    power_telemetry_enabled_property_ = osi_property_get_bool(
+        std::string(kPowerTelemetryEnabledProperty).c_str(), true);
+
+    // Enable this feature when both feature flag and sysprops turn on.
+    power_telemerty_enabled_ &= power_telemetry_enabled_property_;
   }
 
   LogDataContainer& GetCurrentLogDataContainer() {
@@ -181,7 +188,7 @@ struct power_telemetry::PowerTelemetryImpl {
   } rx, tx;
 
   struct {
-    uint16_t count_;
+    uint16_t count_ = 0;
   } scan, inq_scan, ble_adv, ble_scan;
 
   struct {
@@ -189,10 +196,14 @@ struct power_telemetry::PowerTelemetryImpl {
   } cmd, event;
   bool scan_timer_started_ = false;
   bool log_per_channel_ = false;
+  bool power_telemetry_enabled_property_ = false;
 };
 
 void power_telemetry::PowerTelemetryImpl::LogDataTransfer() {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   LogDataContainer& ldc = GetCurrentLogDataContainer();
 
@@ -285,6 +296,9 @@ void power_telemetry::PowerTelemetryImpl::LogDataTransfer() {
 void power_telemetry::PowerTelemetryImpl::RecordLogDataContainer() {
   if (!power_telemerty_enabled_) return;
 
+  // Test if this function cause null ptr.
+  return;
+
   LogDataContainer& ldc = GetCurrentLogDataContainer();
 
   LOG_INFO(
@@ -312,8 +326,17 @@ power_telemetry::PowerTelemetry::PowerTelemetry() {
   pimpl_ = std::make_unique<PowerTelemetryImpl>();
 }
 
+power_telemetry::PowerTelemetry::~PowerTelemetry() {
+  if (pimpl_) {
+    pimpl_.reset();
+  }
+}
+
 void power_telemetry::PowerTelemetry::LogInqScanStarted() {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   pimpl_->inq_scan.count_++;
@@ -323,12 +346,18 @@ void power_telemetry::PowerTelemetry::LogInqScanStarted() {
 void power_telemetry::PowerTelemetry::LogInqScanStopped() {
   if (!power_telemerty_enabled_) return;
 
+  // Test if this function cause null ptr.
+  return;
+
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   pimpl_->maybe_log_data();
 }
 
 void power_telemetry::PowerTelemetry::LogBleScan(uint16_t num_resps) {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   pimpl_->ble_scan.count_ += num_resps;
@@ -338,6 +367,9 @@ void power_telemetry::PowerTelemetry::LogBleScan(uint16_t num_resps) {
 void power_telemetry::PowerTelemetry::LogBleAdvStarted() {
   if (!power_telemerty_enabled_) return;
 
+  // Test if this function cause null ptr.
+  return;
+
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   const time_t current_time = get_current_time();
   LogDataContainer& ldc = pimpl_->GetCurrentLogDataContainer();
@@ -346,6 +378,9 @@ void power_telemetry::PowerTelemetry::LogBleAdvStarted() {
 
 void power_telemetry::PowerTelemetry::LogBleAdvStopped() {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   const time_t current_time = get_current_time();
@@ -360,6 +395,9 @@ void power_telemetry::PowerTelemetry::LogBleAdvStopped() {
 
 void power_telemetry::PowerTelemetry::LogTxPower(void* res) {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   tBTM_TX_POWER_RESULT* result = (tBTM_TX_POWER_RESULT*)res;
@@ -386,6 +424,9 @@ void power_telemetry::PowerTelemetry::LogLinkDetails(uint16_t handle,
                                                      bool is_connected,
                                                      bool is_acl_link) {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   LogDataContainer& ldc = pimpl_->GetCurrentLogDataContainer();
@@ -425,6 +466,9 @@ void power_telemetry::PowerTelemetry::LogLinkDetails(uint16_t handle,
 void power_telemetry::PowerTelemetry::LogHciCmdDetail() {
   if (!power_telemerty_enabled_) return;
 
+  // Test if this function cause null ptr.
+  return;
+
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   pimpl_->cmd.count_++;
   pimpl_->maybe_log_data();
@@ -432,6 +476,9 @@ void power_telemetry::PowerTelemetry::LogHciCmdDetail() {
 
 void power_telemetry::PowerTelemetry::LogHciEvtDetail() {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   pimpl_->event.count_++;
@@ -441,6 +488,9 @@ void power_telemetry::PowerTelemetry::LogHciEvtDetail() {
 void power_telemetry::PowerTelemetry::LogSniffStarted(
     uint16_t handle, const RawAddress& bd_addr) {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   const time_t current_timestamp = get_current_time();
@@ -464,6 +514,9 @@ void power_telemetry::PowerTelemetry::LogSniffStopped(
     uint16_t handle, const RawAddress& bd_addr) {
   if (!power_telemerty_enabled_) return;
 
+  // Test if this function cause null ptr.
+  return;
+
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   const time_t current_timestamp = get_current_time();
   SniffData sniff_data;
@@ -485,6 +538,9 @@ void power_telemetry::PowerTelemetry::LogSniffStopped(
 void power_telemetry::PowerTelemetry::LogScanStarted() {
   if (!power_telemerty_enabled_) return;
 
+  // Test if this function cause null ptr.
+  return;
+
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   pimpl_->scan.count_++;
   pimpl_->maybe_log_data();
@@ -492,6 +548,9 @@ void power_telemetry::PowerTelemetry::LogScanStarted() {
 
 void power_telemetry::PowerTelemetry::LogTxAclPktData(uint16_t len) {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   pimpl_->tx.pkt_++;
@@ -502,6 +561,9 @@ void power_telemetry::PowerTelemetry::LogTxAclPktData(uint16_t len) {
 void power_telemetry::PowerTelemetry::LogRxAclPktData(uint16_t len) {
   if (!power_telemerty_enabled_) return;
 
+  // Test if this function cause null ptr.
+  return;
+
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   pimpl_->rx.pkt_++;
   pimpl_->rx.len_ += len;
@@ -511,6 +573,9 @@ void power_telemetry::PowerTelemetry::LogRxAclPktData(uint16_t len) {
 void power_telemetry::PowerTelemetry::LogChannelConnected(
     uint16_t psm, int32_t src_id, int32_t dst_id, const RawAddress& bd_addr) {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   std::list<ChannelDetails> channel_details_list;
@@ -543,6 +608,9 @@ void power_telemetry::PowerTelemetry::LogChannelDisconnected(
     uint16_t psm, int32_t src_id, int32_t dst_id, const RawAddress& bd_addr) {
   if (!power_telemerty_enabled_) return;
 
+  // Test if this function cause null ptr.
+  return;
+
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   std::list<ChannelDetails> channel_details_list;
   LogDataContainer& ldc = pimpl_->GetCurrentLogDataContainer();
@@ -569,6 +637,9 @@ void power_telemetry::PowerTelemetry::LogTxBytes(uint16_t psm, int32_t src_id,
                                                  const RawAddress& bd_addr,
                                                  int32_t num_bytes) {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   const ChannelType channel_type = PsmToChannelType(psm);
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
@@ -602,6 +673,9 @@ void power_telemetry::PowerTelemetry::LogRxBytes(uint16_t psm, int32_t src_id,
                                                  const RawAddress& bd_addr,
                                                  int32_t num_bytes) {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   const ChannelType channel_type = PsmToChannelType(psm);
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
@@ -639,6 +713,9 @@ void power_telemetry::PowerTelemetry::LogRxBytes(uint16_t psm, int32_t src_id,
 
 void power_telemetry::PowerTelemetry::Dumpsys(int32_t fd) {
   if (!power_telemerty_enabled_) return;
+
+  // Test if this function cause null ptr.
+  return;
 
   std::lock_guard<std::mutex> lock(pimpl_->dumpsys_mutex_);
   pimpl_->RecordLogDataContainer();

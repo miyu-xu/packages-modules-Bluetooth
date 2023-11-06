@@ -92,9 +92,11 @@ cc_library_static {
     ],
     header_libs: ["libbluetooth_headers"],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbluetooth_log",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
+        "server_configurable_flags",
     ],
 }
 
