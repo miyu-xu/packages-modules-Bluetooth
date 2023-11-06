@@ -91,17 +91,10 @@ constexpr le_audio::types::LeAudioContextType
 
 static constexpr char kNotifyUpperLayerAboutGroupBeingInIdleDuringCall[] =
     "persist.bluetooth.leaudio.notify.idle.during.call";
+
 const char* test_flags[] = {
     "INIT_logging_debug_enabled_for_all=true",
     "INIT_leaudio_targeted_announcement_reconnection_mode=true",
-    "INIT_leaudio_enable_health_based_actions=false",
-    nullptr,
-};
-
-const char* test_flags_with_health_status[] = {
-    "INIT_logging_debug_enabled_for_all=true",
-    "INIT_leaudio_targeted_announcement_reconnection_mode=true",
-    "INIT_leaudio_enable_health_based_actions=true",
     nullptr,
 };
 
@@ -325,16 +318,9 @@ class MockLeAudioSourceHalClient : public LeAudioSourceAudioHalClient {
 };
 
 class UnicastTestNoInit : public Test {
- public:
-  bool use_health_status = false;
-
  protected:
   void SetUpMockAudioHal() {
-    if (use_health_status) {
-      bluetooth::common::InitFlags::Load(test_flags_with_health_status);
-    } else {
-      bluetooth::common::InitFlags::Load(test_flags);
-    }
+    bluetooth::common::InitFlags::Load(test_flags);
 
     /* Since these are returned by the Acquire() methods as unique_ptrs, we
      * will not free them manually.
@@ -2652,7 +2638,6 @@ class UnicastTest : public UnicastTestNoInit {
 class UnicastTestHealthStatus : public UnicastTest {
  protected:
   void SetUp() override {
-    use_health_status = true;
     UnicastTest::SetUp();
     group_ = new LeAudioDeviceGroup(group_id_);
   }
