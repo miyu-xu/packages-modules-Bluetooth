@@ -22,6 +22,30 @@
       },
       "revId": "ea1e8cf9247f0f18c181830ee837d679228b2231",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2a391a62_b963aadd",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-06T15:57:27Z",
+      "side": 1,
+      "message": "I am trying to separate privacy related code out of pairing.\n\nThese 2 fields are managed by pairing. \nwhile other fields are for privacy.",
+      "parentUuid": "dcfa8683_81bddbd1",
+      "range": {
+        "startLine": 97,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 19
+      },
+      "revId": "ea1e8cf9247f0f18c181830ee837d679228b2231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
