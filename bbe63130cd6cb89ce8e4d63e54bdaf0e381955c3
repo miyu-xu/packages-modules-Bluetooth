@@ -16,6 +16,24 @@
       "message": "Should we move this after the definition of LOG_TAG?",
       "revId": "bbe63130cd6cb89ce8e4d63e54bdaf0e381955c3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed4a598_4504795f",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-06T11:57:23Z",
+      "side": 1,
+      "message": "Definitely.  Good catch.",
+      "parentUuid": "a3fcaea2_efa7a91e",
+      "revId": "bbe63130cd6cb89ce8e4d63e54bdaf0e381955c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
