@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3809be50_749ba162",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-06T10:10:44Z",
+      "side": 1,
+      "message": "Got it. Will try to add a bumble test on this. Is it ok to add in another CL or should I add here?",
+      "parentUuid": "127f03c3_847cf288",
+      "range": {
+        "startLine": 17,
+        "startChar": 6,
+        "endLine": 17,
+        "endChar": 30
+      },
+      "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d4156f3b_af969539",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -114,6 +138,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7728bc21_ced727f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-06T10:10:44Z",
+      "side": 1,
+      "message": "Thanks for letting me know! I\u0027m looking into doing this and will fix it soon.",
+      "parentUuid": "d4156f3b_af969539",
+      "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6bc32bfb_19051a8a",
         "filename": "system/include/hardware/bt_gatt_types.h",
         "patchSetId": 1
@@ -125,6 +167,30 @@
       "writtenOn": "2023-11-02T22:17:53Z",
       "side": 1,
       "message": "Since 512 is defined by the spec, can you quote the spec chapter here in the comment so it\u0027s easier to find ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 28
+      },
+      "revId": "0f7734b0e15211e2e9e45880cc4ddc676e015d98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5bb84873_c940cccf",
+        "filename": "system/include/hardware/bt_gatt_types.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-06T10:10:44Z",
+      "side": 1,
+      "message": "Got it! Quoted the spec.",
+      "parentUuid": "6bc32bfb_19051a8a",
       "range": {
         "startLine": 35,
         "startChar": 0,
