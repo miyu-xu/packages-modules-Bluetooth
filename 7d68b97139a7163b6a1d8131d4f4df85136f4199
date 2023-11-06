@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc330168_e5eca1b9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1652,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-06T20:57:01Z",
+      "side": 1,
+      "message": "I guess `bt_swb` is for Qualcomm\u0027s aptx. I am not sure why aptx is involved here. \nAlso, there is an on going CL about aptx, please see aosp/2678015.",
+      "range": {
+        "startLine": 1652,
+        "startChar": 30,
+        "endLine": 1652,
+        "endChar": 36
+      },
+      "revId": "7d68b97139a7163b6a1d8131d4f4df85136f4199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
