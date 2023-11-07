@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93737b6c_c5be19b0",
+        "filename": "system/audio_hal_interface/aidl/bluetooth_audio_port_impl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-07T11:27:10Z",
+      "side": 1,
+      "message": "nit; worth to consider using this; AUDIO_ATTRIBUTES_TAGS_SEPARATOR  defined in audio.h",
+      "revId": "7e369d9ac74dc74d90f0998beaead1725405e11a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
