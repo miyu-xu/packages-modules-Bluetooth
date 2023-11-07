@@ -16,6 +16,24 @@
       "message": "Is there any test using this feature? `BTM_BLE_CONFORMANCE_TESTING` may be defined from commandline",
       "revId": "3624d795d7839d089ccb91e621ea5ee782dd5d69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f713a194_f75fe26e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-07T02:53:11Z",
+      "side": 1,
+      "message": "marking this as unresolved",
+      "parentUuid": "cc300cd1_f5f6544e",
+      "revId": "3624d795d7839d089ccb91e621ea5ee782dd5d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
