@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9773f6e0_8447af5f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-07T09:59:36Z",
+      "side": 1,
+      "message": "I managed to fix the floss build failure, which required a fix in rust (bluetooth_gatt.rs)",
+      "revId": "26e30a7dbfdf9209b2622aaa9cf64f96cecacc38",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
