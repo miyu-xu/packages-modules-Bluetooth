@@ -57,6 +57,30 @@
       },
       "revId": "1a2147aab677bb07e3dfe5c895dfb63c903f0989",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9438a8a_f4d4d240",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T01:36:18Z",
+      "side": 1,
+      "message": "Acknowledged -- offline chat discussion",
+      "parentUuid": "5d21b9db_0a875c69",
+      "range": {
+        "startLine": 160,
+        "startChar": 32,
+        "endLine": 160,
+        "endChar": 65
+      },
+      "revId": "1a2147aab677bb07e3dfe5c895dfb63c903f0989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
