@@ -46,6 +46,30 @@
       },
       "revId": "ea1e8cf9247f0f18c181830ee837d679228b2231",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf39d0aa_41c592d4",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T18:10:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2a391a62_b963aadd",
+      "range": {
+        "startLine": 97,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 19
+      },
+      "revId": "ea1e8cf9247f0f18c181830ee837d679228b2231",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
