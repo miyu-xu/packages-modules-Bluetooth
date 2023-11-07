@@ -189,6 +189,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "60e43640_ec4f9092",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1493,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-07T22:13:11Z",
+      "side": 1,
+      "message": "Un-resolve, I think renaming that to `mCurrentUserContext` makes a lot of sense",
+      "parentUuid": "eea9a186_77cb6a41",
+      "range": {
+        "startLine": 1493,
+        "startChar": 12,
+        "endLine": 1493,
+        "endChar": 24
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6971e3d_fe3d1be5",
         "filename": "service/src/com/android/server/bluetooth/BluetoothService.kt",
         "patchSetId": 23
