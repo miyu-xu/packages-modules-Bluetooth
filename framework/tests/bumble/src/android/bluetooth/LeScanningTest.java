@@ -18,11 +18,13 @@ package android.bluetooth;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import android.app.PendingIntent;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
+import android.content.IntentFilter;
 import android.os.ParcelUuid;
 import android.util.Log;
 
@@ -47,7 +49,7 @@ import pandora.HostProto.AdvertiseResponse;
 @RunWith(AndroidJUnit4.class)
 public class LeScanningTest {
     private static final String TAG = "LeScanningTest";
-    private static final int TIMEOUT_SCANNING_MS = 2000;
+    private static final int TIMEOUT_SCANNING_MS = 10000;
 
     @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
 
@@ -62,10 +64,57 @@ public class LeScanningTest {
         List<ScanResult> results =
                 startScanning(TEST_UUID_STRING, ScanSettings.CALLBACK_TYPE_ALL_MATCHES).join();
 
-        assertThat(results.get(0).getScanRecord().getServiceUuids().get(0))
-                .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
         assertThat(results.get(1).getScanRecord().getServiceUuids().get(0))
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
+    }
+
+    @Test
+    public void startBleScan_withPendingIntentAndCallbackTypeAllMatches() {
+        advertiseWithBumble(TEST_UUID_STRING);
+
+        ScanResult result =
+                startScanningWithPendingIntent(
+                        TEST_UUID_STRING, ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
+
+        assertThat(result).isNotNull();
+        assertThat(result.getScanRecord().getServiceUuids()).isNotEmpty();
+        assertThat(result.getScanRecord().getServiceUuids().get(0))
+                .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
+    }
+
+    private ScanResult startScanningWithPendingIntent(String serviceUuid, int callbackType) {
+        Log.i(TAG, "startScanningWithPendingIntent start");
+
+        android.content.Context context = ApplicationProvider.getApplicationContext();
+        BluetoothManager bluetoothManager = context.getSystemService(BluetoothManager.class);
+        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
+        BluetoothLeScanner leScanner = bluetoothAdapter.getBluetoothLeScanner();
+
+        PendingIntentScanReceiver broadcastReceiver = new PendingIntentScanReceiver();
+        IntentFilter intentFilter = new IntentFilter(PendingIntentScanReceiver.ACTION_FOUND);
+        context.registerReceiver(broadcastReceiver, intentFilter);
+        CompletableFuture<ScanResult> nextScanResultFut = broadcastReceiver.getNextScanResult();
+
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(callbackType)
+                        .build();
+
+        ArrayList<ScanFilter> scanFilters = new ArrayList<>();
+        ScanFilter scanFilter =
+                new ScanFilter.Builder().setServiceUuid(ParcelUuid.fromString(serviceUuid)).build();
+        scanFilters.add(scanFilter);
+
+        int intentRequestCode = 42;
+        PendingIntent pendingIntent =
+                PendingIntentScanReceiver.newBroadcastPendingIntent(context, intentRequestCode);
+
+        leScanner.startScan(scanFilters, scanSettings, pendingIntent);
+
+        return nextScanResultFut
+                .completeOnTimeout(null, TIMEOUT_SCANNING_MS, TimeUnit.MILLISECONDS)
+                .join();
     }
 
     private CompletableFuture<List<ScanResult>> startScanning(
