@@ -22,6 +22,30 @@
       },
       "revId": "19cb57928ba7ecf19da9e1930e8697d5efbdaef8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8ab15bb_2fca7f4f",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppObexClientSession.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-07T08:42:41Z",
+      "side": 1,
+      "message": "Since run() will not be called two times.\nAnyway, moved the mCallback in the ClientThread.",
+      "parentUuid": "7f08e614_a064c5a1",
+      "range": {
+        "startLine": 234,
+        "startChar": 12,
+        "endLine": 234,
+        "endChar": 29
+      },
+      "revId": "19cb57928ba7ecf19da9e1930e8697d5efbdaef8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
