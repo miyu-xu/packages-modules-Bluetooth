@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5e396b7_f346225e",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-07T18:40:59Z",
+      "side": 1,
+      "message": "nit: \n```suggestion\n        if (isApmEnhancementEnabled(resolver)) {\n                // The Airplane Enhancement Mode is defined for each user and require an explicit\n                // userContext\n                setUserSettingsSecure(userContext, BLUETOOTH_APM_STATE, if (isBluetoothOn) 1 else 0)\n                setUserSettingsSecure(userContext, APM_USER_TOGGLED_BLUETOOTH, 1)\n\n                if (isBluetoothOn) {\n                    sendAirplaneModeNotification(APM_BT_ENABLED_NOTIFICATION)\n                }\n        }\n```",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 9
+      },
+      "revId": "2f2144e71b808d9fd8be3dbd7e19396113039c3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
