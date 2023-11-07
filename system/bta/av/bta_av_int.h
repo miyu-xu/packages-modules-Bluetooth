@@ -695,8 +695,11 @@ class tBT_A2DP_OFFLOAD {
 /* Vendor OFFLOAD VSC */
 #define HCI_VSQC_CONTROLLER_A2DP_OPCODE 0x000A
 
-#define VS_HCI_A2DP_OFFLOAD_START 0x01
-#define VS_HCI_A2DP_OFFLOAD_STOP 0x02
+#define VS_HCI_A2DP_OFFLOAD_LEGACY_START 0x01
+#define VS_HCI_A2DP_OFFLOAD_LEGACY_STOP 0x02
+#define VS_HCI_A2DP_OFFLOAD_START 0x03
+#define VS_HCI_A2DP_OFFLOAD_STOP 0x04
+
 /*****************************************************************************
  *  Global data
  ****************************************************************************/

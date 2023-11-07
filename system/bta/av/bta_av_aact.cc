@@ -3159,13 +3159,13 @@ void offload_vendor_callback(tBTM_VSC_CMPL* param) {
   }
 }
 
-void bta_av_vendor_offload_start(tBTA_AV_SCB* p_scb,
-                                 tBT_A2DP_OFFLOAD* offload_start) {
+void bta_av_vendor_offload_legacy_start(tBTA_AV_SCB* p_scb,
+                                        tBT_A2DP_OFFLOAD* offload_start) {
   uint8_t param[sizeof(tBT_A2DP_OFFLOAD)];
   LOG_VERBOSE("%s", __func__);
 
   uint8_t* p_param = param;
-  *p_param++ = VS_HCI_A2DP_OFFLOAD_START;
+  *p_param++ = VS_HCI_A2DP_OFFLOAD_LEGACY_START;
 
   UINT32_TO_STREAM(p_param, offload_start->codec_type);
   UINT16_TO_STREAM(p_param, offload_start->max_latency);
@@ -3192,6 +3192,48 @@ void bta_av_vendor_offload_start(tBTA_AV_SCB* p_scb,
                             param, offload_vendor_callback);
 }
 
+void bta_av_vendor_offload_start(tBTA_AV_SCB* p_scb,
+                                 tBT_A2DP_OFFLOAD* offload_start) {
+  uint8_t param[sizeof(tBT_A2DP_OFFLOAD)];
+  LOG_VERBOSE("%s", __func__);
+
+  uint8_t* p_param = param;
+  *p_param++ = VS_HCI_A2DP_OFFLOAD_START;
+
+  UINT16_TO_STREAM(p_param, offload_start->max_latency);
+  UINT32_TO_STREAM(p_param, offload_start->codec_type);
+  UINT16_TO_STREAM(p_param, offload_start->max_latency);
+  ARRAY_TO_STREAM(p_param, offload_start->scms_t_enable,
+                  static_cast<int>(offload_start->scms_t_enable.size()));
+  UINT32_TO_STREAM(p_param, offload_start->sample_rate);
+  UINT8_TO_STREAM(p_param, offload_start->bits_per_sample);
+  UINT8_TO_STREAM(p_param, offload_start->ch_mode);
+  UINT32_TO_STREAM(p_param, offload_start->encoded_audio_bitrate);
+  UINT16_TO_STREAM(p_param, offload_start->acl_hdl);
+  UINT16_TO_STREAM(p_param, offload_start->l2c_rcid);
+  UINT16_TO_STREAM(p_param, offload_start->mtu);
+  ARRAY_TO_STREAM(p_param, offload_start->codec_info,
+                  (int8_t)sizeof(offload_start->codec_info));
+  bta_av_cb.offload_start_pending_hndl = p_scb->hndl;
+  LOG_INFO(
+      "codec: %#x, sample rate: %#x, bit depth: %#x, channel: %#x, bitrate: "
+      "%#x, ACL: %#x, L2CAP: %#x, MTU: %#x",
+      offload_start->codec_type, offload_start->sample_rate,
+      offload_start->bits_per_sample, offload_start->ch_mode,
+      offload_start->encoded_audio_bitrate, offload_start->acl_hdl,
+      offload_start->l2c_rcid, offload_start->mtu);
+  BTM_VendorSpecificCommand(HCI_CONTROLLER_A2DP, p_param - param,
+                            param, offload_vendor_callback);
+}
+
+void bta_av_vendor_offload_legacy_stop() {
+  uint8_t param[sizeof(tBT_A2DP_OFFLOAD)];
+  LOG_VERBOSE("%s", __func__);
+  param[0] = VS_HCI_A2DP_OFFLOAD_LEGACY_STOP;
+  BTM_VendorSpecificCommand(HCI_CONTROLLER_A2DP, 1, param,
+                            offload_vendor_callback);
+}
+
 void bta_av_vendor_offload_stop() {
   uint8_t param[sizeof(tBT_A2DP_OFFLOAD)];
   LOG_VERBOSE("%s", __func__);
@@ -3199,6 +3241,7 @@ void bta_av_vendor_offload_stop() {
   BTM_VendorSpecificCommand(HCI_CONTROLLER_A2DP, 1, param,
                             offload_vendor_callback);
 }
+
 /*******************************************************************************
  *
  * Function         bta_av_offload_req
