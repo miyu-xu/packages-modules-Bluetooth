@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "942e7101_b3f93cf8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T23:22:17Z",
+      "side": 1,
+      "message": "I think I\u0027d prefer to have the flag added before this CL lands, or added in the same CL.",
+      "revId": "1db9304431f8ea177c5721ddd28296962382a2a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
