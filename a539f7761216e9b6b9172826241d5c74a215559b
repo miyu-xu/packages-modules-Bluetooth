@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eab5eea5_43b847cd",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 20
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-07T18:16:46Z",
+      "side": 1,
+      "message": "Remove this function and let the caller (Java) always set the `TimeSource`?",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 1
+      },
+      "revId": "a539f7761216e9b6b9172826241d5c74a215559b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
