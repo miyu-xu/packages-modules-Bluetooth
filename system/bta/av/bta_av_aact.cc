@@ -46,6 +46,7 @@
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
+#include "stack/include/a2dp_ext.h"
 #include "stack/include/a2dp_sbc.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
@@ -3159,13 +3160,13 @@ void offload_vendor_callback(tBTM_VSC_CMPL* param) {
   }
 }
 
-void bta_av_vendor_offload_start(tBTA_AV_SCB* p_scb,
-                                 tBT_A2DP_OFFLOAD* offload_start) {
+void bta_av_vendor_offload_legacy_start(tBTA_AV_SCB* p_scb,
+                                        tBT_A2DP_OFFLOAD* offload_start) {
   uint8_t param[sizeof(tBT_A2DP_OFFLOAD)];
   LOG_VERBOSE("%s", __func__);
 
   uint8_t* p_param = param;
-  *p_param++ = VS_HCI_A2DP_OFFLOAD_START;
+  *p_param++ = VS_HCI_A2DP_OFFLOAD_LEGACY_START;
 
   UINT32_TO_STREAM(p_param, offload_start->codec_type);
   UINT16_TO_STREAM(p_param, offload_start->max_latency);
@@ -3188,8 +3189,49 @@ void bta_av_vendor_offload_start(tBTA_AV_SCB* p_scb,
       offload_start->bits_per_sample, offload_start->ch_mode,
       offload_start->encoded_audio_bitrate, offload_start->acl_hdl,
       offload_start->l2c_rcid, offload_start->mtu);
+  BTM_VendorSpecificCommand(HCI_CONTROLLER_A2DP, p_param - param, param,
+                            offload_vendor_callback);
+}
+
+void bta_av_vendor_offload_start(tBTA_AV_SCB* p_scb,
+                                 A2dpCodecConfigExt* offload_codec) {
+  uint8_t param[255];
+  LOG_VERBOSE("%s", __func__);
+
+  uint8_t* p_param = param;
+  *p_param++ = VS_HCI_A2DP_OFFLOAD_START;
+
+  // Codec_Id: 5 bytes
+  uint8_t codec_config[AVDT_CODEC_SIZE];
+  offload_codec->copyOutOtaCodecConfig(codec_config);
+  UINT8_TO_STREAM(p_param, A2DP_GetCodecType(codec_config));
+  switch (A2DP_GetCodecType(codec_config)) {
+    case A2DP_MEDIA_CT_NON_A2DP:
+      ARRAY_TO_STREAM(p_param, codec_config + AVDT_CODEC_TYPE_INDEX + 1, 4);
+      break;
+    default:
+      UINT32_TO_STREAM(p_param, 0);
+      break;
+  }
+
+  // Vendor_Specific_Parameters_Len: 1 byte
+  // Vendor_Specific_Parameters: N bytes
+  auto const& vendor_specific_parameters =
+      offload_codec->getVendorCodecParameters();
+  UINT8_TO_STREAM(p_param,
+                  static_cast<uint8_t>(vendor_specific_parameters.size()));
+  ARRAY_TO_STREAM(p_param, vendor_specific_parameters.data(),
+                  static_cast<uint8_t>(vendor_specific_parameters.size()));
   BTM_VendorSpecificCommand(HCI_CONTROLLER_A2DP, p_param - param,
                             param, offload_vendor_callback);
+}
+
+void bta_av_vendor_offload_legacy_stop() {
+  uint8_t param[sizeof(tBT_A2DP_OFFLOAD)];
+  LOG_VERBOSE("%s", __func__);
+  param[0] = VS_HCI_A2DP_OFFLOAD_LEGACY_STOP;
+  BTM_VendorSpecificCommand(HCI_CONTROLLER_A2DP, 1, param,
+                            offload_vendor_callback);
 }
 
 void bta_av_vendor_offload_stop() {
@@ -3199,6 +3241,7 @@ void bta_av_vendor_offload_stop() {
   BTM_VendorSpecificCommand(HCI_CONTROLLER_A2DP, 1, param,
                             offload_vendor_callback);
 }
+
 /*******************************************************************************
  *
  * Function         bta_av_offload_req
@@ -3215,6 +3258,9 @@ void bta_av_offload_req(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   tBT_A2DP_OFFLOAD offload_start;
   LOG_VERBOSE("%s: stream %s, audio channels open %d", __func__,
               p_scb->started ? "STARTED" : "STOPPED", bta_av_cb.audio_open_cnt);
+
+  A2dpCodecConfig* codec_config = bta_av_get_a2dp_current_codec();
+
   /* Check if stream has already been started. */
   /* Support offload if only one audio source stream is open. */
   if (p_scb->started != true) {
@@ -3223,9 +3269,13 @@ void bta_av_offload_req(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
              bta_av_cb.offload_started_hndl) {
     LOG_WARN("%s: offload already started, ignore request", __func__);
     return;
+  } else if (::bluetooth::audio::a2dp::provider::supports_codec(
+                 codec_config->codecIndex())) {
+    bta_av_vendor_offload_start(p_scb,
+                                static_cast<A2dpCodecConfigExt*>(codec_config));
   } else {
     bta_av_offload_codec_builder(p_scb, &offload_start);
-    bta_av_vendor_offload_start(p_scb, &offload_start);
+    bta_av_vendor_offload_legacy_start(p_scb, &offload_start);
     return;
   }
   if (status != BTA_AV_SUCCESS) {
