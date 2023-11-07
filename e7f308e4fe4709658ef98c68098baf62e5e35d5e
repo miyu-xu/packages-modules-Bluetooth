@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5227bb64_58e60db5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T00:48:34Z",
+      "side": 1,
+      "message": "309491712 ?",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "e7f308e4fe4709658ef98c68098baf62e5e35d5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f2075f1_d85dd63a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T00:48:34Z",
+      "side": 1,
+      "message": "Please upload the require fix in the same relation chain.\nI feel you are only adding a nullcheck that may not need to be flagged\n\nif indeed you only want to nullcheck `p_search_cback` before calling it.\n\n@girardier@google.com, can you confirm this flagging exemption ?",
+      "revId": "e7f308e4fe4709658ef98c68098baf62e5e35d5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
