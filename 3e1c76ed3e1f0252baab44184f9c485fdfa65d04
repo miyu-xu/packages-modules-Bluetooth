@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9916e6e7_1066f281",
+        "filename": "flags/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T18:06:05Z",
+      "side": 1,
+      "message": "Can you rename the flag file to `metric.aconfig`",
+      "range": {
+        "startLine": 18,
+        "startChar": 9,
+        "endLine": 18,
+        "endChar": 15
+      },
+      "revId": "3e1c76ed3e1f0252baab44184f9c485fdfa65d04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4db5bcb4_8f491ea2",
+        "filename": "system/osi/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T18:06:05Z",
+      "side": 1,
+      "message": "Can you link this as static ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 9,
+        "endLine": 47,
+        "endChar": 34
+      },
+      "revId": "3e1c76ed3e1f0252baab44184f9c485fdfa65d04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "950f9e69_3ba4367f",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T18:06:05Z",
+      "side": 1,
+      "message": "Floss will not find the include, can you add ifndef TARGET_FLOSS around the include and around the code using this?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 40
+      },
+      "revId": "3e1c76ed3e1f0252baab44184f9c485fdfa65d04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
