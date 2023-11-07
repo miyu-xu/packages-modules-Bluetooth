@@ -16,6 +16,29 @@
       "message": "As per offline discussion, code LGTM but I know barely know anything about this file.",
       "revId": "f5026c2fe246a60d744095e2daaaba141f016f3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6816bb52_5a8a749f",
+        "filename": "system/gd/rust/linux/mgmt/src/state_machine.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 711,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-11-07T10:37:48Z",
+      "side": 1,
+      "message": "would you please check this condition again?",
+      "range": {
+        "startLine": 707,
+        "startChar": 24,
+        "endLine": 711,
+        "endChar": 50
+      },
+      "revId": "f5026c2fe246a60d744095e2daaaba141f016f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
