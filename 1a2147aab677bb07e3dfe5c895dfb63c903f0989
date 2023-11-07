@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8f5e093f_1610383d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-11-07T08:31:37Z",
+      "side": 1,
+      "message": "I finished the change and are able to enable or disable this feature by setting the flag. Please help to check it!",
+      "parentUuid": "048a9c57_400e26ef",
+      "revId": "1a2147aab677bb07e3dfe5c895dfb63c903f0989",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5d21b9db_0a875c69",
         "filename": "system/osi/src/stack_power_telemetry.cc",
         "patchSetId": 3
