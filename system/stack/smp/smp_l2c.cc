@@ -279,7 +279,7 @@ static void smp_br_connect_callback(uint16_t channel, const RawAddress& bd_addr,
       p_cb->cb_evt = SMP_BR_KEYS_REQ_EVT;
       smp_br_state_machine_event(p_cb, SMP_BR_L2CAP_CONN_EVT, NULL);
     }
-  } else {
+  } else if (p_cb->smp_over_br) {
     /* Disconnected while doing security */
     smp_br_state_machine_event(p_cb, SMP_BR_L2CAP_DISCONN_EVT, &int_data);
   }
