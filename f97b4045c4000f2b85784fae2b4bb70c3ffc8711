@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "84eef56c_9288ee5c",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T20:12:35Z",
+      "side": 1,
+      "message": "nit: circumstances",
+      "range": {
+        "startLine": 90,
+        "startChar": 38,
+        "endLine": 90,
+        "endChar": 51
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d041a748_0ca6dffd",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T20:12:35Z",
+      "side": 1,
+      "message": "It\u0027s confusing why there\u0027s so much logic for isOn, then a comment that says it\u0027s always off.",
+      "range": {
+        "startLine": 118,
+        "startChar": 17,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e025dc6e_b3881e20",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T20:12:35Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 139,
+        "startChar": 0,
+        "endLine": 139,
+        "endChar": 100
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af2a4249_ad9a85c8",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T20:12:35Z",
+      "side": 1,
+      "message": "like:\nor\nsuch as:\n?",
+      "range": {
+        "startLine": 164,
+        "startChar": 71,
+        "endLine": 164,
+        "endChar": 79
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38a9f0be_62da8c0f",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T20:12:35Z",
+      "side": 1,
+      "message": "The user wants ...\nThe user switches ...",
+      "range": {
+        "startLine": 165,
+        "startChar": 25,
+        "endLine": 165,
+        "endChar": 29
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ca40b5b_80b6ffa5",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1493,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T20:12:35Z",
+      "side": 1,
+      "message": "Unused?\n\nDid you mean to pass this in instead of this::getCurrentUserContext?\n\nShould the user switch and initialization be a different CL?\n\nShould there be some kind of a test to see what happens if getCurrentUserContext doesn\u0027t match the userHandle that was passed in?",
+      "range": {
+        "startLine": 1493,
+        "startChar": 12,
+        "endLine": 1493,
+        "endChar": 24
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6971e3d_fe3d1be5",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothService.kt",
+        "patchSetId": 23
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T20:12:35Z",
+      "side": 1,
+      "message": "nit: _, since it\u0027s unused? _from?",
+      "range": {
+        "startLine": 62,
+        "startChar": 33,
+        "endLine": 62,
+        "endChar": 37
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
