@@ -22,6 +22,30 @@
       },
       "revId": "acc1ea264420765e9c1dea31c9728afd76d3321d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2324b7f_4de138ae",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-07T18:49:24Z",
+      "side": 1,
+      "message": "handled in aosp/2819857",
+      "parentUuid": "87b5950d_96a0895b",
+      "range": {
+        "startLine": 228,
+        "startChar": 21,
+        "endLine": 228,
+        "endChar": 29
+      },
+      "revId": "acc1ea264420765e9c1dea31c9728afd76d3321d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
