@@ -2031,6 +2031,7 @@ public class GattService extends ProfileService {
                 if (app.callback != null) {
                     app.callback.onScanResult(result);
                 } else {
+                    Log.d(TAG, "sendResultsByPendingIntent()");
                     // Send the PendingIntent
                     ArrayList<ScanResult> results = new ArrayList<>();
                     results.add(result);
