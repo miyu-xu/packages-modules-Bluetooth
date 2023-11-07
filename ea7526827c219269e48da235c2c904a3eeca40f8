@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaa4aea9_625cd469",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-07T22:43:43Z",
+      "side": 1,
+      "message": "Needs a comment explaining what we\u0027re doing:\n```\n// For pending connections, we report whether the PSM successfully connected and\n// store the profile as started at this time.\n```",
+      "revId": "ea7526827c219269e48da235c2c904a3eeca40f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26043911_fd47e428",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-07T22:43:43Z",
+      "side": 1,
+      "message": "suggestion:\n```\n// L2cap disconnected so report profile connection closed if we were tracking it.\n```",
+      "revId": "ea7526827c219269e48da235c2c904a3eeca40f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c5b1094_53ac7dcb",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-07T22:43:43Z",
+      "side": 1,
+      "message": "Adding rfcomm, att and eatt here also seem like low-hanging fruits: https://bitbucket.org/bluetooth-SIG/public/src/main/assigned_numbers/core/psm.yaml",
+      "revId": "ea7526827c219269e48da235c2c904a3eeca40f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
