@@ -163,6 +163,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eea9a186_77cb6a41",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1493,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T22:08:33Z",
+      "side": 1,
+      "message": "You\u0027re right.  I didn\u0027t think it was a getter because the names don\u0027t match.\n\nmCurrentUserContext would have made that obvious.",
+      "parentUuid": "db545a94_13df9969",
+      "range": {
+        "startLine": 1493,
+        "startChar": 12,
+        "endLine": 1493,
+        "endChar": 24
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b6971e3d_fe3d1be5",
