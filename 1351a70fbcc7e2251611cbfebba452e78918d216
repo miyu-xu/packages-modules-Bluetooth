@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "869b230c_9d1f32b6",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1505,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-07T18:20:23Z",
+      "side": 1,
+      "message": "Remove?  btm_find_or_allocate_dev can\u0027t fail.",
+      "range": {
+        "startLine": 1501,
+        "startChar": 0,
+        "endLine": 1505,
+        "endChar": 0
+      },
+      "revId": "1351a70fbcc7e2251611cbfebba452e78918d216",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
