@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2b779f1_2316155f",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothProfileConnectorTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T01:29:22Z",
+      "side": 1,
+      "message": "Can you add a bugnumber here ?",
+      "range": {
+        "startLine": 182,
+        "startChar": 11,
+        "endLine": 182,
+        "endChar": 15
+      },
+      "revId": "b022c5468d51cba8b5754d2196c11363ae91401d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
