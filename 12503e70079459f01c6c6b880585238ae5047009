@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08541851_6bc7a0a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-07T09:20:49Z",
+      "side": 1,
+      "message": "Since it touch the code recently merged within b/274106369, lets use it in this CL",
+      "revId": "12503e70079459f01c6c6b880585238ae5047009",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
