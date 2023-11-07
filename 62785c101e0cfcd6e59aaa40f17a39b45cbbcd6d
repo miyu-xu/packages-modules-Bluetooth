@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca54dccb_614946ed",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2019,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-11-07T05:39:49Z",
+      "side": 1,
+      "message": "Kind of done here, it\u0027s now very explicit on the 4 commands that are the exceptions.",
+      "parentUuid": "d47c1b99_a5de4d90",
+      "range": {
+        "startLine": 2019,
+        "startChar": 12,
+        "endLine": 2019,
+        "endChar": 31
+      },
+      "revId": "62785c101e0cfcd6e59aaa40f17a39b45cbbcd6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97b61c0f_87fe7a8e",
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "01961507_f706c3e2",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2020,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-11-07T05:39:49Z",
+      "side": 1,
+      "message": "I see, it is not intentional. So in this patchset I just make them as explicit exceptions to process and return right away. Do you think this is too messy? The lack of functional mapping in Java seems like I either make it messy like this, or create a separate function but then the checking process will be redundant...",
+      "parentUuid": "97b61c0f_87fe7a8e",
+      "range": {
+        "startLine": 2020,
+        "startChar": 12,
+        "endLine": 2020,
+        "endChar": 21
+      },
+      "revId": "62785c101e0cfcd6e59aaa40f17a39b45cbbcd6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b9c0815_628a26a8",
         "filename": "framework/java/android/bluetooth/BluetoothHeadset.java",
         "patchSetId": 1
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-06T21:18:55Z",
       "side": 1,
       "message": "nit: from the code, we know \"+CGMI\" is asking for `MANUFACTURER` information, so maybe we can put it in the comment? This would possibly make code more readable :) Same for following commands\nWelcome other people\u0027s idea as well.",
+      "range": {
+        "startLine": 274,
+        "startChar": 7,
+        "endLine": 274,
+        "endChar": 35
+      },
+      "revId": "62785c101e0cfcd6e59aaa40f17a39b45cbbcd6d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50099784_b6788115",
+        "filename": "framework/java/android/bluetooth/BluetoothHeadset.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-11-07T05:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b9c0815_628a26a8",
       "range": {
         "startLine": 274,
         "startChar": 7,
