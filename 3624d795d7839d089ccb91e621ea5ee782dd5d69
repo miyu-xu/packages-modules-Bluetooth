@@ -34,6 +34,24 @@
       "parentUuid": "cc300cd1_f5f6544e",
       "revId": "3624d795d7839d089ccb91e621ea5ee782dd5d69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8610e1ab_affcbd68",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T05:38:39Z",
+      "side": 1,
+      "message": "\u003e Is there any test using this feature? \n\nNo this is dead code. You can double check this on code search.\n\n\u003e BTM_BLE_CONFORMANCE_TESTING may be defined from commandline\n\nCan you share an usage of that ? how do you define it in command line and when ?",
+      "parentUuid": "f713a194_f75fe26e",
+      "revId": "3624d795d7839d089ccb91e621ea5ee782dd5d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
