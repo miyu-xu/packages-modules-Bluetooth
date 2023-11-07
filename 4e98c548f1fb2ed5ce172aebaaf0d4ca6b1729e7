@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0144256f_546354f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2023-11-07T12:23:00Z",
+      "side": 1,
+      "message": "one minor suggestion to update the comment",
+      "revId": "4e98c548f1fb2ed5ce172aebaaf0d4ca6b1729e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d4f5688_d7717730",
+        "filename": "system/bta/has/has_client_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2143,
+      "author": {
+        "id": 1838926
+      },
+      "writtenOn": "2023-11-07T12:23:00Z",
+      "side": 1,
+      "message": "```suggestion\n   * updated, and 1, 2, 4, 5 deleted.\n```",
+      "revId": "4e98c548f1fb2ed5ce172aebaaf0d4ca6b1729e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
