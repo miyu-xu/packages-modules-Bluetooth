@@ -70,6 +70,23 @@
       "parentUuid": "8610e1ab_affcbd68",
       "revId": "3624d795d7839d089ccb91e621ea5ee782dd5d69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f662182_159f1f4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-07T17:07:46Z",
+      "side": 1,
+      "message": "I\u0027m not 100% sure, but have feeling that we set this flag sometimes during PTS testing.\n\nTHis is just heads up to make sure we will not lose something valid - i might be wrong :)",
+      "revId": "3624d795d7839d089ccb91e621ea5ee782dd5d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
