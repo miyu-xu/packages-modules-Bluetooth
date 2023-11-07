@@ -87,6 +87,24 @@
       "message": "I\u0027m not 100% sure, but have feeling that we set this flag sometimes during PTS testing.\n\nTHis is just heads up to make sure we will not lose something valid - i might be wrong :)",
       "revId": "3624d795d7839d089ccb91e621ea5ee782dd5d69",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0668d814_ed4213dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T17:58:47Z",
+      "side": 1,
+      "message": "Pts is passed at pre-submit and does not set this define prior to building the stack.\nI searched into code search and internal sources and never found a definition on it.\n\nDo you know where this could be done ? Who to contact to check those",
+      "parentUuid": "0f662182_159f1f4b",
+      "revId": "3624d795d7839d089ccb91e621ea5ee782dd5d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
