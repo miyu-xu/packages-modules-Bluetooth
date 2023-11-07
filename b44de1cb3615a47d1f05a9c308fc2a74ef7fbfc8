@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78447b5f_692eef1f",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-07T16:39:11Z",
+      "side": 1,
+      "message": "We shouldn\u0027t print out those numbers at all.\nI think DLOG was compiling out this logs in non-debug builds, and with LOG_VERBOSE it will stay in logs.",
+      "range": {
+        "startLine": 1223,
+        "startChar": 4,
+        "endLine": 1225,
+        "endChar": 22
+      },
+      "revId": "b44de1cb3615a47d1f05a9c308fc2a74ef7fbfc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
