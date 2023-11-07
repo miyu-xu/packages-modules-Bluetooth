@@ -141,6 +141,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db545a94_13df9969",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 23
+      },
+      "lineNbr": 1493,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-07T21:58:36Z",
+      "side": 1,
+      "message": "`mUserContext` is a member variable of the class.\n\nAnd `this::getCurrentUserContext` is a function that returns `mUserContext`.\n\nFor me this code looks correct.",
+      "parentUuid": "4ca40b5b_80b6ffa5",
+      "range": {
+        "startLine": 1493,
+        "startChar": 12,
+        "endLine": 1493,
+        "endChar": 24
+      },
+      "revId": "f97b4045c4000f2b85784fae2b4bb70c3ffc8711",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b6971e3d_fe3d1be5",
         "filename": "service/src/com/android/server/bluetooth/BluetoothService.kt",
         "patchSetId": 23
