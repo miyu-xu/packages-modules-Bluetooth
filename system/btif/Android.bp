@@ -628,7 +628,7 @@ cc_test {
         "lib-bt-packets-base",
         "libaudio-a2dp-hw-utils",
         "libbluetooth-types",
-        "libbluetooth_gd",
+        "libbluetooth_gd_unit_tests",
         "libbt-audio-hal-interface",
         "libbt-platform-protos-lite",
         "libbt-sbc-decoder",
