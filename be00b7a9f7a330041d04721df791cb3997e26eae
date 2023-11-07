@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6efdf42c_2db48a00",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T22:07:31Z",
+      "side": 1,
+      "message": "I think you can safely move those to be private final member of the test class",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 90,
+        "endChar": 74
+      },
+      "revId": "be00b7a9f7a330041d04721df791cb3997e26eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "54d3c130_3201be11",
         "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
         "patchSetId": 2
