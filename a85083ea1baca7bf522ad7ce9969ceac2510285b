@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c06b8045_93abc5d1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 28
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T00:38:47Z",
+      "side": 1,
+      "message": "What about having a mock of the `mReceiver` and then something like:\n\n```\n        verify(mReceiver, timeout(BOND_INTENT_TIMEOUT.toMillis())).onReceive(MockitoHamcrest.argThat(\n                AllOf.allOf(IntentMatchers.hasAction(\n                        BluetoothDevice.ACTION_BOND_STATE_CHANGED),\n                        IntentMatchers.hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n                        IntentMatchers.hasExtra(BluetoothDevice.EXTRA_BOND_STATE,\n                                BluetoothDevice.BOND_BONDING))),\n                any(String[].class),\n                any(BroadcastOptions.class));\n```",
+      "range": {
+        "startLine": 166,
+        "startChar": 9,
+        "endLine": 173,
+        "endChar": 57
+      },
+      "revId": "a85083ea1baca7bf522ad7ce9969ceac2510285b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
