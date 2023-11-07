@@ -224,6 +224,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edfb4c6a_f9a07910",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 20
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T19:27:28Z",
+      "side": 1,
+      "message": "I reverted this because robolectric test is not storing int with string and the test will fail",
+      "parentUuid": "58858097_900047ca",
+      "revId": "a539f7761216e9b6b9172826241d5c74a215559b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "736fd57b_f4d451c4",
