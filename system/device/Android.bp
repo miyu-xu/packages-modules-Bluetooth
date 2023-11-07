@@ -31,9 +31,16 @@ cc_library_static {
     apex_available: [
         "com.android.btservices",
     ],
+    generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
+    ],
     min_sdk_version: "Tiramisu",
     header_libs: ["libbluetooth_headers"],
-    static_libs: ["libbt_shim_bridge"],
+    static_libs: [
+        "libbluetooth_hci_pdl",
+        "libbt_shim_bridge",
+        "libflatbuffers-cpp",
+    ],
 }
 
 // Bluetooth device unit tests for target
