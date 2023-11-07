@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1fe7058_e03ce109",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-07T04:31:06Z",
+      "side": 1,
+      "message": "As per offline discussion, code LGTM but I know barely know anything about this file.",
+      "revId": "f5026c2fe246a60d744095e2daaaba141f016f3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
