@@ -22,6 +22,30 @@
       },
       "revId": "2f2144e71b808d9fd8be3dbd7e19396113039c3b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "348e0e4f_b8917355",
+        "filename": "service/src/airplane/ModeListener.kt",
+        "patchSetId": 21
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-07T19:12:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e5e396b7_f346225e",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 9
+      },
+      "revId": "2f2144e71b808d9fd8be3dbd7e19396113039c3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
