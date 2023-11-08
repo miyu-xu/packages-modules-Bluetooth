@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7d0a71f_3939ab10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-08T22:40:17Z",
+      "side": 1,
+      "message": "Floss build failure in pre-submit looks legit:\n\n```\nerror: failed to select a version for the requirement `grpcio \u003d \"^0.13.0\"`\ncandidate versions found which didn\u0027t match: 0.9.1\nlocation searched: directory source `/root/.floss/staging/external/rust/vendor` (which is replacing registry `crates-io`)\n```\n\ncc @abhishekpandit@google.com to help the rust team landing version bump",
+      "revId": "0c1fd1cd8b6d434039ae851e410e9a1898d79259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
