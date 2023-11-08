@@ -19,11 +19,8 @@
 #pragma once
 
 #include <condition_variable>
-#include <memory>
 #include <mutex>
-#include <thread>
 
-#include "hal/snoop_logger_socket_interface.h"
 #include "hal/syscall_wrapper_interface.h"
 
 namespace bluetooth {

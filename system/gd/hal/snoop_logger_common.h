@@ -16,6 +16,8 @@
  *
  ******************************************************************************/
 
+#include <cstdint>
+
 namespace bluetooth {
 namespace hal {
 

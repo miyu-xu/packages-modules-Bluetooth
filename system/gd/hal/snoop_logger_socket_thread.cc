@@ -20,7 +20,6 @@
 
 #include <arpa/inet.h>
 #include <base/logging.h>
-#include <errno.h>
 #include <fcntl.h>
 #include <netinet/in.h>
 #include <pthread.h>
@@ -33,14 +32,9 @@
 #include <sys/un.h>
 #include <unistd.h>
 
-#include <mutex>
-
 #include "common/init_flags.h"
 #include "hal/snoop_logger_common.h"
-#include "os/handler.h"
 #include "os/log.h"
-#include "os/thread.h"
-#include "os/utils.h"
 
 namespace bluetooth {
 namespace hal {
@@ -61,7 +55,7 @@ std::future<bool> SnoopLoggerSocketThread::Start() {
   auto future = thread_started.get_future();
   listen_thread_ = std::make_unique<std::thread>(&SnoopLoggerSocketThread::Run, this, std::move(thread_started));
   stop_thread_ = false;
-  return std::move(future);
+  return future;
 }
 
 void SnoopLoggerSocketThread::Stop() {

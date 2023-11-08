@@ -37,9 +37,7 @@
 
 #include "common/init_flags.h"
 #include "hal/snoop_logger_common.h"
-#include "os/handler.h"
 #include "os/log.h"
-#include "os/thread.h"
 #include "os/utils.h"
 
 namespace bluetooth {

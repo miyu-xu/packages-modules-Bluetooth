@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
+#include "hal/snoop_logger_socket.h"
+
 #include <errno.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
 
-#include <future>
-
 #include "common/init_flags.h"
 #include "hal/snoop_logger_common.h"
-#include "hal/snoop_logger_socket_thread.h"
 #include "hal/syscall_wrapper_impl.h"
 #include "hal/syscall_wrapper_mock.h"
-#include "os/log.h"
-#include "os/utils.h"
 
 static const char* test_flags[] = {
     "INIT_logging_debug_enabled_for_all=true",
