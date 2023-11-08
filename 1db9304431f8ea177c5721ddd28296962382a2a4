@@ -16,6 +16,24 @@
       "message": "I think I\u0027d prefer to have the flag added before this CL lands, or added in the same CL.",
       "revId": "1db9304431f8ea177c5721ddd28296962382a2a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74d16e09_078cc964",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2023-11-08T01:20:15Z",
+      "side": 1,
+      "message": "+1 to this.\n\nI am wondering if some controller is not replying the supported codec correctly. This will cause the GetLocalSupportedBrEdrCodecIds() is not correct. We should also check with different controllers first and make sure it\u0027s working before enabling.",
+      "parentUuid": "942e7101_b3f93cf8",
+      "revId": "1db9304431f8ea177c5721ddd28296962382a2a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
