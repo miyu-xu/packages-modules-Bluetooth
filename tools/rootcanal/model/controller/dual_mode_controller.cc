@@ -97,10 +97,12 @@ DualModeController::DualModeController(ControllerProperties properties)
 }
 
 void DualModeController::ForwardToLm(CommandView command) {
+  DEBUG(_id, "<< [LM] {}", bluetooth::hci::OpCodeText(command.GetOpCode()));
   link_layer_controller_.ForwardToLm(command);
 }
 
 void DualModeController::ForwardToLl(CommandView command) {
+  DEBUG(_id, "<< [LL] {}", bluetooth::hci::OpCodeText(command.GetOpCode()));
   link_layer_controller_.ForwardToLl(command);
 }
 
