@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00fd5da0_b436e17f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 32
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T22:12:09Z",
+      "side": 1,
+      "message": "Neither user 10108 nor current process has android.permission.BLUETOOTH_PRIVILEGED. `BLUETOOTH_PRIVILEGED` cannot be adopted by default. \n\n@David",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 99
+      },
+      "revId": "f942a75f497e8a1c6b959a909f438793724668e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
