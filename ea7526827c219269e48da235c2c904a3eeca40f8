@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89b8a6bd_4ea95250",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-08T06:15:52Z",
+      "side": 1,
+      "message": "Done, thanks",
+      "parentUuid": "eaa4aea9_625cd469",
+      "revId": "ea7526827c219269e48da235c2c904a3eeca40f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "26043911_fd47e428",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-11-07T22:43:43Z",
       "side": 1,
       "message": "suggestion:\n```\n// L2cap disconnected so report profile connection closed if we were tracking it.\n```",
+      "revId": "ea7526827c219269e48da235c2c904a3eeca40f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "636ab19c_9ce77f62",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-08T06:15:52Z",
+      "side": 1,
+      "message": "Done, thanks",
+      "parentUuid": "26043911_fd47e428",
       "revId": "ea7526827c219269e48da235c2c904a3eeca40f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -66,6 +102,24 @@
       "side": 1,
       "message": "OK for RFCOMM. I am not sure whether to add that previously since we will have rfcomm-based profile connections (e.g. fastpair, phonehub) but that requires us to parse SDP. But probably it\u0027s OK and won\u0027t create confusion.\n\nI\u0027ve actually never seen any connection to ATT and EATT... but I suppose there\u0027s no harm adding those.",
       "parentUuid": "0c5b1094_53ac7dcb",
+      "revId": "ea7526827c219269e48da235c2c904a3eeca40f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04f6d07a_dfd7645c",
+        "filename": "floss/hcidoc/src/groups/informational.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 409,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-08T06:15:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5808fd26_94d1066d",
       "revId": "ea7526827c219269e48da235c2c904a3eeca40f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
