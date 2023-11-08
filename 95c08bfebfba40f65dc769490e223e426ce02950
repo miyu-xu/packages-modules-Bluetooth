@@ -22,6 +22,75 @@
       },
       "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a538a26_b66b8fe6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-08T18:36:09Z",
+      "side": 1,
+      "message": "If you are not waiting, are you sure it will be executed and the device will no longer be bonded ?",
+      "range": {
+        "startLine": 112,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 39
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a72fe8_9975cb14",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-08T18:36:09Z",
+      "side": 1,
+      "message": "Not needed, as you are using the Rules",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 125,
+        "endChar": 5
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dae7f7d2_b4207ed5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-08T18:36:09Z",
+      "side": 1,
+      "message": "Is it easier to wrap this in a method ?\n\n```\ncheckIntentReceived(\n  mReceiver,\n  BOND_INTENT_TIMEOUT,\n  BluetoothDevice.ACTION_BOND_STATE_CHANGED,\n  BluetoothDevice.EXTRA_BOND_STATE,\n  BluetoothDevice.BOND_BONDED);\n  \n[...]\n\npublic static \u003cT\u003e void checkIntentReceived(BroadcastReceiver receiver, Duration timeout, String action, String extraKey, T extraValue) {\n  verify(receiver, timeout(timeout.toMillis()))\n    .onReceive(\n      any(Context.class),\n      MockitoHamcrest.argThat(\n        AllOf.allOf(\n          IntentMatchers.hasAction(action),\n          IntentMatchers.hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n          IntentMatchers.hasExtra(extraKey, extraValue))));\n```",
+      "range": {
+        "startLine": 183,
+        "startChar": 5,
+        "endLine": 194,
+        "endChar": 80
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
