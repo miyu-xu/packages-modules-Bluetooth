@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a48dd77_2d97c0ac",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 5428,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-08T00:53:30Z",
+      "side": 1,
+      "message": "I added the static in aosp/2819721",
+      "parentUuid": "09073256_2b5be647",
+      "revId": "aa0fe202aef6c363e16e78c1e269197a946017c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf66036d_6816abe0",
