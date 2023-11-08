@@ -22,6 +22,30 @@
       },
       "revId": "4fc65fd2c9caf6d6966c6320c262d6a9fec3cab4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7915b3f0_8fcc73e1",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-08T18:38:16Z",
+      "side": 1,
+      "message": "`should this callback ever be null in normal operation?`\n\nWith this change that question does not matter to the reader.\n\n`If not, can we set the callback in the test, instead of changing the code?`\n\nI would be prefer to do a nullcheck prior to callback as thats quite conventional throughout the rest of the code base.\n\n`If it can be null, should it log something instead of silently failing`\nI can add a log should this condition be hit.",
+      "parentUuid": "4668570b_06c5720c",
+      "range": {
+        "startLine": 970,
+        "startChar": 25,
+        "endLine": 970,
+        "endChar": 39
+      },
+      "revId": "4fc65fd2c9caf6d6966c6320c262d6a9fec3cab4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
