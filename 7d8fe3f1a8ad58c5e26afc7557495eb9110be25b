@@ -22,6 +22,30 @@
       },
       "revId": "7d8fe3f1a8ad58c5e26afc7557495eb9110be25b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "97f143d6_c5129b15",
+        "filename": "framework/tests/bumble/bumble_config.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T23:23:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6bb64328_60a44985",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 2
+      },
+      "revId": "7d8fe3f1a8ad58c5e26afc7557495eb9110be25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
