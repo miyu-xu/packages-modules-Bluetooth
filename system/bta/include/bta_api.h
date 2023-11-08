@@ -47,6 +47,10 @@
 /*
  * Service ID
  */
+#define BTM_SEC_SERVICE_FIRST_EMPTY 57
+#ifndef BTM_SEC_MAX_SERVICES
+#define BTM_SEC_MAX_SERVICES 75
+#endif
 typedef enum : uint8_t {
   BTA_UNASSIGNED_SERVICE_ID = 0,
   BTA_A2DP_SOURCE_SERVICE_ID = 3, /* A2DP Source profile. */
