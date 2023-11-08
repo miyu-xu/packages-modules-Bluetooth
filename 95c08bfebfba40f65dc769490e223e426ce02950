@@ -451,6 +451,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a9addb55_addfda1e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T22:52:56Z",
+      "side": 1,
+      "message": "Other tests do not have a need for this feature yet. Could we do this as a follow-up as I don\u0027t want to modify `EnableBluetoothRule` here. \n\nOr maybe a new rule called `CleanUpBondedDeviceRule`",
+      "parentUuid": "fbdc20d8_245434f3",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 9
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44cb3a7c_62621190",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 31
