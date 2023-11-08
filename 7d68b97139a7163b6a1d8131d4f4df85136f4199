@@ -70,6 +70,30 @@
       },
       "revId": "7d68b97139a7163b6a1d8131d4f4df85136f4199",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98436cc1_9505328a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1652,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-11-08T07:23:49Z",
+      "side": 1,
+      "message": "Decide to not using this fix offline. close this change.",
+      "parentUuid": "b7b27a52_2808f653",
+      "range": {
+        "startLine": 1652,
+        "startChar": 30,
+        "endLine": 1652,
+        "endChar": 36
+      },
+      "revId": "7d68b97139a7163b6a1d8131d4f4df85136f4199",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
