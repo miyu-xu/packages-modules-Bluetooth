@@ -427,6 +427,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fbdc20d8_245434f3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-08T22:13:54Z",
+      "side": 1,
+      "message": "Can this not be controlled with an option/boolean?",
+      "parentUuid": "9d8aade5_37f6e54c",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 9
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44cb3a7c_62621190",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 31
@@ -462,6 +486,30 @@
       "side": 1,
       "message": "`as it\u0027s a Rule it will not run the tearDown of the test` is there any documentation supporting this? \n\nIf this is true, then yes, we can remove this. \n\nIn the past, when enabling BT outside the rule, if the enable failed and we try to to the teardown, a bunch of other errors would happen to prevent us producing a nice error log.",
       "parentUuid": "44cb3a7c_62621190",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 9
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07450929_1f8c8d96",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-08T22:13:54Z",
+      "side": 1,
+      "message": "I\u0027m unable to find documentation for this, I think this is the behavior I observer when developping the PandoraDevice rule",
+      "parentUuid": "0af071b8_052a419c",
       "range": {
         "startLine": 105,
         "startChar": 0,
