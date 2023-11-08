@@ -17,8 +17,6 @@
 #pragma once
 
 #include <functional>
-#include <list>
-#include <string>
 
 #define LOG_DUMPSYS(fd, fmt, args...)                 \
   do {                                                \
