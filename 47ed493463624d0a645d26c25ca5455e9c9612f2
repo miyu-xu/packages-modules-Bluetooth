@@ -1445,6 +1445,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbbeeb9d_08d6faee",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T09:14:15Z",
+      "side": 1,
+      "message": "this method is no longer needed in the latest patch set.",
+      "parentUuid": "4f7c0baf_2cb71659",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 5
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8548ce92_cb9cb6d8",
@@ -1602,6 +1626,30 @@
       "side": 1,
       "message": "While the test is running we should not have any other device pairing (even connecting) to the phone.\n\nI prefer the test to fail that silently succeed in this case.",
       "parentUuid": "53e5acf3_3f6136e4",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 80
+      },
+      "revId": "47ed493463624d0a645d26c25ca5455e9c9612f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "569736fd_dcf2e3a4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T09:14:15Z",
+      "side": 1,
+      "message": "this class is no longer needed in the latest patch set",
+      "parentUuid": "79acc69e_d1484c90",
       "range": {
         "startLine": 62,
         "startChar": 0,

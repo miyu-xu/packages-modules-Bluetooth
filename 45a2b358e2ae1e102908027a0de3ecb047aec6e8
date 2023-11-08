@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf44fbd7_34205961",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T09:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "265ee9ae_768cd695",
+      "range": {
+        "startLine": 55,
+        "startChar": 28,
+        "endLine": 55,
+        "endChar": 41
+      },
+      "revId": "45a2b358e2ae1e102908027a0de3ecb047aec6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83f0c282_8b9400ab",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-19T18:06:11Z",
       "side": 1,
       "message": "Is it guarantee that both intent will be sent in this order ?\n\nIf not, this test will fail as per current implementation of the abstraction.\n\nI would propose to do a different abstraction, to use like this (open discussion)\n\n```\nFoo Bonding \u003d new IntentMatcher(sTargetContext, ACTION_BOND_STATE_CHANGED, {EXTRA_BOND_STATE, BOND_BONDING}, {EXTRA_DEVICE, mBumbleDevice})\nFoo PairingRequest \u003d new IntentMatcher(sTargetContext, ACTION_PAIRING_REQUEST, {EXTRA_PAIRING_VARIANT, PAIRING_VARIANT_CONSENT}, {EXTRA_DEVICE, mBumbleDevice})\n\nassertThat(mBumbleDevice.createBond()).isTrue();\n\nBonding.waitAndAssert(TIMEOUT_MS)\nPairingRequest.waitAndAssert(TIMEOUT_MS)\n\nmBumbleDevice.setPairingConfirmation(true);\n```",
+      "range": {
+        "startLine": 153,
+        "startChar": 8,
+        "endLine": 162,
+        "endChar": 81
+      },
+      "revId": "45a2b358e2ae1e102908027a0de3ecb047aec6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b186b0df_720bbf22",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T09:14:15Z",
+      "side": 1,
+      "message": "Yes, they must be sent in order. Bonding has to come before pairing request. But I think your proposal also looks good.",
+      "parentUuid": "83f0c282_8b9400ab",
       "range": {
         "startLine": 153,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa3a5b39_48e86f31",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T09:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7c5a36c4_6cf44f4e",
+      "range": {
+        "startLine": 179,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 33
+      },
+      "revId": "45a2b358e2ae1e102908027a0de3ecb047aec6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fb847cc_6a7ca4b2",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a6c8227_d02189ab",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T09:14:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fb847cc_6a7ca4b2",
+      "range": {
+        "startLine": 191,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 45
+      },
+      "revId": "45a2b358e2ae1e102908027a0de3ecb047aec6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "351fcf05_b0ce1ad0",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-09-20T23:38:41Z",
       "side": 1,
       "message": "```suggestion\n        assertThat(unbondIntent).hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);\n        assertThat(unbondIntent)\n```",
+      "range": {
+        "startLine": 192,
+        "startChar": 0,
+        "endLine": 193,
+        "endChar": 46
+      },
+      "revId": "45a2b358e2ae1e102908027a0de3ecb047aec6e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad04d2bc_4bb5f2be",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T09:14:15Z",
+      "side": 1,
+      "message": "Latest patch uses IntentMatchers instead",
+      "parentUuid": "351fcf05_b0ce1ad0",
       "range": {
         "startLine": 192,
         "startChar": 0,
