@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5558e981_55f3b08c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3494,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-08T14:05:04Z",
+      "side": 1,
+      "message": "not needed.",
+      "revId": "c10ac778179965753ee68ca39c084aa0107d72ca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
