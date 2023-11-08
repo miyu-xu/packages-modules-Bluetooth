@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0243b1a1_0c56fa10",
+        "filename": "framework/tests/bumble/bumble_config.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-11-08T16:39:33Z",
+      "side": 1,
+      "message": "nit: Can we chose a better name ? \"MyTestDevice\" sounds like a tutorial name. Something including Bumble or Pandora. BumblePandora, Bumble, BumbleDevice, BumbleTestDevice",
+      "range": {
+        "startLine": 6,
+        "startChar": 11,
+        "endLine": 6,
+        "endChar": 23
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
