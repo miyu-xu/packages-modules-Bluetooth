@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f579a3ae_4162dfdb",
+        "filename": "system/audio_hal_interface/a2dp_encoding.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-08T11:13:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7647a9e_cb5d2aa9",
+      "range": {
+        "startLine": 94,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 3
+      },
+      "revId": "e4cddd0a1d07c18247ba3089a5b5cdaee68ea0bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "02c1321d_a5fd0f04",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc03da7c_0f229a59",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1853,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-08T11:13:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02c1321d_a5fd0f04",
+      "range": {
+        "startLine": 1850,
+        "startChar": 0,
+        "endLine": 1853,
+        "endChar": 65
+      },
+      "revId": "e4cddd0a1d07c18247ba3089a5b5cdaee68ea0bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8a6fecd_3e188c96",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-07T17:25:17Z",
       "side": 1,
       "message": "This will set the current codec selection because `select_current_codec \u003d\u003d true`.\nThe hardware codec is never selected with this code.\n\nThe way I see it, we should dry-run the software codec selection (i.e. loop AttemptSourceCodecSelection with select_current_codec \u003d\u003d false), take the first software codec that elicits a selection (setCodecConfig returns true in this case), then compare with bta_av_co_should_select_hardware_codec.\n\n\nGrossly:\n```\n// Provider selection.\nstd::optional\u003c::bluetooth::audio::a2dp::a2dp_configuration provider_config\u003e \u003d\n  GetProviderCodecConfiguration(p_peer);\n\n// Software selection.\nfor (const auto\u0026 it : p_peer-\u003eGetCodecs()-\u003eorderedSourceCodecs()) {\n   if (!::bluetooth::audio::a2dp::supports_codec(it-\u003ecodecIndex()) \u0026\u0026\n       (p_sink \u003d FindPeerSink(p_peer, codec_config.codecIndex()) \u0026\u0026\n       p_peer-\u003eGetCodecs()-\u003esetCodecConfig(p_sink-\u003ecodec_caps, tru, new_codec_config, false)) {\n       // Found valid sofware codec !\n       break;\n   }\n}\n\n// Compare\nif (bta_av_co_should_select_hardware_codec(codec_config, provider_config)) {\n  // foo\n} else {\n  // bar\n}\n```",
+      "range": {
+        "startLine": 2060,
+        "startChar": 6,
+        "endLine": 2060,
+        "endChar": 43
+      },
+      "revId": "e4cddd0a1d07c18247ba3089a5b5cdaee68ea0bc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7816aba5_07aa7555",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2060,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-08T11:13:02Z",
+      "side": 1,
+      "message": "fixed, please take a look, thank you ; )",
+      "parentUuid": "f8a6fecd_3e188c96",
       "range": {
         "startLine": 2060,
         "startChar": 6,
