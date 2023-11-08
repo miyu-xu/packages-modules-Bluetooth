@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6bb64328_60a44985",
+        "filename": "framework/tests/bumble/bumble_config.json",
+        "patchSetId": 35
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-08T23:04:54Z",
+      "side": 1,
+      "message": "nit: Keep the 4 spaces",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 2
+      },
+      "revId": "7d8fe3f1a8ad58c5e26afc7557495eb9110be25b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
