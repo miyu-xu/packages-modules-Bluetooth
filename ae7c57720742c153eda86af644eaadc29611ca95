@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b68463f0_64689a67",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 33
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-08T22:37:16Z",
+      "side": 1,
+      "message": "`InOrder.verifyNoMoreInteractions` only verify that no more interaction happened in order (So after the verify but not before), you should use the `Mockito.verifyNoMoreInteractions` instead.\n\nSee https://www.javadoc.io/doc/org.mockito/mockito-core/2.6.9/org/mockito/InOrder.html#verifyNoMoreInteractions() for more details.",
+      "range": {
+        "startLine": 182,
+        "startChar": 0,
+        "endLine": 182,
+        "endChar": 44
+      },
+      "revId": "ae7c57720742c153eda86af644eaadc29611ca95",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
