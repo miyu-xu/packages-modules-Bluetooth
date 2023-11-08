@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "890d8365_1de63427",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-08T00:26:56Z",
+      "side": 1,
+      "message": "Shouldn\u0027t the test control exactly in which behavior we are and assert a specific number of metric ?\n\nI feel like all the atLeast / atMost should be removed and replace by the exact value, in order to have a meaningful test",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "4ca683499a38ac667b39638d25f774fa3ff364ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
