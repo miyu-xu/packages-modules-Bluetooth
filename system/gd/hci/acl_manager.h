@@ -46,7 +46,6 @@ class Acl;
 }
 
 class Btm;
-void L2CA_UseLegacySecurityModule();
 bool L2CA_SetAclPriority(uint16_t, bool);
 }
 
@@ -55,7 +54,6 @@ namespace hci {
 class AclManager : public Module {
  friend class bluetooth::shim::Btm;
  friend class bluetooth::shim::legacy::Acl;
- friend void bluetooth::shim::L2CA_UseLegacySecurityModule();
  friend bool bluetooth::shim::L2CA_SetAclPriority(uint16_t, bool);
  friend class bluetooth::hci::LeScanningManager;
  friend class bluetooth::hci::DistanceMeasurementManager;
