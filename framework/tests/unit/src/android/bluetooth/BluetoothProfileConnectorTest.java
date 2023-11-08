@@ -22,7 +22,11 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
+<<<<<<< PATCH SET (d1d3fc BluetoothProfileConnectorTest: Use Mockito.verifyNoMoreInter)
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+=======
 import static org.mockito.Mockito.times;
+>>>>>>> BASE      (d6a6c6 Merge changes I1becd298,I7e580b42 into main)
 import static org.mockito.Mockito.verifyZeroInteractions;
 
 import android.content.ComponentName;
@@ -140,7 +144,7 @@ public class BluetoothProfileConnectorTest {
         InOrder order = inOrder(listener);
         order.verify(listener).onServiceConnected(anyInt(), any());
         order.verify(listener).onServiceDisconnected(anyInt());
-        order.verifyNoMoreInteractions();
+        verifyNoMoreInteractions(listener);
     }
 
     @Test
@@ -175,7 +179,7 @@ public class BluetoothProfileConnectorTest {
         InOrder order = inOrder(listener);
         // TODO(b/309635805): This should not be here
         order.verify(listener).onServiceDisconnected(anyInt());
-        order.verifyNoMoreInteractions();
+        verifyNoMoreInteractions(listener);
     }
 
     @Test
@@ -195,7 +199,7 @@ public class BluetoothProfileConnectorTest {
         InOrder order = inOrder(listener);
         // TODO(b/309635805): This should not be here
         order.verify(listener).onServiceDisconnected(anyInt());
-        order.verifyNoMoreInteractions();
+        verifyNoMoreInteractions(listener);
     }
 
     @Test
@@ -221,6 +225,6 @@ public class BluetoothProfileConnectorTest {
         order.verify(listener).onServiceConnected(anyInt(), any());
         // TODO(b/309635805): Should be only one
         order.verify(listener, times(2)).onServiceDisconnected(anyInt());
-        order.verifyNoMoreInteractions();
+        verifyNoMoreInteractions(listener);
     }
 }
