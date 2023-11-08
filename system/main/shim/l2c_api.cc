@@ -65,9 +65,6 @@ using namespace bluetooth::l2cap;
 
 namespace {
 uint16_t classic_cid_token_counter_ = 0x41;
-constexpr uint64_t kBrEdrNotSupportedMask = 0x0000002000000000;      // Bit 37
-constexpr uint64_t kLeSupportedControllerMask = 0x0000004000000000;  // Bit 38
-constexpr uint64_t kLeSupportedHostMask = 0x0000000000000002;        // Bit 1
 
 std::unordered_map<uint16_t /* token */, uint16_t /* psm */>
     classic_cid_token_to_channel_map_;
@@ -688,30 +685,6 @@ uint8_t* L2CA_ReadRemoteFeatures(const RawAddress& addr) {
     return nullptr;
   }
   return entry.raw_remote_features;
-}
-
-static void on_sco_disconnect(uint16_t handle, uint8_t reason) {
-  GetGdShimHandler()->Post(base::BindOnce(base::IgnoreResult(&btm_sco_removed),
-                                          handle,
-                                          static_cast<tHCI_REASON>(reason)));
-}
-
-void L2CA_UseLegacySecurityModule() {
-  LOG_INFO("GD L2cap is using legacy security module");
-  GetL2capClassicModule()->SetLinkPropertyListener(
-      GetGdShimHandler(), &link_property_listener_shim_);
-
-  GetL2capClassicModule()->InjectSecurityEnforcementInterface(
-      &security_enforcement_shim_);
-  security_interface_ = GetL2capClassicModule()->GetSecurityInterface(
-      GetGdShimHandler(), &security_listener_shim_);
-
-  GetL2capLeModule()->SetLinkPropertyListener(GetGdShimHandler(),
-                                              &le_link_property_listener_shim_);
-  GetL2capLeModule()->InjectSecurityEnforcementInterface(
-      &le_security_enforcement_shim_);
-
-  GetAclManager()->HACK_SetNonAclDisconnectCallback(on_sco_disconnect);
 }
 
 /**
