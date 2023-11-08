@@ -214,6 +214,7 @@ cc_library_static {
 cc_test {
     name: "net_test_bta",
     defaults: [
+        //        "bluetooth_gtest_x86_asan_workaround",
         "fluoride_bta_defaults",
         "mts_defaults",
     ],
