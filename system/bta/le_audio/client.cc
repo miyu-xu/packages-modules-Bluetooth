@@ -3413,7 +3413,7 @@ class LeAudioClientImpl : public LeAudioClient {
     audio_receiver_state_ = AudioState::STARTED;
   }
 
-  bool StartSendingAudio(int group_id) {
+  void StartSendingAudio(int group_id) {
     LOG(INFO) << __func__;
 
     LeAudioDeviceGroup* group = aseGroups_.FindById(group_id);
@@ -3425,7 +3425,8 @@ class LeAudioClientImpl : public LeAudioClient {
     auto* stream_conf = GetStreamSinkConfiguration(group);
     if (stream_conf == nullptr) {
       LOG(ERROR) << __func__ << " could not get sink configuration";
-      return false;
+      groupStateMachine_->StopStream(group);
+      return;
     }
 
     LOG_DEBUG("Sink stream config (#%d):\n",
@@ -3457,7 +3458,8 @@ class LeAudioClientImpl : public LeAudioClient {
           audio_framework_source_config, current_source_codec_config);
       if (codec_status != le_audio::CodecInterface::Status::STATUS_OK) {
         LOG_ERROR("Left channel codec setup failed with err: %d", codec_status);
-        return false;
+        groupStateMachine_->StopStream(group);
+        return;
       }
 
       sw_enc_right =
@@ -3467,7 +3469,8 @@ class LeAudioClientImpl : public LeAudioClient {
       if (codec_status != le_audio::CodecInterface::Status::STATUS_OK) {
         LOG_ERROR("Right channel codec setup failed with err: %d",
                   codec_status);
-        return false;
+        groupStateMachine_->StopStream(group);
+        return;
       }
     }
 
@@ -3488,7 +3491,7 @@ class LeAudioClientImpl : public LeAudioClient {
                     std::placeholders::_2));
     }
 
-    return true;
+    return;
   }
 
   const struct le_audio::stream_configuration* GetStreamSourceConfiguration(
@@ -3511,6 +3514,7 @@ class LeAudioClientImpl : public LeAudioClient {
     if (!stream_conf) {
       LOG(WARNING) << " Could not get source configuration for group "
                    << active_group_id_ << " probably microphone not configured";
+      groupStateMachine_->StopStream(group);
       return;
     }
 
@@ -3531,6 +3535,7 @@ class LeAudioClientImpl : public LeAudioClient {
                                                    audio_framework_sink_config);
       if (codec_status != le_audio::CodecInterface::Status::STATUS_OK) {
         LOG_ERROR("Left channel codec setup failed with err: %d", codec_status);
+        groupStateMachine_->StopStream(group);
         return;
       }
 
@@ -3541,6 +3546,7 @@ class LeAudioClientImpl : public LeAudioClient {
       if (codec_status != le_audio::CodecInterface::Status::STATUS_OK) {
         LOG_ERROR("Right channel codec setup failed with err: %d",
                   codec_status);
+        groupStateMachine_->StopStream(group);
         return;
       }
     }
