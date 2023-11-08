@@ -871,6 +871,30 @@
       },
       "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "849fbf19_6e66559b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-08T22:19:36Z",
+      "side": 1,
+      "message": "I agree, we are 100% nitpicking at this point.\n\nI have uploaded aosp/2822921 to have a render of how it could looks like.\nFeel free to resolve this comment and to:\n* Not apply the format suggested and abandong next CL\n* Apply the format suggested withing this CL and abandon next CL\n* Merge the next CL that change the format.\n\n\nDisclaimer, I haven\u0027t run the test locally on it. I hope my usage of var-arg is correct 😊",
+      "parentUuid": "52c91cc7_bfbb6a85",
+      "range": {
+        "startLine": 183,
+        "startChar": 5,
+        "endLine": 194,
+        "endChar": 80
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
