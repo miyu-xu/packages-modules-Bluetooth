@@ -297,6 +297,7 @@ public class GattService extends ProfileService {
     private ActivityManager mActivityManager;
     private PackageManager mPackageManager;
     private final Object mTestModeLock = new Object();
+    private final HashMap<UUID, Integer> mStateLockByUuid = new HashMap<>();
 
     public GattService(Context ctx) {
         attachBaseContext(ctx);
@@ -5068,7 +5069,50 @@ public class GattService extends ProfileService {
     private void statsLogGattConnectionStateChange(
             int profile, String address, int sessionIndex, int connectionState,
             int connectionStatus) {
+        ClientMap.App app = mClientMap.getById(sessionIndex);
         BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
+        if (app != null) {
+          synchronized (mStateLockByUuid) {
+            if (mStateLockByUuid.containsKey(app.uuid)) {
+              int prevConnectionState = mStateLockByUuid.get(app.uuid);
+              if (prevConnectionState == BluetoothProtoEnums.CONNECTION_STATE_CONNECTING) {
+                    if (connectionState == BluetoothProtoEnums.CONNECTION_STATE_CONNECTED) {
+                      Log.d(TAG, "Gatt Logging (Initiation): metric_id=" + mAdapterService.getMetricId(device)
+                          + ", app_uuid=" + app.uuid
+                          + ", session_index=" + sessionIndex
+                          + ", prev_state=" + prevConnectionState
+                          + ", connection_state=" + connectionState
+                          + ", connection_status=" + connectionStatus);
+                    } else if (connectionState == BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTED) {
+                      Log.d(TAG, "Gatt Logging (Initiation): metric_id=" + mAdapterService.getMetricId(device)
+                          + ", app_uuid=" + app.uuid
+                          + ", session_index=" + sessionIndex
+                          + ", prev_state=" + prevConnectionState
+                          + ", connection_state=" + connectionState
+                          + ", connection_status=" + connectionStatus);
+                    }
+              } else if (connectionState == BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTED) {
+                if (prevConnectionState == BluetoothProtoEnums.CONNECTION_STATE_CONNECTED) {
+                  // TODO: Calculate the time difference between the two events
+                      Log.d(TAG, "Gatt Logging (Disconnection): metric_id=" + mAdapterService.getMetricId(device)
+                          + ", app_uuid=" + app.uuid
+                          + ", session_index=" + sessionIndex
+                          + ", prev_state=" + prevConnectionState
+                          + ", connection_state=" + connectionState
+                          + ", connection_status=" + connectionStatus);
+                } else if (prevConnectionState == BluetoothProtoEnums.CONNECTION_STATE_DISCONNECTING) {
+                      Log.d(TAG, "Gatt Logging (Disconnection): metric_id=" + mAdapterService.getMetricId(device)
+                          + ", app_uuid=" + app.uuid
+                          + ", session_index=" + sessionIndex
+                          + ", prev_state=" + prevConnectionState
+                          + ", connection_state=" + connectionState
+                          + ", connection_status=" + connectionStatus);
+                }
+              }
+            }
+          }
+          mStateLockByUuid.put(app.uuid, connectionState);
+        }
         BluetoothStatsLog.write(
                 BluetoothStatsLog.BLUETOOTH_CONNECTION_STATE_CHANGED, connectionState,
                 0 /* deprecated */, profile, new byte[0],
