@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f83b3bc3_1fbf3171",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2085,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-08T18:44:03Z",
+      "side": 1,
+      "message": "This logic should be executed when the software codec is preferred over the hardware codec, not when the hardware codec cannot be configured.\n\nYou will not be able to implement the proper logic within AttemptSourceCodecSelection I believe; you should move this to SelectSourceCodec and leave AttemptSourceCodecSelection unmodified.",
+      "range": {
+        "startLine": 2074,
+        "startChar": 5,
+        "endLine": 2085,
+        "endChar": 7
+      },
+      "revId": "d86b8ae08fec2c0e1b9adfb55a31f75774027192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
