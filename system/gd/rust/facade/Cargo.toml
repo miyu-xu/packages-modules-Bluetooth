@@ -29,7 +29,7 @@ cxx = "1.0"
 futures = "0.3"
 grpcio = "0.9"
 log = "0.4"
-protobuf = "2.0"
+protobuf = "3.2"
 tokio = "1.0"
 
 # Binary-only deps
