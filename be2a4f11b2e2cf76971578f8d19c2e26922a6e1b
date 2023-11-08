@@ -16,6 +16,24 @@
       "message": "-2 while I figure out why test is failing with valid IRK/RPA pair in Bumble BT config (verified using IRK tool).",
       "revId": "be2a4f11b2e2cf76971578f8d19c2e26922a6e1b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31066753_6df0dd82",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-08T01:38:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a7feafd_cc73724e",
+      "revId": "be2a4f11b2e2cf76971578f8d19c2e26922a6e1b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
