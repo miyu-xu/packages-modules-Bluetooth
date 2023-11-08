@@ -34,6 +34,24 @@
       "parentUuid": "942e7101_b3f93cf8",
       "revId": "1db9304431f8ea177c5721ddd28296962382a2a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9507470_138f1360",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-08T21:42:23Z",
+      "side": 1,
+      "message": "Sure, I can switch the order of the change to let flag land first, so in future, it would be clear to remove the flag. \n\nand for the possible incorrect `GetLocalSupportedBrEdrCodecIds`, I have considered that. HFP LC3 codec is enabled by system property. And Right now, `GetLocalSupportedBrEdrCodecIds` is only used to identify whether it is Qualcomm\u0027s LC3 codec (controller does not support LC3, and use DSP\u0027s LC3 codec) when system property is true. So I think it is well protected?",
+      "parentUuid": "74d16e09_078cc964",
+      "revId": "1db9304431f8ea177c5721ddd28296962382a2a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
