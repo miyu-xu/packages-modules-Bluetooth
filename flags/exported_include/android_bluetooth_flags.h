@@ -21,10 +21,16 @@
 #include <com_android_bluetooth_flags.h>
 
 #define IS_FLAG_ENABLED(flag_name) com::android::bluetooth::flags::flag_name()
+#define IS_FLAG_ENABLED(provider, flag_name) provider.flag_name()
+
+#define PROVIDER_TYPE com::android::bluetooth::flags::flag_provider_interface
 
 #else
 
 // FLOSS does not yet support android aconfig flags
 #define IS_FLAG_ENABLED(flag_name) false
+#define IS_FLAG_ENABLED(provider, flag_name) false
+
+#define PROVIDER_TYPE int
 
 #endif
