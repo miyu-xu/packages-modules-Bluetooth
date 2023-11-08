@@ -520,6 +520,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "664bf123_7e1f5e95",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T22:45:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07450929_1f8c8d96",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 9
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4a538a26_b66b8fe6",
@@ -887,6 +911,30 @@
       "side": 1,
       "message": "I agree, we are 100% nitpicking at this point.\n\nI have uploaded aosp/2822921 to have a render of how it could looks like.\nFeel free to resolve this comment and to:\n* Not apply the format suggested and abandong next CL\n* Apply the format suggested withing this CL and abandon next CL\n* Merge the next CL that change the format.\n\n\nDisclaimer, I haven\u0027t run the test locally on it. I hope my usage of var-arg is correct 😊",
       "parentUuid": "52c91cc7_bfbb6a85",
+      "range": {
+        "startLine": 183,
+        "startChar": 5,
+        "endLine": 194,
+        "endChar": 80
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f9dc1fd_5f2f8c75",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T22:45:03Z",
+      "side": 1,
+      "message": "SG, will take your follow-up CL. I ran the test locally. It worked.",
+      "parentUuid": "849fbf19_6e66559b",
       "range": {
         "startLine": 183,
         "startChar": 5,
