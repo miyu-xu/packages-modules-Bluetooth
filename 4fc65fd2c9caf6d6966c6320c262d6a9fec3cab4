@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4668570b_06c5720c",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 970,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-08T17:28:03Z",
+      "side": 1,
+      "message": "should this callback ever be null in normal operation?\n\nIf not, can we set the callback in the test, instead of changing the code?\n\nIf it can be null, should it log something instead of silently failing?",
+      "range": {
+        "startLine": 970,
+        "startChar": 25,
+        "endLine": 970,
+        "endChar": 39
+      },
+      "revId": "4fc65fd2c9caf6d6966c6320c262d6a9fec3cab4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
