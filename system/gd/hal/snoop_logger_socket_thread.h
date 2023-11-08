@@ -26,6 +26,7 @@
 #include <thread>
 
 #include "hal/snoop_logger_socket.h"
+#include "hal/snoop_logger_socket_interface.h"
 
 namespace bluetooth {
 namespace hal {

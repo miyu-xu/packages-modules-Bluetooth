@@ -22,10 +22,10 @@
 #include <sys/socket.h>
 
 #include <future>
-#include <unordered_map>
 
 #include "common/init_flags.h"
 #include "hal/snoop_logger_common.h"
+#include "hal/snoop_logger_socket_interface.h"
 #include "hal/syscall_wrapper_impl.h"
 #include "os/fake_timer/fake_timerfd.h"
 #include "os/system_properties.h"
@@ -114,7 +114,7 @@ using bluetooth::hal::SnoopLogger;
 using namespace std::chrono_literals;
 
 const char* test_flags[] = {
-    "INIT_logging_debug_enabled_for_all=true",
+    "INIT_default_log_level_str=LOG_VERBOSE",
     nullptr,
 };
 
