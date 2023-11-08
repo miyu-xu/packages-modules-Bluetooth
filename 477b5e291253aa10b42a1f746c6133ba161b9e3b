@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33bfb0e7_6c9b9403",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-08T21:55:46Z",
+      "side": 1,
+      "message": "Would be good to verify here than we can get a service that was included in Bumble\u0027s services (e.g. getService([known bumble uuid])).",
+      "range": {
+        "startLine": 167,
+        "startChar": 21,
+        "endLine": 167,
+        "endChar": 41
+      },
+      "revId": "477b5e291253aa10b42a1f746c6133ba161b9e3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21b7df64_f3f2de4e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-08T21:55:46Z",
+      "side": 1,
+      "message": "Please remove commented lines",
+      "range": {
+        "startLine": 248,
+        "startChar": 12,
+        "endLine": 248,
+        "endChar": 44
+      },
+      "revId": "477b5e291253aa10b42a1f746c6133ba161b9e3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d636bb8_9ae0786b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-08T21:55:46Z",
+      "side": 1,
+      "message": "It seems would be good to confirm the value equals what was written here",
+      "range": {
+        "startLine": 256,
+        "startChar": 50,
+        "endLine": 256,
+        "endChar": 55
+      },
+      "revId": "477b5e291253aa10b42a1f746c6133ba161b9e3b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
