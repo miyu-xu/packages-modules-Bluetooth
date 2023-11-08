@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04c55a54_d1af2e79",
+        "filename": "framework/tests/bumble/bumble_config.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "57c0adf6_c633e33d",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 5,
+        "endChar": 30
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0243b1a1_0c56fa10",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4839cc01_2da6827a",
+        "filename": "framework/tests/bumble/bumble_config.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "We can remove it, it was there in September.",
+      "parentUuid": "3907e89f_b06d3d84",
+      "range": {
+        "startLine": 6,
+        "startChar": 11,
+        "endLine": 6,
+        "endChar": 23
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d123346c_0f628194",
@@ -108,6 +156,30 @@
       "writtenOn": "2023-11-08T18:45:42Z",
       "side": 1,
       "message": "This is the default as well, can we remove it?",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 3
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a387c0b0_c1435a0b",
+        "filename": "framework/tests/bumble/bumble_config.json",
+        "patchSetId": 31
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d123346c_0f628194",
       "range": {
         "startLine": 7,
         "startChar": 0,
@@ -141,6 +213,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43710816_74491ca5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "I put 10 seconds here to begin with as I don\u0027t want this test to be too flaky. \n\nThe SMP_WAIT_FOR_RSP_TIMEOUT_MS in the native stack is actually 30 seconds, but when we are taking more than 10 seconds, there must be some problem. \n\nHowever, if it is more than 1 second, we could fall into the area of Linux context switch delay with Cuttlefish x86 build and so on. \n\nhttps://cs.android.com/android/platform/superproject/+/master:packages/modules/Bluetooth/system/stack/smp/smp_int.h;l\u003d65?q\u003dSMP_WAIT_FOR_RSP_TIMEOUT_MS\n\nNevertheless, since it is all `timeout()` based, successful test runs will not wait for 10 seconds, only failed ones will. 10 seconds give us a better confidence that the failure is real.",
+      "parentUuid": "cfc188b4_cc9156c7",
+      "range": {
+        "startLine": 63,
+        "startChar": 75,
+        "endLine": 63,
+        "endChar": 77
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03859918_11274ff8",
@@ -154,6 +250,30 @@
       "writtenOn": "2023-11-08T18:45:42Z",
       "side": 1,
       "message": "Why not use the constructor that grant all the permissions?",
+      "range": {
+        "startLine": 69,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 40
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e9238ee_64c6e9f0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "Sure",
+      "parentUuid": "03859918_11274ff8",
       "range": {
         "startLine": 69,
         "startChar": 0,
@@ -187,6 +307,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8468c92c_ead9655e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "Good point! `StreamObserverSpliterator` is new. Using it in the latest patch set.",
+      "parentUuid": "05368fe1_df80b38f",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 75
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b92ce966_3af5f07e",
@@ -200,6 +344,30 @@
       "writtenOn": "2023-11-08T18:45:42Z",
       "side": 1,
       "message": "I would prefer for us to remove this if it works without.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 62
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "761bddae_d25b6ef0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "This allows this test to intercept the broadcast since the broadcast is ordered. If we remove it, the Settings App will get it first and the test will timeout.",
+      "parentUuid": "b92ce966_3af5f07e",
       "range": {
         "startLine": 91,
         "startChar": 0,
@@ -235,6 +403,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9d8aade5_37f6e54c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "I am not sure if other tests also want the same thing. Hence for now, I hesitate to add this logic to the rule.",
+      "parentUuid": "c855eeb7_ca4ad4b2",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 9
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "44cb3a7c_62621190",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 31
@@ -258,6 +450,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0af071b8_052a419c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "`as it\u0027s a Rule it will not run the tearDown of the test` is there any documentation supporting this? \n\nIf this is true, then yes, we can remove this. \n\nIn the past, when enabling BT outside the rule, if the enable failed and we try to to the teardown, a bunch of other errors would happen to prevent us producing a nice error log.",
+      "parentUuid": "44cb3a7c_62621190",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 9
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4a538a26_b66b8fe6",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 31
@@ -269,6 +485,30 @@
       "writtenOn": "2023-11-08T18:36:09Z",
       "side": 1,
       "message": "If you are not waiting, are you sure it will be executed and the device will no longer be bonded ?",
+      "range": {
+        "startLine": 112,
+        "startChar": 12,
+        "endLine": 113,
+        "endChar": 39
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef536c60_7d17a6c6",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "Sure, change it to `removeBond(mBumbleDevice);` instead",
+      "parentUuid": "4a538a26_b66b8fe6",
       "range": {
         "startLine": 112,
         "startChar": 12,
@@ -349,6 +589,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d37f60b7_13fe913f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "Good catch, it is a leftover. Removed.",
+      "parentUuid": "89a72fe8_9975cb14",
+      "range": {
+        "startLine": 119,
+        "startChar": 4,
+        "endLine": 125,
+        "endChar": 5
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05d7680a_7434a5af",
@@ -362,6 +626,30 @@
       "writtenOn": "2023-11-08T18:45:42Z",
       "side": 1,
       "message": "As the Intents are ordered I think we should use [`inOrder`]( https://www.javadoc.io/static/org.mockito/mockito-core/2.6.9/org/mockito/Mockito.html#in_order_verification) here.\n\nplus a `verifyNoMoreInteractions` at the end",
+      "range": {
+        "startLine": 146,
+        "startChar": 8,
+        "endLine": 146,
+        "endChar": 66
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cba89821_1eb7279f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05d7680a_7434a5af",
       "range": {
         "startLine": 146,
         "startChar": 8,
@@ -395,6 +683,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a7b01dc_fe57f0eb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "William\u0027s earlier comment suggested changing this to a `Duration` which I was fine. \n\nI think it can be either way. Duration has less room for mistakes since it forces us to specify a unit whenever we use the integral values.",
+      "parentUuid": "1a215d70_8bef2f7c",
+      "range": {
+        "startLine": 175,
+        "startChar": 52,
+        "endLine": 175,
+        "endChar": 82
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d2cdf37_7c5c12d1",
@@ -408,6 +720,30 @@
       "writtenOn": "2023-11-08T18:45:42Z",
       "side": 1,
       "message": "I think this is not needed as grpc doesn\u0027t give null values.",
+      "range": {
+        "startLine": 178,
+        "startChar": 0,
+        "endLine": 178,
+        "endChar": 45
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85997dac_9dece887",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d2cdf37_7c5c12d1",
       "range": {
         "startLine": 178,
         "startChar": 0,
@@ -455,6 +791,30 @@
       "side": 1,
       "message": "Above code doesn\u0027t work (mBumbleDevice used in a static method...)\n\nMaybe we can do something like \n```\nimport static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;\nimport static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;\nimport org.hamcrest.Matcher;\n\nverifyIntentReceived(\n  mReceiver,\n  BOND_INTENT_TIMEOUT,\n  hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),\n  hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n  hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED));\n\npublic static void checkIntentReceived(BroadcastReceiver receiver, Duration timeout, Matcher\u003cIntent\u003e ... matchers) {\n  verify(receiver, timeout(timeout.toMillis()))\n    .onReceive(\n      any(Context.class),\n      MockitoHamcrest.argThat(\n        AllOf.allOf(matchers)));\n```",
       "parentUuid": "dae7f7d2_b4207ed5",
+      "range": {
+        "startLine": 183,
+        "startChar": 5,
+        "endLine": 194,
+        "endChar": 80
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52c91cc7_bfbb6a85",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2023-11-08T20:40:29Z",
+      "side": 1,
+      "message": "I think leaving it out is fine?\n\nGiven that in your `checkIntentReceived` we still have to put down the matchers separately, not exactly reducing the code length by a lot and added another layer of indirection. \n\n```\nverifyIntentReceived(\n  mReceiver,\n  BOND_INTENT_TIMEOUT,\n  hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),\n  hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n  hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED));\n```\n\nThe above code will be formatted differently the default java formatter. \n\nWe could import `MockitoHamcrest` to reduce the code length though. Then you have something like this:\n\n```\n        mInOrder.verify(mReceiver, timeout(BOND_INTENT_TIMEOUT.toMillis()))\n                .onReceive(\n                        any(Context.class),\n                        argThat(\n                                allOf(\n                                        hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),\n                                        hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n                                        hasExtra(\n                                                BluetoothDevice.EXTRA_BOND_STATE,\n                                                BluetoothDevice.BOND_BONDED))));\n```\n\nThe java formatter made it look like this. \n\nHowever, looking at the code again, I think having `IntentMatchers` there is better since `hasAction()` and `hasExtra()` is not very readable as readers will lose the context that we are actually verifying an intent.\n\nIt looks like this after my last adjustment\n\n```\n        mInOrder.verify(mReceiver, timeout(BOND_INTENT_TIMEOUT.toMillis()))\n                .onReceive(\n                        any(Context.class),\n                        argThat(\n                                allOf(\n                                        IntentMatchers.hasAction(\n                                                BluetoothDevice.ACTION_BOND_STATE_CHANGED),\n                                        IntentMatchers.hasExtra(\n                                                BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n                                        IntentMatchers.hasExtra(\n                                                BluetoothDevice.EXTRA_BOND_STATE,\n                                                BluetoothDevice.BOND_BONDED))));                                            \n ```\n \n The google-java-formatter is the one that makes the code look long and ugly 😞",
+      "parentUuid": "054f79fd_d2bb10f1",
       "range": {
         "startLine": 183,
         "startChar": 5,
