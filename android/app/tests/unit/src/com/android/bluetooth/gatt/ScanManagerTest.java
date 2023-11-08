@@ -52,6 +52,7 @@ import android.os.BatteryStatsManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Message;
 import android.provider.Settings;
 import android.test.mock.MockContentProvider;
@@ -186,9 +187,15 @@ public class ScanManagerTest {
         doReturn(mTargetContext.getPackageName()).when(mMockGattService).getPackageName();
 
         mFakeFlagsImpl = new FakeFeatureFlagsImpl();
+        HandlerThread thread = new HandlerThread("BluetoothScanManager");
+        thread.start();
         mScanManager =
                 new ScanManager(
-                        mMockGattService, mAdapterService, mBluetoothAdapterProxy, mFakeFlagsImpl);
+                        mMockGattService,
+                        mAdapterService,
+                        mBluetoothAdapterProxy,
+                        mFakeFlagsImpl,
+                        thread.getLooper());
 
         mHandler = mScanManager.getClientHandler();
         assertThat(mHandler).isNotNull();

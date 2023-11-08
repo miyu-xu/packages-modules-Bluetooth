@@ -16,6 +16,7 @@
 
 package com.android.bluetooth.gatt;
 
+import android.os.Looper;
 import android.util.Log;
 
 import com.android.bluetooth.Utils;
@@ -69,10 +70,22 @@ public class GattObjectsFactory {
         return ScanNativeInterface.getInstance();
     }
 
-    public ScanManager createScanManager(GattService service, AdapterService adapterService,
-            BluetoothAdapterProxy bluetoothAdapterProxy) {
+    /**
+     * Create an instance of ScanManager
+     *
+     * @param service a GattService instance
+     * @param adapterService an AdapterService instance
+     * @param bluetoothAdapterProxy a bluetoothAdapterProxy instance
+     * @param looper the looper to be used for processing messages
+     * @return the created ScanManager instance
+     */
+    public ScanManager createScanManager(
+            GattService service,
+            AdapterService adapterService,
+            BluetoothAdapterProxy bluetoothAdapterProxy,
+            Looper looper) {
         return new ScanManager(
-                service, adapterService, bluetoothAdapterProxy, new FeatureFlagsImpl());
+                service, adapterService, bluetoothAdapterProxy, new FeatureFlagsImpl(), looper);
     }
 
     public PeriodicScanManager createPeriodicScanManager(AdapterService adapterService) {
