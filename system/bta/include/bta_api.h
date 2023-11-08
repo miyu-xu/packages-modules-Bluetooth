@@ -47,6 +47,12 @@
 /*
  * Service ID
  */
+/* Update these as services are added */
+#define BTM_SEC_SERVICE_FIRST_EMPTY 57
+
+#ifndef BTM_SEC_MAX_SERVICES
+#define BTM_SEC_MAX_SERVICES 75
+#endif
 
 #define BTA_A2DP_SOURCE_SERVICE_ID 3 /* A2DP Source profile. */
 #define BTA_HSP_SERVICE_ID 5         /* Headset profile. */
