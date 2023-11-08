@@ -160,13 +160,6 @@ typedef uint8_t tBTM_LINK_KEY_TYPE;
 #define BTM_SEC_SERVICE_HEARING_AID_RIGHT 55
 #define BTM_SEC_SERVICE_EATT 56
 
-/* Update these as services are added */
-#define BTM_SEC_SERVICE_FIRST_EMPTY 57
-
-#ifndef BTM_SEC_MAX_SERVICES
-#define BTM_SEC_MAX_SERVICES 75
-#endif
-
 /*******************************************************************************
  * Security Services MACROS handle array of uint32_t bits for more than 32
  * trusted services
