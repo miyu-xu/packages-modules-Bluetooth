@@ -415,6 +415,30 @@
       },
       "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "054f79fd_d2bb10f1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 31
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-08T18:54:19Z",
+      "side": 1,
+      "message": "Above code doesn\u0027t work (mBumbleDevice used in a static method...)\n\nMaybe we can do something like \n```\nimport static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;\nimport static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;\nimport org.hamcrest.Matcher;\n\nverifyIntentReceived(\n  mReceiver,\n  BOND_INTENT_TIMEOUT,\n  hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),\n  hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),\n  hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED));\n\npublic static void checkIntentReceived(BroadcastReceiver receiver, Duration timeout, Matcher\u003cIntent\u003e ... matchers) {\n  verify(receiver, timeout(timeout.toMillis()))\n    .onReceive(\n      any(Context.class),\n      MockitoHamcrest.argThat(\n        AllOf.allOf(matchers)));\n```",
+      "parentUuid": "dae7f7d2_b4207ed5",
+      "range": {
+        "startLine": 183,
+        "startChar": 5,
+        "endLine": 194,
+        "endChar": 80
+      },
+      "revId": "95c08bfebfba40f65dc769490e223e426ce02950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
