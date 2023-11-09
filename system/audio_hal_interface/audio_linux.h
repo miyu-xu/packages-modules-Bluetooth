@@ -25,7 +25,7 @@
 /* Audio attributes */
 #define AUDIO_ATTRIBUTES_TAGS_MAX_SIZE 256
 
-static const char AUDIO_ATTRIBUTES_TAGS_SEPARATOR = ';';
+static const char AUDIO_ATTRIBUTES_TAGS_SEPARATOR = ";";
 
 typedef enum {
   AUDIO_SOURCE_DEFAULT = 0,
