@@ -34,6 +34,24 @@
       "parentUuid": "0052c330_06eff6a0",
       "revId": "b7016244c9f70fc8389a6d0c87cb9e4f4578fbd8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09239f67_a057918f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T19:05:06Z",
+      "side": 1,
+      "message": "\"Why do some use hci: octets while others pull it in using \u0027hci::Octet\u0027 ?\"\n\nGoogle style guide says not to use using in a .h, since it pollutes namespaces.  I\u0027m hoping that\u0027s most of them.  The files in hci/ are already in the namespace, so they don\u0027t need it.\n\n\"I think it may make other think that this is a data structure specific to hci layer.\"\n\nThe way we\u0027ve used this in the past is data structures that get serialized into packets are in hci::  I agree that other layers can use it.  I\u0027m not sure what a better namespace would be.  I\u0027m open to suggestions, if this reasoning doesn\u0027t work for you.",
+      "parentUuid": "37ba6f47_256b5b9c",
+      "revId": "b7016244c9f70fc8389a6d0c87cb9e4f4578fbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
