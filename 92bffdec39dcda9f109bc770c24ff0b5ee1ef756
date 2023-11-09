@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a66733f_a1e45f5d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-09T14:50:03Z",
+      "side": 1,
+      "message": "What does \"cod\" mean here?",
+      "revId": "92bffdec39dcda9f109bc770c24ff0b5ee1ef756",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
