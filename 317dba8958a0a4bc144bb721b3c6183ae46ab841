@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "249a5265_5f2afe5b",
+        "filename": "system/test/common/sync_main_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T15:55:48Z",
+      "side": 1,
+      "message": "Some time I\u0027d like to use the common thread library, so we can use WaitForIdle everywhere.",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 22
+      },
+      "revId": "317dba8958a0a4bc144bb721b3c6183ae46ab841",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
