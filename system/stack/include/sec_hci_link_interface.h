@@ -39,7 +39,7 @@ void btm_sec_link_key_notification(const RawAddress& p_bda,
                                    const Octet16& link_key, uint8_t key_type);
 void btm_sec_link_key_request(RawAddress bda);
 void btm_sec_pin_code_request(RawAddress p_bda);
-void btm_sec_rmt_host_support_feat_evt(const uint8_t* p);
+void btm_sec_rmt_host_support_feat_evt(RawAddress bd_addr, uint8_t features_0);
 void btm_sec_rmt_name_request_complete(const RawAddress* bd_addr,
                                        const uint8_t* bd_name,
                                        tHCI_STATUS status);
