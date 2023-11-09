@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfe2c351_128f176a",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothProfileConnectorTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-09T19:33:47Z",
+      "side": 1,
+      "message": "Ok  `¯\\_(ツ)_/¯`",
+      "parentUuid": "e7e1c46d_195ce806",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 97
+      },
+      "revId": "16c223b0f2bc398e74957d25044bb2e95450b963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bf2f6d53_60c6fdb4",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "I have another CL for that https://r.android.com/2822071",
       "parentUuid": "bf2f6d53_60c6fdb4",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 41
+      },
+      "revId": "16c223b0f2bc398e74957d25044bb2e95450b963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ffa0de8_10b2214e",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothProfileConnectorTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-09T19:33:47Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cde51f26_6c30bb55",
       "range": {
         "startLine": 144,
         "startChar": 0,
