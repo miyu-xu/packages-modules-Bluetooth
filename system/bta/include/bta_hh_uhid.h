@@ -27,8 +27,6 @@
 
 #include <mutex>
 
-#include <linux/uhid.h>
-
 typedef struct {
   void* p_event_queue;
   std::mutex* p_mutex;
