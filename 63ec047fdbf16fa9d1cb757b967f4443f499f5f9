@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32ec95ef_ca1c5f7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T16:00:03Z",
+      "side": 1,
+      "message": "I\u0027d rather not do this.  It moves BTM_SEC_SERVICE_FIRST_EMPTY too far away from BTM_SEC_SERVICE_EATT.  I think there\u0027s a good chance someone would forget to update it.",
+      "revId": "63ec047fdbf16fa9d1cb757b967f4443f499f5f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
