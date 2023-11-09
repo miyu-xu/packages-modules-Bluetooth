@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dc80a33_7daccc05",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-09T06:48:04Z",
+      "side": 1,
+      "message": "Can you specify which tests are these.",
+      "range": {
+        "startLine": 15,
+        "startChar": 6,
+        "endLine": 15,
+        "endChar": 23
+      },
+      "revId": "bf84eee980dcc0b04597150cf09520528585f2c4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
