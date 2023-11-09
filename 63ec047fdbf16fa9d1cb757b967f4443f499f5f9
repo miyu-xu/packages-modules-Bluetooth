@@ -34,6 +34,24 @@
       "parentUuid": "32ec95ef_ca1c5f7a",
       "revId": "63ec047fdbf16fa9d1cb757b967f4443f499f5f9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bcf4111_8e974108",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T16:15:03Z",
+      "side": 1,
+      "message": "I got lost tracing BTM_SEC_SERVICE_HEARING_AID_LEFT ...  Are these actually used?  It looked like it got put into the service_id field of a control block, which is write-only.\n\nMaybe the other ones are used?\n\nI guess I thought it was reasonable to put it here because",
+      "parentUuid": "952435d1_2f98b077",
+      "revId": "63ec047fdbf16fa9d1cb757b967f4443f499f5f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
