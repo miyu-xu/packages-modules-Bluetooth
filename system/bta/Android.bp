@@ -246,8 +246,10 @@ cc_test {
         "android.hardware.bluetooth.audio@2.1",
         "libcrypto",
         "liblog",
+        "server_configurable_flags",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "crypto_toolbox_for_tests",
         "libbluetooth-types",
         "libbluetooth_gd",

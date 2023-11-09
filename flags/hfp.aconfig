@@ -13,3 +13,10 @@ flag {
     description: "Auto connect to hfp device is there is no a2dp device to connect to"
     bug: "305867804"
 }
+
+flag {
+    name: "use_dsp_codec_when_controller_does_not_support"
+    namespace: "bluetooth"
+    description: "use codec on the DSP when the BT controller does not support it"
+    bug: "308838380"
+}
