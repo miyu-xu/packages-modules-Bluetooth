@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "611705a8_db83ce43",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothProfileConnectorTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-09T19:27:40Z",
+      "side": 1,
+      "message": "Are you sure you don\u0027t prefer a setup to do that for each test ?",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 97
+      },
+      "revId": "16c223b0f2bc398e74957d25044bb2e95450b963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf2f6d53_60c6fdb4",
+        "filename": "framework/tests/unit/src/android/bluetooth/BluetoothProfileConnectorTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-09T19:27:40Z",
+      "side": 1,
+      "message": "Don\u0027t you want to switch to the `Mockito.verifyNoMoreInteraction(listener)`?",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 41
+      },
+      "revId": "16c223b0f2bc398e74957d25044bb2e95450b963",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
