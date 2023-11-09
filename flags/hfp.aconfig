@@ -15,8 +15,16 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (ac4bac Use DSP's LC3 codec setting when BT controller does not supp)
+    name: "use_dsp_codec_when_controller_does_not_support"
+    namespace: "bluetooth"
+    description: "use codec on the DSP when the BT controller does not support it"
+    bug: "308838380"
+}
+=======
     name: "hfp_codec_aptx_voice"
     namespace: "bluetooth"
     description: "AptX Voice codec support for HFP calls"
     bug: "308497929"
 }
+>>>>>>> BASE      (262cb2 net_test_bta: Add init_bta_dm_search_cb__conn_id)
