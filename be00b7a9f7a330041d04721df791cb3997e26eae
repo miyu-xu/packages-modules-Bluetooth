@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "859ff6cc_0cd9b9fe",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-09T21:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab0ecea6_7e00e463",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 32
+      },
+      "revId": "be00b7a9f7a330041d04721df791cb3997e26eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6efdf42c_2db48a00",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04a8d663_88fe5402",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-09T21:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6efdf42c_2db48a00",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 90,
+        "endChar": 74
+      },
+      "revId": "be00b7a9f7a330041d04721df791cb3997e26eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "54d3c130_3201be11",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-07T22:04:06Z",
       "side": 1,
       "message": "Would it be easier to mock the receiver and to verify with a IntentMatchers like in [HeadsetClientStateMachineTest.java](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/hfpclient/HeadsetClientStateMachineTest.java;l\u003d186;drc\u003d82d5049baf0250d1f4b15f068773bc964626d422)\n\nThat will remove the need for the `PendingIntentScanReceiver` class entirely",
+      "range": {
+        "startLine": 95,
+        "startChar": 33,
+        "endLine": 95,
+        "endChar": 50
+      },
+      "revId": "be00b7a9f7a330041d04721df791cb3997e26eae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5b788b4_5f712e49",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-09T21:28:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54d3c130_3201be11",
       "range": {
         "startLine": 95,
         "startChar": 33,
