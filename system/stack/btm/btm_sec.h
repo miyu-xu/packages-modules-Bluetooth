@@ -598,7 +598,7 @@ void btm_rem_oob_req(RawAddress bd_addr);
  * Returns          void
  *
  ******************************************************************************/
-void btm_read_local_oob_complete(uint8_t* p, uint16_t evt_len);
+void btm_read_local_oob_complete(tBTM_SP_LOC_OOB evt_data, uint8_t status);
 
 /*******************************************************************************
  *

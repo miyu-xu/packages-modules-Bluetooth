@@ -497,12 +497,16 @@ struct btm_proc_sp_req_evt {
 extern struct btm_proc_sp_req_evt btm_proc_sp_req_evt;
 
 // Name: btm_read_local_oob_complete
-// Params: uint8_t* p
+// Params:
+// tBTM_SP_LOC_OOB evt_data;
+// uint8_t status;
 // Return: void
 struct btm_read_local_oob_complete {
-  std::function<void(uint8_t* p, uint16_t evt_len)> body{
-      [](uint8_t* p, uint16_t evt_len) {}};
-  void operator()(uint8_t* p, uint16_t evt_len) { body(p, evt_len); };
+  std::function<void(tBTM_SP_LOC_OOB evt_data, uint8_t status)> body{
+      [](tBTM_SP_LOC_OOB evt_data, uint8_t status) {}};
+  void operator()(tBTM_SP_LOC_OOB evt_data, uint8_t status) {
+    body(evt_data, status);
+  };
 };
 extern struct btm_read_local_oob_complete btm_read_local_oob_complete;
 

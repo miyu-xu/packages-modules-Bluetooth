@@ -317,9 +317,9 @@ void btm_proc_sp_req_evt(tBTM_SP_EVT event, const uint8_t* p) {
   inc_func_call_count(__func__);
   test::mock::stack_btm_sec::btm_proc_sp_req_evt(event, p);
 }
-void btm_read_local_oob_complete(uint8_t* p, uint16_t evt_len) {
+void btm_read_local_oob_complete(tBTM_SP_LOC_OOB evt_data, uint8_t status) {
   inc_func_call_count(__func__);
-  test::mock::stack_btm_sec::btm_read_local_oob_complete(p, evt_len);
+  test::mock::stack_btm_sec::btm_read_local_oob_complete(evt_data, status);
 }
 void btm_rem_oob_req(RawAddress bd_addr) {
   inc_func_call_count(__func__);
