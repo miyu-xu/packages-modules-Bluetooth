@@ -34,6 +34,24 @@
       "parentUuid": "eedeaed7_c0e2e484",
       "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "96e8b244_eb5adcd2",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-09T14:26:14Z",
+      "side": 1,
+      "message": "IIUC, std::string constructor aborts when it is passed in null pointer.\n\nSo what does this patch do? It seems to me that it is only masking the number in the logs.",
+      "parentUuid": "05d8e722_eb13179d",
+      "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
