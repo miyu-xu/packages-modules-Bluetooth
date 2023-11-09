@@ -46,6 +46,30 @@
       },
       "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2dd4eee_d17cae1a",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-09T15:57:36Z",
+      "side": 1,
+      "message": "I think coverage is only gathered using `net_test_bta` as the numbers have not changed with just the `bt_host_test_bta` additional tests",
+      "parentUuid": "9e10b39f_01943987",
+      "range": {
+        "startLine": 464,
+        "startChar": 5,
+        "endLine": 464,
+        "endChar": 32
+      },
+      "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
