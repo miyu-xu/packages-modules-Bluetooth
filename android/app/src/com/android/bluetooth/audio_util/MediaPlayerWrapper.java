@@ -280,9 +280,10 @@ public class MediaPlayerWrapper {
 
                 // Some player do not provide full song info in queue item, allow case
                 // that only title and artist match.
-                if (Objects.equals(qitem.title, mdata.title)
-                        && Objects.equals(qitem.artist, mdata.artist)) {
-                    Log.d(TAG, mPackageName + " Only Title and Artist info sync for metadata");
+                // Comparing Title Info and both full and partial artist details.
+                if (Objects.equals(qitem.title, mdata.title) &&
+                      mdata.artist.contains(qitem.artist)) {
+                    Log.d(TAG, mPackageName + "Title and Artist info sync for Metadata");
                     return true;
                 }
                 return false;
