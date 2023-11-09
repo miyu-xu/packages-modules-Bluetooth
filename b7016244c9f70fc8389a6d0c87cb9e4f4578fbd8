@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0052c330_06eff6a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-09T15:45:54Z",
+      "side": 1,
+      "message": "Why do some use `hci:` octets while others pull it in using \u0027hci::Octet\u0027 ?\n\nI like the `hci:` prefix...and generally speaking I think it helps readability to have this prefix to clarify the origination of the type.\n\nRegardless, getting rid of `crypto_toolbox` and #defs is a win-win",
+      "revId": "b7016244c9f70fc8389a6d0c87cb9e4f4578fbd8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
