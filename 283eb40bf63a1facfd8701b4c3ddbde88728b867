@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d519916_0415d3d1",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T18:40:32Z",
+      "side": 1,
+      "message": "Maybe use this bug for this CL, as well?",
+      "revId": "283eb40bf63a1facfd8701b4c3ddbde88728b867",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
