@@ -26,6 +26,7 @@
 #include <stdint.h>
 
 #include "bta/include/bta_hh_api.h"
+#include "bta/include/bta_hh_uhid.h"
 #include "osi/include/alarm.h"
 #include "osi/include/fixed_queue.h"
 #include "types/raw_address.h"
@@ -105,6 +106,7 @@ typedef struct {
 #endif // ENABLE_UHID_SET_REPORT
   bool local_vup;  // Indicated locally initiated VUP
   int uhid_wr_notif_fd[2];
+  tBTA_HH_UHID_EVT_QUEUE uhid_wr_evt_queue;
 } btif_hh_device_t;
 
 /* Control block to maintain properties of devices */
