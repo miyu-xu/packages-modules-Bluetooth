@@ -16,6 +16,24 @@
       "message": "What does this fix when numstr is dereferenced?",
       "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05d8e722_eb13179d",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1880545
+      },
+      "writtenOn": "2023-11-09T13:25:24Z",
+      "side": 1,
+      "message": "1. numstr will not be null because caller(bta_hf_client_parse_clip()) use a number[33] as this parameter, I think this is why no null pointer check here before this patch.\n2. if it may be a null pointer, it will be like bta_hf_client_handle_clcc() to check it. and it will be refered at APPL_TRACE_DEBUG(\"%s: %u %s\", __func__, type, numstr);",
+      "parentUuid": "eedeaed7_c0e2e484",
+      "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
