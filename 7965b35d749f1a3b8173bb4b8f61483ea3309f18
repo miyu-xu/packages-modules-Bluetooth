@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61713d4c_c1ccd0b2",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T19:32:54Z",
+      "side": 1,
+      "message": "This is the reason to add BindOn to the message loop.",
+      "revId": "7965b35d749f1a3b8173bb4b8f61483ea3309f18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
