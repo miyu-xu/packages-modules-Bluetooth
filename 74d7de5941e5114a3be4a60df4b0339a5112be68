@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cec07470_d50088e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-09T14:57:16Z",
+      "side": 1,
+      "message": "Can you fix the merge conflicts?",
+      "revId": "74d7de5941e5114a3be4a60df4b0339a5112be68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff57f6f3_b109a13c",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-09T14:57:16Z",
+      "side": 1,
+      "message": "nit: space",
+      "range": {
+        "startLine": 286,
+        "startChar": 44,
+        "endLine": 286,
+        "endChar": 45
+      },
+      "revId": "74d7de5941e5114a3be4a60df4b0339a5112be68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "594c6ce2_734cc2d3",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-09T14:57:16Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 287,
+        "startChar": 42,
+        "endLine": 287,
+        "endChar": 43
+      },
+      "revId": "74d7de5941e5114a3be4a60df4b0339a5112be68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57ee5489_8bed3d9d",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1866,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-09T14:57:16Z",
+      "side": 1,
+      "message": "nit",
+      "range": {
+        "startLine": 1866,
+        "startChar": 34,
+        "endLine": 1866,
+        "endChar": 40
+      },
+      "revId": "74d7de5941e5114a3be4a60df4b0339a5112be68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "022171bd_9ef05be1",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2078,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-09T14:57:16Z",
+      "side": 1,
+      "message": "nit",
+      "range": {
+        "startLine": 2078,
+        "startChar": 34,
+        "endLine": 2078,
+        "endChar": 40
+      },
+      "revId": "74d7de5941e5114a3be4a60df4b0339a5112be68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
