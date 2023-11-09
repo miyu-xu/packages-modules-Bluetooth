@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7be643fc_9f6594a3",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T15:47:04Z",
+      "side": 1,
+      "message": "Do we want to remove it from this one?\n\nI\u0027m surprised we need it in two places.",
+      "range": {
+        "startLine": 464,
+        "startChar": 5,
+        "endLine": 464,
+        "endChar": 32
+      },
+      "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
