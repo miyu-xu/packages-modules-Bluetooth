@@ -86,6 +86,8 @@ inline std::string btif_hh_status_text(const BTIF_HH_STATUS& status) {
 }
 #undef CASE_RETURN_TEXT
 
+struct tBTA_HH_UHID_EVT_QUEUE;
+
 // Shared with uhid polling thread
 typedef struct {
   bthh_connection_state_t dev_status;
@@ -105,6 +107,7 @@ typedef struct {
 #endif // ENABLE_UHID_SET_REPORT
   bool local_vup;  // Indicated locally initiated VUP
   int uhid_wr_notif_fd[2];
+  struct tBTA_HH_UHID_EVT_QUEUE* uhid_wr_evt_queue;
 } btif_hh_device_t;
 
 /* Control block to maintain properties of devices */

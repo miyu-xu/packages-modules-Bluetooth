@@ -35,6 +35,7 @@
 
 #include "bta_sec_api.h"
 #include "bta_hh_co.h"
+#include "bta_hh_uhid.h"
 #include "btif/include/btif_common.h"
 #include "btif/include/btif_profile_storage.h"
 #include "btif/include/btif_util.h"
@@ -126,7 +127,7 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
                              uint16_t vendor_id, uint16_t product_id,
                              uint16_t version, uint8_t ctry_code, int dscp_len,
                              uint8_t* p_dscp);
-void bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len);
+int bta_hh_co_write(btif_hh_device_t* p_dev, uint8_t* rpt, uint16_t len);
 void bte_hh_evt(tBTA_HH_EVT event, tBTA_HH* p_data);
 void btif_dm_hh_open_failed(RawAddress* bdaddr);
 void btif_hd_service_registration();
@@ -159,7 +160,9 @@ static void set_keylockstate(int keymask, bool isSet) {
  * Returns          void
  ******************************************************************************/
 
-static void toggle_os_keylockstates(int fd, int changedlockstates) {
+static void toggle_os_keylockstates(
+    btif_hh_device_t* p_dev, int changedlockstates) {
+  int fd = p_dev->fd;
   LOG_VERBOSE("%s: fd = %d, changedlockstates = 0x%x", __func__, fd,
               changedlockstates);
   uint8_t hidreport[9];
@@ -191,7 +194,7 @@ static void toggle_os_keylockstates(int fd, int changedlockstates) {
               hidreport[5]);
   LOG_VERBOSE("%s:  %x %x %x", __func__, hidreport[6], hidreport[7],
               hidreport[8]);
-  bta_hh_co_write(fd, hidreport, sizeof(hidreport));
+  bta_hh_co_write(p_dev, hidreport, sizeof(hidreport));
   usleep(200000);
   memset(hidreport, 0, 9);
   hidreport[0] = 1;
@@ -203,7 +206,7 @@ static void toggle_os_keylockstates(int fd, int changedlockstates) {
               hidreport[5]);
   LOG_VERBOSE("%s:  %x %x %x ", __func__, hidreport[6], hidreport[7],
               hidreport[8]);
-  bta_hh_co_write(fd, hidreport, sizeof(hidreport));
+  bta_hh_co_write(p_dev, hidreport, sizeof(hidreport));
 }
 
 /*******************************************************************************
@@ -282,7 +285,7 @@ static void sync_lockstate_on_connect(btif_hh_device_t* p_dev) {
         "indicating lock key state 0x%x",
         __func__, keylockstates);
     usleep(200000);
-    toggle_os_keylockstates(p_dev->fd, keylockstates);
+    toggle_os_keylockstates(p_dev, keylockstates);
   } else {
     LOG_VERBOSE(
         "%s: NOT sending hid report to kernel "
@@ -1309,6 +1312,9 @@ static bt_status_t init(bthh_callbacks_t* callbacks) {
     btif_hh_cb.devices[i].dev_status = BTHH_CONN_STATE_UNKNOWN;
     int ret = pipe(btif_hh_cb.devices[i].uhid_wr_notif_fd);
     ASSERTC(ret >= 0, "The pipe for uhid thread cannot be created.", ret);
+    btif_hh_cb.devices[i].uhid_wr_evt_queue =
+        (tBTA_HH_UHID_EVT_QUEUE*)osi_malloc(sizeof(tBTA_HH_UHID_EVT_QUEUE));
+    bta_hh_uhid_evt_queue_init(btif_hh_cb.devices[i].uhid_wr_evt_queue);
   }
   /* Invoke the enable service API to the core to set the appropriate service_id
    */
@@ -1811,6 +1817,10 @@ static void cleanup(void) {
         close(p_dev->uhid_wr_notif_fd[j]);
         p_dev->uhid_wr_notif_fd[j] = -1;
       }
+    }
+    if (p_dev->uhid_wr_evt_queue) {
+      bta_hh_uhid_evt_queue_destroy(p_dev->uhid_wr_evt_queue);
+      osi_free_and_reset((void**)&p_dev->uhid_wr_evt_queue);
     }
   }
 }

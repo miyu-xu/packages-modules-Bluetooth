@@ -29,7 +29,7 @@
 
 #include <linux/uhid.h>
 
-typedef struct {
+typedef struct tBTA_HH_UHID_EVT_QUEUE {
   void* p_event_queue;
   std::mutex* p_mutex;
 } tBTA_HH_UHID_EVT_QUEUE;

@@ -17,6 +17,7 @@
  ******************************************************************************/
 
 #include "bta_hh_co.h"
+#include "bta_hh_uhid.h"
 
 #include <base/logging.h>
 #include <ctype.h>
@@ -259,7 +260,39 @@ static int uhid_handle_buffered_write(btif_hh_device_t* p_dev) {
     return -errno;
   }
 
-  // TODO(b/299192582): implement uhid event buffered write
+  tBTA_HH_UHID_DEQUEUE_RESULT dequeue_result =
+      bta_hh_uhid_evt_queue_dequeue(p_dev->uhid_wr_evt_queue);
+  if (dequeue_result.success) {
+    struct uhid_event& evt = dequeue_result.event;
+    uhid_write(p_dev->fd, &evt);
+    if (evt.type != UHID_CREATE) {
+      return 0;
+    }
+    if (evt.u.create.rd_size > 0 && evt.u.create.rd_data != NULL) {
+      osi_free((void*)evt.u.create.rd_data);
+    }
+  }
+  return 0;
+}
+
+/* Internal function to trigger the uhid write in uhid thread. */
+static int uhid_trigger_buffered_write(btif_hh_device_t* p_dev) {
+  CHECK(p_dev);
+
+  ssize_t ret;
+  char c = 'c';
+  OSI_NO_INTR(ret = write(p_dev->uhid_wr_notif_fd[1], &c, sizeof(c)));
+
+  if (ret < 0) {
+    int rtn = -errno;
+    LOG_ERROR("%s: Cannot trigger uhid buffered write: %s", __func__, strerror(errno));
+    return rtn;
+  } else if (ret != (ssize_t)sizeof(c)) {
+    LOG_ERROR("%s: Wrong size written to uhid write notify pipe: %zd != %zu", __func__,
+                     ret, sizeof(c));
+    return -EFAULT;
+  }
+
   return 0;
 }
 
@@ -398,11 +431,32 @@ static void* btif_hh_poll_event_thread(void* arg) {
   p_dev->hh_poll_thread_id = -1;
   p_dev->hh_keep_polling = 0;
   uhid_fd_close(p_dev);
+  tBTA_HH_UHID_DEQUEUE_RESULT dequeue_result =
+      bta_hh_uhid_evt_queue_dequeue(p_dev->uhid_wr_evt_queue);
+  while (dequeue_result.success) {
+    struct uhid_event& evt = dequeue_result.event;
+    if (evt.type == UHID_CREATE
+        && evt.u.create.rd_size > 0 && evt.u.create.rd_data != NULL) {
+      osi_free((void*)evt.u.create.rd_data);
+    }
+    dequeue_result =
+        bta_hh_uhid_evt_queue_dequeue(p_dev->uhid_wr_evt_queue);
+  }
   return 0;
 }
 
-int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
-  LOG_VERBOSE("%s: UHID write %d", __func__, len);
+static int uhid_async_evt_write(btif_hh_device_t* p_dev, const struct uhid_event& evt) {
+  CHECK(p_dev);
+  if (!bta_hh_uhid_evt_queue_enqueue(p_dev->uhid_wr_evt_queue, evt)) {
+    LOG_WARN("%s: Error: enqueue uhid evt to write", __func__);
+    return -1;
+  }
+  return uhid_trigger_buffered_write(p_dev);
+}
+
+int bta_hh_co_write(btif_hh_device_t* p_dev, uint8_t* rpt, uint16_t len) {
+  CHECK(p_dev);
+  LOG_VERBOSE("%s: UHID async write %d", __func__, len);
 
   struct uhid_event ev;
   memset(&ev, 0, sizeof(ev));
@@ -414,7 +468,7 @@ int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
   }
   memcpy(ev.u.input.data, rpt, len);
 
-  return uhid_write(fd, &ev);
+  return uhid_async_evt_write(p_dev, ev);
 }
 
 /*******************************************************************************
@@ -574,12 +628,9 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
     }
   }
 
-  // Send the HID data to the kernel.
-  if ((p_dev->fd >= 0) && p_dev->ready_for_data) {
-    bta_hh_co_write(p_dev->fd, p_rpt, len);
-  } else {
-    LOG_WARN("%s: Error: fd = %d, ready %d, len = %d", __func__, p_dev->fd,
-             p_dev->ready_for_data, len);
+  // Send the HID data to the kernel asyncly.
+  if (bta_hh_co_write(p_dev, p_rpt, len) < 0) {
+    LOG_WARN("%s: Error: len = %d", __func__, len);
   }
 }
 
@@ -632,13 +683,17 @@ void bta_hh_co_send_hid_info(btif_hh_device_t* p_dev, const char* dev_name,
            controller->get_address()->ToString().c_str());
 
   ev.u.create.rd_size = dscp_len;
-  ev.u.create.rd_data = p_dscp;
+  ev.u.create.rd_data = NULL;
+  if (dscp_len > 0) {
+    ev.u.create.rd_data = (uint8_t*)osi_malloc(dscp_len);
+    memcpy(ev.u.create.rd_data, p_dscp, dscp_len);
+  }
   ev.u.create.bus = BUS_BLUETOOTH;
   ev.u.create.vendor = vendor_id;
   ev.u.create.product = product_id;
   ev.u.create.version = version;
   ev.u.create.country = ctry_code;
-  result = uhid_write(p_dev->fd, &ev);
+  result = uhid_async_evt_write(p_dev, ev);
 
   LOG_WARN("%s: wrote descriptor to fd = %d, dscp_len = %d, result = %d",
            __func__, p_dev->fd, dscp_len, result);
@@ -699,7 +754,7 @@ void bta_hh_co_set_rpt_rsp(uint8_t dev_handle, uint8_t status) {
           },
       },
   };
-  uhid_write(p_dev->fd, &ev);
+  uhid_async_evt_write(p_dev, ev);
   osi_free(context);
 
 #else
@@ -764,7 +819,7 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
   };
   memcpy(ev.u.feature_answer.data, p_rpt, len);
 
-  uhid_write(p_dev->fd, &ev);
+  uhid_async_evt_write(p_dev, ev);
   osi_free(context);
 }
 
