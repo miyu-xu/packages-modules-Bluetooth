@@ -2996,14 +2996,9 @@ void btm_proc_sp_req_evt(tBTM_SP_EVT event, RawAddress bda, uint32_t value) {
  * Returns          void
  *
  ******************************************************************************/
-void btm_simple_pair_complete(const uint8_t* p) {
-  RawAddress bd_addr;
+void btm_simple_pair_complete(RawAddress bd_addr, uint8_t status) {
   tBTM_SEC_DEV_REC* p_dev_rec;
-  uint8_t status;
   bool disc = false;
-
-  status = *p++;
-  STREAM_TO_BDADDR(bd_addr, p);
 
   p_dev_rec = btm_find_dev(bd_addr);
   if (p_dev_rec == NULL) {

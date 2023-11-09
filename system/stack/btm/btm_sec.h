@@ -574,7 +574,7 @@ void btm_proc_sp_req_evt(tBTM_SP_EVT event, RawAddress bda, uint32_t value);
  * Returns          void
  *
  ******************************************************************************/
-void btm_simple_pair_complete(const uint8_t* p);
+void btm_simple_pair_complete(RawAddress bd_addr, uint8_t status);
 
 /*******************************************************************************
  *
