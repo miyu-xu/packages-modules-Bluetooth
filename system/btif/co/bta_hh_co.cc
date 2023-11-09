@@ -48,6 +48,7 @@ static tBTA_HH_RPT_CACHE_ENTRY sReportCache[BTA_HH_NV_LOAD_MAX];
 #define BTA_HH_CACHE_REPORT_VERSION 1
 #define THREAD_NORMAL_PRIORITY 0
 #define BT_HH_THREAD "bt_hh_thread"
+#define BTA_HH_UHID_POLL_FD_COUNT 2
 #define BTA_HH_UHID_POLL_PERIOD_MS 50
 /* Max number of polling interrupt allowed */
 #define BTA_HH_UHID_INTERRUPT_COUNT_MAX 100
@@ -242,6 +243,26 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
   return 0;
 }
 
+/* Internal function to parse the uhid write events buffered. */
+static int uhid_handle_buffered_write(btif_hh_device_t* p_dev) {
+  CHECK(p_dev);
+
+  ssize_t ret;
+  char c;
+  OSI_NO_INTR(ret = read(p_dev->uhid_wr_notif_fd[0], &c, sizeof(c)));
+
+  if (ret == 0) {
+    LOG_ERROR("%s: Read HUP on uhid write notify pipe: %s", __func__, strerror(errno));
+    return -EFAULT;
+  } else if (ret < 0) {
+    LOG_ERROR("%s: Cannot read uhid write notify pipe: %s", __func__, strerror(errno));
+    return -errno;
+  }
+
+  // TODO(b/299192582): implement uhid event buffered write
+  return 0;
+}
+
 /*******************************************************************************
  *
  * Function create_thread
@@ -308,7 +329,7 @@ static bool uhid_fd_open(btif_hh_device_t* p_dev) {
  ******************************************************************************/
 static void* btif_hh_poll_event_thread(void* arg) {
   btif_hh_device_t* p_dev = (btif_hh_device_t*)arg;
-  struct pollfd pfds[1];
+  struct pollfd pfds[BTA_HH_UHID_POLL_FD_COUNT];
   pid_t pid = gettid();
 
   // This thread is created by bt_main_thread with RT priority. Lower the thread
@@ -329,9 +350,12 @@ static void* btif_hh_poll_event_thread(void* arg) {
 
   pfds[0].fd = p_dev->fd;
   pfds[0].events = POLLIN;
+  pfds[1].fd = p_dev->uhid_wr_notif_fd[0];
+  pfds[1].events = POLLIN;
 
   // Set the uhid fd as non-blocking to ensure we never block the BTU thread
   uhid_set_non_blocking(p_dev->fd);
+  uhid_set_non_blocking(p_dev->uhid_wr_notif_fd[0]);
 
   while (p_dev->hh_keep_polling) {
     int ret;
@@ -342,7 +366,7 @@ static void* btif_hh_poll_event_thread(void* arg) {
         LOG_ERROR("Polling interrupted");
         break;
       }
-      ret = poll(pfds, 1, BTA_HH_UHID_POLL_PERIOD_MS);
+      ret = poll(pfds, BTA_HH_UHID_POLL_FD_COUNT, BTA_HH_UHID_POLL_PERIOD_MS);
     } while (ret == -1 && errno == EINTR);
 
     if (ret < 0) {
@@ -354,6 +378,15 @@ static void* btif_hh_poll_event_thread(void* arg) {
       ret = uhid_read_event(p_dev);
       if (ret != 0) {
         LOG_ERROR("Unhandled UHID event");
+        break;
+      }
+    }
+
+    if (pfds[1].revents & POLLIN) {
+      LOG_DEBUG("%s: UHID BUFFERED WRITE", __func__);
+      ret = uhid_handle_buffered_write(p_dev);
+      if (ret != 0) {
+        LOG_ERROR("Unhandled UHID buffered write");
         break;
       }
     }
