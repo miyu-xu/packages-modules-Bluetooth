@@ -26,6 +26,7 @@
 #include "bta/hh/bta_hh_int.h"
 #include "bta/include/bta_ag_api.h"
 #include "bta/include/bta_hh_api.h"
+#include "bta/include/bta_hh_uhid.h"
 #include "btcore/include/module.h"
 #include "btif/include/btif_api.h"
 #include "btif/include/stack_manager.h"
@@ -336,4 +337,49 @@ TEST_F(BtifHHVirtualUnplugTest, test_btif_hh_virtual_unplug_device_not_open) {
   ASSERT_STREQ(kDeviceAddressConnecting.ToString().c_str(),
                res.raw_address.ToString().c_str());
   ASSERT_EQ(BTHH_CONN_STATE_DISCONNECTED, res.state);
+}
+
+TEST(BtifHHUhidQueueTest, test_btif_hh_uhid_evt_queue_can_enqueue_dequeue) {
+  tBTA_HH_UHID_EVT_QUEUE evt_queue = {};
+  bta_hh_uhid_evt_queue_init(&evt_queue);
+  ASSERT_NE(evt_queue.p_event_queue, nullptr);
+  ASSERT_NE(evt_queue.p_mutex, nullptr);
+
+  struct uhid_event in_evt = {
+    .type = 0,
+  };
+  ASSERT_TRUE(bta_hh_uhid_evt_queue_enqueue(&evt_queue, in_evt));
+
+  struct uhid_event out_evt = {
+    .type = 1,
+  };
+  ASSERT_TRUE(bta_hh_uhid_evt_queue_dequeue(&evt_queue, out_evt));
+  ASSERT_EQ(out_evt.type, in_evt.type);
+
+  bta_hh_uhid_evt_queue_destroy(&evt_queue);
+  ASSERT_EQ(evt_queue.p_event_queue, nullptr);
+  ASSERT_EQ(evt_queue.p_mutex, nullptr);
+}
+
+TEST(BtifHHUhidQueueTest, test_btif_hh_uhid_evt_queue_empty_or_full) {
+  tBTA_HH_UHID_EVT_QUEUE evt_queue = {};
+  bta_hh_uhid_evt_queue_init(&evt_queue, /*thread_safe=*/false);
+  ASSERT_NE(evt_queue.p_event_queue, nullptr);
+  ASSERT_EQ(evt_queue.p_mutex, nullptr);
+
+  // Queue is empty;
+  struct uhid_event evt = {};
+  ASSERT_FALSE(bta_hh_uhid_evt_queue_dequeue(&evt_queue, evt));
+
+  constexpr size_t FULL_COUNT = 20;
+  for (size_t i = 0; i < FULL_COUNT; ++i) {
+    ASSERT_TRUE(bta_hh_uhid_evt_queue_enqueue(&evt_queue, evt));
+  }
+
+  // Queue is full;
+  ASSERT_FALSE(bta_hh_uhid_evt_queue_enqueue(&evt_queue, evt));
+
+  bta_hh_uhid_evt_queue_destroy(&evt_queue);
+  ASSERT_EQ(evt_queue.p_event_queue, nullptr);
+  ASSERT_EQ(evt_queue.p_mutex, nullptr);
 }
