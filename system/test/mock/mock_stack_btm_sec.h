@@ -886,11 +886,14 @@ struct btm_sec_update_clock_offset {
 extern struct btm_sec_update_clock_offset btm_sec_update_clock_offset;
 
 // Name: btm_simple_pair_complete
-// Params: const uint8_t* p
+// Params: RawAddress bd_addr, uint8_t status
 // Return: void
 struct btm_simple_pair_complete {
-  std::function<void(const uint8_t* p)> body{[](const uint8_t* p) {}};
-  void operator()(const uint8_t* p) { body(p); };
+  std::function<void(RawAddress bd_addr, uint8_t status)> body{
+      [](RawAddress bd_addr, uint8_t status) {}};
+  void operator()(RawAddress bd_addr, uint8_t status) {
+    body(bd_addr, status);
+  };
 };
 extern struct btm_simple_pair_complete btm_simple_pair_complete;
 
