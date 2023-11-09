@@ -1307,6 +1307,8 @@ static bt_status_t init(bthh_callbacks_t* callbacks) {
   memset(&btif_hh_cb, 0, sizeof(btif_hh_cb));
   for (i = 0; i < BTIF_HH_MAX_HID; i++) {
     btif_hh_cb.devices[i].dev_status = BTHH_CONN_STATE_UNKNOWN;
+    int ret = pipe(btif_hh_cb.devices[i].uhid_wr_notif_fd);
+    ASSERTC(ret >= 0, "The pipe for uhid thread cannot be created.", ret);
   }
   /* Invoke the enable service API to the core to set the appropriate service_id
    */
@@ -1803,6 +1805,12 @@ static void cleanup(void) {
     if (p_dev->dev_status != BTHH_CONN_STATE_UNKNOWN && p_dev->fd >= 0) {
       LOG_VERBOSE("%s: Closing uhid fd = %d", __func__, p_dev->fd);
       bta_hh_co_close(p_dev);
+    }
+    for (int j = 0; j < 2; ++j) {
+      if (p_dev->uhid_wr_notif_fd[j] >= 0) {
+        close(p_dev->uhid_wr_notif_fd[j]);
+        p_dev->uhid_wr_notif_fd[j] = -1;
+      }
     }
   }
 }
