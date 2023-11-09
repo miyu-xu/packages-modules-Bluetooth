@@ -22,6 +22,7 @@
 #include <array>
 #include <future>
 #include <vector>
+#include <linux/uhid.h>
 
 #include "bta/hh/bta_hh_int.h"
 #include "bta/include/bta_ag_api.h"
