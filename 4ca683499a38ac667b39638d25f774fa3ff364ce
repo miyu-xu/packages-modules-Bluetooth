@@ -22,6 +22,30 @@
       },
       "revId": "4ca683499a38ac667b39638d25f774fa3ff364ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54c1f29d_ad48f598",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-11-09T19:20:53Z",
+      "side": 1,
+      "message": "The number of metrics is tightly coupled with scan throttle logic because changing scan mode or changing screen state can increase the count. I can put the number which is aligned with the current scan throttle logic but checking the exact invocation count seems too specific. We have to update the invocation count whenever we change the scan throttle policy. How do you think of it?",
+      "parentUuid": "890d8365_1de63427",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "4ca683499a38ac667b39638d25f774fa3ff364ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
