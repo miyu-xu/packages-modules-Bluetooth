@@ -468,20 +468,21 @@ struct btm_get_dev_class {
 extern struct btm_get_dev_class btm_get_dev_class;
 
 // Name: btm_io_capabilities_req
-// Params: const RawAddress& p
+// Params: RawAddress p
 // Return: void
 struct btm_io_capabilities_req {
-  std::function<void(const RawAddress& p)> body{[](const RawAddress& p) {}};
-  void operator()(const RawAddress& p) { body(p); };
+  std::function<void(RawAddress p)> body{[](RawAddress /* p */) {}};
+  void operator()(RawAddress p) { body(p); };
 };
 extern struct btm_io_capabilities_req btm_io_capabilities_req;
 
 // Name: btm_io_capabilities_rsp
-// Params: const uint8_t* p
+// Params: tBTM_SP_IO_RSP evt_data
 // Return: void
 struct btm_io_capabilities_rsp {
-  std::function<void(const uint8_t* p)> body{[](const uint8_t* p) {}};
-  void operator()(const uint8_t* p) { body(p); };
+  std::function<void(tBTM_SP_IO_RSP evt_data)> body{
+      [](tBTM_SP_IO_RSP /* evt_data */) {}};
+  void operator()(tBTM_SP_IO_RSP evt_data) { body(evt_data); };
 };
 extern struct btm_io_capabilities_rsp btm_io_capabilities_rsp;
 
