@@ -17,6 +17,7 @@
  ******************************************************************************/
 
 #include <base/logging.h>
+#include <linux/uhid.h>
 
 #include "bta_hh_uhid.h"
 #include "osi/include/allocator.h"
@@ -60,7 +61,7 @@ void bta_hh_uhid_evt_queue_destroy(tBTA_HH_UHID_EVT_QUEUE* queue) {
   CHECK(queue) << "uhid queue shall not be nullptr.";
   CHECK(queue->p_event_queue) << "uhid queue shall be initialized.";
 
-  delete queue->p_event_queue;
+  delete static_cast<uhid_event_queue_t*>(queue->p_event_queue);
   queue->p_event_queue = NULL;
 
   if (queue->p_mutex) {
@@ -75,10 +76,12 @@ void bta_hh_uhid_evt_queue_cleanup(tBTA_HH_UHID_EVT_QUEUE* queue) {
 
   if (queue->p_mutex) {
     std::lock_guard<std::mutex> guard(*queue->p_mutex);
-    *queue->p_event_queue = uhid_event_queue_t();
+    *static_cast<uhid_event_queue_t*>(queue->p_event_queue)
+        = uhid_event_queue_t();
     return;
   }
-  *queue->p_event_queue = uhid_event_queue_t();
+  *static_cast<uhid_event_queue_t*>(queue->p_event_queue)
+      = uhid_event_queue_t();
 }
 
 bool bta_hh_uhid_evt_queue_dequeue(
@@ -88,9 +91,11 @@ bool bta_hh_uhid_evt_queue_dequeue(
 
   if (queue->p_mutex) {
     std::lock_guard<std::mutex> guard(*queue->p_mutex);
-    return uhid_event_queue_dequeue(*queue->p_event_queue, event);
+    return uhid_event_queue_dequeue(
+        *static_cast<uhid_event_queue_t*>(queue->p_event_queue), event);
   }
-  return uhid_event_queue_dequeue(*queue->p_event_queue, event);
+  return uhid_event_queue_dequeue(
+      *static_cast<uhid_event_queue_t*>(queue->p_event_queue), event);
 }
 
 bool bta_hh_uhid_evt_queue_enqueue(
@@ -100,7 +105,9 @@ bool bta_hh_uhid_evt_queue_enqueue(
 
   if (queue->p_mutex) {
     std::lock_guard<std::mutex> guard(*queue->p_mutex);
-    return uhid_event_queue_enqueue(*queue->p_event_queue, event);
+    return uhid_event_queue_enqueue(
+        *static_cast<uhid_event_queue_t*>(queue->p_event_queue), event);
   }
-  return uhid_event_queue_enqueue(*queue->p_event_queue, event);
+  return uhid_event_queue_enqueue(
+      *static_cast<uhid_event_queue_t*>(queue->p_event_queue), event);
 }
