@@ -22,6 +22,30 @@
       },
       "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e10b39f_01943987",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-09T15:56:44Z",
+      "side": 1,
+      "message": "`I\u0027m surprised we need it in two places.`\n\nThis is for 2 different targets.\n\n`net_test_bta` and `bt_host_test_bta`\n\n`net_test_bta` is _device_only_, while bt_host_test_bta runs on *both* host and device.\n\nMy plan (at some point) is to fold `bt_host_test_bta` back into `net_test_bta` using the \n```\n    target: {\n        android: {...},\n        host: {...}\n    },\n```\napproach but requires some effort to separate out the android deps into their sub-block and possibly modifications of some tests.",
+      "parentUuid": "7be643fc_9f6594a3",
+      "range": {
+        "startLine": 464,
+        "startChar": 5,
+        "endLine": 464,
+        "endChar": 32
+      },
+      "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
