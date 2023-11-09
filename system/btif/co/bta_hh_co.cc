@@ -259,13 +259,15 @@ static int uhid_handle_buffered_write(btif_hh_device_t* p_dev) {
     return -errno;
   }
 
-  // TODO(zyanwu): implement uhid event buffered write
+  struct uhid_event evt = {};
+  while (bta_hh_uhid_evt_queue_dequeue(&p_dev->uhid_wr_evt_queue, evt)) {
+    uhid_write(p_dev->fd, &evt);
+  }
   return 0;
 }
 
 /* Internal function to trigger the uhid write in uhid thread. */
-// TODO(zyanwu):  ev events where uhid_write is invoked and trigger.
-/*static*/ int uhid_trigger_buffered_write(btif_hh_device_t* p_dev) {
+static int uhid_trigger_buffered_write(btif_hh_device_t* p_dev) {
   CHECK(p_dev);
 
   ssize_t ret;
@@ -421,6 +423,32 @@ static void* btif_hh_poll_event_thread(void* arg) {
   p_dev->hh_keep_polling = 0;
   uhid_fd_close(p_dev);
   return 0;
+}
+
+static void uhid_async_evt_write(btif_hh_device_t* p_dev, const struct uhid_event& evt) {
+  CHECK(p_dev);
+  if (!bta_hh_uhid_evt_queue_enqueue(&p_dev->uhid_wr_evt_queue, evt)) {
+    APPL_TRACE_WARNING("%s: Error: enqueue uhid evt to write", __func__);
+    return;
+  }
+  uhid_trigger_buffered_write(p_dev);
+}
+
+static void uhid_async_co_write(btif_hh_device_t* p_dev, uint8_t* rpt, uint16_t len) {
+  CHECK(p_dev);
+  APPL_TRACE_VERBOSE("%s: UHID async write %d", __func__, len);
+
+  struct uhid_event ev;
+  memset(&ev, 0, sizeof(ev));
+  ev.type = UHID_INPUT;
+  ev.u.input.size = len;
+  if (len > sizeof(ev.u.input.data)) {
+    APPL_TRACE_WARNING("%s: Report size greater than allowed size", __func__);
+    return;
+  }
+  memcpy(ev.u.input.data, rpt, len);
+
+  uhid_async_evt_write(p_dev, ev);
 }
 
 int bta_hh_co_write(int fd, uint8_t* rpt, uint16_t len) {
@@ -596,13 +624,8 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
     }
   }
 
-  // Send the HID data to the kernel.
-  if ((p_dev->fd >= 0) && p_dev->ready_for_data) {
-    bta_hh_co_write(p_dev->fd, p_rpt, len);
-  } else {
-    LOG_WARN("%s: Error: fd = %d, ready %d, len = %d", __func__, p_dev->fd,
-             p_dev->ready_for_data, len);
-  }
+  // Send the HID data to the kernel asyncly.
+  uhid_async_co_write(p_dev, p_rpt, len);
 }
 
 /*******************************************************************************
@@ -721,7 +744,7 @@ void bta_hh_co_set_rpt_rsp(uint8_t dev_handle, uint8_t status) {
           },
       },
   };
-  uhid_write(p_dev->fd, &ev);
+  uhid_async_evt_write(p_dev, ev);
   osi_free(context);
 
 #else
@@ -786,7 +809,7 @@ void bta_hh_co_get_rpt_rsp(uint8_t dev_handle, uint8_t status,
   };
   memcpy(ev.u.feature_answer.data, p_rpt, len);
 
-  uhid_write(p_dev->fd, &ev);
+  uhid_async_evt_write(p_dev, ev);
   osi_free(context);
 }
 

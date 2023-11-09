@@ -28,10 +28,8 @@
 #include <queue>
 #include <mutex>
 
-#include <linux/uhid.h>
-
 typedef struct {
-  std::queue<struct uhid_event>* p_event_queue;
+  void* p_event_queue;
   std::mutex* p_mutex;
 } tBTA_HH_UHID_EVT_QUEUE;
 

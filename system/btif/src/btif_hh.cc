@@ -1309,6 +1309,7 @@ static bt_status_t init(bthh_callbacks_t* callbacks) {
     btif_hh_cb.devices[i].dev_status = BTHH_CONN_STATE_UNKNOWN;
     int ret = pipe(btif_hh_cb.devices[i].uhid_wr_notif_fd);
     ASSERTC(ret >= 0, "The pipe for uhid thread cannot be created.", ret);
+    bta_hh_uhid_evt_queue_init(&btif_hh_cb.devices[i].uhid_wr_evt_queue);
   }
   /* Invoke the enable service API to the core to set the appropriate service_id
    */
@@ -1808,6 +1809,7 @@ static void cleanup(void) {
     }
     close(p_dev->uhid_wr_notif_fd[0]);
     close(p_dev->uhid_wr_notif_fd[1]);
+    bta_hh_uhid_evt_queue_destroy(&p_dev->uhid_wr_evt_queue);
   }
 }
 
