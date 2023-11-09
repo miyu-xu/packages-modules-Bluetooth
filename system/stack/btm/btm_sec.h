@@ -586,7 +586,7 @@ void btm_simple_pair_complete(RawAddress bd_addr, uint8_t status);
  * Returns          void
  *
  ******************************************************************************/
-void btm_rem_oob_req(const uint8_t* p);
+void btm_rem_oob_req(RawAddress bd_addr);
 
 /*******************************************************************************
  *
