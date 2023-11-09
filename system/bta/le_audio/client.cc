@@ -2467,10 +2467,11 @@ class LeAudioClientImpl : public LeAudioClient {
       return;
     }
 
-    if (!leAudioDevice->known_service_handles_)
+    if (!leAudioDevice->known_service_handles_) {
       BTA_GATTC_ServiceSearchRequest(
           leAudioDevice->conn_id_,
           &le_audio::uuid::kPublishedAudioCapabilityServiceUuid);
+    }
   }
 
   void disconnectInvalidDevice(LeAudioDevice* leAudioDevice,
