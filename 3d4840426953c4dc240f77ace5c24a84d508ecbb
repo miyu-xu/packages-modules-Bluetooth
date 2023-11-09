@@ -94,6 +94,30 @@
       },
       "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbab81fc_d62c41f7",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-09T19:50:10Z",
+      "side": 1,
+      "message": "Last I looked (a long while ago) I tried adding `host_supported: true` and had a bunch of linking issues and/or test execution failures.\n\nAt the time it was easier to create a new host target to get my test/fix/CL merged.\n\nIt is time to fold these two tests that test bta back together and make them both host and device capable, but I\u0027d like to defer the folding until after this CL lands to check if coverage number increase; if not there is a secondary effort to understand why that is the case.\n\n`we have a test that runs both on the host and on device` This test does not appear to be picked up in the code coverage which is the primary goal.\n\nThe hope is once this lands code coverage will change indicating it is being affected by the results of this test.  That would indicate not all unit tests are being used for code coverage and then we can figure out which ones are or not.\n\nIf the code coverage does. *not* change after this CL, it indicates more investigation into how the code coverage is calculated.",
+      "parentUuid": "9fa53777_0dc91e3d",
+      "range": {
+        "startLine": 464,
+        "startChar": 5,
+        "endLine": 464,
+        "endChar": 32
+      },
+      "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
