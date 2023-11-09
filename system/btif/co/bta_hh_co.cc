@@ -242,6 +242,49 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
   return 0;
 }
 
+/* Internal function to parse the uhid write events buffered. */
+static int uhid_handle_buffered_write(btif_hh_device_t* p_dev) {
+  CHECK(p_dev);
+
+  ssize_t ret;
+  char c;
+  OSI_NO_INTR(ret = read(p_dev->uhid_wr_notif_fd[0], &c, sizeof(c)));
+
+  if (ret == 0) {
+    APPL_TRACE_ERROR("%s: Read HUP on UHID write notify pipe: %s", __func__, strerror(errno));
+    return -EFAULT;
+  } else if (ret < 0) {
+    APPL_TRACE_ERROR("%s: Cannot read uhid write notify pipe: %s", __func__,
+                     strerror(errno));
+    return -errno;
+  }
+
+  // TODO(zyanwu): implement uhid event buffered write
+  return 0;
+}
+
+/* Internal function to trigger the uhid write in uhid thread. */
+// TODO(zyanwu):  ev events where uhid_write is invoked and trigger.
+/*static*/ int uhid_trigger_buffered_write(btif_hh_device_t* p_dev) {
+  CHECK(p_dev);
+
+  ssize_t ret;
+  char c = 'c';
+  OSI_NO_INTR(ret = write(p_dev->uhid_wr_notif_fd[1], &c, sizeof(c)));
+
+  if (ret < 0) {
+    int rtn = -errno;
+    APPL_TRACE_ERROR("%s: Cannot trigger uhid buffered write: %s", __func__, strerror(errno));
+    return rtn;
+  } else if (ret != (ssize_t)sizeof(c)) {
+    APPL_TRACE_ERROR("%s: Wrong size written to uhid write notify pipe: %zd != %zu", __func__,
+                     ret, sizeof(c));
+    return -EFAULT;
+  }
+
+  return 0;
+}
+
 /*******************************************************************************
  *
  * Function create_thread
@@ -308,7 +351,7 @@ static bool uhid_fd_open(btif_hh_device_t* p_dev) {
  ******************************************************************************/
 static void* btif_hh_poll_event_thread(void* arg) {
   btif_hh_device_t* p_dev = (btif_hh_device_t*)arg;
-  struct pollfd pfds[1];
+  struct pollfd pfds[2];
   pid_t pid = gettid();
 
   // This thread is created by bt_main_thread with RT priority. Lower the thread
@@ -329,9 +372,12 @@ static void* btif_hh_poll_event_thread(void* arg) {
 
   pfds[0].fd = p_dev->fd;
   pfds[0].events = POLLIN;
+  pfds[1].fd = p_dev->uhid_wr_notif_fd[0];
+  pfds[1].events = POLLIN;
 
   // Set the uhid fd as non-blocking to ensure we never block the BTU thread
   uhid_set_non_blocking(p_dev->fd);
+  uhid_set_non_blocking(p_dev->uhid_wr_notif_fd[0]);
 
   while (p_dev->hh_keep_polling) {
     int ret;
@@ -354,6 +400,15 @@ static void* btif_hh_poll_event_thread(void* arg) {
       ret = uhid_read_event(p_dev);
       if (ret != 0) {
         LOG_ERROR("Unhandled UHID event");
+        break;
+      }
+    }
+
+    if (pfds[1].revents & POLLIN) {
+      APPL_TRACE_DEBUG("%s: UHID BUFFERED WRITE", __func__);
+      uhid_handle_buffered_write(p_dev);
+      if (ret != 0) {
+        LOG_ERROR("Unhandled UHID buffered write");
         break;
       }
     }
