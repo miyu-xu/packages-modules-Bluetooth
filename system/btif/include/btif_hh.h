@@ -104,6 +104,7 @@ typedef struct {
   fixed_queue_t* set_rpt_id_queue;
 #endif // ENABLE_UHID_SET_REPORT
   bool local_vup;  // Indicated locally initiated VUP
+  int uhid_wr_notif_fd[2];
 } btif_hh_device_t;
 
 /* Control block to maintain properties of devices */
