@@ -264,8 +264,14 @@ cc_test {
         "libcrypto",
         "libcutils",
         "liblog",
+        "server_configurable_flags",
     ],
     static_libs: [
+<<<<<<< PATCH SET (d583ba Use DSP's LC3 codec setting when BT controller does not supp)
+        "bluetooth_flags_c_lib",
+        "crypto_toolbox_for_tests",
+=======
+>>>>>>> BASE      (f33688 Merge "[Invisalign2] Tune a few function in btm_sec" into ma)
         "libbase",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
