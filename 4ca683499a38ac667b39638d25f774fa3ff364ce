@@ -46,6 +46,30 @@
       },
       "revId": "4ca683499a38ac667b39638d25f774fa3ff364ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e9921f6_0a5c4081",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2023-11-09T19:56:28Z",
+      "side": 1,
+      "message": "Tried to use exact times() and never(). For a long test case, I still needed to use AtMost() otherwise the testcase could be sometimes failed because DisplayManager is not mocked and display state could be changed during testing.",
+      "parentUuid": "54c1f29d_ad48f598",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 22
+      },
+      "revId": "4ca683499a38ac667b39638d25f774fa3ff364ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
