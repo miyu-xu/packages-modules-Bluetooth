@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8871fc6_bb52cc1a",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-09T18:17:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b415441_3ee5a37a",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 41
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6499d0ea_1184edc1",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1135324f_bd13412a",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-09T18:17:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6499d0ea_1184edc1",
+      "range": {
+        "startLine": 309,
+        "startChar": 5,
+        "endLine": 309,
+        "endChar": 24
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0c5ecf6_06136e0d",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-09T05:14:30Z",
       "side": 1,
       "message": "The information in this instance looks exact same with the \"int codecType\".\n\nI\u0027m curious what are the benefits to having this class.",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb28f060_7f6185d4",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-09T18:17:16Z",
+      "side": 1,
+      "message": "codecType is currently a strict enum, with values encoding a static number of codecs. That model is not compatible with codec extensability where unknown codecs may be supported by the HAL provider.\n\nThis class aims to abstract the codec type, and enable unknown codecs in the code.",
+      "parentUuid": "a0c5ecf6_06136e0d",
       "range": {
         "startLine": 31,
         "startChar": 19,
