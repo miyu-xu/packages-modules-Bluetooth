@@ -16,6 +16,24 @@
       "message": "Floss build failure in pre-submit looks legit:\n\n```\nerror: failed to select a version for the requirement `grpcio \u003d \"^0.13.0\"`\ncandidate versions found which didn\u0027t match: 0.9.1\nlocation searched: directory source `/root/.floss/staging/external/rust/vendor` (which is replacing registry `crates-io`)\n```\n\ncc @abhishekpandit@google.com to help the rust team landing version bump",
       "revId": "0c1fd1cd8b6d434039ae851e410e9a1898d79259",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b94cfa9_846be6da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1939360
+      },
+      "writtenOn": "2023-11-09T09:14:25Z",
+      "side": 1,
+      "message": "Thanks William. Yeah, I\u0027m a bit stuck with this, it seems that I need to upgrade the crate in ChromiumOS, with which I have no experience.\nI summarized things in this YAQ: https://yaqs.corp.google.com/eng/q/7349163207845478400\nAny help would definitely be very appreciated !",
+      "parentUuid": "f7d0a71f_3939ab10",
+      "revId": "0c1fd1cd8b6d434039ae851e410e9a1898d79259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
