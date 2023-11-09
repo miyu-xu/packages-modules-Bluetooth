@@ -18,11 +18,21 @@ package android.bluetooth;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.verify;
+
+import android.app.PendingIntent;
 import android.bluetooth.le.BluetoothLeScanner;
 import android.bluetooth.le.ScanCallback;
 import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.ParcelUuid;
 import android.util.Log;
 
@@ -34,6 +44,7 @@ import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,32 +64,120 @@ public class LeScanningTest {
 
     @Rule public final PandoraDevice mBumble = new PandoraDevice();
 
-    private final String TEST_UUID_STRING = "00001805-0000-1000-8000-00805f9b34fb";
+    private final Context mContext = ApplicationProvider.getApplicationContext();
+    private final BluetoothManager mBluetoothManager =
+            mContext.getSystemService(BluetoothManager.class);
+    private final BluetoothAdapter mBluetoothAdapter = mBluetoothManager.getAdapter();
+    private final BluetoothLeScanner mLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
+
+    private static final String TEST_UUID_STRING = "00001805-0000-1000-8000-00805f9b34fb";
+
+    private static final String ACTION_DYNAMIC_RECEIVER_SCAN_RESULT =
+            "android.bluetooth.ACTION_DYNAMIC_RECEIVER_SCAN_RESULT";
 
     @Test
-    public void startBleScan_withCallbackTypeAllMatches() {
+    public void startBleScanWithCallbackTypeAllMatches() {
         advertiseWithBumble(TEST_UUID_STRING);
 
         List<ScanResult> results =
-                startScanning(TEST_UUID_STRING, ScanSettings.CALLBACK_TYPE_ALL_MATCHES).join();
+                scanWithCallback(TEST_UUID_STRING, ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
 
+        assertThat(results).isNotNull();
         assertThat(results.get(0).getScanRecord().getServiceUuids().get(0))
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
         assertThat(results.get(1).getScanRecord().getServiceUuids().get(0))
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
     }
 
-    private CompletableFuture<List<ScanResult>> startScanning(
-            String serviceUuid, int callbackType) {
+    @Test
+    public void startBleScanWithPendingIntentAndDynamicReceiverAndCallbackTypeAllMatches() {
+        BroadcastReceiver mockReceiver = mock(BroadcastReceiver.class);
+        IntentFilter intentFilter = new IntentFilter(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT);
+        mContext.registerReceiver(mockReceiver, intentFilter);
+
+        advertiseWithBumble(TEST_UUID_STRING);
+
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .build();
+
+        ArrayList<ScanFilter> scanFilters = new ArrayList<>();
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .build();
+        scanFilters.add(scanFilter);
+
+        // NOTE: Intent.setClass() must not be called, or else scan results won't be received.
+        Intent scanIntent = new Intent(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT);
+        PendingIntent pendingIntent =
+                PendingIntent.getBroadcast(
+                        mContext, 0, scanIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        mLeScanner.startScan(scanFilters, scanSettings, pendingIntent);
+
+        ArgumentCaptor<Intent> intent = ArgumentCaptor.forClass(Intent.class);
+        verify(mockReceiver, timeout(TIMEOUT_SCANNING_MS)).onReceive(any(), intent.capture());
+
+        mLeScanner.stopScan(pendingIntent);
+        mContext.unregisterReceiver(mockReceiver);
+
+        assertThat(intent.getValue().getAction()).isEqualTo(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT);
+        assertThat(intent.getValue().getIntExtra(BluetoothLeScanner.EXTRA_CALLBACK_TYPE, -1))
+                .isEqualTo(ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
+
+        List<ScanResult> results =
+                intent.getValue()
+                        .getParcelableExtra(
+                                BluetoothLeScanner.EXTRA_LIST_SCAN_RESULT,
+                                new ArrayList<ScanResult>().getClass());
+        assertThat(results).isNotNull();
+        assertThat(results).isNotEmpty();
+        assertThat(results.get(0).getScanRecord().getServiceUuids()).isNotEmpty();
+        assertThat(results.get(0).getScanRecord().getServiceUuids().get(0))
+                .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
+    }
+
+    @Test
+    public void startBleScanWithPendingIntentAndStaticReceiverAndCallbackTypeAllMatches() {
+        advertiseWithBumble(TEST_UUID_STRING);
+
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .build();
+
+        ArrayList<ScanFilter> scanFilters = new ArrayList<>();
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .build();
+        scanFilters.add(scanFilter);
+
+        PendingIntent pendingIntent =
+                PendingIntentScanReceiver.newBroadcastPendingIntent(mContext, 0);
+
+        mLeScanner.startScan(scanFilters, scanSettings, pendingIntent);
+        List<ScanResult> results =
+                PendingIntentScanReceiver.nextScanResult()
+                        .completeOnTimeout(null, TIMEOUT_SCANNING_MS, TimeUnit.MILLISECONDS)
+                        .join();
+        mLeScanner.stopScan(pendingIntent);
+        PendingIntentScanReceiver.resetNextScanResultFuture();
+
+        assertThat(results).isNotNull();
+        assertThat(results).isNotEmpty();
+        assertThat(results.get(0).getScanRecord().getServiceUuids()).isNotEmpty();
+        assertThat(results.get(0).getScanRecord().getServiceUuids().get(0))
+                .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
+    }
+
+    private List<ScanResult> scanWithCallback(String serviceUuid, int callbackType) {
         CompletableFuture<List<ScanResult>> future = new CompletableFuture<>();
         List<ScanResult> scanResults = new ArrayList<>();
-
-        android.content.Context context = ApplicationProvider.getApplicationContext();
-        BluetoothManager bluetoothManager = context.getSystemService(BluetoothManager.class);
-        BluetoothAdapter bluetoothAdapter = bluetoothManager.getAdapter();
-
-        // Start scanning
-        BluetoothLeScanner leScanner = bluetoothAdapter.getBluetoothLeScanner();
 
         ScanSettings scanSettings =
                 new ScanSettings.Builder()
@@ -116,10 +215,14 @@ public class LeScanningTest {
                     }
                 };
 
-        leScanner.startScan(scanFilters, scanSettings, scanCallback);
+        mLeScanner.startScan(scanFilters, scanSettings, scanCallback);
 
-        // Make sure completableFuture object completes with null after some timeout
-        return future.completeOnTimeout(null, TIMEOUT_SCANNING_MS, TimeUnit.MILLISECONDS);
+        List<ScanResult> result =
+                future.completeOnTimeout(null, TIMEOUT_SCANNING_MS, TimeUnit.MILLISECONDS).join();
+
+        mLeScanner.stopScan(scanCallback);
+
+        return result;
     }
 
     private void advertiseWithBumble(String serviceUuid) {
