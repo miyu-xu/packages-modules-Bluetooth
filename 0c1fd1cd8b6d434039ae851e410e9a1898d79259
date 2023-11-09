@@ -34,6 +34,41 @@
       "parentUuid": "f7d0a71f_3939ab10",
       "revId": "0c1fd1cd8b6d434039ae851e410e9a1898d79259",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8cd38eb_318c6cde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-09T19:41:30Z",
+      "side": 1,
+      "message": "Hey Ludovic, this is one of the more complex uprevs of crates (required patching + fixes in Bluetooth). In cases like this, you can reach out to gbiv@ or myself for help (see the OWNERS file in that repo).\n\nI\u0027ve vendored the changes and I\u0027m trying to upload it but gerrit is stuck (uploads are timing out). After the change, I noticed that we\u0027re still seeing build failures in `bt_facade_proto` (probably due to a mismatched usage of protoc_rust which targets protobuf2 vs protoc_codegen).\n\nThere are more toml file changes needed here to use `protobuf3-codegen` which I\u0027ll upload after I get the vendored crates uploaded.",
+      "parentUuid": "5b94cfa9_846be6da",
+      "revId": "0c1fd1cd8b6d434039ae851e410e9a1898d79259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c0a603b_e53c3a99",
+        "filename": "system/gd/rust/facade_proto/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-09T19:41:30Z",
+      "side": 1,
+      "message": "codegen should match protobuf -- this looks like a typo",
+      "revId": "0c1fd1cd8b6d434039ae851e410e9a1898d79259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
