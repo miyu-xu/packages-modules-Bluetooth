@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66d90269_f4245849",
+        "filename": "android/app/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T18:43:54Z",
+      "side": 1,
+      "message": "😊",
+      "range": {
+        "startLine": 274,
+        "startChar": 60,
+        "endLine": 274,
+        "endChar": 62
+      },
+      "revId": "2dedd07f3f2cabe72c64f661bdd844c3ca2e2172",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
