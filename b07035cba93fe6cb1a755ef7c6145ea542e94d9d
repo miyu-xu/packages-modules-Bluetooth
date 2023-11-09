@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c8c29fe_380444b9",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-09T04:18:15Z",
+      "side": 0,
+      "message": "fake_timerfd.h is needed?",
+      "revId": "b07035cba93fe6cb1a755ef7c6145ea542e94d9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
