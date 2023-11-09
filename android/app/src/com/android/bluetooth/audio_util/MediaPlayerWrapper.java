@@ -283,12 +283,22 @@ public class MediaPlayerWrapper {
 
                 // Some player do not provide full song info in queue item, allow case
                 // that only title and artist match.
-                if (Objects.equals(qitem.title, mdata.title)
-                        && Objects.equals(qitem.artist, mdata.artist)) {
-                    Log.d(TAG, mPackageName + " Only Title and Artist info sync for metadata");
-                    return true;
+                // Comparing Title and Artist Info else Title and Partial Artist info
+                if (Objects.equals(qitem, mdata.title)) {
+                    if (Objects.equals(qitem.artist, mdata.artist)) {
+                        Log.d(TAG, mPackageName + "Only Title and Artist Info sync for Metadata");
+                        return true;
+                    } else if (mdata.artist != null
+                            && qitem.artist != null
+                            && mdata.artist.contains(qitem.artist)) {
+                        Log.d(
+                                TAG,
+                                mPackageName
+                                        + "Only Title and Partial Artist info sync for Metadata");
+                              return true;
+                    }
+                    return false;
                 }
-                return false;
             }
         }
 
