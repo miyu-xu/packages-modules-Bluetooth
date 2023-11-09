@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "88837687_2a68ce57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T15:21:20Z",
+      "side": 1,
+      "message": "nit: Modify",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f1958135_eea26346",
@@ -14,6 +37,29 @@
       "writtenOn": "2023-11-09T07:00:14Z",
       "side": 1,
       "message": "Modifying ScanManager constructor to take in a looper as a parameter. This is to easily write tests easily using tools like \u0027TestLooper`, for bugs like b/300916771.",
+      "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2366d10d_ae206221",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T15:21:20Z",
+      "side": 1,
+      "message": "I expected the TestLooper here.  Is that in a follow-on CL?  An example test would motivate the CL better.",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 23
+      },
       "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
