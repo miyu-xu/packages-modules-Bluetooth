@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b415441_3ee5a37a",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-09T05:14:30Z",
+      "side": 1,
+      "message": "Let\u0027s call the other constructor, this(...)",
+      "range": {
+        "startLine": 284,
+        "startChar": 0,
+        "endLine": 292,
+        "endChar": 41
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6499d0ea_1184edc1",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecConfig.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-09T05:14:30Z",
+      "side": 1,
+      "message": "Remove @UnsupportedAppUsage.\n\nhttps://g3doc.corp.google.com/wireless/android/art/compat/g3doc/ref/policy.md?cl\u003dhead#dont-annotate-new-code",
+      "range": {
+        "startLine": 309,
+        "startChar": 5,
+        "endLine": 309,
+        "endChar": 24
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a0c5ecf6_06136e0d",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-09T05:14:30Z",
+      "side": 1,
+      "message": "The information in this instance looks exact same with the \"int codecType\".\n\nI\u0027m curious what are the benefits to having this class.",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
