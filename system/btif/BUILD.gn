@@ -28,6 +28,7 @@ static_library("btif") {
     "co/bta_dm_co.cc",
     "co/bta_gatts_co.cc",
     "co/bta_hh_co.cc",
+    "co/bta_hh_uhid.cc",
     "co/bta_pan_co.cc",
 
     # HAL layer
