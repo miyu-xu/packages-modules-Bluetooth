@@ -118,6 +118,30 @@
       },
       "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e57f41b1_79545e38",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T19:51:48Z",
+      "side": 1,
+      "message": "Sorry.  I didn\u0027t see your previous comment, since it was sent within 30 seconds of mine.  That one makes sense to me.",
+      "parentUuid": "dbab81fc_d62c41f7",
+      "range": {
+        "startLine": 464,
+        "startChar": 5,
+        "endLine": 464,
+        "endChar": 32
+      },
+      "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
