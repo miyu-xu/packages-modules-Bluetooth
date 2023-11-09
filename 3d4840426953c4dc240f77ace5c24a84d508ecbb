@@ -70,6 +70,30 @@
       },
       "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fa53777_0dc91e3d",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 464,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-09T15:58:00Z",
+      "side": 1,
+      "message": "I guess I\u0027m asking why we need it to run on device_only, when we have a test that runs both on the host and on device.",
+      "parentUuid": "9e10b39f_01943987",
+      "range": {
+        "startLine": 464,
+        "startChar": 5,
+        "endLine": 464,
+        "endChar": 32
+      },
+      "revId": "3d4840426953c4dc240f77ace5c24a84d508ecbb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
