@@ -101,6 +101,7 @@ cc_library_static {
         "hh/bta_hh_utils.cc",
         "le_audio/audio_hal_client/audio_sink_hal_client.cc",
         "le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "le_audio/audio_hal_client/audio_source_hal_asrc.cc",
         "le_audio/broadcaster/broadcaster.cc",
         "le_audio/broadcaster/broadcaster_types.cc",
         "le_audio/broadcaster/state_machine.cc",
