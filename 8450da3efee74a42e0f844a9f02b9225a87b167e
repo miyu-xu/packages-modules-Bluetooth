@@ -46,6 +46,30 @@
       },
       "revId": "8450da3efee74a42e0f844a9f02b9225a87b167e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d41219be_4d627658",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-10T19:18:04Z",
+      "side": 1,
+      "message": "It does not print the function name, but the file and line, but ok 👌",
+      "parentUuid": "da418195_edd15187",
+      "range": {
+        "startLine": 252,
+        "startChar": 2,
+        "endLine": 252,
+        "endChar": 13
+      },
+      "revId": "8450da3efee74a42e0f844a9f02b9225a87b167e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
