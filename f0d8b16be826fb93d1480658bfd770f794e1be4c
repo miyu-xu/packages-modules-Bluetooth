@@ -46,6 +46,30 @@
       },
       "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "579cc14f_55523632",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-10T05:54:25Z",
+      "side": 1,
+      "message": "Thanks.  That makes sense.",
+      "parentUuid": "c6796b7e_1eec4576",
+      "range": {
+        "startLine": 84,
+        "startChar": 25,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
