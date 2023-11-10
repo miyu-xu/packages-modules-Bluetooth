@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a1ef413_951647e1",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/vcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-10T23:55:18Z",
+      "side": 1,
+      "message": "It\u0027s seems unused, can you remove it?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 10
+      },
+      "revId": "81fb8dd902f3c3d752f75b29af1ce3cd3193c5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7ba9c89_da64ba5e",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/vcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-10T23:55:18Z",
+      "side": 1,
+      "message": "Seems unused as well.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "81fb8dd902f3c3d752f75b29af1ce3cd3193c5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
