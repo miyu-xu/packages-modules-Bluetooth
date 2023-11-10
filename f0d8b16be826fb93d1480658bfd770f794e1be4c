@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22432129_715cfc0a",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-10T05:37:00Z",
+      "side": 1,
+      "message": "This seems odd.  I would have expected le_hid_devices to already have the addresses with types.  Do we need to look it up again?",
+      "range": {
+        "startLine": 84,
+        "startChar": 25,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
