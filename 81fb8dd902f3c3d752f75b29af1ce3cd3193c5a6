@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7f76b63_0be3a093",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/vcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-10T23:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6a1ef413_951647e1",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 10
+      },
+      "revId": "81fb8dd902f3c3d752f75b29af1ce3cd3193c5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f7ba9c89_da64ba5e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-10T23:55:18Z",
       "side": 1,
       "message": "Seems unused as well.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "81fb8dd902f3c3d752f75b29af1ce3cd3193c5a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f617c90_e9cba982",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/vcp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-10T23:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f7ba9c89_da64ba5e",
       "range": {
         "startLine": 19,
         "startChar": 0,
