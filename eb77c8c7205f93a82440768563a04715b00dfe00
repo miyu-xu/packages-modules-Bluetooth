@@ -52,6 +52,52 @@
       "parentUuid": "08ef8d0d_a3d58b80",
       "revId": "eb77c8c7205f93a82440768563a04715b00dfe00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0166b873_485fcf48",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-10T01:40:13Z",
+      "side": 1,
+      "message": "What is the difference btw. this method and activateProfile?  Why do both exist?",
+      "range": {
+        "startLine": 952,
+        "startChar": 12,
+        "endLine": 952,
+        "endChar": 45
+      },
+      "revId": "eb77c8c7205f93a82440768563a04715b00dfe00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "324e76f3_25bdb72f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-10T01:40:13Z",
+      "side": 1,
+      "message": "Please add Log.e here",
+      "range": {
+        "startLine": 967,
+        "startChar": 16,
+        "endLine": 967,
+        "endChar": 37
+      },
+      "revId": "eb77c8c7205f93a82440768563a04715b00dfe00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
