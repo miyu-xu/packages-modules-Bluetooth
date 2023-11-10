@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.timeout;
@@ -87,6 +88,56 @@ public class LeScanningTest {
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
         assertThat(results.get(1).getScanRecord().getServiceUuids().get(0))
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
+    }
+
+    @Test
+    public void startBleScan_withCallbackTypeFirstMatchNotSupported() {
+        advertiseWithBumble(TEST_UUID_STRING);
+
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_FIRST_MATCH)
+                        .build();
+
+        List<ScanFilter> scanFilters = new ArrayList<>();
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .build();
+        scanFilters.add(scanFilter);
+
+        ScanCallback mockScanCallback = mock(ScanCallback.class);
+
+        mLeScanner.startScan(scanFilters, scanSettings, mockScanCallback);
+        verify(mockScanCallback, timeout(TIMEOUT_SCANNING_MS))
+                .onScanFailed(eq(ScanCallback.SCAN_FAILED_FEATURE_UNSUPPORTED));
+        mLeScanner.stopScan(mockScanCallback);
+    }
+
+    @Test
+    public void startBleScan_withCallbackTypeMatchLostNotSupported() {
+        advertiseWithBumble(TEST_UUID_STRING);
+
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_MATCH_LOST)
+                        .build();
+
+        List<ScanFilter> scanFilters = new ArrayList<>();
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .build();
+        scanFilters.add(scanFilter);
+
+        ScanCallback mockScanCallback = mock(ScanCallback.class);
+
+        mLeScanner.startScan(scanFilters, scanSettings, mockScanCallback);
+        verify(mockScanCallback, timeout(TIMEOUT_SCANNING_MS))
+                .onScanFailed(eq(ScanCallback.SCAN_FAILED_FEATURE_UNSUPPORTED));
+        mLeScanner.stopScan(mockScanCallback);
     }
 
     @Test
