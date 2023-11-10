@@ -61,7 +61,9 @@ void bta_hh_uhid_evt_queue_init(tBTA_HH_UHID_EVT_QUEUE* queue, bool thread_safe)
 
 void bta_hh_uhid_evt_queue_destroy(tBTA_HH_UHID_EVT_QUEUE* queue) {
   CHECK(queue) << "uhid queue shall not be nullptr.";
-  CHECK(queue->p_event_queue) << "uhid queue shall be initialized.";
+  if(queue->p_event_queue == NULL) {
+    return;
+  }
 
   delete static_cast<uhid_event_queue_t*>(queue->p_event_queue);
   queue->p_event_queue = NULL;
