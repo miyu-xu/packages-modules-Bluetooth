@@ -22,6 +22,30 @@
       },
       "revId": "8450da3efee74a42e0f844a9f02b9225a87b167e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da418195_edd15187",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-10T19:15:55Z",
+      "side": 1,
+      "message": "It helps logging we are in the method since it logs the func only.\n\nI do not own the code and doesn\u0027t want to remove someone else logging, just replaced the double func inclusion",
+      "parentUuid": "fbf9f54c_32cb863a",
+      "range": {
+        "startLine": 252,
+        "startChar": 2,
+        "endLine": 252,
+        "endChar": 13
+      },
+      "revId": "8450da3efee74a42e0f844a9f02b9225a87b167e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
