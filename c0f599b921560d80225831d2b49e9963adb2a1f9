@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51554013_9a5ec0bb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 5396,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-10T14:40:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8b218ba_702ea216",
+      "range": {
+        "startLine": 5396,
+        "startChar": 41,
+        "endLine": 5396,
+        "endChar": 48
+      },
+      "revId": "c0f599b921560d80225831d2b49e9963adb2a1f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e33ca45_c702327e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 5396,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-10T14:40:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf9bdeb4_69f35efa",
+      "range": {
+        "startLine": 5396,
+        "startChar": 32,
+        "endLine": 5396,
+        "endChar": 40
+      },
+      "revId": "c0f599b921560d80225831d2b49e9963adb2a1f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a7a5f290_33339149",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-08T01:45:57Z",
       "side": 1,
       "message": "Please fix this ERROR reported by Common Typos: Common typo found: \"aciton\" -- should it be \"action\"?\n\nAnalyzer Description: Linter for catching common typos motivated by go/todo-fail and go/lol-codesearch. Shared with google3 common typos library go/common-typos.\nOwner: ayeaye-team@google.com\n\nCommon typo found: \"aciton\" -- should it be \"action\"?\nNote: a line containing \"common_typos_disable\" or \"common_typos_enable\" will turn off or on (respectively) the linter for subsequent lines in the file. Alternatively include the token \"NOTYPO\" within a line to skip typo linting that line or include \u0027No-Typo-Check: \u003creason\u003e\u0027in the commit message.",
+      "range": {
+        "startLine": 5467,
+        "startChar": 39,
+        "endLine": 5467,
+        "endChar": 45
+      },
+      "revId": "c0f599b921560d80225831d2b49e9963adb2a1f9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ac11073_c3fca77b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 5467,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-10T14:40:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7a5f290_33339149",
       "range": {
         "startLine": 5467,
         "startChar": 39,

@@ -72,6 +72,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aad7c19_e895108d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4066,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-10T14:40:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c017bec8_6b48ec0a",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db944e62_543ebf01",
@@ -125,6 +143,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ea1effa_865df291",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4120,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-10T14:40:32Z",
+      "side": 1,
+      "message": "No, I mean that could be a good idea to also flag it here - I think it would be consistent across places.",
+      "parentUuid": "085428cd_6fa6944d",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0d66b81_ee2afa07",
@@ -138,6 +174,24 @@
       "writtenOn": "2023-11-01T22:13:56Z",
       "side": 1,
       "message": "do you think we can put this behind the flag?",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e60500a_ae7c6de1",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 5444,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-10T14:40:32Z",
+      "side": 1,
+      "message": "I think flagging the `SetSinkHalListeningMode` will block this whole feature in native. Please check new CL if it\u0027s fine for you.",
+      "parentUuid": "f0d66b81_ee2afa07",
       "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
