@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c000eb5_7c738b69",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-10T23:58:20Z",
+      "side": 1,
+      "message": "please add const here and in all other methods which are relevant here.",
+      "range": {
+        "startLine": 575,
+        "startChar": 41,
+        "endLine": 575,
+        "endChar": 42
+      },
+      "revId": "fd5c8be21bb50f5a8e8e9be0dcfb4ac043140f7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bceeda60_568019e8",
         "filename": "system/bta/le_audio/le_audio_types_test.cc",
         "patchSetId": 3
