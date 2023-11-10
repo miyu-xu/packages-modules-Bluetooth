@@ -70,6 +70,29 @@
       },
       "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97824e05_457dba53",
+        "filename": "system/test/mock/mock_stack_btm_dev.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-11-10T06:18:47Z",
+      "side": 1,
+      "message": "Could you please explain why the address type is BLE_ADDR_PUBLIC? If this is required, does this imply that the address type in the btif storage is mismatched?",
+      "range": {
+        "startLine": 44,
+        "startChar": 36,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
