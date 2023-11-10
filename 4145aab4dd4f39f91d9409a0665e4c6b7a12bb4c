@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "baaa2978_3bd4a7f1",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-10T01:49:49Z",
+      "side": 1,
+      "message": "True, but I want to keep compatibility with previous values.\nShould I just remove the @BluetoothCodecConfig ?",
+      "parentUuid": "d82b3cfa_e422eef3",
+      "range": {
+        "startLine": 45,
+        "startChar": 31,
+        "endLine": 45,
+        "endChar": 68
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "408b5672_61cd2d42",
         "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
         "patchSetId": 21
@@ -202,6 +226,30 @@
       "writtenOn": "2023-11-10T01:45:10Z",
       "side": 1,
       "message": "Q) For non predefined codecs, are you intended to use UNKNOWN CODEC(##) instead of their codec names?",
+      "range": {
+        "startLine": 47,
+        "startChar": 21,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0986142f_ff232d41",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-10T01:49:49Z",
+      "side": 1,
+      "message": "I am assigning a codec type that uniquely identifies the codec.\nThis codec type will be normative, the codec name is informational.",
+      "parentUuid": "408b5672_61cd2d42",
       "range": {
         "startLine": 47,
         "startChar": 21,
