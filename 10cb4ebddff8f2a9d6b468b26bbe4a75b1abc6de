@@ -52,6 +52,24 @@
       "parentUuid": "05d8e722_eb13179d",
       "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91d4f91b_91fb3f89",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1880545
+      },
+      "writtenOn": "2023-11-10T01:03:58Z",
+      "side": 1,
+      "message": "Yes, this patch just mask the number(it\u0027s phone number) to avoid disclose personal information in the logs.",
+      "parentUuid": "96e8b244_eb5adcd2",
+      "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
