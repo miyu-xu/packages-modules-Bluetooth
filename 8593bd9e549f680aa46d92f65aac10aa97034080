@@ -16,6 +16,24 @@
       "message": "should we switch to os/log.h?\n\nI dont know why we are still using this?",
       "revId": "8593bd9e549f680aa46d92f65aac10aa97034080",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51f7b4cb_4b6ee9cf",
+        "filename": "system/bta/hf_client/bta_hf_client_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-10T00:23:46Z",
+      "side": 1,
+      "message": "You are correct, but that was not addressed in this CL.\n\nOnly inserted the `sdp_status.h`\n\nIt was only re-ordered due to new ordering rules since last check in (i guess some time)",
+      "parentUuid": "d95ed76f_493e817d",
+      "revId": "8593bd9e549f680aa46d92f65aac10aa97034080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
