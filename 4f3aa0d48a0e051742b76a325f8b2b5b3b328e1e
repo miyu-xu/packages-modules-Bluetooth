@@ -22,6 +22,30 @@
       },
       "revId": "4f3aa0d48a0e051742b76a325f8b2b5b3b328e1e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "977775dd_23ebafec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-10T01:59:51Z",
+      "side": 1,
+      "message": "https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java;l\u003d978?q\u003donAcceptFailed\u0026sq\u003dgit:googleplex-android%2Fplatform%2Fsuperproject%2Fmain@main\n\nmSessionStatusHandler will use the TestLooper while running the test.",
+      "parentUuid": "45b2c243_9df1733b",
+      "range": {
+        "startLine": 9,
+        "startChar": 20,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "4f3aa0d48a0e051742b76a325f8b2b5b3b328e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
