@@ -18,6 +18,7 @@ package android.bluetooth;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.timeout;
@@ -87,6 +88,48 @@ public class LeScanningTest {
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
         assertThat(results.get(1).getScanRecord().getServiceUuids().get(0))
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
+    }
+
+    @Test
+    public void startBleScan_withCallbackTypeFirstMatchNotSupported() {
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_FIRST_MATCH)
+                        .build();
+
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .build();
+
+        ScanCallback mockScanCallback = mock(ScanCallback.class);
+
+        mLeScanner.startScan(List.of(scanFilter), scanSettings, mockScanCallback);
+        verify(mockScanCallback, timeout(TIMEOUT_SCANNING_MS))
+                .onScanFailed(eq(ScanCallback.SCAN_FAILED_FEATURE_UNSUPPORTED));
+        mLeScanner.stopScan(mockScanCallback);
+    }
+
+    @Test
+    public void startBleScan_withCallbackTypeMatchLostNotSupported() {
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_MATCH_LOST)
+                        .build();
+
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .build();
+
+        ScanCallback mockScanCallback = mock(ScanCallback.class);
+
+        mLeScanner.startScan(List.of(scanFilter), scanSettings, mockScanCallback);
+        verify(mockScanCallback, timeout(TIMEOUT_SCANNING_MS))
+                .onScanFailed(eq(ScanCallback.SCAN_FAILED_FEATURE_UNSUPPORTED));
+        mLeScanner.stopScan(mockScanCallback);
     }
 
     @Test
