@@ -30,6 +30,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "bt_trace.h"
 #include "bta_api.h"
 #include "bta_hh_api.h"
 #include "btif_hh.h"
