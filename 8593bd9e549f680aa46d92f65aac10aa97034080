@@ -52,6 +52,24 @@
       "parentUuid": "51f7b4cb_4b6ee9cf",
       "revId": "8593bd9e549f680aa46d92f65aac10aa97034080",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "414d9f1a_7328934c",
+        "filename": "system/bta/hf_client/bta_hf_client_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-10T00:27:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b2ab0e04_5554c301",
+      "revId": "8593bd9e549f680aa46d92f65aac10aa97034080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
