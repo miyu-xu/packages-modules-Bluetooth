@@ -27,3 +27,10 @@ flag {
     description: "Support le audio broadcast audio routing policies"
     bug: "308171251"
 }
+
+flag {
+    name: "leaudio_hal_client_asrc"
+    namespace: "bluetooth"
+    description: "Sync audio stream with the bluetooth link clock"
+    bug: "312273987"
+}
