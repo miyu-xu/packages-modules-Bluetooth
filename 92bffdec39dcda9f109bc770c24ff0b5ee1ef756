@@ -34,6 +34,24 @@
       "parentUuid": "5a66733f_a1e45f5d",
       "revId": "92bffdec39dcda9f109bc770c24ff0b5ee1ef756",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "630bc461_fe158347",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881523
+      },
+      "writtenOn": "2023-11-10T01:37:54Z",
+      "side": 1,
+      "message": "The “cod” means class of device, let it reported to app when app scan ble device, then the icon can be shown by it\u0027s cod.",
+      "parentUuid": "8ce04f9b_568032e9",
+      "revId": "92bffdec39dcda9f109bc770c24ff0b5ee1ef756",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
