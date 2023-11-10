@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf1e482a_e60aca0a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1375,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-10T02:51:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e4181f8_d90c92a8",
+      "range": {
+        "startLine": 1374,
+        "startChar": 0,
+        "endLine": 1375,
+        "endChar": 72
+      },
+      "revId": "622c52821fa73db09c67cbb390c04c788f990861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "301a52ad_79d4777a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-10T02:05:52Z",
       "side": 1,
       "message": "Can we save the clone here? Ex:\n```\n let address \u003d match RawAddress::from_string(\u0026device.address) {...}\n```",
+      "range": {
+        "startLine": 1839,
+        "startChar": 60,
+        "endLine": 1839,
+        "endChar": 82
+      },
+      "revId": "622c52821fa73db09c67cbb390c04c788f990861",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e17c329_9dfcc3ac",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1839,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-10T02:51:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "301a52ad_79d4777a",
       "range": {
         "startLine": 1839,
         "startChar": 60,
