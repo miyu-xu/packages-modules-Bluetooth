@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "582d0fc7_770e69ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-11-10T16:02:50Z",
+      "side": 1,
+      "message": "Hi Sungsoo, do you have any design doc I could have a look at ? Thanks",
+      "parentUuid": "5a0a724b_63022c0d",
+      "revId": "eb77c8c7205f93a82440768563a04715b00dfe00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "0166b873_485fcf48",
         "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
         "patchSetId": 2
