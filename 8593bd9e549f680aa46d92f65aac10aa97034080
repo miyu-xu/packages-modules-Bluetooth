@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d95ed76f_493e817d",
+        "filename": "system/bta/hf_client/bta_hf_client_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-10T00:17:34Z",
+      "side": 1,
+      "message": "should we switch to os/log.h?\n\nI dont know why we are still using this?",
+      "revId": "8593bd9e549f680aa46d92f65aac10aa97034080",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
