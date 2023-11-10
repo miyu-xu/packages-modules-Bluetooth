@@ -18,10 +18,12 @@
  *
  ******************************************************************************/
 
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 
 #include "audio_hal_client.h"
 #include "audio_hal_interface/le_audio_software.h"
+#include "audio_source_hal_asrc.h"
 #include "bta/le_audio/codec_manager.h"
 #include "common/time_util.h"
 #include "osi/include/log.h"
@@ -98,6 +100,9 @@ class SourceImpl : public LeAudioSourceAudioHalClient {
       nullptr;
   LeAudioSourceAudioHalClient::Callbacks* audioSourceCallbacks_ = nullptr;
   std::mutex audioSourceCallbacksMutex_;
+#ifndef TARGET_FLOSS
+  std::unique_ptr<SourceAudioHalAsrc> asrc_;
+#endif  // !TARGET_FLOSS
 };
 
 bool SourceImpl::Acquire() {
@@ -201,9 +206,23 @@ void SourceImpl::SendAudioData() {
         bluetooth::common::time_get_os_boottime_us();
   }
 
-  std::lock_guard<std::mutex> guard(audioSourceCallbacksMutex_);
-  if (audioSourceCallbacks_ != nullptr) {
-    audioSourceCallbacks_->OnAudioDataReady(data);
+#ifndef TARGET_FLOSS
+  if (IS_FLAG_ENABLED(leaudio_hal_client_asrc)) {
+    auto asrc_buffers = asrc_->Run(data);
+
+    std::lock_guard<std::mutex> guard(audioSourceCallbacksMutex_);
+    for (auto buffer : asrc_buffers) {
+      if (audioSourceCallbacks_ != nullptr) {
+        audioSourceCallbacks_->OnAudioDataReady(*buffer);
+      }
+    }
+  } else
+#endif  // !TARGET_FLOSS
+  {
+    std::lock_guard<std::mutex> guard(audioSourceCallbacksMutex_);
+    if (audioSourceCallbacks_ != nullptr) {
+      audioSourceCallbacks_->OnAudioDataReady(data);
+    }
   }
 }
 
@@ -231,6 +250,14 @@ bool SourceImpl::InitAudioSinkThread() {
 
 void SourceImpl::StartAudioTicks() {
   wakelock_acquire();
+#ifndef TARGET_FLOSS
+  if (IS_FLAG_ENABLED(leaudio_hal_client_asrc)) {
+    asrc_ = std::make_unique<SourceAudioHalAsrc>(
+        source_codec_config_.num_channels, source_codec_config_.sample_rate,
+        source_codec_config_.bits_per_sample,
+        source_codec_config_.data_interval_us);
+  }
+#endif  // !TARGET_FLOSS
   audio_timer_.SchedulePeriodic(
       worker_thread_->GetWeakPtr(), FROM_HERE,
       base::Bind(&SourceImpl::SendAudioData, base::Unretained(this)),
@@ -243,6 +270,9 @@ void SourceImpl::StartAudioTicks() {
 
 void SourceImpl::StopAudioTicks() {
   audio_timer_.CancelAndWait();
+#ifndef TARGET_FLOSS
+  asrc_.reset(nullptr);
+#endif  // TARGET_FLOSS
   wakelock_release();
 }
 
