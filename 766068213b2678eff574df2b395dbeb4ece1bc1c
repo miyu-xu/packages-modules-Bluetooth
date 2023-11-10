@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4d871fb_7b31d029",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-10T20:06:31Z",
+      "side": 1,
+      "message": "Overall this is okay to me since all critical changes are protected under the feature flag now. \nJust some comments for the flag usage.",
+      "revId": "766068213b2678eff574df2b395dbeb4ece1bc1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca9321b1_f0cb8626",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1959,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-10T20:06:31Z",
+      "side": 1,
+      "message": "Is this actually what you want?\n\n```suggestion\n            if (mFeatureFlags.leaudioBroadcastAudioHandoverPolicies()                             \n                \u0026\u0026 (!mCreateBroadcastQueue.isEmpty()\n                    || mBroadcastIdDeactivatedForUnicastTransition.isPresent())) {\n```",
+      "revId": "766068213b2678eff574df2b395dbeb4ece1bc1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2053d49_1007a4fd",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 683,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-10T20:06:31Z",
+      "side": 1,
+      "message": "I tried to run this locally, those 2 new test cases will fail if the flag is disabled.\nTo make this work, you might need those two parts.\n\n1. Move the flag to LeAudioService constructor.\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2797843/10/android/app/src/com/android/bluetooth/bass_client/BassClientService.java#60\n\n2. Use FakeFeatureFlagsImpl in the test, and pass it to LeAudioService through the constructor. Set the flag as false in SetUp(), and change flag to true at the beginning of those 2 tests.\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2797843/10/android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientStateMachineTest.java#136",
+      "revId": "766068213b2678eff574df2b395dbeb4ece1bc1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
