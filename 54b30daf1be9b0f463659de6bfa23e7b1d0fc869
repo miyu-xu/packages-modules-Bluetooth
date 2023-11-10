@@ -16,6 +16,125 @@
       "message": "Hi, please review. Thanks!",
       "revId": "54b30daf1be9b0f463659de6bfa23e7b1d0fc869",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "450ca049_15085f40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-10T18:14:51Z",
+      "side": 1,
+      "message": "LGTM with minor nits",
+      "revId": "54b30daf1be9b0f463659de6bfa23e7b1d0fc869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f20ff09e_c5340e15",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-10T18:14:51Z",
+      "side": 1,
+      "message": "nit: CL is not used very frequently -- let\u0027s just expand to Classic",
+      "revId": "54b30daf1be9b0f463659de6bfa23e7b1d0fc869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "900596cf_46f99fed",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 826,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-10T18:14:51Z",
+      "side": 1,
+      "message": "nit: \"the host\" -\u003e \"then the host\"",
+      "revId": "54b30daf1be9b0f463659de6bfa23e7b1d0fc869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f5421736_33ee52a7",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 827,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-10T18:14:51Z",
+      "side": 1,
+      "message": "nit: \"`finally` the controller will report the result...\"",
+      "revId": "54b30daf1be9b0f463659de6bfa23e7b1d0fc869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb162286_6ab3bdcf",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-10T18:14:51Z",
+      "side": 1,
+      "message": "expand LTK to `Long Term Key (LTK)`",
+      "revId": "54b30daf1be9b0f463659de6bfa23e7b1d0fc869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6b9654d_aaea1dbd",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 830,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-10T18:14:51Z",
+      "side": 1,
+      "message": "nit: There are also LE Long Term Key Request`s`",
+      "revId": "54b30daf1be9b0f463659de6bfa23e7b1d0fc869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4448ddf_b7277e13",
+        "filename": "floss/hcidoc/src/groups/connections.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-10T18:14:51Z",
+      "side": 1,
+      "message": "Can we map this handle to an address? Would make it easier for debugging (self.handles should be able to do the mapping)",
+      "revId": "54b30daf1be9b0f463659de6bfa23e7b1d0fc869",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
