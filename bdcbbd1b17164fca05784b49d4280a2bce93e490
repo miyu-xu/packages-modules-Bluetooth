@@ -16,6 +16,24 @@
       "message": "we might consider to put the flag for this.\nif (mFeatureFlags.leaudioBroadcastAudioHandoverPolicies()) {\n...\n}\n\nyou can check my recent API CLs for reference. I\u0027ll let you do your best judgement for this file if any place we can put under the flag and be safe if flag is not there or disabled.",
       "revId": "bdcbbd1b17164fca05784b49d4280a2bce93e490",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fbc4a65_b026bde4",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 852,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-10T14:43:09Z",
+      "side": 1,
+      "message": "I\u0027ve add flag to trigger handover part of code that:\n- Leave connected Unicast device\n- Trigger broadcast stop and activated unicast group\n\nPlease check if it\u0027s ok with you.",
+      "parentUuid": "4f65f915_d89e30c7",
+      "revId": "bdcbbd1b17164fca05784b49d4280a2bce93e490",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
