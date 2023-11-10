@@ -16,6 +16,24 @@
       "message": "Add @girardier@google.com new hearing aid owner for visibility",
       "revId": "eb77c8c7205f93a82440768563a04715b00dfe00",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08ef8d0d_a3d58b80",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-11-10T01:07:48Z",
+      "side": 1,
+      "message": "@yuyangh@google.com Can you check with @charliebout@google.com that it does not impact audio routing behavior for hearing aids? We\u0027ve seen multiple regressions regarding audio routing recently.\n\nAlso is it expected to land in 24Q1 release? Otherwise, this should be flagged 😊",
+      "parentUuid": "aa8ea551_6c420509",
+      "revId": "eb77c8c7205f93a82440768563a04715b00dfe00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
