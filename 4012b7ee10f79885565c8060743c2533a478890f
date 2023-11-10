@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f69c06f_a2c78e6a",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-11-10T18:17:51Z",
+      "side": 1,
+      "message": "We want to guard this with a flag and a sysprop as Aptx Voice is something only QC phones can use. Can we please add that as well?",
+      "revId": "4012b7ee10f79885565c8060743c2533a478890f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
