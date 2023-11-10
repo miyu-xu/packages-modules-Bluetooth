@@ -41,3 +41,10 @@ flag {
     description: "Enables support for the multicodec AIDL"
     bug: "313054645"
 }
+
+flag {
+    name: "leaudio_hal_client_asrc"
+    namespace: "bluetooth"
+    description: "Sync audio stream with the bluetooth link clock"
+    bug: "312273987"
+}
