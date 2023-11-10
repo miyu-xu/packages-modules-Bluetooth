@@ -117,6 +117,30 @@
       },
       "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "665711b4_9315fb22",
+        "filename": "system/test/mock/mock_stack_btm_dev.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-10T06:33:53Z",
+      "side": 1,
+      "message": "I don\u0027t think this function is used in any tests yet. It is just recently added. I include this so the test can compile.",
+      "parentUuid": "16e14a78_d1f52f6b",
+      "range": {
+        "startLine": 44,
+        "startChar": 36,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
