@@ -30,6 +30,7 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "bt_trace.h"
 #include "bta_api.h"
 #include "bta_hh_api.h"
 #include "btif_hh.h"
@@ -249,21 +250,23 @@ static int uhid_handle_buffered_write(btif_hh_device_t* p_dev) {
 
   ssize_t ret;
   char c;
-  do {
-    OSI_NO_INTR(ret = read(p_dev->uhid_wr_notif_fd[0], &c, sizeof(c)));
-  } while (ret > 0);
+  OSI_NO_INTR(ret = read(p_dev->uhid_wr_notif_fd[0], &c, sizeof(c)));
 
-  if (ret < 0 && errno != EAGAIN && errno != EWOULDBLOCK) {
+  if (ret == 0) {
+    LOG_ERROR("%s: Read HUP on uhid write notify pipe %s", __func__,
+              strerror(errno));
+    return -EFAULT;
+  } else if (ret < 0) {
     LOG_ERROR("%s: Cannot read uhid write notify pipe: %s", __func__,
-                     strerror(errno));
+              strerror(errno));
     return -errno;
   }
 
   struct uhid_event evt = {};
-  while (bta_hh_uhid_evt_queue_dequeue(&p_dev->uhid_wr_evt_queue, evt)) {
+  if (bta_hh_uhid_evt_queue_dequeue(&p_dev->uhid_wr_evt_queue, evt)) {
     uhid_write(p_dev->fd, &evt);
     if (evt.type != UHID_CREATE) {
-      continue;
+      return 0;
     }
     if (evt.u.create.rd_size > 0 && evt.u.create.rd_data != NULL) {
       osi_free((void*)evt.u.create.rd_data);
