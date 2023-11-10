@@ -22,6 +22,30 @@
       },
       "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6796b7e_1eec4576",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-10T05:52:29Z",
+      "side": 1,
+      "message": "Hi, the purpose is for devices with RPA. The hid_address here is the first connected random address, which is a label. The function look up will return the identity address which should be added to the accept list and resolving list, so the mouse can wakeup the device with a rotated RPA, after the controller resolving the RPA to identity address.",
+      "parentUuid": "22432129_715cfc0a",
+      "range": {
+        "startLine": 84,
+        "startChar": 25,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
