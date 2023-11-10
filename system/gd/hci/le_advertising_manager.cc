@@ -15,6 +15,8 @@
  */
 #include "hci/le_advertising_manager.h"
 
+#include <android_bluetooth_flags.h>
+
 #include <memory>
 #include <mutex>
 
@@ -908,8 +910,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     uint16_t data_len = 0;
     // check data size
     for (size_t i = 0; i < data.size(); i++) {
-      if (data[i].size() > kLeMaximumFragmentLength) {
-        LOG_WARN("AD data len shall not greater than %d", kLeMaximumFragmentLength);
+      uint16_t data_limit = IS_FLAG_ENABLED(divide_long_single_gap_data) ? kLeMaximumGapDataLength
+                                                                         : kLeMaximumFragmentLength;
+      if (data[i].size() > data_limit) {
+        LOG_WARN("AD data len shall not greater than %d", data_limit);
         return false;
       }
       data_len += data[i].size();
@@ -993,10 +997,13 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       } break;
       case (AdvertisingApiType::EXTENDED): {
         uint16_t data_len = 0;
+        bool divide_gap_flag = IS_FLAG_ENABLED(divide_long_single_gap_data);
         // check data size
         for (size_t i = 0; i < data.size(); i++) {
-          if (data[i].size() > kLeMaximumFragmentLength) {
-            LOG_WARN("AD data len shall not greater than %d", kLeMaximumFragmentLength);
+          uint16_t data_limit =
+              divide_gap_flag ? kLeMaximumGapDataLength : kLeMaximumFragmentLength;
+          if (data[i].size() > data_limit) {
+            LOG_WARN("AD data len shall not greater than %d", data_limit);
             if (advertising_callbacks_ != nullptr) {
               if (set_scan_rsp) {
                 advertising_callbacks_->OnScanResponseDataSet(
@@ -1035,18 +1042,84 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
           Operation operation = Operation::FIRST_FRAGMENT;
 
           for (size_t i = 0; i < data.size(); i++) {
-            if (sub_data_len + data[i].size() > kLeMaximumFragmentLength) {
-              send_data_fragment(advertiser_id, set_scan_rsp, sub_data, operation);
-              operation = Operation::INTERMEDIATE_FRAGMENT;
+            if ((!divide_gap_flag || sub_data_len > 0) &&
+                sub_data_len + data[i].size() > kLeMaximumFragmentLength) {
+              if (divide_gap_flag && sub_data.size() == 1 &&
+                  sub_data_len > kLeMaximumFragmentLength) {
+                // Single Gap Data length longer than kLeMaximumFragmentLength
+                divide_single_gap_data(
+                    advertiser_id,
+                    sub_data[0],
+                    operation,
+                    false /* is not last fragment*/,
+                    false /* not setting periodic data*/,
+                    set_scan_rsp);
+              } else {
+                send_data_fragment(advertiser_id, set_scan_rsp, sub_data, operation);
+                operation = Operation::INTERMEDIATE_FRAGMENT;
+              }
               sub_data_len = 0;
               sub_data.clear();
             }
             sub_data.push_back(data[i]);
             sub_data_len += data[i].size();
           }
-          send_data_fragment(advertiser_id, set_scan_rsp, sub_data, Operation::LAST_FRAGMENT);
+          if (divide_gap_flag && sub_data.size() == 1 && sub_data_len > kLeMaximumFragmentLength) {
+            // Single Gap Data length longer than kLeMaximumFragmentLength
+            divide_single_gap_data(
+                advertiser_id,
+                sub_data[0],
+                operation,
+                true /* is last fragment*/,
+                false /* not setting periodic data*/,
+                set_scan_rsp);
+          } else {
+            send_data_fragment(advertiser_id, set_scan_rsp, sub_data, Operation::LAST_FRAGMENT);
+          }
         }
       } break;
+    }
+  }
+
+  void divide_single_gap_data(
+      AdvertiserId advertiser_id,
+      const GapData& data,
+      Operation operation,
+      bool is_last_fragment,
+      bool set_periodic_data,
+      bool set_scan_rsp) {
+    LOG_INFO("Divide gap data with data length: %zu", data.data_.size());
+
+    int offset =
+        set_periodic_data ? kLeMaximumPeriodicDataFragmentLength : kLeMaximumFragmentLength;
+    size_t remaining_data_size = data.size() - offset;
+    if (remaining_data_size <= 0) {
+      LOG_ERROR("Invalid gap data length to divide");
+      return;
+    }
+
+    auto gap_data = std::make_shared<std::vector<uint8_t>>();
+    gap_data->reserve(data.size());
+    BitInserter bit_inserter(*gap_data);
+    data.Serialize(bit_inserter);
+
+    std::vector<uint8_t> remaining_data;
+    std::copy_n(
+        gap_data->begin() + offset, remaining_data_size, std::back_inserter(remaining_data));
+
+    // update 1st fragment data length
+    gap_data->resize(offset);
+    if (set_periodic_data) {
+      send_periodic_data_fragment_with_raw_builder(advertiser_id, *gap_data, operation);
+    } else {
+      send_data_fragment_with_raw_builder(advertiser_id, set_scan_rsp, *gap_data, operation);
+    }
+
+    operation = is_last_fragment ? Operation::LAST_FRAGMENT : Operation::INTERMEDIATE_FRAGMENT;
+    if (set_periodic_data) {
+      send_periodic_data_fragment_with_raw_builder(advertiser_id, remaining_data, operation);
+    } else {
+      send_data_fragment_with_raw_builder(advertiser_id, set_scan_rsp, remaining_data, operation);
     }
   }
 
@@ -1074,6 +1147,45 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       } else {
         le_advertising_interface_->EnqueueCommand(
             hci::LeSetExtendedAdvertisingDataBuilder::Create(
+                advertiser_id, operation, kFragment_preference, data),
+            module_handler_->BindOnce(check_complete<LeSetExtendedAdvertisingDataCompleteView>));
+      }
+    }
+  }
+
+  void send_data_fragment_with_raw_builder(
+      AdvertiserId advertiser_id,
+      bool set_scan_rsp,
+      const std::vector<uint8_t>& data,
+      Operation operation) {
+    if (operation == Operation::COMPLETE_ADVERTISEMENT || operation == Operation::LAST_FRAGMENT) {
+      if (set_scan_rsp) {
+        le_advertising_interface_->EnqueueCommand(
+            hci::LeSetExtendedScanResponseDataRawBuilder::Create(
+                advertiser_id, operation, kFragment_preference, data),
+            module_handler_->BindOnceOn(
+                this,
+                &impl::check_status_with_id<LeSetExtendedScanResponseDataCompleteView>,
+                advertiser_id));
+      } else {
+        le_advertising_interface_->EnqueueCommand(
+            hci::LeSetExtendedAdvertisingDataRawBuilder::Create(
+                advertiser_id, operation, kFragment_preference, data),
+            module_handler_->BindOnceOn(
+                this,
+                &impl::check_status_with_id<LeSetExtendedAdvertisingDataCompleteView>,
+                advertiser_id));
+      }
+    } else {
+      // For first and intermediate fragment, do not trigger advertising_callbacks_.
+      if (set_scan_rsp) {
+        le_advertising_interface_->EnqueueCommand(
+            hci::LeSetExtendedScanResponseDataRawBuilder::Create(
+                advertiser_id, operation, kFragment_preference, data),
+            module_handler_->BindOnce(check_complete<LeSetExtendedScanResponseDataCompleteView>));
+      } else {
+        le_advertising_interface_->EnqueueCommand(
+            hci::LeSetExtendedAdvertisingDataRawBuilder::Create(
                 advertiser_id, operation, kFragment_preference, data),
             module_handler_->BindOnce(check_complete<LeSetExtendedAdvertisingDataCompleteView>));
       }
@@ -1160,10 +1272,12 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
 
   void set_periodic_data(AdvertiserId advertiser_id, std::vector<GapData> data) {
     uint16_t data_len = 0;
+    bool divide_gap_flag = IS_FLAG_ENABLED(divide_long_single_gap_data);
     // check data size
     for (size_t i = 0; i < data.size(); i++) {
-      if (data[i].size() > kLeMaximumFragmentLength) {
-        LOG_WARN("AD data len shall not greater than %d", kLeMaximumFragmentLength);
+      uint16_t data_limit = divide_gap_flag ? kLeMaximumGapDataLength : kLeMaximumFragmentLength;
+      if (data[i].size() > data_limit) {
+        LOG_WARN("AD data len shall not greater than %d", data_limit);
         if (advertising_callbacks_ != nullptr) {
           advertising_callbacks_->OnPeriodicAdvertisingDataSet(
               advertiser_id, AdvertisingCallback::AdvertisingStatus::INTERNAL_ERROR);
@@ -1183,7 +1297,9 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       return;
     }
 
-    if (data_len <= kLeMaximumFragmentLength) {
+    uint16_t data_fragment_limit =
+        divide_gap_flag ? kLeMaximumPeriodicDataFragmentLength : kLeMaximumFragmentLength;
+    if (data_len <= data_fragment_limit) {
       send_periodic_data_fragment(advertiser_id, data, Operation::COMPLETE_ADVERTISEMENT);
     } else {
       std::vector<GapData> sub_data;
@@ -1191,16 +1307,41 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       Operation operation = Operation::FIRST_FRAGMENT;
 
       for (size_t i = 0; i < data.size(); i++) {
-        if (sub_data_len + data[i].size() > kLeMaximumFragmentLength) {
-          send_periodic_data_fragment(advertiser_id, sub_data, operation);
-          operation = Operation::INTERMEDIATE_FRAGMENT;
+        if ((!divide_gap_flag || sub_data_len > 0) &&
+            sub_data_len + data[i].size() > data_fragment_limit) {
+          if (divide_gap_flag && sub_data.size() == 1 &&
+              sub_data_len > kLeMaximumPeriodicDataFragmentLength) {
+            // Single Gap Data length longer than kLeMaximumPeriodicDataFragmentLength
+            divide_single_gap_data(
+                advertiser_id,
+                sub_data[0],
+                operation,
+                false /* is not last fragment*/,
+                true /* setting periodic data*/,
+                false /* not setting scan response data */);
+          } else {
+            send_periodic_data_fragment(advertiser_id, sub_data, operation);
+            operation = Operation::INTERMEDIATE_FRAGMENT;
+          }
           sub_data_len = 0;
           sub_data.clear();
         }
         sub_data.push_back(data[i]);
         sub_data_len += data[i].size();
       }
-      send_periodic_data_fragment(advertiser_id, sub_data, Operation::LAST_FRAGMENT);
+      if (divide_gap_flag && sub_data.size() == 1 &&
+          sub_data_len > kLeMaximumPeriodicDataFragmentLength) {
+        // Single Gap Data length longer than kLeMaximumPeriodicDataFragmentLength
+        divide_single_gap_data(
+            advertiser_id,
+            sub_data[0],
+            operation,
+            true /* is last fragment*/,
+            true /* setting periodic data*/,
+            false /* not setting scan response data */);
+      } else {
+        send_periodic_data_fragment(advertiser_id, sub_data, Operation::LAST_FRAGMENT);
+      }
     }
   }
 
@@ -1214,6 +1355,23 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       // For first and intermediate fragment, do not trigger advertising_callbacks_.
       le_advertising_interface_->EnqueueCommand(
           hci::LeSetPeriodicAdvertisingDataBuilder::Create(advertiser_id, operation, data),
+          module_handler_->BindOnce(check_complete<LeSetPeriodicAdvertisingDataCompleteView>));
+    }
+  }
+
+  void send_periodic_data_fragment_with_raw_builder(
+      AdvertiserId advertiser_id, const std::vector<uint8_t>& data, Operation operation) {
+    if (operation == Operation::COMPLETE_ADVERTISEMENT || operation == Operation::LAST_FRAGMENT) {
+      le_advertising_interface_->EnqueueCommand(
+          hci::LeSetPeriodicAdvertisingDataRawBuilder::Create(advertiser_id, operation, data),
+          module_handler_->BindOnceOn(
+              this,
+              &impl::check_status_with_id<LeSetPeriodicAdvertisingDataCompleteView>,
+              advertiser_id));
+    } else {
+      // For first and intermediate fragment, do not trigger advertising_callbacks_.
+      le_advertising_interface_->EnqueueCommand(
+          hci::LeSetPeriodicAdvertisingDataRawBuilder::Create(advertiser_id, operation, data),
           module_handler_->BindOnce(check_complete<LeSetPeriodicAdvertisingDataCompleteView>));
     }
   }
