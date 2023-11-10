@@ -140,6 +140,76 @@
       },
       "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f18e368_61254786",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-10T01:45:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bb28f060_7f6185d4",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 31,
+        "endChar": 37
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d82b3cfa_e422eef3",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-10T01:45:10Z",
+      "side": 1,
+      "message": "This might not be true if you have plan to support non predefined codecs.",
+      "range": {
+        "startLine": 45,
+        "startChar": 31,
+        "endLine": 45,
+        "endChar": 68
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "408b5672_61cd2d42",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-10T01:45:10Z",
+      "side": 1,
+      "message": "Q) For non predefined codecs, are you intended to use UNKNOWN CODEC(##) instead of their codec names?",
+      "range": {
+        "startLine": 47,
+        "startChar": 21,
+        "endLine": 47,
+        "endChar": 65
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
