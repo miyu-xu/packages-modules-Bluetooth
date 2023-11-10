@@ -35,6 +35,7 @@ import android.content.Context;
 import android.net.TetheringManager.TetheredInterfaceCallback;
 import android.net.TetheringManager.TetheredInterfaceRequest;
 import android.os.Build;
+import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -236,9 +237,15 @@ public final class BluetoothPan implements BluetoothProfile {
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-    private final BluetoothProfileConnector mProfileConnector =
-            new BluetoothProfileConnector(
-                    this, BluetoothProfile.PAN, "BluetoothPan", IBluetoothPan.class.getName());
+    private final BluetoothProfileConnector<IBluetoothPan> mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.PAN,
+                    "BluetoothPan", IBluetoothPan.class.getName()) {
+                @Override
+                public IBluetoothPan getServiceInterface(IBinder service) {
+                    return IBluetoothPan.Stub.asInterface(service);
+                }
+    };
+
 
     /**
      * Create a BluetoothPan proxy object for interacting with the local
@@ -268,7 +275,7 @@ public final class BluetoothPan implements BluetoothProfile {
     }
 
     private IBluetoothPan getService() {
-        return IBluetoothPan.Stub.asInterface(mProfileConnector.getService());
+        return mProfileConnector.getService();
     }
 
     /** @hide */

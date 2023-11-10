@@ -33,6 +33,7 @@ import android.compat.annotation.UnsupportedAppUsage;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.os.Build;
+import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -339,12 +340,14 @@ public final class BluetoothHeadset implements BluetoothProfile {
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-    private final BluetoothProfileConnector mProfileConnector =
-            new BluetoothProfileConnector(
-                    this,
-                    BluetoothProfile.HEADSET,
-                    "BluetoothHeadset",
-                    IBluetoothHeadset.class.getName());
+    private final BluetoothProfileConnector<IBluetoothHeadset> mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.HEADSET, "BluetoothHeadset",
+                    IBluetoothHeadset.class.getName()) {
+                @Override
+                public IBluetoothHeadset getServiceInterface(IBinder service) {
+                    return IBluetoothHeadset.Stub.asInterface(service);
+                }
+    };
 
     /**
      * Create a BluetoothHeadset proxy object.
@@ -369,7 +372,7 @@ public final class BluetoothHeadset implements BluetoothProfile {
     }
 
     private IBluetoothHeadset getService() {
-        return IBluetoothHeadset.Stub.asInterface(mProfileConnector.getService());
+        return mProfileConnector.getService();
     }
 
     /** {@hide} */

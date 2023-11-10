@@ -28,6 +28,7 @@ import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.content.AttributionSource;
 import android.content.Context;
+import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
@@ -63,12 +64,14 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-    private final BluetoothProfileConnector mProfileConnector =
-            new BluetoothProfileConnector(
-                    this,
-                    BluetoothProfile.LE_AUDIO_BROADCAST,
-                    "BluetoothLeAudioBroadcast",
-                    IBluetoothLeAudio.class.getName());
+    private final BluetoothProfileConnector<IBluetoothLeAudio> mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.LE_AUDIO_BROADCAST,
+                    "BluetoothLeAudioBroadcast", IBluetoothLeAudio.class.getName()) {
+                @Override
+                public IBluetoothLeAudio getServiceInterface(IBinder service) {
+                    return IBluetoothLeAudio.Stub.asInterface(service);
+                }
+            };
 
     private final Map<Callback, Executor> mCallbackExecutorMap = new HashMap<>();
 
@@ -944,7 +947,7 @@ public final class BluetoothLeBroadcast implements AutoCloseable, BluetoothProfi
     }
 
     private IBluetoothLeAudio getService() {
-        return IBluetoothLeAudio.Stub.asInterface(mProfileConnector.getService());
+        return mProfileConnector.getService();
     }
 
     private static void log(String msg) {
