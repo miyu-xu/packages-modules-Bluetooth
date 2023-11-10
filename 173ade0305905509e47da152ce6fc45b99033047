@@ -168,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f9859cc9_c0ad2d39",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 19
+      },
+      "lineNbr": 1651,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-11-10T15:40:08Z",
+      "side": 1,
+      "message": "That is correct. bt_swb corresponds to AptX voice codec.",
+      "parentUuid": "0094448b_4c770ef2",
+      "range": {
+        "startLine": 1651,
+        "startChar": 26,
+        "endLine": 1651,
+        "endChar": 32
+      },
+      "revId": "173ade0305905509e47da152ce6fc45b99033047",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a2c7f36e_65304e75",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 19
