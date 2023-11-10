@@ -772,7 +772,10 @@ impl BluetoothMedia {
                                 state: CallState::Active,
                                 number: "".into(),
                             });
-                            self.phone_state_change("".into());
+                            // +CIEV command should be triggered only when there's no telephony call in progress
+                            if self.call_list.iter().all(|c| c.source != CallSource::HID) {
+                                self.phone_state_change("".into());
+                            }
                         }
                     }
                     BthfAudioState::Disconnected => {
