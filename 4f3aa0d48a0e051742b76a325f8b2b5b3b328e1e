@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45b2c243_9df1733b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-10T01:48:36Z",
+      "side": 1,
+      "message": "Q) Could you point where it removes messages? I could not find it..",
+      "range": {
+        "startLine": 9,
+        "startChar": 20,
+        "endLine": 9,
+        "endChar": 52
+      },
+      "revId": "4f3aa0d48a0e051742b76a325f8b2b5b3b328e1e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
