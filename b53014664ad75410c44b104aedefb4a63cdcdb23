@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf991d2e_22f04316",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2029,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-10T02:02:15Z",
+      "side": 1,
+      "message": "because when any of the condition is met, it will hit a return, so I personally think `return` is not necessary for each one\n\nMaybe use switch, as switch in Java use String.equals() method, and put those 4 conditions check into a helper function, something like `bool xxxx` or other names. \n\nThen we can based on whether this function is processed, to continue or not\n```\nbool miss\u003dfalse;\n\nswitch(atString){\ncase BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_CGMI):\n   // do something here\n   break;\ncase xxx:\n   xxx\n\ndefault:\n    miss\u003dtrue\n} \nif(!miss){\n mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_OK, 0);\n}\n return miss;\n\n```",
+      "range": {
+        "startLine": 2013,
+        "startChar": 8,
+        "endLine": 2029,
+        "endChar": 9
+      },
+      "revId": "b53014664ad75410c44b104aedefb4a63cdcdb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75fd1393_7d654da6",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2228,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-10T02:02:15Z",
+      "side": 1,
+      "message": "nit: if there is only 1 line, no usage other places, and in future there is no feature going to be added, maybe keep the logic inline :)",
+      "range": {
+        "startLine": 2228,
+        "startChar": 9,
+        "endLine": 2228,
+        "endChar": 22
+      },
+      "revId": "b53014664ad75410c44b104aedefb4a63cdcdb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
