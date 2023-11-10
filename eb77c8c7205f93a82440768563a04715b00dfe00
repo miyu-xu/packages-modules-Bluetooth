@@ -77,6 +77,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d83ddb77_55d222ee",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-10T03:51:12Z",
+      "side": 1,
+      "message": "This method is for activate the device among the connected profiles which would be called while find the fallback device.\nAnd activateProfile is for activating the specific given profile.",
+      "parentUuid": "0166b873_485fcf48",
+      "range": {
+        "startLine": 952,
+        "startChar": 12,
+        "endLine": 952,
+        "endChar": 45
+      },
+      "revId": "eb77c8c7205f93a82440768563a04715b00dfe00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "324e76f3_25bdb72f",
@@ -90,6 +114,30 @@
       "writtenOn": "2023-11-10T01:40:13Z",
       "side": 1,
       "message": "Please add Log.e here",
+      "range": {
+        "startLine": 967,
+        "startChar": 16,
+        "endLine": 967,
+        "endChar": 37
+      },
+      "revId": "eb77c8c7205f93a82440768563a04715b00dfe00",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f12c6049_322d4c40",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 967,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-10T03:51:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "324e76f3_25bdb72f",
       "range": {
         "startLine": 967,
         "startChar": 16,
