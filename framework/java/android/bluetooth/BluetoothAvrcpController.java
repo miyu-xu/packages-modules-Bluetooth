@@ -95,6 +95,7 @@ public final class BluetoothAvrcpController implements BluetoothProfile {
             new BluetoothProfileConnector(
                     this,
                     BluetoothProfile.AVRCP_CONTROLLER,
+                    "BluetoothAvrcpController",
                     IBluetoothAvrcpController.class.getName());
 
     /**

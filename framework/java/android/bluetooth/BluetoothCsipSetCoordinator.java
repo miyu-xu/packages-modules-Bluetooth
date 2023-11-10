@@ -210,6 +210,7 @@ public final class BluetoothCsipSetCoordinator implements BluetoothProfile, Auto
             new BluetoothProfileConnector(
                     this,
                     BluetoothProfile.CSIP_SET_COORDINATOR,
+                    TAG,
                     IBluetoothCsipSetCoordinator.class.getName());
 
     /**
