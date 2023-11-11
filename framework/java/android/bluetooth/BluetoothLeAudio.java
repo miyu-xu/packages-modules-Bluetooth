@@ -665,7 +665,10 @@ public final class BluetoothLeAudio implements BluetoothProfile, AutoCloseable {
 
     private final BluetoothProfileConnector mProfileConnector =
             new BluetoothProfileConnector(
-                    this, BluetoothProfile.LE_AUDIO, IBluetoothLeAudio.class.getName());
+                    this,
+                    BluetoothProfile.LE_AUDIO,
+                    "BluetoothLeAudio",
+                    IBluetoothLeAudio.class.getName());
 
     /**
      * Create a BluetoothLeAudio proxy object for interacting with the local

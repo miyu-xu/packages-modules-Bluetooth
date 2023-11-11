@@ -513,6 +513,7 @@ public final class BluetoothLeBroadcastAssistant implements BluetoothProfile, Au
             new BluetoothProfileConnector(
                     this,
                     BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT,
+                    TAG,
                     IBluetoothLeBroadcastAssistant.class.getName());
 
     /**
