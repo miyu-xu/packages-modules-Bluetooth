@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7680f8a2_7633b49d",
+        "filename": "framework/java/android/bluetooth/BluetoothMap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-11T01:23:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80a58ea3_6e844ec8",
+      "range": {
+        "startLine": 388,
+        "startChar": 37,
+        "endLine": 388,
+        "endChar": 50
+      },
+      "revId": "37034558bed0649477cd94fc0d45db244f721615",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fee57347_4549e2e7",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-11T01:21:36Z",
       "side": 1,
       "message": "IBinder ?",
+      "range": {
+        "startLine": 385,
+        "startChar": 37,
+        "endLine": 385,
+        "endChar": 50
+      },
+      "revId": "37034558bed0649477cd94fc0d45db244f721615",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b9e4a77_37a68b7f",
+        "filename": "framework/java/android/bluetooth/BluetoothSap.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-11T01:23:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fee57347_4549e2e7",
       "range": {
         "startLine": 385,
         "startChar": 37,
