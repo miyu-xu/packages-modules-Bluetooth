@@ -41,7 +41,10 @@ cc_library_static {
             static_libs: ["libstatslog_bt"],
         },
         host: {
-            srcs: ["metrics_linux.cc"],
+            srcs: [
+                ":bluetooth-metrics-proto",
+                "metrics_linux.cc",
+            ],
         },
     },
     shared_libs: [

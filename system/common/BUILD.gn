@@ -28,6 +28,7 @@ static_library("common") {
 
   include_dirs = [
     "//bt/system/",
+    "//bt/system/include",
     "//bt/system/stack/include",
     "//bt/system/linux_include",
     "//bt/system/internal_include",
@@ -35,6 +36,7 @@ static_library("common") {
 
   deps = [
     "//bt/system:libbt-platform-protos-lite",
+    "//bt/system/gd/proto:libbt-protos-lite",
     "//bt/system/gd/rust/shim:init_flags_bridge_header",
   ]
 
@@ -45,6 +47,7 @@ if (use.test) {
   executable("bluetooth_test_common") {
     sources = [
       "leaky_bonded_queue_unittest.cc",
+      "metrics_unittest.cc",
       "state_machine_unittest.cc",
       "time_util_unittest.cc",
     ]
