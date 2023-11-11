@@ -31,6 +31,7 @@ import android.compat.annotation.UnsupportedAppUsage;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.os.Build;
+import android.os.IBinder;
 import android.os.IpcDataCache;
 import android.os.RemoteException;
 import android.util.CloseGuard;
@@ -87,9 +88,14 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-    private final BluetoothProfileConnector mProfileConnector =
-            new BluetoothProfileConnector(
-                    this, BluetoothProfile.MAP, "BluetoothMap", IBluetoothMap.class.getName());
+    private final BluetoothProfileConnector<IBluetoothMap> mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.MAP,
+                    "BluetoothMap", IBluetoothMap.class.getName()) {
+                @Override
+                public IBluetoothMap getServiceInterface(IBinder service) {
+                    return IBluetoothMap.Stub.asInterface(service);
+                }
+    };
 
     /**
      * Create a BluetoothMap proxy object.
@@ -126,7 +132,7 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
     }
 
     private IBluetoothMap getService() {
-        return IBluetoothMap.Stub.asInterface(mProfileConnector.getService());
+        return mProfileConnector.getService();
     }
 
     /**

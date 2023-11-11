@@ -31,6 +31,7 @@ import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.content.AttributionSource;
 import android.content.Context;
+import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
@@ -505,12 +506,15 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-    private final BluetoothProfileConnector mProfileConnector =
-            new BluetoothProfileConnector(
-                    this,
-                    BluetoothProfile.HAP_CLIENT,
-                    "BluetoothHapClient",
-                    IBluetoothHapClient.class.getName());
+    private final BluetoothProfileConnector<IBluetoothHapClient> mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.HAP_CLIENT, "BluetoothHapClient",
+                    IBluetoothHapClient.class.getName()) {
+                @Override
+                public IBluetoothHapClient getServiceInterface(IBinder service) {
+                    return IBluetoothHapClient.Stub.asInterface(service);
+                }
+            };
+
 
     /**
      * Create a BluetoothHapClient proxy object for interacting with the local
@@ -544,7 +548,7 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
     }
 
     private IBluetoothHapClient getService() {
-        return IBluetoothHapClient.Stub.asInterface(mProfileConnector.getService());
+        return mProfileConnector.getService();
     }
 
     /**
