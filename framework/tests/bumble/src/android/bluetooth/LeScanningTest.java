@@ -18,9 +18,11 @@ package android.bluetooth;
 
 import static com.google.common.truth.Truth.assertThat;
 
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
@@ -88,6 +90,45 @@ public class LeScanningTest {
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
         assertThat(results.get(1).getScanRecord().getServiceUuids().get(0))
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
+    }
+
+    @Test
+    public void startTooManyBleScans() {
+        int numScans = 33;
+        advertiseWithBumble(TEST_UUID_STRING);
+
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .build();
+
+        List<ScanFilter> scanFilters = new ArrayList<>();
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .build();
+        scanFilters.add(scanFilter);
+
+        List<ScanCallback> scanCallbacks = new ArrayList<>();
+        for (int i = 0; i < numScans; i++) {
+            ScanCallback mockScanCallback = mock(ScanCallback.class);
+            mLeScanner.startScan(scanFilters, scanSettings, mockScanCallback);
+            scanCallbacks.add(mockScanCallback);
+        }
+
+        // We expect an error only for the last scan, which was over the maximum active scans limit.
+        for (int i = 0; i < numScans - 1; i++) {
+            ScanCallback mockScanCallback = scanCallbacks.get(i);
+            verify(mockScanCallback, timeout(TIMEOUT_SCANNING_MS).atLeast(1))
+                    .onScanResult(eq(ScanSettings.CALLBACK_TYPE_ALL_MATCHES), any());
+            verify(mockScanCallback, never()).onScanFailed(anyInt());
+            mLeScanner.stopScan(mockScanCallback);
+        }
+        ScanCallback lastMockScanCallback = scanCallbacks.get(numScans - 1);
+        verify(lastMockScanCallback, timeout(TIMEOUT_SCANNING_MS))
+                .onScanFailed(eq(ScanCallback.SCAN_FAILED_APPLICATION_REGISTRATION_FAILED));
+        mLeScanner.stopScan(lastMockScanCallback);
     }
 
     @Test
