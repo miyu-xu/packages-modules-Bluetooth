@@ -23,6 +23,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.after;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 
@@ -53,6 +54,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import pandora.HostProto;
 import pandora.HostProto.AdvertiseRequest;
@@ -64,8 +67,7 @@ public class LeScanningTest {
     private static final String TAG = "LeScanningTest";
     private static final int TIMEOUT_SCANNING_MS = 2000;
 
-    @Rule
-    public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
+    @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
 
     @Rule
     public final PandoraDevice mBumble = new PandoraDevice();
@@ -208,8 +210,7 @@ public class LeScanningTest {
         List<ScanResult> results =
                 intent.getValue()
                         .getParcelableArrayListExtra(
-                                BluetoothLeScanner.EXTRA_LIST_SCAN_RESULT,
-                                ScanResult.class);
+                                BluetoothLeScanner.EXTRA_LIST_SCAN_RESULT, ScanResult.class);
         assertThat(results).isNotEmpty();
         assertThat(results.get(0).getScanRecord().getServiceUuids()).isNotEmpty();
         assertThat(results.get(0).getScanRecord().getServiceUuids().get(0))
@@ -250,6 +251,46 @@ public class LeScanningTest {
         assertThat(results.get(0).getScanRecord().getServiceUuids()).isNotEmpty();
         assertThat(results.get(0).getScanRecord().getServiceUuids())
                 .containsExactly(ParcelUuid.fromString(TEST_UUID_STRING));
+    }
+
+    @Test
+    public void startBleScan_oneTooManyScansFails() {
+        final int maxNumScans = 32;
+        advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
+
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .build();
+
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
+                        .build();
+
+        List<ScanCallback> scanCallbacks =
+                Stream.generate(() -> mock(ScanCallback.class))
+                        .limit(maxNumScans)
+                        .collect(Collectors.toList());
+        for (ScanCallback mockScanCallback : scanCallbacks) {
+            mLeScanner.startScan(List.of(scanFilter), scanSettings, mockScanCallback);
+        }
+        // This last scan should fail
+        ScanCallback lastMockScanCallback = mock(ScanCallback.class);
+        mLeScanner.startScan(List.of(scanFilter), scanSettings, lastMockScanCallback);
+        scanCallbacks.add(lastMockScanCallback);
+
+        // We expect an error only for the last scan, which was over the maximum active scans limit.
+        for (ScanCallback mockScanCallback : scanCallbacks.subList(0, maxNumScans)) {
+            verify(mockScanCallback, timeout(TIMEOUT_SCANNING_MS).atLeast(1))
+                    .onScanResult(eq(ScanSettings.CALLBACK_TYPE_ALL_MATCHES), any());
+            verify(mockScanCallback, never()).onScanFailed(anyInt());
+            mLeScanner.stopScan(mockScanCallback);
+        }
+        verify(lastMockScanCallback, timeout(TIMEOUT_SCANNING_MS))
+                .onScanFailed(eq(ScanCallback.SCAN_FAILED_APPLICATION_REGISTRATION_FAILED));
+        mLeScanner.stopScan(lastMockScanCallback);
     }
 
     private List<ScanResult> startScanning(ScanFilter scanFilter, int callbackType) {
