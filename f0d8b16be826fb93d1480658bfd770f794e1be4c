@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e888926_30b3adc4",
+        "filename": "system/main/shim/btm_api.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-11T08:41:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "579cc14f_55523632",
+      "range": {
+        "startLine": 84,
+        "startChar": 25,
+        "endLine": 84,
+        "endChar": 51
+      },
+      "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "97824e05_457dba53",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "I don\u0027t think this function is used in any tests yet. It is just recently added. I include this so the test can compile.",
       "parentUuid": "16e14a78_d1f52f6b",
+      "range": {
+        "startLine": 44,
+        "startChar": 36,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d57dc72_b3bc2c5a",
+        "filename": "system/test/mock/mock_stack_btm_dev.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-11T08:41:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "665711b4_9315fb22",
       "range": {
         "startLine": 44,
         "startChar": 36,
