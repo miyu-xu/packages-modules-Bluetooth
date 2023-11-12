@@ -16,6 +16,24 @@
       "message": "We want to guard this with a flag and a sysprop as Aptx Voice is something only QC phones can use. Can we please add that as well?",
       "revId": "4012b7ee10f79885565c8060743c2533a478890f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a80555f5_fbb0f098",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-12T17:47:26Z",
+      "side": 1,
+      "message": "If we do that, the rollout of the flag will trigger the new code  only on QC device that has the property enabled.\n\nDo we have such device in teamfood / trunkfood ?\n\nIf this is not the case, I think there is no benefit of having a flag.",
+      "parentUuid": "5f69c06f_a2c78e6a",
+      "revId": "4012b7ee10f79885565c8060743c2533a478890f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
