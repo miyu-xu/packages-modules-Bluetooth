@@ -70,6 +70,30 @@
       },
       "revId": "8450da3efee74a42e0f844a9f02b9225a87b167e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4828244c_98447493",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-12T17:32:34Z",
+      "side": 1,
+      "message": "I think it does, log.h:\n```\n#define _PREPEND_SRC_LOC_IN_LOG(fmt, args...) \\\n  _LOG_SRC_FMT_STR fmt, __FILE__, __LINE__, __func__, ##args\n```",
+      "parentUuid": "d41219be_4d627658",
+      "range": {
+        "startLine": 252,
+        "startChar": 2,
+        "endLine": 252,
+        "endChar": 13
+      },
+      "revId": "8450da3efee74a42e0f844a9f02b9225a87b167e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
