@@ -1,0 +1,101 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ec9224a_a81f1001",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-12T06:13:51Z",
+      "side": 1,
+      "message": "Another case is a reconnection initiated from remote, which also claims that it does not have the link key anymore",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "463fb8e6_729eb2d0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-12T06:13:51Z",
+      "side": 1,
+      "message": "Typo",
+      "range": {
+        "startLine": 13,
+        "startChar": 33,
+        "endLine": 13,
+        "endChar": 39
+      },
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88f48969_075801b8",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-12T06:13:51Z",
+      "side": 1,
+      "message": "How about using RepairingCallback?",
+      "range": {
+        "startLine": 1227,
+        "startChar": 9,
+        "endLine": 1227,
+        "endChar": 27
+      },
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7077899c_87237c0d",
+        "filename": "system/bta/include/bta_sec_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-12T06:13:51Z",
+      "side": 1,
+      "message": "Is the change here related to this topic?",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc49d18e_876353a8",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-12T06:13:51Z",
+      "side": 1,
+      "message": "Is this case also related to this fix, right?",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
