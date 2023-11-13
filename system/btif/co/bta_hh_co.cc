@@ -145,8 +145,13 @@ static int uhid_write(int fd, const struct uhid_event* ev) {
 }
 
 /* Internal function to parse the events received from UHID driver*/
-static int uhid_read_event(btif_hh_device_t* p_dev) {
+static int uhid_read_event(
+    btif_hh_device_t* p_dev,
+    bool* is_uhid_opened,
+    tBTA_HH_UHID_EVT_QUEUE* queued_inputs) {
   CHECK(p_dev);
+  CHECK(is_uhid_opened);
+  CHECK(queued_inputs);
 
   struct uhid_event ev;
   memset(&ev, 0, sizeof(ev));
@@ -166,18 +171,30 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
     case UHID_START:
       LOG_VERBOSE("UHID_START from uhid-dev\n");
       p_dev->ready_for_data = true;
+      *is_uhid_opened = false;
       break;
     case UHID_STOP:
       LOG_VERBOSE("UHID_STOP from uhid-dev\n");
       p_dev->ready_for_data = false;
+      *is_uhid_opened = false;
       break;
     case UHID_OPEN:
       LOG_VERBOSE("UHID_OPEN from uhid-dev\n");
       p_dev->ready_for_data = true;
+      *is_uhid_opened = true;
+      {
+        struct uhid_event evt = {};
+        while (bta_hh_uhid_evt_queue_dequeue(queued_inputs, evt)) {
+          LOG_VERBOSE("There is a enqueued input before open.");
+          CHECK(evt.type == UHID_INPUT);
+          uhid_write(p_dev->fd, &evt);
+        }
+      }
       break;
     case UHID_CLOSE:
       LOG_VERBOSE("UHID_CLOSE from uhid-dev\n");
       p_dev->ready_for_data = false;
+      *is_uhid_opened = false;
       break;
     case UHID_OUTPUT:
       if (ret < (ssize_t)(sizeof(ev.type) + sizeof(ev.u.output))) {
@@ -244,8 +261,12 @@ static int uhid_read_event(btif_hh_device_t* p_dev) {
 }
 
 /* Internal function to parse the uhid write events buffered. */
-static int uhid_handle_buffered_write(btif_hh_device_t* p_dev) {
+static int uhid_handle_buffered_write(
+    btif_hh_device_t* p_dev,
+    bool is_uhid_opened,
+    tBTA_HH_UHID_EVT_QUEUE* queued_inputs) {
   CHECK(p_dev);
+  CHECK(queued_inputs);
 
   ssize_t ret;
   char c;
@@ -261,12 +282,32 @@ static int uhid_handle_buffered_write(btif_hh_device_t* p_dev) {
 
   struct uhid_event evt = {};
   if (bta_hh_uhid_evt_queue_dequeue(&p_dev->uhid_wr_evt_queue, evt)) {
-    uhid_write(p_dev->fd, &evt);
-    if (evt.type != UHID_CREATE) {
-      return 0;
-    }
-    if (evt.u.create.rd_size > 0 && evt.u.create.rd_data != NULL) {
-      osi_free((void*)evt.u.create.rd_data);
+    switch (evt.type) {
+      case UHID_CREATE:
+        LOG_VERBOSE("%s: Create uhid dev.", __func__);
+        uhid_write(p_dev->fd, &evt);
+        if (evt.u.create.rd_size > 0 && evt.u.create.rd_data != NULL) {
+          osi_free((void*)evt.u.create.rd_data);
+        }
+        break;
+      case UHID_INPUT:
+        if (!is_uhid_opened) {
+          /*
+           * UHID is not opened, queue it till it is opened.
+           * See https://kernel.org/doc/Documentation/hid/uhid.txt
+           */
+          LOG_VERBOSE("%s: uhid dev is not opened, enqueue input.", __func__);
+          bool queued = bta_hh_uhid_evt_queue_enqueue(queued_inputs, evt);
+          if (!queued) {
+            LOG_WARN("There are too many inputs before UHID opened!");
+          }
+          return 0;
+        }
+        uhid_write(p_dev->fd, &evt);
+        break;
+      default:
+        uhid_write(p_dev->fd, &evt);
+        break;
     }
   }
   return 0;
@@ -387,6 +428,10 @@ static void* btif_hh_poll_event_thread(void* arg) {
   uhid_set_non_blocking(p_dev->fd);
   uhid_set_non_blocking(p_dev->uhid_wr_notif_fd[0]);
 
+  tBTA_HH_UHID_EVT_QUEUE queued_inputs = {};
+  bta_hh_uhid_evt_queue_init(&queued_inputs, /*thread_safe=*/false);
+  bool is_uhid_opened = false;
+
   while (p_dev->hh_keep_polling) {
     int ret;
     int counter = 0;
@@ -405,7 +450,7 @@ static void* btif_hh_poll_event_thread(void* arg) {
     }
     if (pfds[0].revents & POLLIN) {
       LOG_VERBOSE("%s: POLLIN", __func__);
-      ret = uhid_read_event(p_dev);
+      ret = uhid_read_event(p_dev, &is_uhid_opened, &queued_inputs);
       if (ret != 0) {
         LOG_ERROR("Unhandled UHID event");
         break;
@@ -413,8 +458,8 @@ static void* btif_hh_poll_event_thread(void* arg) {
     }
 
     if (pfds[1].revents & POLLIN) {
-      LOG_DEBUG("%s: UHID BUFFERED WRITE", __func__);
-      ret = uhid_handle_buffered_write(p_dev);
+      LOG_VERBOSE("%s: UHID BUFFERED WRITE", __func__);
+      ret = uhid_handle_buffered_write(p_dev, is_uhid_opened, &queued_inputs);
       if (ret != 0) {
         LOG_ERROR("Unhandled UHID buffered write");
         break;
@@ -435,6 +480,7 @@ static void* btif_hh_poll_event_thread(void* arg) {
       osi_free((void*)evt.u.create.rd_data);
     }
   }
+  bta_hh_uhid_evt_queue_destroy(&queued_inputs);
   return 0;
 }
 
@@ -609,16 +655,6 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
   if (p_dev == NULL) {
     LOG_WARN("%s: Error: unknown HID device handle %d", __func__, dev_handle);
     return;
-  }
-
-  // Wait a maximum of MAX_POLLING_ATTEMPTS x POLLING_SLEEP_DURATION in case
-  // device creation is pending.
-  if (p_dev->fd >= 0) {
-    uint32_t polling_attempts = 0;
-    while (!p_dev->ready_for_data &&
-           polling_attempts++ < BTIF_HH_MAX_POLLING_ATTEMPTS) {
-      usleep(BTIF_HH_POLLING_SLEEP_DURATION_US);
-    }
   }
 
   // Send the HID data to the kernel asyncly.
