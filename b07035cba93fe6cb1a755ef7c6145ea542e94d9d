@@ -16,6 +16,24 @@
       "message": "fake_timerfd.h is needed?",
       "revId": "b07035cba93fe6cb1a755ef7c6145ea542e94d9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e31bbef1_70eaebfe",
+        "filename": "system/gd/hal/snoop_logger.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-13T18:22:17Z",
+      "side": 0,
+      "message": "It\u0027s needed if USE_FAKE_TIMERS is defined (line 40)",
+      "parentUuid": "4c8c29fe_380444b9",
+      "revId": "b07035cba93fe6cb1a755ef7c6145ea542e94d9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
