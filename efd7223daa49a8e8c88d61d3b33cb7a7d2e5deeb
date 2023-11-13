@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb35f97b_dfe2f305",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3061,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-13T07:38:21Z",
+      "side": 1,
+      "message": "nit: how about add const here?",
+      "revId": "efd7223daa49a8e8c88d61d3b33cb7a7d2e5deeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
