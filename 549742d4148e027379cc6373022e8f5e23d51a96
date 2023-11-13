@@ -16,6 +16,29 @@
       "message": "Unifying all references of GATT_MAX_ATTR_LEN to the one added in aosp/2811833.",
       "revId": "549742d4148e027379cc6373022e8f5e23d51a96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "448da7cb_329136e8",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-13T19:20:57Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be in alphabetical order ? Is there a reason for putting algorithm after ?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "549742d4148e027379cc6373022e8f5e23d51a96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
