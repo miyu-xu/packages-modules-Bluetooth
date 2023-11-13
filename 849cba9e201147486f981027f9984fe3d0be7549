@@ -16,6 +16,24 @@
       "message": "nit: adding a const to RawAddress",
       "revId": "849cba9e201147486f981027f9984fe3d0be7549",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9450c51_5c8c0f55",
+        "filename": "system/stack/btm/btm_sec.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-13T22:52:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7635558d_ce576ab6",
+      "revId": "849cba9e201147486f981027f9984fe3d0be7549",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
