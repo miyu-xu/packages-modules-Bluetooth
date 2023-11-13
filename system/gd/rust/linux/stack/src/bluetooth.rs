@@ -1044,6 +1044,13 @@ impl Bluetooth {
                         properties,
                     );
                     self.found_devices.insert(address.clone(), device_with_props);
+
+                    // A scan result could leave a device in the found list
+                    // without scheduling a freshness check task.
+                    // Schedule a freshness check if not discovering.
+                    if !self.is_discovering && self.freshness_check.is_none() {
+                        self.trigger_freshness_check();
+                    }
                 }
             }
         }
@@ -1816,6 +1823,16 @@ impl BtifBluetoothCallbacks for Bluetooth {
             }
             None => (),
         };
+
+        // An incoming temporary connection could leave a device in the found
+        // list without scheduling a freshness check task.
+        // Schedule a freshness check if not discovering.
+        if state == BtAclState::Disconnected
+            && !self.is_discovering
+            && self.freshness_check.is_none()
+        {
+            self.trigger_freshness_check();
+        }
     }
 
     fn thread_event(&mut self, event: BtThreadEvent) {
