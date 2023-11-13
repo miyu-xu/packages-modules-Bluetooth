@@ -22,6 +22,30 @@
       },
       "revId": "8c1b67e7104547c31b80717fa21cd403be8f1668",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5711eb40_5201c174",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-13T21:53:30Z",
+      "side": 1,
+      "message": "Sorry I didn\u0027t see the other comment from David that mention exactly the same thing 😂\n\nI guess my doubt on the parcelable list was what stopped you by doing that.\n\nI found some usage about list of string, or Immutable List of Uri (immutable sounds better in our case but this is nit)\n\n```\nUri testUri1 \u003d Uri.parse(\"test1\");\nUri testUri2 \u003d Uri.parse(\"test2\");\nImmutableList\u003cUri\u003e testUriList \u003d ImmutableList.of(testUri1, testUri2);\n[...]\n  .hasExtra(/* redacted */, testUriList);\n```",
+      "parentUuid": "64f79af2_0c2971f3",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 139,
+        "endChar": 74
+      },
+      "revId": "8c1b67e7104547c31b80717fa21cd403be8f1668",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
