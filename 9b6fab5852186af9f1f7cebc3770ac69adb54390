@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4069768b_ef6a3ac5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-11-13T02:43:23Z",
+      "side": 1,
+      "message": "@hychao@google.com. I am beginning to question whether we should continue to implement workarounds for CRAS calls.\n\nThis actually introduces two issues:\n\n1. The three-way call workaround\n2. This issue\n\nDo you think it would be better to open a feature flag for older headsets that cannot function if there are no calls in the call list?\nIf we receive feedback reports, we can ask users to open the feature flag and enable CRAS call behavior.",
+      "range": {
+        "startLine": 775,
+        "startChar": 28,
+        "endLine": 778,
+        "endChar": 29
+      },
+      "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
