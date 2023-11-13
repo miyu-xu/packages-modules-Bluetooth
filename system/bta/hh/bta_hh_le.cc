@@ -1601,11 +1601,22 @@ static void bta_hh_le_input_rpt_notify(tBTA_GATTC_NOTIFY* p_data) {
     p_buf = p_data->value;
   }
 
-  bta_hh_co_data((uint8_t)p_dev_cb->hid_handle, p_buf, p_data->len,
-                 p_dev_cb->mode, 0, /* no sub class*/
-                 p_dev_cb->dscp_info.ctry_code, p_dev_cb->addr, app_id);
+  tBTA_HH data = {
+    .rpt_data =
+    {
+      .p_buf = p_buf,
+      .len = p_data->len,
+      .need_free_buf = (p_buf != p_data->value),
+      .hid_handle = (uint8_t)p_dev_cb->hid_handle,
+      .mode = p_dev_cb->mode,
+      .ctry_code = p_dev_cb->dscp_info.ctry_code,
+      .addr = p_dev_cb->addr,
+      .app_id = app_id,
+    },
+  };
 
-  if (p_buf != p_data->value) osi_free(p_buf);
+  /* LE report data event */
+  (*bta_hh_cb.p_cback)(BTA_HH_RPT_DATA_EVT, &data);
 }
 
 /*******************************************************************************

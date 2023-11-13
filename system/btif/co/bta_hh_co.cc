@@ -629,6 +629,34 @@ void bta_hh_co_data(uint8_t dev_handle, uint8_t* p_rpt, uint16_t len,
 
 /*******************************************************************************
  *
+ * Function         bta_hh_co_rpt_data
+ *
+ * Description      This function is executed by BTA when HID host receive a
+ *                  le data report.
+ *
+ * Parameters       rpt_data      - le report data
+ *
+ * Returns          void
+ ******************************************************************************/
+void bta_hh_co_rpt_data(tBTA_HH_RPT_DATA& rpt_data) {
+
+  btif_hh_device_t* p_dev =
+      btif_hh_find_connected_dev_by_handle(rpt_data.hid_handle);
+  if (p_dev == NULL) {
+    LOG_WARN("%s: Error: unknown HID device handle %d", __func__,
+                       rpt_data.hid_handle);
+    return;
+  }
+
+  bta_hh_co_data((uint8_t)rpt_data.hid_handle, rpt_data.p_buf, rpt_data.len,
+                 rpt_data.mode, 0, /* no sub class*/
+                 rpt_data.ctry_code, rpt_data.addr, rpt_data.app_id);
+
+  if (rpt_data.need_free_buf) osi_free(rpt_data.p_buf);
+}
+
+/*******************************************************************************
+ *
  * Function         bta_hh_co_send_hid_info
  *
  * Description      This function is called in btif_hh.c to process DSCP
