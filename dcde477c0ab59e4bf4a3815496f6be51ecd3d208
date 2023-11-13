@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebd8bdd_8ac44c80",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 2862,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-13T19:15:05Z",
+      "side": 1,
+      "message": "This is just for debugging.  Remove after understanding what\u0027s wrong.",
+      "range": {
+        "startLine": 2862,
+        "startChar": 6,
+        "endLine": 2862,
+        "endChar": 11
+      },
+      "revId": "dcde477c0ab59e4bf4a3815496f6be51ecd3d208",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
