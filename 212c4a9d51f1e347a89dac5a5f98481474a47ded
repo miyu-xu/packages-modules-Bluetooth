@@ -16,6 +16,24 @@
       "message": "nit:\n```suggestion\n        mLeScanner.startScan(List.of(scanFilter), scanSettings, mockScanCallback);\n```",
       "revId": "212c4a9d51f1e347a89dac5a5f98481474a47ded",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c1399cf_70af98e1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T21:45:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8d4a248_2ae0609d",
+      "revId": "212c4a9d51f1e347a89dac5a5f98481474a47ded",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
