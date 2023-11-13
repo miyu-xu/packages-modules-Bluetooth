@@ -134,6 +134,30 @@
       },
       "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db4634ac_4d569eba",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-13T19:22:36Z",
+      "side": 1,
+      "message": "yes, [startAutoDispatch](https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/tests/utils/testutils/java/android/os/test/TestLooper.java;l\u003d289;drc\u003dbc7b8b4b1388f7b084bdf58312adc75727805261) will make it behave like a normal looper until you call [stopAutoDispatch](https://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/tests/utils/testutils/java/android/os/test/TestLooper.java;l\u003d301;drc\u003dbc7b8b4b1388f7b084bdf58312adc75727805261)",
+      "parentUuid": "529983fa_5a8e10b3",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 23
+      },
+      "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
