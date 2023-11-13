@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "036d4bb5_44178c73",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-13T19:35:15Z",
+      "side": 0,
+      "message": "If this one is flooding the logs, is there a real problem?  Same for the other return 0 debug logs here.",
+      "revId": "7a92e015d5de94de4652efa84a7d174baceda074",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
