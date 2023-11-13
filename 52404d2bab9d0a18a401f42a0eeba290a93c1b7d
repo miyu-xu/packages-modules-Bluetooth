@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dbba2ad0_edbe1861",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-13T19:11:49Z",
+      "side": 1,
+      "message": "nit:\n\n\n```suggestion\n        List\u003cScanCallback\u003e scanCallbacks \u003d Stream.generate(() -\u003e mock(ScanCallback.class)).limit(numScans).toList();\n        for (ScanCallback mockScanCallback : scanCallbacks) {\n```\n\nPS: Not sure for the `toList()` as it\u0027s from Java 16, otherwise `.collect(Collectors.toList())`",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 69
+      },
+      "revId": "52404d2bab9d0a18a401f42a0eeba290a93c1b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab8cab5b_9fbf424a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-13T19:11:49Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n            mLeScanner.startScan(List.of(scanFilter), scanSettings, mockScanCallback);\n```",
+      "revId": "52404d2bab9d0a18a401f42a0eeba290a93c1b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "467312f6_83cf1e41",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-13T19:11:49Z",
+      "side": 1,
+      "message": "Nit: I would prefer to treat the last scan callback as an exception here as well\n\n\n```suggestion\n        for (int i \u003d 0; i \u003c numScans - 1; i++) {\n            ScanCallback mockScanCallback \u003d mock(ScanCallback.class);\n            mLeScanner.startScan(scanFilters, scanSettings, mockScanCallback);\n            scanCallbacks.add(mockScanCallback);\n        }\n        // This one should fail\n        ScanCallback lastMockScanCallback \u003d mock(ScanCallback.class);\n        mLeScanner.startScan(scanFilters, scanSettings, lastMockScanCallback);\n```\n\nAnd change the `numScans` constant to represent the maximum number of scan allowed",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 9
+      },
+      "revId": "52404d2bab9d0a18a401f42a0eeba290a93c1b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2c0d1fc_47051810",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-13T19:11:49Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n        for (ScanCallback mockScanCallback : scanCallbacks.subList(0, numScans - 1)) {\n            verify(mockScanCallback, timeout(TIMEOUT_SCANNING_MS).atLeast(1))\n                    .onScanResult(eq(ScanSettings.CALLBACK_TYPE_ALL_MATCHES), any());\n            verify(mockScanCallback, never()).onScanFailed(anyInt());\n            mLeScanner.stopScan(mockScanCallback);\n        }\n```",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 9
+      },
+      "revId": "52404d2bab9d0a18a401f42a0eeba290a93c1b7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
