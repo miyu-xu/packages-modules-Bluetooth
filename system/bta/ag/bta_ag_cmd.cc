@@ -18,11 +18,8 @@
 
 #define LOG_TAG "bta_ag_cmd"
 
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
-
-#ifdef __ANDROID__
-#include <com_android_bluetooth_flags.h>
-#endif
 
 #include <cstdint>
 #include <cstring>
@@ -1259,14 +1256,9 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type,
 
         bool wbs_supported = hfp_hal_interface::get_wbs_supported();
         bool swb_supported = hfp_hal_interface::get_swb_supported();
-        bool aptx_voice = false;
-
-#ifdef __ANDROID__
-        if (com::android::bluetooth::flags::hfp_codec_aptx_voice()) {
-          aptx_voice = p_scb->is_aptx_swb_codec;
-          LOG_VERBOSE("BTA_AG_AT_BAC_EVT aptx_voice=%d", aptx_voice);
-        }
-#endif
+        const bool aptx_voice =
+            IS_FLAG_ENABLED(hfp_codec_aptx_voice) && p_scb->is_aptx_swb_codec;
+        LOG_VERBOSE("BTA_AG_AT_BAC_EVT aptx_voice=%s", logbool(aptx_voice).c_str();
 
         if (swb_supported && (p_scb->peer_codecs & BTM_SCO_CODEC_LC3) &&
             !(p_scb->disabled_codecs & BTM_SCO_CODEC_LC3)) {
@@ -1351,23 +1343,23 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type,
       bta_ag_sco_open(p_scb, tBTA_AG_DATA::kEmpty);
       break;
     }
-#ifdef __ANDROID__
     case BTA_AG_AT_QAC_EVT:
-      if (com::android::bluetooth::flags::hfp_codec_aptx_voice()) {
-        p_scb->peer_codecs |= bta_ag_parse_qac(p_arg);
-        bta_ag_swb_handle_vs_at_events(p_scb, cmd, int_arg, &val);
-        bta_ag_send_ok(p_scb);
+      if (!IS_FLAG_ENABLED(hfp_codec_aptx_voice)) {
+        bta_ag_send_error(p_scb, BTA_AG_ERR_OP_NOT_SUPPORTED);
         break;
       }
-      FALLTHROUGH_INTENDED;
+      p_scb->peer_codecs |= bta_ag_parse_qac(p_arg);
+      bta_ag_swb_handle_vs_at_events(p_scb, cmd, int_arg, &val);
+      bta_ag_send_ok(p_scb);
+      break;
     case BTA_AG_AT_QCS_EVT:
-      if (com::android::bluetooth::flags::hfp_codec_aptx_voice()) {
-        bta_ag_send_ok(p_scb);
-        bta_ag_swb_handle_vs_at_events(p_scb, cmd, int_arg, &val);
+      if (!IS_FLAG_ENABLED(hfp_codec_aptx_voice)) {
+        bta_ag_send_error(p_scb, BTA_AG_ERR_OP_NOT_SUPPORTED);
         break;
       }
-      FALLTHROUGH_INTENDED;
-#endif
+      bta_ag_send_ok(p_scb);
+      bta_ag_swb_handle_vs_at_events(p_scb, cmd, int_arg, &val);
+      break;
     default:
       bta_ag_send_error(p_scb, BTA_AG_ERR_OP_NOT_SUPPORTED);
       break;
