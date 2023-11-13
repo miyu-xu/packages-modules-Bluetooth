@@ -43,6 +43,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b1d47c91_f5c32049",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-13T18:53:38Z",
+      "side": 1,
+      "message": "```suggestion\nstatic void key_missing_callback(const RawAddress* bd_addr) {\n...\n  sCallbackEnv-\u003eSetByteArrayRegion(addr.get(), 0, sizeof(RawAddress),\n                                   (const jbyte*)bd_addr);\n```",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88f48969_075801b8",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 2
@@ -94,6 +111,24 @@
       "writtenOn": "2023-11-12T06:13:51Z",
       "side": 1,
       "message": "Is this case also related to this fix, right?",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b37536f_60f12eca",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-13T18:53:38Z",
+      "side": 1,
+      "message": "This is another lost bond scenario where the remote device directly initiates the pairing. Instead of removing the existing bond from here, we should generate the key missing event here.",
+      "parentUuid": "fc49d18e_876353a8",
       "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
