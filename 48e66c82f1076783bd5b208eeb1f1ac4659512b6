@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c54621bd_05a80f5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-13T11:33:23Z",
+      "side": 1,
+      "message": "Hi Reviewer, Please take a look at the comments below, thanks!",
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69b23ed2_ec30058d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-13T11:33:23Z",
+      "side": 1,
+      "message": "Fast pair devices still advertise their data (but encrypted) in the background after it\u0027s linked to an account. Which means, the freshness check task would keep alive as long as a user is using a fast pair device. Would this be too aggressive?",
+      "range": {
+        "startLine": 1048,
+        "startChar": 0,
+        "endLine": 1053,
+        "endChar": 21
+      },
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88301f32_02a5b754",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-13T11:33:23Z",
+      "side": 1,
+      "message": "Shall we abort the task `if is_discovering`? Which is the expected behavior?",
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
