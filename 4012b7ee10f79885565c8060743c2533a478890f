@@ -57,6 +57,24 @@
       "parentUuid": "5f69c06f_a2c78e6a",
       "revId": "4012b7ee10f79885565c8060743c2533a478890f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e30a50a_0cbaeb57",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-11-13T21:12:07Z",
+      "side": 1,
+      "message": "If we don\u0027t flag guard  (aconfig) it - then this would go out in 24Q1/Q2 - instead of V. We dont want that - even if we cant test in TF/TeamF, the code should be guarded from a delivery perspective.",
+      "parentUuid": "a80555f5_fbb0f098",
+      "revId": "4012b7ee10f79885565c8060743c2533a478890f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
