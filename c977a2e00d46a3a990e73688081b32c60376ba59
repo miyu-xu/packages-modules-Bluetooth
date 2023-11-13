@@ -22,6 +22,30 @@
       },
       "revId": "c977a2e00d46a3a990e73688081b32c60376ba59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba376477_037e087d",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-13T21:25:36Z",
+      "side": 1,
+      "message": "I will remove next CL",
+      "parentUuid": "27d0d5ac_f082aba9",
+      "range": {
+        "startLine": 214,
+        "startChar": 22,
+        "endLine": 214,
+        "endChar": 28
+      },
+      "revId": "c977a2e00d46a3a990e73688081b32c60376ba59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
