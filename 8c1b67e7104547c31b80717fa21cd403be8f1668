@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64f79af2_0c2971f3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-13T21:44:24Z",
+      "side": 1,
+      "message": "I am taking inspiration from aosp/2822921 and aosp/2748073.\n\nWould it be simpler to check the intent with the following code ? (unstested, I wrote that as pseudo-code and I have a doubt about the match on parcelabe list with EXTRA_LIST_SCAN_RESULT)\n\n```\nimport static androidx.test.espresso.intent.matcher.IntentMatchers.hasAction;\nimport static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;\nimport org.hamcrest.Matcher;\nimport org.hamcrest.core.AllOf;\nimport org.mockito.hamcrest.MockitoHamcrest;\n\n\nverifyIntentReceived(\n      mockReceiver,\n      hasAction(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT),\n      hasExtra(BluetoothLeScanner.EXTRA_CALLBACK_TYPE, ScanSettings.CALLBACK_TYPE_ALL_MATCHES),\n      hasExtra(BluetoothLeScanner.EXTRA_LIST_SCAN_RESULT, List.of(ParcelUuid.fromString(TEST_UUID_STRING)))\n);\n\n@SafeVarargs\nprivate void verifyIntentReceived(BroadcastReceiver receiver, Matcher\u003cIntent\u003e... matchers) {\n    verify(receiver, timeout(TIMEOUT_SCANNING_MS.toMillis()))\n            .onReceive(any(Context.class), MockitoHamcrest.argThat(AllOf.allOf(matchers)));\n}\n```",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 139,
+        "endChar": 74
+      },
+      "revId": "8c1b67e7104547c31b80717fa21cd403be8f1668",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
