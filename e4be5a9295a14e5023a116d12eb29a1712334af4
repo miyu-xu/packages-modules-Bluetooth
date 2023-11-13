@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e1ff861_d0ca51a5",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2856,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-13T07:41:59Z",
+      "side": 1,
+      "message": "Nit: Add const to read only args",
+      "revId": "e4be5a9295a14e5023a116d12eb29a1712334af4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
