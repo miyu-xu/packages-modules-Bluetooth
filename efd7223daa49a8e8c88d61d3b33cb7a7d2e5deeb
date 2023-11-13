@@ -16,6 +16,24 @@
       "message": "nit: how about add const here?",
       "revId": "efd7223daa49a8e8c88d61d3b33cb7a7d2e5deeb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02e2f25c_f73387f2",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3061,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-13T22:53:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fb35f97b_dfe2f305",
+      "revId": "efd7223daa49a8e8c88d61d3b33cb7a7d2e5deeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
