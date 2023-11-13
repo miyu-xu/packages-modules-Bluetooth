@@ -76,9 +76,10 @@ void bluetooth::shim::ACL_ConfigureLePrivacy(bool is_le_privacy_enabled) {
   hci::LeAddressManager::AddressPolicy address_policy =
       is_le_privacy_enabled
           ? hci::LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS
-          : hci::LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS;
+          : hci::LeAddressManager::AddressPolicy::USE_STATIC_ADDRESS;
   hci::AddressWithType empty_address_with_type(
       hci::Address{}, hci::AddressType::RANDOM_DEVICE_ADDRESS);
+
   /* 7 minutes minimum, 15 minutes maximum for random address refreshing */
   auto minimum_rotation_time = std::chrono::minutes(7);
   auto maximum_rotation_time = std::chrono::minutes(15);

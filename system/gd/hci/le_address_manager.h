@@ -81,6 +81,7 @@ class LeAddressManager {
   virtual AddressWithType GetInitiatorAddress();      // What was set in SetRandomAddress()
   virtual AddressWithType NewResolvableAddress();     // A new random address without rotating.
   virtual AddressWithType NewNonResolvableAddress();  // A new non-resolvable address
+  virtual AddressWithType NewRandomStaticAddress();   // A new random static address
 
   uint8_t GetFilterAcceptListSize();
   uint8_t GetResolvingListSize();
@@ -160,6 +161,7 @@ class LeAddressManager {
   void update_irk(UpdateIRKCommand command);
   hci::Address generate_rpa();
   hci::Address generate_nrpa();
+  hci::Address generate_rsa();
   void handle_next_command();
   void check_cached_commands();
   template <class View>

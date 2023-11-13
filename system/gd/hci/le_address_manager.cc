@@ -77,6 +77,7 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
       handler_->BindOnceOn(this, &LeAddressManager::resume_registered_clients).Invoke();
       break;
     case AddressPolicy::USE_STATIC_ADDRESS: {
+      if (fixed_address.GetAddress().IsEmpty()) fixed_address = NewRandomStaticAddress();
       auto addr = fixed_address.GetAddress();
       auto address = addr.address;
       // The two most significant bits of the static address shall be equal to 1
@@ -88,6 +89,7 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
            address[5] == 0xFF)) {
         LOG_ALWAYS_FATAL("Bits of the random part of the address shall not be all 1 or all 0");
       }
+      // Update static address directly, no need to set cached_address_.
       le_address_ = fixed_address;
       auto packet = hci::LeSetRandomAddressBuilder::Create(le_address_.GetAddress());
       handler_->Post(common::BindOnce(enqueue_command_, std::move(packet)));
@@ -229,6 +231,12 @@ AddressWithType LeAddressManager::NewResolvableAddress() {
 AddressWithType LeAddressManager::NewNonResolvableAddress() {
   ASSERT(RotatingAddress());
   hci::Address address = generate_nrpa();
+  auto random_address = AddressWithType(address, AddressType::RANDOM_DEVICE_ADDRESS);
+  return random_address;
+}
+
+AddressWithType LeAddressManager::NewRandomStaticAddress() {
+  hci::Address address = generate_rsa();
   auto random_address = AddressWithType(address, AddressType::RANDOM_DEVICE_ADDRESS);
   return random_address;
 }
@@ -404,6 +412,30 @@ hci::Address LeAddressManager::generate_nrpa() {
        random[5] == 0x00) ||
       (random[0] == 0xFF && random[1] == 0xFF && random[2] == 0xFF && random[3] == 0xFF && random[4] == 0xFF &&
        random[5] == 0x3F)) {
+    random[0] = (uint8_t)(os::GenerateRandom() % 0xFE + 1);
+  }
+
+  hci::Address address;
+  address.FromOctets(random.data());
+
+  // the address shall not be equal to the public address
+  while (address == public_address_) {
+    address.address[0] = (uint8_t)(os::GenerateRandom() % 0xFE + 1);
+  }
+
+  return address;
+}
+
+// This function generates Random Static Address (RSA)
+hci::Address LeAddressManager::generate_rsa() {
+  // The two most significant bits of the address shall be equal to 1
+  // Bits of the random part of the address shall not be all 1 or all 0
+  std::array<uint8_t, 6> random = os::GenerateRandom<6>();
+  random[5] |= BLE_ADDR_MASK;
+  if ((random[0] == 0x00 && random[1] == 0x00 && random[2] == 0x00 && random[3] == 0x00 &&
+       random[4] == 0x00 && random[5] == 0xc0) ||
+      (random[0] == 0xFF && random[1] == 0xFF && random[2] == 0xFF && random[3] == 0xFF &&
+       random[4] == 0xFF && random[5] == 0xFF)) {
     random[0] = (uint8_t)(os::GenerateRandom() % 0xFE + 1);
   }
 
