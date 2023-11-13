@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "924b1c28_f3eb8a70",
+        "filename": "framework/tests/bumble/AndroidManifest.xml",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "Apparently now.\n\nCool, I didn\u0027t know that.",
+      "parentUuid": "89985c14_7602a31e",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 72
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be1a9117_de6b415d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-13T18:54:22Z",
       "side": 1,
       "message": "nit:\n```suggestion\n            \"android.bluetooth.test.ACTION_DYNAMIC_RECEIVER_SCAN_RESULT\";\n```",
+      "range": {
+        "startLine": 76,
+        "startChar": 13,
+        "endLine": 76,
+        "endChar": 66
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2dad6c02_3c7855a5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be1a9117_de6b415d",
       "range": {
         "startLine": 76,
         "startChar": 13,
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "679219e2_2543de5f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "neat",
+      "parentUuid": "6564edcc_d2807444",
+      "range": {
+        "startLine": 119,
+        "startChar": 29,
+        "endLine": 119,
+        "endChar": 40
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "177332f4_c1ad31c4",
@@ -106,6 +178,30 @@
       "writtenOn": "2023-11-13T18:54:22Z",
       "side": 1,
       "message": "Use `IntentMatchers` like in [PairingTest](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/tests/bumble/src/android/bluetooth/PairingTest.java;l\u003d152-155;drc\u003df0a9f31f150e5222c1970ee3cd882a0b6504bacd)",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 122,
+        "endChar": 94
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c880aa23_8b890060",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "I tried to do this initially, but IntentMatchers does not support complex parceled types, so I had to define my own matcher and it turned into a mess (compared to this solution).",
+      "parentUuid": "177332f4_c1ad31c4",
       "range": {
         "startLine": 121,
         "startChar": 0,
@@ -139,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5fac7c7d_66cfb843",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9d69635_4b3a1ecd",
+      "range": {
+        "startLine": 133,
+        "startChar": 0,
+        "endLine": 135,
+        "endChar": 72
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1b81a78c_356c176b",
@@ -152,6 +272,30 @@
       "writtenOn": "2023-11-13T18:54:22Z",
       "side": 1,
       "message": "`assertThat(results).isNotEmpty();` will verify that `results` is not null, you can remove the `isNotNull` here\n\n```suggestion\n        assertThat(results).isNotEmpty();\n```",
+      "range": {
+        "startLine": 136,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 41
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce942fb6_4128c88e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b81a78c_356c176b",
       "range": {
         "startLine": 136,
         "startChar": 0,
@@ -185,6 +329,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaae4a83_d3770e25",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bc839c72_84023b62",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 140,
+        "endChar": 68
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "051893a5_1b86f0b5",
@@ -208,6 +376,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "548253b2_358e8307",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PendingIntentScanReceiver.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "051893a5_1b86f0b5",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 91
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "03f7d057_fdc9e76e",
@@ -221,6 +413,30 @@
       "writtenOn": "2023-11-13T18:54:22Z",
       "side": 1,
       "message": "Do we need that branch? I would prefer for this method to throw an exception in this case.",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 9
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e6cf661_80571312",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PendingIntentScanReceiver.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "03f7d057_fdc9e76e",
       "range": {
         "startLine": 76,
         "startChar": 0,
@@ -277,6 +493,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca7847c9_ef771ec7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PendingIntentScanReceiver.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "I have not observed other intents arriving here, but I want to verify that the correct action is received as part of the test. I\u0027ve changed it to throw an exception so we can detect it in the test.",
+      "parentUuid": "762c481d_7db8ac69",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 9
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fcdca71c_05e2ae78",
@@ -300,6 +540,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "490dea4d_7599c6ed",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PendingIntentScanReceiver.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "I\u0027ve changed this to throw an exception so we can detect such a bug that causes an error code.",
+      "parentUuid": "fcdca71c_05e2ae78",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 9
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f39e8000_7b793671",
@@ -313,6 +577,30 @@
       "writtenOn": "2023-11-13T18:54:22Z",
       "side": 1,
       "message": "Can we add an else branch that throws an IllegalStateException? (Or just remove the check to `isPresent` as `get` will throw an exception)",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 9
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c87ebe37_8395271e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PendingIntentScanReceiver.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-13T20:41:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f39e8000_7b793671",
       "range": {
         "startLine": 107,
         "startChar": 0,
