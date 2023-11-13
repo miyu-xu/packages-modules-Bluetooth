@@ -47,6 +47,29 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42962804_190304eb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-13T20:22:39Z",
+      "side": 1,
+      "message": "Nice comment - thanks for noting this here!",
+      "range": {
+        "startLine": 113,
+        "startChar": 11,
+        "endLine": 113,
+        "endChar": 15
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6564edcc_d2807444",
@@ -203,6 +226,29 @@
         "startChar": 0,
         "endLine": 78,
         "endChar": 9
+      },
+      "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c03bb89b_a14dd0bb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PendingIntentScanReceiver.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-13T20:22:39Z",
+      "side": 1,
+      "message": "nit: Log.d seems more reasonable here",
+      "range": {
+        "startLine": 90,
+        "startChar": 12,
+        "endLine": 90,
+        "endChar": 13
       },
       "revId": "d564b606ec5eee066fe6be0b3edb973c46d0d587",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
