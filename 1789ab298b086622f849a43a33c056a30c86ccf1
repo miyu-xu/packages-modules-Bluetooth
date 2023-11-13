@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5a4eb444_b0f848f2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-13T09:19:56Z",
+      "side": 1,
+      "message": "Fixed!",
+      "parentUuid": "88837687_2a68ce57",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 6
+      },
+      "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f1958135_eea26346",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -78,6 +102,30 @@
       "side": 1,
       "message": "Good catch.\nYes this should be a TestLooper",
       "parentUuid": "2366d10d_ae206221",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 23
+      },
+      "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "529983fa_5a8e10b3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-13T09:19:56Z",
+      "side": 1,
+      "message": "Yes I was planning on writing a new test using the TestLooper in a follow up CL. For the existing tests, I was planning on keeping the original Looper since changing all of them to using a TestLooper seemed too much. \n\nOr is there a simple way to use the TestLooper like a normal Looper and just use custom dispatching when needed? (I tried to find it but couldn\u0027t yet :( )",
+      "parentUuid": "9ff44068_2797b2e5",
       "range": {
         "startLine": 190,
         "startChar": 0,
