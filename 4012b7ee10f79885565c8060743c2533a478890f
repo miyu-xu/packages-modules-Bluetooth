@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6eb34caa_19be96cb",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1359,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-13T20:05:23Z",
+      "side": 1,
+      "message": "Is there a reason why  we are calling `bta_ag_send_ok` after `bta_ag_swb_handle_vs_at_events`, but in the next case below the order is reversed.\n\nAlso we are doing the exact same thing in both cases... is it intended ? \nIf yes, what do you think about rewriting it as follow:\n```\n    case BTA_AG_AT_QAC_EVT:\n    case BTA_AG_AT_QCS_EVT:\n    \n    // stuff\n    \n    break\n```",
+      "range": {
+        "startLine": 1359,
+        "startChar": 8,
+        "endLine": 1359,
+        "endChar": 22
+      },
+      "revId": "4012b7ee10f79885565c8060743c2533a478890f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f69c06f_a2c78e6a",
         "filename": "system/btif/src/btif_hf.cc",
         "patchSetId": 25
