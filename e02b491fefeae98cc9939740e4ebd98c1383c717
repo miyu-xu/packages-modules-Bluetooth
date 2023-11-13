@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4e5a234_4399b892",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 3724,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-13T21:58:54Z",
+      "side": 1,
+      "message": "🎉\n\nDo you know about [fast inverse square root](https://en.wikipedia.org/wiki/Fast_inverse_square_root#Overview_of_the_code) ? 😊",
+      "range": {
+        "startLine": 3724,
+        "startChar": 32,
+        "endLine": 3724,
+        "endChar": 52
+      },
+      "revId": "e02b491fefeae98cc9939740e4ebd98c1383c717",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
