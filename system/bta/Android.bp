@@ -211,7 +211,6 @@ cc_library_static {
     min_sdk_version: "Tiramisu",
 }
 
-// bta unit tests for target
 cc_test {
     name: "net_test_bta",
     defaults: [
@@ -228,6 +227,7 @@ cc_test {
         ":TestCommonSyncMainHandler",
         ":TestFakeOsi",
         ":TestMockBtif",
+        ":TestMockDevice",
         ":TestMockMainShim",
         ":TestMockStackAcl",
         ":TestMockStackBtm",
@@ -236,6 +236,7 @@ cc_test {
         ":TestMockStackL2cap",
         ":TestMockStackMetrics",
         ":TestMockStackRfcomm",
+        "test/bta_ag_sco_test.cc",
         "test/bta_dip_test.cc",
         "test/bta_disc_test.cc",
         "test/bta_dm_cust_uuid_test.cc",
@@ -249,6 +250,7 @@ cc_test {
         "android.hardware.bluetooth.audio@2.0",
         "android.hardware.bluetooth.audio@2.1",
         "libcrypto",
+        "libcutils",
         "liblog",
     ],
     static_libs: [
