@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27d0d5ac_f082aba9",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-13T21:08:32Z",
+      "side": 1,
+      "message": "nit: remove or update?",
+      "range": {
+        "startLine": 214,
+        "startChar": 22,
+        "endLine": 214,
+        "endChar": 28
+      },
+      "revId": "c977a2e00d46a3a990e73688081b32c60376ba59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
