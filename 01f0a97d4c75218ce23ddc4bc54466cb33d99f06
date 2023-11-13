@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a4dd824_8a8bf39a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-13T18:54:22Z",
+      "side": 0,
+      "message": "The underscore here is a Google java unit testing convention http://go/unit-testing-practices#naming, could we keep it?",
+      "range": {
+        "startLine": 59,
+        "startChar": 16,
+        "endLine": 59,
+        "endChar": 55
+      },
+      "revId": "01f0a97d4c75218ce23ddc4bc54466cb33d99f06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
