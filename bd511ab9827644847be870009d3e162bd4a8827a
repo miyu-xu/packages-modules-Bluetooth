@@ -3,6 +3,75 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f45a932_d4f65ecc",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStackEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-13T10:25:20Z",
+      "side": 1,
+      "message": "Is this going to be sent when we switch from one streaming group to another group?",
+      "range": {
+        "startLine": 66,
+        "startChar": 21,
+        "endLine": 66,
+        "endChar": 48
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee3bf084_179e8d94",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-13T10:25:20Z",
+      "side": 1,
+      "message": "What does the name `group_change_requested` mean? How is the group changing?",
+      "range": {
+        "startLine": 234,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 31
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4a78feb_b2a2bef2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-13T10:25:20Z",
+      "side": 1,
+      "message": "If this is can be called at any time, shouldn\u0027t you check here whether you should stop the session when `sink_hal_listening_mode` argument is `false` and there is no active unicast group)?",
+      "range": {
+        "startLine": 1015,
+        "startChar": 4,
+        "endLine": 1015,
+        "endChar": 55
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "79bc48eb_b1aa786b",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
@@ -92,6 +161,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9adcd5b8_e0bc3753",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4070,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-13T10:25:20Z",
+      "side": 1,
+      "message": "Is this suppose to work only with scenarios where the remote microphone is activated (e.g CALL scenario) but not on MEDIA streaming? If so, could elaborate why?",
+      "range": {
+        "startLine": 4069,
+        "startChar": 10,
+        "endLine": 4070,
+        "endChar": 65
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db944e62_543ebf01",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
@@ -157,6 +249,29 @@
       "side": 1,
       "message": "No, I mean that could be a good idea to also flag it here - I think it would be consistent across places.",
       "parentUuid": "085428cd_6fa6944d",
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b50ee81c_a9046805",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4120,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-13T10:25:20Z",
+      "side": 1,
+      "message": "It seems confusing when there\u0027s no active unicast group but the unicast client still gets Resume requests. If there\u0027s abroadcast or more abstract concept like hal listening mode context to this, then this at least needs an explanation comment or putting this logic inside the properly named function. Otherwise this piece of code is confusing.",
+      "range": {
+        "startLine": 4120,
+        "startChar": 5,
+        "endLine": 4120,
+        "endChar": 63
+      },
       "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
