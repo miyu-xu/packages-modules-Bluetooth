@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c44c754a_25e0b474",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2029,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-13T01:42:34Z",
+      "side": 1,
+      "message": "Should it be a map instead ? Like this (pseudo code):\n\n```\nprivate static final HashMap\u003cStrings, Consumer\u003cDevice\u003e\u003e atMap \u003d Map.ofEntries(\n  entry(BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_CGMI, processAtCgmi),\n  entry(BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_CGMM, processAtCgmm),\n  entry(BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_CGMR, processAtCgmr),\n  entry(BluetoothHeadset.VENDOR_SPECIFIC_HEADSET_EVENT_CGSN, processAtCgsn),\n  );\n\nConsumer\u003cDevice\u003e atConsumer \u003d atMap.get(atString);\nif (atConsumer !\u003d null) {\n  atConsumer.apply(device);\n  mNativeInterface.atResponseCode(device, HeadsetHalConstants.AT_RESPONSE_OK, 0);\n  return;\n}\n```\nadvantage:\n* one definition of atstring and it\u0027s consumer\n* no multiple ifs\n* no code execution in 2 places (one in the switch and one in the `if !miss`\n* compact code",
+      "parentUuid": "cf991d2e_22f04316",
+      "range": {
+        "startLine": 2013,
+        "startChar": 8,
+        "endLine": 2029,
+        "endChar": 9
+      },
+      "revId": "b53014664ad75410c44b104aedefb4a63cdcdb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75fd1393_7d654da6",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 4
