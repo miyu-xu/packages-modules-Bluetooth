@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6fed0547_69b84ed8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-13T10:15:21Z",
+      "side": 1,
+      "message": "Unifying all references of GATT_MAX_ATTR_LEN to the one added in aosp/2811833.",
+      "revId": "549742d4148e027379cc6373022e8f5e23d51a96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
