@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b1d91aa_654ad759",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-13T19:22:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39369608_1a5de12c",
+      "range": {
+        "startLine": 98,
+        "startChar": 0,
+        "endLine": 98,
+        "endChar": 40
+      },
+      "revId": "728a8df12a630f2d23aeea33c4206b58fb4bccaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cda591c1_f3ddb77b",
@@ -72,6 +96,24 @@
       "writtenOn": "2023-11-13T18:57:15Z",
       "side": 1,
       "message": "nit: \n```suggestion\n        leScanner.startScan(List.of(scanFilter), scanSettings, scanCallback);\n```",
+      "revId": "728a8df12a630f2d23aeea33c4206b58fb4bccaf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb5be5de_7c9ae5e5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-13T19:22:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cda591c1_f3ddb77b",
       "revId": "728a8df12a630f2d23aeea33c4206b58fb4bccaf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
