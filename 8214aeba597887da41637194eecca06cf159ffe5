@@ -39,6 +39,40 @@
       "message": "Thank you for adding the feature flag for this. lgtm.",
       "revId": "8214aeba597887da41637194eecca06cf159ffe5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24f10c22_a15c619f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-13T10:33:48Z",
+      "side": 1,
+      "message": "I have feeling that",
+      "revId": "8214aeba597887da41637194eecca06cf159ffe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1189224_87e7a913",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-13T10:33:48Z",
+      "side": 1,
+      "message": "why \"listen mode\" should end up with some action like \"CHANGE_REQUEST\" ?\n\nMaybe new JNI callback is needed to notify JAVA about session Resume/Suspend actions instead? (despite the fact why it is needed)",
+      "revId": "8214aeba597887da41637194eecca06cf159ffe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
