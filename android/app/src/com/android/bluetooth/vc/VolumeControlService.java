@@ -85,6 +85,8 @@ public class VolumeControlService extends ProfileService {
     private Handler mHandler = null;
     private FeatureFlags mFeatureFlags;
 
+    private final boolean mLeaudioBroadcastVolumeControlForConnectedDevices;
+
     @VisibleForTesting
     RemoteCallbackList<IBluetoothVolumeControlCallback> mCallbacks;
 
@@ -225,12 +227,20 @@ public class VolumeControlService extends ProfileService {
 
     VolumeControlService() {
         mFeatureFlags = new FeatureFlagsImpl();
+        // Caching is necessary to prevent caller requiring the READ_DEVICE_CONFIG permission
+        mLeaudioBroadcastVolumeControlForConnectedDevices =
+                mFeatureFlags.leaudioBroadcastVolumeControlForConnectedDevices();
+
     }
 
     @VisibleForTesting
     VolumeControlService(Context ctx, FeatureFlags featureFlags) {
         attachBaseContext(ctx);
         mFeatureFlags = featureFlags;
+        // Caching is necessary to prevent caller requiring the READ_DEVICE_CONFIG permission
+        mLeaudioBroadcastVolumeControlForConnectedDevices =
+                mFeatureFlags.leaudioBroadcastVolumeControlForConnectedDevices();
+
         onCreate();
     }
 
@@ -630,7 +640,7 @@ public class VolumeControlService extends ProfileService {
     }
 
     void setDeviceVolume(BluetoothDevice device, int volume, boolean isGroupOp) {
-        if (!mFeatureFlags.leaudioBroadcastVolumeControlForConnectedDevices()) {
+        if (!mLeaudioBroadcastVolumeControlForConnectedDevices) {
             return;
         }
         if (DBG) {
@@ -831,7 +841,7 @@ public class VolumeControlService extends ProfileService {
                 }
             }
             // notify volume level for all vc devices
-            if (mFeatureFlags.leaudioBroadcastVolumeControlForConnectedDevices()) {
+            if (mLeaudioBroadcastVolumeControlForConnectedDevices) {
                 notifyDevicesVolumeChanged(getDevices(), Optional.empty());
             }
         }
@@ -906,7 +916,7 @@ public class VolumeControlService extends ProfileService {
         mGroupVolumeCache.put(groupId, volume);
         mGroupMuteCache.put(groupId, mute);
 
-        if (mFeatureFlags.leaudioBroadcastVolumeControlForConnectedDevices()) {
+        if (mLeaudioBroadcastVolumeControlForConnectedDevices) {
             LeAudioService leAudioService = mFactory.getLeAudioService();
             if (leAudioService != null) {
                 int currentlyActiveGroupId = leAudioService.getActiveGroupId();
@@ -958,7 +968,7 @@ public class VolumeControlService extends ProfileService {
         int groupVolume = getGroupVolume(groupId);
         Boolean groupMute = getGroupMute(groupId);
 
-        if (mFeatureFlags.leaudioBroadcastVolumeControlForConnectedDevices()) {
+        if (mLeaudioBroadcastVolumeControlForConnectedDevices) {
             Log.i(TAG, "handleVolumeControlChanged: " + device + "; volume: " + volume);
             if (device == null) {
                 // notify group devices volume changed
