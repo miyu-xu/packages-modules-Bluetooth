@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c17fc7b3_d428f1c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-14T20:44:06Z",
+      "side": 1,
+      "message": "Thanks for adding this coverage! I wonder if we can work with the root canal folks to get support added for these scan types sooner instead so we can add some coverage for the feature types. \n\nCan we check with henrichataing@ about the missing support?",
+      "revId": "f4832b85e3cdd07ed4980940205f13b531ba8e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
