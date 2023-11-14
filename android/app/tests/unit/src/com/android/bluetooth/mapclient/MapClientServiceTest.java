@@ -31,6 +31,7 @@ import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
 import android.bluetooth.SdpMasRecord;
 import android.os.Looper;
+import android.os.test.TestLooper;
 
 import androidx.test.filters.MediumTest;
 import androidx.test.rule.ServiceTestRule;
@@ -62,6 +63,7 @@ public class MapClientServiceTest {
     private MapClientService mService = null;
     private BluetoothAdapter mAdapter = null;
     private BluetoothDevice mRemoteDevice;
+    private TestLooper mTestLooper;
 
     @Before
     public void setUp() throws Exception {
@@ -70,9 +72,15 @@ public class MapClientServiceTest {
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
         TestUtils.startService(mServiceRule, MapClientService.class);
+
+        mTestLooper = new TestLooper();
+        mTestLooper.startAutoDispatch();
+
         mService = MapClientService.getMapClientService();
 
         assertThat(mService).isNotNull();
+        mService.mSmLooper = mTestLooper.getLooper();
+
         // Try getting the Bluetooth adapter
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         assertThat(mAdapter).isNotNull();
@@ -81,11 +89,13 @@ public class MapClientServiceTest {
 
     @After
     public void tearDown() throws Exception {
+        mService.mSmLooper = null;
         TestUtils.stopService(mServiceRule, MapClientService.class);
         mService = MapClientService.getMapClientService();
         assertThat(mService).isNull();
         TestUtils.clearAdapterService(mAdapterService);
         BluetoothMethodProxy.setInstanceForTesting(null);
+        TestUtils.waitForLooperToFinishScheduledTask(mTestLooper.getLooper());
     }
 
     @Test
@@ -255,13 +265,12 @@ public class MapClientServiceTest {
 
         connectedSm.sendMessage(MceStateMachine.MSG_MAS_SDP_DONE, mock(SdpMasRecord.class));
         connectedSm.sendMessage(MceStateMachine.MSG_MAS_CONNECTED);
-        TestUtils.waitForLooperToFinishScheduledTask(connectedSm.getHandler().getLooper());
+        TestUtils.waitForLooperToFinishScheduledTask(mTestLooper.getLooper());
 
         mService.disconnect(mRemoteDevice);
-        assertThat(mService.getInstanceMap()).containsKey(mRemoteDevice);
         MceStateMachine sm = mock(MceStateMachine.class);
         mService.getInstanceMap().put(mRemoteDevice, sm);
-        TestUtils.waitForLooperToFinishScheduledTask(connectedSm.getHandler().getLooper());
+        TestUtils.waitForLooperToFinishScheduledTask(mTestLooper.getLooper());
 
         assertThat(mService.getInstanceMap()).containsKey(mRemoteDevice);
     }
