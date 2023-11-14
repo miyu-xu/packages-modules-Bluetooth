@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "20ed9e39_08b2d3ed",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-14T17:46:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "51b57788_d7189513",
+      "range": {
+        "startLine": 876,
+        "startChar": 50,
+        "endLine": 876,
+        "endChar": 70
+      },
+      "revId": "59b57e0cb8a024b66fe88cccd72510a11ce03332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5b33b61d_3b4de9bd",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f12a0fd2_f0e1f164",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-14T17:46:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5b33b61d_3b4de9bd",
+      "range": {
+        "startLine": 887,
+        "startChar": 22,
+        "endLine": 887,
+        "endChar": 60
+      },
+      "revId": "59b57e0cb8a024b66fe88cccd72510a11ce03332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f0224dfd_1b9c3b48",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-14T00:58:41Z",
       "side": 1,
       "message": "\u003d seq_nb",
+      "range": {
+        "startLine": 892,
+        "startChar": 28,
+        "endLine": 892,
+        "endChar": 43
+      },
+      "revId": "59b57e0cb8a024b66fe88cccd72510a11ce03332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b19335a_a263098d",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-14T17:46:21Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f0224dfd_1b9c3b48",
       "range": {
         "startLine": 892,
         "startChar": 28,
