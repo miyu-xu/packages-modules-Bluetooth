@@ -23,15 +23,16 @@
  ******************************************************************************/
 
 #include <algorithm>
+#include <cstdint>
 
-#include "crypto_toolbox/aes.h"
-#include "crypto_toolbox/crypto_toolbox.h"
+#include "aes.h"
+#include "crypto_toolbox.h"
 #include "hci/octets.h"
 
-namespace bluetooth {
+using bluetooth::hci::kOctet16Length;
+using bluetooth::hci::Octet16;
+
 namespace crypto_toolbox {
-using hci::kOctet16Length;
-using hci::Octet16;
 
 namespace {
 
@@ -44,13 +45,13 @@ typedef struct {
 thread_local tCMAC_CB cmac_cb;
 
 /* Rb for AES-128 as block cipher, LSB as [0] */
-Octet16 const_Rb{0x87, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+Octet16 const_Rb{
+    0x87, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
 /** utility function to do an biteise exclusive-OR of two bit strings of the
  * length of kOctet16Length. Result is stored in first argument.
  */
 static void xor_128(Octet16* a, const Octet16& b) {
-  // CHECK(a);
   uint8_t i, *aa = a->data();
   const uint8_t* bb = b.data();
 
@@ -108,7 +109,7 @@ static Octet16 cmac_aes_k_calculate(const Octet16& key) {
     /* Mi' := Mi (+) X  */
     xor_128((Octet16*)&cmac_cb.text[(cmac_cb.round - i) * kOctet16Length], x);
 
-    output = aes_128(key, &cmac_cb.text[(cmac_cb.round - i) * kOctet16Length], kOctet16Length);
+    output = aes_128(key, *(Octet16*)&cmac_cb.text[(cmac_cb.round - i) * kOctet16Length]);
     x = output;
     i++;
   }
@@ -141,7 +142,7 @@ static void cmac_prepare_last_block(const Octet16& k1, const Octet16& k2) {
  */
 static void cmac_generate_subkey(const Octet16& key) {
   Octet16 zero{};
-  Octet16 p = aes_128(key, zero.data(), kOctet16Length);
+  Octet16 p = aes_128(key, zero);
 
   Octet16 k1, k2;
   uint8_t* pp = p.data();
@@ -180,6 +181,8 @@ Octet16 aes_cmac(const Octet16& key, const uint8_t* input, uint16_t length) {
   if (n == 0) n = 1;
   len = n * kOctet16Length;
 
+  // VLOG(1) << "AES128_CMAC started, allocate buffer size=" << len;
+
   /* allocate a memory space of multiple of 16 bytes to hold text  */
   cmac_cb.text = (uint8_t*)alloca(len);
   cmac_cb.round = n;
@@ -205,4 +208,3 @@ Octet16 aes_cmac(const Octet16& key, const uint8_t* input, uint16_t length) {
 }
 
 }  // namespace crypto_toolbox
-}  // namespace bluetooth
