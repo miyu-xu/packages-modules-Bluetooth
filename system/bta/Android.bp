@@ -402,7 +402,6 @@ cc_test {
         ":TestMockStackAvdt",
         ":TestMockStackAvrc",
         ":TestMockStackBtm",
-        ":TestMockStackCryptotoolbox",
         ":TestMockStackGap",
         ":TestMockStackGatt",
         ":TestMockStackHid",
