@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d38d58d6_84f8c37a",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1001986
+      },
+      "writtenOn": "2023-11-14T22:18:10Z",
+      "side": 1,
+      "message": "Any suggestions on how to automate testing this? Have confirmed via manual test toggling bluetooth off/on.",
+      "revId": "3921e04baca0cd20f4f2e27b9890f7fcfd572c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
