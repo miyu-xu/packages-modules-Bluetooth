@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5523dc02_4be75d2a",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T23:56:59Z",
+      "side": 1,
+      "message": "high-level comment:\n\nI\u0027d like the flags to be more granular, so when we delete them it\u0027s easy to see that we did it right.\n\nMaybe:\n  if (divide_gap_flag) {\n    new_code(params);\n  } else {\n    old_code(params);\n  }",
+      "range": {
+        "startLine": 1045,
+        "startChar": 18,
+        "endLine": 1045,
+        "endChar": 33
+      },
+      "revId": "023379e8f1aed2164b78a65210e264a32add155a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
