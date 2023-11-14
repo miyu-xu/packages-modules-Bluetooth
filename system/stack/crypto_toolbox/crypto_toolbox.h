@@ -21,6 +21,11 @@
 
 namespace crypto_toolbox {
 
+Octet16 c1(const Octet16& k, const Octet16& r, const uint8_t* pres,
+           const uint8_t* preq, const uint8_t iat, const uint8_t* ia,
+           const uint8_t rat, const uint8_t* ra);
+Octet16 s1(const Octet16& k, const Octet16& r1, const Octet16& r2);
+
 Octet16 aes_128(const Octet16& key, const Octet16& message);
 Octet16 aes_cmac(const Octet16& key, const uint8_t* message, uint16_t length);
 Octet16 f4(const uint8_t* u, const uint8_t* v, const Octet16& x, uint8_t z);

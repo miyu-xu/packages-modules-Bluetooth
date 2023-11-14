@@ -23,10 +23,10 @@
 #include <utility>
 
 #include "common/interfaces/ILoggable.h"
-#include "crypto_toolbox/crypto_toolbox.h"
 #include "hci/address.h"
 #include "hci/hci_packets.h"
 #include "hci/octets.h"
+#include "stack/crypto_toolbox/crypto_toolbox.h"
 
 namespace bluetooth {
 namespace hci {
@@ -56,12 +56,12 @@ class AddressWithType final : public bluetooth::common::IRedactableLoggable {
     if (!IsRpa()) return false;
 
     /* use the 3 MSB of bd address as prand */
-    uint8_t prand[3];
+    Octet16 prand{};
     prand[0] = address_.address[3];
     prand[1] = address_.address[4];
     prand[2] = address_.address[5];
     /* generate X = E irk(R0, R1, R2) and R is random address 3 LSO */
-    hci::Octet16 computed_hash = crypto_toolbox::aes_128(irk, &prand[0], 3);
+    hci::Octet16 computed_hash = crypto_toolbox::aes_128(irk, prand);
     uint8_t hash[3];
     hash[0] = address_.address[0];
     hash[1] = address_.address[1];

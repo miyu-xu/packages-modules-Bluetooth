@@ -21,6 +21,7 @@
 #include "hci/octets.h"
 #include "os/rand.h"
 #include "security/pairing_handler_le.h"
+#include "stack/crypto_toolbox/crypto_toolbox.h"
 
 using bluetooth::os::GenerateRandom;
 
