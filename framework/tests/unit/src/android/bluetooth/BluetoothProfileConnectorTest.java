@@ -98,17 +98,16 @@ public class BluetoothProfileConnectorTest {
     }
 
     private BluetoothProfileConnector createBluetoothProfileConnector(
-            BluetoothProfile profile, FakeBluetoothManager bluetoothManager) {
+            FakeBluetoothManager bluetoothManager) {
         return new BluetoothProfileConnector(
-                bluetoothManager.getLooper(), profile, BluetoothProfile.HEADSET, bluetoothManager);
+                bluetoothManager.getLooper(), null, BluetoothProfile.HEADSET, bluetoothManager);
     }
 
     @Test
     public void bind_registerServiceConnection() throws RemoteException {
         TestLooper looper = new TestLooper();
         FakeBluetoothManager bluetoothManager = new FakeBluetoothManager(looper.getLooper());
-        BluetoothProfileConnector connector =
-                createBluetoothProfileConnector(null, bluetoothManager);
+        BluetoothProfileConnector connector = createBluetoothProfileConnector(bluetoothManager);
         BluetoothProfile.ServiceListener listener = mock(BluetoothProfile.ServiceListener.class);
 
         connector.connect("test.package", listener);
@@ -123,25 +122,20 @@ public class BluetoothProfileConnectorTest {
     public void unbind_unregisterServiceConnection() throws RemoteException {
         TestLooper looper = new TestLooper();
         FakeBluetoothManager bluetoothManager = new FakeBluetoothManager(looper.getLooper());
-        BluetoothProfile profile = mock(BluetoothProfile.class);
-        BluetoothProfileConnector connector =
-                createBluetoothProfileConnector(profile, bluetoothManager);
+        BluetoothProfileConnector connector = createBluetoothProfileConnector(bluetoothManager);
         ComponentName componentName = new ComponentName("pkg", "cls");
         BluetoothProfile.ServiceListener listener = mock(BluetoothProfile.ServiceListener.class);
 
         connector.connect("test.package", listener);
         bluetoothManager.mStateChangeCallback.onBluetoothStateChange(true);
         bluetoothManager.mServiceConnection.onServiceConnected(componentName, new Binder());
-        looper.dispatchAll();
         bluetoothManager.mServiceConnection.onServiceDisconnected(componentName);
         bluetoothManager.mStateChangeCallback.onBluetoothStateChange(false);
         looper.dispatchAll();
 
         assertThat(bluetoothManager.mServiceConnection).isNull();
-        InOrder order = inOrder(listener, profile);
-        order.verify(profile).onServiceConnected(any());
+        InOrder order = inOrder(listener);
         order.verify(listener).onServiceConnected(anyInt(), any());
-        order.verify(profile).onServiceDisconnected();
         order.verify(listener).onServiceDisconnected(anyInt());
         verifyNoMoreInteractions(listener);
     }
@@ -150,9 +144,7 @@ public class BluetoothProfileConnectorTest {
     public void upThenDown_unregisterServiceConnection() throws RemoteException {
         TestLooper looper = new TestLooper();
         FakeBluetoothManager bluetoothManager = new FakeBluetoothManager(looper.getLooper());
-        BluetoothProfile profile = mock(BluetoothProfile.class);
-        BluetoothProfileConnector connector =
-                createBluetoothProfileConnector(profile, bluetoothManager);
+        BluetoothProfileConnector connector = createBluetoothProfileConnector(bluetoothManager);
         BluetoothProfile.ServiceListener listener = mock(BluetoothProfile.ServiceListener.class);
 
         connector.connect("test.package", listener);
@@ -168,8 +160,7 @@ public class BluetoothProfileConnectorTest {
     public void disconnectAfterConnect_unregisterCallbacks() {
         TestLooper looper = new TestLooper();
         FakeBluetoothManager bluetoothManager = new FakeBluetoothManager(looper.getLooper());
-        BluetoothProfileConnector connector =
-                createBluetoothProfileConnector(null, bluetoothManager);
+        BluetoothProfileConnector connector = createBluetoothProfileConnector(bluetoothManager);
         BluetoothProfile.ServiceListener listener = mock(BluetoothProfile.ServiceListener.class);
 
         connector.connect("test.package", listener);
@@ -188,23 +179,19 @@ public class BluetoothProfileConnectorTest {
     public void disconnectAfterBind_unregisterCallbacks() throws RemoteException {
         TestLooper looper = new TestLooper();
         FakeBluetoothManager bluetoothManager = new FakeBluetoothManager(looper.getLooper());
-        BluetoothProfile profile = mock(BluetoothProfile.class);
-        BluetoothProfileConnector connector =
-                createBluetoothProfileConnector(profile, bluetoothManager);
+        BluetoothProfileConnector connector = createBluetoothProfileConnector(bluetoothManager);
         BluetoothProfile.ServiceListener listener = mock(BluetoothProfile.ServiceListener.class);
 
         connector.connect("test.package", listener);
         bluetoothManager.mStateChangeCallback.onBluetoothStateChange(true);
-        looper.dispatchAll();
         connector.disconnect();
         looper.dispatchAll();
 
         assertThat(bluetoothManager.mServiceConnection).isNull();
         assertThat(bluetoothManager.mStateChangeCallback).isNull();
-        InOrder order = inOrder(listener, profile);
+        InOrder order = inOrder(listener);
         // TODO(b/309635805): This should not be here
         order.verify(listener).onServiceDisconnected(anyInt());
-        order.verify(profile).onServiceDisconnected();
         verifyNoMoreInteractions(listener);
     }
 
@@ -212,16 +199,13 @@ public class BluetoothProfileConnectorTest {
     public void disconnectAfterUnbind_unregisterCallbacks() throws RemoteException {
         TestLooper looper = new TestLooper();
         FakeBluetoothManager bluetoothManager = new FakeBluetoothManager(looper.getLooper());
-        BluetoothProfile profile = mock(BluetoothProfile.class);
-        BluetoothProfileConnector connector =
-                createBluetoothProfileConnector(profile, bluetoothManager);
+        BluetoothProfileConnector connector = createBluetoothProfileConnector(bluetoothManager);
         ComponentName componentName = new ComponentName("pkg", "cls");
         BluetoothProfile.ServiceListener listener = mock(BluetoothProfile.ServiceListener.class);
 
         connector.connect("test.package", listener);
         bluetoothManager.mStateChangeCallback.onBluetoothStateChange(true);
         bluetoothManager.mServiceConnection.onServiceConnected(componentName, new Binder());
-        looper.dispatchAll();
         bluetoothManager.mServiceConnection.onServiceDisconnected(componentName);
         bluetoothManager.mStateChangeCallback.onBluetoothStateChange(false);
         looper.dispatchAll();
@@ -230,10 +214,8 @@ public class BluetoothProfileConnectorTest {
 
         assertThat(bluetoothManager.mServiceConnection).isNull();
         assertThat(bluetoothManager.mStateChangeCallback).isNull();
-        InOrder order = inOrder(listener, profile);
-        order.verify(profile).onServiceConnected(any());
+        InOrder order = inOrder(listener);
         order.verify(listener).onServiceConnected(anyInt(), any());
-        order.verify(profile).onServiceDisconnected();
         // TODO(b/309635805): Should be only one
         order.verify(listener, times(2)).onServiceDisconnected(anyInt());
         verifyNoMoreInteractions(listener);

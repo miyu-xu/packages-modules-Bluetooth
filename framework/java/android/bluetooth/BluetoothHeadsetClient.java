@@ -32,7 +32,6 @@ import android.content.AttributionSource;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
@@ -730,16 +729,17 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-
-    private IBluetoothHeadsetClient mService;
+    private final BluetoothProfileConnector mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.HEADSET_CLIENT);
 
     /**
      * Create a BluetoothHeadsetClient proxy object.
      */
-    BluetoothHeadsetClient(Context context, BluetoothAdapter adapter) {
+    BluetoothHeadsetClient(Context context, ServiceListener listener,
+            BluetoothAdapter adapter) {
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
-        mService = null;
+        mProfileConnector.connect(context, listener);
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
     }
@@ -754,32 +754,14 @@ public final class BluetoothHeadsetClient implements BluetoothProfile, AutoClose
     @Override
     public void close() {
         if (VDBG) log("close()");
-        mAdapter.closeProfileProxy(this);
+        mProfileConnector.disconnect();
         if (mCloseGuard != null) {
             mCloseGuard.close();
         }
     }
 
-    /** @hide */
-    @Override
-    public void onServiceConnected(IBinder service) {
-        mService = IBluetoothHeadsetClient.Stub.asInterface(service);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {
-        mService = null;
-    }
-
     private IBluetoothHeadsetClient getService() {
-        return mService;
-    }
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return mAdapter;
+        return IBluetoothHeadsetClient.Stub.asInterface(mProfileConnector.getService());
     }
 
     /** @hide */
