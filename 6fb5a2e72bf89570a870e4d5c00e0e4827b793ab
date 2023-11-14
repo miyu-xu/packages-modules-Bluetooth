@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45c3ac78_ad5c18bd",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T16:26:43Z",
+      "side": 1,
+      "message": "I would just add this in the CL that uses it.",
+      "range": {
+        "startLine": 268,
+        "startChar": 0,
+        "endLine": 268,
+        "endChar": 10
+      },
+      "revId": "6fb5a2e72bf89570a870e4d5c00e0e4827b793ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
