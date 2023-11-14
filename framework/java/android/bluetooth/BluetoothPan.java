@@ -35,7 +35,6 @@ import android.content.Context;
 import android.net.TetheringManager.TetheredInterfaceCallback;
 import android.net.TetheringManager.TetheredInterfaceRequest;
 import android.os.Build;
-import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -237,8 +236,8 @@ public final class BluetoothPan implements BluetoothProfile {
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-
-    private IBluetoothPan mService;
+    private final BluetoothProfileConnector mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.PAN);
 
     /**
      * Create a BluetoothPan proxy object for interacting with the local
@@ -247,11 +246,12 @@ public final class BluetoothPan implements BluetoothProfile {
      * @hide
      */
     @UnsupportedAppUsage
-    /* package */ BluetoothPan(Context context, BluetoothAdapter adapter) {
+    /* package */ BluetoothPan(Context context, ServiceListener listener,
+            BluetoothAdapter adapter) {
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
         mContext = context;
-        mService = null;
+        mProfileConnector.connect(context, listener);
     }
 
     /**
@@ -260,31 +260,14 @@ public final class BluetoothPan implements BluetoothProfile {
      * @hide
      */
     @UnsupportedAppUsage
+    @Override
     public void close() {
         if (VDBG) log("close()");
-        mAdapter.closeProfileProxy(this);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceConnected(IBinder service) {
-        mService = IBluetoothPan.Stub.asInterface(service);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {
-        mService = null;
+        mProfileConnector.disconnect();
     }
 
     private IBluetoothPan getService() {
-        return mService;
-    }
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return mAdapter;
+        return IBluetoothPan.Stub.asInterface(mProfileConnector.getService());
     }
 
     /** @hide */

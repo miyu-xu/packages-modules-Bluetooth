@@ -30,7 +30,6 @@ import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SystemApi;
 import android.content.AttributionSource;
 import android.content.Context;
-import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.CloseGuard;
@@ -207,17 +206,18 @@ public final class BluetoothCsipSetCoordinator implements BluetoothProfile, Auto
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-
-    private IBluetoothCsipSetCoordinator mService;
+    private final BluetoothProfileConnector mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.CSIP_SET_COORDINATOR);
 
     /**
      * Create a BluetoothCsipSetCoordinator proxy object for interacting with the local
      * Bluetooth CSIS service.
      */
-    /*package*/ BluetoothCsipSetCoordinator(Context context, BluetoothAdapter adapter) {
+    /*package*/ BluetoothCsipSetCoordinator(Context context, ServiceListener listener,
+            BluetoothAdapter adapter) {
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
-        mService = null;
+        mProfileConnector.connect(context, listener);
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
     }
@@ -235,29 +235,11 @@ public final class BluetoothCsipSetCoordinator implements BluetoothProfile, Auto
     /** @hide */
     @Override
     public void close() {
-        mAdapter.closeProfileProxy(this);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceConnected(IBinder service) {
-        mService = IBluetoothCsipSetCoordinator.Stub.asInterface(service);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {
-        mService = null;
+        mProfileConnector.disconnect();
     }
 
     private IBluetoothCsipSetCoordinator getService() {
-        return mService;
-    }
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return mAdapter;
+        return IBluetoothCsipSetCoordinator.Stub.asInterface(mProfileConnector.getService());
     }
 
     /**
