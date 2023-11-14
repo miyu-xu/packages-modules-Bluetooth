@@ -16,6 +16,24 @@
       "message": "LGTM, we can consider adding it back after we make sure this only enables on compatible devices for better IOP.",
       "revId": "5f4e9535fa0d4db50b11841b8df403aa3fa018cd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef06acf3_4c97d5e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-11-14T09:14:17Z",
+      "side": 1,
+      "message": "Yes, good idea. Noted.",
+      "parentUuid": "defeb1e7_9729a818",
+      "revId": "5f4e9535fa0d4db50b11841b8df403aa3fa018cd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
