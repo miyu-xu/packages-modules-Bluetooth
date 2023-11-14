@@ -48,6 +48,9 @@
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
 
+#include "bta/gatt/bta_gattc_int.h"
+
+
 using namespace bluetooth::legacy::stack::sdp;
 
 using bluetooth::Uuid;
@@ -1369,9 +1372,16 @@ void GATT_StartIf(tGATT_IF gatt_if) {
       p_tcb = gatt_find_tcb_by_addr(bda, transport);
       LOG_INFO("GATT interface %d already has connected device %s", +gatt_if,
                ADDRESS_TO_LOGGABLE_CSTR(bda));
+      // add for fix timing issue the flow before GATTC_Open
+      tBTA_GATTC_CLCB* p_clcb = bta_gattc_find_alloc_clcb(gatt_if, bda, transport);
+      LOG_DEBUG("Starting GATT interface p_clcb:%p", p_clcb);
+      //end
       if (p_reg->app_cb.p_conn_cb && p_tcb) {
         conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, gatt_if);
         LOG_INFO("Invoking callback with connection id %d", conn_id);
+        if (p_clcb) {
+          p_clcb->bta_conn_id = conn_id;
+        }
         (*p_reg->app_cb.p_conn_cb)(gatt_if, bda, conn_id, true, GATT_CONN_OK,
                                    transport);
       } else {
