@@ -31,7 +31,6 @@ import android.annotation.SystemApi;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.content.AttributionSource;
 import android.content.Context;
-import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
@@ -65,6 +64,41 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
     private final Map<Callback, Executor> mCallbackExecutorMap = new HashMap<>();
 
     private CloseGuard mCloseGuard;
+
+    private final class HapClientServiceListener extends ForwardingServiceListener {
+        HapClientServiceListener(ServiceListener listener) {
+            super(listener);
+        }
+
+        @Override
+        public void onServiceConnected(int profile, BluetoothProfile proxy) {
+            try {
+                if (profile == HAP_CLIENT) {
+                    // re-register the service-to-app callback
+                    synchronized (mCallbackExecutorMap) {
+                        if (mCallbackExecutorMap.isEmpty()) {
+                            return;
+                        }
+
+                        try {
+                            final IBluetoothHapClient service = getService();
+                            if (service != null) {
+                                final SynchronousResultReceiver<Integer> recv =
+                                        SynchronousResultReceiver.get();
+                                service.registerCallback(mCallback, mAttributionSource, recv);
+                                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+                            }
+                        } catch (RemoteException | TimeoutException e) {
+                            Log.e(TAG, e.toString() + "\n"
+                                    + Log.getStackTraceString(new Throwable()));
+                        }
+                    }
+                }
+            } finally {
+                super.onServiceConnected(profile, proxy);
+            }
+        }
+    }
 
     /**
      * This class provides callbacks mechanism for the BluetoothHapClient profile.
@@ -471,17 +505,17 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-
-    private IBluetoothHapClient mService;
+    private final BluetoothProfileConnector mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.HAP_CLIENT);
 
     /**
      * Create a BluetoothHapClient proxy object for interacting with the local
      * Bluetooth Hearing Access Profile (HAP) client.
      */
-    /*package*/ BluetoothHapClient(Context context, BluetoothAdapter adapter) {
-        mAdapter = adapter;
+    /*package*/ BluetoothHapClient(Context context, ServiceListener listener) {
+        mAdapter = BluetoothAdapter.getDefaultAdapter();
         mAttributionSource = mAdapter.getAttributionSource();
-        mService = null;
+        mProfileConnector.connect(context, new HapClientServiceListener(listener));
 
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
@@ -502,45 +536,11 @@ public final class BluetoothHapClient implements BluetoothProfile, AutoCloseable
     public void close() {
         if (VDBG) log("close()");
 
-        mAdapter.closeProfileProxy(this);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceConnected(IBinder service) {
-        mService = IBluetoothHapClient.Stub.asInterface(service);
-        // re-register the service-to-app callback
-        synchronized (mCallbackExecutorMap) {
-            if (mCallbackExecutorMap.isEmpty()) {
-                return;
-            }
-
-            try {
-                if (service != null) {
-                    final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
-                    mService.registerCallback(mCallback, mAttributionSource, recv);
-                    recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
-                }
-            } catch (RemoteException | TimeoutException e) {
-                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-            }
-        }
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {
-        mService = null;
+        mProfileConnector.disconnect();
     }
 
     private IBluetoothHapClient getService() {
-        return mService;
-    }
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return mAdapter;
+        return IBluetoothHapClient.Stub.asInterface(mProfileConnector.getService());
     }
 
     /**

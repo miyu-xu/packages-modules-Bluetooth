@@ -25,7 +25,6 @@ import android.annotation.SuppressLint;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.os.Binder;
-import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
@@ -379,46 +378,31 @@ public final class BluetoothLeCallControl implements BluetoothProfile {
     private int mCcid = 0;
     private String mToken;
     private Callback mCallback = null;
-
-    private IBluetoothLeCallControl mService;
+    private final BluetoothProfileConnector mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.LE_CALL_CONTROL);
 
     /**
      * Create a BluetoothLeCallControl proxy object for interacting with the local Bluetooth
      * telephone bearer service.
      */
-    /* package */ BluetoothLeCallControl(Context context, BluetoothAdapter adapter) {
-        mAdapter = adapter;
+    /* package */ BluetoothLeCallControl(Context context, ServiceListener listener) {
+        mAdapter = BluetoothAdapter.getDefaultAdapter();
         mAttributionSource = mAdapter.getAttributionSource();
-        mService = null;
+        mProfileConnector.connect(context, listener);
     }
 
     /** @hide */
+    @Override
     public void close() {
         if (VDBG) log("close()");
 
-        mAdapter.closeProfileProxy(this);
-    }
+        unregisterBearer();
 
-    /** @hide */
-    @Override
-    public void onServiceConnected(IBinder service) {
-        mService = IBluetoothLeCallControl.Stub.asInterface(service);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {
-        mService = null;
+        mProfileConnector.disconnect();
     }
 
     private IBluetoothLeCallControl getService() {
-        return mService;
-    }
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return mAdapter;
+        return IBluetoothLeCallControl.Stub.asInterface(mProfileConnector.getService());
     }
 
     /**
