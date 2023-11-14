@@ -857,22 +857,23 @@ public class AdapterService extends Service {
      * @param port port of socket
      * @param isSecured if secured API is called
      * @param result transaction result of the connection
-     * @param socketCreationLatencyMillis latency of the connection
+     * @param socketCreationLatencyNanos latency of the connection
      */
     public void logL2capcocClientConnection(
             BluetoothDevice device,
             int port,
             boolean isSecured,
             int result,
-            long socketCreationTimeMillis,
-            long socketCreationLatencyMillis,
-            long socketConnectionTimeMillis,
+            long socketCreationTimeNanos,
+            long socketCreationLatencyNanos,
+            long socketConnectionTimeNanos,
             int appUid) {
 
         int metricId = getMetricId(device);
-        long currentTime = System.currentTimeMillis();
-        long endToEndLatencyMillis = currentTime - socketCreationTimeMillis;
-        long socketConnectionLatencyMillis = currentTime - socketConnectionTimeMillis;
+        long currentTime = System.nanoTime();
+        long endToEndLatencyMillis = (currentTime - socketCreationTimeNanos) / 1000000;
+        long socketCreationLatencyMillis = socketCreationLatencyNanos / 1000000;
+        long socketConnectionLatencyMillis = (currentTime - socketConnectionTimeNanos) / 1000000;
         Log.i(
                 TAG,
                 "Statslog L2capcoc client connection."
@@ -3875,9 +3876,9 @@ public class AdapterService extends Service {
                 int port,
                 boolean isSecured,
                 int result,
-                long socketCreationTimeMillis,
-                long socketCreationLatencyMillis,
-                long socketConnectionTimeMillis,
+                long socketCreationTimeNanos,
+                long socketCreationLatencyNanos,
+                long socketConnectionTimeNanos,
                 SynchronousResultReceiver receiver) {
             AdapterService service = getService();
             if (service == null) {
@@ -3889,9 +3890,9 @@ public class AdapterService extends Service {
                         port,
                         isSecured,
                         result,
-                        socketCreationTimeMillis,
-                        socketCreationLatencyMillis,
-                        socketConnectionTimeMillis,
+                        socketCreationTimeNanos,
+                        socketCreationLatencyNanos,
+                        socketConnectionTimeNanos,
                         Binder.getCallingUid());
                 receiver.send(null);
             } catch (RuntimeException e) {
