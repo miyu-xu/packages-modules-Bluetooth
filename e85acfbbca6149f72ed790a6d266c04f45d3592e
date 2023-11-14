@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43b5ea1e_573f0dbb",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-14T01:14:15Z",
+      "side": 0,
+      "message": "Why are we removing this logging statement?",
+      "revId": "e85acfbbca6149f72ed790a6d266c04f45d3592e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
