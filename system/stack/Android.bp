@@ -8,6 +8,15 @@ package {
     default_applicable_licenses: ["system_bt_license"],
 }
 
+filegroup {
+    name: "BluetoothCryptoToolboxSources",
+    srcs: [
+        "crypto_toolbox/aes.cc",
+        "crypto_toolbox/aes_cmac.cc",
+        "crypto_toolbox/crypto_toolbox.cc",
+    ],
+}
+
 crypto_toolbox_srcs = [
     "crypto_toolbox/aes.cc",
     "crypto_toolbox/aes_cmac.cc",

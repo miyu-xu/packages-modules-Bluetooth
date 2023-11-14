@@ -23,9 +23,11 @@
 #include "test/common/mock_functions.h"
 
 namespace crypto_toolbox {
+/* This causes duplicate symbols now that there's only one crypto library
 Octet16 aes_cmac(const Octet16& key, const uint8_t* input, uint16_t length) {
-  inc_func_call_count(__func__);
-  Octet16 octet16;
-  return octet16;
+inc_func_call_count(__func__);
+Octet16 octet16;
+return octet16;
 }
+*/
 }  // namespace crypto_toolbox

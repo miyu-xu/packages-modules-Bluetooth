@@ -183,6 +183,7 @@ cc_defaults {
         "server_configurable_flags",
     ],
     include_dirs: [
+        "packages/modules/Bluetooth/system", // for crypto_toolbox
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/types",
     ],
@@ -342,6 +343,7 @@ cc_test {
         "mts_defaults",
     ],
     include_dirs: [
+        "packages/modules/Bluetooth/system", // for crypto_toolbox
         "packages/modules/Bluetooth/system/include",
         "packages/modules/Bluetooth/system/types",
     ],
@@ -387,7 +389,6 @@ cc_test {
     },
     srcs: [
         ":BluetoothCommonTestSources",
-        ":BluetoothCryptoToolboxTestSources",
         ":BluetoothDumpsysTestSources",
         ":BluetoothHalTestSources",
         ":BluetoothHciUnitTestSources",
@@ -490,6 +491,11 @@ cc_defaults {
     srcs: [
         ":BluetoothFuzzHelperSources",
         ":BluetoothHciFuzzHelperSources",
+    ],
+    include_dirs: [ // for crypto_toolbox
+        "packages/modules/Bluetooth/system",
+        "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/types",
     ],
     static_libs: [
         "libbluetooth-protos",
