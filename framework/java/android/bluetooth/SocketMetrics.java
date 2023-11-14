@@ -46,13 +46,13 @@ public class SocketMetrics {
 
     protected static void logSocketConnect(
             int socketExceptionCode,
-            long socketConnectionTimeMillis,
+            long socketConnectionTimeNanos,
             int connType,
             BluetoothDevice device,
             int port,
             boolean auth,
-            long socketCreationTimeMillis,
-            long socketCreationLatencyMillis) {
+            long socketCreationTimeNanos,
+            long socketCreationLatencyNanos) {
         IBluetooth bluetoothProxy = BluetoothAdapter.getDefaultAdapter().getBluetoothService();
         int errCode = getConnectStatusCode(connType, socketExceptionCode);
         if (connType == TYPE_L2CAP_LE) {
@@ -63,9 +63,9 @@ public class SocketMetrics {
                         port,
                         auth,
                         errCode,
-                        socketCreationTimeMillis, // to calculate end to end latency
-                        socketCreationLatencyMillis, // latency of the constructor
-                        socketConnectionTimeMillis, // to calculate the latency of connect()
+                        socketCreationTimeNanos, // to calculate end to end latency
+                        socketCreationLatencyNanos, // latency of the constructor
+                        socketConnectionTimeNanos, // to calculate the latency of connect()
                         recv);
                 recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
             } catch (RemoteException | TimeoutException e) {
