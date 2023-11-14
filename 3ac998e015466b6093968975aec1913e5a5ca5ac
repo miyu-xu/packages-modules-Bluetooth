@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f11653ab_da0ad21f",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-14T16:29:53Z",
+      "side": 1,
+      "message": "nit: Missing a space before `{`",
+      "revId": "3ac998e015466b6093968975aec1913e5a5ca5ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a0430a3_b11a31cc",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-14T16:29:53Z",
+      "side": 1,
+      "message": "This keyword should not be needed, can you try to remove it?",
+      "revId": "3ac998e015466b6093968975aec1913e5a5ca5ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
