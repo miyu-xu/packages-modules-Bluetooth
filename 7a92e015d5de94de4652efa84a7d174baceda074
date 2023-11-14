@@ -16,6 +16,24 @@
       "message": "If this one is flooding the logs, is there a real problem?  Same for the other return 0 debug logs here.",
       "revId": "7a92e015d5de94de4652efa84a7d174baceda074",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb5fe12a_39d36bf0",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1050,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2023-11-14T08:11:03Z",
+      "side": 0,
+      "message": "This will occur when there is no issue because of how it is called in a loop that tries to encode all data available until this is true for once. In our experience, most debug logs here are superfluous (e.g., if a packet is corrupted, we can determine that from the btsnoop).",
+      "parentUuid": "036d4bb5_44178c73",
+      "revId": "7a92e015d5de94de4652efa84a7d174baceda074",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
