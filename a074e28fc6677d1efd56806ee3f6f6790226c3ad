@@ -22,6 +22,30 @@
       },
       "revId": "a074e28fc6677d1efd56806ee3f6f6790226c3ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b86a2cd2_9893dff0",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-14T13:24:58Z",
+      "side": 1,
+      "message": "let me add it in separate patch.",
+      "parentUuid": "6cc228d8_57fb841e",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "a074e28fc6677d1efd56806ee3f6f6790226c3ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
