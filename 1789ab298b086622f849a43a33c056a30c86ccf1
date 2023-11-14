@@ -158,6 +158,30 @@
       },
       "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a150ffb_00107d9c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-14T13:53:25Z",
+      "side": 1,
+      "message": "I tried to use start/stop autodispatch and it does make it behave like a normal looper, but doesn\u0027t work with [TestUtils.waitForLooperToBeIdle](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/TestUtils.java;l\u003d317?q\u003dwaitforloopertobeidle\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22) which is used in all the previous tests. (TestLooper doesn\u0027t become idle and test times out) Seems like TestLooper + start/stopAutoDispatch works like a normal looper with [TestUtils.waitForLooperToFinishScheduledTask](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/TestUtils.java;l\u003d284?q\u003dwaitforloopertobeidle\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22) in other previous files but not with waitForLooperToBeIdle. \n\nI\u0027m looking into a fix, but am struggling to find an immediate solution. What do you think about using the TestLooper only for the new test needed for solving b/309702502 for QPR2, and applying TestLooper for all other tests later?",
+      "parentUuid": "db4634ac_4d569eba",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 23
+      },
+      "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
