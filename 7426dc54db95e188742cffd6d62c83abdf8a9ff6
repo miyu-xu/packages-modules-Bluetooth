@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26fd9dab_3cd3a360",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-14T20:20:14Z",
+      "side": 1,
+      "message": "could you please elaborate in commit message what is changing here and why?\n\nAlso I think there are unit test available for this module, maybe worth to run and add test cases",
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
