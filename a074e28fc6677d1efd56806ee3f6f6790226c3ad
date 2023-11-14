@@ -46,6 +46,30 @@
       },
       "revId": "a074e28fc6677d1efd56806ee3f6f6790226c3ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a43ce64d_9686c8ee",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T13:36:03Z",
+      "side": 1,
+      "message": "Good idea",
+      "parentUuid": "b86a2cd2_9893dff0",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "a074e28fc6677d1efd56806ee3f6f6790226c3ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
