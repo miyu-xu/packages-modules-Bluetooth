@@ -39,6 +39,30 @@
       },
       "revId": "549742d4148e027379cc6373022e8f5e23d51a96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2fa9da2_625b3f25",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-14T02:57:43Z",
+      "side": 1,
+      "message": "I thought it should be in alphabetical order as well, but the automated fixups changed them (Or else `repo upload` didn\u0027t work :( )",
+      "parentUuid": "448da7cb_329136e8",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "549742d4148e027379cc6373022e8f5e23d51a96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
