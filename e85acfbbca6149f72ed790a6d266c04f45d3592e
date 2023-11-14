@@ -34,6 +34,24 @@
       "parentUuid": "43b5ea1e_573f0dbb",
       "revId": "e85acfbbca6149f72ed790a6d266c04f45d3592e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "932e009f_5930bac7",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-14T02:27:16Z",
+      "side": 0,
+      "message": "2 reasons:\n1. This logging statement refers to an internal field in another structure that should be inaccessible but is not.  Only logging related to the current module should be done in this module.\n2. The field `avoid_acatter` is never set and always `false`.  Looking further this appears to be some sort of condition set at compile time that is no longer relevant/used/broken.",
+      "parentUuid": "b4c9a41a_dde92ff7",
+      "revId": "e85acfbbca6149f72ed790a6d266c04f45d3592e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
