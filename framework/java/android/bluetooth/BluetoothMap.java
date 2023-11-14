@@ -88,17 +88,18 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-
-    private IBluetoothMap mService;
+    private final BluetoothProfileConnector mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.MAP);
 
     /**
      * Create a BluetoothMap proxy object.
      */
-    /* package */ BluetoothMap(Context context, BluetoothAdapter adapter) {
+    /* package */ BluetoothMap(Context context, ServiceListener listener,
+            BluetoothAdapter adapter) {
         if (DBG) Log.d(TAG, "Create BluetoothMap proxy object");
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
-        mService = null;
+        mProfileConnector.connect(context, listener);
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
     }
@@ -121,29 +122,11 @@ public final class BluetoothMap implements BluetoothProfile, AutoCloseable {
     @Override
     public void close() {
         if (VDBG) log("close()");
-        mAdapter.closeProfileProxy(this);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceConnected(IBinder service) {
-        mService = IBluetoothMap.Stub.asInterface(service);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {
-        mService = null;
+        mProfileConnector.disconnect();
     }
 
     private IBluetoothMap getService() {
-        return mService;
-    }
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return mAdapter;
+        return IBluetoothMap.Stub.asInterface(mProfileConnector.getService());
     }
 
     /**

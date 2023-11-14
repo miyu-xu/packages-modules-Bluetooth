@@ -115,17 +115,18 @@ public final class BluetoothSap implements BluetoothProfile, AutoCloseable {
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-
-    private IBluetoothSap mService;
+    private final BluetoothProfileConnector mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.SAP);
 
     /**
      * Create a BluetoothSap proxy object.
      */
-    /* package */ BluetoothSap(Context context, BluetoothAdapter adapter) {
+    /* package */ BluetoothSap(Context context, ServiceListener listener,
+            BluetoothAdapter adapter) {
         if (DBG) Log.d(TAG, "Create BluetoothSap proxy object");
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
-        mService = null;
+        mProfileConnector.connect(context, listener);
         mCloseGuard = new CloseGuard();
         mCloseGuard.open("close");
     }
@@ -150,29 +151,11 @@ public final class BluetoothSap implements BluetoothProfile, AutoCloseable {
      */
     @Override
     public synchronized void close() {
-        mAdapter.closeProfileProxy(this);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceConnected(IBinder service) {
-        mService = IBluetoothSap.Stub.asInterface(service);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {
-        mService = null;
+        mProfileConnector.disconnect();
     }
 
     private IBluetoothSap getService() {
-        return mService;
-    }
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return mAdapter;
+        return IBluetoothSap.Stub.asInterface(mProfileConnector.getService());
     }
 
     /**
