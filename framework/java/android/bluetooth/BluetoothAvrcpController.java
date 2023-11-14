@@ -25,7 +25,6 @@ import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
 import android.content.AttributionSource;
 import android.content.Context;
-import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -92,43 +91,34 @@ public final class BluetoothAvrcpController implements BluetoothProfile {
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-
-    private IBluetoothAvrcpController mService;
+    private final BluetoothProfileConnector mProfileConnector =
+            new BluetoothProfileConnector(this, BluetoothProfile.AVRCP_CONTROLLER);
 
     /**
      * Create a BluetoothAvrcpController proxy object for interacting with the local
      * Bluetooth AVRCP service.
      */
-    /* package */ BluetoothAvrcpController(Context context, BluetoothAdapter adapter) {
+    /* package */ BluetoothAvrcpController(Context context, ServiceListener listener,
+            BluetoothAdapter adapter) {
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
-        mService = null;
+        mProfileConnector.connect(context, listener);
     }
 
     /** @hide */
     @Override
-    public void onServiceConnected(IBinder service) {
-        mService = IBluetoothAvrcpController.Stub.asInterface(service);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {
-        mService = null;
+    public void close() {
+        mProfileConnector.disconnect();
     }
 
     private IBluetoothAvrcpController getService() {
-        return mService;
-    }
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return mAdapter;
+        return IBluetoothAvrcpController.Stub.asInterface(mProfileConnector.getService());
     }
 
     @Override
-    public void finalize() {}
+    public void finalize() {
+        close();
+    }
 
     /**
      * {@inheritDoc}

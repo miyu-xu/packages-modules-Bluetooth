@@ -20,7 +20,6 @@ import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
-import android.os.IBinder;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
 
@@ -109,20 +108,6 @@ public final class BluetoothHealth implements BluetoothProfile {
      * @hide
      */
     BluetoothHealth() {}
-
-    /** @hide */
-    @Override
-    public void onServiceConnected(IBinder service) {}
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {}
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return null;
-    }
 
     /**
      * Register an application configuration that acts as a Health SINK.
@@ -275,6 +260,12 @@ public final class BluetoothHealth implements BluetoothProfile {
     public int getConnectionState(BluetoothDevice device) {
         Log.e(TAG, "getConnectionState(): BluetoothHealth is deprecated");
         return STATE_DISCONNECTED;
+    }
+
+    /** @hide */
+    @Override
+    public void close() {
+        // Do nothing.
     }
 
     /**

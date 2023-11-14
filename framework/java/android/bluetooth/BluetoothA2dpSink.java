@@ -32,7 +32,6 @@ import android.compat.annotation.UnsupportedAppUsage;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.os.Build;
-import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -85,43 +84,35 @@ public final class BluetoothA2dpSink implements BluetoothProfile {
 
     private final BluetoothAdapter mAdapter;
     private final AttributionSource mAttributionSource;
-
-    private IBluetoothA2dpSink mService;
+    private final BluetoothProfileConnector mProfileConnector =
+            new BluetoothProfileConnector(
+                    this, BluetoothProfile.A2DP_SINK);
 
     /**
      * Create a BluetoothA2dp proxy object for interacting with the local
      * Bluetooth A2DP service.
      */
-    /* package */ BluetoothA2dpSink(Context context, BluetoothAdapter adapter) {
+    /* package */ BluetoothA2dpSink(Context context, ServiceListener listener,
+            BluetoothAdapter adapter) {
         mAdapter = adapter;
         mAttributionSource = adapter.getAttributionSource();
-        mService = null;
+        mProfileConnector.connect(context, listener);
     }
 
     /** @hide */
     @Override
-    public void onServiceConnected(IBinder service) {
-        mService = IBluetoothA2dpSink.Stub.asInterface(service);
-    }
-
-    /** @hide */
-    @Override
-    public void onServiceDisconnected() {
-        mService = null;
+    public void close() {
+        mProfileConnector.disconnect();
     }
 
     private IBluetoothA2dpSink getService() {
-        return mService;
-    }
-
-    /** @hide */
-    @Override
-    public BluetoothAdapter getAdapter() {
-        return mAdapter;
+        return IBluetoothA2dpSink.Stub.asInterface(mProfileConnector.getService());
     }
 
     @Override
-    public void finalize() {}
+    public void finalize() {
+        close();
+    }
 
     /**
      * Initiate connection to a profile of the remote bluetooth device.
