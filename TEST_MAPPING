@@ -381,5 +381,11 @@
     {
       "name": "net_test_types"
     }
+  ],
+  postsubmit: [
+   {
+     "name": "bluetooth_le_audio_codec_manager_test",
+     "keywords": ["internal"]
+   }
   ]
 }
