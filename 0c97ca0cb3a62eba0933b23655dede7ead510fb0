@@ -22,6 +22,30 @@
       },
       "revId": "0c97ca0cb3a62eba0933b23655dede7ead510fb0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b99d20e2_37731f01",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-14T19:04:32Z",
+      "side": 0,
+      "message": "I had to remove this b/c bta_dm_search_cb is/will be fully encapsulated so no fields are accessible.\n\nThere is no API for this nor will there be.\n\nThe fact there is no callback is equivalent to the no name discover done boolean but is \"extra\".",
+      "parentUuid": "7f70f35e_94ee3500",
+      "range": {
+        "startLine": 420,
+        "startChar": 0,
+        "endLine": 420,
+        "endChar": 52
+      },
+      "revId": "0c97ca0cb3a62eba0933b23655dede7ead510fb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
