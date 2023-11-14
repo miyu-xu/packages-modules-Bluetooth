@@ -16,6 +16,24 @@
       "message": "Is this mPausedBroadcastSinks you\u0027d like to check here?\n\n```suggestion\n            if (!mPausedBroadcastSinks.containsKey(device)) {\n```",
       "revId": "3b744148b157bfc0a42afab8111763057d820e8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85823215_bf3e93ee",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1423,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-14T15:07:16Z",
+      "side": 1,
+      "message": "Ops... Yes, right. Thank you for double checking this! btw. I saw another issue here also - remove should happen after adding device to PausedBroadcastSink list.",
+      "parentUuid": "41745211_82bf8e79",
+      "revId": "3b744148b157bfc0a42afab8111763057d820e8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
