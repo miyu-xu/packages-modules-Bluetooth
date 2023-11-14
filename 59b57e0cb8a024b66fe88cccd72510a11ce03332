@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51b57788_d7189513",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 876,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-14T00:58:41Z",
+      "side": 1,
+      "message": "seq_nb",
+      "range": {
+        "startLine": 876,
+        "startChar": 50,
+        "endLine": 876,
+        "endChar": 70
+      },
+      "revId": "59b57e0cb8a024b66fe88cccd72510a11ce03332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b33b61d_3b4de9bd",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 887,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-14T00:58:41Z",
+      "side": 1,
+      "message": "Delete",
+      "range": {
+        "startLine": 887,
+        "startChar": 22,
+        "endLine": 887,
+        "endChar": 60
+      },
+      "revId": "59b57e0cb8a024b66fe88cccd72510a11ce03332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0224dfd_1b9c3b48",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 892,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-14T00:58:41Z",
+      "side": 1,
+      "message": "\u003d seq_nb",
+      "range": {
+        "startLine": 892,
+        "startChar": 28,
+        "endLine": 892,
+        "endChar": 43
+      },
+      "revId": "59b57e0cb8a024b66fe88cccd72510a11ce03332",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
