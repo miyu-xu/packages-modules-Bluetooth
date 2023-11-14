@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cc228d8_57fb841e",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T12:27:06Z",
+      "side": 1,
+      "message": "This needs to be added to postsubmit first, to make sure it meets the SLO.  Can you add a postsubmit section, so it can get back into presubmit?\n\nThanks!",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "a074e28fc6677d1efd56806ee3f6f6790226c3ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
