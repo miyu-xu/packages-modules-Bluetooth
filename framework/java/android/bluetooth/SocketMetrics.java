@@ -43,13 +43,13 @@ class SocketMetrics {
 
     protected static void logSocketConnect(
             int socketExceptionCode,
-            long socketConnectionTimeMillis,
+            long socketConnectionTimeNanos,
             int connType,
             BluetoothDevice device,
             int port,
             boolean auth,
-            long socketCreationTimeMillis,
-            long socketCreationLatencyMillis) {
+            long socketCreationTimeNanos,
+            long socketCreationLatencyNanos) {
         IBluetooth bluetoothProxy = BluetoothAdapter.getDefaultAdapter().getBluetoothService();
         if (bluetoothProxy == null) {
             Log.w(TAG, "bluetoothProxy is null");
