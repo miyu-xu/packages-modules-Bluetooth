@@ -53,6 +53,9 @@
 #include "types/bt_transport.h"
 #include "types/raw_address.h"
 
+#include "bta/gatt/bta_gattc_int.h"
+
+
 using namespace bluetooth::legacy::stack::sdp;
 using namespace bluetooth;
 
@@ -1420,11 +1423,38 @@ void GATT_StartIf(tGATT_IF gatt_if) {
     start_idx = 0;
     while (gatt_find_the_connected_bda(start_idx, bda, &found_idx, &transport)) {
       p_tcb = gatt_find_tcb_by_addr(bda, transport);
+<<<<<<< PATCH SET (9de2c1 Add alloc clcb in GATT_StartIf)
+      LOG_INFO("GATT interface %d already has connected device %s", +gatt_if,
+               ADDRESS_TO_LOGGABLE_CSTR(bda));
+      // add for fix timing issue the flow before GATTC_Open
+      tBTA_GATTC_CLCB* p_clcb = bta_gattc_find_alloc_clcb(gatt_if, bda, transport);
+      LOG_DEBUG("Starting GATT interface p_clcb:%p", p_clcb);
+      //end
+||||||| BASE
+      LOG_INFO("GATT interface %d already has connected device %s", +gatt_if,
+               ADDRESS_TO_LOGGABLE_CSTR(bda));
+=======
       log::info("GATT interface {} already has connected device {}", gatt_if, bda);
+>>>>>>> BASE      (745ee9 log: Remove last extra colon when logging bd_addr)
       if (p_reg->app_cb.p_conn_cb && p_tcb) {
+<<<<<<< PATCH SET (9de2c1 Add alloc clcb in GATT_StartIf)
+        conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, gatt_if);
+        LOG_INFO("Invoking callback with connection id %d", conn_id);
+        if (p_clcb) {
+          p_clcb->bta_conn_id = conn_id;
+        }
+        (*p_reg->app_cb.p_conn_cb)(gatt_if, bda, conn_id, true, GATT_CONN_OK,
+                                   transport);
+||||||| BASE
+        conn_id = GATT_CREATE_CONN_ID(p_tcb->tcb_idx, gatt_if);
+        LOG_INFO("Invoking callback with connection id %d", conn_id);
+        (*p_reg->app_cb.p_conn_cb)(gatt_if, bda, conn_id, true, GATT_CONN_OK,
+                                   transport);
+=======
         conn_id = gatt_create_conn_id(p_tcb->tcb_idx, gatt_if);
         log::info("Invoking callback with connection id {}", conn_id);
         (*p_reg->app_cb.p_conn_cb)(gatt_if, bda, conn_id, true, GATT_CONN_OK, transport);
+>>>>>>> BASE      (745ee9 log: Remove last extra colon when logging bd_addr)
       } else {
         log::info("Skipping callback as none is registered");
       }

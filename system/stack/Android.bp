@@ -475,7 +475,12 @@ cc_fuzz {
         ":TestMockStackL2cap",
         ":TestMockStackMetrics",
         ":TestMockStackSdp",
+<<<<<<< PATCH SET (9de2c1 Add alloc clcb in GATT_StartIf)
+        ":TestMockBtaGatt",
+||||||| BASE
+=======
         "ais/*.cc",
+>>>>>>> BASE      (745ee9 log: Remove last extra colon when logging bd_addr)
         "eatt/*.cc",
         "fuzzers/gatt_fuzzer.cc",
         "gatt/*.cc",
