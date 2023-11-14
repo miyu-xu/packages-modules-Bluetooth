@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f70f35e_94ee3500",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 420,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T18:07:02Z",
+      "side": 0,
+      "message": "?",
+      "range": {
+        "startLine": 420,
+        "startChar": 0,
+        "endLine": 420,
+        "endChar": 52
+      },
+      "revId": "0c97ca0cb3a62eba0933b23655dede7ead510fb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
