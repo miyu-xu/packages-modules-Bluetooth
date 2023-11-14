@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf9b421e_0cc47c49",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-14T18:24:27Z",
+      "side": 1,
+      "message": "Can you move that to constructor and put the variable final ?\nThis way we are 100% sure that there is no situation where this is not initialized",
+      "range": {
+        "startLine": 265,
+        "startChar": 8,
+        "endLine": 265,
+        "endChar": 57
+      },
+      "revId": "001c0f6f1ad2fb00ed005945ee34bc2959fa2ced",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
