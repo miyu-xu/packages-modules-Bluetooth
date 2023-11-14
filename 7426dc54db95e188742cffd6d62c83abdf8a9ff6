@@ -16,6 +16,69 @@
       "message": "could you please elaborate in commit message what is changing here and why?\n\nAlso I think there are unit test available for this module, maybe worth to run and add test cases",
       "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5627ffaf_41749c3b",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-14T20:39:56Z",
+      "side": 1,
+      "message": "since it is always 0 why even bother to keep TS?",
+      "range": {
+        "startLine": 529,
+        "startChar": 30,
+        "endLine": 529,
+        "endChar": 53
+      },
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd8201a1_ea87622a",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-14T20:39:56Z",
+      "side": 1,
+      "message": "are you sure that incrementing it by 1 is OK?\n\nbtw since it us unit16_t \u0026 (0xffff) seems to be not necessary.",
+      "range": {
+        "startLine": 561,
+        "startChar": 27,
+        "endLine": 561,
+        "endChar": 49
+      },
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1cb2fc56_3c860fe2",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-14T20:39:56Z",
+      "side": 1,
+      "message": "afaik, TS is removed by the controller and they use their own time stamp from the time when SDU is received on the controller side.\n\nAs you might know, HCI is not best transport for audio packets do this is a reason for the controller to behave like that.\n\nReason why we had TS implemented in host is just for us to know if Host is good enough to be on time and also to somehow monitor timing on received data from the controller.\n\nTHis changes removes this monitoring in the same time, most probably, does not change streaming performance - due to note in first sentence.",
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
