@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af765a0a_b261a6cc",
+        "filename": "system/bta/include/bta_hh_uhid.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T15:37:13Z",
+      "side": 1,
+      "message": "New files generally use the license header that starts with:\n\nCopyright 2023 The Android Open Source Project",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 32
+      },
+      "revId": "93bf9c020a13bef6ee3630c5caf6b28b42f7800e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "63ec1ae4_fec866fa",
+        "filename": "system/bta/include/bta_hh_uhid.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T15:37:13Z",
+      "side": 1,
+      "message": "nit: I prefer #pragma once",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "93bf9c020a13bef6ee3630c5caf6b28b42f7800e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c9736b2_746250a9",
+        "filename": "system/bta/include/bta_hh_uhid.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T15:37:13Z",
+      "side": 1,
+      "message": "I think we can leave this out, since the queue is supposed to be thread safe.",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 58
+      },
+      "revId": "93bf9c020a13bef6ee3630c5caf6b28b42f7800e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f428201_0e4cd649",
+        "filename": "system/bta/include/bta_hh_uhid.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T15:37:13Z",
+      "side": 1,
+      "message": "Google style doesn\u0027t allow references to return values.  Maybe return an event, and one type is the empty event?",
+      "range": {
+        "startLine": 96,
+        "startChar": 42,
+        "endLine": 96,
+        "endChar": 52
+      },
+      "revId": "93bf9c020a13bef6ee3630c5caf6b28b42f7800e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
