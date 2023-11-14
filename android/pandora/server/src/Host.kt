@@ -175,10 +175,8 @@ class Host(
             waitedAclDisconnection.clear()
 
             bluetoothAdapter.clearBluetooth()
-
             stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
-            // Delay to initialize the Bluetooth completely and to fix flakiness: b/266611263
-            delay(1000L)
+
             Log.i(TAG, "Shutdown the gRPC Server")
             server.shutdown()
 
@@ -190,6 +188,7 @@ class Host(
     override fun reset(request: Empty, responseObserver: StreamObserver<Empty>) {
         grpcUnary<Empty>(scope, responseObserver) {
             Log.i(TAG, "reset")
+
             initiatedConnection.clear()
             waitedAclConnection.clear()
             waitedAclDisconnection.clear()
