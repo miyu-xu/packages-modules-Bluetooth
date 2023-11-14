@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b8257c0a_a4515ac8",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStackEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-14T15:00:51Z",
+      "side": 1,
+      "message": "Current intention is to inform Service about change request \"from\" given group:\nA) If \"invalid\" group ID is given it is handled in broadcast case as the request for activation Unicast. It pauses broadcast and activates previously (if was activated) Unicast group.\nB) If some group ID is given it is handled in broadcast service part as the request for de-activation of this group.",
+      "parentUuid": "4f45a932_d4f65ecc",
+      "range": {
+        "startLine": 66,
+        "startChar": 21,
+        "endLine": 66,
+        "endChar": 48
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee3bf084_179e8d94",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4fe9b598_eb13d185",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-14T15:00:51Z",
+      "side": 1,
+      "message": "I don\u0027t know how to make this name more descriptive:\n- Group Change Requested \u003d TRUE if there were requested group change\n- Group Change Requested \u003d FALSE if there were no request to change group\n\nAny suggestions ?",
+      "parentUuid": "ee3bf084_179e8d94",
+      "range": {
+        "startLine": 234,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 31
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4a78feb_b2a2bef2",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-13T10:25:20Z",
       "side": 1,
       "message": "If this is can be called at any time, shouldn\u0027t you check here whether you should stop the session when `sink_hal_listening_mode` argument is `false` and there is no active unicast group)?",
+      "range": {
+        "startLine": 1015,
+        "startChar": 4,
+        "endLine": 1015,
+        "endChar": 55
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c9c89195_37d01c32",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-14T15:00:51Z",
+      "side": 1,
+      "message": "Maybe I don\u0027t get the suggestion here... Intention of `sink_hal_listening_mode` is similar to what `in_voip_call` does. This is a flag that informs in case of Sink HAL \"resume\"/\"suspend\" about group change request. This is used only for broadcast handover",
+      "parentUuid": "b4a78feb_b2a2bef2",
       "range": {
         "startLine": 1015,
         "startChar": 4,
@@ -184,6 +256,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e3736edb_f9f80b96",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4070,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-14T15:00:51Z",
+      "side": 1,
+      "message": "Yes, this is for \"CALL\", \"Recording\" scenarios. `If so, could elaborate why?` - This is a solution for feature request: https://b.corp.google.com/issues/305943737 and for overall Broadcast\u003c-\u003eUnicast handover case. Do you see any future reason why there should be \"monitoring\" sink session ? If yes maybe it\u0027ll be good to create a \"Feature Request\" ?",
+      "parentUuid": "9adcd5b8_e0bc3753",
+      "range": {
+        "startLine": 4069,
+        "startChar": 10,
+        "endLine": 4070,
+        "endChar": 65
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db944e62_543ebf01",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 3
@@ -266,6 +362,30 @@
       "writtenOn": "2023-11-13T10:25:20Z",
       "side": 1,
       "message": "It seems confusing when there\u0027s no active unicast group but the unicast client still gets Resume requests. If there\u0027s abroadcast or more abstract concept like hal listening mode context to this, then this at least needs an explanation comment or putting this logic inside the properly named function. Otherwise this piece of code is confusing.",
+      "range": {
+        "startLine": 4120,
+        "startChar": 5,
+        "endLine": 4120,
+        "endChar": 63
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c3bb226_accd136f",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4120,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-14T15:00:51Z",
+      "side": 1,
+      "message": "This is the place and moment when Broadcast is \"Active\" and there is no active Unicast group, but only Sink HAL session is \"listening\". In such scenario a resume request comes on Sink Audio HAL. This particular case means that there would be requested a invalid group change. Invalid group change request in broadcasting context means a request \"from\" invalid to some, in this case (for broadcast handover) some group would be a previously active (the one that were active before broadcasting).\n\nI agree that here would be nice to have a comment. I\u0027ll update it - thanks for pointing this out.",
+      "parentUuid": "b50ee81c_a9046805",
       "range": {
         "startLine": 4120,
         "startChar": 5,

@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4fc0983_5cb80377",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-14T15:00:51Z",
+      "side": 1,
+      "message": "1. Unicast is playing\n2. Broadcast is started\n2. Listening mode is set to true to leave Sink Audio HAL Client callbacks listening for request of AF resume \n3. Handover is done Unicast -\u003e Broadcast\n4. Recorder is opened and start record button is pressed\n5. Audio HAL Client resume is called\n6. Native request to change group \"from\" invalid to pre-handover active group (unicast activation)\n7. Broadcast is paused\n8. Unicast is activated\n9. Recorder is paused/stopped\n10. Audio HAL Client suspend is called\n11. Native request to change group \"from\" some active to invalid (Unicast de-activation)\n12. Broadcast is resumed",
+      "parentUuid": "765d0add_38f25ad6",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "8214aeba597887da41637194eecca06cf159ffe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "64b3ca1b_ff19e274",
@@ -60,6 +84,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dcd0a019_07f581aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-14T15:00:51Z",
+      "side": 1,
+      "message": "?",
+      "parentUuid": "24f10c22_a15c619f",
+      "revId": "8214aeba597887da41637194eecca06cf159ffe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1189224_87e7a913",
         "filename": "system/include/hardware/bt_le_audio.h",
         "patchSetId": 5
@@ -71,6 +113,24 @@
       "writtenOn": "2023-11-13T10:33:48Z",
       "side": 1,
       "message": "why \"listen mode\" should end up with some action like \"CHANGE_REQUEST\" ?\n\nMaybe new JNI callback is needed to notify JAVA about session Resume/Suspend actions instead? (despite the fact why it is needed)",
+      "revId": "8214aeba597887da41637194eecca06cf159ffe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "547c5112_5e840bde",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-14T15:00:51Z",
+      "side": 1,
+      "message": "`why \"listen mode\" should end up with some action like \"CHANGE_REQUEST\" ?` It may not. Change request should be notified for group (in this case invalid \u003d\u003d no active group) when during broadcast a stream resume comes (on Sink). Second possibility is when stream suspends, then there will be a change request for some active group.",
+      "parentUuid": "e1189224_87e7a913",
       "revId": "8214aeba597887da41637194eecca06cf159ffe5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
