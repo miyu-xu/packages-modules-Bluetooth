@@ -28,7 +28,6 @@ import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
 
-
 import java.io.Closeable;
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -159,8 +158,8 @@ public final class BluetoothSocket implements Closeable {
     private int mMaxTxPacketSize = 0; // The l2cap maximum packet size supported by the peer.
     private int mMaxRxPacketSize = 0; // The l2cap maximum packet size that can be received.
 
-    private long mSocketCreationTimeMillis = 0;
-    private long mSocketCreationLatencyMillis = 0;
+    private long mSocketCreationTimeNanos = 0;
+    private long mSocketCreationLatencyNanos = 0;
 
     private enum SocketState {
         INIT,
@@ -221,7 +220,7 @@ public final class BluetoothSocket implements Closeable {
             boolean min16DigitPin)
             throws IOException {
         if (VDBG) Log.d(TAG, "Creating new BluetoothSocket of type: " + type);
-        mSocketCreationTimeMillis = System.currentTimeMillis();
+        mSocketCreationTimeNanos = System.nanoTime();
         if (type == BluetoothSocket.TYPE_RFCOMM
                 && uuid == null
                 && port != BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
@@ -253,7 +252,7 @@ public final class BluetoothSocket implements Closeable {
         }
         mInputStream = new BluetoothInputStream(this);
         mOutputStream = new BluetoothOutputStream(this);
-        mSocketCreationLatencyMillis = System.currentTimeMillis() - mSocketCreationTimeMillis;
+        mSocketCreationLatencyNanos = System.nanoTime() - mSocketCreationTimeNanos;
     }
 
     /**
@@ -299,8 +298,8 @@ public final class BluetoothSocket implements Closeable {
         mExcludeSdp = s.mExcludeSdp;
         mAuthMitm = s.mAuthMitm;
         mMin16DigitPin = s.mMin16DigitPin;
-        mSocketCreationTimeMillis = s.mSocketCreationTimeMillis;
-        mSocketCreationLatencyMillis = s.mSocketCreationLatencyMillis;
+        mSocketCreationTimeNanos = s.mSocketCreationTimeNanos;
+        mSocketCreationLatencyNanos = s.mSocketCreationLatencyNanos;
     }
 
     private BluetoothSocket acceptSocket(String remoteAddr) throws IOException {
@@ -431,8 +430,9 @@ public final class BluetoothSocket implements Closeable {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void connect() throws IOException {
-        IBluetooth bluetoothProxy = BluetoothAdapter.getDefaultAdapter().getBluetoothService();
-        long socketConnectionTimeMillis = System.currentTimeMillis();
+        IBluetooth bluetoothProxy =
+                BluetoothAdapter.getDefaultAdapter().getBluetoothService();
+        long socketConnectionTimeNanos = System.nanoTime();
         if (bluetoothProxy == null) {
             throw new BluetoothSocketException(BluetoothSocketException.BLUETOOTH_OFF_FAILURE);
         }
@@ -484,37 +484,37 @@ public final class BluetoothSocket implements Closeable {
             }
             SocketMetrics.logSocketConnect(
                     -1, // no error
-                    socketConnectionTimeMillis,
+                    socketConnectionTimeNanos,
                     mType,
                     mDevice,
                     mPort,
                     mAuth,
-                    mSocketCreationTimeMillis,
-                    mSocketCreationLatencyMillis);
+                    mSocketCreationTimeNanos,
+                    mSocketCreationLatencyNanos);
         } catch (BluetoothSocketException e) {
             SocketMetrics.logSocketConnect(
                     e.getErrorCode(),
-                    socketConnectionTimeMillis,
+                    socketConnectionTimeNanos,
                     mType,
                     mDevice,
                     mPort,
                     mAuth,
-                    mSocketCreationTimeMillis,
-                    mSocketCreationLatencyMillis);
+                    mSocketCreationTimeNanos,
+                    mSocketCreationLatencyNanos);
             throw e;
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             SocketMetrics.logSocketConnect(
                     BluetoothSocketException.RPC_FAILURE,
-                    socketConnectionTimeMillis,
+                    socketConnectionTimeNanos,
                     mType,
                     mDevice,
                     mPort,
                     mAuth,
-                    mSocketCreationTimeMillis,
-                    mSocketCreationLatencyMillis);
-            throw new BluetoothSocketException(BluetoothSocketException.RPC_FAILURE,
-                    "unable to send RPC: " + e.getMessage());
+                    mSocketCreationTimeNanos,
+                    mSocketCreationLatencyNanos);
+            throw new BluetoothSocketException(
+                    BluetoothSocketException.RPC_FAILURE, "unable to send RPC: " + e.getMessage());
         }
     }
 
@@ -748,7 +748,7 @@ public final class BluetoothSocket implements Closeable {
     }
 
     /*package */ long getSocketCreationTime() {
-        return mSocketCreationTimeMillis;
+        return mSocketCreationTimeNanos;
     }
 
     /**
