@@ -66,6 +66,8 @@ public class MapClientService extends ProfileService {
     @VisibleForTesting
     private Handler mHandler;
 
+    @VisibleForTesting Looper mSmLooper;
+
     public static boolean isEnabled() {
         return BluetoothProperties.isProfileMapClientEnabled().orElse(false);
     }
@@ -169,7 +171,9 @@ public class MapClientService extends ProfileService {
     private synchronized void addDeviceToMapAndConnect(BluetoothDevice device) {
         // When creating a new statemachine, its state is set to CONNECTING - which will trigger
         // connect.
-        MceStateMachine mapStateMachine = new MceStateMachine(this, device);
+        MceStateMachine mapStateMachine;
+        if (mSmLooper != null) mapStateMachine = new MceStateMachine(this, device, mSmLooper);
+        else mapStateMachine = new MceStateMachine(this, device);
         mMapInstanceMap.put(device, mapStateMachine);
     }
 
