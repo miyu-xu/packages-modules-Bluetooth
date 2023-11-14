@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a7746cd0_e7b5af8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-14T12:57:17Z",
+      "side": 1,
+      "message": "Yes.  We don\u0027t use this code path in Android, yet, so I just want to make sure that it gets tested.",
+      "parentUuid": "202f7435_8267c2ba",
+      "revId": "f0d8b16be826fb93d1480658bfd770f794e1be4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "22432129_715cfc0a",
         "filename": "system/main/shim/btm_api.cc",
         "patchSetId": 11
