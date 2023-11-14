@@ -71,6 +71,7 @@ public class MapClientServiceTest {
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
         TestUtils.startService(mServiceRule, MapClientService.class);
         mService = MapClientService.getMapClientService();
+
         assertThat(mService).isNotNull();
         // Try getting the Bluetooth adapter
         mAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -237,8 +238,11 @@ public class MapClientServiceTest {
         MceStateMachine sm = mock(MceStateMachine.class);
         mService.getInstanceMap().put(mRemoteDevice, sm);
 
-        mService.cleanupDevice(mRemoteDevice);
+        MceStateMachine sm2 = mock(MceStateMachine.class);
+        mService.cleanupDevice(mRemoteDevice, sm2);
+        assertThat(mService.getInstanceMap()).containsKey(mRemoteDevice);
 
+        mService.cleanupDevice(mRemoteDevice, sm);
         assertThat(mService.getInstanceMap()).doesNotContainKey(mRemoteDevice);
     }
 
