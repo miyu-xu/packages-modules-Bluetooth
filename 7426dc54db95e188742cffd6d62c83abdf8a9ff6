@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "61eae752_1c161bce",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-14T22:30:01Z",
+      "side": 1,
+      "message": "I have tried to remove it, and change the `iso_data_load_len`, this break the stream. That\u0027s why, I just set to `0`, but better investigation on removing it should of course better.",
+      "parentUuid": "5627ffaf_41749c3b",
+      "range": {
+        "startLine": 529,
+        "startChar": 30,
+        "endLine": 529,
+        "endChar": 53
+      },
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd8201a1_ea87622a",
         "filename": "system/stack/btm/btm_iso_impl.h",
         "patchSetId": 3
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4496d31e_eac333b3",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-14T22:30:01Z",
+      "side": 1,
+      "message": "Yes, a sequence number basically count packets, and should simply increment monotonically. The main usage is generally to inform the sink device of a `hole`, and engage PLC on the number of missing packets.\nI think it\u0027s not needed for unframed ISO, timing is enough to transport such kind of information.\n\nAbout the \u0027\u0026 0xffff\u0027, I agree from a standard C/C++ perspective it\u0027s a perfectly defined behavior. But Android enable unsigned-overflow sanitizer, a concept that doesn\u0027t exist in the standard, but might crash the process when assigning (0xffff + 1) in a uint16_t.",
+      "parentUuid": "bd8201a1_ea87622a",
+      "range": {
+        "startLine": 561,
+        "startChar": 27,
+        "endLine": 561,
+        "endChar": 49
+      },
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1cb2fc56_3c860fe2",
         "filename": "system/stack/btm/btm_iso_impl.h",
         "patchSetId": 3
@@ -77,6 +125,24 @@
       "writtenOn": "2023-11-14T20:39:56Z",
       "side": 1,
       "message": "afaik, TS is removed by the controller and they use their own time stamp from the time when SDU is received on the controller side.\n\nAs you might know, HCI is not best transport for audio packets do this is a reason for the controller to behave like that.\n\nReason why we had TS implemented in host is just for us to know if Host is good enough to be on time and also to somehow monitor timing on received data from the controller.\n\nTHis changes removes this monitoring in the same time, most probably, does not change streaming performance - due to note in first sentence.",
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1680fe71_9b239b29",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-14T22:30:01Z",
+      "side": 1,
+      "message": "I think this part is about ISO Reception. For unframed ISO, I think nor timestamp nor sequence numbers are sent over the air, it\u0027s useless.\nThe previous code certainly trigger many false `drop` indication and can also don\u0027t detect real drop conditions.\nI do not understand well the monitoring here, the audio HAL should buffer a little to cover scheduling jitter; you should receive a packet every `interval` us. If you buffer more that `interval` us, you have the opportunity to engage PLC, regarding the sequence number difference. But, basically, a timeout on `interval` is better to be implemented, and trigger PLC regarding this, this will achieve better latency. I think the sequence number should only be used for sanity checks, but it\u0027s not needed in the `unframed` mode.",
+      "parentUuid": "1cb2fc56_3c860fe2",
       "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
