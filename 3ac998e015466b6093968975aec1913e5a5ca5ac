@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "105561df_a5157a09",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 386,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-14T21:30:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f11653ab_da0ad21f",
+      "revId": "3ac998e015466b6093968975aec1913e5a5ca5ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7a0430a3_b11a31cc",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-11-14T16:29:53Z",
       "side": 1,
       "message": "This keyword should not be needed, can you try to remove it?",
+      "revId": "3ac998e015466b6093968975aec1913e5a5ca5ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ed1bf03_411c4158",
+        "filename": "TEST_MAPPING",
+        "patchSetId": 2
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-14T21:30:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a0430a3_b11a31cc",
       "revId": "3ac998e015466b6093968975aec1913e5a5ca5ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
