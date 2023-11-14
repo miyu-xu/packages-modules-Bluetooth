@@ -115,6 +115,10 @@
       "keywords": ["internal"]
     },
     {
+      "name": "bluetooth_le_audio_codec_manager_test",
+      "keywords": ["internal"]
+    },
+    {
       "name": "bluetooth_le_audio_test",
       "keywords": ["internal"]
     },
