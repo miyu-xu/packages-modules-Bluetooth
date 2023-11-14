@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "634ec316_de57768a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-14T23:33:00Z",
+      "side": 1,
+      "message": "is this flag needed for your tests? otherwise, you might not need to set this. so just remove this line for FLAG_AUDIO_ROUTING_CENTRALIZATION",
+      "revId": "8f2e291b2443da12a034b7971f3118c52167a113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34e16aae_b993cf1d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-14T23:33:00Z",
+      "side": 1,
+      "message": "usually the best practice should be in SetUp(), we set the flag to \u0027false\u0027 since this is the current default value.\nmFakeFlagsImpl.setFlag(Flags.FLAG_LEAUDIO_BROADCAST_AUDIO_HANDOVER_POLICIES, false);\n\nand we only toggle the flag to true for newly added/modified test cases where flag is required. \nDoes this work for you?\n\ne.g.\n    @Test\n    public void testCreatePendingBroadcast() {\n        mFakeFlagsImpl.setFlag(Flags.FLAG_LEAUDIO_BROADCAST_AUDIO_HANDOVER_POLICIES, true);    \n        int groupId \u003d 1;\n        byte[] code \u003d {0x00, 0x01, 0x00, 0x02};",
+      "revId": "8f2e291b2443da12a034b7971f3118c52167a113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
