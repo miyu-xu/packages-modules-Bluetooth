@@ -182,6 +182,30 @@
       },
       "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b43a6115_2a0db5d0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T02:28:13Z",
+      "side": 1,
+      "message": "Anything from TestUtils for looper is a hack that should not be needed when using a TestLooper.\nThere are method disponible to do the same.\nI assume that `dispatchAll` will do the trick here.\nBut if you are posting a delayed task, you may want to use `moveTimeForward` in order to cheat the time and jump to executing the message\n\n\u003e and applying TestLooper for all other tests later?\n\nSince this is done in the setup, I don\u0027t see how you are gonna change other test to not use the common Looper. I feel like moving all test to the TestLooper is the thing to do",
+      "parentUuid": "7a150ffb_00107d9c",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 23
+      },
+      "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
