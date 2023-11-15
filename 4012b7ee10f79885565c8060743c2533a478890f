@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4f3ceb62_d38823c9",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1359,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-11-15T18:06:36Z",
+      "side": 1,
+      "message": "AT+%QAC needs to be responded with +%QAC(this is sent from bta_ag_swb_handle_vs_at_events), followed by OK.\n\nWhere as AT+%QCS is a response to +%QCS sent from AG. Only OK needs to be sent to BT headset for this. Hence the order of bta_ag_swb_handle_vs_at_events() and bta_ag_send_ok() are different for both of these commands.",
+      "parentUuid": "efdfd218_851e2424",
+      "range": {
+        "startLine": 1359,
+        "startChar": 8,
+        "endLine": 1359,
+        "endChar": 22
+      },
+      "revId": "4012b7ee10f79885565c8060743c2533a478890f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f69c06f_a2c78e6a",
         "filename": "system/btif/src/btif_hf.cc",
         "patchSetId": 25
