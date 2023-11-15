@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80a85e9a_18e842aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-15T23:56:40Z",
+      "side": 1,
+      "message": "How about:\n\nThese APIs are called from BTIF and posted to the main thread.  Here they were posted a second time.  Try just posting them once to the main thread.\n\nI would like to make it clear that you\u0027re not changing the thread where these functions are running.",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 51
+      },
+      "revId": "96204eeb9500adafe58f2655656edbf7e5179f43",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
