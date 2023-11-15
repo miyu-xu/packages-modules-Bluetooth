@@ -43,6 +43,39 @@ cc_fuzz {
 }
 
 cc_fuzz {
+    name: "avrcp_parse_packet_fuzzer",
+    defaults: ["fluoride_defaults"],
+    host_supported: true,
+
+    include_dirs: [
+        "packages/modules/Bluetooth/system/",
+        "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/packet/base",
+        "packages/modules/Bluetooth/system/packet/include",
+        "packages/modules/Bluetooth/system/packet/tests",
+        "packages/modules/Bluetooth/system/packet/tests/avrcp",
+    ],
+    srcs: [
+        "avrcp_parse_packet_fuzzer.cpp",
+
+    ],
+
+    static_libs: [
+        "lib-bt-packets",
+        "lib-bt-packets-avrcp",
+        "lib-bt-packets-base",
+        "libchrome",
+        "libgmock",
+    ],
+    cflags: [
+        "-DBUILDCFG",
+        "-Wno-unused-parameter",
+    ],
+    shared_libs: ["liblog"],
+}
+
+cc_fuzz {
     name: "change_path_req_fuzzer",
     defaults: ["fluoride_defaults"],
     host_supported: true,
