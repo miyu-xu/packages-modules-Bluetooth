@@ -24,6 +24,7 @@
 
 #include <base/functional/bind.h>
 
+#include "android_bluetooth_flags.h"
 #include "bta/dm/bta_dm_sec_int.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/bt_octets.h"
@@ -34,8 +35,12 @@
 /** This function initiates a bonding procedure with a peer device */
 void BTA_DmBond(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type,
                 tBT_TRANSPORT transport, tBT_DEVICE_TYPE device_type) {
-  do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_bond, bd_addr, addr_type,
-                                              transport, device_type));
+  if (IS_FLAG_ENABLED(synchronous_bta_dmbond)) {
+    bta_dm_bond(bd_addr, addr_type, transport, device_type);
+  } else {
+    do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_bond, bd_addr, addr_type,
+                                                transport, device_type));
+  }
 }
 
 /** This function cancels the bonding procedure with a peer device
