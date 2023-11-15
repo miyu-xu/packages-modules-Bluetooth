@@ -619,10 +619,12 @@ cc_test {
     static_libs: [
         "android.hardware.bluetooth.a2dp@1.0",
         "avrcp-target-service",
+        "bluetooth_flags_c_lib",
         "lib-bt-packets",
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
         "libaudio-a2dp-hw-utils",
+        "libbase",
         "libbluetooth-types",
         "libbluetooth_gd",
         "libbt-audio-hal-interface",
@@ -642,6 +644,7 @@ cc_test {
         "libevent",
         "libgmock",
         "libstatslog_bt",
+        "server_configurable_flags",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -758,10 +761,12 @@ cc_test {
     static_libs: [
         "android.hardware.bluetooth.a2dp@1.0",
         "avrcp-target-service",
+        "bluetooth_flags_c_lib",
         "lib-bt-packets",
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
         "libaudio-a2dp-hw-utils",
+        "libbase",
         "libbluetooth-types",
         "libbluetooth_gd",
         "libbt-audio-hal-interface",
@@ -779,6 +784,7 @@ cc_test {
         "libevent",
         "libgmock",
         "libstatslog_bt",
+        "server_configurable_flags",
     ],
     cflags: [
         "-DBUILDCFG",
