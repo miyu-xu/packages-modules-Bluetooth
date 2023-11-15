@@ -22,6 +22,30 @@
       },
       "revId": "5ae44c05f8a60b0a762e804f5816283bb30a14ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9664dcf4_cb7e7831",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-15T12:54:31Z",
+      "side": 1,
+      "message": "This is consistent with other structs eg. \"LeAudioCoreCodecConfig\"\n\nI do not have strong opinion here, but if this is requested, maybe it should be delivered in other issue?",
+      "parentUuid": "a9b001c8_44dcbf84",
+      "range": {
+        "startLine": 577,
+        "startChar": 7,
+        "endLine": 577,
+        "endChar": 14
+      },
+      "revId": "5ae44c05f8a60b0a762e804f5816283bb30a14ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
