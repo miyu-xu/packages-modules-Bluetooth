@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6dfdeb65_309e5498",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1939360
+      },
+      "writtenOn": "2023-11-15T13:45:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8cd38eb_318c6cde",
+      "revId": "0c1fd1cd8b6d434039ae851e410e9a1898d79259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c0a603b_e53c3a99",
@@ -67,6 +85,24 @@
       "writtenOn": "2023-11-09T19:41:30Z",
       "side": 1,
       "message": "codegen should match protobuf -- this looks like a typo",
+      "revId": "0c1fd1cd8b6d434039ae851e410e9a1898d79259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "84a42405_fea2a8b2",
+        "filename": "system/gd/rust/facade_proto/Cargo.toml",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1939360
+      },
+      "writtenOn": "2023-11-15T13:45:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c0a603b_e53c3a99",
       "revId": "0c1fd1cd8b6d434039ae851e410e9a1898d79259",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
