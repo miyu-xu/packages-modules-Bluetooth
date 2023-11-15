@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "1c23b7e9_d23a2159",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-15T21:25:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3c780619_2747eeb2",
+      "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f72f4baa_7c78988f",
         "filename": "system/stack/btm/btm_ble_sec.cc",
         "patchSetId": 3
@@ -31,6 +49,24 @@
       "writtenOn": "2023-11-15T19:55:55Z",
       "side": 1,
       "message": "Nit: This can be a static function.",
+      "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac8d9d82_14d57558",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-15T21:25:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f72f4baa_7c78988f",
       "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -71,6 +107,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "347cc840_136d5b9e",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1338,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-15T21:25:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc45c1ba_c92cc2b3",
+      "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "5f385a2e_96beaee0",
         "filename": "system/stack/btm/btm_ble_sec.cc",
         "patchSetId": 3
@@ -82,6 +136,24 @@
       "writtenOn": "2023-11-15T19:55:55Z",
       "side": 1,
       "message": "Should we notify the encryption irrespective of whether the pairing was successful or not? Probability of encryption succeeding but pairing failing is very very low.",
+      "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7cdfafd2_0511f43f",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1690,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-15T21:25:41Z",
+      "side": 1,
+      "message": "Great callout - I think we actually should, pulled out of success check to call btm_ble_notify_enc_cmpl regardless of res value.",
+      "parentUuid": "5f385a2e_96beaee0",
       "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }

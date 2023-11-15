@@ -16,6 +16,24 @@
       "message": "Nit: Unnecessary change",
       "revId": "3e89475f7f0e398a3e05360f78cd8ea85ae4a6aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d789e4b2_d5e3ad1e",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-15T21:25:41Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "720549d1_65cc914c",
+      "revId": "3e89475f7f0e398a3e05360f78cd8ea85ae4a6aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
