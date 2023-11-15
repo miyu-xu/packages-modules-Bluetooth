@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c780619_2747eeb2",
+        "filename": "system/conf/interop_database.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 857,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-15T19:55:55Z",
+      "side": 1,
+      "message": "Nit:\n```suggestion\n[INTEROP_SUSPEND_ATT_TRAFFIC_DURING_PAIRING]\n```",
+      "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f72f4baa_7c78988f",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1265,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-15T19:55:55Z",
+      "side": 1,
+      "message": "Nit: This can be a static function.",
+      "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee9da76c_f5faf6d2",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1331,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-15T19:55:55Z",
+      "side": 1,
+      "message": "Nit: This comment is repeated in the `btm_ble_notify_enc_cmpl()`. Should we put in a different comment here explaining what we are doing?",
+      "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc45c1ba_c92cc2b3",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1338,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-15T19:55:55Z",
+      "side": 1,
+      "message": "Nit: It may be helpful if the log message mentions that an interop behaviour was triggered.\n\n```suggestion\n    LOG_INFO(\"INTEROP_DELAY_ATT_TRAFFIC_DURING_PAIRING: Waiting for bonding to complete to notify enc complete\");\n```",
+      "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f385a2e_96beaee0",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1690,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-15T19:55:55Z",
+      "side": 1,
+      "message": "Should we notify the encryption irrespective of whether the pairing was successful or not? Probability of encryption succeeding but pairing failing is very very low.",
+      "revId": "91a44c0a46b927379d2f41076ba1b3e5aa3aba75",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

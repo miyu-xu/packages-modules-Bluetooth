@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "720549d1_65cc914c",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-15T19:55:55Z",
+      "side": 0,
+      "message": "Nit: Unnecessary change",
+      "revId": "3e89475f7f0e398a3e05360f78cd8ea85ae4a6aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
