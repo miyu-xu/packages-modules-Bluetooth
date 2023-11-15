@@ -164,6 +164,30 @@
       },
       "revId": "f23775548c9b42efa08895cbd9b3b1099a5b7832",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09d3ec97_f16de9df",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/PbapClientService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 590,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T20:20:18Z",
+      "side": 1,
+      "message": "Doing the double post is harmless, but at the same time, I do feel like there is no need for the first one...",
+      "parentUuid": "ef5f6e57_b365fed2",
+      "range": {
+        "startLine": 590,
+        "startChar": 8,
+        "endLine": 590,
+        "endChar": 89
+      },
+      "revId": "f23775548c9b42efa08895cbd9b3b1099a5b7832",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
