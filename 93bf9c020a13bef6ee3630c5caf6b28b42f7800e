@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ffde8e6_76985cde",
+        "filename": "system/bta/include/bta_hh_uhid.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2023-11-15T08:20:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af765a0a_b261a6cc",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 32
+      },
+      "revId": "93bf9c020a13bef6ee3630c5caf6b28b42f7800e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63ec1ae4_fec866fa",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-14T15:37:13Z",
       "side": 1,
       "message": "nit: I prefer #pragma once",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 21
+      },
+      "revId": "93bf9c020a13bef6ee3630c5caf6b28b42f7800e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "67d0d68d_3b308ca1",
+        "filename": "system/bta/include/bta_hh_uhid.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2023-11-15T08:20:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63ec1ae4_fec866fa",
       "range": {
         "startLine": 25,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d4b82c_b693c0c7",
+        "filename": "system/bta/include/bta_hh_uhid.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2023-11-15T08:20:49Z",
+      "side": 1,
+      "message": "There is a chance we might need a non-thread-safe version to improve efficiency like aosp/2827232",
+      "parentUuid": "4c9736b2_746250a9",
+      "range": {
+        "startLine": 51,
+        "startChar": 34,
+        "endLine": 51,
+        "endChar": 58
+      },
+      "revId": "93bf9c020a13bef6ee3630c5caf6b28b42f7800e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f428201_0e4cd649",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-14T15:37:13Z",
       "side": 1,
       "message": "Google style doesn\u0027t allow references to return values.  Maybe return an event, and one type is the empty event?",
+      "range": {
+        "startLine": 96,
+        "startChar": 42,
+        "endLine": 96,
+        "endChar": 52
+      },
+      "revId": "93bf9c020a13bef6ee3630c5caf6b28b42f7800e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "539c30b9_a89f328a",
+        "filename": "system/bta/include/bta_hh_uhid.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2023-11-15T08:20:49Z",
+      "side": 1,
+      "message": "Use a dequeue result type to resolve it.",
+      "parentUuid": "9f428201_0e4cd649",
       "range": {
         "startLine": 96,
         "startChar": 42,
