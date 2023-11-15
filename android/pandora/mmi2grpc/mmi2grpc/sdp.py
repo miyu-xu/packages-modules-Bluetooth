@@ -145,7 +145,6 @@ class SDPProxy(ProfileProxy):
             "HandsfreeAudioGateway",
             "GenericAudio",
             "Message Access Server",
-            "TMAS",
             "NAP",
             "PANU",
             "Phonebook Access - PSE",
@@ -156,7 +155,6 @@ class SDPProxy(ProfileProxy):
             "Generic Attribute service",
             "A/V_RemoteControlController",
             "Android Auto Compatibility",
-            "TMAS",
         ]
         movable_services = [
             "Message Access Server",
