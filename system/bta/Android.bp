@@ -201,10 +201,13 @@ cc_library_static {
         "-fvisibility=default",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "lib-bt-packets",
+        "libbase",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libcom.android.sysprop.bluetooth.wrapped",
+        "server_configurable_flags",
     ],
     apex_available: [
         "com.android.btservices",
@@ -1208,8 +1211,14 @@ cc_test {
         "libbase",
         "libcrypto",
         "liblog",
+        "server_configurable_flags",
     ],
     static_libs: [
+<<<<<<< PATCH SET (398cf6 [Invisalign2] Make BTA_DmXXX synchronous)
+        "bluetooth_flags_c_lib",
+        "libbase",
+=======
+>>>>>>> BASE      (3e0b78 Add a flag to make BTA_DmXXX security APIs)
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
