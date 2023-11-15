@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f5597b6_5952ceb9",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2029,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-15T00:12:08Z",
+      "side": 1,
+      "message": "I am fine with either approach :) \n\nAnd for switch approach, we can also directly return in `default` case, then no need to have `miss` variable.",
+      "parentUuid": "c44c754a_25e0b474",
+      "range": {
+        "startLine": 2013,
+        "startChar": 8,
+        "endLine": 2029,
+        "endChar": 9
+      },
+      "revId": "b53014664ad75410c44b104aedefb4a63cdcdb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "75fd1393_7d654da6",
         "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
         "patchSetId": 4
