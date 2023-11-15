@@ -199,10 +199,13 @@ cc_library_static {
         "-fvisibility=default",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "lib-bt-packets",
+        "libbase",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libcom.android.sysprop.bluetooth.wrapped",
+        "server_configurable_flags",
     ],
     apex_available: [
         "com.android.btservices",
@@ -1194,7 +1197,9 @@ cc_test {
         "liblog",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "crypto_toolbox_for_tests",
+        "libbase",
         "libbluetooth-types",
         "libbluetooth_gd",
         "libbluetooth_hci_pdl",
@@ -1207,6 +1212,7 @@ cc_test {
         "libevent",
         "libgmock",
         "libosi",
+        "server_configurable_flags",
     ],
     generated_headers: [
         "BluetoothGeneratedDumpsysDataSchema_h",
