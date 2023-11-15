@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f56b4e8_cc297ead",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-15T01:38:40Z",
+      "side": 1,
+      "message": "Can this happen in the real use case (not in test)?",
+      "range": {
+        "startLine": 13,
+        "startChar": 20,
+        "endLine": 14,
+        "endChar": 22
+      },
+      "revId": "c900f265eaeb99509a65086f32983ba5405713e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
