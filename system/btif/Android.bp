@@ -640,6 +640,7 @@ cc_test {
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
         "libaudio-a2dp-hw-utils",
+        "libbase",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
@@ -663,6 +664,7 @@ cc_test {
         "libosi",
         "libprotobuf-cpp-lite",
         "libstatslog_bt",
+        "server_configurable_flags",
     ],
     cflags: [
         "-DBUILDCFG",
@@ -782,6 +784,7 @@ cc_test {
         "lib-bt-packets-avrcp",
         "lib-bt-packets-base",
         "libaudio-a2dp-hw-utils",
+        "libbase",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
@@ -802,6 +805,7 @@ cc_test {
         "libgmock",
         "libprotobuf-cpp-lite",
         "libstatslog_bt",
+        "server_configurable_flags",
     ],
     cflags: [
         "-DBUILDCFG",
