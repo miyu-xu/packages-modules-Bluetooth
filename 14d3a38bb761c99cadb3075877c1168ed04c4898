@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c31bb50e_41a7927e",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapActivity.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-15T04:52:42Z",
+      "side": 1,
+      "message": "nit. please keep @VisibleForTesting.\nSince it would be private if there are no tests.",
+      "revId": "14d3a38bb761c99cadb3075877c1168ed04c4898",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
