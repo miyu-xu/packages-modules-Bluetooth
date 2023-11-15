@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4123a7d7_1b32c425",
+        "filename": "system/device/include/interop.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T18:55:24Z",
+      "side": 1,
+      "message": "to unblock what ?",
+      "range": {
+        "startLine": 337,
+        "startChar": 38,
+        "endLine": 337,
+        "endChar": 45
+      },
+      "revId": "833b5880a89a66a51df1f0ec7b470c2c95e36f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cdc8bd03_48056c68",
+        "filename": "system/device/include/interop.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 338,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T18:55:24Z",
+      "side": 1,
+      "message": "Can you add a  bugnumber associated with the todo ?",
+      "range": {
+        "startLine": 338,
+        "startChar": 5,
+        "endLine": 338,
+        "endChar": 9
+      },
+      "revId": "833b5880a89a66a51df1f0ec7b470c2c95e36f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55c562d3_a147b59d",
+        "filename": "system/device/include/interop.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T18:55:24Z",
+      "side": 1,
+      "message": "Why \"fake\"",
+      "range": {
+        "startLine": 339,
+        "startChar": 2,
+        "endLine": 339,
+        "endChar": 19
+      },
+      "revId": "833b5880a89a66a51df1f0ec7b470c2c95e36f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3dde15f_3596ddc9",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T18:55:24Z",
+      "side": 1,
+      "message": "what is fp used for now ?",
+      "range": {
+        "startLine": 107,
+        "startChar": 8,
+        "endLine": 107,
+        "endChar": 10
+      },
+      "revId": "833b5880a89a66a51df1f0ec7b470c2c95e36f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f695453_9fad811b",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T18:55:24Z",
+      "side": 1,
+      "message": "I do not understand why this function need to be modified in order to add uuid IOP support.\nIs there another reason ?",
+      "range": {
+        "startLine": 484,
+        "startChar": 12,
+        "endLine": 484,
+        "endChar": 24
+      },
+      "revId": "833b5880a89a66a51df1f0ec7b470c2c95e36f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9729e88_e3fcb649",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 493,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T18:55:24Z",
+      "side": 1,
+      "message": "Undefined behavior if string is empty\ncf https://en.cppreference.com/w/cpp/string/basic_string/front\n\nwhat you want is `line.empty()`.",
+      "range": {
+        "startLine": 493,
+        "startChar": 8,
+        "endLine": 493,
+        "endChar": 28
+      },
+      "revId": "833b5880a89a66a51df1f0ec7b470c2c95e36f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aed2b16_fc1eacc1",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T18:55:24Z",
+      "side": 1,
+      "message": "not needed since this is a c++ string concat",
+      "range": {
+        "startLine": 500,
+        "startChar": 29,
+        "endLine": 500,
+        "endChar": 36
+      },
+      "revId": "833b5880a89a66a51df1f0ec7b470c2c95e36f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4fe47be_aff7a5ce",
+        "filename": "system/osi/src/config.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T18:55:24Z",
+      "side": 1,
+      "message": "should it be trim ? to work with  `[  text  ]`",
+      "range": {
+        "startLine": 504,
+        "startChar": 16,
+        "endLine": 504,
+        "endChar": 47
+      },
+      "revId": "833b5880a89a66a51df1f0ec7b470c2c95e36f24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
