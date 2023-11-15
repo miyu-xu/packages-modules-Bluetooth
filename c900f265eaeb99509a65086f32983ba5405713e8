@@ -22,6 +22,30 @@
       },
       "revId": "c900f265eaeb99509a65086f32983ba5405713e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "000e2f6b_fe2fcec3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-11-15T01:51:24Z",
+      "side": 1,
+      "message": "Theoretically, if the same device is disconnected and connected, it can happen.",
+      "parentUuid": "8f56b4e8_cc297ead",
+      "range": {
+        "startLine": 13,
+        "startChar": 20,
+        "endLine": 14,
+        "endChar": 22
+      },
+      "revId": "c900f265eaeb99509a65086f32983ba5405713e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
