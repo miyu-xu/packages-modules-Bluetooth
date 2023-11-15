@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2a813c7_ffc9622b",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-15T20:42:28Z",
+      "side": 1,
+      "message": "Can we use the same flag for all BTA_Dm functions?  Logically, this seems like the same kind of change.",
+      "range": {
+        "startLine": 38,
+        "startChar": 22,
+        "endLine": 38,
+        "endChar": 44
+      },
+      "revId": "d7563da9c8f56eb3b25b84d5af7e039ec40b5a34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c0bf1e9_e0f9698a",
+        "filename": "system/bta/dm/bta_dm_sec_api.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-15T20:42:28Z",
+      "side": 1,
+      "message": "same flag for this one?",
+      "range": {
+        "startLine": 49,
+        "startChar": 2,
+        "endLine": 49,
+        "endChar": 19
+      },
+      "revId": "d7563da9c8f56eb3b25b84d5af7e039ec40b5a34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
