@@ -46,6 +46,30 @@
       },
       "revId": "5ae44c05f8a60b0a762e804f5816283bb30a14ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4dc121e8_34ea3395",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 577,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-15T14:08:05Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9664dcf4_cb7e7831",
+      "range": {
+        "startLine": 577,
+        "startChar": 7,
+        "endLine": 577,
+        "endChar": 14
+      },
+      "revId": "5ae44c05f8a60b0a762e804f5816283bb30a14ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
