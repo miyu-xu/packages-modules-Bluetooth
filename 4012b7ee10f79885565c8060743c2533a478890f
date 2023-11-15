@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4ade1a17_1ba6940b",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1359,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T20:52:32Z",
+      "side": 1,
+      "message": "Thanks for the explanation.\n\n@rotkiewicz@google.com, do you think we can add a comment to emphasize that the order matters ?",
+      "parentUuid": "eba16553_eeb6f5be",
+      "range": {
+        "startLine": 1359,
+        "startChar": 8,
+        "endLine": 1359,
+        "endChar": 22
+      },
+      "revId": "4012b7ee10f79885565c8060743c2533a478890f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f69c06f_a2c78e6a",
         "filename": "system/btif/src/btif_hf.cc",
         "patchSetId": 25
