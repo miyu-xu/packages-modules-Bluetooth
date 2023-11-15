@@ -69,6 +69,52 @@
       },
       "revId": "c900f265eaeb99509a65086f32983ba5405713e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6918396_db39092c",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-15T04:30:43Z",
+      "side": 1,
+      "message": "Can we using a static looper instead of creating multiple thread per MceStateMachine?\nIf we can do that and we can access and/or set the static looper on test, we can wait the looper is finished for the scheduled tasks to avoid the issue. Doesn\u0027t it?",
+      "range": {
+        "startLine": 225,
+        "startChar": 8,
+        "endLine": 225,
+        "endChar": 13
+      },
+      "revId": "c900f265eaeb99509a65086f32983ba5405713e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf21db22_0a486cba",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-15T04:30:43Z",
+      "side": 1,
+      "message": "What about connect() then cleanupDevice()?",
+      "range": {
+        "startLine": 242,
+        "startChar": 17,
+        "endLine": 242,
+        "endChar": 30
+      },
+      "revId": "c900f265eaeb99509a65086f32983ba5405713e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
