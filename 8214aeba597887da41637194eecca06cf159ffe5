@@ -102,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "21c1d7ec_68e80ce7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-15T10:25:45Z",
+      "side": 1,
+      "message": ":) \n\nSo I have feeling that what Listening Mode should only providing required information up to Java and should not do any state changes.\n\n\nThe other question is if really Java layer needs to be involved and we cannot somehow solve it on native layer?",
+      "parentUuid": "dcd0a019_07f581aa",
+      "revId": "8214aeba597887da41637194eecca06cf159ffe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e1189224_87e7a913",
         "filename": "system/include/hardware/bt_le_audio.h",
         "patchSetId": 5
