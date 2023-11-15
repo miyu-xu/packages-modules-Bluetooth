@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "868ddee3_2475f8bc",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 5522,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-15T10:38:53Z",
+      "side": 1,
+      "message": "I missed that part before - so in fact we keep session open all the time.\n\nI don\u0027t think this is just listening mode, in this way we change a life time of session which also has an impact on reconfiguration of the session. e.g. what happen when this flag is on and we are changing active group?\n\nMaybe for the HW path it does not change much now, but in the future it will have big impact with multi codec support.\n\nI think this kind of change needs some more design work.",
+      "revId": "d0cebc5d604d69a0502b2f3a230228f368fad10e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
