@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eba16553_eeb6f5be",
+        "filename": "system/bta/ag/bta_ag_cmd.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 1359,
+      "author": {
+        "id": 1902235
+      },
+      "writtenOn": "2023-11-15T18:10:55Z",
+      "side": 1,
+      "message": "sequence looks like this.\n\n\n480 Slave 11 AT+%QAC\u003d0,6,7. AT+%QAC\u003d0,6,7 26 00:00:00.006000 6/4/2019 8:43:13.851000 PM\n481 Master 11 ..+%QAC: 0,4,6,7.. +%QAC: 0,4,6,7 31 00:00:00.002000 6/4/2019 8:43:13.853000 PM\n482 Master 11 ..OK.. Success 18 00:00:00.002000 6/4/2019 8:43:13.855000 PM\n\n588 Master 11 ..+%QCS: 0.. +%QCS: 0 24 00:00:00.116000 6/4/2019 8:43:14.241000 PM\n628 Slave 11 AT+%QCS\u003d0. AT+%QCS\u003d0 22 00:00:00.020000 6/4/2019 8:43:14.425000 PM\n632 Master 11 ..OK.. Success 19 00:00:00.001000 6/4/2019 8:43:14.426000 PM",
+      "parentUuid": "4f3ceb62_d38823c9",
+      "range": {
+        "startLine": 1359,
+        "startChar": 8,
+        "endLine": 1359,
+        "endChar": 22
+      },
+      "revId": "4012b7ee10f79885565c8060743c2533a478890f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f69c06f_a2c78e6a",
         "filename": "system/btif/src/btif_hf.cc",
         "patchSetId": 25
