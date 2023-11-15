@@ -70,6 +70,30 @@
       },
       "revId": "180d5f12abaabdab019c8123703b84cadd0afda0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17973509_1636e59b",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-15T19:52:24Z",
+      "side": 1,
+      "message": "That should work. IsAvailable is set to false before stop is called, aka this will be called only when the mHandler is there.\nLGTM",
+      "parentUuid": "458aeb3c_6ed42b26",
+      "range": {
+        "startLine": 1174,
+        "startChar": 16,
+        "endLine": 1174,
+        "endChar": 38
+      },
+      "revId": "180d5f12abaabdab019c8123703b84cadd0afda0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
