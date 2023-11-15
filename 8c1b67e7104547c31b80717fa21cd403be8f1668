@@ -46,6 +46,30 @@
       },
       "revId": "8c1b67e7104547c31b80717fa21cd403be8f1668",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2bfd72a_511aff2d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-11-15T21:15:05Z",
+      "side": 1,
+      "message": "I think it\u0027s easier for the list of Uris as the URI object is simple, while the ScanResult type is complex and we would need to match every field exactly (if the matcher can even support it, and I don\u0027t think it can).",
+      "parentUuid": "5711eb40_5201c174",
+      "range": {
+        "startLine": 119,
+        "startChar": 6,
+        "endLine": 139,
+        "endChar": 74
+      },
+      "revId": "8c1b67e7104547c31b80717fa21cd403be8f1668",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
