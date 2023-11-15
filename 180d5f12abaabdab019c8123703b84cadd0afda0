@@ -46,6 +46,30 @@
       },
       "revId": "180d5f12abaabdab019c8123703b84cadd0afda0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "458aeb3c_6ed42b26",
+        "filename": "android/app/src/com/android/bluetooth/a2dp/A2dpService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1174,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-15T12:34:24Z",
+      "side": 1,
+      "message": "Added check for isAvailable as well. This should help since after stop is called Handler becomes null and so isAvailable becomes false as well",
+      "parentUuid": "a768dee0_61a5ad94",
+      "range": {
+        "startLine": 1174,
+        "startChar": 16,
+        "endLine": 1174,
+        "endChar": 38
+      },
+      "revId": "180d5f12abaabdab019c8123703b84cadd0afda0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
