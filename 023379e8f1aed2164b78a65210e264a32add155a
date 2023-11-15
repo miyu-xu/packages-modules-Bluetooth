@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcb6b5ce_4f463723",
+        "filename": "system/Android.mk",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-15T19:11:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "423c68ef_f2d4fe3b",
+      "revId": "023379e8f1aed2164b78a65210e264a32add155a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5523dc02_4be75d2a",
