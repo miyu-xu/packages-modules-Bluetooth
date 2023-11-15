@@ -85,7 +85,8 @@ public class VolumeControlService extends ProfileService {
     private Handler mHandler = null;
     private FeatureFlags mFeatureFlags;
 
-    @VisibleForTesting RemoteCallbackList<IBluetoothVolumeControlCallback> mCallbacks;
+    @VisibleForTesting
+    RemoteCallbackList<IBluetoothVolumeControlCallback> mCallbacks;
 
     @VisibleForTesting
     static class VolumeControlOffsetDescriptor {
@@ -1774,15 +1775,8 @@ public class VolumeControlService extends ProfileService {
                 }
 
                 enforceBluetoothPrivilegedPermission(service);
-                service.mHandler.post(
-                        () -> {
-                            try {
-                                service.registerCallback(callback);
-                                receiver.send(null);
-                            } catch (RuntimeException e) {
-                                receiver.propagateException(e);
-                            }
-                        });
+                service.registerCallback(callback);
+                receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
@@ -1802,15 +1796,9 @@ public class VolumeControlService extends ProfileService {
                 }
 
                 enforceBluetoothPrivilegedPermission(service);
-                service.mHandler.post(
-                        () -> {
-                            try {
-                                service.mCallbacks.unregister(callback);
-                                receiver.send(null);
-                            } catch (RuntimeException e) {
-                                receiver.propagateException(e);
-                            }
-                        });
+
+                service.mCallbacks.unregister(callback);
+                receiver.send(null);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
