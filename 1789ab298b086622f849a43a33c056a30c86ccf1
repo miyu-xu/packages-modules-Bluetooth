@@ -206,6 +206,30 @@
       },
       "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4019eff7_ef22b71b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-15T06:23:48Z",
+      "side": 1,
+      "message": "Thanks for the tip William, I\u0027ll try to come up with a solution based on this :)",
+      "parentUuid": "b43a6115_2a0db5d0",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 23
+      },
+      "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
