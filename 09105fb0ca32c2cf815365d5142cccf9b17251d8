@@ -16,6 +16,23 @@
       "message": "Myles, can you help review this change? Thanks.",
       "revId": "09105fb0ca32c2cf815365d5142cccf9b17251d8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fbc36fb0_e5944211",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-15T15:03:30Z",
+      "side": 1,
+      "message": "Hi Chris, this is a upstream CL that MTK is prioritizing. Can you help review?",
+      "revId": "09105fb0ca32c2cf815365d5142cccf9b17251d8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
