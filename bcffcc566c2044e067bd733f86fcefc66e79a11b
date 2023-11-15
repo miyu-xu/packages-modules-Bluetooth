@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff038d62_fac410fa",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-15T00:42:39Z",
+      "side": 1,
+      "message": "In anticipation of the \u003cformat\u003e update: \n```\n#if __has_include(\u003cformat\u003e)\n#include \u003cformat\u003e\n#else\n#include \u003cfmt/format.h\u003e\n\nnamespace std {\nusing fmt::format;\n}\n#endif\n```",
+      "revId": "bcffcc566c2044e067bd733f86fcefc66e79a11b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
