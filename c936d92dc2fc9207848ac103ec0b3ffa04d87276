@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90de4121_9445b7a6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1001986
+      },
+      "writtenOn": "2023-11-16T23:42:38Z",
+      "side": 1,
+      "message": "Changed the namespace to bluetooth. PTAL.",
+      "revId": "c936d92dc2fc9207848ac103ec0b3ffa04d87276",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
