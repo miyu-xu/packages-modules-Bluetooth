@@ -17,6 +17,7 @@
 package com.android.bluetooth.btservice;
 
 import static android.Manifest.permission.BLUETOOTH_CONNECT;
+import static android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 import static android.Manifest.permission.BLUETOOTH_SCAN;
 
 import android.annotation.RequiresPermission;
@@ -1223,6 +1224,25 @@ public class RemoteDevices {
         }
     }
 
+    void keyMissingCallback(byte[] address) {
+        BluetoothDevice bluetoothDevice = getDevice(address);
+        if (bluetoothDevice == null) {
+            errorLog(
+                    "keyMissingCallback: device is NULL, address="
+                            + Utils.getRedactedAddressStringFromByte(address));
+            return;
+        }
+        Log.d(TAG, "keyMissingCallback device: " + bluetoothDevice);
+
+        if (bluetoothDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
+            Intent intent = new Intent(BluetoothDevice.ACTION_KEY_MISSING);
+            intent.putExtra(BluetoothDevice.EXTRA_DEVICE, bluetoothDevice);
+            intent.addFlags(
+                    Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT
+                            | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
+            mAdapterService.sendBroadcast(intent, BLUETOOTH_PRIVILEGED);
+        }
+    }
 
     void fetchUuids(BluetoothDevice device, int transport) {
         if (mSdpTracker.contains(device)) {

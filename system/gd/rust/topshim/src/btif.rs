@@ -953,6 +953,7 @@ pub enum BaseCallbacks {
     // switch_codec_cb
     GenerateLocalOobData(u8, OobData),
     LeRandCallback(u64),
+    // key_missing_cb
 }
 
 pub struct BaseCallbacksDispatcher {
@@ -1143,6 +1144,7 @@ impl BluetoothInterface {
             switch_buffer_size_cb: None,
             switch_codec_cb: None,
             le_rand_cb: Some(le_rand_cb),
+            key_missing_cb: None,
         });
 
         let cb_ptr = LTCheckedPtrMut::from(&mut callbacks);
