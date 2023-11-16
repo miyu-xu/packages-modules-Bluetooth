@@ -22,6 +22,99 @@
       },
       "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24798b7c_db2428a7",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-16T00:41:02Z",
+      "side": 1,
+      "message": "I have a preference on seeing what the flag is used for. That allow me sometimes to mention that the flag is not needed, or   the description is blurry to me or else.\n\nI like how it\u0027s done here 😊",
+      "parentUuid": "7513a97b_66ddad5d",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 4
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cb3fba5_a920a1bd",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-16T00:41:02Z",
+      "side": 1,
+      "message": "should this second flag check be removed and all the code below be encapsulate in above if ?",
+      "range": {
+        "startLine": 312,
+        "startChar": 6,
+        "endLine": 312,
+        "endChar": 69
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79305244_bbf7381b",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-16T00:41:02Z",
+      "side": 1,
+      "message": "Do you want to do that if the controller is null ?",
+      "range": {
+        "startLine": 316,
+        "startChar": 6,
+        "endLine": 323,
+        "endChar": 5
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da40b470_db54ce3f",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-16T00:41:02Z",
+      "side": 1,
+      "message": "```suggestion\n  std::vector\u003cuint8_t\u003e codecIds;\n  if (IS_FLAG_ENABLED(use_dsp_codec_when_controller_does_not_support)) {\n    auto controller \u003d bluetooth::shim::GetController();\n    if (controller \u003d\u003d nullptr) {\n      LOG_WARN(\"controller is null\");\n    } else {\n      codecIds \u003d controller-\u003eGetLocalSupportedBrEdrCodecIds();\n      if (std::find(codecIds.begin(), codecIds.end(), ESCO_CODING_FORMAT_LC3) \u003d\u003d\n          codecIds.end()) {\n        LOG_INFO(\"BT controller does not support LC3 codec, use DSP codec instead\");\n        if (codec \u003d\u003d ESCO_CODEC_LC3_T1 || codec \u003d\u003d ESCO_CODEC_LC3_T2) {\n          enh_esco_params_t param \u003d default_esco_parameters[codec];\n          param.input_coding_format.coding_format \u003d ESCO_CODING_FORMAT_LC3;\n          param.output_coding_format.coding_format \u003d ESCO_CODING_FORMAT_LC3;\n          param.input_bandwidth \u003d TXRX_64KBITS_RATE;\n          param.output_bandwidth \u003d TXRX_64KBITS_RATE;\n          return param;\n        }\n      }\n    }\n```",
+      "range": {
+        "startLine": 302,
+        "startChar": 2,
+        "endLine": 324,
+        "endChar": 3
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
