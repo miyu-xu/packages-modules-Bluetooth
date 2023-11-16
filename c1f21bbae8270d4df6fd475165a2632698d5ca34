@@ -22,6 +22,30 @@
       },
       "revId": "c1f21bbae8270d4df6fd475165a2632698d5ca34",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "226c468f_49cb0cb9",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerWrapper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-16T17:31:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "062351c1_53022e63",
+      "range": {
+        "startLine": 297,
+        "startChar": 87,
+        "endLine": 297,
+        "endChar": 94
+      },
+      "revId": "c1f21bbae8270d4df6fd475165a2632698d5ca34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
