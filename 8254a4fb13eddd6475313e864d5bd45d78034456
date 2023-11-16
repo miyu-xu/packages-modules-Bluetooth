@@ -190,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "792ec6a0_83197fea",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:34:05Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "3b65f5c2_fb294c31",
+      "range": {
+        "startLine": 316,
+        "startChar": 6,
+        "endLine": 323,
+        "endChar": 5
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da40b470_db54ce3f",
