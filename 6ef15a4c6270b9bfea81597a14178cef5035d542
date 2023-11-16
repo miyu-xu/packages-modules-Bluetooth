@@ -16,6 +16,23 @@
       "message": "Remove gd...maybe for all 3?",
       "revId": "6ef15a4c6270b9bfea81597a14178cef5035d542",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "255170e9_58323f68",
+        "filename": "system/gd/crypto_toolbox/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-16T23:16:44Z",
+      "side": 1,
+      "message": "Can we place its API headers in a directory and export it with a export_include_dirs field in this library, so that we can include relative to this directory?",
+      "revId": "6ef15a4c6270b9bfea81597a14178cef5035d542",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
