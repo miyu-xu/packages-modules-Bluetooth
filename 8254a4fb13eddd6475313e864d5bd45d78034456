@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "661c34c0_0eb0f40a",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-16T18:21:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4cb3fba5_a920a1bd",
+      "range": {
+        "startLine": 312,
+        "startChar": 6,
+        "endLine": 312,
+        "endChar": 69
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79305244_bbf7381b",
@@ -144,6 +168,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b65f5c2_fb294c31",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-16T18:21:57Z",
+      "side": 1,
+      "message": "If controller is null, it will be the existing behavior (in which does not check for controller), which is `return default_esco_parameters[codec]`.  \n\nOnly if controller is not null, and HFP LC3 system property is true, and CodecIds does not have LC3, it will use HFP LC3 with DSP (the added setting).",
+      "parentUuid": "8c621185_b9233ef6",
+      "range": {
+        "startLine": 316,
+        "startChar": 6,
+        "endLine": 323,
+        "endChar": 5
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "da40b470_db54ce3f",
         "filename": "system/device/src/esco_parameters.cc",
         "patchSetId": 6
@@ -155,6 +203,30 @@
       "writtenOn": "2023-11-16T00:41:02Z",
       "side": 1,
       "message": "```suggestion\n  std::vector\u003cuint8_t\u003e codecIds;\n  if (IS_FLAG_ENABLED(use_dsp_codec_when_controller_does_not_support)) {\n    auto controller \u003d bluetooth::shim::GetController();\n    if (controller \u003d\u003d nullptr) {\n      LOG_WARN(\"controller is null\");\n    } else {\n      codecIds \u003d controller-\u003eGetLocalSupportedBrEdrCodecIds();\n      if (std::find(codecIds.begin(), codecIds.end(), ESCO_CODING_FORMAT_LC3) \u003d\u003d\n          codecIds.end()) {\n        LOG_INFO(\"BT controller does not support LC3 codec, use DSP codec instead\");\n        if (codec \u003d\u003d ESCO_CODEC_LC3_T1 || codec \u003d\u003d ESCO_CODEC_LC3_T2) {\n          enh_esco_params_t param \u003d default_esco_parameters[codec];\n          param.input_coding_format.coding_format \u003d ESCO_CODING_FORMAT_LC3;\n          param.output_coding_format.coding_format \u003d ESCO_CODING_FORMAT_LC3;\n          param.input_bandwidth \u003d TXRX_64KBITS_RATE;\n          param.output_bandwidth \u003d TXRX_64KBITS_RATE;\n          return param;\n        }\n      }\n    }\n```",
+      "range": {
+        "startLine": 302,
+        "startChar": 2,
+        "endLine": 324,
+        "endChar": 3
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc136b21_63d70482",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-16T18:21:57Z",
+      "side": 1,
+      "message": "Fix applied.",
+      "parentUuid": "da40b470_db54ce3f",
       "range": {
         "startLine": 302,
         "startChar": 2,
