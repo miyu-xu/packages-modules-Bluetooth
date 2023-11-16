@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "817f1258_27de6ce7",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "Can these tables go in their own header file(s)?",
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06344a12_4a4e6cb9",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "nit: set up",
+      "range": {
+        "startLine": 32,
+        "startChar": 55,
+        "endLine": 32,
+        "endChar": 60
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d86a36b_3ad25c02",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "dumping an internal buffer?",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 54
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f78eca0e_230f6b31",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "I prefer explicitly sized types. uint16_t? uint32_t?  size_t?",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d91160e_60600fe0",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "nit: returns",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 38
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d45d52c3_01200eb9",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "nit: Takes",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 10
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "136eaf01_75e60587",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "sample_rate_?",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 23
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "794f7f10_d017136f",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "bit_depth_ ?",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 21
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "024d15de_0ca32563",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "Did you use --no-verify?",
+      "range": {
+        "startLine": 410,
+        "startChar": 0,
+        "endLine": 410,
+        "endChar": 105
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e9d0ec5_cd184622",
+        "filename": "system/gd/hal/nocp_iso_clocker.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T18:59:44Z",
+      "side": 1,
+      "message": "I would prefer to  use PDL to parse packets here.  I\u0027m happy to help.",
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
