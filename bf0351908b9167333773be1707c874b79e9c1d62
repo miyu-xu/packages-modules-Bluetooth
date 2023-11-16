@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e7d94e1_89b50a28",
+        "filename": "system/gd/rust/facade_proto/build.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-16T21:52:30Z",
+      "side": 1,
+      "message": "Last remaining problem -- it wants the full path to `grpc_rust_plugin` here.\n\nOn ChromeOS, this is `/usr/bin/grpc_rust_plugin` and in the container (for floss CI), this is `/root/.cargo_home/bin/grpc_rust_plugin`. We could determine this in build.py and throw this into an `ENV` variable to read in build.rs (or figure it out in build.rs but I had trouble with this before)",
+      "revId": "bf0351908b9167333773be1707c874b79e9c1d62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
