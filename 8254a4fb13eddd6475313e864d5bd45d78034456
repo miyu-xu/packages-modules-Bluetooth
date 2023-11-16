@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "51112976_31f1722b",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T05:47:43Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "24798b7c_db2428a7",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 4
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4cb3fba5_a920a1bd",
@@ -84,6 +108,30 @@
       "writtenOn": "2023-11-16T00:41:02Z",
       "side": 1,
       "message": "Do you want to do that if the controller is null ?",
+      "range": {
+        "startLine": 316,
+        "startChar": 6,
+        "endLine": 323,
+        "endChar": 5
+      },
+      "revId": "8254a4fb13eddd6475313e864d5bd45d78034456",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c621185_b9233ef6",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-16T05:47:43Z",
+      "side": 1,
+      "message": "I think that could be a CHECK(controller !\u003d nullptr);\n\nIf you don\u0027t want it to crash, there should be a default value for codecIds.",
+      "parentUuid": "79305244_bbf7381b",
       "range": {
         "startLine": 316,
         "startChar": 6,
