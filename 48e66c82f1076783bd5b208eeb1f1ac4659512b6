@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "93938042_bacb1d7b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-11-16T20:33:49Z",
+      "side": 1,
+      "message": "Can we instead trigger the freshness check when the advertisement is lost?",
+      "parentUuid": "69b23ed2_ec30058d",
+      "range": {
+        "startLine": 1048,
+        "startChar": 0,
+        "endLine": 1053,
+        "endChar": 21
+      },
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88301f32_02a5b754",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
@@ -54,6 +78,24 @@
       "writtenOn": "2023-11-13T11:33:23Z",
       "side": 1,
       "message": "Shall we abort the task `if is_discovering`? Which is the expected behavior?",
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff2b0e27_a267371a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-11-16T20:33:49Z",
+      "side": 1,
+      "message": "I don\u0027t see anything wrong with having a `freshness_check` while we\u0027re discovering since `last_seen` of a device should be updated and nothing should happen if it\u0027s truly still fresh. Is there a reason why you think we should abort?",
+      "parentUuid": "88301f32_02a5b754",
       "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
