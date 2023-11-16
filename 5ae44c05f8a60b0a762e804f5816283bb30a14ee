@@ -70,6 +70,23 @@
       },
       "revId": "5ae44c05f8a60b0a762e804f5816283bb30a14ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3689cfdd_b3b1c252",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 734,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-11-16T20:59:25Z",
+      "side": 1,
+      "message": "Do we want to consider taking this argument by const reference, i.e. `const LeAudioLtvMap\u0026 pacs`, to avoid copying the class when we call this?",
+      "revId": "5ae44c05f8a60b0a762e804f5816283bb30a14ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
