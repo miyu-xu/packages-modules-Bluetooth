@@ -71,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "61fa36aa_26d594c2",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-11-16T16:29:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2e7915c_79d02ff1",
+      "range": {
+        "startLine": 385,
+        "startChar": 12,
+        "endLine": 385,
+        "endChar": 77
+      },
+      "revId": "c900f265eaeb99509a65086f32983ba5405713e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e6918396_db39092c",
@@ -94,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41e2aae9_80aca143",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MceStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-11-16T16:29:14Z",
+      "side": 1,
+      "message": "For testing, it seems okay, but for real world, we have to change MapClientService to wait for the looper or to use looper for handling its operations, which seems a  big change for this bug.\nI\u0027ll do it if it makes sense in following CL.",
+      "parentUuid": "e6918396_db39092c",
+      "range": {
+        "startLine": 225,
+        "startChar": 8,
+        "endLine": 225,
+        "endChar": 13
+      },
+      "revId": "c900f265eaeb99509a65086f32983ba5405713e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf21db22_0a486cba",
@@ -107,6 +155,30 @@
       "writtenOn": "2023-11-15T04:30:43Z",
       "side": 1,
       "message": "What about connect() then cleanupDevice()?",
+      "range": {
+        "startLine": 242,
+        "startChar": 17,
+        "endLine": 242,
+        "endChar": 30
+      },
+      "revId": "c900f265eaeb99509a65086f32983ba5405713e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f69020b_7cc63b2f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-11-16T16:29:14Z",
+      "side": 1,
+      "message": "Add a new test to connect and disconnect to simulate the behavior.",
+      "parentUuid": "cf21db22_0a486cba",
       "range": {
         "startLine": 242,
         "startChar": 17,
