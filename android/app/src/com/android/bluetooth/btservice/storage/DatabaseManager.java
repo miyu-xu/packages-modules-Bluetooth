@@ -256,9 +256,9 @@ public class DatabaseManager {
             data.setCustomizedMeta(key, newValue);
 
             updateDatabase(data);
-            mAdapterService.metadataChanged(address, key, newValue);
-            return true;
         }
+        mAdapterService.metadataChanged(address, key, newValue);
+        return true;
     }
 
     /**
