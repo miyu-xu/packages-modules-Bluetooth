@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4eb03f09_25958d75",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1312909
+      },
+      "writtenOn": "2023-11-16T17:53:01Z",
+      "side": 1,
+      "message": "Are we also planning to bring in implementation of dynamic configure of codec as well as part of https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2371274 on top of this base change later?",
+      "revId": "09dabb7508e1ae09069427299cdf169e615bb7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
