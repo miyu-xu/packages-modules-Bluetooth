@@ -328,33 +328,46 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
 };
 
 static bluetooth::core::CoreInterface* CreateInterfaceToProfiles() {
-  static auto eventCallbacks = bluetooth::core::EventCallbacks();
-  static bool eventCallbacks_initialized;
-  if (!eventCallbacks_initialized) {
-    eventCallbacks.invoke_adapter_state_changed_cb =
-        invoke_adapter_state_changed_cb;
-    eventCallbacks.invoke_adapter_properties_cb = invoke_adapter_properties_cb;
-    eventCallbacks.invoke_remote_device_properties_cb =
-        invoke_remote_device_properties_cb;
-    eventCallbacks.invoke_device_found_cb = invoke_device_found_cb;
-    eventCallbacks.invoke_discovery_state_changed_cb =
-        invoke_discovery_state_changed_cb;
-    eventCallbacks.invoke_pin_request_cb = invoke_pin_request_cb;
-    eventCallbacks.invoke_ssp_request_cb = invoke_ssp_request_cb;
-    eventCallbacks.invoke_oob_data_request_cb = invoke_oob_data_request_cb;
-    eventCallbacks.invoke_bond_state_changed_cb = invoke_bond_state_changed_cb;
-    eventCallbacks.invoke_address_consolidate_cb =
-        invoke_address_consolidate_cb;
-    eventCallbacks.invoke_le_address_associate_cb =
-        invoke_le_address_associate_cb;
-    eventCallbacks.invoke_acl_state_changed_cb = invoke_acl_state_changed_cb;
-    eventCallbacks.invoke_thread_evt_cb = invoke_thread_evt_cb;
-    eventCallbacks.invoke_le_test_mode_cb = invoke_le_test_mode_cb;
-    eventCallbacks.invoke_energy_info_cb = invoke_energy_info_cb;
-    eventCallbacks.invoke_link_quality_report_cb =
-        invoke_link_quality_report_cb;
+  static bluetooth::core::EventCallbacks eventCallbacks{
+      .invoke_adapter_state_changed_cb = invoke_adapter_state_changed_cb,
+      .invoke_adapter_properties_cb = invoke_adapter_properties_cb,
+      .invoke_remote_device_properties_cb = invoke_remote_device_properties_cb,
+      .invoke_device_found_cb = invoke_device_found_cb,
+      .invoke_discovery_state_changed_cb = invoke_discovery_state_changed_cb,
+      .invoke_pin_request_cb = invoke_pin_request_cb,
+      .invoke_ssp_request_cb = invoke_ssp_request_cb,
+      .invoke_oob_data_request_cb = invoke_oob_data_request_cb,
+      .invoke_bond_state_changed_cb = invoke_bond_state_changed_cb,
+      .invoke_address_consolidate_cb = invoke_address_consolidate_cb,
+      .invoke_le_address_associate_cb = invoke_le_address_associate_cb,
+      .invoke_acl_state_changed_cb = invoke_acl_state_changed_cb,
+      .invoke_thread_evt_cb = invoke_thread_evt_cb,
+      .invoke_le_test_mode_cb = invoke_le_test_mode_cb,
+      .invoke_energy_info_cb = invoke_energy_info_cb,
+      .invoke_link_quality_report_cb = invoke_link_quality_report_cb,
+      .invoke_key_missing_cb = invoke_key_missing_cb,
+  };
+  static bluetooth::core::HACK_ProfileInterface profileInterface{
+      // HID
+      .btif_hh_connect = btif_hh_connect,
+      .btif_hh_virtual_unplug = btif_hh_virtual_unplug,
+      .bta_hh_read_ssr_param = bta_hh_read_ssr_param,
 
-    eventCallbacks_initialized = true;
+      // AVDTP
+      .btif_av_set_dynamic_audio_buffer_size =
+          btif_av_set_dynamic_audio_buffer_size,
+
+      // ASHA
+      .GetHearingAidDeviceCount = HearingAid::GetDeviceCount,
+
+      // LE Audio
+      .IsLeAudioClientRunning = LeAudioClient::IsLeAudioClientRunning,
+
+      // AVRCP
+      .AVRC_GetProfileVersion = AVRC_GetProfileVersion,
+  };
+
+  eventCallbacks_initialized = true;
   }
   static auto configInterface = ConfigInterfaceImpl();
   static auto msbcCodecInterface = MSBCCodec();
@@ -1500,4 +1513,13 @@ void invoke_switch_codec_cb(bool is_low_latency_buffer_size) {
                                               is_low_latency_buffer_size);
                                   },
                                   is_low_latency_buffer_size));
+}
+
+void invoke_key_missing_cb(RawAddress bd_addr) {
+  do_in_jni_thread(FROM_HERE, base::BindOnce(
+                                  [](RawAddress bd_addr) {
+                                    HAL_CBACK(bt_hal_cbacks, key_missing_cb,
+                                              &bd_addr);
+                                  },
+                                  bd_addr));
 }
