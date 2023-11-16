@@ -1792,6 +1792,17 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
             "%s: Cannot connect to peer %s: too many connected "
             "peers",
             __PRETTY_FUNCTION__, ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()));
+
+        //delete the peer
+        if (!peer_.CanBeDeleted()) {
+          if (peer_.IsSink()) {
+            do_in_main_thread(FROM_HERE, base::BindOnce(base::IgnoreResult(&BtifAvSource::DeletePeer),
+                      base::Unretained(&btif_av_source), peer_.PeerAddress()));
+          } else if (peer_.IsSource()) {
+            do_in_main_thread(FROM_HERE, base::BindOnce(base::IgnoreResult(&BtifAvSink::DeletePeer),
+                      base::Unretained(&btif_av_sink), peer_.PeerAddress()));
+          }
+        }
         break;
       }
       /* if peer is source, then start timer for sink connect to src */
@@ -1948,6 +1959,17 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
     case BTA_AV_RC_PSM_EVT:
     case BTA_AV_REMOTE_RSP_EVT:
       btif_rc_handler(event, (tBTA_AV*)p_data);
+
+      //delete the peer
+      if (!peer_.CanBeDeleted()) {
+        if (peer_.IsSink()) {
+          do_in_main_thread(FROM_HERE, base::BindOnce(base::IgnoreResult(&BtifAvSource::DeletePeer),
+                    base::Unretained(&btif_av_source), peer_.PeerAddress()));
+        } else if (peer_.IsSource()) {
+          do_in_main_thread(FROM_HERE, base::BindOnce(base::IgnoreResult(&BtifAvSink::DeletePeer),
+                    base::Unretained(&btif_av_sink), peer_.PeerAddress()));
+        }
+      }
       break;
 
     case BTIF_AV_AVRCP_CLOSE_EVT:
@@ -1960,6 +1982,17 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
 
       if (event == BTA_AV_RC_CLOSE_EVT) {
         btif_rc_handler(event, (tBTA_AV*)p_data);
+      }
+
+      //delete the peer
+      if (!peer_.CanBeDeleted()) {
+        if (peer_.IsSink()) {
+          do_in_main_thread(FROM_HERE, base::BindOnce(base::IgnoreResult(&BtifAvSource::DeletePeer),
+                    base::Unretained(&btif_av_source), peer_.PeerAddress()));
+        } else if (peer_.IsSource()) {
+          do_in_main_thread(FROM_HERE, base::BindOnce(base::IgnoreResult(&BtifAvSink::DeletePeer),
+                    base::Unretained(&btif_av_sink), peer_.PeerAddress()));
+        }
       }
     } break;
 
