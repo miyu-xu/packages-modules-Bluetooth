@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87b7b722_e6f10f4e",
+        "filename": "system/bta/csis/csis_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-16T18:27:32Z",
+      "side": 1,
+      "message": "Remove gd...maybe for all 3?",
+      "revId": "6ef15a4c6270b9bfea81597a14178cef5035d542",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
