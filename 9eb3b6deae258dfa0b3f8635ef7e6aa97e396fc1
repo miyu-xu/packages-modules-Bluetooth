@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef6a93e6_7627bca0",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 636,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-11-16T20:59:19Z",
+      "side": 1,
+      "message": "Do we want to consider taking this argument by const reference, i.e. `const LeAudioLtvMap\u0026 ltvs`, to avoid copying the class when we call this?",
+      "revId": "9eb3b6deae258dfa0b3f8635ef7e6aa97e396fc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
