@@ -63,6 +63,30 @@
       },
       "revId": "549742d4148e027379cc6373022e8f5e23d51a96",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "756df5da_6cad3062",
+        "filename": "system/stack/gatt/gatt_sr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-16T00:52:31Z",
+      "side": 1,
+      "message": "I found the reason why elsewhere. clang format sorted the `\u003cfoo.h\u003e` between themselves, then sort the one without `.h`, that are cpp include and finally sort the local include `\"foo.h\"`",
+      "parentUuid": "b2fa9da2_625b3f25",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 20
+      },
+      "revId": "549742d4148e027379cc6373022e8f5e23d51a96",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
