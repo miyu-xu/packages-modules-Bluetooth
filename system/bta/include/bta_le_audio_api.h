@@ -66,6 +66,7 @@ class LeAudioClient {
   virtual bool IsInCall() = 0;
   virtual void SetInVoipCall(bool in_call) = 0;
   virtual void SetSinkListeningMode(bool sink_listening_mode) = 0;
+  virtual void SetSourceListeningMode(bool source_listening_mode) = 0;
   virtual bool IsInVoipCall() = 0;
   virtual void SendAudioProfilePreferences(
       const int group_id, bool is_output_preference_le_audio,
