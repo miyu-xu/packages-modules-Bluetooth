@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "510ee3b8_03ba3ca8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T01:51:52Z",
+      "side": 1,
+      "message": "LGTM from a flag point of view",
+      "revId": "b2854e86ffb73f301833f3654a20282c45f6dc56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a2ac41_6a3c46d1",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T01:51:52Z",
+      "side": 1,
+      "message": "Why do you need to suppress this lint ? can you remove the suppress and fix the code accordingly ? (I tried to found the doc on this lint and I was unsuccessful 😞 )",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 32
+      },
+      "revId": "b2854e86ffb73f301833f3654a20282c45f6dc56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "137f1d80_49d9e959",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T01:51:52Z",
+      "side": 1,
+      "message": "remove, this is for legacy support and is not needed for new API",
+      "range": {
+        "startLine": 305,
+        "startChar": 5,
+        "endLine": 305,
+        "endChar": 39
+      },
+      "revId": "b2854e86ffb73f301833f3654a20282c45f6dc56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62d3d48_3e98758a",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T01:51:52Z",
+      "side": 1,
+      "message": "add BLUETOOTH_PRIVILEGED since it is system api",
+      "range": {
+        "startLine": 306,
+        "startChar": 0,
+        "endLine": 306,
+        "endChar": 70
+      },
+      "revId": "b2854e86ffb73f301833f3654a20282c45f6dc56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
