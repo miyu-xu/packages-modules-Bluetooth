@@ -577,6 +577,7 @@ cc_test {
     srcs: [
         ":BtaDmSources",
         ":LibBluetoothSources",
+        ":OsiCompatSources",
         ":TestCommonCoreInterface",
         ":TestCommonMainHandler",
         ":TestCommonMockFunctions",
