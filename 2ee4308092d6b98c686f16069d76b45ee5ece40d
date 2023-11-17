@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4ba9930_0e87ffd8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-17T13:06:13Z",
+      "side": 1,
+      "message": "seems that this rebase went wrong. CL needs update",
+      "revId": "2ee4308092d6b98c686f16069d76b45ee5ece40d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
