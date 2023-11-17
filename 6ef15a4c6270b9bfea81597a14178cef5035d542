@@ -69,6 +69,24 @@
       "parentUuid": "255170e9_58323f68",
       "revId": "6ef15a4c6270b9bfea81597a14178cef5035d542",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bd3112c_0889c9f2",
+        "filename": "system/gd/crypto_toolbox/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-17T01:09:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "93a8ab9b_ba7f2f0f",
+      "revId": "6ef15a4c6270b9bfea81597a14178cef5035d542",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
