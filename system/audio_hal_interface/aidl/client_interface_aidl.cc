@@ -134,7 +134,7 @@ void BluetoothAudioClientInterface::FetchAudioProvider() {
   CHECK(provider_ != nullptr);
 
   binder_status_t binder_status = AIBinder_linkToDeath(
-     provider_factory->asBinder().get(), death_recipient_.get(), this);
+      provider_factory->asBinder().get(), death_recipient_.get(), this);
   if (binder_status != STATUS_OK) {
     LOG(ERROR) << "Failed to linkToDeath " << static_cast<int>(binder_status);
   }
@@ -154,8 +154,8 @@ BluetoothAudioSinkClientInterface::BluetoothAudioSinkClientInterface(
 
 BluetoothAudioSinkClientInterface::~BluetoothAudioSinkClientInterface() {
   if (provider_factory_ != nullptr) {
-    AIBinder_unlinkToDeath(provider_factory_->asBinder().get(), death_recipient_.get(),
-                           nullptr);
+    AIBinder_unlinkToDeath(provider_factory_->asBinder().get(),
+                           death_recipient_.get(), nullptr);
   }
 }
 
@@ -168,8 +168,8 @@ BluetoothAudioSourceClientInterface::BluetoothAudioSourceClientInterface(
 
 BluetoothAudioSourceClientInterface::~BluetoothAudioSourceClientInterface() {
   if (provider_factory_ != nullptr) {
-    AIBinder_unlinkToDeath(provider_factory_->asBinder().get(), death_recipient_.get(),
-                           nullptr);
+    AIBinder_unlinkToDeath(provider_factory_->asBinder().get(),
+                           death_recipient_.get(), nullptr);
   }
 }
 
@@ -251,9 +251,9 @@ bool BluetoothAudioClientInterface::SetLowLatencyModeAllowed(bool allowed) {
   auto aidl_retval = provider_->setLowLatencyModeAllowed(allowed);
   if (!aidl_retval.isOk()) {
     LOG(WARNING) << __func__ << ": BluetoothAudioHal is not ready: "
-               << aidl_retval.getDescription()
-               << ". is_low_latency_allowed_ is saved "
-               <<"and it will be sent to BluetoothAudioHal at StartSession.";
+                 << aidl_retval.getDescription()
+                 << ". is_low_latency_allowed_ is saved "
+                 << "and it will be sent to BluetoothAudioHal at StartSession.";
   }
   return true;
 }
@@ -529,6 +529,130 @@ size_t BluetoothAudioSourceClientInterface::WriteAudioData(const uint8_t* p_buf,
 
   source_->LogBytesWritten(total_written);
   return total_written;
+}
+
+std::optional<IBluetoothAudioProviderFactory::ProviderInfo>
+BluetoothAudioClientInterface::GetProviderInfo(SessionType session_type) {
+  if (provider_factory_ == nullptr) {
+    LOG(WARNING) << __func__ << ": No provider factory";
+    return std::nullopt;
+  }
+  std::optional<IBluetoothAudioProviderFactory::ProviderInfo> provider_info;
+  auto aidl_retval =
+      provider_factory_->getProviderInfo(session_type, &provider_info);
+  if (!aidl_retval.isOk()) {
+    LOG(FATAL) << __func__ << ": BluetoothAudioHal::getProviderInfo failure: "
+               << aidl_retval.getDescription();
+  }
+  return provider_info;
+}
+
+void BluetoothAudioClientInterface::SetCodecPriority(CodecId codec_id,
+                                                     int32_t priority) {
+  CHECK(provider_ != nullptr);
+  auto aidl_retval = provider_->setCodecPriority(codec_id, priority);
+  if (!aidl_retval.isOk()) {
+    LOG(FATAL) << __func__ << ": BluetoothAudioHal::setCodecPriority failure: "
+               << aidl_retval.getDescription();
+  }
+}
+
+std::vector<IBluetoothAudioProvider::LeAudioAseConfigurationSetting>
+BluetoothAudioClientInterface::GetLeAudioAseConfiguration(
+    std::optional<std::vector<
+        std::optional<IBluetoothAudioProvider::LeAudioDeviceCapabilities>>>&
+        remoteSinkAudioCapabilities,
+    std::optional<std::vector<
+        std::optional<IBluetoothAudioProvider::LeAudioDeviceCapabilities>>>&
+        remoteSourceAudioCapabilities,
+    std::vector<IBluetoothAudioProvider::LeAudioConfigurationRequirement>&
+        requirements) {
+  CHECK(provider_ != nullptr);
+
+  std::vector<IBluetoothAudioProvider::LeAudioAseConfigurationSetting>
+      configurations;
+  auto aidl_retval = provider_->getLeAudioAseConfiguration(
+      remoteSinkAudioCapabilities, remoteSourceAudioCapabilities, requirements,
+      &configurations);
+
+  if (!aidl_retval.isOk()) {
+    LOG(FATAL) << __func__
+               << ": BluetoothAudioHal::getLeAudioAseConfiguration failure: "
+               << aidl_retval.getDescription();
+  }
+
+  LOG(INFO) << __func__
+            << ": BluetoothAudioHal::getLeAudioAseConfiguration returned "
+            << configurations.size() << " configurations.";
+  return configurations;
+}
+
+IBluetoothAudioProvider::LeAudioAseQosConfigurationPair
+BluetoothAudioClientInterface::getLeAudioAseQosConfiguration(
+    IBluetoothAudioProvider::LeAudioAseQosConfigurationRequirement&
+        qosRequirement) {
+  CHECK(provider_ != nullptr);
+
+  IBluetoothAudioProvider::LeAudioAseQosConfigurationPair qos_configuration;
+  auto aidl_retval = provider_->getLeAudioAseQosConfiguration(
+      qosRequirement, &qos_configuration);
+
+  if (!aidl_retval.isOk()) {
+    LOG(FATAL) << __func__
+               << ": BluetoothAudioHal::getLeAudioAseQosConfiguration failure: "
+               << aidl_retval.getDescription();
+  }
+  return qos_configuration;
+}
+
+void BluetoothAudioClientInterface::onSinkAseMetadataChanged(
+    IBluetoothAudioProvider::AseState state,
+    std::optional<std::vector<std::optional<MetadataLtv>>>& metadata) {
+  CHECK(provider_ != nullptr);
+
+  auto aidl_retval = provider_->onSinkAseMetadataChanged(state, metadata);
+
+  if (!aidl_retval.isOk()) {
+    LOG(FATAL) << __func__
+               << ": BluetoothAudioHal::onSinkAseMetadataChanged failure: "
+               << aidl_retval.getDescription();
+  }
+}
+
+void BluetoothAudioClientInterface::onSourceAseMetadataChanged(
+    IBluetoothAudioProvider::AseState state,
+    std::optional<std::vector<std::optional<MetadataLtv>>>& metadata) {
+  CHECK(provider_ != nullptr);
+
+  auto aidl_retval = provider_->onSourceAseMetadataChanged(state, metadata);
+
+  if (!aidl_retval.isOk()) {
+    LOG(FATAL) << __func__
+               << ": BluetoothAudioHal::onSinkAseMetadataChanged failure: "
+               << aidl_retval.getDescription();
+  }
+}
+
+IBluetoothAudioProvider::LeAudioBroadcastConfigurationSetting
+BluetoothAudioClientInterface::getLeAudioBroadcastConfiguration(
+    const std::optional<std::vector<
+        std::optional<IBluetoothAudioProvider::LeAudioDeviceCapabilities>>>&
+        remoteSinkAudioCapabilities,
+    const IBluetoothAudioProvider::LeAudioBroadcastConfigurationRequirement&
+        requirement) {
+  CHECK(provider_ != nullptr);
+
+  IBluetoothAudioProvider::LeAudioBroadcastConfigurationSetting setting;
+  auto aidl_retval = provider_->getLeAudioBroadcastConfiguration(
+      remoteSinkAudioCapabilities, requirement, &setting);
+
+  if (!aidl_retval.isOk()) {
+    LOG(FATAL) << __func__
+               << ": BluetoothAudioHal::onSinkAseMetadataChanged failure: "
+               << aidl_retval.getDescription();
+  }
+
+  return setting;
 }
 
 }  // namespace aidl
