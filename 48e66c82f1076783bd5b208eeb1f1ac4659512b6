@@ -108,6 +108,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fae50852_843cb2f0",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-11-17T16:33:47Z",
+      "side": 1,
+      "message": "I think this is reasonable approach.",
+      "parentUuid": "af35150a_7bf094af",
+      "range": {
+        "startLine": 1048,
+        "startChar": 0,
+        "endLine": 1053,
+        "endChar": 21
+      },
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88301f32_02a5b754",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
