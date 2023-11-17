@@ -40,8 +40,9 @@ public class LeAudioStackEvent {
     public static final int EVENT_TYPE_HEALTH_BASED_DEV_RECOMMENDATION = 9;
     public static final int EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION = 10;
     public static final int EVENT_TYPE_SINK_MONITORING_STATUS = 11;
+    public static final int EVENT_TYPE_SOURCE_MONITORING_STATUS = 12;
     // -------- DO NOT PUT ANY NEW UNICAST EVENTS BELOW THIS LINE-------------
-    public static final int EVENT_TYPE_UNICAST_MAX = 12;
+    public static final int EVENT_TYPE_UNICAST_MAX = 13;
 
     // Broadcast related events
     public static final int EVENT_TYPE_BROADCAST_CREATED = EVENT_TYPE_UNICAST_MAX + 1;
@@ -161,6 +162,8 @@ public class LeAudioStackEvent {
                 return "EVENT_TYPE_HEALTH_BASED_GROUP_RECOMMENDATION";
             case EVENT_TYPE_SINK_MONITORING_STATUS:
                 return "EVENT_TYPE_SINK_MONITORING_STATUS";
+            case EVENT_TYPE_SOURCE_MONITORING_STATUS:
+                return "EVENT_TYPE_SOURCE_MONITORING_STATUS";
             default:
                 return "EVENT_TYPE_UNKNOWN:" + type;
         }
@@ -212,6 +215,7 @@ public class LeAudioStackEvent {
                         return "UNKNOWN";
                 }
             case EVENT_TYPE_SINK_MONITORING_STATUS:
+            case EVENT_TYPE_SOURCE_MONITORING_STATUS:
                 switch (value) {
                     case STATUS_STREAMING_REQUESTED:
                         return "STREAMING_REQUESTED";
