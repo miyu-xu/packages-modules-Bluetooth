@@ -357,7 +357,12 @@ bool smp_send_msg_to_L2CAP(const RawAddress& rem_bda, BT_HDR* p_toL2CAP) {
     fixed_cid = L2CAP_SMP_BR_CID;
   }
 
+<<<<<<< HEAD
   LOG_VERBOSE("%s", __func__);
+=======
+  SMP_TRACE_EVENT("%s", __func__);
+  smp_cb.total_tx_unacked += 1;
+>>>>>>> parent of 13b310b3e2 (SMP: Assume L2cap tx completes immediately)
 
   smp_log_metrics(rem_bda, true /* outgoing */,
                   p_toL2CAP->data + p_toL2CAP->offset, p_toL2CAP->len,
@@ -365,22 +370,15 @@ bool smp_send_msg_to_L2CAP(const RawAddress& rem_bda, BT_HDR* p_toL2CAP) {
 
   l2cap_ret = L2CA_SendFixedChnlData(fixed_cid, rem_bda, p_toL2CAP);
   if (l2cap_ret == L2CAP_DW_FAILED) {
+<<<<<<< HEAD
     LOG_ERROR("SMP failed to pass msg to L2CAP");
+=======
+    smp_cb.total_tx_unacked -= 1;
+    SMP_TRACE_ERROR("SMP failed to pass msg to L2CAP");
+>>>>>>> parent of 13b310b3e2 (SMP: Assume L2cap tx completes immediately)
     return false;
-  } else {
-    tSMP_CB* p_cb = &smp_cb;
-
-    if (p_cb->wait_for_authorization_complete) {
-      tSMP_INT_DATA smp_int_data;
-      smp_int_data.status = SMP_SUCCESS;
-      if (fixed_cid == L2CAP_SMP_CID) {
-        smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
-      } else {
-        smp_br_state_machine_event(p_cb, SMP_BR_AUTH_CMPL_EVT, &smp_int_data);
-      }
-    }
+  } else
     return true;
-  }
 }
 
 /*******************************************************************************
