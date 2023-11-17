@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc3acbbc_780c748d",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 12
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-17T01:44:34Z",
+      "side": 0,
+      "message": "Nice.  Thanks!",
+      "range": {
+        "startLine": 319,
+        "startChar": 6,
+        "endLine": 323,
+        "endChar": 6
+      },
+      "revId": "9e39238cc28a4016b4c531a6e9f4de718415e185",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
