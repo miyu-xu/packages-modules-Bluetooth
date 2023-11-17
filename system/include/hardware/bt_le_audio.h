@@ -83,6 +83,12 @@ enum class GroupNodeStatus {
   REMOVED,
 };
 
+enum class StreamMonitoringStatus {
+  STREAMING_REQUESTED = 0,
+  STREAMING,
+  STREAM_SUSPENDED,
+};
+
 typedef enum {
   LE_AUDIO_CODEC_INDEX_SOURCE_LC3 = 0,
   LE_AUDIO_CODEC_INDEX_SOURCE_MAX
@@ -148,6 +154,8 @@ class LeAudioClientCallbacks {
       const RawAddress& address, LeAudioHealthBasedAction action) = 0;
   virtual void OnHealthBasedGroupRecommendationAction(
       int group_id, LeAudioHealthBasedAction action) = 0;
+
+  virtual void OnSourceMonitoringStatus(StreamMonitoringStatus status);
 };
 
 class LeAudioClientInterface {
@@ -196,6 +204,9 @@ class LeAudioClientInterface {
 
   /* Set Sink HAL listening mode flag */
   virtual void SetSinkHalListeningMode(bool sink_hal_listening_mode) = 0;
+
+  /* Set Source listening mode flag */
+  virtual void SetSourceListeningMode(bool source_listening_mode) = 0;
 
   /* Sends a preferred audio profiles change */
   virtual void SendAudioProfilePreferences(
