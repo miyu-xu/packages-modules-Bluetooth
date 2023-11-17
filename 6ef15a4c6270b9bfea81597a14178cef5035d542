@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "29748620_2ea24433",
+        "filename": "system/bta/csis/csis_types.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-17T16:36:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96085cea_a9924ef2",
+      "revId": "6ef15a4c6270b9bfea81597a14178cef5035d542",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "255170e9_58323f68",
