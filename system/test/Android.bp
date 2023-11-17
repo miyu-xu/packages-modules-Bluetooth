@@ -260,13 +260,6 @@ filegroup {
 }
 
 filegroup {
-    name: "TestMockFrameworks",
-    srcs: [
-        "mock/mock_frameworks_*.cc",
-    ],
-}
-
-filegroup {
     name: "TestMockBtcore",
     srcs: [
         "mock/mock_btcore_*.cc",
