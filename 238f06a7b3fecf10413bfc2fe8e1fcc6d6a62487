@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7befee29_8837b162",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-11-17T10:30:17Z",
+      "side": 1,
+      "message": "Hi, this is the revert chain for b/301168932. PTAL, thanks!\nFor the plain revert, please see patchset 1.\n\nIt works but my setup can\u0027t run test so I\u0027ll just let CQ do that.",
+      "revId": "238f06a7b3fecf10413bfc2fe8e1fcc6d6a62487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
