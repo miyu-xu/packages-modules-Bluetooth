@@ -16,6 +16,24 @@
       "message": "To make it easier for others to review and maintain this, can we add some comments in this source and point to the location in Core Spec where we can find the definitions?",
       "revId": "2959de377ca2d4cb4de05b5c98e4edb2a3f2ab40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa7dd6da_9fb1bf42",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-17T17:13:20Z",
+      "side": 1,
+      "message": "Good idea.  Thanks!",
+      "parentUuid": "151b51b2_4b4423c2",
+      "revId": "2959de377ca2d4cb4de05b5c98e4edb2a3f2ab40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
