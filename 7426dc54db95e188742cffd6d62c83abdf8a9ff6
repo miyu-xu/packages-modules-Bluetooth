@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6447cbda_2df63f7b",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 529,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-17T18:53:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61eae752_1c161bce",
+      "range": {
+        "startLine": 529,
+        "startChar": 30,
+        "endLine": 529,
+        "endChar": 53
+      },
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd8201a1_ea87622a",
