@@ -685,6 +685,7 @@ typedef void(tL2C_FCR_MGMT_EVT_HDLR)(uint8_t, tL2C_CCB*);
 typedef struct {
   uint16_t local_cid;
   uint16_t num_sdu;
+  tL2CA_TX_COMPLETE_CB* cb;
 } tL2C_TX_COMPLETE_CB_INFO;
 
 /* The offset in a buffer that L2CAP will use when building commands.
@@ -754,6 +755,7 @@ void l2cu_set_acl_hci_header(BT_HDR* p_buf, tL2C_CCB* p_ccb);
 void l2cu_check_channel_congestion(tL2C_CCB* p_ccb);
 void l2cu_disconnect_chnl(tL2C_CCB* p_ccb);
 
+<<<<<<< HEAD
 void l2cu_send_peer_ble_par_req(tL2C_LCB* p_lcb, uint16_t min_int,
                                 uint16_t max_int, uint16_t latency,
                                 uint16_t timeout);
@@ -763,6 +765,16 @@ void l2cu_reject_ble_connection(tL2C_CCB* p_ccb, uint8_t rem_id,
                                 uint16_t result);
 void l2cu_reject_credit_based_conn_req(tL2C_LCB* p_lcb, uint8_t rem_id,
                                        uint8_t num_of_channels,
+=======
+extern void l2cu_tx_complete(tL2C_TX_COMPLETE_CB_INFO* p_cbi);
+
+extern void l2cu_send_peer_ble_par_req(tL2C_LCB* p_lcb, uint16_t min_int,
+                                       uint16_t max_int, uint16_t latency,
+                                       uint16_t timeout);
+extern void l2cu_send_peer_ble_par_rsp(tL2C_LCB* p_lcb, uint16_t reason,
+                                       uint8_t rem_id);
+extern void l2cu_reject_ble_connection(tL2C_CCB* p_ccb, uint8_t rem_id,
+>>>>>>> parent of 83fbde67f0 (L2cap fixed channel tx complete is unused)
                                        uint16_t result);
 void l2cu_reject_ble_coc_connection(tL2C_LCB* p_lcb, uint8_t rem_id,
                                     uint16_t result);
