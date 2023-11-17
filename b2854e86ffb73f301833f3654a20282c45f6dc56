@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4cc9281_1383791b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-17T07:58:34Z",
+      "side": 1,
+      "message": "All broadcast strings follow this pattern: \"android.bluetooth.device.action.*\"\n\nAt some point, someone tried to standardise how package and variable name maps to the string content, but that didn\u0027t catch up in BT classes.\n\nI see @SuppressLint(\"ActionValue\") used plenty around this file, after the standarization was enforced, and I think it\u0027s reasonable to follow existing pattern here.",
+      "parentUuid": "d4a2ac41_6a3c46d1",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 32
+      },
+      "revId": "b2854e86ffb73f301833f3654a20282c45f6dc56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "137f1d80_49d9e959",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 1
@@ -77,6 +101,30 @@
       "writtenOn": "2023-11-17T01:51:52Z",
       "side": 1,
       "message": "remove, this is for legacy support and is not needed for new API",
+      "range": {
+        "startLine": 305,
+        "startChar": 5,
+        "endLine": 305,
+        "endChar": 39
+      },
+      "revId": "b2854e86ffb73f301833f3654a20282c45f6dc56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e28505cb_80f7fd83",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 305,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-17T07:58:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "137f1d80_49d9e959",
       "range": {
         "startLine": 305,
         "startChar": 5,
@@ -100,6 +148,30 @@
       "writtenOn": "2023-11-17T01:51:52Z",
       "side": 1,
       "message": "add BLUETOOTH_PRIVILEGED since it is system api",
+      "range": {
+        "startLine": 306,
+        "startChar": 0,
+        "endLine": 306,
+        "endChar": 70
+      },
+      "revId": "b2854e86ffb73f301833f3654a20282c45f6dc56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2074f97d_69cd8a95",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 306,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-17T07:58:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d62d3d48_3e98758a",
       "range": {
         "startLine": 306,
         "startChar": 0,
