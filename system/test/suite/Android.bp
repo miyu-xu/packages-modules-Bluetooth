@@ -128,6 +128,7 @@ cc_test {
         "libprotobuf-cpp-lite",
     ],
     shared_libs: [
+        "libaaudio",
         "server_configurable_flags",
     ],
     target: {
