@@ -59,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb41f228_b068db5d",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-17T18:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06344a12_4a4e6cb9",
+      "range": {
+        "startLine": 32,
+        "startChar": 55,
+        "endLine": 32,
+        "endChar": 60
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4d86a36b_3ad25c02",
@@ -199,6 +223,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6214c27_c2acf019",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-17T18:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8d91160e_60600fe0",
+      "range": {
+        "startLine": 49,
+        "startChar": 32,
+        "endLine": 49,
+        "endChar": 38
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "446f3bf5_d220a52b",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-17T18:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d45d52c3_01200eb9",
+      "range": {
+        "startLine": 49,
+        "startChar": 5,
+        "endLine": 49,
+        "endChar": 10
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "136eaf01_75e60587",
@@ -212,6 +284,30 @@
       "writtenOn": "2023-11-16T18:59:44Z",
       "side": 1,
       "message": "sample_rate_?",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 23
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "feb375a1_911ebcad",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-17T18:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "136eaf01_75e60587",
       "range": {
         "startLine": 57,
         "startChar": 12,
@@ -245,6 +341,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a42b9270_04ea526d",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-17T18:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "794f7f10_d017136f",
+      "range": {
+        "startLine": 58,
+        "startChar": 12,
+        "endLine": 58,
+        "endChar": 21
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "024d15de_0ca32563",
@@ -258,6 +378,30 @@
       "writtenOn": "2023-11-16T18:59:44Z",
       "side": 1,
       "message": "Did you use --no-verify?",
+      "range": {
+        "startLine": 410,
+        "startChar": 0,
+        "endLine": 410,
+        "endChar": 105
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2039c996_c137aa1c",
+        "filename": "system/gd/hal/hci_hal_android_hidl.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 410,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-17T18:51:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "024d15de_0ca32563",
       "range": {
         "startLine": 410,
         "startChar": 0,
