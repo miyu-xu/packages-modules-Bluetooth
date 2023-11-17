@@ -131,6 +131,7 @@ cc_test {
         "libevent",
     ],
     shared_libs: [
+        "libaaudio",
         "server_configurable_flags",
     ],
     cflags: ["-Wno-unused-parameter"],
