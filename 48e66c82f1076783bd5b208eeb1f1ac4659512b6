@@ -20,6 +20,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be4e2916_9b8a0541",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-17T07:56:34Z",
+      "side": 1,
+      "message": "I just noticed that a connection to PhoneHub could cause the found_devices map to be nonempty for a pretty long time. Shall we NOT queue a freshness check if all devices are connected?",
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "69b23ed2_ec30058d",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
@@ -67,6 +84,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "af35150a_7bf094af",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-17T07:56:34Z",
+      "side": 1,
+      "message": "I\u0027m worried that we may not be receiving the lost event sometimes: If another scanner user started and stopped an unfiltered scan, then we\u0027ll receive advertisements here without on_advertisement_found/lost event.\n\nActually now I\u0027m leaning to have the freshness check task running forever in the background. The cost is low and the gain is that we don\u0027t need to spread this snippet everywhere.",
+      "parentUuid": "93938042_bacb1d7b",
+      "range": {
+        "startLine": 1048,
+        "startChar": 0,
+        "endLine": 1053,
+        "endChar": 21
+      },
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88301f32_02a5b754",
         "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
         "patchSetId": 1
@@ -96,6 +137,24 @@
       "side": 1,
       "message": "I don\u0027t see anything wrong with having a `freshness_check` while we\u0027re discovering since `last_seen` of a device should be updated and nothing should happen if it\u0027s truly still fresh. Is there a reason why you think we should abort?",
       "parentUuid": "88301f32_02a5b754",
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec663b05_c841052c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1487,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-17T07:56:34Z",
+      "side": 1,
+      "message": "Ack. Just wondering whether there\u0027s any intention here, such as we don\u0027t want the users to receive DeviceCleared during discovery.",
+      "parentUuid": "ff2b0e27_a267371a",
       "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
