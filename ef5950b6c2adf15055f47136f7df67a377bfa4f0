@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "331d352e_99133ebc",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 6894,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-17T08:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d75aef8b_84928325",
+      "range": {
+        "startLine": 6894,
+        "startChar": 16,
+        "endLine": 6894,
+        "endChar": 44
+      },
+      "revId": "ef5950b6c2adf15055f47136f7df67a377bfa4f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "19e6f56e_489ceb6b",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-09-14T00:46:45Z",
       "side": 1,
       "message": "aclDisconncted for consistency with other CLs?\nand ditto for others",
+      "range": {
+        "startLine": 6896,
+        "startChar": 24,
+        "endLine": 6896,
+        "endChar": 39
+      },
+      "revId": "ef5950b6c2adf15055f47136f7df67a377bfa4f0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "accf7d5d_22d3ccbd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 6896,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-17T08:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "19e6f56e_489ceb6b",
       "range": {
         "startLine": 6896,
         "startChar": 24,
