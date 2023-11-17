@@ -271,6 +271,18 @@ public class LeAudioNativeInterface {
         sendMessageToService(event);
     }
 
+    @VisibleForTesting
+    void onSourceMonitoringStatus(int status) {
+        LeAudioStackEvent event =
+                new LeAudioStackEvent(LeAudioStackEvent.EVENT_TYPE_SOURCE_MONITORING_STATUS);
+        event.valueInt1 = status;
+
+        if (DBG) {
+            Log.d(TAG, "onSourceMonitoringStatus: " + event);
+        }
+        sendMessageToService(event);
+    }
+
     /**
      * Initializes the native interface.
      *
@@ -393,6 +405,19 @@ public class LeAudioNativeInterface {
     }
 
     /**
+     * Set source listening mode flag.
+     *
+     * @param sourceListeningMode true when LE Audio device should be listening for streaming status
+     *     on source. false otherwise
+     */
+    public void setSourceListeningMode(boolean sourceListeningMode) {
+        if (DBG) {
+            Log.d(TAG, "setSourceListeningMode sourceListeningMode: " + sourceListeningMode);
+        }
+        setSourceListeningModeNative(sourceListeningMode);
+    }
+
+    /**
      * Sends the audio preferences for the groupId to the native stack.
      *
      * @param groupId is the groupId corresponding to the preferences
@@ -426,6 +451,8 @@ public class LeAudioNativeInterface {
     private native void setInCallNative(boolean inCall);
 
     private native void setSinkListeningModeNative(boolean sinkListeningMode);
+
+    private native void setSourceListeningModeNative(boolean sourceListeningMode);
     /*package*/
     private native void sendAudioProfilePreferencesNative(int groupId,
             boolean isOutputPreferenceLeAudio, boolean isDuplexPreferenceLeAudio);
