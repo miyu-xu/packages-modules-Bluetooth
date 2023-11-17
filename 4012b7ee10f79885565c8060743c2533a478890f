@@ -195,6 +195,24 @@
       "parentUuid": "a80555f5_fbb0f098",
       "revId": "4012b7ee10f79885565c8060743c2533a478890f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c53f502f_48839a99",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 25
+      },
+      "lineNbr": 609,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T02:07:40Z",
+      "side": 1,
+      "message": "Done in follow-up. Sysprop flagging is added with aosp/2828384",
+      "parentUuid": "8e30a50a_0cbaeb57",
+      "revId": "4012b7ee10f79885565c8060743c2533a478890f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
