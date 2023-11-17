@@ -229,7 +229,9 @@ public final class BluetoothSocket implements Closeable {
             throws IOException {
         if (VDBG) Log.d(TAG, "Creating new BluetoothSocket of type: " + type);
         mSocketCreationTimeNanos = System.nanoTime();
-        if (type == BluetoothSocket.TYPE_RFCOMM && uuid == null && fd == -1
+        if (type == BluetoothSocket.TYPE_RFCOMM
+                && uuid == null
+                && fd == -1
                 && port != BluetoothAdapter.SOCKET_CHANNEL_AUTO_STATIC_NO_SDP) {
             if (port < 1 || port > MAX_RFCOMM_CHANNEL) {
                 throw new IOException("Invalid RFCOMM channel: " + port);
@@ -454,8 +456,7 @@ public final class BluetoothSocket implements Closeable {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void connect() throws IOException {
-        IBluetooth bluetoothProxy =
-                BluetoothAdapter.getDefaultAdapter().getBluetoothService();
+        IBluetooth bluetoothProxy = BluetoothAdapter.getDefaultAdapter().getBluetoothService();
         long socketConnectionTimeNanos = System.nanoTime();
         if (bluetoothProxy == null) {
             throw new BluetoothSocketException(BluetoothSocketException.BLUETOOTH_OFF_FAILURE);
@@ -506,6 +507,7 @@ public final class BluetoothSocket implements Closeable {
                 mSocketState = SocketState.CONNECTED;
                 if (DBG) Log.d(TAG, "connect(), socket connected");
             }
+            Log.i(TAG, "asdf mUuid.getUuid()=" + mUuid.getUuid());
             SocketMetrics.logSocketConnect(
                     -1, // no error
                     socketConnectionTimeNanos,
@@ -514,7 +516,8 @@ public final class BluetoothSocket implements Closeable {
                     mPort,
                     mAuth,
                     mSocketCreationTimeNanos,
-                    mSocketCreationLatencyNanos);
+                    mSocketCreationLatencyNanos,
+                    mUuid.getUuid());
         } catch (BluetoothSocketException e) {
             SocketMetrics.logSocketConnect(
                     e.getErrorCode(),
@@ -524,7 +527,8 @@ public final class BluetoothSocket implements Closeable {
                     mPort,
                     mAuth,
                     mSocketCreationTimeNanos,
-                    mSocketCreationLatencyNanos);
+                    mSocketCreationLatencyNanos,
+                    mUuid.getUuid());
             throw e;
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
@@ -536,7 +540,8 @@ public final class BluetoothSocket implements Closeable {
                     mPort,
                     mAuth,
                     mSocketCreationTimeNanos,
-                    mSocketCreationLatencyNanos);
+                    mSocketCreationLatencyNanos,
+                    mUuid.getUuid());
             throw new BluetoothSocketException(
                     BluetoothSocketException.RPC_FAILURE, "unable to send RPC: " + e.getMessage());
         }
