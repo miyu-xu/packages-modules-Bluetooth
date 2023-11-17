@@ -236,6 +236,7 @@ class LeAudioClientImpl : public LeAudioClient {
         in_voip_call_(false),
         sink_monitor_mode_(false),
         sink_monitor_notified_status_(std::nullopt),
+        source_monitor_mode_(false),
         current_source_codec_config({0, 0, 0, 0}),
         current_sink_codec_config({0, 0, 0, 0}),
         le_audio_source_hal_client_(nullptr),
@@ -916,6 +917,17 @@ class LeAudioClientImpl : public LeAudioClient {
           bluetooth::common::time_get_os_boottime_us();
     }
 
+    /* If assistant have some connected delegators that needs to be informed
+     * when there would be request to stream unicast, a callback should be
+     * called to force stopping delegators synchronization.
+     */
+    if (IS_FLAG_ENABLED(leaudio_broadcast_audio_handover_policies) &&
+        !sink_monitor_mode_ && source_monitor_mode_ &&
+        !IsContextAllowedToResumeWhileInSourceMonitorMode(
+            configuration_context_type)) {
+      return false;
+    }
+
     bool result = groupStateMachine_->StartStream(
         group, configuration_context_type, remote_contexts, ccids);
 
@@ -1051,6 +1063,28 @@ class LeAudioClientImpl : public LeAudioClient {
 
       LOG_DEBUG("enable: %d", enable);
       sink_monitor_mode_ = enable;
+    } else if (direction == le_audio::types::kLeAudioDirectionSource) {
+      LOG_DEBUG("enable: %d", enable);
+      source_monitor_mode_ = enable;
+
+      LeAudioDeviceGroup* group = aseGroups_.FindById(active_group_id_);
+      if (!group) {
+        callbacks_->OnUnicastMonitorModeStatus(
+            le_audio::types::kLeAudioDirectionSource,
+            UnicastMonitorModeStatus::STREAMING_SUSPENDED);
+
+        return;
+      }
+
+      if (group->IsStreaming()) {
+        callbacks_->OnUnicastMonitorModeStatus(
+            le_audio::types::kLeAudioDirectionSource,
+            UnicastMonitorModeStatus::STREAMING);
+      } else {
+        callbacks_->OnUnicastMonitorModeStatus(
+            le_audio::types::kLeAudioDirectionSource,
+            UnicastMonitorModeStatus::STREAMING_SUSPENDED);
+      }
     } else {
       LOG_ERROR("invalid direction: 0x%02x monitor mode set", direction);
     }
@@ -3762,6 +3796,8 @@ class LeAudioClientImpl : public LeAudioClient {
       dprintf(fd, "  Local sink notified state: %d\n",
               sink_monitor_notified_status_.value());
     }
+    dprintf(fd, "  Source monitor mode: %s\n",
+            source_monitor_mode_ ? "true" : "false");
     dprintf(fd, "  Start time: ");
     for (auto t : stream_start_history_queue_) {
       dprintf(fd, ", %d ms", static_cast<int>(t));
@@ -3881,6 +3917,23 @@ class LeAudioClientImpl : public LeAudioClient {
 
     configuration_context_type_ = context_type;
     return AudioReconfigurationResult::RECONFIGURATION_NEEDED;
+  }
+
+  bool IsContextAllowedToResumeWhileInSourceMonitorMode(
+      LeAudioContextType context) {
+    /* Due to nature of sound effect this kind of context should be played
+     * on internal speaker. While there is no policy in audio framework, let's
+     * reject playing this context here.
+     */
+    if (configuration_context_type_ == LeAudioContextType::SOUNDEFFECTS) {
+      return false;
+    }
+
+    callbacks_->OnUnicastMonitorModeStatus(
+        le_audio::types::kLeAudioDirectionSource,
+        UnicastMonitorModeStatus::STREAMING_REQUESTED);
+
+    return true;
   }
 
   /* Returns true if stream is started */
@@ -5519,6 +5572,12 @@ class LeAudioClientImpl : public LeAudioClient {
               notifyAudioLocalSink(
                   UnicastMonitorModeStatus::STREAMING_SUSPENDED);
             }
+
+            if (source_monitor_mode_) {
+              callbacks_->OnUnicastMonitorModeStatus(
+                  le_audio::types::kLeAudioDirectionSource,
+                  UnicastMonitorModeStatus::STREAMING_SUSPENDED);
+            }
           }
         }
 
@@ -5597,6 +5656,8 @@ class LeAudioClientImpl : public LeAudioClient {
   bool sink_monitor_mode_;
   /* Status which has been notified to Service */
   std::optional<UnicastMonitorModeStatus> sink_monitor_notified_status_;
+  /* Listen for streaming status on Source stream */
+  bool source_monitor_mode_;
 
   /* Reconnection mode */
   tBTM_BLE_CONN_TYPE reconnection_mode_;
