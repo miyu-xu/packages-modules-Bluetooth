@@ -234,6 +234,8 @@ class LeAudioClientImpl : public LeAudioClient {
         in_voip_call_(false),
         sink_monitor_mode_(false),
         sink_monitor_notified_status_(std::nullopt),
+        service_start_confirmation_requested_(false),
+        service_start_confirmation_state_(false),
         current_source_codec_config({0, 0, 0, 0}),
         current_sink_codec_config({0, 0, 0, 0}),
         le_audio_source_hal_client_(nullptr),
@@ -1044,6 +1046,21 @@ class LeAudioClientImpl : public LeAudioClient {
 
       LOG_DEBUG("enable: %d", enable);
       sink_monitor_mode_ = enable;
+    } else if (direction == le_audio::types::kLeAudioDirectionSource) {
+      LeAudioDeviceGroup* group = aseGroups_.FindById(active_group_id_);
+      if (!group) {
+        LOG_WARN("No active group while enabling listening mode");
+        return;
+      }
+
+      LOG_DEBUG("enale: %d", enable);
+      source_listening_mode_ = enable;
+
+      if (group->IsStreaming()) {
+        callbacks_->OnUnicastMonitorModeStatus(
+            le_audio::types::kLeAudioDirectionSource,
+            UnicastMonitorModeStatus::STREAMING);
+      }
     } else {
       LOG_ERROR("invalid direction: 0x%02x monitor mode set", direction);
     }
@@ -3879,6 +3896,39 @@ class LeAudioClientImpl : public LeAudioClient {
     return AudioReconfigurationResult::RECONFIGURATION_NEEDED;
   }
 
+  bool IsResumeAllowedByService() {
+    if (!service_start_confirmation_requested_) {
+      if (configuration_context_type_ != LeAudioContextType::SOUNDEFFECTS) {
+        callbacks_->OnUnicastMonitorModeStatus(
+            le_audio::types::kLeAudioDirectionSource,
+            UnicastMonitorModeStatus::STREAMING_REQUESTED);
+        service_start_confirmation_requested_ = true;
+        return false;
+      }
+
+      /* TODO: How to stream Sound Effects on primary device ?
+       *
+       * Sound Effect related audio should be played on speaker but due to
+       * lack of adopted Audio Policy, it's not possible to stream to
+       * primary device when some Bluetooth device is connected.
+       */
+      return false;
+    }
+
+    /* Request of unicast stream start is confirmed, let unicast do
+     * GroupStream.
+     */
+    if (!service_start_confirmation_state_) {
+      /* Wait for service start confirmation */
+      return false;
+    }
+
+    service_start_confirmation_requested_ = false;
+    service_start_confirmation_state_ = false;
+
+    return true;
+  }
+
   /* Returns true if stream is started */
   bool OnAudioResume(LeAudioDeviceGroup* group, int local_direction) {
     auto remote_direction =
@@ -3897,6 +3947,17 @@ class LeAudioClientImpl : public LeAudioClient {
         leAudioHealthStatus_->AddStatisticForGroup(
             group, LeAudioHealthGroupStatType::STREAM_CONTEXT_NOT_AVAILABLE);
       }
+      return false;
+    }
+
+    /* If assistant have some connected delegators that needs to be informed
+     * when there would be request to stream unicast, a callback should be
+     * called to force stopping delegators synchronization. After stopping
+     * synchronization a start stream confirmation should be called from service
+     * to let native establish unicast stream.
+     */
+    if (IS_FLAG_ENABLED(leaudio_broadcast_audio_handover_policies) &&
+        source_listening_mode_ && !IsResumeAllowedByService()) {
       return false;
     }
 
@@ -5503,6 +5564,12 @@ class LeAudioClientImpl : public LeAudioClient {
                   le_audio::types::kLeAudioDirectionSink,
                   UnicastMonitorModeStatus::STREAMING_SUSPENDED);
             }
+
+            if (source_listening_mode_) {
+              callbacks_->OnUnicastMonitorModeStatus(
+                  le_audio::types::kLeAudioDirectionSource,
+                  UnicastMonitorModeStatus::STREAMING_SUSPENDED);
+            }
           }
         }
 
@@ -5581,6 +5648,12 @@ class LeAudioClientImpl : public LeAudioClient {
   bool sink_monitor_mode_;
   /* Status which has been notified to Service */
   std::optional<UnicastMonitorModeStatus> sink_monitor_notified_status_;
+  /* Listen for streaming request on Bluetooth Source HAL session */
+  bool source_listening_mode_;
+  /* Don't bother service about multiple confirmation requests */
+  bool service_start_confirmation_requested_;
+  /* Service streaming confirmation state */
+  bool service_start_confirmation_state_;
 
   /* Reconnection mode */
   tBTM_BLE_CONN_TYPE reconnection_mode_;
