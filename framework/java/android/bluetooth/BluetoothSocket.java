@@ -16,7 +16,6 @@
 
 package android.bluetooth;
 
-
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
@@ -430,8 +429,7 @@ public final class BluetoothSocket implements Closeable {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void connect() throws IOException {
-        IBluetooth bluetoothProxy =
-                BluetoothAdapter.getDefaultAdapter().getBluetoothService();
+        IBluetooth bluetoothProxy = BluetoothAdapter.getDefaultAdapter().getBluetoothService();
         long socketConnectionTimeNanos = System.nanoTime();
         if (bluetoothProxy == null) {
             throw new BluetoothSocketException(BluetoothSocketException.BLUETOOTH_OFF_FAILURE);
@@ -509,13 +507,13 @@ public final class BluetoothSocket implements Closeable {
         }
         SocketMetrics.logSocketConnect(
                 SocketMetrics.SOCKET_NO_ERROR,
-                socketConnectionTimeMillis,
+                socketConnectionTimeNanos,
                 mType,
                 mDevice,
                 mPort,
                 mAuth,
-                mSocketCreationTimeMillis,
-                mSocketCreationLatencyMillis);
+                mSocketCreationTimeNanos,
+                mSocketCreationLatencyNanos);
     }
 
     /**
