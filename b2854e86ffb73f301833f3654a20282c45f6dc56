@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "193571fe_9610feb9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T01:53:55Z",
+      "side": 1,
+      "message": "I guess this is not the correct test.\n\nIn your case this should be `None` with why there is no test.\n\nBut building the `service-bluetooth` is not even relevant to this change.",
+      "range": {
+        "startLine": 11,
+        "startChar": 8,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "b2854e86ffb73f301833f3654a20282c45f6dc56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "510ee3b8_03ba3ca8",
