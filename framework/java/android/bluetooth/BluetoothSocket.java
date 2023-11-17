@@ -16,7 +16,6 @@
 
 package android.bluetooth;
 
-
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
@@ -430,8 +429,7 @@ public final class BluetoothSocket implements Closeable {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public void connect() throws IOException {
-        IBluetooth bluetoothProxy =
-                BluetoothAdapter.getDefaultAdapter().getBluetoothService();
+        IBluetooth bluetoothProxy = BluetoothAdapter.getDefaultAdapter().getBluetoothService();
         long socketConnectionTimeNanos = System.nanoTime();
         if (bluetoothProxy == null) {
             throw new BluetoothSocketException(BluetoothSocketException.BLUETOOTH_OFF_FAILURE);
@@ -482,15 +480,7 @@ public final class BluetoothSocket implements Closeable {
                 mSocketState = SocketState.CONNECTED;
                 if (DBG) Log.d(TAG, "connect(), socket connected");
             }
-            SocketMetrics.logSocketConnect(
-                    -1, // no error
-                    socketConnectionTimeNanos,
-                    mType,
-                    mDevice,
-                    mPort,
-                    mAuth,
-                    mSocketCreationTimeNanos,
-                    mSocketCreationLatencyNanos);
+            Log.i(TAG, "asdf mUuid.getUuid()=" + mUuid.getUuid());
         } catch (BluetoothSocketException e) {
             SocketMetrics.logSocketConnect(
                     e.getErrorCode(),
@@ -500,7 +490,8 @@ public final class BluetoothSocket implements Closeable {
                     mPort,
                     mAuth,
                     mSocketCreationTimeNanos,
-                    mSocketCreationLatencyNanos);
+                    mSocketCreationLatencyNanos,
+                    mUuid.getUuid());
             throw e;
         } catch (RemoteException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
@@ -512,10 +503,21 @@ public final class BluetoothSocket implements Closeable {
                     mPort,
                     mAuth,
                     mSocketCreationTimeNanos,
-                    mSocketCreationLatencyNanos);
+                    mSocketCreationLatencyNanos,
+                    mUuid.getUuid());
             throw new BluetoothSocketException(
                     BluetoothSocketException.RPC_FAILURE, "unable to send RPC: " + e.getMessage());
         }
+        SocketMetrics.logSocketConnect(
+                SocketMetrics.SOCKET_NO_ERROR,
+                socketConnectionTimeNanos,
+                mType,
+                mDevice,
+                mPort,
+                mAuth,
+                mSocketCreationTimeNanos,
+                mSocketCreationLatencyNanos,
+                mUuid.getUuid());
     }
 
     /**
