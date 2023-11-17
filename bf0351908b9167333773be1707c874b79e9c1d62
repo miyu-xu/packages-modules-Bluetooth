@@ -34,6 +34,24 @@
       "parentUuid": "8e7d94e1_89b50a28",
       "revId": "bf0351908b9167333773be1707c874b79e9c1d62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f77ccb7_3d466d83",
+        "filename": "system/gd/rust/facade_proto/build.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1939360
+      },
+      "writtenOn": "2023-11-17T15:56:42Z",
+      "side": 1,
+      "message": "The remaining problem is that running `cargo build --release` in `/root/.floss/staging/bt` changes `/root/.floss/staging/external/rust/vendor/grpcio-sys-0.13.0+1.56.2-patched/bindings/bindings.rs`.\nIt seems to be only formatting changes (https://paste.googleplex.com/5961760855556096), but I\u0027m unsure why they happen in the first place, if it is because of the change in `protobuf_codegen`.\nThe versions of cargo are also different. Maybe we need to re-vendor `grpcio-sys-0.13.0+1.56.2-patched` but with the correct `bindings.rs` ?\nStill investigating.",
+      "parentUuid": "6f7ad15b_bd5345e7",
+      "revId": "bf0351908b9167333773be1707c874b79e9c1d62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
