@@ -33,6 +33,24 @@
       "message": "Possible to add other freq also if not then at least 96000",
       "revId": "09dabb7508e1ae09069427299cdf169e615bb7c6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d98f5f23_3e929a9c",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-17T12:02:50Z",
+      "side": 1,
+      "message": "Please feel free to do that as a separate CL.\nWe need to enhance also here:\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/framework/java/android/bluetooth/BluetoothLeAudioCodecConfig.java;drc\u003d0b80090e02814093f2187c2ce7e64f87cb917edc;l\u003d37",
+      "parentUuid": "623827d5_f50123e7",
+      "revId": "09dabb7508e1ae09069427299cdf169e615bb7c6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
