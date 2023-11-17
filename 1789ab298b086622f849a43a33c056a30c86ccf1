@@ -230,6 +230,30 @@
       },
       "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddc67686_9dcc32a0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-17T05:52:17Z",
+      "side": 1,
+      "message": "I managed to solve the problem by changing `waitForLooperToBeIdle` into `waitForLooperToFinishScheduledTask` for all tests, which does the job of completing the current task of the looper before moving on. Checked that this works by running test in local.\n\nNow `ScanManagerTest` is fully working with `TestLooper`!",
+      "parentUuid": "4019eff7_ef22b71b",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 191,
+        "endChar": 23
+      },
+      "revId": "1789ab298b086622f849a43a33c056a30c86ccf1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
