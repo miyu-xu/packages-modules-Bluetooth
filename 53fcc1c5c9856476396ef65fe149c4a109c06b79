@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f95be72f_401c8da2",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 3
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T01:59:39Z",
+      "side": 1,
+      "message": "should it be a reference ?",
+      "range": {
+        "startLine": 756,
+        "startChar": 43,
+        "endLine": 756,
+        "endChar": 44
+      },
+      "revId": "53fcc1c5c9856476396ef65fe149c4a109c06b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17a68f9d_61bacf7d",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1242,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T01:59:39Z",
+      "side": 1,
+      "message": "nit suggest:\n```suggestion\n            Intent intent \u003d new Intent(BluetoothDevice.ACTION_KEY_MISSING)\n                .putExtra(BluetoothDevice.EXTRA_DEVICE, bluetoothDevice)\n                .addFlags(\n                    Intent.FLAG_RECEIVER_REGISTERED_ONLY_BEFORE_BOOT\n                            | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);\n```",
+      "range": {
+        "startLine": 1238,
+        "startChar": 12,
+        "endLine": 1242,
+        "endChar": 71
+      },
+      "revId": "53fcc1c5c9856476396ef65fe149c4a109c06b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2bd35fd_dc00785e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T01:59:39Z",
+      "side": 1,
+      "message": "The API in previous CL is mentioning connect, I put a comment to add privileged too, but I think you want both here",
+      "range": {
+        "startLine": 1243,
+        "startChar": 50,
+        "endLine": 1243,
+        "endChar": 70
+      },
+      "revId": "53fcc1c5c9856476396ef65fe149c4a109c06b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1903e85_34cbd077",
+        "filename": "system/btif/include/btif_common.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T01:59:39Z",
+      "side": 1,
+      "message": "not a reference nor a pointer, not const neither, is the copy expected ? (could be, we are only talking about 6 bytes)",
+      "range": {
+        "startLine": 239,
+        "startChar": 27,
+        "endLine": 239,
+        "endChar": 45
+      },
+      "revId": "53fcc1c5c9856476396ef65fe149c4a109c06b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
