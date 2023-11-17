@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5972ced1_7c9a6ec5",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-17T18:30:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cfaa59c4_e336feea",
+      "range": {
+        "startLine": 915,
+        "startChar": 6,
+        "endLine": 915,
+        "endChar": 8
+      },
+      "revId": "2d046909f84bee20355a19a5e73e5ddc7b212f81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "52670802_3d6e1c8a",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-16T13:49:28Z",
       "side": 1,
       "message": "This could be bound as an argument to check_status_with_id to simplify the code.\n\nIt can be done in a separate CL, but it would make the code more readable.\n  bool send_callback \u003d Operation::COMPLETE_ADVERTISEMENT || operation \u003d\u003d Operation::LAST_FRAGMENT;\n      le_advertising_interface_-\u003eEnqueueCommand(\n          hci::LeSetPeriodicAdvertisingDataRawBuilder::Create(\n              advertiser_id, operation, std::move(data)),\n          module_handler_-\u003eBindOnceOn(\n              this,\n              \u0026impl::check_status_with_id\u003cLeSetPeriodicAdvertisingDataCompleteView\u003e,\n              send_callback, advertiser_id));",
+      "range": {
+        "startLine": 1312,
+        "startChar": 8,
+        "endLine": 1312,
+        "endChar": 96
+      },
+      "revId": "2d046909f84bee20355a19a5e73e5ddc7b212f81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb0016ab_fb3b9851",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1312,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-17T18:30:11Z",
+      "side": 1,
+      "message": "good call, considering this refactor needs to touch other places, will do in a separate follow-up CL aosp/2834849.",
+      "parentUuid": "52670802_3d6e1c8a",
       "range": {
         "startLine": 1312,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9760a9d4_f41188c2",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1663,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-17T18:30:11Z",
+      "side": 1,
+      "message": "will do in a separate follow-up CL aosp/2834849.",
+      "parentUuid": "0e825310_21796482",
+      "range": {
+        "startLine": 1663,
+        "startChar": 2,
+        "endLine": 1663,
+        "endChar": 72
+      },
+      "revId": "2d046909f84bee20355a19a5e73e5ddc7b212f81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f0b4043_8c4b00e9",
@@ -83,6 +155,24 @@
       "writtenOn": "2023-11-16T13:49:28Z",
       "side": 1,
       "message": "if (!send_callback) {\n  return;\n}",
+      "revId": "2d046909f84bee20355a19a5e73e5ddc7b212f81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "afe4eb6d_bbadadd5",
+        "filename": "system/gd/hci/le_advertising_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1684,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-17T18:30:11Z",
+      "side": 1,
+      "message": "will do in a separate follow-up CL aosp/2834849.",
+      "parentUuid": "7f0b4043_8c4b00e9",
       "revId": "2d046909f84bee20355a19a5e73e5ddc7b212f81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
