@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad7d8dce_7821cd18",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-17T02:22:46Z",
+      "side": 1,
+      "message": "Here a pointer is not even needed, RawAddress is only 6 bytes, a pointer on a 64-bit platform takes 8 bytes.",
+      "parentUuid": "b1d47c91_f5c32049",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "88f48969_075801b8",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 2
