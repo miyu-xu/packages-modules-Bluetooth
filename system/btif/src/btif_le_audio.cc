@@ -327,6 +327,20 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
                         Unretained(LeAudioClient::Get()), direction, enable));
   }
 
+  void ConfirmUnicastStreamRequest() {
+    DVLOG(2) << __func__;
+    if (!initialized || !LeAudioClient::IsLeAudioClientRunning()) {
+      DVLOG(2) << __func__
+               << " Confirmation of stream request ignored, due to already"
+                  " started cleanup procedure or service being not read";
+      return;
+    }
+
+    do_in_main_thread(FROM_HERE,
+                      Bind(&LeAudioClient::ConfirmUnicastStreamRequest,
+                           Unretained(LeAudioClient::Get())));
+  }
+
   void SendAudioProfilePreferences(int group_id,
                                    bool is_output_preference_le_audio,
                                    bool is_duplex_preference_le_audio) {
