@@ -34,6 +34,24 @@
       "parentUuid": "151b51b2_4b4423c2",
       "revId": "2959de377ca2d4cb4de05b5c98e4edb2a3f2ab40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6952893e_53f8a126",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 962,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-17T17:23:24Z",
+      "side": 1,
+      "message": "There are a lot more, are those not used?",
+      "parentUuid": "fa7dd6da_9fb1bf42",
+      "revId": "2959de377ca2d4cb4de05b5c98e4edb2a3f2ab40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
