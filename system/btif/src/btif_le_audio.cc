@@ -139,6 +139,12 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
                           Unretained(callbacks), status));
   }
 
+  void OnSourceMonitoringStatus(StreamMonitoringStatus status) override {
+    do_in_jni_thread(FROM_HERE,
+                     Bind(&LeAudioClientCallbacks::OnSourceMonitoringStatus,
+                          Unretained(callbacks), status));
+  }
+
   void Initialize(LeAudioClientCallbacks* callbacks,
                   const std::vector<btle_audio_codec_config_t>&
                       offloading_preference) override {
@@ -324,6 +330,20 @@ class LeAudioClientInterfaceImpl : public LeAudioClientInterface,
     do_in_main_thread(FROM_HERE,
                       Bind(&LeAudioClient::SetSinkListeningMode,
                            Unretained(LeAudioClient::Get()), enable));
+  }
+
+  void SetSourceListeningMode(bool source_listening_mode) {
+    DVLOG(2) << __func__ << " source_listening_mode: " << source_listening_mode;
+    if (!initialized || !LeAudioClient::IsLeAudioClientRunning()) {
+      DVLOG(2) << __func__
+               << " Source HAL listening mode set ignored, due to already"
+                  " started cleanup procedure or service being not read";
+      return;
+    }
+
+    do_in_main_thread(FROM_HERE, Bind(&LeAudioClient::SetSourceListeningMode,
+                                      Unretained(LeAudioClient::Get()),
+                                      source_listening_mode));
   }
 
   void SendAudioProfilePreferences(int group_id,

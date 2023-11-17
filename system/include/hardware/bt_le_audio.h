@@ -304,6 +304,7 @@ class LeAudioClientCallbacks {
       int group_id, LeAudioHealthBasedAction action) = 0;
 
   virtual void OnSinkMonitoringStatus(StreamMonitoringStatus status);
+  virtual void OnSourceMonitoringStatus(StreamMonitoringStatus status);
 };
 
 class LeAudioClientInterface {
@@ -352,6 +353,9 @@ class LeAudioClientInterface {
 
   /* Set Sink listening mode flag */
   virtual void SetSinkListeningMode(bool enable) = 0;
+
+  /* Set Source listening mode flag */
+  virtual void SetSourceListeningMode(bool source_listening_mode) = 0;
 
   /* Sends a preferred audio profiles change */
   virtual void SendAudioProfilePreferences(
