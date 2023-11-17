@@ -88,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cce631cd_b1eb0fde",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-17T08:56:25Z",
+      "side": 1,
+      "message": "Ack.\nI understand the argument of consistency.\nMaybe the API reviewer will want to enforce it, maybe not... ^^",
+      "parentUuid": "f4cc9281_1383791b",
+      "range": {
+        "startLine": 304,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 32
+      },
+      "revId": "b2854e86ffb73f301833f3654a20282c45f6dc56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "137f1d80_49d9e959",
