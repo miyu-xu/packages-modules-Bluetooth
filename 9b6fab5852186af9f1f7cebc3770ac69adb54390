@@ -22,6 +22,30 @@
       },
       "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a7f2346_846cb27e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-11-17T06:36:41Z",
+      "side": 1,
+      "message": "Hi Frederic\n\nAfter offline discussion with Hsin-yu. I think we should remove CRAS call behavior if we enable the Bluetooth telephony feature flag.\n\nBut I will need to draft a one pager on how exactly we want to change it. So we hold on this change and I will cc you after the doc is ready.",
+      "parentUuid": "4069768b_ef6a3ac5",
+      "range": {
+        "startLine": 775,
+        "startChar": 28,
+        "endLine": 778,
+        "endChar": 29
+      },
+      "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
