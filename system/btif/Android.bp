@@ -379,7 +379,6 @@ cc_test {
     ],
     srcs: [
         ":TestCommonMockFunctions",
-        ":TestMockFrameworks",
         "src/btif_avrcp_audio_track.cc",
         "test/btif_avrcp_audio_track_test.cc",
     ],
@@ -421,7 +420,6 @@ cc_test {
         "-DBUILDCFG",
         "-Wno-unused-parameter",
     ],
-    shared_libs: ["liblog"],
 }
 
 // btif rc unit tests for target
@@ -596,7 +594,6 @@ cc_test {
         ":TestMockBtaVc",
         ":TestMockBtcore",
         ":TestMockBtu",
-        ":TestMockFrameworks",
         ":TestMockHci",
         ":TestMockMainShim",
         ":TestMockStack",
@@ -609,8 +606,6 @@ cc_test {
     ],
     header_libs: ["libbluetooth_headers"],
     shared_libs: [
-        "android.hardware.bluetooth.audio@2.0",
-        "android.hardware.bluetooth.audio@2.1",
         "libbase",
         "libcrypto",
         "libcutils",
@@ -663,6 +658,9 @@ cc_test {
                 "android.hardware.common.fmq-V1-ndk",
             ],
             shared_libs: [
+                "android.hardware.bluetooth.audio@2.0",
+                "android.hardware.bluetooth.audio@2.1",
+                "libaaudio",
                 "libbinder_ndk",
                 "libstatssocket",
             ],
@@ -718,7 +716,6 @@ cc_test {
         ":TestMockBtaVc",
         ":TestMockBtcore",
         ":TestMockBtu",
-        ":TestMockFrameworks",
         ":TestMockHci",
         ":TestMockMainShim",
         ":TestMockStack",
