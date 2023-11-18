@@ -79,7 +79,7 @@ uint8_t number_of_local_supported_codecs{0};
 bool readable{false};
 bool ble_supported{false};
 bool iso_supported{false};
-bool simple_pairing_supported{false};
+bool simple_pairing_supported{true};
 bool secure_connections_supported{false};
 bool supports_hold_mode{false};
 bool supports_sniff_mode{true};

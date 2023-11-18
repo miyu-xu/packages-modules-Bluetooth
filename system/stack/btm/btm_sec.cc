@@ -837,19 +837,6 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
         BTM_SEC_ROLE_SWITCHED | BTM_SEC_LINK_KEY_AUTHED);
 
   LOG_VERBOSE("after update sec_flags=0x%x", p_dev_rec->sec_flags);
-  if (!controller_get_interface()->supports_simple_pairing()) {
-    /* The special case when we authenticate keyboard.  Set pin type to fixed */
-    /* It would be probably better to do it from the application, but it is */
-    /* complicated */
-    if (((p_dev_rec->dev_class[1] & BTM_COD_MAJOR_CLASS_MASK) ==
-         BTM_COD_MAJOR_PERIPHERAL) &&
-        (p_dev_rec->dev_class[2] & BTM_COD_MINOR_KEYBOARD) &&
-        (btm_sec_cb.cfg.pin_type != HCI_PIN_TYPE_FIXED)) {
-      btm_sec_cb.pin_type_changed = true;
-      btsnd_hcic_write_pin_type(HCI_PIN_TYPE_FIXED);
-    }
-  }
-
   LOG_VERBOSE("BTM_SecBond: Remote sm4: 0x%x  HCI Handle: 0x%04x",
               p_dev_rec->sm4, p_dev_rec->hci_handle);
 
@@ -869,8 +856,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
   }
 
   LOG_VERBOSE("sec mode: %d sm4:x%x", btm_sec_cb.security_mode, p_dev_rec->sm4);
-  if (!controller_get_interface()->supports_simple_pairing() ||
-      (p_dev_rec->sm4 == BTM_SM4_KNOWN)) {
+  if (p_dev_rec->sm4 == BTM_SM4_KNOWN) {
     if (btm_sec_check_prefetch_pin(p_dev_rec)) return (BTM_CMD_STARTED);
   }
   if ((btm_sec_cb.security_mode == BTM_SEC_MODE_SP ||
