@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bf5c367_c856cb15",
+        "filename": "system/btif/test/btif_hh_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-18T06:17:03Z",
+      "side": 1,
+      "message": "nit: How about\n\nnamespace bluetooth::legacy::testing {\n}\n\nAll on one line?",
+      "range": {
+        "startLine": 54,
+        "startChar": 10,
+        "endLine": 54,
+        "endChar": 19
+      },
+      "revId": "72e8d35fbbc26587bbae14a64904e51838e9d9e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
