@@ -33,6 +33,23 @@
       "message": "I agree that SMP needs to know when the keys are received by the remote.",
       "revId": "238f06a7b3fecf10413bfc2fe8e1fcc6d6a62487",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5aba541a_17b89e1d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-11-18T06:06:50Z",
+      "side": 1,
+      "message": "This should be harmless but would ideally recommend closely monitoring any SMP bugs around this in 24Q1 if any to be safe.",
+      "revId": "238f06a7b3fecf10413bfc2fe8e1fcc6d6a62487",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
