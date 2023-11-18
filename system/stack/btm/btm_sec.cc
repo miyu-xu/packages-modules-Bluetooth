@@ -2325,75 +2325,78 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
     }
   }
 
-  if (!p_bd_name) p_bd_name = (const uint8_t*)"";
+  if (!p_bd_name) {
+    p_bd_name = (const uint8_t*)"";
+  }
 
-  if (p_dev_rec != nullptr) {
-    old_sec_state = p_dev_rec->sec_state;
-    if (status == HCI_SUCCESS) {
-      LOG_DEBUG(
-          "Remote read request complete for known device pairing_state:%s "
-          "name:%s sec_state:%s",
-          btm_pair_state_descr(btm_sec_cb.pairing_state), p_bd_name,
-          security_state_text(p_dev_rec->sec_state).c_str());
-
-      strlcpy((char*)p_dev_rec->sec_bd_name, (const char*)p_bd_name,
-              BTM_MAX_REM_BD_NAME_LEN + 1);
-      p_dev_rec->sec_flags |= BTM_SEC_NAME_KNOWN;
-      LOG_VERBOSE("setting BTM_SEC_NAME_KNOWN sec_flags:0x%x",
-                  p_dev_rec->sec_flags);
-    } else {
-      LOG_WARN(
-          "Remote read request failed for known device pairing_state:%s "
-          "status:%s name:%s sec_state:%s",
-          btm_pair_state_descr(btm_sec_cb.pairing_state),
-          hci_status_code_text(status).c_str(), p_bd_name,
-          security_state_text(p_dev_rec->sec_state).c_str());
-
-      /* Notify all clients waiting for name to be resolved even if it failed so
-       * clients can continue */
-      p_dev_rec->sec_bd_name[0] = 0;
-    }
-
-    if (p_dev_rec->sec_state == BTM_SEC_STATE_GETTING_NAME)
-      p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
-
-    /* Notify all clients waiting for name to be resolved */
-    for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
-      if (btm_cb.p_rmt_name_callback[i]) {
-        if (p_bd_addr) {
-          (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, p_dev_rec->dev_class,
-                                           p_dev_rec->sec_bd_name);
-        } else {
-          // TODO Still need to send status back to get SDP state machine
-          // running
-          LOG_ERROR("Unable to issue callback with unknown address status:%s",
-                    hci_status_code_text(status).c_str());
-        }
-      }
-    }
-  } else {
+ if (p_dev_rec == nullptr) {
     LOG_DEBUG(
         "Remote read request complete for unknown device pairing_state:%s "
         "status:%s name:%s",
         btm_pair_state_descr(btm_sec_cb.pairing_state),
         hci_status_code_text(status).c_str(), p_bd_name);
 
+    if (p_bd_addr == nullptr) {
+      // TODO Still need to send status back to get SDP state machine
+      // running
+      LOG_ERROR("Unable to issue callback with unknown address status:%s",
+                hci_status_code_text(status).c_str());
+      return;
+    }
+
     /* Notify all clients waiting for name to be resolved even if not found so
      * clients can continue */
     for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
       if (btm_cb.p_rmt_name_callback[i]) {
-        if (p_bd_addr) {
-          (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, (uint8_t*)kDevClassEmpty,
-                                           (uint8_t*)kBtmBdNameEmpty);
-        } else {
-          // TODO Still need to send status back to get SDP state machine
-          // running
-          LOG_ERROR("Unable to issue callback with unknown address status:%s",
-                    hci_status_code_text(status).c_str());
-        }
+        (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, (uint8_t*)kDevClassEmpty,
+                                        (uint8_t*)kBtmBdNameEmpty);
       }
     }
     return;
+  }
+
+  old_sec_state = p_dev_rec->sec_state;
+  if (status == HCI_SUCCESS) {
+    LOG_DEBUG(
+        "Remote read request complete for known device pairing_state:%s "
+        "name:%s sec_state:%s",
+        btm_pair_state_descr(btm_sec_cb.pairing_state), p_bd_name,
+        security_state_text(p_dev_rec->sec_state).c_str());
+
+    strlcpy((char*)p_dev_rec->sec_bd_name, (const char*)p_bd_name,
+            BTM_MAX_REM_BD_NAME_LEN + 1);
+    p_dev_rec->sec_flags |= BTM_SEC_NAME_KNOWN;
+    LOG_VERBOSE("setting BTM_SEC_NAME_KNOWN sec_flags:0x%x",
+                p_dev_rec->sec_flags);
+  } else {
+    LOG_WARN(
+        "Remote read request failed for known device pairing_state:%s "
+        "status:%s name:%s sec_state:%s",
+        btm_pair_state_descr(btm_sec_cb.pairing_state),
+        hci_status_code_text(status).c_str(), p_bd_name,
+        security_state_text(p_dev_rec->sec_state).c_str());
+
+    /* Notify all clients waiting for name to be resolved even if it failed so
+     * clients can continue */
+    p_dev_rec->sec_bd_name[0] = 0;
+  }
+
+  if (p_dev_rec->sec_state == BTM_SEC_STATE_GETTING_NAME)
+    p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
+
+  /* Notify all clients waiting for name to be resolved */
+  for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
+    if (btm_cb.p_rmt_name_callback[i]) {
+      if (p_bd_addr) {
+        (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, p_dev_rec->dev_class,
+                                         p_dev_rec->sec_bd_name);
+      } else {
+        // TODO Still need to send status back to get SDP state machine
+        // running
+        LOG_ERROR("Unable to issue callback with unknown address status:%s",
+                  hci_status_code_text(status).c_str());
+      }
+    }
   }
 
   /* If we were delaying asking UI for a PIN because name was not resolved, ask
