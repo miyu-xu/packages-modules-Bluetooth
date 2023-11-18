@@ -23,6 +23,7 @@
 
 #include "bta/dm/bta_dm_disc.h"
 #include "bta/dm/bta_dm_disc_int.h"
+#include "hci_error_code.h"
 #include "stack/btm/neighbor_inquiry.h"
 #include "stack/include/gatt_api.h"
 #include "test/common/main_handler.h"
@@ -62,7 +63,8 @@ void bta_dm_sdp_result(tBTA_DM_MSG* p_data);
 void bta_dm_search_result(tBTA_DM_MSG* p_data);
 void bta_dm_search_timer_cback(void* data);
 void bta_dm_service_search_remname_cback(const RawAddress& bd_addr,
-                                         DEV_CLASS dc, tBTM_BD_NAME bd_name);
+                                         tBTM_BD_NAME bd_name,
+                                         tHCI_STATUS status);
 void bta_dm_start_scan(uint8_t duration_sec, bool low_latency_scan = false);
 void store_avrcp_profile_feature(tSDP_DISC_REC* sdp_rec);
 
@@ -200,25 +202,25 @@ TEST_F(BtaDiscTest, bta_dm_search_timer_cback) {
 }
 
 TEST_F(BtaDiscTest, bta_dm_service_search_remname_cback__expected_name) {
-  DEV_CLASS dc;
   tBTM_BD_NAME bd_name;
+  tHCI_STATUS status = HCI_SUCCESS;
   tBTA_DM_SEARCH_CB search_cb =
       bluetooth::legacy::testing::bta_dm_disc_get_search_cb();
   search_cb.peer_bdaddr = kRawAddress,
   bluetooth::legacy::testing::bta_dm_disc_search_cb(search_cb);
-  bluetooth::legacy::testing::bta_dm_service_search_remname_cback(kRawAddress,
-                                                                  dc, bd_name);
+  bluetooth::legacy::testing::bta_dm_service_search_remname_cback(
+      kRawAddress, bd_name, status);
 }
 
 TEST_F(BtaDiscTest, bta_dm_service_search_remname_cback__unexpected_name) {
-  DEV_CLASS dc;
   tBTM_BD_NAME bd_name;
+  tHCI_STATUS status = HCI_SUCCESS;
   tBTA_DM_SEARCH_CB search_cb =
       bluetooth::legacy::testing::bta_dm_disc_get_search_cb();
   search_cb.peer_bdaddr = RawAddress::kAny;
   bluetooth::legacy::testing::bta_dm_disc_search_cb(search_cb);
-  bluetooth::legacy::testing::bta_dm_service_search_remname_cback(kRawAddress,
-                                                                  dc, bd_name);
+  bluetooth::legacy::testing::bta_dm_service_search_remname_cback(
+      kRawAddress, bd_name, status);
 }
 
 TEST_F(BtaDiscTest, bta_dm_start_scan) {

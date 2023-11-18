@@ -25,6 +25,7 @@
 #include "gd/common/init_flags.h"
 #include "hci/hci_layer_mock.h"
 #include "hci/include/hci_layer.h"
+#include "hci_error_code.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sco.h"
@@ -236,9 +237,9 @@ TEST_F(StackBtmWithInitFreeTest, btm_sec_rmt_name_request_complete) {
   bluetooth::common::InitFlags::SetAllForTesting();
 
   ASSERT_TRUE(BTM_SecAddRmtNameNotifyCallback(
-      [](const RawAddress& bd_addr, DEV_CLASS dc, tBTM_BD_NAME bd_name) {
+      [](const RawAddress& bd_addr,
+                    tBTM_BD_NAME bd_name, tHCI_STATUS status) {
         btm_test.bd_addr = bd_addr;
-        memcpy(btm_test.dc, dc, DEV_CLASS_LEN);
         memcpy(btm_test.bd_name, bd_name, BTM_MAX_REM_BD_NAME_LEN);
       }));
 

@@ -2264,7 +2264,6 @@ static tBTM_STATUS btm_sec_dd_create_conn(tBTM_SEC_DEV_REC* p_dev_rec) {
 }
 
 static void call_registered_rmt_name_callbacks(const RawAddress* p_bd_addr,
-                                               uint8_t* pdev_class,
                                                uint8_t* p_bd_name,
                                                tHCI_STATUS status) {
   int i;
@@ -2277,9 +2276,6 @@ static void call_registered_rmt_name_callbacks(const RawAddress* p_bd_addr,
     return;
   }
 
-  if (pdev_class == nullptr) {
-    pdev_class = (uint8_t*)kDevClassEmpty;
-  }
   if (p_bd_name == nullptr) {
     p_bd_name = (uint8_t*)kBtmBdNameEmpty;
   }
@@ -2288,7 +2284,7 @@ static void call_registered_rmt_name_callbacks(const RawAddress* p_bd_addr,
    * clients can continue */
   for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
     if (btm_cb.p_rmt_name_callback[i]) {
-      (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, pdev_class, p_bd_name);
+      (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, p_bd_name, status);
     }
   }
 }
@@ -2341,7 +2337,7 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
         btm_pair_state_descr(btm_sec_cb.pairing_state),
         hci_status_code_text(status).c_str(), p_bd_name);
 
-    call_registered_rmt_name_callbacks(p_bd_addr, nullptr, nullptr, status);
+    call_registered_rmt_name_callbacks(p_bd_addr, nullptr, status);
     return;
   }
 
@@ -2375,8 +2371,7 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
       p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
 
     /* Notify all clients waiting for name to be resolved */
-    call_registered_rmt_name_callbacks(p_bd_addr, p_dev_rec->dev_class,
-                                       p_dev_rec->sec_bd_name, status);
+    call_registered_rmt_name_callbacks(p_bd_addr,p_dev_rec->sec_bd_name, status);
 
     /* If we were delaying asking UI for a PIN because name was not resolved,
      * ask now */

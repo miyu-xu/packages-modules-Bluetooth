@@ -60,9 +60,10 @@ typedef uint8_t(tBTM_LINK_KEY_CALLBACK)(const RawAddress& bd_addr,
 /* Remote Name Resolved.  Parameters are
  *              BD Address of remote
  *              BD Name of remote
+ *              Status of indicating whether request succeed or not
  */
-typedef void(tBTM_RMT_NAME_CALLBACK)(const RawAddress& bd_addr, DEV_CLASS dc,
-                                     tBTM_BD_NAME bd_name);
+typedef void(tBTM_RMT_NAME_CALLBACK)(const RawAddress& bd_addr,
+                                     tBTM_BD_NAME bd_name, tHCI_STATUS status);
 
 /* Authentication complete for the connection.  Parameters are
  *              BD Address of remote
