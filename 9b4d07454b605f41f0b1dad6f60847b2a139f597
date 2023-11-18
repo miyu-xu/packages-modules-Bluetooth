@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "99cf3c6c_ab792d29",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-18T00:05:11Z",
+      "side": 1,
+      "message": "I agree that SMP needs to know when these packets are actually sent to the remote.",
+      "revId": "9b4d07454b605f41f0b1dad6f60847b2a139f597",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
