@@ -26,6 +26,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "06854822_0284d430",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-18T19:27:58Z",
+      "side": 1,
+      "message": "```suggestion\n                .map(list -\u003e list.toArray(new Map.Entry[0]))\n                .map(Map::ofEntries)\n```",
+      "range": {
+        "startLine": 159,
+        "startChar": 17,
+        "endLine": 159,
+        "endChar": 75
+      },
+      "revId": "1a8165ece51b1ac57dbf1174d9e8637400ca5034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "73866471_541fde4e",
         "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
         "patchSetId": 2
