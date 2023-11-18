@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bebc9a40_470f6bf8",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-18T19:26:36Z",
+      "side": 1,
+      "message": "```suggestion\n                    .filter(Map.Entry::getValue)\n                    .map(Map.Entry::getKey)\n                    .map(FlagValue::formatFlag)\n```",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 53
+      },
+      "revId": "1a8165ece51b1ac57dbf1174d9e8637400ca5034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73866471_541fde4e",
+        "filename": "service/tests/src/com/android/server/bluetooth/BluetoothManagerServiceTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-18T19:26:36Z",
+      "side": 1,
+      "message": "```suggestion\n                .map(FlagsValue::new)\n                .map(List::of)\n                .map(List::toArray)\n```",
+      "range": {
+        "startLine": 161,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 67
+      },
+      "revId": "1a8165ece51b1ac57dbf1174d9e8637400ca5034",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
