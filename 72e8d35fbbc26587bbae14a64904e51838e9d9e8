@@ -22,6 +22,30 @@
       },
       "revId": "72e8d35fbbc26587bbae14a64904e51838e9d9e8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85b49a56_a842f7e8",
+        "filename": "system/btif/test/btif_hh_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-18T17:26:38Z",
+      "side": 1,
+      "message": "Ok I will adopt that style going forward",
+      "parentUuid": "5bf5c367_c856cb15",
+      "range": {
+        "startLine": 54,
+        "startChar": 10,
+        "endLine": 54,
+        "endChar": 19
+      },
+      "revId": "72e8d35fbbc26587bbae14a64904e51838e9d9e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
