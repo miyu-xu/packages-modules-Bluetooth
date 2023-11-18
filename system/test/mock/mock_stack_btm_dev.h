@@ -33,7 +33,7 @@ extern struct btm_find_dev btm_find_dev;
 
 struct BTM_Sec_AddressKnown {
   std::function<bool(const RawAddress& address)> body{
-      [](const RawAddress& address) { return false; }};
+      [](const RawAddress& /* address */) { return false; }};
   bool operator()(const RawAddress& address) { return body(address); };
 };
 extern struct BTM_Sec_AddressKnown BTM_Sec_AddressKnown;
@@ -43,7 +43,9 @@ extern struct BTM_Sec_AddressKnown BTM_Sec_AddressKnown;
 // Returns: bool
 struct maybe_resolve_address {
   std::function<bool(RawAddress* bda, tBLE_ADDR_TYPE* bda_type)> body{
-      [](RawAddress* bda, tBLE_ADDR_TYPE* bda_type) { return false; }};
+      [](RawAddress* /* bda */, tBLE_ADDR_TYPE* /* bda_type */) {
+        return false;
+      }};
   bool operator()(RawAddress* bda, tBLE_ADDR_TYPE* bda_type) {
     return body(bda, bda_type);
   };
@@ -53,3 +55,7 @@ extern struct maybe_resolve_address maybe_resolve_address;
 }  // namespace stack_btm_dev
 }  // namespace mock
 }  // namespace test
+
+const tBLE_BD_ADDR BTM_Sec_GetAddressWithType(const RawAddress& /* bd_addr */) {
+  return {};
+}
