@@ -89,12 +89,19 @@ struct Advertiser {
  * Determines the address type to use, based on the requested type and the address manager policy,
  * by selecting the "strictest" of the two. Strictness is defined in ascending order as
  * RPA -> NRPA -> Public. Thus:
- * (1) if the host only supports the public/static address policy, all advertisements will be public
- * (2) if the host supports only non-resolvable addresses, then advertisements will never use RPA
- * (3) if the host supports RPAs, then the requested type will always be honored
+ * (1) if the host does not support RPAs and the advertising is non-connectable, use NRPA
+ * (2) if the host only supports the public/static address policy, all advertisements will be public
+ * (3) if the host supports only non-resolvable addresses, then advertisements will never use RPA
+ * (4) if the host supports RPAs, then the requested type will always be honored
  */
 AdvertiserAddressType GetAdvertiserAddressTypeFromRequestedTypeAndPolicy(
-    AdvertiserAddressType requested_address_type, LeAddressManager::AddressPolicy address_policy) {
+    AdvertiserAddressType requested_address_type,
+    bool connectable,
+    LeAddressManager::AddressPolicy address_policy) {
+  if (address_policy != LeAddressManager::AddressPolicy::USE_RESOLVABLE_ADDRESS && !connectable) {
+    return AdvertiserAddressType::NONRESOLVABLE_RANDOM;
+  }
+
   switch (address_policy) {
     case LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS:
     case LeAddressManager::AddressPolicy::USE_STATIC_ADDRESS:
@@ -439,9 +446,10 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
       le_address_manager_->Register(this);
       address_manager_registered = true;
     }
-
     advertising_sets_[id].address_type = GetAdvertiserAddressTypeFromRequestedTypeAndPolicy(
-        config.requested_advertiser_address_type, le_address_manager_->GetAddressPolicy());
+        config.requested_advertiser_address_type,
+        config.connectable,
+        le_address_manager_->GetAddressPolicy());
 
     advertising_sets_[id].current_address = new_advertiser_address(id);
     set_parameters(id, config);
@@ -573,7 +581,9 @@ struct LeAdvertisingManager::impl : public bluetooth::hci::LeAddressManagerCallb
     advertising_sets_[id].max_extended_advertising_events = max_ext_adv_events;
     advertising_sets_[id].handler = handler;
     advertising_sets_[id].address_type = GetAdvertiserAddressTypeFromRequestedTypeAndPolicy(
-        config.requested_advertiser_address_type, le_address_manager_->GetAddressPolicy());
+        config.requested_advertiser_address_type,
+        config.connectable,
+        le_address_manager_->GetAddressPolicy());
     advertising_sets_[id].current_address = new_advertiser_address(id);
 
     set_parameters(id, config);
