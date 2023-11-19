@@ -287,6 +287,7 @@ class LeAdvertisingAPITest : public LeAdvertisingManagerTest {
     std::vector<OpCode> adv_opcodes = {
         OpCode::LE_READ_ADVERTISING_PHYSICAL_CHANNEL_TX_POWER,
         OpCode::LE_SET_ADVERTISING_PARAMETERS,
+        OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
         OpCode::LE_SET_SCAN_RESPONSE_DATA,
         OpCode::LE_SET_ADVERTISING_DATA,
         OpCode::LE_SET_ADVERTISING_ENABLE,
@@ -482,6 +483,7 @@ class LeExtendedAdvertisingAPITest : public LeExtendedAdvertisingManagerTest {
 
     std::vector<OpCode> adv_opcodes = {
         OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+        OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
         OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,
         OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,
         OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE,
@@ -539,6 +541,7 @@ TEST_F(LeAdvertisingManagerTest, create_advertiser_test) {
   std::vector<OpCode> adv_opcodes = {
       OpCode::LE_READ_ADVERTISING_PHYSICAL_CHANNEL_TX_POWER,
       OpCode::LE_SET_ADVERTISING_PARAMETERS,
+      OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
       OpCode::LE_SET_SCAN_RESPONSE_DATA,
       OpCode::LE_SET_ADVERTISING_DATA,
       OpCode::LE_SET_ADVERTISING_ENABLE,
@@ -700,6 +703,7 @@ TEST_F(LeExtendedAdvertisingManagerTest, create_advertiser_test) {
 
   std::vector<OpCode> adv_opcodes = {
       OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+      OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE,
@@ -762,6 +766,7 @@ TEST_F_WITH_FLAGS(
 
   std::vector<OpCode> adv_opcodes = {
       OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+      OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE,
@@ -824,6 +829,7 @@ TEST_F_WITH_FLAGS(
 
   std::vector<OpCode> adv_opcodes = {
       OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+      OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,  // 1st fragment
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,  // 2nd fragment
       OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,    // 1st fragment
@@ -936,6 +942,7 @@ TEST_F(LeExtendedAdvertisingManagerTest, ignore_on_pause_on_resume_after_unregis
 
   std::vector<OpCode> adv_opcodes = {
       OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+      OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE,
