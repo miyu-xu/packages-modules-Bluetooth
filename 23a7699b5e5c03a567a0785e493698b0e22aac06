@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f6b6b4f6_d4d9c28b",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1358,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-19T01:10:48Z",
+      "side": 1,
+      "message": "Maybe it is better to explain the context in a one pager. Please check go/bt-classic-hidsdpdisable.",
+      "parentUuid": "f350683e_4166e82c",
+      "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "06f77a16_9c60d217",
         "filename": "system/bta/dm/bta_dm_disc.cc",
         "patchSetId": 9
@@ -31,6 +49,24 @@
       "writtenOn": "2023-10-24T22:20:08Z",
       "side": 1,
       "message": "It would be a good idea to check this condition separately and log it.",
+      "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62cf2fe9_1b405414",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1360,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-19T01:10:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "06f77a16_9c60d217",
       "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -65,6 +101,24 @@
       "writtenOn": "2023-10-24T22:20:08Z",
       "side": 1,
       "message": "I wonder if it would have been simpler to return a boolean from here to inform the Service Discovery module if it should proceed with service discovery or not.\nThe Service Discovery module should not need to know what HID attributes are.",
+      "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2296ec0_78176555",
+        "filename": "system/stack/hid/hidh_api.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-19T01:10:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "63ef1fe4_8cede448",
       "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
