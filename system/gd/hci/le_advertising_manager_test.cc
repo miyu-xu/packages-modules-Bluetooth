@@ -417,6 +417,7 @@ class LeAndroidHciAdvertisingAPIPublicAddressTest : public LeAndroidHciAdvertisi
         SubOcf::SET_PARAM,
         SubOcf::SET_SCAN_RESP,
         SubOcf::SET_DATA,
+        SubOcf::SET_RANDOM_ADDR,
         SubOcf::SET_ENABLE,
     };
     for (size_t i = 0; i < sub_ocf.size(); i++) {
@@ -482,6 +483,7 @@ class LeExtendedAdvertisingAPITest : public LeExtendedAdvertisingManagerTest {
 
     std::vector<OpCode> adv_opcodes = {
         OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+        OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
         OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,
         OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,
         OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE,
@@ -700,6 +702,7 @@ TEST_F(LeExtendedAdvertisingManagerTest, create_advertiser_test) {
 
   std::vector<OpCode> adv_opcodes = {
       OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+      OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE,
@@ -762,6 +765,7 @@ TEST_F_WITH_FLAGS(
 
   std::vector<OpCode> adv_opcodes = {
       OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+      OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE,
@@ -824,6 +828,7 @@ TEST_F_WITH_FLAGS(
 
   std::vector<OpCode> adv_opcodes = {
       OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+      OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,  // 1st fragment
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,  // 2nd fragment
       OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,    // 1st fragment
@@ -936,6 +941,7 @@ TEST_F(LeExtendedAdvertisingManagerTest, ignore_on_pause_on_resume_after_unregis
 
   std::vector<OpCode> adv_opcodes = {
       OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS,
+      OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS,
       OpCode::LE_SET_EXTENDED_SCAN_RESPONSE_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_DATA,
       OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE,
@@ -1699,6 +1705,10 @@ TEST_F(LeExtendedAdvertisingAPITest, trigger_advertiser_callbacks_if_started_whi
   test_hci_layer_->IncomingEvent(LeSetExtendedAdvertisingParametersCompleteBuilder::Create(1, ErrorCode::SUCCESS, 0));
 
   test_hci_layer_->GetCommand();
+  test_hci_layer_->IncomingEvent(
+      LeSetAdvertisingSetRandomAddressCompleteBuilder::Create(1, ErrorCode::SUCCESS));
+
+  test_hci_layer_->GetCommand();
   test_hci_layer_->IncomingEvent(LeSetExtendedScanResponseDataCompleteBuilder::Create(1, ErrorCode::SUCCESS));
 
   test_hci_layer_->GetCommand();
@@ -1861,17 +1871,20 @@ TEST_F(LeExtendedAdvertisingManagerTest, use_non_resolvable_address) {
   EXPECT_EQ(address.data()[5] >> 6, 0b00);
 }
 
-TEST_F(LeExtendedAdvertisingManagerTest, use_public_address_type_if_public_address_policy) {
+TEST_F(
+    LeExtendedAdvertisingManagerTest,
+    use_public_address_type_if_public_address_policy_connectable) {
   // arrange: use PUBLIC address policy
   test_acl_manager_->SetAddressPolicy(LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS);
 
-  // act: start advertising set with RPA
+  // act: start connectable advertising set with RPA
   le_advertising_manager_->ExtendedCreateAdvertiser(
       kAdvertiserClientIdJni,
       0x00,
       AdvertisingConfig{
           .requested_advertiser_address_type = AdvertiserAddressType::RESOLVABLE_RANDOM,
           .channel_map = 1,
+          .connectable = true,
       },
       scan_callback,
       set_terminated_callback,
@@ -1888,6 +1901,43 @@ TEST_F(LeExtendedAdvertisingManagerTest, use_public_address_type_if_public_addre
       LeSetExtendedAdvertisingParametersView::Create(LeAdvertisingCommandView::Create(command));
   ASSERT_TRUE(set_parameters_command.IsValid());
   EXPECT_EQ(set_parameters_command.GetOwnAddressType(), OwnAddressType::PUBLIC_DEVICE_ADDRESS);
+}
+
+TEST_F(LeExtendedAdvertisingManagerTest, use_nrpa_if_public_address_policy_non_connectable) {
+  // arrange: use PUBLIC address policy
+  test_acl_manager_->SetAddressPolicy(LeAddressManager::AddressPolicy::USE_PUBLIC_ADDRESS);
+
+  // act: start non-connectable advertising set with RPA
+  le_advertising_manager_->ExtendedCreateAdvertiser(
+      kAdvertiserClientIdJni,
+      0x00,
+      AdvertisingConfig{
+          .requested_advertiser_address_type = AdvertiserAddressType::RESOLVABLE_RANDOM,
+          .channel_map = 1,
+          .connectable = false,
+      },
+      scan_callback,
+      set_terminated_callback,
+      0,
+      0,
+      client_handler_);
+  ASSERT_EQ(
+      test_hci_layer_->GetCommand().GetOpCode(), OpCode::LE_SET_EXTENDED_ADVERTISING_PARAMETERS);
+  test_hci_layer_->IncomingEvent(LeSetExtendedAdvertisingParametersCompleteBuilder::Create(
+      uint8_t{1}, ErrorCode::SUCCESS, static_cast<uint8_t>(-23)));
+
+  auto command = LeAdvertisingCommandView::Create(test_hci_layer_->GetCommand());
+  ASSERT_TRUE(command.IsValid());
+  ASSERT_EQ(command.GetOpCode(), OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS);
+
+  auto set_address_command =
+      LeSetAdvertisingSetRandomAddressView::Create(LeAdvertisingCommandView::Create(command));
+  ASSERT_TRUE(set_address_command.IsValid());
+  EXPECT_EQ(set_address_command.GetOpCode(), OpCode::LE_SET_ADVERTISING_SET_RANDOM_ADDRESS);
+
+  // checking that it is an NRPA (first two bits = 0b00)
+  Address address = set_address_command.GetRandomAddress();
+  EXPECT_EQ(address.data()[5] >> 6, 0b00);
 }
 
 }  // namespace
