@@ -53,7 +53,6 @@ filegroup {
         "android/bluetooth/IBluetoothPbap.aidl",
         "android/bluetooth/IBluetoothPbapClient.aidl",
         "android/bluetooth/IBluetoothPreferredAudioProfilesCallback.aidl",
-        "android/bluetooth/IBluetoothProfileServiceConnection.aidl",
         "android/bluetooth/IBluetoothQualityReportReadyCallback.aidl",
         "android/bluetooth/IBluetoothSap.aidl",
         "android/bluetooth/IBluetoothSocketManager.aidl",
@@ -61,9 +60,30 @@ filegroup {
         "android/bluetooth/IBluetoothVolumeControl.aidl",
         "android/bluetooth/IBluetoothVolumeControlCallback.aidl",
         "android/bluetooth/IncomingRfcommSocketInfo.aidl",
+        "android/bluetooth/State.aidl",
         "android/bluetooth/le/IAdvertisingSetCallback.aidl",
         "android/bluetooth/le/IDistanceMeasurementCallback.aidl",
         "android/bluetooth/le/IPeriodicAdvertisingCallback.aidl",
         "android/bluetooth/le/IScannerCallback.aidl",
     ],
+}
+
+filegroup {
+    name: "Bluetooth-binder-aidl-for-service",
+    srcs: [
+        ":modules-utils-synchronous-result-receiver-aidl",
+        ":framework-bluetooth-updatable-exported-aidl-sources",
+        "android/bluetooth/IBluetooth.aidl",
+        "android/bluetooth/IBluetoothActivityEnergyInfoListener.aidl",
+        "android/bluetooth/IBluetoothPreferredAudioProfilesCallback.aidl",
+        "android/bluetooth/IBluetoothQualityReportReadyCallback.aidl",
+        "android/bluetooth/IBluetoothCallback.aidl",
+        "android/bluetooth/IBluetoothConnectionCallback.aidl",
+        "android/bluetooth/IBluetoothMetadataListener.aidl",
+        "android/bluetooth/IBluetoothOobDataCallback.aidl",
+        "android/bluetooth/IBluetoothSocketManager.aidl",
+        "android/bluetooth/IBluetoothStateChangeCallback.aidl",
+        "android/bluetooth/IncomingRfcommSocketInfo.aidl",
+        "android/bluetooth/State.aidl",
+    ]
 }

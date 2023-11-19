@@ -17,9 +17,7 @@
 
 package com.android.server.bluetooth.airplane
 
-import android.bluetooth.BluetoothAdapter.STATE_ON
-import android.bluetooth.BluetoothAdapter.STATE_TURNING_OFF
-import android.bluetooth.BluetoothAdapter.STATE_TURNING_ON
+import android.bluetooth.State
 import android.content.ContentResolver
 import android.content.Context
 import android.content.res.Resources
@@ -81,7 +79,7 @@ public fun initialize(
             Settings.Global.AIRPLANE_MODE_ON,
             fun(newMode: Boolean) {
                 val previousMode = isOn
-                val isBluetoothOn = state.oneOf(STATE_ON, STATE_TURNING_ON, STATE_TURNING_OFF)
+                val isBluetoothOn = state.oneOf(State.ON, State.TURNING_ON, State.TURNING_OFF)
                 val isMediaConnected = isBluetoothOn && mediaCallback()
 
                 isOn =

@@ -15,7 +15,6 @@
  */
 package com.android.server.bluetooth
 
-import android.bluetooth.BluetoothProfile
 import android.bluetooth.IBluetooth
 import android.bluetooth.IBluetoothCallback
 import android.content.AttributionSource
@@ -99,7 +98,7 @@ class AdapterBinder(rawBinder: IBinder) {
         val recv: SynchronousResultReceiver<Long> = SynchronousResultReceiver.get()
         adapterBinder.getSupportedProfiles(source, recv)
         val supportedProfilesBitMask = recv.awaitResultNoInterrupt(SYNC_TIMEOUT).getValue(0L)
-        for (i in 0..BluetoothProfile.MAX_PROFILE_ID) {
+        for (i in 0..Long.SIZE_BITS) {
             if (supportedProfilesBitMask and (1 shl i).toLong() != 0L) {
                 supportedProfiles.add(i)
             }

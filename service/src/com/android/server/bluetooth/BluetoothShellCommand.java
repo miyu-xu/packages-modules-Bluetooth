@@ -18,7 +18,7 @@ package com.android.server.bluetooth;
 
 import static java.util.Objects.requireNonNull;
 
-import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.State;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.os.Binder;
@@ -124,9 +124,9 @@ class BluetoothShellCommand extends BasicShellCommandHandler {
             }
             switch (split[1]) {
                 case "STATE_OFF":
-                    return BluetoothAdapter.STATE_OFF;
+                    return State.OFF;
                 case "STATE_ON":
-                    return BluetoothAdapter.STATE_ON;
+                    return State.ON;
                 default:
                     String msg = getName() + ": Invalid state value: " + split[1] + ". From: " + in;
                     Log.e(TAG, msg);

@@ -51,6 +51,30 @@ java_library {
     installable: false,
 }
 
+java_library {
+    name: "framework-bluetooth-for-service",
+    defaults: ["bluetooth-module-sdk-version-defaults"],
+    static_libs: [
+        "PlatformProperties",
+        "modules-utils-synchronous-result-receiver",
+    ],
+    libs: [
+        "app-compat-annotations",
+        "framework-annotations-lib",
+        "unsupportedappusage", // for android.compat.annotation.UnsupportedAppUsage
+    ],
+    srcs: [
+        "java/android/bluetooth/OobData.java",
+        "java/android/bluetooth/BluetoothClass.java",
+        "java/android/bluetooth/BluetoothActivityEnergyInfo.java",
+        "java/android/bluetooth/BluetoothSinkAudioPolicy.java",
+        "java/android/bluetooth/BluetoothQualityReport.java",
+        "java/android/bluetooth/UidTraffic.java",
+    ],
+    sdk_version: "module_current",
+    installable: false,
+}
+
 // post-jarjar version of framework-bluetooth
 java_sdk_library {
     name: "framework-bluetooth",

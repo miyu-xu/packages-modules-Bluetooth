@@ -15,7 +15,6 @@
  */
 package com.android.server.bluetooth
 
-import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.os.HandlerThread
 import android.os.UserManager
@@ -47,7 +46,7 @@ class BluetoothService(context: Context) : SystemService(context) {
     override fun onBootPhase(phase: Int) {
         if (phase == SystemService.PHASE_SYSTEM_SERVICES_READY) {
             publishBinderService(
-                BluetoothAdapter.BLUETOOTH_MANAGER_SERVICE,
+                "bluetooth_manager",
                 mBluetoothManagerService.getBinder()
             )
         }

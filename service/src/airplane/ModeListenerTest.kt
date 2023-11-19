@@ -16,7 +16,7 @@
 package com.android.server.bluetooth.airplane.test
 
 import android.app.ActivityManager
-import android.bluetooth.BluetoothAdapter
+import android.bluetooth.State
 import android.content.ContentResolver
 import android.content.Context
 import android.content.res.Resources
@@ -251,7 +251,7 @@ class ModeListenerTest {
     fun triggerOverride_whenNoOverride_turnOff() {
         initializeAirplane()
 
-        state.set(BluetoothAdapter.STATE_ON)
+        state.set(State.ON)
 
         enableMode()
 

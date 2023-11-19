@@ -15,8 +15,7 @@
  */
 package com.android.server.bluetooth
 
-import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothAdapter.STATE_OFF
+import android.bluetooth.State
 import kotlin.time.Duration
 import kotlin.time.toKotlinDuration
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -31,7 +30,7 @@ class BluetoothAdapterState {
     private val _uiState = MutableSharedFlow<Int>(1 /* replay only most recent value*/)
 
     init {
-        set(STATE_OFF)
+        set(State.OFF)
     }
 
     fun set(s: Int) = runBlocking { _uiState.emit(s) }
@@ -40,7 +39,7 @@ class BluetoothAdapterState {
 
     fun oneOf(vararg states: Int): Boolean = states.contains(get())
 
-    override fun toString() = BluetoothAdapter.nameForState(get())
+    override fun toString() = State.`$`.toString(get())
 
     fun waitForState(timeout: java.time.Duration, vararg states: Int) = runBlocking {
         waitForState(timeout.toKotlinDuration(), *states)

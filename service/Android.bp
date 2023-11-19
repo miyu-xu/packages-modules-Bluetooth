@@ -35,6 +35,8 @@ java_defaults {
     name: "service-bluetooth-pre-jarjar",
     srcs: [
         ":services.bluetooth-sources",
+        ":Bluetooth-binder-aidl-for-service",
+        ":service-bluetooth-binder-aidl",
     ],
 
     errorprone: {
@@ -68,7 +70,7 @@ java_defaults {
 
     libs: [
         "framework-annotations-lib",
-        "framework-bluetooth-pre-jarjar",
+        "framework-bluetooth-for-service",
         "framework-configinfrastructure",
         "framework-statsd.stubs.module_lib",
         "service-bluetooth.change-ids",
@@ -82,6 +84,7 @@ java_defaults {
         "bluetooth-proto-enums-java-gen",
         "bluetooth_flags_java_lib",
         "modules-utils-shell-command-handler",
+        "modules-utils-synchronous-result-receiver",
     ],
 
     visibility: [":__subpackages__"],
@@ -93,10 +96,6 @@ java_library {
     name: "service-bluetooth",
     defaults: ["service-bluetooth-pre-jarjar"],
     installable: true,
-
-    libs: [
-        "framework-bluetooth.impl",
-    ],
 
     jarjar_rules: ":bluetooth-jarjar-rules",
 
