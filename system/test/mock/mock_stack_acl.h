@@ -1202,4 +1202,7 @@ extern struct BTM_unblock_role_switch_and_sniff_mode_for
 }  // namespace mock
 }  // namespace test
 
+void BTM_block_role_switch_and_sniff_mode_for(
+    const RawAddress& /* peer_addr */) {}
+
 // END mockcify generation
