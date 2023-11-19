@@ -72,6 +72,9 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
   supports_ble_privacy_ = supports_ble_privacy;
   LOG_INFO("SetPrivacyPolicyForInitiatorAddress with policy %d", address_policy);
 
+  minimum_rotation_time_ = minimum_rotation_time;
+  maximum_rotation_time_ = maximum_rotation_time;
+
   switch (address_policy_) {
     case AddressPolicy::USE_PUBLIC_ADDRESS:
       le_address_ = AddressWithType(public_address_, AddressType::PUBLIC_DEVICE_ADDRESS);
@@ -97,8 +100,6 @@ void LeAddressManager::SetPrivacyPolicyForInitiatorAddress(
     case AddressPolicy::USE_RESOLVABLE_ADDRESS:
       le_address_ = fixed_address;
       rotation_irk_ = rotation_irk;
-      minimum_rotation_time_ = minimum_rotation_time;
-      maximum_rotation_time_ = maximum_rotation_time;
       address_rotation_alarm_ = std::make_unique<os::Alarm>(handler_);
       set_random_address();
       break;
@@ -228,7 +229,6 @@ AddressWithType LeAddressManager::NewResolvableAddress() {
 }
 
 AddressWithType LeAddressManager::NewNonResolvableAddress() {
-  ASSERT(RotatingAddress());
   hci::Address address = generate_nrpa();
   auto random_address = AddressWithType(address, AddressType::RANDOM_DEVICE_ADDRESS);
   return random_address;
