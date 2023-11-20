@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "562503f7_adee525d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 931,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-20T08:23:17Z",
+      "side": 1,
+      "message": "We always run the job in the background now.",
+      "parentUuid": "be4e2916_9b8a0541",
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "69b23ed2_ec30058d",
@@ -120,6 +138,30 @@
       "side": 1,
       "message": "I think this is reasonable approach.",
       "parentUuid": "af35150a_7bf094af",
+      "range": {
+        "startLine": 1048,
+        "startChar": 0,
+        "endLine": 1053,
+        "endChar": 21
+      },
+      "revId": "48e66c82f1076783bd5b208eeb1f1ac4659512b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "60add9b0_5b1af37a",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1053,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-20T08:23:17Z",
+      "side": 1,
+      "message": "Done. Spawn a background task on BT stack started.",
+      "parentUuid": "fae50852_843cb2f0",
       "range": {
         "startLine": 1048,
         "startChar": 0,
