@@ -16,6 +16,23 @@
       "message": "Thanks yuyang!",
       "revId": "a662c6a0625c651a738082c1bc14c0d09dd3c463",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64e40f5a_e6f2d78f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-20T21:57:15Z",
+      "side": 1,
+      "message": "Hi @aritrasen@google.com, would you like to take a look while Roopa is OOO, thanks :)",
+      "revId": "a662c6a0625c651a738082c1bc14c0d09dd3c463",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
