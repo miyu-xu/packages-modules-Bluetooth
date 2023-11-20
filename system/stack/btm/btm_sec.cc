@@ -2294,12 +2294,22 @@ static tBTM_STATUS btm_sec_dd_create_conn(tBTM_SEC_DEV_REC* p_dev_rec) {
  * Returns          void
  *
  ******************************************************************************/
+// Notify all clients waiting for name to be resolved
+static void notify_rnr_clients(const RawAddress& bd_addr, const DEV_CLASS dc,
+                               const tBTM_BD_NAME bd_name) {
+  for (int i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
+    if (btm_cb.p_rmt_name_callback[i]) {
+      (*btm_cb.p_rmt_name_callback[i])(bd_addr, (uint8_t*)dc,
+                                       (uint8_t*)bd_name);
+    }
+  }
+}
+
 void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
                                        const uint8_t* p_bd_name,
                                        tHCI_STATUS status) {
   tBTM_SEC_DEV_REC* p_dev_rec = nullptr;
 
-  int i;
   uint8_t old_sec_state;
 
   LOG_INFO("btm_sec_rmt_name_request_complete for %s",
@@ -2357,19 +2367,15 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
     if (p_dev_rec->sec_state == BTM_SEC_STATE_GETTING_NAME)
       p_dev_rec->sec_state = BTM_SEC_STATE_IDLE;
 
-    /* Notify all clients waiting for name to be resolved */
-    for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
-      if (btm_cb.p_rmt_name_callback[i]) {
-        if (p_bd_addr) {
-          (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, p_dev_rec->dev_class,
-                                           p_dev_rec->sec_bd_name);
-        } else {
-          // TODO Still need to send status back to get SDP state machine
-          // running
-          LOG_ERROR("Unable to issue callback with unknown address status:%s",
-                    hci_status_code_text(status).c_str());
-        }
-      }
+    if (p_bd_addr != nullptr) {
+      /* Notify all clients waiting for name to be resolved */
+      notify_rnr_clients(*p_bd_addr, p_dev_rec->dev_class,
+                         p_dev_rec->sec_bd_name);
+    } else {
+      // TODO Still need to send status back to get SDP state machine
+      // running
+      LOG_ERROR("Unable to issue callback with unknown address status:%s",
+                hci_status_code_text(status).c_str());
     }
   } else {
     LOG_DEBUG(
@@ -2378,20 +2384,13 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
         btm_pair_state_descr(btm_sec_cb.pairing_state),
         hci_status_code_text(status).c_str(), p_bd_name);
 
-    /* Notify all clients waiting for name to be resolved even if not found so
-     * clients can continue */
-    for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
-      if (btm_cb.p_rmt_name_callback[i]) {
-        if (p_bd_addr) {
-          (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, (uint8_t*)kDevClassEmpty,
-                                           (uint8_t*)kBtmBdNameEmpty);
-        } else {
-          // TODO Still need to send status back to get SDP state machine
-          // running
-          LOG_ERROR("Unable to issue callback with unknown address status:%s",
-                    hci_status_code_text(status).c_str());
-        }
-      }
+    if (p_bd_addr != nullptr) {
+      notify_rnr_clients(*p_bd_addr, kDevClassEmpty, kBtmBdNameEmpty);
+    } else {
+      // TODO Still need to send status back to get SDP state machine
+      // running
+      LOG_ERROR("Unable to issue callback with unknown address status:%s",
+                hci_status_code_text(status).c_str());
     }
     return;
   }
