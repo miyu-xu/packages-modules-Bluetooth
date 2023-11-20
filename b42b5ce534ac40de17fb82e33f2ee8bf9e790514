@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "139aba67_0789bd22",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 816,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-20T18:56:21Z",
+      "side": 1,
+      "message": "nit: maybe add a log when it is null :)",
+      "range": {
+        "startLine": 816,
+        "startChar": 8,
+        "endLine": 816,
+        "endChar": 41
+      },
+      "revId": "b42b5ce534ac40de17fb82e33f2ee8bf9e790514",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
