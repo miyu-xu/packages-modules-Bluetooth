@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d85a4800_a23b368d",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2332,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-20T17:35:27Z",
+      "side": 1,
+      "message": "This looks like it\u0027s simply reversing the check from non-null to null.\n\nBoth conditions send the notify callback; what if you approached this more vertically and extracted that portion to a common static function ?\n\ne.g.\n\n```\nstatic void notify_rmr_clients(p_bd_addr, dev_class, sec_bd_name) {\n    \n  /* Notify all clients waiting for name to be resolved */\n  for (i \u003d 0; i \u003c BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {\n    if (btm_cb.p_rmt_name_callback[i]) {\n      if (p_bd_addr) {\n        (*btm_cb.p_rmt_name_callback[i])(*p_bd_addr, p_dev_rec-\u003edev_class,\n                                         p_dev_rec-\u003esec_bd_name);\n      } else {\n        // TODO Still need to send status back to get SDP state machine\n        // running\n        LOG_ERROR(\"Unable to issue callback with unknown address status:%s\",\n                  hci_status_code_text(status).c_str());\n      }\n    }\n  }\n}\n\nif (nullptr) {\n  ...\n  notify_rnr_clients(addr, p_dev_rec-\u003eclass, name);\n} else {\n  ...\n  notify_rnr_clients(addr, p_dev_rec-\u003eclass, p_dev_rec-\u003ename);\n}\n\n```",
+      "revId": "c13a3405e9d38fb7af228a384cdf353bd26ad81e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
