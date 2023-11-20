@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "946a869a_16d64b23",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2029,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-11-20T05:27:44Z",
+      "side": 1,
+      "message": "Thanks Yuyang and William! The hashmap approach is very interesting and I did not know that existed! But after trying out there are some typing issues that the changes needed are too different compared to the other functions(eg. Consumer). \n\nAnd we might need flexibility in the processing before passing it to the functions in the future(See the bug linked for possible explanation), so I went with the switch case instead to keep things flexible.",
+      "parentUuid": "5f5597b6_5952ceb9",
+      "range": {
+        "startLine": 2013,
+        "startChar": 8,
+        "endLine": 2029,
+        "endChar": 9
+      },
+      "revId": "b53014664ad75410c44b104aedefb4a63cdcdb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "75fd1393_7d654da6",
@@ -85,6 +109,30 @@
       "writtenOn": "2023-11-10T02:02:15Z",
       "side": 1,
       "message": "nit: if there is only 1 line, no usage other places, and in future there is no feature going to be added, maybe keep the logic inline :)",
+      "range": {
+        "startLine": 2228,
+        "startChar": 9,
+        "endLine": 2228,
+        "endChar": 22
+      },
+      "revId": "b53014664ad75410c44b104aedefb4a63cdcdb23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca5a3f66_cf7c543a",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2228,
+      "author": {
+        "id": 1963611
+      },
+      "writtenOn": "2023-11-20T05:27:44Z",
+      "side": 1,
+      "message": "Ack. Likely in the future we might add something to it(see the linked bug for the source of this change). Thanks for the suggestions though!",
+      "parentUuid": "75fd1393_7d654da6",
       "range": {
         "startLine": 2228,
         "startChar": 9,
