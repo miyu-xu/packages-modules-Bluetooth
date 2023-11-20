@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6176ca49_5bd91e8b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-20T23:10:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1c5e14f8_3f5baad8",
+      "range": {
+        "startLine": 196,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 53
+      },
+      "revId": "01cf5cd82fb6a42bc068936da51938b7236bc691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f4a99911_8680ad59",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "\u003e it\u0027s good to keep the current behavior here since apps already may expect this to return true based on that \n\nThis can be solved by an app compat change impact app that target V+\n\n\u003e  test name is a bit misleading due to this\n\nI agree, we are never rejecting anything, not even when we do not process the initial MTU request and upgrade it to `517`\n\n\u003e the conclusion was to simply trigger the callback with the current MTU\n\nThen the call should not trigger any code path / change and return asap from the GattService, maybe without even talking to native.\n\n\n----\n\n\nThis test, in the current situation, does the same behavior if we request 1 or 2 times the MTU, so in the current state of the art, I don\u0027t even think we need it.",
       "parentUuid": "f4a99911_8680ad59",
+      "range": {
+        "startLine": 232,
+        "startChar": 17,
+        "endLine": 232,
+        "endChar": 26
+      },
+      "revId": "01cf5cd82fb6a42bc068936da51938b7236bc691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e782b1b_1880ad4d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-20T23:10:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f1427f30_d974efc0",
       "range": {
         "startLine": 232,
         "startChar": 17,
