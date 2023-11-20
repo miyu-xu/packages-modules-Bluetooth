@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d0b3d5_ba668026",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-20T22:04:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b935164_c8ce072c",
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06344a12_4a4e6cb9",
@@ -167,6 +185,30 @@
       "side": 1,
       "message": "By default C/C++, cast every operands to `int` whenever it\u0027s bigger than the type of the variable. About `uint32_t`, if the `int` comes to be backed in 64 bits, it can leads to bad beahaviors of some computation. Especially, in a case operation can be made unsigned when `uint32_t` is backed to `unsigned int`, instead of doing an implicit conversion to `int`. For example uint32_val + 1, the `1` can be casted implicitly to `unsigned int` or `int`.\nWhenever the context does not give much information, I should recommend to use `int` as an integer when the precision is not a concern.",
       "parentUuid": "f78eca0e_230f6b31",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99a5585d_71a0c114",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-20T22:04:34Z",
+      "side": 1,
+      "message": "Can I resolve ?",
+      "parentUuid": "f871e802_25b52739",
       "range": {
         "startLine": 44,
         "startChar": 4,
@@ -443,6 +485,24 @@
       "side": 1,
       "message": "Thanks for your advice.\nI am not sure it\u0027s really pertinent for the couple of bytes read from a controller indication.\nI think it\u0027s not too complicated here.",
       "parentUuid": "3e9d0ec5_cd184622",
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50b20bfb_5d9fcaf6",
+        "filename": "system/gd/hal/nocp_iso_clocker.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-20T22:04:34Z",
+      "side": 1,
+      "message": "Can I resolve ?",
+      "parentUuid": "d35764b2_0ee1f4ca",
       "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
