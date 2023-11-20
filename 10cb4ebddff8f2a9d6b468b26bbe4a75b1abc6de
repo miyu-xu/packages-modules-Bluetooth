@@ -124,6 +124,24 @@
       "parentUuid": "a1646145_a100e0c3",
       "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9338afe3_4ae3b5f9",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1880545
+      },
+      "writtenOn": "2023-11-20T12:18:34Z",
+      "side": 1,
+      "message": "hi Paul,\n\nCould you help to modify the commit message please?\n\nIt seems I have no permission to modify it, thanks.\n\n------------------------------------------------\nMask phone number log to avoid personal information leakage in logs\n\n[Root Cuase]\nsomeone(like: hacker) may get this phonenumber from logcat log, and this is private personal information.\n\n[Solution]\nmask phone number in logs.\n\n------------------------------------------------",
+      "parentUuid": "fd882774_20012264",
+      "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
