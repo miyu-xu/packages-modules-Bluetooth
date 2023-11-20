@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f215b48_8b4d3af6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-20T23:43:02Z",
+      "side": 1,
+      "message": "If the CLs is having changes behind a feature flag,\ncould you help to add below \u0027Bug\u0027 line to the description as well so that we can track the changes easily. Same for the \u0027Sink HAL listening mode\u0027 CL.\n\nBug: 308171251",
+      "revId": "3f8f53a4f9385b02d6e5afb2c6aad8869ae50885",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
