@@ -170,6 +170,9 @@ class HostService(host_grpc_aio.HostServicer):
 
                         if not success:
                             raise RuntimeError(f'Failed to connect to the {address}. Reason: {reason}')
+
+                    if self.bluetooth.is_bonded(address) and self.bluetooth.is_connected(address):
+                        self.adapter_client.connect_all_enabled_profiles(address)
             finally:
                 self.bluetooth.adapter_client.unregister_callback_observer(name, observer)
 
