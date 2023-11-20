@@ -77,7 +77,6 @@ public class A2dpServiceTest {
     private final BlockingQueue<Intent> mConnectionStateChangedQueue = new LinkedBlockingQueue<>();
     private final BlockingQueue<Intent> mAudioStateChangedQueue = new LinkedBlockingQueue<>();
     private final BlockingQueue<Intent> mCodecConfigChangedQueue = new LinkedBlockingQueue<>();
-    private final BlockingQueue<Intent> mActiveDeviceQueue = new LinkedBlockingQueue<>();
 
     private FakeFeatureFlagsImpl mFakeFlagsImpl;
     @Mock private AdapterService mAdapterService;
@@ -122,7 +121,6 @@ public class A2dpServiceTest {
         filter.addAction(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED);
         filter.addAction(BluetoothA2dp.ACTION_PLAYING_STATE_CHANGED);
         filter.addAction(BluetoothA2dp.ACTION_CODEC_CONFIG_CHANGED);
-        filter.addAction(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED);
         mA2dpIntentReceiver = new A2dpIntentReceiver();
         mTargetContext.registerReceiver(mA2dpIntentReceiver, filter);
 
@@ -141,7 +139,6 @@ public class A2dpServiceTest {
         mConnectionStateChangedQueue.clear();
         mAudioStateChangedQueue.clear();
         mCodecConfigChangedQueue.clear();
-        mActiveDeviceQueue.clear();
         TestUtils.clearAdapterService(mAdapterService);
     }
 
@@ -168,13 +165,6 @@ public class A2dpServiceTest {
                     mCodecConfigChangedQueue.put(intent);
                 } catch (InterruptedException e) {
                     Assert.fail("Cannot add Intent to the Codec Config queue: " + e.getMessage());
-                }
-            }
-            if (BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED.equals(intent.getAction())) {
-                try {
-                    mActiveDeviceQueue.put(intent);
-                } catch (InterruptedException e) {
-                    Assert.fail("Cannot add Intent to the device queue: " + e.getMessage());
                 }
             }
         }
@@ -226,13 +216,6 @@ public class A2dpServiceTest {
     private void verifyNoCodecConfigIntent(int timeoutMs) {
         Intent intent = TestUtils.waitForNoIntent(timeoutMs, mCodecConfigChangedQueue);
         Assert.assertNull(intent);
-    }
-
-    private void veifyActiveDeviceIntent(int timeoutMs, BluetoothDevice device) {
-        Intent intent = TestUtils.waitForIntent(timeoutMs, mActiveDeviceQueue);
-        Assert.assertNotNull(intent);
-        Assert.assertEquals(BluetoothA2dp.ACTION_ACTIVE_DEVICE_CHANGED, intent.getAction());
-        Assert.assertEquals(device, intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE));
     }
 
     @Test
@@ -959,25 +942,6 @@ public class A2dpServiceTest {
 
     private void connectDevice(BluetoothDevice device) {
         connectDeviceWithCodecStatus(device, null);
-    }
-
-    @Test
-    public void testActiveDevice() {
-        connectDevice(mTestDevice);
-
-        /* Trigger setting active device */
-        doReturn(true).when(mMockNativeInterface).setActiveDevice(any(BluetoothDevice.class));
-        Assert.assertTrue(mA2dpService.setActiveDevice(mTestDevice));
-
-        /* Check if setting active devices sets right device */
-        Assert.assertEquals(mTestDevice, mA2dpService.getActiveDevice());
-
-        /* Since A2dpService called AudioManager - assume Audio manager calles properly callback
-         * mAudioManager.onAudioDeviceAdded
-         */
-        mA2dpService.updateAndBroadcastActiveDevice(mTestDevice);
-
-        veifyActiveDeviceIntent(TIMEOUT_MS, mTestDevice);
     }
 
     private void connectDeviceWithCodecStatus(BluetoothDevice device,
