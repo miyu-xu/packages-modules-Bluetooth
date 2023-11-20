@@ -148,6 +148,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cd67629_db9734d4",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-20T23:04:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f3ca7dc_19cffbfa",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 54
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f78eca0e_230f6b31",
