@@ -42,8 +42,6 @@ import android.companion.CompanionDeviceManager;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioDeviceCallback;
-import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
 import android.os.Binder;
@@ -105,7 +103,6 @@ public class A2dpService extends ProfileService {
     @GuardedBy("mStateMachines")
     private BluetoothDevice mActiveDevice;
 
-    private BluetoothDevice mExposedActiveDevice;
     private final ConcurrentMap<BluetoothDevice, A2dpStateMachine> mStateMachines =
             new ConcurrentHashMap<>();
 
@@ -121,9 +118,6 @@ public class A2dpService extends ProfileService {
     private int mMaxConnectedAudioDevices = 1;
     // A2DP Offload Enabled in platform
     boolean mA2dpOffloadEnabled = false;
-
-    private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback =
-            new AudioManagerAudioDeviceCallback();
 
     A2dpService() {
         mNativeInterface = requireNonNull(A2dpNativeInterface.getInstance());
@@ -199,13 +193,10 @@ public class A2dpService extends ProfileService {
             Log.d(TAG, "A2DP offload flag set to " + mA2dpOffloadEnabled);
         }
 
-        // Step 7: Register Audio Device callback
-        mAudioManager.registerAudioDeviceCallback(mAudioManagerAudioDeviceCallback, mHandler);
-
-        // Step 8: Mark service as started
+        // Step 7: Mark service as started
         setA2dpService(this);
 
-        // Step 9: Clear active device
+        // Step 8: Clear active device
         removeActiveDevice(false);
 
         return true;
@@ -219,14 +210,11 @@ public class A2dpService extends ProfileService {
             return true;
         }
 
-        // Step 9: Clear active device and stop playing audio
+        // Step 8: Clear active device and stop playing audio
         removeActiveDevice(true);
 
-        // Step 8: Mark service as stopped
+        // Step 7: Mark service as stopped
         setA2dpService(null);
-
-        // Step 7: Unregister Audio Device Callback
-        mAudioManager.unregisterAudioDeviceCallback(mAudioManagerAudioDeviceCallback);
 
         // Step 6: Cleanup native interface
         mNativeInterface.cleanup();
@@ -516,8 +504,10 @@ public class A2dpService extends ProfileService {
             synchronized (mStateMachines) {
                 if (mActiveDevice == null) return true;
                 previousActiveDevice = mActiveDevice;
-                mActiveDevice = null;
             }
+
+            // This needs to happen before we inform the audio manager that the device
+            // disconnected. Please see comment in updateAndBroadcastActiveDevice() for why.
             updateAndBroadcastActiveDevice(null);
 
             // Make sure the Audio Manager knows the previous active device is no longer active.
@@ -598,7 +588,6 @@ public class A2dpService extends ProfileService {
                     return false;
                 }
                 previousActiveDevice = mActiveDevice;
-                mActiveDevice = device;
             }
 
             // Switch from one A2DP to another A2DP device
@@ -606,6 +595,9 @@ public class A2dpService extends ProfileService {
                 Log.d(TAG, "Switch A2DP devices to " + device + " from " + previousActiveDevice);
             }
 
+            // This needs to happen before we inform the audio manager that the device
+            // disconnected. Please see comment in updateAndBroadcastActiveDevice() for why.
+            updateAndBroadcastActiveDevice(device);
             updateLowLatencyAudioSupport(device);
 
             BluetoothDevice newActiveDevice = null;
@@ -1051,89 +1043,10 @@ public class A2dpService extends ProfileService {
         }
     }
 
-    /* Notifications of audio device connection/disconn events. */
-    private class AudioManagerAudioDeviceCallback extends AudioDeviceCallback {
-        @Override
-        public void onAudioDevicesAdded(AudioDeviceInfo[] addedDevices) {
-            if (mAudioManager == null || mAdapterService == null) {
-                Log.e(TAG, "Callback called when A2dpService is stopped");
-                return;
-            }
-
-            synchronized (mStateMachines) {
-                for (AudioDeviceInfo deviceInfo : addedDevices) {
-                    if (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLUETOOTH_A2DP) {
-                        continue;
-                    }
-
-                    String address = deviceInfo.getAddress();
-                    if (address.equals("00:00:00:00:00:00")) {
-                        continue;
-                    }
-
-                    byte[] addressBytes = Utils.getBytesFromAddress(address);
-                    BluetoothDevice device = mAdapterService.getDeviceFromByte(addressBytes);
-
-                    if (DBG) {
-                        Log.d(TAG, " onAudioDevicesAdded: " + device + ", device type: "
-                                + deviceInfo.getType());
-                    }
-
-                    /* Don't expose already exposed active device */
-                    if (device.equals(mExposedActiveDevice)) {
-                        if (DBG) {
-                            Log.d(TAG, " onAudioDevicesAdded: " + device + " is already exposed");
-                        }
-                        return;
-                    }
-
-
-                    if (!device.equals(mActiveDevice)) {
-                        Log.e(TAG, "Added device does not match to the one activated here. ("
-                                + device + " != " + mActiveDevice
-                                + " / " + mActiveDevice+ ")");
-                        continue;
-                    }
-
-                    mExposedActiveDevice = device;
-                    updateAndBroadcastActiveDevice(device);
-                    return;
-                }
-            }
-        }
-
-        @Override
-        public void onAudioDevicesRemoved(AudioDeviceInfo[] removedDevices) {
-            if (mAudioManager == null || mAdapterService == null) {
-                Log.e(TAG, "Callback called when LeAudioService is stopped");
-                return;
-            }
-
-            synchronized (mStateMachines) {
-                for (AudioDeviceInfo deviceInfo : removedDevices) {
-                    if (deviceInfo.getType() != AudioDeviceInfo.TYPE_BLUETOOTH_A2DP) {
-                        continue;
-                    }
-
-                    String address = deviceInfo.getAddress();
-                    if (address.equals("00:00:00:00:00:00")) {
-                        continue;
-                    }
-
-                    mExposedActiveDevice = null;
-
-                    if (DBG) {
-                        Log.d(TAG, " onAudioDevicesRemoved: " + address + ", device type: "
-                                + deviceInfo.getType()
-                                + ", mActiveDevice: " + mActiveDevice);
-                    }
-                }
-            }
-        }
-    }
-
-    @VisibleForTesting
-    void updateAndBroadcastActiveDevice(BluetoothDevice device) {
+    // This needs to run before any of the Audio Manager connection functions since
+    // AVRCP needs to be aware that the audio device is changed before the Audio Manager
+    // changes the volume of the output devices.
+    private void updateAndBroadcastActiveDevice(BluetoothDevice device) {
         if (DBG) {
             Log.d(TAG, "updateAndBroadcastActiveDevice(" + device + ")");
         }
@@ -1141,6 +1054,9 @@ public class A2dpService extends ProfileService {
         // Make sure volume has been store before device been remove from active.
         if (mFactory.getAvrcpTargetService() != null) {
             mFactory.getAvrcpTargetService().handleA2dpActiveDeviceChanged(device);
+        }
+        synchronized (mStateMachines) {
+            mActiveDevice = device;
         }
 
         mAdapterService.handleActiveDeviceChange(BluetoothProfile.A2DP, device);
