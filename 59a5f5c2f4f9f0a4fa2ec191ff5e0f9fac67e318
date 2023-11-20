@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f5cea0e_cbcbd2f8",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-20T19:08:57Z",
+      "side": 1,
+      "message": "Done -- aosp/2839195 sorry this got submitted inadvertently",
+      "parentUuid": "4038f886_50bb4c90",
+      "range": {
+        "startLine": 645,
+        "startChar": 28,
+        "endLine": 645,
+        "endChar": 38
+      },
+      "revId": "59a5f5c2f4f9f0a4fa2ec191ff5e0f9fac67e318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62f5a264_44815172",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-20T18:32:56Z",
       "side": 1,
       "message": "Remove ?",
+      "range": {
+        "startLine": 658,
+        "startChar": 28,
+        "endLine": 658,
+        "endChar": 38
+      },
+      "revId": "59a5f5c2f4f9f0a4fa2ec191ff5e0f9fac67e318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f01f8987_a1a93b09",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-20T19:08:57Z",
+      "side": 1,
+      "message": "Done -- aosp/2839195 sorry this got submitted inadvertently",
+      "parentUuid": "62f5a264_44815172",
       "range": {
         "startLine": 658,
         "startChar": 28,
