@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f0bf3d1_d23054a0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-11-20T19:26:48Z",
+      "side": 1,
+      "message": "LGTM. CC\u0027ing Zhengping for suspend implication. We talked offline and believe it should have no impact",
+      "revId": "a4241b805f646db2cb7a4021f3da1b39592aeb4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
