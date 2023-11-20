@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d21ef18_587a3582",
+        "filename": "system/stack/hid/hidh_api.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 380,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-20T18:38:33Z",
+      "side": 1,
+      "message": "We don\u0027t need the \"if\" condition. We can directly assign the value.\n```suggestion\n hh_cb.devices[i].attr_mask \u003d attr_mask;\n```",
+      "revId": "925c1745e782651cc3729ed422167a0981956932",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
