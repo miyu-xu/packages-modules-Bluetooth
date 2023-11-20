@@ -87,8 +87,9 @@ class HostService(host_grpc_aio.HostServicer):
         class PairingObserver(adapter_client.BluetoothCallbacks):
             """Observer to observe the bond state."""
 
-            def __init__(self, client: adapter_client, task):
+            def __init__(self, client: adapter_client, security: security_grpc_aio.SecurityServicer, task):
                 self.client = client
+                self.security = security
                 self.task = task
 
             @utils.glib_callback()
@@ -116,6 +117,9 @@ class HostService(host_grpc_aio.HostServicer):
 
             @utils.glib_callback()
             def on_ssp_request(self, remote_device, class_of_device, variant, passkey):
+                if self.security.manually_confirm:
+                    return
+
                 address, _ = remote_device
                 if address != self.task['address']:
                     return
@@ -153,23 +157,28 @@ class HostService(host_grpc_aio.HostServicer):
                     if not success:
                         raise RuntimeError(f'Failed to connect to the {address}. Reason: {reason}')
                 else:
-                    if not self.security.manually_confirm:
-                        create_bond = asyncio.get_running_loop().create_future()
-                        observer = PairingObserver(self.bluetooth.adapter_client, {
+                    create_bond = asyncio.get_running_loop().create_future()
+                    observer = PairingObserver(
+                        self.bluetooth.adapter_client,
+                        self.security,
+                        {
                             'create_bond': create_bond,
                             'address': address
-                        })
-                        name = utils.create_observer_name(observer)
-                        self.bluetooth.adapter_client.register_callback_observer(name, observer)
+                        },
+                    )
+                    name = utils.create_observer_name(observer)
+                    self.bluetooth.adapter_client.register_callback_observer(name, observer)
 
                     if not self.bluetooth.create_bond(address, floss_enums.BtTransport.BR_EDR):
                         raise RuntimeError('Failed to call create_bond.')
 
-                    if not self.security.manually_confirm:
-                        success, reason = await create_bond
+                    success, reason = await create_bond
 
-                        if not success:
-                            raise RuntimeError(f'Failed to connect to the {address}. Reason: {reason}')
+                    if not success:
+                        raise RuntimeError(f'Failed to connect to the {address}. Reason: {reason}')
+
+                    if self.bluetooth.is_bonded(address) and self.bluetooth.is_connected(address):
+                        self.bluetooth.connect_device(address)
             finally:
                 self.bluetooth.adapter_client.unregister_callback_observer(name, observer)
 
