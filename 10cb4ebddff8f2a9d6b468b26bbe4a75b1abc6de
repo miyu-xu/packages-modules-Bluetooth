@@ -88,6 +88,24 @@
       "parentUuid": "91d4f91b_91fb3f89",
       "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a1646145_a100e0c3",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-20T11:58:12Z",
+      "side": 1,
+      "message": "Can you update the change description to match the change?\n\nAnd why do we need to mask the phone number?",
+      "parentUuid": "3051f8a6_8841fbf9",
+      "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
