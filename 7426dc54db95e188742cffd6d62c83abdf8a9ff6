@@ -156,6 +156,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "615d648d_e18d68b7",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-20T22:05:05Z",
+      "side": 1,
+      "message": "Can I resolve ?",
+      "parentUuid": "4496d31e_eac333b3",
+      "range": {
+        "startLine": 561,
+        "startChar": 27,
+        "endLine": 561,
+        "endChar": 49
+      },
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1cb2fc56_3c860fe2",
         "filename": "system/stack/btm/btm_iso_impl.h",
         "patchSetId": 3
@@ -185,6 +209,24 @@
       "side": 1,
       "message": "I think this part is about ISO Reception. For unframed ISO, I think nor timestamp nor sequence numbers are sent over the air, it\u0027s useless.\nThe previous code certainly trigger many false `drop` indication and can also don\u0027t detect real drop conditions.\nI do not understand well the monitoring here, the audio HAL should buffer a little to cover scheduling jitter; you should receive a packet every `interval` us. If you buffer more that `interval` us, you have the opportunity to engage PLC, regarding the sequence number difference. But, basically, a timeout on `interval` is better to be implemented, and trigger PLC regarding this, this will achieve better latency. I think the sequence number should only be used for sanity checks, but it\u0027s not needed in the `unframed` mode.",
       "parentUuid": "1cb2fc56_3c860fe2",
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16f23551_3595bb60",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-11-20T22:05:05Z",
+      "side": 1,
+      "message": "Can I resolve ?",
+      "parentUuid": "1680fe71_9b239b29",
       "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
