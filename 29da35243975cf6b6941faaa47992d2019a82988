@@ -45,6 +45,30 @@
       },
       "revId": "29da35243975cf6b6941faaa47992d2019a82988",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09c79201_27e9e703",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1814,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-21T01:24:56Z",
+      "side": 1,
+      "message": "AFAIU, this callback is not called for disconnections that we initiated, only when the peer disconnects",
+      "parentUuid": "0c6283e6_cabc7aad",
+      "range": {
+        "startLine": 1809,
+        "startChar": 4,
+        "endLine": 1814,
+        "endChar": 5
+      },
+      "revId": "29da35243975cf6b6941faaa47992d2019a82988",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
