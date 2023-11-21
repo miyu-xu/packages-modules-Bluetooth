@@ -16,6 +16,23 @@
       "message": "LGTM. CC\u0027ing Zhengping for suspend implication. We talked offline and believe it should have no impact",
       "revId": "a4241b805f646db2cb7a4021f3da1b39592aeb4a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c8a143_68458e2e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-11-21T00:17:45Z",
+      "side": 1,
+      "message": "Offline chat with Zhengping. Zhengping helped verify the suspend/resume behavior and the patch works fine.",
+      "revId": "a4241b805f646db2cb7a4021f3da1b39592aeb4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
