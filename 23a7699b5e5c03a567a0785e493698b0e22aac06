@@ -124,6 +124,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f858550_e84ab896",
+        "filename": "system/bta/dm/bta_dm_disc.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1416,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-11-21T05:50:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6137b881_1ad667c7",
+      "revId": "23a7699b5e5c03a567a0785e493698b0e22aac06",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "63ef1fe4_8cede448",
