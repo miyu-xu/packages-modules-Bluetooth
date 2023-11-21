@@ -152,7 +152,11 @@ bool interop_match_addr(const interop_feature_t feature,
 /**
  * Test class to test selected functionality in hci/src/hci_layer.cc
  */
-class BtifRcTest : public ::testing::Test {};
+class BtifRcTest : public ::testing::Test {
+ protected:
+  void SetUp() override { reset_mock_function_count_map(); }
+  void TearDown() override {}
+};
 
 TEST_F(BtifRcTest, get_element_attr_rsp) {
   RawAddress bd_addr;
@@ -267,6 +271,7 @@ class BtifRcFeatureTest : public BtifRcTest {
   }
 
   void TearDown() override {
+    jni_thread.ShutDown();
     bt_rc_ctrl_callbacks->getrcfeatures_cb = [](const RawAddress& bd_addr,
                                                 int features) {};
     BtifRcTest::TearDown();
@@ -313,6 +318,7 @@ class BtifRcBrowseConnectionTest : public BtifRcTest {
   }
 
   void TearDown() override {
+    jni_thread.ShutDown();
     bt_rc_ctrl_callbacks->connection_state_cb =
         [](bool rc_state, bool bt_state, const RawAddress& bd_addr) {};
     BtifRcTest::TearDown();
@@ -326,6 +332,7 @@ TEST_F(BtifRcBrowseConnectionTest, handle_rc_browse_connect) {
 
   tBTA_AV_RC_BROWSE_OPEN browse_data = {
       .rc_handle = 0,
+      .peer_addr = {},
       .status = BTA_AV_SUCCESS,
   };
 
@@ -362,6 +369,7 @@ class BtifRcConnectionTest : public BtifRcTest {
   }
 
   void TearDown() override {
+    jni_thread.ShutDown();
     bt_rc_ctrl_callbacks->connection_state_cb =
         [](bool rc_state, bool bt_state, const RawAddress& bd_addr) {};
     BtifRcTest::TearDown();
@@ -393,10 +401,6 @@ TEST_F(BtifRcConnectionTest, handle_rc_browse_connect) {
 
 TEST_F(BtifRcConnectionTest, btif_rc_check_pending_cmd) {
   AVRC_BldCmd_ = 0;
-  g_btrc_connection_state_promise = std::promise<rc_connection_state_cb_t>();
-  std::future<rc_connection_state_cb_t> future =
-      g_btrc_connection_state_promise.get_future();
-
   btif_rc_cb.rc_multi_cb[0].rc_handle = 0xff;
   btif_rc_cb.rc_multi_cb[0].rc_addr = kDeviceAddress;
   btif_rc_cb.rc_multi_cb[0].rc_state = BTRC_CONNECTION_STATE_CONNECTED;
@@ -461,6 +465,7 @@ class BtifTrackChangeCBTest : public BtifRcTest {
   }
 
   void TearDown() override {
+    jni_thread.ShutDown();
     btrc_ctrl_callbacks.track_changed_cb = [](const RawAddress& bd_addr,
                        uint8_t num_attr, btrc_element_attr_val_t* p_attrs) {};
     BtifRcTest::TearDown();
@@ -469,12 +474,21 @@ class BtifTrackChangeCBTest : public BtifRcTest {
 
 TEST_F(BtifTrackChangeCBTest, handle_get_metadata_attr_response) {
   tBTA_AV_META_MSG meta_msg = {
-    .rc_handle = 0,
+      .rc_handle = 0,
+      .len = 0,
+      .label = 0,
+      .code{},
+      .company_id = 0,
+      .p_data = {},
+      .p_msg = nullptr,
   };
 
   tAVRC_GET_ATTRS_RSP rsp = {
-    .status = AVRC_STS_NO_ERROR,
-    .num_attrs = 0,
+      .pdu = 0,
+      .status = AVRC_STS_NO_ERROR,
+      .opcode = 0,
+      .num_attrs = 0,
+      .p_attrs = nullptr,
   };
 
   btif_rc_cb.rc_multi_cb[0].rc_handle = 0;
