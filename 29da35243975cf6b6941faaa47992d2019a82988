@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d763e41_1996ce03",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-11-21T01:08:44Z",
+      "side": 1,
+      "message": "nit: connect",
+      "range": {
+        "startLine": 11,
+        "startChar": 30,
+        "endLine": 11,
+        "endChar": 40
+      },
+      "revId": "29da35243975cf6b6941faaa47992d2019a82988",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c6283e6_cabc7aad",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1814,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-11-21T01:08:44Z",
+      "side": 1,
+      "message": "What if we are intentionally disconnected here ? Could we be in a situation where we can\u0027t disconnect in purpose anymore ?",
+      "range": {
+        "startLine": 1809,
+        "startChar": 4,
+        "endLine": 1814,
+        "endChar": 5
+      },
+      "revId": "29da35243975cf6b6941faaa47992d2019a82988",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
