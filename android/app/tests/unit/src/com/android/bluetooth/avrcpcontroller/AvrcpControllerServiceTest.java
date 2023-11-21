@@ -362,7 +362,7 @@ public class AvrcpControllerServiceTest {
         mService.handleRegisterNotificationAbsVol(mRemoteDevice, label);
 
         verify(mStateMachine).sendMessage(
-                AvrcpControllerStateMachine.MESSAGE_PROCESS_REGISTER_ABS_VOL_NOTIFICATION);
+                AvrcpControllerStateMachine.MESSAGE_PROCESS_REGISTER_ABS_VOL_NOTIFICATION, label);
     }
 
     @Test
@@ -373,7 +373,8 @@ public class AvrcpControllerServiceTest {
         mService.handleSetAbsVolume(mRemoteDevice, absVol, label);
 
         verify(mStateMachine)
-                .sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_SET_ABS_VOL_CMD, absVol);
+                .sendMessage(AvrcpControllerStateMachine.MESSAGE_PROCESS_SET_ABS_VOL_CMD,
+                        absVol, label);
     }
 
     @Test
