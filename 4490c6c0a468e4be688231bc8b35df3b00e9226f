@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b54e423a_50c1eeef",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-11-21T00:57:26Z",
+      "side": 1,
+      "message": "Do we need these comments ?",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 202,
+        "endChar": 43
+      },
+      "revId": "4490c6c0a468e4be688231bc8b35df3b00e9226f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
