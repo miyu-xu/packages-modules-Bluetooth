@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f702e762_7f6943fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1990570
+      },
+      "writtenOn": "2023-11-21T13:35:45Z",
+      "side": 1,
+      "message": "Hello everyone,\nPlease help to check this patch, parameter label is missing here, we should add it when sending Message to state machine. Thanks",
+      "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
