@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d33c09b_66ea359a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6096,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-21T09:44:17Z",
+      "side": 1,
+      "message": "Would this be enough, without checking device under index 1 ?",
+      "revId": "d96fe3060ee4bff078985c157d8c5486a73b2308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
