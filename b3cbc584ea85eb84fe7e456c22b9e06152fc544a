@@ -39,6 +39,30 @@
       },
       "revId": "b3cbc584ea85eb84fe7e456c22b9e06152fc544a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d50dcd5_527d7f57",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2265,
+      "author": {
+        "id": 1085519
+      },
+      "writtenOn": "2023-11-21T19:59:42Z",
+      "side": 1,
+      "message": "for now we care about media unless you have something in mind which we should handle already now?\n\nThe advanced context type handling will came later when AF will be ready for that.",
+      "parentUuid": "7b3eb52b_e79538cd",
+      "range": {
+        "startLine": 2265,
+        "startChar": 79,
+        "endLine": 2265,
+        "endChar": 97
+      },
+      "revId": "b3cbc584ea85eb84fe7e456c22b9e06152fc544a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
