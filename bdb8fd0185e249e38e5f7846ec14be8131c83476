@@ -16,6 +16,40 @@
       "message": "Hello everyone,\nPlease help to check this patch, parameter label is missing here, we should add it when sending Message to state machine. Thanks",
       "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c06477a8_4efb4cc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-11-21T17:58:28Z",
+      "side": 1,
+      "message": "Should we be modifying this test - https://source.corp.google.com/h/android/platform/superproject/+/master:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerServiceTest.java;l\u003d364.",
+      "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dfe919e_68fa5735",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-11-21T17:58:28Z",
+      "side": 1,
+      "message": "Can we fix the format?",
+      "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
