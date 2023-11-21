@@ -211,3 +211,31 @@ TEST_F(LeAudioHealthStatusTest, test_consider_disabling) {
   ASSERT_TRUE(recommentation_in_callback ==
               LeAudioHealthBasedAction::CONSIDER_DISABLING);
 }
+
+TEST_F(LeAudioHealthStatusTest, test_inactivate_group) {
+  const RawAddress test_address0 = GetTestAddress(0);
+  auto device = std::make_shared<LeAudioDevice>(test_address0,
+                                                DeviceConnectState::CONNECTED);
+  group_->AddNode(device);
+  for (int i = 0; i < 10; i++) {
+    le_audio_health_status_instance_->AddStatisticForGroup(
+        group_, LeAudioHealthGroupStatType::STREAM_CREATE_SUCCESS);
+  }
+
+  for (int i = 0; i < 2; i++) {
+    le_audio_health_status_instance_->AddStatisticForGroup(
+        group_, LeAudioHealthGroupStatType::STREAM_CONTEXT_NOT_AVAILABLE);
+  }
+
+  ASSERT_TRUE(address_in_callback == RawAddress::kEmpty);
+
+  for (int i = 0; i < 2; i++) {
+    le_audio_health_status_instance_->AddStatisticForGroup(
+        group_, LeAudioHealthGroupStatType::STREAM_CONTEXT_NOT_AVAILABLE);
+  }
+
+  ASSERT_TRUE(address_in_callback == RawAddress::kEmpty);
+  ASSERT_TRUE(group_id_in_callback == group_id_);
+  ASSERT_TRUE(recommentation_in_callback ==
+              LeAudioHealthBasedAction::INACTIVATE_GROUP);
+}
