@@ -48,7 +48,7 @@
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "osi/include/socket_utils/sockets.h"
-#include "uipc.h"
+#include "udrv/include/uipc.h"
 
 /*****************************************************************************
  *  Constants & Macros
