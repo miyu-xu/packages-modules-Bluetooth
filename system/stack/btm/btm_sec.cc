@@ -4673,6 +4673,8 @@ static void btm_sec_auth_timer_timeout(void* data) {
   delete p_addr;
   if (p_dev_rec == NULL) {
     LOG_INFO("invalid device or not found");
+  } else if (p_dev_rec->hci_handle == HCI_INVALID_HANDLE) {
+    LOG_INFO("invalid device handle");
   } else if (btm_dev_authenticated(p_dev_rec)) {
     LOG_INFO("device is already authenticated");
     if (p_dev_rec->p_callback) {
