@@ -334,28 +334,35 @@ static void* btif_hh_poll_event_thread(void* arg) {
   uhid_set_non_blocking(p_dev->fd);
 
   while (p_dev->hh_keep_polling) {
-    int ret;
+    int ret = 0;
     int counter = 0;
 
     do {
-      if (counter++ > BTA_HH_UHID_INTERRUPT_COUNT_MAX) {
-        LOG_ERROR("Polling interrupted");
+      if (!p_dev->hh_keep_polling) {
+        LOG_DEBUG("Polling stopped");
+        break;
+      } else if (counter++ > BTA_HH_UHID_INTERRUPT_COUNT_MAX) {
+        LOG_ERROR("Polling interrupted consecutively %d times",
+                  BTA_HH_UHID_INTERRUPT_COUNT_MAX);
         break;
       }
       ret = poll(pfds, 1, BTA_HH_UHID_POLL_PERIOD_MS);
     } while (ret == -1 && errno == EINTR);
 
-    if (ret < 0) {
+    if (ret > 0) {
+      /* At least one of the fd is ready */
+      if (pfds[0].revents & POLLIN) {
+        LOG_VERBOSE("POLLIN");
+        if (uhid_read_event(p_dev) != 0) {
+          LOG_ERROR("Unhandled UHID event");
+          break;
+        }
+      }
+    } else if (ret < 0) {
       LOG_ERROR("Cannot poll for fds: %s\n", strerror(errno));
       break;
-    }
-    if (pfds[0].revents & POLLIN) {
-      LOG_VERBOSE("%s: POLLIN", __func__);
-      ret = uhid_read_event(p_dev);
-      if (ret != 0) {
-        LOG_ERROR("Unhandled UHID event");
-        break;
-      }
+    } else { /* ret == 0 */
+      /* Poll timeout, poll again */
     }
   }
 
