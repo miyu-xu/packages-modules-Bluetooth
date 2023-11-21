@@ -29,16 +29,16 @@
 #include <string>
 
 #include "btm_api.h"
-#include "btm_ble_int.h"
 #include "btm_sec_api.h"
 #include "btm_sec_cb.h"
+#include "common/init_flags.h"
 #include "device/include/controller.h"
-#include "gd/common/init_flags.h"
 #include "l2c_api.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "osi/include/compat.h"
 #include "rust/src/connection/ffi/connection_shim.h"
+#include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_octets.h"
