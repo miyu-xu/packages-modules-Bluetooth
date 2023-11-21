@@ -46,6 +46,30 @@
       },
       "revId": "2ed6d2889b6d04ebed3af821d85825f6c9f61693",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b7be792_407d3a07",
+        "filename": "system/bta/include/bta_hearing_aid_api.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-21T23:11:53Z",
+      "side": 1,
+      "message": "so previously, `connecting_actively` is only set to `true` in constructor when it is `first_connection`, see `connecting_actively(first_connection)`.   \nAnd right now, we will always trigger direct connect as long as a other side is connected, and this side does not have direct connect failure. So I think this variable\u0027s comment may need to be updated. \nMaybe something like `we are making active attempt to connect to this device using \u0027direct connect\u0027.`",
+      "parentUuid": "aad12817_97ff039e",
+      "range": {
+        "startLine": 117,
+        "startChar": 5,
+        "endLine": 117,
+        "endChar": 63
+      },
+      "revId": "2ed6d2889b6d04ebed3af821d85825f6c9f61693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
