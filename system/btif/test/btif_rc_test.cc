@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-#include <base/logging.h>
+#include "btif/src/btif_rc.cc"
+
 #include <gtest/gtest.h>
-#include <stdio.h>
 
 #include <cstdint>
 #include <future>
 
 #include "bta/include/bta_av_api.h"
+#include "btif/avrcp/avrcp_service.h"
 #include "btif/include/btif_common.h"
 #include "common/message_loop_thread.h"
 #include "device/include/interop.h"
@@ -32,9 +33,6 @@
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_osi_list.h"
 #include "types/raw_address.h"
-#undef LOG_TAG
-#include "avrcp_service.h"
-#include "btif/src/btif_rc.cc"
 
 namespace bluetooth {
 namespace avrcp {
