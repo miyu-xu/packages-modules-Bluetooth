@@ -93,6 +93,30 @@
       },
       "revId": "29da35243975cf6b6941faaa47992d2019a82988",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dc23db5_f46acd65",
+        "filename": "system/bta/hearing_aid/hearing_aid.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1814,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-21T01:38:49Z",
+      "side": 1,
+      "message": "(The thing that makes me say that is that the previous version was calling BTA_GATTC_Open, and hence creating a background connection, so this part of my patch don\u0027t create a \"new\" connection it just changes the type)",
+      "parentUuid": "09c79201_27e9e703",
+      "range": {
+        "startLine": 1809,
+        "startChar": 4,
+        "endLine": 1814,
+        "endChar": 5
+      },
+      "revId": "29da35243975cf6b6941faaa47992d2019a82988",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
