@@ -30,7 +30,6 @@
 #include <cstring>
 
 #include "bt_target.h"
-#include "btm_ble_int.h"
 #include "btm_ble_sec_api.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "device/include/controller.h"
@@ -38,6 +37,7 @@
 #include "osi/include/osi.h"
 #include "p_256_ecc_pp.h"
 #include "smp_int.h"
+#include "stack/btm/btm_ble_int.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/include/acl_api.h"
