@@ -16,6 +16,24 @@
       "message": "Would this be enough, without checking device under index 1 ?",
       "revId": "d96fe3060ee4bff078985c157d8c5486a73b2308",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78c0ce4b_234a26bd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6096,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-21T13:02:47Z",
+      "side": 1,
+      "message": "0 is for lead device, and 1 is set member. Lead is enough",
+      "parentUuid": "3d33c09b_66ea359a",
+      "revId": "d96fe3060ee4bff078985c157d8c5486a73b2308",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
