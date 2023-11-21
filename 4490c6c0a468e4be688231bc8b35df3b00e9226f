@@ -22,6 +22,30 @@
       },
       "revId": "4490c6c0a468e4be688231bc8b35df3b00e9226f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51f50584_97abec23",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-21T01:34:53Z",
+      "side": 1,
+      "message": "These comments correspond to what the test should looks like once b/307981748 is addressed.\n\nWe do not \"need\" it, but in the same time it remind that this test should not pass as is for now.\n\nIf it\u0027s ok with you, I plan to keep it, if you have a strong pushback, i will remove those",
+      "parentUuid": "b54e423a_50c1eeef",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 202,
+        "endChar": 43
+      },
+      "revId": "4490c6c0a468e4be688231bc8b35df3b00e9226f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
