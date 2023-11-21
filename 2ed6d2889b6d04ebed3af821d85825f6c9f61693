@@ -22,6 +22,30 @@
       },
       "revId": "2ed6d2889b6d04ebed3af821d85825f6c9f61693",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad12817_97ff039e",
+        "filename": "system/bta/include/bta_hearing_aid_api.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-21T22:02:13Z",
+      "side": 1,
+      "message": "What part do you think we should update?",
+      "parentUuid": "a3ba17ef_1e34a9c2",
+      "range": {
+        "startLine": 117,
+        "startChar": 5,
+        "endLine": 117,
+        "endChar": 63
+      },
+      "revId": "2ed6d2889b6d04ebed3af821d85825f6c9f61693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
