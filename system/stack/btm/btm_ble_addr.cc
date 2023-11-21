@@ -29,12 +29,12 @@
 #include <base/functional/bind.h>
 #include <string.h>
 
-#include "btm_ble_int.h"
 #include "btm_dev.h"
 #include "btm_sec_cb.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "device/include/controller.h"
 #include "os/log.h"
+#include "stack/btm/btm_ble_int.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/btm_ble_privacy.h"
