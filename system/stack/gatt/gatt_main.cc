@@ -223,7 +223,9 @@ bool gatt_connect(const RawAddress& rem_bda, tBLE_ADDR_TYPE addr_type,
 
   // Already connected, mark the link as used
   if (gatt_get_ch_state(p_tcb) == GATT_CH_OPEN) {
+    LOG_INFO("tcb was alread OPEN, update use flags!");
     gatt_update_app_use_link_flag(gatt_if, p_tcb, true, true);
+    LOG_INFO("tcb was alread OPEN, update use flags done!");
     return true;
   }
 
@@ -420,10 +422,12 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
                       int8_t initiating_phys) {
   tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, transport);
   if (p_tcb != NULL) {
+    LOG_INFO("tcb was not null - will try reuse");
     /* before link down, another app try to open a GATT connection */
     uint8_t st = gatt_get_ch_state(p_tcb);
     if (st == GATT_CH_OPEN && p_tcb->app_hold_link.empty() &&
         transport == BT_TRANSPORT_LE) {
+          LOG_INFO("tcb ch_state was OPEN!");
       if (!gatt_connect(bd_addr, addr_type, p_tcb, transport, initiating_phys,
                         p_reg->gatt_if))
         return false;
@@ -436,7 +440,9 @@ bool gatt_act_connect(tGATT_REG* p_reg, const RawAddress& bd_addr,
     return true;
   }
 
+  LOG_INFO("will allocate new tcb!");
   p_tcb = gatt_allocate_tcb_by_bdaddr(bd_addr, transport);
+  LOG_INFO("new tcb was allocated!");
   if (!p_tcb) {
     LOG(ERROR) << "Max TCB for gatt_if [ " << +p_reg->gatt_if << "] reached.";
     return false;

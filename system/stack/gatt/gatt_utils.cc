@@ -392,6 +392,7 @@ uint8_t gatt_find_i_tcb_by_addr(const RawAddress& bda,
   for (; i < GATT_MAX_PHY_CHANNEL; i++) {
     if (gatt_cb.tcb[i].peer_bda == bda &&
         gatt_cb.tcb[i].transport == transport) {
+      LOG_INFO("found tcb for %s at index %d",ADDRESS_TO_LOGGABLE_CSTR(gatt_cb.tcb[i].peer_bda), +i );
       return i;
     }
   }
@@ -469,6 +470,10 @@ tGATT_TCB* gatt_allocate_tcb_by_bdaddr(const RawAddress& bda,
     p_tcb->pending_user_mtu_exchange_value = 0;
     p_tcb->conn_ids_waiting_for_mtu_exchange = std::list<uint16_t>();
     p_tcb->max_user_mtu = 0;
+    if (p_tcb->ch_state != GATT_CH_CLOSE) {
+      LOG_ERROR("************ channel state should be CLOSE on creation!");
+    }
+    p_tcb->ch_state = GATT_CH_CLOSE;
     gatt_sr_init_cl_status(*p_tcb);
     gatt_cl_init_sr_status(*p_tcb);
 
