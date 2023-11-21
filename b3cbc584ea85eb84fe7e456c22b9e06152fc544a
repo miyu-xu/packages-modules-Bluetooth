@@ -16,6 +16,29 @@
       "message": "Bug Id to be defined.",
       "revId": "b3cbc584ea85eb84fe7e456c22b9e06152fc544a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b3eb52b_e79538cd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2265,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-11-21T17:47:04Z",
+      "side": 1,
+      "message": "How about the other context type?",
+      "range": {
+        "startLine": 2265,
+        "startChar": 79,
+        "endLine": 2265,
+        "endChar": 97
+      },
+      "revId": "b3cbc584ea85eb84fe7e456c22b9e06152fc544a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
