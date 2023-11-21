@@ -462,6 +462,7 @@ struct classic_impl : public security::ISecurityManagerListener {
 
   void cancel_all_pending_acl_connections() {
     for (auto& address : connections.pending_connection_addresses) {
+      LOG_DEBUG("[b:293205244] cancel pending connection to %s", ADDRESS_TO_LOGGABLE_CSTR(address));
       cancel_connect(address);
     }
     connections.pending_connection_addresses.clear();

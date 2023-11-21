@@ -420,17 +420,20 @@ static void bta_av_better_stream_state_machine(tBTA_AV_SCB* p_scb,
   }
 
   if (previous_state != p_scb->state) {
-    LOG_INFO("peer %s p_scb=%#x(%p) AV event=0x%x(%s) state=%d(%s) -> %d(%s)",
-             ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()), p_scb->hndl, p_scb,
-             event, bta_av_evt_code(event), previous_state,
-             bta_av_sst_code(previous_state), p_scb->state,
-             bta_av_sst_code(p_scb->state));
+    LOG_INFO(
+        "[b:293205244] peer %s p_scb=%#x(%p) AV event=0x%x(%s) state=%d(%s) -> "
+        "%d(%s)",
+        ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()), p_scb->hndl, p_scb,
+        event, bta_av_evt_code(event), previous_state,
+        bta_av_sst_code(previous_state), p_scb->state,
+        bta_av_sst_code(p_scb->state));
 
   } else {
-    LOG_VERBOSE("peer %s p_scb=%#x(%p) AV event=0x%x(%s) state=%d(%s)",
-                ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()), p_scb->hndl,
-                p_scb, event, bta_av_evt_code(event), p_scb->state,
-                bta_av_sst_code(p_scb->state));
+    LOG_INFO(
+        "[b:293205244] peer %s p_scb=%#x(%p) AV event=0x%x(%s) state=%d(%s)",
+        ADDRESS_TO_LOGGABLE_CSTR(p_scb->PeerAddress()), p_scb->hndl, p_scb,
+        event, bta_av_evt_code(event), p_scb->state,
+        bta_av_sst_code(p_scb->state));
   }
 
   if (event_handler1 != nullptr) {
