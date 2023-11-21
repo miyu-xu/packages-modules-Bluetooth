@@ -30,6 +30,7 @@
 
 #include <cerrno>
 
+#include <android_bluetooth_flags.h>
 #include "bta_hh_api.h"
 #include "btif_hh.h"
 #include "device/include/controller.h"
@@ -297,6 +298,36 @@ static bool uhid_fd_open(btif_hh_device_t* p_dev) {
   return true;
 }
 
+static int uhid_fd_poll(btif_hh_device_t* p_dev, struct pollfd& pfds[1]) {
+  int ret = 0;
+  int counter = 0;
+
+  do {
+    if (IS_FLAG_ENABLED(break_uhid_polling_early) &&
+        !p_dev->hh_keep_polling) {
+      LOG_DEBUG("Polling stopped");
+      return -1;
+    }
+
+    if (counter++ > BTA_HH_UHID_INTERRUPT_COUNT_MAX) {
+      LOG_ERROR("Polling interrupted consecutively %d times",
+                BTA_HH_UHID_INTERRUPT_COUNT_MAX);
+      return -1;
+    }
+
+    ret = poll(pfds, 1, BTA_HH_UHID_POLL_PERIOD_MS);
+  } while (ret == -1 && errno == EINTR);
+
+  if (!IS_FLAG_ENABLED(break_uhid_polling_early)) {
+    if (ret == 0) {
+      LOG_DEBUG("Polling timed out, attempt to read (old behavior)");
+      return 1;
+    }
+  }
+
+  return ret;
+}
+
 /*******************************************************************************
  *
  * Function btif_hh_poll_event_thread
@@ -334,25 +365,20 @@ static void* btif_hh_poll_event_thread(void* arg) {
   uhid_set_non_blocking(p_dev->fd);
 
   while (p_dev->hh_keep_polling) {
-    int ret;
-    int counter = 0;
-
-    do {
-      if (counter++ > BTA_HH_UHID_INTERRUPT_COUNT_MAX) {
-        LOG_ERROR("Polling interrupted");
-        break;
-      }
-      ret = poll(pfds, 1, BTA_HH_UHID_POLL_PERIOD_MS);
-    } while (ret == -1 && errno == EINTR);
+    int ret = uhid_fd_poll(p_dev, pfds);
 
     if (ret < 0) {
       LOG_ERROR("Cannot poll for fds: %s\n", strerror(errno));
       break;
+    } else if (ret == 0) {
+      /* Poll timeout, poll again */
+      continue;
     }
+
+    /* At least one of the fd is ready */
     if (pfds[0].revents & POLLIN) {
-      LOG_VERBOSE("%s: POLLIN", __func__);
-      ret = uhid_read_event(p_dev);
-      if (ret != 0) {
+      LOG_VERBOSE("POLLIN");
+      if (uhid_read_event(p_dev) != 0) {
         LOG_ERROR("Unhandled UHID event");
         break;
       }
