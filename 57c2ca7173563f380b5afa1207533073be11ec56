@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4adb4643_dcf93e49",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1952,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-22T15:54:56Z",
+      "side": 1,
+      "message": "Wouldn\u0027t this call also fail if encryption key is unknown ?\n\nIf no, wouldn\u0027t it be easier to fix BTM_SetEncyrption, rather than adding extra check in each profile ?",
+      "range": {
+        "startLine": 1952,
+        "startChar": 19,
+        "endLine": 1952,
+        "endChar": 36
+      },
+      "revId": "57c2ca7173563f380b5afa1207533073be11ec56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
