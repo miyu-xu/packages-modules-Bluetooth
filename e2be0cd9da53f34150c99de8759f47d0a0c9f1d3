@@ -46,6 +46,30 @@
       },
       "revId": "e2be0cd9da53f34150c99de8759f47d0a0c9f1d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef68b6b8_5f2caf89",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T08:14:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a3bef00a_b7cf8c2a",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "e2be0cd9da53f34150c99de8759f47d0a0c9f1d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
