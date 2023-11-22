@@ -46,6 +46,30 @@
       },
       "revId": "57c2ca7173563f380b5afa1207533073be11ec56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e2c3643_19110127",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1952,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-22T18:29:01Z",
+      "side": 1,
+      "message": "s/BTM_NO_RESOURCES/BTM_ERR_KEY_MISSING \nsounds like good plan",
+      "parentUuid": "d602808b_d90f0c00",
+      "range": {
+        "startLine": 1952,
+        "startChar": 19,
+        "endLine": 1952,
+        "endChar": 36
+      },
+      "revId": "57c2ca7173563f380b5afa1207533073be11ec56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
