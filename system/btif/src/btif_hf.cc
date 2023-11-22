@@ -1668,5 +1668,11 @@ Interface* GetInterface() {
   return HeadsetInterface::GetInstance();
 }
 
+// TODO: b/312592568
+void StartSco();
+
+// TODO: b/312592568
+void StopSco();
+
 }  // namespace headset
 }  // namespace bluetooth
