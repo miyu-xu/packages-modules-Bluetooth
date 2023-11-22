@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e88c514d_543fbde3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T01:54:40Z",
+      "side": 1,
+      "message": "Is there some module test that can be run to verify the behavior still work as expected ?\nI think only running a build will not be enough to catch an eventual regression",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 30
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f90bbf1f_632e733e",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1207,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T01:54:40Z",
+      "side": 1,
+      "message": "This should have been set as shared, it a mistake I have done when I uploaded the sysprop wrapper. Fix is aosp/2842656 (and it will conflict sorry)",
+      "range": {
+        "startLine": 1207,
+        "startChar": 0,
+        "endLine": 1207,
+        "endChar": 18
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d269595_5befff4f",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1221,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T01:54:40Z",
+      "side": 1,
+      "message": "Ditto: move to shared_libs",
+      "range": {
+        "startLine": 1221,
+        "startChar": 0,
+        "endLine": 1221,
+        "endChar": 36
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fceee83c_a07aa09a",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T01:54:40Z",
+      "side": 1,
+      "message": "I think you want this to be a shared lib when you are linking in a **test**.\n (you did right to link it statically for libs that ends\u0027up in the apex)\n \n \nAfter doing that, you should be able to remove your static linking of `libbase`, as this is already linked in shared_libs",
+      "range": {
+        "startLine": 658,
+        "startChar": 9,
+        "endLine": 658,
+        "endChar": 34
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2aabb8d3_a9336b96",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T01:54:40Z",
+      "side": 1,
+      "message": "Ditto: move to shared_libs",
+      "range": {
+        "startLine": 800,
+        "startChar": 9,
+        "endLine": 800,
+        "endChar": 34
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
