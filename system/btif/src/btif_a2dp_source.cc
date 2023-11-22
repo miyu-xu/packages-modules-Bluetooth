@@ -455,7 +455,7 @@ bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
 }
 
 bool btif_a2dp_source_end_session(const RawAddress& peer_address) {
-  LOG_INFO("%s: peer_address=%s state=%s", __func__,
+  LOG_INFO("%s: Debug_log_ peer_address=%s state=%s", __func__,
            ADDRESS_TO_LOGGABLE_CSTR(peer_address),
            btif_a2dp_source_cb.StateStr().c_str());
   btif_a2dp_source_thread.DoInThread(
@@ -472,6 +472,7 @@ static void btif_a2dp_source_end_session_delayed(
            btif_a2dp_source_cb.StateStr().c_str());
   if ((btif_a2dp_source_cb.State() == BtifA2dpSource::kStateRunning) ||
       (btif_a2dp_source_cb.State() == BtifA2dpSource::kStateShuttingDown)) {
+    LOG_INFO("%s: Debug_log_ Going for btif_av_stream_stop", __func__);
     btif_av_stream_stop(peer_address);
   } else {
     LOG_ERROR("%s: A2DP Source media task is not running", __func__);
