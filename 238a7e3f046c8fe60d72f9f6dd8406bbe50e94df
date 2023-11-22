@@ -160,6 +160,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "77657dcb_11d4dc80",
+        "filename": "system/bta/include/bta_sec_api.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-22T21:28:51Z",
+      "side": 1,
+      "message": "No, it\u0027s just aligning done by clang-format",
+      "parentUuid": "7077899c_87237c0d",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fc49d18e_876353a8",
         "filename": "system/stack/btm/btm_sec.cc",
         "patchSetId": 2
