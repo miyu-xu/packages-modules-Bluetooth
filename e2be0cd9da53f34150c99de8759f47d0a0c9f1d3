@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e54938f1_0e8f4f30",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T02:34:32Z",
+      "side": 1,
+      "message": "Can you change this number for a new bug created within the [Bluetooth flag](https://b.corp.google.com/issues/new?component\u003d1387432\u0026template\u003d1839586) component ?",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "e2be0cd9da53f34150c99de8759f47d0a0c9f1d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
