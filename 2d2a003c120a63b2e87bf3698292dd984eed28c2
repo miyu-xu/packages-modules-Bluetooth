@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95606790_b91f4882",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-22T01:42:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a9d38321_a86e9de0",
+      "range": {
+        "startLine": 160,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 37
+      },
+      "revId": "2d2a003c120a63b2e87bf3698292dd984eed28c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35e8de6e_b7f265cb",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-22T01:03:42Z",
       "side": 1,
       "message": "By adding a `try ... finally`, you will ensure that even if the test fail, the disconnect is attempted, and probably the failure will no longer propagate to other tests\n\n```suggestion\n            BluetoothGatt gatt \u003d device.connectGatt(mContext, false, gattCallback);\n            verify(gattCallback, timeout(1000))\n                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));\n\n            try {\n\n            gatt.discoverServices();\n            verify(gattCallback, timeout(10000))\n                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));\n\n            boolean foundExpectedUUID \u003d false;\n            for (BluetoothGattService cService : gatt.getServices()) {\n                // GAP uuid, provided by Pandora -- we should always find this\n                if (cService.getUuid().toString().equals(\"00001800-0000-1000-8000-00805f9b34fb\")) {\n                    foundExpectedUUID \u003d true;\n                }\n                Log.i(TAG, \"Found service with uuid: \" + cService.getUuid().toString());\n            }\n\n            assertThat(foundExpectedUUID).isTrue();\n\n            } finally {\n            gatt.disconnect();\n            verify(gattCallback, timeout(1000))\n                    .onConnectionStateChange(\n                            any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));\n\n            gatt.close();\n            }\n```",
+      "range": {
+        "startLine": 162,
+        "startChar": 12,
+        "endLine": 186,
+        "endChar": 25
+      },
+      "revId": "2d2a003c120a63b2e87bf3698292dd984eed28c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ed758f2_376cffde",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-22T01:42:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35e8de6e_b7f265cb",
       "range": {
         "startLine": 162,
         "startChar": 12,
