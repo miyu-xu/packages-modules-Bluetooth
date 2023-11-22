@@ -52,12 +52,15 @@ class AshaGattService(TemplateService):
     SUPPORTED_CODEC_ID = [0x02, 0x01]  # Codec IDs [G.722 at 16 kHz]
     RENDER_DELAY = [00, 00]
 
+    channel: Optional[Channel]
+
     def __init__(self, capability: int, hisyncid: List[int], device: Device, psm: int = 0) -> None:
         self.hisyncid = hisyncid
         self.capability = capability  # Device Capabilities [Left, Monaural]
         self.device = device
         self.audio_out_data = b""
         self.psm: int = psm  # a non-zero psm is mainly for testing purpose
+        self.channel = None
 
         logger = logging.getLogger(__name__)
 
@@ -156,6 +159,11 @@ class AshaGattService(TemplateService):
                 self.audio_out_data += data
 
             channel.sink = on_data  # type: ignore[no-untyped-call]
+            self.channel = channel
+
+            @channel.on('close')
+            def _() -> None:
+                self.channel = None
 
         # let the server find a free PSM
         self.psm = self.device.register_l2cap_channel_server(self.psm, on_coc, 8)  # type: ignore[no-untyped-call]

@@ -1181,6 +1181,104 @@ class AshaTest(base_test.BaseTestClass):  # type: ignore[misc]
         # TODO(duoho): decode audio_data and verify the content
 
 
+    @asynchronous
+    async def test_b309682567(self) -> None:
+        """
+        Pair the hearing aids with the phone
+        Wait for a successful pairing to both hearing aids
+        The hearing aids are now successfully paired and connected in ASHA mode to the hearing aids
+        Start ASHA audio stream
+        Stop the ASHA audio stream and wait until the Audio Control Point Stop command has been sent to
+          both hearing aids
+        Place the hearing aids into the charger device.
+        Wait for the hearing aids to disconnect the phone
+        Wait for the phone to reconnect the ACLs
+        The phone will send the ASHA L2CAP connection requests to the hearing aids. The hearing aids will
+          reject them since the ASHA Audio streaming is blocked while the hearing aid are in the charger.
+          ( i.e., Pixel 7 keeps sending ASHA L2CAP connection requests to the hearing aids even if the
+          hearing aids are rejecting the request; this bug is reported in
+          https://partnerissuetracker.corp.google.com/issues/308830747)
+        Take the hearing aids out of the charger device
+        The hearing aids will reboot
+        ACLs are lost
+        The phone will reconnect the ACLs
+        Audio streaming is now unblocked
+        The phone will send ASHA L2CAP connection requests and both right and left hearing aids and hearing
+          aids accept L2CAP connection. (The ISSU HERE is that the phone keeps sending ASHA L2CAP connection
+          requests to right HI even if the L2CAP connection has been established)
+        Start ASHA Audio stream
+        ISSUE SEEN HERE: We only hear the ASHA audio on the left hearing aid. We cannot see the ASHA audio
+          stream packet on to right hearing aid on Ellisys. This indicates that the Phone did not sent
+          stream to right hearing aid even if the L2CAP connection has been established.
+        """
+
+        async def pair(ref_device: BumblePandoraDevice, ear: Ear) -> Tuple[Connection, Connection]:
+            advertisement = await self.ref_advertise_asha(ref_device=ref_device, ref_address_type=RANDOM, ear=ear)
+            ref = await self.dut_scan_for_asha(dut_address_type=RANDOM, ear=ear)
+            dut_ref, ref_dut = await self.dut_connect_to_ref(advertisement, ref, RANDOM)
+            advertisement.cancel()
+            (secure, wait_security) = await asyncio.gather(
+                self.dut.aio.security.Secure(connection=dut_ref, le=LE_LEVEL3),
+                ref_device.aio.security.WaitSecurity(connection=ref_dut, le=LE_LEVEL3),
+            )
+            assert_equal(secure.result_variant(), 'success')
+            assert_equal(wait_security.result_variant(), 'success')
+            return dut_ref, ref_dut
+
+        left_ref, _left_dut = await pair(self.ref_left, Ear.LEFT)
+        right_ref, _right_dut = await pair(self.ref_right, Ear.RIGHT)
+
+        left_asha = next((x for x in self.ref_left.device.gatt_server.attributes if isinstance(x, AshaGattService)))
+        left_asha_l2cap = self.ref_left.device.l2cap_channel_manager.le_coc_servers[left_asha.psm]
+        del self.ref_left.device.l2cap_channel_manager.le_coc_servers[left_asha.psm]
+
+        right_asha = next((x for x in self.ref_right.device.gatt_server.attributes if isinstance(x, AshaGattService)))
+        right_asha_l2cap = self.ref_right.device.l2cap_channel_manager.le_coc_servers[right_asha.psm]
+        del self.ref_right.device.l2cap_channel_manager.le_coc_servers[right_asha.psm]
+
+        await asyncio.gather(self.ref_left.aio.host.Reset(), self.ref_right.aio.host.Reset())
+
+        await self.dut.aio.host.WaitDisconnection(left_ref)
+        await self.dut.aio.host.WaitDisconnection(right_ref)
+
+        left_ref, _left_dut = await pair(self.ref_left, Ear.LEFT)
+        right_ref, _right_dut = await pair(self.ref_right, Ear.RIGHT)
+
+        self.ref_left.device.l2cap_channel_manager.le_coc_servers[left_asha.psm] = left_asha_l2cap
+        self.ref_right.device.l2cap_channel_manager.le_coc_servers[right_asha.psm] = right_asha_l2cap
+
+        await asyncio.gather(self.ref_left.aio.host.Reset(), self.ref_right.aio.host.Reset())
+
+        await self.dut.aio.host.WaitDisconnection(left_ref)
+        await self.dut.aio.host.WaitDisconnection(right_ref)
+
+        dut_asha = AioAsha(self.dut.aio.channel)
+
+        left_ref, _left_dut = await pair(self.ref_left, Ear.LEFT)
+        right_ref, _right_dut = await pair(self.ref_right, Ear.RIGHT)
+
+        left_asha = next((x for x in self.ref_left.device.gatt_server.attributes if isinstance(x, AshaGattService)))
+        assert left_asha.channel is not None
+        left_start_future = asyncio.get_running_loop().create_future()
+
+        right_asha = next((x for x in self.ref_right.device.gatt_server.attributes if isinstance(x, AshaGattService)))
+        right_start_future = asyncio.get_running_loop().create_future()
+        # TODO: ISSUE HERE, `right_asha.channel` is None but shouldn't
+        assert right_asha.channel is not None
+
+        @left_asha.on('start')  # type: ignore
+        def _(_connection: Connection, data: dict[str, int]) -> None:
+            left_start_future.set_result(data)
+        await dut_asha.Start(left_ref)
+        await left_start_future
+
+        @right_asha.on('start')  # type: ignore
+        def _(_connection: Connection, data: dict[str, int]) -> None:
+            right_start_future.set_result(data)
+        await dut_asha.Start(right_ref)
+        await right_start_future
+
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.DEBUG)
     test_runner.main()  # type: ignore
