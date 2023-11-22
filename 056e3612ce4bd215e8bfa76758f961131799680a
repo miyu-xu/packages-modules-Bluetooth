@@ -16,6 +16,24 @@
       "message": "Hi @sungsoo@google.com, can you help api review this? thanks!",
       "revId": "056e3612ce4bd215e8bfa76758f961131799680a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b8b9539_4fd8e4f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2023-11-22T08:31:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d117c0a_ab8eec28",
+      "revId": "056e3612ce4bd215e8bfa76758f961131799680a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
