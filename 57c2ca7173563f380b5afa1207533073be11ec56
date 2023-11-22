@@ -22,6 +22,30 @@
       },
       "revId": "57c2ca7173563f380b5afa1207533073be11ec56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d602808b_d90f0c00",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1952,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-22T18:22:51Z",
+      "side": 1,
+      "message": "yeah, so it was my idea to, but what I found out is that when key is missing, BTM_SetEncryption returns  `BTM_NO_RESOURCES`\n\nIn API there is no other error which would indicated we can get error saying there is Key Missing.\n\nhttps://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/main/shim/btm_api.h;l\u003d55?q\u003dBTM_SetEncryption\n\nOn the other hand, maybe the change we are looking for here is \ns/BTM_NO_RESOURCES/BTM_ERR_KEY_MISSING\n\nin this place\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/btm/btm_ble_sec.cc;l\u003d1246?q\u003dBTM_NO_RESOURCES\u0026start\u003d21\n\nThis is what you suggest?",
+      "parentUuid": "4adb4643_dcf93e49",
+      "range": {
+        "startLine": 1952,
+        "startChar": 19,
+        "endLine": 1952,
+        "endChar": 36
+      },
+      "revId": "57c2ca7173563f380b5afa1207533073be11ec56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
