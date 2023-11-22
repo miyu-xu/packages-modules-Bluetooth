@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f2670fd9_c55283c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1990570
+      },
+      "writtenOn": "2023-11-22T01:53:03Z",
+      "side": 1,
+      "message": "Yeah, the unit test should changed. I have added a modification for it. Please review it again. Thanks.",
+      "parentUuid": "c06477a8_4efb4cc8",
+      "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7dfe919e_68fa5735",
         "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
         "patchSetId": 2
@@ -48,6 +66,24 @@
       "writtenOn": "2023-11-21T17:58:28Z",
       "side": 1,
       "message": "Can we fix the format?",
+      "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90c1776d_e5e36233",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1990570
+      },
+      "writtenOn": "2023-11-22T01:53:03Z",
+      "side": 1,
+      "message": "Yeah, I have formatted it. Please review it again. Thanks",
+      "parentUuid": "7dfe919e_68fa5735",
       "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
