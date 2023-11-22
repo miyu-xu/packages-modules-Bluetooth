@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64d58389_190eff00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1937985
+      },
+      "writtenOn": "2023-11-22T08:27:24Z",
+      "side": 1,
+      "message": "Setting as WIP since this is an incomplete fix; `Close` call `Disconnect` for each connections which emit the `Disconnect complete` event, those being incorrect during the `Reset` procedure",
+      "revId": "691c34e8cccfd98b7a77b33ec29bf20cd799dba9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
