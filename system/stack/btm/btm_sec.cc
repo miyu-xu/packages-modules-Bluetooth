@@ -2395,7 +2395,7 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
   /* If we were delaying asking UI for a PIN because name was not resolved,
    * ask now */
   if ((btm_sec_cb.pairing_state == BTM_PAIR_STATE_WAIT_LOCAL_PIN) &&
-      p_bd_addr && (btm_sec_cb.pairing_bda == *p_bd_addr)) {
+      (btm_sec_cb.pairing_bda == *p_bd_addr)) {
     LOG_VERBOSE(
         "delayed pin now being requested flags:0x%x, "
         "(p_pin_callback=0x%p)",
@@ -2418,7 +2418,7 @@ void btm_sec_rmt_name_request_complete(const RawAddress* p_bd_addr,
 
   /* Check if we were delaying bonding because name was not resolved */
   if (btm_sec_cb.pairing_state == BTM_PAIR_STATE_GET_REM_NAME) {
-    if (p_bd_addr && btm_sec_cb.pairing_bda == *p_bd_addr) {
+    if (btm_sec_cb.pairing_bda == *p_bd_addr) {
       LOG_VERBOSE("continue bonding sm4: 0x%04x, status:0x%x", p_dev_rec->sm4,
                   status);
       if (btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_WE_CANCEL_DD) {
