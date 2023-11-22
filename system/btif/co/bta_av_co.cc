@@ -1575,7 +1575,7 @@ bool BtaAvCo::SetCodecUserConfig(
     }
 
     p_peer->acceptor = false;
-    VLOG(1) << __func__ << ": call BTA_AvReconfig("
+    VLOG(1) << __func__ << ": Debug_log_ call BTA_AvReconfig("
             << loghex(p_peer->BtaAvHandle()) << ")";
     BTA_AvReconfig(p_peer->BtaAvHandle(), true, p_sink->sep_info_idx,
                    p_peer->codec_config, num_protect, bta_av_co_cp_scmst);
