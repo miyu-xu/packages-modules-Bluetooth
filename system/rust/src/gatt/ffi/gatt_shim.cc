@@ -77,7 +77,11 @@ void GattServerCallbacks::OnServerRead(uint16_t conn_id, uint32_t trans_id,
                          trans_id, addr.value(), attr_handle, offset, is_long));
       break;
     default:
+<<<<<<< PATCH SET (faf2b3 Allow type conversion from AttributeBackingType to int)
+      LOG_ALWAYS_FATAL("Unexpected backing type %d", (int)attr_type);
+=======
       log::fatal("Unexpected backing type {}", attr_type);
+>>>>>>> BASE      (17127f Merge "vendor_libs: Remove //device:__subpackages__ from vis)
   }
 }
 
@@ -114,7 +118,11 @@ void GattServerCallbacks::OnServerWrite(
                          value.size()));
       break;
     default:
+<<<<<<< PATCH SET (faf2b3 Allow type conversion from AttributeBackingType to int)
+      LOG_ALWAYS_FATAL("Unexpected backing type %d", (int)attr_type);
+=======
       log::fatal("Unexpected backing type {}", attr_type);
+>>>>>>> BASE      (17127f Merge "vendor_libs: Remove //device:__subpackages__ from vis)
   }
 }
 
