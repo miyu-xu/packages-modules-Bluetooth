@@ -455,7 +455,7 @@ bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
 }
 
 bool btif_a2dp_source_end_session(const RawAddress& peer_address) {
-  LOG_INFO("%s: peer_address=%s state=%s", __func__,
+  LOG_INFO("%s: Debug_log_ peer_address=%s state=%s", __func__,
            ADDRESS_TO_LOGGABLE_CSTR(peer_address),
            btif_a2dp_source_cb.StateStr().c_str());
   btif_a2dp_source_thread.DoInThread(

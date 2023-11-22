@@ -573,8 +573,10 @@ class BtifAvSource {
       const RawAddress& peer_address,
       const std::vector<btav_a2dp_codec_config_t>& codec_preferences,
       std::promise<void> peer_ready_promise) {
+    LOG_INFO("%s: Debug_log_: ", __func__);
     // Restart the session if the codec for the active peer is updated
     if (!peer_address.IsEmpty() && active_peer_ == peer_address) {
+      LOG_INFO("%s: Debug_log_ Going for btif_a2dp_source_end_session", __func__);
       btif_a2dp_source_end_session(active_peer_);
     }
 
@@ -3820,7 +3822,7 @@ void src_do_suspend_in_main_thread(btif_av_sm_event_t event) {
 }
 
 void btif_av_stream_stop(const RawAddress& peer_address) {
-  LOG_INFO("%s peer %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
+  LOG_INFO("%s Debug_log_ peer %s", __func__, ADDRESS_TO_LOGGABLE_CSTR(peer_address));
 
   if (!peer_address.IsEmpty()) {
     btif_av_source_dispatch_sm_event(peer_address, BTIF_AV_STOP_STREAM_REQ_EVT);
