@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "1287267f_ade9b991",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-11-22T11:52:05Z",
+      "side": 1,
+      "message": "Example of btsnoop log\n\nCrOS\n```\n// Handle 256 is the ACL handle of `DC:A6:32:6B:38:33` and the HID connection already connected.\n\n\u003c HCI Command: Switch Role (0x02|0x000b) plen 7                                                                                                                                                                                                    #753 [hci0] 2023-11-06 15:17:49.059539\n        Address: DC:A6:32:6B:38:33 (Raspberry Pi Trading Ltd)\n        Role: Central (0x00)\n\u003e HCI Event: Command Status (0x0f) plen 4                                                                                                                                                                                                          #754 [hci0] 2023-11-06 15:17:49.060367\n      Switch Role (0x02|0x000b) ncmd 1\n        Status: Success (0x00)\n\u003c HCI Command: Switch Role (0x02|0x000b) plen 7                                                                                                                                                                                                    #755 [hci0] 2023-11-06 15:17:49.061000\n        Address: E4:5F:01:9D:0A:8F (Raspberry Pi Trading Ltd)\n        Role: Central (0x00)\n\u003e HCI Event: Command Status (0x0f) plen 4                                                                                                                                                                                                          #756 [hci0] 2023-11-06 15:17:49.062410\n      Switch Role (0x02|0x000b) ncmd 1\n        Status: Success (0x00)\n\u003e HCI Event: Disconnect Complete (0x05) plen 4                                                                                                                                                                                                     #757 [hci0] 2023-11-06 15:17:49.228214\n        Status: Success (0x00)\n        Handle: 256\n        Reason: Connection Rejected due to Security Reasons (0x0e)\n```\n\nOn the `DC:A6:32:6B:38:33` side\n\n```\n\u003e HCI Event: Encryption Key Refresh Complete (0x30) plen 3                                                                                                                                                                                         #562 [hci0] 2023-11-06 15:17:50.134409\n        Status: Success (0x00)\n        Handle: 11\n\u003e HCI Event: Role Change (0x12) plen 8                                                                                                                                                                                                             #563 [hci0] 2023-11-06 15:17:50.134532\n        Status: Success (0x00)\n        Address: 90:78:41:80:32:6A (Intel Corporate)\n        Role: Peripheral (0x01)\n\u003e HCI Event: Disconnect Complete (0x05) plen 4                                                                                                                                                                                                     #564 [hci0] 2023-11-06 15:18:10.145805\n        Status: Success (0x00)\n        Handle: 11\n        Reason: Connection Timeout (0x08)\n```",
+      "range": {
+        "startLine": 12,
+        "startChar": 55,
+        "endLine": 13,
+        "endChar": 14
+      },
+      "revId": "dfd5a2a2f03467800cda0b6460f17a5f0add43e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "b080c768_16db25db",
