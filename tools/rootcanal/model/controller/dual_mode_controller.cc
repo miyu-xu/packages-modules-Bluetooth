@@ -288,6 +288,7 @@ void DualModeController::Reset(CommandView command) {
 
   DEBUG(id_, "<< Reset");
 
+  link_layer_controller_.Close();
   link_layer_controller_.Reset();
   loopback_mode_ = LoopbackMode::NO_LOOPBACK;
   controller_reset_ = true;
