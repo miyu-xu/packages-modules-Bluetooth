@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49606132_702cb527",
+        "filename": "flags/bta_dm.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T01:37:38Z",
+      "side": 1,
+      "message": "Please create the bug in the [Flag](https://b.corp.google.com/issues/new?component\u003d1387432\u0026template\u003d1839586) component instead and",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "22a5f27db2e87776ff4f6ab4c441df427ca9b829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
