@@ -122,6 +122,24 @@
       "parentUuid": "90c1776d_e5e36233",
       "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7b01785_5114d732",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T22:12:45Z",
+      "side": 1,
+      "message": "I have re-uploaded a patchset to apply the java auto-format.",
+      "parentUuid": "b01712b6_b76c1edc",
+      "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

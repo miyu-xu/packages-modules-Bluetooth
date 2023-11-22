@@ -34,6 +34,24 @@
       "parentUuid": "13ce184d_3f9c9e5d",
       "revId": "155deeeeef58577cb69d2b311d0aefee8db7005c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "72ebdb24_bd23a218",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T22:12:45Z",
+      "side": 1,
+      "message": "You are correct, I have uploaded it in a different [commit](https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2844472) as I think it is still nice to fix the test",
+      "parentUuid": "e2379239_6d8ea9dc",
+      "revId": "155deeeeef58577cb69d2b311d0aefee8db7005c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
