@@ -349,7 +349,14 @@ impl ISuspend for Suspend {
 
         let tx = self.tx.clone();
         let suspend_state = self.suspend_state.clone();
-        let suspend_id = self.suspend_state.lock().unwrap().suspend_id.unwrap();
+
+        let suspend_id = match self.suspend_state.lock().unwrap().suspend_id {
+            None => {
+                warn!("No suspend id received. Assign 0.");
+                0
+            }
+            Some(id) => id,
+        };
         self.suspend_timeout_joinhandle = Some(tokio::spawn(async move {
             tokio::time::sleep(tokio::time::Duration::from_millis(2000)).await;
             log::error!("Resume did not complete in 2 seconds, continuing anyway.");
@@ -380,9 +387,8 @@ impl BtifBluetoothCallbacks for Suspend {
             self.suspend_timeout_joinhandle = None;
         }
 
-        let suspend_id = self.suspend_state.lock().unwrap().suspend_id.unwrap();
-
         if self.suspend_state.lock().unwrap().suspend_expected {
+            let suspend_id = self.suspend_state.lock().unwrap().suspend_id.unwrap();
             self.suspend_state.lock().unwrap().suspend_expected = false;
             let tx = self.tx.clone();
             tokio::spawn(async move {
@@ -394,8 +400,8 @@ impl BtifBluetoothCallbacks for Suspend {
             });
         }
 
-        self.suspend_state.lock().unwrap().suspend_id = Some(suspend_id);
         if self.suspend_state.lock().unwrap().resume_expected {
+            let suspend_id = self.suspend_state.lock().unwrap().suspend_id.unwrap_or(0);
             self.suspend_state.lock().unwrap().resume_expected = false;
             let tx = self.tx.clone();
             tokio::spawn(async move {
