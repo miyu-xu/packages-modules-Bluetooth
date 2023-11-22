@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c9054e1_836b97a0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1242,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-22T21:27:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "17a68f9d_61bacf7d",
+      "range": {
+        "startLine": 1238,
+        "startChar": 12,
+        "endLine": 1242,
+        "endChar": 71
+      },
+      "revId": "53fcc1c5c9856476396ef65fe149c4a109c06b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e2bd35fd_dc00785e",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-11-17T01:59:39Z",
       "side": 1,
       "message": "The API in previous CL is mentioning connect, I put a comment to add privileged too, but I think you want both here",
+      "range": {
+        "startLine": 1243,
+        "startChar": 50,
+        "endLine": 1243,
+        "endChar": 70
+      },
+      "revId": "53fcc1c5c9856476396ef65fe149c4a109c06b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "521fbb09_deb76a9b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1243,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-22T21:27:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e2bd35fd_dc00785e",
       "range": {
         "startLine": 1243,
         "startChar": 50,

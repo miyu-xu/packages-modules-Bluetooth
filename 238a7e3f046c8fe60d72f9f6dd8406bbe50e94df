@@ -119,6 +119,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5b3901a3_f5ae69da",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-22T21:27:32Z",
+      "side": 1,
+      "message": "you mean just naming ? What is RepairingCallback ?",
+      "parentUuid": "88f48969_075801b8",
+      "range": {
+        "startLine": 1227,
+        "startChar": 9,
+        "endLine": 1227,
+        "endChar": 27
+      },
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7077899c_87237c0d",
         "filename": "system/bta/include/bta_sec_api.h",
         "patchSetId": 2
