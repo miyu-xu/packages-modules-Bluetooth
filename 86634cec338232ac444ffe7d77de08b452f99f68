@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7df6ee0_ccf54198",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T08:10:56Z",
+      "side": 1,
+      "message": "I am sorry, we improved the process since last round of comment.\nYou no longer need the TARGET_FLOSS if you do this instead (altogether with the other comment)\n\n```suggestion\n#include \u003candroid_bluetooth_flags.h\u003e\n```",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 6
+      },
+      "revId": "86634cec338232ac444ffe7d77de08b452f99f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "681d299d_6e89992d",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T08:10:56Z",
+      "side": 1,
+      "message": "I am sorry, we improved the process since last round of comment.\nYou no longer need the TARGET_FLOSS if you do this instead (altogether with the other comment)\n\n```suggestion\nbool power_telemerty_enabled_ \u003d IS_FLAG_ENABLED(bluetooth_power_telemetry);\n```",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 6
+      },
+      "revId": "86634cec338232ac444ffe7d77de08b452f99f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
