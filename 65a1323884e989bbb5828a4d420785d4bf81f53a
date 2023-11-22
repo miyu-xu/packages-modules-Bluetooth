@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec5817a9_44e0a966",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-22T17:53:12Z",
+      "side": 1,
+      "message": "Now polling can stop early without ret getting set.",
+      "revId": "65a1323884e989bbb5828a4d420785d4bf81f53a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "365bcf73_36cc67aa",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-22T17:53:12Z",
+      "side": 1,
+      "message": "To stop the polling in case it keeps getting interrupted.",
+      "revId": "65a1323884e989bbb5828a4d420785d4bf81f53a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b29212ec_cd39a349",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-22T17:53:12Z",
+      "side": 1,
+      "message": "We should try to read from the fd only if it was ready.",
+      "revId": "65a1323884e989bbb5828a4d420785d4bf81f53a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
