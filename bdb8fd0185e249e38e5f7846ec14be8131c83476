@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "317520bb_8a62f6c1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1990570
+      },
+      "writtenOn": "2023-11-22T01:54:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f2670fd9_c55283c9",
+      "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dfe919e_68fa5735",
@@ -84,6 +102,24 @@
       "side": 1,
       "message": "Yeah, I have formatted it. Please review it again. Thanks",
       "parentUuid": "7dfe919e_68fa5735",
+      "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b01712b6_b76c1edc",
+        "filename": "android/app/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 512,
+      "author": {
+        "id": 1990570
+      },
+      "writtenOn": "2023-11-22T01:54:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "90c1776d_e5e36233",
       "revId": "bdb8fd0185e249e38e5f7846ec14be8131c83476",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
