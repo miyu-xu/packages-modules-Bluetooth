@@ -160,6 +160,24 @@
       "parentUuid": "9338afe3_4ae3b5f9",
       "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c95b598d_968189c6",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1880545
+      },
+      "writtenOn": "2023-11-22T11:00:38Z",
+      "side": 1,
+      "message": "Thanks Paul,\nCould you help to rebase it please?\nI can not see the button(rebase), I am afraid that only huirong can do it but she is maternity leave for a long time.",
+      "parentUuid": "2291fcdb_a871c1c2",
+      "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
