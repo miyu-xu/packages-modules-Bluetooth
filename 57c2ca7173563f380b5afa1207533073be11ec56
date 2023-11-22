@@ -70,6 +70,30 @@
       },
       "revId": "57c2ca7173563f380b5afa1207533073be11ec56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d318c897_e6e8b8df",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1952,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-22T20:54:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1e2c3643_19110127",
+      "range": {
+        "startLine": 1952,
+        "startChar": 19,
+        "endLine": 1952,
+        "endChar": 36
+      },
+      "revId": "57c2ca7173563f380b5afa1207533073be11ec56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
