@@ -16,6 +16,24 @@
       "message": "It looks like there is an additional usage in [AvrcpControllerStateMachineTest.java#1115](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/avrcpcontroller/AvrcpControllerStateMachineTest.java;l\u003d1115;drc\u003d19ba1cca7fd8fff53c57de65a2a3232750ce9670)",
       "revId": "155deeeeef58577cb69d2b311d0aefee8db7005c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2379239_6d8ea9dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1990570
+      },
+      "writtenOn": "2023-11-22T03:03:43Z",
+      "side": 1,
+      "message": "Yeah, but this patch can not affect it. Thanks",
+      "parentUuid": "13ce184d_3f9c9e5d",
+      "revId": "155deeeeef58577cb69d2b311d0aefee8db7005c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
