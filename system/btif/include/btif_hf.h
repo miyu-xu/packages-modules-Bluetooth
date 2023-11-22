@@ -46,5 +46,11 @@ bool IsCallIdle();
  */
 bt_status_t ExecuteService(bool b_enable);
 
+// TODO: b/312592568
+void StartSco();
+
+// TODO: b/312592568
+void StopSco();
+
 }  // namespace headset
 }  // namespace bluetooth
