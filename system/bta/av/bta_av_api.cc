@@ -335,6 +335,7 @@ void BTA_AvReconfig(tBTA_AV_HNDL hndl, bool suspend, uint8_t sep_info_idx,
   p_buf->hdr.layer_specific = hndl;
   p_buf->hdr.event = BTA_AV_API_RECONFIG_EVT;
   p_buf->num_protect = num_protect;
+  LOG_INFO(" Debug_log_ BTA_AvReconfig: suspend: %d", suspend);
   p_buf->suspend = suspend;
   p_buf->sep_info_idx = sep_info_idx;
   p_buf->p_protect_info = (uint8_t*)(p_buf + 1);

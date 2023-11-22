@@ -2057,6 +2057,7 @@ void bta_av_str_stopped(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
  *
  ******************************************************************************/
 void bta_av_reconfig(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
+  LOG_INFO(" Debug_log_ Enter bta_av_reconfig");
   AvdtpSepConfig* p_cfg;
   tBTA_AV_API_STOP stop = {};
   tBTA_AV_API_RCFG* p_rcfg = &p_data->api_reconfig;
@@ -2070,13 +2071,13 @@ void bta_av_reconfig(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
 
   alarm_cancel(p_scb->avrc_ct_timer);
 
-  LOG_DEBUG("p_scb->sep_info_idx=%d p_scb->rcfg_idx=%d p_rcfg->sep_info_idx=%d",
+  LOG_INFO("p_scb->sep_info_idx=%d p_scb->rcfg_idx=%d p_rcfg->sep_info_idx=%d",
             p_scb->sep_info_idx, p_scb->rcfg_idx, p_rcfg->sep_info_idx);
-  LOG_DEBUG("Peer capable codec: %s",
+  LOG_INFO("Peer capable codec: %s",
             A2DP_CodecInfoString(p_scb->peer_cap.codec_info).c_str());
-  LOG_DEBUG("Current codec: %s",
+  LOG_INFO("Current codec: %s",
             A2DP_CodecInfoString(p_scb->cfg.codec_info).c_str());
-  LOG_DEBUG("Reconfig codec: %s",
+  LOG_INFO("Reconfig codec: %s",
             A2DP_CodecInfoString(p_rcfg->codec_info).c_str());
 
   BTM_LogHistory(
@@ -2094,15 +2095,25 @@ void bta_av_reconfig(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
   // can Suspend->Reconfigure->Start.
   // Otherwise, we have to Close->Configure->Open->Start or
   // Close->Configure->Open for streams that are / are not started.
+  LOG_INFO(" Debug_log_ p_rcfg->suspend: %d", p_rcfg->suspend);
+   LOG_INFO(" Debug_log_ rcfg_idx:%d,sep_info_idx:%d,suspend:%d,recfg_sup:%d,suspend_sup:%d",
+                     p_scb->rcfg_idx,
+                     p_scb->sep_info_idx,
+                     p_rcfg->suspend,
+                     p_scb->recfg_sup,
+                     p_scb->suspend_sup);
   if ((p_scb->rcfg_idx == p_scb->sep_info_idx) && p_rcfg->suspend &&
       p_scb->recfg_sup && p_scb->suspend_sup) {
+    LOG_INFO(" Debug_log_ bta_av_reconfig: 1st if condition");
     if (p_scb->started) {
+      LOG_INFO(" Debug_log_ bta_av_reconfig: 1st if condition inside 1st if condition");
       // Suspend->Reconfigure->Start
       stop.flush = false;
       stop.suspend = true;
       stop.reconfig_stop = false;
       bta_av_str_stopped(p_scb, (tBTA_AV_DATA*)&stop);
     } else {
+      LOG_INFO(" Debug_log_ bta_av_reconfig: else condition inside 1st if condition");
       // Reconfigure
       LOG_VERBOSE("%s: reconfig", __func__);
       LOG_VERBOSE("%s: codec: %s", __func__,
@@ -2111,10 +2122,12 @@ void bta_av_reconfig(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
       p_scb->cfg.psc_mask = p_scb->cur_psc_mask;
     }
   } else {
+    LOG_INFO(" Debug_log_ bta_av_reconfig: 1st else condition");
     // Close the stream first, and then Configure it
     LOG_VERBOSE("%s: Close/Open started: %d state: %d num_protect: %d",
                 __func__, p_scb->started, p_scb->state, p_cfg->num_protect);
     if (p_scb->started) {
+      LOG_INFO(" Debug_log_ bta_av_reconfig: p_scb->started is true");
       // Close->Configure->Open->Start
       if ((p_scb->rcfg_idx != p_scb->sep_info_idx) && p_scb->recfg_sup) {
         // Make sure we trigger STOP_EVT when taking the longer road to
@@ -2128,6 +2141,7 @@ void bta_av_reconfig(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
       }
       p_scb->started = false;
     } else {
+      LOG_INFO(" Debug_log_ bta_av_reconfig: p_scb->started is false");
       // Close->Configure->Open
       bta_av_str_stopped(p_scb, NULL);
     }
