@@ -153,6 +153,7 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
 
     suspend fun waitBondIntent(bluetoothDevice: BluetoothDevice): Int {
         if (bluetoothDevice.getBondState() == BOND_BONDED) {
+            Log.i(TAG, "waitBondIntent: $bluetoothDevice already bonded")
             return BOND_BONDED
         }
         return flow
@@ -174,6 +175,7 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
             else -> {
                 val bondState = waitBondIntent(bluetoothDevice)
                 val isEncrypted = bluetoothDevice.isEncrypted()
+                Log.i(TAG, "waitBREDRSecurityLevel: $bluetoothDevice state=$bondState encrypted=$isEncrypted")
                 when (level) {
                     LEVEL1 -> !isEncrypted || bondState == BOND_BONDED
                     LEVEL2 -> isEncrypted && bondState == BOND_BONDED
@@ -194,6 +196,7 @@ class Security(private val context: Context) : SecurityImplBase(), Closeable {
             else -> {
                 val bondState = waitBondIntent(bluetoothDevice)
                 val isEncrypted = bluetoothDevice.isEncrypted()
+                Log.i(TAG, "waitLESecurityLevel: $bluetoothDevice state=$bondState encrypted=$isEncrypted")
                 when (level) {
                     LE_LEVEL2 -> isEncrypted
                     LE_LEVEL3 -> isEncrypted && bondState == BOND_BONDED
