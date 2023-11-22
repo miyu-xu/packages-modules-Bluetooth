@@ -1955,15 +1955,19 @@ class LeAudioClientImpl : public LeAudioClient {
       int result = BTM_SetEncryption(address, BT_TRANSPORT_LE, nullptr, nullptr,
                                      BTM_BLE_SEC_ENCRYPT);
 
-      LOG(INFO) << __func__
-                << "Encryption required. Request result: " << result;
+      LOG_INFO("Encryption required for %s. Request result: 0x%02x",
+               ADDRESS_TO_LOGGABLE_CSTR(address), result);
       return;
     }
 
-    LOG(ERROR) << __func__ << " Encryption error";
+    LOG_ERROR("Link key unknown for %s, disconnect profile",
+              ADDRESS_TO_LOGGABLE_CSTR(address));
     le_audio::MetricsCollector::Get()->OnConnectionStateChanged(
         leAudioDevice->group_id_, address, ConnectionState::CONNECTED,
         le_audio::ConnectionStatus::FAILED);
+
+    /* If link cannot be enctypted, disconnect profile */
+    BTA_GATTC_Close(conn_id);
   }
 
   void RegisterKnownNotifications(LeAudioDevice* leAudioDevice,
