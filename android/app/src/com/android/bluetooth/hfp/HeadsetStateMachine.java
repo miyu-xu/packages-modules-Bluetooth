@@ -50,6 +50,7 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.State;
 import com.android.internal.util.StateMachine;
+import com.android.modules.expresslog.Histogram;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -116,6 +117,14 @@ public class HeadsetStateMachine extends StateMachine {
     // Number of times we should retry disconnecting audio before
     // disconnecting the device.
     private static final int MAX_RETRY_DISCONNECT_AUDIO = 3;
+
+    private static final int CODEC_USAGE_MSBC = 0;
+    private static final int CODEC_USAGE_LC3 = 1;
+    private static final int CODEC_USAGE_APTX = 2;
+    private static final Histogram CODEC_USAGE =
+            new Histogram(
+                    "bluetooth.value_codec_usage_over_hfp",
+                    new Histogram.UniformOptions(1, CODEC_USAGE_MSBC, CODEC_USAGE_APTX + 1));
 
     private static final HeadsetAgIndicatorEnableState DEFAULT_AG_INDICATOR_ENABLE_STATE =
             new HeadsetAgIndicatorEnableState(true, true, true, true);
@@ -1347,6 +1356,15 @@ public class HeadsetStateMachine extends StateMachine {
                     && !hasDeferredMessages(DISCONNECT_AUDIO)) {
                 mHeadsetService.setActiveDevice(mDevice);
             }
+
+            if (mHasSwbLc3Enabled) {
+                CODEC_USAGE.logSample(CODEC_USAGE_LC3);
+            } else if (mHasSwbAptXEnabled) {
+                CODEC_USAGE.logSample(CODEC_USAGE_APTX);
+            } else {
+                CODEC_USAGE.logSample(CODEC_USAGE_MSBC);
+            }
+
             setAudioParameters();
 
             mSystemInterface.getAudioManager().setAudioServerStateCallback(
