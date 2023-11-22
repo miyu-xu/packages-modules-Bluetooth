@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc455f6e_33e09ea2",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 4092,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T01:19:26Z",
+      "side": 1,
+      "message": "nit: You may want to update the `key_type` logging to be an hexa directly. (there are some other occurences in this file too)",
+      "range": {
+        "startLine": 4092,
+        "startChar": 41,
+        "endLine": 4092,
+        "endChar": 42
+      },
+      "revId": "ebaeee22486946a56034773ee1ddcd30f31b42f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
