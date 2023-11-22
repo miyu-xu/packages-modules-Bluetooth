@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4810b3d_a90d01c1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T02:23:26Z",
+      "side": 1,
+      "message": "FYI you can also use the `connectGattAndWaitConnection` method and the `disconnectAndWaitDisconnection` that I uploaded in the requestMtu cl:\n\n\n\n```suggestion\n        BluetoothGattCallback gattCallback \u003d mock(BluetoothGattCallback.class);\n        BluetoothGatt gatt \u003d connectGattAndWaitConnection(gattCallback);\n\n        try {\n            // Do your testing here\n        } finally {\n            disconnectAndWaitDisconnection(gatt, gattCallback);\n        }\n```",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 69
+      },
+      "revId": "66e6fd5e036868c5286bac0ded634119c39e4ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "384cf954_4eee06d8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-22T02:23:26Z",
+      "side": 1,
+      "message": "Can you move that prior to the try ?\nThe objective of the try finally is to exectur what is inside the finally even in case of failure in the try, but in this case, we want don\u0027t want to disconnect if the connectGatt has failed (since gatt will be null and you will crash in the finally)\n\n\n```suggestion\n        BluetoothGattCallback gattCallback \u003d mock(BluetoothGattCallback.class);\n        BluetoothGatt gatt \u003d device.connectGatt(mContext, false, gattCallback);\n\n        try {\n```",
+      "range": {
+        "startLine": 164,
+        "startChar": 7,
+        "endLine": 169,
+        "endChar": 69
+      },
+      "revId": "66e6fd5e036868c5286bac0ded634119c39e4ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
