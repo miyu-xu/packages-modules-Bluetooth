@@ -22,6 +22,30 @@
       },
       "revId": "e2be0cd9da53f34150c99de8759f47d0a0c9f1d3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a3bef00a_b7cf8c2a",
+        "filename": "flags/framework.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2023-11-22T03:43:53Z",
+      "side": 1,
+      "message": "Sure! updated!",
+      "parentUuid": "e54938f1_0e8f4f30",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "e2be0cd9da53f34150c99de8759f47d0a0c9f1d3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
