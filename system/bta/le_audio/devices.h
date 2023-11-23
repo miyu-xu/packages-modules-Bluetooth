@@ -23,14 +23,12 @@
 #include <memory>
 #include <optional>
 #include <tuple>
-#include <utility>  // for std::pair
 #include <vector>
 
 #ifdef __ANDROID__
 #include <android/sysprop/BluetoothProperties.sysprop.h>
 #endif
 
-#include "audio_hal_client/audio_hal_client.h"
 #include "bta_groups.h"
 #include "btm_iso_api_types.h"
 #include "gatt_api.h"
