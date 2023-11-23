@@ -643,14 +643,23 @@ struct LeAudioCoreCodecCapabilities {
 
 class LeAudioLtvMap {
  public:
-  LeAudioLtvMap() {}
   LeAudioLtvMap(std::map<uint8_t, std::vector<uint8_t>> values)
-      : values(std::move(values)), core_config(std::nullopt) {}
+      : values(values), value_hash(0), core_config(std::nullopt) {}
+  LeAudioLtvMap() = default;
+
+  bool operator==(const LeAudioLtvMap& other) const {
+    return GetHash() == other.GetHash();
+  }
+
+  bool operator!=(const LeAudioLtvMap& other) const {
+    return GetHash() != other.GetHash();
+  }
 
   std::optional<std::vector<uint8_t>> Find(uint8_t type) const;
   LeAudioLtvMap& Add(uint8_t type, std::vector<uint8_t> value) {
     values.insert_or_assign(type, std::move(value));
     core_config = std::nullopt;
+    value_hash = 0;
     return *this;
   }
   LeAudioLtvMap& Add(uint8_t type, uint8_t value) {
@@ -660,6 +669,7 @@ class LeAudioLtvMap {
     UINT8_TO_STREAM(ptr, value);
     values.insert_or_assign(type, v);
     core_config = std::nullopt;
+    value_hash = 0;
     return *this;
   }
   LeAudioLtvMap& Add(uint8_t type, uint16_t value) {
@@ -669,6 +679,7 @@ class LeAudioLtvMap {
     UINT16_TO_STREAM(ptr, value);
     values.insert_or_assign(type, std::move(v));
     core_config = std::nullopt;
+    value_hash = 0;
     return *this;
   }
   LeAudioLtvMap& Add(uint8_t type, uint32_t value) {
@@ -678,11 +689,19 @@ class LeAudioLtvMap {
     UINT32_TO_STREAM(ptr, value);
     values.insert_or_assign(type, std::move(v));
     core_config = std::nullopt;
+    value_hash = 0;
     return *this;
   }
-  void Remove(uint8_t type) { values.erase(type); }
+  void Remove(uint8_t type) {
+    values.erase(type);
+    value_hash = 0;
+  }
+  void RemoveAllTypes(const LeAudioLtvMap& other);
   bool IsEmpty() const { return values.empty(); }
-  void Clear() { values.clear(); }
+  void Clear() {
+    value_hash = 0;
+    values.clear();
+  }
   size_t Size() const { return values.size(); }
   const std::map<uint8_t, std::vector<uint8_t>>& Values() const {
     return values;
@@ -690,6 +709,7 @@ class LeAudioLtvMap {
 
   const struct LeAudioCoreCodecConfig& GetAsCoreCodecConfig() const;
   const struct LeAudioCoreCodecCapabilities& GetAsCoreCodecCapabilities() const;
+  LeAudioLtvMap GetIntersection(const LeAudioLtvMap& other) const;
 
   std::string ToString(
       const std::string& indent_string,
@@ -699,9 +719,14 @@ class LeAudioLtvMap {
   std::vector<uint8_t> RawPacket() const;
   static LeAudioLtvMap Parse(const uint8_t* value, uint8_t len, bool& success);
   void Append(const LeAudioLtvMap& other);
+  size_t GetHash() const {
+    if (value_hash == 0) RecalculateValueHash();
+    return value_hash;
+  }
 
  private:
-  static LeAudioCoreCodecConfig LtvMapToCoreCodecConfig(LeAudioLtvMap ltvs) {
+  static LeAudioCoreCodecConfig LtvMapToCoreCodecConfig(
+      const LeAudioLtvMap& ltvs) {
     LeAudioCoreCodecConfig core;
 
     auto vec_opt = ltvs.Find(codec_spec_conf::kLeAudioLtvTypeSamplingFreq);
@@ -750,7 +775,7 @@ class LeAudioLtvMap {
   }
 
   static LeAudioCoreCodecCapabilities LtvMapToCoreCodecCapabilities(
-      LeAudioLtvMap pacs) {
+      const LeAudioLtvMap& pacs) {
     LeAudioCoreCodecCapabilities core;
 
     auto pac =
@@ -819,10 +844,24 @@ class LeAudioLtvMap {
     return core;
   }
 
+  void RecalculateValueHash() const {
+    if (IsEmpty()) {
+      value_hash = 0;
+      return;
+    }
+
+    auto value_vec = RawPacket();
+    value_hash = std::hash<std::string_view>{}(
+        {reinterpret_cast<const char*>(value_vec.data()), value_vec.size()});
+  }
+
   std::map<uint8_t, std::vector<uint8_t>> values;
+  mutable size_t value_hash = 0;
   // Lazy-constructed views of the LTV data
-  mutable std::optional<struct LeAudioCoreCodecConfig> core_config;
-  mutable std::optional<struct LeAudioCoreCodecCapabilities> core_capabilities;
+  mutable std::optional<struct LeAudioCoreCodecConfig> core_config =
+      std::nullopt;
+  mutable std::optional<struct LeAudioCoreCodecCapabilities> core_capabilities =
+      std::nullopt;
 };
 
 struct LeAudioCodecId {

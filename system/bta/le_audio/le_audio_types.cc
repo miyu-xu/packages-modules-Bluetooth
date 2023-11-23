@@ -585,6 +585,8 @@ void LeAudioLtvMap::Append(const LeAudioLtvMap& other) {
   for (auto& el : other.values) {
     values[el.first] = el.second;
   }
+
+  value_hash = 0;
 }
 
 LeAudioLtvMap LeAudioLtvMap::Parse(const uint8_t* p_value, uint8_t len,
@@ -675,6 +677,24 @@ LeAudioLtvMap::GetAsCoreCodecCapabilities() const {
     core_capabilities = LtvMapToCoreCodecCapabilities(*this);
   }
   return *core_capabilities;
+}
+
+void LeAudioLtvMap::RemoveAllTypes(const LeAudioLtvMap& other) {
+  for (auto const& [key, _] : other.values) {
+    Remove(key);
+  }
+}
+
+LeAudioLtvMap LeAudioLtvMap::GetIntersection(const LeAudioLtvMap& other) const {
+  LeAudioLtvMap result;
+  for (auto const& [key, value] : values) {
+    auto entry = other.Find(key);
+    if (entry->size() != value.size()) continue;
+    if (memcmp(entry->data(), value.data(), value.size()) == 0) {
+      result.Add(key, value);
+    }
+  }
+  return result;
 }
 
 }  // namespace types
