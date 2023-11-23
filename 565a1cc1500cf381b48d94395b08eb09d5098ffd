@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b83a1fc_9835ddde",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-11-23T03:34:10Z",
+      "side": 1,
+      "message": "Does this make A2DP session logged to structured metrics as well?",
+      "revId": "565a1cc1500cf381b48d94395b08eb09d5098ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
