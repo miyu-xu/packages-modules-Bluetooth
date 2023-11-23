@@ -539,7 +539,10 @@ std::string CodecCapabilitiesLtvFormat(const uint8_t& type,
  */
 struct LeAudioCoreCodecConfig {
   static const std::map<uint8_t, uint32_t> sampling_freq_map;
+  static const std::map<uint32_t, uint8_t> sample_rate_map;
+
   static const std::map<uint8_t, uint32_t> frame_duration_map;
+  static const std::map<uint32_t, uint8_t> data_interval_map;
 
   std::optional<uint8_t> sampling_frequency;
   std::optional<uint8_t> frame_duration;
@@ -633,6 +636,40 @@ struct LeAudioCoreCodecCapabilities {
   std::optional<uint16_t> supported_max_octets_per_codec_frame;
   std::optional<uint8_t> supported_max_codec_frames_per_sdu;
 };
+
+#define LTV_ENTRY_SAMPLING_FREQUENCY(value)                 \
+  {                                                         \
+    le_audio::codec_spec_conf::kLeAudioLtvTypeSamplingFreq, \
+        std::vector<uint8_t>({(value)&0xFF})                \
+  }
+
+#define LTV_ENTRY_FRAME_DURATION(value)                      \
+  {                                                          \
+    le_audio::codec_spec_conf::kLeAudioLtvTypeFrameDuration, \
+        std::vector<uint8_t>({(value)&0xFF})                 \
+  }
+
+#define LTV_ENTRY_AUDIO_CHANNEL_ALLOCATION(value)                     \
+  {                                                                   \
+    le_audio::codec_spec_conf::kLeAudioLtvTypeAudioChannelAllocation, \
+        std::vector<uint8_t>({(uint8_t)(value)&0xFF,                  \
+                              (uint8_t)((value) << 8) & 0xFF,         \
+                              (uint8_t)((value) << 16) & 0xFF,        \
+                              (uint8_t)((value) << 24) & 0xFF})       \
+  }
+
+#define LTV_ENTRY_OCTETS_PER_CODEC_FRAME(value)                      \
+  {                                                                  \
+    le_audio::codec_spec_conf::kLeAudioLtvTypeOctetsPerCodecFrame,   \
+        std::vector<uint8_t>(                                        \
+            {(uint8_t)(value)&0xFF, (uint8_t)((value) << 8) & 0xFF}) \
+  }
+
+#define LTV_ENTRY_FRAME_BLOCKS_PER_SDU(value)                         \
+  {                                                                   \
+    le_audio::codec_spec_conf::kLeAudioLtvTypeCodecFrameBlocksPerSdu, \
+        std::vector<uint8_t>({(value)&0xFF})                          \
+  }
 
 class LeAudioLtvMap {
  public:
@@ -877,6 +914,50 @@ struct LeAudioCodecId {
   }
 };
 
+struct IsoDataPathConfiguration {
+  types::LeAudioCodecId codecId;
+  bool isTransparent;
+  uint32_t controllerDelayUs;
+  std::vector<uint8_t> configuration;
+
+  bool operator==(const IsoDataPathConfiguration& other) const {
+    if (codecId != other.codecId) return false;
+    if (isTransparent != other.isTransparent) return false;
+    if (controllerDelayUs != other.controllerDelayUs) return false;
+    if (configuration.size() != other.configuration.size()) return false;
+    if (memcmp(configuration.data(), other.configuration.data(),
+               other.configuration.size())) {
+      return false;
+    }
+    return true;
+  }
+
+  bool operator!=(const IsoDataPathConfiguration& other) const {
+    return !(*this == other);
+  }
+};
+
+struct DataPathConfiguration {
+  uint8_t dataPathId;
+  std::vector<uint8_t> dataPathConfig;
+  IsoDataPathConfiguration isoDataPathConfig;
+
+  bool operator==(const DataPathConfiguration& other) const {
+    if (dataPathId != other.dataPathId) return false;
+    if (isoDataPathConfig != other.isoDataPathConfig) return false;
+    if (dataPathConfig.size() != other.dataPathConfig.size()) return false;
+    if (memcmp(dataPathConfig.data(), other.dataPathConfig.data(),
+               other.dataPathConfig.size())) {
+      return false;
+    }
+    return true;
+  }
+
+  bool operator!=(const DataPathConfiguration& other) const {
+    return !(*this == other);
+  }
+};
+
 struct hdl_pair {
   hdl_pair() = default;
   hdl_pair(uint16_t val_hdl, uint16_t ccc_hdl)
@@ -1002,6 +1083,17 @@ struct CodecConfigSetting {
   /* Audio channels number for a device */
   uint8_t GetChannelCountPerIsoStream() const {
     return channel_count_per_iso_stream;
+  }
+
+  bool operator==(const CodecConfigSetting& other) const {
+    return (id == other.id) &&
+           (channel_count_per_iso_stream ==
+            other.channel_count_per_iso_stream) &&
+           (params == other.params);
+  }
+
+  bool operator!=(const CodecConfigSetting& other) const {
+    return !(*this == other);
   }
 
   /* TODO: Add vendor parameter or Ltv map viewers for
