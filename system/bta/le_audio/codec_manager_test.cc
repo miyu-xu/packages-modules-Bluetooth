@@ -20,6 +20,7 @@
 #include <gtest/gtest.h>
 
 #include "gd/common/init_flags.h"
+#include "internal_include/stack_config.h"
 #include "le_audio_set_configuration_provider.h"
 #include "mock_controller.h"
 #include "test/mock/mock_legacy_hci_interface.h"
@@ -51,7 +52,51 @@ const std::vector<AudioSetConfiguration>* offload_capabilities =
 
 const char* test_flags[] = {
     "INIT_default_log_level_str=LOG_VERBOSE",
+    nullptr,
 };
+
+const std::string kSmpOptions("mock smp options");
+bool get_pts_avrcp_test(void) { return false; }
+bool get_pts_secure_only_mode(void) { return false; }
+bool get_pts_conn_updates_disabled(void) { return false; }
+bool get_pts_crosskey_sdp_disable(void) { return false; }
+const std::string* get_pts_smp_options(void) { return &kSmpOptions; }
+int get_pts_smp_failure_case(void) { return 123; }
+bool get_pts_force_eatt_for_notifications(void) { return false; }
+bool get_pts_connect_eatt_unconditionally(void) { return false; }
+bool get_pts_connect_eatt_before_encryption(void) { return false; }
+bool get_pts_unencrypt_broadcast(void) { return false; }
+bool get_pts_eatt_peripheral_collision_support(void) { return false; }
+bool get_pts_force_le_audio_multiple_contexts_metadata(void) { return false; }
+bool get_pts_le_audio_disable_ases_before_stopping(void) { return false; }
+config_t* get_all(void) { return nullptr; }
+
+stack_config_t mock_stack_config{
+    .get_pts_avrcp_test = get_pts_avrcp_test,
+    .get_pts_secure_only_mode = get_pts_secure_only_mode,
+    .get_pts_conn_updates_disabled = get_pts_conn_updates_disabled,
+    .get_pts_crosskey_sdp_disable = get_pts_crosskey_sdp_disable,
+    .get_pts_smp_options = get_pts_smp_options,
+    .get_pts_smp_failure_case = get_pts_smp_failure_case,
+    .get_pts_force_eatt_for_notifications =
+        get_pts_force_eatt_for_notifications,
+    .get_pts_connect_eatt_unconditionally =
+        get_pts_connect_eatt_unconditionally,
+    .get_pts_connect_eatt_before_encryption =
+        get_pts_connect_eatt_before_encryption,
+    .get_pts_unencrypt_broadcast = get_pts_unencrypt_broadcast,
+    .get_pts_eatt_peripheral_collision_support =
+        get_pts_eatt_peripheral_collision_support,
+    .get_pts_force_le_audio_multiple_contexts_metadata =
+        get_pts_force_le_audio_multiple_contexts_metadata,
+    .get_pts_le_audio_disable_ases_before_stopping =
+        get_pts_le_audio_disable_ases_before_stopping,
+    .get_all = get_all,
+};
+
+const stack_config_t* stack_config_get_interface(void) {
+  return &mock_stack_config;
+}
 
 namespace bluetooth {
 namespace audio {
@@ -65,6 +110,47 @@ std::vector<AudioSetConfiguration> get_offload_capabilities() {
 
 namespace le_audio {
 namespace {
+
+static const types::LeAudioCodecId kLeAudioCodecIdLc3 = {
+    .coding_format = types::kLeAudioCodingFormatLC3,
+    .vendor_company_id = types::kLeAudioVendorCompanyIdUndefined,
+    .vendor_codec_id = types::kLeAudioVendorCodecIdUndefined};
+
+static const set_configurations::CodecConfigSetting hz16000 = {
+    .id = kLeAudioCodecIdLc3,
+    .params = types::LeAudioLtvMap({
+        LTV_ENTRY_SAMPLING_FREQUENCY(
+            codec_spec_conf::kLeAudioSamplingFreq16000Hz),
+    }),
+    .channel_count_per_iso_stream = 1,
+};
+
+static const set_configurations::CodecConfigSetting hz24000 = {
+    .id = kLeAudioCodecIdLc3,
+    .params = types::LeAudioLtvMap({
+        LTV_ENTRY_SAMPLING_FREQUENCY(
+            codec_spec_conf::kLeAudioSamplingFreq24000Hz),
+    }),
+    .channel_count_per_iso_stream = 1,
+};
+
+static const set_configurations::CodecConfigSetting hz32000 = {
+    .id = kLeAudioCodecIdLc3,
+    .params = types::LeAudioLtvMap({
+        LTV_ENTRY_SAMPLING_FREQUENCY(
+            codec_spec_conf::kLeAudioSamplingFreq32000Hz),
+    }),
+    .channel_count_per_iso_stream = 1,
+};
+
+static const set_configurations::CodecConfigSetting hz48000 = {
+    .id = kLeAudioCodecIdLc3,
+    .params = types::LeAudioLtvMap({
+        LTV_ENTRY_SAMPLING_FREQUENCY(
+            codec_spec_conf::kLeAudioSamplingFreq48000Hz),
+    }),
+    .channel_count_per_iso_stream = 1,
+};
 
 void set_mock_offload_capabilities(
     const std::vector<AudioSetConfiguration>& caps) {
@@ -88,7 +174,8 @@ class CodecManagerTestBase : public Test {
         .WillByDefault(Return(true));
 
     controller::SetMockControllerInterface(&controller_interface);
-    Mock::VerifyAndClearExpectations(&bluetooth::legacy::hci::testing::GetMock());
+    Mock::VerifyAndClearExpectations(
+        &bluetooth::legacy::hci::testing::GetMock());
 
     codec_manager = CodecManager::GetInstance();
   }
@@ -96,7 +183,8 @@ class CodecManagerTestBase : public Test {
   virtual void TearDown() override {
     codec_manager->Stop();
 
-    Mock::VerifyAndClearExpectations(&bluetooth::legacy::hci::testing::GetMock());
+    Mock::VerifyAndClearExpectations(
+        &bluetooth::legacy::hci::testing::GetMock());
     controller::SetMockControllerInterface(nullptr);
   }
 
@@ -287,7 +375,7 @@ TEST_F(CodecManagerTestAdsp, test_capabilities_none) {
   // Verify every context
   for (::le_audio::types::LeAudioContextType ctx_type :
        ::le_audio::types::kLeAudioContextAllTypesArray) {
-    ASSERT_EQ(nullptr, codec_manager->GetOffloadCodecConfig(ctx_type));
+    ASSERT_EQ(nullptr, codec_manager->GetCodecConfig(ctx_type));
   }
 }
 
@@ -313,7 +401,7 @@ TEST_F(CodecManagerTestAdsp, test_capabilities) {
                  bluetooth::le_audio::LE_AUDIO_CODEC_INDEX_SOURCE_LC3}};
     codec_manager->Start(offloading_preference);
 
-    auto cfg = codec_manager->GetOffloadCodecConfig(test_context);
+    auto cfg = codec_manager->GetCodecConfig(test_context);
     ASSERT_NE(nullptr, cfg);
     ASSERT_EQ(offload_capabilities.size(), cfg->size());
 
@@ -321,10 +409,6 @@ TEST_F(CodecManagerTestAdsp, test_capabilities) {
     codec_manager->Stop();
   }
 }
-
-// TODO: Add the unit tests for:
-// GetBroadcastOffloadConfig
-// UpdateBroadcastConnHandle
 
 /*----------------- HOST codec manager tests ------------------*/
 class CodecManagerTestHost : public CodecManagerTestBase {
@@ -368,6 +452,116 @@ TEST_F(CodecManagerTestHost, test_start) {
 
   ASSERT_EQ(codec_manager->GetCodecLocation(), CodecLocation::HOST);
 }
+
+TEST_F(CodecManagerTestHost, test_non_bidir_swb) {
+  const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
+      offloading_preference = {
+          {.codec_type = bluetooth::le_audio::LE_AUDIO_CODEC_INDEX_SOURCE_LC3}};
+  codec_manager->Start(offloading_preference);
+
+  // NON-SWB configs
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz16000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz16000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz24000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz16000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz16000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz24000)}}));
+
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz16000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz32000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz32000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz16000)}}));
+
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz24000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz24000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz24000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz32000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz32000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz24000)}}));
+
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+           types::kLeAudioDirectionSink, 1, 2, hz16000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+           types::kLeAudioDirectionSource, 1, 2, hz16000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+           types::kLeAudioDirectionSink, 1, 2, hz24000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+           types::kLeAudioDirectionSource, 1, 2, hz24000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+           types::kLeAudioDirectionSink, 1, 2, hz32000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+           types::kLeAudioDirectionSource, 1, 2, hz32000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+           types::kLeAudioDirectionSink, 1, 2, hz48000)}}));
+  ASSERT_FALSE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+           types::kLeAudioDirectionSource, 1, 2, hz48000)}}));
+}
+
+TEST_F(CodecManagerTestHost, test_bidir_swb) {
+  const std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
+      offloading_preference = {
+          {.codec_type = bluetooth::le_audio::LE_AUDIO_CODEC_INDEX_SOURCE_LC3}};
+  codec_manager->Start(offloading_preference);
+
+  // SWB configs
+  ASSERT_TRUE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz32000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz32000)}}));
+  ASSERT_TRUE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz48000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz32000)}}));
+  ASSERT_TRUE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz32000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz48000)}}));
+  ASSERT_TRUE(codec_manager->CheckCodecConfigIsBiDirSwb(
+      {.confs = {set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSink, 1, 2, hz48000),
+                 set_configurations::SetConfiguration(
+                     types::kLeAudioDirectionSource, 1, 2, hz48000)}}));
+}
+
+// TODO: Add the unit tests for:
+// UpdateSupportedBroadcastConfig
+// GetBroadcastConfig
+// UpdateBroadcastConnHandle
 
 }  // namespace
 }  // namespace le_audio

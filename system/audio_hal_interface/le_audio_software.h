@@ -25,7 +25,6 @@
 #include <functional>
 
 #include "bta/le_audio/codec_manager.h"
-#include "bta/le_audio/le_audio_types.h"
 #include "common/message_loop_thread.h"
 
 namespace bluetooth {
