@@ -180,6 +180,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "699e8642_8d372a6b",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-23T10:10:06Z",
+      "side": 1,
+      "message": "By reading the Core Spec. V5.3, Vol6, Part G \"ISOAL\", Sec.2, I\u0027m seeing a dependency to SDU interval:\n```\nSDUs sent to the upper layer by the ISOAL shall be given a sequence number\nwhich is initialized to 0 when the CIS or BIS is created. SDUs received by the\nISOAL from the upper layer shall be given a sequence number which is\ninitialized to 0 when the CIS or BIS is created. The upper layer may\nsynchronize its sequence number with the sequence number in the ISOAL\nonce the Datapath is configured and the link is established.\n\nThe sequence number shall be incremented for each SDU_Interval, whether or\nnot an SDU was received from or sent to the upper layer.\n```\nDid I get the spec wrong?",
+      "parentUuid": "615d648d_e18d68b7",
+      "range": {
+        "startLine": 561,
+        "startChar": 27,
+        "endLine": 561,
+        "endChar": 49
+      },
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1cb2fc56_3c860fe2",
         "filename": "system/stack/btm/btm_iso_impl.h",
         "patchSetId": 3

@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "101c8c7a_3bed9348",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-23T10:10:06Z",
+      "side": 1,
+      "message": "The `_ts_` in the function name stands for \"timestamp\". `_ts_` from the name can be removed if we remove the host-generated timestamps.",
+      "range": {
+        "startLine": 511,
+        "startChar": 18,
+        "endLine": 511,
+        "endChar": 20
+      },
+      "revId": "1c35ee99d13054b90b38184c836e34d907f31903",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
