@@ -19,6 +19,7 @@
 #include <base/location.h>
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
+#include <com_android_bluetooth_flags.h>
 #include <time.h>
 
 #include <chrono>
@@ -1441,6 +1442,17 @@ bluetooth::hci::AddressWithType shim::legacy::Acl::GetConnectionPeerAddress(uint
 std::optional<uint8_t> shim::legacy::Acl::GetAdvertisingSetConnectedTo(
         const RawAddress& remote_bda) {
   auto remote_address = ToGdAddress(remote_bda);
+  if (com::android::bluetooth::flags::use_le_shim_connection_map_guard()) {
+    std::unique_lock<std::mutex> lock(le_connection_map_guard_);
+
+    for (auto& [handle, connection] : pimpl_->handle_to_le_connection_map_) {
+      if (connection->GetRemoteAddressWithType().GetAddress() == remote_address) {
+        return connection->GetAdvertisingSetConnectedTo();
+      }
+    }
+    log::warn("address not found!");
+    return {};
+  }
   for (auto& [handle, connection] : pimpl_->handle_to_le_connection_map_) {
     if (connection->GetRemoteAddressWithType().GetAddress() == remote_address) {
       return connection->GetAdvertisingSetConnectedTo();
@@ -1458,17 +1470,33 @@ void shim::legacy::Acl::OnLeLinkDisconnected(HciHandle handle, hci::ErrorCode re
 
   TeardownTime teardown_time = std::chrono::system_clock::now();
 
-  pimpl_->handle_to_le_connection_map_.erase(handle);
-  TRY_POSTING_ON_MAIN(acl_interface_.connection.le.on_disconnected,
-                      ToLegacyHciErrorCode(hci::ErrorCode::SUCCESS), handle,
-                      ToLegacyHciErrorCode(reason));
-  log::debug("Disconnected le link remote:{} handle:{} reason:{}", remote_address_with_type, handle,
-             ErrorCodeText(reason));
-  BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(remote_address_with_type), "Disconnected",
-                 base::StringPrintf("Le reason:%s", ErrorCodeText(reason).c_str()));
-  pimpl_->connection_history_.Push(std::make_unique<LeConnectionDescriptor>(
-          remote_address_with_type, creation_time, teardown_time, handle, is_locally_initiated,
-          reason));
+  if (com::android::bluetooth::flags::use_le_shim_connection_map_guard()) {
+    std::unique_lock<std::mutex> lock(le_connection_map_guard_);
+
+    pimpl_->handle_to_le_connection_map_.erase(handle);
+    TRY_POSTING_ON_MAIN(acl_interface_.connection.le.on_disconnected,
+                        ToLegacyHciErrorCode(hci::ErrorCode::SUCCESS), handle,
+                        ToLegacyHciErrorCode(reason));
+    log::debug("Disconnected le link remote:{} handle:{} reason:{}", remote_address_with_type,
+               handle, ErrorCodeText(reason));
+    BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(remote_address_with_type), "Disconnected",
+                   base::StringPrintf("Le reason:%s", ErrorCodeText(reason).c_str()));
+    pimpl_->connection_history_.Push(std::make_unique<LeConnectionDescriptor>(
+            remote_address_with_type, creation_time, teardown_time, handle, is_locally_initiated,
+            reason));
+  } else {
+    pimpl_->handle_to_le_connection_map_.erase(handle);
+    TRY_POSTING_ON_MAIN(acl_interface_.connection.le.on_disconnected,
+                        ToLegacyHciErrorCode(hci::ErrorCode::SUCCESS), handle,
+                        ToLegacyHciErrorCode(reason));
+    log::debug("Disconnected le link remote:{} handle:{} reason:{}", remote_address_with_type,
+               handle, ErrorCodeText(reason));
+    BTM_LogHistory(kBtmLogTag, ToLegacyAddressWithType(remote_address_with_type), "Disconnected",
+                   base::StringPrintf("Le reason:%s", ErrorCodeText(reason).c_str()));
+    pimpl_->connection_history_.Push(std::make_unique<LeConnectionDescriptor>(
+            remote_address_with_type, creation_time, teardown_time, handle, is_locally_initiated,
+            reason));
+  }
 }
 
 void shim::legacy::Acl::OnConnectSuccess(
