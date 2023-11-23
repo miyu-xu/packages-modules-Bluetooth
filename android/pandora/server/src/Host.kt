@@ -106,8 +106,8 @@ class Host(
 ) : HostImplBase(), Closeable {
     private val TAG = "PandoraHost"
 
-    private val scope: CoroutineScope
-    private val flow: Flow<Intent>
+    public val scope: CoroutineScope
+    public val flow: Flow<Intent>
 
     private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
     private val bluetoothAdapter = bluetoothManager.adapter
@@ -141,48 +141,25 @@ class Host(
         scope.cancel()
     }
 
-    private suspend fun rebootBluetooth() {
-        Log.i(TAG, "rebootBluetooth")
-
-        val stateFlow =
-            flow
-                .filter { it.getAction() == BluetoothAdapter.ACTION_STATE_CHANGED }
-                .map { it.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) }
-
-        if (bluetoothAdapter.isEnabled) {
-            bluetoothAdapter.disable()
-            stateFlow.filter { it == BluetoothAdapter.STATE_OFF }.first()
-        }
-
-        // TODO: b/234892968
-        delay(3000L)
-
-        bluetoothAdapter.enable()
-        stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
-    }
-
     override fun factoryReset(request: Empty, responseObserver: StreamObserver<Empty>) {
         grpcUnary<Empty>(scope, responseObserver, 30) {
             Log.i(TAG, "factoryReset")
 
-            val stateFlow =
-                flow
-                    .filter { it.getAction() == BluetoothAdapter.ACTION_STATE_CHANGED }
-                    .map { it.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) }
-
+            // Clear all inner cache.
             initiatedConnection.clear()
             waitedAclConnection.clear()
             waitedAclDisconnection.clear()
 
+            // Clear all Bluetooth cache including bonds and enable back.
             bluetoothAdapter.clearBluetooth()
+            bluetoothAdapter.enable()
 
-            stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
-            // Delay to initialize the Bluetooth completely and to fix flakiness: b/266611263
-            delay(1000L)
+            // Kill Bluetooth.
+            shell("killall com.google.android.bluetooth")
+
             Log.i(TAG, "Shutdown the gRPC Server")
             server.shutdown()
 
-            // The last expression is the return value.
             Empty.getDefaultInstance()
         }
     }
@@ -190,11 +167,27 @@ class Host(
     override fun reset(request: Empty, responseObserver: StreamObserver<Empty>) {
         grpcUnary<Empty>(scope, responseObserver) {
             Log.i(TAG, "reset")
+
+            val stateFlow =
+                flow
+                    .filter { it.getAction() == BluetoothAdapter.ACTION_STATE_CHANGED }
+                    .map { it.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) }
+
+            // Clear all inner cache.
             initiatedConnection.clear()
             waitedAclConnection.clear()
             waitedAclDisconnection.clear()
 
-            rebootBluetooth()
+            // Kill Bluetooth.
+            shell("killall com.google.android.bluetooth")
+
+            // Disable Bluetooth and wait for `BluetoothAdapter.STATE_OFF`.
+            bluetoothAdapter.disable()
+            stateFlow.filter { it == BluetoothAdapter.STATE_OFF }.first()
+
+            // Enable Bluetooth and wait for `BluetoothAdapter.STATE_ON`.
+            bluetoothAdapter.enable()
+            stateFlow.filter { it == BluetoothAdapter.STATE_ON }.first()
 
             Empty.getDefaultInstance()
         }
