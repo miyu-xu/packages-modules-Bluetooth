@@ -254,10 +254,11 @@ struct rc_feature_cb_t {
 static std::promise<rc_connection_state_cb_t> g_btrc_connection_state_promise;
 static std::promise<rc_feature_cb_t> g_btrc_feature;
 
-class BtifRcFeatureTest : public BtifRcTest {
+class BtifRcWithCallbacksTest : public BtifRcTest {
  protected:
   void SetUp() override {
     BtifRcTest::SetUp();
+    btrc_ctrl_callbacks = default_btrc_ctrl_callbacks;
     init_ctrl(&btrc_ctrl_callbacks);
     jni_thread.StartUp();
     btrc_ctrl_callbacks.getrcfeatures_cb = [](const RawAddress& bd_addr,
@@ -274,11 +275,12 @@ class BtifRcFeatureTest : public BtifRcTest {
     jni_thread.ShutDown();
     bt_rc_ctrl_callbacks->getrcfeatures_cb = [](const RawAddress& bd_addr,
                                                 int features) {};
+    btrc_ctrl_callbacks = default_btrc_ctrl_callbacks;
     BtifRcTest::TearDown();
   }
 };
 
-TEST_F(BtifRcFeatureTest, handle_rc_ctrl_features) {
+TEST_F(BtifRcWithCallbacksTest, handle_rc_ctrl_features) {
   AVRC_BldCmd_ = 0;
   g_btrc_feature = std::promise<rc_feature_cb_t>();
   std::future<rc_feature_cb_t> future = g_btrc_feature.get_future();
@@ -421,6 +423,8 @@ TEST_F(BtifRcConnectionTest, btif_rc_check_pending_cmd) {
 TEST_F(BtifRcConnectionTest, bt_av_rc_open_evt) {
   btrc_ctrl_callbacks.get_cover_art_psm_cb = [](const RawAddress& bd_addr,
                                                 const uint16_t psm) {};
+  btrc_ctrl_callbacks.getrcfeatures_cb = [](const RawAddress& bd_addr,
+                                            int features) {};
   /* handle_rc_connect  */
   tBTA_AV data = {
       .rc_open =
