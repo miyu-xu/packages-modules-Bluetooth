@@ -210,6 +210,30 @@
       },
       "revId": "53fcc1c5c9856476396ef65fe149c4a109c06b79",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a438a094_b060381c",
+        "filename": "system/btif/include/btif_common.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-23T20:29:48Z",
+      "side": 1,
+      "message": "Yes, I\u0027m making it all into copies, as I got comments it doesn\u0027t save any space to send pointers.",
+      "parentUuid": "d1903e85_34cbd077",
+      "range": {
+        "startLine": 239,
+        "startChar": 27,
+        "endLine": 239,
+        "endChar": 45
+      },
+      "revId": "53fcc1c5c9856476396ef65fe149c4a109c06b79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
