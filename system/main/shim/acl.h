@@ -140,6 +140,7 @@ class Acl : public hci::acl_manager::ConnectionCallbacks,
 
   struct impl;
   std::unique_ptr<impl> pimpl_;
+  mutable std::mutex le_connection_map_guard_;
 };
 
 }  // namespace legacy
