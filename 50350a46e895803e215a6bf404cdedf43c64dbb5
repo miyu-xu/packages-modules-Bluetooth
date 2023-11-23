@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b910a224_6d0165b9",
+        "filename": "system/bta/le_audio/device_groups.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1770,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-23T13:03:52Z",
+      "side": 1,
+      "message": "Where is the logic to add to BG list if direct connect attempt fails ? I don\u0027t see it in this patch, was it already present for other flows ?\n\nIf you add, then fail, then re-add, you keep making changes to accept list, which require starting/stopping all scan/adv operations.\n\nI would be a big fan of instead having a \"Bump Connection Parameters\" method, that would increase params for 30s for such cases.",
+      "range": {
+        "startLine": 1765,
+        "startChar": 0,
+        "endLine": 1770,
+        "endChar": 7
+      },
+      "revId": "50350a46e895803e215a6bf404cdedf43c64dbb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
