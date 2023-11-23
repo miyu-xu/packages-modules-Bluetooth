@@ -1273,6 +1273,11 @@ impl BluetoothMedia {
         };
 
         debug!("[{}]: UHID: Telephony use: {}", DisplayAddress(&addr), state);
+        if state == false {
+            // Remove all pending calls on telephony use release
+            self.hangup_call_impl();
+            self.phone_state_change("".into());
+        }
         self.telephony_callbacks.lock().unwrap().for_all_callbacks(|callback| {
             callback.on_telephony_use(address.to_string(), state);
         });
