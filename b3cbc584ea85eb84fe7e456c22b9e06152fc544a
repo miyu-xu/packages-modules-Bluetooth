@@ -105,6 +105,30 @@
       },
       "revId": "b3cbc584ea85eb84fe7e456c22b9e06152fc544a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a45f410c_7f8432a9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2265,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-11-23T20:36:28Z",
+      "side": 1,
+      "message": "I would perfer to have the conversational as well. You could consider it with the other patch.",
+      "parentUuid": "140b031c_da2a7ef0",
+      "range": {
+        "startLine": 2265,
+        "startChar": 79,
+        "endLine": 2265,
+        "endChar": 97
+      },
+      "revId": "b3cbc584ea85eb84fe7e456c22b9e06152fc544a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
