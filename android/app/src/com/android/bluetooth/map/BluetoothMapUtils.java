@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.database.Cursor;
 import android.util.Base64;
 import android.util.Log;
@@ -39,6 +40,7 @@ import java.util.regex.Pattern;
 /**
  * Various utility methods and generic defines that can be used throughout MAPS
  */
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 11
 public class BluetoothMapUtils {
 
     private static final String TAG = "BluetoothMapUtils";
@@ -296,6 +298,8 @@ public class BluetoothMapUtils {
             if (D) {
                 Log.e(TAG, " Invalid messageType input");
             }
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 0);
         }
         return mapHandle;
 
@@ -425,6 +429,8 @@ public class BluetoothMapUtils {
         try {
             System.arraycopy(utf8String.getBytes("UTF-8"), 0, utf8Bytes, 0, utf8String.length());
         } catch (UnsupportedEncodingException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 1);
             Log.e(TAG, "truncateUtf8StringToBytearray: getBytes exception ", e);
             throw e;
         }
@@ -516,12 +522,18 @@ public class BluetoothMapUtils {
                         Log.d(TAG, "StripEncoding: decoded string : " + str);
                         in = in.replace(match, str);
                     } catch (UnsupportedEncodingException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 2);
                         Log.e(TAG, "stripEncoding: Unsupported charset: " + charset);
                     } catch (IllegalArgumentException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 3);
                         Log.e(TAG, "stripEncoding: string not encoded as base64: " + encodedText);
                     }
                 } else {
                     Log.e(TAG, "stripEncoding: Hit unknown encoding: " + encoding);
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 4);
                 }
             }
         }
@@ -542,6 +554,8 @@ public class BluetoothMapUtils {
         try {
             input = text.getBytes("US-ASCII");
         } catch (UnsupportedEncodingException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 5);
             /* This cannot happen as "US-ASCII" is supported for all Java implementations */
         }
 
@@ -597,6 +611,8 @@ public class BluetoothMapUtils {
                 }
                 Log.w(TAG, "Received wrongly quoted printable encoded text. "
                         + "Continuing at best effort...");
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 6);
                 /* If we get a '=' without either a hex value or CRLF following, just add it and
                  * rewind the in counter. */
                 output[out++] = b0;
@@ -626,6 +642,8 @@ public class BluetoothMapUtils {
                     charset = "UTF-8";
                 }
             } catch (IllegalCharsetNameException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 7);
                 Log.w(TAG, "Received unknown charset: " + charset + " - using UTF-8.");
                 charset = "UTF-8";
             }
@@ -633,10 +651,14 @@ public class BluetoothMapUtils {
         try {
             result = new String(output, 0, out, charset);
         } catch (UnsupportedEncodingException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 8);
             /* This cannot happen unless Charset.isSupported() is out of sync with String */
             try {
                 result = new String(output, 0, out, "UTF-8");
             } catch (UnsupportedEncodingException e2) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 9);
                 Log.e(TAG, "quotedPrintableToUtf8: " + e);
             }
         }
@@ -691,6 +713,8 @@ public class BluetoothMapUtils {
         try {
             return buffer.toString("UTF-8");
         } catch (UnsupportedEncodingException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_UTILS, 10);
             //cannot happen
             return "";
         }

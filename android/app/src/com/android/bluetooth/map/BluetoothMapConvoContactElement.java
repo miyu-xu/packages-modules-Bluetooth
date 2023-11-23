@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.util.Log;
 
 import com.android.bluetooth.SignedLongLong;
@@ -28,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 1
 public class BluetoothMapConvoContactElement
         implements Comparable<BluetoothMapConvoContactElement> {
 
@@ -85,6 +87,8 @@ public class BluetoothMapConvoContactElement
             try {
                 this.mBtUid = SignedLongLong.fromString(btUid);
             } catch (UnsupportedEncodingException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_CONVO_CONTACT_ELEMENT, 0);
                 Log.w(TAG, e);
             }
         }

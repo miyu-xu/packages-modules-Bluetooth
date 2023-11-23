@@ -16,6 +16,7 @@ package com.android.bluetooth.map;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothProtoEnums;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
@@ -39,6 +40,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 4
 public class BluetoothMapMasInstance implements IObexConnectionHandler {
     @VisibleForTesting
     final String mTag;
@@ -305,6 +307,8 @@ public class BluetoothMapMasInstance implements IObexConnectionHandler {
             if (mServerSockets == null) {
                 // TODO: Handle - was not handled before
                 Log.e(mTag, "Failed to start the listeners");
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_MAS_INSTANCE, 0);
                 return;
             }
             removeSdpRecord();
@@ -483,6 +487,8 @@ public class BluetoothMapMasInstance implements IObexConnectionHandler {
             try {
                 mConnSocket.close();
             } catch (IOException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_MAS_INSTANCE, 1);
                 Log.e(mTag, "Close Connection Socket error: ", e);
             } finally {
                 mConnSocket = null;
@@ -541,8 +547,12 @@ public class BluetoothMapMasInstance implements IObexConnectionHandler {
         mServerSockets = null; // Will cause a new to be created when calling start.
         if (mShutdown) {
             Log.e(mTag, "Failed to accept incomming connection - " + "shutdown");
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_MAS_INSTANCE, 2);
         } else {
             Log.e(mTag, "Failed to accept incomming connection - " + "restarting");
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_MAS_INSTANCE, 3);
             startSocketListeners();
         }
     }

@@ -14,11 +14,13 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 1
 public class BluetoothMapbMessageEmail extends BluetoothMapbMessage {
 
     private String mEmailBody = null;
@@ -64,6 +66,8 @@ public class BluetoothMapbMessageEmail extends BluetoothMapbMessage {
             bodyFragments.add(tmpBody.getBytes("UTF-8"));
         } else {
             Log.e(TAG, "Email has no body - this should not be possible");
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_BMESSAGE_EMAIL, 0);
             bodyFragments.add(new byte[0]); // An empty message - this should not be possible
         }
         return encodeGeneric(bodyFragments);

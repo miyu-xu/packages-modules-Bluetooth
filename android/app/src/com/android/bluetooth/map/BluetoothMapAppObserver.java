@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -32,12 +33,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Class to construct content observers for for email applications on the system.
- *
- *
- */
-
+/** Class to construct content observers for email applications on the system. */
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 6
 public class BluetoothMapAppObserver {
 
     private static final String TAG = "BluetoothMapAppObserver";
@@ -168,7 +165,8 @@ public class BluetoothMapAppObserver {
 
         } else {
             Log.e(TAG, "Received change notification on package not registered for notifications!");
-
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_APP_OBSERVER, 0);
         }
     }
 
@@ -183,27 +181,34 @@ public class BluetoothMapAppObserver {
         if (V) {
             Log.d(TAG, "registerObserver for URI " + uri.toString() + "\n");
         }
-        ContentObserver observer = new ContentObserver(null) {
-            @Override
-            public void onChange(boolean selfChange) {
-                onChange(selfChange, null);
-            }
+        ContentObserver observer =
+                new ContentObserver(null) {
+                    @Override
+                    public void onChange(boolean selfChange) {
+                        onChange(selfChange, null);
+                    }
 
-            @Override
-            public void onChange(boolean selfChange, Uri uri) {
-                if (V) {
-                    Log.d(TAG,
-                            "onChange on thread: " + Thread.currentThread().getId() + " Uri: " + uri
-                                    + " selfchange: " + selfChange);
-                }
-                if (uri != null) {
-                    handleAccountChanges(uri.getHost());
-                } else {
-                    Log.e(TAG, "Unable to handle change as the URI is NULL!");
-                }
-
-            }
-        };
+                    @Override
+                    public void onChange(boolean selfChange, Uri uri) {
+                        if (V) {
+                            Log.d(
+                                    TAG,
+                                    "onChange on thread: "
+                                            + Thread.currentThread().getId()
+                                            + " Uri: "
+                                            + uri
+                                            + " selfchange: "
+                                            + selfChange);
+                        }
+                        if (uri != null) {
+                            handleAccountChanges(uri.getHost());
+                        } else {
+                            Log.e(TAG, "Unable to handle change as the URI is NULL!");
+                            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                                    BluetoothProtoEnums.BLUETOOTH_MAP_APP_OBSERVER, 1);
+                        }
+                    }
+                };
         mObserverMap.put(uri.toString(), observer);
         //False "notifyForDescendents" : Get notified whenever a change occurs to the exact URI.
         mResolver.registerContentObserver(uri, false, observer);
@@ -334,6 +339,8 @@ public class BluetoothMapAppObserver {
                 mContext.registerReceiver(mReceiver, intentFilter);
                 mRegisteredReceiver = true;
             } catch (Exception e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_APP_OBSERVER, 2);
                 Log.e(TAG, "Unable to register MapAppObserver receiver", e);
             }
         }
@@ -348,6 +355,8 @@ public class BluetoothMapAppObserver {
                 mRegisteredReceiver = false;
                 mContext.unregisterReceiver(mReceiver);
             } catch (Exception e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_APP_OBSERVER, 3);
                 Log.e(TAG, "Unable to unregister mapAppObserver receiver", e);
             }
         }
@@ -374,9 +383,13 @@ public class BluetoothMapAppObserver {
                     }
                 } else {
                     Log.w(TAG, "getEnabledAccountItems() - No AccountList enabled\n");
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_APP_OBSERVER, 4);
                 }
             } else {
                 Log.w(TAG, "getEnabledAccountItems() - No Account in App enabled\n");
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_APP_OBSERVER, 5);
             }
         }
         return list;

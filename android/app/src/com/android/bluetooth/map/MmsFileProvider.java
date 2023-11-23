@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -33,9 +34,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Provider to let the MMS subsystem read data from it own database from another process.
- * Workaround for missing access to sendStoredMessage().
+ * Provider to let the MMS subsystem read data from it own database from another process. Workaround
+ * for missing access to sendStoredMessage().
  */
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 5
 public class MmsFileProvider extends ContentProvider {
     static final String TAG = "BluetoothMmsFileProvider";
     private PipeWriter mPipeWriter = new PipeWriter();
@@ -88,6 +90,8 @@ public class MmsFileProvider extends ContentProvider {
         try {
             long id = Long.parseLong(idStr);
         } catch (NumberFormatException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.MMS_FILE_PROVIDER, 0);
             Log.w(TAG, e);
             throw new FileNotFoundException("Unable to extract message handle from: " + uri);
         }
@@ -122,11 +126,15 @@ public class MmsFileProvider extends ContentProvider {
                 fout.write(bytes);
 
             } catch (IOException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.MMS_FILE_PROVIDER, 1);
                 Log.w(TAG, e);
                 /* TODO: How to signal the error to the calling entity? Had expected writeDataToPipe
                  *       to throw IOException?
                  */
             } catch (MmsException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.MMS_FILE_PROVIDER, 2);
                 Log.w(TAG, e);
                 /* TODO: How to signal the error to the calling entity? Had expected writeDataToPipe
                  *       to throw IOException?
@@ -138,11 +146,15 @@ public class MmsFileProvider extends ContentProvider {
                 try {
                     fout.flush();
                 } catch (IOException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.MMS_FILE_PROVIDER, 3);
                     Log.w(TAG, "IOException: ", e);
                 }
                 try {
                     fout.close();
                 } catch (IOException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.MMS_FILE_PROVIDER, 4);
                     Log.w(TAG, "IOException: ", e);
                 }
             }

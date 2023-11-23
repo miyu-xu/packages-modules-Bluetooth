@@ -15,6 +15,7 @@
 
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -36,6 +37,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 1
 public class BluetoothMapAccountLoader {
     private static final String TAG = "BluetoothMapAccountLoader";
     private static final boolean D = BluetoothMapService.DEBUG;
@@ -178,6 +180,8 @@ public class BluetoothMapAccountLoader {
                         null, BluetoothMapContract.AccountColumns._ID + " DESC");
             }
         } catch (RemoteException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_ACCOUNT_LOADER, 0);
             if (D) {
                 Log.d(TAG, "Could not establish ContentProviderClient for " + app.getPackageName()
                         + " - returning empty account list");

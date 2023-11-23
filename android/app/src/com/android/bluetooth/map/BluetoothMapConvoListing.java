@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.util.Log;
 import android.util.Xml;
 
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 3
 public class BluetoothMapConvoListing {
     private boolean mHasUnread = false;
     private static final String TAG = "BluetoothMapConvoListing";
@@ -105,10 +107,16 @@ public class BluetoothMapConvoListing {
             xmlConvoElement.endTag(null, XML_TAG);
             xmlConvoElement.endDocument();
         } catch (IllegalArgumentException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_CONVO_LISTING, 0);
             Log.w(TAG, e);
         } catch (IllegalStateException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_CONVO_LISTING, 1);
             Log.w(TAG, e);
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_CONVO_LISTING, 2);
             Log.w(TAG, e);
         }
         return sw.toString().getBytes("UTF-8");

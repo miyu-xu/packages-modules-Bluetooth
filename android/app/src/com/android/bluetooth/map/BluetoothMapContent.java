@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -59,6 +60,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 15
 public class BluetoothMapContent {
 
     private static final String TAG = "BluetoothMapContent";
@@ -456,6 +458,8 @@ public class BluetoothMapContent {
                 c.close();
             }
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 0);
             Log.w(TAG, e);
         }
     }
@@ -1722,6 +1726,8 @@ public class BluetoothMapContent {
             where = BluetoothMapContract.MessageColumns.FOLDER_ID + " = " + folderId;
         } else {
             Log.e(TAG, "setWhereFilterFolderTypeEmail: not valid!");
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 1);
             throw new IllegalArgumentException("Invalid folder ID");
         }
         return where;
@@ -1733,6 +1739,8 @@ public class BluetoothMapContent {
             where = BluetoothMapContract.MessageColumns.FOLDER_ID + " = " + folderId;
         } else {
             Log.e(TAG, "setWhereFilterFolderTypeIm: not valid!");
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 2);
             throw new IllegalArgumentException("Invalid folder ID");
         }
         return where;
@@ -3195,6 +3203,8 @@ public class BluetoothMapContent {
                     // TODO: Not sure this is how to convert to UTF-8
                     summary = new String(summary.getBytes(cs), "UTF-8");
                 } catch (UnsupportedEncodingException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 3);
                     Log.e(TAG, "populateSmsMmsConvoElement: " + e);
                 }
             }
@@ -3381,6 +3391,8 @@ public class BluetoothMapContent {
                 }
                 foundContact = true;
             } catch (NumberFormatException ex) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 4);
                 // skip this id
                 continue;
             }
@@ -3697,6 +3709,8 @@ public class BluetoothMapContent {
             }
             retVal = os.toByteArray();
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 5);
             // do nothing for now
             Log.w(TAG, "Error reading part data", e);
         } finally {
@@ -3777,6 +3791,8 @@ public class BluetoothMapContent {
                             text = sb.toString();
                             part.mContentType = "text";
                         } catch (UnsupportedEncodingException e) {
+                            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                    BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 6);
                             Log.d(TAG, "extractMmsParts", e);
                         }
                     }
@@ -3794,10 +3810,14 @@ public class BluetoothMapContent {
                             }
                         }
                     } catch (NumberFormatException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 7);
                         Log.d(TAG, "extractMmsParts", e);
                         part.mData = null;
                         part.mCharsetName = null;
                     } catch (UnsupportedEncodingException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 8);
                         Log.d(TAG, "extractMmsParts", e);
                         part.mData = null;
                         part.mCharsetName = null;
@@ -3925,6 +3945,8 @@ public class BluetoothMapContent {
                             // TODO: request message from server
                             Log.w(TAG, "getEmailMessage - receptionState not COMPLETE -  Not "
                                     + "Implemented!");
+                            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                                    BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 9);
                         }
                     }
                     // Set read status:
@@ -4015,10 +4037,16 @@ public class BluetoothMapContent {
                     // Set email message body:
                     message.setEmailBody(email.toString());
                 } catch (FileNotFoundException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 10);
                     Log.w(TAG, e);
                 } catch (NullPointerException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 11);
                     Log.w(TAG, e);
                 } catch (IOException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 12);
                     Log.w(TAG, e);
                 } finally {
                     try {
@@ -4026,6 +4054,8 @@ public class BluetoothMapContent {
                             is.close();
                         }
                     } catch (IOException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 13);
                         Log.w(TAG, e);
                     }
                     try {
@@ -4033,6 +4063,8 @@ public class BluetoothMapContent {
                             fd.close();
                         }
                     } catch (IOException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_CONTENT, 14);
                         Log.w(TAG, e);
                     }
                 }

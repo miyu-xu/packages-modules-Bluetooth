@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.util.Log;
 
 import com.android.bluetooth.SignedLongLong;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 2
 public class BluetoothMapConvoListingElement
         implements Comparable<BluetoothMapConvoListingElement> {
 
@@ -93,6 +95,8 @@ public class BluetoothMapConvoListingElement
         try {
             this.mVersionCounter = Long.parseLong(vcount);
         } catch (NumberFormatException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_CONVO_LISTING_ELEMENT, 0);
             Log.w(TAG, "unable to parse XML versionCounter:" + vcount);
             mVersionCounter = -1;
         }
@@ -228,6 +232,8 @@ public class BluetoothMapConvoListingElement
             try {
                 return BluetoothMapUtils.truncateUtf8StringToString(mSummary, 256);
             } catch (UnsupportedEncodingException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_CONVO_LISTING_ELEMENT, 1);
                 // This cannot happen on an Android platform - UTF-8 is mandatory
                 Log.e(TAG, "Missing UTF-8 support on platform", e);
             }

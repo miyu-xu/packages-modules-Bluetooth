@@ -16,6 +16,7 @@ package com.android.bluetooth.map;
 
 import static android.telephony.TelephonyManager.PHONE_TYPE_CDMA;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.content.Context;
 import android.telephony.PhoneNumberUtils;
 import android.telephony.SmsManager;
@@ -35,6 +36,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 10
 public class BluetoothMapSmsPdu {
 
     private static final String TAG = "BluetoothMapSmsPdu";
@@ -190,6 +192,8 @@ public class BluetoothMapSmsPdu {
                 }
                 pdu.close();
             } catch (Exception e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 0);
                 Log.e(TAG, "cdmaGetParameterOffset: ", e);
             }
 
@@ -225,6 +229,8 @@ public class BluetoothMapSmsPdu {
                 }
                 pdu.close();
             } catch (Exception e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 1);
                 Log.e(TAG, "cdmaGetParameterOffset: ", e);
             }
 
@@ -346,6 +352,8 @@ public class BluetoothMapSmsPdu {
                     try {
                         pdu.read(udh);
                     } catch (IOException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 2);
                         Log.w(TAG, "unable to read userDataHeader", e);
                     }
                     int[] tableValue = getTableFromByteArray(udh);
@@ -458,6 +466,8 @@ public class BluetoothMapSmsPdu {
                 newPdu.write(mData, gsmSubmitGetTpUdOffset(),
                         mData.length - gsmSubmitGetTpUdOffset());
             } catch (IOException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 3);
                 Log.e(TAG, "", e);
                 throw new IllegalArgumentException("Failed to change type to deliver PDU.");
             }
@@ -656,6 +666,8 @@ public class BluetoothMapSmsPdu {
             if (userDataCompressed) {
                 Log.w(TAG, "4 - Unsupported SMS data coding scheme " + "(compression) " + (
                         dataCodingScheme & 0xff));
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 4);
             } else {
                 switch ((dataCodingScheme >> 2) & 0x3) {
                     case 0: // GSM 7 bit default alphabet
@@ -670,6 +682,8 @@ public class BluetoothMapSmsPdu {
                     case 3: // reserved
                         Log.w(TAG, "1 - Unsupported SMS data coding scheme " + (dataCodingScheme
                                 & 0xff));
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 5);
                         encodingType = SmsConstants.ENCODING_8BIT;
                         break;
                 }
@@ -709,9 +723,13 @@ public class BluetoothMapSmsPdu {
                 encodingType = SmsConstants.ENCODING_KSC5601;
             } else {
                 Log.w(TAG, "5 - Unsupported SMS data coding scheme " + (dataCodingScheme & 0xff));
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 6);
             }
         } else {
             Log.w(TAG, "3 - Unsupported SMS data coding scheme " + (dataCodingScheme & 0xff));
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 7);
         }
 
         pdu.setEncoding(encodingType);
@@ -722,6 +740,8 @@ public class BluetoothMapSmsPdu {
                 case SmsConstants.ENCODING_UNKNOWN:
                 case SmsConstants.ENCODING_8BIT:
                     Log.w(TAG, "Unknown encoding type: " + encodingType);
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 8);
                     messageBody = null;
                     break;
 
@@ -747,6 +767,8 @@ public class BluetoothMapSmsPdu {
                     break;
             }
         } catch (UnsupportedEncodingException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_SMS_PDU, 9);
             Log.e(TAG, "Unsupported encoding type???", e); // This should never happen.
             return null;
         }

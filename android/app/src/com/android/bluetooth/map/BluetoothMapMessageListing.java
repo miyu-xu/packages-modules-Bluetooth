@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.util.Log;
 import android.util.Xml;
 
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 3
 public class BluetoothMapMessageListing {
     private boolean mHasUnread = false;
     private static final String TAG = "BluetoothMapMessageListing";
@@ -121,10 +123,16 @@ public class BluetoothMapMessageListing {
             xmlMsgElement.endTag(null, "MAP-msg-listing");
             xmlMsgElement.endDocument();
         } catch (IllegalArgumentException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_MESSAGE_LISTING, 0);
             Log.w(TAG, e);
         } catch (IllegalStateException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_MESSAGE_LISTING, 1);
             Log.w(TAG, e);
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_MESSAGE_LISTING, 2);
             Log.w(TAG, e);
         }
         /* Fix IOT issue to replace '&amp;' by '&', &lt; by < and '&gt; by '>' in MessageListing */

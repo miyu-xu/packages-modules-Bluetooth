@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.content.ContentProviderClient;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -46,6 +47,7 @@ import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Calendar;
 
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 74
 public class BluetoothMapObexServer extends ServerRequestHandler {
 
     private static final String TAG = "BluetoothMapObexServer";
@@ -355,16 +357,22 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
 
             if (uuid.length != UUID_LENGTH) {
                 Log.w(TAG, "Wrong UUID length");
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 0);
                 return ResponseCodes.OBEX_HTTP_NOT_ACCEPTABLE;
             }
             for (int i = 0; i < UUID_LENGTH; i++) {
                 if (uuid[i] != MAP_TARGET[i]) {
                     Log.w(TAG, "Wrong UUID");
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 1);
                     return ResponseCodes.OBEX_HTTP_NOT_ACCEPTABLE;
                 }
             }
             reply.setHeader(HeaderSet.WHO, uuid);
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 2);
             Log.e(TAG, "Exception during onConnect:", e);
             return ResponseCodes.OBEX_HTTP_INTERNAL_ERROR;
         }
@@ -385,6 +393,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 reply.setHeader(THREADED_MAIL_HEADER_ID, THREAD_MAIL_KEY);
             }
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 3);
             Log.e(TAG, "Exception during onConnect:", e);
             mThreadIdSupport = false;
             return ResponseCodes.OBEX_HTTP_INTERNAL_ERROR;
@@ -492,6 +502,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 }
                 if (!isUserUnlocked()) {
                     Log.e(TAG, "Storage locked, " + type + " failed");
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 4);
                     return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
                 }
                 mObserver.setNotificationFilter(appParams.getNotificationFilter());
@@ -505,6 +517,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 }
                 if (!isUserUnlocked()) {
                     Log.e(TAG, "Storage locked, " + type + " failed");
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 5);
                     return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
                 }
                 return setMessageStatus(name, appParams);
@@ -517,6 +531,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 }
                 if (!isUserUnlocked()) {
                     Log.e(TAG, "Storage locked, " + type + " failed");
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 6);
                     return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
                 }
                 return pushMessage(op, name, appParams, mMessageVersion);
@@ -533,15 +549,20 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             }
 
         } catch (RemoteException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 7);
             //reload the providerClient and return error
             try {
                 mProviderClient = acquireUnstableContentProviderOrThrow();
             } catch (RemoteException e2) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 8);
                 //should not happen
             }
             return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
         } catch (Exception e) {
-
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 9);
             if (D) {
                 Log.e(TAG, "Exception occured while handling request", e);
             } else {
@@ -604,15 +625,21 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                         return ResponseCodes.OBEX_HTTP_NOT_IMPLEMENTED;
                     }
                 } catch (RemoteException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 10);
                     mProviderClient = acquireUnstableContentProviderOrThrow();
                     return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
                 } catch (NullPointerException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 11);
                     if (D) {
                         Log.e(TAG, "UpdateInbox - if uri or method is null", e);
                     }
                     return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
 
                 } catch (IllegalArgumentException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 12);
                     if (D) {
                         Log.e(TAG, "UpdateInbox - if uri is not known", e);
                     }
@@ -659,6 +686,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             BluetoothMapFolderElement folderElement = getFolderElementFromName(folderName);
             if (folderElement == null) {
                 Log.w(TAG, "pushMessage: folderElement == null - sending OBEX_HTTP_PRECON_FAILED");
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 13);
                 return ResponseCodes.OBEX_HTTP_PRECON_FAILED;
             } else {
                 folderName = folderElement.getName();
@@ -704,6 +733,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 if (D) {
                     Log.w(TAG, "mObserver or parsed message not available");
                 }
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 14);
                 return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
             }
 
@@ -714,6 +745,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 if (D) {
                     Log.w(TAG, "Wrong message type recieved");
                 }
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 15);
                 return ResponseCodes.OBEX_HTTP_NOT_ACCEPTABLE;
             }
 
@@ -725,6 +758,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 if (D) {
                     Log.w(TAG, "Message  handle not created");
                 }
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 16);
                 return ResponseCodes.OBEX_HTTP_UNAVAILABLE; // Should not happen.
             }
             HeaderSet replyHeaders = new HeaderSet();
@@ -736,10 +771,14 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             op.sendHeaders(replyHeaders);
 
         } catch (RemoteException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 17);
             //reload the providerClient and return error
             try {
                 mProviderClient = acquireUnstableContentProviderOrThrow();
             } catch (RemoteException e2) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 18);
                 //should not happen
                 if (D) {
                     Log.w(TAG, "acquireUnstableContentProviderOrThrow FAILED");
@@ -747,11 +786,15 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             }
             return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
         } catch (IllegalArgumentException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 19);
             if (D) {
                 Log.e(TAG, "Wrongly formatted bMessage received", e);
             }
             return ResponseCodes.OBEX_HTTP_PRECON_FAILED;
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 20);
             if (D) {
                 Log.e(TAG, "Exception occured: ", e);
             }
@@ -764,6 +807,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
             }
         } catch (Exception e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 21);
             if (D) {
                 Log.e(TAG, "Exception:", e);
             }
@@ -773,6 +818,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 try {
                     bMsgStream.close();
                 } catch (IOException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 22);
                     if (D) Log.d(TAG, "", e);
                 }
             }
@@ -799,6 +846,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             if (D) {
                 Log.e(TAG, "Error: no mObserver!");
             }
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 23);
             return ResponseCodes.OBEX_HTTP_UNAVAILABLE; // Should not happen.
         }
 
@@ -809,9 +858,13 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 Log.d(TAG, "setMessageStatus. Handle:" + handle + ", MsgType: " + msgType);
             }
         } catch (NumberFormatException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 24);
             Log.w(TAG, "Wrongly formatted message handle: " + msgHandle);
             return ResponseCodes.OBEX_HTTP_PRECON_FAILED;
         } catch (IllegalArgumentException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 25);
             Log.w(TAG, "Message type not found in handle string: " + msgHandle);
             return ResponseCodes.OBEX_HTTP_PRECON_FAILED;
         }
@@ -822,6 +875,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 if (D) {
                     Log.w(TAG, "setMessageStatusDeleted failed");
                 }
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 26);
                 return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
             }
         } else if (indicator == BluetoothMapAppParams.STATUS_INDICATOR_READ) {
@@ -830,9 +885,13 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                     if (D) {
                         Log.w(TAG, "not able to update the message");
                     }
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 27);
                     return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
                 }
             } catch (RemoteException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 28);
                 if (D) {
                     Log.w(TAG, "Error in setMessageStatusRead()", e);
                 }
@@ -898,14 +957,20 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                     return ResponseCodes.OBEX_HTTP_NOT_IMPLEMENTED;
                 }
             } catch (RemoteException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 29);
                 mProviderClient = acquireUnstableContentProviderOrThrow();
                 return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
             } catch (NullPointerException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 30);
                 if (D) {
                     Log.e(TAG, "setOwnerStatus - if uri or method is null", e);
                 }
                 return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
             } catch (IllegalArgumentException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 31);
                 if (D) {
                     Log.e(TAG, "setOwnerStatus - if uri is not known", e);
                 }
@@ -924,6 +989,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
         try {
             folderName = (String) request.getHeader(HeaderSet.NAME);
         } catch (Exception e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 32);
             if (D) {
                 Log.e(TAG, "request headers error", e);
             } else {
@@ -1051,6 +1118,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 }
                 if (!isUserUnlocked()) {
                     Log.e(TAG, "Storage locked, " + type + " failed");
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 33);
                     return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
                 }
                 // Block until all packets have been send.
@@ -1070,6 +1139,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 }
                 if (!isUserUnlocked()) {
                     Log.e(TAG, "Storage locked, " + type + " failed");
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 34);
                     return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
                 }
                 // Block until all packets have been send.
@@ -1090,22 +1161,32 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 }
                 if (!isUserUnlocked()) {
                     Log.e(TAG, "Storage locked, " + type + " failed");
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeErrorLog(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 35);
                     return ResponseCodes.OBEX_HTTP_UNAVAILABLE;
                 }
                 // Block until all packets have been send.
                 return sendGetMessageRsp(op, name, appParams, mMessageVersion);
             } else {
                 Log.w(TAG, "unknown type request: " + type);
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 36);
                 return ResponseCodes.OBEX_HTTP_NOT_ACCEPTABLE;
             }
 
         } catch (IllegalArgumentException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 37);
             Log.e(TAG, "Exception:", e);
             return ResponseCodes.OBEX_HTTP_PRECON_FAILED;
         } catch (ParseException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 38);
             Log.e(TAG, "Exception:", e);
             return ResponseCodes.OBEX_HTTP_PRECON_FAILED;
         } catch (Exception e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 39);
             if (D) {
                 Log.e(TAG, "Exception occured while handling request", e);
             } else {
@@ -1171,6 +1252,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             if (folderToList == null) {
                 Log.w(TAG, "sendMessageListingRsp: folderToList == "
                         + "null-sending OBEX_HTTP_BAD_REQUEST");
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 40);
                 return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
             }
             Log.v(TAG, "sendMessageListingRsp: has sms " + folderToList.hasSmsMmsContent()
@@ -1234,11 +1317,15 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             // Open the OBEX body stream
             outStream = op.openOutputStream();
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 41);
             Log.w(TAG, "sendMessageListingRsp: IOException - sending OBEX_HTTP_BAD_REQUEST", e);
             if (outStream != null) {
                 try {
                     outStream.close();
                 } catch (IOException ex) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 42);
                     if (D) Log.d(TAG, "", ex);
                 }
             }
@@ -1251,12 +1338,16 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
             }
         } catch (IllegalArgumentException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 43);
             Log.w(TAG, "sendMessageListingRsp: IllegalArgumentException"
                     + " - sending OBEX_HTTP_BAD_REQUEST", e);
             if (outStream != null) {
                 try {
                     outStream.close();
                 } catch (IOException ex) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 44);
                     if (D) Log.d(TAG, "", ex);
                 }
             }
@@ -1272,6 +1363,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                     bytesWritten += bytesToWrite;
                 }
             } catch (IOException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 45);
                 if (D) {
                     Log.w(TAG, e);
                 }
@@ -1281,6 +1374,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                     try {
                         outStream.close();
                     } catch (IOException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 46);
                         if (D) Log.d(TAG, "", e);
                     }
                 }
@@ -1288,6 +1383,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             if (bytesWritten != outBytes.length && !mIsAborted) {
                 Log.w(TAG, "sendMessageListingRsp: bytesWritten != outBytes.length"
                         + " - sending OBEX_HTTP_BAD_REQUEST");
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 47);
                 return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
             }
         } else {
@@ -1295,6 +1392,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 try {
                     outStream.close();
                 } catch (IOException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 48);
                     if (D) Log.d(TAG, "", e);
                 }
             }
@@ -1424,11 +1523,15 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             // Open the OBEX body stream
             outStream = op.openOutputStream();
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 49);
             Log.w(TAG, "sendConvoListingRsp: IOException - sending OBEX_HTTP_BAD_REQUEST", e);
             if (outStream != null) {
                 try {
                     outStream.close();
                 } catch (IOException ex) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 50);
                     if (D) Log.d(TAG, "", ex);
                 }
             }
@@ -1441,12 +1544,16 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
             }
         } catch (IllegalArgumentException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 51);
             Log.w(TAG, "sendConvoListingRsp: IllegalArgumentException"
                     + " - sending OBEX_HTTP_BAD_REQUEST", e);
             if (outStream != null) {
                 try {
                     outStream.close();
                 } catch (IOException ex) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 52);
                     if (D) Log.d(TAG, "", ex);
                 }
             }
@@ -1462,6 +1569,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                     bytesWritten += bytesToWrite;
                 }
             } catch (IOException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 53);
                 if (D) {
                     Log.w(TAG, e);
                 }
@@ -1478,6 +1587,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             if (bytesWritten != outBytes.length && !mIsAborted) {
                 Log.w(TAG, "sendConvoListingRsp: bytesWritten != outBytes.length"
                         + " - sending OBEX_HTTP_BAD_REQUEST");
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeWarnLog(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 54);
                 return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
             }
         } else {
@@ -1485,6 +1596,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 try {
                     outStream.close();
                 } catch (IOException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 55);
                     if (D) Log.d(TAG, "", e);
                 }
             }
@@ -1549,12 +1662,16 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 outStream = op.openOutputStream();
             }
         } catch (IOException e1) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 56);
             Log.w(TAG, "sendFolderListingRsp: IOException"
                     + " - sending OBEX_HTTP_BAD_REQUEST Exception:", e1);
             if (outStream != null) {
                 try {
                     outStream.close();
                 } catch (IOException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 57);
                     if (D) Log.d(TAG, "", e);
                 }
             }
@@ -1567,12 +1684,16 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
             }
         } catch (IllegalArgumentException e1) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 58);
             Log.w(TAG, "sendFolderListingRsp: IllegalArgumentException"
                     + " - sending OBEX_HTTP_BAD_REQUEST Exception:", e1);
             if (outStream != null) {
                 try {
                     outStream.close();
                 } catch (IOException e) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 59);
                     if (D) Log.d(TAG, "", e);
                 }
             }
@@ -1589,12 +1710,16 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                     bytesWritten += bytesToWrite;
                 }
             } catch (IOException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 60);
                 // We were probably aborted or disconnected
             } finally {
                 if (outStream != null) {
                     try {
                         outStream.close();
                     } catch (IOException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 61);
                         if (D) Log.d(TAG, "", e);
                     }
                 }
@@ -1672,6 +1797,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             outStream = op.openOutputStream();
 
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 62);
             Log.w(TAG, "sendMASInstanceInformationRsp: IOException"
                     + " - sending OBEX_HTTP_BAD_REQUEST", e);
             if (mIsAborted) {
@@ -1694,12 +1821,16 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                     bytesWritten += bytesToWrite;
                 }
             } catch (IOException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 63);
                 // We were probably aborted or disconnected
             } finally {
                 if (outStream != null) {
                     try {
                         outStream.close();
                     } catch (IOException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 64);
                         if (D) Log.d(TAG, "", e);
                     }
                 }
@@ -1761,11 +1892,15 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             outStream = op.openOutputStream();
 
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 65);
             Log.w(TAG, "sendGetMessageRsp: IOException - sending OBEX_HTTP_BAD_REQUEST", e);
             if (outStream != null) {
                 try {
                     outStream.close();
                 } catch (IOException ex) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 66);
                     if (D) Log.d(TAG, "", ex);
                 }
             }
@@ -1778,12 +1913,16 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                 return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
             }
         } catch (IllegalArgumentException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 67);
             Log.w(TAG, "sendGetMessageRsp: IllegalArgumentException (e.g. invalid handle) - "
                     + "sending OBEX_HTTP_BAD_REQUEST", e);
             if (outStream != null) {
                 try {
                     outStream.close();
                 } catch (IOException ex) {
+                    BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                            BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 68);
                     if (D) Log.d(TAG, "", ex);
                 }
             }
@@ -1800,6 +1939,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                     bytesWritten += bytesToWrite;
                 }
             } catch (IOException e) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 69);
                 // We were probably aborted or disconnected
                 if (D && e.getMessage().equals("Abort Received")) {
                     Log.w(TAG, "getMessage() Aborted...", e);
@@ -1809,6 +1950,8 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
                     try {
                         outStream.close();
                     } catch (IOException e) {
+                        BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                                BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 70);
                         if (D) Log.d(TAG, "", e);
                     }
                 }
@@ -1866,15 +2009,20 @@ public class BluetoothMapObexServer extends ServerRequestHandler {
             }
 
         } catch (RemoteException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 71);
             //reload the providerClient and return error
             try {
                 mProviderClient = acquireUnstableContentProviderOrThrow();
             } catch (RemoteException e2) {
+                BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                        BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 72);
                 //should not happen
             }
             return ResponseCodes.OBEX_HTTP_BAD_REQUEST;
         } catch (Exception e) {
-
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_OBEX_SERVER, 73);
             if (D) {
                 Log.e(TAG, "Exception occured while handling request", e);
             } else {

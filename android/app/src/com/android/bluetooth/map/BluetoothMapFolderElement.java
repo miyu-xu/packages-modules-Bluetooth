@@ -14,6 +14,7 @@
 */
 package com.android.bluetooth.map;
 
+import android.bluetooth.BluetoothProtoEnums;
 import android.util.Log;
 import android.util.Xml;
 
@@ -32,8 +33,8 @@ import java.util.Locale;
 
 /**
  * Class to contain a single folder element representation.
- *
  */
+// Next tag value for BluetoothStatsLog.BLUETOOTH_CONTENT_PROFILE_ERROR_REPORTED: 3
 public class BluetoothMapFolderElement implements Comparable<BluetoothMapFolderElement> {
     private String mName;
     private BluetoothMapFolderElement mParent = null;
@@ -293,16 +294,22 @@ public class BluetoothMapFolderElement implements Comparable<BluetoothMapFolderE
             xmlMsgElement.endTag(null, "folder-listing");
             xmlMsgElement.endDocument();
         } catch (IllegalArgumentException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_FOLDER_ELEMENT, 0);
             if (D) {
                 Log.w(TAG, e);
             }
             throw new IllegalArgumentException("error encoding folderElement");
         } catch (IllegalStateException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_FOLDER_ELEMENT, 1);
             if (D) {
                 Log.w(TAG, e);
             }
             throw new IllegalArgumentException("error encoding folderElement");
         } catch (IOException e) {
+            BluetoothMapMetricsUtils.ContentProfileErrorReported.writeException(
+                    BluetoothProtoEnums.BLUETOOTH_MAP_FOLDER_ELEMENT, 2);
             if (D) {
                 Log.w(TAG, e);
             }
