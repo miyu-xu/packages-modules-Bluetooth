@@ -106,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "71c6f680_cb0c1998",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 753,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-23T15:31:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61171ee5_8d70680b",
+      "range": {
+        "startLine": 753,
+        "startChar": 7,
+        "endLine": 753,
+        "endChar": 49
+      },
+      "revId": "15c7dd5bf10233189d699e808abc141804b560a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e59288dd_5e8027ec",
@@ -154,6 +178,30 @@
       "writtenOn": "2023-06-23T09:59:12Z",
       "side": 1,
       "message": "This is case where one erbud is streaming just fine and 2nd failed to connect with error different than 0x3e, right ?\nIn this case log this as warning.\nMaybe we should keep it as some metric -  if this happens often enough, we would have to take an action ?",
+      "range": {
+        "startLine": 762,
+        "startChar": 7,
+        "endLine": 762,
+        "endChar": 21
+      },
+      "revId": "15c7dd5bf10233189d699e808abc141804b560a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d34b8c97_06a34b78",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-23T15:31:42Z",
+      "side": 1,
+      "message": "For now let\u0027s just stop the stream when we cannot established all the planned streams.  We can improve it later. this patch just adds retries on establishing CIS",
+      "parentUuid": "09cd0214_5f00b078",
       "range": {
         "startLine": 762,
         "startChar": 7,
