@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3865e8ca_02108c7d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-11-23T03:22:18Z",
+      "side": 1,
+      "message": "It is confusing that we add a new call_list entry but might not trigger phone_state_change()\nWhat looks correct to me for this guard logic is\n\n```\nif !self.mps_qualification_enabled \u0026\u0026 call_list.is_empty()\n```\n\nthe rationale I see is\nif there\u0027s a call source from CRAS, the fake call is already handled. \nif there\u0027s a call source from HID, we should let the telephony protocol to finish it.\nDoes that sound reasonable?",
+      "range": {
+        "startLine": 763,
+        "startChar": 45,
+        "endLine": 768,
+        "endChar": 55
+      },
+      "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4069768b_ef6a3ac5",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -38,6 +61,30 @@
       "side": 1,
       "message": "Hi Frederic\n\nAfter offline discussion with Hsin-yu. I think we should remove CRAS call behavior if we enable the Bluetooth telephony feature flag.\n\nBut I will need to draft a one pager on how exactly we want to change it. So we hold on this change and I will cc you after the doc is ready.",
       "parentUuid": "4069768b_ef6a3ac5",
+      "range": {
+        "startLine": 775,
+        "startChar": 28,
+        "endLine": 778,
+        "endChar": 29
+      },
+      "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10984a52_856f2ae5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-11-23T03:22:18Z",
+      "side": 1,
+      "message": "per discussion in the other doc, let\u0027s move on to finish the logic for CRAS call(fake) to coexist with HID telephony calls.\n\nI can imagine this would be super complicate so please add as much comments into the details as possible.",
+      "parentUuid": "0a7f2346_846cb27e",
       "range": {
         "startLine": 775,
         "startChar": 28,
