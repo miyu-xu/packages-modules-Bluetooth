@@ -118,6 +118,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38f8f4de_9592a10f",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 2
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-23T20:28:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0679d1c3_61641cb8",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "88f48969_075801b8",
@@ -297,6 +315,24 @@
       "side": 1,
       "message": "This is another lost bond scenario where the remote device directly initiates the pairing. Instead of removing the existing bond from here, we should generate the key missing event here.",
       "parentUuid": "fc49d18e_876353a8",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd08be69_6e5437cf",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-23T20:28:22Z",
+      "side": 1,
+      "message": "This is for Classic transport, I would prefer to not touch it for this patch",
+      "parentUuid": "0b37536f_60f12eca",
       "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
