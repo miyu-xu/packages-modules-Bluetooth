@@ -16,6 +16,7 @@
 
 package com.android.pandora
 
+import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothManager
 import android.bluetooth.BluetoothProfile
 import android.content.Context
@@ -24,6 +25,10 @@ import io.grpc.BindableService
 import io.grpc.Server as GrpcServer
 import io.grpc.netty.shaded.io.grpc.netty.NettyServerBuilder
 import java.io.Closeable
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.runBlocking
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class Server(context: Context) {
@@ -38,15 +43,24 @@ class Server(context: Context) {
         val bluetoothAdapter = context.getSystemService(BluetoothManager::class.java)!!.adapter
 
         val security = Security(context)
+        val host = Host(context, security, this)
 
-        // If Bluetooth is turned off, the server will try to get the available profiles,
-        // but they will be null which will cause the server to crash.
-        // Filtering the nullable profiles will allow the user to
-        // perform a factory reset to turn the Bluetooth back on.
+        runBlocking {
+            // Enable Bluetooth and wait for `BluetoothAdapter.STATE_ON`.
+            if (!bluetoothAdapter.isEnabled) {
+                bluetoothAdapter.enable()
+                host.flow
+                    .filter { it.getAction() == BluetoothAdapter.ACTION_STATE_CHANGED }
+                    .map { it.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.ERROR) }
+                    .filter { it == BluetoothAdapter.STATE_ON }
+                    .first()
+            }
+        }
+
         services =
             listOf(
                 security,
-                Host(context, security, this),
+                host,
                 L2cap(context),
                 MediaPlayer(context),
                 Rfcomm(context),
@@ -68,7 +82,6 @@ class Server(context: Context) {
                         BluetoothProfile.MAP to ::Map,
                         BluetoothProfile.LE_AUDIO to ::LeAudio,
                     )
-                    .filter { bluetoothAdapter.isEnabled }
                     .filter { bluetoothAdapter.getSupportedProfiles().contains(it.key) == true }
                     .map { it.value(context) }
 
