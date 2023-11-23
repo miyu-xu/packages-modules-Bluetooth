@@ -35,6 +35,7 @@
 #include <android/sysprop/BluetoothProperties.sysprop.h>
 #endif
 
+#include "audio_hal_client/audio_hal_client.h"
 #include "devices.h"
 #include "le_audio_types.h"
 
