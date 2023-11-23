@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "79fbb081_d633a66c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-11-23T05:40:44Z",
+      "side": 1,
+      "message": "What if user hang up a call, but we still have other audio stream working?\n\nFor example\n1. User receive incoming call\n2. User start using YouTube play music -\u003e will not add fake call because call list is not empty.\n3. User answer call\n4. User hang up a call\n5. Now Youtube have no sound because no call in the call list.\n\nIf we really want to implemented logic like\n```\nif !self.mps_qualification_enabled \u0026\u0026 call_list.is_empty()\n``` \nThen we also need to add a fake call back to call list when hang up call. This will be super complicated because we mix the life cycle of fake call and HID call together.",
+      "parentUuid": "3865e8ca_02108c7d",
+      "range": {
+        "startLine": 763,
+        "startChar": 45,
+        "endLine": 768,
+        "endChar": 55
+      },
+      "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4069768b_ef6a3ac5",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
