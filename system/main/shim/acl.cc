@@ -1441,6 +1441,7 @@ bluetooth::hci::AddressWithType shim::legacy::Acl::GetConnectionPeerAddress(uint
 std::optional<uint8_t> shim::legacy::Acl::GetAdvertisingSetConnectedTo(
         const RawAddress& remote_bda) {
   auto remote_address = ToGdAddress(remote_bda);
+  std::unique_lock<std::mutex> lock(le_connection_map_guard_);
   for (auto& [handle, connection] : pimpl_->handle_to_le_connection_map_) {
     if (connection->GetRemoteAddressWithType().GetAddress() == remote_address) {
       return connection->GetAdvertisingSetConnectedTo();
@@ -1458,6 +1459,7 @@ void shim::legacy::Acl::OnLeLinkDisconnected(HciHandle handle, hci::ErrorCode re
 
   TeardownTime teardown_time = std::chrono::system_clock::now();
 
+  std::unique_lock<std::mutex> lock(le_connection_map_guard_);
   pimpl_->handle_to_le_connection_map_.erase(handle);
   TRY_POSTING_ON_MAIN(acl_interface_.connection.le.on_disconnected,
                       ToLegacyHciErrorCode(hci::ErrorCode::SUCCESS), handle,
