@@ -16,6 +16,8 @@
 
 #include "mock_codec_manager.h"
 
+#include "broadcaster/broadcast_configuration_provider.h"
+
 MockCodecManager* mock_codec_manager_pimpl_;
 MockCodecManager* MockCodecManager::GetInstance() {
   le_audio::CodecManager::GetInstance();
@@ -37,12 +39,12 @@ types::CodecLocation CodecManager::GetCodecLocation() const {
   return pimpl_->GetCodecLocation();
 }
 
-bool CodecManager::IsOffloadDualBiDirSwbSupported(void) const {
+bool CodecManager::IsDualBiDirSwbSupported(void) const {
   if (!pimpl_) {
     return false;
   }
 
-  return pimpl_->IsOffloadDualBiDirSwbSupported();
+  return pimpl_->IsDualBiDirSwbSupported();
 }
 
 void CodecManager::UpdateActiveAudioConfig(
@@ -56,16 +58,25 @@ void CodecManager::UpdateActiveAudioConfig(
                                            update_receiver);
 }
 
-const set_configurations::AudioSetConfigurations*
-CodecManager::GetOffloadCodecConfig(types::LeAudioContextType ctx_type) {
+const set_configurations::AudioSetConfigurations* CodecManager::GetCodecConfig(
+    types::LeAudioContextType ctx_type) {
   if (!pimpl_) return nullptr;
-  return pimpl_->GetOffloadCodecConfig(ctx_type);
+  return pimpl_->GetCodecConfig(ctx_type);
 }
 
-const ::le_audio::broadcast_offload_config*
-CodecManager::GetBroadcastOffloadConfig() {
-  if (!pimpl_) return nullptr;
-  return pimpl_->GetBroadcastOffloadConfig();
+::le_audio::broadcaster::BroadcastConfiguration
+CodecManager::GetBroadcastConfig(
+    const std::vector<std::pair<::le_audio::types::AudioContexts, uint8_t>>&
+        subgroup_quality) const {
+  if (!pimpl_)
+    return ::le_audio::broadcaster::GetBroadcastConfig(subgroup_quality);
+  return pimpl_->GetBroadcastConfig(subgroup_quality);
+}
+
+bool CodecManager::CheckCodecConfigIsBiDirSwb(
+    const ::le_audio::set_configurations::AudioSetConfiguration& config) const {
+  if (!pimpl_) return false;
+  return pimpl_->CheckCodecConfigIsBiDirSwb(config);
 }
 
 std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
