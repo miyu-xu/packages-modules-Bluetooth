@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dd2e80e_b847b938",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-24T07:38:53Z",
+      "side": 1,
+      "message": "For the people maintaining the sim, do we want to add a mutex or do we want to enforce the shim is always running on the same thread ?",
+      "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bad5ce1_d6574079",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1581,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-24T07:38:53Z",
+      "side": 1,
+      "message": "What about those, should they be accessed from within the mutex too ? can the status change meantime ?",
+      "range": {
+        "startLine": 1577,
+        "startChar": 2,
+        "endLine": 1581,
+        "endChar": 72
+      },
+      "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
