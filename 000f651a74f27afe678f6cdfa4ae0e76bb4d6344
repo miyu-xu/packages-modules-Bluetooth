@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3224419_0528d6be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-11-24T20:16:35Z",
+      "side": 1,
+      "message": "Why the patch only have the encoding part? Will you add it later or it was missed?",
+      "revId": "000f651a74f27afe678f6cdfa4ae0e76bb4d6344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "922dbb2c_335b9d10",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-11-24T20:16:35Z",
+      "side": 1,
+      "message": "Why the patch only have the encoding part? Will you add it later or it was missed?",
+      "revId": "000f651a74f27afe678f6cdfa4ae0e76bb4d6344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
