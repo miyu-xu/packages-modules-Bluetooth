@@ -418,6 +418,7 @@ cc_test {
         ":TestMockBtaAv",
         ":TestMockOsi",
         ":TestMockStackAvrc",
+        "src/btif_util.cc",
         "test/btif_rc_test.cc",
     ],
     header_libs: ["libbluetooth_headers"],
