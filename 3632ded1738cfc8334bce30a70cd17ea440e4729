@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e37bc2fc_e64d6f3d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-11-24T02:45:05Z",
+      "side": 1,
+      "message": "Take User [close bluetooth input as example](https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/third_party/adhd/cras/src/server/cras_bt_io.c;l\u003d339;drc\u003d130b9a9eb5a3edc9bcfd7225a991d52711b7fdd4;bpv\u003d1;bpt\u003d1?q\u003dcras_bt_io), We can successfully switch to A2DP profile, and in this case, we actually have a CRAS call in HFP previously. \n\nIt is not that reasonable we need to do special things here.\n\nI am not quite so sure what CRAS actually does, Cloud you help evaluate the feasibility we fix in [CRAS callback](https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/third_party/adhd/cras/src/server/cras_fl_media.c;l\u003d1200;drc\u003d130b9a9eb5a3edc9bcfd7225a991d52711b7fdd4;bpv\u003d0;bpt\u003d1)",
+      "range": {
+        "startLine": 1276,
+        "startChar": 8,
+        "endLine": 1280,
+        "endChar": 9
+      },
+      "revId": "3632ded1738cfc8334bce30a70cd17ea440e4729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0066f79_74b4a0e9",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1282,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-11-24T02:45:05Z",
+      "side": 1,
+      "message": "This should callback CRAS, and I think we should do the same thing just like CRAS do profile switch.",
+      "range": {
+        "startLine": 1282,
+        "startChar": 12,
+        "endLine": 1282,
+        "endChar": 66
+      },
+      "revId": "3632ded1738cfc8334bce30a70cd17ea440e4729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
