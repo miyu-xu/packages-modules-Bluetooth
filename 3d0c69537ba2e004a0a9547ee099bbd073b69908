@@ -70,6 +70,24 @@
       "parentUuid": "bc70bf84_0ad1c2a3",
       "revId": "3d0c69537ba2e004a0a9547ee099bbd073b69908",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce78f932_007d7ab1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-24T08:38:15Z",
+      "side": 1,
+      "message": "tried mmm with the banchan target of the btservice module and I got the error.\n\nFix CL is aosp/2844988",
+      "parentUuid": "76ac09c8_05a47ec2",
+      "revId": "3d0c69537ba2e004a0a9547ee099bbd073b69908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
