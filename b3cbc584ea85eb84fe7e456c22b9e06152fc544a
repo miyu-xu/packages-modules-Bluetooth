@@ -129,6 +129,30 @@
       },
       "revId": "b3cbc584ea85eb84fe7e456c22b9e06152fc544a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d47a5029_8e9a81af",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2265,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-24T07:36:24Z",
+      "side": 1,
+      "message": "let\u0027s talk about that, because when Media is not available and Coverstational is available we want to keep device inactive. When the phonecall arrives, it still can be choose for the conversational scenario.",
+      "parentUuid": "a45f410c_7f8432a9",
+      "range": {
+        "startLine": 2265,
+        "startChar": 79,
+        "endLine": 2265,
+        "endChar": 97
+      },
+      "revId": "b3cbc584ea85eb84fe7e456c22b9e06152fc544a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
