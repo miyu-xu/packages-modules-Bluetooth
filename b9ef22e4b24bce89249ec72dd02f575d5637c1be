@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f08ccc6_5bc7f517",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-24T23:39:08Z",
+      "side": 1,
+      "message": "I would prefer you to set the flag in a constructor instead of setting it after creation",
+      "range": {
+        "startLine": 505,
+        "startChar": 0,
+        "endLine": 508,
+        "endChar": 5
+      },
+      "revId": "b9ef22e4b24bce89249ec72dd02f575d5637c1be",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
