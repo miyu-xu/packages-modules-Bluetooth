@@ -16,6 +16,24 @@
       "message": "Some test are failing to build, I will look soon into the needed dependencies required to make them build and upload the correct CL",
       "revId": "3d0c69537ba2e004a0a9547ee099bbd073b69908",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c059812_8a6191fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-11-24T07:40:29Z",
+      "side": 1,
+      "message": "Somehow I\u0027m not able to reproduce the build failed on my local machine again.... Is there any doc to tell us how to debug this? Want to speed up the process for the future task :(",
+      "parentUuid": "2a0f6340_fb218906",
+      "revId": "3d0c69537ba2e004a0a9547ee099bbd073b69908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
