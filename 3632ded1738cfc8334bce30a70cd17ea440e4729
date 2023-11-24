@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4abc608e_0d0851a7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 2020502
+      },
+      "writtenOn": "2023-11-24T08:45:37Z",
+      "side": 1,
+      "message": "Got the following trace:\n\u003e ERR btadapterd[17707]: bluetooth:  audio_hal_interface/a2dp_encoding_host.cc:133 - StartRequest: StartRequest: call state is busy\n\nSee [a2dp_encoding_host.cc](https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2843515/comment/e37bc2fc_e64d6f3d/) and [btif_hf.cc](https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/aosp/packages/modules/Bluetooth/local/system/btif/src/btif_hf.cc;drc\u003d1a95b7c28cb8f45f4e4a7f970f9f908eef5f4525;l\u003d802)\n\nOn WebHID disconnection, there should be no more HID call else it will prevents A2DP to start.\nSo, it seems to me that this is mandatory to keep lower HF C++ layer in sink with the Rust layer.",
+      "parentUuid": "e37bc2fc_e64d6f3d",
+      "range": {
+        "startLine": 1276,
+        "startChar": 8,
+        "endLine": 1280,
+        "endChar": 9
+      },
+      "revId": "3632ded1738cfc8334bce30a70cd17ea440e4729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0066f79_74b4a0e9",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
