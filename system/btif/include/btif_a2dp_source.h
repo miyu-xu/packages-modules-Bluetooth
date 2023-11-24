@@ -59,7 +59,7 @@ bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
 // End the A2DP Source session.
 // This function should be called by the BTIF state machine to end the
 // streaming session for |peer_address|.
-bool btif_a2dp_source_end_session(const RawAddress& peer_address);
+bool btif_a2dp_source_end_session(const RawAddress& peer_address, bool for_reconfig);
 
 // Shutdown the A2DP Source module.
 // This function should be called by the BTIF state machine to stop streaming.
