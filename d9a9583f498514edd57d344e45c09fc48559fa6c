@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c94c8883_bc8b44f2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-24T06:45:58Z",
+      "side": 1,
+      "message": "If dual mode enabled, LE audio should be activated after all supported classic profiles are activated. So if A2DP supported and HEADSET doesn\u0027t, we should check whether we should activate LE audio.",
+      "parentUuid": "606e7bd7_86ace50b",
+      "range": {
+        "startLine": 983,
+        "startChar": 20,
+        "endLine": 984,
+        "endChar": 91
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3403faf7_c5163541",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-24T05:59:02Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 998,
+        "startChar": 20,
+        "endLine": 999,
+        "endChar": 88
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c9959d7_48fdc005",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-24T06:45:58Z",
+      "side": 1,
+      "message": "ditto",
+      "parentUuid": "3403faf7_c5163541",
       "range": {
         "startLine": 998,
         "startChar": 20,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5df935b7_ea5a5b53",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1088,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-24T06:45:58Z",
+      "side": 1,
+      "message": "Yes, it is handled by each profile services.",
+      "parentUuid": "99d9a527_02945f63",
+      "range": {
+        "startLine": 1086,
+        "startChar": 16,
+        "endLine": 1088,
+        "endChar": 17
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f0bf8ba_6e37bebb",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-24T05:59:02Z",
       "side": 1,
       "message": "Shouldn\u0027t this test has almost the same logic with headsetActiveDeviceSelected_setActive?",
+      "range": {
+        "startLine": 228,
+        "startChar": 16,
+        "endLine": 228,
+        "endChar": 50
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34b8d9fd_e7a549db",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-24T06:45:58Z",
+      "side": 1,
+      "message": "Yes, it is almost same. Done.",
+      "parentUuid": "8f0bf8ba_6e37bebb",
       "range": {
         "startLine": 228,
         "startChar": 16,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad2457be_9381ea87",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-24T06:45:58Z",
+      "side": 1,
+      "message": "Since the arguments passed are different.",
+      "parentUuid": "4e7683b0_550d841f",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 58
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09460e91_320b6c45",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-11-24T05:59:02Z",
       "side": 1,
       "message": "This test name should be changed - now we don\u0027t want the A2dp is activated again.",
+      "range": {
+        "startLine": 396,
+        "startChar": 41,
+        "endLine": 396,
+        "endChar": 64
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46ab8911_7b66628d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-24T06:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09460e91_320b6c45",
       "range": {
         "startLine": 396,
         "startChar": 41,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "682517e9_1a7ec1e3",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-24T06:45:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1fcaadac_2c454235",
+      "range": {
+        "startLine": 901,
+        "startChar": 8,
+        "endLine": 902,
+        "endChar": 48
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dc0af25_8662f03a",
@@ -175,6 +343,30 @@
       "writtenOn": "2023-11-24T05:59:02Z",
       "side": 1,
       "message": "Why LEA is not active even after timeout?",
+      "range": {
+        "startLine": 923,
+        "startChar": 8,
+        "endLine": 924,
+        "endChar": 97
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64e1f852_fcfc6a06",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-24T06:45:58Z",
+      "side": 1,
+      "message": "As comment says, LEAudio can\u0027t be active if the supported classic profiles are not active. (I don\u0027t know why.)",
+      "parentUuid": "0dc0af25_8662f03a",
       "range": {
         "startLine": 923,
         "startChar": 8,
