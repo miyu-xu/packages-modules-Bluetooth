@@ -244,7 +244,7 @@ static void btif_a2dp_source_startup_delayed(void);
 static void btif_a2dp_source_start_session_delayed(
     const RawAddress& peer_address, std::promise<void> start_session_promise);
 static void btif_a2dp_source_end_session_delayed(
-    const RawAddress& peer_address);
+    const RawAddress& peer_address, bool for_reconfig);
 static void btif_a2dp_source_shutdown_delayed(std::promise<void>);
 static void btif_a2dp_source_cleanup_delayed(void);
 static void btif_a2dp_source_audio_tx_start_event(void);
@@ -441,7 +441,7 @@ bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
   // If the old active peer was valid, end the old session.
   // Otherwise, time to startup the A2DP Source processing.
   if (!old_peer_address.IsEmpty()) {
-    btif_a2dp_source_end_session(old_peer_address);
+    btif_a2dp_source_end_session(old_peer_address, false);
   } else {
     btif_a2dp_source_startup();
   }
@@ -454,25 +454,28 @@ bool btif_a2dp_source_restart_session(const RawAddress& old_peer_address,
   return true;
 }
 
-bool btif_a2dp_source_end_session(const RawAddress& peer_address) {
+bool btif_a2dp_source_end_session(const RawAddress& peer_address, bool for_reconfig) {
   LOG_INFO("%s: peer_address=%s state=%s", __func__,
            ADDRESS_TO_LOGGABLE_CSTR(peer_address),
            btif_a2dp_source_cb.StateStr().c_str());
   btif_a2dp_source_thread.DoInThread(
       FROM_HERE,
-      base::Bind(&btif_a2dp_source_end_session_delayed, peer_address));
+      base::Bind(&btif_a2dp_source_end_session_delayed, peer_address, for_reconfig));
   btif_a2dp_source_cleanup_codec();
   return true;
 }
 
 static void btif_a2dp_source_end_session_delayed(
-    const RawAddress& peer_address) {
+    const RawAddress& peer_address, bool for_reconfig) {
   LOG_INFO("%s: peer_address=%s state=%s", __func__,
            ADDRESS_TO_LOGGABLE_CSTR(peer_address),
            btif_a2dp_source_cb.StateStr().c_str());
   if ((btif_a2dp_source_cb.State() == BtifA2dpSource::kStateRunning) ||
       (btif_a2dp_source_cb.State() == BtifA2dpSource::kStateShuttingDown)) {
-    btif_av_stream_stop(peer_address);
+    LOG_INFO("%s: for_reconfig: %d", __func__, for_reconfig);
+    if(!for_reconfig) {
+      btif_av_stream_stop(peer_address);
+    }
   } else {
     LOG_ERROR("%s: A2DP Source media task is not running", __func__);
   }
