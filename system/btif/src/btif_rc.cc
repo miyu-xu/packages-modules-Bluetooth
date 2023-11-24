@@ -22,12 +22,13 @@
  *
  *****************************************************************************/
 
+#ifndef LOG_TAG
 #define LOG_TAG "bt_btif_avrc"
+#endif  // LOG_TAG
 
 #include "btif_rc.h"
 
 #include <base/logging.h>
-#include <errno.h>
 #include <fcntl.h>
 #include <hardware/bluetooth.h>
 #include <hardware/bt_rc.h>
@@ -46,10 +47,10 @@
 #include "btif_common.h"
 #include "btif_util.h"
 #include "device/include/interop.h"
+#include "os/log.h"
 #include "osi/include/alarm.h"
 #include "osi/include/allocator.h"
 #include "osi/include/list.h"
-#include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
 #include "stack/include/avrc_api.h"
