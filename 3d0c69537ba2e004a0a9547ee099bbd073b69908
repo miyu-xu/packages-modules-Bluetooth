@@ -34,6 +34,24 @@
       "parentUuid": "2a0f6340_fb218906",
       "revId": "3d0c69537ba2e004a0a9547ee099bbd073b69908",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bc70bf84_0ad1c2a3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-24T07:41:20Z",
+      "side": 1,
+      "message": "Have you tried `mmm packages/modules/Bluetooth` ?\nThis will build all the test target in Bluetooth repo",
+      "parentUuid": "3c059812_8a6191fe",
+      "revId": "3d0c69537ba2e004a0a9547ee099bbd073b69908",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
