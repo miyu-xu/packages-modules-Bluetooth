@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "606e7bd7_86ace50b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-24T05:59:02Z",
+      "side": 1,
+      "message": "Why should we check LeAudioActive when HEADSET is not supported?",
+      "range": {
+        "startLine": 983,
+        "startChar": 20,
+        "endLine": 984,
+        "endChar": 91
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3403faf7_c5163541",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-24T05:59:02Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 998,
+        "startChar": 20,
+        "endLine": 999,
+        "endChar": 88
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99d9a527_02945f63",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1088,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-24T05:59:02Z",
+      "side": 1,
+      "message": "Q) What does happen to the previously activated devices? Is it handled by LeAudioService?",
+      "range": {
+        "startLine": 1086,
+        "startChar": 16,
+        "endLine": 1088,
+        "endChar": 17
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f0bf8ba_6e37bebb",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-24T05:59:02Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this test has almost the same logic with headsetActiveDeviceSelected_setActive?",
+      "range": {
+        "startLine": 228,
+        "startChar": 16,
+        "endLine": 228,
+        "endChar": 50
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e7683b0_550d841f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-24T05:59:02Z",
+      "side": 1,
+      "message": "Q) Why is it called two times? Isn\u0027t it 3 times since activeDevice is set 3 times? (mA2dpDevice -\u003e SecondaryAudioDevice -\u003e mA2dpDevice)",
+      "range": {
+        "startLine": 236,
+        "startChar": 8,
+        "endLine": 236,
+        "endChar": 58
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09460e91_320b6c45",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 396,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-24T05:59:02Z",
+      "side": 1,
+      "message": "This test name should be changed - now we don\u0027t want the A2dp is activated again.",
+      "range": {
+        "startLine": 396,
+        "startChar": 41,
+        "endLine": 396,
+        "endChar": 64
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fcaadac_2c454235",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 902,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-24T05:59:02Z",
+      "side": 1,
+      "message": "Can we also check that \n\nassertThat(mAudioRoutingManager.getActiveDevices(BluetoothProfile.A2DP)).isEmpty();\nassertThat(mAudioRoutingManager.getActiveDevices(BluetoothProfile.HEADSET)).isEmpty();",
+      "range": {
+        "startLine": 901,
+        "startChar": 8,
+        "endLine": 902,
+        "endChar": 48
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dc0af25_8662f03a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-24T05:59:02Z",
+      "side": 1,
+      "message": "Why LEA is not active even after timeout?",
+      "range": {
+        "startLine": 923,
+        "startChar": 8,
+        "endLine": 924,
+        "endChar": 97
+      },
+      "revId": "d9a9583f498514edd57d344e45c09fc48559fa6c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
