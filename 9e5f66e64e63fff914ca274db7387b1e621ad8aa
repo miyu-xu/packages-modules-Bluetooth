@@ -22,6 +22,30 @@
       },
       "revId": "9e5f66e64e63fff914ca274db7387b1e621ad8aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31b52c3f_2d2acf52",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/AudioRoutingManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-24T07:32:46Z",
+      "side": 1,
+      "message": "Actually it is okay to activate again since it would be no op in that case. I will remove the check instead.",
+      "parentUuid": "392d5415_47d56151",
+      "range": {
+        "startLine": 397,
+        "startChar": 41,
+        "endLine": 397,
+        "endChar": 82
+      },
+      "revId": "9e5f66e64e63fff914ca274db7387b1e621ad8aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
