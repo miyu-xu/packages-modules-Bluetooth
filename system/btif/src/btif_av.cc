@@ -513,7 +513,7 @@ class BtifAvSource {
         }
       }
 
-      btif_a2dp_source_end_session(active_peer_);
+      btif_a2dp_source_end_session(active_peer_, false);
       std::promise<void> shutdown_complete_promise;
       std::future<void> shutdown_complete_future =
           shutdown_complete_promise.get_future();
@@ -558,7 +558,7 @@ class BtifAvSource {
     } else {
       LOG_WARN("%s : there is an active peer as source role", __func__);
     }
-    btif_a2dp_source_end_session(active_peer_);
+    btif_a2dp_source_end_session(active_peer_, false);
     btif_a2dp_source_shutdown(std::move(shutdown_complete_promise));
     active_peer_ = RawAddress::kEmpty;
   }
@@ -573,9 +573,11 @@ class BtifAvSource {
       const RawAddress& peer_address,
       const std::vector<btav_a2dp_codec_config_t>& codec_preferences,
       std::promise<void> peer_ready_promise) {
+    LOG_INFO("%s: ", __func__);
     // Restart the session if the codec for the active peer is updated
     if (!peer_address.IsEmpty() && active_peer_ == peer_address) {
-      btif_a2dp_source_end_session(active_peer_);
+      LOG_INFO("%s: Proceed to end the session", __func__);
+      btif_a2dp_source_end_session(active_peer_, true);
     }
 
     btif_a2dp_source_encoder_user_config_update_req(
