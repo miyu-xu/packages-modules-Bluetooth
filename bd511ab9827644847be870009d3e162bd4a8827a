@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ae2b507_505800fc",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStackEvent.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-24T13:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8257c0a_a4515ac8",
+      "range": {
+        "startLine": 66,
+        "startChar": 21,
+        "endLine": 66,
+        "endChar": 48
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ee3bf084_179e8d94",
@@ -95,6 +119,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04d95930_12ac84e9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-24T13:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4fe9b598_eb13d185",
+      "range": {
+        "startLine": 234,
+        "startChar": 8,
+        "endLine": 234,
+        "endChar": 31
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b4a78feb_b2a2bef2",
@@ -132,6 +180,30 @@
       "side": 1,
       "message": "Maybe I don\u0027t get the suggestion here... Intention of `sink_hal_listening_mode` is similar to what `in_voip_call` does. This is a flag that informs in case of Sink HAL \"resume\"/\"suspend\" about group change request. This is used only for broadcast handover",
       "parentUuid": "b4a78feb_b2a2bef2",
+      "range": {
+        "startLine": 1015,
+        "startChar": 4,
+        "endLine": 1015,
+        "endChar": 55
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b6855a68_e5338dc4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1015,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-24T13:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c9c89195_37d01c32",
       "range": {
         "startLine": 1015,
         "startChar": 4,
@@ -278,6 +350,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7d92258_31c418de",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4070,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-24T13:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e3736edb_f9f80b96",
+      "range": {
+        "startLine": 4069,
+        "startChar": 10,
+        "endLine": 4070,
+        "endChar": 65
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db944e62_543ebf01",
@@ -386,6 +482,30 @@
       "side": 1,
       "message": "This is the place and moment when Broadcast is \"Active\" and there is no active Unicast group, but only Sink HAL session is \"listening\". In such scenario a resume request comes on Sink Audio HAL. This particular case means that there would be requested a invalid group change. Invalid group change request in broadcasting context means a request \"from\" invalid to some, in this case (for broadcast handover) some group would be a previously active (the one that were active before broadcasting).\n\nI agree that here would be nice to have a comment. I\u0027ll update it - thanks for pointing this out.",
       "parentUuid": "b50ee81c_a9046805",
+      "range": {
+        "startLine": 4120,
+        "startChar": 5,
+        "endLine": 4120,
+        "endChar": 63
+      },
+      "revId": "bd511ab9827644847be870009d3e162bd4a8827a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "402424dc_d043a280",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 4120,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-24T13:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c3bb226_accd136f",
       "range": {
         "startLine": 4120,
         "startChar": 5,

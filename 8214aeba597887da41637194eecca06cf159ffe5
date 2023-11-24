@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "4778389a_319af39c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-24T13:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b4fc0983_5cb80377",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 34
+      },
+      "revId": "8214aeba597887da41637194eecca06cf159ffe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "64b3ca1b_ff19e274",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 5
@@ -118,6 +142,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3f52860_f385bfab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-24T13:41:39Z",
+      "side": 1,
+      "message": "I\u0027ve updated CL according to latest discussion.",
+      "parentUuid": "21c1d7ec_68e80ce7",
+      "revId": "8214aeba597887da41637194eecca06cf159ffe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e1189224_87e7a913",
@@ -149,6 +191,24 @@
       "side": 1,
       "message": "`why \"listen mode\" should end up with some action like \"CHANGE_REQUEST\" ?` It may not. Change request should be notified for group (in this case invalid \u003d\u003d no active group) when during broadcast a stream resume comes (on Sink). Second possibility is when stream suspends, then there will be a change request for some active group.",
       "parentUuid": "e1189224_87e7a913",
+      "revId": "8214aeba597887da41637194eecca06cf159ffe5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "44f89722_cf5dfffb",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-24T13:41:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "547c5112_5e840bde",
       "revId": "8214aeba597887da41637194eecca06cf159ffe5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
