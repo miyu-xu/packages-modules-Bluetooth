@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f009eff7_83acc68a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-26T04:00:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ec9224a_a81f1001",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "463fb8e6_729eb2d0",
@@ -221,6 +239,30 @@
       "side": 1,
       "message": "I use \"key missing\" through all stack layers, so would prefer to keep it as is, and not change it on last step.\nPlease note that Broadcast constant as \"key missing\" was already added too.",
       "parentUuid": "95ace9ab_22ac1662",
+      "range": {
+        "startLine": 1227,
+        "startChar": 9,
+        "endLine": 1227,
+        "endChar": 27
+      },
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "320aaca1_982d982e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1227,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-26T04:00:25Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "31f997ba_caa6ce42",
       "range": {
         "startLine": 1227,
         "startChar": 9,
