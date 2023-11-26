@@ -335,6 +335,24 @@
       "parentUuid": "0b37536f_60f12eca",
       "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f796c50_37c9ccd8",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-26T02:12:29Z",
+      "side": 1,
+      "message": "Maybe we should change the bug and cl description to explain that this change is just for the LE transport and central role.",
+      "parentUuid": "bd08be69_6e5437cf",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
