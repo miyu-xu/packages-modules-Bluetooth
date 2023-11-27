@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c993554e_95c2faec",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStackEvent.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:11:21Z",
+      "side": 1,
+      "message": "can we call it \n\nSTATUS_LOCAL_SINK_STREAM_REQUESTED\nSTATUS_LOCAL_SINK_STREAM_STREAMING\nSTATUS_LOCAL_SINK_STREAM_SUSPENDED",
+      "revId": "3defce91cfb8f198ce399d0c1b80e23af3223c89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
