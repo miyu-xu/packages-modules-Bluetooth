@@ -70,7 +70,9 @@ val waitedAclDisconnection = HashSet<BluetoothDevice>()
 fun shell(cmd: String): String {
     val fd = InstrumentationRegistry.getInstrumentation().getUiAutomation().executeShellCommand(cmd)
     val input_stream = ParcelFileDescriptor.AutoCloseInputStream(fd)
-    return BufferedReader(InputStreamReader(input_stream)).lines().collect(Collectors.joining("\n"))
+    val output = BufferedReader(InputStreamReader(input_stream)).lines().collect(Collectors.joining("\n"))
+    fd.close()
+    return output
 }
 
 /**
