@@ -70,6 +70,30 @@
       },
       "revId": "2ed6d2889b6d04ebed3af821d85825f6c9f61693",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f62d1fa6_6150f72a",
+        "filename": "system/bta/include/bta_hearing_aid_api.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-27T04:14:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1b7be792_407d3a07",
+      "range": {
+        "startLine": 117,
+        "startChar": 5,
+        "endLine": 117,
+        "endChar": 63
+      },
+      "revId": "2ed6d2889b6d04ebed3af821d85825f6c9f61693",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
