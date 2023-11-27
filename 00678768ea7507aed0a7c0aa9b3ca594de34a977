@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5eea1eb_bbd4305a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-27T12:36:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2c400a2b_b8b6ed83",
+      "range": {
+        "startLine": 235,
+        "startChar": 7,
+        "endLine": 235,
+        "endChar": 39
+      },
+      "revId": "00678768ea7507aed0a7c0aa9b3ca594de34a977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c29c926b_7e86059f",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "208bd70a_e18dc33b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-27T12:36:51Z",
+      "side": 1,
+      "message": "If ISE happens, it means refactoring is not finished.",
+      "parentUuid": "c29c926b_7e86059f",
+      "range": {
+        "startLine": 336,
+        "startChar": 8,
+        "endLine": 336,
+        "endChar": 16
+      },
+      "revId": "00678768ea7507aed0a7c0aa9b3ca594de34a977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ed655c32_3ea16aad",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-11-27T08:16:56Z",
       "side": 1,
       "message": "Q) Not related to this CL, but what is the current behavior when a wired headset is disconnected? Does the audio goes to BT headset?",
+      "range": {
+        "startLine": 662,
+        "startChar": 8,
+        "endLine": 662,
+        "endChar": 39
+      },
+      "revId": "00678768ea7507aed0a7c0aa9b3ca594de34a977",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d44293f0_65628779",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-27T12:36:51Z",
+      "side": 1,
+      "message": "Good question. Yes, available BT headset should be activated.",
+      "parentUuid": "ed655c32_3ea16aad",
       "range": {
         "startLine": 662,
         "startChar": 8,
