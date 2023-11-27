@@ -52,6 +52,24 @@
       "parentUuid": "a53e6cf6_4b0e972d",
       "revId": "3921e04baca0cd20f4f2e27b9890f7fcfd572c30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f36b35a8_68c886ad",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-11-27T23:03:09Z",
+      "side": 1,
+      "message": "Sorry, long answer 😊\n\nWe query/cache all services available *once at service start* and build a list out of that. The user is never involved in media player selection (and we don\u0027t exactly want them to. We want it to be automatic so every app they _might_ interact with is available over Bluetooth. There\u0027s caveats though, like un/installed apps, apps stopped after the first fetch, etc.).\n\nThe user _might_ notice this, as there\u0027s a chance that the app they want to use is stopped when the stack starts up, which would cause it\u0027s browse service to get missed/dropped from the browse tree. Since we don\u0027t fetch the list except that one time on start up, they would have to turn BT off and back on again (ensuring their app is started still) to see it pop up in the browse tree.\n\nThis also means that users may struggle (in cars in particular, headsets not so much) to have all their apps/started available when the phone connects, which might require them to take the phone out before/while driving to get their app to show up in the list.\n\nIn other words, I think (it pre-dates me) there was an intention to show all apps, not just started apps.\n\nAndroid Auto Projected must have similar \"bind to a stopped service and force it to start/stay up\" problems too, right? They use the media framework to do essentially identical things-- present a list of all available apps with media browser services.\n\nI don\u0027t totally know the motivation for the change here (besides not starting/holding open stopped services probably?), but if you\u0027re doing this then I would subsequently invest in detecting newly started apps, newly installed apps, stopped apps, and uninstalled apps. And/Or, change the architecture of AVRCP to keep an up to date list, and lazily bind to services based on connected remote device(s). You could even go as far as counting references to specific apps so you only hold the connections open that you need to.\n\nTesting wise, you could add a unit test and drive it through the context object to assert the flag. That feels a bit like testing an implementation detail though, but it might be the best we can do! Automated integration tests would do a lot better here in the future, but it would require hand-holding the state of installed media apps.",
+      "parentUuid": "0e860931_f3f4667f",
+      "revId": "3921e04baca0cd20f4f2e27b9890f7fcfd572c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
