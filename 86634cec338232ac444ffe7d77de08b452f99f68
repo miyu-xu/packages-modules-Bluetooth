@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dcd814c6_847e3cc5",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-11-27T03:02:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dabdd108_5f0560b8",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 6
+      },
+      "revId": "86634cec338232ac444ffe7d77de08b452f99f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "681d299d_6e89992d",
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "Re-opening as this wasn\u0027t properly addessed.\nYou need to use `IS_FLAG_ENABLED(bluetooth_power_telemetry);` macro",
       "parentUuid": "2791db07_dfeb4ed0",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 6
+      },
+      "revId": "86634cec338232ac444ffe7d77de08b452f99f68",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74541f5b_4d4e2560",
+        "filename": "system/osi/src/stack_power_telemetry.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-11-27T03:02:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ab932982_eafbf68f",
       "range": {
         "startLine": 51,
         "startChar": 0,
