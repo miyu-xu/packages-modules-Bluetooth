@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "16b4b06f_e1e786a1",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1561,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-27T23:24:46Z",
+      "side": 1,
+      "message": "This change only unifies the type of the callback, adjusting args will in upcoming changes.",
+      "parentUuid": "16da61d7_d6b683ba",
+      "revId": "d3a7c515d2f46130a519eb3d726f0f410ef020fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1ee712ec_ab8b8fb9",
         "filename": "system/stack/l2cap/l2c_csm.cc",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2023-11-27T23:21:20Z",
       "side": 1,
       "message": "Why did this callback change ?",
+      "revId": "d3a7c515d2f46130a519eb3d726f0f410ef020fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3def9c57_c6b0ced7",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-27T23:24:46Z",
+      "side": 1,
+      "message": "Now, the callback for BR/EDR and BLE are different, the type of callback for BR/EDR is defined by BTM_SEC, while that for BLE is defined by l2cap, I am trying to use a unified type for the callback",
+      "parentUuid": "1ee712ec_ab8b8fb9",
       "revId": "d3a7c515d2f46130a519eb3d726f0f410ef020fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
