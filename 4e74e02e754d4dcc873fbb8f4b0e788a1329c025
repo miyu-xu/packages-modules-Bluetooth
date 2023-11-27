@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4a21038_17ceed61",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-27T03:52:49Z",
+      "side": 1,
+      "message": "With dispatchAll instead of this and waitForLopperToFinishScheduledTask, you can make the test finished much faster.\nSee aosp/2842916 for an example.",
+      "range": {
+        "startLine": 77,
+        "startChar": 7,
+        "endLine": 77,
+        "endChar": 40
+      },
+      "revId": "4e74e02e754d4dcc873fbb8f4b0e788a1329c025",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c4cacf5_b316e236",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientServiceTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-11-27T03:52:49Z",
+      "side": 1,
+      "message": "mTestLooper.dispatchAll()?",
+      "range": {
+        "startLine": 97,
+        "startChar": 9,
+        "endLine": 97,
+        "endChar": 78
+      },
+      "revId": "4e74e02e754d4dcc873fbb8f4b0e788a1329c025",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
