@@ -45,6 +45,7 @@
 #include "gd/hci/address_with_type.h"
 #include "gd/hci/class_of_device.h"
 #include "gd/hci/controller.h"
+#include "gd/hci/hci_layer.h"
 #include "gd/os/handler.h"
 #include "main/shim/dumpsys.h"
 #include "main/shim/entry.h"
@@ -56,6 +57,7 @@
 #include "stack/btm/btm_sec_cb.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_log_history.h"
+#include "stack/include/main_thread.h"
 #include "stack/l2cap/l2c_int.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
@@ -1382,17 +1384,6 @@ shim::legacy::Acl::Acl(os::Handler* handler,
       handler->BindOn(this, &Acl::on_incoming_acl_credits));
   shim::RegisterDumpsysFunction(static_cast<void*>(this),
                                 [this](int fd) { Dump(fd); });
-
-  GetAclManager()->HACK_SetNonAclDisconnectCallback(
-      [this](uint16_t handle, uint8_t reason) {
-        TRY_POSTING_ON_MAIN(acl_interface_.connection.sco.on_disconnected,
-                            handle, static_cast<tHCI_REASON>(reason));
-
-        // HACKCEPTION! LE ISO connections, just like SCO are not registered in
-        // GD, so ISO can use same hack to get notified about disconnections
-        TRY_POSTING_ON_MAIN(acl_interface_.connection.le.on_iso_disconnected,
-                            handle, static_cast<tHCI_REASON>(reason));
-      });
 }
 
 shim::legacy::Acl::~Acl() {
