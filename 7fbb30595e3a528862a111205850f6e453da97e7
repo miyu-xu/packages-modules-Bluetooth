@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d52aa3bb_a908ea11",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T11:51:26Z",
+      "side": 1,
+      "message": "Ok OnLocalSinkStreamStatus is also fine.",
+      "parentUuid": "0527c10e_c54a0cb0",
+      "range": {
+        "startLine": 351,
+        "startChar": 7,
+        "endLine": 351,
+        "endChar": 29
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5932aaff_90c9253e",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 11
@@ -167,6 +191,47 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f7315def_e6830581",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 4218,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T11:51:26Z",
+      "side": 1,
+      "message": "ah I see.\nPlease consider changing it to \n`StreamMonitoringStatus sink_listener_notified_status_ ;`\n\nThen you could have a helper function\n\n`notifyAudioLocalSink(local_sink_status)` which would send notification only when flag is enabled and state really changes.\n\nIn dumpsys you would have better logging, because you would know actual state and not only bool about group change.",
+      "parentUuid": "ac9395bf_cd211355",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6005b93f_78b8a390",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 5457,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T11:51:26Z",
+      "side": 1,
+      "message": "why this is under `if (group)` ?\n \n also, shouldn\u0027t we add here also this check?\n \n `audio_receiver_state_ \u003e\u003d AudioState::READY_TO_START` ?",
+      "range": {
+        "startLine": 5454,
+        "startChar": 13,
+        "endLine": 5457,
+        "endChar": 13
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b1470891_c5d1dfe7",
         "filename": "system/include/hardware/bt_le_audio.h",
         "patchSetId": 11
@@ -243,6 +308,24 @@
         "endLine": 354,
         "endChar": 60
       },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a51f96f2_516c8550",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T11:51:26Z",
+      "side": 1,
+      "message": "maybe SetLocalSinkListenerMode ?",
+      "parentUuid": "dd905ecf_a284775f",
       "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
