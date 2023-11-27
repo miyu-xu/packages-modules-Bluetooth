@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ef51ea9_239ceed8",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2029,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-27T21:33:54Z",
+      "side": 1,
+      "message": "nit: LOG_WARN or LOG_ERROR?",
+      "range": {
+        "startLine": 2029,
+        "startChar": 6,
+        "endLine": 2029,
+        "endChar": 14
+      },
+      "revId": "449751f87ed8f04330376a51407aa7ce13a5b16e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
