@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "996b7eca_5a754f16",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T08:22:23Z",
+      "side": 1,
+      "message": "maybe OnLocalAudioSinkSessionStatus ?",
+      "range": {
+        "startLine": 351,
+        "startChar": 7,
+        "endLine": 351,
+        "endChar": 29
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5932aaff_90c9253e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T08:22:23Z",
+      "side": 1,
+      "message": "what if session is currently used?\n\nYou need to check active_group_id_ here",
+      "range": {
+        "startLine": 1034,
+        "startChar": 6,
+        "endLine": 1036,
+        "endChar": 40
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f73a7ec1_0ed6044c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 3748,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T08:22:23Z",
+      "side": 1,
+      "message": "Why not to just call here\n\nSetSinkListeningMode(false);",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28f0c6bc_eb4e26a3",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 4218,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T08:22:23Z",
+      "side": 1,
+      "message": "this group_change_requested_ seems to be not used. Can we please remove it and just keep this CL related to \"monitoring\" functionality as described in the commit message?",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1470891_c5d1dfe7",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T08:22:23Z",
+      "side": 1,
+      "message": "This \"Sink\" is a \"LocalSink\" right?\n\nIf so, can we name it e.g. SetLocalSinkListenerMode  or SetLocalSinkAudioSessionListenerMode ?",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f37aabb_09b57aee",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T08:22:23Z",
+      "side": 1,
+      "message": "nit: since this is bool, maybe `enable` is enough?",
+      "range": {
+        "startLine": 354,
+        "startChar": 41,
+        "endLine": 354,
+        "endChar": 60
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
