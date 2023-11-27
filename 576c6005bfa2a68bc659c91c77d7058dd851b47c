@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "307a3eee_1c5e0181",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-11-27T14:17:42Z",
+      "side": 1,
+      "message": "This check may also apply to non-watch. Shouldn\u0027t we put this logic in a separate method?",
+      "range": {
+        "startLine": 206,
+        "startChar": 8,
+        "endLine": 214,
+        "endChar": 0
+      },
+      "revId": "576c6005bfa2a68bc659c91c77d7058dd851b47c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
