@@ -30,12 +30,12 @@ import android.util.Log;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.internal.annotations.VisibleForTesting;
 
-import java.util.HashSet;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * Manages distnace measurement operations and interacts with Gabeldorsche stack.
+ * Manages distance measurement operations and interacts with Gabeldorsche stack.
  *
  * @hide
  */
@@ -51,12 +51,10 @@ public class DistanceMeasurementManager {
     private final AdapterService mAdapterService;
     private HandlerThread mHandlerThread;
     DistanceMeasurementNativeInterface mDistanceMeasurementNativeInterface;
-    private ConcurrentHashMap<String, HashSet<DistanceMeasurementTracker>> mRssiTrackers =
-            new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, CopyOnWriteArraySet<DistanceMeasurementTracker>>
+            mRssiTrackers = new ConcurrentHashMap<>();
 
-    /**
-     * Constructor of {@link DistanceMeasurementManager}.
-     */
+    /** Constructor of {@link DistanceMeasurementManager}. */
     DistanceMeasurementManager(AdapterService adapterService) {
         mAdapterService = adapterService;
 
@@ -110,14 +108,13 @@ public class DistanceMeasurementManager {
     }
 
     private synchronized void startRssiTracker(DistanceMeasurementTracker tracker) {
-        mRssiTrackers.putIfAbsent(tracker.mIdentityAddress,
-                new HashSet<DistanceMeasurementTracker>());
-        HashSet<DistanceMeasurementTracker> set = mRssiTrackers.get(tracker.mIdentityAddress);
-        if (set.contains(tracker)) {
+        mRssiTrackers.putIfAbsent(tracker.mIdentityAddress, new CopyOnWriteArraySet<>());
+        CopyOnWriteArraySet<DistanceMeasurementTracker> set =
+                mRssiTrackers.get(tracker.mIdentityAddress);
+        if (!set.add(tracker)) {
             Log.w(TAG, "Already registered");
             return;
         }
-        set.add(tracker);
         mDistanceMeasurementNativeInterface.startDistanceMeasurement(tracker.mIdentityAddress,
                 tracker.mFrequency, DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI);
     }
@@ -142,7 +139,7 @@ public class DistanceMeasurementManager {
 
     private synchronized int stopRssiTracker(UUID uuid, String identityAddress,
             boolean timeout) {
-        HashSet<DistanceMeasurementTracker> set = mRssiTrackers.get(identityAddress);
+        CopyOnWriteArraySet<DistanceMeasurementTracker> set = mRssiTrackers.get(identityAddress);
         if (set == null) {
             Log.w(TAG, "Can't find rssi tracker");
             return BluetoothStatusCodes.ERROR_DISTANCE_MEASUREMENT_INTERNAL;
@@ -222,7 +219,7 @@ public class DistanceMeasurementManager {
     }
 
     void handleRssiStarted(String address) {
-        HashSet<DistanceMeasurementTracker> set = mRssiTrackers.get(address);
+        CopyOnWriteArraySet<DistanceMeasurementTracker> set = mRssiTrackers.get(address);
         if (set == null) {
             Log.w(TAG, "Can't find rssi tracker");
             return;
@@ -253,7 +250,7 @@ public class DistanceMeasurementManager {
     }
 
     void handleRssiStartFail(String address, int reason) {
-        HashSet<DistanceMeasurementTracker> set = mRssiTrackers.get(address);
+        CopyOnWriteArraySet<DistanceMeasurementTracker> set = mRssiTrackers.get(address);
         if (set == null) {
             Log.w(TAG, "Can't find rssi tracker");
             return;
@@ -263,9 +260,7 @@ public class DistanceMeasurementManager {
                 invokeStartFail(tracker.mCallback, tracker.mDevice, reason);
             }
         }
-        synchronized (set) {
-            set.removeIf(tracker -> !tracker.mStarted);
-        }
+        set.removeIf(tracker -> !tracker.mStarted);
     }
 
     void onDistanceMeasurementStopped(String address, int reason, int method) {
@@ -281,7 +276,7 @@ public class DistanceMeasurementManager {
     }
 
     void handleRssiStopped(String address, int reason) {
-        HashSet<DistanceMeasurementTracker> set = mRssiTrackers.get(address);
+        CopyOnWriteArraySet<DistanceMeasurementTracker> set = mRssiTrackers.get(address);
         if (set == null) {
             Log.w(TAG, "Can't find rssi tracker");
             return;
@@ -292,9 +287,7 @@ public class DistanceMeasurementManager {
                 invokeOnStopped(tracker.mCallback, tracker.mDevice, reason);
             }
         }
-        synchronized (set) {
-            set.removeIf(tracker -> tracker.mStarted);
-        }
+        set.removeIf(tracker -> tracker.mStarted);
     }
 
     void onDistanceMeasurementResult(String address, int centimeter, int errorCentimeter,
@@ -314,7 +307,7 @@ public class DistanceMeasurementManager {
     }
 
     void handleRssiResult(String address, DistanceMeasurementResult result) {
-        HashSet<DistanceMeasurementTracker> set = mRssiTrackers.get(address);
+        CopyOnWriteArraySet<DistanceMeasurementTracker> set = mRssiTrackers.get(address);
         if (set == null) {
             Log.w(TAG, "Can't find rssi tracker");
             return;
