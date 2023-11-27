@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1100a12_a1f093f9",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 2606,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:18:37Z",
+      "side": 1,
+      "message": "why not to already get service here ? `getBassClientService();`",
+      "revId": "cd521f0db7398af1b68d23bc5dd0244380b93a08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
