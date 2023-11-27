@@ -46,6 +46,30 @@
       },
       "revId": "449751f87ed8f04330376a51407aa7ce13a5b16e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72f91f06_377eeb2c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2029,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-27T23:16:23Z",
+      "side": 1,
+      "message": "If this case is hit does that not mean there\u0027s a logical issue? If it\u0027s just that the name read was missed and this is expected, then ok to resolve this comment, I may just be misunderstanding.",
+      "parentUuid": "e8c8d8e6_28de50f2",
+      "range": {
+        "startLine": 2029,
+        "startChar": 6,
+        "endLine": 2029,
+        "endChar": 14
+      },
+      "revId": "449751f87ed8f04330376a51407aa7ce13a5b16e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
