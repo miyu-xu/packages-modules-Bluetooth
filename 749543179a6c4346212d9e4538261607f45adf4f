@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d368901a_50b7481f",
+        "filename": "system/audio_a2dp_hw/src/audio_a2dp_hw.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-27T23:40:25Z",
+      "side": 1,
+      "message": "why are we putting standard headers after custom headers?\nIs there any rule on the order standard headers and custom headers?",
+      "revId": "749543179a6c4346212d9e4538261607f45adf4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "099fa39c_b47dee1e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-27T23:40:25Z",
+      "side": 1,
+      "message": "here we are placing standard headers before custom headers",
+      "revId": "749543179a6c4346212d9e4538261607f45adf4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
