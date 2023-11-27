@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d3690b_3921d7f4",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3892,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:22:49Z",
+      "side": 1,
+      "message": "I don\u0027t think we need yet another policy about contexts, what we are trying to achieve here?",
+      "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
