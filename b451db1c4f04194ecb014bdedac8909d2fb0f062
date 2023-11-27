@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d8eb0db_7ed81ae2",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:13:46Z",
+      "side": 1,
+      "message": "do we have broadcaster status in dumpsys along with all the states? If not can we add it?",
+      "revId": "b451db1c4f04194ecb014bdedac8909d2fb0f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4068e8e5_75804030",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2067,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:13:46Z",
+      "side": 1,
+      "message": "please add if (DBG) { Log.d(TAG, \"status: \" + status)};",
+      "range": {
+        "startLine": 2067,
+        "startChar": 9,
+        "endLine": 2067,
+        "endChar": 10
+      },
+      "revId": "b451db1c4f04194ecb014bdedac8909d2fb0f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9062f65b_793a8d58",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2612,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:13:46Z",
+      "side": 1,
+      "message": "this check probably can go into `transitionFromBroadcastToUnicast()` function",
+      "revId": "b451db1c4f04194ecb014bdedac8909d2fb0f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "978fd789_c77a0057",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2624,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:13:46Z",
+      "side": 1,
+      "message": "nit: Broadcast is already Paused, so \"avoid pausing\" is confusing.\n\nI guess, we need comment like this: \"Stop here if Broadcast was not in Streaming state before\"",
+      "range": {
+        "startLine": 2624,
+        "startChar": 21,
+        "endLine": 2624,
+        "endChar": 36
+      },
+      "revId": "b451db1c4f04194ecb014bdedac8909d2fb0f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe68024e_ab190b37",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2693,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:13:46Z",
+      "side": 1,
+      "message": "nit: seems we don;t need local `status` variable \nCould be just `handleLocalSinkMonitorStatus(stackEvent.valueInt1);`",
+      "revId": "b451db1c4f04194ecb014bdedac8909d2fb0f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eaf5c86_bea44377",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 2996,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:13:46Z",
+      "side": 1,
+      "message": "I have feeling that this function should be not touched.\n\nThere is mechanism which monitors the LocalSink Session and it should be enough.\n\nactually this call `handleSinkMonitoringStatus(LeAudioStackEvent.STATUS_STREAMING_REQUESTED);` is a part of that mechanism. \nI guess there will be two same calls now - one from Native and one internally called here from Java.",
+      "revId": "b451db1c4f04194ecb014bdedac8909d2fb0f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
