@@ -22,6 +22,30 @@
       },
       "revId": "449751f87ed8f04330376a51407aa7ce13a5b16e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8c8d8e6_28de50f2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2029,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-27T21:58:16Z",
+      "side": 1,
+      "message": "We went from \"searching for devices\" to \"Searching for services\", so missing a name read from previous step IMHO shouldn\u0027t be an WARNING",
+      "parentUuid": "4ef51ea9_239ceed8",
+      "range": {
+        "startLine": 2029,
+        "startChar": 6,
+        "endLine": 2029,
+        "endChar": 14
+      },
+      "revId": "449751f87ed8f04330376a51407aa7ce13a5b16e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
