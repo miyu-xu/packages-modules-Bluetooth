@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97e726e0_ff32bf69",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1366,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-27T19:18:32Z",
+      "side": 1,
+      "message": "We need to use `mHasWbsEnabled` to before increase the count of `CODEC_USAGE_MSBC`. see [link](https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java;drc\u003d412ee0eac3d0c3252ee1c79d3b07ee7cc7c8a456;l\u003d1654?q\u003dsetaudioparam\u0026sq\u003drepo:android%2Fplatform%2Fsuperproject%2Fmain%20b:main)\n\nWhen none of them match, we increase the count for the CVSD, which is the base codec.",
+      "range": {
+        "startLine": 1364,
+        "startChar": 14,
+        "endLine": 1366,
+        "endChar": 13
+      },
+      "revId": "6c350b82b858db51fd34a7ff111112d3c9965d7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
