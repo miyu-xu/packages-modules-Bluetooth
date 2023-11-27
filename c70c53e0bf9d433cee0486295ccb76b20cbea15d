@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf498846_9dc59d25",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-27T12:27:50Z",
+      "side": 1,
+      "message": "if source listen mode is needed, can;t we combine those two?\n\n`setUnicastMonitorMode(std::vector\u003cdirection, enable\u003e)`\n\nand \n\n`onUnicastMonitorModeStatus(std::vector\u003cdirection, UnicastMonitorStatus\u003e)`\n\nwhat do you think?",
+      "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d6d3690b_3921d7f4",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 6
