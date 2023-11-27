@@ -34,6 +34,24 @@
       "parentUuid": "055f97a6_51588b33",
       "revId": "fa7aa821d715b2c47216f6cfe48dd834773a92ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76e1c381_302a5652",
+        "filename": "system/stack/test/btm/stack_btm_sec_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-27T23:35:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "07b2c3ba_7e69f2ac",
+      "revId": "fa7aa821d715b2c47216f6cfe48dd834773a92ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
