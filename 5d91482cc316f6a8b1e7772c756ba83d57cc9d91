@@ -22,6 +22,30 @@
       },
       "revId": "5d91482cc316f6a8b1e7772c756ba83d57cc9d91",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bfd87392_393adc7e",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-27T17:29:18Z",
+      "side": 1,
+      "message": "It was already defined in one of the targets and this was a way to get the target to build.\n\nI will investigate why this is the case.",
+      "parentUuid": "3f0fb679_9978ae62",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 15
+      },
+      "revId": "5d91482cc316f6a8b1e7772c756ba83d57cc9d91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
