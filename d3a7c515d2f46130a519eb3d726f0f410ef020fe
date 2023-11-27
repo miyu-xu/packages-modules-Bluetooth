@@ -69,6 +69,24 @@
       "parentUuid": "1ee712ec_ab8b8fb9",
       "revId": "d3a7c515d2f46130a519eb3d726f0f410ef020fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05c1ee43_447d9107",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-27T23:37:07Z",
+      "side": 1,
+      "message": "`the type of callback for BR/EDR is defined by BTM_SEC, while that for BLE is defined by l2cap` oh...that\u0027s a sad situation\n\nok let me look again with this new information",
+      "parentUuid": "3def9c57_c6b0ced7",
+      "revId": "d3a7c515d2f46130a519eb3d726f0f410ef020fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
