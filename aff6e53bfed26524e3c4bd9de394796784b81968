@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c754770c_ce0354c5",
+        "filename": "flags/sniff.aconfig",
+        "patchSetId": 12
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-27T18:23:57Z",
+      "side": 1,
+      "message": "Can you create a bug in the [bluetooth flag](https://b.corp.google.com/issues/new?component\u003d1387432\u0026template\u003d1839586) component ?\nYou created a SysUi bug to track this flag",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "aff6e53bfed26524e3c4bd9de394796784b81968",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc1a69fa_b135b900",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 12
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-27T18:23:57Z",
+      "side": 1,
+      "message": "Include as static for any library that end-up in the apex.\n\nYou also need to include `\"bluetooth_flags_c_lib\",` as a static lib",
+      "range": {
+        "startLine": 202,
+        "startChar": 9,
+        "endLine": 202,
+        "endChar": 34
+      },
+      "revId": "aff6e53bfed26524e3c4bd9de394796784b81968",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e4f732c_b2e66cb3",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-27T18:23:57Z",
+      "side": 1,
+      "message": "Can you uniformise the comment in the method ? you are using both `//` and `/*`",
+      "revId": "aff6e53bfed26524e3c4bd9de394796784b81968",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ec301d8_8ed55d71",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-27T18:23:57Z",
+      "side": 1,
+      "message": "```suggestion\n    LOG_INFO(\"No peer device found: %s\", ADDRESS_TO_LOGGABLE_CSTR(peer_bda));\n```",
+      "revId": "aff6e53bfed26524e3c4bd9de394796784b81968",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c1b038d_b8fe5b3c",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-27T18:23:57Z",
+      "side": 1,
+      "message": "What if we never found it ? are we doing an overflow access ?\n\nShould it be : ?\n```suggestion\n  tBTA_DM_PM_CFG* p_pm_cfg \u003d nullptr;\n\n  // Search for sniff table for timeout value\n  /* p_bta_dm_pm_cfg[0].app_id is the number of entries */\n  for (int j \u003d 1; j \u003c\u003d p_bta_dm_pm_cfg[0].app_id; j++) {\n    if ((p_bta_dm_pm_cfg[j].id \u003d\u003d id) \u0026\u0026\n        ((p_bta_dm_pm_cfg[j].app_id \u003d\u003d BTA_ALL_APP_ID) ||\n         (p_bta_dm_pm_cfg[j].app_id \u003d\u003d app_id)))\n      p_pm_cfg \u003d \u0026p_bta_dm_pm_cfg[j];\n      break;\n  }\n  if (p_pm_cfg \u003d\u003d null) {\n      LOG_INFO(\"No configuration found for %s\", ADDRESS_TO_LOGGABLE_CSTR(peer_bda));\n      return;\n  }\n```",
+      "range": {
+        "startLine": 360,
+        "startChar": 1,
+        "endLine": 368,
+        "endChar": 55
+      },
+      "revId": "aff6e53bfed26524e3c4bd9de394796784b81968",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
