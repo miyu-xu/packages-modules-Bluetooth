@@ -21,17 +21,14 @@
 #include <dbus/bus.h>
 #include <dbus/message.h>
 #include <dbus/object_proxy.h>
-#include <errno.h>
 #include <poll.h>
 #include <sys/socket.h>
 #include <sys/un.h>
 #include <unistd.h>
 
+#include <cerrno>
 #include <cstring>
-#include <memory>
 
-#include "mmc/daemon/constants.h"
-#include "mmc/metrics/mmc_rtt_logger.h"
 #include "mmc/proto/mmc_config.pb.h"
 #include "mmc/proto/mmc_service.pb.h"
 
