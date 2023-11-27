@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0527c10e_c54a0cb0",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-27T11:30:23Z",
+      "side": 1,
+      "message": "I would prefer not call this function with \"Session\" since this is not 100% only related to session. Stream suspended status is sent from IDLE group context: `https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2797698/11/system/bta/le_audio/client.cc#5456`\n\nso this is rather related to stream, not only session.",
+      "parentUuid": "996b7eca_5a754f16",
+      "range": {
+        "startLine": 351,
+        "startChar": 7,
+        "endLine": 351,
+        "endChar": 29
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5932aaff_90c9253e",
         "filename": "system/bta/le_audio/client.cc",
         "patchSetId": 11
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-27T08:22:23Z",
       "side": 1,
       "message": "what if session is currently used?\n\nYou need to check active_group_id_ here",
+      "range": {
+        "startLine": 1034,
+        "startChar": 6,
+        "endLine": 1036,
+        "endChar": 40
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "24e19abb_971d34e2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1036,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-27T11:30:23Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5932aaff_90c9253e",
       "range": {
         "startLine": 1034,
         "startChar": 6,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d87cd7c3_32fd39dc",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 3748,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-27T11:30:23Z",
+      "side": 1,
+      "message": "Can be also - changing to suggested \"SetSinkListeningMode(false)\"",
+      "parentUuid": "f73a7ec1_0ed6044c",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28f0c6bc_eb4e26a3",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-11-27T08:22:23Z",
       "side": 1,
       "message": "this group_change_requested_ seems to be not used. Can we please remove it and just keep this CL related to \"monitoring\" functionality as described in the commit message?",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac9395bf_cd211355",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 4218,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-27T11:30:23Z",
+      "side": 1,
+      "message": "It\u0027s used - `https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2797698/11/system/bta/le_audio/client.cc#4216`\n\nThis guards to not send multiple MonitoringStatuses, on every SinkResume (this is driven by AF).",
+      "parentUuid": "28f0c6bc_eb4e26a3",
       "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -111,6 +195,48 @@
       "writtenOn": "2023-11-27T08:22:23Z",
       "side": 1,
       "message": "nit: since this is bool, maybe `enable` is enough?",
+      "range": {
+        "startLine": 354,
+        "startChar": 41,
+        "endLine": 354,
+        "endChar": 60
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd905ecf_a284775f",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-27T11:30:23Z",
+      "side": 1,
+      "message": "As mentioned in previous comment: \" would prefer not call this function with \"Session\" since this is not 100% only related to session.\"",
+      "parentUuid": "b1470891_c5d1dfe7",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15e0f8b6_c05cd036",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-27T11:30:23Z",
+      "side": 1,
+      "message": "OK, `enable` sounds good.",
+      "parentUuid": "3f37aabb_09b57aee",
       "range": {
         "startLine": 354,
         "startChar": 41,
