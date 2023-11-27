@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f75530c5_abd2134e",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-27T17:43:45Z",
+      "side": 1,
+      "message": "I guess at some point we\u0027ll want to revisit this.  I thought we were allowing local includes inside the same path (stack/btm/, in this case)\n\nThe thinking was that at some point, we might want to move modules, and the relative includes make that easier.",
+      "range": {
+        "startLine": 37,
+        "startChar": 20,
+        "endLine": 37,
+        "endChar": 31
+      },
+      "revId": "3e8a96e4a1874635e0f91ede63a7997e50c72821",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
