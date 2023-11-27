@@ -46,6 +46,7 @@ import com.android.bluetooth.hearingaid.HearingAidService;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
+import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -96,11 +97,17 @@ public class AudioRoutingManager extends ActiveDeviceManager {
      * @param device The device to be activated.
      * @param profile The profile to be activated
      */
-    public void activateDeviceProfile(BluetoothDevice device, int profile) {
+    public void activateDeviceProfile(
+            BluetoothDevice device, int profile, SynchronousResultReceiver receiver) {
         mHandler.post(
-                () ->
-                        mHandler.activateDeviceProfile(
-                                mHandler.getAudioRoutingDevice(device), profile));
+                () -> {
+                    boolean result =
+                            mHandler.activateDeviceProfile(
+                                    mHandler.getAudioRoutingDevice(device), profile);
+                    if (receiver != null) {
+                        receiver.send(result);
+                    }
+                });
     }
 
     /**
