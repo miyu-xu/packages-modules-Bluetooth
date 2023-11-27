@@ -61,7 +61,6 @@
 #include "stack/include/ble_acl_interface.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/hci_error_code.h"
-#include "stack/include/sco_hci_link_interface.h"
 #include "stack/include/sec_hci_link_interface.h"
 #include "stack/l2cap/l2c_int.h"
 #include "test/common/jni_thread.h"
