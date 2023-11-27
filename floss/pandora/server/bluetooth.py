@@ -181,6 +181,9 @@ class Bluetooth(object):
     def get_address(self):
         return self.adapter_client.get_address()
 
+    def get_remote_type(self):
+        return self.adapter_client.get_remote_property('Type')
+
     def is_connected(self, address):
         return self.adapter_client.is_connected(address)
 
@@ -204,6 +207,9 @@ class Bluetooth(object):
 
     def forget_device(self, address):
         return self.adapter_client.forget_device(address)
+
+    def set_pin(self, address, accept, pin_code):
+        return self.adapter_client.set_pin(address, accept, pin_code)
 
     def set_pairing_confirmation(self, address, accept):
         return self.adapter_client.set_pairing_confirmation(address, accept)
