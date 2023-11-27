@@ -22,16 +22,14 @@
 
 #include <asm/ioctls.h>
 #include <base/logging.h>
-#include <errno.h>
 #include <netinet/in.h>
 #include <string.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
 #include <unistd.h>
 
-#include "check.h"
+#include "os/log.h"
 #include "osi/include/allocator.h"
-#include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "osi/include/reactor.h"
 
