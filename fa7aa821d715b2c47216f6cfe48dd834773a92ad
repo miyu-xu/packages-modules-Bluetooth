@@ -16,6 +16,24 @@
       "message": "This could be removed in another CL",
       "revId": "fa7aa821d715b2c47216f6cfe48dd834773a92ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2418df53_20ec1d24",
+        "filename": "system/test/mock/mock_stack_btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-27T23:34:37Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "0402ff59_82a94f51",
+      "revId": "fa7aa821d715b2c47216f6cfe48dd834773a92ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
