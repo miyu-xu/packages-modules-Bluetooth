@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b9b6ccc_740c7fd2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-27T04:53:53Z",
+      "side": 1,
+      "message": "It doesn\u0027t look like FilterParamsTest covers this change very well - it\u0027s only validating that the value passed to constructor is set.\n\nCan we add some additional test for this?",
+      "range": {
+        "startLine": 10,
+        "startChar": 6,
+        "endLine": 10,
+        "endChar": 28
+      },
+      "revId": "e4820cf46d13b0c515857f75670e26e7ee2d83d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce1a6624_060acdd7",
+        "filename": "android/app/src/com/android/bluetooth/gatt/ScanManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 433,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-27T04:53:53Z",
+      "side": 1,
+      "message": "It seems that client.dutyCycle is only set when scan is started, but ```getScanWindowMillis``` and ```getScanIntervalMillis``` appear to potentially return different values based on screen/app state - how is this intended to be handled?",
+      "range": {
+        "startLine": 433,
+        "startChar": 12,
+        "endLine": 433,
+        "endChar": 67
+      },
+      "revId": "e4820cf46d13b0c515857f75670e26e7ee2d83d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
