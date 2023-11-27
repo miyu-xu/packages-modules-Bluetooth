@@ -34,6 +34,18 @@
 using testing::Return;
 using testing::Test;
 
+namespace bluetooth {
+namespace legacy {
+namespace testing {
+
+void wipe_secrets_and_remove(tBTM_SEC_DEV_REC* p_dev_rec);
+
+}  // namespace testing
+}  // namespace legacy
+}  // namespace bluetooth
+
+using bluetooth::legacy::testing::wipe_secrets_and_remove;
+
 constexpr size_t kBtmSecMaxDeviceRecords =
     static_cast<size_t>(BTM_SEC_MAX_DEVICE_RECORDS + 1);
 
