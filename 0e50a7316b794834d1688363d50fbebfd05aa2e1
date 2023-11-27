@@ -16,6 +16,24 @@
       "message": "That means both Unicast and Broadcast devices will use same  Intent ACTION_LE_AUDIO_ACTIVE_DEVICE_CHANGED \n\nIs this the intention?\n\ne.g. Telecom is using this intent and it might be confusing.",
       "revId": "0e50a7316b794834d1688363d50fbebfd05aa2e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4947536_4779682c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1372,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-27T11:30:14Z",
+      "side": 1,
+      "message": "Thank You for pointing this out, I\u0027ve separated the event with LE_AUDIO_BROADCAST device instead of LE_AUDIO device type.",
+      "parentUuid": "fd72bb3d_e6e42f90",
+      "revId": "0e50a7316b794834d1688363d50fbebfd05aa2e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
