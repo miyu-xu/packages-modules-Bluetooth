@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "055f97a6_51588b33",
+        "filename": "system/stack/test/btm/stack_btm_sec_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-27T23:16:58Z",
+      "side": 1,
+      "message": "It has been suggested to me to use namespace bluetooth::testing::legacy {}",
+      "revId": "fa7aa821d715b2c47216f6cfe48dd834773a92ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
