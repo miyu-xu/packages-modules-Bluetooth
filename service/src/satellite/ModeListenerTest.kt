@@ -50,7 +50,6 @@ class ModeListenerTest {
 
     @Before
     public fun setup() {
-        Log.i("SatelliteModeListener", "-------------------------------------------------------")
         Log.i("SatelliteModeListener", "--> Start of test: " + testName.getMethodName())
         mode = ArrayList()
     }
