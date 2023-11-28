@@ -62,9 +62,6 @@
 
 extern tBTM_CB btm_cb;
 
-bt_status_t do_in_main_thread(const base::Location& from_here,
-                              base::OnceClosure task);
-
 using namespace bluetooth;
 
 class ConnectAddressWithType : public bluetooth::common::IRedactableLoggable {
