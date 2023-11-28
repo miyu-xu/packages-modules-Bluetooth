@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c26ad1f2_b5f7db48",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-28T18:40:13Z",
+      "side": 1,
+      "message": "Could we decide on a consistent naming for that feature to avoid confusion. I\u0027m in favor of `...monitor_mode_` instead of `...listening_mode_` here?",
+      "range": {
+        "startLine": 235,
+        "startChar": 8,
+        "endLine": 235,
+        "endChar": 28
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76ee118_28eabf5b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 5582,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-28T18:40:13Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 5582,
+        "startChar": 12,
+        "endLine": 5582,
+        "endChar": 16
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
