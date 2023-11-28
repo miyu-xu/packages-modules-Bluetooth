@@ -56,17 +56,17 @@ fi
 
 case "$1" in
   'format') shift
-    black -S -l 119 "$@" "${_PY_SOURCES[@]}"
-    isort --profile black -l 119 --ds --lbt 1 --ca "$@" "${_PY_SOURCES[@]}"
+    black -S -l 119 "${@:-${_PY_SOURCES[@]}}"
+    isort --profile black -l 119 --ds --lbt 1 --ca "${@:-${_PY_SOURCES[@]}}"
   ;;
   'lint') shift
     export PYTHONPATH="$(IFS=:; echo "${_PANDORA_PYTHON_PATHS[*]}"):${PYTHONPATH}"
     mypy \
       --pretty --show-column-numbers --strict --no-warn-unused-ignores --ignore-missing-imports \
-      "$@" "${_PY_SOURCES[@]}" || exit 1
+      "${@:-${_PY_SOURCES[@]}}" || exit 1
     pyright \
       -p "${_TEST_ROOT}" \
-      "$@" "${_PY_SOURCES[@]}"
+      "${@:-${_PY_SOURCES[@]}}"
   ;;
   'run') shift
     tradefed.sh \
