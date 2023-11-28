@@ -141,6 +141,53 @@
       },
       "revId": "66e6fd5e036868c5286bac0ded634119c39e4ef5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7dbd887a_9a258805",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-28T03:32:48Z",
+      "side": 1,
+      "message": "Agree with Brian ok to address in follow up CL, given there isn\u0027t a merge conflict here and this is isolated change (but also agree with William would be good to update to match newer pattern in this test file).\n\nResolving to unblock.",
+      "parentUuid": "3a741090_4b8581e5",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 69
+      },
+      "revId": "66e6fd5e036868c5286bac0ded634119c39e4ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14540f31_c8e010d2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-28T03:32:48Z",
+      "side": 1,
+      "message": "nit: Should be defined instead of hardcoded as it is now",
+      "range": {
+        "startLine": 180,
+        "startChar": 57,
+        "endLine": 180,
+        "endChar": 95
+      },
+      "revId": "66e6fd5e036868c5286bac0ded634119c39e4ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
