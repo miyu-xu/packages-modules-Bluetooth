@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3d12ab4b_5b3d7aa8",
+        "filename": "android/pandora/server/src/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-28T23:27:43Z",
+      "side": 1,
+      "message": "Bluetooth package name is `com.android.bluetooth` on non internal targets.\n\nMaybe we could use the UID (1002) to find bluetooth.",
+      "range": {
+        "startLine": 158,
+        "startChar": 27,
+        "endLine": 158,
+        "endChar": 55
+      },
+      "revId": "86ee4ac82cef4febd269c5bf916d25907454fd5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89158888_d214bd49",
         "filename": "android/pandora/server/src/Host.kt",
         "patchSetId": 4
