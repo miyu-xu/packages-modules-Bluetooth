@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef4a06ea_68ce3cb5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-28T23:09:40Z",
+      "side": 1,
+      "message": "nit, if you want\n\n```suggestion\n            Log.i(\n                    TAG,\n                    \"init:\"\n                            + (\" profile\u003d\" + config.getProfileClass().getSimpleName())\n                            + (\" enabled\u003d\" + config.isSupported()));\n```",
+      "range": {
+        "startLine": 207,
+        "startChar": 11,
+        "endLine": 212,
+        "endChar": 52
+      },
+      "revId": "1cf38a878a6e1378857b64760c3f4dcd79fb380b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
