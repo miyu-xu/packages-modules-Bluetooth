@@ -477,7 +477,7 @@ void BTA_GATTC_ReadCharDescr(uint16_t conn_id, uint16_t handle,
  * Returns          None
  *
  ******************************************************************************/
-void BTA_GATTC_ReadMultiple(uint16_t conn_id, tBTA_GATTC_MULTI& handles,
+void BTA_GATTC_ReadMultiple(uint16_t conn_id, tBTA_GATTC_MULTI handles,
                             bool variable_len, tGATT_AUTH_REQ auth_req,
                             GATT_READ_MULTI_OP_CB callback, void* cb_data) {
   tBTA_GATTC_API_READ_MULTI* p_buf =

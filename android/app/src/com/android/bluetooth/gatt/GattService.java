@@ -1006,6 +1006,39 @@ public class GattService extends ProfileService {
         }
 
         @Override
+        public void readMultipleCharacteristics(
+                int clientIf,
+                String address,
+                int[] handles,
+                boolean variableLen,
+                int authReq,
+                AttributionSource attributionSource,
+                SynchronousResultReceiver receiver) {
+            try {
+                readMultipleCharacteristics(
+                        clientIf, address, handles, variableLen, authReq, attributionSource);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        private void readMultipleCharacteristics(
+                int clientIf,
+                String address,
+                int[] handles,
+                boolean variableLen,
+                int authReq,
+                AttributionSource attributionSource) {
+            GattService service = getService();
+            if (service == null) {
+                return;
+            }
+            service.readMultipleCharacteristics(
+                    clientIf, address, handles, variableLen, authReq, attributionSource);
+        }
+
+        @Override
         public void writeCharacteristic(int clientIf, String address, int handle, int writeType,
                 int authReq, byte[] value, AttributionSource attributionSource,
                 SynchronousResultReceiver receiver) {
@@ -2558,6 +2591,27 @@ public class GattService extends ProfileService {
         }
     }
 
+    void onReadMultipleCharacteristics(int connId, int status, int[] handles, byte[] values)
+            throws RemoteException {
+        String address = mClientMap.addressByConnId(connId);
+
+        if (VDBG) {
+            Log.d(
+                    TAG,
+                    "onReadMultipleCharacteristics() - address="
+                            + address
+                            + ", status="
+                            + status
+                            + ", length="
+                            + values.length);
+        }
+
+        ClientMap.App app = mClientMap.getByConnId(connId);
+        if (app != null) {
+            // app.callback.onCharacteristicRead(address, status, handle, data);
+        }
+    }
+
     void onWriteCharacteristic(int connId, int status, int handle, byte[] data)
             throws RemoteException {
         String address = mClientMap.addressByConnId(connId);
@@ -3875,6 +3929,46 @@ public class GattService extends ProfileService {
         mNativeInterface.gattClientReadUsingCharacteristicUuid(connId,
                 uuid.getLeastSignificantBits(), uuid.getMostSignificantBits(), startHandle,
                 endHandle, authReq);
+    }
+
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    void readMultipleCharacteristics(
+            int clientIf,
+            String address,
+            int[] handles,
+            boolean variableLen,
+            int authReq,
+            AttributionSource attributionSource) {
+        if (!Utils.checkConnectPermissionForDataDelivery(
+                this, attributionSource, "GattService readMultipleCharacteristics")) {
+            return;
+        }
+
+        if (VDBG) {
+            Log.d(TAG, "readMultipleCharacteristics() - address=" + address);
+        }
+
+        Integer connId = mClientMap.connIdByAddress(clientIf, address);
+        if (connId == null) {
+            Log.e(TAG, "readMultipleCharacteristics() - No connection for " + address + "...");
+            return;
+        }
+
+        for (int handle : handles) {
+            try {
+                permissionCheck(connId, handle);
+            } catch (SecurityException ex) {
+                String callingPackage = attributionSource.getPackageName();
+                // Only throws on apps with target SDK T+ as this old API did not throw prior to T
+                if (checkCallerTargetSdk(this, callingPackage, Build.VERSION_CODES.TIRAMISU)) {
+                    throw ex;
+                }
+                Log.w(TAG, "readMultipleCharacteristics() - permission check failed!");
+                return;
+            }
+        }
+        mNativeInterface.gattClientReadMultipleCharacteristics(
+                connId, handles, variableLen, authReq);
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)

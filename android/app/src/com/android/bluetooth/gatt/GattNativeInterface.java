@@ -164,6 +164,11 @@ public class GattNativeInterface {
         getGattService().onReadCharacteristic(connId, status, handle, data);
     }
 
+    void onReadMultipleCharacteristics(int connId, int status, int[] handles, byte[] values)
+            throws RemoteException {
+        getGattService().onReadMultipleCharacteristics(connId, status, handles, values);
+    }
+
     void onWriteCharacteristic(int connId, int status, int handle, byte[] data)
             throws RemoteException {
         getGattService().onWriteCharacteristic(connId, status, handle, data);
@@ -337,6 +342,10 @@ public class GattNativeInterface {
     private native void gattClientReadCharacteristicNative(int connId, int handle, int authReq);
     private native void gattClientReadUsingCharacteristicUuidNative(int connId, long uuidMsb,
             long uuidLsb, int sHandle, int eHandle, int authReq);
+
+    private native void gattClientReadMultipleCharacteristicsNative(
+            int connId, int[] handles, boolean variableLen, int authReq);
+
     private native void gattClientReadDescriptorNative(int connId, int handle, int authReq);
     private native void gattClientWriteCharacteristicNative(int connId, int handle, int writeType,
             int authReq, byte[] value);
@@ -483,7 +492,6 @@ public class GattNativeInterface {
         gattClientReadCharacteristicNative(connId, handle, authReq);
     }
 
-
     /**
      * Read a characteristic by the given UUID
      */
@@ -491,6 +499,12 @@ public class GattNativeInterface {
             long uuidLsb, int sHandle, int eHandle, int authReq) {
         gattClientReadUsingCharacteristicUuidNative(connId, uuidMsb, uuidLsb, sHandle, eHandle,
                 authReq);
+    }
+
+    /** Read multiple characteristics by the given handles */
+    public void gattClientReadMultipleCharacteristics(
+            int connId, int[] handles, boolean variableLen, int authReq) {
+        gattClientReadMultipleCharacteristicsNative(connId, handles, variableLen, authReq);
     }
 
     /**

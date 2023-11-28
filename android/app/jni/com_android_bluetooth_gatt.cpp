@@ -120,6 +120,7 @@ static jmethodID method_onScanResult;
 static jmethodID method_onConnected;
 static jmethodID method_onDisconnected;
 static jmethodID method_onReadCharacteristic;
+static jmethodID method_onReadMultipleCharacteristics;
 static jmethodID method_onWriteCharacteristic;
 static jmethodID method_onExecuteCompleted;
 static jmethodID method_onSearchCompleted;
@@ -328,6 +329,39 @@ void btgattc_read_characteristic_cb(int conn_id, int status,
 
   sCallbackEnv->CallVoidMethod(mCallbacksObj, method_onReadCharacteristic,
                                conn_id, status, p_data->handle, jb.get());
+}
+
+void btgattc_read_multiple_characteristics_cb(int conn_id, int status,
+                                              std::vector<uint16_t> handles,
+                                              std::vector<uint8_t> values) {
+  std::shared_lock<std::shared_mutex> lock(callbacks_mutex);
+  CallbackEnv sCallbackEnv(__func__);
+  if (!sCallbackEnv.valid() || !mCallbacksObj) return;
+
+  ScopedLocalRef<jbyteArray> jvalues(sCallbackEnv.get(), NULL);
+  ScopedLocalRef<jintArray> jhandles(sCallbackEnv.get(), NULL);
+  if (status == 0) {  // Success
+    jvalues.reset(sCallbackEnv->NewByteArray(values.size()));
+    sCallbackEnv->SetByteArrayRegion(jvalues.get(), 0, values.size(),
+                                     (jbyte*)values.data());
+    jhandles.reset(sCallbackEnv->NewIntArray(handles.size()));
+
+    jint tmp[handles.size()];
+    for (size_t i = 0; i < handles.size(); i++) {
+      tmp[i] = handles[i];
+    }
+
+    sCallbackEnv->SetIntArrayRegion(jhandles.get(), 0, handles.size(),
+                                    (jint*)tmp);
+  } else {
+    uint8_t value = 0;
+    jvalues.reset(sCallbackEnv->NewByteArray(1));
+    sCallbackEnv->SetByteArrayRegion(jvalues.get(), 0, 1, (jbyte*)&value);
+  }
+
+  sCallbackEnv->CallVoidMethod(mCallbacksObj,
+                               method_onReadMultipleCharacteristics, conn_id,
+                               status, jhandles.get(), jvalues.get());
 }
 
 void btgattc_write_characteristic_cb(int conn_id, int status, uint16_t handle,
@@ -633,6 +667,7 @@ static const btgatt_client_callbacks_t sGattClientCallbacks = {
     btgattc_conn_updated_cb,
     btgattc_service_changed_cb,
     btgattc_subrate_change_cb,
+    btgattc_read_multiple_characteristics_cb,
 };
 
 /**
@@ -1459,6 +1494,23 @@ static void gattClientReadUsingCharacteristicUuidNative(
   Uuid uuid = from_java_uuid(uuid_msb, uuid_lsb);
   sGattIf->client->read_using_characteristic_uuid(conn_id, uuid, s_handle,
                                                   e_handle, authReq);
+}
+
+static void gattClientReadMultipleCharacteristicsNative(
+    JNIEnv* env, jobject /* object */, jint conn_id, jintArray handles,
+    jboolean variable_len, jint authReq) {
+  if (!sGattIf) return;
+
+  uint16_t len = (uint16_t)env->GetArrayLength(handles);
+  jint* handles_jint = env->GetIntArrayElements(handles, NULL);
+
+  std::vector<uint16_t> native_handles(len);
+  for (int i = 0; i < len; i++) {
+    native_handles[i] = handles_jint[i];
+  }
+
+  sGattIf->client->read_multiple_characteristics(conn_id, native_handles,
+                                                 variable_len, authReq);
 }
 
 static void gattClientReadDescriptorNative(JNIEnv* /* env */,
@@ -2752,6 +2804,8 @@ static int register_com_android_bluetooth_gatt_(JNIEnv* env) {
        (void*)gattClientReadCharacteristicNative},
       {"gattClientReadUsingCharacteristicUuidNative", "(IJJIII)V",
        (void*)gattClientReadUsingCharacteristicUuidNative},
+      {"gattClientReadMultipleCharacteristicsNative", "(I[IBI)V",
+       (void*)gattClientReadMultipleCharacteristicsNative},
       {"gattClientReadDescriptorNative", "(III)V",
        (void*)gattClientReadDescriptorNative},
       {"gattClientWriteCharacteristicNative", "(IIII[B)V",
@@ -2813,6 +2867,8 @@ static int register_com_android_bluetooth_gatt_(JNIEnv* env) {
       {"onConnected", "(IIILjava/lang/String;)V", &method_onConnected},
       {"onDisconnected", "(IIILjava/lang/String;)V", &method_onDisconnected},
       {"onReadCharacteristic", "(III[B)V", &method_onReadCharacteristic},
+      {"onReadMultipleCharacteristics", "(II[I[B)V",
+       &method_onReadMultipleCharacteristics},
       {"onWriteCharacteristic", "(III[B)V", &method_onWriteCharacteristic},
       {"onExecuteCompleted", "(II)V", &method_onExecuteCompleted},
       {"onSearchCompleted", "(II)V", &method_onSearchCompleted},
