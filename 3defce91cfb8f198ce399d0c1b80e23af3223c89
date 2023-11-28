@@ -16,6 +16,24 @@
       "message": "can we call it \n\nSTATUS_LOCAL_SINK_STREAM_REQUESTED\nSTATUS_LOCAL_SINK_STREAM_STREAMING\nSTATUS_LOCAL_SINK_STREAM_SUSPENDED",
       "revId": "3defce91cfb8f198ce399d0c1b80e23af3223c89",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1835e87_7d31879a",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStackEvent.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-28T09:51:40Z",
+      "side": 1,
+      "message": "Done - i just removed \"SINK\" word from this suggestion since direction would describe it.",
+      "parentUuid": "c993554e_95c2faec",
+      "revId": "3defce91cfb8f198ce399d0c1b80e23af3223c89",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
