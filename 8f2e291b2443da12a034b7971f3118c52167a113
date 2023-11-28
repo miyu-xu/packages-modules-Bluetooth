@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "666c8446_a9a7402c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/le_audio/LeAudioBroadcastServiceTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-28T21:48:36Z",
+      "side": 1,
+      "message": "This centralization feature is not ready to be enabled yet. So we should not set it as true in SetUp().\nWithout this line, does it fail in some specific tests? if yes, we can set the flag to true for the tests only.\n\nSo we need to fix this, it would be great if we can fix this here. But for this CL, I\u0027m also fine if you\u0027d like to have a separate CL, then could please create a follow-up task for this. Thank you. Marking this as resolved and let you decide the next.",
+      "parentUuid": "41a27a87_a6ce6288",
+      "revId": "8f2e291b2443da12a034b7971f3118c52167a113",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "34e16aae_b993cf1d",
