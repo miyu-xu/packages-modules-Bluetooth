@@ -33,6 +33,24 @@
       "message": "Why the patch only have the encoding part? Will you add it later or it was missed?",
       "revId": "000f651a74f27afe678f6cdfa4ae0e76bb4d6344",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc52ea54_dbf4f4c6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-28T03:11:43Z",
+      "side": 1,
+      "message": "Hi Alice, I changed the structure to closely follow LE Audio implementation in the latest patch set, with added support for decoding path.",
+      "parentUuid": "922dbb2c_335b9d10",
+      "revId": "000f651a74f27afe678f6cdfa4ae0e76bb4d6344",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
