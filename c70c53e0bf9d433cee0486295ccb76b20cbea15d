@@ -69,6 +69,24 @@
       "parentUuid": "d6d3690b_3921d7f4",
       "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8837de06_ea95a7eb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3892,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-28T22:00:53Z",
+      "side": 1,
+      "message": "for better context, maybe you could share some use cases from PRD doc to Lukasz.",
+      "parentUuid": "cde44017_512d9d82",
+      "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
