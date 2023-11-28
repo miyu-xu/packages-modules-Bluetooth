@@ -15,13 +15,13 @@
  *
  */
 
-#include <cstddef>
-#include <optional>
 #define LOG_TAG "ble_sec"
 
 #include <base/strings/stringprintf.h>
 
+#include <cstddef>
 #include <cstdint>
+#include <optional>
 
 #include "btif/include/btif_storage.h"
 #include "crypto_toolbox/crypto_toolbox.h"
@@ -123,7 +123,9 @@ void BTM_SecAddBleDevice(const RawAddress& bd_addr, tBT_DEVICE_TYPE dev_type,
  *
  ******************************************************************************/
 bool BTM_GetRemoteDeviceName(const RawAddress& bd_addr, BD_NAME bd_name) {
-  LOG_VERBOSE("%s", __func__);
+  LOG_VERBOSE("Get remote device name of %s from storage",
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+
   bool ret = FALSE;
   bt_bdname_t bdname;
   bt_property_t prop_name;
@@ -132,7 +134,7 @@ bool BTM_GetRemoteDeviceName(const RawAddress& bd_addr, BD_NAME bd_name) {
 
   if (btif_storage_get_remote_device_property(&bd_addr, &prop_name) ==
       BT_STATUS_SUCCESS) {
-    LOG_VERBOSE("%s, NV name = %s", __func__, bdname.name);
+    LOG_VERBOSE("NV name = %s", bdname.name);
     strncpy((char*)bd_name, (char*)bdname.name, BD_NAME_LEN + 1);
     ret = TRUE;
   }
@@ -161,9 +163,8 @@ void BTM_SecAddBleKey(const RawAddress& bd_addr, tBTM_LE_KEY_VALUE* p_le_key,
       (key_type != BTM_LE_KEY_PENC && key_type != BTM_LE_KEY_PID &&
        key_type != BTM_LE_KEY_PCSRK && key_type != BTM_LE_KEY_LENC &&
        key_type != BTM_LE_KEY_LCSRK && key_type != BTM_LE_KEY_LID)) {
-    LOG(WARNING) << __func__
-                 << " Wrong Type, or No Device record for bdaddr: " << bd_addr
-                 << ", Type: " << key_type;
+    LOG_WARN("Wrong Type, or No Device record for bdaddr:%s, Type:0%hhu",
+             ADDRESS_TO_LOGGABLE_CSTR(bd_addr), key_type);
     return;
   }
 
@@ -193,7 +194,7 @@ void BTM_SecAddBleKey(const RawAddress& bd_addr, tBTM_LE_KEY_VALUE* p_le_key,
  ******************************************************************************/
 void BTM_BleLoadLocalKeys(uint8_t key_type, tBTM_BLE_LOCAL_KEYS* p_key) {
   tBTM_SEC_DEVCB* p_devcb = &btm_sec_cb.devcb;
-  LOG_VERBOSE("%s", __func__);
+  LOG_VERBOSE("Loading local le key, type:%d", key_type);
   if (p_key != NULL) {
     switch (key_type) {
       case BTM_BLE_KEY_TYPE_ID:
@@ -333,7 +334,7 @@ void BTM_BleOobDataReply(const RawAddress& bd_addr, uint8_t res, uint8_t len,
                          uint8_t* p_data) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   if (p_dev_rec == NULL) {
-    LOG_ERROR("%s: Unknown device", __func__);
+    LOG_ERROR("Unknown device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     return;
   }
 
@@ -364,7 +365,7 @@ void BTM_BleSecureConnectionOobDataReply(const RawAddress& bd_addr,
                                          uint8_t* p_c, uint8_t* p_r) {
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
   if (p_dev_rec == NULL) {
-    LOG_ERROR("%s: Unknown device", __func__);
+    LOG_ERROR("Unknown device:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
     return;
   }
 
@@ -411,8 +412,7 @@ void BTM_BleSetPrefConnParams(const RawAddress& bd_addr, uint16_t min_conn_int,
   tBTM_SEC_DEV_REC* p_dev_rec = btm_find_dev(bd_addr);
 
   LOG_VERBOSE(
-      "BTM_BleSetPrefConnParams min: %u  max: %u  latency: %u  \
-                    tout: %u",
+      "BTM_BleSetPrefConnParams min:%u,max:%u,latency:%u,tout:%u",
       min_conn_int, max_conn_int, peripheral_latency, supervision_tout);
 
   if (BTM_BLE_ISVALID_PARAM(min_conn_int, BTM_BLE_CONN_INT_MIN,
@@ -646,7 +646,7 @@ tBTM_SEC_ACTION btm_ble_determine_security_act(bool is_originator,
   if (is_originator) {
     if ((security_required & BTM_SEC_OUT_FLAGS) == 0 &&
         (security_required & BTM_SEC_OUT_MITM) == 0) {
-      LOG_VERBOSE("%s No security required for outgoing connection", __func__);
+      LOG_INFO("No security required for outgoing connection");
       return BTM_SEC_OK;
     }
 
@@ -654,7 +654,7 @@ tBTM_SEC_ACTION btm_ble_determine_security_act(bool is_originator,
   } else {
     if ((security_required & BTM_SEC_IN_FLAGS) == 0 &&
         (security_required & BTM_SEC_IN_MITM) == 0) {
-      LOG_VERBOSE("%s No security required for incoming connection", __func__);
+      LOG_VERBOSE("No security required for incoming connection");
       return BTM_SEC_OK;
     }
 
@@ -664,7 +664,7 @@ tBTM_SEC_ACTION btm_ble_determine_security_act(bool is_originator,
   tBTM_BLE_SEC_REQ_ACT ble_sec_act = {BTM_BLE_SEC_REQ_ACT_NONE};
   btm_ble_link_sec_check(bdaddr, auth_req, &ble_sec_act);
 
-  LOG_VERBOSE("%s ble_sec_act %d", __func__, ble_sec_act);
+  LOG_VERBOSE("ble_sec_act %d", ble_sec_act);
 
   if (ble_sec_act == BTM_BLE_SEC_REQ_ACT_DISCARD) return BTM_SEC_ENC_PENDING;
 
@@ -916,10 +916,9 @@ void btm_sec_save_le_key(const RawAddress& bd_addr, tBTM_LE_KEY_TYPE key_type,
             p_keys->pid_key.identity_addr_type;
         p_rec->ble_keys.key_type |= BTM_LE_KEY_PID;
         LOG_VERBOSE(
-            "%s: BTM_LE_KEY_PID key_type=0x%x save peer IRK, change bd_addr=%s "
+            "BTM_LE_KEY_PID key_type=0x%x save peer IRK, change bd_addr=%s "
             "to id_addr=%s id_addr_type=0x%x",
-            __func__, p_rec->ble_keys.key_type,
-            ADDRESS_TO_LOGGABLE_CSTR(p_rec->bd_addr),
+            p_rec->ble_keys.key_type, ADDRESS_TO_LOGGABLE_CSTR(p_rec->bd_addr),
             ADDRESS_TO_LOGGABLE_CSTR(p_keys->pid_key.identity_addr),
             p_keys->pid_key.identity_addr_type);
         /* update device record address as identity address */
@@ -982,8 +981,8 @@ void btm_sec_save_le_key(const RawAddress& bd_addr, tBTM_LE_KEY_TYPE key_type,
         return;
     }
 
-    VLOG(1) << "BLE key type 0x" << loghex(key_type)
-            << " updated for BDA: " << bd_addr << " (btm_sec_save_le_key)";
+    LOG_VERBOSE("BLE key type 0x%x, updated for BDA: %s", key_type,
+                ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
     /* Notify the application that one of the BLE keys has been updated
        If link key is in progress, it will get sent later.*/
@@ -996,9 +995,8 @@ void btm_sec_save_le_key(const RawAddress& bd_addr, tBTM_LE_KEY_TYPE key_type,
     return;
   }
 
-  LOG(WARNING) << "BLE key type 0x" << loghex(key_type)
-               << " called for Unknown BDA or type: " << bd_addr
-               << "(btm_sec_save_le_key)";
+  LOG_WARN("BLE key type 0x%x, called for Unknown BDA or type: %s", key_type,
+           ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
   if (p_rec) {
     LOG_VERBOSE("sec_flags=0x%x", p_rec->sec_flags);
@@ -1555,7 +1553,7 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
       case SMP_SEC_REQUEST_EVT:
         if (event == SMP_SEC_REQUEST_EVT &&
             btm_sec_cb.pairing_state != BTM_PAIR_STATE_IDLE) {
-          LOG_VERBOSE("%s: Ignoring SMP Security request", __func__);
+          LOG_VERBOSE("Ignoring SMP Security request");
           break;
         }
         btm_sec_cb.pairing_bda = bd_addr;
@@ -1578,7 +1576,7 @@ tBTM_STATUS btm_proc_smp_cback(tSMP_EVT event, const RawAddress& bd_addr,
         if (event == SMP_COMPLT_EVT) {
           p_dev_rec = btm_find_dev(bd_addr);
           if (p_dev_rec == NULL) {
-            LOG_ERROR("%s: p_dev_rec is NULL", __func__);
+            LOG_ERROR("p_dev_rec is NULL");
             return BTM_SUCCESS;
           }
           LOG_VERBOSE(
@@ -1687,9 +1685,8 @@ bool BTM_BleDataSignature(const RawAddress& bd_addr, uint8_t* p_text,
                           uint16_t len, BLE_SIGNATURE signature) {
   tBTM_SEC_DEV_REC* p_rec = btm_find_dev(bd_addr);
 
-  LOG_VERBOSE("%s", __func__);
   if (p_rec == NULL) {
-    LOG_ERROR("%s-data signing can not be done from unknown device", __func__);
+    LOG_ERROR("data signing can not be done from unknown device");
     return false;
   }
 
@@ -1697,7 +1694,6 @@ bool BTM_BleDataSignature(const RawAddress& bd_addr, uint8_t* p_text,
   uint8_t* pp;
   uint8_t* p_buf = (uint8_t*)osi_malloc(len + 4);
 
-  LOG_VERBOSE("%s-Start to generate Local CSRK", __func__);
   pp = p_buf;
   /* prepare plain text */
   if (p_text) {
@@ -1712,13 +1708,13 @@ bool BTM_BleDataSignature(const RawAddress& bd_addr, uint8_t* p_text,
                            BTM_CMAC_TLEN_SIZE, p_mac);
   btm_ble_increment_sign_ctr(bd_addr, true);
 
-  LOG_VERBOSE("%s p_mac = %p", __func__, p_mac);
+  LOG_VERBOSE("p_mac = %p", p_mac);
   LOG_VERBOSE(
-      "p_mac[0] = 0x%02x p_mac[1] = 0x%02x p_mac[2] = 0x%02x p_mac[3] = "
+      "p_mac[0]=0x%02x p_mac[1]=0x%02x p_mac[2]=0x%02x p_mac[3]="
       "0x%02x",
       *p_mac, *(p_mac + 1), *(p_mac + 2), *(p_mac + 3));
   LOG_VERBOSE(
-      "p_mac[4] = 0x%02x p_mac[5] = 0x%02x p_mac[6] = 0x%02x p_mac[7] = "
+      "p_mac[4]=0x%02x p_mac[5]=0x%02x p_mac[6]=0x%02x p_mac[7]="
       "0x%02x",
       *(p_mac + 4), *(p_mac + 5), *(p_mac + 6), *(p_mac + 7));
   osi_free(p_buf);
@@ -1754,7 +1750,7 @@ bool BTM_BleVerifySignature(const RawAddress& bd_addr, uint8_t* p_orig,
   } else if (p_orig == NULL) {
     LOG_ERROR("No signature to verify");
   } else {
-    LOG_VERBOSE("%s rcv_cnt=%d >= expected_cnt=%d", __func__, counter,
+    LOG_VERBOSE("rcv_cnt=%d >= expected_cnt=%d", counter,
                 p_rec->ble_keys.counter);
 
     crypto_toolbox::aes_cmac(p_rec->ble_keys.pcsrk, p_orig, len,
