@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45932a38_c8172d2d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-28T21:14:20Z",
+      "side": 1,
+      "message": "LGTM, would be great if you can also address Lukasz\u0027s log improvements.",
+      "revId": "739aef1ecb14f26d598e9c7bf565f5d18e921f8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa131718_2ca5d8af",
