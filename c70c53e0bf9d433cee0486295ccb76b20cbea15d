@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7499e98c_78c4b397",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-28T09:50:45Z",
+      "side": 1,
+      "message": "Can be.",
+      "parentUuid": "cf498846_9dc59d25",
+      "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d6d3690b_3921d7f4",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-11-27T12:22:49Z",
       "side": 1,
       "message": "I don\u0027t think we need yet another policy about contexts, what we are trying to achieve here?",
+      "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cde44017_512d9d82",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3892,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-28T09:50:45Z",
+      "side": 1,
+      "message": "Unicast should be resumed when broadcast assistant delegator stop syncing to sources.",
+      "parentUuid": "d6d3690b_3921d7f4",
       "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
