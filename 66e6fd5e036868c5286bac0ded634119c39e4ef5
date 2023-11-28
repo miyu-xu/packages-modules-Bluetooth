@@ -93,6 +93,30 @@
       },
       "revId": "66e6fd5e036868c5286bac0ded634119c39e4ef5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34811372_8879cb27",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-28T02:26:59Z",
+      "side": 1,
+      "message": "I don\u0027t understand your argument.\nYour diff will be smaller by using the wrapper method for connection and disconnection",
+      "parentUuid": "ef7e50a8_e4020c02",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 69
+      },
+      "revId": "66e6fd5e036868c5286bac0ded634119c39e4ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
