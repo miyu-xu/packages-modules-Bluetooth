@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc41d65f_f33824ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-11-28T08:15:48Z",
+      "side": 1,
+      "message": "Since aosp/2844988 merged. Let me rebase and run the presubmit.",
+      "revId": "841e8505627c10bff2c857ee453d4e73380eba2e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
