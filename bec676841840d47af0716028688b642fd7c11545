@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3769a13a_89d54855",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3094558
+      },
+      "writtenOn": "2023-11-28T19:43:40Z",
+      "side": 1,
+      "message": "2846335: leaudio: Add  leaudio_multicodec_aidl_support | https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2846335",
+      "revId": "bec676841840d47af0716028688b642fd7c11545",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
