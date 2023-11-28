@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81bf8f61_0d58eff7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-28T23:47:19Z",
+      "side": 1,
+      "message": "```suggestion\n    private static final UUID GAP_UUID \u003d UUID.fromString(\"00001800-0000-1000-8000-00805f9b34fb\");\n```",
+      "range": {
+        "startLine": 65,
+        "startChar": 25,
+        "endLine": 65,
+        "endChar": 31
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf5c59d2_1c1c5eef",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-28T23:47:19Z",
+      "side": 1,
+      "message": "What does the `c` as prefix means here?",
+      "range": {
+        "startLine": 172,
+        "startChar": 38,
+        "endLine": 172,
+        "endChar": 46
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "169dcf6d_e6b81b82",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-28T23:47:19Z",
+      "side": 1,
+      "message": "`provided by Pandora` ?\n\nGAP is mandatory as per the Core specification `Vol 3, Part C, 12`",
+      "range": {
+        "startLine": 173,
+        "startChar": 28,
+        "endLine": 173,
+        "endChar": 48
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "002e841c_410362f5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-28T23:47:19Z",
+      "side": 1,
+      "message": "Using https://truth.dev/api/latest/com/google/common/truth/Truth8.html\n\n```suggestion\n            assertThat(\n                gatt\n                    .getServices()\n                    .stream()\n                    .map(BluetoothGattService::getUuid)\n                    .map(UUID::toString)\n            ).contains​(GAP_UUID)\n```\n\nOr \n\n```java\n            assertThat(\n                gatt\n                    .getServices()\n                    .stream()\n                    .map(BluetoothGattService::getUuid)\n            ).contains​(UUID.fromString(GAP_UUID))\n```",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 51
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eea464fe_12fe91bd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-28T23:47:19Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n            BluetoothGattCharacteristic firstCharacteristics \u003d firstService.getCharacteristics().get(0);\n\n            gatt.readCharacteristic(firstCharacteristics);\n```",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 60
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c432cf5f_6157e136",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-28T23:47:19Z",
+      "side": 1,
+      "message": "```suggestion\n            outer: for (BluetoothGattService cService : gatt.getServices()) {\n                for (BluetoothGattCharacteristic cCharacteristic : cService.getCharacteristics()) {\n                    if ((cCharacteristic.getProperties()\n                                    \u0026 BluetoothGattCharacteristic.PROPERTY_WRITE)\n                            !\u003d 0) {\n                        characteristic \u003d cCharacteristic;\n                        break outer;\n                    }\n                }\n            }\n\n```",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 0
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e9958d2c_ce3123ed",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-28T23:47:19Z",
+      "side": 1,
+      "message": "```suggestion\n            byte[] newValue \u003d new byte[]{13};\n```",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 36
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36925366_679b8461",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-28T23:47:19Z",
+      "side": 1,
+      "message": "What does `c` and `s` as prefix means here ?\n\nI think it would be better to write it as full word.",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 68
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
