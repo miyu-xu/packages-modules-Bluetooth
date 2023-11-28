@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6e39e870_a77b9635",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-11-28T05:30:24Z",
+      "side": 1,
+      "message": "I understand the constraint of we cannot start A2DP if there is a call.\n\nThe problem should also happen when CRAS switch profile(https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/third_party/adhd/cras/src/server/cras_bt_io.c;l\u003d339;drc\u003d130b9a9eb5a3edc9bcfd7225a991d52711b7fdd4;bpv\u003d1;bpt\u003d1?q\u003dcras_bt_io), but CRAS does not encounter this problem.\n\nThis mean that CRAS somehow do something to remove the call from the call list and start A2DP when capture is cloesed.\n\nWe need to figure out how CRAS achieve that. If we can figure out this problem, we can apply similar fix on CRAS side.",
+      "parentUuid": "4abc608e_0d0851a7",
+      "range": {
+        "startLine": 1276,
+        "startChar": 8,
+        "endLine": 1280,
+        "endChar": 9
+      },
+      "revId": "3632ded1738cfc8334bce30a70cd17ea440e4729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0066f79_74b4a0e9",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
