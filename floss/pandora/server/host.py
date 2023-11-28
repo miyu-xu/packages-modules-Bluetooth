@@ -468,6 +468,8 @@ class HostService(host_grpc_aio.HostServicer):
                 elif scan_result['addr_type'] == floss_enums.BleAddressType.BLE_ADDR_RANDOM_ID:
                     response.random_static_identity = address
 
+                data = utils.parse_advertiging_data(scan_result['adv_data'])
+
                 # TODO: b/289480188 - Support more data if needed.
                 mode = host_pb2.NOT_DISCOVERABLE
                 if scan_result['flags'] & (1 << 0):
@@ -476,7 +478,9 @@ class HostService(host_grpc_aio.HostServicer):
                     mode = host_pb2.DISCOVERABLE_GENERAL
                 else:
                     mode = host_pb2.NOT_DISCOVERABLE
-                response.data.le_discoverability_mode = mode
+                data.le_discoverability_mode = mode
+
+                response.data.CopyFrom(data)
                 yield response
         finally:
             if scanner_id is not None:
