@@ -34,6 +34,24 @@
       "parentUuid": "ec90a38d_30fa4d6f",
       "revId": "24ff11db774a9659e71ee5d7fdd4d23d3f464881",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39e7c0ae_fb12b41a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-28T00:47:03Z",
+      "side": 1,
+      "message": "The dependency is now related to GET_SYSPROP failing on host builds",
+      "parentUuid": "c3e1d6ff_1825e34c",
+      "revId": "24ff11db774a9659e71ee5d7fdd4d23d3f464881",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
