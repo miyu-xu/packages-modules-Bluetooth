@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89158888_d214bd49",
+        "filename": "android/pandora/server/src/Host.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-28T18:29:22Z",
+      "side": 1,
+      "message": "You may want to disable then kill then wait.\n\nThat way, you are sure that there will be no race condition to try to restart bluetooth (when Bt crash, the system server try to recover, but you don\u0027t want that)",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 38
+      },
+      "revId": "86ee4ac82cef4febd269c5bf916d25907454fd5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
