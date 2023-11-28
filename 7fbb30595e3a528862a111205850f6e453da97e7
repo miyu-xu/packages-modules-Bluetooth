@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a35f630_ed3a164f",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 11
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-28T09:50:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d52aa3bb_a908ea11",
+      "range": {
+        "startLine": 351,
+        "startChar": 7,
+        "endLine": 351,
+        "endChar": 29
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5932aaff_90c9253e",
@@ -207,6 +231,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "061392c8_bf48a771",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 4218,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-28T09:50:14Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f7315def_e6830581",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6005b93f_78b8a390",
@@ -220,6 +262,30 @@
       "writtenOn": "2023-11-27T11:51:26Z",
       "side": 1,
       "message": "why this is under `if (group)` ?\n \n also, shouldn\u0027t we add here also this check?\n \n `audio_receiver_state_ \u003e\u003d AudioState::READY_TO_START` ?",
+      "range": {
+        "startLine": 5454,
+        "startChar": 13,
+        "endLine": 5457,
+        "endChar": 13
+      },
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35f096b9_3d774b7d",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 5457,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-28T09:50:14Z",
+      "side": 1,
+      "message": "`why this is under if (group) ?` what would be the case when group \u003d\u003d nullptr and GroupStreamStatus::IDLE comes ?\n\n```\nalso, shouldn\u0027t we add here also this check?\n\naudio_receiver_state_ \u003e\u003d AudioState::READY_TO_START ?\n```\nDon\u0027t think so, here it\u0027s notified that stream is suspended.",
+      "parentUuid": "6005b93f_78b8a390",
       "range": {
         "startLine": 5454,
         "startChar": 13,
@@ -326,6 +392,48 @@
       "side": 1,
       "message": "maybe SetLocalSinkListenerMode ?",
       "parentUuid": "dd905ecf_a284775f",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17f8111c_ad7d4e38",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-28T09:50:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a51f96f2_516c8550",
+      "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e15924f_a91fdf17",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-28T09:50:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15e0f8b6_c05cd036",
+      "range": {
+        "startLine": 354,
+        "startChar": 41,
+        "endLine": 354,
+        "endChar": 60
+      },
       "revId": "7fbb30595e3a528862a111205850f6e453da97e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
