@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "88cc9c16_fd2cd6c2",
+        "filename": "system/audio_hal_interface/aidl/transport_instance.h",
+        "patchSetId": 12
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-28T00:38:45Z",
+      "side": 1,
+      "message": "Tab...",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 1
+      },
+      "revId": "fad70f1563b5bcd48df0ab182f7f6698cab06e49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
