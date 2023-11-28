@@ -16,6 +16,24 @@
       "message": "is it more portable to include by relative path? \nIs there any specific reason that we are changing this?",
       "revId": "03b7e8ddcb8ea29d76c0d18ed77a85a85347bb30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4578c69_0b1a40f3",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-28T21:00:54Z",
+      "side": 1,
+      "message": "IMHO I think we will never actually `mv` or `git mv` any of these headers/files/directories.\n\nI would think we would basically copy/flag/deprecate with all new file names/directories/etc.\n\nSo I don\u0027t consider portability of legacy code anything worth persuing.\n\nHaving said that, without clear consensus we should not proceed with this approach.",
+      "parentUuid": "fc7a943a_e46aff92",
+      "revId": "03b7e8ddcb8ea29d76c0d18ed77a85a85347bb30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
