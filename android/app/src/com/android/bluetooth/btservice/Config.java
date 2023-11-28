@@ -50,10 +50,8 @@ import com.android.bluetooth.tbs.TbsService;
 import com.android.bluetooth.vc.VolumeControlService;
 import com.android.internal.annotations.VisibleForTesting;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 
 public class Config {
     private static final String TAG = "AdapterServiceConfig";
@@ -66,14 +64,26 @@ public class Config {
             "persist.bluetooth.leaudio_switcher.disabled";
 
     private static class ProfileConfig {
-        Class mClass;
-        boolean mSupported;
+        private Class mClass;
+        private boolean mSupported;
         long mMask;
 
         ProfileConfig(Class theClass, boolean supported, long mask) {
             mClass = theClass;
             mSupported = supported;
             mMask = mask;
+        }
+
+        Class getProfileClass() {
+            return mClass;
+        }
+
+        void setSupported(boolean supported) {
+            mSupported = supported;
+        }
+
+        boolean isSupported() {
+            return mSupported;
         }
     }
 
@@ -153,19 +163,11 @@ public class Config {
             return;
         }
         for (ProfileConfig profile : PROFILE_SERVICES_AND_FLAGS) {
-            if (profileClass.equals(profile.mClass)) {
-                profile.mSupported = enabled;
+            if (profileClass.equals(profile.getProfileClass())) {
+                profile.setSupported(enabled);
             }
         }
-        if (enabled) {
-            sSupportedProfiles.add(profileClass);
-        } else {
-            sSupportedProfiles.remove(profileClass);
-        }
     }
-
-    private static List<Class> sSupportedProfiles = new ArrayList<>();
-
 
     static void init(Context ctx) {
         if (LeAudioService.isBroadcastEnabled()) {
@@ -201,19 +203,13 @@ public class Config {
             setProfileEnabled(HearingAidService.class, false);
         }
 
-        synchronized (sSupportedProfiles) {
-            sSupportedProfiles.clear();
-            for (ProfileConfig config : PROFILE_SERVICES_AND_FLAGS) {
-                Log.i(
-                        TAG,
-                        "init: profile="
-                                + config.mClass.getSimpleName()
-                                + ", enabled="
-                                + config.mSupported);
-                if (config.mSupported) {
-                    sSupportedProfiles.add(config.mClass);
-                }
-            }
+        for (ProfileConfig config : PROFILE_SERVICES_AND_FLAGS) {
+            Log.i(
+                    TAG,
+                    "init: profile="
+                            + config.getProfileClass().getSimpleName()
+                            + ", enabled="
+                            + config.isSupported());
         }
     }
 
@@ -237,7 +233,7 @@ public class Config {
 
     static void updateSupportedProfileMask(Boolean enable, Class profile, int supportedProfile) {
         for (ProfileConfig config : PROFILE_SERVICES_AND_FLAGS) {
-            if (config.mClass == profile) {
+            if (config.getProfileClass() == profile) {
                 if (enable) {
                     config.mMask |= 1 << supportedProfile;
                 } else {
@@ -253,25 +249,18 @@ public class Config {
     }
 
     static Class[] getSupportedProfiles() {
-        synchronized (sSupportedProfiles) {
-            return sSupportedProfiles.toArray(new Class[0]);
-        }
-    }
-
-    private static long getProfileMask(Class profile) {
-        for (ProfileConfig config : PROFILE_SERVICES_AND_FLAGS) {
-            if (config.mClass == profile) {
-                return config.mMask;
-            }
-        }
-        Log.w(TAG, "Could not find profile bit mask for " + profile.getSimpleName());
-        return 0;
+        return Arrays.stream(PROFILE_SERVICES_AND_FLAGS)
+                .filter(ProfileConfig::isSupported)
+                .map(ProfileConfig::getProfileClass)
+                .toArray(Class[]::new);
     }
 
     static long getSupportedProfilesBitMask() {
         long mask = 0;
-        for (final Class profileClass : getSupportedProfiles()) {
-            mask |= getProfileMask(profileClass);
+        for (ProfileConfig config : PROFILE_SERVICES_AND_FLAGS) {
+            if (config.isSupported()) {
+                mask |= config.mMask;
+            }
         }
         return mask;
     }
