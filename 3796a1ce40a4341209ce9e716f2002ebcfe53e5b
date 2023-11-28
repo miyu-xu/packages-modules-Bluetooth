@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13725455_4acd8f15",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-28T01:03:59Z",
+      "side": 1,
+      "message": "What happened was `stack/btm/btm_ble_int.h` is included outside the stack::btm module so I provided the full canonical path for all files including this one.\n\nIn general you are correct and inclusion within a \"module\" could just use the local path provided by the build script.",
+      "revId": "3796a1ce40a4341209ce9e716f2002ebcfe53e5b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
