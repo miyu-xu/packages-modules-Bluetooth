@@ -16,6 +16,24 @@
       "message": "The l2cap callback seems \"better\", so is it possible to change the btm sec from a pointer to a reference for the address first ?\n\n```\ntypedef void(tBTM_SEC_CALLBACK)(const RawAddress* bd_addr,\n                                tBT_TRANSPORT trasnport, void* p_ref_data,\n                                tBTM_STATUS result);\n```\n\nIf you change `tBTM_SEC_CALLBACK` to use a reference for the address, then the L2cap and BTM sec are identical drop in replacements making a much simpler merge path.",
       "revId": "4cc51417513a8f9ea0b65565493388ae376dcb7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cff609a_9653c7e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-28T01:17:17Z",
+      "side": 1,
+      "message": "The two are almost the same, but we want l2cap to use security, not the reverse.",
+      "parentUuid": "5ca6afdf_5632b8ca",
+      "revId": "4cc51417513a8f9ea0b65565493388ae376dcb7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
