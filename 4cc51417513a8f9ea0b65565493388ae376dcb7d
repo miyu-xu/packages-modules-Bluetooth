@@ -52,6 +52,24 @@
       "parentUuid": "4cff609a_9653c7e0",
       "revId": "4cc51417513a8f9ea0b65565493388ae376dcb7d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70aabfe4_31bd80aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-28T01:31:19Z",
+      "side": 1,
+      "message": "\u003e If you change tBTM_SEC_CALLBACK to use a reference for the address, then the L2cap and BTM sec are identical drop in replacements making a much simpler merge path.\n\nThis actually requires a huge change in other places, although the change in btm_sec may be smaller. I plan to change the argument type after  making some functions static.",
+      "parentUuid": "f66f8c9c_ef5288dc",
+      "revId": "4cc51417513a8f9ea0b65565493388ae376dcb7d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
