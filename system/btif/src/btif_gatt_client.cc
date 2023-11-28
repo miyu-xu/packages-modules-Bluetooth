@@ -463,6 +463,39 @@ static bt_status_t btif_gattc_read_using_char_uuid(int conn_id,
                                read_using_char_uuid_cb, nullptr));
 }
 
+void read_multi_char_cb(uint16_t conn_id, tGATT_STATUS status,
+                        tBTA_GATTC_MULTI& handles, uint16_t len, uint8_t* value,
+                        void* data) {
+  // btgatt_read_params_t* params = new btgatt_read_params_t;
+  // params->value_type = 0x00 /* GATTC_READ_VALUE_TYPE_VALUE */;
+  // params->status = status;
+  // params->handle = handle;
+  // params->value.len = len;
+  // CHECK(len <= GATT_MAX_ATTR_LEN);
+  // if (len > 0) memcpy(params->value.value, value, len);
+
+  // // clang-tidy analyzer complains about |params| is leaked.  It doesn't know
+  // // that |param| will be freed by the callback function.
+  // CLI_CBACK_IN_JNI(read_characteristic_cb, conn_id, status, /* NOLINT */
+  //                  base::Owned(params));
+}
+
+bt_status_t btif_gattc_read_multiple_char(int conn_id,
+                                          std::vector<uint16_t> handles,
+                                          bool variable_len, int auth_req) {
+  CHECK_BTGATT_INIT();
+
+  tBTA_GATTC_MULTI p_read_multi;
+  p_read_multi.num_attr = handles.size();
+  for (size_t i = 0; i < handles.size(); i++) {
+    p_read_multi.handles[i] = handles[i];
+  }
+
+  return do_in_jni_thread(Bind(&BTA_GATTC_ReadMultiple, conn_id, p_read_multi,
+                               variable_len, auth_req, read_multi_char_cb,
+                               nullptr));
+}
+
 void read_desc_cb(uint16_t conn_id, tGATT_STATUS status, uint16_t handle,
                   uint16_t len, uint8_t* value, void* data) {
   btgatt_read_params_t params;
@@ -706,4 +739,5 @@ const btgatt_client_interface_t btgattClientInterface = {
     btif_gattc_test_command,
     btif_gattc_get_gatt_db,
     btif_gattc_subrate_request,
+    btif_gattc_read_multiple_char,
 };

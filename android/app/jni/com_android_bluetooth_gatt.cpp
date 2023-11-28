@@ -1461,6 +1461,23 @@ static void gattClientReadUsingCharacteristicUuidNative(
                                                   e_handle, authReq);
 }
 
+static void gattClientReadMultipleCharacteristicsNative(
+    JNIEnv* env, jobject /* object */, jint conn_id, jintArray handles,
+    jboolean variable_len, jint authReq) {
+  if (!sGattIf) return;
+
+  uint16_t len = (uint16_t)env->GetArrayLength(handles);
+  jint* handles_jint = env->GetIntArrayElements(handles, NULL);
+
+  std::vector<uint16_t> native_handles(len);
+  for (int i = 0; i < len; i++) {
+    native_handles[i] = handles_jint[i];
+  }
+
+  sGattIf->client->read_multiple_characteristics(conn_id, native_handles,
+                                                 variable_len, authReq);
+}
+
 static void gattClientReadDescriptorNative(JNIEnv* /* env */,
                                            jobject /* object */, jint conn_id,
                                            jint handle, jint authReq) {
@@ -2752,6 +2769,8 @@ static int register_com_android_bluetooth_gatt_(JNIEnv* env) {
        (void*)gattClientReadCharacteristicNative},
       {"gattClientReadUsingCharacteristicUuidNative", "(IJJIII)V",
        (void*)gattClientReadUsingCharacteristicUuidNative},
+      {"gattClientReadMultipleCharacteristicsNative", "(I[IBI)V",
+       (void*)gattClientReadMultipleCharacteristicsNative},
       {"gattClientReadDescriptorNative", "(III)V",
        (void*)gattClientReadDescriptorNative},
       {"gattClientWriteCharacteristicNative", "(IIII[B)V",

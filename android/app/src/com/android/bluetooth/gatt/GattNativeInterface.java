@@ -337,6 +337,10 @@ public class GattNativeInterface {
     private native void gattClientReadCharacteristicNative(int connId, int handle, int authReq);
     private native void gattClientReadUsingCharacteristicUuidNative(int connId, long uuidMsb,
             long uuidLsb, int sHandle, int eHandle, int authReq);
+
+    private native void gattClientReadMultipleCharacteristicsNative(
+            int connId, int[] handles, bool variableLen, int authReq);
+
     private native void gattClientReadDescriptorNative(int connId, int handle, int authReq);
     private native void gattClientWriteCharacteristicNative(int connId, int handle, int writeType,
             int authReq, byte[] value);

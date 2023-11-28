@@ -1518,6 +1518,66 @@ public final class BluetoothGatt implements BluetoothProfile {
     }
 
     /**
+     * Reads multiple characteristic values. TODO: method description;
+     *
+     * @hide
+     */
+    @RequiresLegacyBluetoothPermission
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
+    public boolean readMultipleCharacteristics(
+            BluetoothCharacteristic[] characteristics, bool variableLen) {
+        if (VDBG) Log.d(TAG, "readMultipleCharacteristics() - uuid: " + uuid);
+
+        if (mService == null || mClientIf == 0) return false;
+
+        int[] handles = new int[characetistics.size()];
+        int index = 0;
+        for (BluetoothCharacteristic characteristic : characteristics) {
+            if ((characteristic.getProperties() & BluetoothGattCharacteristic.PROPERTY_READ) == 0) {
+                return false;
+            }
+
+            if (VDBG) {
+                Log.d(
+                        TAG,
+                        "readMultipleCharacteristics() - handle: "
+                                + characteristic.getInstanceId());
+            }
+
+            BluetoothGattService service = characteristic.getService();
+            if (service == null) return false;
+
+            BluetoothDevice device = service.getDevice();
+            if (device == null) return false;
+
+            handles[index] = characteristic.getInstanceId();
+            index++;
+        }
+
+        try {
+            final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+            mService.readCharacteristic(
+                    mClientIf,
+                    device.getAddress(),
+                    handles,
+                    variableLen,
+                    AUTHENTICATION_NONE,
+                    mAttributionSource,
+                    recv);
+            recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+        } catch (RemoteException | TimeoutException e) {
+            Log.e(TAG, "", e);
+            synchronized (mDeviceBusyLock) {
+                mDeviceBusy = false;
+            }
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Writes a given characteristic and its values to the associated remote device.
      *
      * <p>Once the write operation has been completed, the

@@ -318,6 +318,11 @@ typedef struct {
                                  int subrate_max, int max_latency, int cont_num,
                                  int timeout);
 
+  /** Read multiple characteristics value on a remote device */
+  bt_status_t (*read_multiple_characteristics)(int conn_id,
+                                               std::vector<uint16_t> handles,
+                                               bool variable_len, int auth_req);
+
 } btgatt_client_interface_t;
 
 __END_DECLS
