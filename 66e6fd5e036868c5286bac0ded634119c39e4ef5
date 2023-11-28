@@ -169,6 +169,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10cedeea_72cdcada",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-28T19:57:04Z",
+      "side": 1,
+      "message": "Unresolving this comment as per go/review-pushback#later. \n\n----\n\nSince there is no limit to the number of edit to a CL and since there is no emergency to submit this change, I am very surprise of the pushback and the need for a follow-up change.\n\nThe argument to modify test is to keep consistency on the new added test.",
+      "parentUuid": "7dbd887a_9a258805",
+      "range": {
+        "startLine": 158,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 69
+      },
+      "revId": "66e6fd5e036868c5286bac0ded634119c39e4ef5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14540f31_c8e010d2",
         "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
         "patchSetId": 9
