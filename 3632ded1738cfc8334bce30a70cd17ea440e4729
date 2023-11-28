@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4487dda5_f0d7edc5",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1280,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-11-28T08:51:17Z",
+      "side": 1,
+      "message": "there\u0027s a HID call for each WebHID call, even if it is answered in the app or pre-exist, see https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:src/aosp/packages/modules/Bluetooth/local/system/gd/rust/linux/stack/src/bluetooth_media.rs;drc\u003d62602d69bccad39fd592a6a5c475226a4cf7c6ca;l\u003d1256\n\nWhen we remove the HID device from Meet, meet will not trigger the offhook\u003d0 so the call is not hang up.\n\nWe need to manually hang up call here.",
+      "parentUuid": "6e39e870_a77b9635",
+      "range": {
+        "startLine": 1276,
+        "startChar": 8,
+        "endLine": 1280,
+        "endChar": 9
+      },
+      "revId": "3632ded1738cfc8334bce30a70cd17ea440e4729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c0066f79_74b4a0e9",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -85,6 +109,30 @@
       "writtenOn": "2023-11-24T02:45:05Z",
       "side": 1,
       "message": "This should callback CRAS, and I think we should do the same thing just like CRAS do profile switch.",
+      "range": {
+        "startLine": 1282,
+        "startChar": 12,
+        "endLine": 1282,
+        "endChar": 66
+      },
+      "revId": "3632ded1738cfc8334bce30a70cd17ea440e4729",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c0232ea_aa888d6f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1282,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-11-28T08:51:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "c0066f79_74b4a0e9",
       "range": {
         "startLine": 1282,
         "startChar": 12,
