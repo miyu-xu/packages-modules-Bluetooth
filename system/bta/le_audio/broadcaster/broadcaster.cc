@@ -1105,7 +1105,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     std::vector<std::unique_ptr<le_audio::CodecInterface>> sw_enc_;
   } audio_receiver_;
 
-  static class QueuedBroadcast {
+  class QueuedBroadcast {
    public:
     bool IsQueuedBroadcast() {
       LOG_INFO("");
@@ -1169,20 +1169,21 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
    private:
     /* Queued broadcast data */
-    bool is_public_;
+    bool is_public_ = false;
     std::string broadcast_name_;
     std::optional<bluetooth::le_audio::BroadcastCode> broadcast_code_;
     std::vector<uint8_t> public_metadata_;
     std::vector<uint8_t> subgroup_quality_;
     std::vector<std::vector<uint8_t>> subgroup_metadata_;
 
-    bool is_iso_running_;
-    bool is_queued_;
-  } queued_broadcast_;
+    bool is_iso_running_ = false;
+    bool is_queued_ = false;
+  };
 
   bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks_;
   std::map<uint32_t, std::unique_ptr<BroadcastStateMachine>> broadcasts_;
   std::vector<std::unique_ptr<BroadcastStateMachine>> pending_broadcasts_;
+  QueuedBroadcast queued_broadcast_;
 
   /* Some BIG params are set globally */
   uint8_t current_phy_;
@@ -1198,8 +1199,6 @@ LeAudioBroadcasterImpl::LeAudioSourceCallbacksImpl
     LeAudioBroadcasterImpl::audio_receiver_;
 LeAudioBroadcasterImpl::BroadcastAdvertisingCallbacks
     LeAudioBroadcasterImpl::state_machine_adv_callbacks_;
-LeAudioBroadcasterImpl::QueuedBroadcast
-    LeAudioBroadcasterImpl::queued_broadcast_;
 } /* namespace */
 
 void LeAudioBroadcaster::Initialize(
