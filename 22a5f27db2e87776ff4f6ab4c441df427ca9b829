@@ -22,6 +22,30 @@
       },
       "revId": "22a5f27db2e87776ff4f6ab4c441df427ca9b829",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41df022d_0944236e",
+        "filename": "flags/bta_dm.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-28T17:55:17Z",
+      "side": 1,
+      "message": "The flag tracking bug is moved to the new flag component",
+      "parentUuid": "49606132_702cb527",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "22a5f27db2e87776ff4f6ab4c441df427ca9b829",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
