@@ -22,6 +22,30 @@
       },
       "revId": "e666f0a9671f256baf22b9f45ea41a9de1612172",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8433c047_58de115a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-29T15:36:14Z",
+      "side": 1,
+      "message": "This is good catch!\nWe never call this method, because I never saw a device with more than GATT_MAX_READ_MULTI_HANDLES (10) ASE. But I added this anyway, just in case there is something weird in future.",
+      "parentUuid": "1bbdc3a1_3e6fbf7c",
+      "range": {
+        "startLine": 371,
+        "startChar": 49,
+        "endLine": 371,
+        "endChar": 54
+      },
+      "revId": "e666f0a9671f256baf22b9f45ea41a9de1612172",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
