@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "887118eb_e3e67342",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-29T00:01:32Z",
+      "side": 1,
+      "message": "had some hard time to understand this. is the logic that if latency_modes included some entries other than \u0027LatencyMode::FREE\u0027 it\u0027s latency mode allowed. then do we need to check the latency_modes_ values instead of size()?\n\nnit: could you help to add some comment here?",
+      "revId": "bdf23e56b1957b077496ec1561050d3ee45eab17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
