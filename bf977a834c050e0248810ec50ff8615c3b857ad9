@@ -70,6 +70,24 @@
       "parentUuid": "32700a39_4c3c87b0",
       "revId": "bf977a834c050e0248810ec50ff8615c3b857ad9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "acb4fe76_0c4cb6ba",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-29T23:00:29Z",
+      "side": 0,
+      "message": "This is probably a problem we need to address carefully. It seems that security also has code to disconnect.\n\nI am resolving this, but not sure what is the proper way to handle it.",
+      "parentUuid": "006d4a95_0ee752b1",
+      "revId": "bf977a834c050e0248810ec50ff8615c3b857ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
