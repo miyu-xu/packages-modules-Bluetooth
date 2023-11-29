@@ -111,7 +111,7 @@ Uuid LE_PSM_UUID               = Uuid::FromString("2d410339-82b6-42aa-b34e-e2e01
 // clang-format on
 
 void hearingaid_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data);
-void encryption_callback(const RawAddress*, tBT_TRANSPORT, void*, tBTM_STATUS);
+void encryption_callback(const RawAddress&, tBT_TRANSPORT, void*, tBTM_STATUS);
 void read_rssi_cb(void* p_void);
 
 inline BT_HDR* malloc_l2cap_buf(uint16_t len) {
@@ -2060,10 +2060,10 @@ void hearingaid_gattc_callback(tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
   }
 }
 
-void encryption_callback(const RawAddress* address, tBT_TRANSPORT, void*,
+void encryption_callback(const RawAddress& address, tBT_TRANSPORT, void*,
                          tBTM_STATUS status) {
   if (instance) {
-    instance->OnEncryptionComplete(*address,
+    instance->OnEncryptionComplete(address,
                                    status == BTM_SUCCESS ? true : false);
   }
 }
