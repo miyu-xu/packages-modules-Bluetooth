@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97d27eda_503c9086",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-11-29T07:00:00Z",
+      "side": 1,
+      "message": "This is not necessary change. Please ignore it.",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 15
+      },
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
