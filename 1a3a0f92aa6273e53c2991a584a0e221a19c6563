@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7151a4de_338885bd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1042,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-29T00:56:48Z",
+      "side": 1,
+      "message": "shouldn\u0027t it be added to the nonsupportedlist instead ?",
+      "range": {
+        "startLine": 1042,
+        "startChar": 0,
+        "endLine": 1042,
+        "endChar": 81
+      },
+      "revId": "1a3a0f92aa6273e53c2991a584a0e221a19c6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4532d479_b6eaa22a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-29T00:56:48Z",
+      "side": 1,
+      "message": "Should this be called too? if enable is false ? (instead 0f doing it only in updateLeAudioProfileServiceState)\n\n```\nif (isStartedProfile(profileService.getSimpleName())) {\n  setProfileServiceState(profileService, BluetoothAdapter.STATE_OFF);\n}\n```\n\nand should we start it if we want to enable it ?",
+      "range": {
+        "startLine": 159,
+        "startChar": 37,
+        "endLine": 159,
+        "endChar": 44
+      },
+      "revId": "1a3a0f92aa6273e53c2991a584a0e221a19c6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
