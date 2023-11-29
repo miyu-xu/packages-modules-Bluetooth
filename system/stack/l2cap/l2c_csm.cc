@@ -228,7 +228,7 @@ static void l2c_csm_closed(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
       } else {
         p_ccb->chnl_state = CST_ORIG_W4_SEC_COMP;
         btm_sec_l2cap_access_req(p_ccb->p_lcb->remote_bd_addr,
-                                 p_ccb->p_rcb->psm, true, &l2c_link_sec_comp,
+                                 p_ccb->p_rcb->psm, true, &l2c_link_sec_comp2,
                                  p_ccb);
       }
       break;
@@ -261,7 +261,7 @@ static void l2c_csm_closed(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
          * already processed */
         if (btm_sec_l2cap_access_req(
                 p_ccb->p_lcb->remote_bd_addr, p_ccb->p_rcb->psm, true,
-                &l2c_link_sec_comp, p_ccb) == BTM_CMD_STARTED) {
+                &l2c_link_sec_comp2, p_ccb) == BTM_CMD_STARTED) {
           p_ccb->chnl_state = CST_ORIG_W4_SEC_COMP;
         }
       }
@@ -337,7 +337,7 @@ static void l2c_csm_closed(tL2C_CCB* p_ccb, tL2CEVT event, void* p_data) {
         p_ccb->chnl_state = CST_TERM_W4_SEC_COMP;
         auto status = btm_sec_l2cap_access_req(p_ccb->p_lcb->remote_bd_addr,
                                                p_ccb->p_rcb->psm, false,
-                                               &l2c_link_sec_comp, p_ccb);
+                                               &l2c_link_sec_comp2, p_ccb);
         if (status == BTM_CMD_STARTED) {
           // started the security process, tell the peer to set a longer timer
           l2cu_send_peer_connect_rsp(p_ccb, L2CAP_CONN_PENDING, 0);
@@ -411,7 +411,7 @@ static void l2c_csm_orig_w4_sec_comp(tL2C_CCB* p_ccb, tL2CEVT event,
                              false, &l2c_link_sec_comp2, p_ccb);
       } else {
         btm_sec_l2cap_access_req(p_ccb->p_lcb->remote_bd_addr,
-                                 p_ccb->p_rcb->psm, true, &l2c_link_sec_comp,
+                                 p_ccb->p_rcb->psm, true, &l2c_link_sec_comp2,
                                  p_ccb);
       }
       break;
@@ -611,7 +611,7 @@ static void l2c_csm_term_w4_sec_comp(tL2C_CCB* p_ccb, tL2CEVT event,
 
     case L2CEVT_SEC_RE_SEND_CMD: /* BTM has enough info to proceed */
       btm_sec_l2cap_access_req(p_ccb->p_lcb->remote_bd_addr, p_ccb->p_rcb->psm,
-                               false, &l2c_link_sec_comp, p_ccb);
+                               false, &l2c_link_sec_comp2, p_ccb);
       break;
 
     default:
