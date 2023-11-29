@@ -52,6 +52,24 @@
       "parentUuid": "9ea73558_0f731fa9",
       "revId": "bf977a834c050e0248810ec50ff8615c3b857ad9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "006d4a95_0ee752b1",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-29T22:06:24Z",
+      "side": 0,
+      "message": "I\u0027m trying to gett all the GATT calls out of the ACL code.\n\nThis seemed like an odd cycle, where if someone called disconnect, then we call the GATT connection manager to tell it not to keep connecting to the device.",
+      "parentUuid": "32700a39_4c3c87b0",
+      "revId": "bf977a834c050e0248810ec50ff8615c3b857ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
