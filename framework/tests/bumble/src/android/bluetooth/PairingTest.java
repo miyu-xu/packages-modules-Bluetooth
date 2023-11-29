@@ -37,6 +37,9 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
+import com.google.protobuf.Empty;
+
+import io.grpc.Deadline;
 import io.grpc.stub.StreamObserver;
 
 import org.hamcrest.Matcher;
@@ -55,12 +58,19 @@ import java.time.Duration;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import pandora.HostProto.AdvertiseRequest;
+import pandora.HostProto.AdvertiseResponse;
+import pandora.HostProto.OwnAddressType;
+import pandora.SecurityProto.LESecurityLevel;
 import pandora.SecurityProto.PairingEvent;
 import pandora.SecurityProto.PairingEventAnswer;
+import pandora.SecurityProto.SecureRequest;
+import pandora.SecurityProto.SecureResponse;
 
 @RunWith(AndroidJUnit4.class)
 public class PairingTest {
     private static final Duration BOND_INTENT_TIMEOUT = Duration.ofSeconds(10);
+    private static final int SERVICE_REGISTRATION_TIMEOUT = 2;
 
     private static final Context sTargetContext =
             InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -90,6 +100,8 @@ public class PairingTest {
         IntentFilter filter = new IntentFilter();
         filter.addAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         filter.addAction(BluetoothDevice.ACTION_PAIRING_REQUEST);
+        filter.addAction(BluetoothDevice.ACTION_UUID);
+        filter.addAction(BluetoothDevice.ACTION_ACL_CONNECTED);
         sTargetContext.registerReceiver(mReceiver, filter);
 
         mBumbleDevice = mBumble.getRemoteDevice();
@@ -152,8 +164,91 @@ public class PairingTest {
                 hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
                 hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED));
+    }
 
-        verifyNoMoreInteractions(mReceiver);
+    /**
+     * Test if service discovery request interrupts the subsequent pairing
+     *
+     * <p>Prerequisites:
+     *
+     * <ol>
+     *   <li>Bumble and Android are not bonded
+     *   <li>Bumble has GATT services other than GAP and GATT
+     *   <li>Bumble is discoverable and connectable over LE transport
+     * </ol>
+     *
+     * Steps:
+     *
+     * <ol>
+     *   <li>Android connects to Bumble via its MAC address
+     *   <li>Android starts GATT service discovery
+     *   <li>Bumble starts pairing
+     *   <li>Android does not confirm the pairing
+     *   <li>Service discovery completes
+     *   <li>Android cancels the pairing
+     * </ol>
+     *
+     * Expectation: Pairing gets cancelled instead of getting timed out
+     */
+    @Test
+    public void testCancelBond_GattServiceDiscoveryBeforePairing() {
+        // Register a GATT service on Bumble (any service will do)
+        mBumble.dckBlocking()
+                .withDeadline(Deadline.after(SERVICE_REGISTRATION_TIMEOUT, TimeUnit.SECONDS))
+                .register(Empty.getDefaultInstance());
+
+        // Start GATT service discovery, this will establish LE ACL
+        assertThat(mBumbleDevice.fetchUuidsWithSdp(BluetoothDevice.TRANSPORT_LE)).isTrue();
+
+        // Make Bumble connectable
+        AdvertiseRequest request =
+                AdvertiseRequest.newBuilder()
+                        .setLegacy(true)
+                        .setConnectable(true)
+                        .setOwnAddressType(OwnAddressType.PUBLIC)
+                        .build();
+        AdvertiseResponse advResp = mBumble.hostBlocking().advertise(request).next();
+
+        // Wait for connection on Android
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_ACL_CONNECTED),
+                hasExtra(BluetoothDevice.EXTRA_TRANSPORT, BluetoothDevice.TRANSPORT_LE));
+
+        // Start pairing from Bumble
+        SecureRequest.Builder securityRequest =
+                SecureRequest.newBuilder()
+                        .setConnection(advResp.getConnection())
+                        .setLe(LESecurityLevel.LE_LEVEL3);
+        StreamObserverSpliterator<SecureResponse> responseObserver =
+                new StreamObserverSpliterator<>();
+        mBumble.security().secure(securityRequest.build(), responseObserver);
+
+        // Wait for pairing notification on Android
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDING));
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_PAIRING_REQUEST),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(
+                        BluetoothDevice.EXTRA_PAIRING_VARIANT,
+                        BluetoothDevice.PAIRING_VARIANT_CONSENT));
+
+        // Wait for GATT service discovery to complete on Android
+        // Todo: Bumble does not have interesting GATT services, so ACTION_UUID is not
+        // received. Add interesting services in Bumble and wait for ACTION_UUID
+        // verifyIntentReceived(hasAction(BluetoothDevice.ACTION_UUID));
+        wait(5);
+
+        // Cancel pairing from Android
+        assertThat(mBumbleDevice.cancelBondProcess()).isTrue();
+
+        // Pairing should be be cancelled in a moment instead of timing out in 30 seconds
+        verifyIntentReceived(
+                hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
+                hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
+                hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE));
     }
 
     private void removeBond(BluetoothDevice device) {
@@ -162,7 +257,6 @@ public class PairingTest {
                 hasAction(BluetoothDevice.ACTION_BOND_STATE_CHANGED),
                 hasExtra(BluetoothDevice.EXTRA_DEVICE, mBumbleDevice),
                 hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_NONE));
-        verifyNoMoreInteractions(mReceiver);
     }
 
     @SafeVarargs
@@ -170,4 +264,13 @@ public class PairingTest {
         mInOrder.verify(mReceiver, timeout(BOND_INTENT_TIMEOUT.toMillis()))
                 .onReceive(any(Context.class), MockitoHamcrest.argThat(AllOf.allOf(matchers)));
     }
+
+    private void wait(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }
+
