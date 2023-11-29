@@ -34,6 +34,7 @@
 #include "hci/le_iso_interface.h"
 #include "hci/le_scanning_interface.h"
 #include "hci/le_security_interface.h"
+#include "hci/sco_interface.h"
 #include "hci/security_interface.h"
 #include "module.h"
 #include "os/handler.h"
@@ -100,9 +101,11 @@ class HciLayer : public Module, public HciInterface {
 
   virtual LeScanningInterface* GetLeScanningInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
-  virtual void RegisterForScoConnectionRequests(
+  virtual ScoInterface* GetScoInterface(
+      common::ContextualCallback<void(EventView)> event_handler,
       common::ContextualCallback<void(Address, ClassOfDevice, ConnectionRequestLinkType)>
-          on_sco_connection_request);
+          on_sco_connection_request,
+      common::ContextualCallback<void(uint16_t, hci::ErrorCode)> on_disconnect);
 
   virtual LeIsoInterface* GetLeIsoInterface(common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
@@ -159,6 +162,7 @@ class HciLayer : public Module, public HciInterface {
   // Interfaces
   CommandInterfaceImpl<AclCommandBuilder> acl_connection_manager_interface_{*this};
   CommandInterfaceImpl<AclCommandBuilder> le_acl_connection_manager_interface_{*this};
+  CommandInterfaceImpl<CommandBuilder> sco_interface{*this};
   CommandInterfaceImpl<SecurityCommandBuilder> security_interface{*this};
   CommandInterfaceImpl<LeSecurityCommandBuilder> le_security_interface{*this};
   CommandInterfaceImpl<LeAdvertisingCommandBuilder> le_advertising_interface{*this};

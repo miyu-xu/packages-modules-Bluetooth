@@ -113,6 +113,15 @@ class MockHciLayer : public HciInterface {
       (override));
 
   MOCK_METHOD(
+      (ScoInterface*),
+      GetScoInterface,
+      (common::ContextualCallback<void(EventView)> event_handler,
+       common::ContextualCallback<void(Address, ClassOfDevice, ConnectionRequestLinkType)>
+           on_sco_connection_request,
+       common::ContextualCallback<void(uint16_t, hci::ErrorCode)> on_disconnect),
+      (override));
+
+  MOCK_METHOD(
       (DistanceMeasurementInterface*),
       GetDistanceMeasurementInterface,
       (common::ContextualCallback<void(LeMetaEventView)> event_handler),

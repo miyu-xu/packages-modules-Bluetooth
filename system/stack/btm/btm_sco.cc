@@ -104,6 +104,7 @@ bluetooth::common::BidiQueueEnd<bluetooth::hci::ScoBuilder,
     nullptr;
 static bluetooth::os::EnqueueBuffer<bluetooth::hci::ScoBuilder>*
     pending_sco_data = nullptr;
+bluetooth::hci::ScoInterface* sco_interface = nullptr;
 
 static void sco_data_callback() {
   if (hci_sco_queue_end == nullptr) {
@@ -128,29 +129,30 @@ static void register_for_sco() {
   pending_sco_data =
       new bluetooth::os::EnqueueBuffer<bluetooth::hci::ScoBuilder>(
           hci_sco_queue_end);
-
-  // Register SCO for connection requests
-  bluetooth::shim::GetHciLayer()->RegisterForScoConnectionRequests(
+  sco_interface = bluetooth::shim::GetHciLayer()->GetScoInterface(
+      get_main_thread()->Bind([](bluetooth::hci::EventView event) {
+        // Handle SCO-specific events
+      }),
       get_main_thread()->Bind(
-          [](bluetooth::hci::Address peer, bluetooth::hci::ClassOfDevice cod,
+          [](bluetooth::hci::Address remote, bluetooth::hci::ClassOfDevice cod,
              bluetooth::hci::ConnectionRequestLinkType link_type) {
-            auto peer_raw_address = bluetooth::ToRawAddress(peer);
-            DEV_CLASS dev_class{cod.cod[0], cod.cod[1], cod.cod[2]};
+            /* on_sco_connection_request */
+            RawAddress address = bluetooth::ToRawAddress(remote);
+            DEV_CLASS dev_class;
+            dev_class[0] = cod.cod[0];
+            dev_class[1] = cod.cod[1];
+            dev_class[2] = cod.cod[2];
+
             if (link_type == bluetooth::hci::ConnectionRequestLinkType::ESCO) {
-              btm_sco_conn_req(peer_raw_address, dev_class,
-                               android::bluetooth::LINK_TYPE_ESCO);
+              btm_sco_conn_req(address, dev_class, BTM_LINK_TYPE_ESCO);
             } else {
-              btm_sco_conn_req(peer_raw_address, dev_class,
-                               android::bluetooth::LINK_TYPE_SCO);
+              btm_sco_conn_req(address, dev_class, BTM_LINK_TYPE_SCO);
             }
-          }));
-  // Register SCO for disconnect notifications
-  bluetooth::shim::GetHciLayer()->RegisterForDisconnects(
+          }),
       get_main_thread()->Bind(
-          [](uint16_t handle, bluetooth::hci::ErrorCode error_code) {
-            auto reason = static_cast<tHCI_REASON>(error_code);
-            btm_sco_on_disconnected(handle, reason);
-            btm_sco_removed(handle, reason);
+          [](uint16_t handle, bluetooth::hci::ErrorCode reason) {
+            /* on_disconnect */
+            btm_sco_on_disconnected(handle, static_cast<tHCI_REASON>(reason));
           }));
 }
 

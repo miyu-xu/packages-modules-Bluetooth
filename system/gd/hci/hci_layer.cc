@@ -30,6 +30,7 @@
 #include "hal/hci_hal.h"
 #include "hci/class_of_device.h"
 #include "hci/hci_metrics_logging.h"
+#include "hci/sco_interface.h"
 #include "os/alarm.h"
 #include "os/metrics.h"
 #include "os/queue.h"
@@ -715,11 +716,19 @@ void HciLayer::PutLeAclConnectionInterface() {
   }
 }
 
-void HciLayer::RegisterForScoConnectionRequests(
+ScoInterface* HciLayer::GetScoInterface(
+    common::ContextualCallback<void(EventView)> event_handler,
     common::ContextualCallback<void(Address, ClassOfDevice, ConnectionRequestLinkType)>
-        on_sco_connection_request) {
+        on_sco_connection_request,
+    common::ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect) {
+  for (const auto event : ScoEvents) {
+    RegisterEventHandler(event, event_handler);
+  }
   std::unique_lock<std::mutex> lock(callback_handlers_guard_);
   on_sco_connection_request_ = on_sco_connection_request;
+  disconnect_handlers_.push_back(on_disconnect);
+
+  return &sco_interface;
 }
 
 SecurityInterface* HciLayer::GetSecurityInterface(ContextualCallback<void(EventView)> event_handler) {

@@ -31,6 +31,7 @@
 #include "hci/le_iso_interface.h"
 #include "hci/le_scanning_interface.h"
 #include "hci/le_security_interface.h"
+#include "hci/sco_interface.h"
 #include "hci/security_interface.h"
 
 namespace bluetooth {
@@ -96,9 +97,11 @@ class HciInterface : public CommandInterface<CommandBuilder> {
   virtual LeScanningInterface* GetLeScanningInterface(
       common::ContextualCallback<void(LeMetaEventView)> event_handler) = 0;
 
-  virtual void RegisterForScoConnectionRequests(
+  virtual ScoInterface* GetScoInterface(
+      common::ContextualCallback<void(EventView)> event_handler,
       common::ContextualCallback<void(Address, ClassOfDevice, ConnectionRequestLinkType)>
-          on_sco_connection_request) = 0;
+          on_sco_connection_request,
+      common::ContextualCallback<void(uint16_t, ErrorCode)> on_disconnect) = 0;
 
   virtual LeIsoInterface* GetLeIsoInterface(
       common::ContextualCallback<void(LeMetaEventView)> event_handler) = 0;
