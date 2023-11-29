@@ -16,6 +16,24 @@
       "message": "There are a lot more, should we remove them all?",
       "revId": "bf977a834c050e0248810ec50ff8615c3b857ad9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ea73558_0f731fa9",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-29T21:50:21Z",
+      "side": 0,
+      "message": "I think this is the only redundant call.  I traced all of the code paths that come here, and they already have this exact flagged call.  Since there\u0027s a TODO to remove this, I took the opportunity to clean it up.\n\nWhich other calls are you thinking of?",
+      "parentUuid": "4d450ee5_2fc81573",
+      "revId": "bf977a834c050e0248810ec50ff8615c3b857ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
