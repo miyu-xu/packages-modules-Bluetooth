@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a4e8dddb_53a3f670",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:07:36Z",
+      "side": 1,
+      "message": "also here:\npackages/modules/Bluetooth/system/bta/Android.bp in \"libbt-bta\" static-libs: \n```\n\"bluetooth_flags_c_lib\",\n\n```",
+      "parentUuid": "1d4d3d08_1696db99",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "89313a8d_bb01f3ec",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 7
