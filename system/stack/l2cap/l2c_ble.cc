@@ -1532,16 +1532,15 @@ void l2cble_send_peer_disc_req(tL2C_CCB* p_ccb) {
  * Returns          void
  *
  ******************************************************************************/
-void l2cble_sec_comp(const RawAddress* bda, tBT_TRANSPORT transport,
+void l2cble_sec_comp(const RawAddress& bda, tBT_TRANSPORT transport,
                      void* p_ref_data, tBTM_STATUS status) {
-  const RawAddress& p_bda = *bda;
-  tL2C_LCB* p_lcb = l2cu_find_lcb_by_bd_addr(p_bda, BT_TRANSPORT_LE);
+  tL2C_LCB* p_lcb = l2cu_find_lcb_by_bd_addr(bda, BT_TRANSPORT_LE);
   tL2CAP_SEC_DATA* p_buf = NULL;
   uint8_t sec_act;
 
   if (!p_lcb) {
     LOG_WARN("%s: security complete for unknown device. bda=%s", __func__,
-             ADDRESS_TO_LOGGABLE_CSTR(*bda));
+             ADDRESS_TO_LOGGABLE_CSTR(bda));
     return;
   }
 
@@ -1557,24 +1556,23 @@ void l2cble_sec_comp(const RawAddress* bda, tBT_TRANSPORT transport,
     }
 
     if (status != BTM_SUCCESS) {
-      (*(p_buf->p_callback))(p_bda, BT_TRANSPORT_LE, p_buf->p_ref_data, status);
+      (*(p_buf->p_callback))(bda, BT_TRANSPORT_LE, p_buf->p_ref_data, status);
       osi_free(p_buf);
     } else {
       if (sec_act == BTM_SEC_ENCRYPT_MITM) {
-        if (BTM_IsLinkKeyAuthed(p_bda, transport))
-          (*(p_buf->p_callback))(p_bda, BT_TRANSPORT_LE, p_buf->p_ref_data,
+        if (BTM_IsLinkKeyAuthed(bda, transport))
+          (*(p_buf->p_callback))(bda, BT_TRANSPORT_LE, p_buf->p_ref_data,
                                  status);
         else {
           LOG_VERBOSE("%s MITM Protection Not present", __func__);
-          (*(p_buf->p_callback))(p_bda, BT_TRANSPORT_LE, p_buf->p_ref_data,
+          (*(p_buf->p_callback))(bda, BT_TRANSPORT_LE, p_buf->p_ref_data,
                                  BTM_FAILED_ON_SECURITY);
         }
       } else {
         LOG_VERBOSE("%s MITM Protection not required sec_act = %d", __func__,
                     p_lcb->sec_act);
 
-        (*(p_buf->p_callback))(p_bda, BT_TRANSPORT_LE, p_buf->p_ref_data,
-                               status);
+        (*(p_buf->p_callback))(bda, BT_TRANSPORT_LE, p_buf->p_ref_data, status);
       }
       osi_free(p_buf);
     }
@@ -1588,12 +1586,12 @@ void l2cble_sec_comp(const RawAddress* bda, tBT_TRANSPORT transport,
     p_buf = (tL2CAP_SEC_DATA*)fixed_queue_dequeue(p_lcb->le_sec_pending_q);
 
     if (status != BTM_SUCCESS) {
-      (*(p_buf->p_callback))(p_bda, BT_TRANSPORT_LE, p_buf->p_ref_data, status);
+      (*(p_buf->p_callback))(bda, BT_TRANSPORT_LE, p_buf->p_ref_data, status);
       osi_free(p_buf);
     }
     else {
-      l2ble_sec_access_req(p_bda, p_buf->psm, p_buf->is_originator,
-          p_buf->p_callback, p_buf->p_ref_data);
+      l2ble_sec_access_req(bda, p_buf->psm, p_buf->is_originator,
+                           p_buf->p_callback, p_buf->p_ref_data);
 
       osi_free(p_buf);
       break;

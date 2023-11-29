@@ -226,7 +226,7 @@ class StackRfcommTest : public Test {
     EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(ua_channel_dlci)))
         .WillOnce(Return(L2CAP_DW_SUCCESS));
     ASSERT_TRUE(security_callback);
-    security_callback(&peer_addr, BT_TRANSPORT_BR_EDR, p_port, BTM_SUCCESS);
+    security_callback(peer_addr, BT_TRANSPORT_BR_EDR, p_port, BTM_SUCCESS);
     osi_free(ua_channel_dlci);
 
     VLOG(1) << "Step 4";
@@ -365,7 +365,7 @@ class StackRfcommTest : public Test {
     EXPECT_CALL(l2cap_interface_, DataWrite(lcid, BtHdrEqual(sabm_channel_3)))
         .WillOnce(Return(L2CAP_DW_SUCCESS));
     ASSERT_TRUE(security_callback);
-    security_callback(&peer_addr, BT_TRANSPORT_BR_EDR, p_port, BTM_SUCCESS);
+    security_callback(peer_addr, BT_TRANSPORT_BR_EDR, p_port, BTM_SUCCESS);
     osi_free(sabm_channel_3);
 
     VLOG(1) << "Step 4";
@@ -854,7 +854,7 @@ TEST_F(StackRfcommTest, DISABLED_TestConnectionCollision) {
   // in 20 seconds
   EXPECT_CALL(rfcomm_callback_,
               PortManagementCallback(PORT_SUCCESS, server_handle, 0));
-  security_callback(&test_address, BT_TRANSPORT_BR_EDR, p_port, BTM_SUCCESS);
+  security_callback(test_address, BT_TRANSPORT_BR_EDR, p_port, BTM_SUCCESS);
   osi_free(ua_server_scn);
 
   VLOG(1) << "Step 11";

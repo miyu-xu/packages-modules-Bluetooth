@@ -319,7 +319,7 @@ void rfcomm_mcb_timer_timeout(void* data) {
  * Returns          void
  *
  ******************************************************************************/
-void rfc_sec_check_complete(UNUSED_ATTR const RawAddress* bd_addr,
+void rfc_sec_check_complete(UNUSED_ATTR const RawAddress& bd_addr,
                             UNUSED_ATTR tBT_TRANSPORT transport,
                             void* p_ref_data, tBTM_STATUS res) {
   CHECK(p_ref_data != nullptr);
