@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0f9ea14c_04829a41",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1950,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-29T13:30:40Z",
+      "side": 1,
+      "message": "what is the difference if this is set here ? there is no return between those two value assigns (previous vs current). Was this a race condition ? btw. this is on Main thread and should be no difference.",
+      "revId": "445a90ae8cc1c388849417ae3848c2b204789244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
