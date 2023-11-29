@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d5ac21ed_88528927",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-11-29T12:52:39Z",
+      "side": 1,
+      "message": "Please add the feature flag on top of these change chain.",
+      "revId": "2681353ae53d0434b353edeb6350ccf66f967055",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3b209d0b_c36d5a03",
         "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
         "patchSetId": 1
