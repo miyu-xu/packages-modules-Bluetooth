@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcf5d0b5_5bc37238",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-29T07:24:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8859d1f_d833f759",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 10
+      },
+      "revId": "166b0713857cfd192a3e33f0255a260aea3a9a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c5532aaa_3be44e86",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-11-29T00:16:37Z",
       "side": 1,
       "message": "nit: formatting on comments here and elsewhere",
+      "revId": "166b0713857cfd192a3e33f0255a260aea3a9a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1beaa1aa_a07a5101",
+        "filename": "system/bta/gatt/bta_gattc_api.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-29T07:24:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c5532aaa_3be44e86",
       "revId": "166b0713857cfd192a3e33f0255a260aea3a9a83",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
