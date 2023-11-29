@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4307ea76_759f2f2f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-29T23:49:23Z",
+      "side": 1,
+      "message": "LGTM...but where is the replacement ?",
+      "revId": "446bbbc220d3e79a4bf235d02d139f0f16281283",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
