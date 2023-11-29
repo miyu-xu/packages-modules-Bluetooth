@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "843b42f5_b9f587dd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 1421,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T18:40:50Z",
+      "side": 1,
+      "message": "LE_AUDIO_BROADCAST doesn\u0027t have a constructor",
+      "range": {
+        "startLine": 1421,
+        "startChar": 69,
+        "endLine": 1421,
+        "endChar": 78
+      },
+      "revId": "8c3815035eec3fa8ef5a7f4c757c85c679f4a135",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
