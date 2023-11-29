@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8799af04_6036fe7a",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T20:02:26Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem necessary on a second look.  Removed.",
+      "parentUuid": "261a5ee6_d7d5b502",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 91
+      },
+      "revId": "20163e441454df2c7af4300e34a8cdbe0695f0ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "94a646e8_99e90915",
@@ -66,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fba70e8e_3b1152cc",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T20:02:26Z",
+      "side": 1,
+      "message": "Yes, I don\u0027t have the exact error message on hand but interactions with services from the Cuttlefish side fail if we don\u0027t provide advertising data.\n\nThe Bumble class doesn\u0027t define that, so I wrapped it.",
+      "parentUuid": "94a646e8_99e90915",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 101
+      },
+      "revId": "20163e441454df2c7af4300e34a8cdbe0695f0ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "895466a0_fe15f20d",
         "filename": "pandora/server/bumble_experimental/gatt.py",
         "patchSetId": 18
@@ -77,6 +125,24 @@
       "writtenOn": "2023-11-29T19:40:20Z",
       "side": 1,
       "message": "Why are we only allowing one service?",
+      "revId": "20163e441454df2c7af4300e34a8cdbe0695f0ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93406292_c73d7e75",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T20:02:26Z",
+      "side": 1,
+      "message": "Removed the check.",
+      "parentUuid": "895466a0_fe15f20d",
       "revId": "20163e441454df2c7af4300e34a8cdbe0695f0ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
