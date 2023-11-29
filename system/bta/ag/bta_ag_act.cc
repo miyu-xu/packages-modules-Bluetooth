@@ -37,7 +37,6 @@
 #endif
 
 #include "btif/include/btif_config.h"
-#include "device/include/device_iot_config.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_sec_api_types.h"
@@ -235,10 +234,6 @@ void bta_ag_disc_int_res(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
 
       /* send ourselves sdp ok event */
       event = BTA_AG_DISC_OK_EVT;
-
-      DEVICE_IOT_CONFIG_ADDR_SET_HEX_IF_GREATER(
-          p_scb->peer_addr, IOT_CONF_KEY_HFP_VERSION, p_scb->peer_version,
-          IOT_CONF_BYTE_NUM_2);
     }
   }
 
@@ -286,9 +281,6 @@ void bta_ag_disc_acp_res(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
       data.disc_result.status == SDP_DB_FULL) {
     /* get attributes */
     bta_ag_sdp_find_attr(p_scb, bta_ag_svc_mask[p_scb->conn_service]);
-    DEVICE_IOT_CONFIG_ADDR_SET_HEX_IF_GREATER(
-        p_scb->peer_addr, IOT_CONF_KEY_HFP_VERSION, p_scb->peer_version,
-        IOT_CONF_BYTE_NUM_2);
   }
 
   /* free discovery db */
@@ -551,7 +543,6 @@ void bta_ag_rfc_acp_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
 
   /* get bd addr of peer */
   uint16_t lcid = 0;
-  uint16_t hfp_version = 0;
   RawAddress dev_addr = RawAddress::kEmpty;
   int status = PORT_CheckConnection(data.rfc.port_handle, &dev_addr, &lcid);
   if (status != PORT_SUCCESS) {
@@ -614,16 +605,6 @@ void bta_ag_rfc_acp_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
   bta_ag_close_servers(
       p_scb, (p_scb->reg_services & ~bta_ag_svc_mask[p_scb->conn_service]));
 
-  size_t version_value_size = sizeof(hfp_version);
-  bool get_version =
-      btif_config_get_bin(p_scb->peer_addr.ToString(), HFP_VERSION_CONFIG_KEY,
-                          (uint8_t*)&hfp_version, &version_value_size);
-
-  if (p_scb->conn_service == BTA_AG_HFP && get_version) {
-    DEVICE_IOT_CONFIG_ADDR_SET_HEX_IF_GREATER(p_scb->peer_addr,
-                                              IOT_CONF_KEY_HFP_VERSION,
-                                              hfp_version, IOT_CONF_BYTE_NUM_2);
-  }
   /* do service discovery to get features */
   bta_ag_do_disc(p_scb, bta_ag_svc_mask[p_scb->conn_service]);
 

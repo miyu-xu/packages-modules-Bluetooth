@@ -42,10 +42,6 @@ class InitFlags final {
     return init_flags::get_default_log_level();
   }
 
-  inline static bool IsDeviceIotConfigLoggingEnabled() {
-    return init_flags::device_iot_config_logging_is_enabled();
-  }
-
   inline static bool IsBtmDmFlushDiscoveryQueueOnSearchCancel() {
     return init_flags::btm_dm_flush_discovery_queue_on_search_cancel_is_enabled();
   }

@@ -231,7 +231,6 @@ cc_library_static {
         "btm/btm_dev.cc",
         "btm/btm_devctl.cc",
         "btm/btm_inq.cc",
-        "btm/btm_iot_config.cc",
         "btm/btm_iso.cc",
         "btm/btm_main.cc",
         "btm/btm_sco.cc",
@@ -1506,7 +1505,6 @@ cc_test {
         "btm/btm_dev.cc",
         "btm/btm_devctl.cc",
         "btm/btm_inq.cc",
-        "btm/btm_iot_config.cc",
         "btm/btm_iso.cc",
         "btm/btm_main.cc",
         "btm/btm_sco.cc",
@@ -1976,7 +1974,6 @@ cc_test {
         ":TestMockStackSdp",
         ":TestMockStackSmp",
         "acl/*.cc",
-        "btm/btm_iot_config.cc",
         "test/stack_acl_test.cc",
     ],
     static_libs: [

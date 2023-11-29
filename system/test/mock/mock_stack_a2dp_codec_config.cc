@@ -341,10 +341,6 @@ void A2DP_InitDefaultCodec(uint8_t* /* p_codec_info */) {
 void A2dpCodecConfig::debug_codec_dump(int /* fd */) {
   inc_func_call_count(__func__);
 }
-int A2DP_IotGetPeerSinkCodecType(const uint8_t* /* p_codec_info */) {
-  inc_func_call_count(__func__);
-  return 0;
-}
 void A2dpCodecConfig::setCodecPriority(
     btav_a2dp_codec_priority_t /* codec_priority */) {
   inc_func_call_count(__func__);

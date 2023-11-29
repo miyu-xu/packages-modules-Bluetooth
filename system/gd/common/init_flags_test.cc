@@ -81,12 +81,6 @@ TEST(InitFlagsTest, test_debug_logging_multiple_flags) {
   ASSERT_EQ(InitFlags::GetDefaultLogLevel(), LOG_TAG_WARN);
 }
 
-TEST(InitFlagsTest, test_device_iot_config_logging_is_enabled) {
-  const char* input[] = {"INIT_device_iot_config_logging=true", nullptr};
-  InitFlags::Load(input);
-  ASSERT_TRUE(InitFlags::IsDeviceIotConfigLoggingEnabled());
-}
-
 TEST(InitFlagsTest, test_enable_bluetooth_quality_report_callback) {
   const char* input[] = {"INIT_bluetooth_quality_report_callback=true", nullptr};
   InitFlags::Load(input);

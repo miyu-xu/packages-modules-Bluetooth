@@ -52,9 +52,6 @@
       "name": "net_test_device"
     },
     {
-      "name": "net_test_device_iot_config"
-    },
-    {
       "name": "net_test_gatt_conn_multiplexing"
     },
     {
@@ -254,9 +251,6 @@
     },
     {
       "name": "net_test_device"
-    },
-    {
-      "name": "net_test_device_iot_config"
     },
     {
       "name": "net_test_gatt_conn_multiplexing"

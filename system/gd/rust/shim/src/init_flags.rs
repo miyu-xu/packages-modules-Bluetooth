@@ -21,7 +21,6 @@ mod ffi {
         fn bta_dm_stop_discovery_on_search_cancel_is_enabled() -> bool;
         fn classic_discovery_only_is_enabled() -> bool;
         fn clear_hidd_interrupt_cid_on_disconnect_is_enabled() -> bool;
-        fn device_iot_config_logging_is_enabled() -> bool;
         fn dynamic_avrcp_version_enhancement_is_enabled() -> bool;
         fn gatt_robust_caching_client_is_enabled() -> bool;
         fn gatt_robust_caching_server_is_enabled() -> bool;

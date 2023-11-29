@@ -41,7 +41,6 @@
 #include "btif/include/btif_av_co.h"
 #include "btif/include/btif_config.h"
 #include "btif/include/btif_storage.h"
-#include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
@@ -535,9 +534,6 @@ static void bta_av_a2dp_sdp_cback(bool found, tA2DP_Service* p_service,
   }
   if (found && (p_service != NULL)) {
     p_scb->SetAvdtpVersion(p_service->avdt_version);
-    DEVICE_IOT_CONFIG_ADDR_SET_HEX_IF_GREATER(
-        p_scb->PeerAddress(), IOT_CONF_KEY_A2DP_VERSION,
-        p_service->avdt_version, IOT_CONF_BYTE_NUM_2);
 
     if (p_service->avdt_version != 0) {
       if (btif_config_set_bin(p_scb->PeerAddress().ToString(),
@@ -975,14 +971,8 @@ void bta_av_config_ind(tBTA_AV_SCB* p_scb, tBTA_AV_DATA* p_data) {
     /* Sep type of Peer will be oppsite role to our local sep */
     if (local_sep == AVDT_TSEP_SRC) {
       p_info->tsep = AVDT_TSEP_SNK;
-      DEVICE_IOT_CONFIG_ADDR_SET_INT(p_scb->PeerAddress(),
-                                     IOT_CONF_KEY_A2DP_ROLE,
-                                     IOT_CONF_VAL_A2DP_ROLE_SINK);
     } else if (local_sep == AVDT_TSEP_SNK) {
       p_info->tsep = AVDT_TSEP_SRC;
-      DEVICE_IOT_CONFIG_ADDR_SET_INT(p_scb->PeerAddress(),
-                                     IOT_CONF_KEY_A2DP_ROLE,
-                                     IOT_CONF_VAL_A2DP_ROLE_SOURCE);
     }
 
     p_scb->role |= BTA_AV_ROLE_AD_ACP;
