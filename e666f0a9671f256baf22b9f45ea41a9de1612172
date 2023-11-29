@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bbdc3a1_3e6fbf7c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-29T12:50:28Z",
+      "side": 1,
+      "message": "why this is `false` here and below it is `true` ?\n\nCan we somehow improve this loop for better reading ?\n\nMaybe we could have std::vector\u003ctBTA_GATTC_MULTI\u003e which would be filled in the first loop and later we could have another loop just to send requests?",
+      "range": {
+        "startLine": 371,
+        "startChar": 49,
+        "endLine": 371,
+        "endChar": 54
+      },
+      "revId": "e666f0a9671f256baf22b9f45ea41a9de1612172",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
