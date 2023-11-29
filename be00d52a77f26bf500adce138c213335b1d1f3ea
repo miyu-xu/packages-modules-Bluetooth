@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d36382e_b424c6aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-29T18:25:42Z",
+      "side": 1,
+      "message": "I see all previous comments from Lukasz and Jakub are resolved, there is a failure in the stacked CLs, please help to fix it.",
+      "revId": "be00d52a77f26bf500adce138c213335b1d1f3ea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
