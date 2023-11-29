@@ -213,6 +213,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e0fd8e6_2aae41b8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T19:29:43Z",
+      "side": 1,
+      "message": "Truth8 was not available as configured.  I\u0027ve added it to the .bp file.",
+      "parentUuid": "264f037a_7cd737af",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 51
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eea464fe_12fe91bd",
@@ -368,6 +392,30 @@
       "side": 1,
       "message": "\u003e Java makes the array dimension mandatory and doesn\u0027t allow this style of inline initialization\n\nJava does allow for that https://docs.oracle.com/javase/specs/jls/se11/html/jls-10.html#jls-10.2\n\n\u003e This doesn\u0027t seem to work \n\nCould you detail the error that you encountered ? `byte[] newValue \u003d new byte[]{13};` should be valid syntax.",
       "parentUuid": "03995373_10921a12",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 36
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f381d6f9_1b70574c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T19:29:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbd6377f_3bfc471a",
       "range": {
         "startLine": 243,
         "startChar": 0,
