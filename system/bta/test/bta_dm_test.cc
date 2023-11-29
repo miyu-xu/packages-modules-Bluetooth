@@ -289,20 +289,20 @@ TEST_F(BtaDmTest, bta_dm_encrypt_cback) {
 
   // Encryption with no callback set
   device->p_encrypt_cback = nullptr;
-  bta_dm_encrypt_cback(&kRawAddress, transport, nullptr, BTM_SUCCESS);
+  bta_dm_encrypt_cback(kRawAddress, transport, nullptr, BTM_SUCCESS);
   ASSERT_EQ(0UL, BTA_DM_ENCRYPT_CBACK_queue.size());
 
   // Encryption with callback
   device->p_encrypt_cback = BTA_DM_ENCRYPT_CBACK;
-  bta_dm_encrypt_cback(&kRawAddress, transport, nullptr, BTM_SUCCESS);
+  bta_dm_encrypt_cback(kRawAddress, transport, nullptr, BTM_SUCCESS);
   device->p_encrypt_cback = BTA_DM_ENCRYPT_CBACK;
-  bta_dm_encrypt_cback(&kRawAddress, transport, nullptr, BTM_WRONG_MODE);
+  bta_dm_encrypt_cback(kRawAddress, transport, nullptr, BTM_WRONG_MODE);
   device->p_encrypt_cback = BTA_DM_ENCRYPT_CBACK;
-  bta_dm_encrypt_cback(&kRawAddress, transport, nullptr, BTM_NO_RESOURCES);
+  bta_dm_encrypt_cback(kRawAddress, transport, nullptr, BTM_NO_RESOURCES);
   device->p_encrypt_cback = BTA_DM_ENCRYPT_CBACK;
-  bta_dm_encrypt_cback(&kRawAddress, transport, nullptr, BTM_BUSY);
+  bta_dm_encrypt_cback(kRawAddress, transport, nullptr, BTM_BUSY);
   device->p_encrypt_cback = BTA_DM_ENCRYPT_CBACK;
-  bta_dm_encrypt_cback(&kRawAddress, transport, nullptr, BTM_ILLEGAL_VALUE);
+  bta_dm_encrypt_cback(kRawAddress, transport, nullptr, BTM_ILLEGAL_VALUE);
 
   ASSERT_EQ(5UL, BTA_DM_ENCRYPT_CBACK_queue.size());
 

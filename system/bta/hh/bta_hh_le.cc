@@ -942,11 +942,11 @@ static void bta_hh_le_pri_service_discovery(tBTA_HH_DEV_CB* p_cb) {
  * Returns          None
  *
  ******************************************************************************/
-static void bta_hh_le_encrypt_cback(const RawAddress* bd_addr,
+static void bta_hh_le_encrypt_cback(const RawAddress& bd_addr,
                                     UNUSED_ATTR tBT_TRANSPORT transport,
                                     UNUSED_ATTR void* p_ref_data,
                                     tBTM_STATUS result) {
-  tBTA_HH_DEV_CB* p_dev_cb = bta_hh_get_cb(*bd_addr);
+  tBTA_HH_DEV_CB* p_dev_cb = bta_hh_get_cb(bd_addr);
   if (p_dev_cb == nullptr) {
     LOG_ERROR("unexpected encryption callback, ignore");
     return;

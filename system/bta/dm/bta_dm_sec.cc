@@ -864,10 +864,10 @@ static uint8_t bta_dm_ble_smp_cback(tBTM_LE_EVT event, const RawAddress& bda,
  * Returns         None
  *
  ******************************************************************************/
-void bta_dm_encrypt_cback(const RawAddress* bd_addr, tBT_TRANSPORT transport,
+void bta_dm_encrypt_cback(const RawAddress& bd_addr, tBT_TRANSPORT transport,
                           UNUSED_ATTR void* p_ref_data, tBTM_STATUS result) {
   tBTA_DM_ENCRYPT_CBACK* p_callback = nullptr;
-  tBTA_DM_PEER_DEVICE* device = find_connected_device(*bd_addr, transport);
+  tBTA_DM_PEER_DEVICE* device = find_connected_device(bd_addr, transport);
   if (device != nullptr) {
     p_callback = device->p_encrypt_cback;
     device->p_encrypt_cback = nullptr;
@@ -877,14 +877,14 @@ void bta_dm_encrypt_cback(const RawAddress* bd_addr, tBT_TRANSPORT transport,
   switch (result) {
     case BTM_SUCCESS:
       LOG_WARN("Encrypted link peer:%s transport:%s status:%s callback:%c",
-               ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+               ADDRESS_TO_LOGGABLE_CSTR((bd_addr)),
                bt_transport_text(transport).c_str(),
                btm_status_text(result).c_str(), (p_callback) ? 'T' : 'F');
       break;
     case BTM_WRONG_MODE:
       LOG_WARN(
           "Unable to encrypt link peer:%s transport:%s status:%s callback:%c",
-          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          ADDRESS_TO_LOGGABLE_CSTR((bd_addr)),
           bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
           (p_callback) ? 'T' : 'F');
       bta_status = BTA_WRONG_MODE;
@@ -892,7 +892,7 @@ void bta_dm_encrypt_cback(const RawAddress* bd_addr, tBT_TRANSPORT transport,
     case BTM_NO_RESOURCES:
       LOG_WARN(
           "Unable to encrypt link peer:%s transport:%s status:%s callback:%c",
-          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          ADDRESS_TO_LOGGABLE_CSTR((bd_addr)),
           bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
           (p_callback) ? 'T' : 'F');
       bta_status = BTA_NO_RESOURCES;
@@ -900,7 +900,7 @@ void bta_dm_encrypt_cback(const RawAddress* bd_addr, tBT_TRANSPORT transport,
     case BTM_BUSY:
       LOG_WARN(
           "Unable to encrypt link peer:%s transport:%s status:%s callback:%c",
-          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          ADDRESS_TO_LOGGABLE_CSTR((bd_addr)),
           bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
           (p_callback) ? 'T' : 'F');
       bta_status = BTA_BUSY;
@@ -908,14 +908,14 @@ void bta_dm_encrypt_cback(const RawAddress* bd_addr, tBT_TRANSPORT transport,
     default:
       LOG_ERROR(
           "Failed to encrypt link peer:%s transport:%s status:%s callback:%c",
-          ADDRESS_TO_LOGGABLE_CSTR((*bd_addr)),
+          ADDRESS_TO_LOGGABLE_CSTR((bd_addr)),
           bt_transport_text(transport).c_str(), btm_status_text(result).c_str(),
           (p_callback) ? 'T' : 'F');
       bta_status = BTA_FAILURE;
       break;
   }
   if (p_callback) {
-    (*p_callback)(*bd_addr, transport, bta_status);
+    (*p_callback)(bd_addr, transport, bta_status);
   }
 }
 
