@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d450ee5_2fc81573",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-29T21:47:45Z",
+      "side": 0,
+      "message": "There are a lot more, should we remove them all?",
+      "revId": "bf977a834c050e0248810ec50ff8615c3b857ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
