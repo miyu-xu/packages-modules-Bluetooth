@@ -112,6 +112,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f44a2cc_94f4b862",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T22:05:40Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fba70e8e_3b1152cc",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 101
+      },
+      "revId": "20163e441454df2c7af4300e34a8cdbe0695f0ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "895466a0_fe15f20d",
