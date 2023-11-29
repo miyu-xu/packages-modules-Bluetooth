@@ -317,7 +317,7 @@ std::unordered_map<intptr_t,
 class ClassicSecurityEnforcementShim
     : public bluetooth::l2cap::classic::SecurityEnforcementInterface {
  public:
-  static void security_enforce_result_callback(const RawAddress* bd_addr,
+  static void security_enforce_result_callback(const RawAddress& bd_addr,
                                                tBT_TRANSPORT trasnport,
                                                void* p_ref_data,
                                                tBTM_STATUS result) {
@@ -532,7 +532,7 @@ std::unordered_map<intptr_t,
 class LeSecurityEnforcementShim
     : public bluetooth::l2cap::le::SecurityEnforcementInterface {
  public:
-  static void le_security_enforce_result_callback(const RawAddress* bd_addr,
+  static void le_security_enforce_result_callback(const RawAddress& bd_addr,
                                                   tBT_TRANSPORT trasnport,
                                                   void* p_ref_data,
                                                   tBTM_STATUS result) {

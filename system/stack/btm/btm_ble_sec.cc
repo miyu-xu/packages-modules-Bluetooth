@@ -719,7 +719,7 @@ tL2CAP_LE_RESULT_CODE btm_ble_start_sec_check(const RawAddress& bd_addr,
    */
   if (!p_serv_rec) {
     LOG_WARN("PSM: %d no application registered", psm);
-    (*p_callback)(&bd_addr, BT_TRANSPORT_LE, p_ref_data, BTM_MODE_UNSUPPORTED);
+    (*p_callback)(bd_addr, BT_TRANSPORT_LE, p_ref_data, BTM_MODE_UNSUPPORTED);
     return L2CAP_LE_RESULT_NO_PSM;
   }
 
@@ -755,7 +755,7 @@ tL2CAP_LE_RESULT_CODE btm_ble_start_sec_check(const RawAddress& bd_addr,
   switch (sec_act) {
     case BTM_SEC_OK:
       LOG_DEBUG("Security met");
-      p_callback(&bd_addr, BT_TRANSPORT_LE, p_ref_data, BTM_SUCCESS);
+      p_callback(bd_addr, BT_TRANSPORT_LE, p_ref_data, BTM_SUCCESS);
       result = L2CAP_LE_RESULT_CONN_OK;
       break;
 
