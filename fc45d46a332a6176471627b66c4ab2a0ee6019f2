@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36669262_7dafa63b",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1982,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-29T21:36:41Z",
+      "side": 1,
+      "message": "Checking the flag is not sufficient, since the HAL could also not support the getProviderInfo extension.\nThe correct way I think is to invoke the legacy command when the offload stream is opened through the legacy provider capabilities, and the new command when getProviderInfo is supported.",
+      "parentUuid": "89313a8d_bb01f3ec",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1dcda6cd_9dfc0fee",
         "filename": "system/bta/av/bta_av_aact.cc",
         "patchSetId": 7
@@ -180,6 +198,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4a51fa65_492c00a1",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3272,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-29T21:36:41Z",
+      "side": 1,
+      "message": "See other comment",
+      "parentUuid": "9f09f190_712137df",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "14e878c7_7aba6b50",
         "filename": "system/bta/av/bta_av_int.h",
         "patchSetId": 7
@@ -191,6 +227,24 @@
       "writtenOn": "2023-11-29T17:22:09Z",
       "side": 1,
       "message": "please add:\n```\nvoid bta_av_vendor_offload_legacy_stop(void);\n```",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a185d3b5_9924322a",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-29T21:36:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "14e878c7_7aba6b50",
       "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
