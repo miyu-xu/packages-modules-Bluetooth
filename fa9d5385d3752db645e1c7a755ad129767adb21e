@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b95e56f_46632137",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-29T18:13:23Z",
+      "side": 1,
+      "message": "update the logging here?",
+      "range": {
+        "startLine": 1402,
+        "startChar": 27,
+        "endLine": 1402,
+        "endChar": 46
+      },
+      "revId": "fa9d5385d3752db645e1c7a755ad129767adb21e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa4ec093_39ca2d68",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1405,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-29T18:13:23Z",
+      "side": 1,
+      "message": "And here?",
+      "range": {
+        "startLine": 1405,
+        "startChar": 27,
+        "endLine": 1405,
+        "endChar": 46
+      },
+      "revId": "fa9d5385d3752db645e1c7a755ad129767adb21e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
