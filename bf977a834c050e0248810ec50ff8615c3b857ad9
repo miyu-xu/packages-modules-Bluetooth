@@ -34,6 +34,24 @@
       "parentUuid": "4d450ee5_2fc81573",
       "revId": "bf977a834c050e0248810ec50ff8615c3b857ad9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "32700a39_4c3c87b0",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-29T22:04:03Z",
+      "side": 0,
+      "message": "I misunderstood it. \n\nWhy are we removing this one and keeping the calls in Gatt? Who\u0027s supposed to disconnect?",
+      "parentUuid": "9ea73558_0f731fa9",
+      "revId": "bf977a834c050e0248810ec50ff8615c3b857ad9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
