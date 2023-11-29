@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e389ac7c_e977717b",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-29T01:05:05Z",
+      "side": 1,
+      "message": "This is a generic implementation. Usage with new modes is blocked at the source. See StartAudioSession().\nIt didn\u0027t make sense to guard it in both the places. IMO this keeps the code cleaner.",
+      "parentUuid": "ad39a855_ab77e5f8",
+      "revId": "29d6b354ce25082f4f9e24940a5f0228ebda657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f0ef0d3_a00a07cc",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "055b8690_b4be787d",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-29T01:05:05Z",
+      "side": 1,
+      "message": "This is a generic implementation. Usage with new modes is blocked at the source. See StartAudioSession().\nIt didn\u0027t make sense to guard it in both the places. IMO this keeps the code cleaner.",
+      "parentUuid": "7f0ef0d3_a00a07cc",
+      "revId": "29d6b354ce25082f4f9e24940a5f0228ebda657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d19f6acc_04f13b08",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-11-29T00:01:26Z",
       "side": 1,
       "message": "I found this function is not being covered in our unit test. so this might be out of this CL\u0027s scope, but I think we should add some unit test overage on this part of logic, maybe in a separate CL.",
+      "revId": "29d6b354ce25082f4f9e24940a5f0228ebda657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfdd4f26_9c19b572",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-29T01:05:05Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d19f6acc_04f13b08",
       "revId": "29d6b354ce25082f4f9e24940a5f0228ebda657e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
