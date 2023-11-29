@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fba7a33_2ac00bc5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "81bf8f61_0d58eff7",
+      "range": {
+        "startLine": 65,
+        "startChar": 25,
+        "endLine": 65,
+        "endChar": 31
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf5c59d2_1c1c5eef",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-28T23:47:19Z",
       "side": 1,
       "message": "What does the `c` as prefix means here?",
+      "range": {
+        "startLine": 172,
+        "startChar": 38,
+        "endLine": 172,
+        "endChar": 46
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea189f44_024d47a7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cf5c59d2_1c1c5eef",
       "range": {
         "startLine": 172,
         "startChar": 38,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a35a48a9_bf0ae73e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "169dcf6d_e6b81b82",
+      "range": {
+        "startLine": 173,
+        "startChar": 28,
+        "endLine": 173,
+        "endChar": 48
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "002e841c_410362f5",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-28T23:47:19Z",
       "side": 1,
       "message": "Using https://truth.dev/api/latest/com/google/common/truth/Truth8.html\n\n```suggestion\n            assertThat(\n                gatt\n                    .getServices()\n                    .stream()\n                    .map(BluetoothGattService::getUuid)\n                    .map(UUID::toString)\n            ).contains​(GAP_UUID)\n```\n\nOr \n\n```java\n            assertThat(\n                gatt\n                    .getServices()\n                    .stream()\n                    .map(BluetoothGattService::getUuid)\n            ).contains​(UUID.fromString(GAP_UUID))\n```",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 51
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "937a0ed4_fd480ccb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T00:53:11Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to work.  However, I was able to find a similarly compact option with stream.anyMatch.",
+      "parentUuid": "002e841c_410362f5",
       "range": {
         "startLine": 171,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b0a5345_3f96d77c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eea464fe_12fe91bd",
+      "range": {
+        "startLine": 203,
+        "startChar": 0,
+        "endLine": 205,
+        "endChar": 60
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c432cf5f_6157e136",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-11-28T23:47:19Z",
       "side": 1,
       "message": "```suggestion\n            outer: for (BluetoothGattService cService : gatt.getServices()) {\n                for (BluetoothGattCharacteristic cCharacteristic : cService.getCharacteristics()) {\n                    if ((cCharacteristic.getProperties()\n                                    \u0026 BluetoothGattCharacteristic.PROPERTY_WRITE)\n                            !\u003d 0) {\n                        characteristic \u003d cCharacteristic;\n                        break outer;\n                    }\n                }\n            }\n\n```",
+      "range": {
+        "startLine": 231,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 0
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "328f7f2a_aa335eea",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c432cf5f_6157e136",
       "range": {
         "startLine": 231,
         "startChar": 0,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "03995373_10921a12",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T00:53:11Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to work -- Java makes the array dimension mandatory and doesn\u0027t allow this style of inline initialization.  However, the exact contents to set here are irrelevant so I changed this to a more compact getBytes() initialization.",
+      "parentUuid": "e9958d2c_ce3123ed",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 36
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36925366_679b8461",
@@ -175,6 +343,30 @@
       "writtenOn": "2023-11-28T23:47:19Z",
       "side": 1,
       "message": "What does `c` and `s` as prefix means here ?\n\nI think it would be better to write it as full word.",
+      "range": {
+        "startLine": 260,
+        "startChar": 0,
+        "endLine": 261,
+        "endChar": 68
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "683b6941_ae4ca6d8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T00:53:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36925366_679b8461",
       "range": {
         "startLine": 260,
         "startChar": 0,
