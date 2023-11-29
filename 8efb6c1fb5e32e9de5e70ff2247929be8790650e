@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e4a263c0_9ca8ac07",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T23:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c778709b_ef19ad06",
+      "range": {
+        "startLine": 54,
+        "startChar": 6,
+        "endLine": 54,
+        "endChar": 24
+      },
+      "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e3cc449_534e5b83",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-29T22:05:40Z",
       "side": 1,
       "message": "inherit from `Service` instead to be able to pass the UUID in the constructor https://cs.android.com/android/platform/superproject/main/+/main:external/python/bumble/bumble/gatt.py;l\u003d202;drc\u003de559744f3205eb73649b91e3b25559922c329aa8",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 15
+      },
+      "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e65b027_8c42c74b",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T23:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3cc449_534e5b83",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -64,6 +112,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a1a41d45_86623135",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T23:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f278bf29_7f0a8b20",
+      "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b96ae8a2_0b521f12",
@@ -77,6 +143,24 @@
       "writtenOn": "2023-11-29T22:05:40Z",
       "side": 1,
       "message": "```suggestion\n        self.UUID \u003d BumbleUUID(uuid)\n```\n\nThe name is optional and if it\u0027s not provided it will print the UUID which seems more usefull",
+      "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "505322f3_c0b4e20b",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T23:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b96ae8a2_0b521f12",
       "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -98,6 +182,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9905cccc_da366c50",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T23:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f638ad8_2e8ba714",
+      "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5364d76f_edd43ad9",
@@ -111,6 +213,30 @@
       "writtenOn": "2023-11-29T22:05:40Z",
       "side": 1,
       "message": "Can we convert this to a BumbleUUID here instead of in the constructor of `GenericGattService` ?",
+      "range": {
+        "startLine": 283,
+        "startChar": 8,
+        "endLine": 283,
+        "endChar": 42
+      },
+      "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1501dcf5_20955291",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T23:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5364d76f_edd43ad9",
       "range": {
         "startLine": 283,
         "startChar": 8,
@@ -144,6 +270,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45a5d062_3669d2b8",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T23:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a7b89ca0_5d517a1b",
+      "range": {
+        "startLine": 288,
+        "startChar": 0,
+        "endLine": 288,
+        "endChar": 86
+      },
+      "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa44b1e4_ca364fea",
@@ -167,6 +317,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "661dd896_b3768d40",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T23:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa44b1e4_ca364fea",
+      "range": {
+        "startLine": 292,
+        "startChar": 29,
+        "endLine": 292,
+        "endChar": 94
+      },
+      "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4393338c_8119fb1a",
@@ -180,6 +354,30 @@
       "writtenOn": "2023-11-29T22:05:40Z",
       "side": 1,
       "message": "Rename to `descParam` for consistency with `characteristicParam`",
+      "range": {
+        "startLine": 293,
+        "startChar": 26,
+        "endLine": 293,
+        "endChar": 35
+      },
+      "revId": "8efb6c1fb5e32e9de5e70ff2247929be8790650e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c2ef112_db7adcc3",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-29T23:08:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4393338c_8119fb1a",
       "range": {
         "startLine": 293,
         "startChar": 26,
