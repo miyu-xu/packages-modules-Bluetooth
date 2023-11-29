@@ -176,6 +176,23 @@
       "message": "not sure but maybe:\n```\n  } else if (IS_FLAG_ENABLED(a2dp_offload_codec_extensibility) \u0026\u0026\n             ::bluetooth::audio::a2dp::provider::supports_codec(\n                codec_config-\u003ecodecIndex())) {\n```\n?",
       "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14e878c7_7aba6b50",
+        "filename": "system/bta/av/bta_av_int.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 843,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:22:09Z",
+      "side": 1,
+      "message": "please add:\n```\nvoid bta_av_vendor_offload_legacy_stop(void);\n```",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
