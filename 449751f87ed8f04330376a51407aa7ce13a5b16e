@@ -70,6 +70,30 @@
       },
       "revId": "449751f87ed8f04330376a51407aa7ce13a5b16e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1291f0c8_a8b9c190",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2029,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-11-29T18:03:24Z",
+      "side": 1,
+      "message": "the \"Device discovery\" that was waiting for name response is already gone, and the callback in BTA layer was replaced by this instance.\n\nI want this log to monitor how often this is happening.\n\nThis is an logical issue, but to refactor BTA layer to keep two separate callback instances is not a quick fix.",
+      "parentUuid": "72f91f06_377eeb2c",
+      "range": {
+        "startLine": 2029,
+        "startChar": 6,
+        "endLine": 2029,
+        "endChar": 14
+      },
+      "revId": "449751f87ed8f04330376a51407aa7ce13a5b16e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
