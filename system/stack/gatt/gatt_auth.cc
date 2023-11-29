@@ -156,12 +156,12 @@ static void gatt_sec_check_complete(bool sec_check_ok, tGATT_CLCB* p_clcb,
  * Returns
  *
  ******************************************************************************/
-static void gatt_enc_cmpl_cback(const RawAddress* bd_addr,
+static void gatt_enc_cmpl_cback(const RawAddress& bd_addr,
                                 tBT_TRANSPORT transport,
                                 UNUSED_ATTR void* p_ref_data,
                                 tBTM_STATUS result) {
   VLOG(1) << StringPrintf("gatt_enc_cmpl_cback");
-  tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(*bd_addr, transport);
+  tGATT_TCB* p_tcb = gatt_find_tcb_by_addr(bd_addr, transport);
   if (!p_tcb) {
     LOG(ERROR) << StringPrintf("%s: enc callback for unknown bd_addr",
                                __func__);
@@ -183,7 +183,7 @@ static void gatt_enc_cmpl_cback(const RawAddress* bd_addr,
     bool status = false;
     if (result == BTM_SUCCESS) {
       if (gatt_get_sec_act(p_tcb) == GATT_SEC_ENCRYPT_MITM) {
-        status = BTM_IsLinkKeyAuthed(*bd_addr, transport);
+        status = BTM_IsLinkKeyAuthed(bd_addr, transport);
       } else {
         status = true;
       }
