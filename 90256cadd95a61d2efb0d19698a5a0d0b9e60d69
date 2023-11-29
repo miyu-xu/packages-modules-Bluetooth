@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2b20e89_9625faa8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-29T02:10:30Z",
+      "side": 1,
+      "message": "Existing tests should pass",
+      "parentUuid": "e88c514d_543fbde3",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 30
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "f90bbf1f_632e733e",
@@ -70,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "621b28ab_cd066161",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 1221,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-29T02:10:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d269595_5befff4f",
+      "range": {
+        "startLine": 1221,
+        "startChar": 0,
+        "endLine": 1221,
+        "endChar": 36
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fceee83c_a07aa09a",
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "542bcddc_1e56e8fe",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-29T02:10:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fceee83c_a07aa09a",
+      "range": {
+        "startLine": 658,
+        "startChar": 9,
+        "endLine": 658,
+        "endChar": 34
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2aabb8d3_a9336b96",
@@ -106,6 +178,30 @@
       "writtenOn": "2023-11-22T01:54:40Z",
       "side": 1,
       "message": "Ditto: move to shared_libs",
+      "range": {
+        "startLine": 800,
+        "startChar": 9,
+        "endLine": 800,
+        "endChar": 34
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c8c9336_b8f13efb",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 800,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-29T02:10:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2aabb8d3_a9336b96",
       "range": {
         "startLine": 800,
         "startChar": 9,
