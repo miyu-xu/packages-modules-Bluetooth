@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ed749e9_5e59eb81",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 10
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T23:45:02Z",
+      "side": 0,
+      "message": "We should migrate those",
+      "range": {
+        "startLine": 312,
+        "startChar": 0,
+        "endLine": 313,
+        "endChar": 87
+      },
+      "revId": "1a3a0f92aa6273e53c2991a584a0e221a19c6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d95179e6_7f0b05e3",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T23:45:02Z",
+      "side": 0,
+      "message": "Remove",
+      "range": {
+        "startLine": 190,
+        "startChar": 0,
+        "endLine": 228,
+        "endChar": 81
+      },
+      "revId": "1a3a0f92aa6273e53c2991a584a0e221a19c6563",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
