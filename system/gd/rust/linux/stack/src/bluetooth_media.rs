@@ -12,6 +12,7 @@ use bt_topshim::profiles::a2dp::{
 use bt_topshim::profiles::avrcp::{
     Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, PlayerMetadata,
 };
+use bt_topshim::profiles::hfp::insert_call_when_sco_start;
 use bt_topshim::profiles::hfp::{
     BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallSource, CallState, Hfp,
     HfpCallbacks, HfpCallbacksDispatcher, HfpCodecCapability, HfpCodecId, PhoneState,
@@ -759,9 +760,8 @@ impl BluetoothMedia {
 
                         self.hfp_audio_state.insert(addr, state);
 
-                        if !self.mps_qualification_enabled
-                            && self.call_list.iter().all(|c| c.source != CallSource::CRAS)
-                        {
+                        // jabra address = 08:c8:c2:3f:5d:59
+                        if insert_call_when_sco_start(addr) {
                             // This triggers a +CIEV command to set the call status for HFP devices.
                             // It is required for some devices to provide sound.
                             self.phone_state.num_active += 1;
@@ -772,6 +772,7 @@ impl BluetoothMedia {
                                 state: CallState::Active,
                                 number: "".into(),
                             });
+                            info!("whale insert a cras call!");
                             self.phone_state_change("".into());
                         }
                     }
@@ -2696,7 +2697,6 @@ impl IBluetoothMedia for BluetoothMedia {
             }
             Some(addr) => addr,
         };
-
         let vol = match i8::try_from(volume) {
             Ok(val) if val <= 15 => val,
             _ => {

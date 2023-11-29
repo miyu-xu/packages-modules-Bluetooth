@@ -17,6 +17,7 @@
 #include "gd/rust/topshim/hfp/hfp_shim.h"
 
 #include "btif/include/btif_hf.h"
+#include "device/include/interop.h"
 #include "gd/common/strings.h"
 #include "gd/os/log.h"
 #include "include/hardware/bt_hf.h"
@@ -40,6 +41,24 @@ static void audio_state_cb(bluetooth::headset::bthf_audio_state_t state, RawAddr
 }
 
 static void volume_update_cb(uint8_t volume, RawAddress* addr) {
+  bool result;
+  RawAddress new_addr_true;
+  result = RawAddress::FromString("04:CB:88:00:00:00", new_addr_true);
+  LOG_INFO("result1: %d %s", result ? 1 : 0, new_addr_true.ToString().c_str());
+  RawAddress new_addr_false;
+  result = RawAddress::FromString("08:62:66:00:00:00", new_addr_false);
+  LOG_INFO("result2: %d %s", result ? 1 : 0, new_addr_false.ToString().c_str());
+  LOG_INFO(
+      "new_addr_true: %d",
+      interop_match_addr(interop_feature_t::INTEROP_DISABLE_ABSOLUTE_VOLUME, &new_addr_true) == true
+          ? 1
+          : 0);
+  LOG_INFO(
+      "new_addr_false: %d",
+      interop_match_addr(interop_feature_t::INTEROP_DISABLE_ABSOLUTE_VOLUME, &new_addr_false) ==
+              true
+          ? 1
+          : 0);
   rusty::hfp_volume_update_callback(volume, *addr);
 }
 
@@ -359,6 +378,11 @@ uint32_t HfpIntf::device_status_notification(TelephonyDeviceStatus status, RawAd
       status.signal_strength,
       status.battery_level,
       &addr);
+}
+
+bool insert_call_when_sco_start(RawAddress addr) {
+  LOG_INFO("whale jabra: %s", addr.ToString().c_str());
+  return interop_match_addr(interop_feature_t::INTEROP_INSERT_CALL_WHEN_SCO_START, &addr);
 }
 
 uint32_t HfpIntf::indicator_query_response(

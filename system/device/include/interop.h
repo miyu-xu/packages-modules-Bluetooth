@@ -334,6 +334,9 @@ typedef enum {
   // need we initiate connection after signalling timeout
   INTEROP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT,
 
+  // somde device cannot have sound if no call in the call list.
+  INTEROP_INSERT_CALL_WHEN_SCO_START,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
