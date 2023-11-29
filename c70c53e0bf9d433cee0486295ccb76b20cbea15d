@@ -87,6 +87,24 @@
       "parentUuid": "cde44017_512d9d82",
       "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dcd1e2d_f8e584d2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3892,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-29T17:33:11Z",
+      "side": 1,
+      "message": "Thanks Rongxuan for suggestion. I\u0027ll update PRD with this `policy` and update this CL to show usage of the Confirmation of Streaming. Let\u0027s keep it for now as WIP then. Doc is here: https://docs.google.com/document/d/1FWdBe7GauP9rSMWJUUlZivEkMriXi2uBP7th7V8gB-Y/edit?resourcekey\u003d0-WVxGm0nJ00Lj0xStR7l0zA#heading\u003dh.codzkfpgu9u6",
+      "parentUuid": "8837de06_ea95a7eb",
+      "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
