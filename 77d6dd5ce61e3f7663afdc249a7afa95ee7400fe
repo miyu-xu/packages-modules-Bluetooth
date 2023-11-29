@@ -43,6 +43,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "442a27a5_cbaab42f",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-29T15:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "89259421_4badf3ac",
+      "range": {
+        "startLine": 351,
+        "startChar": 7,
+        "endLine": 352,
+        "endChar": 64
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "074cb1df_2d9f096b",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStackEvent.java",
         "patchSetId": 15
@@ -87,6 +111,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d72b3af9_4619b109",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-29T15:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c26ad1f2_b5f7db48",
+      "range": {
+        "startLine": 235,
+        "startChar": 8,
+        "endLine": 235,
+        "endChar": 28
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d76ee118_28eabf5b",
@@ -100,6 +148,30 @@
       "writtenOn": "2023-11-28T18:40:13Z",
       "side": 1,
       "message": "typo",
+      "range": {
+        "startLine": 5582,
+        "startChar": 12,
+        "endLine": 5582,
+        "endChar": 16
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be4e1931_9d113ee2",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 5582,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-29T15:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d76ee118_28eabf5b",
       "range": {
         "startLine": 5582,
         "startChar": 12,
@@ -133,6 +205,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c64f009_b970a2ca",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 5651,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-29T15:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d8d3acba_d2590f2c",
+      "range": {
+        "startLine": 5651,
+        "startChar": 40,
+        "endLine": 5651,
+        "endChar": 48
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3f73f9ad_86e1ae73",
@@ -146,6 +242,54 @@
       "writtenOn": "2023-11-29T11:46:36Z",
       "side": 1,
       "message": "nit:\nSince at the Java layer these are named:\n```\nSTATUS_LOCAL_STREAM_REQUESTED:\nSTATUS_LOCAL_STREAM_STREAMING:\nSTATUS_LOCAL_STREAM_SUSPENDED:\n```\n...could we be consistent and change STREAM_SUSPENDED --\u003e STREAMING_SUSPENDED",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 19
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15d79633_82275f58",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-29T15:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f73f9ad_86e1ae73",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 19
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "684dc53c_63a2c597",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-29T15:38:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3f73f9ad_86e1ae73",
       "range": {
         "startLine": 90,
         "startChar": 0,
