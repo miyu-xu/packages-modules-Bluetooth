@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8859d1f_d833f759",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-29T00:16:37Z",
+      "side": 1,
+      "message": "Please update to describe testing done with aosp/2780990 as discussed offline.",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 10
+      },
+      "revId": "166b0713857cfd192a3e33f0255a260aea3a9a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5532aaa_3be44e86",
+        "filename": "system/bta/gatt/bta_gattc_api.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-11-29T00:16:37Z",
+      "side": 1,
+      "message": "nit: formatting on comments here and elsewhere",
+      "revId": "166b0713857cfd192a3e33f0255a260aea3a9a83",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
