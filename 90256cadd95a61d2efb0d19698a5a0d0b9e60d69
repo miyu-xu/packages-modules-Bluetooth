@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "95f8b51e_1d29c4f4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-29T02:19:20Z",
+      "side": 1,
+      "message": "Ack\n\nFYI gerrit only report 23% coverage but it looks like go/bluetooth-coverage has way more data to provide.\n\nThe only missing API are:\n* BTA_DmAddBleKey(RawAddress const\u0026, tBTA_LE_KEY_VALUE*, unsigned char)\n* BTA_DmLocalOob()",
+      "parentUuid": "e2b20e89_9625faa8",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 30
+      },
+      "revId": "90256cadd95a61d2efb0d19698a5a0d0b9e60d69",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f90bbf1f_632e733e",
         "filename": "system/bta/Android.bp",
         "patchSetId": 7
