@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad39a855_ab77e5f8",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_sink_hal_client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-29T00:01:26Z",
+      "side": 1,
+      "message": "same as another comment, under the feature flag?",
+      "revId": "29d6b354ce25082f4f9e24940a5f0228ebda657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f0ef0d3_a00a07cc",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-29T00:01:26Z",
+      "side": 1,
+      "message": "Do you want to put this under the feature flag as well? so it\u0027s aligned with other dsa mode changes.",
+      "revId": "29d6b354ce25082f4f9e24940a5f0228ebda657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d19f6acc_04f13b08",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 1061,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-11-29T00:01:26Z",
+      "side": 1,
+      "message": "I found this function is not being covered in our unit test. so this might be out of this CL\u0027s scope, but I think we should add some unit test overage on this part of logic, maybe in a separate CL.",
+      "revId": "29d6b354ce25082f4f9e24940a5f0228ebda657e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
