@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02078f18_d5819f84",
+        "filename": "system/bta/le_audio/le_audio_types_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-29T11:58:08Z",
+      "side": 1,
+      "message": "This should be `ltv_map_two`",
+      "range": {
+        "startLine": 559,
+        "startChar": 10,
+        "endLine": 559,
+        "endChar": 13
+      },
+      "revId": "ed1f5938cc0f7b9760da776711fc41c16130f3e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
