@@ -41,6 +41,7 @@
 #include "hci/hci_packets.h"
 #include "hci/include/hci_layer.h"
 #include "main/shim/entry.h"
+#include "main/shim/helpers.h"
 #include "osi/include/properties.h"
 #include "osi/include/stack_power_telemetry.h"
 #include "stack/btm/btm_int_types.h"
@@ -86,6 +87,8 @@ using bluetooth::legacy::hci::GetInterface;
 
 // forward declaration for dequeueing packets
 static void btm_route_sco_data(bluetooth::hci::ScoView valid_packet);
+void btm_sco_conn_req(const RawAddress& bda, const DEV_CLASS& dev_class,
+                      uint8_t link_type);
 void btm_sco_on_disconnected(uint16_t hci_handle, tHCI_REASON reason);
 
 namespace cpp {
@@ -1199,20 +1202,6 @@ bool btm_sco_removed(uint16_t hci_handle, tHCI_REASON reason) {
     }
   }
   return false;
-}
-
-void btm_sco_on_esco_connect_request(
-    const RawAddress& bda, const bluetooth::types::ClassOfDevice& cod) {
-  LOG_DEBUG("Remote ESCO connect request remote:%s cod:%s",
-            ADDRESS_TO_LOGGABLE_CSTR(bda), cod.ToString().c_str());
-  btm_sco_conn_req(bda, cod.cod, BTM_LINK_TYPE_ESCO);
-}
-
-void btm_sco_on_sco_connect_request(
-    const RawAddress& bda, const bluetooth::types::ClassOfDevice& cod) {
-  LOG_DEBUG("Remote SCO connect request remote:%s cod:%s",
-            ADDRESS_TO_LOGGABLE_CSTR(bda), cod.ToString().c_str());
-  btm_sco_conn_req(bda, cod.cod, BTM_LINK_TYPE_SCO);
 }
 
 void btm_sco_on_disconnected(uint16_t hci_handle, tHCI_REASON reason) {
