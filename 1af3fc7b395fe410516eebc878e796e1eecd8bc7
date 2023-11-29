@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe1b3c35_db2dd2f7",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T00:27:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8714d15e_1bb4897d",
+      "range": {
+        "startLine": 141,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 96
+      },
+      "revId": "1af3fc7b395fe410516eebc878e796e1eecd8bc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10efb716_940b5444",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-28T23:16:38Z",
       "side": 1,
       "message": "Add a comment to explain the intention behing this flatMap and move to filter",
+      "range": {
+        "startLine": 242,
+        "startChar": 0,
+        "endLine": 242,
+        "endChar": 44
+      },
+      "revId": "1af3fc7b395fe410516eebc878e796e1eecd8bc7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d814fbf_6f65d41e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T00:27:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10efb716_940b5444",
       "range": {
         "startLine": 242,
         "startChar": 0,
