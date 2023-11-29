@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56174a44_430abee3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-29T02:30:32Z",
+      "side": 1,
+      "message": "Bypass lint this is a no-op change from a test point of view",
+      "revId": "0df78d414ba1fad41cd2fb20a814b60b43eeb27c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
