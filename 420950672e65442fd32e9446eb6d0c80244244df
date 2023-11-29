@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ea6e546_a45918bd",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:05:58Z",
+      "side": 1,
+      "message": "should we do:\n```\nif (codec_info \u003d\u003d nullptr) {\n LOG(ERROR) \u003c\u003c \"codec_info is null\";\n return std::nullopt;\n}\n```\n?",
+      "range": {
+        "startLine": 249,
+        "startChar": 4,
+        "endLine": 249,
+        "endChar": 29
+      },
+      "revId": "420950672e65442fd32e9446eb6d0c80244244df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a751c061_fe0488b1",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:05:58Z",
+      "side": 1,
+      "message": "should we do:\n```\nif (codec_info \u003d\u003d nullptr) {\n LOG(ERROR) \u003c\u003c \"codec_info is null\";\n return std::nullopt;\n}\n```\n?",
+      "range": {
+        "startLine": 276,
+        "startChar": 4,
+        "endLine": 276,
+        "endChar": 29
+      },
+      "revId": "420950672e65442fd32e9446eb6d0c80244244df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
