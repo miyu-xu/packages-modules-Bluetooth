@@ -1,0 +1,163 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d4d3d08_1696db99",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:00:11Z",
+      "side": 1,
+      "message": "for feature flag please include also:\n```#include \u003candroid_bluetooth_flags.h\u003e```",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89313a8d_bb01f3ec",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1982,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:00:11Z",
+      "side": 1,
+      "message": "```\nif (IS_FLAG_ENABLED(a2dp_offload_codec_extensibility)) {\n  bta_av_vendor_offload_stop();\n} else {\n  bta_av_vendor_offload_legacy_stop();\n}\n```\nor similar",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1dcda6cd_9dfc0fee",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1986,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:00:11Z",
+      "side": 1,
+      "message": "```\nif (IS_FLAG_ENABLED(a2dp_offload_codec_extensibility)) {\n  bta_av_vendor_offload_stop();\n} else {\n  bta_av_vendor_offload_legacy_stop();\n}\n```\nor similar",
+      "range": {
+        "startLine": 1986,
+        "startChar": 6,
+        "endLine": 1986,
+        "endChar": 32
+      },
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af7aee1e_48a2a685",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2616,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:00:11Z",
+      "side": 1,
+      "message": "```\nif (IS_FLAG_ENABLED(a2dp_offload_codec_extensibility)) {\n  bta_av_vendor_offload_stop();\n} else {\n  bta_av_vendor_offload_legacy_stop();\n}\n```\nor similar",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e57ee29_4018c6e8",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2620,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:00:11Z",
+      "side": 1,
+      "message": "```\nif (IS_FLAG_ENABLED(a2dp_offload_codec_extensibility)) {\n  bta_av_vendor_offload_stop();\n} else {\n  bta_av_vendor_offload_legacy_stop();\n}\n```\nor similar",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48fd91ac_5f1b6cdb",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3138,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:00:11Z",
+      "side": 1,
+      "message": "```\ncase VS_HCI_A2DP_OFFLOAD_LEGACY_STOP:\ncase VS_HCI_A2DP_OFFLOAD_STOP:\n```",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "570e8cfe_1bb89dc1",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3141,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:00:11Z",
+      "side": 1,
+      "message": "```\ncase VS_HCI_A2DP_OFFLOAD_LEGACY_START:\ncase VS_HCI_A2DP_OFFLOAD_START:\n```",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68710a94_ef88410f",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3156,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:00:11Z",
+      "side": 1,
+      "message": "```\nif (param-\u003eopcode !\u003d VS_HCI_A2DP_OFFLOAD_STOP \u0026\u0026\n    param-\u003eopcode !\u003d VS_HCI_A2DP_OFFLOAD_LEGACY_STOP) {\n```",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f09f190_712137df",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3272,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:00:11Z",
+      "side": 1,
+      "message": "not sure but maybe:\n```\n  } else if (IS_FLAG_ENABLED(a2dp_offload_codec_extensibility) \u0026\u0026\n             ::bluetooth::audio::a2dp::provider::supports_codec(\n                codec_config-\u003ecodecIndex())) {\n```\n?",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
