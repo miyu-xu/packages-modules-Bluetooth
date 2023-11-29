@@ -237,6 +237,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef08ef2d_a6dfeaf5",
+        "filename": "framework/java/android/bluetooth/BluetoothCodecType.java",
+        "patchSetId": 21
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-11-29T02:13:05Z",
+      "side": 1,
+      "message": "no longer necessary, I changed the function to only accept know codec indexes.\nunknown indexes will rely on the constructor",
+      "parentUuid": "4fdbc7a4_54587eaf",
+      "range": {
+        "startLine": 45,
+        "startChar": 31,
+        "endLine": 45,
+        "endChar": 68
+      },
+      "revId": "4145aab4dd4f39f91d9409a0665e4c6b7a12bb4c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "408b5672_61cd2d42",
