@@ -105,6 +105,24 @@
       "parentUuid": "8837de06_ea95a7eb",
       "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aec39c44_2895d180",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 3892,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-29T18:51:31Z",
+      "side": 1,
+      "message": "btw. there is also another option: Don\u0027t introduce `policy` but add TODO for synchronizing receiver state with Unicast streaming. This would split this issue into two smaller steps.",
+      "parentUuid": "4dcd1e2d_f8e584d2",
+      "revId": "c70c53e0bf9d433cee0486295ccb76b20cbea15d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
