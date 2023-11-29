@@ -1717,6 +1717,45 @@ TEST_F(LeExtendedAdvertisingAPITest, trigger_advertiser_callbacks_if_started_whi
   sync_client_handler();
 }
 
+TEST_F(LeExtendedAdvertisingAPITest, duration_maxevents_restored_on_resume) {
+  // arrange
+  auto test_le_address_manager = (TestLeAddressManager*)test_acl_manager_->GetLeAddressManager();
+  uint16_t duration = 1000;
+  uint8_t max_extended_advertising_events = 100;
+
+  // enable advertiser
+  le_advertising_manager_->EnableAdvertiser(
+      advertiser_id_, true, duration, max_extended_advertising_events);
+  ASSERT_EQ(OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE, test_hci_layer_->GetCommand().GetOpCode());
+  EXPECT_CALL(
+      mock_advertising_callback_,
+      OnAdvertisingEnabled(advertiser_id_, true, AdvertisingCallback::AdvertisingStatus::SUCCESS));
+  test_hci_layer_->IncomingEvent(
+      LeSetExtendedAdvertisingEnableCompleteBuilder::Create(uint8_t{1}, ErrorCode::SUCCESS));
+
+  test_le_address_manager->client_->OnPause();
+  // verify advertising is disabled onPause
+  ASSERT_EQ(OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE, test_hci_layer_->GetCommand().GetOpCode());
+  test_hci_layer_->IncomingEvent(
+      LeSetExtendedAdvertisingEnableCompleteBuilder::Create(1, ErrorCode::SUCCESS));
+  sync_client_handler();
+
+  test_le_address_manager->client_->OnResume();
+  // verify advertising is reenabled onResume with correct parameters
+  auto command = test_hci_layer_->GetCommand();
+  ASSERT_EQ(OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE, command.GetOpCode());
+  auto itr = command.GetPayload().begin();
+  ASSERT_EQ(true, itr.extract<uint8_t>());
+  ASSERT_EQ(1, itr.extract<uint8_t>());
+  ASSERT_EQ(advertiser_id_, itr.extract<uint8_t>());
+  ASSERT_EQ(duration, itr.extract<uint16_t>());
+  ASSERT_EQ(max_extended_advertising_events, itr.extract<uint8_t>());
+  test_hci_layer_->IncomingEvent(
+      LeSetExtendedAdvertisingEnableCompleteBuilder::Create(1, ErrorCode::SUCCESS));
+
+  sync_client_handler();
+}
+
 TEST_F(LeExtendedAdvertisingAPITest, no_callbacks_on_pause) {
   // arrange
   auto test_le_address_manager = (TestLeAddressManager*)test_acl_manager_->GetLeAddressManager();
