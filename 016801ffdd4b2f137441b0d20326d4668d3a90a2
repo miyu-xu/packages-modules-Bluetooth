@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d0cfa58_0ac1c10b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T18:38:22Z",
+      "side": 1,
+      "message": "```suggestion\n                                    .anyMatch(s -\u003e s.equals(GAP_UUID)))\n```",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 82
+      },
+      "revId": "016801ffdd4b2f137441b0d20326d4668d3a90a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ab098387_604fb9a4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T18:38:22Z",
+      "side": 1,
+      "message": "What does the `c` prefix means here ?",
+      "range": {
+        "startLine": 228,
+        "startChar": 38,
+        "endLine": 228,
+        "endChar": 46
+      },
+      "revId": "016801ffdd4b2f137441b0d20326d4668d3a90a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a384f995_cba4c8ff",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T18:38:22Z",
+      "side": 1,
+      "message": "Can you expand the `c` here as well?",
+      "range": {
+        "startLine": 258,
+        "startChar": 33,
+        "endLine": 258,
+        "endChar": 40
+      },
+      "revId": "016801ffdd4b2f137441b0d20326d4668d3a90a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52e3bdad_443666fb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T18:38:22Z",
+      "side": 1,
+      "message": "Can you expand the `s` here as well?",
+      "range": {
+        "startLine": 264,
+        "startChar": 26,
+        "endLine": 264,
+        "endChar": 33
+      },
+      "revId": "016801ffdd4b2f137441b0d20326d4668d3a90a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

@@ -191,6 +191,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "264f037a_7cd737af",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T18:38:22Z",
+      "side": 1,
+      "message": "The goal was not to make it more compact but to have better assertions go/tott/690.\n\nCould you explicit what error did you encounter? did you import `com.google.common.truth.Truth8.assertThat`?",
+      "parentUuid": "937a0ed4_fd480ccb",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 51
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eea464fe_12fe91bd",
         "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
         "patchSetId": 15
@@ -320,6 +344,30 @@
       "side": 1,
       "message": "This doesn\u0027t seem to work -- Java makes the array dimension mandatory and doesn\u0027t allow this style of inline initialization.  However, the exact contents to set here are irrelevant so I changed this to a more compact getBytes() initialization.",
       "parentUuid": "e9958d2c_ce3123ed",
+      "range": {
+        "startLine": 243,
+        "startChar": 0,
+        "endLine": 244,
+        "endChar": 36
+      },
+      "revId": "20b43c9b67e010ad6301f412a8ac5d711eeadbd2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbd6377f_3bfc471a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-29T18:38:22Z",
+      "side": 1,
+      "message": "\u003e Java makes the array dimension mandatory and doesn\u0027t allow this style of inline initialization\n\nJava does allow for that https://docs.oracle.com/javase/specs/jls/se11/html/jls-10.html#jls-10.2\n\n\u003e This doesn\u0027t seem to work \n\nCould you detail the error that you encountered ? `byte[] newValue \u003d new byte[]{13};` should be valid syntax.",
+      "parentUuid": "03995373_10921a12",
       "range": {
         "startLine": 243,
         "startChar": 0,
