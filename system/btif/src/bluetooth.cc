@@ -85,7 +85,6 @@
 #include "common/metric_id_allocator.h"
 #include "common/metrics.h"
 #include "common/os_utils.h"
-#include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
 #include "device/include/interop_config.h"
 #include "gd/common/init_flags.h"
@@ -794,7 +793,6 @@ static void dump(int fd, const char** arguments) {
   btif_sock_dump(fd);
   bluetooth::avrcp::AvrcpService::DebugDump(fd);
   btif_debug_config_dump(fd);
-  device_debug_iot_config_dump(fd);
   BTA_HfClientDumpStatistics(fd);
   wakelock_debug_dump(fd);
   alarm_debug_dump(fd);
@@ -996,11 +994,6 @@ static int config_clear(void) {
   int ret = BT_STATUS_SUCCESS;
   if (!btif_config_clear()) {
     LOG_ERROR("Failed to clear btif config");
-    ret = BT_STATUS_FAIL;
-  }
-
-  if (!device_iot_config_clear()) {
-    LOG_ERROR("Failed to clear device iot config");
     ret = BT_STATUS_FAIL;
   }
 

@@ -19,8 +19,6 @@ static_library("device") {
     "src/controller.cc",
     "src/esco_parameters.cc",
     "src/interop.cc",
-    "src/device_iot_config.cc",
-    "src/device_iot_config_int.cc",
   ]
 
   include_dirs = [
@@ -52,28 +50,6 @@ if (use.test) {
 
     configs += [
       "//bt/system:external_gtest_main",
-      "//bt/system:target_defaults",
-    ]
-
-    libs = [
-      "pthread",
-      "rt",
-      "dl",
-    ]
-  }
-  executable("net_test_device_iot_config") {
-    include_dirs = [
-      "//bt/system",
-      "//bt/system/stack/include",
-      "//bt/system/device/src",
-    ]
-
-    deps = [
-      "//bt/system/device",
-      "//bt/system/btcore",
-    ]
-
-    configs += [
       "//bt/system:target_defaults",
     ]
 

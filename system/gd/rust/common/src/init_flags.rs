@@ -369,7 +369,6 @@ init_flags!(
         classic_discovery_only,
         clear_hidd_interrupt_cid_on_disconnect = true,
         delay_hidh_cleanup_until_hidh_ready_start = true,
-        device_iot_config_logging,
         dynamic_avrcp_version_enhancement = true,
         gatt_robust_caching_client = true,
         gatt_robust_caching_server,

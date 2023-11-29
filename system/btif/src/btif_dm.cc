@@ -281,8 +281,6 @@ static void btif_stats_add_bond_event(const RawAddress& bd_addr,
  *  Externs
  *****************************************************************************/
 bt_status_t btif_sdp_execute_service(bool b_enable);
-void btif_iot_update_remote_info(tBTA_DM_AUTH_CMPL* p_auth_cmpl, bool is_ble,
-                                 bool is_ssp);
 
 /******************************************************************************
  *  Functions
@@ -1184,9 +1182,6 @@ static void btif_dm_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
   }
 
   if (p_auth_cmpl->success) {
-    // save remote info to iot conf file
-    btif_iot_update_remote_info(p_auth_cmpl, false, pairing_cb.is_ssp);
-
     // We could have received a new link key without going through the pairing
     // flow.  If so, we don't want to perform SDP or any other operations on the
     // authenticated device. Also, make sure that the link key is not derived

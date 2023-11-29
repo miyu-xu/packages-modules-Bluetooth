@@ -36,7 +36,6 @@
 
 #include "common/bidi_queue.h"
 #include "device/include/controller.h"
-#include "device/include/device_iot_config.h"
 #include "gd/hci/hci_layer.h"
 #include "hci/hci_packets.h"
 #include "hci/include/hci_layer.h"
@@ -881,8 +880,6 @@ void btm_sco_conn_req(const RawAddress& bda, const DEV_CLASS& dev_class,
   tSCO_CONN* p = &p_sco->sco_db[0];
   tBTM_ESCO_CONN_REQ_EVT_DATA evt_data = {};
 
-  DEVICE_IOT_CONFIG_ADDR_INT_ADD_ONE(bda, IOT_CONF_KEY_HFP_SCO_CONN_COUNT);
-
   for (uint16_t sco_index = 0; sco_index < BTM_MAX_SCO_LINKS;
        sco_index++, p++) {
     /*
@@ -1072,9 +1069,6 @@ void btm_sco_connection_failed(tHCI_STATUS hci_status, const RawAddress& bda,
           (*p->p_disc_cb)(xx);
         } else {
           p->state = SCO_ST_LISTENING;
-          if (bda != RawAddress::kEmpty)
-            DEVICE_IOT_CONFIG_ADDR_INT_ADD_ONE(
-                bda, IOT_CONF_KEY_HFP_SCO_CONN_FAIL_COUNT);
         }
         BTM_LogHistory(
             kBtmLogTag, bda, "Connection failed",
