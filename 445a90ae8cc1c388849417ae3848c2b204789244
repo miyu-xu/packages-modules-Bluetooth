@@ -16,6 +16,24 @@
       "message": "what is the difference if this is set here ? there is no return between those two value assigns (previous vs current). Was this a race condition ? btw. this is on Main thread and should be no difference.",
       "revId": "445a90ae8cc1c388849417ae3848c2b204789244",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "02a77488_0b238812",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1950,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-11-29T13:39:17Z",
+      "side": 1,
+      "message": "it is set before next GATTC_Open is called.",
+      "parentUuid": "0f9ea14c_04829a41",
+      "revId": "445a90ae8cc1c388849417ae3848c2b204789244",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
