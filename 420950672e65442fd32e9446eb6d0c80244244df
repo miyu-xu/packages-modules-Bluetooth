@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f9d30a4_f187ceb3",
+        "filename": "system/audio_hal_interface/aidl/a2dp_encoding_aidl.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-11-29T17:13:48Z",
+      "side": 1,
+      "message": "should we do it like:\n```\nif (a2dp_config !\u003d nullptr \u0026\u0026 provider::supports_codec(a2dp_config-\u003ecodecIndex())) {\n```\n?",
+      "range": {
+        "startLine": 502,
+        "startChar": 2,
+        "endLine": 502,
+        "endChar": 60
+      },
+      "revId": "420950672e65442fd32e9446eb6d0c80244244df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1ea6e546_a45918bd",
         "filename": "system/audio_hal_interface/aidl/provider_info.cc",
         "patchSetId": 16
