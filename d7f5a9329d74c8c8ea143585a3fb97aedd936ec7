@@ -33,6 +33,24 @@
       "message": "nit: wouldn\u0027t it be better to check the flag from the caller? or \nif (!IS_FLAG_ENABLED(leaudio_dynamic_spatial_audio)) {\n    return;\n}",
       "revId": "d7f5a9329d74c8c8ea143585a3fb97aedd936ec7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "08192cd1_27455fd4",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1286,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-29T01:14:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c79a001a_854c4021",
+      "revId": "d7f5a9329d74c8c8ea143585a3fb97aedd936ec7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
