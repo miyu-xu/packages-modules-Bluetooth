@@ -1,6 +1,69 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "06a97470_cf7b062f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-29T11:46:36Z",
+      "side": 1,
+      "message": "Nothing major, just nitpicking.",
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89259421_4badf3ac",
+        "filename": "android/app/jni/com_android_bluetooth_le_audio.cpp",
+        "patchSetId": 15
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-29T11:46:36Z",
+      "side": 1,
+      "message": "Is the `unicast monitor mode status` the same thing as the `stream monitoring status`? Would it make sense to unify the naming?",
+      "range": {
+        "startLine": 351,
+        "startChar": 7,
+        "endLine": 352,
+        "endChar": 64
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "074cb1df_2d9f096b",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioStackEvent.java",
+        "patchSetId": 15
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-29T11:46:36Z",
+      "side": 1,
+      "message": "Since the statuses refer to the local streams\n```\nSTATUS_LOCAL_STREAM_REQUESTED:\nSTATUS_LOCAL_STREAM_STREAMING:\nSTATUS_LOCAL_STREAM_SUSPENDED:\n```\n...I assume that SINK is a `local sink` understood as a local input for receiving audio data from some kind of `remote source` like a bluetooth microphone device? Did I get the directions right? Just wanted to be sure.",
+      "range": {
+        "startLine": 242,
+        "startChar": 25,
+        "endLine": 242,
+        "endChar": 39
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c26ad1f2_b5f7db48",
@@ -42,6 +105,52 @@
         "startChar": 12,
         "endLine": 5582,
         "endChar": 16
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8d3acba_d2590f2c",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 5651,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-29T11:46:36Z",
+      "side": 1,
+      "message": "nit: typo",
+      "range": {
+        "startLine": 5651,
+        "startChar": 40,
+        "endLine": 5651,
+        "endChar": 48
+      },
+      "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f73f9ad_86e1ae73",
+        "filename": "system/include/hardware/bt_le_audio.h",
+        "patchSetId": 15
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-11-29T11:46:36Z",
+      "side": 1,
+      "message": "nit:\nSince at the Java layer these are named:\n```\nSTATUS_LOCAL_STREAM_REQUESTED:\nSTATUS_LOCAL_STREAM_STREAMING:\nSTATUS_LOCAL_STREAM_SUSPENDED:\n```\n...could we be consistent and change STREAM_SUSPENDED --\u003e STREAMING_SUSPENDED",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 19
       },
       "revId": "77d6dd5ce61e3f7663afdc249a7afa95ee7400fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
