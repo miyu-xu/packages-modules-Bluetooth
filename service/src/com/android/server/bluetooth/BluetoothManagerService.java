@@ -156,6 +156,7 @@ class BluetoothManagerService {
     @VisibleForTesting static final int MESSAGE_RESTART_BLUETOOTH_SERVICE = 42;
     @VisibleForTesting static final int MESSAGE_BLUETOOTH_STATE_CHANGE = 60;
     @VisibleForTesting static final int MESSAGE_TIMEOUT_BIND = 100;
+    @VisibleForTesting static final int MESSAGE_TIMEOUT_UNBIND = 101;
     @VisibleForTesting static final int MESSAGE_GET_NAME_AND_ADDRESS = 200;
     @VisibleForTesting static final int MESSAGE_USER_SWITCHED = 300;
     @VisibleForTesting static final int MESSAGE_USER_UNLOCKED = 301;
@@ -429,6 +430,7 @@ class BluetoothManagerService {
                 || mHandler.hasMessages(MESSAGE_HANDLE_DISABLE_DELAYED)
                 || mHandler.hasMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE)
                 || mHandler.hasMessages(MESSAGE_TIMEOUT_BIND)
+                || mHandler.hasMessages(MESSAGE_TIMEOUT_UNBIND)
                 || mHandler.hasMessages(MESSAGE_BIND_PROFILE_SERVICE)) {
             Log.d(
                     TAG,
@@ -445,6 +447,8 @@ class BluetoothManagerService {
                             + mHandler.hasMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE)
                             + " TIMEOUT_BIND="
                             + mHandler.hasMessages(MESSAGE_TIMEOUT_BIND)
+                            + " TIMEOUT_UNBIND="
+                            + mHandler.hasMessages(MESSAGE_TIMEOUT_UNBIND)
                             + " BIND_PROFILE_SERVICE="
                             + mHandler.hasMessages(MESSAGE_BIND_PROFILE_SERVICE));
             // Bluetooth is restarting
@@ -1331,8 +1335,9 @@ class BluetoothManagerService {
                 } catch (RemoteException | TimeoutException e) {
                     Log.e(TAG, "Unable to unregister BluetoothCallback", e);
                 }
-                mAdapter = null;
+                // mAdapter = null;
                 mContext.unbindService(mConnection);
+                mHandler.sendEmptyMessageDelayed(MESSAGE_TIMEOUT_UNBIND, TIMEOUT_BIND_MS);
                 mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
             }
         } finally {
@@ -1736,13 +1741,19 @@ class BluetoothManagerService {
     }
 
     @VisibleForTesting
-    class BluetoothServiceConnection implements ServiceConnection {
+    class BluetoothServiceConnection implements ServiceConnection, IBinder.DeathRecipient {
         public void onServiceConnected(ComponentName componentName, IBinder service) {
             String name = componentName.getClassName();
             Log.d(TAG, "ServiceConnection.onServiceConnected(" + name + ", " + service + ")");
             if (!name.equals("com.android.bluetooth.btservice.AdapterService")) {
                 Log.e(TAG, "Unknown service connected: " + name);
                 return;
+            }
+            Log.d("WILLIAM", "ServiceConnection.onServiceConnected(" + name + ", " + service + ")");
+            try {
+                service.linkToDeath(this, 0);
+            } catch (RemoteException e) {
+                Log.e("WILLIAM", "catched Exception", e);
             }
             mHandler.obtainMessage(MESSAGE_BLUETOOTH_SERVICE_CONNECTED, service).sendToTarget();
         }
@@ -1755,11 +1766,37 @@ class BluetoothManagerService {
                 Log.e(TAG, "Unknown service disconnected: " + name);
                 return;
             }
+            Log.d("WILLIAM", "ServiceConnection.onServiceDisconnected(" + name + ")");
             mHandler.sendEmptyMessage(MESSAGE_BLUETOOTH_SERVICE_DISCONNECTED);
+        }
+
+        @Override
+        public void onBindingDied(ComponentName name) {
+            Log.w("WILLIAM", "onBindingDied(" + name + ")");
+        }
+
+        @Override
+        public void onNullBinding(ComponentName name) {
+            Log.w("WILLIAM", "onNullBinding(" + name + ")");
+        }
+
+        @Override
+        public void binderDied() {
+            Log.w("WILLIAM", "binderDied(): ON ADAPTER SERVICE ================================");
+            mHandler.removeMessages(MESSAGE_TIMEOUT_UNBIND);
+            mState.set(STATE_OFF);
+            mAdapter = null;
+        }
+        @Override
+        public void binderDied(IBinder who) {
+            Log.w("WILLIAM", "binderDied(): ON ADAPTER SERVICE ================================with who="+ who);
+            mHandler.removeMessages(MESSAGE_TIMEOUT_UNBIND);
+            mState.set(STATE_OFF);
+            mAdapter = null;
         }
     }
 
-    private BluetoothServiceConnection mConnection = new BluetoothServiceConnection();
+    private final BluetoothServiceConnection mConnection = new BluetoothServiceConnection();
 
     @VisibleForTesting
     class BluetoothHandler extends Handler {
@@ -2128,7 +2165,11 @@ class BluetoothManagerService {
                             "MESSAGE_BLUETOOTH_STATE_CHANGE:"
                                     + (" prevState=" + BluetoothAdapter.nameForState(prevState))
                                     + (" newState=" + BluetoothAdapter.nameForState(newState)));
-                    mState.set(newState);
+                    if (newState == STATE_OFF && mAdapter != null) {
+                        Log.e("WILLIAM", "Prevent state update until binder died");
+                    } else {
+                        mState.set(newState);
+                    }
                     bluetoothStateChangeHandler(prevState, newState);
                     // handle error state transition case from TURNING_ON to OFF
                     // unbind and rebind bluetooth service and enable bluetooth
@@ -2234,6 +2275,12 @@ class BluetoothManagerService {
                     Log.e(TAG, "MESSAGE_TIMEOUT_BIND");
                     // TODO(b/286082382): Timeout should be more than a log. We should at least call
                     // context.unbindService, eventually log a metric with it
+                    break;
+
+                case MESSAGE_TIMEOUT_UNBIND:
+                    Log.e(TAG, "MESSAGE_TIMEOUT_UNBIND");
+                    Log.e("WILLIAM", "MESSAGE_TIMEOUT_UNBIND");
+                    mAdapter = null;
                     break;
 
                 case MESSAGE_USER_SWITCHED:
@@ -2344,6 +2391,10 @@ class BluetoothManagerService {
         return mHandler.hasMessages(MESSAGE_TIMEOUT_BIND);
     }
 
+    private boolean isUnBinding() {
+        return mHandler.hasMessages(MESSAGE_TIMEOUT_UNBIND);
+    }
+
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     private void handleEnable(boolean quietMode) {
         mQuietEnable = quietMode;
@@ -2362,7 +2413,7 @@ class BluetoothManagerService {
                         UserHandle.CURRENT)) {
                     mHandler.removeMessages(MESSAGE_TIMEOUT_BIND);
                 }
-            } else if (mAdapter != null) {
+            } else if (mAdapter != null && !isUnBinding()) {
                 // Enable bluetooth
                 try {
                     if (!mAdapter.enable(mQuietEnable, mContext.getAttributionSource())) {
