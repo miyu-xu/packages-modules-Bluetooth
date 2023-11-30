@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2c77750_ad53e2d5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-30T08:03:23Z",
+      "side": 1,
+      "message": "Got it, removed.",
+      "parentUuid": "68f3cf7c_f5a30291",
+      "range": {
+        "startLine": 293,
+        "startChar": 4,
+        "endLine": 298,
+        "endChar": 5
+      },
+      "revId": "24da71712dbd0e453db5d0bb956a963f7062e72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "73b7c0b1_c31b2491",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-24T07:29:17Z",
       "side": 1,
       "message": "`mHandler.obtainMessage(canManager.MSG_SCAN_TIMEOUT, client).sendToTarget()`\n\nYou don\u0027t need to have a `createMessage` method because it already existe in the Handler.java API",
+      "range": {
+        "startLine": 658,
+        "startChar": 0,
+        "endLine": 658,
+        "endChar": 82
+      },
+      "revId": "24da71712dbd0e453db5d0bb956a963f7062e72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d39d9dd7_2685b6d5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 658,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-30T08:03:23Z",
+      "side": 1,
+      "message": "Got it. Fixed!",
+      "parentUuid": "73b7c0b1_c31b2491",
       "range": {
         "startLine": 658,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ef489ab3_aa688478",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 659,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-30T08:03:23Z",
+      "side": 1,
+      "message": "Removed.",
+      "parentUuid": "088ff959_5b53b374",
+      "range": {
+        "startLine": 659,
+        "startChar": 0,
+        "endLine": 659,
+        "endChar": 88
+      },
+      "revId": "24da71712dbd0e453db5d0bb956a963f7062e72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fe8a88b6_9af183ac",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-24T07:29:17Z",
       "side": 1,
       "message": "since you are using a testLooper, you don\u0027t need to sleep, you can just make the looper jump in time using `moveTimeForward`",
+      "range": {
+        "startLine": 663,
+        "startChar": 0,
+        "endLine": 663,
+        "endChar": 58
+      },
+      "revId": "24da71712dbd0e453db5d0bb956a963f7062e72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3aee2cd3_0e7c3a1e",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-30T08:03:23Z",
+      "side": 1,
+      "message": "Got it.",
+      "parentUuid": "fe8a88b6_9af183ac",
       "range": {
         "startLine": 663,
         "startChar": 0,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d89d4f14_5a27233b",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 668,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-30T08:03:23Z",
+      "side": 1,
+      "message": "Understood. Thanks for pointing this out.",
+      "parentUuid": "3b1b3de6_584d9e11",
+      "range": {
+        "startLine": 667,
+        "startChar": 0,
+        "endLine": 668,
+        "endChar": 89
+      },
+      "revId": "24da71712dbd0e453db5d0bb956a963f7062e72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c750f263_3387512f",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-11-24T07:29:17Z",
       "side": 1,
       "message": "```suggestion\n        Message timeoutMessage \u003d mHandler.obtainMessage(ScanManager.MSG_SCAN_TIMEOUT, client);\n        // put a TIMEOUT msg on the queue to emulate the scan being started already\n        mHandler.sendMessageDelayed(timeoutMessage, DELAY_SCAN_TIMEOUT_MS / 2);\n\n        mHandler.sendMessage(createStartStopScanMessage(true, client));\n\n        // Dispatch alls message on the queue, only the start should be run\n        assertThat(mTestLooper.dispatchAll()).isEqualTo(1);\n        mTestLooper.moveTimeForward(DELAY_SCAN_TIMEOUT_MS / 2);\n        assertThat(mHandler.hasMessages(timeoutMessage)).True();\n\n        // since we restart the scan, enforce that the initial timeout msg is not trigger\n        assertThat(mTestLooper.dispatchAll()).isEqualTo(0);\n        \n        mTestLooper.moveTimeForward(DELAY_SCAN_TIMEOUT_MS / 2 + 1);\n\n        // After timeout fired, the message that is run should be the timeoutMessage\n        assertThat(mTestLooper.nextMessage()).isEqualTo(timeoutMessage);\n    }\n```",
+      "range": {
+        "startLine": 655,
+        "startChar": 0,
+        "endLine": 669,
+        "endChar": 5
+      },
+      "revId": "24da71712dbd0e453db5d0bb956a963f7062e72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4dc3c43_6583ba4d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-11-30T08:03:23Z",
+      "side": 1,
+      "message": "Thanks for the suggested edit William. I understood the suggested edit, and made some minor changes for the test to successfully pass but mostly followed it for the new patch.",
+      "parentUuid": "c750f263_3387512f",
       "range": {
         "startLine": 655,
         "startChar": 0,
