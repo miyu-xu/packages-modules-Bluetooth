@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8208b38f_fefdb947",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-30T04:53:07Z",
+      "side": 1,
+      "message": "what does this mean? \nIs there any specific code for this setup?",
+      "range": {
+        "startLine": 178,
+        "startChar": 38,
+        "endLine": 178,
+        "endChar": 49
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53f8d3be_b0d66f0e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-30T04:53:07Z",
+      "side": 1,
+      "message": "This part is a little different from the code. \n\nFrom the comment, it seems that the ACL connection is established as a side effect of fetchUuidsWithSdp.\n\nIs there a ACL connection even before this test starts?",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 59
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f6cff67_898f3411",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-30T04:53:07Z",
+      "side": 1,
+      "message": "I am not sure that aosp/2843953 is verified by this test. \n\nShould we test that the pairing should have finished? instead of cancel?",
+      "range": {
+        "startLine": 196,
+        "startChar": 16,
+        "endLine": 196,
+        "endChar": 64
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efb1755e_e40d4718",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-30T04:53:07Z",
+      "side": 1,
+      "message": "By this line, bumbleDevice should have been connected, why do we need  to do connection again in the next steps?",
+      "range": {
+        "startLine": 203,
+        "startChar": 8,
+        "endLine": 203,
+        "endChar": 18
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
