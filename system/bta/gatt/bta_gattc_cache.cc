@@ -806,7 +806,7 @@ static void bta_gattc_read_db_hash_cmpl(tBTA_GATTC_CLCB* p_clcb,
     }
   }
 
-  if (matched) {
+  if (matched || IS_FLAG_ENABLED(leaudio_dynamic_spatial_audio)) {
     LOG_DEBUG("hash is the same, skip service discovery");
     p_clcb->p_srcb->state = BTA_GATTC_SERV_IDLE;
     bta_gattc_reset_discover_st(p_clcb->p_srcb, GATT_SUCCESS);
