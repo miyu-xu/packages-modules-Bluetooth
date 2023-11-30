@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ff8a4a0_9367af20",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-30T02:05:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e8f20c25_dc188c23",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 32
+      },
+      "revId": "340b9d904f02233db2ee37c9124637b2f011197d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6abfcb93_1f5fd97e",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97b3936d_c72c0670",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-30T02:05:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6abfcb93_1f5fd97e",
+      "revId": "340b9d904f02233db2ee37c9124637b2f011197d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b2765686_c61625db",
@@ -54,6 +96,24 @@
       "writtenOn": "2023-11-30T01:10:17Z",
       "side": 1,
       "message": "There is no `uuid` in `Descriptor` constructor https://cs.android.com/android/platform/superproject/+/master:external/python/bumble/bumble/att.py;l\u003d775;drc\u003de559744f3205eb73649b91e3b25559922c329aa8\n\nCan you try to run `avatar lint` ? https://developers.google.com/pandora/guides/avatar/android-guide#avatar_cli_preferred",
+      "revId": "340b9d904f02233db2ee37c9124637b2f011197d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ca0ca64_6fe3b0ee",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-30T02:05:50Z",
+      "side": 1,
+      "message": "This is being used as an AttributeType, which accepts Union[str, bytes, UUID].  Added a cast to clarify (and to appease avatar lint).\n\navatar lint runs cleanly now.",
+      "parentUuid": "b2765686_c61625db",
       "revId": "340b9d904f02233db2ee37c9124637b2f011197d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
