@@ -63,6 +63,8 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.IpcDataCache;
 import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
 import android.os.ParcelUuid;
 import android.os.Process;
 import android.os.RemoteException;
@@ -90,6 +92,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.WeakHashMap;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeoutException;
@@ -876,6 +879,7 @@ public final class BluetoothAdapter {
     private DistanceMeasurementManager mDistanceMeasurementManager;
 
     private final IBluetoothManager mManagerService;
+    private final BluetoothSystemServerMessenger mMessenger;
     private final AttributionSource mAttributionSource;
 
     // Yeah, keeping both mService and sService isn't pretty, but it's too late
@@ -1112,6 +1116,7 @@ public final class BluetoothAdapter {
     /** Use {@link #getDefaultAdapter} to get the BluetoothAdapter instance. */
     BluetoothAdapter(IBluetoothManager managerService, AttributionSource attributionSource) {
         mManagerService = requireNonNull(managerService);
+        mMessenger = new BluetoothSystemServerMessenger(mManagerService);
         mAttributionSource = requireNonNull(attributionSource);
         mServiceLock.writeLock().lock();
         try {
@@ -4378,6 +4383,46 @@ public final class BluetoothAdapter {
         synchronized (sServiceLock) {
             sProxyServiceStateCallbacks.remove(cb);
             registerOrUnregisterAdapterLocked();
+        }
+    }
+
+    class BluetoothSystemServerMessenger {
+        private final Messenger mMessenger;
+
+        BluetoothSystemServerMessenger(IBluetoothManager managerService) {
+            try {
+                mMessenger = requireNonNull(mManagerService.getServiceMessenger());
+            } catch (RemoteException e) {
+                Log.e(TAG, "RemoteException when calling getServiceMessenger", e);
+                throw e.rethrowAsRuntimeException();
+            }
+        }
+
+        CompletableFuture<Bundle> sendToService(int what, Bundle arg) {
+            CompletableFuture<Bundle> future = new CompletableFuture();
+
+            Handler.Callback replyFn =
+                    (reply) -> {
+                        Bundle replyData = reply.getData();
+                        RuntimeException exception =
+                                replyData.getSerializable("exception", RuntimeException.class);
+                        if (exception != null) {
+                            future.completeExceptionally(exception);
+                        } else {
+                            future.complete(replyData);
+                        }
+                        return true;
+                    };
+            Message msg = Message.obtain();
+            msg.what = what;
+            msg.setData(arg);
+            msg.replyTo = new Messenger(new Handler(Looper.getMainLooper(), replyFn));
+            try {
+                mMessenger.send(msg);
+            } catch (RemoteException e) {
+                throw e.rethrowAsRuntimeException();
+            }
+            return future;
         }
     }
 

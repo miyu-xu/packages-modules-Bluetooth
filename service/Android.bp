@@ -25,6 +25,7 @@ filegroup {
         "src/AutoOnFeature.kt",
         "src/Log.kt",
         "src/RadioModeListener.kt",
+        "src/ServiceMessenger.kt",
         "src/airplane/ModeListener.kt",
         "src/com/**/*.kt",
         "src/satellite/ModeListener.kt",

@@ -40,6 +40,7 @@ import android.content.AttributionSource;
 import android.content.Context;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.Messenger;
 import android.os.ParcelFileDescriptor;
 import android.os.UserManager;
 import android.permission.PermissionManager;
@@ -73,6 +74,12 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
                         ctx.getSystemService(PermissionManager.class),
                         "PermissionManager system service cannot be null");
         mPermissionUtils = new BtPermissionUtils(ctx);
+    }
+
+    @Override
+    @NonNull
+    public Messenger getServiceMessenger() {
+        return new ServiceMessenger(mBluetoothManagerService, mLooper).getMessenger();
     }
 
     @Override
