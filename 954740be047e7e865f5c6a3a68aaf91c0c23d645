@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "396cee3d_e8c8ced2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-30T19:40:12Z",
+      "side": 1,
+      "message": "Update commit message as this is an open source project -- moma is not accessible outside and shouldn\u0027t be in the commit message.\n\n```\nAdd whalechang@ to OWNERS_chromeos\n\nBug: None\nTest: None\n```",
+      "revId": "954740be047e7e865f5c6a3a68aaf91c0c23d645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d061a022_49eb7486",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-30T19:40:12Z",
+      "side": 1,
+      "message": "Needs +2 from enshuo@ or hychao@ to confirm but ok by me.",
+      "revId": "954740be047e7e865f5c6a3a68aaf91c0c23d645",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
