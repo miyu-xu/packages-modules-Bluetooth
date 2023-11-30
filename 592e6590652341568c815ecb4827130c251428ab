@@ -128,6 +128,24 @@
       "parentUuid": "d41f689c_95fba4fd",
       "revId": "592e6590652341568c815ecb4827130c251428ab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc1a4f22_4765513b",
+        "filename": "system/stack/btm/btm_eir.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-30T18:01:30Z",
+      "side": 1,
+      "message": "Actually not done.\n\nI didn\u0027t put it in `include` b/c I don\u0027t think this information should be exposed.",
+      "parentUuid": "7f9224bc_0945d5cf",
+      "revId": "592e6590652341568c815ecb4827130c251428ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
