@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "dcdb7ceb_583efa0d",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-30T18:02:17Z",
+      "side": 1,
+      "message": "oh my\n```\n0 bta/dm/bta_dm_act.cc 1063 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE)ST\n1 bta/dm/bta_dm_act.cc 1069 #endif  // BTA_EIR_CANNED_UUID_LIST\n2 bta/dm/bta_dm_act.cc         1082 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE)\n3 bta/dm/bta_dm_act.cc 1089 #endif  // BTA_EIR_CANNED_UUID_LIST\n4 bta/dm/bta_dm_act.cc         1110 #if (BTA_EIR_CANNED_UUID_LIST \u003d\u003d TRUE)\n5 bta/dm/bta_dm_act.cc         1112 #else   // BTA_EIR_CANNED_UUID_LIST\n6 bta/dm/bta_dm_act.cc         1117 #endif  // BTA_EIR_CANNED_UUID_LIST\n7 bta/dm/bta_dm_act.cc         1139 #if (BTA_EIR_CANNED_UUID_LIST \u003d\u003d TRUE)\n8 bta/dm/bta_dm_act.cc         1163 #else /* (BTA_EIR_CANNED_UUID_LIST \u003d\u003d TRUE) */\n9 bta/dm/bta_dm_act.cc         1201 #endif /* (BTA_EIR_CANNED_UUID_LIST \u003d\u003d TRUE) */\na bta/dm/bta_dm_act.cc         1203 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE \u0026\u0026 BTA_EIR_SERVER_NUM_CUSTOM_UUID \u003e 0)\nb bta/dm/bta_dm_act.cc         1261 #endif /* ( BTA_EIR_CANNED_UUID_LIST !\u003d TRUE \\\nc bta/dm/bta_dm_act.cc         1307 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE)\nd bta/dm/bta_dm_act.cc         1411 #endif  // BTA_EIR_CANNED_UUID_LIST\ne bta/dm/bta_dm_cfg.cc          627 #if (BTA_EIR_CANNED_UUID_LIST \u003d\u003d TRUE)\nf bta/dm/bta_dm_cfg.cc          635 #endif  // BTA_EIR_CANNED_UUID_LIST\ng bta/dm/bta_dm_cfg.cc          642 #if (BTA_EIR_CANNED_UUID_LIST \u003d\u003d TRUE)\nh bta/dm/bta_dm_cfg.cc          644 #else     // BTA_EIR_CANNED_UUID_LIST\ni bta/dm/bta_dm_cfg.cc          653 #endif    // BTA_EIR_CANNED_UUID_LIST\nj bta/dm/bta_dm_int.h           228 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE)\nk bta/include/bta_api.h         159 #if (BTA_EIR_CANNED_UUID_LIST \u003d\u003d TRUE)\nl bta/pan/bta_pan_act.cc        381 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE)\nm bta/pan/bta_pan_act.cc        385 #endif  // BTA_EIR_CANNED_UUID_LIST\nn bta/sys/bta_sys.h             215 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE)\no bta/sys/bta_sys.h             284 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE)\np bta/sys/bta_sys_conn.cc       392 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE)\nq bta/sys/bta_sys_int.h          61 #if (BTA_EIR_CANNED_UUID_LIST !\u003d TRUE)\n```",
+      "parentUuid": "682fe183_b58d15e0",
+      "range": {
+        "startLine": 159,
+        "startChar": 5,
+        "endLine": 159,
+        "endChar": 29
+      },
+      "revId": "592e6590652341568c815ecb4827130c251428ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d41f689c_95fba4fd",
         "filename": "system/stack/btm/btm_eir.h",
         "patchSetId": 7
