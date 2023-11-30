@@ -116,6 +116,24 @@
       "parentUuid": "b2765686_c61625db",
       "revId": "340b9d904f02233db2ee37c9124637b2f011197d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23f19b14_0cb591d9",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-11-30T02:22:54Z",
+      "side": 1,
+      "message": "This was not with the `uuid\u003d` 😊\n\nAlso the \"cast\" is not needed, could you remove the `BumbleUUID` ?",
+      "parentUuid": "8ca0ca64_6fe3b0ee",
+      "revId": "340b9d904f02233db2ee37c9124637b2f011197d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
