@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "62b2ec4d_a8a53c45",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T12:24:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa131718_2ca5d8af",
+      "range": {
+        "startLine": 100,
+        "startChar": 2,
+        "endLine": 100,
+        "endChar": 11
+      },
+      "revId": "739aef1ecb14f26d598e9c7bf565f5d18e921f8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04c43488_5919f5d1",
@@ -54,6 +78,24 @@
       "writtenOn": "2023-11-27T17:35:25Z",
       "side": 1,
       "message": "could we also improve this log and Stop Session and same for Source? Maybe in following patch",
+      "revId": "739aef1ecb14f26d598e9c7bf565f5d18e921f8f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5910e51_262d8667",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T12:24:38Z",
+      "side": 1,
+      "message": "What do you mean by improvement ? Yes, I can update it in following CL if you explain what you expect here.",
+      "parentUuid": "04c43488_5919f5d1",
       "revId": "739aef1ecb14f26d598e9c7bf565f5d18e921f8f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
