@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb23e9d_6e062065",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1561,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-30T21:25:59Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "16b4b06f_e1e786a1",
+      "revId": "d3a7c515d2f46130a519eb3d726f0f410ef020fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ee712ec_ab8b8fb9",
