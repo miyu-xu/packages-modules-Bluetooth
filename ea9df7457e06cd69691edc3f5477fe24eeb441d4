@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97b8f635_43603d4e",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-30T00:37:26Z",
+      "side": 1,
+      "message": "Odd.  I was getting errors related to advertising data during development, but now I don\u0027t see them.  Perhaps it was a side effect of something else we took out (the logger maybe?)\n\nConverted to the Bumble service; this seems to work.",
+      "parentUuid": "530993b4_85e89839",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 64,
+        "endChar": 101
+      },
+      "revId": "ea9df7457e06cd69691edc3f5477fe24eeb441d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a0ce97ec_b13b952c",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-30T00:07:47Z",
       "side": 1,
       "message": "```suggestion\nclass ServiceWithAdvertisingData(Service):\n    def __init__(self, uuid, characteristics: list, device: Device):\n        super().__init__(uuid, characteristics)  # type : ignore[no-untyped-call]\n\n    def get_advertising_data(self) -\u003e bytes:\n        return bytes(AdvertisingData([(AdvertisingData.SERVICE_DATA_16_BIT_UUID, bytes(self.uuid))]))\n\n```",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 0
+      },
+      "revId": "ea9df7457e06cd69691edc3f5477fe24eeb441d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a43cfcfa_883cf5af",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-30T00:37:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a0ce97ec_b13b952c",
       "range": {
         "startLine": 54,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5ba64bfa_beef69df",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-30T00:37:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "29f8df8e_71c88306",
+      "range": {
+        "startLine": 280,
+        "startChar": 0,
+        "endLine": 293,
+        "endChar": 9
+      },
+      "revId": "ea9df7457e06cd69691edc3f5477fe24eeb441d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "289f03c4_29d84341",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-30T00:07:47Z",
       "side": 1,
       "message": "```suggestion\n        service \u003d ServiceWithAdvertisingData(serviceUUID, characteristics, self.device)\n        self.device.add_service(service)  # type: ignore[no-untyped-call]\n```",
+      "range": {
+        "startLine": 294,
+        "startChar": 0,
+        "endLine": 295,
+        "endChar": 78
+      },
+      "revId": "ea9df7457e06cd69691edc3f5477fe24eeb441d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93afefd5_668fd073",
+        "filename": "pandora/server/bumble_experimental/gatt.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2023-11-30T00:37:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "289f03c4_29d84341",
       "range": {
         "startLine": 294,
         "startChar": 0,
