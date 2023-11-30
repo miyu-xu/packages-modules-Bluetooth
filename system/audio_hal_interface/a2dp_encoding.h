@@ -16,6 +16,8 @@
 
 #pragma once
 
+#include <iomanip>
+#include <sstream>
 #include <vector>
 
 #include "audio_a2dp_hw/include/audio_a2dp_hw.h"
@@ -102,11 +104,12 @@ struct a2dp_configuration {
     std::ostringstream os;
     os << "A2dpConfiguration{";
     os << "remote_seid: " << remote_seid;
-    os << "codec_index: " << codec_parameters.codec_type;
+    os << ", codec_index: " << codec_parameters.codec_type;
     os << ", codec_config: {";
     for (int i = 0; i < AVDT_CODEC_SIZE; i++) {
-      os << std::hex << std::setw(2) << std::setfill('0')
+      os << "0x" << std::hex << std::setw(2) << std::setfill('0')
          << static_cast<int>(codec_config[i]);
+      if (i != AVDT_CODEC_SIZE - 1) os << ",";
     }
     os << "}";
     os << "}";
@@ -117,6 +120,23 @@ struct a2dp_configuration {
 struct a2dp_remote_capabilities {
   int seid;
   uint8_t const* capabilities;
+
+  inline std::string toString() const {
+    std::ostringstream os;
+    os << "A2dpRemoteCapabilities{";
+    os << "seid: " << seid;
+    os << ", capabilities: {";
+    if (capabilities != nullptr) {
+      for (int i = 0; i < AVDT_CODEC_SIZE; i++) {
+        os << "0x" << std::hex << std::setw(2) << std::setfill('0')
+           << static_cast<int>(capabilities[i]);
+        if (i != AVDT_CODEC_SIZE - 1) os << ",";
+      }
+    }
+    os << "}";
+    os << "}";
+    return os.str();
+  }
 };
 
 // Query the codec selection fromt the audio HAL.
