@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eeebfafb_2c9ea46f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-30T04:54:15Z",
+      "side": 0,
+      "message": "Why is this line removed from here?",
+      "range": {
+        "startLine": 165,
+        "startChar": 8,
+        "endLine": 165,
+        "endChar": 32
+      },
+      "revId": "92a55f130a2eda4cee65c019c77efcec756562d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
