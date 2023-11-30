@@ -16,6 +16,188 @@
       "message": "@gkolodziejczyk@google.com PTAL from the Broadcast point of view. Thanks.",
       "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cee13d4d_e0153163",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "a partial review.",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d3573cd_574c98a4",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "Am I missing some declaration of this variable or it\u0027s already a uint8_t ?",
+      "range": {
+        "startLine": 228,
+        "startChar": 52,
+        "endLine": 228,
+        "endChar": 53
+      },
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33909be2_2acf2d50",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "I\u0027m not sure what is the scope of this CLs if this would be good moment to e.g. split such long functions to some smaller functionalities. If not that\u0027s ok - this change already shortens a bit this function.",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cf3e72d_2fb43115",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "Is it important to have this broadcast_config_ cleared ?",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4233bc81_0a34e22a",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "typo 😊 \"COdec\"",
+      "range": {
+        "startLine": 1046,
+        "startChar": 19,
+        "endLine": 1046,
+        "endChar": 24
+      },
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09128bf9_055d8a96",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "is it possible to have subgroups \u003d\u003d null ?",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9a3b22a_e3faeafd",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "Is there any motivation to use here 24 bits instead of those common used in non-test code 16 ?",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "838e5a39_dee8611e",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "phy 0x01 isn\u0027t 1M ?",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bc76184_4e0ed425",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "packing and framing seems to be also not matching comments",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddc33d5e_a6d1923f",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_types.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-11-30T15:56:31Z",
+      "side": 1,
+      "message": "I\u0027m not sure if here and in broadcaster it\u0027s a good moment to introduce this rule `https://google.github.io/styleguide/cppguide.html#Variable_Names` -\u003e in general there should be underscore for members in naming.",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
