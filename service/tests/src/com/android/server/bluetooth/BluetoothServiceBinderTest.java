@@ -48,6 +48,7 @@ import android.content.ContextWrapper;
 import android.os.IBinder;
 import android.os.Process;
 import android.os.UserManager;
+import android.os.test.TestLooper;
 
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -82,10 +83,12 @@ public class BluetoothServiceBinderTest {
 
     @Rule public TestRule compatChangeRule = new PlatformCompatChangeRule();
 
-    @Mock private BluetoothManagerService mManagerService;
-    @Mock private UserManager mUserManager;
     @Mock private AppOpsManager mAppOpsManager;
+    @Mock private BluetoothManagerService mManagerService;
     @Mock private DevicePolicyManager mDevicePolicyManager;
+    @Mock private UserManager mUserManager;
+
+    private TestLooper mLooper;
 
     private Context mContext =
             spy(
@@ -112,7 +115,11 @@ public class BluetoothServiceBinderTest {
         doReturn(mAppOpsManager).when(mContext).getSystemService(eq(appops));
         doReturn(mDevicePolicyManager).when(mContext).getSystemService(eq(devicePolicy));
 
-        mBinder = new BluetoothServiceBinder(mManagerService, null, mContext, mUserManager);
+        mLooper = new TestLooper();
+
+        mBinder =
+                new BluetoothServiceBinder(
+                        mManagerService, mLooper.getLooper(), mContext, mUserManager);
     }
 
     @After
@@ -121,6 +128,12 @@ public class BluetoothServiceBinderTest {
                 .getUiAutomation()
                 .dropShellPermissionIdentity();
         // Do not call verifyMock here. If the test fails the initial error will be lost
+    }
+
+    @Test
+    public void getMessenger() {
+        assertThat(mBinder.getServiceMessenger()).isNotNull();
+        verifyMock();
     }
 
     @Test
