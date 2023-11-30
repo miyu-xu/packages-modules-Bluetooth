@@ -50,6 +50,7 @@
 #include <mutex>
 #include <optional>
 
+#include <android_bluetooth_flags.h>
 #include "advertise_data_parser.h"
 #include "bta/dm/bta_dm_disc.h"
 #include "bta/include/bta_api.h"
@@ -829,7 +830,8 @@ static void btif_dm_cb_create_bond(const RawAddress bd_addr,
                        static_cast<tBT_DEVICE_TYPE>(device_type));
   }
 
-  if (is_hid && (device_type & BT_DEVICE_TYPE_BLE) == 0) {
+  if (is_hid && (device_type & BT_DEVICE_TYPE_BLE) == 0 &&
+      !IS_FLAG_ENABLED(leaudio_dynamic_spatial_audio)) {
     const bt_status_t status =
         GetInterfaceToProfiles()->profileSpecific_HACK->btif_hh_connect(
             &bd_addr);
