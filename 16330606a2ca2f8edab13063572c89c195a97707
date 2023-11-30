@@ -144,6 +144,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "adaebcba_26478bc9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-11-30T18:05:12Z",
+      "side": 1,
+      "message": "OK, I can get it. \n\nIf possible, I think we should cover the expected behavior of the change in a wider scope",
+      "parentUuid": "8a914087_e68a4217",
+      "range": {
+        "startLine": 196,
+        "startChar": 16,
+        "endLine": 196,
+        "endChar": 64
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "efb1755e_e40d4718",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 2
