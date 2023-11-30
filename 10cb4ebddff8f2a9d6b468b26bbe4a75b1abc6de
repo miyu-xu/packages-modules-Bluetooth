@@ -196,6 +196,24 @@
       "parentUuid": "c95b598d_968189c6",
       "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d38b46c2_b9292dab",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2023-11-30T20:44:51Z",
+      "side": 1,
+      "message": "Please try to upload a new patchset from your side as discussed.",
+      "parentUuid": "43b91661_5be6af54",
+      "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
