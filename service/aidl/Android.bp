@@ -14,5 +14,6 @@ filegroup {
     srcs: [
         "android/bluetooth/IBluetoothManager.aidl",
         "android/bluetooth/IBluetoothManagerCallback.aidl",
+        "com/android/server/bluetooth/BluetoothServiceMessages.aidl",
     ],
 }
