@@ -58,8 +58,13 @@ import android.os.Binder;
 import android.os.BluetoothServiceManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.IpcDataCache;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.Parcelable;
 import android.os.ParcelUuid;
 import android.os.Process;
 import android.os.RemoteException;
@@ -67,6 +72,7 @@ import android.sysprop.BluetoothProperties;
 import android.util.Log;
 import android.util.Pair;
 
+import com.android.server.bluetooth.BluetoothServiceMessages;
 import com.android.internal.annotations.GuardedBy;
 import com.android.modules.expresslog.StatsExpressLog;
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -86,10 +92,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.WeakHashMap;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
 
 /**
@@ -885,6 +895,7 @@ public final class BluetoothAdapter {
     private DistanceMeasurementManager mDistanceMeasurementManager;
 
     private final IBluetoothManager mManagerService;
+    private final BluetoothSystemServerMessenger mMessenger;
     private final AttributionSource mAttributionSource;
 
     // Yeah, keeping both mService and sService isn't pretty, but it's too late
@@ -1092,6 +1103,13 @@ public final class BluetoothAdapter {
      */
     BluetoothAdapter(IBluetoothManager managerService, AttributionSource attributionSource) {
         mManagerService = requireNonNull(managerService);
+        Messenger serviceMessenger = null;
+        try {
+            serviceMessenger = mManagerService.getServiceMessenger();
+        } catch (RemoteException e) {
+            Log.e(TAG, "RemoteException when calling getServiceMessenger", e);
+        }
+        mMessenger = new BluetoothSystemServerMessenger(serviceMessenger);
         mAttributionSource = requireNonNull(attributionSource);
         mServiceLock.writeLock().lock();
         try {
@@ -4278,6 +4296,54 @@ public final class BluetoothAdapter {
         }
     }
 
+    // private static void sendMessageToService(Messenger messenger, int what, Bundle arg) throws RemoteException {
+    //     Message msg = Message.obtain();
+    //     msg.what = what;
+
+    //     Bundle bundle = new Bundle();
+    //     bundle.putParcelable(null, arg);
+    //     msg.setData(bundle);
+
+    //     messenger.send(msg);
+    // }
+
+    class BluetoothSystemServerMessenger {
+        private final Messenger mMessenger;
+
+        BluetoothSystemServerMessenger(Messenger messenger) {
+            mMessenger = messenger;
+        }
+
+        // TODO(): remove once flag is 100% rollout
+        boolean isEnabled() {
+            return mMessenger != null;
+        }
+
+        CompletableFuture<Bundle> sendToService(int what, Bundle arg) {
+            CompletableFuture<Bundle> future = new CompletableFuture();
+
+            Message msg = Message.obtain();
+            msg.what = what;
+            msg.setData(arg);
+            msg.replyTo = new Messenger(new Handler(Looper.getMainLooper(), (reply) -> {
+                Bundle replyData = reply.getData();
+                RuntimeException exception = replyData.getSerializable("exception", RuntimeException.class);
+                if (exception != null) {
+                    future.completeExceptionally(exception);
+                } else {
+                    future.complete(replyData);
+                }
+                return true;
+            }));
+            try {
+                mMessenger.send(msg);
+            } catch (RemoteException e) {
+                throw e.rethrowAsRuntimeException();
+            }
+            return future;
+        }
+    }
+
     /**
      * Handle registering (or unregistering) a single process-wide
      * {@link IBluetoothManagerCallback} based on the presence of local
@@ -4289,6 +4355,25 @@ public final class BluetoothAdapter {
         final boolean wantRegistered = !sProxyServiceStateCallbacks.isEmpty();
 
         if (isRegistered != wantRegistered) {
+            if (mMessenger.isEnabled()) {
+                Bundle data = new Bundle();
+                data.putBinder("callback", sManagerCallback.asBinder());
+
+                if (wantRegistered) {
+                        sService = mMessenger.sendToService(BluetoothServiceMessages.REGISTER_ADAPTER, data)
+                                .thenApply(b -> b.getBinder("service"))
+                                .thenApply(IBluetooth.Stub::asInterface)
+                                .orTimeout(1, TimeUnit.SECONDS)
+                                .join();
+                } else {
+                    mMessenger.sendToService(BluetoothServiceMessages.UNREGISTER_ADAPTER, data)
+                                .orTimeout(1, TimeUnit.SECONDS)
+                                .join();
+                    sService = null;
+                }
+                sServiceRegistered = wantRegistered;
+                return;
+            }
             if (wantRegistered) {
                 try {
                     sService = mManagerService.registerAdapter(sManagerCallback);
