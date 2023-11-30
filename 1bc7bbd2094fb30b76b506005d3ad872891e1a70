@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22c55c33_0250ea16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-30T23:33:29Z",
+      "side": 1,
+      "message": "I guess there is no unregister for disconnects, but seems pretty equivalent to what we had before",
+      "revId": "1bc7bbd2094fb30b76b506005d3ad872891e1a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c7860d0_ca054a4c",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 555,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-30T23:33:29Z",
+      "side": 1,
+      "message": "Should we check to ensure that multiple are not registered ?\n\nI know comparing ContextualCallbacks is not possible so it would require some out of band token or something.",
+      "revId": "1bc7bbd2094fb30b76b506005d3ad872891e1a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d62ef7bc_fb4829a2",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 447,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-30T23:33:29Z",
+      "side": 1,
+      "message": "nice use of `get_main_thread` 😊",
+      "revId": "1bc7bbd2094fb30b76b506005d3ad872891e1a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5b52e894_c038ee02",
+        "filename": "system/stack/acl/btm_acl.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 2541,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-30T23:33:29Z",
+      "side": 1,
+      "message": "Is this change relevant ?",
+      "revId": "1bc7bbd2094fb30b76b506005d3ad872891e1a70",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
