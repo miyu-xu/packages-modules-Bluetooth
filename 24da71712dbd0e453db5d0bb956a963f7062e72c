@@ -281,6 +281,30 @@
       },
       "revId": "24da71712dbd0e453db5d0bb956a963f7062e72c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f92e407_4f901935",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 669,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-30T20:04:22Z",
+      "side": 1,
+      "message": "Thanks !\nI left 2 nits comments, but +2 already.\nFeel free to address them or discard them as this is more personal preference",
+      "parentUuid": "d4dc3c43_6583ba4d",
+      "range": {
+        "startLine": 655,
+        "startChar": 0,
+        "endLine": 669,
+        "endChar": 5
+      },
+      "revId": "24da71712dbd0e453db5d0bb956a963f7062e72c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
