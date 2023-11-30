@@ -52,6 +52,24 @@
       "parentUuid": "6f7ad15b_bd5345e7",
       "revId": "bf0351908b9167333773be1707c874b79e9c1d62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e457df0_1b91fd08",
+        "filename": "system/gd/rust/facade_proto/build.rs",
+        "patchSetId": 8
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-30T00:34:35Z",
+      "side": 1,
+      "message": "See other comment for fix.",
+      "parentUuid": "5f77ccb7_3d466d83",
+      "revId": "bf0351908b9167333773be1707c874b79e9c1d62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

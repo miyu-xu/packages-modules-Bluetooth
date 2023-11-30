@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "104803e7_e3bf7c62",
+        "filename": "system/gd/rust/shim/Cargo.toml",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-11-30T00:34:35Z",
+      "side": 1,
+      "message": "Errant `_gen-bindings` was causing a regenerate every build. Removing this fixes the checksum issue being seen.",
+      "revId": "2f9ac7a045bdf7100ecc5bd1cb9fc707b5ed073b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
