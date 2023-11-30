@@ -93,7 +93,12 @@ final class BluetoothPbapRequestPullPhoneBook extends BluetoothPbapRequest {
     protected void readResponse(InputStream stream) throws IOException {
         if (VDBG) Log.v(TAG, "readResponse");
 
-        mResponse = new BluetoothPbapVcardList(mAccount, stream, mFormat);
+        try {
+            mResponse = new BluetoothPbapVcardList(mAccount, stream, mFormat);
+        } catch (IllegalArgumentException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+
         if (VDBG) {
             Log.d(TAG, "Read " + mResponse.getCount() + " entries.");
         }
