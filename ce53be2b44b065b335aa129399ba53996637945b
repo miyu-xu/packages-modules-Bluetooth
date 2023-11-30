@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb4c0fce_cfdaa31d",
+        "filename": "system/gd/hci/le_advertising_manager_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1748,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-30T18:05:25Z",
+      "side": 1,
+      "message": "You shouldn\u0027t have to parse this by hand.  You should be able to do something like this:\n\n  auto command \u003d test_hci_layer_-\u003eGetCommand();\n  ASSERT_EQ(OpCode::LE_SET_EXTENDED_ADVERTISING_ENABLE, command.GetOpCode());\n  auto enable \u003d LeSetExtendedAdvertisingEnableView::Create(command);\n  ASSERT_TRUE(enable.IsValid());\n  auto enabled_sets \u003d enable.GetEnabledSets();\n  ASSERT_EQ(1, enabled_sets.size());\n  ASSERT_EQ(duration, enabled_sets[0].duration_);",
+      "range": {
+        "startLine": 1748,
+        "startChar": 22,
+        "endLine": 1748,
+        "endChar": 29
+      },
+      "revId": "ce53be2b44b065b335aa129399ba53996637945b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
