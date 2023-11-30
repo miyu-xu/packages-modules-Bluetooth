@@ -59,10 +59,14 @@ import android.os.BluetoothServiceManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.IpcDataCache;
 import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
 import android.os.ParcelUuid;
+import android.os.Parcelable;
 import android.os.Process;
 import android.os.RemoteException;
 import android.sysprop.BluetoothProperties;
@@ -88,6 +92,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.WeakHashMap;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -917,6 +922,7 @@ public final class BluetoothAdapter {
     private DistanceMeasurementManager mDistanceMeasurementManager;
 
     private final IBluetoothManager mManagerService;
+    private final BluetoothSystemServerMessenger mMessenger;
     private final AttributionSource mAttributionSource;
 
     // Yeah, keeping both mService and sService isn't pretty, but it's too late
@@ -1153,6 +1159,11 @@ public final class BluetoothAdapter {
     /** Use {@link #getDefaultAdapter} to get the BluetoothAdapter instance. */
     BluetoothAdapter(IBluetoothManager managerService, AttributionSource attributionSource) {
         mManagerService = requireNonNull(managerService);
+        if (Flags.systemServerMessenger()) {
+            mMessenger = new BluetoothSystemServerMessenger(mManagerService);
+        } else {
+            mMessenger = null;
+        }
         mAttributionSource = requireNonNull(attributionSource);
         mServiceLock.writeLock().lock();
         try {
@@ -4267,6 +4278,61 @@ public final class BluetoothAdapter {
         synchronized (sServiceLock) {
             sProxyServiceStateCallbacks.remove(cb);
             registerOrUnregisterAdapterLocked();
+        }
+    }
+
+    private static class BluetoothSystemServerMessenger {
+        // See https://en.wikipedia.org/wiki/Initialization-on-demand_holder_idiom
+        private static final HandlerThread LAZY_MESSENGER_THREAD = createThread();
+
+        private static HandlerThread createThread() {
+            HandlerThread thread = new HandlerThread("System Server Reply");
+            thread.start();
+            return thread;
+        }
+
+        private final Messenger mMessenger;
+
+        BluetoothSystemServerMessenger(IBluetoothManager managerService) {
+            try {
+                mMessenger = requireNonNull(managerService.getServiceMessenger());
+            } catch (RemoteException e) {
+                Log.e(TAG, "RemoteException when calling getServiceMessenger", e);
+                throw e.rethrowAsRuntimeException();
+            }
+        }
+
+        <T extends Parcelable, U> U sendToService(T data, Class<U> replyClass) {
+            CompletableFuture<U> future = new CompletableFuture();
+
+            Handler.Callback replyFn =
+                    (reply) -> {
+                        Object replyObj = reply.obj;
+                        RuntimeException exception =
+                                reply.getData()
+                                        .getSerializable("exception", RuntimeException.class);
+                        if (exception != null) {
+                            future.completeExceptionally(exception);
+                        } else if (replyClass.isInstance(replyObj)) {
+                            future.complete(replyClass.cast(replyObj));
+                        } else {
+                            future.completeExceptionally(
+                                    new IllegalArgumentException(
+                                            ("Unexpected reply [" + replyObj + "] returned,")
+                                                    + (" when calling for [" + data + "].")
+                                                    + (" Expected value: [" + replyClass + "]")));
+                        }
+                        return true;
+                    };
+            Message msg = Message.obtain();
+            msg.obj = data;
+            msg.replyTo = new Messenger(new Handler(LAZY_MESSENGER_THREAD.getLooper(), replyFn));
+            try {
+                mMessenger.send(msg);
+            } catch (RemoteException e) {
+                throw e.rethrowFromSystemServer();
+            }
+            return future.orTimeout(1, TimeUnit.SECONDS).join();
         }
     }
 
