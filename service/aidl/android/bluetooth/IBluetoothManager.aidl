@@ -69,4 +69,6 @@ interface IBluetoothManager
     boolean isAutoOnEnabled();
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)")
     void setAutoOnEnabled(boolean status);
+
+    Messenger getServiceMessenger();
 }
