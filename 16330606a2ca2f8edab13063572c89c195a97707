@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4942371e_7706e924",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-30T16:56:49Z",
+      "side": 1,
+      "message": "GAP and GATT services are mandatory and are generally ignored by the BT stack.",
+      "parentUuid": "8208b38f_fefdb947",
+      "range": {
+        "startLine": 178,
+        "startChar": 38,
+        "endLine": 178,
+        "endChar": 49
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "53f8d3be_b0d66f0e",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-30T04:53:07Z",
       "side": 1,
       "message": "This part is a little different from the code. \n\nFrom the comment, it seems that the ACL connection is established as a side effect of fetchUuidsWithSdp.\n\nIs there a ACL connection even before this test starts?",
+      "range": {
+        "startLine": 185,
+        "startChar": 0,
+        "endLine": 185,
+        "endChar": 59
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d491506_f96a3b7e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-30T16:56:49Z",
+      "side": 1,
+      "message": "No ACL is a side effect of the service discovery request. The description is in terms of DUT (Android) and the reference device (Bumble). Its an advantage that we can realize these test steps in the test code in a simpler manner.",
+      "parentUuid": "53f8d3be_b0d66f0e",
       "range": {
         "startLine": 185,
         "startChar": 0,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8a914087_e68a4217",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-30T16:56:49Z",
+      "side": 1,
+      "message": "This is the exact issue discovered in the b/311790408. Are you suggesting if we should test a successful pairing as well?",
+      "parentUuid": "5f6cff67_898f3411",
+      "range": {
+        "startLine": 196,
+        "startChar": 16,
+        "endLine": 196,
+        "endChar": 64
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "efb1755e_e40d4718",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 2
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-30T04:53:07Z",
       "side": 1,
       "message": "By this line, bumbleDevice should have been connected, why do we need  to do connection again in the next steps?",
+      "range": {
+        "startLine": 203,
+        "startChar": 8,
+        "endLine": 203,
+        "endChar": 18
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bdf86f67_4ddc0743",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-30T16:56:49Z",
+      "side": 1,
+      "message": "This is an asynchronous procedure. It only successfully started the procedure.",
+      "parentUuid": "efb1755e_e40d4718",
       "range": {
         "startLine": 203,
         "startChar": 8,

@@ -22,6 +22,30 @@
       },
       "revId": "92a55f130a2eda4cee65c019c77efcec756562d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04a48d88_d56aa3a4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-11-30T16:56:49Z",
+      "side": 0,
+      "message": "It was not really needed earlier. But now that we have catching additional intents, this step causes test failure for the existing test case.",
+      "parentUuid": "eeebfafb_2c9ea46f",
+      "range": {
+        "startLine": 165,
+        "startChar": 8,
+        "endLine": 165,
+        "endChar": 32
+      },
+      "revId": "92a55f130a2eda4cee65c019c77efcec756562d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
