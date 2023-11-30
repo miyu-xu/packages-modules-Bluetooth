@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ff07539_0e011416",
+        "filename": "system/bta/dm/bta_dm_int.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-30T17:48:14Z",
+      "side": 1,
+      "message": "This seems like an odd place for an include.  Does it need to be so low?",
+      "range": {
+        "startLine": 229,
+        "startChar": 1,
+        "endLine": 229,
+        "endChar": 8
+      },
+      "revId": "592e6590652341568c815ecb4827130c251428ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72100488_edb50c21",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-30T17:48:14Z",
+      "side": 1,
+      "message": "Maybe if we got rid of BTA_EIR_CANNED_UUID_LIST first, this would be easier to group.",
+      "range": {
+        "startLine": 159,
+        "startChar": 5,
+        "endLine": 159,
+        "endChar": 29
+      },
+      "revId": "592e6590652341568c815ecb4827130c251428ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d41f689c_95fba4fd",
+        "filename": "system/stack/btm/btm_eir.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-11-30T17:48:14Z",
+      "side": 1,
+      "message": "Why not stack/include/btm_eir.h ?",
+      "revId": "592e6590652341568c815ecb4827130c251428ab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
