@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "419cfd53_ba8d8b28",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-11-30T19:26:25Z",
+      "side": 0,
+      "message": "This was intended to make sure there is no other ACTION_BOND_STATE_CHANGED or  ACTION_PAIRING_REQUEST event sent.\n\nIt looks like you are adding more filter with ACTION_UUID / ACTION_ACL_CONNECTED.\n\nI would suggest to do one of the following:\n* check these intent in this test,\n* Register another receiver with the added filter (easier to do as you don\u0027t need to modify the existing test)",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 44
+      },
+      "revId": "92a55f130a2eda4cee65c019c77efcec756562d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eeebfafb_2c9ea46f",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 3
