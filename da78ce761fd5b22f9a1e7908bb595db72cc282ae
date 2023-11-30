@@ -34,6 +34,23 @@
       "parentUuid": "760a0056_db8aca7c",
       "revId": "da78ce761fd5b22f9a1e7908bb595db72cc282ae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2fb642df_ec104ecf",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-30T23:55:03Z",
+      "side": 1,
+      "message": "Ok the lynchpin of the effort seems to be here:\n`bool gatt_disconnect(tGATT_TCB* p_tcb) {`\n\nWhich triggers the removal within the connection mgr.\n\nExcept if the ACL is open...then it enters CLOSING and there must be some mechanism to remove it from the accept list (other than disconnect)",
+      "revId": "da78ce761fd5b22f9a1e7908bb595db72cc282ae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
