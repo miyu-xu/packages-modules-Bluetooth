@@ -388,6 +388,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c3fcee6_2b13fdb6",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-30T01:11:34Z",
+      "side": 1,
+      "message": "after comparison and offline discussion, maybe it would be better to use a CVSD codec as default.",
+      "parentUuid": "b86ff534_e1e3f8ae",
+      "range": {
+        "startLine": 165,
+        "startChar": 41,
+        "endLine": 165,
+        "endChar": 48
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4cf7889f_bb5d50c7",
         "filename": "system/audio_hal_interface/hfp_software.cc",
         "patchSetId": 6
@@ -399,6 +423,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "I did not see `UpdateAudioConfig` method, and we don\u0027t need it here",
+      "range": {
+        "startLine": 167,
+        "startChar": 41,
+        "endLine": 167,
+        "endChar": 58
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bcb6f000_3ff18f45",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-11-30T01:11:34Z",
+      "side": 1,
+      "message": "sorry, I find it, it is inherited from parent class",
+      "parentUuid": "4cf7889f_bb5d50c7",
       "range": {
         "startLine": 167,
         "startChar": 41,
