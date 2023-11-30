@@ -105,6 +105,24 @@
       "parentUuid": "3def9c57_c6b0ced7",
       "revId": "d3a7c515d2f46130a519eb3d726f0f410ef020fe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "75bdb0ed_8e805308",
+        "filename": "system/stack/l2cap/l2c_csm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-11-30T21:27:10Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "05c1ee43_447d9107",
+      "revId": "d3a7c515d2f46130a519eb3d726f0f410ef020fe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
