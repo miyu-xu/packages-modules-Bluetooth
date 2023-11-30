@@ -858,6 +858,7 @@ public final class BluetoothAdapter {
     private DistanceMeasurementManager mDistanceMeasurementManager;
 
     private final IBluetoothManager mManagerService;
+    private final SystemServiceMessenger mSystemServiceMessenger;
     private final AttributionSource mAttributionSource;
 
     // Yeah, keeping both mService and sService isn't pretty, but it's too late
@@ -1092,6 +1093,11 @@ public final class BluetoothAdapter {
     @SuppressLint("AndroidFrameworkRequiresPermission") // Consumer wrongly report permission
     BluetoothAdapter(IBluetoothManager managerService, AttributionSource attributionSource) {
         mManagerService = requireNonNull(managerService);
+        if (Flags.systemServerMessenger()) {
+            mSystemServiceMessenger = new SystemServiceMessenger(mManagerService);
+        } else {
+            mSystemServiceMessenger = null;
+        }
         mAttributionSource = requireNonNull(attributionSource);
         mServiceLock.writeLock().lock();
         try {
