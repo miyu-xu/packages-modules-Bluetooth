@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "48e52e67_2d933931",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e4a9cd62_4896af47",
+      "range": {
+        "startLine": 32,
+        "startChar": 22,
+        "endLine": 32,
+        "endChar": 50
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "825e5bd5_c370f78d",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "we can use \n`bluetooth::headset::GetInterface()-\u003eConnectAudio()`, so we don\u0027t need to add a new  method.",
+      "range": {
+        "startLine": 87,
+        "startChar": 22,
+        "endLine": 87,
+        "endChar": 30
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2be4e848_6c1c8632",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "825e5bd5_c370f78d",
       "range": {
         "startLine": 87,
         "startChar": 22,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "340886fe_a55fca76",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "dd60670c_cd591d68",
+      "range": {
+        "startLine": 90,
+        "startChar": 2,
+        "endLine": 90,
+        "endChar": 60
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d5b73589_0da3e84e",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "similiar as above, use `DisconnectAudio `",
+      "range": {
+        "startLine": 96,
+        "startChar": 22,
+        "endLine": 96,
+        "endChar": 29
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb827806_ecae44e9",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d5b73589_0da3e84e",
       "range": {
         "startLine": 96,
         "startChar": 22,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c4d265f_da32f36d",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3b7b1e47_df401fb6",
+      "range": {
+        "startLine": 57,
+        "startChar": 37,
+        "endLine": 57,
+        "endChar": 56
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0968255b_84b635e8",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "no need for HFP",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 56
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7063adb1_c523b2dd",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0968255b_84b635e8",
       "range": {
         "startLine": 63,
         "startChar": 0,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "373895ed_12459c51",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "80a60e2e_f366a1c7",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 54
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e3d4aff_498e3dc2",
@@ -175,6 +343,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "no need for HFP",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 35
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2971bb14_82d6fd35",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e3d4aff_498e3dc2",
       "range": {
         "startLine": 77,
         "startChar": 0,
@@ -208,6 +400,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42c5062f_7609ff63",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5e092ec9_f898c708",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 45
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "df9ac243_d7f3a149",
@@ -221,6 +437,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "As in parent class we return false on default, no need to override",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 65
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41acedf1_7d51e2a4",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df9ac243_d7f3a149",
       "range": {
         "startLine": 103,
         "startChar": 0,
@@ -254,6 +494,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91a71e2f_aceb3230",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "02caedbb_41fbb7ff",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 128,
+        "endChar": 27
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "28127984_f402b843",
@@ -267,6 +531,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "maybe move up to be in alphabetical order",
+      "range": {
+        "startLine": 66,
+        "startChar": 6,
+        "endLine": 69,
+        "endChar": 14
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "292f0a1f_5236c421",
+        "filename": "system/audio_hal_interface/aidl/transport_instance.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "28127984_f402b843",
       "range": {
         "startLine": 66,
         "startChar": 6,
@@ -294,6 +582,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "94df9265_a4e79944",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7987ec42_4ae0055b",
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f045a664_e46af661",
@@ -307,6 +613,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "nit: add a warning log",
+      "range": {
+        "startLine": 101,
+        "startChar": 21,
+        "endLine": 101,
+        "endChar": 28
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbb82309_ab1c3412",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f045a664_e46af661",
       "range": {
         "startLine": 101,
         "startChar": 21,
@@ -340,6 +670,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7aab61d_e5b761fa",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f481d496_de1cb797",
+      "range": {
+        "startLine": 119,
+        "startChar": 9,
+        "endLine": 119,
+        "endChar": 45
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "594b10f7_203ad40c",
@@ -353,6 +707,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "For HFP, `StartSession` starts with an empty audioConfig, see [link](https://docs.google.com/document/d/1eIu1cxMEsW1roA-0obT2NDD0Cz5anXQ165DOYGgi2rs/edit?resourcekey\u003d0-IJwJtJYiWmlrBItOR-S4wg#heading\u003dh.5783t6hjnnq)\n\nthen, it uses `UpdateAudioConfigToHal` to update to the actual config after SCO is opened",
+      "range": {
+        "startLine": 157,
+        "startChar": 31,
+        "endLine": 157,
+        "endChar": 43
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e34fe936_d9e2c835",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "594b10f7_203ad40c",
       "range": {
         "startLine": 157,
         "startChar": 31,
@@ -400,6 +778,30 @@
       "side": 1,
       "message": "after comparison and offline discussion, maybe it would be better to use a CVSD codec as default.",
       "parentUuid": "b86ff534_e1e3f8ae",
+      "range": {
+        "startLine": 165,
+        "startChar": 41,
+        "endLine": 165,
+        "endChar": 48
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59db528b_c5fd5656",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6c3fcee6_2b13fdb6",
       "range": {
         "startLine": 165,
         "startChar": 41,
@@ -480,6 +882,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a466b57_2609923a",
+        "filename": "system/audio_hal_interface/hfp_software.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "385f0aa0_f25f2318",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 2
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f51ec150_ab669e03",
@@ -503,6 +929,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b72becc1_01e6ac00",
+        "filename": "system/btif/include/btif_hf.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f51ec150_ab669e03",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 15
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37f06d31_bc0ef933",
@@ -516,6 +966,30 @@
       "writtenOn": "2023-11-29T00:10:22Z",
       "side": 1,
       "message": "no need, as we can start and stop SCO with  `GetInterface()`\u0027s methods",
+      "range": {
+        "startLine": 1671,
+        "startChar": 0,
+        "endLine": 1675,
+        "endChar": 15
+      },
+      "revId": "f97614d3cec0522555e5f0137ae5a01fd7f50e33",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ab770eb_20c5845f",
+        "filename": "system/btif/src/btif_hf.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1675,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-11-30T03:20:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37f06d31_bc0ef933",
       "range": {
         "startLine": 1671,
         "startChar": 0,
