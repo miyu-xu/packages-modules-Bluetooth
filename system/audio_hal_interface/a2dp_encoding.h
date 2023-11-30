@@ -117,6 +117,22 @@ struct a2dp_configuration {
 struct a2dp_remote_capabilities {
   int seid;
   uint8_t const* capabilities;
+
+  inline std::string toString() const {
+    std::ostringstream os;
+    os << "A2dpRemoteCapabilities{";
+    os << "seid: " << seid;
+    os << ", capabilities: {";
+    if (capabilities != nullptr) {
+      for (int i = 0; i < AVDT_CODEC_SIZE; i++) {
+        os << std::hex << std::setw(2) << std::setfill('0')
+           << static_cast<int>(capabilities[i]);
+      }
+    }
+    os << "}";
+    os << "}";
+    return os.str();
+  }
 };
 
 // Query the codec selection fromt the audio HAL.
