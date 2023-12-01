@@ -25,6 +25,7 @@
 #include <cstdint>
 #include <optional>
 
+#include "btm_status.h"
 #include "test/common/mock_functions.h"
 
 // Original usings
@@ -121,8 +122,7 @@ uint8_t btm_ble_io_capabilities_req::return_value = 0;
 uint8_t btm_ble_read_sec_key_size::return_value = 0;
 tBTM_STATUS btm_ble_set_encryption::return_value = 0;
 tBTM_STATUS btm_ble_start_encrypt::return_value = 0;
-tL2CAP_LE_RESULT_CODE btm_ble_start_sec_check::return_value =
-    L2CAP_LE_RESULT_CONN_OK;
+tBTM_STATUS btm_ble_start_sec_check::return_value = BTM_SUCCESS;
 bool btm_get_local_div::return_value = false;
 tBTM_STATUS btm_proc_smp_cback::return_value = 0;
 
