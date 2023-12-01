@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "446c7b12_9cb3163d",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T07:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc6072f1_2aa86a23",
+      "range": {
+        "startLine": 111,
+        "startChar": 0,
+        "endLine": 201,
+        "endChar": 31
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99362910_82f559fe",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-10-07T00:37:13Z",
       "side": 1,
       "message": "`std::nullopt`",
+      "range": {
+        "startLine": 244,
+        "startChar": 33,
+        "endLine": 244,
+        "endChar": 47
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b99d9ebc_813b9801",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T07:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99362910_82f559fe",
       "range": {
         "startLine": 244,
         "startChar": 33,
@@ -72,6 +120,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "83f7f661_26f374b7",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T07:14:12Z",
+      "side": 1,
+      "message": "will update in next patch set",
+      "parentUuid": "ecba7c08_819166c1",
+      "range": {
+        "startLine": 251,
+        "startChar": 2,
+        "endLine": 259,
+        "endChar": 3
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "20aad358_977945c8",
         "filename": "system/gd/hci/le_scanning_decrypter.cc",
         "patchSetId": 8
@@ -83,6 +155,30 @@
       "writtenOn": "2023-10-07T00:37:13Z",
       "side": 1,
       "message": "`return std::make_optional(out);`",
+      "range": {
+        "startLine": 298,
+        "startChar": 4,
+        "endLine": 298,
+        "endChar": 74
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3249ed36_5bd35c29",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T07:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "20aad358_977945c8",
       "range": {
         "startLine": 298,
         "startChar": 4,
@@ -106,6 +202,30 @@
       "writtenOn": "2023-10-07T00:37:13Z",
       "side": 1,
       "message": "```\n} else {\n  LOG_INFO(\"Decryption NOT successful \");\n  return std::nullopt;\n}\n```",
+      "range": {
+        "startLine": 300,
+        "startChar": 2,
+        "endLine": 303,
+        "endChar": 24
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b03c2ea4_4810481c",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T07:14:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5ddb782b_ec7ab569",
       "range": {
         "startLine": 300,
         "startChar": 2,

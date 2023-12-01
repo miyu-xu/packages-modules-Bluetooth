@@ -192,6 +192,24 @@
       "message": "@wescande@google.com do you know if this is the correct place to put this definition? I know it exists in system/btif/src/btif_storage.cc as well.",
       "revId": "275bfdeadff09a2983eddc05ec659cb7e767a691",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb28e5f9_d8c9893d",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T07:14:12Z",
+      "side": 1,
+      "message": "We need to move other .h file?\nWe thought all Config storage related information we can keep in storage_module.h",
+      "parentUuid": "b98dd1fe_b255047d",
+      "revId": "275bfdeadff09a2983eddc05ec659cb7e767a691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
