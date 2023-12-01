@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c299a06d_a9d4baf5",
+        "filename": "system/stack/btm/security_event_parser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-01T21:26:56Z",
+      "side": 1,
+      "message": "What is the purpose of using a namespace here?",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "6f1e289546e9ff970c4d59d66a4e1b618d8cf5d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
