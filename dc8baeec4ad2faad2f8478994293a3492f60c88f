@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "913415f0_a02b04bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-01T04:39:21Z",
+      "side": 1,
+      "message": "Hi Ying, please take a look at these patches.\nThe test results are available in b/312653014.",
+      "revId": "dc8baeec4ad2faad2f8478994293a3492f60c88f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
