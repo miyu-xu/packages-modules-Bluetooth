@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "053c15de_2df55574",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1379,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-12-01T13:16:38Z",
+      "side": 1,
+      "message": "LOG_INFO ?",
+      "range": {
+        "startLine": 1379,
+        "startChar": 6,
+        "endLine": 1379,
+        "endChar": 15
+      },
+      "revId": "515e79dcbe2ceff17dc294f9b14d02d5e9b9059e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
