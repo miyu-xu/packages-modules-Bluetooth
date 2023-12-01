@@ -46,6 +46,30 @@
       },
       "revId": "7e843f4bb9ce1a7a165d37fad5367e378d9223e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9710af6_e08ea212",
+        "filename": "system/gd/module_mainloop.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T21:45:11Z",
+      "side": 1,
+      "message": "In the CallOn case, T* is already a raw pointer.",
+      "parentUuid": "d846abeb_a049d16d",
+      "range": {
+        "startLine": 51,
+        "startChar": 41,
+        "endLine": 51,
+        "endChar": 44
+      },
+      "revId": "7e843f4bb9ce1a7a165d37fad5367e378d9223e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
