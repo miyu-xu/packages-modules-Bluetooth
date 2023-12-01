@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "85d95285_fdfdf893",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T08:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff77fffb_fdbe1273",
+      "range": {
+        "startLine": 350,
+        "startChar": 60,
+        "endLine": 350,
+        "endChar": 67
+      },
+      "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74f4204a_060b19c3",
@@ -60,6 +84,30 @@
       "writtenOn": "2023-11-01T17:45:16Z",
       "side": 1,
       "message": "Nit: Please add description (or remove empty comment field, but ideally the former).",
+      "range": {
+        "startLine": 1755,
+        "startChar": 3,
+        "endLine": 1755,
+        "endChar": 14
+      },
+      "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ec4845f_a42e8511",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1755,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T08:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74f4204a_060b19c3",
       "range": {
         "startLine": 1755,
         "startChar": 3,
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed84afb9_3d048936",
+        "filename": "system/btif/src/btif_storage.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1768,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T08:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c95ec8a_0b35f4bd",
+      "range": {
+        "startLine": 1768,
+        "startChar": 29,
+        "endLine": 1768,
+        "endChar": 49
+      },
+      "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1ea4123_7b36cc97",
@@ -106,6 +178,30 @@
       "writtenOn": "2023-11-01T17:45:16Z",
       "side": 1,
       "message": "Please add default case (log a warning is sufficient for default).",
+      "range": {
+        "startLine": 1028,
+        "startChar": 2,
+        "endLine": 1028,
+        "endChar": 8
+      },
+      "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e109a466_70fb60bd",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1028,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T08:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1ea4123_7b36cc97",
       "range": {
         "startLine": 1028,
         "startChar": 2,
@@ -133,6 +229,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "43c4e203_d833c556",
+        "filename": "system/stack/gap/gap_ble.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1086,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T08:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a2fdc84d_a8e7b8c8",
+      "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a366ed7a_8bc56179",
@@ -146,6 +260,30 @@
       "writtenOn": "2023-10-06T22:21:32Z",
       "side": 1,
       "message": "nit: `encr_material` -\u003e `enc_key_material`",
+      "range": {
+        "startLine": 108,
+        "startChar": 28,
+        "endLine": 108,
+        "endChar": 41
+      },
+      "revId": "bfb1427afbfd79b26a204d0df6193fdc731fc5ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e401ce0_414d5d78",
+        "filename": "system/stack/include/gap_api.h",
+        "patchSetId": 10
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T08:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a366ed7a_8bc56179",
       "range": {
         "startLine": 108,
         "startChar": 28,

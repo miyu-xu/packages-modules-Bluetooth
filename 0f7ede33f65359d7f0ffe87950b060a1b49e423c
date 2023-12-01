@@ -214,6 +214,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4b79c02_45c6def1",
+        "filename": "system/internal_include/stack_config.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T08:07:30Z",
+      "side": 1,
+      "message": "should we need to remove this API? \nWe need to execute this test case with out using bt_stack.conf flags?",
+      "parentUuid": "4e3d155b_7f08c424",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "0f7ede33f65359d7f0ffe87950b060a1b49e423c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4f9053c_6ff80d0e",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 9
@@ -355,6 +379,30 @@
       "side": 1,
       "message": "Oh I missed the `local` part 👍\nCan you please document the minimal length of the input buffer in the function comment ?",
       "parentUuid": "2afac61d_35c26d6d",
+      "range": {
+        "startLine": 2286,
+        "startChar": 39,
+        "endLine": 2286,
+        "endChar": 52
+      },
+      "revId": "0f7ede33f65359d7f0ffe87950b060a1b49e423c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c64fb1f_bcef2796",
+        "filename": "system/stack/btm/btm_ble.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 2286,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T08:07:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "142dbd79_9d5bf593",
       "range": {
         "startLine": 2286,
         "startChar": 39,
