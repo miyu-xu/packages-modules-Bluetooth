@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8c91e8f_98c08ac6",
+        "filename": "flags/sniff.aconfig",
+        "patchSetId": 21
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T00:49:07Z",
+      "side": 1,
+      "message": "nit: transmission",
+      "revId": "1c8df8e2854a7cf2c02359135aa6135fcc5f0162",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
