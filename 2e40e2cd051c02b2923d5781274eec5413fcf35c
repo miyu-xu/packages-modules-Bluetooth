@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b7059c31_bc5ae870",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/AdvertiseHelperTest.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-01T08:03:44Z",
+      "side": 1,
+      "message": "I think its added after your comment. Can you please review advertiseDataEncToBytes() this api.",
+      "parentUuid": "85a18b5f_c39e7777",
+      "revId": "2e40e2cd051c02b2923d5781274eec5413fcf35c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ee56084e_5793216a",
         "filename": "framework/java/android/bluetooth/le/AdvertiseData.java",
         "patchSetId": 8
