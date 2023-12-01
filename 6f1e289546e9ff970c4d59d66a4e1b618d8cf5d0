@@ -22,6 +22,29 @@
       },
       "revId": "6f1e289546e9ff970c4d59d66a4e1b618d8cf5d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd3d3d9e_7cee54e5",
+        "filename": "system/stack/btm/security_event_parser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-01T21:30:42Z",
+      "side": 1,
+      "message": "What do these parse_xxx functions do?\n\npacket parsing is supposed to be done by pdl, isn\u0027t it?\n\nIs this the proper place to do metrics logging here?",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 82,
+        "endChar": 27
+      },
+      "revId": "6f1e289546e9ff970c4d59d66a4e1b618d8cf5d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
