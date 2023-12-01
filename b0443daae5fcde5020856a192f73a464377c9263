@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38b148ff_c9f8934f",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T00:01:34Z",
+      "side": 1,
+      "message": "Remove?",
+      "range": {
+        "startLine": 460,
+        "startChar": 0,
+        "endLine": 461,
+        "endChar": 20
+      },
+      "revId": "b0443daae5fcde5020856a192f73a464377c9263",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d3b1b58_d5546baf",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T00:01:34Z",
+      "side": 1,
+      "message": "Are all of these libraries needed?",
+      "range": {
+        "startLine": 524,
+        "startChar": 0,
+        "endLine": 524,
+        "endChar": 28
+      },
+      "revId": "b0443daae5fcde5020856a192f73a464377c9263",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02effd1f_8a66ba56",
+        "filename": "system/gd/module_mainloop_unittest.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T00:01:34Z",
+      "side": 1,
+      "message": "nit:remove",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "b0443daae5fcde5020856a192f73a464377c9263",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
