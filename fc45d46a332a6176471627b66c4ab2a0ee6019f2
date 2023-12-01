@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "790b763c_a7f50e6b",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4e8dddb_53a3f670",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "89313a8d_bb01f3ec",
@@ -71,6 +89,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d321089_e17adb0f",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1982,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36669262_7dafa63b",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1dcda6cd_9dfc0fee",
@@ -84,6 +120,30 @@
       "writtenOn": "2023-11-29T17:00:11Z",
       "side": 1,
       "message": "```\nif (IS_FLAG_ENABLED(a2dp_offload_codec_extensibility)) {\n  bta_av_vendor_offload_stop();\n} else {\n  bta_av_vendor_offload_legacy_stop();\n}\n```\nor similar",
+      "range": {
+        "startLine": 1986,
+        "startChar": 6,
+        "endLine": 1986,
+        "endChar": 32
+      },
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15ac94ff_d0aa17b9",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1986,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1dcda6cd_9dfc0fee",
       "range": {
         "startLine": 1986,
         "startChar": 6,
@@ -111,6 +171,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0b8b577_c594da53",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2616,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "af7aee1e_48a2a685",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e57ee29_4018c6e8",
@@ -124,6 +202,24 @@
       "writtenOn": "2023-11-29T17:00:11Z",
       "side": 1,
       "message": "```\nif (IS_FLAG_ENABLED(a2dp_offload_codec_extensibility)) {\n  bta_av_vendor_offload_stop();\n} else {\n  bta_av_vendor_offload_legacy_stop();\n}\n```\nor similar",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0b4013a_1a321a51",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 2620,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e57ee29_4018c6e8",
       "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -145,6 +241,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "438ab694_a964d4db",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3138,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "48fd91ac_5f1b6cdb",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "570e8cfe_1bb89dc1",
@@ -162,6 +276,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc5b82a2_5aab3920",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3141,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "570e8cfe_1bb89dc1",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "68710a94_ef88410f",
@@ -175,6 +307,24 @@
       "writtenOn": "2023-11-29T17:00:11Z",
       "side": 1,
       "message": "```\nif (param-\u003eopcode !\u003d VS_HCI_A2DP_OFFLOAD_STOP \u0026\u0026\n    param-\u003eopcode !\u003d VS_HCI_A2DP_OFFLOAD_LEGACY_STOP) {\n```",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "034143ea_8d4f6e2e",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3156,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "68710a94_ef88410f",
       "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -210,6 +360,24 @@
       "side": 1,
       "message": "See other comment",
       "parentUuid": "9f09f190_712137df",
+      "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "128bc129_4cda90cb",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 3272,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:55:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4a51fa65_492c00a1",
       "revId": "fc45d46a332a6176471627b66c4ab2a0ee6019f2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
