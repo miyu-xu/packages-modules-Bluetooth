@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af5012a8_d874b46c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-01T23:51:48Z",
+      "side": 0,
+      "message": "Checking for intents is not future proof. So I decided to update the receiver for every test case.",
+      "parentUuid": "419cfd53_ba8d8b28",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 156,
+        "endChar": 44
+      },
+      "revId": "92a55f130a2eda4cee65c019c77efcec756562d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eeebfafb_2c9ea46f",

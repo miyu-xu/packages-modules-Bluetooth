@@ -190,6 +190,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6ff0772_8bd9c70b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-01T23:51:48Z",
+      "side": 1,
+      "message": "Added a test case for successful bonding as well",
+      "parentUuid": "adaebcba_26478bc9",
+      "range": {
+        "startLine": 196,
+        "startChar": 16,
+        "endLine": 196,
+        "endChar": 64
+      },
+      "revId": "16330606a2ca2f8edab13063572c89c195a97707",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "efb1755e_e40d4718",
