@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "73c06a0b_acbcba49",
+        "filename": "system/gd/module_mainloop.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T20:57:20Z",
+      "side": 1,
+      "message": "Is this needed?  I would have expected to bind the shared pointer directly, without the get.",
+      "range": {
+        "startLine": 51,
+        "startChar": 41,
+        "endLine": 51,
+        "endChar": 44
+      },
+      "revId": "7e843f4bb9ce1a7a165d37fad5367e378d9223e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
