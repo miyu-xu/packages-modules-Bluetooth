@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e093ee4b_2a0d307f",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 3262,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-12-01T15:58:03Z",
+      "side": 1,
+      "message": "This might be nullptr ;/",
+      "revId": "8d90b01054c85f5694331afbc6aa1b5a1e272278",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
