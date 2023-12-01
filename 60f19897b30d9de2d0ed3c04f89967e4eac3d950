@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd7b984a_9b94eef6",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T16:19:50Z",
+      "side": 1,
+      "message": "Update?",
+      "range": {
+        "startLine": 344,
+        "startChar": 19,
+        "endLine": 344,
+        "endChar": 48
+      },
+      "revId": "60f19897b30d9de2d0ed3c04f89967e4eac3d950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "531e0af0_4db73e4d",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T16:19:50Z",
+      "side": 1,
+      "message": "Does this comment go with line 382?",
+      "range": {
+        "startLine": 355,
+        "startChar": 1,
+        "endLine": 355,
+        "endChar": 65
+      },
+      "revId": "60f19897b30d9de2d0ed3c04f89967e4eac3d950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9909aa8e_401cafee",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T16:19:50Z",
+      "side": 1,
+      "message": "Can we get rid of the old flagging now that we\u0027re adding a new flag?",
+      "range": {
+        "startLine": 1262,
+        "startChar": 0,
+        "endLine": 1263,
+        "endChar": 76
+      },
+      "revId": "60f19897b30d9de2d0ed3c04f89967e4eac3d950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
