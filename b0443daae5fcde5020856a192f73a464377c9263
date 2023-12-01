@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b6a1c1e0_d9089c99",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T00:53:05Z",
+      "side": 1,
+      "message": "I guess my feeling is that it\u0027s easier to add than to remove 😊  Right now it should be at the slimmest it will ever be.",
+      "parentUuid": "90d17522_aea40246",
+      "range": {
+        "startLine": 524,
+        "startChar": 0,
+        "endLine": 524,
+        "endChar": 28
+      },
+      "revId": "b0443daae5fcde5020856a192f73a464377c9263",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02effd1f_8a66ba56",
         "filename": "system/gd/module_mainloop_unittest.h",
         "patchSetId": 5
