@@ -25,6 +25,7 @@
 #include <cstdint>
 #include <optional>
 
+#include "stack/include/btm_status.h"
 #include "test/common/mock_functions.h"
 
 // Original usings
@@ -121,8 +122,7 @@ uint8_t btm_ble_io_capabilities_req::return_value = 0;
 uint8_t btm_ble_read_sec_key_size::return_value = 0;
 tBTM_STATUS btm_ble_set_encryption::return_value = 0;
 tBTM_STATUS btm_ble_start_encrypt::return_value = 0;
-tL2CAP_LE_RESULT_CODE btm_ble_start_sec_check::return_value =
-    L2CAP_LE_RESULT_CONN_OK;
+tBTM_STATUS btm_ble_start_sec_check::return_value = BTM_SUCCESS;
 bool btm_get_local_div::return_value = false;
 tBTM_STATUS btm_proc_smp_cback::return_value = 0;
 
@@ -355,10 +355,10 @@ tBTM_STATUS btm_ble_start_encrypt(const RawAddress& bda, bool use_stk,
   inc_func_call_count(__func__);
   return test::mock::stack_btm_ble::btm_ble_start_encrypt(bda, use_stk, p_stk);
 }
-tL2CAP_LE_RESULT_CODE btm_ble_start_sec_check(const RawAddress& bd_addr,
-                                              uint16_t psm, bool is_originator,
-                                              tBTM_SEC_CALLBACK* p_callback,
-                                              void* p_ref_data) {
+tBTM_STATUS btm_ble_start_sec_check(const RawAddress& bd_addr, uint16_t psm,
+                                    bool is_originator,
+                                    tBTM_SEC_CALLBACK* p_callback,
+                                    void* p_ref_data) {
   inc_func_call_count(__func__);
   return test::mock::stack_btm_ble::btm_ble_start_sec_check(
       bd_addr, psm, is_originator, p_callback, p_ref_data);
