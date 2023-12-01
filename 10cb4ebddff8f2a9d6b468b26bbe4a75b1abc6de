@@ -214,6 +214,24 @@
       "parentUuid": "43b91661_5be6af54",
       "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0be4177d_7633c8c5",
+        "filename": "system/bta/hf_client/bta_hf_client_at.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 541,
+      "author": {
+        "id": 1880545
+      },
+      "writtenOn": "2023-12-01T01:17:46Z",
+      "side": 1,
+      "message": "OK，we will try to re-upload this patch to fix conflict, thanks.",
+      "parentUuid": "d38b46c2_b9292dab",
+      "revId": "10cb4ebddff8f2a9d6b468b26bbe4a75b1abc6de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
