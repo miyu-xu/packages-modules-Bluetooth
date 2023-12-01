@@ -22,6 +22,30 @@
       },
       "revId": "7e843f4bb9ce1a7a165d37fad5367e378d9223e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d846abeb_a049d16d",
+        "filename": "system/gd/module_mainloop.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-01T21:41:48Z",
+      "side": 1,
+      "message": "I\u0027m pretty sure it\u0027s needed as the CallOn uses a similar pattern.  The `obj` passed in is a *.get().\n\n```\n  template \u003ctypename T, typename Functor, typename... Args\u003e\n  void CallOn(T* obj, Functor\u0026\u0026 functor, Args\u0026\u0026... args) {\n    Post(common::BindOnce(std::forward\u003cFunctor\u003e(functor), common::Unretained(obj), std::forward\u003cArgs\u003e(args)...));\n  }\n```\n  \nI\u0027ll run tests without it to write up more detail on why/why not it\u0027s needed.",
+      "parentUuid": "73c06a0b_acbcba49",
+      "range": {
+        "startLine": 51,
+        "startChar": 41,
+        "endLine": 51,
+        "endChar": 44
+      },
+      "revId": "7e843f4bb9ce1a7a165d37fad5367e378d9223e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
