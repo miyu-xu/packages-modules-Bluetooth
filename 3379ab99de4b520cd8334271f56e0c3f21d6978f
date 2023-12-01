@@ -16,6 +16,23 @@
       "message": "Hi @mylesgw@google.com, could you also help to review this. Thanks.",
       "revId": "3379ab99de4b520cd8334271f56e0c3f21d6978f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03499fa9_f43377ba",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T16:21:24Z",
+      "side": 1,
+      "message": "Are you going to remove this from device/google/clockwork/include/bluetooth/bdroid_buildcfg_common.h ?",
+      "revId": "3379ab99de4b520cd8334271f56e0c3f21d6978f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
