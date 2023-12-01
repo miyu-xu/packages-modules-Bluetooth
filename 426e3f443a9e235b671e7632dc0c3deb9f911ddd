@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4883a992_e4290d0d",
+        "filename": "system/gd/rust/shim/src/init_flags.rs",
+        "patchSetId": 10
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-01T17:03:22Z",
+      "side": 1,
+      "message": "Please use the trunk stable feature flag `encrypted_advertising_data`:\n\n- In the code: \n```\n#include \u003candroid_bluetooth_flags.h\u003e\nif (IS_FLAG_ENABLED(encrypted_advertising_data)) {\n //..\n}\n```\n\n- In the commit message (in addition to the tracking bug):\n```\nBug: 308855997\n```",
+      "range": {
+        "startLine": 54,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 43
+      },
+      "revId": "426e3f443a9e235b671e7632dc0c3deb9f911ddd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
