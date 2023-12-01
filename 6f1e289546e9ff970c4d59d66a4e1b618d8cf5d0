@@ -74,6 +74,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b75d7d12_3181e270",
+        "filename": "system/stack/btm/security_event_parser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T22:32:05Z",
+      "side": 1,
+      "message": "This looks incomplete.\n\nGo back and make sure each function calls the correct btm_ function and logs the same as it would have in btu.\n\nIs integration testing the only way we have to test this right now?",
+      "range": {
+        "startLine": 69,
+        "startChar": 5,
+        "endLine": 69,
+        "endChar": 26
+      },
+      "revId": "6f1e289546e9ff970c4d59d66a4e1b618d8cf5d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd3d3d9e_7cee54e5",
         "filename": "system/stack/btm/security_event_parser.cc",
         "patchSetId": 15
