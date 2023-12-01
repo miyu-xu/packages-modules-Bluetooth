@@ -27,6 +27,7 @@
 #include <optional>
 
 // Original included files, if any
+#include "btm_status.h"
 #include "stack/btm/btm_ble_int_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_octets.h"
@@ -653,17 +654,16 @@ extern struct btm_ble_start_encrypt btm_ble_start_encrypt;
 // Params: const RawAddress& bd_addr, uint16_t psm, bool is_originator,
 // tBTM_SEC_CALLBACK* p_callback, void* p_ref_data Return: tL2CAP_LE_RESULT_CODE
 struct btm_ble_start_sec_check {
-  static tL2CAP_LE_RESULT_CODE return_value;
-  std::function<tL2CAP_LE_RESULT_CODE(
-      const RawAddress& bd_addr, uint16_t psm, bool is_originator,
-      tBTM_SEC_CALLBACK* p_callback, void* p_ref_data)>
+  static tBTM_STATUS return_value;
+  std::function<tBTM_STATUS(const RawAddress& bd_addr, uint16_t psm,
+                            bool is_originator, tBTM_SEC_CALLBACK* p_callback,
+                            void* p_ref_data)>
       body{[](const RawAddress& /* bd_addr */, uint16_t /* psm */,
               bool /* is_originator */, tBTM_SEC_CALLBACK* /* p_callback */,
               void* /* p_ref_data */) { return return_value; }};
-  tL2CAP_LE_RESULT_CODE operator()(const RawAddress& bd_addr, uint16_t psm,
-                                   bool is_originator,
-                                   tBTM_SEC_CALLBACK* p_callback,
-                                   void* p_ref_data) {
+  tBTM_STATUS operator()(const RawAddress& bd_addr, uint16_t psm,
+                         bool is_originator, tBTM_SEC_CALLBACK* p_callback,
+                         void* p_ref_data) {
     return body(bd_addr, psm, is_originator, p_callback, p_ref_data);
   };
 };
