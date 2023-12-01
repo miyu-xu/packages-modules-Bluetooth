@@ -3,6 +3,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "09e28cfe_160140eb",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2903,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-01T11:47:17Z",
+      "side": 1,
+      "message": "We need to check `insert_call_when_sco_start` here as well.",
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "065fe2ce_d1a41f37",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2934,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-01T11:47:17Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "97d27eda_503c9086",
         "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
         "patchSetId": 1

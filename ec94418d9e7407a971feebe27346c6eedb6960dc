@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cae54a41_6e8e477e",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 762,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-01T11:47:17Z",
+      "side": 0,
+      "message": "Please don\u0027t affect the qualification behavior.",
+      "range": {
+        "startLine": 762,
+        "startChar": 33,
+        "endLine": 762,
+        "endChar": 58
+      },
+      "revId": "ec94418d9e7407a971feebe27346c6eedb6960dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
