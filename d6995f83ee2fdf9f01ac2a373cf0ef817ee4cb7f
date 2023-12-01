@@ -16,6 +16,24 @@
       "message": "since the critical change is protected by the feature flag, could you help to add this to the CL description? \nBug: 308171251",
       "revId": "d6995f83ee2fdf9f01ac2a373cf0ef817ee4cb7f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12a032a3_2168a427",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-01T00:52:46Z",
+      "side": 1,
+      "message": "this is still needed",
+      "parentUuid": "c4a83232_0d342c27",
+      "revId": "d6995f83ee2fdf9f01ac2a373cf0ef817ee4cb7f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
