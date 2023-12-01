@@ -39,6 +39,7 @@ import android.util.Log;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.map.BluetoothMapbMessageMime;
 import com.android.bluetooth.map.BluetoothMapbMessageMime.MimePart;
+import com.android.modules.utils.build.SdkLevel;
 import com.android.vcard.VCardConstants;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardProperty;
@@ -137,6 +138,9 @@ class MapClientContent {
     static void clearAllContent(Context context) {
         SubscriptionManager subscriptionManager =
                 context.getSystemService(SubscriptionManager.class);
+        if (SdkLevel.isAtLeastV()) {
+            subscriptionManager = subscriptionManager.createForAllUserProfiles();
+        }
         List<SubscriptionInfo> subscriptions = subscriptionManager.getActiveSubscriptionInfoList();
         if (subscriptions == null) {
             Log.w(TAG, "Active subscription list is missing");

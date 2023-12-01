@@ -50,6 +50,7 @@ import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.modules.utils.build.SdkLevel;
 import com.android.vcard.VCardConstants;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardProperty;
@@ -145,6 +146,10 @@ public class MapClientContentTest {
         when(mMockContext.getSystemServiceName(SubscriptionManager.class))
                 .thenReturn(Context.TELEPHONY_SUBSCRIPTION_SERVICE);
 
+        if (SdkLevel.isAtLeastV()) {
+            when(mMockSubscriptionManager.createForAllUserProfiles())
+                    .thenReturn(mMockSubscriptionManager);
+        }
         when(mMockSubscriptionManager.getActiveSubscriptionInfoList())
                 .thenReturn(Arrays.asList(mMockSubscription));
         createTestMessages();
