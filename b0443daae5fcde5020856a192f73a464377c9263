@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e66843a6_e46bbe0d",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 461,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-01T01:08:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "48ce6fc9_f6592daf",
+      "range": {
+        "startLine": 460,
+        "startChar": 0,
+        "endLine": 461,
+        "endChar": 20
+      },
+      "revId": "b0443daae5fcde5020856a192f73a464377c9263",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d3b1b58_d5546baf",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "I guess my feeling is that it\u0027s easier to add than to remove 😊  Right now it should be at the slimmest it will ever be.",
       "parentUuid": "90d17522_aea40246",
+      "range": {
+        "startLine": 524,
+        "startChar": 0,
+        "endLine": 524,
+        "endChar": 28
+      },
+      "revId": "b0443daae5fcde5020856a192f73a464377c9263",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8b69758a_716259e2",
+        "filename": "system/gd/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-01T01:08:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "b6a1c1e0_d9089c99",
       "range": {
         "startLine": 524,
         "startChar": 0,
