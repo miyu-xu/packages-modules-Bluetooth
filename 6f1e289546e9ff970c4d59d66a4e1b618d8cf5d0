@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "205b636d_5529fdc1",
+        "filename": "system/stack/btm/security_event_parser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T22:23:48Z",
+      "side": 1,
+      "message": "Just to make it clear that these functions will never be used anywhere else.",
+      "parentUuid": "c299a06d_a9d4baf5",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "6f1e289546e9ff970c4d59d66a4e1b618d8cf5d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd3d3d9e_7cee54e5",
         "filename": "system/stack/btm/security_event_parser.cc",
         "patchSetId": 15
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-01T21:30:42Z",
       "side": 1,
       "message": "What do these parse_xxx functions do?\n\npacket parsing is supposed to be done by pdl, isn\u0027t it?\n\nIs this the proper place to do metrics logging here?",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 82,
+        "endChar": 27
+      },
+      "revId": "6f1e289546e9ff970c4d59d66a4e1b618d8cf5d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78bf7843_c63adac2",
+        "filename": "system/stack/btm/security_event_parser.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-01T22:23:48Z",
+      "side": 1,
+      "message": "PDL parses the functions, but uses the GD types.  This calls the original btm_sec functions with the converted types.\n\nThe next two CLs actually make use of this code:\n\n2808384: Security: Register for the pairing events \n  - Send the HCI events to this parsing code instead of btu_hcif\n\n2808385: Remove hci path and old-style mocks\n  - Remove the old parsing code",
+      "parentUuid": "bd3d3d9e_7cee54e5",
       "range": {
         "startLine": 82,
         "startChar": 2,
