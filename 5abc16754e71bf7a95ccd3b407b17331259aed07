@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc29529c_9e246146",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-12-01T04:57:35Z",
+      "side": 1,
+      "message": "I couldn\u0027t find `Handler.hasMessages` that takes in `Message` instance as parameter, so used this instead!",
+      "parentUuid": "dd482e7b_c0f6ef37",
+      "range": {
+        "startLine": 657,
+        "startChar": 40,
+        "endLine": 657,
+        "endChar": 77
+      },
+      "revId": "5abc16754e71bf7a95ccd3b407b17331259aed07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f333085_eee89891",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-11-30T20:04:22Z",
       "side": 1,
       "message": "Why not re-using `timeoutMessage`",
+      "range": {
+        "startLine": 664,
+        "startChar": 8,
+        "endLine": 666,
+        "endChar": 54
+      },
+      "revId": "5abc16754e71bf7a95ccd3b407b17331259aed07",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "000d68db_a2865f3c",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/gatt/ScanManagerTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-12-01T04:57:35Z",
+      "side": 1,
+      "message": "I couldn\u0027t re-use `timeoutMessage` because using `isEqualTo()` returns `false` when comparing `timeoutMessage` with `nextMessage`, since it seems to be using standard equals and returning `true` only when they are referring to the same object.",
+      "parentUuid": "7f333085_eee89891",
       "range": {
         "startLine": 664,
         "startChar": 8,
