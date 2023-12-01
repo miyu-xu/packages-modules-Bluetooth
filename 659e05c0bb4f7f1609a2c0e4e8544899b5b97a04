@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3bdc0b5d_23239aba",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-01T19:23:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "31c8080f_141b3d96",
+      "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3543d98_f1b56393",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-01T17:54:58Z",
       "side": 1,
       "message": "This is another thing to discuss: I prefer no space between colon and value.\n\ne.g.\n`bdaddr:%s`\n\nThen when greping/parsing the key:value is a single unit w/out space (typically, unless the value has space)\n\nIs there a tBTM_LE_KEY_TYPE.ToString() ? This helps when logging.",
+      "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "924003b8_2e110cf1",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-01T19:23:27Z",
+      "side": 1,
+      "message": "I will remove the space, tBTM_LE_KEY_TYPE does not have ToString, adding it  is out of the scope of this change.",
+      "parentUuid": "f3543d98_f1b56393",
       "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8585fa0a_db361810",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-01T19:23:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4f1db3a_11151800",
+      "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "77a20c13_23174e38",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-12-01T17:54:58Z",
       "side": 1,
       "message": "Add result... `tSMP_STATUS.ToString()`",
+      "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52aa81b1_8ba7e2e1",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-01T19:23:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "77a20c13_23174e38",
       "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d0d3c9c_cb5f0654",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 650,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-01T19:23:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61d2b53c_3c324a4a",
+      "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c249492_26037103",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-12-01T17:54:58Z",
       "side": 1,
       "message": "This is legacy so not a problem; but should use a ToString() `BTM_LE_KEY_PID`, as if we change the name of these keys it will propogate",
+      "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f016b990_7139327a",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 920,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-01T19:23:27Z",
+      "side": 1,
+      "message": "I dont think it has such an API, adding a new API is out of the scope of this change",
+      "parentUuid": "7c249492_26037103",
       "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -133,6 +241,24 @@
       "writtenOn": "2023-12-01T17:54:58Z",
       "side": 1,
       "message": "In general having multiple logs within a function that are not conditioned with a parameter check is overloading; I suggest one, maybe two at most logs.  One with initial conditions, and one with final conditions.\n\nAll error paths, of course, can have a log function too.",
+      "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2855831d_ab8bfc3a",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1698,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-01T19:23:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5be6ff45_d9bfac2b",
       "revId": "659e05c0bb4f7f1609a2c0e4e8544899b5b97a04",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
