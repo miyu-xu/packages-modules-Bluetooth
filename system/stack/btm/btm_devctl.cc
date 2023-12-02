@@ -34,12 +34,11 @@
 #include "btm_ble_int.h"
 #include "btm_sec_cb.h"
 #include "btm_sec_int_types.h"
+#include "device/include/controller.h"
 #include "main/shim/btm_api.h"
 #include "os/log.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/gatt/connection_manager.h"
-#include "stack/include/acl_api.h"
-#include "stack/include/acl_api_types.h"
 #include "stack/include/btm_ble_privacy.h"
 #include "stack/include/l2cap_controller_interface.h"
 #include "types/raw_address.h"
@@ -289,7 +288,6 @@ static void decode_controller_support() {
   LOG_VERBOSE("Local supported SCO packet types: 0x%04x",
               btm_cb.btm_sco_pkt_types_supported);
 
-  BTM_acl_after_controller_started(controller_get_interface());
   btm_sec_dev_reset();
 
   if (controller->supports_rssi_with_inquiry_results()) {
