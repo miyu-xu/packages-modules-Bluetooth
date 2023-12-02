@@ -29,7 +29,6 @@
 #include <algorithm>
 #include <cstring>
 
-#include "bt_target.h"
 #include "btm_ble_int.h"
 #include "btm_ble_sec_api.h"
 #include "crypto_toolbox/crypto_toolbox.h"
