@@ -54,6 +54,7 @@
 #include "stack/acl/acl.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec_cb.h"
+#include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/main_thread.h"
@@ -1383,6 +1384,7 @@ shim::legacy::Acl::Acl(os::Handler* handler,
       handler->BindOn(this, &Acl::on_incoming_acl_credits));
   shim::RegisterDumpsysFunction(static_cast<void*>(this),
                                 [this](int fd) { Dump(fd); });
+  BTM_acl_after_controller_started();
 }
 
 shim::legacy::Acl::~Acl() {
