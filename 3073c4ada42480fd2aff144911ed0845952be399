@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "41278af6_bd84489e",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-02T01:45:42Z",
+      "side": 1,
+      "message": "This would be cleaner but starts to encroach on the opinion of what is alogic change:\n\n```\nif (!(ble_sec_act !\u003d BTM_BLE_SEC_NONE || sec_act \u003d\u003d BTM_SEC_ENC_PENDING)) {\n  l2cble_update_sec_act(bd_addr, sec_act);\n\n  BTM_SetEncryption(bd_addr, BT_TRANSPORT_LE, p_callback, p_ref_data,\n                    ble_sec_act);\n} \nreturn L2CAP_LE_RESULT_CONN_OK;\n```\n\nBut I don\u0027t think it\u0027s a logic change b/c it\u0027s really an identity\n```\nbool func02_helper(int ble_sec_act, int sec_act) {\n   if (ble_sec_act \u003d\u003d BTM_BLE_SEC_NONE \u0026\u0026 sec_act !\u003d BTM_SEC_ENC_PENDING) {\n       return true;\n   }\n   return false;\n}\n\nbool func02_fix(int ble_sec_act, int sec_act) {\n   if (!(ble_sec_act !\u003d BTM_BLE_SEC_NONE || sec_act \u003d\u003d BTM_SEC_ENC_PENDING)) {\n       return true;\n   }\n   return false;\n}\n\nvoid func02() {\n    ASSERT_EQ(func02_helper(BTM_BLE_SEC_NONE, BTM_SEC_ENC_PENDING),\n              func02_fix(BTM_BLE_SEC_NONE, BTM_SEC_ENC_PENDING));\n    ASSERT_EQ(func02_helper(BTM_BLE_SEC_NONE, BTM_SEC_ENC_NONE),\n              func02_fix(BTM_BLE_SEC_NONE, BTM_SEC_ENC_NONE));\n    ASSERT_EQ(func02_helper(BTM_BLE_SEC_SOME, BTM_SEC_ENC_PENDING),\n              func02_fix(BTM_BLE_SEC_SOME, BTM_SEC_ENC_PENDING));\n    ASSERT_EQ(func02_helper(BTM_BLE_SEC_SOME, BTM_SEC_ENC_NONE),\n              func02_fix(BTM_BLE_SEC_SOME, BTM_SEC_ENC_NONE));\n}\n\nint main(int argc,  char** argv) {\n  func02();\n}\n```",
+      "revId": "3073c4ada42480fd2aff144911ed0845952be399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
