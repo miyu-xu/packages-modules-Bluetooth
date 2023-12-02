@@ -28,6 +28,7 @@
 #include <cstdint>
 
 #include "base/functional/bind.h"
+#include "device/include/controller.h"
 #include "os/log.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/gatt/gatt_int.h"
