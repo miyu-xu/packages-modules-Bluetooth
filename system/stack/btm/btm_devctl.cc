@@ -39,7 +39,6 @@
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec.h"
 #include "stack/gatt/connection_manager.h"
-#include "stack/include/acl_api.h"
 #include "stack/include/acl_api_types.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_api.h"
@@ -262,7 +261,6 @@ static void decode_controller_support() {
   log::verbose("Local supported SCO packet types: 0x{:04x}",
                btm_cb.btm_sco_pkt_types_supported);
 
-  BTM_acl_after_controller_started();
   btm_sec_dev_reset();
 
   if (bluetooth::shim::GetController()->SupportsRssiWithInquiryResults()) {
