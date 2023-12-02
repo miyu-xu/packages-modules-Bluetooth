@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bce12da4_26dbe440",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1647,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-02T01:34:41Z",
+      "side": 1,
+      "message": "Maybe move the declaration here, since you\u0027re touching it?",
+      "range": {
+        "startLine": 1647,
+        "startChar": 2,
+        "endLine": 1647,
+        "endChar": 8
+      },
+      "revId": "4881ce29103a4102324956af54244ebdcc44ab0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2594206f_34324817",
+        "filename": "system/test/mock/mock_stack_btm_ble.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-02T01:34:41Z",
+      "side": 1,
+      "message": "same here.",
+      "range": {
+        "startLine": 28,
+        "startChar": 10,
+        "endLine": 28,
+        "endChar": 20
+      },
+      "revId": "4881ce29103a4102324956af54244ebdcc44ab0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9314619_2444dabe",
+        "filename": "system/test/mock/mock_stack_btm_ble.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-02T01:34:41Z",
+      "side": 1,
+      "message": "I\u0027d prefer a full include path here, since it\u0027s not in test/mock/",
+      "range": {
+        "startLine": 30,
+        "startChar": 10,
+        "endLine": 30,
+        "endChar": 20
+      },
+      "revId": "4881ce29103a4102324956af54244ebdcc44ab0b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
