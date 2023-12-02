@@ -17,6 +17,7 @@
 #pragma once
 
 #include <flatbuffers/flatbuffers.h>
+
 #include <chrono>
 #include <functional>
 #include <future>
@@ -26,7 +27,6 @@
 #include <vector>
 
 #include "common/bind.h"
-#include "dumpsys_data_generated.h"
 #include "os/handler.h"
 #include "os/log.h"
 #include "os/thread.h"
@@ -64,6 +64,8 @@ public:
   std::vector<const ModuleFactory*> list_;
 };
 
+// flatbuffers uses structs over class definition
+struct DumpsysDataBuilder;
 using DumpsysDataFinisher = std::function<void(DumpsysDataBuilder* dumpsys_data_builder)>;
 
 // Each leaf node module must have a factory like so:
