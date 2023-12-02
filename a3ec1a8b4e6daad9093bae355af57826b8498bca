@@ -16,6 +16,24 @@
       "message": "Is this possible to be avoided?\n\nIncluding the source here makes the dependency complicated",
       "revId": "a3ec1a8b4e6daad9093bae355af57826b8498bca",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b6c1549_e7242a91",
+        "filename": "system/btif/test/btif_rc_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-02T06:00:20Z",
+      "side": 1,
+      "message": "Absolutely !! Totally agree.\n\nThe original authors did this, and I investigated fixing it but would require a complete re-write of the test, and adding a bunch of internal APIs.\n\nThis is intended to get to a \"better\" test for the re-write which is inevitable for this module.",
+      "parentUuid": "d97ae0e6_a1b09a30",
+      "revId": "a3ec1a8b4e6daad9093bae355af57826b8498bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
