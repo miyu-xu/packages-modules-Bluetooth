@@ -242,7 +242,8 @@ void hci_btm_set_link_supervision_timeout(tACL_CONN& link, uint16_t timeout) {
 /* 3 seconds timeout waiting for responses */
 #define BTM_DEV_REPLY_TIMEOUT_MS (3 * 1000)
 
-void BTM_acl_after_controller_started(const controller_t* controller) {
+void BTM_acl_after_controller_started() {
+  const controller_t* controller = controller_get_interface();
   internal_.btm_set_default_link_policy(
       HCI_ENABLE_CENTRAL_PERIPHERAL_SWITCH | HCI_ENABLE_HOLD_MODE |
       HCI_ENABLE_SNIFF_MODE | HCI_ENABLE_PARK_MODE);
