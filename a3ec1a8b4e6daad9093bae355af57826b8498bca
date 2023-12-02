@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d97ae0e6_a1b09a30",
+        "filename": "system/btif/test/btif_rc_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-02T03:45:34Z",
+      "side": 1,
+      "message": "Is this possible to be avoided?\n\nIncluding the source here makes the dependency complicated",
+      "revId": "a3ec1a8b4e6daad9093bae355af57826b8498bca",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
