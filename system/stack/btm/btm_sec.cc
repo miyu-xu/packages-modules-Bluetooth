@@ -43,6 +43,7 @@
 #include "common/time_util.h"
 #include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
+#include "device/include/interop.h"
 #include "l2c_api.h"
 #include "osi/include/properties.h"
 #include "stack/btm/btm_ble_int.h"
@@ -4595,10 +4596,14 @@ static bool btm_sec_start_get_name(tBTM_SEC_DEV_REC* p_dev_rec) {
  *
  ******************************************************************************/
 static void btm_sec_wait_and_start_authentication(tBTM_SEC_DEV_REC* p_dev_rec) {
+  static int32_t delay_auth;
   auto addr = new RawAddress(p_dev_rec->bd_addr);
 
-  static const int32_t delay_auth =
-      osi_property_get_int32("bluetooth.btm.sec.delay_auth_ms.value", 0);
+  /* Apply the property if a system-wide authentication delay is required. Also
+   * check if device-specific interoperability delay is needed. */
+  delay_auth = osi_property_get_int32(
+      "bluetooth.btm.sec.delay_auth_ms.value",
+      interop_match_addr(INTEROP_DELAY_AUTH, addr) ? 200 : 0);
 
   bt_status_t status = do_in_main_thread_delayed(
       FROM_HERE, base::Bind(&btm_sec_auth_timer_timeout, addr),

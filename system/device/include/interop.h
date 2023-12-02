@@ -339,6 +339,10 @@ typedef enum {
   // both encryption complete and SMP key exchange completed.
   INTEROP_SUSPEND_ATT_TRAFFIC_DURING_PAIRING,
 
+  // Some device need the host to delay authentication process to avoid
+  // collision.
+  INTEROP_DELAY_AUTH,
+
   END_OF_INTEROP_LIST
 } interop_feature_t;
 
