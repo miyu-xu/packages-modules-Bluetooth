@@ -100,9 +100,25 @@ public class GattClientTest {
 
     @Test
     public void fullGattClientLifecycle() throws Exception {
-        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
-        BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback);
-        disconnectAndWaitDisconnection(gatt, gattCallback);
+        advertiseWithBumble();
+
+        BluetoothDevice device =
+                mAdapter.getRemoteLeDevice(
+                        Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
+
+        for (int i = 0; i < 10; i++) {
+            BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+            BluetoothGatt gatt = device.connectGatt(mContext, false, gattCallback);
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
+
+            gatt.disconnect();
+            verify(gattCallback, timeout(1000))
+                    .onConnectionStateChange(
+                            any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
+
+            gatt.close();
+        }
     }
 
     @Test
@@ -163,9 +179,9 @@ public class GattClientTest {
 
     private void disconnectAndWaitDisconnection(
             BluetoothGatt gatt, BluetoothGattCallback callback) {
-        final int state = BluetoothProfile.STATE_DISCONNECTED;
         gatt.disconnect();
-        verify(callback, timeout(1000)).onConnectionStateChange(eq(gatt), anyInt(), eq(state));
+        verify(callback, timeout(1000))
+                .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_DISCONNECTED));
 
         gatt.close();
         gatt = null;
