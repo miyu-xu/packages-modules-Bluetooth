@@ -64,8 +64,6 @@ typedef enum : uint8_t {
 #define SMP_WAIT_FOR_RSP_TIMEOUT_MS (30 * 1000)
 #define SMP_DELAYED_AUTH_TIMEOUT_MS 500
 
-#define SMP_OPCODE_INIT 0x04
-
 /* SMP command code */
 typedef enum : uint8_t {
   SMP_OPCODE_PAIRING_REQ = 0x01,
@@ -88,7 +86,7 @@ typedef enum : uint8_t {
   SMP_OPCODE_PAIR_COMMITM = 0x0F,
 } tSMP_OPCODE;
 
-inline std::string smp_opcode_text(const tSMP_OPCODE& opcode) {
+inline std::string smp_opcode_text(const tSMP_OPCODE opcode) {
   switch (opcode) {
     CASE_RETURN_TEXT(SMP_OPCODE_PAIRING_REQ);
     CASE_RETURN_TEXT(SMP_OPCODE_PAIRING_RSP);
