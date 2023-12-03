@@ -43,12 +43,6 @@ typedef enum : uint8_t {
   BTA_SDP_BUSY = 2,    /* Temporarily can not handle this request. */
 } tBTA_SDP_STATUS;
 
-#ifndef CASE_RETURN_TEXT
-#define CASE_RETURN_TEXT(code) \
-  case code:                   \
-    return #code
-#endif
-
 inline std::string bta_sdp_status_text(const tBTA_SDP_STATUS& status) {
   switch (status) {
     CASE_RETURN_TEXT(BTA_SDP_SUCCESS);
@@ -58,8 +52,6 @@ inline std::string bta_sdp_status_text(const tBTA_SDP_STATUS& status) {
       return base::StringPrintf("UNKNOWN[%d]", status);
   }
 }
-
-#undef CASE_RETURN_TEXT
 
 /* SDP I/F callback events */
 /* events received by tBTA_SDP_DM_CBACK */

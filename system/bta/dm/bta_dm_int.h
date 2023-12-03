@@ -37,12 +37,6 @@
 #include "stack/sdp/sdp_discovery_db.h"
 #include "types/raw_address.h"
 
-#ifndef CASE_RETURN_TEXT
-#define CASE_RETURN_TEXT(code) \
-  case code:                   \
-    return #code
-#endif
-
 /*****************************************************************************
  *  Constants and data types
  ****************************************************************************/
@@ -236,8 +230,6 @@ typedef struct {
 
   alarm_t* switch_delay_timer;
 } tBTA_DM_CB;
-
-#undef CASE_RETURN_TEXT
 
 /* DI control block */
 typedef struct {
