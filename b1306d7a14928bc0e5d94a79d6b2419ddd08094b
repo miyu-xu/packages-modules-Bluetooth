@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7eeb8edf_ece0cd93",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-04T18:16:19Z",
+      "side": 1,
+      "message": "What\u0027s the benefit of doing this?\n\nI feel like it\u0027s dangerous to have values in comments.  Either we assign the values, or we don\u0027t.",
+      "revId": "b1306d7a14928bc0e5d94a79d6b2419ddd08094b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
