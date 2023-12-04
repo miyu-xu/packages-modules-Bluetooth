@@ -193,7 +193,7 @@ tBTM_STATUS BTM_SetPowerMode(uint8_t pm_id, const RawAddress& remote_bda,
   // per ACL link
   auto* p_cb = btm_pm_get_power_manager_from_address(remote_bda);
   if (p_cb == nullptr) {
-    LOG_WARN("Unable to find power manager for peer: %s",
+    LOG_DEBUG("Unable to find power manager for peer: %s",
              ADDRESS_TO_LOGGABLE_CSTR(remote_bda));
     return BTM_UNKNOWN_ADDR;
   }

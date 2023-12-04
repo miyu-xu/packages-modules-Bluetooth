@@ -759,7 +759,7 @@ static void btm_toggle_policy_off_for(const RawAddress& peer_addr,
 bool BTM_is_sniff_allowed_for(const RawAddress& peer_addr) {
   auto conn = internal_.btm_bda_to_acl(peer_addr, BT_TRANSPORT_BR_EDR);
   if (!conn) {
-    LOG_WARN("Unable to find active acl");
+    LOG_DEBUG("Unable to find active acl");
     return false;
   }
   return conn->link_policy & HCI_ENABLE_SNIFF_MODE;
@@ -1637,7 +1637,7 @@ bool BTM_ReadRemoteVersion(const RawAddress& addr, uint8_t* lmp_version,
 uint8_t* BTM_ReadRemoteFeatures(const RawAddress& addr) {
   tACL_CONN* p = internal_.btm_bda_to_acl(addr, BT_TRANSPORT_BR_EDR);
   if (p == NULL) {
-    LOG_WARN("Unable to find active acl");
+    LOG_DEBUG("Unable to find active acl");
     return (NULL);
   }
 
