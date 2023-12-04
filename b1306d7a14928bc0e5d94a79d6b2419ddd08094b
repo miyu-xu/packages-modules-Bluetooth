@@ -34,6 +34,24 @@
       "parentUuid": "7eeb8edf_ece0cd93",
       "revId": "b1306d7a14928bc0e5d94a79d6b2419ddd08094b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0101c049_46bf4fc8",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-04T18:30:58Z",
+      "side": 1,
+      "message": "If I want to review this change correctly, I have to go through the code and make sure this never gets cast to a different value.  I didn\u0027t check to see how hard that is, but at this stage, we should never add values in the middle.",
+      "parentUuid": "b37791b6_373af90a",
+      "revId": "b1306d7a14928bc0e5d94a79d6b2419ddd08094b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
