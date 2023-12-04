@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39fc2f1b_5ac44545",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 834,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T17:17:51Z",
+      "side": 1,
+      "message": "nit: to use a positive assertion here: \n\nhow about: \n\n`IS_FLAG_ENABLED(service_discovery_before_bond)`?",
+      "revId": "20bda74fa6ad799dca204334a9727481c4f60933",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

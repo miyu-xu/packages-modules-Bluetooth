@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc584dab_f199f857",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T17:17:51Z",
+      "side": 1,
+      "message": "nit: `\u003c` is used for including system headers, this is not.",
+      "range": {
+        "startLine": 53,
+        "startChar": 9,
+        "endLine": 53,
+        "endChar": 10
+      },
+      "revId": "ecdf82dd017008d0e536f8ad6d55e9d7bc77efbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
