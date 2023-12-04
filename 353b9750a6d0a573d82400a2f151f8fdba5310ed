@@ -16,6 +16,23 @@
       "message": "Fixed randomly failing test cases.",
       "revId": "353b9750a6d0a573d82400a2f151f8fdba5310ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b46e947f_b0f25582",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-04T21:54:05Z",
+      "side": 1,
+      "message": "hi Grzegorz, as we discussed offline, this is re-landing of aosp/2775609 with small fix for test failure. +2 since it\u0027s already reviewed there and test fix lgtm.",
+      "revId": "353b9750a6d0a573d82400a2f151f8fdba5310ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
