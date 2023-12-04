@@ -281,6 +281,9 @@ class tSMP_CB {
   void init(uint8_t security_mode);
   void reset();
 
+  /* smp main */
+  bool smp_sm_event(tSMP_EVENT event, tSMP_INT_DATA* p_data);
+
  public:
   uint8_t init_security_mode{0};
   tSMP_CALLBACK* p_callback;
@@ -365,9 +368,6 @@ class tSMP_CB {
 typedef void (*tSMP_ACT)(tSMP_CB* p_cb, tSMP_INT_DATA* p_data);
 
 extern tSMP_CB smp_cb;
-
-/* smp main */
-bool smp_sm_event(tSMP_CB* p_cb, tSMP_EVENT event, tSMP_INT_DATA* p_data);
 
 tSMP_STATE smp_get_state(void);
 void smp_set_state(tSMP_STATE state);

@@ -116,11 +116,11 @@ static void smp_connect_callback(UNUSED_ATTR uint16_t channel,
         p_cb->local_r_key = p_cb->local_i_key = SMP_SEC_DEFAULT_KEY;
         p_cb->loc_auth_req = p_cb->peer_auth_req = SMP_DEFAULT_AUTH_REQ;
         p_cb->cb_evt = SMP_IO_CAP_REQ_EVT;
-        smp_sm_event(p_cb, SMP_L2CAP_CONN_EVT, NULL);
+        p_cb->smp_sm_event(SMP_L2CAP_CONN_EVT, NULL);
       }
     } else {
       /* Disconnected while doing security */
-      smp_sm_event(p_cb, SMP_L2CAP_DISCONN_EVT, &int_data);
+      p_cb->smp_sm_event(SMP_L2CAP_DISCONN_EVT, &int_data);
     }
   }
 }
@@ -198,7 +198,7 @@ static void smp_data_received(uint16_t channel, const RawAddress& bd_addr,
     p_cb->rcvd_cmd_len = (uint8_t)p_buf->len;
     tSMP_INT_DATA smp_int_data;
     smp_int_data.p_data = p;
-    smp_sm_event(p_cb, static_cast<tSMP_EVENT>(cmd), &smp_int_data);
+    p_cb->smp_sm_event(static_cast<tSMP_EVENT>(cmd), &smp_int_data);
   } else {
     L2CA_RemoveFixedChnl(channel, bd_addr);
   }

@@ -60,7 +60,7 @@ static bool pts_test_send_authentication_complete_failure(tSMP_CB* p_cb) {
       reason == SMP_REPEATED_ATTEMPTS) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = reason;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return true;
   }
   return false;
@@ -214,7 +214,7 @@ void smp_send_app_cback(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
               " local_i_key:0x%02x, local_r_key:0x%02x",
               p_cb->loc_auth_req, p_cb->local_i_key, p_cb->local_r_key);
 
-          smp_sm_event(p_cb, SMP_IO_RSP_EVT, NULL);
+          p_cb->smp_sm_event(SMP_IO_RSP_EVT, NULL);
           break;
 
         case SMP_BR_KEYS_REQ_EVT:
@@ -250,7 +250,7 @@ void smp_send_app_cback(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
 
   if (!p_cb->cb_evt && p_cb->discard_sec_req) {
     p_cb->discard_sec_req = false;
-    smp_sm_event(p_cb, SMP_DISCARD_SEC_REQ_EVT, NULL);
+    p_cb->smp_sm_event(SMP_DISCARD_SEC_REQ_EVT, NULL);
   }
 }
 
@@ -460,7 +460,7 @@ void smp_proc_sec_req(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   switch (sec_req_act) {
     case BTM_BLE_SEC_REQ_ACT_ENCRYPT:
       LOG_VERBOSE("BTM_BLE_SEC_REQ_ACT_ENCRYPT");
-      smp_sm_event(p_cb, SMP_ENC_REQ_EVT, NULL);
+      p_cb->smp_sm_event(SMP_ENC_REQ_EVT, NULL);
       break;
 
     case BTM_BLE_SEC_REQ_ACT_PAIR:
@@ -472,7 +472,7 @@ void smp_proc_sec_req(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
           (auth_req & SMP_SC_SUPPORT_BIT) == 0) {
         tSMP_INT_DATA smp_int_data;
         smp_int_data.status = SMP_PAIR_AUTH_FAIL;
-        smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+        p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
       } else {
         /* initialize local i/r key to be default keys */
         p_cb->peer_auth_req = auth_req;
@@ -499,7 +499,7 @@ void smp_proc_sec_grant(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   uint8_t res = p_data->status;
   LOG_VERBOSE("addr:%s", ADDRESS_TO_LOGGABLE_CSTR(p_cb->pairing_bda));
   if (res != SMP_SUCCESS) {
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, p_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, p_data);
   } else /*otherwise, start pairing */
   {
     /* send IO request callback */
@@ -545,7 +545,7 @@ void smp_proc_pair_cmd(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_length(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -560,14 +560,14 @@ void smp_proc_pair_cmd(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (reason == SMP_ENC_KEY_SIZE) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = reason;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -596,7 +596,7 @@ void smp_proc_pair_cmd(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
             "pairing failed - peripheral requires secure connection only mode");
         tSMP_INT_DATA smp_int_data;
         smp_int_data.status = SMP_PAIR_AUTH_FAIL;
-        smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+        p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
         return;
       }
 
@@ -618,7 +618,7 @@ void smp_proc_pair_cmd(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
           "but it can't be provided -> Central fails pairing");
       tSMP_INT_DATA smp_int_data;
       smp_int_data.status = SMP_PAIR_AUTH_FAIL;
-      smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+      p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
       return;
     }
 
@@ -637,7 +637,7 @@ void smp_proc_confirm(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -664,7 +664,7 @@ void smp_proc_rand(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -688,7 +688,7 @@ void smp_process_pairing_public_key(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -703,14 +703,14 @@ void smp_process_pairing_public_key(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     LOG_WARN("Remote and local public keys can't match");
     tSMP_INT_DATA smp;
     smp.status = SMP_PAIR_AUTH_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp);
     return;
   }
 
   if (!ECC_ValidatePoint(pt)) {
     tSMP_INT_DATA smp;
     smp.status = SMP_PAIR_AUTH_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp);
     return;
   }
 
@@ -731,7 +731,7 @@ void smp_process_pairing_commitment(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -754,7 +754,7 @@ void smp_process_dhkey_check(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -778,7 +778,7 @@ void smp_process_keypress_notification(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -953,7 +953,7 @@ void smp_proc_enc_info(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -1003,7 +1003,7 @@ void smp_proc_id_info(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -1020,7 +1020,7 @@ void smp_proc_id_addr(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -1056,7 +1056,7 @@ void smp_proc_srk_info(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (smp_command_has_invalid_parameters(p_cb)) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_INVALID_PARAMETERS;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -1096,20 +1096,20 @@ void smp_proc_compare(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
       p_cb->loc_enc_size = p_cb->peer_enc_size;
 
     if (p_cb->role == HCI_ROLE_PERIPHERAL)
-      smp_sm_event(p_cb, SMP_RAND_EVT, NULL);
+      p_cb->smp_sm_event(SMP_RAND_EVT, NULL);
     else {
       /* central device always use received i/r key as keys to distribute */
       p_cb->local_i_key = p_cb->peer_i_key;
       p_cb->local_r_key = p_cb->peer_r_key;
 
-      smp_sm_event(p_cb, SMP_ENC_REQ_EVT, NULL);
+      p_cb->smp_sm_event(SMP_ENC_REQ_EVT, NULL);
     }
 
   } else {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_CONFIRM_VALUE_ERR;
     p_cb->failure = SMP_CONFIRM_VALUE_ERR;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
   }
 }
 
@@ -1127,7 +1127,7 @@ void smp_proc_sl_key(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     smp_set_state(SMP_STATE_WAIT_CONFIRM);
 
     if (p_cb->flags & SMP_PAIR_FLAGS_CMD_CONFIRM)
-      smp_sm_event(p_cb, SMP_CONFIRM_EVT, NULL);
+      p_cb->smp_sm_event(SMP_CONFIRM_EVT, NULL);
   }
 }
 
@@ -1149,7 +1149,7 @@ void smp_start_enc(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   if (cmd != BTM_CMD_STARTED && cmd != BTM_BUSY) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_ENC_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
   }
 }
 
@@ -1173,7 +1173,7 @@ void smp_enc_cmpl(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   LOG_VERBOSE("addr:%s", ADDRESS_TO_LOGGABLE_CSTR(p_cb->pairing_bda));
   tSMP_INT_DATA smp_int_data;
   smp_int_data.status = enc_enable ? SMP_SUCCESS : SMP_ENC_FAIL;
-  smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+  p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
 }
 
 /*******************************************************************************
@@ -1197,7 +1197,7 @@ void smp_sirk_verify(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
         base::StringPrintf("Verification failed, smp_status:%s",
                            smp_status_text(smp_int_data.status).c_str()));
 
-    smp_sm_event(p_cb, SMP_SIRK_DEVICE_VALID_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_SIRK_DEVICE_VALID_EVT, &smp_int_data);
 
     return;
   }
@@ -1213,7 +1213,7 @@ void smp_sirk_verify(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
 
       tSMP_INT_DATA smp_int_data;
       smp_int_data.status = SMP_SUCCESS;
-      smp_sm_event(p_cb, SMP_SIRK_DEVICE_VALID_EVT, &smp_int_data);
+      p_cb->smp_sm_event(SMP_SIRK_DEVICE_VALID_EVT, &smp_int_data);
     }
   } else {
     LOG_ERROR("There are no registrated callbacks for SMP");
@@ -1261,23 +1261,23 @@ void smp_check_auth_req(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     if (/*((p_cb->peer_auth_req & SMP_AUTH_BOND) ||
          (p_cb->loc_auth_req & SMP_AUTH_BOND)) &&*/
         (p_cb->local_i_key || p_cb->local_r_key)) {
-      smp_sm_event(p_cb, SMP_BOND_REQ_EVT, NULL);
+      p_cb->smp_sm_event(SMP_BOND_REQ_EVT, NULL);
     } else {
       tSMP_INT_DATA smp_int_data;
       smp_int_data.status = enc_enable ? SMP_SUCCESS : SMP_ENC_FAIL;
-      smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+      p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     }
   } else if (enc_enable == 0) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = enc_enable ? SMP_SUCCESS : SMP_ENC_FAIL;
     /* if failed for encryption after pairing, send callback */
     if (p_cb->flags & SMP_PAIR_FLAG_ENC_AFTER_PAIR)
-      smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+      p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     /* if enc failed for old security information */
     /* if central device, clean up and abck to idle; peripheral device do
      * nothing */
     else if (p_cb->role == HCI_ROLE_CENTRAL) {
-      smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+      p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     }
   }
 }
@@ -1381,7 +1381,7 @@ void smp_decide_association_model(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
           LOG_VERBOSE("ENCRYPTION_ONLY showing Consent Dialog");
           p_cb->cb_evt = SMP_CONSENT_REQ_EVT;
           smp_set_state(SMP_STATE_WAIT_NONCE);
-          smp_sm_event(p_cb, SMP_SC_DSPL_NC_EVT, NULL);
+          p_cb->smp_sm_event(SMP_SC_DSPL_NC_EVT, NULL);
         } else {
           p_cb->sec_level = SMP_SEC_UNAUTHENTICATE;
           LOG_VERBOSE("p_cb->sec_level=%d (SMP_SEC_UNAUTHENTICATE) ",
@@ -1448,7 +1448,7 @@ void smp_decide_association_model(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   }
 
   LOG_VERBOSE("sec_level=%d ", p_cb->sec_level);
-  if (int_evt) smp_sm_event(p_cb, int_evt, &smp_int_data);
+  if (int_evt) p_cb->smp_sm_event(int_evt, &smp_int_data);
 }
 
 /*******************************************************************************
@@ -1474,7 +1474,7 @@ void smp_process_io_response(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
           "but it can't be provided -> Peripheral fails pairing");
       tSMP_INT_DATA smp_int_data;
       smp_int_data.status = SMP_PAIR_AUTH_FAIL;
-      smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+      p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
       return;
     }
 
@@ -1602,7 +1602,7 @@ void smp_both_have_public_keys(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   /* on peripheral side invokes sending local public key to the peer */
   if (p_cb->role == HCI_ROLE_PERIPHERAL) smp_send_pair_public_key(p_cb, NULL);
 
-  smp_sm_event(p_cb, SMP_SC_DHKEY_CMPLT_EVT, NULL);
+  p_cb->smp_sm_event(SMP_SC_DHKEY_CMPLT_EVT, NULL);
 }
 
 /*******************************************************************************
@@ -1633,7 +1633,7 @@ void smp_start_secure_connection_phase1(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     case SMP_MODEL_SEC_CONN_PASSKEY_ENT:
       /* user has to provide passkey */
       p_cb->cb_evt = SMP_PASSKEY_REQ_EVT;
-      smp_sm_event(p_cb, SMP_TK_REQ_EVT, NULL);
+      p_cb->smp_sm_event(SMP_TK_REQ_EVT, NULL);
       break;
     case SMP_MODEL_SEC_CONN_PASSKEY_DISP:
       /* passkey has to be provided to user */
@@ -1732,7 +1732,7 @@ void smp_process_peer_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_CONFIRM_VALUE_ERR;
     p_cb->failure = SMP_CONFIRM_VALUE_ERR;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
   // PTS Testing failure modes (for LT)
@@ -1743,7 +1743,7 @@ void smp_process_peer_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_NUMERIC_COMPAR_FAIL;
     p_cb->failure = SMP_NUMERIC_COMPAR_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -1756,7 +1756,7 @@ void smp_process_peer_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
           tSMP_INT_DATA smp_int_data;
           smp_int_data.status = SMP_CONFIRM_VALUE_ERR;
           p_cb->failure = SMP_CONFIRM_VALUE_ERR;
-          smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+          p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
           break;
         }
       } else {
@@ -1772,15 +1772,15 @@ void smp_process_peer_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
           LOG_VERBOSE("JUST WORKS showing Consent Dialog");
           p_cb->cb_evt = SMP_CONSENT_REQ_EVT;
           smp_set_state(SMP_STATE_WAIT_NONCE);
-          smp_sm_event(p_cb, SMP_SC_DSPL_NC_EVT, NULL);
+          p_cb->smp_sm_event(SMP_SC_DSPL_NC_EVT, NULL);
         } else {
           /* go directly to phase 2 */
-          smp_sm_event(p_cb, SMP_SC_PHASE1_CMPLT_EVT, NULL);
+          p_cb->smp_sm_event(SMP_SC_PHASE1_CMPLT_EVT, NULL);
         }
       } else /* numeric comparison */
       {
         smp_set_state(SMP_STATE_WAIT_NONCE);
-        smp_sm_event(p_cb, SMP_SC_CALC_NC_EVT, NULL);
+        p_cb->smp_sm_event(SMP_SC_CALC_NC_EVT, NULL);
       }
       break;
     case SMP_MODEL_SEC_CONN_PASSKEY_ENT:
@@ -1790,7 +1790,7 @@ void smp_process_peer_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
         tSMP_INT_DATA smp_int_data;
         smp_int_data.status = SMP_CONFIRM_VALUE_ERR;
         p_cb->failure = SMP_CONFIRM_VALUE_ERR;
-        smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+        p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
         break;
       }
 
@@ -1805,14 +1805,14 @@ void smp_process_peer_nonce(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
         break;
       }
 
-      smp_sm_event(p_cb, SMP_SC_PHASE1_CMPLT_EVT, NULL);
+      p_cb->smp_sm_event(SMP_SC_PHASE1_CMPLT_EVT, NULL);
       break;
     case SMP_MODEL_SEC_CONN_OOB:
       if (p_cb->role == HCI_ROLE_PERIPHERAL) {
         smp_send_rand(p_cb, NULL);
       }
 
-      smp_sm_event(p_cb, SMP_SC_PHASE1_CMPLT_EVT, NULL);
+      p_cb->smp_sm_event(SMP_SC_PHASE1_CMPLT_EVT, NULL);
       break;
     default:
       LOG_ERROR("Association Model=%d is not used in LE SC",
@@ -1835,7 +1835,7 @@ void smp_match_dhkey_checks(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_DHKEY_CHK_FAIL;
     p_cb->failure = SMP_DHKEY_CHK_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -1845,12 +1845,12 @@ void smp_match_dhkey_checks(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     p_cb->loc_enc_size = p_cb->peer_enc_size;
 
   if (p_cb->role == HCI_ROLE_PERIPHERAL) {
-    smp_sm_event(p_cb, SMP_PAIR_DHKEY_CHCK_EVT, NULL);
+    p_cb->smp_sm_event(SMP_PAIR_DHKEY_CHCK_EVT, NULL);
   } else {
     /* central device always use received i/r key as keys to distribute */
     p_cb->local_i_key = p_cb->peer_i_key;
     p_cb->local_r_key = p_cb->peer_r_key;
-    smp_sm_event(p_cb, SMP_ENC_REQ_EVT, NULL);
+    p_cb->smp_sm_event(SMP_ENC_REQ_EVT, NULL);
   }
 }
 
@@ -1864,7 +1864,7 @@ void smp_match_dhkey_checks(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
 void smp_move_to_secure_connections_phase2(tSMP_CB* p_cb,
                                            tSMP_INT_DATA* p_data) {
   LOG_VERBOSE("addr:%s", ADDRESS_TO_LOGGABLE_CSTR(p_cb->pairing_bda));
-  smp_sm_event(p_cb, SMP_SC_PHASE1_CMPLT_EVT, NULL);
+  p_cb->smp_sm_event(SMP_SC_PHASE1_CMPLT_EVT, NULL);
 }
 
 /*******************************************************************************
@@ -1881,7 +1881,7 @@ void smp_phase_2_dhkey_checks_are_present(tSMP_CB* p_cb,
   LOG_VERBOSE("addr:%s", ADDRESS_TO_LOGGABLE_CSTR(p_cb->pairing_bda));
 
   if (p_cb->flags & SMP_PAIR_FLAG_HAVE_PEER_DHK_CHK)
-    smp_sm_event(p_cb, SMP_SC_2_DHCK_CHKS_PRES_EVT, NULL);
+    p_cb->smp_sm_event(SMP_SC_2_DHCK_CHKS_PRES_EVT, NULL);
 }
 
 /*******************************************************************************
@@ -1902,7 +1902,7 @@ void smp_wait_for_both_public_keys(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
          (p_cb->req_oob_type == SMP_OOB_BOTH))) {
       smp_set_state(SMP_STATE_PUBLIC_KEY_EXCH);
     }
-    smp_sm_event(p_cb, SMP_BOTH_PUBL_KEYS_RCVD_EVT, NULL);
+    p_cb->smp_sm_event(SMP_BOTH_PUBL_KEYS_RCVD_EVT, NULL);
   }
 }
 
@@ -1952,7 +1952,7 @@ void smp_process_secure_connection_oob_data(tSMP_CB* p_cb,
       tSMP_INT_DATA smp_int_data;
       smp_int_data.status = SMP_CONFIRM_VALUE_ERR;
       p_cb->failure = SMP_CONFIRM_VALUE_ERR;
-      smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+      p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
       return;
     }
 
@@ -2048,7 +2048,7 @@ void smp_link_encrypted(const RawAddress& bda, uint8_t encr_enable) {
         .status = static_cast<tSMP_STATUS>(encr_enable),
     };
 
-    smp_sm_event(&smp_cb, SMP_ENCRYPTED_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_ENCRYPTED_EVT, &smp_int_data);
   } else {
     LOG_WARN(
         "SMP state machine busy so skipping encryption enable:%hhu device:%s",
@@ -2058,7 +2058,7 @@ void smp_link_encrypted(const RawAddress& bda, uint8_t encr_enable) {
 
 void smp_cancel_start_encryption_attempt() {
   LOG_ERROR("Encryption request cancelled");
-  smp_sm_event(&smp_cb, SMP_DISCARD_SEC_REQ_EVT, NULL);
+  smp_cb.smp_sm_event(SMP_DISCARD_SEC_REQ_EVT, NULL);
 }
 
 /*******************************************************************************
@@ -2086,7 +2086,7 @@ bool smp_proc_ltk_request(const RawAddress& bda) {
   }
 
   if (match && smp_cb.state == SMP_STATE_ENCRYPTION_PENDING) {
-    smp_sm_event(&smp_cb, SMP_ENC_REQ_EVT, NULL);
+    smp_cb.smp_sm_event(SMP_ENC_REQ_EVT, NULL);
     return true;
   }
 
@@ -2150,7 +2150,7 @@ void smp_derive_link_key_from_long_term_key(tSMP_CB* p_cb,
     LOG_ERROR("calc link key failed");
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = status;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 }
@@ -2174,7 +2174,7 @@ void smp_br_process_link_key(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
     LOG_ERROR("calc LTK failed");
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = status;
-    smp_sm_event(p_cb, SMP_BR_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_BR_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
