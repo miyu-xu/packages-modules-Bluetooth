@@ -266,6 +266,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "db3e1cd1_547f7d5b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T22:03:15Z",
+      "side": 1,
+      "message": "@sungsoo@google.com\nI think your proposition makes sense to me. I updated the change by \nupdating mDeviceQueue unconditionally.\n\nCan you have another look?",
+      "parentUuid": "0dd92dcc_06a5f5e2",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f19b3f6_7f421908",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 4
