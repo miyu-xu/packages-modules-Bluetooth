@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c77bbcd5_4382246b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-12-04T03:50:17Z",
+      "side": 1,
+      "message": "Could you add @Nullable here and `@param` javadoc?",
+      "range": {
+        "startLine": 101,
+        "startChar": 49,
+        "endLine": 101,
+        "endChar": 83
+      },
+      "revId": "5cb2967fa6de2e3011b8fccdc60d3c34577e2da6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
