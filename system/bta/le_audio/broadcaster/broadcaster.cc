@@ -32,6 +32,7 @@
 #include "device/include/controller.h"
 #include "internal_include/stack_config.h"
 #include "os/log.h"
+#include "osi/include/osi.h"
 #include "osi/include/properties.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_api_types.h"
@@ -88,6 +89,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   LeAudioBroadcasterImpl(
       bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks_)
       : callbacks_(callbacks_),
+        watchdog_(alarm_new("LeAudioBroadcasterTimer")),
         current_phy_(PHY_LE_2M),
         audio_data_path_state_(AudioDataPathState::INACTIVE),
         le_audio_source_hal_client_(nullptr) {
@@ -100,7 +102,13 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     GenerateBroadcastIds();
   }
 
-  ~LeAudioBroadcasterImpl() override = default;
+  ~LeAudioBroadcasterImpl() { watchdog_ = nullptr; }
+
+  void cancel_watchdog_if_needed() {
+    if (alarm_is_scheduled(watchdog_)) {
+      alarm_cancel(watchdog_);
+    }
+  }
 
   void GenerateBroadcastIds(void) {
     btsnd_hcic_ble_rand(base::Bind([](BT_OCTET8 rand) {
@@ -589,6 +597,20 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
         }
       }
 
+      /* Broadcast operation should tie in time to get streaming status */
+      uint64_t timeoutMs = kBroadcastStateTransitionTimeoutMs;
+      timeoutMs = osi_property_get_int32(kBroadcastStateTransitionTimeoutMsProp,
+                                         timeoutMs);
+
+      cancel_watchdog_if_needed();
+
+      alarm_set_on_mloop(
+          watchdog_, timeoutMs,
+          [](void* data) {
+            if (instance) instance->OnStateTransitionTimeout(PTR_TO_INT(data));
+          },
+          INT_TO_PTR(broadcast_id));
+
       broadcasts_[broadcast_id]->ProcessMessage(
           BroadcastStateMachine::Message::START, nullptr);
       le_audio::MetricsCollector::Get()->OnBroadcastStateChanged(true);
@@ -769,6 +791,15 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   }
 
  private:
+  /* This callback is called on timeout during transition to target state */
+  void OnStateTransitionTimeout(uint32_t broadcast_id) {
+    if (instance) {
+      instance->callbacks_->OnBroadcastStateChanged(
+          broadcast_id, static_cast<bluetooth::le_audio::BroadcastState>(
+                            BroadcastStateMachine::State::STOPPED));
+    }
+  }
+
   static class BroadcastStateMachineCallbacks
       : public IBroadcastStateMachineCallbacks {
     void OnStateMachineCreateStatus(uint32_t broadcast_id,
@@ -859,6 +890,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
           break;
       };
 
+      instance->cancel_watchdog_if_needed();
       instance->callbacks_->OnBroadcastStateChanged(
           broadcast_id,
           static_cast<bluetooth::le_audio::BroadcastState>(state));
@@ -1182,6 +1214,10 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks_;
   std::map<uint32_t, std::unique_ptr<BroadcastStateMachine>> broadcasts_;
   std::vector<std::unique_ptr<BroadcastStateMachine>> pending_broadcasts_;
+  static constexpr char kBroadcastStateTransitionTimeoutMsProp[] =
+      "persist.bluetooth.leaudio.broadcast.transition.timeoutms";
+  static constexpr uint64_t kBroadcastStateTransitionTimeoutMs = 3500;
+  alarm_t* watchdog_;
 
   /* Some BIG params are set globally */
   uint8_t current_phy_;
