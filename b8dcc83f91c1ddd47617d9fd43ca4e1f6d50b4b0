@@ -142,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "634c535d_076b4676",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-04T01:03:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83f7f661_26f374b7",
+      "range": {
+        "startLine": 251,
+        "startChar": 2,
+        "endLine": 259,
+        "endChar": 3
+      },
+      "revId": "b8dcc83f91c1ddd47617d9fd43ca4e1f6d50b4b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "20aad358_977945c8",

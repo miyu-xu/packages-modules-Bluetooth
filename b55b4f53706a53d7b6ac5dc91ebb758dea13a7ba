@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "07d6143c_c703121f",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-04T01:03:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "39c0ebb9_d6006450",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 70,
+        "endChar": 14
+      },
+      "revId": "b55b4f53706a53d7b6ac5dc91ebb758dea13a7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ae0ad51_66971a69",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea8e6cbc_e5f82dbc",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-04T01:03:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ae0ad51_66971a69",
+      "range": {
+        "startLine": 74,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 14
+      },
+      "revId": "b55b4f53706a53d7b6ac5dc91ebb758dea13a7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10029b08_cd6ce5ff",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-12-01T16:57:00Z",
       "side": 1,
       "message": "key, iv should not be empty in the encrypted material map.",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 147,
+        "endChar": 9
+      },
+      "revId": "b55b4f53706a53d7b6ac5dc91ebb758dea13a7ba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d309c952_1c22588b",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-04T01:03:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10029b08_cd6ce5ff",
       "range": {
         "startLine": 142,
         "startChar": 8,
