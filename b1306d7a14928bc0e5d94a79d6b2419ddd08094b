@@ -70,6 +70,24 @@
       "parentUuid": "0101c049_46bf4fc8",
       "revId": "b1306d7a14928bc0e5d94a79d6b2419ddd08094b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c6623bf_c5a24dad",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-04T18:40:15Z",
+      "side": 1,
+      "message": "I think then the review would be to remove the numbered values within the comment section as that is confusing.\n\ne.g.\n\nEither do:\n```\nSMP_OOB_REQ_EVT \u003d 5,        /* OOB request event */\n```\nor\n```\nSMP_OOB_REQ_EVT,        /* OOB request event */\n```\n\nThe problem if you do *not* assign the numbered value is that if your logging messages simply print the numeric value, then you have to map it back.\n\nThen you have a proper `smp_evt_to_text()` to reduce the burden on the debugger and possible confusion when mapping events back.",
+      "parentUuid": "e6fab240_e1bd947a",
+      "revId": "b1306d7a14928bc0e5d94a79d6b2419ddd08094b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
