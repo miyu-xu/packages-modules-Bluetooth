@@ -1366,10 +1366,11 @@ void SnoopLogger::Stop() {
   }
 }
 
-DumpsysDataFinisher SnoopLogger::GetDumpsysData(flatbuffers::FlatBufferBuilder* builder) const {
+DumpsysDataFinisher SnoopLogger::GetDumpsysData(
+    flatbuffers::FlatBufferBuilder* /* builder */) const {
   LOG_DEBUG("Dumping btsnooz log data to %s", snooz_log_path_.c_str());
   DumpSnoozLogToFile(btsnooz_buffer_.Pull());
-  return Module::GetDumpsysData(builder);
+  return [](DumpsysDataBuilder* /* dumpsys_data_builder */) {};
 }
 
 size_t SnoopLogger::GetMaxPacketsPerFile() {
