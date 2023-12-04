@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "13a63962_070528a4",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T01:09:14Z",
+      "side": 1,
+      "message": "Nit: Pass the flag as a parameter",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 21
+      },
+      "revId": "bea11bc1b96e006e28bf13d2396232012c0bb403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da63ec4b_ad5755d1",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T01:09:14Z",
+      "side": 1,
+      "message": "Nit: Pass as argument to facilitate mock override during test",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "bea11bc1b96e006e28bf13d2396232012c0bb403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29b4cbc5_f7f07349",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T01:09:14Z",
+      "side": 1,
+      "message": "todo in follow-up: set that once and not in each constructor",
+      "range": {
+        "startLine": 179,
+        "startChar": 8,
+        "endLine": 179,
+        "endChar": 14
+      },
+      "revId": "bea11bc1b96e006e28bf13d2396232012c0bb403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "854f441b_383f7f39",
+        "filename": "android/app/src/com/android/bluetooth/sap/SapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T01:09:14Z",
+      "side": 1,
+      "message": "nit: this should be done line 96. Same in the other constructor.\nI guess in a follow-up, since it is not related to this change",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 49
+      },
+      "revId": "bea11bc1b96e006e28bf13d2396232012c0bb403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "090e38f1_e3582e53",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T01:09:14Z",
+      "side": 1,
+      "message": "Test should provide a fakeFeatureImpl and set set flag accordingly",
+      "range": {
+        "startLine": 244,
+        "startChar": 71,
+        "endLine": 244,
+        "endChar": 87
+      },
+      "revId": "bea11bc1b96e006e28bf13d2396232012c0bb403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34299231_306f86b4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T01:09:14Z",
+      "side": 1,
+      "message": "To do in followup, pass looper in constructor",
+      "range": {
+        "startLine": 79,
+        "startChar": 29,
+        "endLine": 79,
+        "endChar": 52
+      },
+      "revId": "bea11bc1b96e006e28bf13d2396232012c0bb403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
