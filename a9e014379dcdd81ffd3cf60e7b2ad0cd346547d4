@@ -100,6 +100,48 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04761fa1_58a13669",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T21:46:38Z",
+      "side": 1,
+      "message": "If `deleteKey` is the same as `key`, the added property will be deleted in line 283.",
+      "parentUuid": "2efdeaab_8096ec86",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "258216ba_5c803189",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T21:46:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3bc723db_08e80323",
+      "range": {
+        "startLine": 298,
+        "startChar": 16,
+        "endLine": 300,
+        "endChar": 17
+      },
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "c092c343_2e343f80",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 4
