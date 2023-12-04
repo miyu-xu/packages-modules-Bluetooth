@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddade90a_0f201b57",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T20:05:24Z",
+      "side": 1,
+      "message": "Keeping mDevices and mDeviceQueue should be kept in sync, and I think that is the proper way to fix it",
+      "range": {
+        "startLine": 9,
+        "startChar": 50,
+        "endLine": 9,
+        "endChar": 177
+      },
+      "revId": "20ea67e0c0c0c13200fa70b30cae2b699676e2fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
