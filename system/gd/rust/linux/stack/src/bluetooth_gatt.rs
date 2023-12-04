@@ -1,5 +1,6 @@
 //! Anything related to the GATT API (IBluetoothGatt).
 
+use bt_topshim::profiles::gatt::ffi::RustAdvertiseParameters;
 use btif_macros::{btif_callback, btif_callbacks_dispatcher};
 
 use bt_topshim::bindings::root::bluetooth::Uuid;
@@ -2129,12 +2130,26 @@ impl IBluetoothGatt for BluetoothGatt {
         }
 
         let device_name = self.get_adapter_name();
-        let is_legacy = parameters.is_legacy;
-        let params = parameters.into();
+        let mut is_legacy = parameters.is_legacy;
+        let mut params: RustAdvertiseParameters = parameters.into();
         let adv_bytes = advertise_data.make_with(&device_name);
         if !AdvertiseData::validate_raw_data(is_legacy, &adv_bytes) {
-            log::warn!("Failed to start advertising set with invalid advertise data");
-            return INVALID_REG_ID;
+            let is_le_extended_advertising_supported = match &self.adapter {
+                Some(adapter) => adapter.lock().unwrap().is_le_extended_advertising_supported(),
+                _ => false,
+            };
+            if is_legacy
+                && is_le_extended_advertising_supported
+                && AdvertiseData::validate_raw_data(false, &adv_bytes)
+            {
+                // TODO(b/311417973): Remove this once we have more robust /device/bluetooth APIs to control extended advertising
+                log::info!("Auto upgrading advertisement to extended");
+                is_legacy = false;
+                params.advertising_event_properties &= !(0x10);
+            } else {
+                log::warn!("Failed to start advertising set with invalid advertise data");
+                return INVALID_REG_ID;
+            }
         }
         let scan_bytes =
             if let Some(d) = scan_response { d.make_with(&device_name) } else { Vec::<u8>::new() };
