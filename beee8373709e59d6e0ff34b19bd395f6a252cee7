@@ -92,6 +92,30 @@
       },
       "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3947ea20_91836161",
+        "filename": "system/gd/rust/topshim/hfp/hfp_shim.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-04T11:00:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "97d27eda_503c9086",
+      "range": {
+        "startLine": 44,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 15
+      },
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
