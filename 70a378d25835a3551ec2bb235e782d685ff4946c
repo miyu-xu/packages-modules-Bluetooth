@@ -22,6 +22,30 @@
       },
       "revId": "70a378d25835a3551ec2bb235e782d685ff4946c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8476a328_dddc7e7a",
+        "filename": "system/stack/smp/smp_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-04T18:56:20Z",
+      "side": 1,
+      "message": "Done in the next CL.",
+      "parentUuid": "e8aadb69_38937cda",
+      "range": {
+        "startLine": 51,
+        "startChar": 10,
+        "endLine": 51,
+        "endChar": 16
+      },
+      "revId": "70a378d25835a3551ec2bb235e782d685ff4946c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
