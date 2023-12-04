@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "67fbffd1_88e87de9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-04T06:14:08Z",
+      "side": 1,
+      "message": "There seems no testability in the new code added. Since this is not a No-op change can we add tests for this. If we can\u0027t get an automated test checked in - can we suggest manual tests we can use here. Refer : https://screenshot.googleplex.com/8r6PX427hZGn3WB",
+      "revId": "60f19897b30d9de2d0ed3c04f89967e4eac3d950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bd7b984a_9b94eef6",
         "filename": "system/bta/dm/bta_dm_pm.cc",
         "patchSetId": 22
@@ -60,6 +77,30 @@
       "writtenOn": "2023-12-01T16:19:50Z",
       "side": 1,
       "message": "Can we get rid of the old flagging now that we\u0027re adding a new flag?",
+      "range": {
+        "startLine": 1262,
+        "startChar": 0,
+        "endLine": 1263,
+        "endChar": 76
+      },
+      "revId": "60f19897b30d9de2d0ed3c04f89967e4eac3d950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "754ef549_55e02b32",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 1263,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-04T06:14:08Z",
+      "side": 1,
+      "message": "This looks like a trunk stable flag so it should be fine.",
+      "parentUuid": "9909aa8e_401cafee",
       "range": {
         "startLine": 1262,
         "startChar": 0,
