@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60b91541_27de0e27",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4605,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-04T18:43:09Z",
+      "side": 1,
+      "message": "I would expect the interop database to take priority over the property and not the inverse.",
+      "range": {
+        "startLine": 4601,
+        "startChar": 0,
+        "endLine": 4605,
+        "endChar": 62
+      },
+      "revId": "a8c18892993fb32595ac2ecfe49fd568086526f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
