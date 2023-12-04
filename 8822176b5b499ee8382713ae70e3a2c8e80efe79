@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "f46b8a62_b6c0f9d8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T21:39:24Z",
+      "side": 1,
+      "message": "This change is flagged by the Bug: 314176433.\nCan you add it to the commit message ?",
+      "revId": "8822176b5b499ee8382713ae70e3a2c8e80efe79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dea043f6_fd1bb6c3",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T21:39:24Z",
+      "side": 1,
+      "message": "Please specify what are the manual step to reproduce in order to have QA validation",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 17
+      },
+      "revId": "8822176b5b499ee8382713ae70e3a2c8e80efe79",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e795b54f_f2b440a2",
