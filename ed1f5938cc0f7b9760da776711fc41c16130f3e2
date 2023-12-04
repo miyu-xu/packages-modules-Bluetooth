@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3242ea7c_db20b0c5",
+        "filename": "system/bta/le_audio/le_audio_types.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 846,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-12-04T13:58:54Z",
+      "side": 1,
+      "message": "Hashing only the values will result in different LTV types with bit-equal values (but different meaning due to different LTV type) having the same hash value, which is bad. LTV Type should also be hashed here.",
+      "range": {
+        "startLine": 843,
+        "startChar": 5,
+        "endLine": 846,
+        "endChar": 32
+      },
+      "revId": "ed1f5938cc0f7b9760da776711fc41c16130f3e2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "02078f18_d5819f84",
         "filename": "system/bta/le_audio/le_audio_types_test.cc",
         "patchSetId": 2
