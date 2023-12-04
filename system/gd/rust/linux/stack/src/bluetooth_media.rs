@@ -12,6 +12,7 @@ use bt_topshim::profiles::a2dp::{
 use bt_topshim::profiles::avrcp::{
     Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, PlayerMetadata,
 };
+use bt_topshim::profiles::hfp::insert_call_when_sco_start;
 use bt_topshim::profiles::hfp::{
     BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallSource, CallState, Hfp,
     HfpCallbacks, HfpCallbacksDispatcher, HfpCodecCapability, HfpCodecId, PhoneState,
@@ -145,6 +146,8 @@ pub trait IBluetoothMedia {
 
     // Trigger a debug log dump.
     fn trigger_debug_dump(&mut self);
+
+    fn check_insert_call_when_sco_start() -> bool;
 }
 
 pub trait IBluetoothMediaCallback: RPCProxy {
@@ -759,7 +762,7 @@ impl BluetoothMedia {
 
                         self.hfp_audio_state.insert(addr, state);
 
-                        if !self.mps_qualification_enabled
+                        if self.check_insert_call_when_sco_start(addr)
                             && self.call_list.iter().all(|c| c.source != CallSource::CRAS)
                         {
                             // This triggers a +CIEV command to set the call status for HFP devices.
@@ -2704,7 +2707,6 @@ impl IBluetoothMedia for BluetoothMedia {
             }
             Some(addr) => addr,
         };
-
         let vol = match i8::try_from(volume) {
             Ok(val) if val <= 15 => val,
             _ => {
@@ -2837,6 +2839,16 @@ impl IBluetoothMedia for BluetoothMedia {
             None => warn!("Uninitialized HFP to dump debug log"),
         };
     }
+
+    fn check_insert_call_when_sco_start(&mut self, address: String) -> bool {
+        if self.mps_qualification_enabled {
+            return false;
+        }
+        if !self.phone_ops_enabled {
+            return true;
+        }
+        return insert_call_when_sco_start(address);
+    }
 }
 
 impl IBluetoothTelephony for BluetoothMedia {
@@ -2907,16 +2919,17 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.memory_dialing_number = None;
         self.last_dialing_number = None;
         self.a2dp_has_interrupted_stream = false;
-
-        if self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected) {
-            self.call_list.push(CallInfo {
-                index: 1,
-                dir_incoming: false,
-                source: CallSource::CRAS,
-                state: CallState::Active,
-                number: "".into(),
-            });
-            self.phone_state.num_active = 1;
+        if !enable {
+            if self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected) {
+                self.call_list.push(CallInfo {
+                    index: 1,
+                    dir_incoming: false,
+                    source: CallSource::CRAS,
+                    state: CallState::Active,
+                    number: "".into(),
+                });
+                self.phone_state.num_active = 1;
+            }
         }
 
         self.phone_ops_enabled = enable;
