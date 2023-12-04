@@ -941,7 +941,7 @@ void bta_dm_pm_active(const RawAddress& peer_addr) {
                 ADDRESS_TO_LOGGABLE_CSTR(peer_addr));
       break;
     default:
-      LOG_WARN("Unable to set active power mode for device:%s status:%s",
+      LOG_DEBUG("Unable to set active power mode for device:%s status:%s",
                ADDRESS_TO_LOGGABLE_CSTR(peer_addr), btm_status_text(status).c_str());
       break;
   }
