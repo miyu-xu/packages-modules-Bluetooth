@@ -378,7 +378,7 @@ bool smp_send_msg_to_L2CAP(const RawAddress& rem_bda, BT_HDR* p_toL2CAP) {
       tSMP_INT_DATA smp_int_data;
       smp_int_data.status = SMP_SUCCESS;
       if (fixed_cid == L2CAP_SMP_CID) {
-        smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+        smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
       } else {
         smp_br_state_machine_event(p_cb, SMP_BR_AUTH_CMPL_EVT, &smp_int_data);
       }
@@ -419,7 +419,7 @@ bool smp_send_cmd(uint8_t cmd_code, tSMP_CB* p_cb) {
     if (p_cb->smp_over_br) {
       smp_br_state_machine_event(p_cb, SMP_BR_AUTH_CMPL_EVT, &smp_int_data);
     } else {
-      smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+      smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     }
   }
   return sent;
@@ -444,7 +444,7 @@ void smp_rsp_timeout(UNUSED_ATTR void* data) {
   if (p_cb->smp_over_br) {
     smp_br_state_machine_event(p_cb, SMP_BR_AUTH_CMPL_EVT, &smp_int_data);
   } else {
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
   }
 }
 
@@ -1615,7 +1615,7 @@ bool smp_request_oob_data(tSMP_CB* p_cb) {
   p_cb->cb_evt = SMP_SC_OOB_REQ_EVT;
   tSMP_INT_DATA smp_int_data;
   smp_int_data.req_oob_type = req_oob_type;
-  smp_sm_event(p_cb, SMP_TK_REQ_EVT, &smp_int_data);
+  smp_sm_event(SMP_TK_REQ_EVT, &smp_int_data);
 
   return true;
 }

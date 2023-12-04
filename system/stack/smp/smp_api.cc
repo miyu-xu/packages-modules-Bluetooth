@@ -102,7 +102,7 @@ tSMP_STATUS SMP_Pair(const RawAddress& bd_addr, tBLE_ADDR_TYPE addr_type) {
       smp_int_data.status = SMP_PAIR_INTERNAL_ERR;
       p_cb->status = SMP_PAIR_INTERNAL_ERR;
       LOG_ERROR("L2C connect fixed channel failed.");
-      smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+      p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
       return SMP_PAIR_INTERNAL_ERR;
     }
 
@@ -176,7 +176,7 @@ bool SMP_PairCancel(const RawAddress& bd_addr) {
     LOG_VERBOSE("set fail reason Unknown");
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_PAIR_FAIL_UNKNOWN;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return true;
   }
 
@@ -204,13 +204,13 @@ void SMP_SecurityGrant(const RawAddress& bd_addr, tSMP_STATUS res) {
     // If JUSTWORKS, this is used to display the consent dialog
     if (smp_cb.selected_association_model == SMP_MODEL_SEC_CONN_JUSTWORKS) {
       if (res == SMP_SUCCESS) {
-        smp_sm_event(&smp_cb, SMP_SC_NC_OK_EVT, NULL);
+        smp_cb.smp_sm_event(SMP_SC_NC_OK_EVT, NULL);
       } else {
         LOG_WARN("Consent dialog fails for JUSTWORKS");
         /* send pairing failure */
         tSMP_INT_DATA smp_int_data;
         smp_int_data.status = SMP_NUMERIC_COMPAR_FAIL;
-        smp_sm_event(&smp_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+        smp_cb.smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
       }
     } else if (smp_cb.selected_association_model == SMP_MODEL_ENCRYPTION_ONLY) {
       if (res == SMP_SUCCESS) {
@@ -223,13 +223,13 @@ void SMP_SecurityGrant(const RawAddress& bd_addr, tSMP_STATUS res) {
         smp_int_data.key = key;
 
         smp_cb.tk = {0};
-        smp_sm_event(&smp_cb, SMP_KEY_READY_EVT, &smp_int_data);
+        smp_cb.smp_sm_event(SMP_KEY_READY_EVT, &smp_int_data);
       } else {
         LOG_WARN("Consent dialog fails for ENCRYPTION_ONLY");
         /* send pairing failure */
         tSMP_INT_DATA smp_int_data;
         smp_int_data.status = SMP_NUMERIC_COMPAR_FAIL;
-        smp_sm_event(&smp_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+        smp_cb.smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
       }
     }
     return;
@@ -259,7 +259,7 @@ void SMP_SecurityGrant(const RawAddress& bd_addr, tSMP_STATUS res) {
   smp_cb.cb_evt = SMP_EVT_NONE;
   tSMP_INT_DATA smp_int_data;
   smp_int_data.status = res;
-  smp_sm_event(&smp_cb, SMP_API_SEC_GRANT_EVT, &smp_int_data);
+  smp_cb.smp_sm_event(SMP_API_SEC_GRANT_EVT, &smp_int_data);
 }
 
 /*******************************************************************************
@@ -304,13 +304,13 @@ void SMP_PasskeyReply(const RawAddress& bd_addr, uint8_t res,
     /* send pairing failure */
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_PASSKEY_ENTRY_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
 
   } else if (p_cb->selected_association_model ==
              SMP_MODEL_SEC_CONN_PASSKEY_ENT) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.passkey = passkey;
-    smp_sm_event(&smp_cb, SMP_SC_KEY_READY_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_SC_KEY_READY_EVT, &smp_int_data);
   } else {
     smp_convert_string_to_tk(&p_cb->tk, passkey);
   }
@@ -356,9 +356,9 @@ void SMP_ConfirmReply(const RawAddress& bd_addr, uint8_t res) {
     /* send pairing failure */
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_NUMERIC_COMPAR_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
   } else {
-    smp_sm_event(p_cb, SMP_SC_NC_OK_EVT, NULL);
+    p_cb->smp_sm_event(SMP_SC_NC_OK_EVT, NULL);
   }
 }
 
@@ -388,7 +388,7 @@ void SMP_OobDataReply(const RawAddress& bd_addr, tSMP_STATUS res, uint8_t len,
   if (res != SMP_SUCCESS || len == 0 || !p_data) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_OOB_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
   } else {
     if (len > OCTET16_LEN) len = OCTET16_LEN;
 
@@ -399,7 +399,7 @@ void SMP_OobDataReply(const RawAddress& bd_addr, tSMP_STATUS res, uint8_t len,
 
     tSMP_INT_DATA smp_int_data;
     smp_int_data.key = key;
-    smp_sm_event(&smp_cb, SMP_KEY_READY_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_KEY_READY_EVT, &smp_int_data);
   }
 }
 
@@ -421,7 +421,7 @@ void SMP_SecureConnectionOobDataReply(uint8_t* p_data) {
     LOG_ERROR("received no data");
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = SMP_OOB_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
@@ -462,14 +462,14 @@ void SMP_SecureConnectionOobDataReply(uint8_t* p_data) {
   tSMP_INT_DATA smp_int_data;
   if (data_missing) {
     smp_int_data.status = SMP_OOB_FAIL;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
   p_cb->sc_oob_data = *p_oob;
 
   smp_int_data.p_data = p_data;
-  smp_sm_event(&smp_cb, SMP_SC_OOB_DATA_EVT, &smp_int_data);
+  p_cb->smp_sm_event(SMP_SC_OOB_DATA_EVT, &smp_int_data);
 }
 
 /*******************************************************************************
@@ -485,7 +485,7 @@ void SMP_SecureConnectionOobDataReply(uint8_t* p_data) {
  ******************************************************************************/
 bool SMP_CrLocScOobData() {
   tSMP_INT_DATA smp_int_data;
-  return smp_sm_event(&smp_cb, SMP_CR_LOC_SC_OOB_DATA_EVT, &smp_int_data);
+  return smp_cb.smp_sm_event(SMP_CR_LOC_SC_OOB_DATA_EVT, &smp_int_data);
 }
 
 /*******************************************************************************
@@ -537,9 +537,9 @@ void SMP_SirkConfirmDeviceReply(const RawAddress& bd_addr, uint8_t res) {
     LOG_WARN("Verification fails");
     /* send pairing failure */
     smp_int_data.status = SMP_SIRK_DEVICE_INVALID;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
   } else {
     smp_int_data.status = SMP_SUCCESS;
-    smp_sm_event(p_cb, SMP_SIRK_DEVICE_VALID_EVT, &smp_int_data);
+    p_cb->smp_sm_event(SMP_SIRK_DEVICE_VALID_EVT, &smp_int_data);
   }
 }

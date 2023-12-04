@@ -122,7 +122,7 @@ void smp_proc_passkey(tSMP_CB* p_cb, BT_OCTET8 rand) {
     key.p_data = p_cb->tk.data();
     tSMP_INT_DATA smp_int_data;
     smp_int_data.key = key;
-    smp_sm_event(p_cb, SMP_KEY_READY_EVT, &smp_int_data);
+    smp_sm_event(SMP_KEY_READY_EVT, &smp_int_data);
   }
 }
 
@@ -372,7 +372,7 @@ static void smp_generate_confirm(tSMP_CB* p_cb) {
   if (status != SMP_SUCCESS) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = status;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
   tSMP_KEY key;
@@ -383,7 +383,7 @@ static void smp_generate_confirm(tSMP_CB* p_cb) {
   key.p_data = output.data();
   tSMP_INT_DATA smp_int_data;
   smp_int_data.key = key;
-  smp_sm_event(p_cb, SMP_KEY_READY_EVT, &smp_int_data);
+  smp_sm_event(SMP_KEY_READY_EVT, &smp_int_data);
 }
 
 /*******************************************************************************
@@ -436,7 +436,7 @@ void smp_generate_compare(tSMP_CB* p_cb, UNUSED_ATTR tSMP_INT_DATA* p_data) {
   if (status != SMP_SUCCESS) {
     tSMP_INT_DATA smp_int_data;
     smp_int_data.status = status;
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
   tSMP_KEY key;
@@ -446,7 +446,7 @@ void smp_generate_compare(tSMP_CB* p_cb, UNUSED_ATTR tSMP_INT_DATA* p_data) {
   key.p_data = output.data();
   tSMP_INT_DATA smp_int_data;
   smp_int_data.key = key;
-  smp_sm_event(p_cb, SMP_KEY_READY_EVT, &smp_int_data);
+  smp_sm_event(SMP_KEY_READY_EVT, &smp_int_data);
 }
 
 /** This function is called when STK is generated proceed to send the encrypt
@@ -462,7 +462,7 @@ static void smp_process_stk(tSMP_CB* p_cb, Octet16* p) {
 
   tSMP_INT_DATA smp_int_data;
   smp_int_data.key = key;
-  smp_sm_event(p_cb, SMP_KEY_READY_EVT, &smp_int_data);
+  smp_sm_event(SMP_KEY_READY_EVT, &smp_int_data);
 }
 
 /** This function calculates EDIV = Y xor DIV */
@@ -482,7 +482,7 @@ static void smp_process_ediv(tSMP_CB* p_cb, Octet16& p) {
 
   tSMP_INT_DATA smp_int_data;
   smp_int_data.key = key;
-  smp_sm_event(p_cb, SMP_KEY_READY_EVT, &smp_int_data);
+  smp_sm_event(SMP_KEY_READY_EVT, &smp_int_data);
 }
 
 /**
@@ -731,7 +731,7 @@ void smp_process_private_key(tSMP_CB* p_cb) {
   smp_debug_print_nbyte_little_endian(p_cb->loc_publ_key.y, "local public(y)",
                                       BT_OCTET32_LEN);
   p_cb->flags |= SMP_PAIR_FLAG_HAVE_LOCAL_PUBL_KEY;
-  smp_sm_event(p_cb, SMP_LOC_PUBL_KEY_CRTD_EVT, NULL);
+  smp_sm_event(SMP_LOC_PUBL_KEY_CRTD_EVT, NULL);
 }
 
 /*******************************************************************************
@@ -872,14 +872,14 @@ void smp_calculate_numeric_comparison_display_number(tSMP_CB* p_cb,
     p_cb->failure = SMP_PAIR_FAIL_UNKNOWN;
     LOG_VERBOSE("Number to display in numeric comparison=%d too large",
                 p_cb->number_to_display);
-    smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, &smp_int_data);
+    smp_sm_event(SMP_AUTH_CMPL_EVT, &smp_int_data);
     return;
   }
 
   p_cb->cb_evt = SMP_NC_REQ_EVT;
   tSMP_INT_DATA smp_int_data;
   smp_int_data.passkey = p_cb->number_to_display;
-  smp_sm_event(p_cb, SMP_SC_DSPL_NC_EVT, &smp_int_data);
+  smp_sm_event(SMP_SC_DSPL_NC_EVT, &smp_int_data);
 }
 
 /*******************************************************************************
@@ -936,7 +936,7 @@ void smp_calculate_peer_dhkey_check(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {
   key.p_data = param_buf.data();
   tSMP_INT_DATA smp_int_data;
   smp_int_data.key = key;
-  smp_sm_event(p_cb, SMP_SC_KEY_READY_EVT, &smp_int_data);
+  smp_sm_event(SMP_SC_KEY_READY_EVT, &smp_int_data);
 }
 
 /*******************************************************************************
@@ -1059,7 +1059,7 @@ void smp_start_nonce_generation(tSMP_CB* p_cb) {
               memcpy(p_cb->rand.data() + 8, rand, BT_OCTET8_LEN);
               LOG_VERBOSE("round %d, done", p_cb->round);
               /* notifies SM that it has new nonce. */
-              smp_sm_event(p_cb, SMP_HAVE_LOC_NONCE_EVT, NULL);
+              smp_sm_event(SMP_HAVE_LOC_NONCE_EVT, NULL);
             },
             p_cb));
       },

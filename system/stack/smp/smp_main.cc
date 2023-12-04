@@ -990,17 +990,17 @@ tSMP_STATE smp_get_state(void) { return smp_cb.state; }
  *              the role is invalid for the control block.
  *
  ******************************************************************************/
-bool smp_sm_event(tSMP_CB* p_cb, tSMP_EVENT event, tSMP_INT_DATA* p_data) {
-  uint8_t curr_state = p_cb->state;
+bool tSMP_CB::smp_sm_event(tSMP_EVENT event, tSMP_INT_DATA* p_data) {
+  uint8_t curr_state = this->state;
   tSMP_SM_TBL state_table;
   uint8_t action, entry, i;
 
-  if (p_cb->role >= 2) {
-    LOG_VERBOSE("Invalid role:%d", p_cb->role);
+  if (this->role >= 2) {
+    LOG_VERBOSE("Invalid role:%d", this->role);
     return false;
   }
 
-  tSMP_ENTRY_TBL entry_table = smp_entry_table[p_cb->role];
+  tSMP_ENTRY_TBL entry_table = smp_entry_table[this->role];
 
   if (curr_state >= SMP_STATE_MAX) {
     LOG_VERBOSE("Invalid state:%d", curr_state);
@@ -1008,8 +1008,8 @@ bool smp_sm_event(tSMP_CB* p_cb, tSMP_EVENT event, tSMP_INT_DATA* p_data) {
   }
 
   LOG_VERBOSE("SMP Role:%s State:[%s(%d)], Event:[%s(%d)]",
-              (p_cb->role == 0x01) ? "Peripheral" : "Central",
-              smp_get_state_name(p_cb->state), p_cb->state,
+              (this->role == 0x01) ? "Peripheral" : "Central",
+              smp_get_state_name(this->state), this->state,
               smp_get_event_name(event), event);
 
   /* look up the state table for the current state */
@@ -1022,7 +1022,7 @@ bool smp_sm_event(tSMP_CB* p_cb, tSMP_EVENT event, tSMP_INT_DATA* p_data) {
       entry &= ~SMP_ALL_TBL_MASK;
       state_table = smp_all_table;
     } else
-      state_table = smp_state_table[curr_state][p_cb->role];
+      state_table = smp_state_table[curr_state][this->role];
   } else {
     LOG_VERBOSE("Ignore event[%s(%d)] in state[%s(%d)]",
                 smp_get_event_name(event), event,
@@ -1041,12 +1041,12 @@ bool smp_sm_event(tSMP_CB* p_cb, tSMP_EVENT event, tSMP_INT_DATA* p_data) {
   for (i = 0; i < SMP_NUM_ACTIONS; i++) {
     action = state_table[entry - 1][i];
     if (action != SMP_SM_NO_ACTION) {
-      (*smp_sm_action[action])(p_cb, p_data);
+      (*smp_sm_action[action])(this, p_data);
     } else {
       break;
     }
   }
-  LOG_VERBOSE("result state=%s", smp_get_state_name(p_cb->state));
+  LOG_VERBOSE("result state=%s", smp_get_state_name(this->state));
   return true;
 }
 
