@@ -88,6 +88,24 @@
       "parentUuid": "e6fab240_e1bd947a",
       "revId": "b1306d7a14928bc0e5d94a79d6b2419ddd08094b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b21125d_64134e8f",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T19:25:11Z",
+      "side": 1,
+      "message": "agreed. \n\nvalues in comments are removed, smp_evt_to_text is added, logging statements are updated in upcoming CLs.",
+      "parentUuid": "2c6623bf_c5a24dad",
+      "revId": "b1306d7a14928bc0e5d94a79d6b2419ddd08094b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
