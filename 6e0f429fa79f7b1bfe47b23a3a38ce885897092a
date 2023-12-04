@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1909f4ff_ffa73242",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-04T06:15:59Z",
+      "side": 1,
+      "message": "There seems to be BUILD failures. Can you make sure android Builds with your changes.\n\nRunning : m -j32 should build everything.",
+      "revId": "6e0f429fa79f7b1bfe47b23a3a38ce885897092a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
