@@ -33,6 +33,24 @@
       "message": "Are you going to remove this from device/google/clockwork/include/bluetooth/bdroid_buildcfg_common.h ?",
       "revId": "3379ab99de4b520cd8334271f56e0c3f21d6978f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d18dd2ef_035563b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T06:03:25Z",
+      "side": 1,
+      "message": "Afaik (/ FYI), the bdroid_buildcfg_common.h is not used anymore at build time (specially when using prebuilt !)\n\nBut I agree, it would be nice to update and removed the value, as a cleanup effort",
+      "parentUuid": "03499fa9_f43377ba",
+      "revId": "3379ab99de4b520cd8334271f56e0c3f21d6978f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
