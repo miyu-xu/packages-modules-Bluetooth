@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b7b2d26_bd0941a5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T21:51:02Z",
+      "side": 1,
+      "message": "I think it intended to make the size of `mDevices` to be within `MAX_DEVICE_QUEUE_SIZE`.  However, the implementation is problematic, \nobviously, when the head of `mDeviceQueue` is a bonded device, it will keep adding new devices infinitely.",
+      "parentUuid": "21086378_6713b360",
+      "range": {
+        "startLine": 9,
+        "startChar": 134,
+        "endLine": 9,
+        "endChar": 146
+      },
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "7fb1d60c_49df619e",
@@ -140,6 +164,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "22b26d70_b78eb85e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T21:51:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "04761fa1_58a13669",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c092c343_2e343f80",
@@ -200,6 +242,24 @@
       "writtenOn": "2023-10-04T06:12:01Z",
       "side": 1,
       "message": "What about this instead?\n\n```\n} else {\n    mDeviceQueue.remove(key);\n    mDeviceQueue.offer(key);\n}\n```",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dd92dcc_06a5f5e2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T21:51:02Z",
+      "side": 1,
+      "message": "Why do you think we should add this in the else branch? \n\nIn my opinion we should add it in the true branch.",
+      "parentUuid": "8662aeba_cc7d14e6",
       "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
