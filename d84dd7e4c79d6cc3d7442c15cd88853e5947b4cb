@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7108306d_3d4f66ef",
+        "filename": "framework/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T23:44:50Z",
+      "side": 1,
+      "message": "Can you share some light on what both this exception are ?",
+      "range": {
+        "startLine": 94,
+        "startChar": 14,
+        "endLine": 94,
+        "endChar": 30
+      },
+      "revId": "d84dd7e4c79d6cc3d7442c15cd88853e5947b4cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acb76c73_ec671c1a",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcpController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T23:44:50Z",
+      "side": 1,
+      "message": "You should do that in another CL, as yoo are fixing the API by returning the correct value now instead of null everytime",
+      "range": {
+        "startLine": 229,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 92
+      },
+      "revId": "d84dd7e4c79d6cc3d7442c15cd88853e5947b4cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0fd70aca_baac27e6",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T23:44:50Z",
+      "side": 1,
+      "message": "rename to `pitm` ?",
+      "range": {
+        "startLine": 126,
+        "startChar": 14,
+        "endLine": 126,
+        "endChar": 18
+      },
+      "revId": "d84dd7e4c79d6cc3d7442c15cd88853e5947b4cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "45350129_866a09cd",
+        "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T23:44:50Z",
+      "side": 1,
+      "message": "Should there be a TODO here too ?",
+      "range": {
+        "startLine": 95,
+        "startChar": 23,
+        "endLine": 95,
+        "endChar": 48
+      },
+      "revId": "d84dd7e4c79d6cc3d7442c15cd88853e5947b4cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

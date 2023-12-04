@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "91a367e9_51e21224",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-04T23:44:50Z",
+      "side": 0,
+      "message": "Can you explain why it safe to remove this parameter ?",
+      "range": {
+        "startLine": 295,
+        "startChar": 49,
+        "endLine": 295,
+        "endChar": 60
+      },
+      "revId": "204ef4ca5e2266bd80195c97c2d76170a3a010b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
