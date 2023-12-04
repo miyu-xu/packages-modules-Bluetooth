@@ -583,7 +583,8 @@ typedef struct t_l2c_linkcb {
 /* Define the L2CAP control structure
 */
 typedef struct {
-  uint16_t controller_xmit_window; /* Total ACL window for all links */
+  uint8_t l2cap_trace_level;
+  int16_t controller_xmit_window; /* Total ACL window for all links */
 
   uint16_t round_robin_quota;   /* Round-robin link quota */
   uint16_t round_robin_unacked; /* Round-robin unacked */
@@ -627,7 +628,7 @@ typedef struct {
       fixed_reg[L2CAP_NUM_FIXED_CHNLS]; /* Reg info for fixed channels */
 
   uint16_t num_ble_links_active; /* Number of LE links active */
-  uint16_t controller_le_xmit_window; /* Total ACL window for all links */
+  int16_t controller_le_xmit_window; /* Total ACL window for all links */
   tL2C_BLE_FIXED_CHNLS_MASK l2c_ble_fixed_chnls_mask;  // LE fixed channels mask
   uint16_t num_lm_ble_bufs;         /* # of ACL buffers on controller */
   uint16_t ble_round_robin_quota;   /* Round-robin link quota */
