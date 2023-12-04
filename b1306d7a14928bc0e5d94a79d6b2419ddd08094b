@@ -52,6 +52,24 @@
       "parentUuid": "b37791b6_373af90a",
       "revId": "b1306d7a14928bc0e5d94a79d6b2419ddd08094b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e6fab240_e1bd947a",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-04T18:35:40Z",
+      "side": 1,
+      "message": "No cast is done on this type. \n\nhttps://source.corp.google.com/search?q\u003dtSMP_EVT\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main%20f:packages%2Fmodules%2FBluetooth\n\nOne occasion I had is, I want to group similar values together, but because of unnecessary value assignment, I have to append new values.\n\nThat\u0027s why I prefer not assigning values unless it is some value defined by the spec.",
+      "parentUuid": "0101c049_46bf4fc8",
+      "revId": "b1306d7a14928bc0e5d94a79d6b2419ddd08094b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
