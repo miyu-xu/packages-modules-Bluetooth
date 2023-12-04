@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "10c78d3b_96caac72",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2903,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-04T11:00:28Z",
+      "side": 1,
+      "message": "I don\u0027t prefer to check `insert_call_when_sco_start` here. I prefer always bring the call back if user manually disable feature.\n\n1. `insert_call_when_sco_start` function need to base on device address. It is relative hard to pass address in `set_phone_ops_enabled`\n\n2. As long as the flag can become a kill switch it is good enough. After the feature launch, `self.phone_ops_enable` will become default true. And this function will only be called when user want to disable it via `chrome://flags`.",
+      "parentUuid": "09e28cfe_160140eb",
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "065fe2ce_d1a41f37",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-01T11:47:17Z",
       "side": 1,
       "message": "ditto",
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2adb8adb_e5849a0b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2934,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-04T11:00:28Z",
+      "side": 1,
+      "message": "I also don\u0027t prefer the change here.\n\nFor qualification, I don\u0027t think we need to workaround for certain headset right?\n\nActually I even believe it is better to have consist behavior for qualification. WDYT?",
+      "parentUuid": "065fe2ce_d1a41f37",
       "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
