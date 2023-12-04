@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a4723f_25ed0c60",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-04T04:34:12Z",
+      "side": 1,
+      "message": "LGTM, please continue driving this CL. Thanks!",
+      "revId": "7a1a5472ad619124ec2ca0726a50e3d32139f17f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
