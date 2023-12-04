@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d10e70a_c2df3b8d",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1359,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-12-04T15:59:42Z",
+      "side": 1,
+      "message": "We set `max_sdu_size_stom` to 0 here...",
+      "revId": "9b5f4fca473642e92478f870bf9a2edc7e2bceb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4f8a5d6b_e368f107",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1377,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-12-04T15:59:42Z",
+      "side": 1,
+      "message": "...but then don\u0027t change its value before this check here.  So this check is always `true`.  Did we intend to set `max_sdu_size_stom` to a different value before getting here?",
+      "revId": "9b5f4fca473642e92478f870bf9a2edc7e2bceb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
