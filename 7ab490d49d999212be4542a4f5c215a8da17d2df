@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c124d39_9f1c6d12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-04T21:45:47Z",
+      "side": 1,
+      "message": "Assuming this is re-landing of CL aosp/2817762, nothing changed from it, please correct me if I\u0027m wrong.\n+2 since it\u0027s already reviewed there.",
+      "revId": "7ab490d49d999212be4542a4f5c215a8da17d2df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
