@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec262df7_a4b3bd76",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-05T22:03:09Z",
+      "side": 1,
+      "message": "maybe we should have a print with a state and setter function for the state with a print ?",
+      "range": {
+        "startLine": 225,
+        "startChar": 6,
+        "endLine": 225,
+        "endChar": 23
+      },
+      "revId": "58cbb8da411a2f3e73a37231053988a3b5703d11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
