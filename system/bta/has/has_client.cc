@@ -43,7 +43,6 @@
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
 
-using base::Closure;
 using bluetooth::Uuid;
 using bluetooth::csis::CsisClient;
 using bluetooth::has::ConnectionState;

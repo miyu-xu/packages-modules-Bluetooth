@@ -38,7 +38,6 @@ namespace vc {
 namespace internal {
 namespace {
 
-using base::Bind;
 using base::Unretained;
 
 using bluetooth::vc::ConnectionState;
