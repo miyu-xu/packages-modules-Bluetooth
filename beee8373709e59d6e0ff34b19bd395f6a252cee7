@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0047b822_e3c51ead",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2903,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-05T04:59:03Z",
+      "side": 1,
+      "message": "\u003e `insert_call_when_sco_start` function need to base on device address. It is relative hard to pass address in `set_phone_ops_enabled`\n\n`hfp_audio_state` has the addresses.\n\n\u003e As long as the flag can become a kill switch it is good enough. After the feature launch, `self.phone_ops_enable` will become default true. And this function will only be called when user want to disable it via `chrome://flags`.\n\nSince (1) is unblocked I don\u0027t see a good reason to omit the edge case. Please fix.",
+      "parentUuid": "10c78d3b_96caac72",
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "065fe2ce_d1a41f37",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -67,6 +85,24 @@
       "side": 1,
       "message": "I also don\u0027t prefer the change here.\n\nFor qualification, I don\u0027t think we need to workaround for certain headset right?\n\nActually I even believe it is better to have consist behavior for qualification. WDYT?",
       "parentUuid": "065fe2ce_d1a41f37",
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3f4f95e_37028e00",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2934,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-05T04:59:03Z",
+      "side": 1,
+      "message": "`if !enable` means switching back to normal mode from qualification mode. This is not qualification code.",
+      "parentUuid": "2adb8adb_e5849a0b",
       "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
