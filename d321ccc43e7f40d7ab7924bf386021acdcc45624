@@ -22,6 +22,30 @@
       },
       "revId": "d321ccc43e7f40d7ab7924bf386021acdcc45624",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7e7a9fb6_bf1dcaf8",
+        "filename": "system/stack/include/sdp_device_id.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-05T21:25:31Z",
+      "side": 1,
+      "message": "Yes...for sure...which is the main directive.\n\nPart of my Build Inclusion Directory Reduction Effort, or BIDRE (?)\n\n```\n$ find . -name bt_target.h\n./internal_include/bt_target.h\n$ ls -1 internal_include/\nAndroid.bp\nbte_appl.h\nbt_target.h\nbt_trace.h\nstack_config.h\n```\n\nI think there are better ways to parse/distribute the data contained here so I don\u0027t mind expanding the file inclusion to use `internal_include` and remove `internal_include` from Android.bp files.\n\nThen as the individual data pieces contained within each compilation unit that depend on `internal_include/*.h` get moved the deps list gets smaller until all of this can be removed.",
+      "parentUuid": "bb4739fb_4f1702a6",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "d321ccc43e7f40d7ab7924bf386021acdcc45624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
