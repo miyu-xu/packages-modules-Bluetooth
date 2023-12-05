@@ -77,8 +77,13 @@ class CodecManager {
       types::BidirectionalPair<uint16_t> delays_ms,
       std::function<void(const offload_config& config, uint8_t direction)>
           update_receiver);
-  virtual const ::le_audio::set_configurations::AudioSetConfigurations*
-  GetOffloadCodecConfig(::le_audio::types::LeAudioContextType ctx_type);
+  virtual std::unique_ptr<::le_audio::set_configurations::AudioSetConfiguration>
+  GetCodecConfig(::le_audio::types::LeAudioContextType ctx_type,
+                 std::function<const set_configurations::AudioSetConfiguration*(
+                     types::LeAudioContextType context_type,
+                     const set_configurations::AudioSetConfigurations* confs)>
+                     non_vendor_config_matcher);
+
   virtual bool CheckCodecConfigIsBiDirSwb(
       const ::le_audio::set_configurations::AudioSetConfiguration& config)
       const;
