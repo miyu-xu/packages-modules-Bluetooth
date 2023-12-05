@@ -239,6 +239,13 @@ public class VolumeControlService extends ProfileService {
     }
 
     @Override
+    protected void create() {
+        if (DBG) {
+            Log.d(TAG, "create()");
+        }
+    }
+
+    @Override
     protected boolean start() {
         if (DBG) {
             Log.d(TAG, "start()");
@@ -807,16 +814,17 @@ public class VolumeControlService extends ProfileService {
                     continue;
                 }
             }
-            // notify volume level for all vc devices
-            if (mFeatureFlags.leaudioBroadcastVolumeControlForConnectedDevices()) {
-                notifyDevicesVolumeChanged(getDevices(), Optional.empty());
-            }
         }
 
         tempCallbackList.finishBroadcast();
 
         /* User is notified, remove callback from temporary list */
         tempCallbackList.unregister(callback);
+
+        // notify volume level for all vc devices with mCallbacks handle
+        if (mFeatureFlags.leaudioBroadcastVolumeControlForConnectedDevices()) {
+            notifyDevicesVolumeChanged(getDevices(), Optional.empty());
+        }
     }
 
     void registerCallback(IBluetoothVolumeControlCallback callback) {
