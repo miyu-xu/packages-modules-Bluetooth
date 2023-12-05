@@ -119,7 +119,7 @@ class CsisClientImpl : public CsisClient {
         [](tBTA_GATTC_EVT event, tBTA_GATTC* p_data) {
           if (instance && p_data) instance->GattcCallback(event, p_data);
         },
-        base::Bind(
+        base::BindOnce(
             [](Closure initCb, uint8_t client_id, uint8_t status) {
               if (status != GATT_SUCCESS) {
                 LOG_ERROR(
