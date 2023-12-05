@@ -29,9 +29,9 @@
 
 #include <string>
 
-#include "bt_target.h"
 #include "common/time_util.h"
 #include "gd/hal/snoop_logger.h"
+#include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
 #include "main/shim/metrics_api.h"
 #include "osi/include/allocator.h"

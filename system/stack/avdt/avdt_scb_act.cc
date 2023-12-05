@@ -31,7 +31,7 @@
 #include "avdt_api.h"
 #include "avdt_int.h"
 #include "avdtc_api.h"
-#include "bt_target.h"
+#include "internal_include/bt_target.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"

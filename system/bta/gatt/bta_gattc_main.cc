@@ -26,8 +26,8 @@
 #include <base/logging.h>
 #include <base/strings/stringprintf.h>
 
-#include "bt_target.h"  // Must be first to define build configuration"
 #include "bta/gatt/bta_gattc_int.h"
+#include "internal_include/bt_target.h"  // Must be first to define build configuration"
 #include "osi/include/log.h"
 #include "stack/include/bt_hdr.h"
 

@@ -23,10 +23,10 @@
  *
  ******************************************************************************/
 
-#include "bt_target.h"  // Must be first to define build configuration
 #include "bta/ag/bta_ag_int.h"
 #include "bta/include/bta_ag_api.h"
 #include "device/include/esco_parameters.h"
+#include "internal_include/bt_target.h"  // Must be first to define build configuration
 #include "osi/include/allocator.h"
 #include "osi/include/compat.h"
 

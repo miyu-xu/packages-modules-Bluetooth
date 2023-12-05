@@ -28,7 +28,7 @@
 #include "avdt_api.h"
 #include "avdt_int.h"
 #include "avdtc_api.h"
-#include "bt_target.h"
+#include "internal_include/bt_target.h"
 #include "l2c_api.h"
 #include "l2cdefs.h"
 #include "osi/include/allocator.h"
