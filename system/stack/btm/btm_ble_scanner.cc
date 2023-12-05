@@ -22,9 +22,9 @@
 
 #include "ble_scanner.h"
 #include "ble_scanner_hci_interface.h"
-#include "bt_target.h"
 #include "btm_int_types.h"
 #include "device/include/controller.h"
+#include "internal_include/bt_target.h"
 #include "internal_include/stack_config.h"
 #include "osi/include/alarm.h"
 #include "stack/btm/btm_ble_int.h"

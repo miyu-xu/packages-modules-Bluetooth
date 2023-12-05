@@ -29,7 +29,7 @@
 #include <cstdint>
 #include <cstring>
 
-#include "bt_target.h"
+#include "internal_include/bt_target.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "osi/include/mutex.h"

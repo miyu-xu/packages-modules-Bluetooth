@@ -26,7 +26,7 @@
 #include "a2dp_vendor_aptx_hd.h"
 #include "a2dp_vendor_ldac.h"
 #include "a2dp_vendor_opus.h"
-#include "bt_target.h"
+#include "internal_include/bt_target.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 #include "stack/include/bt_hdr.h"

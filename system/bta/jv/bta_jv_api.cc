@@ -30,8 +30,8 @@
 #include <cstdint>
 #include <memory>
 
-#include "bt_target.h"  // Must be first to define build configuration
 #include "bta/jv/bta_jv_int.h"
+#include "internal_include/bt_target.h"  // Must be first to define build configuration
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/gap_api.h"

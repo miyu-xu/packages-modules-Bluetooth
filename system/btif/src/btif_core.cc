@@ -37,7 +37,6 @@
 
 #include <cstdint>
 
-#include "bt_target.h"  // Must be first to define build configuration
 #include "btif/include/btif_av.h"
 #include "btif/include/btif_common.h"
 #include "btif/include/btif_config.h"
@@ -52,6 +51,7 @@
 #include "common/message_loop_thread.h"
 #include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
+#include "internal_include/bt_target.h"  // Must be first to define build configuration
 #include "osi/include/allocator.h"
 #include "osi/include/future.h"
 #include "osi/include/log.h"

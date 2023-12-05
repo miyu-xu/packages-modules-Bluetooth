@@ -29,9 +29,9 @@
 
 #include <string>
 
-#include "bt_target.h"
 #include "device/include/controller.h"
 #include "gd/os/system_properties.h"
+#include "internal_include/bt_target.h"
 #include "internal_include/stack_config.h"
 #include "l2c_api.h"
 #include "os/log.h"

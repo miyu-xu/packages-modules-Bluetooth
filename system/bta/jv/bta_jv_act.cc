@@ -29,11 +29,11 @@
 #include <cstdint>
 #include <unordered_set>
 
-#include "bt_target.h"  // Must be first to define build configuration
 #include "bta/include/bta_jv_co.h"
 #include "bta/include/bta_rfcomm_scn.h"
 #include "bta/jv/bta_jv_int.h"
 #include "bta/sys/bta_sys.h"
+#include "internal_include/bt_target.h"  // Must be first to define build configuration
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
