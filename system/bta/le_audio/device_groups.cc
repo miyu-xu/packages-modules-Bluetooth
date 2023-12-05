@@ -752,7 +752,10 @@ bool LeAudioDeviceGroup::UpdateAudioContextAvailability(void) {
 bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(
     LeAudioContextType ctx_type) {
   const le_audio::set_configurations::AudioSetConfiguration* new_conf =
-      FindFirstSupportedConfiguration(ctx_type);
+      CodecManager::GetInstance()->GetCodecConfig(
+          ctx_type,
+          std::bind(&LeAudioDeviceGroup::FindFirstSupportedConfiguration, this,
+                    std::placeholders::_1, std::placeholders::_2));
   auto update_config = true;
 
   if (context_to_configuration_cache_map.count(ctx_type) != 0) {
@@ -1817,10 +1820,8 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
 
 const set_configurations::AudioSetConfiguration*
 LeAudioDeviceGroup::FindFirstSupportedConfiguration(
-    LeAudioContextType context_type) const {
-  const set_configurations::AudioSetConfigurations* confs =
-      AudioSetConfigurationProvider::Get()->GetConfigurations(context_type);
-
+    LeAudioContextType context_type,
+    const set_configurations::AudioSetConfigurations* confs) const {
   LOG_DEBUG("context type: %s,  number of connected devices: %d",
             bluetooth::common::ToString(context_type).c_str(),
             +NumOfConnected());

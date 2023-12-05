@@ -350,14 +350,24 @@ class LeAudioDeviceGroup {
   void PrintDebugState(void) const;
   void Dump(int fd, int active_group_id) const;
 
+  /* Codec configuration matcher supporting the legacy configuration provider
+   * mechanism for the non-vendor and software codecs. Only if the codec
+   * parameters are using the common LTV data format, the BT stack can verify
+   * them against the the remote device capabilities and find the best possible
+   * configurations. This will not be used for finding best possible vendor
+   * codec configuration.
+   */
+  const set_configurations::AudioSetConfiguration*
+  FindFirstSupportedConfiguration(
+      types::LeAudioContextType context_type,
+      const set_configurations::AudioSetConfigurations* confs) const;
+
  private:
   bool is_enabled_;
 
   uint32_t transport_latency_mtos_us_;
   uint32_t transport_latency_stom_us_;
 
-  const set_configurations::AudioSetConfiguration*
-  FindFirstSupportedConfiguration(types::LeAudioContextType context_type) const;
   bool ConfigureAses(
       const set_configurations::AudioSetConfiguration* audio_set_conf,
       types::LeAudioContextType context_type,
