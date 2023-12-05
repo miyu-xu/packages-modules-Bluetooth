@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9327b041_a612f846",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-05T19:27:39Z",
+      "side": 1,
+      "message": "Can we add some usage at the same time?",
+      "revId": "cf9bdf77d8d30f1ddce804a92b7f0bb9fcf2f10e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
