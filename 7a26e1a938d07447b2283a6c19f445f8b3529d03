@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "86873a11_659d418f",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-05T21:19:14Z",
+      "side": 1,
+      "message": "I will prune as needed",
+      "parentUuid": "4402adf6_e086f9cf",
+      "range": {
+        "startLine": 74,
+        "startChar": 36,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "7a26e1a938d07447b2283a6c19f445f8b3529d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9f059238_496ed91e",
         "filename": "system/btif/Android.bp",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-05T21:15:34Z",
       "side": 1,
       "message": "What happens if you don\u0027t include libchrome here?",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 6
+      },
+      "revId": "7a26e1a938d07447b2283a6c19f445f8b3529d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "933ee9e5_331881bf",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-05T21:19:14Z",
+      "side": 1,
+      "message": "Requires the base functionality.\n\n``` \ndo_in_jni_thread(base::BindOnce ...\n```\n\nI\u0027ll go through the headers to make it explicit",
+      "parentUuid": "9f059238_496ed91e",
       "range": {
         "startLine": 85,
         "startChar": 0,
