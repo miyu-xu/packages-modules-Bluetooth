@@ -70,6 +70,30 @@
       },
       "revId": "a8c18892993fb32595ac2ecfe49fd568086526f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "904dfc19_12f557ad",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4605,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-05T03:12:07Z",
+      "side": 1,
+      "message": "That could be an interesting compromise.\n\nMichael what do you think ?",
+      "parentUuid": "d494dd98_15cebc09",
+      "range": {
+        "startLine": 4601,
+        "startChar": 0,
+        "endLine": 4605,
+        "endChar": 62
+      },
+      "revId": "a8c18892993fb32595ac2ecfe49fd568086526f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
