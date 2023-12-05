@@ -16,6 +16,24 @@
       "message": "Is this a change made by `google-java-format` ?",
       "revId": "d6f32aac30befb826a44914f83e5216019ab51fc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "beeef20e_a742cdf7",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-12-05T17:30:17Z",
+      "side": 1,
+      "message": "The google java format script said the imports needed to be sorted but it couldn\u0027t sort the imports for me and to use the IntelliJ formatter for sorting imports. So I used IntelliJ to sort imports, which satisfied the google java formatter.",
+      "parentUuid": "ebbae9f9_61788422",
+      "revId": "d6f32aac30befb826a44914f83e5216019ab51fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
