@@ -298,12 +298,36 @@ const std::map<uint8_t, uint32_t> LeAudioCoreCodecConfig::sampling_freq_map = {
     {codec_spec_conf::kLeAudioSamplingFreq48000Hz,
      LeAudioCodecConfiguration::kSampleRate48000}};
 
+/* Helper map for matching various frequency notations */
+const std::map<uint32_t, uint8_t> LeAudioCoreCodecConfig::sample_rate_map = {
+    {LeAudioCodecConfiguration::kSampleRate8000,
+     codec_spec_conf::kLeAudioSamplingFreq8000Hz},
+    {LeAudioCodecConfiguration::kSampleRate16000,
+     codec_spec_conf::kLeAudioSamplingFreq16000Hz},
+    {LeAudioCodecConfiguration::kSampleRate24000,
+     codec_spec_conf::kLeAudioSamplingFreq24000Hz},
+    {LeAudioCodecConfiguration::kSampleRate32000,
+     codec_spec_conf::kLeAudioSamplingFreq32000Hz},
+    {LeAudioCodecConfiguration::kSampleRate44100,
+     codec_spec_conf::kLeAudioSamplingFreq44100Hz},
+    {LeAudioCodecConfiguration::kSampleRate48000,
+     codec_spec_conf::kLeAudioSamplingFreq48000Hz},
+};
+
 /* Helper map for matching various frame durations notations */
 const std::map<uint8_t, uint32_t> LeAudioCoreCodecConfig::frame_duration_map = {
     {codec_spec_conf::kLeAudioCodecFrameDur7500us,
      LeAudioCodecConfiguration::kInterval7500Us},
     {codec_spec_conf::kLeAudioCodecFrameDur10000us,
      LeAudioCodecConfiguration::kInterval10000Us}};
+
+/* Helper map for matching various frame durations notations */
+const std::map<uint32_t, uint8_t> LeAudioCoreCodecConfig::data_interval_map = {
+    {LeAudioCodecConfiguration::kInterval7500Us,
+     codec_spec_conf::kLeAudioCodecFrameDur7500us},
+    {LeAudioCodecConfiguration::kInterval10000Us,
+     codec_spec_conf::kLeAudioCodecFrameDur10000us},
+};
 
 std::string CapabilityTypeToStr(const uint8_t& type) {
   switch (type) {
