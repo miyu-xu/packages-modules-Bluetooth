@@ -178,7 +178,7 @@ void bta_hh_le_enable(void) {
     bta_hh_cb.le_cb_index[xx] = BTA_HH_IDX_INVALID;
 
   BTA_GATTC_AppRegister(bta_hh_gattc_callback,
-                        base::Bind([](uint8_t client_id, uint8_t r_status) {
+                        base::BindOnce([](uint8_t client_id, uint8_t r_status) {
                           tBTA_HH bta_hh;
                           bta_hh.status = BTA_HH_ERR;
 
@@ -195,7 +195,8 @@ void bta_hh_le_enable(void) {
                             /* signal BTA call back event */
                             (*bta_hh_cb.p_cback)(BTA_HH_ENABLE_EVT, &bta_hh);
                           }
-                        }), false);
+                        }),
+                        false);
 }
 
 /*******************************************************************************

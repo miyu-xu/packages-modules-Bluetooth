@@ -262,7 +262,7 @@ class LeAudioClientImpl : public LeAudioClient {
 
     BTA_GATTC_AppRegister(
         le_audio_gattc_callback,
-        base::Bind(
+        base::BindOnce(
             [](base::Closure initCb, uint8_t client_id, uint8_t status) {
               if (status != GATT_SUCCESS) {
                 LOG(ERROR) << "Can't start LeAudio profile - no gatt "

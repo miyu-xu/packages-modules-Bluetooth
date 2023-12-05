@@ -247,7 +247,7 @@ static bt_status_t btif_gattc_register_app(const Uuid& uuid,
       [](const Uuid& uuid, bool eatt_support) {
         BTA_GATTC_AppRegister(
             bta_gattc_cback,
-            base::Bind(
+            base::BindOnce(
                 [](const Uuid& uuid, uint8_t client_id, uint8_t status) {
                   do_in_jni_thread(Bind(
                       [](const Uuid& uuid, uint8_t client_id, uint8_t status) {
