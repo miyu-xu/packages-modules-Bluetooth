@@ -143,7 +143,7 @@ pub mod ffi {
         type HfpIntf;
 
         unsafe fn GetHfpProfile(btif: *const u8) -> UniquePtr<HfpIntf>;
-
+        unsafe fn insert_call_when_sco_start(bt_addr: RawAddress) -> bool;
         fn init(self: Pin<&mut HfpIntf>) -> i32;
         fn connect(self: Pin<&mut HfpIntf>, bt_addr: RawAddress) -> u32;
         fn connect_audio(
@@ -210,6 +210,10 @@ pub mod ffi {
             pkt_status_in_binary: String,
         );
     }
+}
+
+pub fn insert_call_when_sco_start(bt_addr: RawAddress) -> bool {
+    unsafe { return ffi::insert_call_when_sco_start(bt_addr) }
 }
 
 pub type TelephonyDeviceStatus = ffi::TelephonyDeviceStatus;
