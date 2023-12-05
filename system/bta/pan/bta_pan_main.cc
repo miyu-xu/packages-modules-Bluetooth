@@ -23,10 +23,9 @@
  ******************************************************************************/
 #include <cstdint>
 
-#include "bt_target.h"  // Must be first to define build configuration
-
 #include "bta/pan/bta_pan_int.h"
-#include "osi/include/osi.h"  // UNUSED_ATTR
+#include "internal_include/bt_target.h"  // Must be first to define build configuration
+#include "osi/include/osi.h"             // UNUSED_ATTR
 #include "stack/include/bt_hdr.h"
 
 /*****************************************************************************
