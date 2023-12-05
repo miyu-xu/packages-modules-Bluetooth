@@ -22,6 +22,30 @@
       },
       "revId": "204ef4ca5e2266bd80195c97c2d76170a3a010b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e5d6014_7caea492",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-05T01:06:09Z",
+      "side": 0,
+      "message": "Because the `mFd` to which it was assigned was unused (reported by errorprone)",
+      "parentUuid": "91a367e9_51e21224",
+      "range": {
+        "startLine": 295,
+        "startChar": 49,
+        "endLine": 295,
+        "endChar": 60
+      },
+      "revId": "204ef4ca5e2266bd80195c97c2d76170a3a010b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

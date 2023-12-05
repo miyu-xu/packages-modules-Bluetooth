@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a2f64ead_6b848560",
+        "filename": "framework/java/android/bluetooth/BluetoothServerSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-05T01:06:09Z",
+      "side": 1,
+      "message": "I think this is out of scope of this CL, also I\u0027m not sure if we want this as mitm is a term from the specification",
+      "parentUuid": "0fd70aca_baac27e6",
+      "range": {
+        "startLine": 126,
+        "startChar": 14,
+        "endLine": 126,
+        "endChar": 18
+      },
+      "revId": "d84dd7e4c79d6cc3d7442c15cd88853e5947b4cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "45350129_866a09cd",
         "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
         "patchSetId": 1
