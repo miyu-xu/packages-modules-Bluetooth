@@ -320,6 +320,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ebe99e0f_2b6d85eb",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-05T01:58:41Z",
+      "side": 1,
+      "message": "Per offline discussion, this change does not fix the issue in the bugs, which should have been fixed by aosp/2768571. Abandon it",
+      "parentUuid": "db3e1cd1_547f7d5b",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f19b3f6_7f421908",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 4
