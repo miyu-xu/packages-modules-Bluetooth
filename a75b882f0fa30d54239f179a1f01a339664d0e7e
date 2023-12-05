@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4b6e6d4_8799b1d4",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-05T11:50:39Z",
+      "side": 1,
+      "message": "should be \u003e\u003d for future version",
+      "range": {
+        "startLine": 114,
+        "startChar": 44,
+        "endLine": 114,
+        "endChar": 46
+      },
+      "revId": "a75b882f0fa30d54239f179a1f01a339664d0e7e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
