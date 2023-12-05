@@ -26,10 +26,10 @@
 #include <cstdint>
 #include <mutex>
 
-#include "bt_target.h"  // Must be first to define build configuration
 #include "bta/include/bta_jv_api.h"
 #include "bta/include/bta_rfcomm_scn.h"
 #include "btif/include/btif_metrics_logging.h"
+#include "internal_include/bt_target.h"
 /* The JV interface can have only one user, hence we need to call a few
  * L2CAP functions from this file. */
 #include "btif/include/btif_sock.h"
