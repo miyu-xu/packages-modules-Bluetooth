@@ -234,6 +234,8 @@ void TestHciLayer::ListDependencies(ModuleList* /* list */) const {}
 void TestHciLayer::Start() {
   std::lock_guard<std::mutex> lock(mutex_);
   InitEmptyCommand();
+  os::Handler* handler = GetHandler();
+  StartWithNoHalDependencies(handler);
 }
 void TestHciLayer::Stop() {}
 
