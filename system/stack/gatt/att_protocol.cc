@@ -24,8 +24,8 @@
 
 #include <base/logging.h>
 
-#include "bt_target.h"
 #include "gatt_int.h"
+#include "internal_include/bt_target.h"
 #include "l2c_api.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"

@@ -30,7 +30,7 @@
 
 #include <cstdint>
 
-#include "bt_target.h"
+#include "internal_include/bt_target.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"  // PTR_TO_UINT
 #include "stack/include/bt_types.h"

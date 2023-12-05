@@ -31,8 +31,8 @@
 #include "a2dp_vendor.h"
 #include "a2dp_vendor_opus_decoder.h"
 #include "a2dp_vendor_opus_encoder.h"
-#include "bt_target.h"
 #include "btif_av_co.h"
+#include "internal_include/bt_target.h"
 #include "osi/include/log.h"
 #include "osi/include/osi.h"
 

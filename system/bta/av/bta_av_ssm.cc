@@ -22,7 +22,7 @@
  *
  ******************************************************************************/
 
-#include "bt_target.h"  // Must be first to define build configuration
+#include "internal_include/bt_target.h"  // Must be first to define build configuration
 
 #define LOG_TAG "bt_bta_av"
 
