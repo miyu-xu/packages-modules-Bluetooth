@@ -1106,6 +1106,17 @@ struct CodecConfigSetting {
     return channel_count_per_iso_stream;
   }
 
+  bool operator==(const CodecConfigSetting& other) const {
+    return (id == other.id) &&
+           (channel_count_per_iso_stream ==
+            other.channel_count_per_iso_stream) &&
+           (params == other.params);
+  }
+
+  bool operator!=(const CodecConfigSetting& other) const {
+    return !(*this == other);
+  }
+
   /* TODO: Add vendor parameter or Ltv map viewers for
    * vendor specific LTV types.
    */
