@@ -370,6 +370,10 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
                     mCallbackExecutorMap.put(callback, executor);
                     return;
                 }
+                boolean callSucceed = false;
+                // add to mCallbackExecutorMap first so that registerCallback
+                // can trigger callbacks on registration
+                mCallbackExecutorMap.put(callback, executor);
                 try {
                     final IBluetoothVolumeControl service = getService();
                     if (service != null) {
@@ -377,20 +381,25 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
                                 SynchronousResultReceiver.get();
                         service.registerCallback(mCallback, mAttributionSource, recv);
                         recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+                        callSucceed = true;
                     }
                 } catch (RemoteException e) {
                     Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
                     throw e.rethrowAsRuntimeException();
                 } catch (TimeoutException e) {
                     Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+                } finally {
+                    if (!callSucceed) {
+                        mCallbackExecutorMap.remove(callback);
+                    }
                 }
+            } else {
+                // Adds the passed in callback to our map of callbacks to executors
+                if (mCallbackExecutorMap.containsKey(callback)) {
+                    throw new IllegalArgumentException("This callback has already been registered");
+                }
+                mCallbackExecutorMap.put(callback, executor);
             }
-
-            // Adds the passed in callback to our map of callbacks to executors
-            if (mCallbackExecutorMap.containsKey(callback)) {
-                throw new IllegalArgumentException("This callback has already been registered");
-            }
-            mCallbackExecutorMap.put(callback, executor);
         }
     }
 
