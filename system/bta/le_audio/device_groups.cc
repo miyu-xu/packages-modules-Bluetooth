@@ -752,14 +752,15 @@ bool LeAudioDeviceGroup::UpdateAudioContextAvailability(void) {
 
 bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(
     LeAudioContextType ctx_type) {
-  const le_audio::set_configurations::AudioSetConfiguration* new_conf =
-      FindFirstSupportedConfiguration(ctx_type);
+  auto new_conf = CodecManager::GetInstance()->GetCodecConfig(
+      ctx_type, std::bind(&LeAudioDeviceGroup::FindFirstSupportedConfiguration,
+                          this, std::placeholders::_1, std::placeholders::_2));
   auto update_config = true;
 
   if (context_to_configuration_cache_map.count(ctx_type) != 0) {
-    auto [is_valid, existing_conf] =
+    auto& [is_valid, existing_conf] =
         context_to_configuration_cache_map.at(ctx_type);
-    update_config = (new_conf != existing_conf);
+    update_config = (new_conf.get() != existing_conf.get());
     /* Just mark it as still valid */
     if (!update_config && !is_valid) {
       context_to_configuration_cache_map.at(ctx_type).first = true;
@@ -768,9 +769,12 @@ bool LeAudioDeviceGroup::UpdateAudioSetConfigurationCache(
   }
 
   if (update_config) {
-    context_to_configuration_cache_map[ctx_type] = std::pair(true, new_conf);
     LOG_INFO("config: %s -> %s", ToHexString(ctx_type).c_str(),
              (new_conf ? new_conf->name.c_str() : "(none)"));
+    context_to_configuration_cache_map.erase(ctx_type);
+    if (new_conf)
+      context_to_configuration_cache_map.insert(
+          std::make_pair(ctx_type, std::make_pair(true, std::move(new_conf))));
   }
   return update_config;
 }
@@ -1467,7 +1471,7 @@ bool LeAudioDeviceGroup::ConfigureAses(
   return true;
 }
 
-const set_configurations::AudioSetConfiguration*
+std::shared_ptr<const set_configurations::AudioSetConfiguration>
 LeAudioDeviceGroup::GetCachedConfiguration(
     LeAudioContextType context_type) const {
   if (context_to_configuration_cache_map.count(context_type) != 0) {
@@ -1476,12 +1480,12 @@ LeAudioDeviceGroup::GetCachedConfiguration(
   return nullptr;
 }
 
-const set_configurations::AudioSetConfiguration*
+std::shared_ptr<const set_configurations::AudioSetConfiguration>
 LeAudioDeviceGroup::GetActiveConfiguration(void) const {
   return GetCachedConfiguration(configuration_context_type_);
 }
 
-const set_configurations::AudioSetConfiguration*
+std::shared_ptr<const set_configurations::AudioSetConfiguration>
 LeAudioDeviceGroup::GetConfiguration(LeAudioContextType context_type) {
   if (context_type == LeAudioContextType::UNINITIALIZED) {
     return nullptr;
@@ -1492,8 +1496,10 @@ LeAudioDeviceGroup::GetConfiguration(LeAudioContextType context_type) {
 
   /* Refresh the cache if there is no valid configuration */
   if (context_to_configuration_cache_map.count(context_type) != 0) {
-    std::tie(is_valid, conf) =
+    auto& valid_config_pair =
         context_to_configuration_cache_map.at(context_type);
+    is_valid = valid_config_pair.first;
+    conf = valid_config_pair.second.get();
   }
   if (!is_valid || (conf == nullptr)) {
     UpdateAudioSetConfigurationCache(context_type);
@@ -1505,8 +1511,7 @@ LeAudioDeviceGroup::GetConfiguration(LeAudioContextType context_type) {
 std::optional<LeAudioCodecConfiguration>
 LeAudioDeviceGroup::GetCachedCodecConfigurationByDirection(
     LeAudioContextType context_type, uint8_t direction) const {
-  const set_configurations::AudioSetConfiguration* audio_set_conf =
-      GetCachedConfiguration(context_type);
+  auto audio_set_conf = GetCachedConfiguration(context_type);
   if (!audio_set_conf) return std::nullopt;
 
   LeAudioCodecConfiguration group_config = {0, 0, 0, 0};
@@ -1560,8 +1565,10 @@ LeAudioDeviceGroup::GetCodecConfigurationByDirection(
 
   /* Refresh the cache if there is no valid configuration */
   if (context_to_configuration_cache_map.count(context_type) != 0) {
-    std::tie(is_valid, conf) =
+    auto& valid_config_pair =
         context_to_configuration_cache_map.at(context_type);
+    is_valid = valid_config_pair.first;
+    conf = valid_config_pair.second.get();
   }
   if (!is_valid || (conf == nullptr)) {
     UpdateAudioSetConfigurationCache(context_type);
@@ -1792,7 +1799,7 @@ bool LeAudioDeviceGroup::IsConfiguredForContext(
   }
 
   /* Check if used configuration is same as the active one.*/
-  return (stream_conf.conf == GetActiveConfiguration());
+  return (stream_conf.conf.get() == GetActiveConfiguration().get());
 }
 
 bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
@@ -1817,10 +1824,8 @@ bool LeAudioDeviceGroup::IsAudioSetConfigurationSupported(
 
 const set_configurations::AudioSetConfiguration*
 LeAudioDeviceGroup::FindFirstSupportedConfiguration(
-    LeAudioContextType context_type) const {
-  const set_configurations::AudioSetConfigurations* confs =
-      AudioSetConfigurationProvider::Get()->GetConfigurations(context_type);
-
+    LeAudioContextType context_type,
+    const set_configurations::AudioSetConfigurations* confs) const {
   LOG_DEBUG("context type: %s,  number of connected devices: %d",
             bluetooth::common::ToString(context_type).c_str(),
             +NumOfConnected());
@@ -1869,7 +1874,8 @@ bool LeAudioDeviceGroup::Configure(
   LOG_DEBUG(" setting context type: %s",
             bluetooth::common::ToString(context_type).c_str());
 
-  if (!ConfigureAses(conf, context_type, metadata_context_types, ccid_lists)) {
+  if (!ConfigureAses(conf.get(), context_type, metadata_context_types,
+                     ccid_lists)) {
     LOG_ERROR(
         ", requested context type: %s , is in mismatch with cached available "
         "contexts",
@@ -1887,7 +1893,7 @@ bool LeAudioDeviceGroup::Configure(
 LeAudioDeviceGroup::~LeAudioDeviceGroup(void) { this->Cleanup(); }
 
 void LeAudioDeviceGroup::PrintDebugState(void) const {
-  auto* active_conf = GetActiveConfiguration();
+  auto active_conf = GetActiveConfiguration();
   std::stringstream debug_str;
 
   debug_str << "\n Groupd id: " << group_id_
@@ -1946,7 +1952,7 @@ void LeAudioDeviceGroup::PrintDebugState(void) const {
 void LeAudioDeviceGroup::Dump(int fd, int active_group_id) const {
   bool is_active = (group_id_ == active_group_id);
   std::stringstream stream, stream_pacs;
-  auto* active_conf = GetActiveConfiguration();
+  auto active_conf = GetActiveConfiguration();
 
   stream << "\n    == Group id: " << group_id_
          << (is_enabled_ ? " enabled" : " disabled")
