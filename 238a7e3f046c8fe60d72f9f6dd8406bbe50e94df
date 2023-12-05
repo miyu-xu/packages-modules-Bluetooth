@@ -395,6 +395,24 @@
       "parentUuid": "bd08be69_6e5437cf",
       "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6141d4c_9de23ac0",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-05T21:04:50Z",
+      "side": 1,
+      "message": "Should this case also be handled here?\n\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_act.cc;l\u003d548?q\u003dsmp_proc_pair_cmd\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main%20f:packages%2Fmodules%2FBluetooth",
+      "parentUuid": "7f796c50_37c9ccd8",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
