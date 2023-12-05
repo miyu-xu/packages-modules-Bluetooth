@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41d7086e_7fffca91",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1137,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-05T00:56:41Z",
+      "side": 1,
+      "message": "add a lock before updating mDevices",
+      "revId": "4d8ce598e0c48e9920bb15025b7aa274ab0fcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
