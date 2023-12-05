@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dfdaea7b_38f22fb0",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5679,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-12-05T01:20:59Z",
+      "side": 1,
+      "message": "this needs to be initialized in constructor to false",
+      "revId": "5698c7d78e4d1723e3eab374a03ea133ff3d5f29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
