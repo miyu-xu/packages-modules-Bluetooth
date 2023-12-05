@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4402adf6_e086f9cf",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-05T21:15:34Z",
+      "side": 1,
+      "message": "Do we need this many include directories?",
+      "range": {
+        "startLine": 74,
+        "startChar": 36,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "7a26e1a938d07447b2283a6c19f445f8b3529d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f059238_496ed91e",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-05T21:15:34Z",
+      "side": 1,
+      "message": "What happens if you don\u0027t include libchrome here?",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 6
+      },
+      "revId": "7a26e1a938d07447b2283a6c19f445f8b3529d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
