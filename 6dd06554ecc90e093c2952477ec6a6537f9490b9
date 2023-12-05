@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e99876bd_20645fc5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-05T03:35:06Z",
+      "side": 1,
+      "message": "Can we keep this static ?",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 81
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67045bc2_7f403743",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-05T03:35:06Z",
+      "side": 1,
+      "message": "Why are you waiting if you are not asserting anything after waiting ?\nIs this just to finish the discovery ?\nWould it be easier to cancel the discovery instead ?",
+      "range": {
+        "startLine": 323,
+        "startChar": 8,
+        "endLine": 323,
+        "endChar": 12
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ad0526e_1f5e3595",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-05T03:35:06Z",
+      "side": 1,
+      "message": "At the end of the test, do you want to check that there has been some more intent sent that you did not handle ?\nCalling verifyNoMoreInteractions(mReceiver) will give you this guarantee.\n\nwithout that, you are not enforcing that the appropriate intent and only them are sent",
+      "range": {
+        "startLine": 324,
+        "startChar": 4,
+        "endLine": 324,
+        "endChar": 5
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36391403_bffe9af5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-05T03:35:06Z",
+      "side": 1,
+      "message": "typo: intentString\n\nbut you may want to call this \"action\" directly ?",
+      "range": {
+        "startLine": 352,
+        "startChar": 20,
+        "endLine": 352,
+        "endChar": 31
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
