@@ -599,6 +599,27 @@ class StateMachineTestBase : public Test {
     ASSERT_NE(mock_codec_manager_, nullptr);
     ON_CALL(*mock_codec_manager_, GetCodecLocation())
         .WillByDefault(Return(location));
+    // Regardless of the codec location, return all the possible configurations
+    ON_CALL(*mock_codec_manager_, GetCodecConfig)
+        .WillByDefault(Invoke(
+            [](::le_audio::types::LeAudioContextType ctx_type,
+               std::function<
+                   const ::le_audio::set_configurations::AudioSetConfiguration*(
+                       ::le_audio::types::LeAudioContextType context_type,
+                       const ::le_audio::set_configurations::
+                           AudioSetConfigurations* confs)>
+                   non_vendor_config_matcher) {
+              auto cfg = non_vendor_config_matcher(
+                  ctx_type, ::le_audio::AudioSetConfigurationProvider::Get()
+                                ->GetConfigurations(ctx_type));
+              if (cfg == nullptr) {
+                return std::unique_ptr<
+                    ::le_audio::set_configurations::AudioSetConfiguration>(
+                    nullptr);
+              }
+              return std::make_unique<
+                  ::le_audio::set_configurations::AudioSetConfiguration>(*cfg);
+            }));
   }
 
   void TearDown() override {
@@ -4331,11 +4352,9 @@ TEST_F(StateMachineTest, testConfigureDataPathForHost) {
   channel_count_ = kLeAudioCodecChannelCountSingleChannel |
                    kLeAudioCodecChannelCountTwoChannel;
 
-  /* Can be called for every context when fetching the configuration from the
-   * AudioSetConfigurationProvider.
+  /* Can be called for every context when fetching the configuration
    */
-  EXPECT_CALL(*mock_codec_manager_, IsDualBiDirSwbSupported())
-      .Times(AtLeast(1));
+  EXPECT_CALL(*mock_codec_manager_, GetCodecConfig(_, _)).Times(AtLeast(1));
 
   // Prepare fake connected device group
   auto* group = PrepareSingleTestDeviceGroup(leaudio_group_id, context_type);
@@ -4368,11 +4387,9 @@ TEST_F(StateMachineTestAdsp, testConfigureDataPathForAdsp) {
   channel_count_ = kLeAudioCodecChannelCountSingleChannel |
                    kLeAudioCodecChannelCountTwoChannel;
 
-  /* Can be called for every context when fetching the configuration from the
-   * AudioSetConfigurationProvider.
+  /* Can be called for every context when fetching the configuration
    */
-  EXPECT_CALL(*mock_codec_manager_, IsDualBiDirSwbSupported())
-      .Times(AtLeast(1));
+  EXPECT_CALL(*mock_codec_manager_, GetCodecConfig(_, _)).Times(AtLeast(1));
 
   // Prepare fake connected device group
   auto* group = PrepareSingleTestDeviceGroup(leaudio_group_id, context_type);
@@ -4419,11 +4436,9 @@ TEST_F(StateMachineTestAdsp, testStreamConfigurationAdspDownMix) {
                   group->group_id_, le_audio::types::kLeAudioDirectionSource))
       .Times(1);
 
-  /* Can be called for every context when fetching the configuration from
-   * the AudioSetConfigurationProvider.
+  /* Can be called for every context when fetching the configuration
    */
-  EXPECT_CALL(*mock_codec_manager_, IsDualBiDirSwbSupported())
-      .Times(AtLeast(1));
+  EXPECT_CALL(*mock_codec_manager_, GetCodecConfig(_, _)).Times(AtLeast(1));
 
   PrepareConfigureCodecHandler(group);
   PrepareConfigureQosHandler(group);
