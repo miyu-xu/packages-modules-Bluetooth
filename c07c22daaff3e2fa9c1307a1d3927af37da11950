@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8d7ac81_e007fd5b",
+        "filename": "system/btif/src/btif_pan.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-05T00:44:44Z",
+      "side": 1,
+      "message": "This is not supported on floss build....",
+      "range": {
+        "startLine": 126,
+        "startChar": 8,
+        "endLine": 126,
+        "endChar": 15
+      },
+      "revId": "c07c22daaff3e2fa9c1307a1d3927af37da11950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
