@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f71bd93_9a6198d7",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1898,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-05T16:01:43Z",
+      "side": 1,
+      "message": "Just wondering why you set `enable` to true above instead of here?",
+      "revId": "54a8da4519a1f10cd840aab55ad1bdfff2c67083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cfcd084a_4f436818",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1904,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-05T16:01:43Z",
+      "side": 1,
+      "message": "If this call to `disable` fails, i.e. returns non-zero, wouldn\u0027t our internal enabled state be incorrect?",
+      "revId": "54a8da4519a1f10cd840aab55ad1bdfff2c67083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
