@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb4739fb_4f1702a6",
+        "filename": "system/stack/include/sdp_device_id.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-05T21:18:05Z",
+      "side": 1,
+      "message": "Does this let us simplify include_dirs somewhere in an Android.bp?",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "d321ccc43e7f40d7ab7924bf386021acdcc45624",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
