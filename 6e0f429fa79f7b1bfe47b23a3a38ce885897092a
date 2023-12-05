@@ -16,6 +16,24 @@
       "message": "There seems to be BUILD failures. Can you make sure android Builds with your changes.\n\nRunning : m -j32 should build everything.",
       "revId": "6e0f429fa79f7b1bfe47b23a3a38ce885897092a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d9d9658_8ae34ca1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1988982
+      },
+      "writtenOn": "2023-12-05T10:59:34Z",
+      "side": 1,
+      "message": "I have fixed the build error，tks.",
+      "parentUuid": "1909f4ff_ffa73242",
+      "revId": "6e0f429fa79f7b1bfe47b23a3a38ce885897092a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
