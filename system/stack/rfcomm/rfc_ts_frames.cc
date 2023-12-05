@@ -24,12 +24,13 @@
 
 #define LOG_TAG "rfcomm"
 
+#include <base/logging.h>
 #include <log/log.h>
 
 #include <cstdint>
 #include <cstring>
 
-#include "bt_target.h"
+#include "internal_include/bt_target.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 #include "stack/include/bt_hdr.h"
@@ -37,8 +38,6 @@
 #include "stack/include/rfcdefs.h"
 #include "stack/rfcomm/port_int.h"
 #include "stack/rfcomm/rfc_int.h"
-
-#include <base/logging.h>
 
 /*******************************************************************************
  *

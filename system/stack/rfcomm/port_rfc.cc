@@ -32,8 +32,8 @@
 #include <cstdint>
 #include <string>
 
-#include "bt_target.h"
 #include "gd/hal/snoop_logger.h"
+#include "internal_include/bt_target.h"
 #include "internal_include/bt_trace.h"
 #include "main/shim/entry.h"
 #include "osi/include/allocator.h"

@@ -25,9 +25,9 @@
 #include <memory>
 #include <string>
 
-#include "bt_target.h"
 #include "btm_int_types.h"
 #include "btm_sec_cb.h"
+#include "internal_include/bt_target.h"
 #include "main/shim/dumpsys.h"
 #include "osi/include/log.h"
 #include "stack/include/btm_client_interface.h"

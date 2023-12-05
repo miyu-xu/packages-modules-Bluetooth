@@ -27,7 +27,7 @@
 #include <cstdint>
 
 // PAN_INCLUDED
-#include "bt_target.h"  // Must be first to define build configuration
+#include "internal_include/bt_target.h"  // Must be first to define build configuration
 #if (PAN_INCLUDED == TRUE)
 
 #include "bta/include/bta_pan_co.h"
