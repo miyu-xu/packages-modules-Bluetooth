@@ -7,15 +7,7 @@ aconfig_declarations {
     name: "bluetooth_aconfig_flags",
     package: "com.android.bluetooth.flags",
     srcs: [
-        "a2dp.aconfig",
-        "audio_routing.aconfig",
-        "framework.aconfig",
-        "gap.aconfig",
-        "gatt.aconfig",
-        "hap.aconfig",
-        "hfp.aconfig",
-        "leaudio.aconfig",
-        "system_service.aconfig",
+        "**/*.aconfig",
     ],
 }
 

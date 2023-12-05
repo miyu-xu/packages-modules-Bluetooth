@@ -1,0 +1,15 @@
+package: "com.android.bluetooth.flags"
+
+flag {
+    name: "stack_default_log_level_feature"
+    namespace: "bluetooth"
+    description: "Formalize the mechanism to define a stack default logging level"
+    bug: "307330446"
+}
+
+flag {
+    name: "runtime_evaluated_log_levels_feature"
+    namespace: "bluetooth"
+    description: "Update the Java stack to read and enforce all log levels at runtime"
+    bug: "307330446"
+}
