@@ -684,6 +684,8 @@ impl Bluetooth {
     }
 
     pub fn init_profiles(&mut self) {
+        self.bluetooth_gatt.lock().unwrap().enable(true);
+
         let sdptx = self.tx.clone();
         self.sdp = Some(Sdp::new(&self.intf.lock().unwrap()));
         self.sdp.as_mut().unwrap().initialize(SdpCallbacksDispatcher {
@@ -1898,6 +1900,7 @@ impl IBluetooth for Bluetooth {
     }
 
     fn disable(&mut self) -> bool {
+        self.bluetooth_gatt.lock().unwrap().enable(false);
         self.intf.lock().unwrap().disable() == 0
     }
 
