@@ -31,7 +31,6 @@
 #include "main/shim/config.h"
 #include "main/shim/shim.h"
 
-using base::Bind;
 using base::Unretained;
 using bluetooth::bluetooth_keystore::BluetoothKeystoreCallbacks;
 using bluetooth::bluetooth_keystore::BluetoothKeystoreInterface;

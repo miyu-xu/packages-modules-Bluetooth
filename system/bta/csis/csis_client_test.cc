@@ -47,7 +47,6 @@ namespace internal {
 namespace {
 
 using base::Bind;
-using base::Closure;
 using base::Unretained;
 
 using bluetooth::csis::ConnectionState;

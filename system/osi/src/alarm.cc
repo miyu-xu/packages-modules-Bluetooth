@@ -44,7 +44,6 @@
 #include "stack/include/main_thread.h"
 
 using base::Bind;
-using base::CancelableClosure;
 
 // Callback and timer threads should run at RT priority in order to ensure they
 // meet audio deadlines.  Use this priority for all audio/timer related thread.

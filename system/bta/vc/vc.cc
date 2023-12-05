@@ -41,7 +41,6 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
-using base::Closure;
 using bluetooth::Uuid;
 using bluetooth::csis::CsisClient;
 using bluetooth::vc::ConnectionState;

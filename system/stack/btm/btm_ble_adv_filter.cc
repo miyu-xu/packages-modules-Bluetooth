@@ -30,7 +30,6 @@
 
 extern tBTM_CB btm_cb;
 
-using base::Bind;
 using bluetooth::Uuid;
 
 #define BTM_BLE_ADV_FILT_META_HDR_LENGTH 3

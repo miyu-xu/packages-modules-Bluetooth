@@ -58,7 +58,6 @@
 #include "state_machine.h"
 #include "storage_helper.h"
 
-using base::Closure;
 using bluetooth::Uuid;
 using bluetooth::common::ToString;
 using bluetooth::groups::DeviceGroups;
