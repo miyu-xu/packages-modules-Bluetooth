@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "864dff50_56bf5421",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-05T07:20:20Z",
+      "side": 1,
+      "message": "This CL looks like a dup of https://r.android.com/2846855?",
+      "revId": "7c323e35228d137900f61db87a35e42453e64118",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
