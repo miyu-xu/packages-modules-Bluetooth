@@ -149,7 +149,7 @@ struct gatt_interface_t {
           disc_gatt_history_.Push(
               base::StringPrintf("%-32s eatt_support:%c", "GATTC_AppRegister",
                                  (eatt_support) ? 'T' : 'F'));
-          BTA_GATTC_AppRegister(p_client_cb, cb, eatt_support);
+          BTA_GATTC_AppRegister(p_client_cb, std::move(cb), eatt_support);
         },
     .BTA_GATTC_Close =
         [](uint16_t conn_id) {
@@ -1888,7 +1888,8 @@ static void bta_dm_gattc_register(void) {
     return;
   }
   get_gatt_interface().BTA_GATTC_AppRegister(
-      bta_dm_gattc_callback, base::Bind([](uint8_t client_id, uint8_t status) {
+      bta_dm_gattc_callback,
+      base::BindOnce([](uint8_t client_id, uint8_t status) {
         tGATT_STATUS gatt_status = static_cast<tGATT_STATUS>(status);
         disc_gatt_history_.Push(base::StringPrintf(
             "%-32s client_id:%hu status:%s", "GATTC_RegisteredCallback",

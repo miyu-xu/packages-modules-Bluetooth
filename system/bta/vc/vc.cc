@@ -87,7 +87,7 @@ class VolumeControlImpl : public VolumeControl {
       : gatt_if_(0), callbacks_(callbacks), latest_operation_id_(0) {
     BTA_GATTC_AppRegister(
         gattc_callback_static,
-        base::Bind(
+        base::BindOnce(
             [](const base::Closure& initCb, uint8_t client_id, uint8_t status) {
               if (status != GATT_SUCCESS) {
                 LOG(ERROR) << "Can't start Volume Control profile - no gatt "
