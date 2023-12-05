@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b318ed7_5aac0912",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2064605
+      },
+      "writtenOn": "2023-12-05T17:21:29Z",
+      "side": 1,
+      "message": "LGTM for Unsafe Rust (pending comments).",
+      "revId": "1faeb1d6c34dfc171add62cabd4e575aad1b7c20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa53c1b9_413bfbf0",
+        "filename": "system/gd/rust/topshim/src/profiles/hfp.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 2064605
+      },
+      "writtenOn": "2023-12-05T17:21:29Z",
+      "side": 1,
+      "message": "`unsafe` blocks should have comments above them explaining why the usage is sound.",
+      "revId": "1faeb1d6c34dfc171add62cabd4e575aad1b7c20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
