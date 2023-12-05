@@ -573,10 +573,16 @@ void bta_ag_rfc_acp_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
       }
     }
     if (dev_addr == ag_scb.peer_addr && p_scb != &ag_scb) {
-      VLOG(1) << __func__ << ": fail outgoing connection before accepting "
-              << ag_scb.peer_addr;
-      // Fail the outgoing connection to clean up any upper layer states
-      bta_ag_rfc_fail(&ag_scb, tBTA_AG_DATA::kEmpty);
+      LOG(INFO) << __func__ << ": close outgoing connection before accepting "
+                << ag_scb.peer_addr;
+      if (IS_FLAG_ENABLED(close_rfcomm_connection)) {
+        LOG_DEBUG(
+            "close_rfcomm_connection flag is enabled, skipping "
+            "bta_ag_rfc_fail");
+      } else {
+        // Fail the outgoing connection to clean up any upper layer states
+        bta_ag_rfc_fail(&ag_scb, tBTA_AG_DATA::kEmpty);
+      }
       // If client port is opened, close it
       if (ag_scb.conn_handle > 0) {
         status = RFCOMM_RemoveConnection(ag_scb.conn_handle);
@@ -588,10 +594,10 @@ void bta_ag_rfc_acp_open(tBTA_AG_SCB* p_scb, const tBTA_AG_DATA& data) {
         }
       }
     }
-    VLOG(1) << __func__ << ": dev_addr=" << dev_addr
-            << ", peer_addr=" << ag_scb.peer_addr
-            << ", in_use=" << ag_scb.in_use
-            << ", index=" << bta_ag_scb_to_idx(p_scb);
+    LOG(INFO) << __func__ << ": dev_addr=" << dev_addr
+              << ", peer_addr=" << ag_scb.peer_addr
+              << ", in_use=" << ag_scb.in_use
+              << ", index=" << bta_ag_scb_to_idx(p_scb);
   }
 
   p_scb->peer_addr = dev_addr;
