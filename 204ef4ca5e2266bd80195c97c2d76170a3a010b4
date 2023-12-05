@@ -46,6 +46,30 @@
       },
       "revId": "204ef4ca5e2266bd80195c97c2d76170a3a010b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfaf5a76_54a0aa33",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-05T01:49:29Z",
+      "side": 0,
+      "message": "Ack,\n\nI was confused because of the throw in the constructor but it looks like  it is not possible for uuid to be null therefore it is not triggered",
+      "parentUuid": "4e5d6014_7caea492",
+      "range": {
+        "startLine": 295,
+        "startChar": 49,
+        "endLine": 295,
+        "endChar": 60
+      },
+      "revId": "204ef4ca5e2266bd80195c97c2d76170a3a010b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
