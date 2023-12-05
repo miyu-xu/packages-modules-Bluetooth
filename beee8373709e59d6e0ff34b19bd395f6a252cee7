@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "975259bd_c1b552ae",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2903,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-05T07:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0047b822_e3c51ead",
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "065fe2ce_d1a41f37",
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "`if !enable` means switching back to normal mode from qualification mode. This is not qualification code.",
       "parentUuid": "2adb8adb_e5849a0b",
+      "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fba4607f_e3b46cab",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2934,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-05T07:58:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3f4f95e_37028e00",
       "revId": "beee8373709e59d6e0ff34b19bd395f6a252cee7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
