@@ -338,6 +338,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "335a4dc7_e697265b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1904045
+      },
+      "writtenOn": "2023-12-05T03:02:19Z",
+      "side": 1,
+      "message": "peng, \n    Can you provide detailed modification information about aosp/2768571?\n    Please help to update it to the following question list, thank you.\n    https://partnerissuetracker.corp.google.com/issues/294781431",
+      "parentUuid": "ebe99e0f_2b6d85eb",
+      "revId": "a9e014379dcdd81ffd3cf60e7b2ad0cd346547d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f19b3f6_7f421908",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 4
