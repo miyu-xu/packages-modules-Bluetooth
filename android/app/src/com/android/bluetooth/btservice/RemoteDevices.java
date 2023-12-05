@@ -269,16 +269,30 @@ public class RemoteDevices {
             DeviceProperties pv = mDevices.put(key, prop);
 
             if (pv == null) {
+                // New entry, make it most recent device
                 mDeviceQueue.offer(key);
+
+                // Limit the cache size
                 if (mDeviceQueue.size() > MAX_DEVICE_QUEUE_SIZE) {
-                    String deleteKey = mDeviceQueue.poll();
-                    for (BluetoothDevice device : mAdapterService.getBondedDevices()) {
-                        if (device.getAddress().equals(deleteKey)) {
-                            return prop;
+                    // Remove the least recently used non-bonded device
+                    Interator it = mDeviceQueue.interator();
+                    while (it.hasNext()) {
+                        boolean bonded = false;
+                        String deleteKey = it.next();
+                        for (BluetoothDevice device : mAdapterService.getBondedDevices()) {
+                            if (device.getAddress().equals(deleteKey)) {
+                                bonded = true;
+                                break;
+                            }
+                        }
+
+                        if (!bonded) {
+                            debugLog("Removing device " + deleteKey + " from property map");
+                            it.remove();
+                            mDevices.remove(deleteKey);
+                            break;
                         }
                     }
-                    debugLog("Removing device " + deleteKey + " from property map");
-                    mDevices.remove(deleteKey);
                 }
             }
             return prop;
