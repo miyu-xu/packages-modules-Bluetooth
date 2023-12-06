@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45d32a24_9b8ea4a7",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-06T03:12:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "86873a11_659d418f",
+      "range": {
+        "startLine": 74,
+        "startChar": 36,
+        "endLine": 74,
+        "endChar": 42
+      },
+      "revId": "7a26e1a938d07447b2283a6c19f445f8b3529d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9f059238_496ed91e",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Requires the base functionality.\n\n``` \ndo_in_jni_thread(base::BindOnce ...\n```\n\nI\u0027ll go through the headers to make it explicit",
       "parentUuid": "9f059238_496ed91e",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 6
+      },
+      "revId": "7a26e1a938d07447b2283a6c19f445f8b3529d03",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e794f88d_56fa62dd",
+        "filename": "system/btif/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-06T03:12:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "933ee9e5_331881bf",
       "range": {
         "startLine": 85,
         "startChar": 0,
