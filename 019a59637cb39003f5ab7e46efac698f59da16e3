@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e2b61867_703ee89f",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-06T10:11:02Z",
+      "side": 1,
+      "message": "Shall this be inside the `if not self.security.manually_confirm` branch? If OnPairing is running then we\u0027d still call ConnectAllEnabledProfiles with some probability. Is it expected for the caller of OnPairing?",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 62
+      },
+      "revId": "019a59637cb39003f5ab7e46efac698f59da16e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
