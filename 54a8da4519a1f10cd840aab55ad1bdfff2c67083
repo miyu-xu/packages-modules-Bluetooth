@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa617b9c_2a920721",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1898,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-12-06T00:16:24Z",
+      "side": 1,
+      "message": "Upon the underlying modules fully start up, the adapter is then transition to the BtState::On state, which triggers init_profiles(). So, I\u0027d like to enable GATT interface after adapter has been on and disable it before turning the adapter off.",
+      "parentUuid": "9f71bd93_9a6198d7",
+      "revId": "54a8da4519a1f10cd840aab55ad1bdfff2c67083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cfcd084a_4f436818",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-05T16:01:43Z",
       "side": 1,
       "message": "If this call to `disable` fails, i.e. returns non-zero, wouldn\u0027t our internal enabled state be incorrect?",
+      "revId": "54a8da4519a1f10cd840aab55ad1bdfff2c67083",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e88d3dfc_2505b59b",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1904,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-12-06T00:16:24Z",
+      "side": 1,
+      "message": "Good catch. Thanks.",
+      "parentUuid": "cfcd084a_4f436818",
       "revId": "54a8da4519a1f10cd840aab55ad1bdfff2c67083",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
