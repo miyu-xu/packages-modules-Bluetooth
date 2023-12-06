@@ -239,7 +239,11 @@ struct tBTM_SEC_REC {
 
   tBTM_SEC_BLE_KEYS ble_keys; /* LE Link Key Info */
 
+<<<<<<< PATCH SET (b5f239 [Invisalign2] Separate security fields from tBTM_SEC_DEV_REC)
+  tBTM_BOND_TYPE bond_type; /* peering bond type */
+=======
   tBTM_BOND_TYPE bond_type; /* bond type */
+>>>>>>> BASE      (a64077 [Invisalign2] Rename tBTM_SEC_BLE -> tBTM_BLE_ADDR_INFO)
 
  public:
   bool is_device_authenticated() const {
