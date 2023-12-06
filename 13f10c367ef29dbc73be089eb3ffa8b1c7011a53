@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34cfec31_bda800fd",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2172,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-06T08:58:08Z",
+      "side": 1,
+      "message": "Is it necessary to be mut?",
+      "range": {
+        "startLine": 2172,
+        "startChar": 42,
+        "endLine": 2172,
+        "endChar": 45
+      },
+      "revId": "13f10c367ef29dbc73be089eb3ffa8b1c7011a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ebddf36_85714969",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2936,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-06T08:58:08Z",
+      "side": 1,
+      "message": "`interop_insert_call_when_sco_start` check the `phone_ops_enabled` flag so the flag needs to be updated prior to the condition.\n\n```suggestion\n        self.phone_ops_enabled \u003d enable;\n\n        if self.hfp_audio_state.keys().any(|addr| interop_insert_call_when_sco_start(*addr))\n            \u0026\u0026 self.hfp_audio_state.values().any(|x| x \u003d\u003d \u0026BthfAudioState::Connected)\n        {\n            self.call_list.push(CallInfo {\n                index: 1,\n                dir_incoming: false,\n                source: CallSource::CRAS,\n                state: CallState::Active,\n                number: \"\".into(),\n            });\n            self.phone_state.num_active \u003d 1;\n        }\n\n```",
+      "range": {
+        "startLine": 2921,
+        "startChar": 0,
+        "endLine": 2936,
+        "endChar": 40
+      },
+      "revId": "13f10c367ef29dbc73be089eb3ffa8b1c7011a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9298e540_2c24bc06",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2954,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-06T08:58:08Z",
+      "side": 1,
+      "message": "Ditto. Update the flag before calling `interop_insert_call_when_sco_start`.",
+      "revId": "13f10c367ef29dbc73be089eb3ffa8b1c7011a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
