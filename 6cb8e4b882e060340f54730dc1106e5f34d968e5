@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f48fb1f2_17e5095b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-06T03:43:17Z",
+      "side": 1,
+      "message": "Split changes from aosp/2842774",
+      "revId": "6cb8e4b882e060340f54730dc1106e5f34d968e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
