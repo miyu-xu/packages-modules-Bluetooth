@@ -22,6 +22,30 @@
       },
       "revId": "be95c48a5b98569239047739fcaf64f0674b1d2d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe5ba250_c2aa092c",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-06T21:53:02Z",
+      "side": 1,
+      "message": "I don\u0027t think this is a race condition, it can be reproduced with broadcast consistently. Himanshu recently developed the DSA mode feature in aosp/2839735, and my understanding is DSA should not apply or affect on the broadcast usage, since both unicast and broadcast are using those le audio interfaces, that change caused this issue, IMO some follow change might be required to check if this is the broadcast but I\u0027d prefer to let the owner confirm first.\n\nSo based on this assessment and Himanshu is OOO, my plan is to fix the regression issue first by adding this null check. And DSA mode feature is still under development with flag disabled, I will ask Himanshu\u0027s help to double check what follow-up changes are needed here.",
+      "parentUuid": "7115768e_4d8a8265",
+      "range": {
+        "startLine": 895,
+        "startChar": 48,
+        "endLine": 895,
+        "endChar": 57
+      },
+      "revId": "be95c48a5b98569239047739fcaf64f0674b1d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
