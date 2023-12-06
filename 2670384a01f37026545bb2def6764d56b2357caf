@@ -34,6 +34,24 @@
       "parentUuid": "c6171393_b671018a",
       "revId": "2670384a01f37026545bb2def6764d56b2357caf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27b45320_633165f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-06T13:49:37Z",
+      "side": 1,
+      "message": "What do you mean too late? Since the crash happens on calling btif functions, checking the adapter state before every topshim call shall fix the issue.\n\nI think [profile_enabled_or](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/topshim/macros/src/lib.rs;l\u003d191;drc\u003d5664351d129c717f28edf59355d03ed27992f573) would be helpful in this case.",
+      "parentUuid": "2068ec0d_75920d16",
+      "revId": "2670384a01f37026545bb2def6764d56b2357caf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
