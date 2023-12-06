@@ -16,6 +16,24 @@
       "message": "Those noparent are set on purpose, is there a way to instead to something on the chromeos side ?",
       "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6915ad6d_9c07b072",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-06T06:40:21Z",
+      "side": 1,
+      "message": "@abhishekpandit to response\n\nquoting:\n```\nWe have an agreement with android to disallow set noparent\n\nAdding set noparent breaks downstream projects that enforce OWNERS files (i.e. ChromeOS).\nSee https://chromium-review.googlesource.com/c/aosp/platform/packages/modules/Bluetooth/+/3866430\nfor example where we are pulling this downstream.\n\nIf there is a need to enforce that Bluetooth OWNERS can\u0027t actually modify these files, they should not exist in the Bluetooth repo.\nIf the root OWNERS is too permissive, that should be refactored.\n```",
+      "parentUuid": "20af4d09_761c663c",
+      "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
