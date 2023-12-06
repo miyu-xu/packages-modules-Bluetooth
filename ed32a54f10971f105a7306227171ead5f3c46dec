@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "705ce1ac_6522144f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-06T06:36:42Z",
+      "side": 1,
+      "message": "Please add \"Flag:\" tag and add \"Bug:\" tag for flag bug as well",
+      "revId": "ed32a54f10971f105a7306227171ead5f3c46dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
