@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "30e83cb4_e9556dfa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-12-06T03:17:40Z",
+      "side": 1,
+      "message": "Per the flagging process the core team has setup, we\u0027ll need a `Flag: EXEMPT \u003creason\u003e` in here, plus. Dr. No review.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "45bcd96557657692fc7d09f2a08701b37f1af82d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8695e981_25ad6862",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapRequestPullPhoneBook.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-12-06T03:17:40Z",
+      "side": 1,
+      "message": "If object creation fails and an exception is thrown, `mResponse` may be null. Granted, this shouldn\u0027t happen because we hardcode a proper value. But still!\n\nWe may want to just return here and/or explicitly set mResponse to `null`.\n\nIt\u0027s probably worth checking what happens when `mResponse` is `null`. It seems like other parts of this code assume its non-null. `getList()` may need a null check that returns an empty list if null.",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 69
+      },
+      "revId": "45bcd96557657692fc7d09f2a08701b37f1af82d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7beb9f86_9cb5e211",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapVcardList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-12-06T03:17:40Z",
+      "side": 1,
+      "message": "new nit, sorry!\n\nCan we use the constant directly if its an available API? If not, make a `private static final int DEFAULT_BUFFER_SIZE_BYTES \u003d 8192;` above so there\u0027s no magic numbers?",
+      "range": {
+        "startLine": 89,
+        "startChar": 27,
+        "endLine": 89,
+        "endChar": 31
+      },
+      "revId": "45bcd96557657692fc7d09f2a08701b37f1af82d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
