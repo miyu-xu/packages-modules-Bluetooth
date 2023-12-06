@@ -51,6 +51,24 @@
       "parentUuid": "2ae0eeb8_5970a138",
       "revId": "7fc7760f923af8ad48b6b953ac420660b054dc27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51516ed2_44f5ec9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-06T01:22:48Z",
+      "side": 1,
+      "message": "Sorry to pointy here, but I would prefer to call this a no-op and not a mechanical refactor. Mechanical refactoring is typically for changes when you are moving files or functions, which is not the case here.",
+      "parentUuid": "f31f0add_6318f2dd",
+      "revId": "7fc7760f923af8ad48b6b953ac420660b054dc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
