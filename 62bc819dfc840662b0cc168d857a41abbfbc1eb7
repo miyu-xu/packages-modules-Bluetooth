@@ -34,6 +34,24 @@
       "parentUuid": "20af4d09_761c663c",
       "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de20e078_0f3500f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-12-06T22:07:26Z",
+      "side": 1,
+      "message": "See a previously approved CL aosp/2199803 as reference.\n\nFully understanding and supportive of the motivation behind no-parents for certain folders. But this is indeed a blocker for downstream projects. I suggest to remove it and then come together with an upgraded solution.",
+      "parentUuid": "6915ad6d_9c07b072",
+      "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
