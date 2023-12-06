@@ -34,6 +34,23 @@
       "parentUuid": "eb011b8a_d1027251",
       "revId": "42574b7161f9a77bbb9524ebccf5f4ab1735113d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c7ae4b6_d72dc2e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-06T01:02:16Z",
+      "side": 1,
+      "message": "Please provide Flag stanza as specified in go/bt-ts-workflow. Also if this is a clear no-op, please prefer to use just `Test: m com.android.btservices` or `Test: None` rather than `Test: atest \u003c\u003e`.",
+      "revId": "42574b7161f9a77bbb9524ebccf5f4ab1735113d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
