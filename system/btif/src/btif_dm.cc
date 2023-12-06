@@ -3498,7 +3498,8 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
       btif_storage_set_remote_addr_type(&bd_addr, p_auth_cmpl->addr_type);
 
     /* Test for temporary bonding */
-    if (btm_get_bond_type_dev(bd_addr) == BOND_TYPE_TEMPORARY) {
+    if (btm_get_bond_type_dev(bd_addr) == BOND_TYPE_TEMPORARY &&
+        p_auth_cmpl->is_ctkd) {
       LOG_VERBOSE("%s: sending BT_BOND_STATE_NONE for Temp pairing", __func__);
       btif_storage_remove_bonded_device(&bd_addr);
       state = BT_BOND_STATE_NONE;
