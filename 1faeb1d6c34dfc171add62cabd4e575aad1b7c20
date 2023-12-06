@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85596103_667fb8ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-06T06:11:44Z",
+      "side": 1,
+      "message": "Hi Myles\n\nThanks for suggestion, floss have `interop_database.conf` in chromium codebase. Example CL: crrev/c/5070000\n\nWe will merge the cl for specific headset having this problem in chromium codebase instead of setting them in Andiord.",
+      "parentUuid": "1dda2147_335ec7a5",
+      "revId": "1faeb1d6c34dfc171add62cabd4e575aad1b7c20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d960dc75_d2f72819",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 4
