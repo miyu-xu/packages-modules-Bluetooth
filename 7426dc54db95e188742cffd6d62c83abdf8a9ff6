@@ -226,6 +226,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89722059_31e1e79b",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-12-06T22:18:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d3094ee_8b1da9c9",
+      "range": {
+        "startLine": 561,
+        "startChar": 27,
+        "endLine": 561,
+        "endChar": 49
+      },
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cb2fc56_3c860fe2",
@@ -275,6 +299,24 @@
       "side": 1,
       "message": "Can I resolve ?",
       "parentUuid": "1680fe71_9b239b29",
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9ecb3af1_b12f7adf",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 874,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-12-06T22:18:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16f23551_3595bb60",
       "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
