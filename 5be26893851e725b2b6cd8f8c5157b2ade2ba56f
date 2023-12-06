@@ -22,6 +22,30 @@
       },
       "revId": "5be26893851e725b2b6cd8f8c5157b2ade2ba56f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ee1e4af_a003c32f",
+        "filename": "system/bta/include/bta_api.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-06T17:43:41Z",
+      "side": 1,
+      "message": "I guess this one isn\u0027t bt_trace.h, either :)",
+      "parentUuid": "b490be63_8141dee2",
+      "range": {
+        "startLine": 35,
+        "startChar": 40,
+        "endLine": 35,
+        "endChar": 87
+      },
+      "revId": "5be26893851e725b2b6cd8f8c5157b2ade2ba56f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
