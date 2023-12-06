@@ -69,6 +69,24 @@
       "parentUuid": "f31f0add_6318f2dd",
       "revId": "7fc7760f923af8ad48b6b953ac420660b054dc27",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "70c8398f_74176a4b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-06T01:24:48Z",
+      "side": 1,
+      "message": "Can you document different types of cases with concrete examples?\nOtherwise there will be a lot of confusion",
+      "parentUuid": "51516ed2_44f5ec9d",
+      "revId": "7fc7760f923af8ad48b6b953ac420660b054dc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
