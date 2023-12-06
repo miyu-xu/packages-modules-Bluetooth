@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3234a9e4_967fb15f",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-06T00:48:10Z",
+      "side": 0,
+      "message": "Why this log is removed?",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 70
+      },
+      "revId": "dcd1cd7e15ffc8a1facc95f587ae7cf30f7fecb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
