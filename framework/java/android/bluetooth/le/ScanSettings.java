@@ -223,6 +223,20 @@ public final class ScanSettings implements Parcelable {
         return mReportDelayMillis;
     }
 
+    @Override
+    public String toString() {
+        return "ScanSettings{" +
+            "mScanMode=" + mScanMode +
+            ", mCallbackType=" + mCallbackType +
+            ", mScanResultType=" + mScanResultType +
+            ", mReportDelayMillis=" + mReportDelayMillis +
+            ", mMatchMode=" + mMatchMode +
+            ", mNumOfMatchesPerFilter=" + mNumOfMatchesPerFilter +
+            ", mLegacy=" + mLegacy +
+            ", mPhy=" + mPhy +
+            '}';
+    }
+
     private ScanSettings(
             int scanMode,
             int callbackType,

@@ -40,6 +40,7 @@ import android.os.WorkSource;
 import android.util.Log;
 
 import com.android.modules.utils.SynchronousResultReceiver;
+import com.android.bluetooth.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -278,6 +279,7 @@ public final class BluetoothLeScanner {
                         callback, ScanCallback.SCAN_FAILED_FEATURE_UNSUPPORTED);
             }
             if (callback != null) {
+                Log.i(TAG, "startScan: settings=" + settings+ ", " + Utils.getUidPidString());
                 BleScanCallbackWrapper wrapper =
                         new BleScanCallbackWrapper(gatt, filters, settings, workSource, callback);
                 wrapper.startRegistration();
