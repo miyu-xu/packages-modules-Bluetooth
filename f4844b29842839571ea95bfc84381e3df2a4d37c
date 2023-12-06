@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36678eae_e37dfd07",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 3109716
+      },
+      "writtenOn": "2023-12-06T07:47:10Z",
+      "side": 1,
+      "message": "To be samiliar to the server_name of rfc_slot structure, just use simple number that will not cause misunderstanding. And different from the rfc_slot, only contain 64 bytes for memory saving.",
+      "parentUuid": "b54f2491_6e14e856",
+      "revId": "f4844b29842839571ea95bfc84381e3df2a4d37c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5177c86f_34ac92e3",
         "filename": "system/btif/src/btif_sock.cc",
         "patchSetId": 1

@@ -22,6 +22,30 @@
       },
       "revId": "dcd1cd7e15ffc8a1facc95f587ae7cf30f7fecb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9a43a9d8_d4bad3e2",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 3109716
+      },
+      "writtenOn": "2023-12-06T07:47:10Z",
+      "side": 0,
+      "message": "this is a duplicated state change here. Below \"btsock_rfc_listen\" will also call the \"btif_sock_connection_logger\" for listening states.",
+      "parentUuid": "3234a9e4_967fb15f",
+      "range": {
+        "startLine": 261,
+        "startChar": 0,
+        "endLine": 262,
+        "endChar": 70
+      },
+      "revId": "dcd1cd7e15ffc8a1facc95f587ae7cf30f7fecb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
