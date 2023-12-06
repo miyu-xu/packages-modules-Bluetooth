@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "73dcb023_5b986628",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2172,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-06T11:38:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34cfec31_bda800fd",
+      "range": {
+        "startLine": 2172,
+        "startChar": 42,
+        "endLine": 2172,
+        "endChar": 45
+      },
+      "revId": "13f10c367ef29dbc73be089eb3ffa8b1c7011a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ebddf36_85714969",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8345ba8_7e1d7f23",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2936,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-06T11:38:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a525d13e_3cd51b61",
+      "range": {
+        "startLine": 2921,
+        "startChar": 0,
+        "endLine": 2936,
+        "endChar": 40
+      },
+      "revId": "13f10c367ef29dbc73be089eb3ffa8b1c7011a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9298e540_2c24bc06",
@@ -84,6 +132,24 @@
       "writtenOn": "2023-12-06T08:58:08Z",
       "side": 1,
       "message": "Ditto. Update the flag before calling `interop_insert_call_when_sco_start`.",
+      "revId": "13f10c367ef29dbc73be089eb3ffa8b1c7011a53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bcd4bba_3e63d00c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 2954,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-06T11:38:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9298e540_2c24bc06",
       "revId": "13f10c367ef29dbc73be089eb3ffa8b1c7011a53",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
