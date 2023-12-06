@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3bed8f0_b137c72d",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2153,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-12-06T01:18:50Z",
+      "side": 1,
+      "message": "nit: we can refactor this a little bit so that there\u0027s no need to update params.advertising_event_properties twice.\n\n```\nlet adv_bytes \u003d advertise_data.make_with(\u0026device_name);\nlet is_legacy \u003d !AdvertiseData:can_upgarde(parameters.is_legacy, \u0026adv_bytes);\nlet params \u003d parameters.into();\nif !AdvertiseData::validate_raw_data(is_legacy, \u0026adv_bytes) {\n            log::warn!(\"Failed to start advertising set with invalid advertise data\");\n            return INVALID_REG_ID;\n}\n```",
+      "range": {
+        "startLine": 2136,
+        "startChar": 8,
+        "endLine": 2153,
+        "endChar": 9
+      },
+      "revId": "1ed8a64d3850d17428dc7ec02ff1ad6a1c623395",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
