@@ -1,0 +1,170 @@
+diff --git a/system/device/include/interop.h b/system/device/include/interop.h
+index 4d2aef8f41a9..a1c5b243afc1 100644
+--- a/system/device/include/interop.h
++++ b/system/device/include/interop.h
+@@ -339,6 +339,10 @@ typedef enum {
+   // both encryption complete and SMP key exchange completed.
+   INTEROP_SUSPEND_ATT_TRAFFIC_DURING_PAIRING,
+ 
++  // This triggers a +CIEV command to set the call status for HFP devices.
++  // It is required for some devices to provide sound.
++  INTEROP_INSERT_CALL_WHEN_SCO_START,
++
+   END_OF_INTEROP_LIST
+ } interop_feature_t;
+ 
+diff --git a/system/device/src/interop.cc b/system/device/src/interop.cc
+index 79470347d7e8..5a4700e4bd2c 100644
+--- a/system/device/src/interop.cc
++++ b/system/device/src/interop.cc
+@@ -393,6 +393,7 @@ static const char* interop_feature_string_(const interop_feature_t feature) {
+     CASE_RETURN_STR(INTEROP_HFP_1_9_ALLOWLIST);
+     CASE_RETURN_STR(INTEROP_IGNORE_DISC_BEFORE_SIGNALLING_TIMEOUT);
+     CASE_RETURN_STR(INTEROP_SUSPEND_ATT_TRAFFIC_DURING_PAIRING);
++    CASE_RETURN_STR(INTEROP_INSERT_CALL_WHEN_SCO_START);
+   }
+   return UNKNOWN_INTEROP_FEATURE;
+ }
+diff --git a/system/gd/rust/linux/stack/src/bluetooth_media.rs b/system/gd/rust/linux/stack/src/bluetooth_media.rs
+index a475f60aa56b..fdd5e224691c 100644
+--- a/system/gd/rust/linux/stack/src/bluetooth_media.rs
++++ b/system/gd/rust/linux/stack/src/bluetooth_media.rs
+@@ -12,6 +12,7 @@ use bt_topshim::profiles::a2dp::{
+ use bt_topshim::profiles::avrcp::{
+     Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, PlayerMetadata,
+ };
++use bt_topshim::profiles::hfp::interop_insert_call_when_sco_start;
+ use bt_topshim::profiles::hfp::{
+     BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallSource, CallState, Hfp,
+     HfpCallbacks, HfpCallbacksDispatcher, HfpCodecCapability, HfpCodecId, PhoneState,
+@@ -759,7 +760,7 @@ impl BluetoothMedia {
+ 
+                         self.hfp_audio_state.insert(addr, state);
+ 
+-                        if !self.mps_qualification_enabled
++                        if self.should_insert_call_when_sco_start(addr)
+                             && self.call_list.iter().all(|c| c.source != CallSource::CRAS)
+                         {
+                             // This triggers a +CIEV command to set the call status for HFP devices.
+@@ -2167,6 +2168,16 @@ impl BluetoothMedia {
+     pub fn add_player(&mut self, name: String, browsing_supported: bool) {
+         self.avrcp.as_mut().unwrap().add_player(&name, browsing_supported);
+     }
++
++    fn should_insert_call_when_sco_start(&mut self, address: RawAddress) -> bool {
++        if self.mps_qualification_enabled {
++            return false;
++        }
++        if !self.phone_ops_enabled {
++            return true;
++        }
++        return interop_insert_call_when_sco_start(address);
++    }
+ }
+ 
+ fn get_a2dp_dispatcher(tx: Sender<Message>) -> A2dpCallbacksDispatcher {
+@@ -2704,7 +2715,6 @@ impl IBluetoothMedia for BluetoothMedia {
+             }
+             Some(addr) => addr,
+         };
+-
+         let vol = match i8::try_from(volume) {
+             Ok(val) if val <= 15 => val,
+             _ => {
+@@ -2907,16 +2917,18 @@ impl IBluetoothTelephony for BluetoothMedia {
+         self.memory_dialing_number = None;
+         self.last_dialing_number = None;
+         self.a2dp_has_interrupted_stream = false;
+-
+-        if self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected) {
+-            self.call_list.push(CallInfo {
+-                index: 1,
+-                dir_incoming: false,
+-                source: CallSource::CRAS,
+-                state: CallState::Active,
+-                number: "".into(),
+-            });
+-            self.phone_state.num_active = 1;
++        
++        if !enable || self.hfp_audio_state.keys().any(|addr| interop_insert_call_when_sco_start(*addr)) {
++            if self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected) {
++                self.call_list.push(CallInfo {
++                    index: 1,
++                    dir_incoming: false,
++                    source: CallSource::CRAS,
++                    state: CallState::Active,
++                    number: "".into(),
++                });
++                self.phone_state.num_active = 1;
++            }
+         }
+ 
+         self.phone_ops_enabled = enable;
+@@ -2937,7 +2949,7 @@ impl IBluetoothTelephony for BluetoothMedia {
+         self.last_dialing_number = None;
+         self.a2dp_has_interrupted_stream = false;
+ 
+-        if !enable {
++        if !enable && self.hfp_audio_state.keys().any(|addr| interop_insert_call_when_sco_start(*addr)){
+             if self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected) {
+                 self.call_list.push(CallInfo {
+                     index: 1,
+diff --git a/system/gd/rust/topshim/hfp/hfp_shim.cc b/system/gd/rust/topshim/hfp/hfp_shim.cc
+index 9c02a9fd7c63..a98d7949627d 100644
+--- a/system/gd/rust/topshim/hfp/hfp_shim.cc
++++ b/system/gd/rust/topshim/hfp/hfp_shim.cc
+@@ -17,6 +17,7 @@
+ #include "gd/rust/topshim/hfp/hfp_shim.h"
+ 
+ #include "btif/include/btif_hf.h"
++#include "device/include/interop.h"
+ #include "gd/common/strings.h"
+ #include "gd/os/log.h"
+ #include "include/hardware/bt_hf.h"
+@@ -438,6 +439,10 @@ std::unique_ptr<HfpIntf> GetHfpProfile(const unsigned char* btif) {
+   return hfpif;
+ }
+ 
++bool interop_insert_call_when_sco_start(RawAddress addr) {
++  return interop_match_addr(interop_feature_t::INTEROP_INSERT_CALL_WHEN_SCO_START, &addr);
++}
++
+ }  // namespace rust
+ }  // namespace topshim
+ }  // namespace bluetooth
+diff --git a/system/gd/rust/topshim/hfp/hfp_shim.h b/system/gd/rust/topshim/hfp/hfp_shim.h
+index 8a948e6ce943..f17aec9c5366 100644
+--- a/system/gd/rust/topshim/hfp/hfp_shim.h
++++ b/system/gd/rust/topshim/hfp/hfp_shim.h
+@@ -58,6 +58,7 @@ class HfpIntf {
+ };
+ 
+ std::unique_ptr<HfpIntf> GetHfpProfile(const unsigned char* btif);
++bool interop_insert_call_when_sco_start(RawAddress addr);
+ 
+ }  // namespace rust
+ }  // namespace topshim
+diff --git a/system/gd/rust/topshim/src/profiles/hfp.rs b/system/gd/rust/topshim/src/profiles/hfp.rs
+index 44efcc7dc7b4..ced8c34027b9 100644
+--- a/system/gd/rust/topshim/src/profiles/hfp.rs
++++ b/system/gd/rust/topshim/src/profiles/hfp.rs
+@@ -143,7 +143,7 @@ pub mod ffi {
+         type HfpIntf;
+ 
+         unsafe fn GetHfpProfile(btif: *const u8) -> UniquePtr<HfpIntf>;
+-
++        unsafe fn interop_insert_call_when_sco_start(bt_addr: RawAddress) -> bool;
+         fn init(self: Pin<&mut HfpIntf>) -> i32;
+         fn connect(self: Pin<&mut HfpIntf>, bt_addr: RawAddress) -> u32;
+         fn connect_audio(
+@@ -212,6 +212,10 @@ pub mod ffi {
+     }
+ }
+ 
++pub fn interop_insert_call_when_sco_start(bt_addr: RawAddress) -> bool {
++    unsafe { return ffi::interop_insert_call_when_sco_start(bt_addr) }
++}
++
+ pub type TelephonyDeviceStatus = ffi::TelephonyDeviceStatus;
+ 
+ impl TelephonyDeviceStatus {

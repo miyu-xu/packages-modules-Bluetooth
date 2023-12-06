@@ -12,6 +12,7 @@ use bt_topshim::profiles::a2dp::{
 use bt_topshim::profiles::avrcp::{
     Avrcp, AvrcpCallbacks, AvrcpCallbacksDispatcher, PlayerMetadata,
 };
+use bt_topshim::profiles::hfp::interop_insert_call_when_sco_start;
 use bt_topshim::profiles::hfp::{
     BthfAudioState, BthfConnectionState, CallHoldCommand, CallInfo, CallSource, CallState, Hfp,
     HfpCallbacks, HfpCallbacksDispatcher, HfpCodecCapability, HfpCodecId, PhoneState,
@@ -759,7 +760,7 @@ impl BluetoothMedia {
 
                         self.hfp_audio_state.insert(addr, state);
 
-                        if !self.mps_qualification_enabled
+                        if self.should_insert_call_when_sco_start(addr)
                             && self.call_list.iter().all(|c| c.source != CallSource::CRAS)
                         {
                             // This triggers a +CIEV command to set the call status for HFP devices.
@@ -2167,6 +2168,16 @@ impl BluetoothMedia {
     pub fn add_player(&mut self, name: String, browsing_supported: bool) {
         self.avrcp.as_mut().unwrap().add_player(&name, browsing_supported);
     }
+
+    fn should_insert_call_when_sco_start(&mut self, address: RawAddress) -> bool {
+        if self.mps_qualification_enabled {
+            return false;
+        }
+        if !self.phone_ops_enabled {
+            return true;
+        }
+        return interop_insert_call_when_sco_start(address);
+    }
 }
 
 fn get_a2dp_dispatcher(tx: Sender<Message>) -> A2dpCallbacksDispatcher {
@@ -2704,7 +2715,6 @@ impl IBluetoothMedia for BluetoothMedia {
             }
             Some(addr) => addr,
         };
-
         let vol = match i8::try_from(volume) {
             Ok(val) if val <= 15 => val,
             _ => {
@@ -2908,15 +2918,19 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.last_dialing_number = None;
         self.a2dp_has_interrupted_stream = false;
 
-        if self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected) {
-            self.call_list.push(CallInfo {
-                index: 1,
-                dir_incoming: false,
-                source: CallSource::CRAS,
-                state: CallState::Active,
-                number: "".into(),
-            });
-            self.phone_state.num_active = 1;
+        if !enable
+            || self.hfp_audio_state.keys().any(|addr| interop_insert_call_when_sco_start(*addr))
+        {
+            if self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected) {
+                self.call_list.push(CallInfo {
+                    index: 1,
+                    dir_incoming: false,
+                    source: CallSource::CRAS,
+                    state: CallState::Active,
+                    number: "".into(),
+                });
+                self.phone_state.num_active = 1;
+            }
         }
 
         self.phone_ops_enabled = enable;
@@ -2937,7 +2951,9 @@ impl IBluetoothTelephony for BluetoothMedia {
         self.last_dialing_number = None;
         self.a2dp_has_interrupted_stream = false;
 
-        if !enable {
+        if !enable
+            && self.hfp_audio_state.keys().any(|addr| interop_insert_call_when_sco_start(*addr))
+        {
             if self.hfp_audio_state.values().any(|x| x == &BthfAudioState::Connected) {
                 self.call_list.push(CallInfo {
                     index: 1,
