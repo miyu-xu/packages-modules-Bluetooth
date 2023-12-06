@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b70e0d6f_7933963b",
+        "filename": "android/app/src/com/android/bluetooth/hap/HapClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-06T02:07:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9f6bb1a6_6dcd92ad",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 21
+      },
+      "revId": "bea11bc1b96e006e28bf13d2396232012c0bb403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "da63ec4b_ad5755d1",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "Will do in a follow-up",
       "parentUuid": "da63ec4b_ad5755d1",
+      "range": {
+        "startLine": 98,
+        "startChar": 8,
+        "endLine": 98,
+        "endChar": 24
+      },
+      "revId": "bea11bc1b96e006e28bf13d2396232012c0bb403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9a330d2a_b4ab9325",
+        "filename": "android/app/src/com/android/bluetooth/hid/HidHostService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-06T02:07:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "493c56fb_26f0d7d7",
       "range": {
         "startLine": 98,
         "startChar": 8,
@@ -226,6 +274,30 @@
       "side": 1,
       "message": "I agree, however I feel that this is to be done in a follow-up because using the real flag value is the current behavior and I\u0027m maintaining it.\n\nAlso should we not instead change this to static flags instead?",
       "parentUuid": "090e38f1_e3582e53",
+      "range": {
+        "startLine": 244,
+        "startChar": 71,
+        "endLine": 244,
+        "endChar": 87
+      },
+      "revId": "bea11bc1b96e006e28bf13d2396232012c0bb403",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "249af216_005031bc",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/bass_client/BassClientServiceTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-06T02:07:37Z",
+      "side": 1,
+      "message": "Acknowledged\n\nYes, moving to static flag is the new recommended way, I forgot.",
+      "parentUuid": "a8982ded_b24ef0a6",
       "range": {
         "startLine": 244,
         "startChar": 71,
