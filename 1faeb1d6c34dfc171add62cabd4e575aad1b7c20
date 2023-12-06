@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b55dbaa_0a2c431c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-12-06T05:56:52Z",
+      "side": 1,
+      "message": "I\u0027d expect the test step to include a specific model that needs this interop flag. Also it\u0027d be good to mention how interop_database.conf should be edited along with this patch.",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 24
+      },
+      "revId": "1faeb1d6c34dfc171add62cabd4e575aad1b7c20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "5b318ed7_5aac0912",
@@ -31,6 +54,23 @@
       "writtenOn": "2023-12-05T22:18:02Z",
       "side": 1,
       "message": "I was expecting there to be an entry added in interop_database.conf to make this work.  Without that, it seems like a no-op.",
+      "revId": "1faeb1d6c34dfc171add62cabd4e575aad1b7c20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d960dc75_d2f72819",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 2179,
+      "author": {
+        "id": 1079709
+      },
+      "writtenOn": "2023-12-06T05:56:52Z",
+      "side": 1,
+      "message": "Suggest rename `interop_insert_call_when_sco_start` in hfp.rs. Otherwise this reads like an action instead of querying a bool.",
       "revId": "1faeb1d6c34dfc171add62cabd4e575aad1b7c20",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
