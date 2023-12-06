@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d389384_03356c3b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-06T22:13:45Z",
+      "side": 1,
+      "message": "Looks like I need to add myself to Java owners - will do that but feel free to add another owner to approve to unblock.",
+      "revId": "746a4cbf8528eb4a59bf75dfde8983960a6d7039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
