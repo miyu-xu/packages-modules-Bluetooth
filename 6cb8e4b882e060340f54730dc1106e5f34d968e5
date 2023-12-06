@@ -16,6 +16,52 @@
       "message": "Split changes from aosp/2842774",
       "revId": "6cb8e4b882e060340f54730dc1106e5f34d968e5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9a95307_31d81a41",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-06T05:22:30Z",
+      "side": 1,
+      "message": "nit: move tag to the top",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 15
+      },
+      "revId": "6cb8e4b882e060340f54730dc1106e5f34d968e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0ea3875_98debb4a",
+        "filename": "system/audio_hal_interface/aidl/hfp_software_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-06T05:22:30Z",
+      "side": 1,
+      "message": "nit: probably we can print value out with both numerical value and verbose description, see [bt_status_text](https://source.corp.google.com/h/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/include/hardware/bluetooth.h;l\u003d111;drc\u003dd4035b6eb1192f71af7adae47bf17d22c7356fa1;bpv\u003d1;bpt\u003d1)\n\nsame for disconnectAudio",
+      "range": {
+        "startLine": 86,
+        "startChar": 57,
+        "endLine": 86,
+        "endChar": 63
+      },
+      "revId": "6cb8e4b882e060340f54730dc1106e5f34d968e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
