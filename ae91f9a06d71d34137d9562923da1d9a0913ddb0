@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b1802fdc_b3aa8450",
+        "filename": "system/stack/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-06T23:52:08Z",
+      "side": 0,
+      "message": "This needs to be removed from system/stack/BUILD.gn:    \"btm/btm_ble_batchscan.cc\",",
+      "range": {
+        "startLine": 244,
+        "startChar": 13,
+        "endLine": 244,
+        "endChar": 30
+      },
+      "revId": "ae91f9a06d71d34137d9562923da1d9a0913ddb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
