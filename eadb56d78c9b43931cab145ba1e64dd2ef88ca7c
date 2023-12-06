@@ -22,6 +22,30 @@
       },
       "revId": "eadb56d78c9b43931cab145ba1e64dd2ef88ca7c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09fddff1_5c0fb14a",
+        "filename": "system/bta/le_audio/audio_hal_client/asrc_tables.h",
+        "patchSetId": 18
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-12-06T22:47:29Z",
+      "side": 1,
+      "message": "```\nconst int32_t h alignas(2 * KERNEL_A *\n                         sizeof(int32_t))[KERNEL_Q][2 * KERNEL_A];\nconst int16_t d alignas(2 * KERNEL_A *\n                        sizeof(int16_t))[KERNEL_Q][2 * KERNEL_A];\n```\nI am not a fan. But can commit that. It\u0027s still less ugly than tables or ternaries.",
+      "parentUuid": "512e872f_15b6af5e",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 19
+      },
+      "revId": "eadb56d78c9b43931cab145ba1e64dd2ef88ca7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
