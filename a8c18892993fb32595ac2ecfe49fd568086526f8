@@ -118,6 +118,30 @@
       },
       "revId": "a8c18892993fb32595ac2ecfe49fd568086526f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20a257a6_019c9424",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4605,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2023-12-06T22:56:39Z",
+      "side": 1,
+      "message": "Update the patch to reflect the proposal. What you guys think?",
+      "parentUuid": "f10c3622_908e1a5b",
+      "range": {
+        "startLine": 4601,
+        "startChar": 0,
+        "endLine": 4605,
+        "endChar": 62
+      },
+      "revId": "a8c18892993fb32595ac2ecfe49fd568086526f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
