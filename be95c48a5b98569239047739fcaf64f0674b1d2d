@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7115768e_4d8a8265",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-06T21:24:33Z",
+      "side": 1,
+      "message": "Is this a race, or is there a legitimate case where interface can be null when the transport is AIDL?\n\nIf it\u0027s a race, this will make it happen less often, but won\u0027t fix it.",
+      "range": {
+        "startLine": 895,
+        "startChar": 48,
+        "endLine": 895,
+        "endChar": 57
+      },
+      "revId": "be95c48a5b98569239047739fcaf64f0674b1d2d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
