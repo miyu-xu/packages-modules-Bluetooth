@@ -34,6 +34,24 @@
       "parentUuid": "49d9ae76_71d42835",
       "revId": "1e3e32fb3bbd7551b47f2a80c4dee26e8e731230",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e169858c_a092cac9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-06T01:23:33Z",
+      "side": 1,
+      "message": "Same here, I would prefer to call this a no-op and not a mechanical refactor.",
+      "parentUuid": "dc1f8708_357dd348",
+      "revId": "1e3e32fb3bbd7551b47f2a80c4dee26e8e731230",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
