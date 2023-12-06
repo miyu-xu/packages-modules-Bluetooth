@@ -16,6 +16,24 @@
       "message": "The fix lgtm and I\u0027ve also validated it locally, could you help to add this to the description?\n\nFlag: EXEMPT, change only applies to lea broadcast which is disabled for now.",
       "revId": "576ec18021ecff07f8603713c327e4097b692cc1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4298a5fc_01b5c9ef",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-06T20:08:28Z",
+      "side": 1,
+      "message": "^",
+      "parentUuid": "2a59dcdb_69d4f298",
+      "revId": "576ec18021ecff07f8603713c327e4097b692cc1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
