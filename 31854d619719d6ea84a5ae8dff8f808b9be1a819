@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c5d3e226_2f004065",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1294476
+      },
+      "writtenOn": "2023-12-06T14:01:24Z",
+      "side": 1,
+      "message": "is it necessary to add Flag: \u003creason\u003e in CL description ?",
+      "revId": "31854d619719d6ea84a5ae8dff8f808b9be1a819",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
