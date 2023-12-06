@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Android Open Source Project
+ * Copyright 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@
 #include "osi/include/properties.h"
 
 using ::bluetooth::audio::aidl::hfp::HfpSinkTransport;
+using ::bluetooth::audio::aidl::hfp::HfpSourceTransport;
 using AudioConfiguration =
     ::aidl::android::hardware::bluetooth::audio::AudioConfiguration;
 using ::aidl::android::hardware::bluetooth::audio::ChannelMode;
@@ -42,8 +43,16 @@ aidl::BluetoothAudioSinkClientInterface* get_aidl_sink_client_interface() {
   return HfpSinkTransport::active_hal_interface;
 }
 
+aidl::BluetoothAudioSourceClientInterface* get_aidl_source_client_interface() {
+  return HfpSourceTransport::active_hal_interface;
+}
+
 HfpSinkTransport* get_aidl_sink_transport_instance() {
   return HfpSinkTransport::instance_;
+}
+
+HfpSourceTransport* get_aidl_source_transport_instance() {
+  return HfpSourceTransport::instance_;
 }
 
 PcmConfiguration get_default_pcm_configuration() {
@@ -90,6 +99,11 @@ bool is_aidl_sink_offload_session() {
          aidl::SessionType::HFP_HARDWARE_OFFLOAD_DATAPATH;
 }
 
+bool is_aidl_source_offload_session() {
+  return get_aidl_source_transport_instance()->GetSessionType() ==
+         aidl::SessionType::HFP_HARDWARE_OFFLOAD_DATAPATH;
+}
+
 void get_default_audio_configuration(AudioConfiguration* audio_config) {
   AudioConfiguration local_audio_config;
   if (is_aidl_sink_offload_session()) {
@@ -115,6 +129,23 @@ bool is_aidl_enabled() {
              BluetoothAudioHalTransport::AIDL &&
          HalVersionManager::GetHalVersion() >=
              BluetoothAudioHalVersion::VERSION_AIDL_V4;
+}
+
+// Parent client implementation
+HfpClientInterface* HfpClientInterface::interface = nullptr;
+HfpClientInterface* HfpClientInterface::Get() {
+  if (!is_hal_enabled()) {
+    LOG(ERROR) << __func__ << ": BluetoothAudio HAL is disabled";
+    return nullptr;
+  }
+  if (!is_aidl_enabled()) {
+    LOG(WARNING) << __func__ << ": Unsupported HIDL or AIDL version";
+    return nullptr;
+  }
+  if (HfpClientInterface::interface == nullptr) {
+    HfpClientInterface::interface = new HfpClientInterface();
+  }
+  return HfpClientInterface::interface;
 }
 
 // Sink client implementation
@@ -253,6 +284,145 @@ bool HfpClientInterface::ReleaseSink(HfpClientInterface::Sink* sink) {
 
   delete sink_;
   sink_ = nullptr;
+
+  return true;
+}
+
+// Source client implementation
+void HfpClientInterface::Source::Cleanup() {
+  LOG(INFO) << __func__ << " source";
+  StopSession();
+  if (HfpSourceTransport::instance_) {
+    delete HfpSinkTransport::software_hal_interface;
+    HfpSinkTransport::software_hal_interface = nullptr;
+    if (HfpSinkTransport::offloading_hal_interface) {
+      delete HfpSinkTransport::offloading_hal_interface;
+      HfpSinkTransport::offloading_hal_interface = nullptr;
+    }
+
+    delete HfpSourceTransport::instance_;
+    HfpSourceTransport::instance_ = nullptr;
+  }
+}
+
+void HfpClientInterface::Source::StartSession() {
+  if (!is_aidl_enabled()) {
+    LOG(WARNING) << __func__ << ": Unsupported HIDL or AIDL version";
+    return;
+  }
+  LOG(INFO) << __func__ << " source";
+  AudioConfiguration* audio_config = nullptr;
+  get_default_audio_configuration(audio_config);
+  if (!get_aidl_source_client_interface()->UpdateAudioConfig(*audio_config)) {
+    LOG(ERROR) << __func__ << ": cannot update audio config to HAL";
+    return;
+  }
+  get_aidl_source_client_interface()->StartSession();
+}
+
+void HfpClientInterface::Source::StopSession() {
+  if (!is_aidl_enabled()) {
+    LOG(WARNING) << __func__ << ": Unsupported HIDL or AIDL version";
+    return;
+  }
+  LOG(INFO) << __func__ << " source";
+  get_aidl_source_client_interface()->EndSession();
+  if (get_aidl_source_transport_instance()) {
+    get_aidl_source_transport_instance()->ResetPendingCmd();
+    get_aidl_source_transport_instance()->ResetPresentationPosition();
+  }
+}
+
+void HfpClientInterface::Source::UpdateAudioConfigToHal(
+    const ::hfp::offload_config& offload_config) {
+  if (!is_aidl_enabled()) {
+    LOG(WARNING) << __func__ << ": Unsupported HIDL or AIDL version";
+    return;
+  }
+
+  LOG(INFO) << __func__ << " source";
+  get_aidl_source_client_interface()->UpdateAudioConfig(
+      offload_config_to_hal_audio_config(offload_config));
+}
+
+size_t HfpClientInterface::Source::Write(const uint8_t* p_buf, uint32_t len) {
+  if (!is_aidl_enabled()) {
+    LOG(WARNING) << __func__ << ": Unsupported HIDL or AIDL version";
+    return 0;
+  }
+  LOG(INFO) << __func__ << " source";
+  return get_aidl_source_client_interface()->WriteAudioData(p_buf, len);
+}
+
+HfpClientInterface::Source* HfpClientInterface::GetSource(
+    bluetooth::common::MessageLoopThread* message_loop) {
+  if (!is_aidl_enabled()) {
+    LOG(WARNING) << __func__ << ": Unsupported HIDL or AIDL version";
+    return nullptr;
+  }
+
+  if (source_ == nullptr) {
+    source_ = new Source();
+  } else {
+    LOG(WARNING) << __func__ << ": Source is already acquired";
+    return nullptr;
+  }
+
+  LOG(INFO) << __func__ << " source";
+
+  HfpSourceTransport::instance_ =
+      new HfpSourceTransport(aidl::SessionType::HFP_SOFTWARE_ENCODING_DATAPATH);
+  HfpSourceTransport::software_hal_interface =
+      new aidl::BluetoothAudioSourceClientInterface(
+          HfpSourceTransport::instance_, message_loop);
+  if (!HfpSourceTransport::software_hal_interface->IsValid()) {
+    LOG(WARNING) << __func__ << ": BluetoothAudio HAL for HFP is invalid";
+    delete HfpSourceTransport::software_hal_interface;
+    HfpSourceTransport::software_hal_interface = nullptr;
+    delete HfpSourceTransport::instance_;
+    return nullptr;
+  }
+
+  // Prepare offload hal interface.
+  if (bta_ag_get_sco_offload_enabled()) {
+    HfpSourceTransport::instance_ = new HfpSourceTransport(
+        aidl::SessionType::HFP_HARDWARE_OFFLOAD_DATAPATH);
+    HfpSourceTransport::offloading_hal_interface =
+        new aidl::BluetoothAudioSourceClientInterface(
+            HfpSourceTransport::instance_, message_loop);
+    if (!HfpSourceTransport::offloading_hal_interface->IsValid()) {
+      LOG(FATAL) << __func__
+                 << ": BluetoothAudio HAL for HFP offloading is invalid";
+      delete HfpSourceTransport::offloading_hal_interface;
+      HfpSourceTransport::offloading_hal_interface = nullptr;
+      delete HfpSourceTransport::instance_;
+      HfpSourceTransport::instance_ = static_cast<HfpSourceTransport*>(
+          HfpSourceTransport::software_hal_interface->GetTransportInstance());
+      delete HfpSourceTransport::software_hal_interface;
+      HfpSourceTransport::software_hal_interface = nullptr;
+      delete HfpSourceTransport::instance_;
+      return nullptr;
+    }
+  }
+
+  HfpSourceTransport::active_hal_interface =
+      (HfpSourceTransport::offloading_hal_interface != nullptr
+           ? HfpSourceTransport::offloading_hal_interface
+           : HfpSourceTransport::software_hal_interface);
+
+  return source_;
+}
+
+bool HfpClientInterface::ReleaseSource(HfpClientInterface::Source* source) {
+  if (source != source_) {
+    LOG(WARNING) << __func__ << ", can't release not acquired source";
+    return false;
+  }
+
+  if (get_aidl_source_client_interface()) source->Cleanup();
+
+  delete source_;
+  source_ = nullptr;
 
   return true;
 }
