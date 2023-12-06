@@ -133,7 +133,6 @@ class tBTM_BLE_ADDR_INFO {
  private:
   tBLE_ADDR_TYPE ble_addr_type_; /* LE device type: public or random address */
 };
-typedef struct tBTM_SEC_BLE tBTM_SEC_BLE;
 
 enum : uint16_t {
   BTM_SEC_AUTHENTICATED = 0x0002,
@@ -222,7 +221,7 @@ struct tBTM_SEC_DEV_REC {
   tHCI_STATUS sec_status; /* Status in encryption change event  */
   uint16_t sec_flags;     /* Current device security state      */
 
-  uint8_t pin_code_length; /* Length of the pin_code used for pairing */
+  uint8_t pin_code_length; /* Length of the pin_code used for paring */
   uint32_t required_security_flags_for_pairing;
   uint16_t security_required; /* Security required for connection   */
 
@@ -246,10 +245,10 @@ struct tBTM_SEC_DEV_REC {
 
   tBTM_SEC_BLE_KEYS ble_keys; /* LE Link Key Info */
 
-  tBTM_BOND_TYPE bond_type; /* bond type */
+  tBTM_BOND_TYPE bond_type; /* peering bond type */
 
   /**
-   *  other fields for device management
+   *  others fields for device management
    */
   RawAddress bd_addr; /* BD_ADDR of the device */
   tBTM_BLE_ADDR_INFO ble;
