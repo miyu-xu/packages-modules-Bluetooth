@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3e795b6_5c95a2c9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-06T01:04:10Z",
+      "side": 1,
+      "message": "Please provide Flag stanza as specified in go/bt-ts-workflow.",
+      "revId": "523d5a6ea65bcc9c26c33d5e10ef8de928bb3982",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
