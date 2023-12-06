@@ -243,6 +243,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c5527f7_7485359d",
+        "filename": "system/bta/le_audio/audio_hal_client/audio_source_hal_asrc.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-12-06T22:22:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99a5585d_71a0c114",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 7
+      },
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d91160e_60600fe0",
@@ -527,6 +551,24 @@
       "side": 1,
       "message": "Can I resolve ?",
       "parentUuid": "d35764b2_0ee1f4ca",
+      "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb8a2244_86ab62f6",
+        "filename": "system/gd/hal/nocp_iso_clocker.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-12-06T22:22:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "50b20bfb_5d9fcaf6",
       "revId": "928ba263ac007aca744b381b1c4c28f5fc58e8b3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
