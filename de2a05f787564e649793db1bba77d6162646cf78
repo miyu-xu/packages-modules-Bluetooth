@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f78c7f4_fc061e29",
+        "filename": "framework/java/android/bluetooth/BluetoothAvrcpController.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-07T22:08:57Z",
+      "side": 1,
+      "message": "Should everything in this be deleted and just return null \u0026 mark the method as deprecated ? Why do we have this ?",
+      "range": {
+        "startLine": 217,
+        "startChar": 7,
+        "endLine": 233,
+        "endChar": 28
+      },
+      "revId": "de2a05f787564e649793db1bba77d6162646cf78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
