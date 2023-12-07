@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9e0e2e79_4d7c6f0f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9d284eb1_62b3b790",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a294fbf4_bf26a134",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ea43d53d_11bc8c6c",
+      "range": {
+        "startLine": 11,
+        "startChar": 20,
+        "endLine": 11,
+        "endChar": 63
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9595fe60_551660a9",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-12-07T11:15:22Z",
       "side": 1,
       "message": "Actually I think this deserves `logging.error`. Please change and also fix OnSspRequest.",
+      "range": {
+        "startLine": 238,
+        "startChar": 24,
+        "endLine": 238,
+        "endChar": 29
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85cc4a8f_67bda14b",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9595fe60_551660a9",
       "range": {
         "startLine": 238,
         "startChar": 24,
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7771243_6c891d46",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eb203339_7ef6ef99",
+      "range": {
+        "startLine": 788,
+        "startChar": 21,
+        "endLine": 788,
+        "endChar": 22
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15142450_9d0f6fb8",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-12-07T11:15:22Z",
       "side": 1,
       "message": "This is redundant. SetPin already returns bool",
+      "range": {
+        "startLine": 797,
+        "startChar": 15,
+        "endLine": 797,
+        "endChar": 19
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17676dda_48aaf275",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15142450_9d0f6fb8",
       "range": {
         "startLine": 797,
         "startChar": 15,
@@ -133,6 +253,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d7f64046_6859acdf",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f050a49d_07947a01",
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79f1900e_5e9fde97",
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "230833d3_86e52399",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:14Z",
+      "side": 1,
+      "message": "I didn\u0027t notice about this, thanks for finding.",
+      "parentUuid": "79f1900e_5e9fde97",
+      "range": {
+        "startLine": 59,
+        "startChar": 21,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e528fd89_6795501d",
@@ -169,6 +331,30 @@
       "writtenOn": "2023-12-07T11:15:22Z",
       "side": 1,
       "message": "IIUC this can be overwritten by another OnPairing call later. Consider passing it as a function parameter, or maybe just use the `on_pairing_id` in outer scope.",
+      "range": {
+        "startLine": 93,
+        "startChar": 79,
+        "endLine": 93,
+        "endChar": 95
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c68b5d9_92436f7e",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:14Z",
+      "side": 1,
+      "message": "Using outer function\u0027s on_pairing_id.",
+      "parentUuid": "e528fd89_6795501d",
       "range": {
         "startLine": 93,
         "startChar": 79,
