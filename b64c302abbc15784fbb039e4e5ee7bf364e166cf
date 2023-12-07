@@ -33,6 +33,24 @@
       "message": "Can we make this consistent with style guidelines TODO: b/xxx - \u003ctext\u003e (go/todo-style)",
       "revId": "b64c302abbc15784fbb039e4e5ee7bf364e166cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a89328ef_21cd37f7",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-07T22:25:09Z",
+      "side": 1,
+      "message": "Done.\n\nThere are multiple bug that are tracking that, I changed the format to be closer to the guideline but it is not a perfect match",
+      "parentUuid": "8fb6b9b4_d989f4ad",
+      "revId": "b64c302abbc15784fbb039e4e5ee7bf364e166cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
