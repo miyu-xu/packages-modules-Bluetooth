@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e831a82f_d9b5c9e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 15
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-07T21:26:28Z",
+      "side": 1,
+      "message": "Is it a mechanical refactor? I see more modifications than just moving code arounds. It maybe better to call it a no-op.",
+      "revId": "159058bbfa262eabea1c0c11683792c6242ccc99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
