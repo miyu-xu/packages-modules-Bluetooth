@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "250141ff_ff7dc7f9",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T18:54:37Z",
+      "side": 1,
+      "message": "Could you please seperate the offload hal interface? In the current design, you handle the offload interface twice in both of source, and sink, but it seems be a single interface.",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 5
+      },
+      "revId": "83d861f87876e2c99cae8e51e3970951d60c5179",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "099df84b_90526b4e",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T18:54:37Z",
+      "side": 1,
+      "message": "It only for the offload case. Please check the session type, and only offload session one time.",
+      "range": {
+        "startLine": 317,
+        "startChar": 43,
+        "endLine": 317,
+        "endChar": 60
+      },
+      "revId": "83d861f87876e2c99cae8e51e3970951d60c5179",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
