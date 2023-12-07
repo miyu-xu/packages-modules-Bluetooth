@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3edc5490_afa8e879",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1322530
+      },
+      "writtenOn": "2023-12-07T04:36:01Z",
+      "side": 1,
+      "message": "LGTM, tested with the CL, it solves the issue when ISO data path was set after ASE entered streaming state.",
+      "revId": "3579d56aa04663e3f0368f774d85c5a0e8f089b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
