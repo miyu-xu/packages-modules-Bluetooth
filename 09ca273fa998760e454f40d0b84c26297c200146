@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00007627_fc2c7aaa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T14:44:43Z",
+      "side": 1,
+      "message": "nit: Test: m com.android.btservices",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "09ca273fa998760e454f40d0b84c26297c200146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "599b1329_f237bf87",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T14:44:43Z",
+      "side": 1,
+      "message": "Please add Flag: EXEMPT \u003creason\u003e part. Thanks",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "09ca273fa998760e454f40d0b84c26297c200146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
