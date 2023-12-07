@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d41038_dc99c734",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-07T18:06:49Z",
+      "side": 1,
+      "message": "could you help to add this to the commit message?\nFlag: EXEMPT lea broadcast only change feature disabled by system prop",
+      "revId": "f3ebf87a2f5b7419c4293055cce19fe633ae7bbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
