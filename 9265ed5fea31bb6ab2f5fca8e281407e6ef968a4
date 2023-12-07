@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd91dde2_60f73ca0",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:28:30Z",
+      "side": 1,
+      "message": "Is this exceeding the length limit(80?)? What\u0027s the guideline in Pandora?",
+      "revId": "9265ed5fea31bb6ab2f5fca8e281407e6ef968a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4267f96b_02739119",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:28:30Z",
+      "side": 1,
+      "message": "`debug` shall be enough because there are many common type but we only support one.",
+      "range": {
+        "startLine": 487,
+        "startChar": 20,
+        "endLine": 487,
+        "endChar": 25
+      },
+      "revId": "9265ed5fea31bb6ab2f5fca8e281407e6ef968a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c994a3da_32ae4ba3",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:28:30Z",
+      "side": 1,
+      "message": "How about moving `response.data.CopyFrom(data)` here so no need to change line #487",
+      "revId": "9265ed5fea31bb6ab2f5fca8e281407e6ef968a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
