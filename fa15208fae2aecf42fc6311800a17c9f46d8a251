@@ -22,6 +22,30 @@
       },
       "revId": "fa15208fae2aecf42fc6311800a17c9f46d8a251",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "10f6130a_856bad8c",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1984885
+      },
+      "writtenOn": "2023-12-07T09:13:23Z",
+      "side": 1,
+      "message": "we don\u0027t known peer sep when peer connect to us, but we need create the sep for peer device, So add INVALID bit mask. \nThe peer_sep_ don\u0027t equal to INVALID forever, the possible value of peer_sep_ is one of AVDT_TSEP_SRC、AVDT_TSEP_SNK、AVDT_TSEP_SRC|AVDT_TSEP_INVALID and AVDT_TSEP_SNK|AVDT_TSEP_INVALID.\nwhen we don\u0027t know peer sep exactly, we will set peer_sep_ as AVDT_TSEP_SRC|AVDT_TSEP_INVALID or AVDT_TSEP_SNK|AVDT_TSEP_INVALID, and after we know peer sep, we will correct peer_sep_ to AVDT_TSEP_SNK or AVDT_TSEP_SRC",
+      "parentUuid": "dce231cd_6c0010ea",
+      "range": {
+        "startLine": 279,
+        "startChar": 35,
+        "endLine": 279,
+        "endChar": 61
+      },
+      "revId": "fa15208fae2aecf42fc6311800a17c9f46d8a251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
