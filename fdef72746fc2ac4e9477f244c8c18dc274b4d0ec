@@ -16,6 +16,24 @@
       "message": "Please add `Flag: EXEMPT \u003creason\u003e`",
       "revId": "fdef72746fc2ac4e9477f244c8c18dc274b4d0ec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "457baf38_31614985",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-12-07T23:23:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ed81f9dc_d16c28d7",
+      "revId": "fdef72746fc2ac4e9477f244c8c18dc274b4d0ec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
