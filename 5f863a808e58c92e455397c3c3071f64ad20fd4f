@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39a28585_7cde7fbe",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1364,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-07T22:17:40Z",
+      "side": 1,
+      "message": "Can you add a comment to explain that this is needed because of `bindServiceAsUser` ?",
+      "revId": "5f863a808e58c92e455397c3c3071f64ad20fd4f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
