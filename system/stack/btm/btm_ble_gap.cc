@@ -2071,6 +2071,8 @@ tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
   } else if ((p_ble_cb->inq_var.scan_interval != scan_interval) ||
              (p_ble_cb->inq_var.scan_window != scan_window)) {
     LOG_VERBOSE("%s, restart LE scan with low latency scan params", __func__);
+    p_ble_cb->inq_var.scan_interval = scan_interval;
+    p_ble_cb->inq_var.scan_window = scan_window;
     btm_send_hci_scan_enable(BTM_BLE_SCAN_DISABLE, BTM_BLE_DUPLICATE_ENABLE);
     btm_send_hci_set_scan_params(
         BTM_BLE_SCAN_MODE_ACTI, scan_interval, scan_window,
