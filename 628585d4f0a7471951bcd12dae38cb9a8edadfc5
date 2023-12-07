@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4c92e22_e3f2a588",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-07T18:43:24Z",
+      "side": 1,
+      "message": "Please add:\n\nFlag: EXEMPT floss only change",
+      "revId": "628585d4f0a7471951bcd12dae38cb9a8edadfc5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
