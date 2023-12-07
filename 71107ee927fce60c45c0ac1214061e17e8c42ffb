@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d598883f_e506bcb6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-07T16:07:47Z",
+      "side": 1,
+      "message": "Please add `Flag: EXEMPT \u003creason\u003e`. For instance `Flag: EXEMPT floss only changes`",
+      "revId": "71107ee927fce60c45c0ac1214061e17e8c42ffb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
