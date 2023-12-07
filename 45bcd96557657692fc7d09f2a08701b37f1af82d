@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cebe87f8_336d3d5e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-12-07T22:26:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30e83cb4_e9556dfa",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 14
+      },
+      "revId": "45bcd96557657692fc7d09f2a08701b37f1af82d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8695e981_25ad6862",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4622eb8c_e1f11535",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapRequestPullPhoneBook.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-12-07T22:26:28Z",
+      "side": 1,
+      "message": "Moved the catch to `PbapClientConnectionHandler`, where `BluetoothPbapRequestPullPhoneBook` is invoked to download phonebooks and call logs.",
+      "parentUuid": "8695e981_25ad6862",
+      "range": {
+        "startLine": 103,
+        "startChar": 12,
+        "endLine": 103,
+        "endChar": 69
+      },
+      "revId": "45bcd96557657692fc7d09f2a08701b37f1af82d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7beb9f86_9cb5e211",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-12-06T03:17:40Z",
       "side": 1,
       "message": "new nit, sorry!\n\nCan we use the constant directly if its an available API? If not, make a `private static final int DEFAULT_BUFFER_SIZE_BYTES \u003d 8192;` above so there\u0027s no magic numbers?",
+      "range": {
+        "startLine": 89,
+        "startChar": 27,
+        "endLine": 89,
+        "endChar": 31
+      },
+      "revId": "45bcd96557657692fc7d09f2a08701b37f1af82d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dab52656_f087960a",
+        "filename": "android/app/src/com/android/bluetooth/pbapclient/BluetoothPbapVcardList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1466695
+      },
+      "writtenOn": "2023-12-07T22:26:28Z",
+      "side": 1,
+      "message": "Done. Unfortunately, not public.",
+      "parentUuid": "7beb9f86_9cb5e211",
       "range": {
         "startLine": 89,
         "startChar": 27,
