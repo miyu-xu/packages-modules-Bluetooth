@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f954de2_d6206b30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-12-07T02:18:48Z",
+      "side": 1,
+      "message": "Thomas and Ash, need a stamp for DrNo review. Thank you.",
+      "revId": "70c5f20bf74e773f700fd59cb719964e51a014c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
