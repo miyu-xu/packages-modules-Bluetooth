@@ -16,6 +16,24 @@
       "message": "Please add \"Flag:\" tag and add \"Bug:\" tag for flag bug as well",
       "revId": "ed32a54f10971f105a7306227171ead5f3c46dec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98a86fd7_4f3c145c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-12-07T00:25:11Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "705ce1ac_6522144f",
+      "revId": "ed32a54f10971f105a7306227171ead5f3c46dec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
