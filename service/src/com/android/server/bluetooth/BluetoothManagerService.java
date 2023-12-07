@@ -1359,8 +1359,15 @@ class BluetoothManagerService {
                 psc =
                         new ProfileServiceConnections(
                                 new Intent(PROFILE_TO_SERVICE_NAME.get(bluetoothProfile)));
-                if (!psc.bindService(DEFAULT_REBIND_COUNT)) {
-                    return false;
+
+                // TODO(291815510 | 288450479): Remove clearCallingIdentity
+                final long callingIdentity = Binder.clearCallingIdentity();
+                try {
+                    if (!psc.bindService(DEFAULT_REBIND_COUNT)) {
+                        return false;
+                    }
+                } finally {
+                    Binder.restoreCallingIdentity(callingIdentity);
                 }
 
                 mProfileServices.put(bluetoothProfile, psc);
