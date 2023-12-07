@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a49ab97e_2b738236",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-07T04:16:49Z",
+      "side": 1,
+      "message": "FYI the `bt_rc_ctrl_callbacks` are already checked.\n\nthe method `handle_rc_ctrl_features` is called from [here](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_rc.cc;l\u003d906;drc\u003dd4035b6eb1192f71af7adae47bf17d22c7356fa1), inside the scope of a null check and from [Here](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_rc.cc;l\u003d1274;drc\u003dd4035b6eb1192f71af7adae47bf17d22c7356fa1) also inside a null check.\n\n\nIt is harmless to check a second time, but if this was done in order to solve a bug, I am afraid this is a no-op change",
+      "revId": "af2cab5676e7cfe963b128cbaed9c44bb161576a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
