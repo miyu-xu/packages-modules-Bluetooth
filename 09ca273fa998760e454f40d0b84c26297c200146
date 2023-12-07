@@ -45,6 +45,29 @@
       },
       "revId": "09ca273fa998760e454f40d0b84c26297c200146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c465640_088cdee7",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T14:46:07Z",
+      "side": 1,
+      "message": "nit: how about shortten the string to RETRIEVE, the same as others.",
+      "range": {
+        "startLine": 963,
+        "startChar": 24,
+        "endLine": 963,
+        "endChar": 64
+      },
+      "revId": "09ca273fa998760e454f40d0b84c26297c200146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
