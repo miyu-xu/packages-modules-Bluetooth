@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "47cbfe56_2cf02360",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:35Z",
+      "side": 1,
+      "message": "IIUC aosp length limit is 120, I just share (again) what I know to the team:\nhttps://docs.google.com/document/d/1aNRGYxtzhpCDW3fTNoiksPbFxDiyxKPrBkv1VXv2UO0/edit?resourcekey\u003d0-TUL3ka8FCoGxHRbeVVoH4g\u0026tab\u003dt.0",
+      "parentUuid": "dd91dde2_60f73ca0",
+      "revId": "9265ed5fea31bb6ab2f5fca8e281407e6ef968a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4267f96b_02739119",
         "filename": "floss/pandora/floss/utils.py",
         "patchSetId": 15
@@ -31,6 +49,30 @@
       "writtenOn": "2023-12-07T11:28:30Z",
       "side": 1,
       "message": "`debug` shall be enough because there are many common type but we only support one.",
+      "range": {
+        "startLine": 487,
+        "startChar": 20,
+        "endLine": 487,
+        "endChar": 25
+      },
+      "revId": "9265ed5fea31bb6ab2f5fca8e281407e6ef968a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eed67bb_82df598f",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4267f96b_02739119",
       "range": {
         "startLine": 487,
         "startChar": 20,
@@ -54,6 +96,42 @@
       "writtenOn": "2023-12-07T11:28:30Z",
       "side": 1,
       "message": "How about moving `response.data.CopyFrom(data)` here so no need to change line #487",
+      "revId": "9265ed5fea31bb6ab2f5fca8e281407e6ef968a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00b1ad9a_6983de33",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c994a3da_32ae4ba3",
+      "revId": "9265ed5fea31bb6ab2f5fca8e281407e6ef968a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62702161_ddafb03c",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:05:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c994a3da_32ae4ba3",
       "revId": "9265ed5fea31bb6ab2f5fca8e281407e6ef968a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
