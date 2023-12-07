@@ -235,6 +235,30 @@
       },
       "revId": "d84dd7e4c79d6cc3d7442c15cd88853e5947b4cb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "464a395a_11b1e352",
+        "filename": "framework/java/android/bluetooth/BluetoothUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-07T22:05:10Z",
+      "side": 1,
+      "message": "🤔 no, I pushed everything, I guess I forgot to do it 😅\n\nThanks!",
+      "parentUuid": "cbbbfcd1_ca48131a",
+      "range": {
+        "startLine": 95,
+        "startChar": 23,
+        "endLine": 95,
+        "endChar": 48
+      },
+      "revId": "d84dd7e4c79d6cc3d7442c15cd88853e5947b4cb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
