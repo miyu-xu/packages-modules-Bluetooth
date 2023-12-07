@@ -100,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "95d667d8_05c1f585",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 2044630
+      },
+      "writtenOn": "2023-12-07T06:15:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36678eae_e37dfd07",
+      "revId": "f4844b29842839571ea95bfc84381e3df2a4d37c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5177c86f_34ac92e3",
