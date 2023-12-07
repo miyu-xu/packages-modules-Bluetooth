@@ -373,6 +373,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           extended_event_type = transform_to_extended_event_type({.legacy = true});
           break;
         case AdvertisingEventType::SCAN_RESPONSE:
+          // If the initial advertisement was ADV_SCAN_IND, the 'connectable' bit will be wrong.
+          // This is okay, as the event type of scan responses is ignored by LeScanningReassembler.
           extended_event_type = transform_to_extended_event_type(
               {.connectable = true, .scannable = true, .scan_response = true, .legacy = true});
           break;
@@ -450,10 +452,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     scanning_reassembler_.SetIgnoreScanResponses(
         filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY);
 
-    auto complete_advertising_data = scanning_reassembler_.ProcessAdvertisingReport(
+    auto processed_report = scanning_reassembler_.ProcessAdvertisingReport(
         event_type, address_type, address, advertising_sid, advertising_data);
 
-    if (complete_advertising_data.has_value()) {
+    if (processed_report.has_value()) {
       switch (address_type) {
         case (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS:
         case (uint8_t)AddressType::PUBLIC_IDENTITY_ADDRESS:
@@ -465,8 +467,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           break;
       }
 
+      uint16_t first_fragment_extended_event_type = processed_report->first;
+      std::vector<uint8_t> complete_advertising_data = std::move(processed_report->second);
       scanning_callbacks_->OnScanResult(
-          event_type,
+          first_fragment_extended_event_type,
           address_type,
           address,
           primary_phy,
@@ -475,7 +479,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           tx_power,
           get_rssi_after_calibration(rssi),
           periodic_advertising_interval,
-          complete_advertising_data.value());
+          std::move(complete_advertising_data));
     }
   }
 
