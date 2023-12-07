@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d284eb1_62b3b790",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:15:22Z",
+      "side": 1,
+      "message": "I don\u0027t think this sentence is needed.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 6
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea43d53d_11bc8c6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:15:22Z",
+      "side": 1,
+      "message": "mutiple OnPairing streaming are allowed",
+      "range": {
+        "startLine": 11,
+        "startChar": 20,
+        "endLine": 11,
+        "endChar": 63
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9595fe60_551660a9",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:15:22Z",
+      "side": 1,
+      "message": "Actually I think this deserves `logging.error`. Please change and also fix OnSspRequest.",
+      "range": {
+        "startLine": 238,
+        "startChar": 24,
+        "endLine": 238,
+        "endChar": 29
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb203339_7ef6ef99",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:15:22Z",
+      "side": 1,
+      "message": "Add some description about the type. This seems to be a list of integers.",
+      "range": {
+        "startLine": 788,
+        "startChar": 21,
+        "endLine": 788,
+        "endChar": 22
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15142450_9d0f6fb8",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 797,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:15:22Z",
+      "side": 1,
+      "message": "This is redundant. SetPin already returns bool",
+      "range": {
+        "startLine": 797,
+        "startChar": 15,
+        "endLine": 797,
+        "endChar": 19
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f050a49d_07947a01",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:15:22Z",
+      "side": 1,
+      "message": "```\non_pairing_id \u003d self.on_pairing_count\n```\nMake a copy of this in this thread so it won\u0027t be overwritten by the other OnPairing call. `on_pairing_id` shall be a better name as it\u0027s used for identifying the threads in logs.",
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79f1900e_5e9fde97",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:15:22Z",
+      "side": 1,
+      "message": "How about `on_pairing_id`. However, it seems not to be used.",
+      "range": {
+        "startLine": 59,
+        "startChar": 21,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e528fd89_6795501d",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T11:15:22Z",
+      "side": 1,
+      "message": "IIUC this can be overwritten by another OnPairing call later. Consider passing it as a function parameter, or maybe just use the `on_pairing_id` in outer scope.",
+      "range": {
+        "startLine": 93,
+        "startChar": 79,
+        "endLine": 93,
+        "endChar": 95
+      },
+      "revId": "db8d2512b35fac3b332084dcd22d54757b003a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
