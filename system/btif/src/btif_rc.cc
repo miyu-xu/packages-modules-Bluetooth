@@ -670,9 +670,11 @@ void handle_rc_ctrl_features(btif_rc_device_cb_t* p_dev) {
   }
 
   LOG_VERBOSE("%s: Update rc features to CTRL: %d", __func__, rc_features);
-  do_in_jni_thread(FROM_HERE,
-                   base::BindOnce(bt_rc_ctrl_callbacks->getrcfeatures_cb,
-                                  p_dev->rc_addr, rc_features));
+  if (bt_rc_ctrl_callbacks != NULL) {
+    do_in_jni_thread(FROM_HERE,
+                     base::BindOnce(bt_rc_ctrl_callbacks->getrcfeatures_cb,
+                                    p_dev->rc_addr, rc_features));
+  }
 }
 void btif_rc_check_pending_cmd(const RawAddress& peer_address) {
   btif_rc_device_cb_t* p_dev = NULL;
