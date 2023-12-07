@@ -39,5 +39,6 @@ class MockInterface : public Interface {
 };
 namespace testing {
 bluetooth::legacy::hci::MockInterface& GetMock();
+void ResetMock();
 }
 }  // namespace bluetooth::legacy::hci
