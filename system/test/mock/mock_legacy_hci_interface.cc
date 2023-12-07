@@ -18,12 +18,20 @@
 
 #include <stddef.h>
 
+#include <memory>
+
 #include "stack/include/hcimsgs.h"
 
 namespace bluetooth::legacy::hci {
 namespace testing {
-MockInterface interface_;
-MockInterface& GetMock() { return interface_; }
+std::unique_ptr<MockInterface> interface_;
+MockInterface& GetMock() {
+  if (interface_ == nullptr) {
+    interface_ = std::make_unique<MockInterface>();
+  }
+  return *interface_;
+}
+void ResetMock() { interface_.reset(); }
 }  // namespace testing
-const Interface& GetInterface() { return testing::interface_; }
+const Interface& GetInterface() { return *testing::interface_; }
 }  // namespace bluetooth::legacy::hci

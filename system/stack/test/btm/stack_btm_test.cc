@@ -201,11 +201,8 @@ TEST_F(StackBtmWithQueuesTest, change_packet_type) {
 
   EXPECT_CALL(
       bluetooth::legacy::hci::testing::GetMock(),
-      ChangeConnectionPacketType(handle, 0x4400 | HCI_PKT_TYPES_MASK_DM1));
-  EXPECT_CALL(
-      bluetooth::legacy::hci::testing::GetMock(),
-      ChangeConnectionPacketType(
-          handle, (0xcc00 | HCI_PKT_TYPES_MASK_DM1 | HCI_PKT_TYPES_MASK_DH1)));
+      ChangeConnectionPacketType(handle, 0x4400 | HCI_PKT_TYPES_MASK_DM1))
+      .Times(2);
   EXPECT_CALL(
       bluetooth::legacy::hci::testing::GetMock(),
       ChangeConnectionPacketType(
@@ -214,8 +211,10 @@ TEST_F(StackBtmWithQueuesTest, change_packet_type) {
   btm_set_packet_types_from_address(bda, 0x55aa);
   btm_set_packet_types_from_address(bda, 0xffff);
   btm_set_packet_types_from_address(bda, 0x0);
+  btm_set_packet_types_from_address(bda, 0x55aa);
 
   get_btm_client_interface().lifecycle.btm_free();
+  bluetooth::legacy::hci::testing::ResetMock();
 }
 
 TEST(BtmTest, BTM_EIR_MAX_SERVICES) { ASSERT_EQ(46, BTM_EIR_MAX_SERVICES); }
