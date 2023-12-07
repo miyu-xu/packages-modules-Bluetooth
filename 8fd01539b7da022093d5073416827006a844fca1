@@ -16,6 +16,23 @@
       "message": "LGTM",
       "revId": "8fd01539b7da022093d5073416827006a844fca1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6cd6d36d_37a0cfd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-12-07T22:36:40Z",
+      "side": 1,
+      "message": "Test code is ok exempt",
+      "revId": "8fd01539b7da022093d5073416827006a844fca1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
