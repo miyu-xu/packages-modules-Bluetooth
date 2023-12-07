@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b51eeca5_2575ead6",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-07T02:58:56Z",
+      "side": 1,
+      "message": "should it be flagged with something like this ?\n\n```suggestion\n           SessionType::LE_AUDIO_BROADCAST_SOFTWARE_ENCODING_DATAPATH ||\n       (IS_FLAG_ENABLED(foo) \u0026\u0026 (\n       transport_-\u003eGetSessionType() \u003d\u003d\n           SessionType::HFP_SOFTWARE_ENCODING_DATAPATH ||\n       transport_-\u003eGetSessionType() \u003d\u003d\n           SessionType::HFP_SOFTWARE_DECODING_DATAPATH)));\n```",
+      "range": {
+        "startLine": 199,
+        "startChar": 69,
+        "endLine": 203,
+        "endChar": 56
+      },
+      "revId": "b02a99920274079d59c3055c587f84fc80b298fc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
