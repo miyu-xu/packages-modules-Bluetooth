@@ -72,6 +72,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ce2720b_28271e33",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-07T22:15:25Z",
+      "side": 1,
+      "message": "V4 is the new one that we added in android V, see aosp/2799933",
+      "parentUuid": "9261937e_8d0458ac",
+      "range": {
+        "startLine": 113,
+        "startChar": 5,
+        "endLine": 113,
+        "endChar": 20
+      },
+      "revId": "590f491005394b92ee4c82f25c78a5d7a78d54dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5a9272c0_e74f6355",
         "filename": "system/audio_hal_interface/hfp_software.cc",
         "patchSetId": 6
