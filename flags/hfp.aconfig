@@ -27,3 +27,10 @@ flag {
     description: "use codec on the DSP when the BT controller does not support it"
     bug: "308838380"
 }
+
+flag {
+    name: "Fall_back_to_SCO_connection_if_eSCO_connection_is_failed"
+    namespace: "bluetooth"
+    description: "Fall back to SCO connection if eSCO connection is failed"
+    bug: "303168931"
+}
