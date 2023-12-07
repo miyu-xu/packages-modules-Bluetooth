@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91bcafb1_985faa0b",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 688,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T10:22:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdfb4f50_1de93f06",
+      "range": {
+        "startLine": 688,
+        "startChar": 21,
+        "endLine": 688,
+        "endChar": 26
+      },
+      "revId": "68ee739d7ac49e86b92f92cb68d724930545afc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09c2449e_708e05d3",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-06T10:16:34Z",
       "side": 1,
       "message": "`; None on DBus error.`",
+      "range": {
+        "startLine": 693,
+        "startChar": 36,
+        "endLine": 693,
+        "endChar": 37
+      },
+      "revId": "68ee739d7ac49e86b92f92cb68d724930545afc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83969118_d924b7ca",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T10:22:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09c2449e_708e05d3",
       "range": {
         "startLine": 693,
         "startChar": 36,
