@@ -33,6 +33,24 @@
       "message": "Please provide `Flag: EXEMPT \u003creason\u003e`.",
       "revId": "3579d56aa04663e3f0368f774d85c5a0e8f089b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b87e7baf_ed6e9ef3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-07T23:57:45Z",
+      "side": 1,
+      "message": "Exception for this specific CL to merge it faster.",
+      "parentUuid": "f290afd4_cc9fe137",
+      "revId": "3579d56aa04663e3f0368f774d85c5a0e8f089b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
