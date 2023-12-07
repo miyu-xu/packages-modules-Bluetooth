@@ -22,6 +22,30 @@
       },
       "revId": "7de8ee8ca4f6dc702195041264d4efc028ad1f85",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9639d8f_4f887a1b",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-07T19:45:58Z",
+      "side": 1,
+      "message": "It will be added in the next steps as I work on encapsulation.",
+      "parentUuid": "d4173037_9f4e209b",
+      "range": {
+        "startLine": 288,
+        "startChar": 2,
+        "endLine": 288,
+        "endChar": 6
+      },
+      "revId": "7de8ee8ca4f6dc702195041264d4efc028ad1f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
