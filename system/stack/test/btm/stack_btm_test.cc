@@ -206,16 +206,14 @@ TEST_F(StackBtmWithQueuesTest, change_packet_type) {
       bluetooth::legacy::hci::testing::GetMock(),
       ChangeConnectionPacketType(
           handle, (0xcc00 | HCI_PKT_TYPES_MASK_DM1 | HCI_PKT_TYPES_MASK_DH1)));
-  EXPECT_CALL(
-      bluetooth::legacy::hci::testing::GetMock(),
-      ChangeConnectionPacketType(
-          handle, (0xcc00 | HCI_PKT_TYPES_MASK_DM1 | HCI_PKT_TYPES_MASK_DH1)));
 
   btm_set_packet_types_from_address(bda, 0x55aa);
   btm_set_packet_types_from_address(bda, 0xffff);
+  // Illegal mask, won't be sent.
   btm_set_packet_types_from_address(bda, 0x0);
 
   get_btm_client_interface().lifecycle.btm_free();
+  bluetooth::legacy::hci::testing::ResetMock();
 }
 
 TEST(BtmTest, BTM_EIR_MAX_SERVICES) { ASSERT_EQ(46, BTM_EIR_MAX_SERVICES); }
