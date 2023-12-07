@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e32c4023_fab894f2",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-07T10:34:22Z",
+      "side": 1,
+      "message": "None",
+      "range": {
+        "startLine": 56,
+        "startChar": 22,
+        "endLine": 56,
+        "endChar": 27
+      },
+      "revId": "4ad4fb2a46b5b2921fea2c54e98dc76a28d9fc13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
