@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7587fe40_2a637917",
+        "filename": "system/audio_hal_interface/hfp_software.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T18:30:16Z",
+      "side": 1,
+      "message": "How about to change the file naming to hfp_client_interface.h? software is a little confusing and would have the misunderstanding it\u0027s for the software path",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "fa11f291faef53f0686dc66f2010b4294627043b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1efaf53d_2b8f487b",
+        "filename": "system/audio_hal_interface/hfp_software.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T18:30:16Z",
+      "side": 1,
+      "message": "HFP doesn\u0027t contains Sink and Source concept. Could you please rename it as encode, and decode? The same for the others.",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 12
+      },
+      "revId": "fa11f291faef53f0686dc66f2010b4294627043b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
