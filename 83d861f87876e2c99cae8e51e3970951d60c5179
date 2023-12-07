@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aafa11f1_0267fcc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T19:07:14Z",
+      "side": 1,
+      "message": "You may need to increase the version to android.hardware.bluetooth.audio-V5-ndk and include it in the Android.bp",
+      "revId": "83d861f87876e2c99cae8e51e3970951d60c5179",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "250141ff_ff7dc7f9",
