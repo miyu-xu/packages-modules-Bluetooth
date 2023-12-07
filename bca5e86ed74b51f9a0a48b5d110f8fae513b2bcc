@@ -16,6 +16,23 @@
       "message": "You might need to add Bug:308171251 in the commit msg.",
       "revId": "bca5e86ed74b51f9a0a48b5d110f8fae513b2bcc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d913971_19db364c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-07T21:11:09Z",
+      "side": 1,
+      "message": "Some LEA tests are failing. I don\u0027t think bypass presubmit should be allowed here. Also please provide `Flag: EXEMPT \u003creason\u003e`.",
+      "revId": "bca5e86ed74b51f9a0a48b5d110f8fae513b2bcc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
