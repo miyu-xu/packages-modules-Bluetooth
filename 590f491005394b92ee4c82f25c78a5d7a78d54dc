@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7785380e_d976f921",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T18:48:45Z",
+      "side": 1,
+      "message": "nit:2023",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "590f491005394b92ee4c82f25c78a5d7a78d54dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "952fe605_f4840925",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T18:48:45Z",
+      "side": 1,
+      "message": "What does it mean for sink offload? For the hardware session, it seems only have a single session. Should it be is_offload_session?\n\nSuggest to remove aidl as well. There is not hidl function for HFP. So we don\u0027t need to use hidl/aidl to make it clear.",
+      "range": {
+        "startLine": 88,
+        "startChar": 5,
+        "endLine": 88,
+        "endChar": 33
+      },
+      "revId": "590f491005394b92ee4c82f25c78a5d7a78d54dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9261937e_8d0458ac",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T18:48:45Z",
+      "side": 1,
+      "message": "What\u0027s the function purpose? If you need to check the aidl version to see if it support HFP session. Please modify the function naming to match the purpose. AIDL_V4 is a existed version. I think the new interface should be VERSION_AIDL_V5.",
+      "range": {
+        "startLine": 113,
+        "startChar": 5,
+        "endLine": 113,
+        "endChar": 20
+      },
+      "revId": "590f491005394b92ee4c82f25c78a5d7a78d54dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a9272c0_e74f6355",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-07T18:48:45Z",
+      "side": 1,
+      "message": "It looks weired that you put the one way (sofrware_hal_interface), and two way (offloading_hal_interface) session together.",
+      "range": {
+        "startLine": 121,
+        "startChar": 25,
+        "endLine": 121,
+        "endChar": 29
+      },
+      "revId": "590f491005394b92ee4c82f25c78a5d7a78d54dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
