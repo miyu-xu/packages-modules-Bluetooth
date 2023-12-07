@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2aaf7b8_5b81d0da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-07T23:36:23Z",
+      "side": 1,
+      "message": "@quic_zhenchao@quicinc.com could you get the Qualcomm-Review vote?",
+      "revId": "098191437aeb05bd7ef92014da2e8fa724375f61",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
