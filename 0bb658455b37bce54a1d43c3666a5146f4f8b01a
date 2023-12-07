@@ -16,6 +16,24 @@
       "message": "I will merge this with aosp/2842774",
       "revId": "0bb658455b37bce54a1d43c3666a5146f4f8b01a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d9f2e2c5_f371a59e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-07T04:00:00Z",
+      "side": 1,
+      "message": "actually put it apart. This will merge with AIDL interface",
+      "parentUuid": "e1537294_e26ad844",
+      "revId": "0bb658455b37bce54a1d43c3666a5146f4f8b01a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
