@@ -16,6 +16,24 @@
       "message": "The diff between 3 and 4 should belong to https://r.android.com/c/2846853",
       "revId": "79800a54f6a12346c7ab12ad2e74d5f2cf6ae893",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b2eb784c_a263f223",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T15:01:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "daa117f4_fa19024c",
+      "revId": "79800a54f6a12346c7ab12ad2e74d5f2cf6ae893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
