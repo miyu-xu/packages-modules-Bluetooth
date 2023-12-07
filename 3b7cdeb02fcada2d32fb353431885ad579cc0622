@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb2482ff_9b523396",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-07T19:31:42Z",
+      "side": 1,
+      "message": "nit: remove or fix spelling?",
+      "range": {
+        "startLine": 224,
+        "startChar": 62,
+        "endLine": 224,
+        "endChar": 68
+      },
+      "revId": "3b7cdeb02fcada2d32fb353431885ad579cc0622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b005a36d_dbdb5d90",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-07T19:31:42Z",
+      "side": 1,
+      "message": "nit: spelling",
+      "range": {
+        "startLine": 248,
+        "startChar": 31,
+        "endLine": 248,
+        "endChar": 38
+      },
+      "revId": "3b7cdeb02fcada2d32fb353431885ad579cc0622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "931e62f3_8194a64b",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-07T19:31:42Z",
+      "side": 1,
+      "message": "nit: other",
+      "range": {
+        "startLine": 251,
+        "startChar": 6,
+        "endLine": 251,
+        "endChar": 12
+      },
+      "revId": "3b7cdeb02fcada2d32fb353431885ad579cc0622",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
