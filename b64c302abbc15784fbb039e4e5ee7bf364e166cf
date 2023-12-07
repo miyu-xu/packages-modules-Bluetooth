@@ -16,6 +16,23 @@
       "message": "@licorne@google.com: This is conflicting with aosp/2663955, but this allow to reduce the pressure on the bug related to the wrong caller during binding",
       "revId": "b64c302abbc15784fbb039e4e5ee7bf364e166cf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb6b9b4_d989f4ad",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1363,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-12-07T06:00:55Z",
+      "side": 1,
+      "message": "Can we make this consistent with style guidelines TODO: b/xxx - \u003ctext\u003e (go/todo-style)",
+      "revId": "b64c302abbc15784fbb039e4e5ee7bf364e166cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
