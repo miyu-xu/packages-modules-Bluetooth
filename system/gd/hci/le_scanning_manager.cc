@@ -373,8 +373,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           extended_event_type = transform_to_extended_event_type({.legacy = true});
           break;
         case AdvertisingEventType::SCAN_RESPONSE:
+          // We don't know if the initial advertising report was connectable or not.
+          // LeScanningReassembler fixes the connectable field.
           extended_event_type = transform_to_extended_event_type(
-              {.connectable = true, .scannable = true, .scan_response = true, .legacy = true});
+              {.scannable = true, .scan_response = true, .legacy = true});
           break;
         default:
           LOG_WARN("Unsupported event type:%d", (uint16_t)report.event_type_);
@@ -450,10 +452,11 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     scanning_reassembler_.SetIgnoreScanResponses(
         filter_policy_ == LeScanningFilterPolicy::FILTER_ACCEPT_LIST_ONLY);
 
-    auto complete_advertising_data = scanning_reassembler_.ProcessAdvertisingReport(
-        event_type, address_type, address, advertising_sid, advertising_data);
+    std::optional<LeScanningReassembler::CompleteAdvertisingData> processed_report =
+        scanning_reassembler_.ProcessAdvertisingReport(
+            event_type, address_type, address, advertising_sid, advertising_data);
 
-    if (complete_advertising_data.has_value()) {
+    if (processed_report.has_value()) {
       switch (address_type) {
         case (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS:
         case (uint8_t)AddressType::PUBLIC_IDENTITY_ADDRESS:
@@ -466,7 +469,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       }
 
       scanning_callbacks_->OnScanResult(
-          event_type,
+          processed_report->extended_event_type,
           address_type,
           address,
           primary_phy,
@@ -475,7 +478,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
           tx_power,
           get_rssi_after_calibration(rssi),
           periodic_advertising_interval,
-          complete_advertising_data.value());
+          std::move(processed_report->data));
     }
   }
 
