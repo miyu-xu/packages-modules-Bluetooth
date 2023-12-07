@@ -804,7 +804,8 @@ public class TbsGeneric {
             synchronized (TbsGeneric.this) {
                 if (DBG) {
                     Log.d(TAG, "onCallControlPointRequest: device=" + device + " opcode="
-                            + opcode + " argsLen=" + args.length);
+                            + callControlRequestOpcodeStr(opcode) + "(" + opcode + ")"
+                            + + " argsLen=" + args.length);
                 }
 
                 if (!mIsInitialized) {
@@ -949,6 +950,25 @@ public class TbsGeneric {
             }
         }
     };
+
+    private String callControlRequestOpcodeStr(int opcode) {
+        switch (opcode) {
+            case TbsGatt.CALL_CONTROL_POINT_OPCODE_ACCEPT:
+                return "CALL_CONTROL_POINT_OPCODE_ACCEPT";
+            case TbsGatt.CALL_CONTROL_POINT_OPCODE_TERMINATE:
+                return "CALL_CONTROL_POINT_OPCODE_TERMINATE";
+            case TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_HOLD:
+                return "CALL_CONTROL_POINT_OPCODE_LOCAL_HOLD";
+            case TbsGatt.CALL_CONTROL_POINT_OPCODE_LOCAL_RETRIEVE:
+                return "CALL_CONTROL_POINT_OPCODE_LOCAL_RETRIEVE";
+            case TbsGatt.CALL_CONTROL_POINT_OPCODE_ORIGINATE:
+                return "CALL_CONTROL_POINT_OPCODE_ORIGINATE";
+            case TbsGatt.CALL_CONTROL_POINT_OPCODE_JOIN:
+                return "CALL_CONTROL_POINT_OPCODE_JOIN";
+            default:
+                return "UNKNOWN";
+        }
+    }
 
     private static boolean isCcidValid(int ccid) {
         return ccid != ContentControlIdKeeper.CCID_INVALID;
