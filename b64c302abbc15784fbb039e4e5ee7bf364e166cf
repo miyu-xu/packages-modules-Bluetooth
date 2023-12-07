@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "207b18f1_c7c33ffc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-07T04:39:01Z",
+      "side": 1,
+      "message": "@licorne@google.com: This is conflicting with aosp/2663955, but this allow to reduce the pressure on the bug related to the wrong caller during binding",
+      "revId": "b64c302abbc15784fbb039e4e5ee7bf364e166cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
