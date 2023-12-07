@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f1d00d1f_12901a2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 3109716
+      },
+      "writtenOn": "2023-12-07T06:09:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ebad022e_6748f204",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 52
+      },
+      "revId": "f4844b29842839571ea95bfc84381e3df2a4d37c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "97223d20_0e523ba3",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -89,6 +113,24 @@
       "writtenOn": "2023-12-06T02:15:41Z",
       "side": 1,
       "message": "sizeof(connection_logger[index].server_name) - 1 ?",
+      "revId": "f4844b29842839571ea95bfc84381e3df2a4d37c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fa49c4e_bd35aa82",
+        "filename": "system/btif/src/btif_sock.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 3109716
+      },
+      "writtenOn": "2023-12-07T06:09:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5177c86f_34ac92e3",
       "revId": "f4844b29842839571ea95bfc84381e3df2a4d37c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
