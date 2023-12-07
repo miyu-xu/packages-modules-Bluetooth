@@ -22,6 +22,30 @@
       },
       "revId": "019a59637cb39003f5ab7e46efac698f59da16e3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecc66d19_fc0cfe5a",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-07T10:21:08Z",
+      "side": 1,
+      "message": "Good catch. I think the case that using OnPairing should also wait for bonded. PTAL.",
+      "parentUuid": "e2b61867_703ee89f",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 62
+      },
+      "revId": "019a59637cb39003f5ab7e46efac698f59da16e3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
