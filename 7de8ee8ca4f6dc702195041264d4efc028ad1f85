@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4173037_9f4e209b",
+        "filename": "system/stack/btm/security_device_record.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-07T19:33:50Z",
+      "side": 1,
+      "message": "You could also add a getter, to be consistent with these.",
+      "range": {
+        "startLine": 288,
+        "startChar": 2,
+        "endLine": 288,
+        "endChar": 6
+      },
+      "revId": "7de8ee8ca4f6dc702195041264d4efc028ad1f85",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
