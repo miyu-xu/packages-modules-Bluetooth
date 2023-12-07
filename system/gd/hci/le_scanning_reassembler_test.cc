@@ -66,12 +66,15 @@ TEST_F(LeScanningReassemblerTest, trim_advertising_data) {
 TEST_F(LeScanningReassemblerTest, non_scannable_legacy_advertising) {
   // Test non scannable legacy advertising.
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kLegacy | kComplete,
-          (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0x1, 0x2}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kLegacy | kComplete,
+              (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0x1, 0x2})
+          .value()
+          .data,
       std::vector<uint8_t>({0x1, 0x2}));
 }
 
@@ -88,12 +91,15 @@ TEST_F(LeScanningReassemblerTest, scannable_legacy_advertising) {
                    .has_value());
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kLegacy | kScannable | kScanResponse | kComplete,
-          (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0x3, 0x4, 0x5, 0x6}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kLegacy | kScannable | kScanResponse | kComplete,
+              (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0x3, 0x4, 0x5, 0x6})
+          .value()
+          .data,
       std::vector<uint8_t>({0x1, 0x2, 0x3, 0x4, 0x5, 0x6}));
 
   // Test scannable legacy advertising with padding after the
@@ -108,12 +114,15 @@ TEST_F(LeScanningReassemblerTest, scannable_legacy_advertising) {
                    .has_value());
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kLegacy | kScannable | kScanResponse | kComplete,
-          (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0x3, 0x4, 0x5, 0x6, 0x0, 0x0}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kLegacy | kScannable | kScanResponse | kComplete,
+              (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0x3, 0x4, 0x5, 0x6, 0x0, 0x0})
+          .value()
+          .data,
       std::vector<uint8_t>({0x1, 0x2, 0x3, 0x4, 0x5, 0x6}));
 }
 
@@ -130,12 +139,15 @@ TEST_F(LeScanningReassemblerTest, non_scannable_extended_advertising) {
                    .has_value());
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kComplete,
-          (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0x4, 0x5, 0x6}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kComplete,
+              (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0x4, 0x5, 0x6})
+          .value()
+          .data,
       std::vector<uint8_t>({0x1, 0x2, 0x3, 0x4, 0x5, 0x6}));
 
   // Test fragmented and truncated non scannable extended advertising.
@@ -150,12 +162,15 @@ TEST_F(LeScanningReassemblerTest, non_scannable_extended_advertising) {
                    .has_value());
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kTruncated,
-          (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0x4, 0x5, 0x6, 0x7}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kTruncated,
+              (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0x4, 0x5, 0x6, 0x7})
+          .value()
+          .data,
       std::vector<uint8_t>({0x1, 0x2, 0x3, 0x4, 0x5, 0x6}));
 
   // Test fragmented and truncated anonymous, non scannable
@@ -170,12 +185,15 @@ TEST_F(LeScanningReassemblerTest, non_scannable_extended_advertising) {
                    .has_value());
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kTruncated,
-          (uint8_t)DirectAdvertisingAddressType::NO_ADDRESS_PROVIDED,
-          Address::kEmpty,
-          kSidNotPresent,
-          {0x4, 0x5, 0x6, 0x7}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kTruncated,
+              (uint8_t)DirectAdvertisingAddressType::NO_ADDRESS_PROVIDED,
+              Address::kEmpty,
+              kSidNotPresent,
+              {0x4, 0x5, 0x6, 0x7})
+          .value()
+          .data,
       std::vector<uint8_t>({0x1, 0x2, 0x3, 0x4, 0x5, 0x6}));
 }
 
@@ -211,12 +229,15 @@ TEST_F(LeScanningReassemblerTest, scannable_extended_advertising) {
                    .has_value());
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kTruncated,
-          (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0xb, 0xc, 0xd, 0xe, 0x0}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kTruncated,
+              (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0xb, 0xc, 0xd, 0xe, 0x0})
+          .value()
+          .data,
       std::vector<uint8_t>({0x1, 0x2, 0x3, 0x4, 0x5, 0x6, 0x7, 0x8, 0x9, 0xa, 0xb, 0xc, 0xd, 0xe}));
 }
 
@@ -232,23 +253,29 @@ TEST_F(LeScanningReassemblerTest, ignore_scan_responses) {
                    .has_value());
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kComplete,
-          (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0x1, 0x2}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kComplete,
+              (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0x1, 0x2})
+          .value()
+          .data,
       std::vector<uint8_t>({0x1, 0x2}));
 
   // The option ignore_scan_responses forces scan responses to be dropped.
   reassembler_.SetIgnoreScanResponses(true);
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kScannable | kComplete,
-          (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0x1, 0x2}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kScannable | kComplete,
+              (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0x1, 0x2})
+          .value()
+          .data,
       std::vector<uint8_t>({0x1, 0x2}));
 }
 
@@ -292,35 +319,47 @@ TEST_F(LeScanningReassemblerTest, interleaved_advertising) {
                    .has_value());
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kComplete,
-          (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0x0}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kComplete,
+              (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0x0})
+          .value()
+          .data,
       std::vector<uint8_t>({0x2, 0x0, 0x0}));
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kComplete,
-          (uint8_t)AddressType::RANDOM_DEVICE_ADDRESS,
-          kTestAddress,
-          kSidNotPresent,
-          {0x1}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kComplete,
+              (uint8_t)AddressType::RANDOM_DEVICE_ADDRESS,
+              kTestAddress,
+              kSidNotPresent,
+              {0x1})
+          .value()
+          .data,
       std::vector<uint8_t>({0x2, 0x1, 0x1}));
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kComplete, (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS, kTestAddress, 0x1, {0x2}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kComplete, (uint8_t)AddressType::PUBLIC_DEVICE_ADDRESS, kTestAddress, 0x1, {0x2})
+          .value()
+          .data,
       std::vector<uint8_t>({0x2, 0x2, 0x2}));
 
   ASSERT_EQ(
-      reassembler_.ProcessAdvertisingReport(
-          kComplete,
-          (uint8_t)DirectAdvertisingAddressType::NO_ADDRESS_PROVIDED,
-          Address::kEmpty,
-          0x1,
-          {0x3}),
+      reassembler_
+          .ProcessAdvertisingReport(
+              kComplete,
+              (uint8_t)DirectAdvertisingAddressType::NO_ADDRESS_PROVIDED,
+              Address::kEmpty,
+              0x1,
+              {0x3})
+          .value()
+          .data,
       std::vector<uint8_t>({0x2, 0x3, 0x3}));
 }
 
