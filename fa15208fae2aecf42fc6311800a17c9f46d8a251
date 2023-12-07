@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dce231cd_6c0010ea",
+        "filename": "system/btif/src/btif_av.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-07T03:32:22Z",
+      "side": 1,
+      "message": "not sure about this --\nIf peer_sep_ \u003d\u003e is INVALID \u003d\u003d 2 ;\nthen 2 \u0026 1 \u003d\u003e 0 \u003d\u003d AVDFT_TSEP_SRC\n\nSo invalid becomes \u003d\u003d source ; Sounds like bad logic.",
+      "range": {
+        "startLine": 279,
+        "startChar": 35,
+        "endLine": 279,
+        "endChar": 61
+      },
+      "revId": "fa15208fae2aecf42fc6311800a17c9f46d8a251",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
