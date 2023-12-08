@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eb8db1c8_7036e246",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T07:19:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dfc5d67_1b157eb2",
+      "range": {
+        "startLine": 174,
+        "startChar": 6,
+        "endLine": 174,
+        "endChar": 10
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd4bf1c2_1b774da6",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-08T06:59:19Z",
       "side": 1,
       "message": "same as above, maybe set to nullptr",
+      "range": {
+        "startLine": 213,
+        "startChar": 33,
+        "endLine": 213,
+        "endChar": 42
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9779d0cc_7a08ea89",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T07:19:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd4bf1c2_1b774da6",
       "range": {
         "startLine": 213,
         "startChar": 33,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e5ac72b5_412303bd",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T07:19:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62c5ec14_fa9de253",
+      "range": {
+        "startLine": 325,
+        "startChar": 33,
+        "endLine": 325,
+        "endChar": 42
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0ed3cb84_3b40ff7d",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "89491fad_3d17e4a0",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T07:19:22Z",
+      "side": 1,
+      "message": "Thanks for catching this one!",
+      "parentUuid": "0ed3cb84_3b40ff7d",
+      "range": {
+        "startLine": 421,
+        "startChar": 42,
+        "endLine": 421,
+        "endChar": 62
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05f9e8e6_5e2017ff",
@@ -106,6 +202,30 @@
       "writtenOn": "2023-12-08T06:59:19Z",
       "side": 1,
       "message": "seems like it double delete `delete HfpDecodingTransport::instance_;`",
+      "range": {
+        "startLine": 436,
+        "startChar": 35,
+        "endLine": 436,
+        "endChar": 44
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7202a30b_ebed4d38",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T07:19:22Z",
+      "side": 1,
+      "message": "Removed deletion for `software_hal_interface`, delete instance_ and set nullptr. Thanks!",
+      "parentUuid": "05f9e8e6_5e2017ff",
       "range": {
         "startLine": 436,
         "startChar": 35,
