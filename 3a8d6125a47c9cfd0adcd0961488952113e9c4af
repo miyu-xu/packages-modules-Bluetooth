@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c839fd0e_84795ca0",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-08T17:49:05Z",
+      "side": 1,
+      "message": "I would prefer to copy more code to make this simpler.  My fear is that the flags will be removed incorrectly and cause a breakage.",
+      "range": {
+        "startLine": 366,
+        "startChar": 6,
+        "endLine": 366,
+        "endChar": 21
+      },
+      "revId": "3a8d6125a47c9cfd0adcd0961488952113e9c4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

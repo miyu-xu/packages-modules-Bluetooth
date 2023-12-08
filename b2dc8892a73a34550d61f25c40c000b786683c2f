@@ -16,6 +16,24 @@
       "message": "On floss, the flag_enabled always evaluates to false, so we return early here, which is not what we want.\n\nCan we do the reverse instead? i.e.\n```\nif (IS_FLAG_ENABLED(smp_tx_complete_callback)) {\n  return;\n}\n```\n\nSo the flag is automatically on, and on Android we need to explicitly turn it off to execute the current flow.\n\nOr is there a better way to do it?",
       "revId": "b2dc8892a73a34550d61f25c40c000b786683c2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d72875f_b5df36c8",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-08T17:49:05Z",
+      "side": 1,
+      "message": "One way would be to add support to Floss so that flags can be enabled there.\n\nAnother way is to add another macro here:\npackages/modules/Bluetooth/flags/exported_include/android_bluetooth_flags.h\n\nThe flag check would default to true when floss is defined.\n\nIS_FLAG_ENABLED_TRUE_ON_FLOSS(smp_tx_complete_callback) ?",
+      "parentUuid": "0d62c05d_a1ffbf99",
+      "revId": "b2dc8892a73a34550d61f25c40c000b786683c2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
