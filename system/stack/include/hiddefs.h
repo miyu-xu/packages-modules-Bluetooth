@@ -27,10 +27,9 @@
 
 #include <base/strings/stringprintf.h>
 
-#include <cstring>
-
+#include "internal_include/bt_target.h"
 #include "macros.h"
-#include "stack/include/sdp_api.h"
+#include "stack/sdp/sdp_discovery_db.h"
 /*
  * tHID_STATUS: HID result codes, returned by HID and device and host functions.
 */
