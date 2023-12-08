@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "798684b9_d0ef1769",
+        "filename": "system/audio_hal_interface/hfp_client_interface.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-08T06:58:57Z",
+      "side": 1,
+      "message": "Yuyang, you\u0027re right. \n\nCould it just be called hfp_interface? For the unicast, it\u0027s the different story that the phone are the unicast client indeed, and have the ASE sink, and ASE source role. HFP don\u0027t need to have the same naming with LE audio.\n\nYou could adrress it in the other patch.",
+      "parentUuid": "a7c94bb8_f1db5f8f",
+      "revId": "19f8472337d20ebb0227ebf6e504ea6127b5c3c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "436f7ca1_d6d3ebe0",
