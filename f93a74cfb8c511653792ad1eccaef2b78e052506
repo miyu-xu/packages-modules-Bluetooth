@@ -22,6 +22,30 @@
       },
       "revId": "f93a74cfb8c511653792ad1eccaef2b78e052506",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "135effe9_14b6d122",
+        "filename": "system/bta/pan/bta_pan_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-08T22:31:38Z",
+      "side": 1,
+      "message": "Yes, I do (and did), as PAN will not start up and neither will the stack !\n\nThe compiler catches this anyway.\n\nI need to update all of these with the latest anyway.",
+      "parentUuid": "f630d38d_c5428f00",
+      "range": {
+        "startLine": 631,
+        "startChar": 0,
+        "endLine": 631,
+        "endChar": 25
+      },
+      "revId": "f93a74cfb8c511653792ad1eccaef2b78e052506",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
