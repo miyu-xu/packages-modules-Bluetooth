@@ -24,6 +24,7 @@
 
 #define LOG_TAG "smp"
 
+#include "android_bluetooth_flags.h"
 #include "internal_include/bt_target.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -220,6 +221,15 @@ static void smp_data_received(uint16_t channel, const RawAddress& bd_addr,
  ******************************************************************************/
 static void smp_tx_complete_callback(uint16_t cid, uint16_t num_pkt) {
   tSMP_CB* p_cb = &smp_cb;
+
+#ifdef TARGET_FLOSS
+  if (false)
+#else
+  if (!IS_FLAG_ENABLED(l2cap_tx_complete_cb_info))
+#endif
+  {
+    return;
+  }
 
   if (p_cb->total_tx_unacked >= num_pkt) {
     p_cb->total_tx_unacked -= num_pkt;
