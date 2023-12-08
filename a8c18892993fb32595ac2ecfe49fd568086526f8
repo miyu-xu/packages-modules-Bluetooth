@@ -166,6 +166,30 @@
       },
       "revId": "a8c18892993fb32595ac2ecfe49fd568086526f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61cd550c_bcc0a59c",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 4605,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-08T04:06:56Z",
+      "side": 1,
+      "message": "I do not know what crrev/c/5084273 is supposed to link to.\n\ninterop is the same for all android devices (phone / tv / wear) but you are right there is a [custom override](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/device/src/interop.cc;l\u003d58;drc\u003dd64e2a2939b1dbb09b8f5e66bf2e0ddc685b27d8;bpv\u003d1;bpt\u003d1?q\u003dinterop_match_addr\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main) for floss.\n\nLGTM then since this is no-op on phone",
+      "parentUuid": "8fc9793c_f7cbe2f7",
+      "range": {
+        "startLine": 4601,
+        "startChar": 0,
+        "endLine": 4605,
+        "endChar": 62
+      },
+      "revId": "a8c18892993fb32595ac2ecfe49fd568086526f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
