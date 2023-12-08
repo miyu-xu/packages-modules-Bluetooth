@@ -22,6 +22,30 @@
       },
       "revId": "f2884f36cae85e93f9003b0d080a7c7cb1907a18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7734bee2_721bc28c",
+        "filename": "system/stack/test/sdp/stack_sdp_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-08T23:13:18Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "e51a50e8_5a5061a3",
+      "range": {
+        "startLine": 25,
+        "startChar": 24,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "f2884f36cae85e93f9003b0d080a7c7cb1907a18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
