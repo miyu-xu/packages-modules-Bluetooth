@@ -70,6 +70,24 @@
       "parentUuid": "de20e078_0f3500f2",
       "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4b14c31_1f447da2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-08T04:11:06Z",
+      "side": 1,
+      "message": "go/owners#noparent_sla\n\nWe are in sla and responsive on the owner approval.\n\nIf there is a sudden high number of change, we should consider removing noparent, but until then, I think it is better to keep it.\n\nSame as David, I cannot take this decision alone",
+      "parentUuid": "f0b81100_31b94d5a",
+      "revId": "62bc819dfc840662b0cc168d857a41abbfbc1eb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
