@@ -24,12 +24,12 @@
 
 #define LOG_TAG "sdp"
 
-#include <base/logging.h>
 #include <string.h>  // memset
 
-#include "gd/common/init_flags.h"
+#include "common/init_flags.h"
+#include "internal_include/bt_target.h"
+#include "os/log.h"
 #include "osi/include/allocator.h"
-#include "osi/include/log.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_psm_types.h"
