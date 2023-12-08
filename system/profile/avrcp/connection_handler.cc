@@ -229,8 +229,12 @@ bool ConnectionHandler::AvrcpConnect(bool initiator, const RawAddress& bdaddr) {
                            : AVRC_CONN_ACP;  // 0 if initiator, 1 if acceptor
   // TODO (apanicke): We shouldn't need RCCT to do absolute volume. The current
   // AVRC_API requires it though.
-  open_cb.control = BTA_AV_FEAT_RCTG | BTA_AV_FEAT_RCCT | BTA_AV_FEAT_METADATA |
-                    AVRC_CT_PASSIVE;
+  if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
+    //set passive or non-passive when a2dp connected
+    open_cb.control = BTA_AV_FEAT_RCTG | BTA_AV_FEAT_RCCT | BTA_AV_FEAT_METADATA;
+  } else
+    open_cb.control = BTA_AV_FEAT_RCTG | BTA_AV_FEAT_RCCT | BTA_AV_FEAT_METADATA |
+                      AVRC_CT_PASSIVE;
 
   uint8_t handle = 0;
   uint16_t status = avrc_->Open(&handle, &open_cb, bdaddr);
