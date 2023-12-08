@@ -22,6 +22,30 @@
       },
       "revId": "24cc5cd3f33a3f40ae3e99b82912abe56eaf335a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "750fd6b8_41dce44a",
+        "filename": "flags/smp.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-08T17:49:27Z",
+      "side": 1,
+      "message": "Since it affects both, I think it\u0027s a choice of whether it fits better into l2cap or smp.  I\u0027m leaning toward l2cap, but either way is fine.\n\nYes, this is related to Dr. No\ngo/bt-ts-workflow\n\nflag bug template:\nhttps://b.corp.google.com/issues/new?component\u003d1387432",
+      "parentUuid": "44d6d136_b0565bc3",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "24cc5cd3f33a3f40ae3e99b82912abe56eaf335a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
