@@ -1444,6 +1444,7 @@ void bta_av_disable(tBTA_AV_CB* p_cb, UNUSED_ATTR tBTA_AV_DATA* p_data) {
   for (xx = 0; xx < BTA_AV_NUM_STRS; xx++) {
     if (p_cb->p_scb[xx] != NULL) {
       // Free signalling timers
+      alarm_free_data(p_cb->p_scb[xx]->link_signalling_timer);
       alarm_free(p_cb->p_scb[xx]->link_signalling_timer);
       p_cb->p_scb[xx]->link_signalling_timer = NULL;
       alarm_free(p_cb->p_scb[xx]->accept_signalling_timer);
@@ -1458,7 +1459,6 @@ void bta_av_disable(tBTA_AV_CB* p_cb, UNUSED_ATTR tBTA_AV_DATA* p_data) {
   // would come first before API_DISABLE if there is no connections, and it is
   // no needed to setup this disabling flag.
   p_cb->disabling = disabling_in_progress;
-
 }
 
 /*******************************************************************************

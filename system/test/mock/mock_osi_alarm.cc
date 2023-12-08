@@ -36,6 +36,8 @@ namespace osi_alarm {
 // Function state capture and return values, if needed
 struct alarm_cancel alarm_cancel;
 struct alarm_cleanup alarm_cleanup;
+struct alarm_get_data alarm_get_data;
+struct alarm_free_data alarm_free_data;
 struct alarm_debug_dump alarm_debug_dump;
 struct alarm_free alarm_free;
 struct alarm_get_remaining_ms alarm_get_remaining_ms;
@@ -57,6 +59,15 @@ void alarm_cancel(alarm_t* alarm) {
 void alarm_cleanup(void) {
   inc_func_call_count(__func__);
   test::mock::osi_alarm::alarm_cleanup();
+}
+void *alarm_get_data(alarm_t* alarm) {
+  inc_func_call_count(__func__);
+  test::mock::osi_alarm::alarm_get_data(alarm);
+  return NULL;
+}
+void alarm_free_data(alarm_t* alarm) {
+  inc_func_call_count(__func__);
+  test::mock::osi_alarm::alarm_free_data(alarm);
 }
 void alarm_debug_dump(int fd) {
   inc_func_call_count(__func__);
