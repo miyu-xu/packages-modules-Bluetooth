@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "00e1c5f4_1f802bec",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-08T07:07:07Z",
+      "side": 1,
+      "message": "nit: please modify the commit msg.",
+      "range": {
+        "startLine": 7,
+        "startChar": 19,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "1d71bd48755cac24a005f3c06ae7a4fe885f9fcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "004970aa_3c52da23",
         "filename": "system/audio_hal_interface/hfp_client_interface.h",
         "patchSetId": 7
