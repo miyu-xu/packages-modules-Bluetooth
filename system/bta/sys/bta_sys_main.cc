@@ -186,7 +186,14 @@ void bta_sys_sendmsg_delayed(void* p_msg, const base::TimeDelta& delay) {
  ******************************************************************************/
 void bta_sys_start_timer(alarm_t* alarm, uint64_t interval_ms, uint16_t event,
                          uint16_t layer_specific) {
-  BT_HDR_RIGID* p_buf = (BT_HDR_RIGID*)osi_malloc(sizeof(BT_HDR_RIGID));
+  BT_HDR* p_buf;
+  void * data = alarm_get_data(alarm);
+
+  if (data) {
+    p_buf = (BT_HDR*)data;
+  } else {
+    p_buf = (BT_HDR*)osi_malloc(sizeof(BT_HDR));
+  }
 
   p_buf->event = event;
   p_buf->layer_specific = layer_specific;

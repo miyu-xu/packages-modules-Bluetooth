@@ -103,3 +103,10 @@ void alarm_cleanup(void);
 // Dump alarm-related statistics and debug info to the |fd| file descriptor.
 // The information is in user-readable text format. The |fd| must be valid.
 void alarm_debug_dump(int fd);
+
+// For get the member in alarm
+void *alarm_get_data(alarm_t *alarm);
+
+// For free the member data in alarm
+void alarm_free_data(alarm_t *alarm);
+

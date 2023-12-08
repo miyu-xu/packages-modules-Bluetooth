@@ -54,6 +54,19 @@ struct alarm_cleanup {
 };
 extern struct alarm_cleanup alarm_cleanup;
 
+struct alarm_get_data {
+  void* data;
+  std::function<void(alarm_t* alarm)> body{[](alarm_t* alarm) {}};
+  void operator()(alarm_t* alarm) { body(alarm); };
+};
+extern struct alarm_get_data alarm_get_data;
+
+struct alarm_free_data {
+  std::function<void(alarm_t* alarm)> body{[](alarm_t* alarm) {}};
+  void operator()(alarm_t* alarm) { body(alarm); };
+};
+extern struct alarm_free_data alarm_free_data;
+
 // Name: alarm_debug_dump
 // Params: int fd
 // Return: void
