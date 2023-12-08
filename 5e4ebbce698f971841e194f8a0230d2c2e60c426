@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ec7aa806_695d3abb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-08T16:21:43Z",
+      "side": 1,
+      "message": "hi Sungsoo and Christine, could you help with the API review? thank you!",
+      "revId": "5e4ebbce698f971841e194f8a0230d2c2e60c426",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
