@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc79205e_a3c6a1c2",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-12-08T05:45:23Z",
+      "side": 1,
+      "message": "I don\u0027t get this. What do you mean by this?",
+      "parentUuid": "bd7b984a_9b94eef6",
+      "range": {
+        "startLine": 344,
+        "startChar": 19,
+        "endLine": 344,
+        "endChar": 48
+      },
+      "revId": "60f19897b30d9de2d0ed3c04f89967e4eac3d950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "531e0af0_4db73e4d",
         "filename": "system/bta/dm/bta_dm_pm.cc",
         "patchSetId": 22
@@ -54,6 +78,30 @@
       "writtenOn": "2023-12-01T16:19:50Z",
       "side": 1,
       "message": "Does this comment go with line 382?",
+      "range": {
+        "startLine": 355,
+        "startChar": 1,
+        "endLine": 355,
+        "endChar": 65
+      },
+      "revId": "60f19897b30d9de2d0ed3c04f89967e4eac3d950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d3fe5975_56a801ab",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-12-08T05:45:23Z",
+      "side": 1,
+      "message": "Actually just to see whether be able to find the peer device. Remove that comment.",
+      "parentUuid": "531e0af0_4db73e4d",
       "range": {
         "startLine": 355,
         "startChar": 1,
