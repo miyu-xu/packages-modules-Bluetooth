@@ -141,6 +141,17 @@ final class BondStateMachine extends StateMachine {
             switch (msg.what) {
 
                 case CREATE_BOND:
+                    /* BOND_BONDED event is send after keys are exchanged, but BTIF layer would
+                    still use bonding control blocks until service discovery is finished. If
+                    next pairing is started while previous still makes service discovery, it
+                    would fail. Check the busy status of BTIF instead, and wait with starting
+                    the bond. */
+                    if (mAdapterService.getNative().pairingIsBusy()) {
+                        Log.d(TAG, "Delying CREATE_BOND because native is busy");
+                        sendMessageDelayed(msg, 500);
+                        return;
+                    }
+
                     OobData p192Data = (msg.getData() != null)
                             ? msg.getData().getParcelable(OOBDATAP192) : null;
                     OobData p256Data = (msg.getData() != null)
