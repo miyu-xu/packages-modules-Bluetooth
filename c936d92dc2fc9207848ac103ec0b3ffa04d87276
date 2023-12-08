@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12271e95_e8d1a03d",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-08T00:48:35Z",
+      "side": 1,
+      "message": "Doesn\u0027t matter anymore as we are gonna update all flag to static flagging as per the new recommendation",
+      "parentUuid": "d0e7c3f1_e59b4c53",
+      "range": {
+        "startLine": 95,
+        "startChar": 51,
+        "endLine": 95,
+        "endChar": 67
+      },
+      "revId": "c936d92dc2fc9207848ac103ec0b3ffa04d87276",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2ae10d9e_0614be2a",
