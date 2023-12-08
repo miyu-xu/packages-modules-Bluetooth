@@ -33,6 +33,24 @@
       "message": "Michael, need one more reviewer for this patch, thanks.",
       "revId": "72bd66379922c3b35e5aa13a0ce840215dd96c97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55e57349_ef60dd04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-12-08T11:41:36Z",
+      "side": 1,
+      "message": "No worries, Michael. One reviewer is good for now.",
+      "parentUuid": "31f12ad0_1b0c3c88",
+      "revId": "72bd66379922c3b35e5aa13a0ce840215dd96c97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
