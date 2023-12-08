@@ -644,6 +644,12 @@ static int remove_bond(const RawAddress* bd_addr) {
   return BT_STATUS_SUCCESS;
 }
 
+static bool bonding_is_busy() {
+  if (btif_dm_pairing_is_busy()) return true;
+
+  return false;
+}
+
 static int get_connection_state(const RawAddress* bd_addr) {
   if (!interface_ready()) return 0;
 
@@ -1149,6 +1155,7 @@ EXPORT_SYMBOL bt_interface_t bluetoothInterface = {
     .create_bond_out_of_band = create_bond_out_of_band,
     .remove_bond = remove_bond,
     .cancel_bond = cancel_bond,
+    .bonding_is_busy = bonding_is_busy,
     .get_connection_state = get_connection_state,
     .pin_reply = pin_reply,
     .ssp_reply = ssp_reply,

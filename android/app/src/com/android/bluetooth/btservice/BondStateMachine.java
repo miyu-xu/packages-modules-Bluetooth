@@ -141,6 +141,11 @@ final class BondStateMachine extends StateMachine {
             switch (msg.what) {
 
                 case CREATE_BOND:
+                    if (mAdapterService.getNative().pairingIsBusy()) {
+                        Log.i(TAG, "Delying CREATE_BOND because native is busy");
+                        sendMessageDelayed(msg, 500);
+                    }
+
                     OobData p192Data = (msg.getData() != null)
                             ? msg.getData().getParcelable(OOBDATAP192) : null;
                     OobData p256Data = (msg.getData() != null)
