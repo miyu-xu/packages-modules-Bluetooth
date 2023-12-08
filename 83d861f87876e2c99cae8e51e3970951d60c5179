@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d49a92b5_46d62dc0",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T05:23:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "250141ff_ff7dc7f9",
+      "range": {
+        "startLine": 299,
+        "startChar": 0,
+        "endLine": 302,
+        "endChar": 5
+      },
+      "revId": "83d861f87876e2c99cae8e51e3970951d60c5179",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "099df84b_90526b4e",
@@ -54,6 +78,30 @@
       "writtenOn": "2023-12-07T18:54:37Z",
       "side": 1,
       "message": "It only for the offload case. Please check the session type, and only offload session one time.",
+      "range": {
+        "startLine": 317,
+        "startChar": 43,
+        "endLine": 317,
+        "endChar": 60
+      },
+      "revId": "83d861f87876e2c99cae8e51e3970951d60c5179",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c461d4c0_4e3601c7",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T05:23:30Z",
+      "side": 1,
+      "message": "Hi Alice, `UpdateAudioConfig` function will update transport\u0027s audio config, later use to start session with the default config. I think it\u0027s also used for software case as well.\n\nHowever, in function `UpdateAudioConfigToHal`, this is only used for offload, so I remove them for software sessions.",
+      "parentUuid": "099df84b_90526b4e",
       "range": {
         "startLine": 317,
         "startChar": 43,
