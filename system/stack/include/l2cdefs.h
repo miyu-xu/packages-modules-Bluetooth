@@ -21,6 +21,7 @@
 
 #include <cstdint>
 
+#include "internal_include/bt_target.h"
 #include "macros.h"
 
 /* L2CAP command codes

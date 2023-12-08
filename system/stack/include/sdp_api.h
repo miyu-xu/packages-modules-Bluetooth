@@ -22,12 +22,10 @@
 
 #include <cstdint>
 
-#include "bt_target.h"
 #include "stack/include/sdp_callback.h"
 #include "stack/include/sdp_device_id.h"
 #include "stack/include/sdp_status.h"
 #include "stack/include/sdpdefs.h"
-#include "stack/sdp/internal/sdp_api.h"
 #include "stack/sdp/sdp_discovery_db.h"
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
