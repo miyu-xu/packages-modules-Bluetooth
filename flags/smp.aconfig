@@ -1,0 +1,8 @@
+package: "com.android.bluetooth.flags"
+
+flag {
+    name: "smp_tx_complete_callback"
+    namespace: "bluetooth"
+    description: "Test Description"
+    bug: "301168932"
+}
