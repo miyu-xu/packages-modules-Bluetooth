@@ -89,6 +89,8 @@ final class BondStateMachine extends StateMachine {
     public static final String OOBDATAP192 = "oobdatap192";
     public static final String OOBDATAP256 = "oobdatap256";
     public static final String DISPLAY_PASSKEY = "display_passkey";
+    public static final String DELAY_RETRY_NO = "delay_retry_no";
+    public static final short DELAY_MAX_RETRIES = 15;
 
     @VisibleForTesting Set<BluetoothDevice> mPendingBondedDevices = new HashSet<>();
 
@@ -141,6 +143,40 @@ final class BondStateMachine extends StateMachine {
             switch (msg.what) {
 
                 case CREATE_BOND:
+                    /* BOND_BONDED event is send after keys are exchanged, but BTIF layer would
+                    still use bonding control blocks until service discovery is finished. If
+                    next pairing is started while previous still makes service discovery, it
+                    would fail. Check the busy status of BTIF instead, and wait with starting
+                    the bond. */
+                    if (mAdapterService.getNative().pairingIsBusy()) {
+                        short retry_no =
+                                (msg.getData() != null)
+                                        ? msg.getData().getShort(DELAY_RETRY_NO)
+                                        : 0;
+                        Log.d(
+                                TAG,
+                                "Delay CREATE_BOND because native is busy - attempt no "
+                                        + retry_no);
+
+                        if (retry_no < DELAY_MAX_RETRIES) {
+                            retry_no++;
+
+                            Message new_msg = obtainMessage();
+                            new_msg.copyFrom(msg);
+
+                            if (new_msg.getData() == null) {
+                                Bundle bundle = new Bundle();
+                                new_msg.setData(bundle);
+                            }
+                            new_msg.getData().putShort(DELAY_RETRY_NO, retry_no);
+
+                            sendMessageDelayed(new_msg, 500);
+                            return true;
+                        } else {
+                            Log.w(TAG, "Native was busy - the bond will most likely fail!");
+                        }
+                    }
+
                     OobData p192Data = (msg.getData() != null)
                             ? msg.getData().getParcelable(OOBDATAP192) : null;
                     OobData p256Data = (msg.getData() != null)
