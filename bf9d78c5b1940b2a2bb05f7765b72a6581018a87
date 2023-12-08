@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08a7e54a_899bb5c9",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2410,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-12-08T01:19:13Z",
+      "side": 1,
+      "message": "I dont think we want vendor names on the CLs @mylesgw@google.com?",
+      "revId": "bf9d78c5b1940b2a2bb05f7765b72a6581018a87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
