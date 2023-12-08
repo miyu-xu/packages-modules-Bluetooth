@@ -374,7 +374,7 @@ uint8_t bta_av_rc_create(tBTA_AV_CB* p_cb, uint8_t role, uint8_t shdl,
   /* note: BTA_AV_FEAT_RCTG = AVRC_CT_TARGET, BTA_AV_FEAT_RCCT = AVRC_CT_CONTROL
    */
   ccb.control = p_cb->features & (BTA_AV_FEAT_RCTG | BTA_AV_FEAT_RCCT |
-                                  BTA_AV_FEAT_METADATA | AVRC_CT_PASSIVE);
+                                  BTA_AV_FEAT_METADATA);
 
   if (AVRC_Open(&rc_handle, &ccb, bda) != AVRC_SUCCESS) {
     DEVICE_IOT_CONFIG_ADDR_INT_ADD_ONE(bda, IOT_CONF_KEY_AVRCP_CONN_FAIL_COUNT);
