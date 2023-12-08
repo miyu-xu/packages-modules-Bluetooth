@@ -21,7 +21,8 @@
  *  mockcify.pl ver 0.2
  */
 
-#include <cstdint>
+#include <base/callback.h>
+
 #include <functional>
 
 // Original included files, if any
