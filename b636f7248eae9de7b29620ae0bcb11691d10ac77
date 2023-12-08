@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7dfc5d67_1b157eb2",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-08T06:59:19Z",
+      "side": 1,
+      "message": "nit: change to warning might be better",
+      "range": {
+        "startLine": 174,
+        "startChar": 6,
+        "endLine": 174,
+        "endChar": 10
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd4bf1c2_1b774da6",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-08T06:59:19Z",
+      "side": 1,
+      "message": "same as above, maybe set to nullptr",
+      "range": {
+        "startLine": 213,
+        "startChar": 33,
+        "endLine": 213,
+        "endChar": 42
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62c5ec14_fa9de253",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-08T06:59:19Z",
+      "side": 1,
+      "message": "maybe we need to set it to `nullptr`?",
+      "range": {
+        "startLine": 325,
+        "startChar": 33,
+        "endLine": 325,
+        "endChar": 42
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ed3cb84_3b40ff7d",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 421,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-08T06:59:19Z",
+      "side": 1,
+      "message": "I see in your comment that offload is `Based on HfpEncodingTransport`\nso should here be `HfpEncodingTransport`?",
+      "range": {
+        "startLine": 421,
+        "startChar": 42,
+        "endLine": 421,
+        "endChar": 62
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05f9e8e6_5e2017ff",
+        "filename": "system/audio_hal_interface/hfp_client_interface.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-08T06:59:19Z",
+      "side": 1,
+      "message": "seems like it double delete `delete HfpDecodingTransport::instance_;`",
+      "range": {
+        "startLine": 436,
+        "startChar": 35,
+        "endLine": 436,
+        "endChar": 44
+      },
+      "revId": "b636f7248eae9de7b29620ae0bcb11691d10ac77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
