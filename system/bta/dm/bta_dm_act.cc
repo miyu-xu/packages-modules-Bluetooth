@@ -60,7 +60,6 @@
 #include "types/bluetooth/uuid.h"
 #include "types/raw_address.h"
 
-using namespace bluetooth::legacy::stack::sdp;
 using bluetooth::Uuid;
 
 bool ble_vnd_is_included();
