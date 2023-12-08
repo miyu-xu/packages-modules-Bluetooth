@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e51a50e8_5a5061a3",
+        "filename": "system/stack/test/sdp/stack_sdp_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-08T22:51:25Z",
+      "side": 0,
+      "message": "Looks like this one was still needed.",
+      "range": {
+        "startLine": 25,
+        "startChar": 24,
+        "endLine": 25,
+        "endChar": 31
+      },
+      "revId": "f2884f36cae85e93f9003b0d080a7c7cb1907a18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
