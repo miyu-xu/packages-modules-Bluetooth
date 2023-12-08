@@ -217,6 +217,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cff3d713_215803f3",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3779,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-08T04:51:47Z",
+      "side": 1,
+      "message": "should we put it in the handler and wait on a futur ?",
+      "parentUuid": "9c0ec1b7_d775b678",
+      "range": {
+        "startLine": 3771,
+        "startChar": 8,
+        "endLine": 3779,
+        "endChar": 42
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "820591e8_37f67c91",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 17
