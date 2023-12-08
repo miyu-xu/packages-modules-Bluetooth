@@ -630,5 +630,3 @@ void bta_pan_write_buf(tBTA_PAN_SCB* p_scb, tBTA_PAN_DATA* p_data) {
 void bta_pan_free_buf(UNUSED_ATTR tBTA_PAN_SCB* p_scb, tBTA_PAN_DATA* p_data) {
   osi_free(p_data);
 }
-
-#endif /* PAN_INCLUDED */
