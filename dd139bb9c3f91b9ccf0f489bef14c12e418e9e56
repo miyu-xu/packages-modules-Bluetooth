@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aaa4af21_6f74402a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-08T23:03:09Z",
+      "side": 1,
+      "message": "I\u0027d prefer adding this in the same CL where we removed gd from some include path, but that may be a bit more complex than just adding it and rebasing.",
+      "revId": "dd139bb9c3f91b9ccf0f489bef14c12e418e9e56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
