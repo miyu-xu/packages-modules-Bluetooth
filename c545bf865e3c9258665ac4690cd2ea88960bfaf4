@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e15ef57b_56527448",
+        "filename": "system/stack/fuzzers/sdp_fuzzer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-08T22:37:07Z",
+      "side": 1,
+      "message": "This looks wrong.  I expect the fuzzer to fuzz the external API.",
+      "range": {
+        "startLine": 26,
+        "startChar": 20,
+        "endLine": 26,
+        "endChar": 28
+      },
+      "revId": "c545bf865e3c9258665ac4690cd2ea88960bfaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
