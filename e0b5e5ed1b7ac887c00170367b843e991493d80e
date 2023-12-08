@@ -16,6 +16,24 @@
       "message": "You need to add:\nFLAG: EXEMPT, \u003creason\u003e\n\nif you want to have a DrNo vote on your CL\n\ncf go/bt-ts-workflow",
       "revId": "e0b5e5ed1b7ac887c00170367b843e991493d80e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6debb6da_9a556657",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 3109716
+      },
+      "writtenOn": "2023-12-08T02:16:47Z",
+      "side": 1,
+      "message": "follow the role of \"Strict mechanical refactors (i.e. no changes to the behaviour of the code).\", no flag added for those code.",
+      "parentUuid": "b7d859e9_f286f768",
+      "revId": "e0b5e5ed1b7ac887c00170367b843e991493d80e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
