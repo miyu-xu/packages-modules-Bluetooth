@@ -18,8 +18,9 @@
 
 #include <cstdint>
 
-#include "bt_target.h"  // SDP_MAX_PROTOCOL_PARAMS
+#include "internal_include/bt_target.h"
 #include "types/bluetooth/uuid.h"
+#include "types/raw_address.h"
 
 #pragma once
 
