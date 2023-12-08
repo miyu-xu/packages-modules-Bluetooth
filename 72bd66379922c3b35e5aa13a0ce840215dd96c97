@@ -16,6 +16,23 @@
       "message": "Hi, please review this CL. Thanks!",
       "revId": "72bd66379922c3b35e5aa13a0ce840215dd96c97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31f12ad0_1b0c3c88",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-12-08T11:36:03Z",
+      "side": 1,
+      "message": "Michael, need one more reviewer for this patch, thanks.",
+      "revId": "72bd66379922c3b35e5aa13a0ce840215dd96c97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
