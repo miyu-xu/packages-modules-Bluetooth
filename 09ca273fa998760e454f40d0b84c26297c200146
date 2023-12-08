@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab5f7c22_9c9bab8c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2010568
+      },
+      "writtenOn": "2023-12-08T04:53:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "00007627_fc2c7aaa",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 9
+      },
+      "revId": "09ca273fa998760e454f40d0b84c26297c200146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "599b1329_f237bf87",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04765335_a1110b36",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 2010568
+      },
+      "writtenOn": "2023-12-08T04:53:01Z",
+      "side": 1,
+      "message": "Added",
+      "parentUuid": "599b1329_f237bf87",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "09ca273fa998760e454f40d0b84c26297c200146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c465640_088cdee7",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-12-07T14:46:07Z",
       "side": 1,
       "message": "nit: how about shortten the string to RETRIEVE, the same as others.",
+      "range": {
+        "startLine": 963,
+        "startChar": 24,
+        "endLine": 963,
+        "endChar": 64
+      },
+      "revId": "09ca273fa998760e454f40d0b84c26297c200146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2d794392_333a9dfd",
+        "filename": "android/app/src/com/android/bluetooth/tbs/TbsGeneric.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 2010568
+      },
+      "writtenOn": "2023-12-08T04:53:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c465640_088cdee7",
       "range": {
         "startLine": 963,
         "startChar": 24,
