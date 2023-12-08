@@ -26,8 +26,8 @@
 
 #include <cstdint>
 
-#include "bt_target.h"  // Must be first to define build configuration
 #include "bta/hh/bta_hh_int.h"
+#include "internal_include/bt_target.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 
