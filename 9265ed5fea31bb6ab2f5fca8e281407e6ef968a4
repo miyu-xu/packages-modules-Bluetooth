@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40695676_5271d22f",
+        "filename": "floss/pandora/floss/utils.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-08T03:52:26Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "47cbfe56_2cf02360",
+      "revId": "9265ed5fea31bb6ab2f5fca8e281407e6ef968a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4267f96b_02739119",
