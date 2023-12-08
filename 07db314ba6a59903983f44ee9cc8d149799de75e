@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55b1f50e_d753eee6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-08T13:11:37Z",
+      "side": 1,
+      "message": "+ Thomas for Dr.No. approval.",
+      "revId": "07db314ba6a59903983f44ee9cc8d149799de75e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
