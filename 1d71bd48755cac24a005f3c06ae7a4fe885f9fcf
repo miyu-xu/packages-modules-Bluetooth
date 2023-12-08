@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "004970aa_3c52da23",
+        "filename": "system/audio_hal_interface/hfp_client_interface.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-08T06:25:11Z",
+      "side": 1,
+      "message": "I guess this would be `Offload*` to keep consistency?",
+      "range": {
+        "startLine": 85,
+        "startChar": 2,
+        "endLine": 85,
+        "endChar": 9
+      },
+      "revId": "1d71bd48755cac24a005f3c06ae7a4fe885f9fcf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
