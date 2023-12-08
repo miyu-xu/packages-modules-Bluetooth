@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20beba6d_2e1f6579",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-08T19:24:25Z",
+      "side": 1,
+      "message": "could we make this only apply for unicast? \nGrzegorz has provided his fix in b/314696536 which makes sense to me.\n\nif (aidl::le_audio::LeAudioSinkTransport::interface_unicast_ \u0026\u0026\n    aidl::le_audio::LeAudioSinkTransport::instance_unicast_) {\n    aidl::le_audio::LeAudioSourceTransport::interface-\u003eSetAllowedLatencyModes(\n    latency_modes);\n}",
+      "revId": "e182004e501e4fbc64763949d95d34eb4cf06b08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
