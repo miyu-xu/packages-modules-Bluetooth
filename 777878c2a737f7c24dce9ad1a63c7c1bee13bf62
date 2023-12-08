@@ -16,6 +16,24 @@
       "message": "Please add `Flag: EXEMPT \u003creason\u003e`. For instance `Flag: EXEMPT floss only changes`",
       "revId": "777878c2a737f7c24dce9ad1a63c7c1bee13bf62",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12a7f233_dcec3bb3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-08T13:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f0feefb_995738b9",
+      "revId": "777878c2a737f7c24dce9ad1a63c7c1bee13bf62",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
