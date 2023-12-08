@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4c1039d0_f2f76a61",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ProfileService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-08T00:41:10Z",
+      "side": 1,
+      "message": "Will this generate a death notification to people that has register with linkToDeath ?",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 30
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8a14dcb_2879310c",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3779,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-08T00:41:10Z",
+      "side": 1,
+      "message": "During start the order is:\n```\n1. informe profileProxy\n2. put in map\n3. informe listener\n```\nI would expect the teardown to do the reverse order but here we are doing:\n```\n2. remove from map\n3. inform listener            // should this be done before ?\n1. inform proxy\n```\n\nCan we face race condition ?",
+      "range": {
+        "startLine": 3771,
+        "startChar": 8,
+        "endLine": 3779,
+        "endChar": 42
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "820591e8_37f67c91",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 4342,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-08T00:41:10Z",
+      "side": 1,
+      "message": "private ?",
+      "range": {
+        "startLine": 4342,
+        "startChar": 4,
+        "endLine": 4342,
+        "endChar": 10
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
