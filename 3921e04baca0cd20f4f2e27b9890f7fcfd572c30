@@ -70,6 +70,24 @@
       "parentUuid": "0e860931_f3f4667f",
       "revId": "3921e04baca0cd20f4f2e27b9890f7fcfd572c30",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38f32892_65021b81",
+        "filename": "android/app/src/com/android/bluetooth/audio_util/MediaPlayerList.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2023-12-08T19:45:26Z",
+      "side": 1,
+      "message": "We talked in great detail about this change offline and came to the following conclusions.\n\nIts important to first note that stopped apps are _not_ the same as apps that have been closed by the user. Stopped apps happen in three main cases-- (1) newly installed apps that have never been manually started by the user, (2) apps that essentially haven\u0027t been used in a _long_ time, and (3) apps that the user has forbid to be started forcibly.\n\nThis means the main regression this might introduce is around apps installed while Bluetooth was off. These apps will no longer appear in the app list for the user to browse on the remote device.\n\nUltimately, **this behavior seems like a worthwhile trade-off to make in the name of user privacy.** It\u0027s also behavior that we can address in a future refactor in this area. As well, the universe of people using browsing is rather small at this time, and this _doesn\u0027t_ impact playback, metadata, or playback controls at all.\n\nFWIW, the other bad experiences that this might impact aren\u0027t really regressions, as they\u0027re very close to the behavior of the stack now. Those experiences include\n- Installing an app while bluetooth is already on -\u003e since we cache apps this is already missed\n- Stopping an app while bluetooth is on -\u003e we don\u0027t have great handling for things like this now so the behavior should be the same",
+      "parentUuid": "f36b35a8_68c886ad",
+      "revId": "3921e04baca0cd20f4f2e27b9890f7fcfd572c30",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
