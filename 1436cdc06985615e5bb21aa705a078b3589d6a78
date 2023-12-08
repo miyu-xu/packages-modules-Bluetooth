@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a01b57ea_72db98b0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/ProfileService.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-08T01:36:17Z",
+      "side": 1,
+      "message": "No, this is just calling `IProfileServiceBinder` for the same fine, it\u0027s not a method present on the `Binder`.\n\n`linkToDeath` is only triggered when the owning process exits",
+      "parentUuid": "4c1039d0_f2f76a61",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 30
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b8a14dcb_2879310c",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 17
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5f77e9e2_966ec5b4",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3779,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-08T01:36:17Z",
+      "side": 1,
+      "message": "The order in the teardown is the \"right\" one, initially I put the getProfileProxy order as\n\n```\n1. inform profileProxy\n2. inform listener\n3. put in map\n```\n\nI reversed it for multiple reasons:\n- It allow to handle a onBluetoothOff between `2 and 3`\n- It also ensures that it was put in the map before calling the user, ensuring the profile proxy can be closed ASAP.\n\nBut thinking about it, I think there is a possible race condition, i\u0027ll try to fix it.",
+      "parentUuid": "b8a14dcb_2879310c",
+      "range": {
+        "startLine": 3771,
+        "startChar": 8,
+        "endLine": 3779,
+        "endChar": 42
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "820591e8_37f67c91",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 17
@@ -60,6 +108,30 @@
       "writtenOn": "2023-12-08T00:41:10Z",
       "side": 1,
       "message": "private ?",
+      "range": {
+        "startLine": 4342,
+        "startChar": 4,
+        "endLine": 4342,
+        "endChar": 10
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e489c36_9782b0c9",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 4342,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-08T01:36:17Z",
+      "side": 1,
+      "message": "Yes indeed, wrongly copy pasted the thing above.",
+      "parentUuid": "820591e8_37f67c91",
       "range": {
         "startLine": 4342,
         "startChar": 4,
