@@ -2226,6 +2226,19 @@ extern int register_com_android_modules_expresslog_Utils(
  * JNI Initialization
  */
 jint JNI_OnLoad(JavaVM* jvm, void* /* reserved */) {
+  int default_prio = ANDROID_LOG_INFO;
+  if (__android_log_is_loggable(ANDROID_LOG_VERBOSE, "bluetooth", default_prio)) {
+    __android_log_set_minimum_priority(ANDROID_LOG_VERBOSE);
+  } else if (__android_log_is_loggable(ANDROID_LOG_DEBUG, "bluetooth", default_prio)) {
+    __android_log_set_minimum_priority(ANDROID_LOG_DEBUG);
+  } else if (__android_log_is_loggable(ANDROID_LOG_INFO, "bluetooth", default_prio)) {
+    __android_log_set_minimum_priority(ANDROID_LOG_INFO);
+  } else if (__android_log_is_loggable(ANDROID_LOG_WARN, "bluetooth", default_prio)) {
+    __android_log_set_minimum_priority(ANDROID_LOG_WARN);
+  } else if (__android_log_is_loggable(ANDROID_LOG_ERROR, "bluetooth", default_prio)) {
+    __android_log_set_minimum_priority(ANDROID_LOG_ERROR);
+  }
+
   JNIEnv* e;
   int status;
 
