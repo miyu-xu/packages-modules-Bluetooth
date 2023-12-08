@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fdfa7ec_67a4554a",
+        "filename": "system/stack/a2dp/a2dp_ext.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-08T18:59:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a55f233_e36709d7",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 2
+      },
+      "revId": "d8062ae672d9c78d2cb5e0d9388fcb4bf0bebb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dda9cc88_fa4c74e7",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-11-29T17:20:17Z",
       "side": 1,
       "message": "should we add :\n```\n std::lock_guard\u003cstd::recursive_mutex\u003e lock(codec_mutex_);\n```\n?",
+      "revId": "d8062ae672d9c78d2cb5e0d9388fcb4bf0bebb1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e93ca27_38abbfe7",
+        "filename": "system/stack/include/a2dp_codec_api.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 298,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-08T18:59:50Z",
+      "side": 1,
+      "message": "Sounds reasonable 😄 Thanks for picking this up.",
+      "parentUuid": "dda9cc88_fa4c74e7",
       "revId": "d8062ae672d9c78d2cb5e0d9388fcb4bf0bebb1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
