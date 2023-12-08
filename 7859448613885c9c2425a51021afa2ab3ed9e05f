@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae634bde_94c91aa7",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-08T22:49:20Z",
+      "side": 1,
+      "message": "looks like this blank line is missing downstream :(",
+      "revId": "7859448613885c9c2425a51021afa2ab3ed9e05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
