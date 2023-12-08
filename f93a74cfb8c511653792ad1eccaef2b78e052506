@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f630d38d_c5428f00",
+        "filename": "system/bta/pan/bta_pan_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 631,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-08T22:29:38Z",
+      "side": 1,
+      "message": "Do you need to remove this, as well?",
+      "range": {
+        "startLine": 631,
+        "startChar": 0,
+        "endLine": 631,
+        "endChar": 25
+      },
+      "revId": "f93a74cfb8c511653792ad1eccaef2b78e052506",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
