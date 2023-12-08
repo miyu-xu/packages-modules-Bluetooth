@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e166951_b4d22f75",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T05:23:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7785380e_d976f921",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "590f491005394b92ee4c82f25c78a5d7a78d54dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "952fe605_f4840925",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-07T18:48:45Z",
       "side": 1,
       "message": "What does it mean for sink offload? For the hardware session, it seems only have a single session. Should it be is_offload_session?\n\nSuggest to remove aidl as well. There is not hidl function for HFP. So we don\u0027t need to use hidl/aidl to make it clear.",
+      "range": {
+        "startLine": 88,
+        "startChar": 5,
+        "endLine": 88,
+        "endChar": 33
+      },
+      "revId": "590f491005394b92ee4c82f25c78a5d7a78d54dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95054e4c_556881f5",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T05:23:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "952fe605_f4840925",
       "range": {
         "startLine": 88,
         "startChar": 5,
@@ -94,6 +142,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6330cf73_f4726692",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T05:23:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ce2720b_28271e33",
+      "range": {
+        "startLine": 113,
+        "startChar": 5,
+        "endLine": 113,
+        "endChar": 20
+      },
+      "revId": "590f491005394b92ee4c82f25c78a5d7a78d54dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5a9272c0_e74f6355",
@@ -107,6 +179,30 @@
       "writtenOn": "2023-12-07T18:48:45Z",
       "side": 1,
       "message": "It looks weired that you put the one way (sofrware_hal_interface), and two way (offloading_hal_interface) session together.",
+      "range": {
+        "startLine": 121,
+        "startChar": 25,
+        "endLine": 121,
+        "endChar": 29
+      },
+      "revId": "590f491005394b92ee4c82f25c78a5d7a78d54dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8cc2d66_812c9306",
+        "filename": "system/audio_hal_interface/hfp_software.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T05:23:39Z",
+      "side": 1,
+      "message": "I will remove the offload logic and move a new offload interface",
+      "parentUuid": "5a9272c0_e74f6355",
       "range": {
         "startLine": 121,
         "startChar": 25,
