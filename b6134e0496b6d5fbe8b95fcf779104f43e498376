@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7e9ff05_5bffdbc8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-08T23:58:37Z",
+      "side": 1,
+      "message": "Presubmit failed doesn\u0027t relates to this change.",
+      "revId": "b6134e0496b6d5fbe8b95fcf779104f43e498376",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
