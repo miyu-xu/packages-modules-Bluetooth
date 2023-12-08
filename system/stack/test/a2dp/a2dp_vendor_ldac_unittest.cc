@@ -20,6 +20,7 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
 
+#include "common/init_flags.h"
 #include "common/testing/log_capture.h"
 #include "common/time_util.h"
 #include "osi/include/allocator.h"
