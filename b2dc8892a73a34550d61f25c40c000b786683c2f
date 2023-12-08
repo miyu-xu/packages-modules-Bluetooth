@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0d62c05d_a1ffbf99",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-08T07:53:27Z",
+      "side": 1,
+      "message": "On floss, the flag_enabled always evaluates to false, so we return early here, which is not what we want.\n\nCan we do the reverse instead? i.e.\n```\nif (IS_FLAG_ENABLED(smp_tx_complete_callback)) {\n  return;\n}\n```\n\nSo the flag is automatically on, and on Android we need to explicitly turn it off to execute the current flow.\n\nOr is there a better way to do it?",
+      "revId": "b2dc8892a73a34550d61f25c40c000b786683c2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
