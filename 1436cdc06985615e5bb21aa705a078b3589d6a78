@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d1dbe128_ca9da19f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3779,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-08T02:09:43Z",
+      "side": 1,
+      "message": "Mmh, wait, I can still call onServiceConnected twice 🤔",
+      "parentUuid": "a9f494ae_a114828f",
+      "range": {
+        "startLine": 3771,
+        "startChar": 8,
+        "endLine": 3779,
+        "endChar": 42
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "820591e8_37f67c91",
         "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
         "patchSetId": 17
