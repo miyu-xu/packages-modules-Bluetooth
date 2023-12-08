@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a73cd4ee_1dd49096",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-12-08T17:48:15Z",
+      "side": 1,
+      "message": "Adequate testing should be done on the MTK end.",
+      "revId": "78b3684eb205e1b4bc0aa3e12138687e73f78ebe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
