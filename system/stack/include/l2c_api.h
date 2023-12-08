@@ -29,9 +29,8 @@
 #include <cstdint>
 #include <vector>
 
-#include "bt_target.h"
 #include "hcidefs.h"
-#include "l2cdefs.h"
+#include "internal_include/bt_target.h"
 #include "stack/include/bt_hdr.h"
 #include "types/bt_transport.h"
 #include "types/hci_role.h"

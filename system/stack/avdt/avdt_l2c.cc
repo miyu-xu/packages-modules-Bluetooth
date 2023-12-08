@@ -22,11 +22,12 @@
  *
  ******************************************************************************/
 
+#include <base/logging.h>
+
 #include "avdt_int.h"
-#include "bt_target.h"
 #include "bta/include/bta_av_api.h"
-#include "btm_api.h"
 #include "device/include/interop.h"
+#include "internal_include/bt_target.h"
 #include "l2c_api.h"
 #include "l2cdefs.h"
 #include "osi/include/allocator.h"
@@ -34,8 +35,6 @@
 #include "stack/include/acl_api.h"
 #include "stack/include/bt_hdr.h"
 #include "types/raw_address.h"
-
-#include <base/logging.h>
 
 /* callback function declarations */
 void avdt_l2c_connect_ind_cback(const RawAddress& bd_addr, uint16_t lcid,
