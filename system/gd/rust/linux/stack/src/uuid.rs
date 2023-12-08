@@ -109,7 +109,9 @@ impl<'a> Display for KnownUuidWrapper<'a> {
 pub struct UuidHelper {}
 
 lazy_static! {
-    static ref SUPPORTED_PROFILES: HashSet<Profile> = [
+    // AVRCP fighting with A2DP when initializing, so provide profiles in a known good order.
+    // TODO (b/286991526): remove after issue is resolved
+    static ref ORDERED_SUPPORTED_PROFILES: Vec<Profile> = [
         Profile::A2dpSink,
         Profile::A2dpSource,
         Profile::AvrcpController,
@@ -126,9 +128,12 @@ lazy_static! {
         Profile::VolumeControl,
         Profile::CoordinatedSet,
     ]
-    .iter()
-    .cloned()
-    .collect();
+    .to_vec();
+}
+
+lazy_static! {
+    static ref SUPPORTED_PROFILES: HashSet<Profile> =
+        ORDERED_SUPPORTED_PROFILES.iter().cloned().collect();
 }
 
 lazy_static! {
@@ -183,6 +188,12 @@ impl UuidHelper {
     /// Converts a UUID to a known profile enum.
     pub fn is_known_profile(uuid: &Uuid128Bit) -> Option<Profile> {
         PROFILES.get(uuid).cloned()
+    }
+
+    // AVRCP fighting with A2DP when initializing, so provide profiles in a known good order.
+    // TODO (b/286991526): remove after issue is resolved
+    pub fn get_ordered_supported_profiles() -> Vec<Profile> {
+        ORDERED_SUPPORTED_PROFILES.clone()
     }
 
     pub fn get_supported_profiles() -> HashSet<Profile> {
