@@ -16,6 +16,24 @@
       "message": "I\u0027d prefer adding this in the same CL where we removed gd from some include path, but that may be a bit more complex than just adding it and rebasing.",
       "revId": "dd139bb9c3f91b9ccf0f489bef14c12e418e9e56",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c718193_7c933db7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-08T23:24:05Z",
+      "side": 1,
+      "message": "The question is this:\n\nIs `gd` allowed in the include path or not ?\n\ne.g.\n\n#include \"gd/common/...\"\nOR\n#include \"common/...\"\n\nI see a mix of both and I\u0027d been operating under the impression that `gd` was not a \"real\" module/object/directory and a transitory area to separate new/legacy code.  And at some point `gd` will go away, and the directories will both be equal.",
+      "parentUuid": "aaa4af21_6f74402a",
+      "revId": "dd139bb9c3f91b9ccf0f489bef14c12e418e9e56",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
