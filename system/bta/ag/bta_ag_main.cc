@@ -194,6 +194,7 @@ void bta_ag_scb_dealloc(tBTA_AG_SCB* p_scb) {
   LOG_VERBOSE("bta_ag_scb_dealloc %d", bta_ag_scb_to_idx(p_scb));
 
   /* stop and free timers */
+  alarm_free_data(p_scb->ring_timer);
   alarm_free(p_scb->ring_timer);
   alarm_free(p_scb->codec_negotiation_timer);
   alarm_free(p_scb->collision_timer);

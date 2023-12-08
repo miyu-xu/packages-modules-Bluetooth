@@ -118,6 +118,7 @@ static void avrc_ctrl_cback(uint8_t handle, uint8_t event, uint16_t result,
   if ((event == AVCT_DISCONNECT_CFM_EVT) ||
       (event == AVCT_DISCONNECT_IND_EVT)) {
     avrc_flush_cmd_q(handle);
+    alarm_free_data(avrc_cb.ccb_int[handle].tle);
     alarm_free(avrc_cb.ccb_int[handle].tle);
     avrc_cb.ccb_int[handle].tle = NULL;
   }
@@ -216,8 +217,15 @@ void avrc_send_next_vendor_cmd(uint8_t handle) {
  *
  *****************************************************************************/
 void avrc_start_cmd_timer(uint8_t handle, uint8_t label, uint8_t msg_mask) {
-  tAVRC_PARAM* param =
-      static_cast<tAVRC_PARAM*>(osi_malloc(sizeof(tAVRC_PARAM)));
+  tAVRC_PARAM* param;
+  void *data = alarm_get_data(avrc_cb.ccb_int[handle].tle);
+
+  if (data) {
+    param = static_cast<tAVRC_PARAM*>(data);
+  } else {
+    param = static_cast<tAVRC_PARAM*>(osi_malloc(sizeof(tAVRC_PARAM)));
+  }
+
   param->handle = handle;
   param->label = label;
   param->msg_mask = msg_mask;

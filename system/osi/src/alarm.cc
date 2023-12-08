@@ -300,6 +300,18 @@ void alarm_cleanup(void) {
   alarms = NULL;
 }
 
+void *alarm_get_data(alarm_t *alarm) {
+  if (!alarm) return NULL;
+  return alarm->data;
+}
+
+void alarm_free_data(alarm_t *alarm) {
+  if (!alarm || !alarm->data) return;
+  osi_free(alarm->data);
+  alarm->data = NULL;
+}
+
+
 static bool lazy_initialize(void) {
   CHECK(alarms == NULL);
 
