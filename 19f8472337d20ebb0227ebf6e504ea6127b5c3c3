@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7c94bb8_f1db5f8f",
+        "filename": "system/audio_hal_interface/hfp_client_interface.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T06:25:10Z",
+      "side": 1,
+      "message": "Ack, will add comments on the last CL",
+      "parentUuid": "0ee0efde_f8661c42",
+      "revId": "19f8472337d20ebb0227ebf6e504ea6127b5c3c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "436f7ca1_d6d3ebe0",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-12-08T06:16:56Z",
       "side": 1,
       "message": "nit: change `sink` to `decoding`, same for source",
+      "range": {
+        "startLine": 62,
+        "startChar": 13,
+        "endLine": 62,
+        "endChar": 17
+      },
+      "revId": "19f8472337d20ebb0227ebf6e504ea6127b5c3c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "335976e8_aca63196",
+        "filename": "system/audio_hal_interface/hfp_client_interface.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-08T06:25:10Z",
+      "side": 1,
+      "message": "I missed these changes in this CL, but I changed them in subsequent CLs",
+      "parentUuid": "436f7ca1_d6d3ebe0",
       "range": {
         "startLine": 62,
         "startChar": 13,
