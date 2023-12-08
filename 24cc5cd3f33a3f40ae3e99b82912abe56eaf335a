@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44d6d136_b0565bc3",
+        "filename": "flags/smp.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-08T07:47:15Z",
+      "side": 1,
+      "message": "Hi, I noticed aosp/2857785 adding some flag as well which is tied to b/301168932. Not sure whether we want to use the same here? Also I\u0027m not sure at which level (smp or l2cap) we should guard.\n\nFurthermore, looks like I need to create a flag bug instead of b/301168932? What\u0027s the procedure? Is this related to the Dr. No policy?",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "24cc5cd3f33a3f40ae3e99b82912abe56eaf335a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
