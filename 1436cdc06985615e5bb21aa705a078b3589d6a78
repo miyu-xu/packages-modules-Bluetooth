@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9f494ae_a114828f",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 3779,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-08T02:06:47Z",
+      "side": 1,
+      "message": "Done, put everything in the looper, much easier.\n\nThere is still a \"race\" with `close` but it was already present before.\n\nI think the current behavior of `close` is wrong anyway and should be fixed later under a compat change.",
+      "parentUuid": "5f77e9e2_966ec5b4",
+      "range": {
+        "startLine": 3771,
+        "startChar": 8,
+        "endLine": 3779,
+        "endChar": 42
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "820591e8_37f67c91",
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Yes indeed, wrongly copy pasted the thing above.",
       "parentUuid": "820591e8_37f67c91",
+      "range": {
+        "startLine": 4342,
+        "startChar": 4,
+        "endLine": 4342,
+        "endChar": 10
+      },
+      "revId": "1436cdc06985615e5bb21aa705a078b3589d6a78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7878e71_1ebe54e7",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 17
+      },
+      "lineNbr": 4342,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-08T02:06:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e489c36_9782b0c9",
       "range": {
         "startLine": 4342,
         "startChar": 4,
