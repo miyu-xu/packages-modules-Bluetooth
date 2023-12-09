@@ -135,6 +135,7 @@ cc_library_static {
     ],
     static_libs: [
         "avrcp-target-service",
+        "bluetooth_flags_c_lib",
         "lib-bt-packets",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
@@ -201,6 +202,7 @@ cc_library_static {
         "-fvisibility=default",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "lib-bt-packets",
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
@@ -332,6 +334,7 @@ cc_test {
         "liblog",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
@@ -376,6 +379,7 @@ cc_test {
         "libstatssocket",
     ],
     static_libs: [
+        "bluetooth_flags_c_lib",
         "libbluetooth-types",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
