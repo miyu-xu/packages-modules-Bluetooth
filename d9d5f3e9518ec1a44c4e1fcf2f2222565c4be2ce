@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66acc7f9_d65cb47d",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-09T18:12:22Z",
+      "side": 1,
+      "message": "Why 4 ? where is this coming from ?",
+      "range": {
+        "startLine": 69,
+        "startChar": 45,
+        "endLine": 69,
+        "endChar": 46
+      },
+      "revId": "d9d5f3e9518ec1a44c4e1fcf2f2222565c4be2ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
