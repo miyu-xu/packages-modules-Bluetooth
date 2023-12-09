@@ -90,6 +90,10 @@ class tBTM_SEC_CB {
                               tBT_TRANSPORT transport);
   bool IsLinkKeyKnown(const RawAddress bd_addr, tBT_TRANSPORT transport);
 
+  bool AddService(bool is_originator, const char* p_name, uint8_t service_id,
+                  uint16_t sec_level, uint16_t psm, uint32_t mx_proto_id,
+                  uint32_t mx_chan_id);
+
  private:
   typedef bool (tBTM_SEC_REC::*FlagQueryMethod)() const;
   bool querySecFlag(const RawAddress bd_addr, tBT_TRANSPORT transport,
