@@ -34,6 +34,24 @@
       "parentUuid": "ae634bde_94c91aa7",
       "revId": "7859448613885c9c2425a51021afa2ab3ed9e05f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bb47fa6_2609507f",
+        "filename": "system/stack/sdp/sdp_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-09T17:41:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e290c90f_6de60c6b",
+      "revId": "7859448613885c9c2425a51021afa2ab3ed9e05f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
