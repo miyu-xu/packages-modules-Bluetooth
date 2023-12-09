@@ -83,6 +83,17 @@ class tBTM_SEC_CB {
   void Free();
 
   tBTM_SEC_SERV_REC* find_first_serv_rec(bool is_originator, uint16_t psm);
+
+  bool IsDeviceEncrypted(const RawAddress bd_addr, tBT_TRANSPORT transport);
+  bool IsDeviceAuthenticated(const RawAddress bd_addr, tBT_TRANSPORT transport);
+  bool IsLinkKeyAuthenticated(const RawAddress bd_addr,
+                              tBT_TRANSPORT transport);
+  bool IsLinkKeyKnown(const RawAddress bd_addr, tBT_TRANSPORT transport);
+
+ private:
+  typedef bool (tBTM_SEC_REC::*FlagQueryMethod)() const;
+  bool querySecFlag(const RawAddress bd_addr, tBT_TRANSPORT transport,
+                    FlagQueryMethod bredr_mothod, FlagQueryMethod ble_method);
 };
 
 extern tBTM_SEC_CB btm_sec_cb;
