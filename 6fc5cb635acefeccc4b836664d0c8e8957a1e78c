@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d4c600d_2c7cb533",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2023-12-09T03:36:58Z",
+      "side": 1,
+      "message": "No presubmit run needed, as currently only added code without using.",
+      "revId": "6fc5cb635acefeccc4b836664d0c8e8957a1e78c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
