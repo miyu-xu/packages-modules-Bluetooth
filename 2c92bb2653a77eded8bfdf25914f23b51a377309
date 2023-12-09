@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c7cba7_82d017d7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 17
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-09T02:54:36Z",
+      "side": 1,
+      "message": "This is the right direction but hard to review esp. with Dr. No.\n\nI wonder how we can make it more accessible for the Dr. No. reviewers",
+      "revId": "2c92bb2653a77eded8bfdf25914f23b51a377309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
