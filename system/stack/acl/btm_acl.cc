@@ -156,7 +156,7 @@ static bool IsEprAvailable(const tACL_CONN& p_acl) {
     return false;
   }
   return HCI_ATOMIC_ENCRYPT_SUPPORTED(p_acl.peer_lmp_feature_pages[0]) &&
-         controller_get_interface()->SupportsEncryptionPause();
+         bluetooth::shim::GetController()->SupportsEncryptionPause();
 }
 
 static void btm_process_remote_ext_features(tACL_CONN* p_acl_cb,
@@ -563,7 +563,7 @@ tBTM_STATUS BTM_GetRole(const RawAddress& remote_bd_addr, tHCI_ROLE* p_role) {
  *
  ******************************************************************************/
 tBTM_STATUS BTM_SwitchRoleToCentral(const RawAddress& remote_bd_addr) {
-  if (!controller_get_interface()->SupportsRoleSwitch()) {
+  if (!bluetooth::shim::GetController()->SupportsRoleSwitch()) {
     LOG_INFO("Local controller does not support role switching");
     return BTM_MODE_UNSUPPORTED;
   }
@@ -700,23 +700,23 @@ void btm_acl_encrypt_change(uint16_t handle, uint8_t status,
 }
 
 static void check_link_policy(tLINK_POLICY* settings) {
-  const controller_t* controller = controller_get_interface();
-
   if ((*settings & HCI_ENABLE_CENTRAL_PERIPHERAL_SWITCH) &&
-      (!controller->SupportsRoleSwitch())) {
+      (!bluetooth::shim::GetController()->SupportsRoleSwitch())) {
     *settings &= (~HCI_ENABLE_CENTRAL_PERIPHERAL_SWITCH);
     LOG_INFO("Role switch not supported (settings: 0x%04x)", *settings);
   }
-  if ((*settings & HCI_ENABLE_HOLD_MODE) && (!controller->SupportsHoldMode())) {
+  if ((*settings & HCI_ENABLE_HOLD_MODE) &&
+      (!bluetooth::shim::GetController()->SupportsHoldMode())) {
     *settings &= (~HCI_ENABLE_HOLD_MODE);
     LOG_INFO("hold not supported (settings: 0x%04x)", *settings);
   }
   if ((*settings & HCI_ENABLE_SNIFF_MODE) &&
-      (!controller->SupportsSniffMode())) {
+      (!bluetooth::shim::GetController()->SupportsSniffMode())) {
     *settings &= (~HCI_ENABLE_SNIFF_MODE);
     LOG_INFO("sniff not supported (settings: 0x%04x)", *settings);
   }
-  if ((*settings & HCI_ENABLE_PARK_MODE) && (!controller->SupportsParkMode())) {
+  if ((*settings & HCI_ENABLE_PARK_MODE) &&
+      (!bluetooth::shim::GetController()->SupportsParkMode())) {
     *settings &= (~HCI_ENABLE_PARK_MODE);
     LOG_INFO("park not supported (settings: 0x%04x)", *settings);
   }
