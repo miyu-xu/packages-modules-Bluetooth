@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08d1477d_9fdd25cb",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1920,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-09T18:16:29Z",
+      "side": 1,
+      "message": "func not needed",
+      "revId": "e86773b1ae94b3dcc6acbc199b7b75c3fb14983d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c549cb34_2eac5bc4",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1928,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-09T18:16:29Z",
+      "side": 1,
+      "message": "func not needed",
+      "range": {
+        "startLine": 1928,
+        "startChar": 52,
+        "endLine": 1928,
+        "endChar": 60
+      },
+      "revId": "e86773b1ae94b3dcc6acbc199b7b75c3fb14983d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ea4056f_159ba0c2",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 21
+      },
+      "lineNbr": 1931,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-09T18:16:29Z",
+      "side": 1,
+      "message": "func not needed",
+      "range": {
+        "startLine": 1931,
+        "startChar": 57,
+        "endLine": 1931,
+        "endChar": 65
+      },
+      "revId": "e86773b1ae94b3dcc6acbc199b7b75c3fb14983d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
