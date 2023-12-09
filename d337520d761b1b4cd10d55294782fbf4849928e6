@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7e3cee70_f86fe762",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 801,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-09T02:56:24Z",
+      "side": 1,
+      "message": "Next iteration s/b use enum { kLocal, kRemote }, since true/false doesn\u0027t mean much",
+      "revId": "d337520d761b1b4cd10d55294782fbf4849928e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
