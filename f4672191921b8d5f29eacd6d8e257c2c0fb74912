@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6267b717_ebb140cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-09T01:29:55Z",
+      "side": 1,
+      "message": "Fail on the unrelated test case `A2dpServiceTest`\n\nNeed to merge this in the time manner. So bypass the presubmit.",
+      "revId": "f4672191921b8d5f29eacd6d8e257c2c0fb74912",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
