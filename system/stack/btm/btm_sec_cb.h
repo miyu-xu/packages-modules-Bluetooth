@@ -95,6 +95,7 @@ class tBTM_SEC_CB {
                   uint32_t mx_chan_id);
 
   uint8_t RemoveServiceById(uint8_t service_id);
+  uint8_t RemoveServiceByPsm(uint16_t psm);
 
  private:
   typedef bool (tBTM_SEC_REC::*FlagQueryMethod)() const;
