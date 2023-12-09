@@ -94,6 +94,8 @@ class tBTM_SEC_CB {
                   uint16_t sec_level, uint16_t psm, uint32_t mx_proto_id,
                   uint32_t mx_chan_id);
 
+  uint8_t RemoveServiceById(uint8_t service_id);
+
  private:
   typedef bool (tBTM_SEC_REC::*FlagQueryMethod)() const;
   bool querySecFlag(const RawAddress bd_addr, tBT_TRANSPORT transport,
