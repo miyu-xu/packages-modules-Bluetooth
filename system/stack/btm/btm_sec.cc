@@ -105,8 +105,6 @@ static void btm_sec_pairing_timeout(void* data);
 static tBTM_STATUS btm_sec_dd_create_conn(tBTM_SEC_DEV_REC* p_dev_rec);
 static void btm_sec_change_pairing_state(tBTM_PAIRING_STATE new_state);
 
-static const char* btm_pair_state_descr(tBTM_PAIRING_STATE state);
-
 static void btm_sec_check_pending_reqs(void);
 static bool btm_sec_queue_mx_request(const RawAddress& bd_addr, uint16_t psm,
                                      bool is_orig, uint16_t security_required,
@@ -4645,7 +4643,7 @@ static void btm_sec_change_pairing_state(tBTM_PAIRING_STATE new_state) {
  * Description      Return state description for tracing
  *
  ******************************************************************************/
-static const char* btm_pair_state_descr(tBTM_PAIRING_STATE state) {
+const char* btm_pair_state_descr(tBTM_PAIRING_STATE state) {
   switch (state) {
     case BTM_PAIR_STATE_IDLE:
       return ("IDLE");
