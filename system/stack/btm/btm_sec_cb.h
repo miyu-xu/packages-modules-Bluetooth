@@ -99,6 +99,8 @@ class tBTM_SEC_CB {
   uint8_t RemoveServiceById(uint8_t service_id);
   uint8_t RemoveServiceByPsm(uint16_t psm);
 
+  void change_pairing_state(tBTM_PAIRING_STATE new_state);
+
  private:
   typedef bool (tBTM_SEC_REC::*FlagQueryMethod)() const;
   bool querySecFlag(const RawAddress bd_addr, tBT_TRANSPORT transport,
