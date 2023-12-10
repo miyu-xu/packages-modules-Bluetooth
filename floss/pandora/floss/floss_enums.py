@@ -177,3 +177,17 @@ class CompanyIdentifiers(enum.IntEnum):
     Bluetooth SIG official document: https://www.bluetooth.com/specifications/assigned-numbers/
     """
     GOOGLE = 0x00E0
+
+
+class BtDiscMode(enum.IntEnum):
+    """Bluetooth discoverable mode."""
+    NON_DISCOVERABLE = 0
+    LIMITED_DISCOVERABLE = 1
+    GENERAL_DISCOVERABLE = 2
+
+
+class BthReportType(enum.IntEnum):
+    """Bluetooth report type."""
+    INPUT_REPORT = 1
+    OUTPUT_REPORT = 2
+    FEATURE_REPORT = 3
