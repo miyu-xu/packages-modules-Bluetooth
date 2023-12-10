@@ -109,3 +109,6 @@ extern tBTM_SEC_CB btm_sec_cb;
 
 void BTM_Sec_Init();
 void BTM_Sec_Free();
+
+// misc methods
+const char* btm_pair_state_descr(tBTM_PAIRING_STATE state);
