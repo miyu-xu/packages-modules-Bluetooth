@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b40a8737_8cfc8827",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-11T17:22:29Z",
+      "side": 1,
+      "message": "nit: `no` does not clearly tell if we are talking about \"no\" as in negative or count.\n```suggestion\n    public static final String DELAY_RETRY_COUNT \u003d \"delay_retry_no\";\n```\nAnother option could be use `num`.",
+      "revId": "e5b11aea78d1698dea221685bd2a734f922bad6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0926627e_c40e9b1f",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-11T17:22:29Z",
+      "side": 1,
+      "message": "nit\n```suggestion\n                        short retry_count \u003d\n```",
+      "revId": "e5b11aea78d1698dea221685bd2a734f922bad6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "985ff6aa_48dc15ac",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-11T17:22:29Z",
+      "side": 1,
+      "message": "nit\n```suggestion\n                            sendMessageDelayed(new_msg, BOND_RETRY_DELAY);\n```",
+      "revId": "e5b11aea78d1698dea221685bd2a734f922bad6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
