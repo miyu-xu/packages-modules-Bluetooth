@@ -1,5 +1,40 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ac136dc_7d9ef382",
+        "filename": "system/bta/le_audio/audio_hal_client/asrc_resampler_test.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-12-11T16:34:33Z",
+      "side": 1,
+      "message": "nit: We\u0027re outputting `size_t` variables here, which are unsigned.  So the proper printf format is `%zu`, not `%zd`.  (`%zd` is proper for `ssize_t`, the signed version of `size_t`).\n\nThis is very unlikely to result in incorrect behavior, since our lengths and counts will almost certainly be small enough to not be interpreted as negative here.  But this might result in compiler warnings and drown out other more useful warnings.",
+      "revId": "8e29cde38c999ef039499932231e71c3b5846f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c6133cd_85ca3c0e",
+        "filename": "system/bta/le_audio/audio_hal_client/asrc_resampler_test.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-12-11T16:34:33Z",
+      "side": 1,
+      "message": "Same comment about `%zu`.",
+      "revId": "8e29cde38c999ef039499932231e71c3b5846f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
