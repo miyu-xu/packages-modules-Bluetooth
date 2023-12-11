@@ -94,6 +94,30 @@
       },
       "revId": "d9d5f3e9518ec1a44c4e1fcf2f2222565c4be2ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89c565f6_d9989a4a",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-11T17:59:58Z",
+      "side": 1,
+      "message": "It is a compile time constant, sysprop won\u0027t cut it here.\nIf we do go forward with software offloading, there will be a window to refactor this. But again, it sounds very unlikely that a vendor will support more than even 2.",
+      "parentUuid": "a8fbd06a_1d84b838",
+      "range": {
+        "startLine": 69,
+        "startChar": 45,
+        "endLine": 69,
+        "endChar": 46
+      },
+      "revId": "d9d5f3e9518ec1a44c4e1fcf2f2222565c4be2ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
