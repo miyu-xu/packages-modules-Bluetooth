@@ -2187,14 +2187,13 @@ tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda,
  *
  ******************************************************************************/
 bool btm_ble_cancel_remote_name(const RawAddress& remote_bda) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
   bool status;
 
   status = GAP_BleCancelReadPeerDevName(remote_bda);
 
-  p_inq->remname_active = false;
-  p_inq->remname_bda = RawAddress::kEmpty;
-  alarm_cancel(p_inq->remote_name_timer);
+  btm_cb.btm_inq_vars.remname_active = false;
+  btm_cb.btm_inq_vars.remname_bda = RawAddress::kEmpty;
+  alarm_cancel(btm_cb.btm_inq_vars.remote_name_timer);
 
   return status;
 }
