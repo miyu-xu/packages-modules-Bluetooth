@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "033388e9_c2a02317",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-11T19:49:19Z",
+      "side": 1,
+      "message": "stack_l2cap_test.cc needs to include osi/allocator.h?",
+      "revId": "ff14e56b6c561a1488c22080c576ba7a00b77d77",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
