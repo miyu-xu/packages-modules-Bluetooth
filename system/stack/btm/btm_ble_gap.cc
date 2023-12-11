@@ -838,8 +838,6 @@ void BTM_BleReadControllerFeatures(tBTM_BLE_CTRL_FEATURES_CBACK* p_vsc_cback) {
  *
  ******************************************************************************/
 bool BTM_BleConfigPrivacy(bool privacy_mode) {
-  tBTM_BLE_CB* p_cb = &btm_cb.ble_ctr_cb;
-
   LOG_WARN("%s %d", __func__, (int)privacy_mode);
 
   /* if LE is not supported, return error */
@@ -849,25 +847,25 @@ bool BTM_BleConfigPrivacy(bool privacy_mode) {
   gap_ble_attr_value.addr_resolution = 0;
   if (!privacy_mode) /* if privacy disabled, always use public address */
   {
-    p_cb->addr_mgnt_cb.own_addr_type = BLE_ADDR_PUBLIC;
-    p_cb->privacy_mode = BTM_PRIVACY_NONE;
+    btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type = BLE_ADDR_PUBLIC;
+    btm_cb.ble_ctr_cb.privacy_mode = BTM_PRIVACY_NONE;
   } else /* privacy is turned on*/
   {
     /* always set host random address, used when privacy 1.1 or priavcy 1.2 is
      * disabled */
-    p_cb->addr_mgnt_cb.own_addr_type = BLE_ADDR_RANDOM;
+    btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type = BLE_ADDR_RANDOM;
     btm_gen_resolvable_private_addr(base::Bind(&btm_gen_resolve_paddr_low));
 
     /* 4.2 controller only allow privacy 1.2 or mixed mode, resolvable private
      * address in controller */
     if (controller_get_interface()->supports_ble_privacy()) {
       gap_ble_attr_value.addr_resolution = 1;
-      p_cb->privacy_mode = BTM_PRIVACY_1_2;
+      btm_cb.ble_ctr_cb.privacy_mode = BTM_PRIVACY_1_2;
     } else /* 4.1/4.0 controller */
-      p_cb->privacy_mode = BTM_PRIVACY_1_1;
+      btm_cb.ble_ctr_cb.privacy_mode = BTM_PRIVACY_1_1;
   }
-  VLOG(2) << __func__ << " privacy_mode: " << p_cb->privacy_mode
-          << " own_addr_type: " << p_cb->addr_mgnt_cb.own_addr_type;
+  VLOG(2) << __func__ << " privacy_mode: " << btm_cb.ble_ctr_cb.privacy_mode
+          << " own_addr_type: " << btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type;
 
   GAP_BleAttrDBUpdate(GATT_UUID_GAP_CENTRAL_ADDR_RESOL, &gap_ble_attr_value);
 
