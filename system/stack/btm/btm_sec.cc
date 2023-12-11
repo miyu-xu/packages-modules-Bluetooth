@@ -3867,7 +3867,8 @@ void btm_sec_encryption_key_refresh_complete(uint16_t handle,
                                              tHCI_STATUS status) {
   if (status != HCI_SUCCESS || BTM_IsBleConnection(handle) ||
       // Skip encryption key size check when using set_min_encryption_key_size
-      controller_get_interface()->supports_set_min_encryption_key_size()) {
+      bluetooth::shim::GetController()->IsSupported(
+          bluetooth::hci::OpCode::SET_MIN_ENCRYPTION_KEY_SIZE)) {
     btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status),
                            (status == HCI_SUCCESS) ? 1 : 0);
   } else {
