@@ -22,6 +22,7 @@
  *
  ******************************************************************************/
 
+#include "main/shim/entry.h"
 #define LOG_TAG "l2c_ble"
 
 #include <base/logging.h>
@@ -35,6 +36,7 @@
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
 #include "device/include/controller.h"
+#include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/stack_config.h"
 #include "main/shim/acl_api.h"
@@ -190,7 +192,7 @@ bool l2cble_conn_comp(uint16_t handle, uint8_t role, const RawAddress& bda,
                              L2CAP_FIXED_CHNL_SMP_BIT;
 
   if (role == HCI_ROLE_PERIPHERAL) {
-    if (!controller_get_interface()
+    if (!bluetooth::shim::GetController()
              ->SupportsBlePeripheralInitiatedFeaturesExchange()) {
       p_lcb->link_state = LST_CONNECTED;
       l2cu_process_fixed_chnl_resp(p_lcb);
@@ -1440,3 +1442,227 @@ void L2CA_AdjustConnectionIntervals(uint16_t* min_interval,
     *max_interval = phone_min_interval;
   }
 }
+<<<<<<< HEAD
+=======
+
+void l2cble_use_preferred_conn_params(const RawAddress& bda) {
+  tL2C_LCB* p_lcb = l2cu_find_lcb_by_bd_addr(bda, BT_TRANSPORT_LE);
+  tBTM_SEC_DEV_REC* p_dev_rec = btm_find_or_alloc_dev(bda);
+
+  /* If there are any preferred connection parameters, set them now */
+  if ((p_lcb != NULL) && (p_dev_rec != NULL) &&
+      (p_dev_rec->conn_params.min_conn_int >= BTM_BLE_CONN_INT_MIN) &&
+      (p_dev_rec->conn_params.min_conn_int <= BTM_BLE_CONN_INT_MAX) &&
+      (p_dev_rec->conn_params.max_conn_int >= BTM_BLE_CONN_INT_MIN) &&
+      (p_dev_rec->conn_params.max_conn_int <= BTM_BLE_CONN_INT_MAX) &&
+      (p_dev_rec->conn_params.peripheral_latency <= BTM_BLE_CONN_LATENCY_MAX) &&
+      (p_dev_rec->conn_params.supervision_tout >= BTM_BLE_CONN_SUP_TOUT_MIN) &&
+      (p_dev_rec->conn_params.supervision_tout <= BTM_BLE_CONN_SUP_TOUT_MAX) &&
+      ((p_lcb->min_interval < p_dev_rec->conn_params.min_conn_int &&
+        p_dev_rec->conn_params.min_conn_int != BTM_BLE_CONN_PARAM_UNDEF) ||
+       (p_lcb->min_interval > p_dev_rec->conn_params.max_conn_int) ||
+       (p_lcb->latency > p_dev_rec->conn_params.peripheral_latency) ||
+       (p_lcb->timeout > p_dev_rec->conn_params.supervision_tout))) {
+    LOG_VERBOSE(
+        "%s: HANDLE=%d min_conn_int=%d max_conn_int=%d peripheral_latency=%d "
+        "supervision_tout=%d",
+        __func__, p_lcb->Handle(), p_dev_rec->conn_params.min_conn_int,
+        p_dev_rec->conn_params.max_conn_int,
+        p_dev_rec->conn_params.peripheral_latency,
+        p_dev_rec->conn_params.supervision_tout);
+
+    p_lcb->min_interval = p_dev_rec->conn_params.min_conn_int;
+    p_lcb->max_interval = p_dev_rec->conn_params.max_conn_int;
+    p_lcb->timeout = p_dev_rec->conn_params.supervision_tout;
+    p_lcb->latency = p_dev_rec->conn_params.peripheral_latency;
+
+    btsnd_hcic_ble_upd_ll_conn_params(
+        p_lcb->Handle(), p_dev_rec->conn_params.min_conn_int,
+        p_dev_rec->conn_params.max_conn_int,
+        p_dev_rec->conn_params.peripheral_latency,
+        p_dev_rec->conn_params.supervision_tout, 0, 0);
+  }
+}
+
+/*******************************************************************************
+ *
+ *  Function        l2cble_start_subrate_change
+ *
+ *  Description     Start the BLE subrate change process based on
+ *                  status.
+ *
+ *  Parameters:     lcb : l2cap link control block
+ *
+ *  Return value:   none
+ *
+ ******************************************************************************/
+static void l2cble_start_subrate_change(tL2C_LCB* p_lcb) {
+  if (!BTM_IsAclConnectionUp(p_lcb->remote_bd_addr, BT_TRANSPORT_LE)) {
+    LOG(ERROR) << "No known connection ACL for "
+               << ADDRESS_TO_LOGGABLE_STR(p_lcb->remote_bd_addr);
+    return;
+  }
+
+  btm_find_or_alloc_dev(p_lcb->remote_bd_addr);
+
+  LOG_VERBOSE("%s: subrate_req_mask=%d conn_update_mask=%d", __func__,
+              p_lcb->subrate_req_mask, p_lcb->conn_update_mask);
+
+  if (p_lcb->subrate_req_mask & L2C_BLE_SUBRATE_REQ_PENDING) {
+    LOG_VERBOSE("%s: returning L2C_BLE_SUBRATE_REQ_PENDING ", __func__);
+    return;
+  }
+
+  if (p_lcb->subrate_req_mask & L2C_BLE_SUBRATE_REQ_DISABLE) {
+    LOG_VERBOSE("%s: returning L2C_BLE_SUBRATE_REQ_DISABLE ", __func__);
+    return;
+  }
+
+  /* application allows to do update, if we were delaying one do it now */
+  if (!(p_lcb->subrate_req_mask & L2C_BLE_NEW_SUBRATE_PARAM) ||
+      (p_lcb->conn_update_mask & L2C_BLE_UPDATE_PENDING) ||
+      (p_lcb->conn_update_mask & L2C_BLE_NEW_CONN_PARAM)) {
+    LOG_VERBOSE("%s: returning L2C_BLE_NEW_SUBRATE_PARAM", __func__);
+    return;
+  }
+
+  if (!bluetooth::shim::GetController()->SupportsBleConnectionSubrating() ||
+      !acl_peer_supports_ble_connection_subrating(p_lcb->remote_bd_addr) ||
+      !acl_peer_supports_ble_connection_subrating_host(p_lcb->remote_bd_addr)) {
+    LOG_VERBOSE(
+        "%s: returning L2C_BLE_NEW_SUBRATE_PARAM local_host_sup=%d, "
+        "local_conn_subrarte_sup=%d, peer_subrate_sup=%d, peer_host_sup=%d",
+        __func__,
+        bluetooth::shim::GetController()->SupportsBleConnectionSubratingHost(),
+        bluetooth::shim::GetController()->SupportsBleConnectionSubrating(),
+        acl_peer_supports_ble_connection_subrating(p_lcb->remote_bd_addr),
+        acl_peer_supports_ble_connection_subrating_host(p_lcb->remote_bd_addr));
+    return;
+  }
+
+  LOG_VERBOSE("%s: Sending HCI cmd for subrate req", __func__);
+  bluetooth::shim::ACL_LeSubrateRequest(
+      p_lcb->Handle(), p_lcb->subrate_min, p_lcb->subrate_max,
+      p_lcb->max_latency, p_lcb->cont_num, p_lcb->supervision_tout);
+
+  p_lcb->subrate_req_mask |= L2C_BLE_SUBRATE_REQ_PENDING;
+  p_lcb->subrate_req_mask &= ~L2C_BLE_NEW_SUBRATE_PARAM;
+  p_lcb->conn_update_mask |= L2C_BLE_NOT_DEFAULT_PARAM;
+}
+
+/*******************************************************************************
+ *
+ *  Function        L2CA_SetDefaultSubrate
+ *
+ *  Description     BLE Set Default Subrate
+ *
+ *  Parameters:     Subrate parameters
+ *
+ *  Return value:   void
+ *
+ ******************************************************************************/
+void L2CA_SetDefaultSubrate(uint16_t subrate_min, uint16_t subrate_max,
+                            uint16_t max_latency, uint16_t cont_num,
+                            uint16_t timeout) {
+  VLOG(1) << __func__ << " subrate_min=" << subrate_min
+          << ", subrate_max=" << subrate_max << ", max_latency=" << max_latency
+          << ", cont_num=" << cont_num << ", timeout=" << timeout;
+
+  bluetooth::shim::ACL_LeSetDefaultSubrate(subrate_min, subrate_max,
+                                           max_latency, cont_num, timeout);
+}
+
+/*******************************************************************************
+ *
+ *  Function        L2CA_SubrateRequest
+ *
+ *  Description     BLE Subrate request.
+ *
+ *  Parameters:     Subrate parameters
+ *
+ *  Return value:   true if update started
+ *
+ ******************************************************************************/
+bool L2CA_SubrateRequest(const RawAddress& rem_bda, uint16_t subrate_min,
+                         uint16_t subrate_max, uint16_t max_latency,
+                         uint16_t cont_num, uint16_t timeout) {
+  tL2C_LCB* p_lcb;
+
+  /* See if we have a link control block for the remote device */
+  p_lcb = l2cu_find_lcb_by_bd_addr(rem_bda, BT_TRANSPORT_LE);
+
+  /* If we don't have one, create one and accept the connection. */
+  if (!p_lcb || !BTM_IsAclConnectionUp(rem_bda, BT_TRANSPORT_LE)) {
+    LOG(WARNING) << __func__ << " - unknown BD_ADDR "
+                 << ADDRESS_TO_LOGGABLE_STR(rem_bda);
+    return (false);
+  }
+
+  if (p_lcb->transport != BT_TRANSPORT_LE) {
+    LOG(WARNING) << __func__ << " - BD_ADDR "
+                 << ADDRESS_TO_LOGGABLE_STR(rem_bda) << " not LE";
+    return (false);
+  }
+
+  VLOG(1) << __func__ << ": BD_ADDR=" << ADDRESS_TO_LOGGABLE_STR(rem_bda)
+          << ", subrate_min=" << subrate_min << ", subrate_max=" << subrate_max
+          << ", max_latency=" << max_latency << ", cont_num=" << cont_num
+          << ", timeout=" << timeout;
+
+  p_lcb->subrate_min = subrate_min;
+  p_lcb->subrate_max = subrate_max;
+  p_lcb->max_latency = max_latency;
+  p_lcb->cont_num = cont_num;
+  p_lcb->subrate_req_mask |= L2C_BLE_NEW_SUBRATE_PARAM;
+  p_lcb->supervision_tout = timeout;
+
+  l2cble_start_subrate_change(p_lcb);
+
+  return (true);
+}
+
+/*******************************************************************************
+ *
+ * Function         l2cble_process_subrate_change_evt
+ *
+ * Description      This function enables LE subrating
+ *                  after a successful subrate change process is
+ *                  done.
+ *
+ * Parameters:      LE connection handle
+ *                  status
+ *                  subrate factor
+ *                  peripheral latency
+ *                  continuation number
+ *                  supervision timeout
+ *
+ * Returns          void
+ *
+ ******************************************************************************/
+void l2cble_process_subrate_change_evt(uint16_t handle, uint8_t status,
+                                       uint16_t subrate_factor,
+                                       uint16_t peripheral_latency,
+                                       uint16_t cont_num, uint16_t timeout) {
+  LOG_VERBOSE("%s", __func__);
+
+  /* See if we have a link control block for the remote device */
+  tL2C_LCB* p_lcb = l2cu_find_lcb_by_handle(handle);
+  if (!p_lcb) {
+    LOG_WARN("%s: Invalid handle: %d", __func__, handle);
+    return;
+  }
+
+  p_lcb->subrate_req_mask &= ~L2C_BLE_SUBRATE_REQ_PENDING;
+
+  if (status != HCI_SUCCESS) {
+    LOG_WARN("%s: Error status: %d", __func__, status);
+  }
+
+  l2cble_start_conn_update(p_lcb);
+
+  l2cble_start_subrate_change(p_lcb);
+
+  LOG_VERBOSE("%s: conn_update_mask=%d , subrate_req_mask=%d", __func__,
+              p_lcb->conn_update_mask, p_lcb->subrate_req_mask);
+}
+>>>>>>> c41b23ccea0 (Use GD Controller for SupportsBle)
