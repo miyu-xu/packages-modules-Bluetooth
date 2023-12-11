@@ -17,6 +17,7 @@
  ******************************************************************************/
 
 #include "bta_hearing_aid_api.h"
+#include "main/shim/entry.h"
 
 #define LOG_TAG "bluetooth"
 
@@ -35,11 +36,12 @@
 #include "bta/include/bta_gatt_queue.h"
 #include "bta/include/bta_hearing_aid_api.h"
 #include "btm_iso_api.h"
-#include "device/include/controller.h"
 #include "embdrv/g722/g722_enc_dec.h"
 #include "hardware/bt_gatt_types.h"
+#include "hci/controller_interface.h"
 #include "include/check.h"
 #include "internal_include/bt_trace.h"
+#include "main/shim/entry.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
@@ -513,7 +515,7 @@ class HearingAidImpl : public HearingAid {
     hearingDevice->connection_update_status = STARTED;
     hearingDevice->requested_connection_interval = UpdateBleConnParams(address);
 
-    if (controller_get_interface()->SupportsBle2mPhy()) {
+    if (bluetooth::shim::GetController()->SupportsBle2mPhy()) {
       LOG_INFO("%s set preferred 2M PHY", ADDRESS_TO_LOGGABLE_CSTR(address));
       BTM_BleSetPhy(address, PHY_LE_2M, PHY_LE_2M, 0);
     }
@@ -995,7 +997,7 @@ class HearingAidImpl : public HearingAid {
     }
 
     if ((codecs & (1 << CODEC_G722_24KHZ)) &&
-        controller_get_interface()->SupportsBle2mPhy() &&
+        bluetooth::shim::GetController()->SupportsBle2mPhy() &&
         default_data_interval_ms == HA_INTERVAL_10_MS) {
       codec_in_use = CODEC_G722_24KHZ;
     } else if (codecs & (1 << CODEC_G722_16KHZ)) {

@@ -22,6 +22,7 @@
  *
  ******************************************************************************/
 
+#include "main/shim/entry.h"
 #define LOG_TAG "l2c_ble"
 
 #include <base/logging.h>
@@ -35,6 +36,7 @@
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
 #include "device/include/controller.h"
+#include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/stack_config.h"
 #include "main/shim/acl_api.h"
@@ -190,7 +192,7 @@ bool l2cble_conn_comp(uint16_t handle, uint8_t role, const RawAddress& bda,
                              L2CAP_FIXED_CHNL_SMP_BIT;
 
   if (role == HCI_ROLE_PERIPHERAL) {
-    if (!controller_get_interface()
+    if (!bluetooth::shim::GetController()
              ->SupportsBlePeripheralInitiatedFeaturesExchange()) {
       p_lcb->link_state = LST_CONNECTED;
       l2cu_process_fixed_chnl_resp(p_lcb);
