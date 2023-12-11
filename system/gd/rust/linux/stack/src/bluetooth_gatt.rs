@@ -11,6 +11,7 @@ use bt_topshim::profiles::gatt::{
     GattClientCallbacksDispatcher, GattScannerCallbacks, GattScannerCallbacksDispatcher,
     GattScannerInbandCallbacks, GattScannerInbandCallbacksDispatcher, GattServerCallbacks,
     GattServerCallbacksDispatcher, GattStatus, LePhy, MsftAdvMonitor, MsftAdvMonitorPattern,
+    ScanFilterDuplicates,
 };
 use bt_topshim::sysprop;
 use bt_topshim::topstack;
@@ -1363,6 +1364,15 @@ impl GattAsyncIntf {
                     );
                 }
             }
+            // We observed a performance drop when FilterDuplicates is set to Disabled.
+            // Always enable it for now.
+            self.gatt
+                .as_ref()
+                .unwrap()
+                .lock()
+                .unwrap()
+                .scanner
+                .set_scan_filter_duplicates(ScanFilterDuplicates::Enabled);
             self.gatt.as_ref().unwrap().lock().unwrap().scanner.start_scan();
         } else {
             self.gatt.as_ref().unwrap().lock().unwrap().scanner.stop_scan();

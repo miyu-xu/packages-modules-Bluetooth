@@ -337,6 +337,14 @@ void BleScannerInterfaceImpl::OnMsftAdvMonitorEnable(
   msft_callbacks_.Enable.Run((uint8_t)status);
 }
 
+/** Sets the LE scan FilterDuplicates parameter for future |Scan| calls */
+void BleScannerInterfaceImpl::SetScanFilterDuplicates(
+    uint8_t filter_duplicates) {
+  LOG(INFO) << __func__ << " in shim layer";
+  bluetooth::shim::GetScanning()->SetScanFilterDuplicates(
+      static_cast<bluetooth::hci::FilterDuplicates>(filter_duplicates));
+}
+
 /** Sets the LE scan interval and window in units of N*0.625 msec */
 void BleScannerInterfaceImpl::SetScanParameters(int scanner_id,
                                                 int scan_interval,

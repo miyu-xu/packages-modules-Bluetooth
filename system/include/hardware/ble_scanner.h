@@ -186,6 +186,9 @@ class BleScannerInterface {
   virtual void SetScanParameters(int scanner_id, int scan_interval,
                                  int scan_window, Callback cb) = 0;
 
+  /** Sets the LE scan FilterDuplicates parameter for future |Scan| calls */
+  virtual void SetScanFilterDuplicates(uint8_t filter_duplicates) = 0;
+
   /* Configure the batchscan storage */
   virtual void BatchscanConfigStorage(int client_if, int batch_scan_full_max,
                                       int batch_scan_trunc_max,

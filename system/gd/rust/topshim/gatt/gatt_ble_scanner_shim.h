@@ -119,6 +119,9 @@ class BleScannerIntf : public ScanningCallbacks {
   // of this action is returned via |OnStatusCallback|.
   void SetScanParameters(uint8_t scanner_id, uint16_t scan_interval, uint16_t scan_window);
 
+  // Sets the LE scan FilterDuplicates parameter for future |Scan| calls.
+  void SetScanFilterDuplicates(uint8_t filter_duplicates);
+
   // Configure the batchscan storage and get a response via |OnStatusCallback|.
   void BatchscanConfigStorage(
       uint8_t scanner_id,

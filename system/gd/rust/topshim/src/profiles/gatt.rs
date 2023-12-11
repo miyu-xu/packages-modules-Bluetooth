@@ -202,6 +202,7 @@ pub mod ffi {
             scan_interval: u16,
             scan_window: u16,
         );
+        fn SetScanFilterDuplicates(self: Pin<&mut BleScannerIntf>, filter_duplicates: u8);
 
         fn BatchscanConfigStorage(
             self: Pin<&mut BleScannerIntf>,
@@ -430,6 +431,19 @@ pub type MsftAdvMonitor = ffi::RustMsftAdvMonitor;
 pub type MsftAdvMonitorPattern = ffi::RustMsftAdvMonitorPattern;
 pub type AdvertiseParameters = ffi::RustAdvertiseParameters;
 pub type PeriodicAdvertisingParameters = ffi::RustPeriodicAdvertisingParameters;
+
+#[derive(Debug, Copy, Clone)]
+pub enum ScanFilterDuplicates {
+    Disabled = 0x00,
+    Enabled = 0x01,
+    ResetEachPeriod = 0x02,
+}
+
+impl From<ScanFilterDuplicates> for u8 {
+    fn from(value: ScanFilterDuplicates) -> Self {
+        value as u8
+    }
+}
 
 impl Default for PeriodicAdvertisingParameters {
     fn default() -> Self {
@@ -1542,6 +1556,10 @@ impl BleScanner {
 
     pub fn set_scan_parameters(&mut self, scanner_id: u8, scan_interval: u16, scan_window: u16) {
         mutcxxcall!(self, SetScanParameters, scanner_id, scan_interval, scan_window);
+    }
+
+    pub fn set_scan_filter_duplicates(&mut self, filter_duplicates: ScanFilterDuplicates) {
+        mutcxxcall!(self, SetScanFilterDuplicates, filter_duplicates.into());
     }
 
     pub fn batchscan_config_storage(

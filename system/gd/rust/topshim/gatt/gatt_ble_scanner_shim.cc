@@ -272,6 +272,10 @@ void BleScannerIntf::MsftAdvMonitorEnable(uint32_t call_id, bool enable) {
       enable, base::Bind(&BleScannerIntf::OnMsftAdvMonitorEnableCallback, base::Unretained(this), call_id));
 }
 
+void BleScannerIntf::SetScanFilterDuplicates(uint8_t filter_duplicates) {
+  scanner_intf_->SetScanFilterDuplicates(filter_duplicates);
+}
+
 void BleScannerIntf::SetScanParameters(uint8_t scanner_id, uint16_t scan_interval, uint16_t scan_window) {
   scanner_intf_->SetScanParameters(
       scanner_id,

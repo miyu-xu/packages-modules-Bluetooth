@@ -589,8 +589,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     switch (api_type_) {
       case ScanApiType::EXTENDED:
         le_scanning_interface_->EnqueueCommand(
-            LeSetExtendedScanEnableBuilder::Create(
-                Enable::ENABLED, FilterDuplicates::DISABLED /* filter duplicates */, 0, 0),
+            LeSetExtendedScanEnableBuilder::Create(Enable::ENABLED, filter_duplicates_, 0, 0),
             module_handler_->BindOnce(check_complete<LeSetExtendedScanEnableCompleteView>));
         break;
       case ScanApiType::ANDROID_HCI:
@@ -613,8 +612,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     switch (api_type_) {
       case ScanApiType::EXTENDED:
         le_scanning_interface_->EnqueueCommand(
-            LeSetExtendedScanEnableBuilder::Create(
-                Enable::DISABLED, FilterDuplicates::DISABLED /* filter duplicates */, 0, 0),
+            LeSetExtendedScanEnableBuilder::Create(Enable::DISABLED, filter_duplicates_, 0, 0),
             module_handler_->BindOnce(check_complete<LeSetExtendedScanEnableCompleteView>));
         break;
       case ScanApiType::ANDROID_HCI:
@@ -657,6 +655,10 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     interval_ms_ = scan_interval;
     window_ms_ = scan_window;
     scanning_callbacks_->OnSetScannerParameterComplete(scanner_id, ScanningCallback::SUCCESS);
+  }
+
+  void set_scan_filter_duplicates(FilterDuplicates filter_duplicates) {
+    filter_duplicates_ = filter_duplicates;
   }
 
   void set_scan_filter_policy(LeScanningFilterPolicy filter_policy) {
@@ -1675,6 +1677,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   uint32_t interval_ms_{1000};
   uint16_t window_ms_{1000};
   OwnAddressType own_address_type_{OwnAddressType::PUBLIC_DEVICE_ADDRESS};
+  FilterDuplicates filter_duplicates_{FilterDuplicates::DISABLED};
   LeScanningFilterPolicy filter_policy_{LeScanningFilterPolicy::ACCEPT_ALL};
   BatchScanConfig batch_scan_config_;
   std::map<ScannerId, std::vector<uint8_t>> batch_scan_result_cache_;
@@ -1729,6 +1732,10 @@ void LeScanningManager::Scan(bool start) {
 void LeScanningManager::SetScanParameters(
     ScannerId scanner_id, LeScanType scan_type, uint16_t scan_interval, uint16_t scan_window) {
   CallOn(pimpl_.get(), &impl::set_scan_parameters, scanner_id, scan_type, scan_interval, scan_window);
+}
+
+void LeScanningManager::SetScanFilterDuplicates(FilterDuplicates filter_duplicates) {
+  CallOn(pimpl_.get(), &impl::set_scan_filter_duplicates, filter_duplicates);
 }
 
 void LeScanningManager::SetScanFilterPolicy(LeScanningFilterPolicy filter_policy) {
