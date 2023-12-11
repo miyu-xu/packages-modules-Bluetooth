@@ -2037,7 +2037,6 @@ static void btm_ble_scan_filt_param_cfg_evt(uint8_t avbl_space,
  ******************************************************************************/
 tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
   tBTM_BLE_CB* p_ble_cb = &btm_cb.ble_ctr_cb;
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
 
   LOG_VERBOSE("btm_ble_start_inquiry: inq_active = 0x%02x",
               btm_cb.btm_inq_vars.inq_active);
@@ -2087,10 +2086,11 @@ tBTM_STATUS btm_ble_start_inquiry(uint8_t duration) {
     btm_send_hci_scan_enable(BTM_BLE_SCAN_ENABLE, BTM_BLE_DUPLICATE_DISABLE);
   }
 
-  p_inq->inq_active |= BTM_BLE_GENERAL_INQUIRY;
+  btm_cb.btm_inq_vars.inq_active |= BTM_BLE_GENERAL_INQUIRY;
   p_ble_cb->set_ble_inquiry_active();
 
-  LOG_VERBOSE("btm_ble_start_inquiry inq_active = 0x%02x", p_inq->inq_active);
+  LOG_VERBOSE("btm_ble_start_inquiry inq_active = 0x%02x",
+              btm_cb.btm_inq_vars.inq_active);
 
   if (duration != 0) {
     /* start inquiry timer */
