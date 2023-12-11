@@ -95,6 +95,7 @@ void SyspropsModule::parse_config(std::string file_path) {
       "bluetooth.core.le.connection_latency",
       "bluetooth.core.le.connection_supervision_timeout",
       "bluetooth.core.le.direct_connection_timeout",
+      "bluetooth.core.le.extended_scan_filter_duplicates",
       "bluetooth.core.le.connection_scan_interval_fast",
       "bluetooth.core.le.connection_scan_window_fast",
       "bluetooth.core.le.connection_scan_window_2m_fast",

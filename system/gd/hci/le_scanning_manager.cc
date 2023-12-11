@@ -58,6 +58,8 @@ constexpr uint8_t kDataStatusBits = 5;
 
 // system properties
 const std::string kLeRxPathLossCompProperty = "bluetooth.hardware.radio.le_rx_path_loss_comp_db";
+const std::string kLeExtendedScanFilterDuplicates =
+    "bluetooth.core.le.extended_scan_filter_duplicates";
 
 const ModuleFactory LeScanningManager::Factory = ModuleFactory([]() { return new LeScanningManager(); });
 
@@ -215,6 +217,8 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     } else {
       api_type_ = ScanApiType::LEGACY;
     }
+    extended_filter_duplicates_ = static_cast<FilterDuplicates>(os::GetSystemPropertyUint32(
+        kLeExtendedScanFilterDuplicates, static_cast<uint32_t>(FilterDuplicates::DISABLED)));
     is_filter_supported_ = controller_->IsSupported(OpCode::LE_ADV_FILTER);
     if (is_filter_supported_) {
       le_scanning_interface_->EnqueueCommand(
@@ -590,7 +594,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       case ScanApiType::EXTENDED:
         le_scanning_interface_->EnqueueCommand(
             LeSetExtendedScanEnableBuilder::Create(
-                Enable::ENABLED, FilterDuplicates::DISABLED /* filter duplicates */, 0, 0),
+                Enable::ENABLED, extended_filter_duplicates_, 0, 0),
             module_handler_->BindOnce(check_complete<LeSetExtendedScanEnableCompleteView>));
         break;
       case ScanApiType::ANDROID_HCI:
@@ -614,7 +618,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
       case ScanApiType::EXTENDED:
         le_scanning_interface_->EnqueueCommand(
             LeSetExtendedScanEnableBuilder::Create(
-                Enable::DISABLED, FilterDuplicates::DISABLED /* filter duplicates */, 0, 0),
+                Enable::DISABLED, extended_filter_duplicates_, 0, 0),
             module_handler_->BindOnce(check_complete<LeSetExtendedScanEnableCompleteView>));
         break;
       case ScanApiType::ANDROID_HCI:
@@ -1675,6 +1679,7 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
   uint32_t interval_ms_{1000};
   uint16_t window_ms_{1000};
   OwnAddressType own_address_type_{OwnAddressType::PUBLIC_DEVICE_ADDRESS};
+  FilterDuplicates extended_filter_duplicates_{FilterDuplicates::DISABLED};
   LeScanningFilterPolicy filter_policy_{LeScanningFilterPolicy::ACCEPT_ALL};
   BatchScanConfig batch_scan_config_;
   std::map<ScannerId, std::vector<uint8_t>> batch_scan_result_cache_;
