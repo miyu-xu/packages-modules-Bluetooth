@@ -22,9 +22,10 @@
 #include "bta_csis_api.h"
 #include "btif/include/btif_profile_storage.h"
 #include "btm_iso_api.h"
-#include "device/include/controller.h"
+#include "hci/controller_interface.h"
 #include "internal_include/bt_trace.h"
 #include "le_audio_set_configuration_provider.h"
+#include "main/shim/entry.h"
 #include "metrics_collector.h"
 
 namespace le_audio {
@@ -632,7 +633,7 @@ uint8_t LeAudioDeviceGroup::GetPhyBitmask(uint8_t direction) const {
 
   // local supported PHY's
   uint8_t phy_bitfield = bluetooth::hci::kIsoCigPhy1M;
-  if (controller_get_interface()->SupportsBle2mPhy())
+  if (bluetooth::shim::GetController()->SupportsBle2mPhy())
     phy_bitfield |= bluetooth::hci::kIsoCigPhy2M;
 
   if (!leAudioDevice) {

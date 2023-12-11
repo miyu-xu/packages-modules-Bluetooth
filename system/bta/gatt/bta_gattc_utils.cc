@@ -22,6 +22,7 @@
  *
  ******************************************************************************/
 
+#include "main/shim/entry.h"
 #define LOG_TAG "bt_bta_gattc"
 
 #include <base/logging.h>
@@ -32,6 +33,7 @@
 #include "bta/gatt/bta_gattc_int.h"
 #include "common/init_flags.h"
 #include "device/include/controller.h"
+#include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -43,7 +45,7 @@ using namespace bluetooth;
 
 static uint8_t ble_acceptlist_size() {
   const controller_t* controller = controller_get_interface();
-  if (!controller->SupportsBle()) {
+  if (!bluetooth::shim::GetController()->SupportsBle()) {
     return 0;
   }
   return controller->get_ble_acceptlist_size();
