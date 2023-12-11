@@ -3489,32 +3489,32 @@ void btm_ble_update_mode_operation(uint8_t link_role, const RawAddress* bd_addr,
  *
  ******************************************************************************/
 void btm_ble_init(void) {
-  tBTM_BLE_CB* p_cb = &btm_cb.ble_ctr_cb;
-
   LOG_VERBOSE("%s", __func__);
 
-  alarm_free(p_cb->observer_timer);
-  alarm_free(p_cb->inq_var.fast_adv_timer);
-  memset(p_cb, 0, sizeof(tBTM_BLE_CB));
+  alarm_free(btm_cb.ble_ctr_cb.observer_timer);
+  alarm_free(btm_cb.ble_ctr_cb.inq_var.fast_adv_timer);
+  memset(&btm_cb.ble_ctr_cb, 0, sizeof(tBTM_BLE_CB));
   memset(&(btm_cb.cmn_ble_vsc_cb), 0, sizeof(tBTM_BLE_VSC_CB));
   btm_cb.cmn_ble_vsc_cb.values_read = false;
 
-  p_cb->observer_timer = alarm_new("btm_ble.observer_timer");
-  p_cb->cur_states = 0;
+  btm_cb.ble_ctr_cb.observer_timer = alarm_new("btm_ble.observer_timer");
+  btm_cb.ble_ctr_cb.cur_states = 0;
 
-  p_cb->inq_var.adv_mode = BTM_BLE_ADV_DISABLE;
-  p_cb->inq_var.scan_type = BTM_BLE_SCAN_MODE_NONE;
-  p_cb->inq_var.adv_chnl_map = BTM_BLE_DEFAULT_ADV_CHNL_MAP;
-  p_cb->inq_var.afp = BTM_BLE_DEFAULT_AFP;
-  p_cb->inq_var.sfp = BTM_BLE_DEFAULT_SFP;
-  p_cb->inq_var.connectable_mode = BTM_BLE_NON_CONNECTABLE;
-  p_cb->inq_var.discoverable_mode = BTM_BLE_NON_DISCOVERABLE;
-  p_cb->inq_var.fast_adv_timer = alarm_new("btm_ble_inq.fast_adv_timer");
-  p_cb->inq_var.inquiry_timer = alarm_new("btm_ble_inq.inquiry_timer");
+  btm_cb.ble_ctr_cb.inq_var.adv_mode = BTM_BLE_ADV_DISABLE;
+  btm_cb.ble_ctr_cb.inq_var.scan_type = BTM_BLE_SCAN_MODE_NONE;
+  btm_cb.ble_ctr_cb.inq_var.adv_chnl_map = BTM_BLE_DEFAULT_ADV_CHNL_MAP;
+  btm_cb.ble_ctr_cb.inq_var.afp = BTM_BLE_DEFAULT_AFP;
+  btm_cb.ble_ctr_cb.inq_var.sfp = BTM_BLE_DEFAULT_SFP;
+  btm_cb.ble_ctr_cb.inq_var.connectable_mode = BTM_BLE_NON_CONNECTABLE;
+  btm_cb.ble_ctr_cb.inq_var.discoverable_mode = BTM_BLE_NON_DISCOVERABLE;
+  btm_cb.ble_ctr_cb.inq_var.fast_adv_timer =
+      alarm_new("btm_ble_inq.fast_adv_timer");
+  btm_cb.ble_ctr_cb.inq_var.inquiry_timer =
+      alarm_new("btm_ble_inq.inquiry_timer");
 
-  p_cb->inq_var.evt_type = BTM_BLE_NON_CONNECT_EVT;
+  btm_cb.ble_ctr_cb.inq_var.evt_type = BTM_BLE_NON_CONNECT_EVT;
 
-  p_cb->addr_mgnt_cb.refresh_raddr_timer =
+  btm_cb.ble_ctr_cb.addr_mgnt_cb.refresh_raddr_timer =
       alarm_new("btm_ble_addr.refresh_raddr_timer");
   btm_ble_pa_sync_cb = {};
   sync_timeout_alarm = alarm_new("btm.sync_start_task");
