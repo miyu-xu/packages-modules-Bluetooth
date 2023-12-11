@@ -905,56 +905,56 @@ void btm_clear_all_pending_le_entry(void) {
  ******************************************************************************/
 void btm_inq_db_reset(void) {
   tBTM_REMOTE_DEV_NAME rem_name = {};
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
   uint8_t num_responses;
   uint8_t temp_inq_active;
 
   LOG_DEBUG("Resetting inquiry database");
 
   /* If an inquiry or periodic inquiry is active, reset the mode to inactive */
-  if (p_inq->inq_active != BTM_INQUIRY_INACTIVE) {
-    temp_inq_active = p_inq->inq_active; /* Save so state can change BEFORE
-                                                callback is called */
-    p_inq->inq_active = BTM_INQUIRY_INACTIVE;
+  if (btm_cb.btm_inq_vars.inq_active != BTM_INQUIRY_INACTIVE) {
+    temp_inq_active =
+        btm_cb.btm_inq_vars.inq_active; /* Save so state can change BEFORE
+                                  callback is called */
+    btm_cb.btm_inq_vars.inq_active = BTM_INQUIRY_INACTIVE;
 
     /* If not a periodic inquiry, the complete callback must be called to notify
      * caller */
     if (temp_inq_active == BTM_GENERAL_INQUIRY_ACTIVE) {
-      if (p_inq->p_inq_cmpl_cb) {
+      if (btm_cb.btm_inq_vars.p_inq_cmpl_cb) {
         num_responses = 0;
-        (*p_inq->p_inq_cmpl_cb)(&num_responses);
+        (*btm_cb.btm_inq_vars.p_inq_cmpl_cb)(&num_responses);
       }
     }
   }
 
   /* Cancel a remote name request if active, and notify the caller (if waiting)
    */
-  if (p_inq->remname_active) {
-    alarm_cancel(p_inq->remote_name_timer);
-    p_inq->remname_active = false;
-    p_inq->remname_bda = RawAddress::kEmpty;
+  if (btm_cb.btm_inq_vars.remname_active) {
+    alarm_cancel(btm_cb.btm_inq_vars.remote_name_timer);
+    btm_cb.btm_inq_vars.remname_active = false;
+    btm_cb.btm_inq_vars.remname_bda = RawAddress::kEmpty;
 
-    if (p_inq->p_remname_cmpl_cb) {
+    if (btm_cb.btm_inq_vars.p_remname_cmpl_cb) {
       rem_name.status = BTM_DEV_RESET;
       rem_name.hci_status = HCI_SUCCESS;
 
-      (*p_inq->p_remname_cmpl_cb)(&rem_name);
-      p_inq->p_remname_cmpl_cb = NULL;
+      (*btm_cb.btm_inq_vars.p_remname_cmpl_cb)(&rem_name);
+      btm_cb.btm_inq_vars.p_remname_cmpl_cb = NULL;
     }
   }
 
-  p_inq->state = BTM_INQ_INACTIVE_STATE;
-  p_inq->p_inq_results_cb = NULL;
+  btm_cb.btm_inq_vars.state = BTM_INQ_INACTIVE_STATE;
+  btm_cb.btm_inq_vars.p_inq_results_cb = NULL;
   btm_clr_inq_db(NULL); /* Clear out all the entries in the database */
   btm_clr_inq_result_flt();
 
-  p_inq->discoverable_mode = BTM_NON_DISCOVERABLE;
-  p_inq->connectable_mode = BTM_NON_CONNECTABLE;
-  p_inq->page_scan_type = BTM_SCAN_TYPE_STANDARD;
-  p_inq->inq_scan_type = BTM_SCAN_TYPE_STANDARD;
+  btm_cb.btm_inq_vars.discoverable_mode = BTM_NON_DISCOVERABLE;
+  btm_cb.btm_inq_vars.connectable_mode = BTM_NON_CONNECTABLE;
+  btm_cb.btm_inq_vars.page_scan_type = BTM_SCAN_TYPE_STANDARD;
+  btm_cb.btm_inq_vars.inq_scan_type = BTM_SCAN_TYPE_STANDARD;
 
-  p_inq->discoverable_mode |= BTM_BLE_NON_DISCOVERABLE;
-  p_inq->connectable_mode |= BTM_BLE_NON_CONNECTABLE;
+  btm_cb.btm_inq_vars.discoverable_mode |= BTM_BLE_NON_DISCOVERABLE;
+  btm_cb.btm_inq_vars.connectable_mode |= BTM_BLE_NON_CONNECTABLE;
   return;
 }
 
