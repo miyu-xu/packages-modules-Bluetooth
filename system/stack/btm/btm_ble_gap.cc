@@ -1594,12 +1594,11 @@ void BTM_BlePeriodicSyncTxParameters(RawAddress addr, uint8_t mode,
 static uint8_t btm_set_conn_mode_adv_init_addr(
     RawAddress& p_peer_addr_ptr, tBLE_ADDR_TYPE* p_peer_addr_type,
     tBLE_ADDR_TYPE* p_own_addr_type) {
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
   uint8_t evt_type;
   tBTM_SEC_DEV_REC* p_dev_rec;
 
-  if (p_cb->connectable_mode == BTM_BLE_NON_CONNECTABLE) {
-    if (p_cb->scan_rsp) {
+  if (btm_cb.ble_ctr_cb.inq_var.connectable_mode == BTM_BLE_NON_CONNECTABLE) {
+    if (btm_cb.ble_ctr_cb.inq_var.scan_rsp) {
       evt_type = BTM_BLE_DISCOVER_EVT;
     } else {
       evt_type = BTM_BLE_NON_CONNECT_EVT;
@@ -1616,18 +1615,21 @@ static uint8_t btm_set_conn_mode_adv_init_addr(
     };
     LOG_DEBUG("Received BLE connect event %s", ADDRESS_TO_LOGGABLE_CSTR(ble_bd_addr));
 
-    evt_type = p_cb->directed_conn;
+    evt_type = btm_cb.ble_ctr_cb.inq_var.directed_conn;
 
     if (static_cast<std::underlying_type_t<tBTM_BLE_EVT>>(
-            p_cb->directed_conn) == BTM_BLE_CONNECT_DIR_EVT ||
+            btm_cb.ble_ctr_cb.inq_var.directed_conn) ==
+            BTM_BLE_CONNECT_DIR_EVT ||
         static_cast<std::underlying_type_t<tBTM_BLE_EVT>>(
-            p_cb->directed_conn) == BTM_BLE_CONNECT_LO_DUTY_DIR_EVT) {
+            btm_cb.ble_ctr_cb.inq_var.directed_conn) ==
+            BTM_BLE_CONNECT_LO_DUTY_DIR_EVT) {
       /* for privacy 1.2, convert peer address as static, own address set as ID
        * addr */
       if (btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_1_2 ||
           btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_MIXED) {
         /* only do so for bonded device */
-        if ((p_dev_rec = btm_find_or_alloc_dev(p_cb->direct_bda.bda)) != NULL &&
+        if ((p_dev_rec = btm_find_or_alloc_dev(
+                 btm_cb.ble_ctr_cb.inq_var.direct_bda.bda)) != NULL &&
             p_dev_rec->ble.in_controller_list & BTM_RESOLVING_LIST_BIT) {
           p_peer_addr_ptr = p_dev_rec->ble.identity_address_with_type.bda;
           *p_peer_addr_type = p_dev_rec->ble.identity_address_with_type.type;
@@ -1637,8 +1639,8 @@ static uint8_t btm_set_conn_mode_adv_init_addr(
         /* otherwise fall though as normal directed adv */
       }
       /* direct adv mode does not have privacy, if privacy is not enabled  */
-      *p_peer_addr_type = p_cb->direct_bda.type;
-      p_peer_addr_ptr = p_cb->direct_bda.bda;
+      *p_peer_addr_type = btm_cb.ble_ctr_cb.inq_var.direct_bda.type;
+      p_peer_addr_ptr = btm_cb.ble_ctr_cb.inq_var.direct_bda.bda;
       return evt_type;
     }
   }
@@ -1646,7 +1648,7 @@ static uint8_t btm_set_conn_mode_adv_init_addr(
   /* undirect adv mode or non-connectable mode*/
   /* when privacy 1.2 privacy only mode is used, or mixed mode */
   if ((btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_1_2 &&
-       p_cb->afp != AP_SCAN_CONN_ALL) ||
+       btm_cb.ble_ctr_cb.inq_var.afp != AP_SCAN_CONN_ALL) ||
       btm_cb.ble_ctr_cb.privacy_mode == BTM_PRIVACY_MIXED) {
     list_node_t* n =
         list_foreach(btm_sec_cb.sec_dev_rec, is_resolving_list_bit_set, NULL);
