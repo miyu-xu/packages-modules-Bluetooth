@@ -21,11 +21,13 @@
 #include "common/stop_watch.h"
 #include "hci/class_of_device.h"
 #include "hci/hci_metrics_logging.h"
+#include "main/shim/controller.h"
 #include "os/alarm.h"
 #include "os/metrics.h"
 #include "os/queue.h"
 #include "osi/include/stack_power_telemetry.h"
 #include "packet/packet_builder.h"
+#include "stack/include/hcidefs.h"
 #include "storage/storage_module.h"
 
 namespace bluetooth {
@@ -222,6 +224,23 @@ struct HciLayer::impl {
           logging_id.c_str());
 
       command_queue_.front().GetCallback<TResponse>()->Invoke(std::move(response_view));
+    }
+
+    // Although UNKNOWN_CONNECTION might be a controller issue in some command status, we treat it
+    // as a disconnect event to maintain consistent connection state between stack and controller
+    // since there might not be further HCI Disconnect Event after this status event.
+    // Currently only do this on LE_READ_REMOTE_FEATURES and Intel Controller because it is the
+    // only combination we know that would return UNKNOWN_CONNECTION in some cases.
+    if (controller_get_interface()->get_bt_version()->manufacturer == LMP_COMPID_INTEL &&
+        op_code == OpCode::LE_READ_REMOTE_FEATURES && is_status && status_view.IsValid() &&
+        status_view.GetStatus() == ErrorCode::UNKNOWN_CONNECTION) {
+      auto& command_view = *command_queue_.front().command_view;
+      auto le_read_features_view = bluetooth::hci::LeReadRemoteFeaturesView::Create(
+          LeConnectionManagementCommandView::Create(AclCommandView::Create(command_view)));
+      if (le_read_features_view.IsValid()) {
+        uint16_t handle = le_read_features_view.GetConnectionHandle();
+        module_.Disconnect(handle, ErrorCode::UNKNOWN_CONNECTION);
+      }
     }
 
     command_queue_.pop_front();
