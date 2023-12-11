@@ -3116,17 +3116,16 @@ void btm_ble_stop_inquiry(void) {
  *
  ******************************************************************************/
 static void btm_ble_stop_observe(void) {
-  tBTM_BLE_CB* p_ble_cb = &btm_cb.ble_ctr_cb;
-  tBTM_CMPL_CB* p_obs_cb = p_ble_cb->p_obs_cmpl_cb;
+  tBTM_CMPL_CB* p_obs_cb = btm_cb.ble_ctr_cb.p_obs_cmpl_cb;
 
-  alarm_cancel(p_ble_cb->observer_timer);
+  alarm_cancel(btm_cb.ble_ctr_cb.observer_timer);
 
-  p_ble_cb->reset_ble_observe();
+  btm_cb.ble_ctr_cb.reset_ble_observe();
 
-  p_ble_cb->p_obs_results_cb = NULL;
-  p_ble_cb->p_obs_cmpl_cb = NULL;
+  btm_cb.ble_ctr_cb.p_obs_results_cb = NULL;
+  btm_cb.ble_ctr_cb.p_obs_cmpl_cb = NULL;
 
-  if (!p_ble_cb->is_ble_scan_active()) {
+  if (!btm_cb.ble_ctr_cb.is_ble_scan_active()) {
     btm_ble_stop_scan();
   }
 
