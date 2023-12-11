@@ -118,6 +118,30 @@
       },
       "revId": "d9d5f3e9518ec1a44c4e1fcf2f2222565c4be2ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1cae684a_ffbd8224",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-12-11T19:23:40Z",
+      "side": 1,
+      "message": "ok ; )",
+      "parentUuid": "89c565f6_d9989a4a",
+      "range": {
+        "startLine": 69,
+        "startChar": 45,
+        "endLine": 69,
+        "endChar": 46
+      },
+      "revId": "d9d5f3e9518ec1a44c4e1fcf2f2222565c4be2ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
