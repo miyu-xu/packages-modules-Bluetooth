@@ -853,10 +853,8 @@ tBTM_INQ_INFO* BTM_InqDbNext(tBTM_INQ_INFO* p_cur) {
  *
  ******************************************************************************/
 tBTM_STATUS BTM_ClearInqDb(const RawAddress* p_bda) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-
   /* If an inquiry or remote name is in progress return busy */
-  if (p_inq->inq_active != BTM_INQUIRY_INACTIVE) return (BTM_BUSY);
+  if (btm_cb.btm_inq_vars.inq_active != BTM_INQUIRY_INACTIVE) return (BTM_BUSY);
 
   btm_clr_inq_db(p_bda);
 
