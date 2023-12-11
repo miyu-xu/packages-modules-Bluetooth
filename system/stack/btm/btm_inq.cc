@@ -1232,8 +1232,7 @@ void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
   bool is_new = true;
   bool update = false;
   int8_t i_rssi;
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-  tBTM_INQ_RESULTS_CB* p_inq_results_cb = p_inq->p_inq_results_cb;
+  tBTM_INQ_RESULTS_CB* p_inq_results_cb = btm_cb.btm_inq_vars.p_inq_results_cb;
   uint8_t page_scan_rep_mode = 0;
   uint8_t page_scan_per_mode = 0;
   uint8_t page_scan_mode = 0;
@@ -1246,7 +1245,7 @@ void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
             btm_cb.btm_inq_vars.inq_active, btm_cb.btm_inq_vars.state);
 
   /* Only process the results if the BR inquiry is still active */
-  if (!(p_inq->inq_active & BTM_BR_INQ_ACTIVE_MASK)) {
+  if (!(btm_cb.btm_inq_vars.inq_active & BTM_BR_INQ_ACTIVE_MASK)) {
     LOG_INFO("Inquiry is inactive so dropping inquiry result");
     return;
   }
@@ -1338,7 +1337,7 @@ void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
        same
        inquiry.
     */
-    else if (p_i->inq_count == p_inq->inq_counter &&
+    else if (p_i->inq_count == btm_cb.btm_inq_vars.inq_counter &&
              (p_i->inq_info.results.device_type == BT_DEVICE_TYPE_BREDR))
       is_new = false;
 
@@ -1361,7 +1360,7 @@ void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
 
       p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
 
-      if (p_i->inq_count != p_inq->inq_counter) {
+      if (p_i->inq_count != btm_cb.btm_inq_vars.inq_counter) {
         /* A new response was found */
         btm_cb.btm_inq_vars.inq_cmpl_info.num_resp++;
         switch (static_cast<tBTM_INQ_RESULT>(inq_res_mode)) {
@@ -1378,12 +1377,13 @@ void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
       }
 
       p_cur->inq_result_type |= BTM_INQ_RESULT_BR;
-      if (p_i->inq_count != p_inq->inq_counter) {
+      if (p_i->inq_count != btm_cb.btm_inq_vars.inq_counter) {
         p_cur->device_type = BT_DEVICE_TYPE_BREDR;
         p_i->scan_rsp = false;
       } else
         p_cur->device_type |= BT_DEVICE_TYPE_BREDR;
-      p_i->inq_count = p_inq->inq_counter; /* Mark entry for current inquiry */
+      p_i->inq_count =
+          btm_cb.btm_inq_vars.inq_counter; /* Mark entry for current inquiry */
 
       /* Initialize flag to false. This flag is set/used by application */
       p_i->inq_info.appl_knows_rem_name = false;
