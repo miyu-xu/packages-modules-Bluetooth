@@ -36,6 +36,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
+import android.os.SystemProperties;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.SparseBooleanArray;
@@ -67,21 +68,49 @@ import java.util.concurrent.ConcurrentHashMap;
 public class ScanManager {
     private static final boolean DBG = GattServiceConfig.DBG;
     private static final String TAG = GattServiceConfig.TAG_PREFIX + "ScanManager";
+    private static final String SCAN_MODE_LOW_POWER_WINDOW_PROPERTY =
+            "bluetooth.core.le.scan_low_power_window";
+    private static final String SCAN_MODE_LOW_POWER_INTERVAL_PROPERTY =
+            "bluetooth.core.le.scan_low_power_interval";
+    private static final String SCAN_MODE_BALANCED_WINDOW_PROPERTY =
+            "bluetooth.core.le.scan_balanced_window";
+    private static final String SCAN_MODE_BALANCED_INTERVAL_PROPERTY =
+            "bluetooth.core.le.scan_balanced_interval";
+    private static final String SCAN_MODE_LOW_LATENCY_WINDOW_PROPERTY =
+            "bluetooth.core.le.scan_low_latency_window";
+    private static final String SCAN_MODE_LOW_LATENCY_INTERVAL_PROPERTY =
+            "bluetooth.core.le.scan_low_latency_interval";
+    private static final String SCAN_MODE_SCREEN_OFF_LOW_LATENCY_WINDOW_PROPERTY =
+            "bluetooth.core.le.scan_screen_off_low_power_window";
+    private static final String SCAN_MODE_SCREEN_OFF_LOW_LATENCY_INTERVAL_PROPERTY =
+            "bluetooth.core.le.scan_screen_off_low_power_interval";
+    private static final String SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_PROPERTY =
+            "bluetooth.core.le.scan_screen_off_balanced_window";
+    private static final String SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_PROPERTY =
+            "bluetooth.core.le.scan_screen_off_balanced_interval";
 
-    /**
-     * Scan params corresponding to regular scan setting
-     */
-    private static final int SCAN_MODE_LOW_POWER_WINDOW_MS = 140;
-    private static final int SCAN_MODE_LOW_POWER_INTERVAL_MS = 1400;
-    private static final int SCAN_MODE_BALANCED_WINDOW_MS = 183;
-    private static final int SCAN_MODE_BALANCED_INTERVAL_MS = 730;
-    private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS = 100;
-    private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS = 100;
-    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS = 512;
-    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS = 10240;
-    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS = 183;
-    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS = 730;
+    /** Scan params corresponding to regular scan setting */
+    private static final int SCAN_MODE_LOW_POWER_WINDOW_MS =
+            SystemProperties.getInt(SCAN_MODE_LOW_POWER_WINDOW_PROPERTY, 140);
 
+    private static final int SCAN_MODE_LOW_POWER_INTERVAL_MS =
+            SystemProperties.getInt(SCAN_MODE_LOW_POWER_INTERVAL_PROPERTY, 1400);
+    private static final int SCAN_MODE_BALANCED_WINDOW_MS =
+            SystemProperties.getInt(SCAN_MODE_BALANCED_WINDOW_PROPERTY, 183);
+    private static final int SCAN_MODE_BALANCED_INTERVAL_MS =
+            SystemProperties.getInt(SCAN_MODE_BALANCED_INTERVAL_PROPERTY, 730);
+    private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS =
+            SystemProperties.getInt(SCAN_MODE_LOW_LATENCY_WINDOW_PROPERTY, 100);
+    private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS =
+            SystemProperties.getInt(SCAN_MODE_LOW_LATENCY_INTERVAL_PROPERTY, 100);
+    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS =
+            SystemProperties.getInt(SCAN_MODE_SCREEN_OFF_LOW_LATENCY_WINDOW_PROPERTY, 512);
+    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS =
+            SystemProperties.getInt(SCAN_MODE_SCREEN_OFF_LOW_LATENCY_INTERVAL_PROPERTY, 10240);
+    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS =
+            SystemProperties.getInt(SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_PROPERTY, 183);
+    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS =
+            SystemProperties.getInt(SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_PROPERTY, 730);
     // Result type defined in bt stack. Need to be accessed by GattService.
     static final int SCAN_RESULT_TYPE_TRUNCATED = 1;
     static final int SCAN_RESULT_TYPE_FULL = 2;
