@@ -16,6 +16,24 @@
       "message": "could we make this only apply for unicast? \nGrzegorz has provided his fix in b/314696536 which makes sense to me.\n\nif (aidl::le_audio::LeAudioSinkTransport::interface_unicast_ \u0026\u0026\n    aidl::le_audio::LeAudioSinkTransport::instance_unicast_) {\n    aidl::le_audio::LeAudioSourceTransport::interface-\u003eSetAllowedLatencyModes(\n    latency_modes);\n}",
       "revId": "e182004e501e4fbc64763949d95d34eb4cf06b08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9001d918_a5f41e02",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-12-11T13:01:00Z",
+      "side": 1,
+      "message": "Thank you Rongxuan to bringing this here! Just want to add, that the proposed by my change was tested on UPF and unicast and no crash were observed with it.",
+      "parentUuid": "20beba6d_2e1f6579",
+      "revId": "e182004e501e4fbc64763949d95d34eb4cf06b08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
