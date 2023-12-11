@@ -118,6 +118,30 @@
       },
       "revId": "24cc5cd3f33a3f40ae3e99b82912abe56eaf335a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0dc39aeb_51ac9aad",
+        "filename": "flags/smp.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-11T10:20:09Z",
+      "side": 1,
+      "message": "SGTM, thanks! Will drop this CL in the next upload.",
+      "parentUuid": "e56bfda1_46a66318",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "24cc5cd3f33a3f40ae3e99b82912abe56eaf335a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
