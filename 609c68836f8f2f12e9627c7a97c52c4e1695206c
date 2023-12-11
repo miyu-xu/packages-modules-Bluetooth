@@ -22,6 +22,30 @@
       },
       "revId": "609c68836f8f2f12e9627c7a97c52c4e1695206c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "807dc105_adaf9d3a",
+        "filename": "flags/smp.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-11T10:15:54Z",
+      "side": 1,
+      "message": "Thanks for the reminder. Yes, will update.",
+      "parentUuid": "3a07a2e6_54099ec9",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 34
+      },
+      "revId": "609c68836f8f2f12e9627c7a97c52c4e1695206c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
