@@ -7395,19 +7395,19 @@ public class AdapterService extends Service {
 
     @GuardedBy("mDeviceConfigLock")
     private int mScreenOffLowPowerWindowMillis =
-            ScanManager.SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS;
+            DeviceConfigListener.DEFAULT_SCREEN_OFF_LOW_POWER_WINDOW_MILLIS;
 
     @GuardedBy("mDeviceConfigLock")
     private int mScreenOffLowPowerIntervalMillis =
-            ScanManager.SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS;
+            DeviceConfigListener.DEFAULT_SCREEN_OFF_LOW_POWER_INTERVAL_MILLIS;
 
     @GuardedBy("mDeviceConfigLock")
     private int mScreenOffBalancedWindowMillis =
-            ScanManager.SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS;
+            DeviceConfigListener.DEFAULT_SCREEN_OFF_BALANCED_WINDOW_MILLIS;
 
     @GuardedBy("mDeviceConfigLock")
     private int mScreenOffBalancedIntervalMillis =
-            ScanManager.SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS;
+            DeviceConfigListener.DEFAULT_SCREEN_OFF_BALANCED_INTERVAL_MILLIS;
 
     @GuardedBy("mDeviceConfigLock")
     private String mLeAudioAllowList;
@@ -7526,6 +7526,18 @@ public class AdapterService extends Service {
         private static final int DEFAULT_SCAN_UPGRADE_DURATION_MILLIS = (int) SECOND_IN_MILLIS * 6;
         private static final int DEFAULT_SCAN_DOWNGRADE_DURATION_BT_CONNECTING_MILLIS =
                 (int) SECOND_IN_MILLIS * 6;
+        private static final int DEFAULT_SCREEN_OFF_LOW_POWER_WINDOW_MILLIS =
+                BluetoothProperties.getLeScanScreenOffLowPowerWindow()
+                        .orElse(ScanManager.SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS);
+        private static final int DEFAULT_SCREEN_OFF_LOW_POWER_INTERVAL_MILLIS =
+                BluetoothProperties.getLeScanScreenOffLowPowerInterval()
+                        .orElse(ScanManager.SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS);
+        private static final int DEFAULT_SCREEN_OFF_BALANCED_WINDOW_MILLIS =
+                BluetoothProperties.getLeScanScreenOffBalancedWindow()
+                        .orElse(ScanManager.SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS);
+        private static final int DEFAULT_SCREEN_OFF_BALANCED_INTERVAL_MILLIS =
+                BluetoothProperties.getLeScanScreenOffBalancedInterval()
+                        .orElse(ScanManager.SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS);
 
         @RequiresPermission(android.Manifest.permission.READ_DEVICE_CONFIG)
         public void start() {
@@ -7565,19 +7577,19 @@ public class AdapterService extends Service {
                 mScreenOffLowPowerWindowMillis =
                         properties.getInt(
                                 SCREEN_OFF_LOW_POWER_WINDOW_MILLIS,
-                                ScanManager.SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS);
+                                DEFAULT_SCREEN_OFF_LOW_POWER_WINDOW_MILLIS);
                 mScreenOffLowPowerIntervalMillis =
                         properties.getInt(
                                 SCREEN_OFF_LOW_POWER_INTERVAL_MILLIS,
-                                ScanManager.SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS);
+                                DEFAULT_SCREEN_OFF_LOW_POWER_INTERVAL_MILLIS);
                 mScreenOffBalancedWindowMillis =
                         properties.getInt(
                                 SCREEN_OFF_BALANCED_WINDOW_MILLIS,
-                                ScanManager.SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS);
+                                DEFAULT_SCREEN_OFF_BALANCED_WINDOW_MILLIS);
                 mScreenOffBalancedIntervalMillis =
                         properties.getInt(
                                 SCREEN_OFF_BALANCED_INTERVAL_MILLIS,
-                                ScanManager.SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS);
+                                DEFAULT_SCREEN_OFF_BALANCED_INTERVAL_MILLIS);
                 mLeAudioAllowList = properties.getString(LE_AUDIO_ALLOW_LIST, "");
 
                 if (!mLeAudioAllowList.isEmpty()) {
