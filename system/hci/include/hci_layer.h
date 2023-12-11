@@ -21,8 +21,6 @@
 #include <base/functional/callback.h>
 #include <base/location.h>
 
-#include "osi/include/future.h"
-#include "osi/include/osi.h"  // INVALID_FD
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
 

@@ -26,6 +26,7 @@
 #include "common/bidi_queue.h"
 #include "common/init_flags.h"
 #include "hci/acl_connection_interface.h"
+#include "hci/controller.h"
 #include "hci/hci_layer.h"
 #include "hci/hci_packets.h"
 #include "hci/include/packet_fragmenter.h"
@@ -525,7 +526,9 @@ static hci_t interface = {.set_data_cb = set_data_cb,
 
 const hci_t* bluetooth::shim::hci_layer_get_interface() {
   packet_fragmenter = packet_fragmenter_get_interface();
-  packet_fragmenter->init(&packet_fragmenter_callbacks);
+  packet_fragmenter->init(
+      &packet_fragmenter_callbacks,
+      GetController()->GetControllerIsoBufferSize().le_data_packet_length_);
   return &interface;
 }
 

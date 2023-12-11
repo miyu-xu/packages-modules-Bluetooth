@@ -18,7 +18,6 @@
 
 #pragma once
 
-#include "device/include/controller.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 
@@ -36,7 +35,8 @@ typedef struct {
 
 typedef struct packet_fragmenter_t {
   // Initialize the fragmenter, specifying the |result_callbacks|.
-  void (*init)(const packet_fragmenter_callbacks_t* result_callbacks);
+  void (*init)(const packet_fragmenter_callbacks_t* result_callbacks,
+               uint16_t data_size);
 
   // Release all resources associated with the fragmenter.
   void (*cleanup)(void);
@@ -51,7 +51,3 @@ typedef struct packet_fragmenter_t {
 } packet_fragmenter_t;
 
 const packet_fragmenter_t* packet_fragmenter_get_interface();
-
-const packet_fragmenter_t* packet_fragmenter_get_test_interface(
-    const controller_t* controller_interface,
-    const allocator_t* buffer_allocator_interface);
