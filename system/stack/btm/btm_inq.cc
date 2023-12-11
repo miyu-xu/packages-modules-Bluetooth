@@ -1462,10 +1462,8 @@ void btm_sort_inq_result(void) {
  *
  ******************************************************************************/
 void btm_process_inq_complete(tHCI_STATUS status, uint8_t mode) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-
-  p_inq->inqparms.mode &= ~(mode);
-  const auto inq_active = p_inq->inq_active;
+  btm_cb.btm_inq_vars.inqparms.mode &= ~(mode);
+  const auto inq_active = btm_cb.btm_inq_vars.inq_active;
 
   btm_acl_update_inquiry_status(BTM_INQUIRY_COMPLETE);
 
@@ -1475,17 +1473,17 @@ void btm_process_inq_complete(tHCI_STATUS status, uint8_t mode) {
   }
 
   /* Ignore any stray or late complete messages if the inquiry is not active */
-  if (p_inq->inq_active) {
-    p_inq->inq_cmpl_info.hci_status = status;
+  if (btm_cb.btm_inq_vars.inq_active) {
+    btm_cb.btm_inq_vars.inq_cmpl_info.hci_status = status;
 
     /* Notify caller that the inquiry has completed; (periodic inquiries do not
      * send completion events */
-    if (p_inq->inqparms.mode == 0) {
+    if (btm_cb.btm_inq_vars.inqparms.mode == 0) {
       btm_clear_all_pending_le_entry();
-      p_inq->state = BTM_INQ_INACTIVE_STATE;
+      btm_cb.btm_inq_vars.state = BTM_INQ_INACTIVE_STATE;
 
       /* Increment so the start of a next inquiry has a new count */
-      p_inq->inq_counter++;
+      btm_cb.btm_inq_vars.inq_counter++;
 
       btm_clr_inq_result_flt();
 
@@ -1496,7 +1494,7 @@ void btm_process_inq_complete(tHCI_STATUS status, uint8_t mode) {
 
       if (btm_cb.btm_inq_vars.p_inq_cmpl_cb) {
         (btm_cb.btm_inq_vars.p_inq_cmpl_cb)(
-            (tBTM_INQUIRY_CMPL*)&p_inq->inq_cmpl_info);
+            (tBTM_INQUIRY_CMPL*)&btm_cb.btm_inq_vars.inq_cmpl_info);
       } else {
         LOG_WARN("No callback to return inquiry result");
       }
@@ -1524,16 +1522,19 @@ void btm_process_inq_complete(tHCI_STATUS status, uint8_t mode) {
               (end_time_ms - btm_cb.neighbor.classic_inquiry.start_time_ms) /
                   1000.0,
               btm_cb.neighbor.classic_inquiry.results, inq_active,
-              p_inq->inq_cmpl_info.resp_type[BTM_INQ_RESULT_STANDARD],
-              p_inq->inq_cmpl_info.resp_type[BTM_INQ_RESULT_WITH_RSSI],
-              p_inq->inq_cmpl_info.resp_type[BTM_INQ_RESULT_EXTENDED],
+              btm_cb.btm_inq_vars.inq_cmpl_info
+                  .resp_type[BTM_INQ_RESULT_STANDARD],
+              btm_cb.btm_inq_vars.inq_cmpl_info
+                  .resp_type[BTM_INQ_RESULT_WITH_RSSI],
+              btm_cb.btm_inq_vars.inq_cmpl_info
+                  .resp_type[BTM_INQ_RESULT_EXTENDED],
               hci_error_code_text(status).c_str()));
 
       btm_cb.neighbor.classic_inquiry.start_time_ms = 0;
       /* Clear the results callback if set */
-      p_inq->p_inq_results_cb = NULL;
-      p_inq->inq_active = BTM_INQUIRY_INACTIVE;
-      p_inq->p_inq_cmpl_cb = NULL;
+      btm_cb.btm_inq_vars.p_inq_results_cb = NULL;
+      btm_cb.btm_inq_vars.inq_active = BTM_INQUIRY_INACTIVE;
+      btm_cb.btm_inq_vars.p_inq_cmpl_cb = NULL;
 
     } else {
       LOG_INFO(
