@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3a07a2e6_54099ec9",
+        "filename": "flags/smp.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-11T10:07:33Z",
+      "side": 1,
+      "message": "This is not a valid description",
+      "range": {
+        "startLine": 6,
+        "startChar": 17,
+        "endLine": 6,
+        "endChar": 34
+      },
+      "revId": "609c68836f8f2f12e9627c7a97c52c4e1695206c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

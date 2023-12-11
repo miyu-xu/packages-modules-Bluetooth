@@ -46,6 +46,30 @@
       },
       "revId": "24cc5cd3f33a3f40ae3e99b82912abe56eaf335a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5ccb46f_1d857c7a",
+        "filename": "flags/smp.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-11T10:07:33Z",
+      "side": 1,
+      "message": "I have no say in l2cap vs smp, but the template link Myles is giving for flag must be used to submit flag!",
+      "parentUuid": "750fd6b8_41dce44a",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "24cc5cd3f33a3f40ae3e99b82912abe56eaf335a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
