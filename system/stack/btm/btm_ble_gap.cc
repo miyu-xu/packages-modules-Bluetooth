@@ -3068,9 +3068,7 @@ static void btm_ble_stop_scan(void) {
  *
  ******************************************************************************/
 void btm_ble_stop_inquiry(void) {
-  tBTM_BLE_CB* p_ble_cb = &btm_cb.ble_ctr_cb;
-
-  alarm_cancel(p_ble_cb->inq_var.inquiry_timer);
+  alarm_cancel(btm_cb.ble_ctr_cb.inq_var.inquiry_timer);
 
   const unsigned long long duration_timestamp =
       timestamper_in_milliseconds.GetTimestamp() -
@@ -3079,7 +3077,7 @@ void btm_ble_stop_inquiry(void) {
                  base::StringPrintf("duration_s:%6.3f results:%-3lu",
                                     (double)duration_timestamp / 1000.0,
                                     btm_cb.neighbor.le_inquiry.results));
-  p_ble_cb->reset_ble_inquiry();
+  btm_cb.ble_ctr_cb.reset_ble_inquiry();
 
   /* Cleanup anything remaining on index 0 */
   BTM_BleAdvFilterParamSetup(BTM_BLE_SCAN_COND_DELETE,
@@ -3087,11 +3085,12 @@ void btm_ble_stop_inquiry(void) {
                              base::Bind(btm_ble_scan_filt_param_cfg_evt));
 
   /* If no more scan activity, stop LE scan now */
-  if (!p_ble_cb->is_ble_scan_active()) {
+  if (!btm_cb.ble_ctr_cb.is_ble_scan_active()) {
     btm_ble_stop_scan();
-  } else if ((p_ble_cb->inq_var.scan_interval !=
+  } else if ((btm_cb.ble_ctr_cb.inq_var.scan_interval !=
               BTM_BLE_LOW_LATENCY_SCAN_INT) ||
-             (p_ble_cb->inq_var.scan_window != BTM_BLE_LOW_LATENCY_SCAN_WIN)) {
+             (btm_cb.ble_ctr_cb.inq_var.scan_window !=
+              BTM_BLE_LOW_LATENCY_SCAN_WIN)) {
     LOG_VERBOSE("%s: setting default params for ongoing observe", __func__);
     btm_ble_stop_scan();
     btm_ble_start_scan();
