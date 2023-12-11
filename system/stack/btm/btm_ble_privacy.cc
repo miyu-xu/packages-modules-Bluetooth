@@ -29,7 +29,9 @@
 #include "btm_sec_cb.h"
 #include "btm_sec_int_types.h"
 #include "device/include/controller.h"
+#include "hci/controller_interface.h"
 #include "main/shim/acl_api.h"
+#include "main/shim/entry.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "stack/btm/btm_int_types.h"
@@ -201,11 +203,11 @@ static void btm_ble_update_resolving_list(const RawAddress& pseudo_bda,
 
   if (add) {
     p_dev_rec->ble.in_controller_list |= BTM_RESOLVING_LIST_BIT;
-    if (!controller_get_interface()->SupportsBlePrivacy())
+    if (!bluetooth::shim::GetController()->SupportsBlePrivacy())
       p_dev_rec->ble.resolving_list_index = btm_ble_find_irk_index();
   } else {
     p_dev_rec->ble.in_controller_list &= ~BTM_RESOLVING_LIST_BIT;
-    if (!controller_get_interface()->SupportsBlePrivacy()) {
+    if (!bluetooth::shim::GetController()->SupportsBlePrivacy()) {
       /* clear IRK list index mask */
       btm_ble_clear_irk_index(p_dev_rec->ble.resolving_list_index);
       p_dev_rec->ble.resolving_list_index = 0;
@@ -440,7 +442,7 @@ static tBTM_STATUS btm_ble_remove_resolving_list_entry(
   if (controller_get_interface()->get_ble_resolving_list_max_size() == 0)
     return BTM_WRONG_MODE;
 
-  if (controller_get_interface()->SupportsBlePrivacy()) {
+  if (bluetooth::shim::GetController()->SupportsBlePrivacy()) {
     bluetooth::shim::ACL_RemoveFromAddressResolution(
         p_dev_rec->ble.identity_address_with_type);
   } else {
@@ -470,7 +472,7 @@ static tBTM_STATUS btm_ble_remove_resolving_list_entry(
  *
  ******************************************************************************/
 static void btm_ble_clear_resolving_list(void) {
-  if (controller_get_interface()->SupportsBlePrivacy()) {
+  if (bluetooth::shim::GetController()->SupportsBlePrivacy()) {
     bluetooth::shim::ACL_ClearAddressResolution();
   } else {
     uint8_t param[20] = {0};
@@ -504,7 +506,7 @@ bool btm_ble_read_resolving_list_entry(tBTM_SEC_DEV_REC* p_dev_rec) {
     return false;
   }
 
-  if (controller_get_interface()->SupportsBlePrivacy()) {
+  if (bluetooth::shim::GetController()->SupportsBlePrivacy()) {
     btsnd_hcic_ble_read_resolvable_addr_peer(
         p_dev_rec->ble.identity_address_with_type.type,
         p_dev_rec->ble.identity_address_with_type.bda);
@@ -559,7 +561,7 @@ void btm_ble_resolving_list_load_dev(tBTM_SEC_DEV_REC& dev_rec) {
     return;
   }
 
-  if (!controller_get_interface()->SupportsBlePrivacy()) {
+  if (!bluetooth::shim::GetController()->SupportsBlePrivacy()) {
     return btm_ble_ble_unsupported_resolving_list_load_dev(&dev_rec);
   }
 
