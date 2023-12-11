@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b60bce3e_a2a3a97b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-11T04:38:54Z",
+      "side": 1,
+      "message": "This cl was prepared quite some time back. So the test stanza was not up to date with the latest guidelines. I will keep this in mind.\n\nI intended to write a test case for this but it was a bit complicated so took longer than the deadline for the cl.",
+      "parentUuid": "1f82bc06_5f6c8c9a",
+      "revId": "4d8ce598e0c48e9920bb15025b7aa274ab0fcd94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "41d7086e_7fffca91",
         "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
         "patchSetId": 2
