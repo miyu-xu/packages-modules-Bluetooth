@@ -500,7 +500,6 @@ uint16_t BTM_IsInquiryActive(void) {
  *
  ******************************************************************************/
 void BTM_CancelInquiry(void) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
   LOG_VERBOSE("");
 
   CHECK(BTM_IsDeviceUp());
@@ -528,29 +527,31 @@ void BTM_CancelInquiry(void) {
           (end_time_ms - btm_cb.neighbor.classic_inquiry.start_time_ms) /
               1000.0,
           btm_cb.neighbor.classic_inquiry.results,
-          p_inq->inq_cmpl_info.resp_type[BTM_INQ_RESULT_STANDARD],
-          p_inq->inq_cmpl_info.resp_type[BTM_INQ_RESULT_WITH_RSSI],
-          p_inq->inq_cmpl_info.resp_type[BTM_INQ_RESULT_EXTENDED]));
+          btm_cb.btm_inq_vars.inq_cmpl_info.resp_type[BTM_INQ_RESULT_STANDARD],
+          btm_cb.btm_inq_vars.inq_cmpl_info.resp_type[BTM_INQ_RESULT_WITH_RSSI],
+          btm_cb.btm_inq_vars.inq_cmpl_info
+              .resp_type[BTM_INQ_RESULT_EXTENDED]));
   btm_cb.neighbor.classic_inquiry = {};
 
   /* Only cancel if not in periodic mode, otherwise the caller should call
    * BTM_CancelPeriodicMode */
-  if ((p_inq->inq_active & BTM_INQUIRY_ACTIVE_MASK) != 0) {
-    p_inq->inq_active = BTM_INQUIRY_INACTIVE;
-    p_inq->state = BTM_INQ_INACTIVE_STATE;
-    p_inq->p_inq_results_cb = NULL; /* Do not notify caller anymore */
-    p_inq->p_inq_cmpl_cb = NULL;    /* Do not notify caller anymore */
+  if ((btm_cb.btm_inq_vars.inq_active & BTM_INQUIRY_ACTIVE_MASK) != 0) {
+    btm_cb.btm_inq_vars.inq_active = BTM_INQUIRY_INACTIVE;
+    btm_cb.btm_inq_vars.state = BTM_INQ_INACTIVE_STATE;
+    btm_cb.btm_inq_vars.p_inq_results_cb =
+        NULL;                                 /* Do not notify caller anymore */
+    btm_cb.btm_inq_vars.p_inq_cmpl_cb = NULL; /* Do not notify caller anymore */
 
-    if ((p_inq->inqparms.mode & BTM_BR_INQUIRY_MASK) != 0) {
+    if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BR_INQUIRY_MASK) != 0) {
       bluetooth::legacy::hci::GetInterface().InquiryCancel();
     }
 
     if (!bluetooth::shim::is_classic_discovery_only_enabled()) {
-      if ((p_inq->inqparms.mode & BTM_BLE_INQUIRY_MASK) != 0)
+      if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BLE_INQUIRY_MASK) != 0)
         btm_ble_stop_inquiry();
     }
 
-    p_inq->inq_counter++;
+    btm_cb.btm_inq_vars.inq_counter++;
     btm_clr_inq_result_flt();
   }
 }
