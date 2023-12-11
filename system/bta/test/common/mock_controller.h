@@ -24,11 +24,6 @@ class ControllerInterface {
  public:
   virtual uint8_t GetIsoBufferCount(void) = 0;
   virtual uint16_t GetIsoDataSize(void) = 0;
-  virtual bool SupportsBleConnectedIsochronousStreamCentral(void) = 0;
-  virtual bool SupportsBleConnectedIsochronousStreamPeripheral(void) = 0;
-  virtual bool SupportsBleIsochronousBroadcaster(void) = 0;
-  virtual bool SupportsBle2mPhy(void) = 0;
-  virtual bool SupportsConfigureDataPath(void) = 0;
 
   virtual ~ControllerInterface() = default;
 };
@@ -37,13 +32,6 @@ class MockControllerInterface : public ControllerInterface {
  public:
   MOCK_METHOD((uint8_t), GetIsoBufferCount, (), (override));
   MOCK_METHOD((uint16_t), GetIsoDataSize, (), (override));
-  MOCK_METHOD((bool), SupportsBleConnectedIsochronousStreamCentral, (),
-              (override));
-  MOCK_METHOD((bool), SupportsBleConnectedIsochronousStreamPeripheral, (),
-              (override));
-  MOCK_METHOD((bool), SupportsBleIsochronousBroadcaster, (), (override));
-  MOCK_METHOD((bool), SupportsBle2mPhy, (), (override));
-  MOCK_METHOD((bool), SupportsConfigureDataPath, (), (override));
 };
 
 void SetMockControllerInterface(
