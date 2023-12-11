@@ -426,14 +426,14 @@ tBTM_STATUS BTM_SetInquiryMode(uint8_t mode) {
  ******************************************************************************/
 tBTM_STATUS BTM_SetConnectability(uint16_t page_mode) {
   uint8_t scan_mode = 0;
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
 
   if (controller_get_interface()->supports_ble()) {
     if (btm_ble_set_connectability(page_mode) != BTM_SUCCESS) {
       return BTM_NO_RESOURCES;
     }
-    p_inq->connectable_mode &= (~BTM_BLE_CONNECTABLE_MASK);
-    p_inq->connectable_mode |= (page_mode & BTM_BLE_CONNECTABLE_MASK);
+    btm_cb.btm_inq_vars.connectable_mode &= (~BTM_BLE_CONNECTABLE_MASK);
+    btm_cb.btm_inq_vars.connectable_mode |=
+        (page_mode & BTM_BLE_CONNECTABLE_MASK);
   }
   page_mode &= ~BTM_BLE_CONNECTABLE_MASK;
 
@@ -457,21 +457,21 @@ tBTM_STATUS BTM_SetConnectability(uint16_t page_mode) {
   LOG_VERBOSE("mode=%d [NonConn-0, Conn-1], page scan interval=(%d * 0.625)ms",
               page_mode, interval);
 
-  if ((window != p_inq->page_scan_window) ||
-      (interval != p_inq->page_scan_period)) {
-    p_inq->page_scan_window = window;
-    p_inq->page_scan_period = interval;
+  if ((window != btm_cb.btm_inq_vars.page_scan_window) ||
+      (interval != btm_cb.btm_inq_vars.page_scan_period)) {
+    btm_cb.btm_inq_vars.page_scan_window = window;
+    btm_cb.btm_inq_vars.page_scan_period = interval;
     btsnd_hcic_write_pagescan_cfg(interval, window);
   }
 
   /* Keep the inquiry scan as previouosly set */
-  if (p_inq->discoverable_mode & BTM_DISCOVERABLE_MASK)
+  if (btm_cb.btm_inq_vars.discoverable_mode & BTM_DISCOVERABLE_MASK)
     scan_mode |= HCI_INQUIRY_SCAN_ENABLED;
 
   btm_log_history_scan_mode(scan_mode);
   btsnd_hcic_write_scan_enable(scan_mode);
-  p_inq->connectable_mode &= (~BTM_CONNECTABLE_MASK);
-  p_inq->connectable_mode |= page_mode;
+  btm_cb.btm_inq_vars.connectable_mode &= (~BTM_CONNECTABLE_MASK);
+  btm_cb.btm_inq_vars.connectable_mode |= page_mode;
   return (BTM_SUCCESS);
 }
 
