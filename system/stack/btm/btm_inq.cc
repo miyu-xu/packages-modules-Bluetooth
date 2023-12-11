@@ -275,7 +275,7 @@ tBTM_STATUS BTM_SetDiscoverability(uint16_t inq_mode) {
   bool cod_limited;
 
   LOG_VERBOSE("");
-  if (controller_get_interface()->SupportsBle()) {
+  if (bluetooth::shim::GetController()->SupportsBle()) {
     if (btm_ble_set_discoverability((uint16_t)(inq_mode)) == BTM_SUCCESS) {
       btm_cb.btm_inq_vars.discoverable_mode &= (~BTM_BLE_DISCOVERABLE_MASK);
       btm_cb.btm_inq_vars.discoverable_mode |=
@@ -436,7 +436,7 @@ tBTM_STATUS BTM_SetInquiryMode(uint8_t mode) {
 tBTM_STATUS BTM_SetConnectability(uint16_t page_mode) {
   uint8_t scan_mode = 0;
 
-  if (controller_get_interface()->SupportsBle()) {
+  if (bluetooth::shim::GetController()->SupportsBle()) {
     if (btm_ble_set_connectability(page_mode) != BTM_SUCCESS) {
       return BTM_NO_RESOURCES;
     }
@@ -668,7 +668,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
   // This path does not play nicely with GD BLE scanning and may cause issues
   // with other scanners.
   if (!bluetooth::shim::is_classic_discovery_only_enabled()) {
-    if (controller_get_interface()->SupportsBle()) {
+    if (bluetooth::shim::GetController()->SupportsBle()) {
       btm_ble_start_inquiry(btm_cb.btm_inq_vars.inqparms.duration);
     } else {
       LOG_WARN("Trying to do LE scan on a non-LE adapter");

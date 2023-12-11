@@ -22,6 +22,8 @@
 
 #include "btm_api.h"
 #include "device/include/controller.h"
+#include "hci/controller_interface.h"
+#include "main/shim/entry.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/hcimsgs.h"
 #include "types/raw_address.h"
@@ -306,12 +308,12 @@ void BleScannerHciInterface::Initialize() {
   LOG_ASSERT(instance == nullptr) << "Was already initialized.";
 
   if ((controller_get_interface()->get_ble_periodic_advertiser_list_size()) &&
-      (controller_get_interface()
+      (bluetooth::shim::GetController()
            ->SupportsBlePeriodicAdvertisingSyncTransferSender())) {
     LOG(INFO) << "Advertiser list in controller can be used";
     LOG(INFO) << "Periodic Adv Sync Transfer Sender role is supported";
     instance = new BleScannerCompleteImpl();
-  } else if (controller_get_interface()
+  } else if (bluetooth::shim::GetController()
                  ->SupportsBlePeriodicAdvertisingSyncTransferSender()) {
     LOG(INFO) << "Periodic Adv Sync Transfer Sender role is supported";
     instance = new BleScannerSyncTransferImpl();
