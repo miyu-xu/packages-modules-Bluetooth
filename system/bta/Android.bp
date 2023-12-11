@@ -744,6 +744,7 @@ cc_test {
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
         ":TestMockLegacyHciInterface",
+        ":TestMockMainShim",
         ":TestStubOsi",
         "le_audio/codec_manager.cc",
         "le_audio/codec_manager_test.cc",
@@ -759,6 +760,7 @@ cc_test {
         ":audio_set_scenarios_json",
     ],
     generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
         "LeAudioSetConfigSchemas_h",
     ],
     shared_libs: [
@@ -773,6 +775,7 @@ cc_test {
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
         "libbt-common",
+        "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
@@ -1078,6 +1081,7 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
+        ":TestMockMainShim",
         ":TestStubOsi",
         "le_audio/broadcaster/broadcaster.cc",
         "le_audio/broadcaster/broadcaster_test.cc",
@@ -1103,12 +1107,15 @@ cc_test {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libbluetooth_hci_pdl",
         "libbt-audio-hal-interface",
         "libbt-common",
+        "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
         "libevent",
+        "libflatbuffers-cpp",
         "libgmock",
         "liblc3",
         "libosi",

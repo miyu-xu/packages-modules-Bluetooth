@@ -36,8 +36,11 @@
 
 #include "common/init_flags.h"
 #include "common/metrics.h"
-#include "device/include/controller.h"
+#include "hci/controller_interface.h"
+#include "include/check.h"
 #include "internal_include/bt_target.h"
+#include "internal_include/bt_trace.h"
+#include "main/shim/entry.h"
 #include "main/shim/hci_layer.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
@@ -942,10 +945,12 @@ static void btu_hcif_encryption_change_evt(uint8_t* p) {
 
   if (status != HCI_SUCCESS || encr_enable == 0 ||
       BTM_IsBleConnection(handle) ||
-      !controller_get_interface()->supports_read_encryption_key_size() ||
+      !bluetooth::shim::GetController()->IsSupported(
+          bluetooth::hci::OpCode::READ_ENCRYPTION_KEY_SIZE) ||
       // Skip encryption key size check when using set_min_encryption_key_size
       (bluetooth::common::init_flags::set_min_encryption_is_enabled() &&
-       controller_get_interface()->supports_set_min_encryption_key_size())) {
+       bluetooth::shim::GetController()->IsSupported(
+           bluetooth::hci::OpCode::SET_MIN_ENCRYPTION_KEY_SIZE))) {
     if (status == HCI_ERR_CONNECTION_TOUT) {
       smp_cancel_start_encryption_attempt();
       return;
@@ -1655,8 +1660,9 @@ static void btu_ble_data_length_change_evt(uint8_t* p, uint16_t evt_len) {
   uint16_t tx_data_len;
   uint16_t rx_data_len;
 
-  if (!controller_get_interface()->SupportsBleDataPacketLengthExtension()) {
-    LOG_WARN("request not supported");
+  if (!bluetooth::shim::GetController()
+           ->SupportsBleDataPacketLengthExtension()) {
+    LOG_WARN("%s, request not supported", __func__);
     return;
   }
 
