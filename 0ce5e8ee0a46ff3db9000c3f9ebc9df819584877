@@ -16,6 +16,29 @@
       "message": "You can remove the `Flag:` and add `Bug: 315241296` go/bt-best-practices#creating-a-flag",
       "revId": "0ce5e8ee0a46ff3db9000c3f9ebc9df819584877",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dccfdcc9_a2df1814",
+        "filename": "flags/discovery_service.aconfig",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-11T21:30:20Z",
+      "side": 1,
+      "message": "What is the motivation for using 2 flags?\n\nDo we expect to ship them separately?",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 0
+      },
+      "revId": "0ce5e8ee0a46ff3db9000c3f9ebc9df819584877",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
