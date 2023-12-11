@@ -3072,7 +3072,6 @@ static void btm_ble_stop_scan(void) {
  *
  ******************************************************************************/
 void btm_ble_stop_inquiry(void) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
   tBTM_BLE_CB* p_ble_cb = &btm_cb.ble_ctr_cb;
 
   alarm_cancel(p_ble_cb->inq_var.inquiry_timer);
@@ -3104,10 +3103,12 @@ void btm_ble_stop_inquiry(void) {
 
   /* If we have a callback registered for inquiry complete, call it */
   LOG_VERBOSE("BTM Inq Compl Callback: status 0x%02x, num results %d",
-              p_inq->inq_cmpl_info.status, p_inq->inq_cmpl_info.num_resp);
+              btm_cb.btm_inq_vars.inq_cmpl_info.status,
+              btm_cb.btm_inq_vars.inq_cmpl_info.num_resp);
 
   btm_process_inq_complete(
-      HCI_SUCCESS, (uint8_t)(p_inq->inqparms.mode & BTM_BLE_INQUIRY_MASK));
+      HCI_SUCCESS,
+      (uint8_t)(btm_cb.btm_inq_vars.inqparms.mode & BTM_BLE_INQUIRY_MASK));
 }
 
 /*******************************************************************************
