@@ -70,6 +70,30 @@
       },
       "revId": "d9d5f3e9518ec1a44c4e1fcf2f2222565c4be2ce",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8fbd06a_1d84b838",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-12-11T17:30:53Z",
+      "side": 1,
+      "message": "It does sound like enough, but would it be that expensive to allow for change here? We let vendors add their codecs... but only four :D \nI don\u0027t have the best solution in mind but maybe something like sysprop or similar? just asking ; )",
+      "parentUuid": "9f7f6d16_7f3b424b",
+      "range": {
+        "startLine": 69,
+        "startChar": 45,
+        "endLine": 69,
+        "endChar": 46
+      },
+      "revId": "d9d5f3e9518ec1a44c4e1fcf2f2222565c4be2ce",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
