@@ -503,13 +503,14 @@ void BTM_BleTargetAnnouncementObserve(bool enable,
 tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
                            tBTM_INQ_RESULTS_CB* p_results_cb,
                            tBTM_CMPL_CB* p_cmpl_cb, bool low_latency_scan) {
-  tBTM_BLE_INQ_CB* p_inq = &btm_cb.ble_ctr_cb.inq_var;
   tBTM_STATUS status = BTM_WRONG_MODE;
 
-  uint32_t scan_interval =
-      !p_inq->scan_interval ? BTM_BLE_GAP_DISC_SCAN_INT : p_inq->scan_interval;
-  uint32_t scan_window =
-      !p_inq->scan_window ? BTM_BLE_GAP_DISC_SCAN_WIN : p_inq->scan_window;
+  uint32_t scan_interval = !btm_cb.ble_ctr_cb.inq_var.scan_interval
+                               ? BTM_BLE_GAP_DISC_SCAN_INT
+                               : btm_cb.ble_ctr_cb.inq_var.scan_interval;
+  uint32_t scan_window = !btm_cb.ble_ctr_cb.inq_var.scan_window
+                             ? BTM_BLE_GAP_DISC_SCAN_WIN
+                             : btm_cb.ble_ctr_cb.inq_var.scan_window;
 
   // use low latency scanning if the scanning is active
   if (low_latency_scan) {
@@ -517,8 +518,8 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
     scan_window = BTM_BLE_LOW_LATENCY_SCAN_WIN;
   }
 
-  LOG_VERBOSE("%s : scan_type:%d, %d, %d", __func__, p_inq->scan_type,
-              scan_interval, scan_window);
+  LOG_VERBOSE("%s : scan_type:%d, %d, %d", __func__,
+              btm_cb.ble_ctr_cb.inq_var.scan_type, scan_interval, scan_window);
 
   if (!controller_get_interface()->supports_ble()) return BTM_ILLEGAL_VALUE;
 
@@ -545,8 +546,9 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
        * 2. current ongoing scanning is low latency
        */
       bool is_ongoing_low_latency =
-          p_inq->scan_interval == BTM_BLE_GAP_DISC_SCAN_INT &&
-          p_inq->scan_window == BTM_BLE_LOW_LATENCY_SCAN_WIN;
+          btm_cb.ble_ctr_cb.inq_var.scan_interval ==
+              BTM_BLE_GAP_DISC_SCAN_INT &&
+          btm_cb.ble_ctr_cb.inq_var.scan_window == BTM_BLE_LOW_LATENCY_SCAN_WIN;
       if (!low_latency_scan || is_ongoing_low_latency) {
         LOG_WARN("%s Observer was already active, is_low_latency: %d", __func__,
                  is_ongoing_low_latency);
@@ -564,12 +566,14 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
     if (!btm_cb.ble_ctr_cb.is_ble_scan_active()) {
       /* allow config of scan type */
       cache.ClearAll();
-      p_inq->scan_type = (p_inq->scan_type == BTM_BLE_SCAN_MODE_NONE)
-                             ? BTM_BLE_SCAN_MODE_ACTI
-                             : p_inq->scan_type;
+      btm_cb.ble_ctr_cb.inq_var.scan_type =
+          (btm_cb.ble_ctr_cb.inq_var.scan_type == BTM_BLE_SCAN_MODE_NONE)
+              ? BTM_BLE_SCAN_MODE_ACTI
+              : btm_cb.ble_ctr_cb.inq_var.scan_type;
       btm_send_hci_set_scan_params(
-          p_inq->scan_type, (uint16_t)scan_interval, (uint16_t)scan_window,
-          btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, BTM_BLE_DEFAULT_SFP);
+          btm_cb.ble_ctr_cb.inq_var.scan_type, (uint16_t)scan_interval,
+          (uint16_t)scan_window, btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type,
+          BTM_BLE_DEFAULT_SFP);
 
       btm_ble_start_scan();
     }
