@@ -37,6 +37,7 @@ import android.os.Message;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.provider.Settings;
+import android.sysprop.BluetoothProperties;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
@@ -68,19 +69,28 @@ public class ScanManager {
     private static final boolean DBG = GattServiceConfig.DBG;
     private static final String TAG = GattServiceConfig.TAG_PREFIX + "ScanManager";
 
-    /**
-     * Scan params corresponding to regular scan setting
-     */
-    private static final int SCAN_MODE_LOW_POWER_WINDOW_MS = 140;
-    private static final int SCAN_MODE_LOW_POWER_INTERVAL_MS = 1400;
-    private static final int SCAN_MODE_BALANCED_WINDOW_MS = 183;
-    private static final int SCAN_MODE_BALANCED_INTERVAL_MS = 730;
-    private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS = 100;
-    private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS = 100;
-    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS = 512;
-    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS = 10240;
-    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS = 183;
-    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS = 730;
+    /** Scan params corresponding to regular scan setting */
+    private static final int SCAN_MODE_LOW_POWER_WINDOW_MS =
+            BluetoothProperties.getLeScanLowPowerWindow().orElse(140);
+
+    private static final int SCAN_MODE_LOW_POWER_INTERVAL_MS =
+            BluetoothProperties.getLeScanLowPowerInterval().orElse(1400);
+    private static final int SCAN_MODE_BALANCED_WINDOW_MS =
+            BluetoothProperties.getLeScanBalancedWindow().orElse(183);
+    private static final int SCAN_MODE_BALANCED_INTERVAL_MS =
+            BluetoothProperties.getLeScanBalancedInterval().orElse(730);
+    private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS =
+            BluetoothProperties.getLeScanLowLatencyWindow().orElse(100);
+    private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS =
+            BluetoothProperties.getLeScanLowLatencyInterval().orElse(100);
+    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS =
+            BluetoothProperties.getLeScanScreenOffLowPowerWindow().orElse(512);
+    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS =
+            BluetoothProperties.getLeScanScreenOffLowPowerInterval().orElse(10240);
+    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS =
+            BluetoothProperties.getLeScanScreenOffBalancedWindow().orElse(183);
+    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS =
+            BluetoothProperties.getLeScanScreenOffBalancedInterval().orElse(730);
 
     // Result type defined in bt stack. Need to be accessed by GattService.
     static final int SCAN_RESULT_TYPE_TRUNCATED = 1;
