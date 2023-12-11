@@ -3213,13 +3213,11 @@ static tBTM_STATUS btm_ble_start_adv(void) {
  *
  ******************************************************************************/
 static tBTM_STATUS btm_ble_stop_adv(void) {
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
-
-  if (p_cb->adv_mode == BTM_BLE_ADV_ENABLE) {
+  if (btm_cb.ble_ctr_cb.inq_var.adv_mode == BTM_BLE_ADV_ENABLE) {
     btsnd_hcic_ble_set_adv_enable(BTM_BLE_ADV_DISABLE);
 
-    p_cb->fast_adv_on = false;
-    p_cb->adv_mode = BTM_BLE_ADV_DISABLE;
+    btm_cb.ble_ctr_cb.inq_var.fast_adv_on = false;
+    btm_cb.ble_ctr_cb.inq_var.adv_mode = BTM_BLE_ADV_DISABLE;
     /* clear all adv states */
     btm_ble_clear_topology_mask(BTM_BLE_STATE_ALL_ADV_MASK);
     power_telemetry::GetInstance().LogBleAdvStopped();
