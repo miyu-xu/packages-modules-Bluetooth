@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e723b7b_f323749e",
+        "filename": "system/stack/btm/btm_sec_cb.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-11T19:25:39Z",
+      "side": 1,
+      "message": "I think I would prefer a helper method that returned tBTM_SEC_REC and didn\u0027t use function pointers.\n\nI\u0027m thinking that there will be a lot of these methods, and not all of them will return a bool.",
+      "range": {
+        "startLine": 115,
+        "startChar": 18,
+        "endLine": 115,
+        "endChar": 30
+      },
+      "revId": "3bab8c475205a16181641f8dce6543b4ee762eea",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
