@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bf9c5c5_92c46aa1",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-11T23:50:50Z",
+      "side": 1,
+      "message": "If it\u0027s never called outside of btm_sec, isn\u0027t static a good choice?  Do you want external callers?\n\nShould it be private?",
+      "range": {
+        "startLine": 523,
+        "startChar": 17,
+        "endLine": 523,
+        "endChar": 37
+      },
+      "revId": "e0cb6260ebe4f71f678f65a67565b6fae5f8fbf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
