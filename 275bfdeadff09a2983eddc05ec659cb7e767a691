@@ -210,6 +210,24 @@
       "parentUuid": "b98dd1fe_b255047d",
       "revId": "275bfdeadff09a2983eddc05ec659cb7e767a691",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "606997c6_eccde040",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-11T13:57:56Z",
+      "side": 1,
+      "message": "You are correct Henri, we are using 2 defines for the same content.\nsystem/gd/storage/storage_module.h:\n```\n#define Enc_Key_Material \"EncKeyMaterial\"\n```\n\nand in system/btif/src/btif_storage.cc (aosp/2748039):\n```\n#define BTIF_STORAGE_KEY_ENCR_DATA \"EncKeyMaterial\"\n```\n\nThis is confusing, are we using legacy storage or are we using gd storage?\nif we are using both, can we use a global definition for the variable ?\nLet me know if there is any reason for keeping two defined",
+      "parentUuid": "fb28e5f9_d8c9893d",
+      "revId": "275bfdeadff09a2983eddc05ec659cb7e767a691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
