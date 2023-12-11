@@ -2451,7 +2451,6 @@ void btm_ble_update_inq_result(tINQ_DB_ENT* p_i, uint8_t addr_type,
                                std::vector<uint8_t> const& data) {
   tBTM_INQ_RESULTS* p_cur = &p_i->inq_info.results;
   uint8_t len;
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
 
   /* Save the info */
   p_cur->inq_result_type |= BTM_INQ_RESULT_BLE;
@@ -2470,14 +2469,15 @@ void btm_ble_update_inq_result(tINQ_DB_ENT* p_i, uint8_t addr_type,
   } else
     p_i->scan_rsp = true;
 
-  if (p_i->inq_count != p_inq->inq_counter)
+  if (p_i->inq_count != btm_cb.btm_inq_vars.inq_counter)
     p_cur->device_type = BT_DEVICE_TYPE_BLE;
   else
     p_cur->device_type |= BT_DEVICE_TYPE_BLE;
 
   if (evt_type != BTM_BLE_SCAN_RSP_EVT) p_cur->ble_evt_type = evt_type;
 
-  p_i->inq_count = p_inq->inq_counter; /* Mark entry for current inquiry */
+  p_i->inq_count =
+      btm_cb.btm_inq_vars.inq_counter; /* Mark entry for current inquiry */
 
   bool has_advertising_flags = false;
   if (!data.empty()) {
