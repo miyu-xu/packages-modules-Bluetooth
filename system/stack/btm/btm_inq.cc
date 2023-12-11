@@ -749,18 +749,16 @@ tBTM_STATUS BTM_ReadRemoteDeviceName(const RawAddress& remote_bda,
  *
  ******************************************************************************/
 tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-
   LOG_VERBOSE("");
 
   /* Make sure there is not already one in progress */
-  if (p_inq->remname_active) {
-    if (BTM_UseLeLink(p_inq->remname_bda)) {
+  if (btm_cb.btm_inq_vars.remname_active) {
+    if (BTM_UseLeLink(btm_cb.btm_inq_vars.remname_bda)) {
       /* Cancel remote name request for LE device, and process remote name
        * callback. */
       btm_inq_rmt_name_failed_cancelled();
     } else
-      btsnd_hcic_rmt_name_req_cancel(p_inq->remname_bda);
+      btsnd_hcic_rmt_name_req_cancel(btm_cb.btm_inq_vars.remname_bda);
     return (BTM_CMD_STARTED);
   } else
     return (BTM_WRONG_MODE);
