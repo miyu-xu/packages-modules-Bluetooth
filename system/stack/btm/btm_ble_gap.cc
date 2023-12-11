@@ -1830,7 +1830,6 @@ void btm_ble_set_adv_flag(uint16_t connect_mode, uint16_t disc_mode) {
  ******************************************************************************/
 tBTM_STATUS btm_ble_set_discoverability(uint16_t combined_mode) {
   tBTM_LE_RANDOM_CB* p_addr_cb = &btm_cb.ble_ctr_cb.addr_mgnt_cb;
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
   uint16_t mode = (combined_mode & BTM_BLE_DISCOVERABLE_MASK);
   uint8_t new_mode = BTM_BLE_ADV_ENABLE;
   uint8_t evt_type;
@@ -1846,49 +1845,53 @@ tBTM_STATUS btm_ble_set_discoverability(uint16_t combined_mode) {
   /*** Check mode parameter ***/
   if (mode > BTM_BLE_MAX_DISCOVERABLE) return (BTM_ILLEGAL_VALUE);
 
-  p_cb->discoverable_mode = mode;
+  btm_cb.ble_ctr_cb.inq_var.discoverable_mode = mode;
 
   evt_type =
       btm_set_conn_mode_adv_init_addr(address, &init_addr_type, &own_addr_type);
 
-  if (p_cb->connectable_mode == BTM_BLE_NON_CONNECTABLE &&
+  if (btm_cb.ble_ctr_cb.inq_var.connectable_mode == BTM_BLE_NON_CONNECTABLE &&
       mode == BTM_BLE_NON_DISCOVERABLE)
     new_mode = BTM_BLE_ADV_DISABLE;
 
   btm_ble_select_adv_interval(evt_type, &adv_int_min, &adv_int_max);
 
-  alarm_cancel(p_cb->fast_adv_timer);
+  alarm_cancel(btm_cb.ble_ctr_cb.inq_var.fast_adv_timer);
 
   /* update adv params if start advertising */
-  LOG_VERBOSE("evt_type=0x%x p-cb->evt_type=0x%x ", evt_type, p_cb->evt_type);
+  LOG_VERBOSE("evt_type=0x%x p-cb->evt_type=0x%x ", evt_type,
+              btm_cb.ble_ctr_cb.inq_var.evt_type);
 
   if (new_mode == BTM_BLE_ADV_ENABLE) {
     btm_ble_set_adv_flag(btm_cb.btm_inq_vars.connectable_mode, combined_mode);
 
-    if (evt_type != p_cb->evt_type || p_cb->adv_addr_type != own_addr_type ||
-        !p_cb->fast_adv_on) {
+    if (evt_type != btm_cb.ble_ctr_cb.inq_var.evt_type ||
+        btm_cb.ble_ctr_cb.inq_var.adv_addr_type != own_addr_type ||
+        !btm_cb.ble_ctr_cb.inq_var.fast_adv_on) {
       btm_ble_stop_adv();
 
       /* update adv params */
       btsnd_hcic_ble_write_adv_params(adv_int_min, adv_int_max, evt_type,
                                       own_addr_type, init_addr_type, address,
-                                      p_cb->adv_chnl_map, p_cb->afp);
-      p_cb->evt_type = evt_type;
-      p_cb->adv_addr_type = own_addr_type;
+                                      btm_cb.ble_ctr_cb.inq_var.adv_chnl_map,
+                                      btm_cb.ble_ctr_cb.inq_var.afp);
+      btm_cb.ble_ctr_cb.inq_var.evt_type = evt_type;
+      btm_cb.ble_ctr_cb.inq_var.adv_addr_type = own_addr_type;
     }
   }
 
-  if (status == BTM_SUCCESS && p_cb->adv_mode != new_mode) {
+  if (status == BTM_SUCCESS && btm_cb.ble_ctr_cb.inq_var.adv_mode != new_mode) {
     if (new_mode == BTM_BLE_ADV_ENABLE)
       status = btm_ble_start_adv();
     else
       status = btm_ble_stop_adv();
   }
 
-  if (p_cb->adv_mode == BTM_BLE_ADV_ENABLE) {
-    p_cb->fast_adv_on = true;
+  if (btm_cb.ble_ctr_cb.inq_var.adv_mode == BTM_BLE_ADV_ENABLE) {
+    btm_cb.ble_ctr_cb.inq_var.fast_adv_on = true;
     /* start initial GAP mode adv timer */
-    alarm_set_on_mloop(p_cb->fast_adv_timer, BTM_BLE_GAP_FAST_ADV_TIMEOUT_MS,
+    alarm_set_on_mloop(btm_cb.ble_ctr_cb.inq_var.fast_adv_timer,
+                       BTM_BLE_GAP_FAST_ADV_TIMEOUT_MS,
                        btm_ble_fast_adv_timer_timeout, NULL);
   }
 
@@ -1897,9 +1900,9 @@ tBTM_STATUS btm_ble_set_discoverability(uint16_t combined_mode) {
     LOG_VERBOSE("start timer for limited disc mode duration=%d ms",
                 BTM_BLE_GAP_LIM_TIMEOUT_MS);
     /* start Tgap(lim_timeout) */
-    alarm_set_on_mloop(p_cb->inquiry_timer, BTM_BLE_GAP_LIM_TIMEOUT_MS,
-                       btm_ble_inquiry_timer_gap_limited_discovery_timeout,
-                       NULL);
+    alarm_set_on_mloop(
+        btm_cb.ble_ctr_cb.inq_var.inquiry_timer, BTM_BLE_GAP_LIM_TIMEOUT_MS,
+        btm_ble_inquiry_timer_gap_limited_discovery_timeout, NULL);
   }
   return status;
 }
