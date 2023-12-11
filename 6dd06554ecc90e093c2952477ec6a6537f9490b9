@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "265983ec_9ab3af4c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-11T17:38:55Z",
+      "side": 1,
+      "message": "Did you forget to upload ? The field are not static, re-opening",
+      "parentUuid": "3094573c_6eb4d609",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 81
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "67045bc2_7f403743",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 7
@@ -132,6 +156,30 @@
       "side": 1,
       "message": "Any other intent is non-material to this test case. I don\u0027t think we need to make test cases brittle by preventing any future changes in the stack or the test cases.",
       "parentUuid": "6ad0526e_1f5e3595",
+      "range": {
+        "startLine": 324,
+        "startChar": 4,
+        "endLine": 324,
+        "endChar": 5
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f97fd2b_63854945",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-11T17:38:55Z",
+      "side": 1,
+      "message": "If we received another BOND_STATE_CHANGE intent because or another ACL_CONNECTED, I would be happy to have the test fail as these are not expected in this scenario.\n\n\nSince the test is running in a controlled environment and since the intent filter are narrowed to the only scope of intent that are relevant to your scenario, I think this is very reasonable and future-proof to check that we are only receiving the expected intent.",
+      "parentUuid": "f5a88882_d2d9ae27",
       "range": {
         "startLine": 324,
         "startChar": 4,
