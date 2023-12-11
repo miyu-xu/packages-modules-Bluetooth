@@ -28,6 +28,8 @@
 #include <cstdint>
 
 #include "base/functional/bind.h"
+#include "hci/controller_interface.h"
+#include "main/shim/entry.h"
 #include "os/log.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/gatt/gatt_int.h"
@@ -168,8 +170,8 @@ void BTM_BleReadPhy(
   }
 
   // checking if local controller supports it!
-  if (!controller_get_interface()->SupportsBle2mPhy() &&
-      !controller_get_interface()->SupportsBleCodedPhy()) {
+  if (!bluetooth::shim::GetController()->SupportsBle2mPhy() &&
+      !bluetooth::shim::GetController()->SupportsBleCodedPhy()) {
     LOG_ERROR("request not supported in local controller!");
     cb.Run(0, 0, GATT_REQ_NOT_SUPPORTED);
     return;
@@ -203,8 +205,8 @@ void BTM_BleSetPhy(const RawAddress& bd_addr, uint8_t tx_phys, uint8_t rx_phys,
   uint16_t handle = BTM_GetHCIConnHandle(bd_addr, BT_TRANSPORT_LE);
 
   // checking if local controller supports it!
-  if (!controller_get_interface()->SupportsBle2mPhy() &&
-      !controller_get_interface()->SupportsBleCodedPhy()) {
+  if (!bluetooth::shim::GetController()->SupportsBle2mPhy() &&
+      !bluetooth::shim::GetController()->SupportsBleCodedPhy()) {
     LOG_INFO("Local controller unable to support setting of le phy parameters");
     gatt_notify_phy_updated(static_cast<tHCI_STATUS>(GATT_REQ_NOT_SUPPORTED),
                             handle, tx_phys, rx_phys);
