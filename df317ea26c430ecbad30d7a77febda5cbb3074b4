@@ -16,6 +16,24 @@
       "message": "Please use `Bug: 315241296` when creating a flag as described in go/bt-best-practices#creating-a-flag. You should also remove `Flag: EXEMPT`",
       "revId": "df317ea26c430ecbad30d7a77febda5cbb3074b4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "695cfdd1_07c5aaa3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1888950
+      },
+      "writtenOn": "2023-12-11T23:03:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a05f2f9_4d8e8f48",
+      "revId": "df317ea26c430ecbad30d7a77febda5cbb3074b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
