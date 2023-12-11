@@ -3519,8 +3519,7 @@ void btm_ble_init(void) {
 
 // Clean up btm ble control block
 void btm_ble_free() {
-  tBTM_BLE_CB* p_cb = &btm_cb.ble_ctr_cb;
-  alarm_free(p_cb->addr_mgnt_cb.refresh_raddr_timer);
+  alarm_free(btm_cb.ble_ctr_cb.addr_mgnt_cb.refresh_raddr_timer);
 }
 
 /*******************************************************************************
