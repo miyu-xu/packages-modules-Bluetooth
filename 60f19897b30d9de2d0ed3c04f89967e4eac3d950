@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12f9b8e1_1b054a16",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 22
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-12-11T10:12:31Z",
+      "side": 1,
+      "message": "I\u0027ve added a unit test to test with the functionality of bta_dm_sniff_cback function.",
+      "parentUuid": "67fbffd1_88e87de9",
+      "revId": "60f19897b30d9de2d0ed3c04f89967e4eac3d950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd7b984a_9b94eef6",
