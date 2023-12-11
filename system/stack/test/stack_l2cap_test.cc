@@ -18,7 +18,6 @@
 #include <gtest/gtest.h>
 
 #include "common/init_flags.h"
-#include "device/include/controller.h"
 #include "hci/controller_interface_mock.h"
 #include "osi/include/allocator.h"
 #include "stack/btm/btm_int_types.h"
@@ -38,7 +37,8 @@ using testing::Return;
 
 namespace {
 constexpr uint16_t kAclBufferCountClassic = 123;
-constexpr uint8_t kAclBufferCountBle = 45;
+constexpr uint16_t kAclBufferCountBle = 45;
+constexpr uint16_t kAclBufferSizeBle = 45;
 
 }  // namespace
 
@@ -46,21 +46,23 @@ class StackL2capTest : public ::testing::Test {
  protected:
   void SetUp() override {
     bluetooth::common::InitFlags::SetAllForTesting();
-    controller_.get_acl_buffer_count_ble = []() { return kAclBufferCountBle; };
     bluetooth::hci::testing::mock_controller_ = &controller_interface_;
     ON_CALL(controller_interface_, GetNumAclPacketBuffers)
         .WillByDefault(Return(kAclBufferCountClassic));
+    bluetooth::hci::LeBufferSize le_sizes;
+    le_sizes.total_num_le_packets_ = kAclBufferCountBle;
+    le_sizes.le_data_packet_length_ = kAclBufferSizeBle;
+    ON_CALL(controller_interface_, GetLeBufferSize)
+        .WillByDefault(Return(le_sizes));
     ON_CALL(controller_interface_, SupportsBle).WillByDefault(Return(true));
     l2c_init();
   }
 
   void TearDown() override {
     l2c_free();
-    controller_ = {};
     bluetooth::hci::testing::mock_controller_ = nullptr;
   }
 
-  controller_t controller_;
   bluetooth::hci::testing::MockControllerInterface controller_interface_;
 };
 
@@ -201,7 +203,6 @@ TEST_F(StackL2capChannelTest, l2c_lcc_proc_pdu__NextSegment) {
 TEST_F(StackL2capChannelTest, l2c_link_init) {
   l2cb.num_lm_acl_bufs = 0;
   l2cb.controller_xmit_window = 0;
-
   l2c_link_init(kAclBufferCountClassic);
 
   ASSERT_EQ(kAclBufferCountClassic, l2cb.num_lm_acl_bufs);
