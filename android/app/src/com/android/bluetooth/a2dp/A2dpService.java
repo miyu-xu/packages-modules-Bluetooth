@@ -93,6 +93,7 @@ public class A2dpService extends ProfileService {
     private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
     private Handler mHandler = null;
+    private final Looper mLooper;
 
     private final A2dpNativeInterface mNativeInterface;
     @VisibleForTesting
@@ -128,13 +129,15 @@ public class A2dpService extends ProfileService {
     A2dpService() {
         mNativeInterface = requireNonNull(A2dpNativeInterface.getInstance());
         mFeatureFlags = new FeatureFlagsImpl();
+        mLooper = null;
     }
 
     @VisibleForTesting
-    A2dpService(Context ctx, A2dpNativeInterface nativeInterface, FeatureFlags featureFlags) {
+    A2dpService(Context ctx, A2dpNativeInterface nativeInterface, FeatureFlags featureFlags, Looper looper) {
         attachBaseContext(ctx);
         mNativeInterface = requireNonNull(nativeInterface);
         mFeatureFlags = featureFlags;
+        mLooper = looper;
         onCreate();
     }
 
@@ -169,9 +172,11 @@ public class A2dpService extends ProfileService {
                 requireNonNull(
                         mAdapterService.getDatabase(),
                         "DatabaseManager cannot be null when A2dpService starts");
-        mAudioManager = getSystemService(AudioManager.class);
+        mAudioManager =
+                requireNonNull(
+                        getSystemService(AudioManager.class),
+                        "AudioManager cannot be null when A2dpService starts");
         mCompanionDeviceManager = getSystemService(CompanionDeviceManager.class);
-        requireNonNull(mAudioManager, "AudioManager cannot be null when A2dpService starts");
 
         // Step 2: Get maximum number of connected audio devices
         mMaxConnectedAudioDevices = mAdapterService.getMaxConnectedAudioDevices();
@@ -179,10 +184,16 @@ public class A2dpService extends ProfileService {
 
         // Step 3: Start handler thread for state machines
         // Setup Handler.
-        mHandler = new Handler(Looper.getMainLooper());
-        mStateMachines.clear();
-        mStateMachinesThread = new HandlerThread("A2dpService.StateMachines");
-        mStateMachinesThread.start();
+        if (mLooper != null) {
+            mHandler = new Handler(mLooper);
+            mStateMachines.clear();
+            mStateMachinesThread = null;
+        } else {
+            mHandler = new Handler(Looper.getMainLooper());
+            mStateMachines.clear();
+            mStateMachinesThread = new HandlerThread("A2dpService.StateMachines");
+            mStateMachinesThread.start();
+        }
 
         // Step 4: Setup codec config
         mA2dpCodecConfig = new A2dpCodecConfig(this, mNativeInterface);
@@ -1043,9 +1054,14 @@ public class A2dpService extends ProfileService {
             if (DBG) {
                 Log.d(TAG, "Creating a new state machine for " + device);
             }
-            sm =
-                    A2dpStateMachine.make(
-                            device, this, mNativeInterface, mStateMachinesThread.getLooper());
+            Looper stateMachineLooper;
+            if (mLooper != null) {
+                stateMachineLooper = mLooper;
+            } else {
+                stateMachineLooper =  mStateMachinesThread.getLooper();
+            }
+
+            sm = A2dpStateMachine.make(device, this, mNativeInterface, stateMachineLooper);
             mStateMachines.put(device, sm);
             return sm;
         }
@@ -1171,6 +1187,7 @@ public class A2dpService extends ProfileService {
     }
 
     public void handleBondStateChanged(BluetoothDevice device, int fromState, int toState) {
+        Log.e("WILLIAM", "POSTING handleBondStateChanged");
         mHandler.post(() -> bondStateChanged(device, toState));
     }
 
@@ -1309,6 +1326,7 @@ public class A2dpService extends ProfileService {
     }
 
     void handleConnectionStateChanged(BluetoothDevice device, int fromState, int toState) {
+        Log.e("WILLIAM", "POSTING handleConnectionStateChanged");
         mHandler.post(() -> connectionStateChanged(device, fromState, toState));
     }
 

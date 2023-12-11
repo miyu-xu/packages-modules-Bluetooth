@@ -77,7 +77,9 @@ final class A2dpStateMachine extends StateMachine {
     private static final boolean DBG = true;
     private static final String TAG = "A2dpStateMachine";
 
+    @VisibleForTesting
     static final int CONNECT = 1;
+    @VisibleForTesting
     static final int DISCONNECT = 2;
     @VisibleForTesting
     static final int STACK_EVENT = 101;
