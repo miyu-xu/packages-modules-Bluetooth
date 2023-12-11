@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0a52fd44_2a1edd08",
+        "filename": "system/common/metrics_linux.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-12-11T17:26:43Z",
+      "side": 1,
+      "message": "The code structure for Fluroide\u0027s existing metrics is pretty messy now.\n\nIdeally we shouldn\u0027t have different version of codes under the common/ and instead should put them under system/gd/metrics/.\n\nThus, I chose to have the initial CL to duplicate as much code as possible to make it compilable and output some meaningful syslog for CrOS to triage.\n\nThe next step should be defining the proper interface such that the actual OS dependent implementation can be moved into the system/gd/metrics/.",
+      "parentUuid": "315326f7_545a7e75",
+      "range": {
+        "startLine": 58,
+        "startChar": 26,
+        "endLine": 58,
+        "endChar": 47
+      },
+      "revId": "565a1cc1500cf381b48d94395b08eb09d5098ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bcedae60_44a0c56e",
         "filename": "system/common/metrics_linux.cc",
         "patchSetId": 10
@@ -54,6 +78,30 @@
       "writtenOn": "2023-11-23T04:08:30Z",
       "side": 1,
       "message": "I think we\u0027d like to start with logging this arg `a2dp_session_metrics` which is passed in every time A2DP Tx stops.\n\n`pimpl_-\u003ea2dp_session_metrics_.Update(..` seems like accumulates all a2dp within one Bluetooth session. Which might not be ideal for us.",
+      "range": {
+        "startLine": 426,
+        "startChar": 39,
+        "endLine": 426,
+        "endChar": 59
+      },
+      "revId": "565a1cc1500cf381b48d94395b08eb09d5098ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42d5f556_4ba4eb86",
+        "filename": "system/common/metrics_linux.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 426,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-12-11T17:26:43Z",
+      "side": 1,
+      "message": "Correct. Thus I explicitly output the session whenever the Update is called. Please check the update function on line 138. I think it shouldn\u0027t be too noisy as it should only be called when one session stops.",
+      "parentUuid": "bcedae60_44a0c56e",
       "range": {
         "startLine": 426,
         "startChar": 39,
