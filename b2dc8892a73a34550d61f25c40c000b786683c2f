@@ -34,6 +34,24 @@
       "parentUuid": "0d62c05d_a1ffbf99",
       "revId": "b2dc8892a73a34550d61f25c40c000b786683c2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09dcb1de_1f6b8b56",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-11T10:19:03Z",
+      "side": 1,
+      "message": "Thanks, Ack. Will add another macro there.",
+      "parentUuid": "9d72875f_b5df36c8",
+      "revId": "b2dc8892a73a34550d61f25c40c000b786683c2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
