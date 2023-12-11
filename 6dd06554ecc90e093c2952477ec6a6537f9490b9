@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3094573c_6eb4d609",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-11T16:17:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e99876bd_20645fc5",
+      "range": {
+        "startLine": 76,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 81
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67045bc2_7f403743",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-05T03:35:06Z",
       "side": 1,
       "message": "Why are you waiting if you are not asserting anything after waiting ?\nIs this just to finish the discovery ?\nWould it be easier to cancel the discovery instead ?",
+      "range": {
+        "startLine": 323,
+        "startChar": 8,
+        "endLine": 323,
+        "endChar": 12
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4820234b_2171a9ae",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-11T16:17:58Z",
+      "side": 1,
+      "message": "I was not able to add the GATT services in Bumble. As a result `ACTION_UUID` intent is not received.\nSo I decided to take a simpler approach to just wait for the service discovery to complete via a timeout.",
+      "parentUuid": "67045bc2_7f403743",
       "range": {
         "startLine": 323,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5a88882_d2d9ae27",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-11T16:17:58Z",
+      "side": 1,
+      "message": "Any other intent is non-material to this test case. I don\u0027t think we need to make test cases brittle by preventing any future changes in the stack or the test cases.",
+      "parentUuid": "6ad0526e_1f5e3595",
+      "range": {
+        "startLine": 324,
+        "startChar": 4,
+        "endLine": 324,
+        "endChar": 5
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "36391403_bffe9af5",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-12-05T03:35:06Z",
       "side": 1,
       "message": "typo: intentString\n\nbut you may want to call this \"action\" directly ?",
+      "range": {
+        "startLine": 352,
+        "startChar": 20,
+        "endLine": 352,
+        "endChar": 31
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e1f4d37_0786eb35",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2023-12-11T16:17:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36391403_bffe9af5",
       "range": {
         "startLine": 352,
         "startChar": 20,
