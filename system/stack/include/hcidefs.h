@@ -916,6 +916,9 @@ typedef struct {
 // TODO Remove this once all Mediatek specific hacks are removed.
 #define LMP_COMPID_MEDIATEK 0x0046
 
+// TODO Remove this once all Intel specific hacks are removed.
+#define LMP_COMPID_INTEL 0x02
+
 /* Parameter information for HCI_SYNA_SET_ACL_PRIORITY */
 #define HCI_SYNA_ACL_PRIORITY_PARAM_SIZE 3
 #define HCI_SYNA_ACL_NORMAL_PRIORITY 0xF0

@@ -45,6 +45,7 @@
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "stack/btm/neighbor_inquiry.h"
+#include "stack/include/acl_api.h"
 #include "stack/include/acl_hci_link_interface.h"
 #include "stack/include/ble_acl_interface.h"
 #include "stack/include/ble_hci_link_interface.h"
