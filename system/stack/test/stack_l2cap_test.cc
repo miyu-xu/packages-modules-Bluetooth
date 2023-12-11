@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include "common/init_flags.h"
 #include "device/include/controller.h"
-#include "gmock/gmock.h"
 #include "hci/controller_interface_mock.h"
 #include "osi/include/allocator.h"
 #include "stack/btm/btm_int_types.h"
@@ -46,11 +46,10 @@ class StackL2capTest : public ::testing::Test {
  protected:
   void SetUp() override {
     bluetooth::common::InitFlags::SetAllForTesting();
-    controller_.get_acl_buffer_count_classic = []() {
-      return kAclBufferCountClassic;
-    };
     controller_.get_acl_buffer_count_ble = []() { return kAclBufferCountBle; };
     bluetooth::hci::testing::mock_controller_ = &controller_interface_;
+    ON_CALL(controller_interface_, GetNumAclPacketBuffers)
+        .WillByDefault(Return(kAclBufferCountClassic));
     ON_CALL(controller_interface_, SupportsBle).WillByDefault(Return(true));
     l2c_init();
   }
@@ -203,11 +202,10 @@ TEST_F(StackL2capChannelTest, l2c_link_init) {
   l2cb.num_lm_acl_bufs = 0;
   l2cb.controller_xmit_window = 0;
 
-  l2c_link_init(controller_.get_acl_buffer_count_classic());
+  l2c_link_init(kAclBufferCountClassic);
 
-  ASSERT_EQ(controller_.get_acl_buffer_count_classic(), l2cb.num_lm_acl_bufs);
-  ASSERT_EQ(controller_.get_acl_buffer_count_classic(),
-            l2cb.controller_xmit_window);
+  ASSERT_EQ(kAclBufferCountClassic, l2cb.num_lm_acl_bufs);
+  ASSERT_EQ(kAclBufferCountClassic, l2cb.controller_xmit_window);
 }
 
 TEST_F(StackL2capTest, l2cap_result_code_text) {
