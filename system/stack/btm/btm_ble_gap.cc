@@ -3240,9 +3240,7 @@ static void btm_ble_fast_adv_timer_timeout(UNUSED_ATTR void* data) {
  *
  ******************************************************************************/
 static void btm_ble_start_slow_adv(void) {
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
-
-  if (p_cb->adv_mode == BTM_BLE_ADV_ENABLE) {
+  if (btm_cb.ble_ctr_cb.inq_var.adv_mode == BTM_BLE_ADV_ENABLE) {
     tBTM_LE_RANDOM_CB* p_addr_cb = &btm_cb.ble_ctr_cb.addr_mgnt_cb;
     RawAddress address = RawAddress::kEmpty;
     tBLE_ADDR_TYPE init_addr_type = BLE_ADDR_PUBLIC;
@@ -3250,13 +3248,15 @@ static void btm_ble_start_slow_adv(void) {
 
     btm_ble_stop_adv();
 
-    p_cb->evt_type = btm_set_conn_mode_adv_init_addr(address, &init_addr_type,
-                                                     &own_addr_type);
+    btm_cb.ble_ctr_cb.inq_var.evt_type = btm_set_conn_mode_adv_init_addr(
+        address, &init_addr_type, &own_addr_type);
 
     /* slow adv mode never goes into directed adv */
     btsnd_hcic_ble_write_adv_params(
-        BTM_BLE_GAP_ADV_SLOW_INT, BTM_BLE_GAP_ADV_SLOW_INT, p_cb->evt_type,
-        own_addr_type, init_addr_type, address, p_cb->adv_chnl_map, p_cb->afp);
+        BTM_BLE_GAP_ADV_SLOW_INT, BTM_BLE_GAP_ADV_SLOW_INT,
+        btm_cb.ble_ctr_cb.inq_var.evt_type, own_addr_type, init_addr_type,
+        address, btm_cb.ble_ctr_cb.inq_var.adv_chnl_map,
+        btm_cb.ble_ctr_cb.inq_var.afp);
 
     btm_ble_start_adv();
   }
