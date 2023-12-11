@@ -223,6 +223,7 @@ cc_library_static {
 cc_test {
     name: "net_test_bta",
     defaults: [
+        "bluetooth_flatbuffer_bundler_defaults",
         "fluoride_bta_defaults",
         "latest_android_hardware_audio_common_ndk_static",
         "latest_android_hardware_bluetooth_audio_ndk_static",
@@ -746,6 +747,7 @@ cc_test {
     name: "bluetooth_le_audio_codec_manager_test",
     test_suites: ["general-tests"],
     defaults: [
+        "bluetooth_flatbuffer_bundler_defaults",
         "fluoride_defaults",
         "mts_defaults",
     ],
@@ -774,6 +776,8 @@ cc_test {
         ":TestCommonMockFunctions",
         ":TestMockBtaLeAudioHalVerifier",
         ":TestMockLegacyHciInterface",
+        ":TestMockMainShim",
+        ":TestMockMainShimEntry",
         ":TestStubOsi",
         "le_audio/codec_manager.cc",
         "le_audio/codec_manager_test.cc",
@@ -789,6 +793,7 @@ cc_test {
         ":audio_set_scenarios_json",
     ],
     generated_headers: [
+        "BluetoothGeneratedDumpsysDataSchema_h",
         "LeAudioSetConfigSchemas_h",
     ],
     shared_libs: [
@@ -802,6 +807,7 @@ cc_test {
         "libbluetooth_gd",
         "libbluetooth_log",
         "libbt-common",
+        "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
@@ -1106,6 +1112,7 @@ cc_test {
     name: "bluetooth_test_broadcaster",
     test_suites: ["general-tests"],
     defaults: [
+        "bluetooth_flatbuffer_bundler_defaults",
         "fluoride_bta_defaults",
         "mts_defaults",
     ],
@@ -1121,6 +1128,8 @@ cc_test {
     srcs: [
         ":TestCommonMockFunctions",
         ":TestCommonStackConfig",
+        ":TestMockMainShim",
+        ":TestMockMainShimEntry",
         ":TestMockStackBtmIso",
         ":TestStubOsi",
         "le_audio/broadcaster/broadcaster.cc",
@@ -1144,13 +1153,17 @@ cc_test {
     ],
     static_libs: [
         "libbluetooth-types",
+        "libbluetooth_gd",
+        "libbluetooth_hci_pdl",
         "libbluetooth_log",
         "libbt-audio-hal-interface",
         "libbt-common",
+        "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libchrome",
         "libevent",
+        "libflatbuffers-cpp",
         "libgmock",
         "libgtest",
         "liblc3",
