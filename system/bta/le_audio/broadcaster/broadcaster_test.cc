@@ -27,10 +27,10 @@
 #include "bta/le_audio/content_control_id_keeper.h"
 #include "bta/le_audio/le_audio_types.h"
 #include "bta/le_audio/mock_iso_manager.h"
-#include "bta/test/common/mock_controller.h"
-#include "device/include/controller.h"
+#include "hci/controller_interface_mock.h"
 #include "stack/include/btm_iso_api.h"
 #include "test/common/mock_functions.h"
+#include "test/mock/mock_main_shim_entry.h"
 
 using namespace std::chrono_literals;
 
@@ -205,10 +205,10 @@ class BroadcasterTest : public Test {
     init_message_loop_thread();
 
     reset_mock_function_count_map();
-    ON_CALL(controller_interface_, SupportsBleIsochronousBroadcaster)
+    bluetooth::hci::testing::mock_controller_ = &mock_controller_;
+    ON_CALL(mock_controller_, SupportsBleIsochronousBroadcaster)
         .WillByDefault(Return(true));
 
-    controller::SetMockControllerInterface(&controller_interface_);
     iso_manager_ = bluetooth::hci::IsoManager::GetInstance();
     ASSERT_NE(iso_manager_, nullptr);
     iso_manager_->Start();
@@ -252,11 +252,11 @@ class BroadcasterTest : public Test {
 
     ContentControlIdKeeper::GetInstance()->Stop();
 
+    bluetooth::hci::testing::mock_controller_ = nullptr;
+    delete mock_audio_source_;
     iso_active_callback = nullptr;
     delete mock_audio_source_;
     iso_manager_->Stop();
-
-    controller::SetMockControllerInterface(nullptr);
   }
 
   uint32_t InstantiateBroadcast(
@@ -288,7 +288,7 @@ class BroadcasterTest : public Test {
 
  protected:
   MockLeAudioBroadcasterCallbacks mock_broadcaster_callbacks_;
-  controller::MockControllerInterface controller_interface_;
+  bluetooth::hci::testing::MockControllerInterface mock_controller_;
   bluetooth::hci::IsoManager* iso_manager_;
 };
 
