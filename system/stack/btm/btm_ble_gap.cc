@@ -2150,8 +2150,6 @@ void btm_ble_read_remote_name_cmpl(bool status, const RawAddress& bda,
  ******************************************************************************/
 tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda,
                                      tBTM_NAME_CMPL_CB* p_cb) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-
   if (!controller_get_interface()->supports_ble()) return BTM_ERR_PROCESSING;
 
   tINQ_DB_ENT* p_i = btm_inq_db_find(remote_bda);
@@ -2161,16 +2159,17 @@ tBTM_STATUS btm_ble_read_remote_name(const RawAddress& remote_bda,
   }
 
   /* read remote device name using GATT procedure */
-  if (p_inq->remname_active) return BTM_BUSY;
+  if (btm_cb.btm_inq_vars.remname_active) return BTM_BUSY;
 
   if (!GAP_BleReadPeerDevName(remote_bda, btm_ble_read_remote_name_cmpl))
     return BTM_BUSY;
 
-  p_inq->p_remname_cmpl_cb = p_cb;
-  p_inq->remname_active = true;
-  p_inq->remname_bda = remote_bda;
+  btm_cb.btm_inq_vars.p_remname_cmpl_cb = p_cb;
+  btm_cb.btm_inq_vars.remname_active = true;
+  btm_cb.btm_inq_vars.remname_bda = remote_bda;
 
-  alarm_set_on_mloop(p_inq->remote_name_timer, BTM_EXT_BLE_RMT_NAME_TIMEOUT_MS,
+  alarm_set_on_mloop(btm_cb.btm_inq_vars.remote_name_timer,
+                     BTM_EXT_BLE_RMT_NAME_TIMEOUT_MS,
                      btm_inq_remote_name_timer_timeout, NULL);
 
   return BTM_CMD_STARTED;
