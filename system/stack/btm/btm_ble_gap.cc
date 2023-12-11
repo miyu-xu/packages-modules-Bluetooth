@@ -3190,14 +3190,14 @@ static bool btm_ble_adv_states_operation(BTM_TOPOLOGY_FUNC_PTR* p_handler,
  *
  ******************************************************************************/
 static tBTM_STATUS btm_ble_start_adv(void) {
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
-
-  if (!btm_ble_adv_states_operation(btm_ble_topology_check, p_cb->evt_type))
+  if (!btm_ble_adv_states_operation(btm_ble_topology_check,
+                                    btm_cb.ble_ctr_cb.inq_var.evt_type))
     return BTM_WRONG_MODE;
 
   btsnd_hcic_ble_set_adv_enable(BTM_BLE_ADV_ENABLE);
-  p_cb->adv_mode = BTM_BLE_ADV_ENABLE;
-  btm_ble_adv_states_operation(btm_ble_set_topology_mask, p_cb->evt_type);
+  btm_cb.ble_ctr_cb.inq_var.adv_mode = BTM_BLE_ADV_ENABLE;
+  btm_ble_adv_states_operation(btm_ble_set_topology_mask,
+                               btm_cb.ble_ctr_cb.inq_var.evt_type);
   power_telemetry::GetInstance().LogBleAdvStarted();
 
   return BTM_SUCCESS;
