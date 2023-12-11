@@ -2748,7 +2748,6 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
                                   int8_t rssi, uint16_t periodic_adv_int,
                                   uint8_t data_len, const uint8_t* data,
                                   const RawAddress& original_bda) {
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
   bool update = true;
 
   std::vector<uint8_t> tmp;
@@ -2829,15 +2828,16 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
   if (p_i == NULL) {
     p_i = btm_inq_db_new(bda, true);
     if (p_i != NULL) {
-      p_inq->inq_cmpl_info.num_resp++;
+      btm_cb.btm_inq_vars.inq_cmpl_info.num_resp++;
       p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
     } else
       return;
   } else if (p_i->inq_count !=
-             p_inq->inq_counter) /* first time seen in this inquiry */
+             btm_cb.btm_inq_vars
+                 .inq_counter) /* first time seen in this inquiry */
   {
     p_i->time_of_resp = bluetooth::common::time_get_os_boottime_ms();
-    p_inq->inq_cmpl_info.num_resp++;
+    btm_cb.btm_inq_vars.inq_cmpl_info.num_resp++;
   }
 
   /* update the LE device information in inquiry database */
@@ -2874,7 +2874,7 @@ void btm_ble_process_adv_pkt_cont(uint16_t evt_type, tBLE_ADDR_TYPE addr_type,
 
   if (!update) result &= ~BTM_BLE_INQ_RESULT;
 
-  tBTM_INQ_RESULTS_CB* p_inq_results_cb = p_inq->p_inq_results_cb;
+  tBTM_INQ_RESULTS_CB* p_inq_results_cb = btm_cb.btm_inq_vars.p_inq_results_cb;
   if (p_inq_results_cb && (result & BTM_BLE_INQ_RESULT)) {
     (p_inq_results_cb)((tBTM_INQ_RESULTS*)&p_i->inq_info.results,
                        const_cast<uint8_t*>(adv_data.data()), adv_data.size());
