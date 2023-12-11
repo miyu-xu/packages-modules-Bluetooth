@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "313a745b_844ae82d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-11T17:52:06Z",
+      "side": 1,
+      "message": "Should you also update packages/modules/Bluetooth/system/bta/le_audio/broadcaster/broadcaster_test.cc ?",
+      "revId": "6f6ef6512e1b0b552f8c0b4b2a26751b7fa1374d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ced255ae_f0f28623",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-11T17:52:06Z",
+      "side": 1,
+      "message": "FYI and not completely related to this change, this variable should be named `presentation_delay_us`\ngo/java-practices/naming#units (I know I am linking a java guidestyle, but I think it applies here too)",
+      "range": {
+        "startLine": 160,
+        "startChar": 17,
+        "endLine": 160,
+        "endChar": 35
+      },
+      "revId": "6f6ef6512e1b0b552f8c0b4b2a26751b7fa1374d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
