@@ -1648,8 +1648,7 @@ tBTM_STATUS btm_initiate_rem_name(const RawAddress& remote_bda, uint8_t origin,
 void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn,
                              uint16_t evt_len, tHCI_STATUS hci_status) {
   tBTM_REMOTE_DEV_NAME rem_name;
-  tBTM_INQUIRY_VAR_ST* p_inq = &btm_cb.btm_inq_vars;
-  tBTM_NAME_CMPL_CB* p_cb = p_inq->p_remname_cmpl_cb;
+  tBTM_NAME_CMPL_CB* p_cb = btm_cb.btm_inq_vars.p_remname_cmpl_cb;
   uint8_t* p_n1;
 
   uint16_t temp_evt_len;
@@ -1663,17 +1662,18 @@ void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn,
   LOG_INFO("btm_process_remote_name for %s",
            ADDRESS_TO_LOGGABLE_CSTR(rem_name.bd_addr));
 
-  VLOG(2) << "Inquire BDA " << p_inq->remname_bda;
+  VLOG(2) << "Inquire BDA " << btm_cb.btm_inq_vars.remname_bda;
 
   /* If the inquire BDA and remote DBA are the same, then stop the timer and set
    * the active to false */
-  if ((p_inq->remname_active) && (!bda || (*bda == p_inq->remname_bda))) {
-    if (BTM_UseLeLink(p_inq->remname_bda)) {
+  if ((btm_cb.btm_inq_vars.remname_active) &&
+      (!bda || (*bda == btm_cb.btm_inq_vars.remname_bda))) {
+    if (BTM_UseLeLink(btm_cb.btm_inq_vars.remname_bda)) {
       if (hci_status == HCI_ERR_UNSPECIFIED)
-        btm_ble_cancel_remote_name(p_inq->remname_bda);
+        btm_ble_cancel_remote_name(btm_cb.btm_inq_vars.remname_bda);
     }
-    alarm_cancel(p_inq->remote_name_timer);
-    p_inq->remname_active = false;
+    alarm_cancel(btm_cb.btm_inq_vars.remote_name_timer);
+    btm_cb.btm_inq_vars.remname_active = false;
     /* Clean up and return the status if the command was not successful */
     /* Note: If part of the inquiry, the name is not stored, and the    */
     /*       inquiry complete callback is called.                       */
@@ -1703,9 +1703,9 @@ void btm_process_remote_name(const RawAddress* bda, const BD_NAME bdn,
       rem_name.remote_bd_name[0] = 0;
     }
     /* Reset the remote BAD to zero and call callback if possible */
-    p_inq->remname_bda = RawAddress::kEmpty;
+    btm_cb.btm_inq_vars.remname_bda = RawAddress::kEmpty;
 
-    p_inq->p_remname_cmpl_cb = NULL;
+    btm_cb.btm_inq_vars.p_remname_cmpl_cb = NULL;
     if (p_cb) (p_cb)(&rem_name);
   }
 }
