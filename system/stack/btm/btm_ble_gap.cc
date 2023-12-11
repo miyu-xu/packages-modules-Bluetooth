@@ -1697,16 +1697,15 @@ void BTM_BleSetScanParams(uint32_t scan_interval, uint32_t scan_window,
     max_scan_window = BTM_BLE_SCAN_WIN_MAX;
   }
 
-  tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
   if (BTM_BLE_ISVALID_PARAM(scan_interval, BTM_BLE_SCAN_INT_MIN,
                             max_scan_interval) &&
       BTM_BLE_ISVALID_PARAM(scan_window, BTM_BLE_SCAN_WIN_MIN,
                             max_scan_window) &&
       (scan_mode == BTM_BLE_SCAN_MODE_ACTI ||
        scan_mode == BTM_BLE_SCAN_MODE_PASS)) {
-    p_cb->scan_type = scan_mode;
-    p_cb->scan_interval = scan_interval;
-    p_cb->scan_window = scan_window;
+    btm_cb.ble_ctr_cb.inq_var.scan_type = scan_mode;
+    btm_cb.ble_ctr_cb.inq_var.scan_interval = scan_interval;
+    btm_cb.ble_ctr_cb.inq_var.scan_window = scan_window;
 
     cb.Run(BTM_SUCCESS);
   } else {
