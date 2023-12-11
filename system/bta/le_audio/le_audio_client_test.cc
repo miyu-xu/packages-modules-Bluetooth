@@ -31,7 +31,6 @@
 #include "btm_api_mock.h"
 #include "btm_iso_api.h"
 #include "common/message_loop_thread.h"
-#include "device/include/controller.h"
 #include "fake_osi.h"
 #include "gatt/database_builder.h"
 #include "hardware/bt_gatt_types.h"
@@ -1494,13 +1493,14 @@ class UnicastTestNoInit : public Test {
 
   void SetUp() override {
     init_message_loop_thread();
-    ON_CALL(controller_interface_, SupportsBleConnectedIsochronousStreamCentral)
-        .WillByDefault(Return(true));
-    ON_CALL(controller_interface_,
-            SupportsBleConnectedIsochronousStreamPeripheral)
-        .WillByDefault(Return(true));
+    // ON_CALL(controller_interface_,
+    // SupportsBleConnectedIsochronousStreamCentral)
+    //.WillByDefault(Return(true));
+    // ON_CALL(controller_interface_,
+    // SupportsBleConnectedIsochronousStreamPeripheral)
+    //.WillByDefault(Return(true));
 
-    controller::SetMockControllerInterface(&controller_interface_);
+    // controller::SetMockControllerInterface(&controller_interface_);
     bluetooth::manager::SetMockBtmInterface(&mock_btm_interface_);
     gatt::SetMockBtaGattInterface(&mock_gatt_interface_);
     gatt::SetMockBtaGattQueue(&mock_gatt_queue_);
@@ -2715,7 +2715,7 @@ class UnicastTestNoInit : public Test {
   NiceMock<MockFunction<void()>> mock_storage_load;
   NiceMock<MockFunction<bool()>> mock_hal_2_1_verifier;
 
-  NiceMock<controller::MockControllerInterface> controller_interface_;
+  // NiceMock<controller::MockControllerInterface> controller_interface_;
   NiceMock<bluetooth::manager::MockBtmInterface> mock_btm_interface_;
   NiceMock<gatt::MockBtaGattInterface> mock_gatt_interface_;
   NiceMock<gatt::MockBtaGattQueue> mock_gatt_queue_;
