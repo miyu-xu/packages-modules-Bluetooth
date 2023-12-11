@@ -83,6 +83,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aec84b3e_e9a30113",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 22
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-12-11T10:14:31Z",
+      "side": 1,
+      "message": "Actually it is restart the sniff timer. Let me fix the description.",
+      "parentUuid": "bc79205e_a3c6a1c2",
+      "range": {
+        "startLine": 344,
+        "startChar": 19,
+        "endLine": 344,
+        "endChar": 48
+      },
+      "revId": "60f19897b30d9de2d0ed3c04f89967e4eac3d950",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "531e0af0_4db73e4d",
