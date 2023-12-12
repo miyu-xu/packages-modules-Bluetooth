@@ -74,6 +74,30 @@
       },
       "revId": "72bd66379922c3b35e5aa13a0ce840215dd96c97",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "322d5bca_a63a3333",
+        "filename": "system/gd/rust/linux/stack/src/uuid.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-12T03:47:39Z",
+      "side": 1,
+      "message": "Thanks. Changed to use `vec!`. I don\u0027t think we should remove the `lazy_static!` to preserve the similar static condition before and after this CL.",
+      "parentUuid": "264dca73_1efe095e",
+      "range": {
+        "startLine": 131,
+        "startChar": 5,
+        "endLine": 131,
+        "endChar": 11
+      },
+      "revId": "72bd66379922c3b35e5aa13a0ce840215dd96c97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
