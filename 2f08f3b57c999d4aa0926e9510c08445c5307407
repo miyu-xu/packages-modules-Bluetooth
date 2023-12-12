@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0a1c4e8_dc53aead",
+        "filename": "flags/hal.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-12T15:24:27Z",
+      "side": 1,
+      "message": "Hi,\nCan you folloe go/bt-best-practices#creating-a-flag and:\n* use the appropriate template for creating the bug that will track the flag\n* upload the flag in a previous CL in the relation chain and only in the flag creation CL add the `Bug: 315241296`",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "2f08f3b57c999d4aa0926e9510c08445c5307407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "325de706_39d69319",
+        "filename": "system/test/common/hal_version_manager_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-12T15:24:27Z",
+      "side": 1,
+      "message": "Naive question, is the ifdef needed ?\nsince you are already using REQUIRES_FLAGS_ENABLED",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 55
+      },
+      "revId": "2f08f3b57c999d4aa0926e9510c08445c5307407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
