@@ -251,7 +251,12 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
         }
       }
     } else if (bta_ag_sco_is_opening(bta_ag_cb.sco.p_curr_scb)) {
-      LOG_ERROR("%s: eSCO/SCO failed to open, no more fall back", __func__);
+      if (bta_ag_cb.sco.p_curr_scb->try_zero_retransmission_effort == 0) {
+        bta_ag_cb.sco.p_curr_scb->try_zero_retransmission_effort++;
+        bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
+        LOG_WARN("%s: eSCO/SCO failed to open, retry", __func__);
+      } else
+        LOG_WARN("%s: eSCO/SCO failed to open, no more fall back", __func__);
     }
 
     bta_ag_cb.sco.p_curr_scb->inuse_codec = BTM_SCO_CODEC_NONE;
@@ -483,6 +488,12 @@ void bta_ag_create_sco(tBTA_AG_SCB* p_scb, bool is_orig) {
       // HFP <=1.6 eSCO
       params = esco_parameters_for_codec(ESCO_CODEC_CVSD_S3, offload);
     }
+  }
+
+  if (p_scb->try_zero_retransmission_effort == 1) {
+    LOG_WARN("change retransmission effort to 0, retry");
+    p_scb->try_zero_retransmission_effort++;
+    params.retransmission_effort = ESCO_RETRANSMISSION_OFF;
   }
 
   /* Configure input/output data path based on HAL settings. */
@@ -1421,7 +1432,7 @@ void bta_ag_sco_conn_open(tBTA_AG_SCB* p_scb,
   bta_ag_sco_event(p_scb, BTA_AG_SCO_CONN_OPEN_E);
 
   bta_sys_sco_open(BTA_ID_AG, p_scb->app_id, p_scb->peer_addr);
-
+  p_scb->try_zero_retransmission_effort = 0;
   /* call app callback */
   bta_ag_cback_sco(p_scb, BTA_AG_AUDIO_OPEN_EVT);
 
@@ -1458,13 +1469,15 @@ void bta_ag_sco_conn_close(tBTA_AG_SCB* p_scb,
   /* codec_fallback is set when AG is initiator and connection failed for mSBC.
    * OR if codec is msbc and T2 settings failed, then retry Safe T1 settings
    * same operations for LC3 settings */
+  LOG_WARN("bta_ag_sco_conn_close: try_zero_retransmission_effort = %d",
+           p_scb->try_zero_retransmission_effort);
   if (p_scb->svc_conn &&
       (p_scb->codec_fallback ||
        (p_scb->sco_codec == BTM_SCO_CODEC_MSBC &&
         p_scb->codec_msbc_settings == BTA_AG_SCO_MSBC_SETTINGS_T1) ||
        (p_scb->sco_codec == BTM_SCO_CODEC_LC3 &&
         p_scb->codec_lc3_settings == BTA_AG_SCO_LC3_SETTINGS_T1) ||
-       aptx_voice)) {
+       (p_scb->try_zero_retransmission_effort == 1) || aptx_voice)) {
     bta_ag_sco_event(p_scb, BTA_AG_SCO_REOPEN_E);
   } else {
     /* Indicate if the closing of audio is because of transfer */
