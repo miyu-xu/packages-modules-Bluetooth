@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b935233_5446e53d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-12T00:28:40Z",
+      "side": 1,
+      "message": "Looks like 2 things:\n1) Changing when/where this is called\n2) Removing injectable controller interface",
+      "revId": "512b1d05ff2d231d53857f9815e0c4e40bdcfc55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
