@@ -46,6 +46,30 @@
       },
       "revId": "3a8d6125a47c9cfd0adcd0961488952113e9c4af",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "884ec1cd_9940b134",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-12T09:06:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5b8a35dd_e36ad2cb",
+      "range": {
+        "startLine": 366,
+        "startChar": 6,
+        "endLine": 366,
+        "endChar": 21
+      },
+      "revId": "3a8d6125a47c9cfd0adcd0961488952113e9c4af",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -52,6 +52,24 @@
       "parentUuid": "9d72875f_b5df36c8",
       "revId": "b2dc8892a73a34550d61f25c40c000b786683c2f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1aa36fed_b74c9ac3",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-12T09:06:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "09dcb1de_1f6b8b56",
+      "revId": "b2dc8892a73a34550d61f25c40c000b786683c2f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
