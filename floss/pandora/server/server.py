@@ -17,11 +17,19 @@ import asyncio
 import logging
 
 from floss.pandora.server import bluetooth as bluetooth_module
+from floss.pandora.server import gatt
+from floss.pandora.server import hfp
+from floss.pandora.server import hid
 from floss.pandora.server import host
 from floss.pandora.server import security
+from floss.pandora.server import a2dp
 import grpc
 from pandora import host_grpc_aio
 from pandora import security_grpc_aio
+from pandora_experimental import gatt_grpc_aio
+from pandora_experimental import hfp_grpc_aio
+from pandora_experimental import hid_grpc_aio
+from pandora import a2dp_grpc_aio
 
 
 async def serve(port):
@@ -33,22 +41,35 @@ async def serve(port):
         while True:
             bluetooth = bluetooth_module.Bluetooth()
             bluetooth.reset()
-
             logging.info("bluetooth initialized")
 
             server = grpc.aio.server()
-            host_service = host.HostService(server, bluetooth)
-            host_grpc_aio.add_HostServicer_to_server(host_service, server)
-
-            security_service = security.SecurityService(server, bluetooth)
+            security_service = security.SecurityService(bluetooth)
             security_grpc_aio.add_SecurityServicer_to_server(security_service, server)
 
-            security_storage_service = security.SecurityStorageService(server, bluetooth)
+            host_service = host.HostService(server, bluetooth, security_service)
+            host_grpc_aio.add_HostServicer_to_server(host_service, server)
+
+            security_storage_service = security.SecurityStorageService(bluetooth)
             security_grpc_aio.add_SecurityStorageServicer_to_server(security_storage_service, server)
+
+            gatt_service = gatt.GATTService(bluetooth)
+            gatt_grpc_aio.add_GATTServicer_to_server(gatt_service, server)
+
+            hfp_service = hfp.HFPService(bluetooth)
+            hfp_grpc_aio.add_HFPServicer_to_server(hfp_service, server)
+
+            hid_service = hid.HIDService(bluetooth)
+            hid_grpc_aio.add_HIDServicer_to_server(hid_service, server)
+
+            a2dp_service = a2dp.A2DPService(bluetooth)
+            a2dp_grpc_aio.add_A2DPServicer_to_server(a2dp_service, server)
 
             server.add_insecure_port(f'[::]:{port}')
 
             await server.start()
+            logging.info("server started")
+
             await server.wait_for_termination()
             bluetooth.cleanup()
             del bluetooth
