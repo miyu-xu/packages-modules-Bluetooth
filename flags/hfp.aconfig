@@ -1,6 +1,6 @@
 package: "com.android.bluetooth.flags"
 
-flag {
+flag {  
     name: "auto_connect_on_hfp_when_no_a2dp_device"
     namespace: "bluetooth"
     description: "Auto connect to hfp device is there is no a2dp device to connect to"
@@ -33,4 +33,11 @@ flag {
     namespace: "bluetooth"
     description: "start and stop of the SCO is managed by Audio instead of Bluetooth"
     bug: "315234036"
+}
+
+flag {
+    name: "fall_back_to_sco_connection_if_esco_connection_is_failed"
+    namespace: "bluetooth"
+    description: "Fall back to SCO connection if eSCO connection is failed"
+    bug: "303168931"
 }
