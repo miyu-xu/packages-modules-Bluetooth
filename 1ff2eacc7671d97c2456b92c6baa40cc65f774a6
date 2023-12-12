@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "802730ca_bdc2e397",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2063697
+      },
+      "writtenOn": "2023-12-12T22:41:33Z",
+      "side": 1,
+      "message": "Done, but I\u0027m not sure I did it right. Please take a look.",
+      "parentUuid": "5435e276_2008002d",
+      "revId": "1ff2eacc7671d97c2456b92c6baa40cc65f774a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd11f3d9_c30c9df1",
