@@ -1,6 +1,46 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "79c813ec_8c090a1d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-12T21:46:28Z",
+      "side": 1,
+      "message": "Will need to add either flag bug and guard by flag or add \"Flag: \u003cexemption reason\u003e\" as described in go/bt-ts-workflow for the Dr. No approval or bypass.",
+      "revId": "bb0de2c42e45bef981692fb795c6d2ef0e3df60a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d3ecc48_16195181",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-12T21:46:28Z",
+      "side": 1,
+      "message": "Specifically which test covers this?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 41
+      },
+      "revId": "bb0de2c42e45bef981692fb795c6d2ef0e3df60a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "8f7f2fbc_3622befe",
@@ -14,6 +54,23 @@
       "writtenOn": "2023-12-12T01:39:48Z",
       "side": 1,
       "message": "Gentle ping for review",
+      "revId": "bb0de2c42e45bef981692fb795c6d2ef0e3df60a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91eafccd_4884bb8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-12T21:46:28Z",
+      "side": 1,
+      "message": "Thanks for the fix here! Is great to prevent the exception within the impl. \n\nJust a couple comments on policy-related things, but then will be happy to give owners approval.",
       "revId": "bb0de2c42e45bef981692fb795c6d2ef0e3df60a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
