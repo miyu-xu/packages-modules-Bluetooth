@@ -22,6 +22,7 @@ from floss.pandora.floss import adapter_client
 from floss.pandora.floss import advertising_client
 from floss.pandora.floss import floss_enums
 from floss.pandora.floss import scanner_client
+from floss.pandora.floss import gatt_client
 from floss.pandora.floss import utils
 from floss.pandora.server import bluetooth as bluetooth_module
 from google.protobuf import any_pb2
@@ -48,9 +49,11 @@ class HostService(host_grpc_aio.HostServicer):
         self.bluetooth = bluetooth
         self.security = security
         self.waited_connections = set()
+        self.initiated_le_connection = set()
 
     async def FactoryReset(self, request: empty_pb2.Empty, context: grpc.ServicerContext) -> empty_pb2.Empty:
         self.waited_connections.clear()
+        self.initiated_le_connection.clear()
 
         devices = self.bluetooth.get_bonded_devices()
         if devices is None:
@@ -66,6 +69,7 @@ class HostService(host_grpc_aio.HostServicer):
 
     async def Reset(self, request: empty_pb2.Empty, context: grpc.ServicerContext) -> empty_pb2.Empty:
         self.waited_connections.clear()
+        self.initiated_le_connection.clear()
         self.bluetooth.reset()
         return empty_pb2.Empty()
 
@@ -234,9 +238,49 @@ class HostService(host_grpc_aio.HostServicer):
 
     async def ConnectLE(self, request: host_pb2.ConnectLERequest,
                         context: grpc.ServicerContext) -> host_pb2.ConnectLEResponse:
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)  # type: ignore
-        context.set_details('Method not implemented!')  # type: ignore
-        raise NotImplementedError('Method not implemented!')
+        class ConnectionObserver(gatt_client.GattClientCallbacks):
+            """Observer to observe the connection state."""
+
+            def __init__(self, task):
+                self.task = task
+
+            @utils.glib_callback()
+            def on_client_connection_state(self, status, client_id, connected, addr):
+                if status != floss_enums.GattStatus.SUCCESS:
+                    return
+
+                if addr != self.task['address']:
+                    return
+
+                future = self.task['connect_le_device']
+                future.get_loop().call_soon_threadsafe(future.set_result, connected)
+
+        own_address_type = request.own_address_type
+        if own_address_type not in (host_pb2.RANDOM, host_pb2.RESOLVABLE_OR_RANDOM):
+            raise RuntimeError(f'ConnectLE: Unsupported OwnAddressType: {own_address_type}.')
+
+        if not request.address:
+            raise ValueError('Connect LE: Request address field must be set')
+
+        address = utils.address_from(request.address)
+        self.initiated_le_connection.add(address)
+        try:
+            connect_le_device = asyncio.get_running_loop().create_future()
+            observer = ConnectionObserver({
+                'connect_le_device': connect_le_device,
+                'address': address
+            })
+            name = utils.create_observer_name(observer)
+            self.bluetooth.gatt_client.register_callback_observer(name, observer)
+            self.bluetooth.connect(address)
+            connected = await asyncio.wait_for(connect_le_device, timeout=20)
+            if not connected:
+                raise RuntimeError(f'Failed to connect to the {address}')
+        finally:
+            self.bluetooth.adapter_client.unregister_callback_observer(name, observer)
+
+        cookie = any_pb2.Any(value=utils.address_to(address))
+        return host_pb2.ConnectLEResponse(connection=host_pb2.Connection(cookie=cookie))
 
     async def Disconnect(self, request: host_pb2.DisconnectRequest, context: grpc.ServicerContext) -> empty_pb2.Empty:
         address = utils.address_from(request.connection.cookie.value)
@@ -556,6 +600,6 @@ class HostService(host_grpc_aio.HostServicer):
 
     async def SetConnectabilityMode(self, request: host_pb2.SetConnectabilityModeRequest,
                                     context: grpc.ServicerContext) -> empty_pb2.Empty:
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)  # type: ignore
-        context.set_details('Method not implemented!')  # type: ignore
-        raise NotImplementedError('Method not implemented!')
+        mode = request.mode
+        self.bluetooth.qa_client.set_connectable(mode)
+        return empty_pb2.Empty()
