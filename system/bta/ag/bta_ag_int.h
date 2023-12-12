@@ -229,35 +229,35 @@ struct tBTA_AG_SCB {
   tBTA_SERVICE_MASK open_services;      /* services specified in open API */
   uint16_t conn_handle;                 /* RFCOMM handle of connected service */
   tBTA_AG_FEAT features;                /* features registered by application */
-  tBTA_AG_FEAT masked_features;         /* local BRSF features for this connection */
-  tBTA_AG_PEER_FEAT peer_features;      /* peer device features */
-  uint16_t peer_sdp_features;           /* peer device SDP features */
-  uint16_t peer_version;                /* profile version of peer device */
-  uint16_t hsp_version;                 /* HSP profile version before SDP */
-  uint16_t sco_idx;                     /* SCO handle */
-  bool in_use;                          /* scb in use */
-  bool dealloc;                         /* true if service shutting down */
-  bool clip_enabled;        /* set to true if HF enables CLIP reporting */
-  bool ccwa_enabled;        /* set to true if HF enables CCWA reporting */
-  bool cmer_enabled;        /* set to true if HF enables CMER reporting */
-  bool cmee_enabled;        /* set to true if HF enables CME ERROR reporting */
-  bool inband_enabled;      /* set to true if inband ring enabled */
-  bool svc_conn;            /* set to true when service level connection up */
-  uint8_t state;            /* state machine state */
-  uint8_t conn_service;     /* connected service */
-  uint8_t peer_scn;         /* peer scn */
-  uint8_t app_id;           /* application id */
-  uint8_t role;             /* initiator/acceptor role */
-  uint8_t post_sco;         /* action to perform after sco event */
-  uint8_t call_ind;         /* CIEV call indicator value */
-  uint8_t callsetup_ind;    /* CIEV callsetup indicator value */
-  uint8_t service_ind;      /* CIEV service indicator value */
-  uint8_t signal_ind;       /* CIEV signal indicator value */
-  uint8_t roam_ind;         /* CIEV roam indicator value */
-  uint8_t battchg_ind;      /* CIEV battery charge indicator value */
-  uint8_t callheld_ind;     /* CIEV call held indicator value */
-  uint32_t bia_masked_out;  /* indicators HF does not want us to send */
-  alarm_t* bind_timer;      /* Timer for toyota camry 2018 carkit workaround */
+  tBTA_AG_FEAT masked_features;    /* local BRSF features for this connection */
+  tBTA_AG_PEER_FEAT peer_features; /* peer device features */
+  uint16_t peer_sdp_features;      /* peer device SDP features */
+  uint16_t peer_version;           /* profile version of peer device */
+  uint16_t hsp_version;            /* HSP profile version before SDP */
+  uint16_t sco_idx;                /* SCO handle */
+  bool in_use;                     /* scb in use */
+  bool dealloc;                    /* true if service shutting down */
+  bool clip_enabled;       /* set to true if HF enables CLIP reporting */
+  bool ccwa_enabled;       /* set to true if HF enables CCWA reporting */
+  bool cmer_enabled;       /* set to true if HF enables CMER reporting */
+  bool cmee_enabled;       /* set to true if HF enables CME ERROR reporting */
+  bool inband_enabled;     /* set to true if inband ring enabled */
+  bool svc_conn;           /* set to true when service level connection up */
+  uint8_t state;           /* state machine state */
+  uint8_t conn_service;    /* connected service */
+  uint8_t peer_scn;        /* peer scn */
+  uint8_t app_id;          /* application id */
+  uint8_t role;            /* initiator/acceptor role */
+  uint8_t post_sco;        /* action to perform after sco event */
+  uint8_t call_ind;        /* CIEV call indicator value */
+  uint8_t callsetup_ind;   /* CIEV callsetup indicator value */
+  uint8_t service_ind;     /* CIEV service indicator value */
+  uint8_t signal_ind;      /* CIEV signal indicator value */
+  uint8_t roam_ind;        /* CIEV roam indicator value */
+  uint8_t battchg_ind;     /* CIEV battery charge indicator value */
+  uint8_t callheld_ind;    /* CIEV call held indicator value */
+  uint32_t bia_masked_out; /* indicators HF does not want us to send */
+  alarm_t* bind_timer;     /* Timer for toyota camry 2018 carkit workaround */
   alarm_t* collision_timer;
   alarm_t* ring_timer;
   alarm_t* codec_negotiation_timer;
@@ -270,6 +270,8 @@ struct tBTA_AG_SCB {
       inuse_codec;     /* codec being used for the current SCO connection */
   bool codec_updated;  /* set to true whenever the app updates codec type */
   bool codec_fallback; /* If sco nego fails for mSBC, fallback to CVSD */
+  uint8_t retransmission_effort_retries;         /* Number of attempts made for
+                                                  retransmission */
   tBTA_AG_SCO_MSBC_SETTINGS codec_msbc_settings; /* settings to be used for the
                                                     impending eSCO on WB */
   tBTA_AG_SCO_LC3_SETTINGS codec_lc3_settings;   /* settings to be used for the
@@ -300,11 +302,11 @@ struct tBTA_AG_SCB {
 /* type for sco data */
 typedef struct {
   tBTM_ESCO_CONN_REQ_EVT_DATA conn_data; /* SCO data for pending conn request */
-  tBTA_AG_SCB* p_curr_scb;  /* SCB associated with SCO connection */
-  tBTA_AG_SCB* p_xfer_scb;  /* SCB associated with SCO transfer */
-  uint16_t cur_idx;         /* SCO handle */
-  tBTA_AG_SCO state;        /* SCO state variable */
-  bool is_local;            /* SCO connection initiated locally or remotely */
+  tBTA_AG_SCB* p_curr_scb; /* SCB associated with SCO connection */
+  tBTA_AG_SCB* p_xfer_scb; /* SCB associated with SCO transfer */
+  uint16_t cur_idx;        /* SCO handle */
+  tBTA_AG_SCO state;       /* SCO state variable */
+  bool is_local;           /* SCO connection initiated locally or remotely */
 } tBTA_AG_SCO_CB;
 
 /* type for AG control block */
