@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7602a70b_d5b6af14",
+        "filename": "flags/hal.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1956242
+      },
+      "writtenOn": "2023-12-12T18:30:55Z",
+      "side": 1,
+      "message": "That\u0027s a good doc to follow, thanks!",
+      "parentUuid": "f0a1c4e8_dc53aead",
+      "range": {
+        "startLine": 7,
+        "startChar": 10,
+        "endLine": 7,
+        "endChar": 19
+      },
+      "revId": "2f08f3b57c999d4aa0926e9510c08445c5307407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "325de706_39d69319",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-12T15:24:27Z",
       "side": 1,
       "message": "Naive question, is the ifdef needed ?\nsince you are already using REQUIRES_FLAGS_ENABLED",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 55
+      },
+      "revId": "2f08f3b57c999d4aa0926e9510c08445c5307407",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "618a34f4_e8c283b9",
+        "filename": "system/test/common/hal_version_manager_test.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1956242
+      },
+      "writtenOn": "2023-12-12T18:30:55Z",
+      "side": 1,
+      "message": "I\u0027m afraid we will still need the `#if` here, because `audio_hal_version_class` is a build-time flag which means if it\u0027s not enabled, these code won\u0027t compile.\nAnd what `REQUIRES_FLAGS_ENABLED` do is skipping the test if flag not enabled:\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:platform_testing/libraries/flag-helpers/libflagtest/include/flag_macros.h;l\u003d160-161;drc\u003dd64e2a2939b1dbb09b8f5e66bf2e0ddc685b27d8",
+      "parentUuid": "325de706_39d69319",
       "range": {
         "startLine": 150,
         "startChar": 4,
