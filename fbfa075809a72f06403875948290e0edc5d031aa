@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbe63c43_0d12876a",
+        "filename": "system/stack/smp/smp_keys.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-12T21:41:30Z",
+      "side": 1,
+      "message": "nit:\nis_oob_data_empty  ?",
+      "range": {
+        "startLine": 71,
+        "startChar": 12,
+        "endLine": 71,
+        "endChar": 29
+      },
+      "revId": "fbfa075809a72f06403875948290e0edc5d031aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
