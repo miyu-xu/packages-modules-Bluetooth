@@ -34,3 +34,10 @@ flag {
     description: "start and stop of the SCO is managed by Audio instead of Bluetooth"
     bug: "315234036"
 }
+
+flag {
+    name: "fall_back_to_sco_connection_if_esco_connection_is_failed"
+    namespace: "bluetooth"
+    description: "Fall back to SCO connection if eSCO connection is failed"
+    bug: "303168931"
+}
