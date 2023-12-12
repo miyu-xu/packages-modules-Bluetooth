@@ -16,6 +16,24 @@
       "message": "Looks like 2 things:\n1) Changing when/where this is called\n2) Removing injectable controller interface",
       "revId": "512b1d05ff2d231d53857f9815e0c4e40bdcfc55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b065d3d6_b02bbfd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-12T00:48:38Z",
+      "side": 1,
+      "message": "True.  It removes it from BTM_acl_after_controller_started, but I don\u0027t expect that to be a top-level API in the Invisalign module.",
+      "parentUuid": "0b935233_5446e53d",
+      "revId": "512b1d05ff2d231d53857f9815e0c4e40bdcfc55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
