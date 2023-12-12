@@ -29,8 +29,15 @@ flag {
 }
 
 flag {
+<<<<<<< HEAD   (fa730e Fall back to SCO connection if eSCO connection is failed)
     name: "Fall_back_to_SCO_connection_if_eSCO_connection_is_failed"
     namespace: "bluetooth"
     description: "Fall back to SCO connection if eSCO connection is failed"
     bug: "303168931"
+=======
+    name: "is_sco_managed_by_audio"
+    namespace: "bluetooth"
+    description: "start and stop of the SCO is managed by Audio instead of Bluetooth"
+    bug: "315234036"
+>>>>>>> BRANCH (6224ee HFP: Add flag for HFP SCO Management)
 }
