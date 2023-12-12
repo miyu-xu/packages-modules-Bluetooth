@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "134460c0_64f7193b",
+        "filename": "android/app/src/com/android/bluetooth/mapclient/MapClientContent.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1929200
+      },
+      "writtenOn": "2023-12-12T00:22:19Z",
+      "side": 1,
+      "message": "Thank you for the review.\n\nI think as long as the flag value is true(if things go as planned, the flag should advance to the last next food stage to join V release) the first time bluetooth running on a V system, then SdkLevel.isAtLeastV() is enough.\n\nCould you please confirm each bluetooth drop will be tested before shipping? (So just in case the bluetooth is running on V and the flag is still disabled, it should result in runtime method not found exception.)",
+      "range": {
+        "startLine": 141,
+        "startChar": 21,
+        "endLine": 141,
+        "endChar": 31
+      },
+      "revId": "d2ac2dd71b477589be338dcb2bbab9573665a9cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f54e9ba_c589d779",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientContentTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1929200
+      },
+      "writtenOn": "2023-12-12T00:22:19Z",
+      "side": 1,
+      "message": "This is to make sure future mock of `mMockSubscriptionManager` are successful when `createForAllUserProfiles` is being used in real code:\n\ne.g. when the flag is enabled,  https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/mapclient/MapClientContentTest.java;l\u003d148?q\u003dandroid%2Fapp%2Ftests%2Funit%2Fsrc%2Fcom%2Fandroid%2Fbluetooth%2Fmapclient%2FMapClientContentTest.java\u0026sq\u003drepo:googleplex-android%2Fplatform%2Fsuperproject%2Fmain%20b:main",
+      "range": {
+        "startLine": 149,
+        "startChar": 21,
+        "endLine": 149,
+        "endChar": 31
+      },
+      "revId": "d2ac2dd71b477589be338dcb2bbab9573665a9cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
