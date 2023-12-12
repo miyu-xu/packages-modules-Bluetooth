@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6e064d4a_08acc552",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-12T21:42:43Z",
+      "side": 1,
+      "message": "For the Dr. No approval you\u0027ll either need to add Flag bug or exemption reason (see go/bt-ts-workflow).",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 3
+      },
+      "revId": "e786965486591bbd647f460a0bd79d68fa22c0b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
