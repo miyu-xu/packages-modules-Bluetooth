@@ -250,6 +250,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4fb97d2_8802f9a4",
+        "filename": "system/stack/btm/btm_iso_impl.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 561,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-12-12T15:48:19Z",
+      "side": 1,
+      "message": "Sorry for the late response. My point was that the specification states that the sequence number shall be incremented every SDU_interval, which is a constant CIG parameter. If we can\u0027t guarantee that `send_iso_data()` is always called periodically every SDU_Interval and we simply increment by 1, we might effectively lag behind and the sequence number would eventually drift away from the correct (from the specification point of view) value. Taking the actual elapsed time here was to correct for the sequence number drift caused by calling `send_iso_data()` not fast enough. At least that was the idea.",
+      "parentUuid": "89722059_31e1e79b",
+      "range": {
+        "startLine": 561,
+        "startChar": 27,
+        "endLine": 561,
+        "endChar": 49
+      },
+      "revId": "7426dc54db95e188742cffd6d62c83abdf8a9ff6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1cb2fc56_3c860fe2",
