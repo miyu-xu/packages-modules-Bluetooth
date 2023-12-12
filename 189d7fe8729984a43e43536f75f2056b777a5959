@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "058a6b9e_c7dc036c",
+        "filename": "system/stack/include/smp_api_types.h",
+        "patchSetId": 8
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-12T12:57:55Z",
+      "side": 1,
+      "message": "Since the switch is over an enum, the default should not be necessary. Not having the default will make a compile time check that you haven\u0027t forgot a field from the enum. (in case in the futur someone need to add a new enum value but is not aware of this method)\n\nIf the event is remotely build and you do not control its value, you may want to keep the default but I recommend adding the uint value inside the string returned.",
+      "range": {
+        "startLine": 79,
+        "startChar": 1,
+        "endLine": 80,
+        "endChar": 33
+      },
+      "revId": "189d7fe8729984a43e43536f75f2056b777a5959",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
