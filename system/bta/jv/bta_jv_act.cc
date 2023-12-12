@@ -1372,6 +1372,13 @@ void bta_jv_rfcomm_connect(tBTA_SEC sec_mask, uint8_t remote_scn,
   tBTA_JV_RFCOMM_CL_INIT evt_data;
   memset(&evt_data, 0, sizeof(evt_data));
   evt_data.status = BTA_JV_SUCCESS;
+
+  // Update security service record for RFCOMM client so that
+  // secure RFCOMM connection will be authenticated with MTIM protection
+  // while creating the L2CAP connection.
+  BTM_SetSecurityLevel(true, "RFC_MUX", BTM_SEC_SERVICE_RFC_MUX, sec_mask,
+                       BT_PSM_RFCOMM, BTM_SEC_PROTO_RFCOMM, 0);
+
   if (evt_data.status == BTA_JV_SUCCESS &&
       RFCOMM_CreateConnectionWithSecurity(
           UUID_SERVCLASS_SERIAL_PORT, remote_scn, false, BTA_JV_DEF_RFC_MTU,
