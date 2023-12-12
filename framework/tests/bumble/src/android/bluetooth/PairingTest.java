@@ -22,8 +22,11 @@ import static androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra;
 import static com.google.common.truth.Truth.assertThat;
 
 import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.anyInt;
 import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import android.bluetooth.test_utils.EnableBluetoothRule;
@@ -51,12 +54,13 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.hamcrest.MockitoHamcrest;
 
-import pandora.SecurityProto.PairingEvent;
-import pandora.SecurityProto.PairingEventAnswer;
-
 import java.time.Duration;
 import java.util.Set;
+import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
+
+import pandora.SecurityProto.PairingEvent;
+import pandora.SecurityProto.PairingEventAnswer;
 
 @RunWith(AndroidJUnit4.class)
 public class PairingTest {
@@ -116,8 +120,8 @@ public class PairingTest {
      *   <li>1. Bumble resets, enables inquiry and page scan, and sets I/O cap to no display no
      *       input
      *   <li>2. Android connects to Bumble via its MAC address
-     *   <li>3. Android tries to create bond, emitting bonding intent 4. Android confirms the
-     *       pairing via pairing request intent
+     *   <li>3. Android tries to create bond, emitting bonding intent
+     *   <li>4. Android confirms the pairing via pairing request intent
      *   <li>5. Bumble confirms the pairing internally (optional, added only for test confirmation)
      *   <li>6. Android verifies bonded intent
      * </ol>
@@ -154,6 +158,26 @@ public class PairingTest {
                 hasExtra(BluetoothDevice.EXTRA_BOND_STATE, BluetoothDevice.BOND_BONDED));
 
         verifyNoMoreInteractions(mReceiver);
+    }
+
+    /** Test a simple BLE OOB Data Generation request resulting in successful generation. */
+    @Test
+    public void testOOBDataGeneration_success() {
+        // Arrange: requires a transport, an executor, and a callback.
+        Executor executor =
+                new Executor() {
+                    @Override
+                    public void execute(Runnable command) {
+                        command.run();
+                    }
+                };
+
+        BluetoothAdapter.OobDataCallback callback = mock(BluetoothAdapter.OobDataCallback.class);
+        // Act
+        sAdapter.generateLocalOobData(BluetoothDevice.TRANSPORT_LE, executor, callback);
+
+        // Assert
+        verify(callback, timeout(5000)).onOobData(anyInt(), any());
     }
 
     private void removeBond(BluetoothDevice device) {
