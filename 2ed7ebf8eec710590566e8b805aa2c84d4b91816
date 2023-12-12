@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e57d4ca5_9a07e45c",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-12T07:02:42Z",
+      "side": 1,
+      "message": "we do want to log successes. This helps us to see things in terms of percentages. So we do want to retain success as well. \n\nEg: saying we had 10 failures doesn\u0027t help. But saying we had (10 failures and 90 success does since we can say we have 10% failure rate).",
+      "parentUuid": "8305b9a2_3076d81f",
+      "range": {
+        "startLine": 496,
+        "startChar": 12,
+        "endLine": 505,
+        "endChar": 50
+      },
+      "revId": "2ed7ebf8eec710590566e8b805aa2c84d4b91816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f413f10_313bd56a",
         "filename": "framework/java/android/bluetooth/MetricsUtils.java",
         "patchSetId": 1
