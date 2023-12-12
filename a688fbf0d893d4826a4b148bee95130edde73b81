@@ -16,6 +16,24 @@
       "message": "There is logic to check if existing parameters are zero, and if so re-load with default parameters which is possibly why setting them here improves the behavior.",
       "revId": "a688fbf0d893d4826a4b148bee95130edde73b81",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4b17256_3754c724",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-12-12T05:31:09Z",
+      "side": 1,
+      "message": "As I look through the code, the parameters were never set when inquiry/discovery is started.\nSo we ended up going to some \"default\" values that are not really \"default\" for discovery. I think this might be regression from some legacy scanning logic refactor someone did 3-4 months ago.",
+      "parentUuid": "54900709_167e01c8",
+      "revId": "a688fbf0d893d4826a4b148bee95130edde73b81",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
