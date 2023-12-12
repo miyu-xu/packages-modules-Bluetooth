@@ -16,6 +16,24 @@
       "message": "Hello, maybe this is still WIP but I think unless you want to change this on the fly, adding a sysprop makes a bit more sense. https://docs.google.com/document/d/1srH5ERcPusjvbOtGlopKRQsGSrsT9d3afj5OrSnqMnE/edit#heading\u003dh.oil6wvdw188s",
       "revId": "2908e1dbc39fa9ace0d40e709f08b492ab9a7057",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7656f7f7_8b4ab033",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-12T06:11:44Z",
+      "side": 1,
+      "message": "Thanks for the info! I\u0027ll try sysprop.",
+      "parentUuid": "364636eb_049434ba",
+      "revId": "2908e1dbc39fa9ace0d40e709f08b492ab9a7057",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
