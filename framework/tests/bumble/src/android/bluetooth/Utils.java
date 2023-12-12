@@ -23,7 +23,9 @@ import com.google.protobuf.ByteString;
 import java.util.Locale;
 
 public final class Utils {
+    // From bumble_config.json
     public static final String BUMBLE_RANDOM_ADDRESS = "51:F7:A8:75:AC:5E";
+    public static final String BUMBLE_IRK = "1F66F4B5F0C742F807DD0DDBF64E9213";
 
     public static String addressStringFromByteString(ByteString bs) {
         StringBuilder refAddrBuilder = new StringBuilder();
@@ -42,5 +44,15 @@ public final class Utils {
      */
     public static byte[] addressBytesFromString(String address) {
         return base16().upperCase().withSeparator(":", 2).decode(address.toUpperCase(Locale.US));
+    }
+
+    /**
+     * Decode hex string in to byte array
+     *
+     * @param value hex string to be decoded
+     * @return byte array of decoded hex string
+     */
+    public static byte[] hexStringToByteArray(String value) {
+        return base16().decode(value);
     }
 }
