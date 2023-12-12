@@ -19,9 +19,11 @@ import logging
 from floss.pandora.server import bluetooth as bluetooth_module
 from floss.pandora.server import host
 from floss.pandora.server import security
+from floss.pandora.server import a2dp
 import grpc
 from pandora import host_grpc_aio
 from pandora import security_grpc_aio
+from pandora import a2dp_grpc_aio
 
 
 async def serve(port):
@@ -45,6 +47,9 @@ async def serve(port):
 
             security_storage_service = security.SecurityStorageService(server, bluetooth)
             security_grpc_aio.add_SecurityStorageServicer_to_server(security_storage_service, server)
+
+            a2dp_service = a2dp.A2DPService(bluetooth)
+            a2dp_grpc_aio.add_A2DPServicer_to_server(a2dp_service, server)
 
             server.add_insecure_port(f'[::]:{port}')
 
