@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "758363d0_c6bb4a27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-12-12T20:15:32Z",
+      "side": 1,
+      "message": "Discussed with Hsin-yu offline. We won\u0027t proceed this CL and will instead adding a new interface under system/gd/os. Cc\u0027ed Abhishek to see what we\u0027d like to do with the implementation for common/metrics.h on linux.",
+      "revId": "565a1cc1500cf381b48d94395b08eb09d5098ffd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "315326f7_545a7e75",
