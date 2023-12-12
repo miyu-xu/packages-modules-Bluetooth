@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "777e313e_a75fa8c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-12T14:31:37Z",
+      "side": 1,
+      "message": "Since we are changing the type, can we use a Duration instead ?",
+      "revId": "edda6a7d443505ce0db99edbaa08397e10e7d7d1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
