@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5435e276_2008002d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-12T02:00:19Z",
+      "side": 1,
+      "message": "Thanks for the patch here Ben, this LGTM and great catches with comment correction as well!\n\nOnly thing needed to get the Dr. No vote is either a flag guarding this change and add \"Bug: \u003cflag tracking bug\u003e\" or an exemption reason (see go/bt-ts-workflow for more details). \n\nFor this one flag guarding is probably safest approach (FWIW I\u0027m happy to pick up ramping the flag or adding it if you\u0027d prefer, just LMK if so).",
+      "revId": "1ff2eacc7671d97c2456b92c6baa40cc65f774a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
