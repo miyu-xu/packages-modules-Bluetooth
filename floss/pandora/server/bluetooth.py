@@ -22,6 +22,7 @@ from floss.pandora.floss import adapter_client
 from floss.pandora.floss import advertising_client
 from floss.pandora.floss import manager_client
 from floss.pandora.floss import scanner_client
+from floss.pandora.floss import floss_enums
 from floss.pandora.floss import utils
 from gi.repository import GLib
 import pydbus
@@ -258,3 +259,7 @@ class Bluetooth(object):
             logging.error('Failed to stop scanning.')
             return False
         return True
+
+    def is_encrypted(self, address):
+        connection_state = self.adapter_client.get_connection_state(address)
+        return connection_state > floss_enums.BtConnectionState.CONNECTED_ONLY
