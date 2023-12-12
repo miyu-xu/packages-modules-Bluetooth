@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36a19d42_a937fdab",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-12T21:08:05Z",
+      "side": 1,
+      "message": "@patibandlas@google.com you\u0027ll have to add \"Flag: TEST_ONLY\" to this commit message and then I can give the Dr. No approval once the CL is owner approved. \n\nContext and full guidance: go/bt-ts-workflow",
+      "revId": "76af176aa600d62967696fa7d1e4d4aa70778ef1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
