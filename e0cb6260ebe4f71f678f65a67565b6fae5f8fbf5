@@ -46,6 +46,30 @@
       },
       "revId": "e0cb6260ebe4f71f678f65a67565b6fae5f8fbf5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36602041_5ef4b9c0",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-12T21:46:35Z",
+      "side": 1,
+      "message": "e.g. here, BTM_PINCodeReply is still not a method of tBTM_SEC_CB\n\nAfter fully encapusulated ,we can set its visibility to private",
+      "parentUuid": "8b62c9fc_8471b097",
+      "range": {
+        "startLine": 523,
+        "startChar": 17,
+        "endLine": 523,
+        "endChar": 37
+      },
+      "revId": "e0cb6260ebe4f71f678f65a67565b6fae5f8fbf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
