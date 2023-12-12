@@ -39,11 +39,106 @@ class SecurityService(security_grpc_aio.SecurityServicer):
     /pandora/bt-test-interfaces/pandora/security.proto
     """
 
-    def __init__(self, server: grpc.aio.Server, bluetooth: bluetooth_module.Bluetooth):
-        self.server = server
+    def __init__(self, bluetooth: bluetooth_module.Bluetooth):
         self.bluetooth = bluetooth
         self.manually_confirm = False
         self.on_pairing_count = 0
+
+    async def wait_le_security_level(self, level, address):
+        class BondingObserver(adapter_client.BluetoothCallbacks):
+            """Observer to observe the bond state."""
+
+            def __init__(self, task):
+                self.task = task
+
+            @utils.glib_callback()
+            def on_bond_state_changed(self, status, address, state):
+                if address != self.task['address']:
+                    return
+
+                future = self.task['wait_bond']
+                if status != 0:
+                    future.get_loop().call_soon_threadsafe(future.set_result, (
+                        False, f'{address} failed to change bond. Status: {status}, State: {state}'))
+                    return
+
+                if state == floss_enums.BondState.BONDED:
+                    future.get_loop().call_soon_threadsafe(future.set_result, True)
+                elif state == floss_enums.BondState.NOT_BONDED:
+                    future.get_loop().call_soon_threadsafe(future.set_result, False)
+
+        if level == security_pb2.LE_LEVEL1:
+            return True
+        elif level == security_pb2.LE_LEVEL4:
+            raise RuntimeError(f'WaitSecurity: Low-energy level 4 not supported')
+        else:
+            if self.bluetooth.is_bonded(address):
+                is_bonded = True
+            else:
+                try:
+                    wait_bond = asyncio.get_running_loop().create_future()
+                    observer = BondingObserver({'wait_bond': wait_bond, 'address': address})
+                    name = utils.create_observer_name(observer)
+                    self.bluetooth.adapter_client.register_callback_observer(name, observer)
+                    is_bonded = await wait_bond
+                finally:
+                    self.bluetooth.adapter_client.unregister_callback_observer(name, observer)
+
+            is_encrypted = self.bluetooth.is_encrypted(address)
+            if level == security_pb2.LE_LEVEL2:
+                return is_encrypted
+            if level == security_pb2.LE_LEVEL3:
+                return is_encrypted and is_bonded
+            else:
+                raise RuntimeError(f'WaitSecurity: Low-energy level 4 not supported')
+
+    async def wait_classic_security_level(self, level, address):
+        class BondingObserver(adapter_client.BluetoothCallbacks):
+            """Observer to observe the bond state"""
+
+            def __init__(self, task):
+                self.task = task
+
+            @utils.glib_callback()
+            def on_bond_state_changed(self, status, address, state):
+                if address != self.task['address']:
+                    return
+
+                future = self.task['wait_bond']
+                if status != 0:
+                    future.get_loop().call_soon_threadsafe(future.set_result, (
+                        False, f'{address} failed to change bond. Status: {status}, State: {state}'))
+                    return
+
+                if state == floss_enums.BondState.BONDED:
+                    future.get_loop().call_soon_threadsafe(future.set_result, True)
+                elif state == floss_enums.BondState.NOT_BONDED:
+                    future.get_loop().call_soon_threadsafe(future.set_result, False)
+
+        if level == security_pb2.LEVEL0:
+            return True
+        elif level == security_pb2.LEVEL3:
+            raise RuntimeError(f'WaitSecurity: Classic level 3 not supported')
+        else:
+            if self.bluetooth.is_bonded(address):
+                is_bonded = True
+            else:
+                try:
+                    wait_bond = asyncio.get_running_loop().create_future()
+                    observer = BondingObserver({'wait_bond': wait_bond, 'address': address})
+                    name = utils.create_observer_name(observer)
+                    self.bluetooth.adapter_client.register_callback_observer(name, observer)
+                    is_bonded = await wait_bond
+                finally:
+                    self.bluetooth.adapter_client.unregister_callback_observer(name, observer)
+
+            is_encrypted = self.bluetooth.is_encrypted(address)
+            if level == security_pb2.LEVEL1:
+                return not is_encrypted or is_bonded
+            if level == security_pb2.LEVEL2:
+                return is_encrypted and is_bonded
+            else:
+                return False
 
     async def OnPairing(self, request: AsyncIterator[security_pb2.PairingEventAnswer],
                         context: grpc.ServicerContext) -> AsyncGenerator[security_pb2.PairingEvent, None]:
@@ -176,15 +271,61 @@ class SecurityService(security_grpc_aio.SecurityServicer):
 
     async def Secure(self, request: security_pb2.SecureRequest,
                      context: grpc.ServicerContext) -> security_pb2.SecureResponse:
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)  # type: ignore
-        context.set_details('Method not implemented!')  # type: ignore
-        raise NotImplementedError('Method not implemented!')
+        address = utils.address_from(request.connection.cookie.value)
+        device_type = self.bluetooth.adapter_client.get_remote_property(address, 'Type')
+        level = request.WhichOneof('level')
+
+        if device_type == floss_enums.BtDeviceType.BLE or (device_type == floss_enums.BtDeviceType.DUAL and
+                                                           level == 'le'):
+            if request.le == security_pb2.LE_LEVEL1:
+                security_level_reached = True
+            elif request.le == security_pb2.LE_LEVEL4:
+                raise RuntimeError(f'Secure: Low-energy level 4 not supported')
+            else:
+                if not self.bluetooth.is_bonded(address):
+                    self.bluetooth.create_bond(address, floss_enums.BtTransport.LE)
+                security_level_reached = await self.wait_le_security_level(request.le, address)
+        elif device_type == floss_enums.BtDeviceType.BR_EDR or (device_type == floss_enums.BtDeviceType.DUAL and
+                                                                level == 'classic'):
+            if request.classic == security_pb2.LEVEL0:
+                security_level_reached = True
+            elif request.classic >= security_pb2.LEVEL3:
+                raise RuntimeError(f'Secure: Classic level up to 3 not supported')
+            else:
+                if not self.bluetooth.is_bonded(address):
+                    self.bluetooth.create_bond(address, floss_enums.BtTransport.BR_EDR)
+                security_level_reached = await self.wait_classic_security_level(request.classic, address)
+        else:
+            raise RuntimeError(f'Secure: Invalid bluetooth transport type')
+
+        secure_response = security_pb2.SecureResponse()
+        if security_level_reached:
+            secure_response.success.CopyFrom(empty_pb2.Empty())
+        else:
+            secure_response.pairing_failure.CopyFrom(empty_pb2.Empty())
+        return secure_response
 
     async def WaitSecurity(self, request: security_pb2.WaitSecurityRequest,
                            context: grpc.ServicerContext) -> security_pb2.WaitSecurityResponse:
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)  # type: ignore
-        context.set_details('Method not implemented!')  # type: ignore
-        raise NotImplementedError('Method not implemented!')
+        address = utils.address_from(request.connection.cookie.value)
+        device_type = self.bluetooth.adapter_client.get_remote_property(address, 'Type')
+        level = request.WhichOneof('level')
+
+        if device_type == floss_enums.BtDeviceType.BLE or (device_type == floss_enums.BtDeviceType.DUAL and
+                                                           level == 'le'):
+            security_level_reached = await self.wait_le_security_level(request.le, address)
+        elif device_type == floss_enums.BtDeviceType.BR_EDR or (device_type == floss_enums.BtDeviceType.DUAL and
+                                                                level == 'classic'):
+            security_level_reached = await self.wait_classic_security_level(request.classic, address)
+        else:
+            raise RuntimeError(f'WaitSecurity: Invalid bluetooth transport type')
+
+        wait_security_response = security_pb2.WaitSecurityResponse()
+        if security_level_reached:
+            wait_security_response.success.CopyFrom(empty_pb2.Empty())
+        else:
+            wait_security_response.pairing_failure.CopyFrom(empty_pb2.Empty())
+        return wait_security_response
 
 
 class SecurityStorageService(security_grpc_aio.SecurityStorageServicer):
