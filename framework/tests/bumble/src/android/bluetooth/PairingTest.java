@@ -184,6 +184,79 @@ public class PairingTest {
         verify(callback, timeout(5000)).onOobData(anyInt(), any());
     }
 
+    /**
+     * Test BLE OOB Data generation when a previous request is pending, resulting in failure.
+     *
+     * <p>Test Case 6.1, Variant 1 from go/dck-bt-test-spec
+     */
+    @Test
+    public void testOOBDataGeneration_withPendingRequest_onErrorCalled() {
+        // Arrange
+        Executor actionExecutor =
+                new Executor() {
+                    @Override
+                    public void execute(Runnable command) {
+                        command.run();
+                    }
+                };
+        Executor doNothingExecutor =
+                new Executor() {
+                    @Override
+                    public void execute(Runnable command) {
+                        // Executor does nothing to keep request pending.
+                    }
+                };
+        BluetoothAdapter.OobDataCallback doNothingCallback =
+                mock(BluetoothAdapter.OobDataCallback.class);
+        BluetoothAdapter.OobDataCallback actionCallback =
+                mock(BluetoothAdapter.OobDataCallback.class);
+
+        // Act
+        sAdapter.generateLocalOobData(
+                BluetoothDevice.TRANSPORT_LE, doNothingExecutor, doNothingCallback);
+        sAdapter.generateLocalOobData(BluetoothDevice.TRANSPORT_LE, actionExecutor, actionCallback);
+
+        // Assert
+        verify(actionCallback, timeout(5000)).onError(anyInt());
+    }
+
+    /**
+     * Test BLE OOB Data generation when a previous request is pending, resulting in failure.
+     *
+     * <p>Test Case 6.1, Variant 2 from go/dck-bt-test-spec
+     */
+    @Test
+    public void testOOBDataGeneration_afterAnotherRequest_success() {
+        // Arrange
+        Executor completedExecutor =
+                new Executor() {
+                    @Override
+                    public void execute(Runnable command) {
+                        command.run();
+                    }
+                };
+        Executor actionExecutor =
+                new Executor() {
+                    @Override
+                    public void execute(Runnable command) {
+                        command.run();
+                    }
+                };
+        BluetoothAdapter.OobDataCallback completedCallback =
+                mock(BluetoothAdapter.OobDataCallback.class);
+        BluetoothAdapter.OobDataCallback actionCallback =
+                mock(BluetoothAdapter.OobDataCallback.class);
+
+        // Act
+        sAdapter.generateLocalOobData(
+                BluetoothDevice.TRANSPORT_LE, completedExecutor, completedCallback);
+        verify(completedCallback, timeout(5000)).onOobData(anyInt(), any());
+        sAdapter.generateLocalOobData(BluetoothDevice.TRANSPORT_LE, actionExecutor, actionCallback);
+
+        // Assert
+        verify(actionCallback, timeout(5000)).onOobData(anyInt(), any());
+    }
+
     private void removeBond(BluetoothDevice device) {
         assertThat(device.removeBond()).isTrue();
         verifyIntentReceived(
