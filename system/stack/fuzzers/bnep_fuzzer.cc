@@ -61,7 +61,7 @@ class FakeBtStack {
       return true;
     };
     test::mock::stack_l2cap_api::L2CA_ConnectReq2.body =
-        [](uint16_t psm, const RawAddress& p_bd_addr, uint16_t sec_level) {
+        [](uint16_t psm, RawAddress p_bd_addr, uint16_t sec_level) {
           CHECK(p_bd_addr == kDummyRemoteAddr);
           return kDummyCid;
         };
@@ -103,15 +103,14 @@ static void ConsumeData(const uint8_t* data, size_t size) {
 static void Fuzz(const uint8_t* data, size_t size) {
   tBNEP_REGISTER reg = {
       .p_conn_ind_cb =
-          [](uint16_t handle, const RawAddress& bd_addr,
+          [](uint16_t handle, RawAddress bd_addr,
              const bluetooth::Uuid& remote_uuid,
              const bluetooth::Uuid& local_uuid,
              bool is_role_change) { BNEP_ConnectResp(handle, BNEP_SUCCESS); },
-      .p_conn_state_cb = [](uint16_t handle, const RawAddress& rem_bda,
+      .p_conn_state_cb = [](uint16_t handle, RawAddress rem_bda,
                             tBNEP_RESULT result, bool is_role_change) {},
-      .p_data_ind_cb = [](uint16_t handle, const RawAddress& src,
-                          const RawAddress& dst, uint16_t protocol,
-                          uint8_t* p_data, uint16_t len,
+      .p_data_ind_cb = [](uint16_t handle, RawAddress src, RawAddress dst,
+                          uint16_t protocol, uint8_t* p_data, uint16_t len,
                           bool fw_ext_present) { ConsumeData(p_data, len); },
       .p_tx_data_flow_cb = [](uint16_t handle, tBNEP_RESULT event) {},
       .p_filter_ind_cb =

@@ -36,15 +36,15 @@ namespace stack_pan_api {
 
 // Shared state between mocked functions and tests
 // Name: PAN_Connect
-// Params: const RawAddress& rem_bda, tPAN_ROLE src_role, tPAN_ROLE dst_role,
+// Params: RawAddress rem_bda, tPAN_ROLE src_role, tPAN_ROLE dst_role,
 // uint16_t* handle Returns: tPAN_RESULT
 struct PAN_Connect {
-  std::function<tPAN_RESULT(const RawAddress& rem_bda, tPAN_ROLE src_role,
+  std::function<tPAN_RESULT(RawAddress rem_bda, tPAN_ROLE src_role,
                             tPAN_ROLE dst_role, uint16_t* handle)>
-      body{[](const RawAddress& /* rem_bda */, tPAN_ROLE /* src_role */,
+      body{[](RawAddress /* rem_bda */, tPAN_ROLE /* src_role */,
               tPAN_ROLE /* dst_role */,
               uint16_t* /* handle */) { return PAN_SUCCESS; }};
-  tPAN_RESULT operator()(const RawAddress& rem_bda, tPAN_ROLE src_role,
+  tPAN_RESULT operator()(RawAddress rem_bda, tPAN_ROLE src_role,
                          tPAN_ROLE dst_role, uint16_t* handle) {
     return body(rem_bda, src_role, dst_role, handle);
   };
@@ -104,37 +104,34 @@ struct PAN_SetRole {
 };
 extern struct PAN_SetRole PAN_SetRole;
 // Name: PAN_Write
-// Params: uint16_t handle, const RawAddress& dst, const RawAddress& src,
+// Params: uint16_t handle, RawAddress dst, const RawAddress& src,
 // uint16_t protocol, uint8_t* p_data, uint16_t len, bool ext Returns:
 // tPAN_RESULT
 struct PAN_Write {
-  std::function<tPAN_RESULT(uint16_t handle, const RawAddress& dst,
-                            const RawAddress& src, uint16_t protocol,
-                            uint8_t* p_data, uint16_t len, bool ext)>
-      body{[](uint16_t /* handle */, const RawAddress& /* dst */,
-              const RawAddress& /* src */, uint16_t /* protocol */,
-              uint8_t* /* p_data */, uint16_t /* len */,
-              bool /* ext */) { return PAN_SUCCESS; }};
-  tPAN_RESULT operator()(uint16_t handle, const RawAddress& dst,
-                         const RawAddress& src, uint16_t protocol,
-                         uint8_t* p_data, uint16_t len, bool ext) {
+  std::function<tPAN_RESULT(uint16_t handle, RawAddress dst, RawAddress src,
+                            uint16_t protocol, uint8_t* p_data, uint16_t len,
+                            bool ext)>
+      body{[](uint16_t /* handle */, RawAddress /* dst */, RawAddress /* src */,
+              uint16_t /* protocol */, uint8_t* /* p_data */,
+              uint16_t /* len */, bool /* ext */) { return PAN_SUCCESS; }};
+  tPAN_RESULT operator()(uint16_t handle, RawAddress dst, RawAddress src,
+                         uint16_t protocol, uint8_t* p_data, uint16_t len,
+                         bool ext) {
     return body(handle, dst, src, protocol, p_data, len, ext);
   };
 };
 extern struct PAN_Write PAN_Write;
 // Name: PAN_WriteBuf
-// Params: uint16_t handle, const RawAddress& dst, const RawAddress& src,
+// Params: uint16_t handle, RawAddress dst, const RawAddress& src,
 // uint16_t protocol, BT_HDR* p_buf, bool ext Returns: tPAN_RESULT
 struct PAN_WriteBuf {
-  std::function<tPAN_RESULT(uint16_t handle, const RawAddress& dst,
-                            const RawAddress& src, uint16_t protocol,
-                            BT_HDR* p_buf, bool ext)>
-      body{[](uint16_t /* handle */, const RawAddress& /* dst */,
-              const RawAddress& /* src */, uint16_t /* protocol */,
-              BT_HDR* /* p_buf */, bool /* ext */) { return PAN_SUCCESS; }};
-  tPAN_RESULT operator()(uint16_t handle, const RawAddress& dst,
-                         const RawAddress& src, uint16_t protocol,
-                         BT_HDR* p_buf, bool ext) {
+  std::function<tPAN_RESULT(uint16_t handle, RawAddress dst, RawAddress src,
+                            uint16_t protocol, BT_HDR* p_buf, bool ext)>
+      body{[](uint16_t /* handle */, RawAddress /* dst */, RawAddress /* src */,
+              uint16_t /* protocol */, BT_HDR* /* p_buf */,
+              bool /* ext */) { return PAN_SUCCESS; }};
+  tPAN_RESULT operator()(uint16_t handle, RawAddress dst, RawAddress src,
+                         uint16_t protocol, BT_HDR* p_buf, bool ext) {
     return body(handle, dst, src, protocol, p_buf, ext);
   };
 };

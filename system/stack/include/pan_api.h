@@ -134,7 +134,7 @@ inline const std::string pan_result_text(const tPAN_RESULT& result) {
  *      to the application. The second parameter true means
  *      to create the bridge and false means to remove it.
 */
-typedef void(tPAN_CONN_STATE_CB)(uint16_t handle, const RawAddress& bd_addr,
+typedef void(tPAN_CONN_STATE_CB)(uint16_t handle, RawAddress bd_addr,
                                  tPAN_RESULT state, bool is_role_change,
                                  uint8_t src_role, uint8_t dst_role);
 
@@ -143,7 +143,7 @@ typedef void(tPAN_CONN_STATE_CB)(uint16_t handle, const RawAddress& bd_addr,
  *      whether to create the bridge or remove it. true means
  *      to create the bridge and false means to remove it.
 */
-typedef void(tPAN_BRIDGE_REQ_CB)(const RawAddress& bd_addr, bool state);
+typedef void(tPAN_BRIDGE_REQ_CB)(RawAddress bd_addr, bool state);
 
 /* Data received indication callback prototype. Parameters are
  *              Source BD/Ethernet Address
@@ -156,10 +156,9 @@ typedef void(tPAN_BRIDGE_REQ_CB)(const RawAddress& bd_addr, bool state);
  *                      false - Use it for internal stack
  *                      true  - Send it across the ethernet as well
 */
-typedef void(tPAN_DATA_IND_CB)(uint16_t handle, const RawAddress& src,
-                               const RawAddress& dst, uint16_t protocol,
-                               uint8_t* p_data, uint16_t len, bool ext,
-                               bool forward);
+typedef void(tPAN_DATA_IND_CB)(uint16_t handle, RawAddress src, RawAddress dst,
+                               uint16_t protocol, uint8_t* p_data, uint16_t len,
+                               bool ext, bool forward);
 
 /* Data buffer received indication callback prototype. Parameters are
  *              Source BD/Ethernet Address
@@ -171,8 +170,8 @@ typedef void(tPAN_DATA_IND_CB)(uint16_t handle, const RawAddress& src,
  *                      false - Use it for internal stack
  *                      true  - Send it across the ethernet as well
 */
-typedef void(tPAN_DATA_BUF_IND_CB)(uint16_t handle, const RawAddress& src,
-                                   const RawAddress& dst, uint16_t protocol,
+typedef void(tPAN_DATA_BUF_IND_CB)(uint16_t handle, RawAddress src,
+                                   RawAddress dst, uint16_t protocol,
                                    BT_HDR* p_buf, bool ext, bool forward);
 
 /* Flow control callback for TX data. Parameters are
@@ -313,7 +312,7 @@ tPAN_RESULT PAN_SetRole(uint8_t role, std::string user_name,
  *                                     allowed at that point of time
  *
  ******************************************************************************/
-tPAN_RESULT PAN_Connect(const RawAddress& rem_bda, tPAN_ROLE src_role,
+tPAN_RESULT PAN_Connect(RawAddress rem_bda, tPAN_ROLE src_role,
                         tPAN_ROLE dst_role, uint16_t* handle);
 
 /*******************************************************************************
@@ -354,9 +353,9 @@ tPAN_RESULT PAN_Disconnect(uint16_t handle);
  *                                           there is an error in sending data
  *
  ******************************************************************************/
-tPAN_RESULT PAN_Write(uint16_t handle, const RawAddress& dst,
-                      const RawAddress& src, uint16_t protocol, uint8_t* p_data,
-                      uint16_t len, bool ext);
+tPAN_RESULT PAN_Write(uint16_t handle, RawAddress dst, RawAddress src,
+                      uint16_t protocol, uint8_t* p_data, uint16_t len,
+                      bool ext);
 
 /*******************************************************************************
  *
@@ -380,9 +379,8 @@ tPAN_RESULT PAN_Write(uint16_t handle, const RawAddress& dst,
  *                                           there is an error in sending data
  *
  ******************************************************************************/
-tPAN_RESULT PAN_WriteBuf(uint16_t handle, const RawAddress& dst,
-                         const RawAddress& src, uint16_t protocol,
-                         BT_HDR* p_buf, bool ext);
+tPAN_RESULT PAN_WriteBuf(uint16_t handle, RawAddress dst, RawAddress src,
+                         uint16_t protocol, BT_HDR* p_buf, bool ext);
 
 /*******************************************************************************
  *

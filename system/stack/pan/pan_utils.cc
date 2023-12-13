@@ -151,7 +151,7 @@ uint32_t pan_register_with_sdp(uint16_t uuid, const char* p_name,
  * Returns
  *
  ******************************************************************************/
-tPAN_CONN* pan_allocate_pcb(const RawAddress& p_bda, uint16_t handle) {
+tPAN_CONN* pan_allocate_pcb(RawAddress p_bda, uint16_t handle) {
   uint16_t i;
 
   for (i = 0; i < MAX_PAN_CONNS; i++) {
@@ -207,7 +207,7 @@ tPAN_CONN* pan_get_pcb_by_handle(uint16_t handle) {
  * Returns
  *
  ******************************************************************************/
-tPAN_CONN* pan_get_pcb_by_addr(const RawAddress& p_bda) {
+tPAN_CONN* pan_get_pcb_by_addr(RawAddress p_bda) {
   uint16_t i;
 
   for (i = 0; i < MAX_PAN_CONNS; i++) {

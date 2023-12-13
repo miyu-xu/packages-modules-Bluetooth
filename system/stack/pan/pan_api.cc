@@ -252,7 +252,7 @@ tPAN_RESULT PAN_SetRole(uint8_t role, std::string p_user_name,
  *                                     allowed at that point of time
  *
  ******************************************************************************/
-tPAN_RESULT PAN_Connect(const RawAddress& rem_bda, tPAN_ROLE src_role,
+tPAN_RESULT PAN_Connect(RawAddress rem_bda, tPAN_ROLE src_role,
                         tPAN_ROLE dst_role, uint16_t* handle) {
   uint32_t mx_chan_id;
 
@@ -425,9 +425,9 @@ tPAN_RESULT PAN_Disconnect(uint16_t handle) {
  *                                           there is an error in sending data
  *
  ******************************************************************************/
-tPAN_RESULT PAN_Write(uint16_t handle, const RawAddress& dst,
-                      const RawAddress& src, uint16_t protocol, uint8_t* p_data,
-                      uint16_t len, bool ext) {
+tPAN_RESULT PAN_Write(uint16_t handle, RawAddress dst, RawAddress src,
+                      uint16_t protocol, uint8_t* p_data, uint16_t len,
+                      bool ext) {
   if (pan_cb.role == PAN_ROLE_INACTIVE || !pan_cb.num_conns) {
     LOG_ERROR("%s PAN is not active, data write failed.", __func__);
     return PAN_FAILURE;
@@ -441,7 +441,7 @@ tPAN_RESULT PAN_Write(uint16_t handle, const RawAddress& dst,
     int i;
     for (i = 0; i < MAX_PAN_CONNS; ++i) {
       if (pan_cb.pcb[i].con_state == PAN_STATE_CONNECTED)
-        BNEP_Write(pan_cb.pcb[i].handle, dst, p_data, len, protocol, &src, ext);
+        BNEP_Write(pan_cb.pcb[i].handle, dst, p_data, len, protocol, src, ext);
     }
     return PAN_SUCCESS;
   }
@@ -478,9 +478,8 @@ tPAN_RESULT PAN_Write(uint16_t handle, const RawAddress& dst,
  *                                           there is an error in sending data
  *
  ******************************************************************************/
-tPAN_RESULT PAN_WriteBuf(uint16_t handle, const RawAddress& dst,
-                         const RawAddress& src, uint16_t protocol,
-                         BT_HDR* p_buf, bool ext) {
+tPAN_RESULT PAN_WriteBuf(uint16_t handle, RawAddress dst, RawAddress src,
+                         uint16_t protocol, BT_HDR* p_buf, bool ext) {
   tPAN_CONN* pcb;
   uint16_t i;
   tBNEP_RESULT result;
@@ -496,7 +495,7 @@ tPAN_RESULT PAN_WriteBuf(uint16_t handle, const RawAddress& dst,
     uint8_t* data = (uint8_t*)p_buf + sizeof(BT_HDR) + p_buf->offset;
     for (i = 0; i < MAX_PAN_CONNS; ++i) {
       if (pan_cb.pcb[i].con_state == PAN_STATE_CONNECTED)
-        BNEP_Write(pan_cb.pcb[i].handle, dst, data, p_buf->len, protocol, &src,
+        BNEP_Write(pan_cb.pcb[i].handle, dst, data, p_buf->len, protocol, src,
                    ext);
     }
     osi_free(p_buf);
@@ -519,7 +518,7 @@ tPAN_RESULT PAN_WriteBuf(uint16_t handle, const RawAddress& dst,
     }
 
     result =
-        BNEP_WriteBuf(pan_cb.pcb[i].handle, dst, p_buf, protocol, &src, ext);
+        BNEP_WriteBuf(pan_cb.pcb[i].handle, dst, p_buf, protocol, src, ext);
     if (result == BNEP_IGNORE_CMD) {
       LOG_VERBOSE("PAN ignored data write for PANU connection");
       return (tPAN_RESULT)result;
@@ -551,7 +550,7 @@ tPAN_RESULT PAN_WriteBuf(uint16_t handle, const RawAddress& dst,
   }
 
   uint16_t len = p_buf->len;
-  result = BNEP_WriteBuf(pcb->handle, dst, p_buf, protocol, &src, ext);
+  result = BNEP_WriteBuf(pcb->handle, dst, p_buf, protocol, src, ext);
   if (result == BNEP_IGNORE_CMD) {
     LOG_VERBOSE("PAN ignored data buf write to PANU");
     pcb->write.errors++;

@@ -53,7 +53,7 @@ struct PAN_Register PAN_Register;
 }  // namespace test
 
 // Mocked functions, if any
-tPAN_RESULT PAN_Connect(const RawAddress& rem_bda, tPAN_ROLE src_role,
+tPAN_RESULT PAN_Connect(RawAddress rem_bda, tPAN_ROLE src_role,
                         tPAN_ROLE dst_role, uint16_t* handle) {
   inc_func_call_count(__func__);
   return test::mock::stack_pan_api::PAN_Connect(rem_bda, src_role, dst_role,
@@ -82,16 +82,15 @@ tPAN_RESULT PAN_SetRole(uint8_t role, std::string p_user_name,
   inc_func_call_count(__func__);
   return test::mock::stack_pan_api::PAN_SetRole(role, p_user_name, p_nap_name);
 }
-tPAN_RESULT PAN_Write(uint16_t handle, const RawAddress& dst,
-                      const RawAddress& src, uint16_t protocol, uint8_t* p_data,
-                      uint16_t len, bool ext) {
+tPAN_RESULT PAN_Write(uint16_t handle, RawAddress dst, RawAddress src,
+                      uint16_t protocol, uint8_t* p_data, uint16_t len,
+                      bool ext) {
   inc_func_call_count(__func__);
   return test::mock::stack_pan_api::PAN_Write(handle, dst, src, protocol,
                                               p_data, len, ext);
 }
-tPAN_RESULT PAN_WriteBuf(uint16_t handle, const RawAddress& dst,
-                         const RawAddress& src, uint16_t protocol,
-                         BT_HDR* p_buf, bool ext) {
+tPAN_RESULT PAN_WriteBuf(uint16_t handle, RawAddress dst, RawAddress src,
+                         uint16_t protocol, BT_HDR* p_buf, bool ext) {
   inc_func_call_count(__func__);
   return test::mock::stack_pan_api::PAN_WriteBuf(handle, dst, src, protocol,
                                                  p_buf, ext);
