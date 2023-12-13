@@ -4182,10 +4182,6 @@ void btif_dm_clear_filter_accept_list() { BTA_DmClearFilterAcceptList(); }
 
 void btif_dm_disconnect_all_acls() { BTA_DmDisconnectAllAcls(); }
 
-void btif_dm_le_rand(bluetooth::hci::LeRandCallback callback) {
-  BTA_DmLeRand(std::move(callback));
-}
-
 void btif_dm_set_event_filter_connection_setup_all_devices() {
   // Autoplumbed
   BTA_DmSetEventFilterConnectionSetupAllDevices();
