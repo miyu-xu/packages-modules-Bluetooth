@@ -49,7 +49,7 @@
 #include "common/message_loop_thread.h"
 #include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
-#include "hci/controller.h"
+#include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/bt_trace.h"
 #include "main/shim/entry.h"
@@ -750,7 +750,7 @@ bt_status_t btif_set_dynamic_audio_buffer_size(int codec, int size) {
       firmware_tx_buffer_length_byte = static_cast<uint16_t>(size);
       LOG(INFO) << __func__ << "firmware_tx_buffer_length_byte: "
                 << firmware_tx_buffer_length_byte;
-      bluetooth::shim::GetController()->SetControllerDabAudioBufferTime(
+      bluetooth::shim::GetController()->SetDabAudioBufferTime(
           firmware_tx_buffer_length_byte);
     }
   }
