@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4d90697_5ab216ce",
+        "filename": "system/test/mock/mock_audio_hal_interface_a2dp_encoding.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-12-13T09:47:57Z",
+      "side": 1,
+      "message": "My bad for leaving it, please remove, thank you ; )",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 58
+      },
+      "revId": "ab43c081ad0bac0baa50baf393eeab6afe73cc19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
