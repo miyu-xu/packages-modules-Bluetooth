@@ -25,7 +25,6 @@
 
 #include <cstdint>
 
-#include "hci/le_rand_callback.h"
 #include "test/common/mock_functions.h"
 
 // Original usings
@@ -64,7 +63,6 @@ struct BTA_DmConfirm BTA_DmConfirm;
 struct BTA_DmDisconnectAllAcls BTA_DmDisconnectAllAcls;
 struct BTA_DmDiscover BTA_DmDiscover;
 struct BTA_DmGetConnectionState BTA_DmGetConnectionState;
-struct BTA_DmLeRand BTA_DmLeRand;
 struct BTA_DmLocalOob BTA_DmLocalOob;
 struct BTA_DmPinReply BTA_DmPinReply;
 struct BTA_DmRemoveDevice BTA_DmRemoveDevice;
@@ -235,10 +233,6 @@ void BTA_DmDiscover(const RawAddress& bd_addr, tBTA_DM_SEARCH_CBACK* p_cback,
 bool BTA_DmGetConnectionState(const RawAddress& bd_addr) {
   inc_func_call_count(__func__);
   return test::mock::bta_dm_api::BTA_DmGetConnectionState(bd_addr);
-}
-void BTA_DmLeRand(bluetooth::hci::LeRandCallback cb) {
-  inc_func_call_count(__func__);
-  test::mock::bta_dm_api::BTA_DmLeRand(std::move(cb));
 }
 void BTA_DmLocalOob(void) {
   inc_func_call_count(__func__);
