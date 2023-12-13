@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8ebca83a_5636cbb9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-13T23:22:25Z",
+      "side": 1,
+      "message": "Do not include go links here.",
+      "revId": "ddcdc0b08a5c6942f0f4400311d163df72fb50a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
