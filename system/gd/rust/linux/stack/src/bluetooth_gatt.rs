@@ -2022,6 +2022,9 @@ impl IBluetoothGatt for BluetoothGatt {
         if scan_suspend_mode != SuspendMode::Normal && scan_suspend_mode != SuspendMode::Resuming {
             return BtStatus::Busy;
         }
+        if !self.adapter.clone().is_some_and(|a| a.lock().unwrap().get_enabled()) {
+            return BtStatus::Busy;
+        }
 
         // If the client is not specifying scan settings, the default one will be used.
         let settings = settings.unwrap_or_else(|| ScanSettings {

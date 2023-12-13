@@ -99,6 +99,9 @@ pub trait IBluetooth {
     /// Cleans up the bluetooth interface. Should always be called after disable.
     fn cleanup(&mut self);
 
+    /// Returns the enabled/disabled state of the local adapter.
+    fn get_enabled(&self) -> bool;
+
     /// Returns the Bluetooth address of the local adapter.
     fn get_address(&self) -> String;
 
@@ -1909,6 +1912,10 @@ impl IBluetooth for Bluetooth {
 
     fn cleanup(&mut self) {
         self.intf.lock().unwrap().cleanup();
+    }
+
+    fn get_enabled(&self) -> bool {
+        self.state == BtState::On
     }
 
     fn get_address(&self) -> String {

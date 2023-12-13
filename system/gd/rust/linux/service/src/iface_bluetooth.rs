@@ -477,6 +477,11 @@ impl IBluetooth for IBluetoothDBus {
         dbus_generated!()
     }
 
+    // Not exposed over D-Bus. This is for internal tracking when powering on/off.
+    fn get_enabled(&self) -> bool {
+        dbus_generated!()
+    }
+
     #[dbus_method("GetAddress", DBusLog::Disable)]
     fn get_address(&self) -> String {
         dbus_generated!()

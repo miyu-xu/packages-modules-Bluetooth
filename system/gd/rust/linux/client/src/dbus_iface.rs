@@ -765,6 +765,11 @@ impl IBluetooth for BluetoothDBus {
         // Not implemented by server
     }
 
+    fn get_enabled(&self) -> bool {
+        // Not implemented by server
+        true
+    }
+
     #[dbus_method("GetAddress")]
     fn get_address(&self) -> String {
         dbus_generated!()
