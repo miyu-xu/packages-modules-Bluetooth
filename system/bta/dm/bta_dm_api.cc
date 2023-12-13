@@ -442,20 +442,6 @@ void BTA_DmClearFilterAcceptList(void) {
 
 /*******************************************************************************
  *
- * Function         BTA_DmLeRand
- *
- * Description      This function clears the event filter
- *
- * Returns          cb: callback to receive the resulting random number
- *
- ******************************************************************************/
-void BTA_DmLeRand(bluetooth::hci::LeRandCallback cb) {
-  LOG_VERBOSE("BTA_DmLeRand");
-  do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_le_rand, std::move(cb)));
-}
-
-/*******************************************************************************
- *
  * Function         BTA_DmDisconnectAllAcls
  *
  * Description      This function will disconnect all LE and Classic ACLs.
