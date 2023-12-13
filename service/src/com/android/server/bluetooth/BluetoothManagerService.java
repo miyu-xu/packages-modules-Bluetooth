@@ -903,17 +903,27 @@ class BluetoothManagerService {
         Log.d(TAG, "storeNameAndAddress: Name=" + mName + ", Address=" + mAddress);
     }
 
+    //TODO: b/288450479 - Delete non sync method
     IBluetooth registerAdapter(IBluetoothManagerCallback callback) {
         synchronized (mCallbacks) {
-            mCallbacks.register(callback);
+            return registerAdapter_sync(callback);
         }
+    }
+
+    IBluetooth registerAdapter_sync(IBluetoothManagerCallback callback) {
+        mCallbacks.register(callback);
         return mAdapter != null ? mAdapter.getAdapterBinder() : null;
     }
 
+    //TODO: b/288450479 - Delete non sync method
     void unregisterAdapter(IBluetoothManagerCallback callback) {
         synchronized (mCallbacks) {
-            mCallbacks.unregister(callback);
+            unregisterAdapter_sync(callback);
         }
+    }
+
+    void unregisterAdapter_sync(IBluetoothManagerCallback callback) {
+        mCallbacks.unregister(callback);
     }
 
     void registerStateChangeCallback(IBluetoothStateChangeCallback callback) {
@@ -1656,6 +1666,7 @@ class BluetoothManagerService {
 
     /** Inform BluetoothAdapter instances that Adapter service is up */
     private void sendBluetoothServiceUpCallback() {
+        //TODO: b/288450479 - Remove no longer necessary synchronized
         synchronized (mCallbacks) {
             mAdapterLock.readLock().lock();
             try {
@@ -1679,6 +1690,7 @@ class BluetoothManagerService {
 
     /** Inform BluetoothAdapter instances that Adapter service is down */
     private void sendBluetoothServiceDownCallback() {
+        //TODO: b/288450479 - Remove no longer necessary synchronized
         synchronized (mCallbacks) {
             try {
                 int n = mCallbacks.beginBroadcast();
