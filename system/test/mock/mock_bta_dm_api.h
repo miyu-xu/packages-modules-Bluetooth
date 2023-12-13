@@ -389,16 +389,6 @@ struct BTA_DmGetConnectionState {
 };
 extern struct BTA_DmGetConnectionState BTA_DmGetConnectionState;
 
-// Name: BTA_DmLeRand
-// Params: bluetooth::hci::LeRandCallback cb
-// Return: void
-struct BTA_DmLeRand {
-  std::function<void(bluetooth::hci::LeRandCallback cb)> body{
-      [](bluetooth::hci::LeRandCallback cb) {}};
-  void operator()(bluetooth::hci::LeRandCallback cb) { body(std::move(cb)); };
-};
-extern struct BTA_DmLeRand BTA_DmLeRand;
-
 // Name: BTA_DmLocalOob
 // Params: void
 // Return: void

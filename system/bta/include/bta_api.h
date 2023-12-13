@@ -856,17 +856,6 @@ void BTA_DmClearFilterAcceptList(void);
 
 /*******************************************************************************
  *
- * Function         BTA_DmLeRand
- *
- * Description      This function clears the event filter
- *
- * Returns          cb: callback to receive the resulting random number
- *
- ******************************************************************************/
-void BTA_DmLeRand(bluetooth::hci::LeRandCallback cb);
-
-/*******************************************************************************
- *
  * Function        BTA_DmSetEventFilterConnectionSetupAllDevices
  *
  * Description    Tell the controller to allow all devices
