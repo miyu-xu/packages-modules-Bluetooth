@@ -91,8 +91,10 @@
 #include "device/include/esco_parameters.h"
 #include "device/include/interop.h"
 #include "device/include/interop_config.h"
+#include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/dumpsys.h"
+#include "main/shim/entry.h"
 #include "os/parameter_provider.h"
 #include "osi/include/alarm.h"
 #include "osi/include/allocator.h"
@@ -753,10 +755,13 @@ static void le_rand_btif_cb(uint64_t random_number) {
 static int le_rand() {
   log::verbose("");
   if (!interface_ready()) return BT_STATUS_NOT_READY;
+  auto controller = bluetooth::shim::GetController();
 
-  do_in_main_thread(
-      FROM_HERE, base::BindOnce(btif_dm_le_rand,
-                                get_main_thread()->BindOnce(&le_rand_btif_cb)));
+  if (controller == nullptr) {
+    return BT_STATUS_NOT_READY;
+  }
+
+  controller->LeRand(get_main_thread()->BindOnce(&le_rand_btif_cb));
   return BT_STATUS_SUCCESS;
 }
 
