@@ -16,13 +16,14 @@
  *
  ******************************************************************************/
 
-#ifndef BTIF_DM_H
-#define BTIF_DM_H
+#pragma once
+
+#include <utility>
+#include <vector>
 
 #include "bta/include/bta_api.h"
 #include "bta/include/bta_sec_api.h"
 #include "btif_uid.h"
-#include "hci/le_rand_callback.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/bte_appl.h"
 #include "types/raw_address.h"
@@ -108,7 +109,6 @@ void btif_dm_clear_filter_accept_list();
 
 void btif_dm_disconnect_all_acls();
 
-void btif_dm_le_rand(bluetooth::hci::LeRandCallback callback);
 void btif_dm_set_event_filter_connection_setup_all_devices();
 void btif_dm_allow_wake_by_hid(
     std::vector<RawAddress> classic_addrs,
@@ -155,4 +155,3 @@ bool check_cod_hid(const RawAddress& bd_addr);
 bool check_cod_hid_major(const RawAddress& bd_addr, uint32_t cod);
 bool is_device_le_audio_capable(const RawAddress bd_addr);
 bool is_le_audio_capable_during_service_discovery(const RawAddress& bd_addr);
-#endif
