@@ -46,6 +46,30 @@
       },
       "revId": "b1b083451bc8b7eed595a3cb1c3106adc6a1cd73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "976aad85_3841c0dd",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-13T23:41:15Z",
+      "side": 1,
+      "message": "Original code LOG(FATAL) \nI tried to change it to ~LOG_ALWAYS_FATAL~, which will crash. \n\nI changed it to LOG_ERROR, to be safe",
+      "parentUuid": "94dd365b_cd3665ae",
+      "range": {
+        "startLine": 593,
+        "startChar": 6,
+        "endLine": 593,
+        "endChar": 22
+      },
+      "revId": "b1b083451bc8b7eed595a3cb1c3106adc6a1cd73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
