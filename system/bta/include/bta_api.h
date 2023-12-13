@@ -22,14 +22,15 @@
  *  application layer for mobile phones.
  *
  ******************************************************************************/
-#ifndef BTA_API_H
-#define BTA_API_H
+#pragma once
 
 #include <base/functional/callback.h>
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
 #include <cstdint>
+#include <string>
+#include <utility>
 #include <vector>
 
 #include "bta_api_data_types.h"
@@ -765,17 +766,6 @@ void BTA_DmClearFilterAcceptList(void);
 
 /*******************************************************************************
  *
- * Function         BTA_DmLeRand
- *
- * Description      This function clears the event filter
- *
- * Returns          cb: callback to receive the resulting random number
- *
- ******************************************************************************/
-void BTA_DmLeRand(bluetooth::hci::LeRandCallback cb);
-
-/*******************************************************************************
- *
  * Function        BTA_DmSetEventFilterConnectionSetupAllDevices
  *
  * Description    Tell the controller to allow all devices
@@ -886,6 +876,4 @@ template <>
 struct formatter<tBTA_DM_ACL_EVT> : enum_formatter<tBTA_DM_ACL_EVT> {};
 template <>
 struct formatter<tBTA_PREF_ROLES> : enum_formatter<tBTA_PREF_ROLES> {};
-}  // namespace fmt
-
-#endif /* BTA_API_H */
+} // namespace fmt
