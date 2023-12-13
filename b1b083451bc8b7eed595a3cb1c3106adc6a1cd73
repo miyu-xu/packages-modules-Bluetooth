@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1016fd08_03a44d5c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-13T23:13:07Z",
+      "side": 1,
+      "message": "@mylesgw@google.com can you confirm that this is safe?",
+      "range": {
+        "startLine": 593,
+        "startChar": 6,
+        "endLine": 593,
+        "endChar": 22
+      },
+      "revId": "b1b083451bc8b7eed595a3cb1c3106adc6a1cd73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
