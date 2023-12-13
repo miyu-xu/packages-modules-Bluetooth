@@ -51,6 +51,23 @@
       "parentUuid": "03499fa9_f43377ba",
       "revId": "3379ab99de4b520cd8334271f56e0c3f21d6978f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7a1dd2db_079178e9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-12-13T02:17:18Z",
+      "side": 1,
+      "message": "cmanton@google.com could you help to +2 on this? We move to use this branch and the old overwrite mechanism is not working so I want to config this two values for needed projects.",
+      "revId": "3379ab99de4b520cd8334271f56e0c3f21d6978f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
