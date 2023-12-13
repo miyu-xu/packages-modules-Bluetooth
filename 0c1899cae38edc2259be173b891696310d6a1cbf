@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4dbd2c8_34011bbc",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-13T23:20:45Z",
+      "side": 1,
+      "message": "Do not go links in AOSP. If desired, you can add full link here.",
+      "range": {
+        "startLine": 190,
+        "startChar": 10,
+        "endLine": 190,
+        "endChar": 59
+      },
+      "revId": "0c1899cae38edc2259be173b891696310d6a1cbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f27b6ca7_8555b2e8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-13T23:20:45Z",
+      "side": 1,
+      "message": "Same as above",
+      "revId": "0c1899cae38edc2259be173b891696310d6a1cbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "57a2dcfa_e2f1879e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-13T23:20:45Z",
+      "side": 1,
+      "message": "Does it really take 5 secs?",
+      "revId": "0c1899cae38edc2259be173b891696310d6a1cbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2cc93a1_46a4e659",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-13T23:20:45Z",
+      "side": 1,
+      "message": "please define a constant for timeout",
+      "range": {
+        "startLine": 253,
+        "startChar": 42,
+        "endLine": 253,
+        "endChar": 46
+      },
+      "revId": "0c1899cae38edc2259be173b891696310d6a1cbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
