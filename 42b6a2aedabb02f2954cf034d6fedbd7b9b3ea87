@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95f1160c_27618a08",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-13T08:40:53Z",
+      "side": 1,
+      "message": "Hi, please review this CL.\n\nI\u0027m surprised adapter doesn\u0027t have `is_enabled` method or the like. So I\u0027m not sure whether this is the correct approach, or maybe I\u0027m violating some basic concept of floss?\nI\u0027m also wondering if we need to prevent this incident in another level, e.g. in the sysprop level or dbus level.",
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
