@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cc0d9a8_9a185f96",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-13T23:22:12Z",
+      "side": 1,
+      "message": "Test was written as part of aosp/2871645 but it is not possible to reach this code on a normal cts test since it rely on a race condition.\nThere is no test framework for this kind of test.\nan other possibility would be to pass the gatt as a parameter during the BluetoothLeScanner constructor, and enforce it is not null at this time.\nBut it will be too much of a change",
+      "revId": "b84b35e547f0d11a73d8704f126e1cfd63c97b74",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
