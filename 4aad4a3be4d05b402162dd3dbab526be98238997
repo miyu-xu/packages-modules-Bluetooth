@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c80c3da_92ebc056",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1058860
+      },
+      "writtenOn": "2023-12-13T06:47:12Z",
+      "side": 1,
+      "message": "This change is blocking updating the AOSP clang compiler, but is waiting for an OWNERS review.  Also adding srhines@ for global approval in case there is no objection after a working day.",
+      "revId": "4aad4a3be4d05b402162dd3dbab526be98238997",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
