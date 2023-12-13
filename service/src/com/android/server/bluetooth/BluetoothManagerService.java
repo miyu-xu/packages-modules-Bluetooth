@@ -815,14 +815,44 @@ class BluetoothManagerService {
 
     IBluetooth registerAdapter(IBluetoothManagerCallback callback) {
         synchronized (mCallbacks) {
-            mCallbacks.register(callback);
+            return registerAdapter_sync(callback);
         }
-        return mAdapter != null ? mAdapter.getAdapterBinder() : null;
     }
 
     void unregisterAdapter(IBluetoothManagerCallback callback) {
         synchronized (mCallbacks) {
-            mCallbacks.unregister(callback);
+            unregisterAdapter_sync(callback);
+        }
+    }
+
+    IBluetooth registerAdapter_sync(IBluetoothManagerCallback callback) {
+        mCallbacks.register(callback);
+        return mAdapter != null ? mAdapter.getAdapterBinder() : null;
+    }
+
+    void unregisterAdapter_sync(IBluetoothManagerCallback callback) {
+        mCallbacks.unregister(callback);
+    }
+
+    @FunctionalInterface
+    public interface RemoteExceptionConsumer<T> {
+        void accept(T t) throws RemoteException;
+    }
+
+    private void broadcastToAdapters(
+            String logAction, RemoteExceptionConsumer<IBluetoothManagerCallback> action) {
+        final int itemCount = mCallbacks.beginBroadcast();
+        try {
+            Log.d(TAG, "Broadcasting " + logAction + "() to " + itemCount + " receivers.");
+            for (int i = 0; i < itemCount; i++) {
+                try {
+                    action.accept(mCallbacks.getBroadcastItem(i));
+                } catch (RemoteException e) {
+                    Log.e(TAG, "RemoteException while calling " + logAction + "()#" + i, e);
+                }
+            }
+        } finally {
+            mCallbacks.finishBroadcast();
         }
     }
 
@@ -1279,6 +1309,11 @@ class BluetoothManagerService {
     }
 
     private void sendBluetoothOnCallback() {
+        if (Flags.systemServerMessenger()) {
+            broadcastToAdapters(
+                    "sendBluetoothOnCallback", IBluetoothManagerCallback::onBluetoothOn);
+            return;
+        }
         synchronized (mCallbacks) {
             try {
                 int n = mCallbacks.beginBroadcast();
@@ -1297,6 +1332,11 @@ class BluetoothManagerService {
     }
 
     private void sendBluetoothOffCallback() {
+        if (Flags.systemServerMessenger()) {
+            broadcastToAdapters(
+                    "sendBluetoothOffCallback", IBluetoothManagerCallback::onBluetoothOff);
+            return;
+        }
         synchronized (mCallbacks) {
             try {
                 int n = mCallbacks.beginBroadcast();
@@ -1316,6 +1356,12 @@ class BluetoothManagerService {
 
     /** Inform BluetoothAdapter instances that Adapter service is up */
     private void sendBluetoothServiceUpCallback() {
+        if (Flags.systemServerMessenger()) {
+            broadcastToAdapters(
+                    "sendBluetoothServiceUpCallback",
+                    (item) -> item.onBluetoothServiceUp(mAdapter.getAdapterBinder().asBinder()));
+            return;
+        }
         synchronized (mCallbacks) {
             mAdapterLock.readLock().lock();
             try {
@@ -1339,6 +1385,12 @@ class BluetoothManagerService {
 
     /** Inform BluetoothAdapter instances that Adapter service is down */
     private void sendBluetoothServiceDownCallback() {
+        if (Flags.systemServerMessenger()) {
+            broadcastToAdapters(
+                    "sendBluetoothServiceDownCallback",
+                    IBluetoothManagerCallback::onBluetoothServiceDown);
+            return;
+        }
         synchronized (mCallbacks) {
             try {
                 int n = mCallbacks.beginBroadcast();
