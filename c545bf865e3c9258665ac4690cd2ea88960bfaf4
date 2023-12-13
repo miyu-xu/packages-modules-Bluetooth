@@ -70,6 +70,30 @@
       },
       "revId": "c545bf865e3c9258665ac4690cd2ea88960bfaf4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa036492_70823a83",
+        "filename": "system/stack/fuzzers/sdp_fuzzer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-13T14:47:27Z",
+      "side": 1,
+      "message": "internal/sdp_api.h used to be the public API.",
+      "parentUuid": "e5ef78f3_cd0acd57",
+      "range": {
+        "startLine": 26,
+        "startChar": 20,
+        "endLine": 26,
+        "endChar": 28
+      },
+      "revId": "c545bf865e3c9258665ac4690cd2ea88960bfaf4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
