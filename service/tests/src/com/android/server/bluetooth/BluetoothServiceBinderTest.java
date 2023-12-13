@@ -49,10 +49,13 @@ import android.os.IBinder;
 import android.os.Process;
 import android.os.UserManager;
 import android.os.test.TestLooper;
+import android.platform.test.flag.junit.SetFlagsRule;
 
 import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
+
+import com.android.bluetooth.flags.Flags;
 
 import libcore.junit.util.compat.CoreCompatChangeRule.DisableCompatChanges;
 import libcore.junit.util.compat.CoreCompatChangeRule.EnableCompatChanges;
@@ -80,6 +83,8 @@ public class BluetoothServiceBinderTest {
             "android.permission.READ_COMPAT_CHANGE_CONFIG";
 
     @Rule public MockitoRule mockito = MockitoJUnit.rule().strictness(STRICT_STUBS);
+
+    @Rule public final SetFlagsRule mSetFlagsRule = new SetFlagsRule();
 
     @Rule public TestRule compatChangeRule = new PlatformCompatChangeRule();
 
@@ -138,6 +143,7 @@ public class BluetoothServiceBinderTest {
 
     @Test
     public void registerAdapter() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SYSTEM_SERVER_MESSENGER);
         assertThrows(NullPointerException.class, () -> mBinder.registerAdapter(null));
         mBinder.registerAdapter(mock(IBluetoothManagerCallback.class));
         verify(mManagerService).registerAdapter(any());
@@ -146,6 +152,7 @@ public class BluetoothServiceBinderTest {
 
     @Test
     public void unregisterAdapter() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SYSTEM_SERVER_MESSENGER);
         assertThrows(NullPointerException.class, () -> mBinder.unregisterAdapter(null));
         mBinder.unregisterAdapter(mock(IBluetoothManagerCallback.class));
         verify(mManagerService).unregisterAdapter(any());

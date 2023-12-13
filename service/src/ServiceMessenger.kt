@@ -49,6 +49,17 @@ internal class ServiceMessenger(
     }
 
     private fun handleMessage(sendingUid: Int, obj: Parcelable): Parcelable {
-        throw IllegalArgumentException("Invalid command: [${obj}] from ${sendingUid}")
+        return when (obj) {
+            is SystemServiceMessage.RegisterAdapter -> {
+                SystemServiceMessage.RegisterAdapter.Reply().apply {
+                    value = managerService.registerAdapter_sync(obj.binder)?.asBinder()
+                }
+            }
+            is SystemServiceMessage.UnregisterAdapter -> {
+                managerService.unregisterAdapter_sync(obj.binder)
+                SystemServiceMessage.UnregisterAdapter.Reply()
+            }
+            else -> throw IllegalArgumentException("Invalid command: [${obj}] from ${sendingUid}")
+        }
     }
 }
