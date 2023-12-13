@@ -1326,6 +1326,14 @@ class BluetoothManagerService {
                         + (" mState=" + mState));
 
         synchronized (mReceiver) {
+            disableStep(persist);
+            sendDisableMsg(
+                    BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName);
+        }
+        return true;
+    }
+
+    private void disableStep(boolean persist) {
             if (!mUseNewAirplaneMode) {
                 mBluetoothAirplaneModeListener.notifyUserToggledBluetooth(false);
             } else {
@@ -1343,10 +1351,20 @@ class BluetoothManagerService {
                 persistBluetoothSetting(BLUETOOTH_OFF);
             }
             mEnableExternal = false;
-            sendDisableMsg(
-                    BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName);
-        }
-        return true;
+    }
+
+    boolean disable_sync(String packageName, boolean persit) {
+        // assert() // Assert the flag is on, This should never be called when there is still threading issues
+        Log.d(
+                TAG,
+                ("disable_sync(" + packageName + ", " + persist + "):")
+                + (" mAdapter=" + mAdapter)
+                + (" isBinding=" + isBinding())
+                + (" mState=" + mState));
+
+        disableStep(persit);
+        addActiveLog(BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName, false);
+        handleDisableMessage();
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED)
@@ -1855,24 +1873,8 @@ class BluetoothManagerService {
 
                 case MESSAGE_DISABLE:
                     Log.d(TAG, "MESSAGE_DISABLE: mAdapter=" + mAdapter);
-                    if (mHandler.hasMessages(MESSAGE_HANDLE_DISABLE_DELAYED)
-                            || isBinding()
-                            || mHandler.hasMessages(MESSAGE_HANDLE_ENABLE_DELAYED)) {
-                        // We are handling enable or disable right now, wait for it.
-                        mHandler.sendEmptyMessageDelayed(MESSAGE_DISABLE, ENABLE_DISABLE_DELAY_MS);
-                        break;
-                    }
 
-                    mHandler.removeMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE);
-
-                    if (mEnable && mAdapter != null) {
-                        mWaitForDisableRetry = 0;
-                        mHandler.sendEmptyMessageDelayed(
-                                MESSAGE_HANDLE_DISABLE_DELAYED, ENABLE_DISABLE_DELAY_MS);
-                    } else {
-                        mEnable = false;
-                        handleDisable();
-                    }
+                    handleDisableMessage();
                     break;
 
                 case MESSAGE_HANDLE_ENABLE_DELAYED:
@@ -2427,6 +2429,27 @@ class BluetoothManagerService {
             return false;
         }
         return true;
+    }
+
+    private void handleDisableMessage() {
+        if (mHandler.hasMessages(MESSAGE_HANDLE_DISABLE_DELAYED)
+                || isBinding()
+                || mHandler.hasMessages(MESSAGE_HANDLE_ENABLE_DELAYED)) {
+            // We are handling enable or disable right now, wait for it.
+            mHandler.sendEmptyMessageDelayed(MESSAGE_DISABLE, ENABLE_DISABLE_DELAY_MS);
+            return;
+                }
+
+        mHandler.removeMessages(MESSAGE_RESTART_BLUETOOTH_SERVICE);
+
+        if (mEnable && mAdapter != null) {
+            mWaitForDisableRetry = 0;
+            mHandler.sendEmptyMessageDelayed(
+                    MESSAGE_HANDLE_DISABLE_DELAYED, ENABLE_DISABLE_DELAY_MS);
+        } else {
+            mEnable = false;
+            handleDisable();
+        }
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
