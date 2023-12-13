@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "295b83a2_5140526c",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-13T23:23:43Z",
+      "side": 0,
+      "message": "Is the move in this method necessary?",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 53
+      },
+      "revId": "f3b7c2b87904ab69afc3d9ce6b7ebe06e06d2318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

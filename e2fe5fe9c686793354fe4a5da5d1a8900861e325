@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48934ecd_9ba63ea9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-13T23:23:43Z",
+      "side": 1,
+      "message": "This bug is closed as WAI, is this still needed?\n\nSince this touches common logic we\u0027d have to consider guarding this by flag to prevent regressions (happy to discuss offline if this is still needed).",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "e2fe5fe9c686793354fe4a5da5d1a8900861e325",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
