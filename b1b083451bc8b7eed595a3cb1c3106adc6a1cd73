@@ -22,6 +22,30 @@
       },
       "revId": "b1b083451bc8b7eed595a3cb1c3106adc6a1cd73",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94dd365b_cd3665ae",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-13T23:39:50Z",
+      "side": 1,
+      "message": ":)  I\u0027m not sure what you\u0027re asking, since it crashes.",
+      "parentUuid": "1016fd08_03a44d5c",
+      "range": {
+        "startLine": 593,
+        "startChar": 6,
+        "endLine": 593,
+        "endChar": 22
+      },
+      "revId": "b1b083451bc8b7eed595a3cb1c3106adc6a1cd73",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
