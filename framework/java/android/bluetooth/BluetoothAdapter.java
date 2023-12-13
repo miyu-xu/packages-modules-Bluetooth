@@ -79,6 +79,7 @@ import android.util.Pair;
 import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.modules.expresslog.Counter;
+import com.android.server.bluetooth.SystemServiceMessage;
 
 import java.io.IOException;
 import java.lang.annotation.Retention;
@@ -4241,6 +4242,20 @@ public final class BluetoothAdapter {
         final boolean wantRegistered = !sProxyServiceStateCallbacks.isEmpty();
 
         if (isRegistered == wantRegistered) {
+            return;
+        }
+        if (Flags.systemServerMessenger()) {
+            if (wantRegistered) {
+                var data = new SystemServiceMessage.RegisterAdapter();
+                data.binder = sManagerCallback;
+                sService = IBluetooth.Stub.asInterface(mSystemServiceMessenger.send(data).value);
+            } else {
+                var data = new SystemServiceMessage.UnregisterAdapter();
+                data.binder = sManagerCallback;
+                mSystemServiceMessenger.send(data);
+                sService = null;
+            }
+            sServiceRegistered = wantRegistered;
             return;
         }
         if (wantRegistered) {

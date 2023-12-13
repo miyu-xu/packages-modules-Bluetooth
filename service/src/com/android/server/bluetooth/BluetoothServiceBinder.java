@@ -107,6 +107,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @Nullable
     public IBinder registerAdapter(@NonNull IBluetoothManagerCallback callback) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(callback, "Callback cannot be null in registerAdapter");
         IBluetooth bluetooth = mBluetoothManagerService.registerAdapter(callback);
         if (bluetooth == null) {
@@ -117,6 +120,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public void unregisterAdapter(@NonNull IBluetoothManagerCallback callback) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(callback, "Callback cannot be null in unregisterAdapter");
         mBluetoothManagerService.unregisterAdapter(callback);
     }

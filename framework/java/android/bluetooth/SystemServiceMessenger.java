@@ -26,6 +26,8 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.android.server.bluetooth.SystemServiceMessage;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -82,5 +84,13 @@ class SystemServiceMessenger {
             throw e.rethrowFromSystemServer();
         }
         return future.orTimeout(1, TimeUnit.SECONDS).join();
+    }
+
+    SystemServiceMessage.RegisterAdapter.Reply send(SystemServiceMessage.RegisterAdapter data) {
+        return send(data, SystemServiceMessage.RegisterAdapter.Reply.class);
+    }
+
+    SystemServiceMessage.UnregisterAdapter.Reply send(SystemServiceMessage.UnregisterAdapter data) {
+        return send(data, SystemServiceMessage.UnregisterAdapter.Reply.class);
     }
 }
