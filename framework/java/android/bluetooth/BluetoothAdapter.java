@@ -76,6 +76,7 @@ import android.util.Pair;
 import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.modules.expresslog.Counter;
+import com.android.server.bluetooth.BluetoothServiceMessages;
 
 import java.io.IOException;
 import java.lang.annotation.Retention;
@@ -95,6 +96,7 @@ import java.util.WeakHashMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.BiFunction;
 
@@ -4375,6 +4377,29 @@ public final class BluetoothAdapter {
         final boolean wantRegistered = !sProxyServiceStateCallbacks.isEmpty();
 
         if (isRegistered != wantRegistered) {
+            if (Flags.systemServerMessenger()) {
+
+                if (wantRegistered) {
+                    var data = new BluetoothServiceMessages.RegisterAdapter();
+                    data.binder = sManagerCallback;
+
+                    sService =
+                            IBluetooth.Stub.asInterface(
+                                    mMessenger.sendToService(
+                                                    data,
+                                                    BluetoothServiceMessages.RegisterAdapter.Reply
+                                                            .class)
+                                            .value);
+                } else {
+                    var data = new BluetoothServiceMessages.UnregisterAdapter();
+                    data.binder = sManagerCallback;
+                    mMessenger.sendToService(
+                            data, BluetoothServiceMessages.UnregisterAdapter.Reply.class);
+                    sService = null;
+                }
+                sServiceRegistered = wantRegistered;
+                return;
+            }
             if (wantRegistered) {
                 try {
                     sService =
