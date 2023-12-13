@@ -87,7 +87,7 @@ static void bta_pan_pm_conn_idle(tBTA_PAN_SCB* p_scb) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_pan_conn_state_cback(uint16_t handle, const RawAddress& bd_addr,
+static void bta_pan_conn_state_cback(uint16_t handle, RawAddress bd_addr,
                                      tPAN_RESULT state, bool is_role_change,
                                      uint8_t src_role, uint8_t dst_role) {
   tBTA_PAN_SCB* p_scb;
@@ -167,8 +167,8 @@ static void bta_pan_data_flow_cb(uint16_t handle, tPAN_RESULT result) {
  * Returns          void
  *
  ******************************************************************************/
-static void bta_pan_data_buf_ind_cback(uint16_t handle, const RawAddress& src,
-                                       const RawAddress& dst, uint16_t protocol,
+static void bta_pan_data_buf_ind_cback(uint16_t handle, RawAddress src,
+                                       RawAddress dst, uint16_t protocol,
                                        BT_HDR* p_buf, bool ext, bool forward) {
   tBTA_PAN_SCB* p_scb = bta_pan_scb_by_handle(handle);
   if (p_scb == NULL) {

@@ -91,9 +91,8 @@ void pan_register_with_bnep(void) {
  * Returns          none
  *
  ******************************************************************************/
-void pan_conn_ind_cb(uint16_t handle, const RawAddress& p_bda,
-                     const Uuid& remote_uuid, const Uuid& local_uuid,
-                     bool is_role_change) {
+void pan_conn_ind_cb(uint16_t handle, RawAddress bda, const Uuid& remote_uuid,
+                     const Uuid& local_uuid, bool is_role_change) {
   /* If we are in GN or NAP role and have one or more active connections and the
    * received connection is for user role reject it. If we are in user role with
    * one connection active reject the connection. Allocate PCB and store the
@@ -243,7 +242,7 @@ void pan_conn_ind_cb(uint16_t handle, const RawAddress& p_bda,
 
   /* This is a new connection */
   LOG_VERBOSE("New connection indication for handle %d", handle);
-  pcb = pan_allocate_pcb(p_bda, handle);
+  pcb = pan_allocate_pcb(bda, handle);
   if (!pcb) {
     LOG_ERROR("PAN no control block for new connection");
     BNEP_ConnectResp(handle, BNEP_CONN_FAILED);
@@ -281,8 +280,7 @@ void pan_conn_ind_cb(uint16_t handle, const RawAddress& p_bda,
  * Returns          none
  *
  ******************************************************************************/
-void pan_connect_state_cb(uint16_t handle,
-                          UNUSED_ATTR const RawAddress& rem_bda,
+void pan_connect_state_cb(uint16_t handle, RawAddress /* rem_bda */,
                           tBNEP_RESULT result, bool is_role_change) {
   tPAN_CONN* pcb;
   uint8_t peer_role;
@@ -377,9 +375,8 @@ void pan_connect_state_cb(uint16_t handle,
  * Returns          none
  *
  ******************************************************************************/
-void pan_data_buf_ind_cb(uint16_t handle, const RawAddress& src,
-                         const RawAddress& dst, uint16_t protocol,
-                         BT_HDR* p_buf, bool ext) {
+void pan_data_buf_ind_cb(uint16_t handle, RawAddress src, RawAddress dst,
+                         uint16_t protocol, BT_HDR* p_buf, bool ext) {
   tPAN_CONN *pcb, *dst_pcb;
   tBNEP_RESULT result;
   uint16_t i, len;
@@ -426,7 +423,7 @@ void pan_data_buf_ind_cb(uint16_t handle, const RawAddress& src,
         if (pan_cb.pcb[i].con_state == PAN_STATE_CONNECTED &&
             pan_cb.pcb[i].handle != handle &&
             pcb->src_uuid == pan_cb.pcb[i].src_uuid) {
-          BNEP_Write(pan_cb.pcb[i].handle, dst, p_data, len, protocol, &src,
+          BNEP_Write(pan_cb.pcb[i].handle, dst, p_data, len, protocol, src,
                      ext);
         }
       }
@@ -450,7 +447,7 @@ void pan_data_buf_ind_cb(uint16_t handle, const RawAddress& src,
           __func__, dst_pcb->handle, len);
 
       result =
-          BNEP_Write(dst_pcb->handle, dst, p_data, len, protocol, &src, ext);
+          BNEP_Write(dst_pcb->handle, dst, p_data, len, protocol, src, ext);
       if (result != BNEP_SUCCESS && result != BNEP_IGNORE_CMD)
         LOG_ERROR("Failed to write data for PAN connection handle %d",
                   dst_pcb->handle);

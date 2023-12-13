@@ -27,7 +27,7 @@
 
 using namespace bluetooth;
 
-tBNEP_RESULT BNEP_Connect(const RawAddress& /* p_rem_bda */,
+tBNEP_RESULT BNEP_Connect(RawAddress /* p_rem_bda */,
                           const Uuid& /* src_uuid */,
                           const Uuid& /* dst_uuid */, uint16_t* /* p_handle */,
                           uint32_t /* mx_chan_id */) {
@@ -60,19 +60,16 @@ tBNEP_RESULT BNEP_SetProtocolFilters(uint16_t /* handle */,
   inc_func_call_count(__func__);
   return 0;
 }
-tBNEP_RESULT BNEP_Write(uint16_t /* handle */,
-                        const RawAddress& /* p_dest_addr */,
+tBNEP_RESULT BNEP_Write(uint16_t /* handle */, RawAddress /* dest_addr */,
                         uint8_t* /* p_data */, uint16_t /* len */,
-                        uint16_t /* protocol */,
-                        const RawAddress* /* p_src_addr */,
+                        uint16_t /* protocol */, RawAddress /* src_addr */,
                         bool /* fw_ext_present */) {
   inc_func_call_count(__func__);
   return 0;
 }
-tBNEP_RESULT BNEP_WriteBuf(uint16_t /* handle */,
-                           const RawAddress& /* p_dest_addr */,
+tBNEP_RESULT BNEP_WriteBuf(uint16_t /* handle */, RawAddress /* dest_addr */,
                            BT_HDR* /* p_buf */, uint16_t /* protocol */,
-                           const RawAddress* /* p_src_addr */,
+                           RawAddress /* src_addr */,
                            bool /* fw_ext_present */) {
   inc_func_call_count(__func__);
   return 0;
