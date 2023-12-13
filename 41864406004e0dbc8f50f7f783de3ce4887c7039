@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "862c3839_7b27b026",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-13T05:00:55Z",
+      "side": 1,
+      "message": "Does this patch ready for review? Please help to resolve the merge conflict.",
+      "revId": "41864406004e0dbc8f50f7f783de3ce4887c7039",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
