@@ -19,6 +19,7 @@
 #include <vector>
 
 #include "hci/address.h"
+#include "hci/controller_interface.h"
 #include "hci/hci_packets.h"
 #include "hci/le_rand_callback.h"
 #include "module.h"
@@ -29,7 +30,7 @@
 namespace bluetooth {
 namespace hci {
 
-class Controller : public Module {
+class Controller : public Module, public ControllerInterface {
  public:
   Controller();
   Controller(const Controller&) = delete;
@@ -186,25 +187,6 @@ class Controller : public Module {
 
   // 7.4.8 Read Local Supported Codecs command v1 only returns codecs on the BR/EDR transport
   virtual std::vector<uint8_t> GetLocalSupportedBrEdrCodecIds() const;
-
-  struct VendorCapabilities {
-    uint8_t is_supported_;
-    uint8_t max_advt_instances_;
-    uint8_t offloaded_resolution_of_private_address_;
-    uint16_t total_scan_results_storage_;
-    uint8_t max_irk_list_sz_;
-    uint8_t filtering_support_;
-    uint8_t max_filter_;
-    uint8_t activity_energy_info_support_;
-    uint16_t version_supported_;
-    uint16_t total_num_of_advt_tracked_;
-    uint8_t extended_scan_support_;
-    uint8_t debug_logging_supported_;
-    uint8_t le_address_generation_offloading_support_;
-    uint32_t a2dp_source_offload_capability_mask_;
-    uint8_t bluetooth_quality_report_support_;
-    uint32_t dynamic_audio_buffer_support_;
-  };
 
   virtual VendorCapabilities GetVendorCapabilities() const;
 
