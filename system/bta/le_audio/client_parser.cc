@@ -36,6 +36,7 @@
 #include "gatt_api.h"
 #include "gd/common/strings.h"
 #include "le_audio_types.h"
+#include "le_audio_utils.h"
 #include "osi/include/allocator.h"
 #include "osi/include/log.h"
 
@@ -597,10 +598,15 @@ int ParseSinglePac(std::vector<struct acs_ac_record>& pac_recs, uint16_t len,
     return -1;
   }
 
-  bool parsed;
-  rec.codec_spec_caps =
-      types::LeAudioLtvMap::Parse(value, codec_spec_cap_len, parsed);
-  if (!parsed) return -1;
+  rec.codec_spec_caps.resize(codec_spec_cap_len);
+  memcpy(rec.codec_spec_caps.data(), value, codec_spec_cap_len);
+
+  if (utils::IsCodecCapabilityUsingLtvFormat(rec.codec_id)) {
+    bool parsed;
+    rec.codec_spec_caps_ltvs =
+        types::LeAudioLtvMap::Parse(value, codec_spec_cap_len, parsed);
+    if (!parsed) return -1;
+  }
 
   value += codec_spec_cap_len;
   len -= codec_spec_cap_len;

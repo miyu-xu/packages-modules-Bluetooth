@@ -79,7 +79,7 @@ bool serializePacs(const le_audio::types::PublishedAudioCapabilities& pacs,
     for (const auto& pac : pac_recs) {
       pac_bin_size += LEAUDIO_PACS_ENTRY_SZ;
       pac_bin_size += pac.metadata.size();
-      pac_bin_size += pac.codec_spec_caps.RawPacketSize();
+      pac_bin_size += pac.codec_spec_caps.size();
     }
   }
 
@@ -105,8 +105,8 @@ bool serializePacs(const le_audio::types::PublishedAudioCapabilities& pacs,
 
     for (const auto& pac : pac_recs) {
       /* Pac len */
-      auto pac_len = LEAUDIO_PACS_ENTRY_SZ +
-                     pac.codec_spec_caps.RawPacketSize() + pac.metadata.size();
+      auto pac_len = LEAUDIO_PACS_ENTRY_SZ + pac.codec_spec_caps.size() +
+                     pac.metadata.size();
       LOG_VERBOSE("Pac size %d", static_cast<int>(pac_len));
       UINT8_TO_STREAM(ptr, pac_len - 1 /* Minus size */);
 
@@ -117,10 +117,11 @@ bool serializePacs(const le_audio::types::PublishedAudioCapabilities& pacs,
 
       /* Codec caps */
       LOG_VERBOSE("Codec capability size %d",
-                  static_cast<int>(pac.codec_spec_caps.RawPacketSize()));
-      UINT8_TO_STREAM(ptr, pac.codec_spec_caps.RawPacketSize());
-      if (pac.codec_spec_caps.RawPacketSize() > 0) {
-        ptr = pac.codec_spec_caps.RawPacket(ptr);
+                  static_cast<int>(pac.codec_spec_caps.size()));
+      UINT8_TO_STREAM(ptr, pac.codec_spec_caps.size());
+      if (pac.codec_spec_caps.size() > 0) {
+        memcpy(ptr, pac.codec_spec_caps.data(), pac.codec_spec_caps.size());
+        ptr += pac.codec_spec_caps.size();
       }
 
       /* Metadata */
