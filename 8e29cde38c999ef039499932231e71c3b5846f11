@@ -20,6 +20,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "fe711122_fde5ec19",
+        "filename": "system/bta/le_audio/audio_hal_client/asrc_resampler_test.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-12-13T23:27:27Z",
+      "side": 1,
+      "message": "Thanks, I pushed the fix b/2874220",
+      "parentUuid": "7ac136dc_7d9ef382",
+      "revId": "8e29cde38c999ef039499932231e71c3b5846f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0c6133cd_85ca3c0e",
         "filename": "system/bta/le_audio/audio_hal_client/asrc_resampler_test.cc",
         "patchSetId": 28
