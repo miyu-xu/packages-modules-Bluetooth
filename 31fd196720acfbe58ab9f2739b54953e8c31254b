@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "df08e09f_5c46a6ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-12-13T04:54:50Z",
+      "side": 1,
+      "message": "Hi Myles, we have observed some reports like below\n\n```\n\u003e HCI Event: LE Meta Event (0x3e) plen 31                                                                                                                                                                                                                                            #167124 [hci0] 2023-05-07 23:19:24.325965\n      LE Enhanced Connection Complete (0x0a)\n        Status: Success (0x00)\n        Handle: 3585 Address: E6:B1:B3:54:1A:0B (Static)\n        Role: Central (0x00)\n        Peer address type: Random (0x01)\n        Peer address: E6:B1:B3:54:1A:0B (Static)\n        Local resolvable private address: 00:00:00:00:00:00 (Non-Resolvable)\n        Peer resolvable private address: 00:00:00:00:00:00 (Non-Resolvable)\n        Connection interval: 15.00 msec (0x000c)\n        Connection latency: 0 (0x0000)\n        Supervision timeout: 2000 msec (0x00c8)\n        Central clock accuracy: 0x00\n...\n\u003c HCI Command: LE Remove Device From Accept List (0x08|0x0012) plen 7                                                                                                                                                                                                                #167127 [hci0] 2023-05-07 23:19:24.466921\n        Address type: Random (0x01)\n        Address: E6:B1:B3:54:1A:0B (Static)\n\u003e HCI Event: Command Complete (0x0e) plen 4                                                                                                                                                                                                                                          #167128 [hci0] 2023-05-07 23:19:24.468804\n      LE Remove Device From Accept List (0x08|0x0012) ncmd 1\n        Status: Success (0x00)\n\u003c HCI Command: LE Read Remote Used Features (0x08|0x0016) plen 2                                                                                                                                                                                                                     #167129 [hci0] 2023-05-07 23:19:24.468892\n        Handle: 3585 Address: E6:B1:B3:54:1A:0B (Static)\n\u003e HCI Event: Command Status (0x0f) plen 4                                                                                                                                                                                                                                            #167130 [hci0] 2023-05-07 23:19:24.470804\n      LE Read Remote Used Features (0x08|0x0016) ncmd 1\n        Status: Unknown Connection Identifier (0x02)\n```\n\nThen after #167130, there won\u0027t be any traffic on the handle 3585 and the stack thought the connection is still alive. This causes users won\u0027t be able to reconnect nor remove the device from UI until they restart the stack.\n\nWith this patch, we will invoke a proper disconnected path so the device would be added to the accept list and the device would be able to reconnect and remove.\n\nI think this can be applied to most of the commands but I\u0027m also worried for some  regression so I only do it for LE Read Remote Used Features.\n\nPlease let me know if this makes sense to you and if we want to extend it to more commands. Thanks!",
+      "revId": "31fd196720acfbe58ab9f2739b54953e8c31254b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
