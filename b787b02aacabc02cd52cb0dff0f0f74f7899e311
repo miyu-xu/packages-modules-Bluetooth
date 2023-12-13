@@ -22,6 +22,30 @@
       },
       "revId": "b787b02aacabc02cd52cb0dff0f0f74f7899e311",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92d243e7_4f04edbd",
+        "filename": "system/gd/rust/shim/src/init_flags.rs",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-13T09:45:06Z",
+      "side": 1,
+      "message": "You want to remove logging enabled flag also?\n\"fn encrypted_advertising_log_is_enabled() -\u003e bool;\"\n\nIf we keep IS_FLAG_ENABLED(encrypted_advertising_data) same flag for logging also then it will print extra logging info also, which we dont need in normal cases.",
+      "parentUuid": "0de54471_aecc7e02",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 55,
+        "endChar": 58
+      },
+      "revId": "b787b02aacabc02cd52cb0dff0f0f74f7899e311",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
