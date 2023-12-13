@@ -86,7 +86,7 @@ typedef uint8_t tBNEP_RESULT;
  *                  All values are used to indicate the reason for failure
  *              Flag to indicate if it is just a role change
 */
-typedef void(tBNEP_CONN_STATE_CB)(uint16_t handle, const RawAddress& rem_bda,
+typedef void(tBNEP_CONN_STATE_CB)(uint16_t handle, RawAddress rem_bda,
                                   tBNEP_RESULT result, bool is_role_change);
 
 /* Connection indication callback prototype. Parameters are
@@ -95,7 +95,7 @@ typedef void(tBNEP_CONN_STATE_CB)(uint16_t handle, const RawAddress& rem_bda,
  *              When BNEP calls this function profile should
  *              use BNEP_ConnectResp call to accept or reject the request
 */
-typedef void(tBNEP_CONNECT_IND_CB)(uint16_t handle, const RawAddress& bd_addr,
+typedef void(tBNEP_CONNECT_IND_CB)(uint16_t handle, RawAddress bd_addr,
                                    const bluetooth::Uuid& remote_uuid,
                                    const bluetooth::Uuid& local_uuid,
                                    bool is_role_change);
@@ -109,9 +109,9 @@ typedef void(tBNEP_CONNECT_IND_CB)(uint16_t handle, const RawAddress& bd_addr,
  *              Flag to indicate whether extension headers to be forwarded are
  *                present
  */
-typedef void(tBNEP_DATA_BUF_CB)(uint16_t handle, const RawAddress& src,
-                                const RawAddress& dst, uint16_t protocol,
-                                BT_HDR* p_buf, bool fw_ext_present);
+typedef void(tBNEP_DATA_BUF_CB)(uint16_t handle, RawAddress src, RawAddress dst,
+                                uint16_t protocol, BT_HDR* p_buf,
+                                bool fw_ext_present);
 
 /* Data received indication callback prototype. Parameters are
  *              Handle to the connection
@@ -123,10 +123,9 @@ typedef void(tBNEP_DATA_BUF_CB)(uint16_t handle, const RawAddress& src,
  *              Flag to indicate whether extension headers to be forwarded are
  *                present
  */
-typedef void(tBNEP_DATA_IND_CB)(uint16_t handle, const RawAddress& src,
-                                const RawAddress& dst, uint16_t protocol,
-                                uint8_t* p_data, uint16_t len,
-                                bool fw_ext_present);
+typedef void(tBNEP_DATA_IND_CB)(uint16_t handle, RawAddress src, RawAddress dst,
+                                uint16_t protocol, uint8_t* p_data,
+                                uint16_t len, bool fw_ext_present);
 
 /* Flow control callback for TX data. Parameters are
  *              Handle to the connection
@@ -231,8 +230,7 @@ void BNEP_Deregister(void);
  *                  BNEP_NO_RESOURCES           if no resources
  *
  ******************************************************************************/
-tBNEP_RESULT BNEP_Connect(const RawAddress& p_rem_bda,
-                          const bluetooth::Uuid& src_uuid,
+tBNEP_RESULT BNEP_Connect(RawAddress p_rem_bda, const bluetooth::Uuid& src_uuid,
                           const bluetooth::Uuid& dst_uuid, uint16_t* p_handle,
                           uint32_t mx_chan_id);
 
@@ -274,13 +272,12 @@ tBNEP_RESULT BNEP_Disconnect(uint16_t handle);
  * Description      This function sends data in a GKI buffer on BNEP connection
  *
  * Parameters:      handle       - handle of the connection to write
- *                  p_dest_addr  - BD_ADDR/Ethernet addr of the destination
+ *                  dest_addr    - BD_ADDR/Ethernet addr of the destination
  *                  p_buf        - pointer to address of buffer with data
  *                  protocol     - protocol type of the packet
- *                  p_src_addr   - (optional) BD_ADDR/ethernet address of the
- *                                 source (should be NULL if it is the local BD
- *                                         Addr)
- *                  fw_ext_present - forwarded extensions present
+ *                  src_addr     - (optional) BD_ADDR/ethernet address of the
+ *                                 source (should be kEmpty if it is the local
+ *BD Addr) fw_ext_present - forwarded extensions present
  *
  * Returns:         BNEP_WRONG_HANDLE       - if passed handle is not valid
  *                  BNEP_MTU_EXCEDED        - If the data length is greater
@@ -290,9 +287,9 @@ tBNEP_RESULT BNEP_Disconnect(uint16_t handle);
  *                  BNEP_SUCCESS            - If written successfully
  *
  ******************************************************************************/
-tBNEP_RESULT BNEP_WriteBuf(uint16_t handle, const RawAddress& p_dest_addr,
-                           BT_HDR* p_buf, uint16_t protocol,
-                           const RawAddress* p_src_addr, bool fw_ext_present);
+tBNEP_RESULT BNEP_WriteBuf(uint16_t handle, RawAddress dest_addr, BT_HDR* p_buf,
+                           uint16_t protocol, RawAddress src_addr,
+                           bool fw_ext_present);
 
 /*******************************************************************************
  *
@@ -301,13 +298,12 @@ tBNEP_RESULT BNEP_WriteBuf(uint16_t handle, const RawAddress& p_dest_addr,
  * Description      This function sends data over a BNEP connection
  *
  * Parameters:      handle       - handle of the connection to write
- *                  p_dest_addr  - BD_ADDR/Ethernet addr of the destination
+ *                  dest_addr    - BD_ADDR/Ethernet addr of the destination
  *                  p_data       - pointer to data start
  *                  protocol     - protocol type of the packet
- *                  p_src_addr   - (optional) BD_ADDR/ethernet address of the
- *                                 source (should be NULL if it is the local BD
- *                                 Addr)
- *                  fw_ext_present - forwarded extensions present
+ *                  src_addr     - (optional) BD_ADDR/ethernet address of the
+ *                                 source (should be kEmpty if it is the local
+ *BD Addr) fw_ext_present - forwarded extensions present
  *
  * Returns:         BNEP_WRONG_HANDLE       - if passed handle is not valid
  *                  BNEP_MTU_EXCEDED        - If the data length is greater than
@@ -318,9 +314,9 @@ tBNEP_RESULT BNEP_WriteBuf(uint16_t handle, const RawAddress& p_dest_addr,
  *                  BNEP_SUCCESS            - If written successfully
  *
  ******************************************************************************/
-tBNEP_RESULT BNEP_Write(uint16_t handle, const RawAddress& p_dest_addr,
-                        uint8_t* p_data, uint16_t len, uint16_t protocol,
-                        const RawAddress* p_src_addr, bool fw_ext_present);
+tBNEP_RESULT BNEP_Write(uint16_t handle, RawAddress dest_addr, uint8_t* p_data,
+                        uint16_t len, uint16_t protocol, RawAddress src_addr,
+                        bool fw_ext_present);
 
 /*******************************************************************************
  *
