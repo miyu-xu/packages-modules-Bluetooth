@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8d7b145_dc316e7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1827146
+      },
+      "writtenOn": "2023-12-13T01:39:32Z",
+      "side": 1,
+      "message": "@Thomas could you please approve this cherry pick as drno\n\nThank you in advance",
+      "revId": "9d04499f54a52772e517037d7b45f79e612e971c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
