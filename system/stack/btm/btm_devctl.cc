@@ -33,7 +33,6 @@
 #include "btif/include/btif_bqr.h"
 #include "btm_sec_cb.h"
 #include "btm_sec_int_types.h"
-#include "device/include/controller.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/btm_api.h"
@@ -229,7 +228,9 @@ void BTM_reset_complete() {
  * Returns          true if device is up, else false
  *
  ******************************************************************************/
-bool BTM_IsDeviceUp(void) { return controller_get_interface()->get_is_ready(); }
+bool BTM_IsDeviceUp(void) {
+  return bluetooth::shim::GetController() != nullptr;
+}
 
 static void decode_controller_support() {
   /* Create (e)SCO supported packet types mask */
@@ -278,7 +279,7 @@ static void decode_controller_support() {
   LOG_VERBOSE("Local supported SCO packet types: 0x%04x",
               btm_cb.btm_sco_pkt_types_supported);
 
-  BTM_acl_after_controller_started(controller_get_interface());
+  BTM_acl_after_controller_started();
   btm_sec_dev_reset();
 
   if (bluetooth::shim::GetController()->SupportsRssiWithInquiryResults()) {
@@ -309,7 +310,7 @@ tBTM_STATUS BTM_SetLocalDeviceName(const char* p_name) {
   if (!p_name || !p_name[0] || (strlen((char*)p_name) > BD_NAME_LEN))
     return (BTM_ILLEGAL_VALUE);
 
-  if (!controller_get_interface()->get_is_ready()) return (BTM_DEV_RESET);
+  if (bluetooth::shim::GetController() == nullptr) return (BTM_DEV_RESET);
   /* Save the device name if local storage is enabled */
   p = (uint8_t*)btm_sec_cb.cfg.bd_name;
   if (p != (uint8_t*)p_name)
@@ -351,7 +352,7 @@ tBTM_STATUS BTM_SetDeviceClass(DEV_CLASS dev_class) {
 
   btm_cb.devcb.dev_class = dev_class;
 
-  if (!controller_get_interface()->get_is_ready()) return (BTM_DEV_RESET);
+  if (bluetooth::shim::GetController() == nullptr) return (BTM_DEV_RESET);
 
   btsnd_hcic_write_dev_class(dev_class);
 
