@@ -39,7 +39,6 @@
 #include "le_audio_set_configuration_provider.h"
 #include "le_audio_types.h"
 #include "mock_codec_manager.h"
-#include "mock_controller.h"
 #include "mock_csis_client.h"
 #include "mock_device_groups.h"
 #include "mock_iso_manager.h"
@@ -1493,14 +1492,6 @@ class UnicastTestNoInit : public Test {
 
   void SetUp() override {
     init_message_loop_thread();
-    // ON_CALL(controller_interface_,
-    // SupportsBleConnectedIsochronousStreamCentral)
-    //.WillByDefault(Return(true));
-    // ON_CALL(controller_interface_,
-    // SupportsBleConnectedIsochronousStreamPeripheral)
-    //.WillByDefault(Return(true));
-
-    // controller::SetMockControllerInterface(&controller_interface_);
     bluetooth::manager::SetMockBtmInterface(&mock_btm_interface_);
     gatt::SetMockBtaGattInterface(&mock_gatt_interface_);
     gatt::SetMockBtaGattQueue(&mock_gatt_queue_);
@@ -2715,7 +2706,6 @@ class UnicastTestNoInit : public Test {
   NiceMock<MockFunction<void()>> mock_storage_load;
   NiceMock<MockFunction<bool()>> mock_hal_2_1_verifier;
 
-  // NiceMock<controller::MockControllerInterface> controller_interface_;
   NiceMock<bluetooth::manager::MockBtmInterface> mock_btm_interface_;
   NiceMock<gatt::MockBtaGattInterface> mock_gatt_interface_;
   NiceMock<gatt::MockBtaGattQueue> mock_gatt_queue_;
