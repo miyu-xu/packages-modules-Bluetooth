@@ -22,6 +22,30 @@
       },
       "revId": "e2fe5fe9c686793354fe4a5da5d1a8900861e325",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31989eae_bb041eb0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-12-14T19:50:43Z",
+      "side": 1,
+      "message": "I think the generation of NRPA should be allowed with the public address policy. I made some changes to limit the CL to affect only the public address policy, to allow the use of NRPA for non-connectable advertising if requested. What do you think? For android devices, if the address policy is always set to RPA, this CL should not affect existing devices.",
+      "parentUuid": "48934ecd_9ba63ea9",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "e2fe5fe9c686793354fe4a5da5d1a8900861e325",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

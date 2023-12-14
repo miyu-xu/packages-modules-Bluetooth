@@ -22,6 +22,30 @@
       },
       "revId": "f3b7c2b87904ab69afc3d9ce6b7ebe06e06d2318",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48cfee14_93e32a0e",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2023-12-14T19:50:43Z",
+      "side": 0,
+      "message": "If NRPA is allowed with the public address policy, the rotation time should always be set.",
+      "parentUuid": "295b83a2_5140526c",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 53
+      },
+      "revId": "f3b7c2b87904ab69afc3d9ce6b7ebe06e06d2318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
