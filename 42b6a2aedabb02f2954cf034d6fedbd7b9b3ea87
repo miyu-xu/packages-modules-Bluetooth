@@ -89,6 +89,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "42254e1a_6cdbcfc4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-12-14T18:35:14Z",
+      "side": 1,
+      "message": "Yes. Shutting down D-Bus should complete BEFORE you send the message to IBluetooth.",
+      "parentUuid": "4e6041da_db22131f",
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2de4425_ee17c956",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-12-14T18:35:14Z",
+      "side": 1,
+      "message": "The synchronous part means -- make sure the D-bus is shut down before you send the shutdown message to IBluetooth (to avoid races).\n\nIf you want to re-use the message passing, you may want to use a oneshot channel to enforce a wait-for-response mechanism.",
+      "parentUuid": "6c979a2f_cd940ae3",
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43164e22_7ea16284",
