@@ -1846,23 +1846,29 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           }
         }
 
-        ase->framing = rsp.framing;
-        ase->preferred_phy = rsp.preferred_phy;
-        /* Validate and update QoS settings to be consistent */
-        if ((!ase->max_transport_latency ||
-             ase->max_transport_latency > rsp.max_transport_latency) ||
-            !ase->retrans_nb) {
-          ase->max_transport_latency = rsp.max_transport_latency;
-          ase->retrans_nb = rsp.preferred_retrans_nb;
+        auto& qos_preferences = ase->qos_preferences;
+        qos_preferences.supported_framing = rsp.framing;
+        qos_preferences.preferred_phy = rsp.preferred_phy;
+        qos_preferences.pres_delay_min = rsp.pres_delay_min;
+        qos_preferences.pres_delay_max = rsp.pres_delay_max;
+        qos_preferences.preferred_pres_delay_min = rsp.preferred_pres_delay_min;
+        qos_preferences.preferred_pres_delay_max = rsp.preferred_pres_delay_max;
+
+        /* Validate and update QoS to be consistent */
+        if ((!ase->qos_config.max_transport_latency ||
+             ase->qos_config.max_transport_latency >
+                 rsp.max_transport_latency) ||
+            !ase->qos_config.retrans_nb) {
+          ase->qos_config.max_transport_latency = rsp.max_transport_latency;
+          ase->qos_config.retrans_nb = rsp.preferred_retrans_nb;
+          ase->qos_config.phy =
+              leAudioDevice->GetPreferredPhyBitmask(rsp.preferred_phy);
           LOG_INFO(
               " Using server preferred QoS settings. Max Transport Latency: %d"
               ", Retransmission Number: %d",
-              +ase->max_transport_latency, ase->retrans_nb);
+              +ase->qos_config.max_transport_latency,
+              ase->qos_config.retrans_nb);
         }
-        ase->pres_delay_min = rsp.pres_delay_min;
-        ase->pres_delay_max = rsp.pres_delay_max;
-        ase->preferred_pres_delay_min = rsp.preferred_pres_delay_min;
-        ase->preferred_pres_delay_max = rsp.preferred_pres_delay_max;
 
         SetAseState(leAudioDevice, ase,
                     AseState::BTA_LE_AUDIO_ASE_STATE_CODEC_CONFIGURED);
@@ -1968,22 +1974,27 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
           return;
         }
 
-        ase->framing = rsp.framing;
-        ase->preferred_phy = rsp.preferred_phy;
+        auto& qos_preferences = ase->qos_preferences;
+        qos_preferences.supported_framing = rsp.framing;
+        qos_preferences.preferred_phy = rsp.preferred_phy;
+        qos_preferences.pres_delay_min = rsp.pres_delay_min;
+        qos_preferences.pres_delay_max = rsp.pres_delay_max;
+        qos_preferences.preferred_pres_delay_min = rsp.preferred_pres_delay_min;
+        qos_preferences.preferred_pres_delay_max = rsp.preferred_pres_delay_max;
+
         /* Validate and update QoS settings to be consistent */
-        if ((!ase->max_transport_latency ||
-             ase->max_transport_latency > rsp.max_transport_latency) ||
-            !ase->retrans_nb) {
-          ase->max_transport_latency = rsp.max_transport_latency;
-          ase->retrans_nb = rsp.preferred_retrans_nb;
+        if ((!ase->qos_config.max_transport_latency ||
+             ase->qos_config.max_transport_latency >
+                 rsp.max_transport_latency) ||
+            !ase->qos_config.retrans_nb) {
+          ase->qos_config.max_transport_latency = rsp.max_transport_latency;
+          ase->qos_config.retrans_nb = rsp.preferred_retrans_nb;
           LOG(INFO) << __func__ << " Using server preferred QoS settings."
-                    << " Max Transport Latency: " << +ase->max_transport_latency
-                    << ", Retransmission Number: " << +ase->retrans_nb;
+                    << " Max Transport Latency: "
+                    << +ase->qos_config.max_transport_latency
+                    << ", Retransmission Number: "
+                    << +ase->qos_config.retrans_nb;
         }
-        ase->pres_delay_min = rsp.pres_delay_min;
-        ase->pres_delay_max = rsp.pres_delay_max;
-        ase->preferred_pres_delay_min = rsp.preferred_pres_delay_min;
-        ase->preferred_pres_delay_max = rsp.preferred_pres_delay_max;
 
         /* This may be a notification from a re-configured ASE */
         ase->reconfigure = false;
@@ -2413,9 +2424,9 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
       conf.cig = group->group_id_;
       conf.cis = ase->cis_id;
       conf.framing = group->GetFraming();
-      conf.phy = group->GetPhyBitmask(ase->direction);
-      conf.max_sdu = ase->max_sdu_size;
-      conf.retrans_nb = ase->retrans_nb;
+      conf.phy = ase->qos_config.phy;
+      conf.max_sdu = ase->qos_config.max_sdu_size;
+      conf.retrans_nb = ase->qos_config.retrans_nb;
       if (!group->GetPresentationDelay(&conf.pres_delay, ase->direction)) {
         LOG_ERROR("inconsistent presentation delay for group");
         group->PrintDebugState();
@@ -2423,7 +2434,7 @@ class LeAudioGroupStateMachineImpl : public LeAudioGroupStateMachine {
         return;
       }
 
-      conf.sdu_interval = group->GetSduInterval(ase->direction);
+      conf.sdu_interval = ase->qos_config.sdu_interval;
       if (!conf.sdu_interval) {
         LOG_ERROR("unsupported SDU interval for group");
         group->PrintDebugState();

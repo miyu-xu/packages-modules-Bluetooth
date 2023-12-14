@@ -290,13 +290,15 @@ bool LeAudioDevice::ConfigureAses(
       }
 
       /* Recalculate Max SDU size */
-      auto core_config = ent.codec.params.GetAsCoreCodecConfig();
-      ase->max_sdu_size = core_config.GetChannelCountPerIsoStream() *
-                          core_config.octets_per_codec_frame.value_or(0) *
-                          core_config.codec_frames_blocks_per_sdu.value_or(1);
+      auto core_config = ase->codec_config.GetAsCoreCodecConfig();
+      ase->qos_config.max_sdu_size =
+          core_config.GetChannelCountPerIsoStream() *
+          core_config.octets_per_codec_frame.value_or(0) *
+          core_config.codec_frames_blocks_per_sdu.value_or(1);
 
-      ase->retrans_nb = ent.qos.retransmission_number;
-      ase->max_transport_latency = ent.qos.max_transport_latency;
+      ase->qos_config.retrans_nb = ent.qos.retransmission_number;
+      ase->qos_config.max_transport_latency = ent.qos.max_transport_latency;
+      ase->qos_config.sdu_interval = core_config.GetFrameDurationUs();
 
       SetMetadataToAse(ase, metadata_context_types, ccid_lists);
     }
@@ -305,8 +307,8 @@ bool LeAudioDevice::ConfigureAses(
         "device=%s, activated ASE id=%d, direction=%s, max_sdu_size=%d, "
         "cis_id=%d, target_latency=%d",
         ADDRESS_TO_LOGGABLE_CSTR(address_), ase->id,
-        (ent.direction == 1 ? "snk" : "src"), ase->max_sdu_size, ase->cis_id,
-        ent.qos.target_latency);
+        (ent.direction == 1 ? "snk" : "src"), ase->qos_config.max_sdu_size,
+        ase->cis_id, ent.qos.target_latency);
 
     /* Try to use the already active ASE */
     ase = GetNextActiveAseWithSameDirection(ase);
@@ -763,9 +765,10 @@ LeAudioDevice::GetCodecConfigurationSupportedPac(
 /**
  * Returns supported PHY's bitfield
  */
-uint8_t LeAudioDevice::GetPhyBitmask(void) {
+uint8_t LeAudioDevice::GetPhyBitmask(void) const {
   uint8_t phy_bitfield = kIsoCigPhy1M;
 
+  // TODO: Support Codec PHY
   if (BTM_IsPhy2mSupported(address_, BT_TRANSPORT_LE))
     phy_bitfield |= kIsoCigPhy2M;
 
@@ -792,14 +795,38 @@ void LeAudioDevice::PrintDebugState(void) {
                 << ", state: " << bluetooth::common::ToString(ase.cis_state)
                 << ", data_path_state: "
                 << bluetooth::common::ToString(ase.data_path_state)
-                << "\n ase max_latency: " << +ase.max_transport_latency
-                << ", rtn: " << +ase.retrans_nb
-                << ", max_sdu: " << +ase.max_sdu_size
+                << "\n ase max_latency: "
+                << +ase.qos_config.max_transport_latency
+                << ", rtn: " << +ase.qos_config.retrans_nb
+                << ", max_sdu: " << +ase.qos_config.max_sdu_size
                 << ", target latency: " << +ase.target_latency;
     }
   }
 
   LOG_INFO("%s", debug_str.str().c_str());
+}
+
+uint8_t LeAudioDevice::GetPreferredPhyBitmask(uint8_t preferred_phy) const {
+  // Start with full local phy support
+  uint8_t phy_bitmask = bluetooth::hci::kIsoCigPhy1M;
+  if (controller_get_interface()->SupportsBle2mPhy())
+    phy_bitmask |= bluetooth::hci::kIsoCigPhy2M;
+  if (controller_get_interface()->SupportsBleCodedPhy())
+    phy_bitmask |= bluetooth::hci::kIsoCigPhyC;
+
+  // Check against the remote device support
+  phy_bitmask &= GetPhyBitmask();
+
+  // Take the preferences if possible
+  if (preferred_phy && (phy_bitmask & preferred_phy)) {
+    phy_bitmask &= preferred_phy;
+    LOG_DEBUG("Using ASE preferred phy 0x%02x", static_cast<int>(phy_bitmask));
+  } else {
+    LOG_WARN(
+        "ASE preferred 0x%02x has nothing common with phy_bitfield  0x%02x ",
+        static_cast<int>(preferred_phy), static_cast<int>(phy_bitmask));
+  }
+  return phy_bitmask;
 }
 
 void LeAudioDevice::DumpPacsDebugState(std::stringstream& stream,
@@ -881,10 +908,12 @@ void LeAudioDevice::Dump(int fd) {
                                                                : "source")
              << std::left << std::setw(8) << static_cast<int>(ase.cis_id)
              << std::left << std::setw(12) << ase.cis_conn_hdl << std::left
-             << std::setw(5) << ase.max_sdu_size << std::left << std::setw(8)
-             << ase.max_transport_latency << std::left << std::setw(5)
-             << static_cast<int>(ase.retrans_nb) << std::left << std::setw(10)
-             << bluetooth::common::ToString(ase.cis_state) << std::setw(12)
+             << std::setw(5) << ase.qos_config.max_sdu_size << std::left
+             << std::setw(8) << ase.qos_config.max_transport_latency
+             << std::left << std::setw(5)
+             << static_cast<int>(ase.qos_config.retrans_nb) << std::left
+             << std::setw(10) << bluetooth::common::ToString(ase.cis_state)
+             << std::setw(12)
              << bluetooth::common::ToString(ase.data_path_state);
     }
   }
