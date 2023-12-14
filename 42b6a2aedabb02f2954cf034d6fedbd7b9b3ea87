@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c979a2f_cd940ae3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-14T12:19:15Z",
+      "side": 1,
+      "message": "I more or less get what you mean, but not very sure about how to make it synchronous.\nYou mentioned about implementing a trait, do you mean to implement a synchronous function of the InterfaceManager class and directly call it? I tried it but it\u0027s quite messy since we now need to store the information originally locally used in the InterfaceManager::dispatch to allow us to disable the dbus. Now it means we need an instance of the InterfaceManager and it must outlive the dispatch call, which is async, so we need to .await that.\n\nIs it possible to just add new APIMessage handler in InterfaceManager::dispatch, say, APIMessage::Shutdown? In this case we don\u0027t have to store additional information since it is all handled in the dispatch function. However, this is an async call, so we need to report when the process is done via another tx Message or with signal notifier. WDYT?",
+      "parentUuid": "b9d9df23_d884cef6",
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43164e22_7ea16284",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
