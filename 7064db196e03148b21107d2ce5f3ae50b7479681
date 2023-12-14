@@ -3,6 +3,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "f5c560d7_12adfd8f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-14T18:56:24Z",
+      "side": 1,
+      "message": "@wescande@google.com can you please give second review for Review-Enforcement as Deputy of LE Connections?",
+      "revId": "7064db196e03148b21107d2ce5f3ae50b7479681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4a07fbd0_aaf211f4",
         "filename": "system/gd/hci/le_scanning_reassembler.cc",
         "patchSetId": 10
