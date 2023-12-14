@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8ee9ef4_e2b5509a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-12-14T22:19:45Z",
+      "side": 1,
+      "message": "BumbleBluetoothTests was cached for this patchset hence it didn\u0027t run. Running a custom run with these CLs:\nhttps://android-build.corp.google.com/builds/abtd/run/L94200030000846055",
+      "revId": "3f2c8c3b52fb08366015c55e4c2e63bd77831bb7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
