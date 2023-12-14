@@ -71,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e6041da_db22131f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-12-14T13:38:29Z",
+      "side": 1,
+      "message": "Message::shutdown firstly shutdowns dbus in interface manager and then sends a new message to IBluetooth to disable adapter.\n\nAbps, is my reading correct?",
+      "tag": "mailMessageId\u003d\u003cCAAa9mD3p6EzjrCUDMu6bvthooG73dqB3ixrP2\u003dbD4jnH0M7ErA@mail.gmail.com\u003e",
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "43164e22_7ea16284",
