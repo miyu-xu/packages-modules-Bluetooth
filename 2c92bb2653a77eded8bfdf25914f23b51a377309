@@ -16,6 +16,29 @@
       "message": "This is the right direction but hard to review esp. with Dr. No.\n\nI wonder how we can make it more accessible for the Dr. No. reviewers",
       "revId": "2c92bb2653a77eded8bfdf25914f23b51a377309",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaa4607e_af586917",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 4533,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-14T18:19:16Z",
+      "side": 1,
+      "message": "Why did this line change?",
+      "range": {
+        "startLine": 4533,
+        "startChar": 51,
+        "endLine": 4533,
+        "endChar": 75
+      },
+      "revId": "2c92bb2653a77eded8bfdf25914f23b51a377309",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
