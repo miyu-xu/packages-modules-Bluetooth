@@ -49,6 +49,8 @@
 
 #include <mutex>
 #include <optional>
+#include <queue>
+#include <variant>
 
 #include "advertise_data_parser.h"
 #include "bta/dm/bta_dm_disc.h"
@@ -170,6 +172,44 @@ struct btif_dm_pairing_cb_t {
   ServiceDiscoveryState sdp_over_classic;
 };
 
+struct NoneOp {};
+struct RemoveBond {
+  RawAddress addr;
+};
+
+using PendingOp = std::variant<NoneOp, RemoveBond>;
+static std::queue<PendingOp> pending_ops;
+
+static void queue_pending_op(const PendingOp& op) { pending_ops.push(op); }
+
+static PendingOp dequeue_pending_op() {
+  if (pending_ops.empty()) {
+    return NoneOp{};
+  }
+
+  PendingOp next = pending_ops.back();
+  pending_ops.pop();
+
+  return next;
+}
+
+static void process_next_pending_ops() {
+  PendingOp op = dequeue_pending_op();
+
+  if (RemoveBond* pop = std::get_if<RemoveBond>(&op)) {
+    btif_dm_remove_bond(pop->addr);
+  } else {
+    // do nothing
+  }
+}
+
+static void reset_pairing_cb();
+
+static void post_pairing() {
+  reset_pairing_cb();
+  process_next_pending_ops();
+}
+
 // TODO(jpawlowski): unify ?
 // btif_dm_local_key_id_t == tBTM_BLE_LOCAL_ID_KEYS == tBTA_BLE_LOCAL_ID_KEYS
 typedef struct {
@@ -278,6 +318,11 @@ static const char* btif_get_default_local_name();
 static void btif_stats_add_bond_event(const RawAddress& bd_addr,
                                       bt_bond_function_t function,
                                       bt_bond_state_t state);
+
+static void reset_pairing_cb() {
+  pairing_cb = {};
+  LOG_DEBUG("clearing btif pairing_cb");
+}
 
 /******************************************************************************
  *  Externs
@@ -620,8 +665,7 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
     pairing_cb.state = state;
     pairing_cb.bd_addr = bd_addr;
   } else {
-    LOG_DEBUG("clearing btif pairing_cb");
-    pairing_cb = {};
+    post_pairing();
   }
 }
 
@@ -1793,8 +1837,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
         if (!skip_reporting_wait_for_le) {
           // Both SDP and bonding are done, clear pairing control block in case
           // it is not already cleared
-          pairing_cb = {};
-          LOG_DEBUG("clearing btif pairing_cb");
+          post_pairing();
         }
       }
 
@@ -1870,8 +1913,7 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
               btif_dm_pairing_cb_t::ServiceDiscoveryState::SCHEDULED) {
             // Both SDP and bonding are either done, or not scheduled,
             // we are safe to clear the service discovery part of CB.
-            LOG_DEBUG("clearing pairing_cb");
-            pairing_cb = {};
+            post_pairing();
           }
         }
       } else {
@@ -2124,7 +2166,7 @@ void BTIF_dm_enable() {
     }
   }
   /* clear control blocks */
-  pairing_cb = {};
+  reset_pairing_cb();
   pairing_cb.bond_type = BOND_TYPE_PERSISTENT;
 
   // Enable address consolidation.
@@ -2737,6 +2779,12 @@ void btif_dm_hh_open_failed(RawAddress* bdaddr) {
 
 void btif_dm_remove_bond(const RawAddress bd_addr) {
   LOG_VERBOSE("bd_addr=%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+
+  if (btif_dm_pairing_is_busy()) {
+    LOG_DEBUG("Pending remove bond op:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    queue_pending_req(RemoveBond{.addr = bd_addr});
+    return;
+  }
 
   BTM_LogHistory(kBtmLogTag, bd_addr, "Remove bond");
 
