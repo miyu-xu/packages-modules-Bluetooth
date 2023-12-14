@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9d9df23_d884cef6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-14T11:15:03Z",
+      "side": 1,
+      "message": "Hey, we are not in a time crunch. Let\u0027s have your idea implemented.",
+      "parentUuid": "d9c5e903_1f0da8ec",
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43164e22_7ea16284",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
@@ -48,6 +66,30 @@
       "writtenOn": "2023-12-14T11:01:12Z",
       "side": 1,
       "message": "When self.enabled is true, get_enable() is true, isn\u0027t it? \nIf so, we\u0027d better keep one of them. Having IBluetooth to notify other traits like IBluetootGatt can remove the dependency to adapter.",
+      "range": {
+        "startLine": 2025,
+        "startChar": 0,
+        "endLine": 2025,
+        "endChar": 83
+      },
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01ad00f1_bf8ed677",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2025,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-14T11:15:03Z",
+      "side": 1,
+      "message": "\u003e When self.enabled is true, get_enable() is true, isn\u0027t it?\n\nNo. The case we\u0027re trying to prevent is when self.enabled \u003d\u003d true (so we skip check in line 2018) but adapter.get_enabled() is false (so we need new the check in line 2025, otherwise sysprop crashes).",
+      "parentUuid": "43164e22_7ea16284",
       "range": {
         "startLine": 2025,
         "startChar": 0,
