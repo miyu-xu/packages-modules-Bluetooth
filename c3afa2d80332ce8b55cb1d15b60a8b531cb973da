@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "54dc591c_eae0f2e5",
+        "filename": "system/stack/sdp/sdp_discovery_db.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-14T21:16:54Z",
+      "side": 1,
+      "message": "should we move `#pragma once` in the beginning?",
+      "revId": "c3afa2d80332ce8b55cb1d15b60a8b531cb973da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
