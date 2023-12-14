@@ -187,6 +187,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a94dd522_90e127d4",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-12-14T01:32:05Z",
+      "side": 1,
+      "message": "Alternatively, could it be better to use a switch statement here?  Since this one checks either L2CAP LE and RFCOMM connections, I thought it made more sense to do if - else if - else",
+      "parentUuid": "4e83f341_561a1217",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 40
+      },
+      "revId": "8ae72e1bd67173d89d1a7aac822afc7bfc3908ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9183b762_da1a8694",
         "filename": "framework/java/android/bluetooth/SocketMetrics.java",
         "patchSetId": 4
