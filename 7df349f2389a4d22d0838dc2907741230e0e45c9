@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "25357413_91759459",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-14T05:58:15Z",
+      "side": 1,
+      "message": "Hi @wescande, please review as the owner of Android.bp, thanks!",
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65ecd4bf_db594134",
