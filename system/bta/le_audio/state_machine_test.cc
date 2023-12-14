@@ -33,7 +33,6 @@
 #include "internal_include/stack_config.h"
 #include "le_audio_set_configuration_provider.h"
 #include "mock_codec_manager.h"
-#include "mock_controller.h"
 #include "mock_csis_client.h"
 #include "stack/include/bt_types.h"
 #include "test/common/mock_functions.h"
@@ -268,7 +267,6 @@ class StateMachineTestBase : public Test {
   virtual void SetUp() override {
     bluetooth::common::InitFlags::Load(test_flags);
     reset_mock_function_count_map();
-    // controller::SetMockControllerInterface(&mock_controller_);
     bluetooth::manager::SetMockBtmInterface(&btm_interface);
     gatt::SetMockBtaGattInterface(&gatt_interface);
     gatt::SetMockBtaGattQueue(&gatt_queue);
@@ -306,8 +304,6 @@ class StateMachineTestBase : public Test {
             Invoke([this](int group_id) { return (int)(addresses_.size()); }));
 
     // Support 2M Phy
-    // ON_CALL(mock_controller_,
-    // SupportsBle2mPhy()).WillByDefault(Return(true));
     ON_CALL(btm_interface, IsPhy2mSupported(_, _)).WillByDefault(Return(true));
     ON_CALL(btm_interface, GetHCIConnHandle(_, _))
         .WillByDefault(
@@ -644,7 +640,6 @@ class StateMachineTestBase : public Test {
     gatt::SetMockBtaGattQueue(nullptr);
     gatt::SetMockBtaGattInterface(nullptr);
     bluetooth::manager::SetMockBtmInterface(nullptr);
-    controller::SetMockControllerInterface(nullptr);
 
     le_audio_devices_.clear();
     addresses_.clear();
@@ -1542,7 +1537,6 @@ class StateMachineTestBase : public Test {
   }
 
   MockCsisClient mock_csis_client_module_;
-  // NiceMock<controller::MockControllerInterface> mock_controller_;
   NiceMock<bluetooth::manager::MockBtmInterface> btm_interface;
   gatt::MockBtaGattInterface gatt_interface;
   gatt::MockBtaGattQueue gatt_queue;
