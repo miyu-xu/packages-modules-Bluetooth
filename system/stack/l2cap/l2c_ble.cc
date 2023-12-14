@@ -35,7 +35,6 @@
 
 #include "btif/include/core_callbacks.h"
 #include "btif/include/stack_manager_t.h"
-#include "device/include/controller.h"
 #include "hci/controller_interface.h"
 #include "internal_include/bt_target.h"
 #include "internal_include/stack_config.h"
