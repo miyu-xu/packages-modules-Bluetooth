@@ -39,6 +39,7 @@
 #include "common/time_util.h"
 #include "device/include/controller.h"
 #include "main/shim/acl_api.h"
+#include "main/shim/le_scanning_manager.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
@@ -3016,7 +3017,7 @@ static void btm_ble_start_scan() {
                  "Duplicates:disable");
 
   /* start scan, disable duplicate filtering */
-  btm_send_hci_scan_enable(BTM_BLE_SCAN_ENABLE, BTM_BLE_DUPLICATE_DISABLE);
+  bluetooth::shim::get_ble_scanner_instance()->Scan(true);
 
   if (btm_cb.ble_ctr_cb.inq_var.scan_type == BTM_BLE_SCAN_MODE_ACTI)
     btm_ble_set_topology_mask(BTM_BLE_STATE_ACTIVE_SCAN_BIT);
@@ -3050,7 +3051,7 @@ static void btm_ble_stop_scan(void) {
                  base::StringPrintf("duration_s:%6.3f results:%-3lu",
                                     (double)duration_timestamp / 1000.0,
                                     btm_cb.neighbor.le_legacy_scan.results));
-  btm_send_hci_scan_enable(BTM_BLE_SCAN_DISABLE, BTM_BLE_DUPLICATE_ENABLE);
+  bluetooth::shim::get_ble_scanner_instance()->Scan(false);
 
   btm_update_scanner_filter_policy(SP_ADV_ALL);
 }
