@@ -39,7 +39,6 @@
 #include "btif/include/btif_acl.h"
 #include "btif/include/btif_config.h"
 #include "common/time_util.h"
-#include "device/include/controller.h"
 #include "hci/controller_interface.h"
 #include "hci/hci_layer.h"
 #include "include/check.h"
@@ -287,9 +286,6 @@ tBTM_STATUS BTM_SetDiscoverability(uint16_t inq_mode) {
   /*** Check mode parameter ***/
   if (inq_mode > BTM_MAX_DISCOVERABLE) return (BTM_ILLEGAL_VALUE);
 
-  /* Make sure the controller is active */
-  if (!controller_get_interface()->get_is_ready()) return (BTM_DEV_RESET);
-
   /* If the window and/or interval is '0', set to default values */
   LOG_VERBOSE("mode %d [NonDisc-0, Lim-1, Gen-2]", inq_mode);
   (inq_mode != BTM_NON_DISCOVERABLE)
@@ -449,9 +445,6 @@ tBTM_STATUS BTM_SetConnectability(uint16_t page_mode) {
   /*** Check mode parameter ***/
   if (page_mode != BTM_NON_CONNECTABLE && page_mode != BTM_CONNECTABLE)
     return (BTM_ILLEGAL_VALUE);
-
-  /* Make sure the controller is active */
-  if (!controller_get_interface()->get_is_ready()) return (BTM_DEV_RESET);
 
   /*** Only check window and duration if mode is connectable ***/
   if (page_mode == BTM_CONNECTABLE) {
