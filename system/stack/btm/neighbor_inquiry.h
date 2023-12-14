@@ -222,7 +222,7 @@ typedef struct {
 
 typedef void(tBTM_NAME_CMPL_CB)(const tBTM_REMOTE_DEV_NAME*);
 
-typedef struct {
+struct tBTM_INQUIRY_VAR_ST {
   tBTM_NAME_CMPL_CB* p_remname_cmpl_cb;
 
 #define BTM_EXT_RMT_NAME_TIMEOUT_MS (40 * 1000) /* 40 seconds */
@@ -277,8 +277,7 @@ typedef struct {
     alarm_free(remote_name_timer);
     alarm_free(classic_inquiry_timer);
   }
-
-} tBTM_INQUIRY_VAR_ST;
+};
 
 #define BTM_INQ_RESULT_BR 0x01
 #define BTM_INQ_RESULT_BLE 0x02
