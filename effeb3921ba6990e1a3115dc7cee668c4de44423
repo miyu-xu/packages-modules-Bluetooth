@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23a93583_9b7e10e7",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-14T10:20:26Z",
+      "side": 1,
+      "message": "```suggestion\ncc_library {\n```",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "190c46fe_208d767d",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-14T10:20:26Z",
+      "side": 1,
+      "message": "```suggestion\n    local_include_dirs: [\n        \"include\",\n    ],\n```",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 6
+      },
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a65f309e_36097b8d",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-14T10:20:26Z",
+      "side": 1,
+      "message": "Should we depend on fmtlib directly instead?",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9b4bcc86_eebf71cd",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-14T10:20:26Z",
+      "side": 1,
+      "message": "```suggestion\ntemplate \u003cLevel level, typename... T\u003e\nstruct log {\n  log(fmt::format_string\u003cT...\u003e fmt, T\u0026\u0026... args,\n      char const* file_name \u003d __builtin_FILE(),\n      int line \u003d __builtin_LINE()) {\n    vlog(level, LOG_TAG, file_name, line, fmt.get(), fmt::make_format_args(args...));\n  }\n};\n\n#if (__cplusplus \u003e\u003d 202002L \u0026\u0026 defined(__GNUC__) \u0026\u0026 !defined(__clang__))\n\ntemplate \u003cint level, typename... T\u003e\nlog(fmt::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e log\u003clevel, T...\u003e;\n\ntemplate \u003ctypename... T\u003e using fatal \u003d log\u003ckFatal, T...\u003e;\ntemplate \u003ctypename... T\u003e using error \u003d log\u003ckError, T...\u003e;\ntemplate \u003ctypename... T\u003e using warning \u003d log\u003ckWarning, T...\u003e;\ntemplate \u003ctypename... T\u003e using info \u003d log\u003ckInfo, T...\u003e;\ntemplate \u003ctypename... T\u003e using debug \u003d log\u003ckDebug, T...\u003e;\ntemplate \u003ctypename... T\u003e using verbose \u003d log\u003ckVerbose, T...\u003e;\n\n#else\n\ntemplate \u003ctypename... T\u003e struct fatal : log\u003ckFatal, T...\u003e { using log\u003ckFatal, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct error : log\u003ckError, T...\u003e { using log\u003ckError, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct warn : log\u003ckWarn, T...\u003e { using log\u003ckWarn, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct info : log\u003ckInfo, T...\u003e { using log\u003ckInfo, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct debug : log\u003ckDebug, T...\u003e { using log\u003ckDebug, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct verbose : log\u003ckVerbose, T...\u003e { using log\u003ckVerbose, T...\u003e::log; };\n\ntemplate \u003ctypename... T\u003e fatal(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e fatal\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e error(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e error\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e warn(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e warn\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e info(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e info\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e debug(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e debug\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e verbose(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e verbose\u003cT...\u003e;\n\n#endif  // GCC / C++20\n```",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 22
+      },
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "99237cb2_4764918c",
+        "filename": "system/logger/src/vlog_stdout.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-14T10:20:26Z",
+      "side": 1,
+      "message": "```suggestion\n        \"{} {} {}:{} \",\n```",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a3920a9_ad168da5",
+        "filename": "system/logger/src/vlog_syslog.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-14T10:20:26Z",
+      "side": 1,
+      "message": "```suggestion\n        \"{} {}:{} \",\n```",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
