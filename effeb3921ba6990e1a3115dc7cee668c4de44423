@@ -60,6 +60,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d10c600e_7bec5358",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-14T10:39:37Z",
+      "side": 1,
+      "message": "`liblog` should also be supported on the host and will print to stderr.\n\nhttps://cs.android.com/android/platform/superproject/+/master:system/logging/liblog/logger_write.cpp;l\u003d331-333;drc\u003dbb9d0641335aaad0b6347fdda4d69178ddcef882",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 10
+      },
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b4bcc86_eebf71cd",
         "filename": "system/logger/include/bluetooth/logger.h",
         "patchSetId": 5
