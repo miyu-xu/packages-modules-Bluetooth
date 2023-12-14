@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bac5dc0c_5dbbb84d",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 17
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-14T20:32:40Z",
+      "side": 1,
+      "message": "can we keep a smaller name -- \neg: fall_back_to_sco_if_esco_fails",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 67
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85ba3c01_6a383ea4",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-14T20:32:40Z",
+      "side": 1,
+      "message": "since it is a boolean it doesn\u0027t really count anything. \n\nbool is_retransmitted is a much better name",
+      "range": {
+        "startLine": 273,
+        "startChar": 2,
+        "endLine": 273,
+        "endChar": 37
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ef2024c_e664e1af",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-14T20:32:40Z",
+      "side": 1,
+      "message": "This looks error prone --\n\nelse if (bta_ag_sco_is_opening(bta_ag_cb.sco.p_curr_scb)) {\n if (is_flag_enabled  \u0026\u0026 bta_ag_cb.sco.p_curr_scb-\u003etry_zero_retransmission_effort \u003d\u003d false) {\n } else {\n }\n\nlooks cleaner and would avoid the error where logging is missed because flag isn\u0027t enabled.",
+      "range": {
+        "startLine": 253,
+        "startChar": 6,
+        "endLine": 261,
+        "endChar": 78
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a47cbae7_9381e751",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-14T20:32:40Z",
+      "side": 1,
+      "message": "adding this at the top of our if else block above (i.e. as the first case) would make more sense.",
+      "range": {
+        "startLine": 495,
+        "startChar": 2,
+        "endLine": 500,
+        "endChar": 3
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
