@@ -16,6 +16,24 @@
       "message": "nit: Does this belong in its own change?",
       "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "01a53ae0_8a48da8f",
+        "filename": "flags/exported_include/android_bluetooth_flags.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-14T05:56:12Z",
+      "side": 1,
+      "message": "I\u0027m fine with either and have no strong opinion",
+      "parentUuid": "65ecd4bf_db594134",
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
