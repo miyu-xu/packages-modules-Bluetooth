@@ -83,6 +83,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "0c9a5296_c01ad827",
+        "filename": "system/logger/src/truncating_buffer.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-14T10:34:15Z",
+      "side": 1,
+      "message": "-1 for null terminator?\n\nIf yes, either put a comment, make this struct handle the null terminator, or remove it (I think it\u0027s fine if you just overwrite the last character with a null terminator",
+      "range": {
+        "startLine": 33,
+        "startChar": 29,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "99237cb2_4764918c",
         "filename": "system/logger/src/vlog_stdout.cc",
         "patchSetId": 5
