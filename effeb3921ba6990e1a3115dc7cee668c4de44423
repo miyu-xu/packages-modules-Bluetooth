@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "04631eb1_f4dd871b",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-14T18:21:26Z",
+      "side": 1,
+      "message": "libbase links fmtlib statically and is already linked by the bluetooth apex; it is free to use vs. statically linking another library.",
+      "parentUuid": "a65f309e_36097b8d",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d10c600e_7bec5358",
         "filename": "system/logger/Android.bp",
         "patchSetId": 5
