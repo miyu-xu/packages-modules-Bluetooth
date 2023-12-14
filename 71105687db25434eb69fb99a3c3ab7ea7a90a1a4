@@ -22,6 +22,30 @@
       },
       "revId": "71105687db25434eb69fb99a3c3ab7ea7a90a1a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "27083a40_879b4bc4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-14T18:51:09Z",
+      "side": 1,
+      "message": "No reason. Updated to use byte[] instead.",
+      "parentUuid": "61b5ecdc_54d359b6",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 79
+      },
+      "revId": "71105687db25434eb69fb99a3c3ab7ea7a90a1a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
