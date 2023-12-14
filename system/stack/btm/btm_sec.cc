@@ -22,9 +22,8 @@
  *
  ******************************************************************************/
 
+#include <cstddef>
 #define LOG_TAG "bt_btm_sec"
-
-#include "stack/btm/btm_sec.h"
 
 #include <base/functional/bind.h>
 #include <base/strings/stringprintf.h>
@@ -38,7 +37,6 @@
 #include "common/init_flags.h"
 #include "common/metrics.h"
 #include "common/time_util.h"
-#include "device/include/controller.h"
 #include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
 #include "hci/controller_interface.h"
@@ -52,6 +50,7 @@
 #include "stack/btm/btm_ble_sec.h"
 #include "stack/btm/btm_dev.h"
 #include "stack/btm/btm_int_types.h"
+#include "stack/btm/btm_sec.h"
 #include "stack/btm/btm_sec_cb.h"
 #include "stack/btm/btm_sec_int_types.h"
 #include "stack/btm/security_device_record.h"
@@ -396,7 +395,7 @@ void BTM_SetPinType(uint8_t pin_type, PIN_CODE pin_code, uint8_t pin_code_len) {
 
   /* If device is not up security mode will be set as a part of startup */
   if ((btm_sec_cb.cfg.pin_type != pin_type) &&
-      controller_get_interface()->get_is_ready()) {
+      bluetooth::shim::GetController() != nullptr) {
     btsnd_hcic_write_pin_type(pin_type);
   }
 
@@ -621,7 +620,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
     return (BTM_NO_RESOURCES);
   }
 
-  if (!controller_get_interface()->get_is_ready()) {
+  if (bluetooth::shim::GetController() == nullptr) {
     log::error("controller module is not ready");
     return (BTM_NO_RESOURCES);
   }

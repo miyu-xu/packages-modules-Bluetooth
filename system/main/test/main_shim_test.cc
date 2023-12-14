@@ -26,7 +26,6 @@
 #include <optional>
 
 #include "btif/include/btif_hh.h"
-#include "device/include/controller.h"
 #include "hal/hci_hal.h"
 #include "hci/acl_manager.h"
 #include "hci/acl_manager/classic_acl_connection.h"
