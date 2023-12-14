@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c82f8f3_32fa2543",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-14T21:11:41Z",
+      "side": 1,
+      "message": "Why 4?\n\nDo we have to allocate them in the middle of this?",
+      "range": {
+        "startLine": 69,
+        "startChar": 45,
+        "endLine": 69,
+        "endChar": 46
+      },
+      "revId": "c8fc2134bf49f9fda7544a384c071b839b483878",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c408ebc_6742a6f9",
+        "filename": "system/include/hardware/bt_av.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-14T21:11:41Z",
+      "side": 1,
+      "message": "Does it work for BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN + 1 ?",
+      "revId": "c8fc2134bf49f9fda7544a384c071b839b483878",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
