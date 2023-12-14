@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a07fbd0_aaf211f4",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-14T18:55:23Z",
+      "side": 1,
+      "message": "I guess for completeness could flag guard this section as well so the new field isn\u0027t populated until flag enabled, but given it\u0027s only read if flag enabled I think this should be fine. \n\nI\u0027ll go ahead and +2 and ask a different Dr. No to give the Dr. No for this one since we\u0027re still establishing best flagging practices and in some logic it can be a bit tricky.",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 80
+      },
+      "revId": "7064db196e03148b21107d2ce5f3ae50b7479681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
