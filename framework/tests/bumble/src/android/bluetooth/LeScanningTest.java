@@ -121,6 +121,56 @@ public class LeScanningTest {
     }
 
     @Test
+    public void scanForIrkAndAddress_ambientDiscovery_allMatches_sticky_withScanCallback() {
+        advertiseWithBumble(null, OwnAddressType.RANDOM);
+
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setDeviceAddress(
+                                TEST_ADDRESS_RANDOM_STATIC,
+                                BluetoothDevice.ADDRESS_TYPE_RANDOM,
+                                Utils.BUMBLE_IRK)
+                        .build();
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .setMatchMode(ScanSettings.MATCH_MODE_STICKY)
+                        .build();
+        List<ScanResult> results = scanWithCallback(scanFilter, scanSettings);
+
+        assertThat(results).isNotEmpty();
+        assertThat(results.get(0).getDevice().getAddress()).isEqualTo(TEST_ADDRESS_RANDOM_STATIC);
+    }
+
+    @Test
+    public void scanForIrkAndAddress_ambientDiscovery_allMatches_sticky_withPendingIntent() {
+        advertiseWithBumble(null, OwnAddressType.RANDOM);
+
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setDeviceAddress(
+                                TEST_ADDRESS_RANDOM_STATIC,
+                                BluetoothDevice.ADDRESS_TYPE_RANDOM,
+                                Utils.BUMBLE_IRK)
+                        .build();
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .setMatchMode(ScanSettings.MATCH_MODE_STICKY)
+                        .build();
+        List<ScanResult> results =
+                scanWithPendingIntent(
+                        scanFilter,
+                        scanSettings,
+                        PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
+
+        assertThat(results).isNotEmpty();
+        assertThat(results.get(0).getDevice().getAddress()).isEqualTo(TEST_ADDRESS_RANDOM_STATIC);
+    }
+
+    @Test
     public void startBleScan_withCallbackTypeFirstMatchSilentlyFails() {
         advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
 
@@ -388,6 +438,113 @@ public class LeScanningTest {
         mLeScanner.stopScan(scanCallback);
 
         return result;
+    }
+
+    private List<ScanResult> scanWithCallback(ScanFilter scanFilter, ScanSettings scanSettings) {
+        CompletableFuture<List<ScanResult>> future = new CompletableFuture<>();
+
+        List<ScanResult> scanResults = new ArrayList<>();
+        ScanCallback scanCallback =
+                new ScanCallback() {
+                    @Override
+                    public void onScanResult(int callbackType, ScanResult result) {
+                        Log.i(
+                                TAG,
+                                "onScanResult "
+                                        + "callbackType: "
+                                        + callbackType
+                                        + ", result: "
+                                        + result);
+
+                        if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
+                            if (scanResults.size() < 2) {
+                                scanResults.add(result);
+                            } else {
+                                future.complete(scanResults);
+                            }
+                        } else {
+                            scanResults.add(result);
+                            future.complete(scanResults);
+                        }
+                    }
+
+                    @Override
+                    public void onScanFailed(int errorCode) {
+                        Log.i(TAG, "onScanFailed errorCode: " + errorCode);
+                        future.complete(null);
+                    }
+                };
+
+        mLeScanner.startScan(List.of(scanFilter), scanSettings, scanCallback);
+
+        List<ScanResult> results =
+                future.completeOnTimeout(null, TIMEOUT_SCANNING_MS, TimeUnit.MILLISECONDS).join();
+
+        mLeScanner.stopScan(scanCallback);
+
+        return results;
+    }
+
+    private List<ScanResult> scanWithPendingIntent(
+            ScanFilter scanFilter, ScanSettings scanSettings, int pendingIntentFlags) {
+        CompletableFuture<List<ScanResult>> future = new CompletableFuture<>();
+
+        List<ScanResult> scanResults = new ArrayList<>();
+        BroadcastReceiver scanResultReceiver =
+                new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        if (ACTION_DYNAMIC_RECEIVER_SCAN_RESULT.equals(intent.getAction())) {
+                            int callbackType =
+                                    intent.getIntExtra(BluetoothLeScanner.EXTRA_CALLBACK_TYPE, -1);
+                            List<ScanResult> results =
+                                    intent.getParcelableArrayListExtra(
+                                            BluetoothLeScanner.EXTRA_LIST_SCAN_RESULT,
+                                            ScanResult.class);
+
+                            if (results == null) {
+                                Log.i(TAG, "onScanResult scanResults: null");
+                                return;
+                            }
+
+                            Log.i(
+                                    TAG,
+                                    "onScanResult "
+                                            + "callbackType: "
+                                            + callbackType
+                                            + ", results: "
+                                            + results);
+
+                            if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
+                                for (ScanResult result : results) {
+                                    if (scanResults.size() < 2) {
+                                        scanResults.add(result);
+                                    } else {
+                                        future.complete(scanResults);
+                                    }
+                                }
+                            } else {
+                                future.complete(results);
+                            }
+                        }
+                    }
+                };
+        IntentFilter intentFilter = new IntentFilter(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT);
+        mContext.registerReceiver(scanResultReceiver, intentFilter);
+
+        Intent scanIntent = new Intent(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT);
+        PendingIntent pendingIntent =
+                PendingIntent.getBroadcast(mContext, 0, scanIntent, pendingIntentFlags);
+
+        mLeScanner.startScan(List.of(scanFilter), scanSettings, pendingIntent);
+
+        List<ScanResult> results =
+                future.completeOnTimeout(null, TIMEOUT_SCANNING_MS, TimeUnit.MILLISECONDS).join();
+
+        mLeScanner.stopScan(pendingIntent);
+        mContext.unregisterReceiver(scanResultReceiver);
+
+        return results;
     }
 
     private void advertiseWithBumble(String serviceUuid, OwnAddressType addressType) {
