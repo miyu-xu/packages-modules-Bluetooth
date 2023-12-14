@@ -1247,6 +1247,29 @@ class BluetoothManagerService {
         return true;
     }
 
+    /** callback trigger by TemporaryOff feature to turn bluetooth back on */
+    private Unit temporaryOffTurnOn() {
+        if (isSatelliteModeOn()) {
+            Log.d(TAG, "temporaryOffTurnOn: not enabling - satellite mode is on.");
+            return Unit.INSTANCE;
+        }
+
+        if (isAirplaneModeOn()) {
+            Log.d(TAG, "temporaryOffTurnOn: not enabling - airplane mode is on.");
+            return Unit.INSTANCE;
+        }
+
+        enableNoAutoConnect("TemporaryOffListener");
+
+        return Unit.INSTANCE;
+    }
+
+    /** callback trigger by TemporaryOff feature to turn bluetooth off */
+    private Unit temporaryOffTurnOff() {
+        disable("TemporaryOffListener", false);
+        return Unit.INSTANCE;
+    }
+
     boolean enable(String packageName) {
         Log.d(
                 TAG,
@@ -1456,6 +1479,13 @@ class BluetoothManagerService {
             SatelliteModeListener.initialize(
                     mLooper, mContentResolver, this::onSatelliteModeChanged);
         }
+
+        TemporaryOffListener.initialize(
+                mLooper,
+                mContentResolver,
+                mState,
+                this::temporaryOffTurnOn,
+                this::temporaryOffTurnOff);
     }
 
     private void internalHandleOnBootPhase(UserHandle userHandle) {
@@ -1468,7 +1498,10 @@ class BluetoothManagerService {
             return;
         }
         final boolean isSafeMode = mContext.getPackageManager().isSafeMode();
-        if (mEnableExternal && isBluetoothPersistedStateOnBluetooth() && !isSafeMode) {
+        if (mEnableExternal
+                && isBluetoothPersistedStateOnBluetooth()
+                && !isSafeMode
+                && !TemporaryOffListener.isOn()) {
             Log.i(TAG, "internalHandleOnBootPhase: Auto-enabling Bluetooth.");
             sendEnableMsg(
                     mQuietEnableExternal,
@@ -1843,6 +1876,7 @@ class BluetoothManagerService {
 
                     if (isBle == 0) {
                         persistBluetoothSetting(BLUETOOTH_ON_BLUETOOTH);
+                        TemporaryOffListener.notifyUserToggledBluetooth(mContentResolver);
                     }
 
                     // Use service interface to get the exact state
