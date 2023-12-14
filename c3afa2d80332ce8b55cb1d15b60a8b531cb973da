@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55760b58_a4b1aee4",
+        "filename": "system/stack/sdp/sdp_discovery_db.h",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-14T21:26:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "54dc591c_eae0f2e5",
+      "revId": "c3afa2d80332ce8b55cb1d15b60a8b531cb973da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a2864fc2_5d626de4",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-12-14T21:17:38Z",
       "side": 1,
       "message": "remove this?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "c3afa2d80332ce8b55cb1d15b60a8b531cb973da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3700cff1_c9749738",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-14T21:26:53Z",
+      "side": 1,
+      "message": "sadly there is a streams log left in the file\n\n```\nLOG(ERROR) \u003c\u003c __func__ \u003c\u003c \": invoked with non OK status\";\n```\n\nI could remove that",
+      "parentUuid": "a2864fc2_5d626de4",
       "range": {
         "startLine": 27,
         "startChar": 0,
