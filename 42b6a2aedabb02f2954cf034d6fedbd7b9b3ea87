@@ -33,6 +33,29 @@
       "message": "If you\u0027re not on a time crunch to fix for branch date, a better fix would be to add a \"RPC shutdown\" in the Message::Shutdown handler in the stack:\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/rust/linux/stack/src/lib.rs;l\u003d217\n\nWhat I\u0027m thinking:\n* Expand InterfaceManager to expose a synchronous shutdown interface or closure.\n* Pass ownership to Stack (so it can handle in the dispatch function)\n* On Message::Shutdown, first use InterfaceManager to shut down all dbus interfaces and then run adapter shutdown.\n\nOne thing to be careful here is that the Stack implementation needs to be independent from the service layer (because that\u0027s just an RPC projection). You may want to define a trait in the Stack and simply implement it in Service to preserve the architectural ordering.",
       "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43164e22_7ea16284",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2025,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-12-14T11:01:12Z",
+      "side": 1,
+      "message": "When self.enabled is true, get_enable() is true, isn\u0027t it? \nIf so, we\u0027d better keep one of them. Having IBluetooth to notify other traits like IBluetootGatt can remove the dependency to adapter.",
+      "range": {
+        "startLine": 2025,
+        "startChar": 0,
+        "endLine": 2025,
+        "endChar": 83
+      },
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
