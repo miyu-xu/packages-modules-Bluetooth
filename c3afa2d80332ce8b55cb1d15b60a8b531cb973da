@@ -81,6 +81,30 @@
       },
       "revId": "c3afa2d80332ce8b55cb1d15b60a8b531cb973da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "03a6beee_943fb2f9",
+        "filename": "system/stack/sdp/sdp_main.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-14T21:39:46Z",
+      "side": 1,
+      "message": "I will remove in a separate CL",
+      "parentUuid": "3700cff1_c9749738",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 25
+      },
+      "revId": "c3afa2d80332ce8b55cb1d15b60a8b531cb973da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
