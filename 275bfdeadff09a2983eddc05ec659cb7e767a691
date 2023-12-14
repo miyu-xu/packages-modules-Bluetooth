@@ -228,6 +228,24 @@
       "parentUuid": "fb28e5f9_d8c9893d",
       "revId": "275bfdeadff09a2983eddc05ec659cb7e767a691",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df6d1bf9_f5d7ce24",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-14T12:22:03Z",
+      "side": 1,
+      "message": "We are using both. I will make global definition for this variable and update the patch",
+      "parentUuid": "606997c6_eccde040",
+      "revId": "275bfdeadff09a2983eddc05ec659cb7e767a691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
