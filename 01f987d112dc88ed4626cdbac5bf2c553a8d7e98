@@ -22,6 +22,30 @@
       },
       "revId": "01f987d112dc88ed4626cdbac5bf2c553a8d7e98",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eaea113_7dae9e14",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T16:34:45Z",
+      "side": 1,
+      "message": "To allow callers to pass nullptr to the codec_info parameter should they not be interested in the result.",
+      "parentUuid": "dd430ee9_2d5895cf",
+      "range": {
+        "startLine": 428,
+        "startChar": 9,
+        "endLine": 428,
+        "endChar": 30
+      },
+      "revId": "01f987d112dc88ed4626cdbac5bf2c553a8d7e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
