@@ -38,6 +38,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "9522b4bc_46f02f2a",
+        "filename": "system/bta/le_audio/audio_hal_client/asrc_resampler_test.cc",
+        "patchSetId": 28
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2023-12-15T17:37:02Z",
+      "side": 1,
+      "message": "https://r.android.com/2874220",
+      "parentUuid": "fe711122_fde5ec19",
+      "revId": "8e29cde38c999ef039499932231e71c3b5846f11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "0c6133cd_85ca3c0e",
         "filename": "system/bta/le_audio/audio_hal_client/asrc_resampler_test.cc",
         "patchSetId": 28
