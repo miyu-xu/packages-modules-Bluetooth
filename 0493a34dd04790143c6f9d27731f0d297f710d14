@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5ec2185_f78930e4",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-15T22:37:54Z",
+      "side": 1,
+      "message": "\u003e Removed services appear to all be android:exported\u003d\"true\", which means BluetoothInstrumentationTests wouldn\u0027t cover any breakages related to external launch of these services.\n\nYup, this is exactly the kind of breakage that we can encounter with this CL.\nThere is no known usage of our exported services, this is not an API surface (the Binder exposed by this is not stable), the only known user is our framework via the Bluetooth system server, which is replaced in this CL.\n\n\u003e Am a bit concerned since some of these declare permissions or intent filters aside from just the aidl interface I\u0027m guessing/hoping is just used internally within BT app.\n\nThose permissions were irrelevant as the thing that is binding to those services is the system_server which has all of those permissions.\n\n\u003e Have you tried any manual test for this CL? Can you please update commit message with any additional testing done aside from BT internal tests?\n\nNot anything more meaningful than what is tested by pts-bot and the phone booting, it\u0027s why I didn\u0027t included it.\nAlso pts-bot itself is not included because I didn\u0027t ran this locally, only BluetoothInstrumentationTests.\nBut most of my validation for this CL is the phone is able to boot (because the system server calls getProfileProxy) and pts-bot passing with the presubmit.\n\n\u003e Esp. concerned about telephony dependencies, e.g. for MAP, and Settings dependencies or other system UI (e.g. notifications for file share, maybe volume control?)\n\nI\u0027m not sure to understand how those could be affected by this CL\n\n\u003e not sure the history on why these are exported so these may all be fine and covered.\n\nIt\u0027s used as an implementation detail of our current API, as the Bluetooth System Server is binding to those services.",
+      "parentUuid": "d6fbfa8c_e454eb8d",
+      "revId": "0493a34dd04790143c6f9d27731f0d297f710d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8f8de1e3_cdab0af3",
         "filename": "framework/java/android/bluetooth/IBluetoothStateChangeCallback.java",
         "patchSetId": 25
@@ -31,6 +49,30 @@
       "writtenOn": "2023-12-15T21:20:10Z",
       "side": 1,
       "message": "Please keep some Javadoc even for hidden APIs",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "0493a34dd04790143c6f9d27731f0d297f710d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0310f3e6_0e4f4c61",
+        "filename": "framework/java/android/bluetooth/IBluetoothStateChangeCallback.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-15T22:37:54Z",
+      "side": 1,
+      "message": "The old javadoc doesn\u0027t apply, this class is unfortunately an unsupportedappusage, and this is here only to not break apps depending on this.\n\nIMO The best way to document this would be to annotate it as @UnsupportedAppUsage. However if I do that I want to remove it from `apex/hiddenapi/hiddenapi-unsupported.txt`, unfortunately this path is only owned by the compat-team.\n\nIdeally I would like to avoid making this CL more complicated by requiring a compat-team review. Do you mind if I do that in a follow-up?\n\nIs this a nitpick or do you want me to add some documentation in the meantime?",
+      "parentUuid": "8f8de1e3_cdab0af3",
       "range": {
         "startLine": 19,
         "startChar": 0,
