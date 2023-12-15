@@ -16,6 +16,24 @@
       "message": "I\u0027m not sure to understand the need to do this, is there an issue of creating another test class for the parametrized tests?",
       "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be6873ab_4aeacf06",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-15T18:59:18Z",
+      "side": 1,
+      "message": "The parameterized tests are also for LE scanning. They both use same dependencies and utility methods. This way, we can reduce code duplication and tests are organized.",
+      "parentUuid": "72e89a91_6adc64b4",
+      "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
