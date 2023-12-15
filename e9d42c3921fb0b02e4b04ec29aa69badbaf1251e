@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "554ad841_b9ada47b",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-15T15:13:14Z",
+      "side": 1,
+      "message": "actually \n`smp_cb.total_tx_unacked +\u003d 1;`\n`return true;`\n\nMaybe this will improve readiness ?",
+      "parentUuid": "dc293567_78038463",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad8623a2_0c59bac9",
         "filename": "system/stack/smp/smp_utils.cc",
         "patchSetId": 9
