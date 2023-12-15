@@ -274,6 +274,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c4ab0457_82884d80",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-15T16:47:36Z",
+      "side": 1,
+      "message": "I agree with this, we don\u0027t need to have them no?",
+      "parentUuid": "3e3127c3_4b393227",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b4bcc86_eebf71cd",
         "filename": "system/logger/include/bluetooth/logger.h",
         "patchSetId": 5
