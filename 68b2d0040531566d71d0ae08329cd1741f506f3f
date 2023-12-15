@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7142ac51_4532a682",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-15T23:27:44Z",
+      "side": 1,
+      "message": "Re-adding Dr. No since Roopa previously stamped this. \n\nSeems you can\u0027t add aosp CL retroactively to a bug for the flag definition exemption.",
+      "revId": "68b2d0040531566d71d0ae08329cd1741f506f3f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
