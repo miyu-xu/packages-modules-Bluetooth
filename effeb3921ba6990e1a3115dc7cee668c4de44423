@@ -138,6 +138,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2cd1cde0_8959a5b0",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T17:30:02Z",
+      "side": 1,
+      "message": "Bluetooth is not in the package visibility",
+      "parentUuid": "d3f4b8a2_d7791406",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d10c600e_7bec5358",
         "filename": "system/logger/Android.bp",
         "patchSetId": 5
@@ -286,6 +304,24 @@
       "side": 1,
       "message": "I agree with this, we don\u0027t need to have them no?",
       "parentUuid": "3e3127c3_4b393227",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "87396397_8705459f",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T17:30:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4ab0457_82884d80",
       "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
