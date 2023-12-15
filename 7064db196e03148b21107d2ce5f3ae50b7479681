@@ -20,6 +20,23 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "19a2656a_cd58e964",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-15T02:00:37Z",
+      "side": 1,
+      "message": "[@benlawson sorry for noise on this CL, am trying a few things to check on flag auto-exemption for dr no]",
+      "revId": "7064db196e03148b21107d2ce5f3ae50b7479681",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "4a07fbd0_aaf211f4",
         "filename": "system/gd/hci/le_scanning_reassembler.cc",
         "patchSetId": 10
