@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72e89a91_6adc64b4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-15T10:25:23Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand the need to do this, is there an issue of creating another test class for the parametrized tests?",
+      "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
