@@ -22,6 +22,30 @@
       },
       "revId": "f82b192a55a50cd99650e374934a2b8a74c6d6ed",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd3d8c30_383c9d1a",
+        "filename": "system/stack/a2dp/a2dp_ext.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T16:30:01Z",
+      "side": 1,
+      "message": "(aside note, I see it occurring everywhere in the stack)\n\nExpecting `ota_codec_config_ \u003d result-\u003ecodec_config` maybe ?\nBut that does not compile: error: array type \u0027uint8_t[20]\u0027 (aka \u0027unsigned char[20]\u0027) is not assignable",
+      "parentUuid": "14a4c9ce_79055844",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "f82b192a55a50cd99650e374934a2b8a74c6d6ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
