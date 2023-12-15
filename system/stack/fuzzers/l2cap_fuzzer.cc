@@ -37,6 +37,8 @@
 
 using bluetooth::Uuid;
 
+extern tBTM_CB btm_cb;
+
 // Verify the passed data is readable
 static void ConsumeData(const uint8_t* data, size_t size) {
   volatile uint8_t checksum = 0;
@@ -44,8 +46,6 @@ static void ConsumeData(const uint8_t* data, size_t size) {
     checksum ^= data[i];
   }
 }
-
-tBTM_CB btm_cb;
 
 bt_status_t do_in_main_thread(base::Location const&,
                               base::OnceCallback<void()>) {

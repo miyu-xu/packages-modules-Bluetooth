@@ -30,10 +30,8 @@
 #include "hal/hci_hal.h"
 #include "hci/acl_manager.h"
 #include "hci/acl_manager/classic_acl_connection.h"
-#include "hci/acl_manager/connection_callbacks.h"
 #include "hci/acl_manager/connection_management_callbacks.h"
 #include "hci/acl_manager/le_acl_connection.h"
-#include "hci/acl_manager/le_connection_callbacks.h"
 #include "hci/acl_manager/le_connection_management_callbacks.h"
 #include "hci/acl_manager_mock.h"
 #include "hci/address.h"
@@ -48,22 +46,16 @@
 #include "main/shim/ble_scanner_interface_impl.h"
 #include "main/shim/dumpsys.h"
 #include "main/shim/helpers.h"
-#include "main/shim/le_advertising_manager.h"
 #include "main/shim/le_scanning_manager.h"
 #include "os/handler.h"
-#include "os/mock_queue.h"
 #include "os/queue.h"
 #include "os/thread.h"
 #include "packet/packet_view.h"
 #include "stack/btm/btm_int_types.h"
 #include "stack/btm/btm_sec_cb.h"
-#include "stack/include/acl_hci_link_interface.h"
-#include "stack/include/ble_acl_interface.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/hci_error_code.h"
-#include "stack/include/sco_hci_link_interface.h"
-#include "stack/include/sec_hci_link_interface.h"
 #include "stack/l2cap/l2c_int.h"
 #include "test/common/jni_thread.h"
 #include "test/common/main_handler.h"
@@ -85,7 +77,7 @@ const uint8_t kMaxLeAcceptlistSize = 16;
 const uint8_t kMaxAddressResolutionSize = kMaxLeAcceptlistSize;
 
 tL2C_CB l2cb;
-tBTM_CB btm_cb;
+extern tBTM_CB btm_cb;
 tBTM_SEC_CB btm_sec_cb;
 btif_hh_cb_t btif_hh_cb;
 

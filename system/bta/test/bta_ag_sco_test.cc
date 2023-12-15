@@ -21,11 +21,9 @@
 
 #include "bta/ag/bta_ag_int.h"
 #include "bta/include/bta_le_audio_api.h"
-#include "stack/btm/btm_int_types.h"
 #include "test/mock/mock_device_esco_parameters.h"
 
 bool btm_peer_supports_esco_ev3(const RawAddress& remote_bda) { return true; }
-tBTM_CB btm_cb;
 LeAudioClient* LeAudioClient::Get() { return nullptr; }
 
 const RawAddress kRawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});
