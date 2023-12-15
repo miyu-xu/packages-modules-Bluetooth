@@ -31,6 +31,7 @@
 #include "common/strings.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "gap_api.h"
+#include "raw_address.h"
 
 // Uncomment to debug SIRK calculations
 // #define CSIS_DEBUG
@@ -359,7 +360,12 @@ class CsisGroup {
     if (it != devices_.end()) devices_.erase(it);
   }
 
+  void AddKnownDevice(std::shared_ptr<CsisDevice> csis_device) {
+    known_devices_[csis_device->addr] = csis_device;
+  }
+
   int GetCurrentSize(void) const { return devices_.size(); }
+  int GetKnownDeviceCounts(void) const { return known_devices_.size(); }
   bluetooth::Uuid GetUuid() const { return uuid_; }
   void SetUuid(const bluetooth::Uuid& uuid) { uuid_ = uuid; }
   int GetGroupId(void) const { return group_id_; }
@@ -556,6 +562,7 @@ class CsisGroup {
   bluetooth::Uuid uuid_;
 
   std::vector<std::shared_ptr<CsisDevice>> devices_;
+  std::map<RawAddress, std::shared_ptr<CsisDevice>> known_devices_;
   CsisDiscoveryState member_discovery_state_;
 
   CsisLockState lock_state_;

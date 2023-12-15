@@ -179,7 +179,10 @@ class CsisClientImpl : public CsisClient {
       device = FindDeviceByAddress(address);
     }
 
-    if (!csis_group->IsDeviceInTheGroup(device)) csis_group->AddDevice(device);
+    if (!csis_group->IsDeviceInTheGroup(device)) {
+      csis_group->AddDevice(device);
+      csis_group->AddKnownDevice(device);
+    }
 
     return csis_group;
   }
@@ -900,7 +903,7 @@ class CsisClientImpl : public CsisClient {
         auto g = FindCsisGroup(group_id_to_discover);
         LOG_DEBUG("Group size  %d  target size %d", g->GetDesiredSize(),
                   g->GetCurrentSize());
-        if (g->GetDesiredSize() > g->GetCurrentSize()) {
+        if (g->GetDesiredSize() > g->GetKnownDeviceCounts()) {
           CsisActiveDiscovery(g);
         }
       }
@@ -1365,6 +1368,7 @@ class CsisClientImpl : public CsisClient {
 
       CacheAndAdvertiseExpectedMember(result->bd_addr,
                                       csis_group->GetGroupId());
+      csis_group->AddKnownDevice(csis_device);
 
       /* Switch back to the opportunistic observer mode.
        * When second device will pair, csis will restart active scan
@@ -1635,6 +1639,7 @@ class CsisClientImpl : public CsisClient {
 
       csis_group = FindCsisGroup(group_id);
       csis_group->AddDevice(device);
+      csis_group->AddKnownDevice(device);
       /* Let's update csis instance group id */
       csis_instance->SetGroupId(group_id);
     }
