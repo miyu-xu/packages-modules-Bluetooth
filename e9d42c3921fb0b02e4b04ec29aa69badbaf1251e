@@ -60,6 +60,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4b0b78f7_1a56f68e",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T15:56:16Z",
+      "side": 1,
+      "message": "yes.\nIf I understand your intention, you are suggesting \n```\nif (!IS_FLAG_ENABLED(l2cap_tx_complete_cb_info)) {\n  return\n}\n```\nBut that won\u0027t work. Here we want floss to NOT return.",
+      "parentUuid": "f581143d_38122fe3",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc293567_78038463",
         "filename": "system/stack/smp/smp_utils.cc",
         "patchSetId": 9
@@ -95,6 +113,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d7f6fc46_58ea8e7a",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T15:56:16Z",
+      "side": 1,
+      "message": "Sorry, I don\u0027t get what you are trying to suggest.\nWe want floss to act as if the flag is enabled.\n\nIf you are wondering why the structure is like this, please refer to @wescande\u0027s comment on patchset 6.",
+      "parentUuid": "554ad841_b9ada47b",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad8623a2_0c59bac9",
         "filename": "system/stack/smp/smp_utils.cc",
         "patchSetId": 9
@@ -106,6 +142,24 @@
       "writtenOn": "2023-12-15T15:11:41Z",
       "side": 1,
       "message": "can we have any logs showing different paths here?",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6b7310b_37a913c6",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T15:56:16Z",
+      "side": 1,
+      "message": "Sure, what should I write in the log?",
+      "parentUuid": "ad8623a2_0c59bac9",
       "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
