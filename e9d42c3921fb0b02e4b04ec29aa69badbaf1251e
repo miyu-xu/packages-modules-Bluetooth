@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f581143d_38122fe3",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-15T15:04:16Z",
+      "side": 1,
+      "message": "isn\u0027t IS_FLAG_ENABLED returns always false for FLOSS anyway?\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/flags/exported_include/android_bluetooth_flags.h;l\u003d23?q\u003dIS_FLAG_ENABLED\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
