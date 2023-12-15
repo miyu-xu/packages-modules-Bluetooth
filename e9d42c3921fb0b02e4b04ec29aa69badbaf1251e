@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2e2b231a_9928d204",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-15T15:15:34Z",
+      "side": 1,
+      "message": "You should merge aosp/2857785 before and advance your new flag to Development on Gantry (see go/bt-best-practices#creating-a-flag). Automated Dr. No should then be provided on this CL.",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "f581143d_38122fe3",
         "filename": "system/stack/smp/smp_l2c.cc",
         "patchSetId": 9
