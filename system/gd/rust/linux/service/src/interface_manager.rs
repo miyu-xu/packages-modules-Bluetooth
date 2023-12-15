@@ -10,7 +10,7 @@ use btstack::{
     battery_service::BatteryService, bluetooth::Bluetooth, bluetooth_admin::BluetoothAdmin,
     bluetooth_gatt::BluetoothGatt, bluetooth_logging::BluetoothLogging,
     bluetooth_media::BluetoothMedia, bluetooth_qa::BluetoothQA,
-    socket_manager::BluetoothSocketManager, suspend::Suspend, APIMessage, BluetoothAPI,
+    socket_manager::BluetoothSocketManager, suspend::Suspend, APIMessage, BluetoothAPI, Message,
 };
 
 use crate::iface_battery_manager;
@@ -37,8 +37,10 @@ impl InterfaceManager {
 
     pub async fn dispatch(
         mut rx: Receiver<APIMessage>,
+        tx: Sender<Message>,
         virt_index: i32,
         conn: Arc<SyncConnection>,
+        conn_join_handle: tokio::task::JoinHandle<()>,
         disconnect_watcher: Arc<Mutex<DisconnectWatcher>>,
         bluetooth: Arc<Mutex<Box<Bluetooth>>>,
         bluetooth_admin: Arc<Mutex<Box<BluetoothAdmin>>>,
@@ -233,6 +235,18 @@ impl InterfaceManager {
                         );
                     }
                 },
+
+                APIMessage::ShutDown => {
+                    // To shut down the connection, call _handle.abort() and drop the connection.
+                    conn_join_handle.abort();
+                    drop(conn);
+
+                    let tx = tx.clone();
+                    tokio::spawn(async move {
+                        let _ = tx.send(Message::AdapterShutdown).await;
+                    });
+                    break;
+                }
             }
         }
     }
