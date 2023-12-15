@@ -120,6 +120,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d3f4b8a2_d7791406",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-15T10:32:22Z",
+      "side": 1,
+      "message": "Mmh, if you put fmtlib here as well we will be still be able to use libbase to provide fmtlib.",
+      "parentUuid": "04631eb1_f4dd871b",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d10c600e_7bec5358",
         "filename": "system/logger/Android.bp",
         "patchSetId": 5
