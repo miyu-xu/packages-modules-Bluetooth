@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "879dcb98_af31e17b",
+        "filename": "flags/exported_include/android_bluetooth_flags.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-15T10:52:40Z",
+      "side": 1,
+      "message": "After checking with flags owner, we want floss to fix the flag support instead of facilitating using true flag.\n\nHaving this macro is a sneaky ifdef between android and floss and we would prefer to make this more visible and obvious.\n\nIf there is a need for bypassing a flag for floss, we think this should be done like this:\n\n```\n#ifdef TARGET_FLOSS\n    if (true) {\n#else\n    if (IS_FLAG_ENABLED(l2cap_tx_complete_cb_info)) {\n#endif\n```\n\nBut again go/fluoride-flags-integration should be prioritized in order to have seamless flag integration in floss",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "512204350defb7f31cd3ee3d71cb89564e8946bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
