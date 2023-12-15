@@ -16,6 +16,23 @@
       "message": "Loop in Archie in case we could have this patch merged by next Mon.",
       "revId": "0a3ba0681f77b8880f21162d2044ebb9d95227e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29d81a5c_3a8fff8a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2023-12-15T08:08:26Z",
+      "side": 1,
+      "message": "The change LGTM but it still needs flagging",
+      "revId": "0a3ba0681f77b8880f21162d2044ebb9d95227e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
