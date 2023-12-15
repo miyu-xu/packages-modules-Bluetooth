@@ -70,6 +70,23 @@
       "parentUuid": "fd8ead19_08772813",
       "revId": "0d7dcf1da5d834e674ffdde2f200927b0168d515",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee5c784f_e8438d50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-15T19:48:02Z",
+      "side": 1,
+      "message": "Please see my comment on the bug for reasoning for -2.",
+      "revId": "0d7dcf1da5d834e674ffdde2f200927b0168d515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
