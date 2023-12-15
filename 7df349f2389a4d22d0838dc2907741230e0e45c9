@@ -324,6 +324,30 @@
       },
       "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b25fb0ec_19e98c1b",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:42:02Z",
+      "side": 1,
+      "message": "Discussed the question offline. Seems the answer is no, so let\u0027s close this thread.",
+      "parentUuid": "baa5d803_9f15beb5",
+      "range": {
+        "startLine": 372,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 1
+      },
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
