@@ -22,6 +22,30 @@
       },
       "revId": "512204350defb7f31cd3ee3d71cb89564e8946bb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4264a553_991e244b",
+        "filename": "flags/exported_include/android_bluetooth_flags.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T11:22:58Z",
+      "side": 1,
+      "message": "Ack and done",
+      "parentUuid": "879dcb98_af31e17b",
+      "range": {
+        "startLine": 25,
+        "startChar": 8,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "512204350defb7f31cd3ee3d71cb89564e8946bb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
