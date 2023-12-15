@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6fbfa8c_e454eb8d",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-15T21:20:10Z",
+      "side": 1,
+      "message": "Removed services appear to all be `android:exported\u003d\"true\"`, which means BluetoothInstrumentationTests wouldn\u0027t cover any breakages related to external launch of these services. \n\nAm a bit concerned since some of these declare permissions or intent filters aside from just the aidl interface I\u0027m guessing/hoping is just used internally within BT app. \n\nHave you tried any manual test for this CL? Can you please update commit message with any additional testing done aside from BT internal tests?\n\nEsp. concerned about telephony dependencies, e.g. for MAP, and Settings dependencies or other system UI (e.g. notifications for file share, maybe volume control?), possibly gms dependencies which may rely on having a hook to any of these services) - granted, not sure the history on why these are exported so these may all be fine and covered,  just looking for confirmation since these are broad changes to make in a single CL.",
+      "revId": "0493a34dd04790143c6f9d27731f0d297f710d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f8de1e3_cdab0af3",
+        "filename": "framework/java/android/bluetooth/IBluetoothStateChangeCallback.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-15T21:20:10Z",
+      "side": 1,
+      "message": "Please keep some Javadoc even for hidden APIs",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "0493a34dd04790143c6f9d27731f0d297f710d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
