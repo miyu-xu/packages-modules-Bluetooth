@@ -86,8 +86,35 @@ public class LeScanningTest {
 
     private static final String TEST_UUID_STRING = "00001805-0000-1000-8000-00805f9b34fb";
 
+    // CCC DK Specification R3 1.2.0 r14 section 19.2.1.2 Bluetooth Le Pairing
+    private static final String CCC_DK_UUID_STRING = "0000FFF5-0000-1000-8000-00805f9b34fb";
+
     private static final String ACTION_DYNAMIC_RECEIVER_SCAN_RESULT =
             "android.bluetooth.test.ACTION_DYNAMIC_RECEIVER_SCAN_RESULT";
+
+    /*
+     * 2.3 Scan with UUID
+     *
+     * https://docs.google.com/document/d/1oQOpgI83HSJBdr5mBU00za_6XrDGo2KDGnCcX-hXPHk/edit?tab=t.0#heading=h.45vxsnmg7d2e
+     */
+    @Test
+    public void startBleScan_withCCCUUID_got_results() {
+        advertiseWithBumble(CCC_DK_UUID_STRING, OwnAddressType.RANDOM);
+
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setServiceUuid(ParcelUuid.fromString(CCC_DK_UUID_STRING))
+                        .build();
+
+        List<ScanResult> results =
+                startScanning(scanFilter, ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
+
+        assertThat(results).isNotNull();
+        assertThat(results.get(0).getScanRecord().getServiceUuids().get(0))
+                .isEqualTo(ParcelUuid.fromString(CCC_DK_UUID_STRING));
+        assertThat(results.get(1).getScanRecord().getServiceUuids().get(0))
+                .isEqualTo(ParcelUuid.fromString(CCC_DK_UUID_STRING));
+    }
 
     @Test
     public void startBleScan_withCallbackTypeAllMatches() {
