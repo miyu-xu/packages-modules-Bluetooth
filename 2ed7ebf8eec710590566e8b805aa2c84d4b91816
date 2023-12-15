@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "278e51d8_fe7116f1",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 505,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-12-15T23:30:24Z",
+      "side": 1,
+      "message": "Done - I hadn\u0027t understood how try-catch blocks worked, but now that I do understand, fixing this is no problem",
+      "parentUuid": "e57d4ca5_9a07e45c",
+      "range": {
+        "startLine": 496,
+        "startChar": 12,
+        "endLine": 505,
+        "endChar": 50
+      },
+      "revId": "2ed7ebf8eec710590566e8b805aa2c84d4b91816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f413f10_313bd56a",
@@ -173,6 +197,24 @@
       "side": 1,
       "message": "I added @hide, is that enough?",
       "parentUuid": "48db426b_dbd65924",
+      "revId": "2ed7ebf8eec710590566e8b805aa2c84d4b91816",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f67f86e6_93937cf3",
+        "filename": "framework/java/android/bluetooth/MetricsUtils.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-12-15T23:30:24Z",
+      "side": 1,
+      "message": "Done - removed public altogether",
+      "parentUuid": "6a097da6_1df85bd8",
       "revId": "2ed7ebf8eec710590566e8b805aa2c84d4b91816",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
