@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e023ceaf_662546cc",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1418133
+      },
+      "writtenOn": "2023-12-15T02:00:39Z",
+      "side": 1,
+      "message": "Did you upload this with `repo upload` and ensure that the upload hooks are run?",
+      "revId": "056b9325bcf4b341ac9639bc5efe12d2a86a22a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
