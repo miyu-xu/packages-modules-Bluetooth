@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d2cdb2c8_0726132f",
+        "filename": "flags/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:25:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "96bcfb2d_63a07192",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "65ecd4bf_db594134",
@@ -183,6 +207,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87383be5_2efaffbe",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:25:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4c097cdc_c61b4b62",
+      "range": {
+        "startLine": 373,
+        "startChar": 3,
+        "endLine": 381,
+        "endChar": 5
+      },
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b14f27cc_cf3cc9a5",
@@ -244,6 +292,30 @@
       "side": 1,
       "message": "This is the removal CL in (2) above: aosp/1446136. This is reverted as aosp/2836301",
       "parentUuid": "d9b1cd30_1d30e288",
+      "range": {
+        "startLine": 372,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 1
+      },
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baa5d803_9f15beb5",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:25:26Z",
+      "side": 1,
+      "message": "Done.\n\nShould I squash aosp/2836301 and this CL together though? Maybe it\u0027s easier to figure out what\u0027s going on that way?",
+      "parentUuid": "9f76bd72_7f2c0455",
       "range": {
         "startLine": 372,
         "startChar": 0,
