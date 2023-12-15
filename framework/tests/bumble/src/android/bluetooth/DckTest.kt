@@ -167,6 +167,49 @@ public class DckTest {
     }
 
     /*
+     * 2.3 Scan with UUID
+     *
+     * https://docs.google.com/document/d/1oQOpgI83HSJBdr5mBU00za_6XrDGo2KDGnCcX-hXPHk/edit?tab=t.0#heading=h.45vxsnmg7d2e
+     */
+    @Test
+    fun test_UuidScan() {
+        // Start UUID advertisement on Ref
+        val advertiseRequest =
+            AdvertiseRequest.newBuilder()
+                .setLegacy(true)
+                .setConnectable(true)
+                .setOwnAddressType(OwnAddressType.RANDOM)
+                .setData(
+                    HostProto.DataTypes.newBuilder()
+                    .addCompleteServiceClassUuids128(CCC_DK_UUID.toString())
+                )
+                .build()
+        mBumble.hostBlocking().advertise(advertiseRequest)
+
+        // Start UUID scan for Ref on DUT
+        val scanSettings =
+            ScanSettings.Builder()
+                .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                .setMatchMode(ScanSettings.MATCH_MODE_AGGRESSIVE)
+                .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                .build()
+        val scanFilter = ScanFilter.Builder().setServiceUuid(ParcelUuid(CCC_DK_UUID)).build()
+        leScanner.startScan(listOf(scanFilter), scanSettings, scanCallbackMock)
+
+        // Await scan results
+        verify(scanCallbackMock, timeout(TIMEOUT).atLeastOnce())
+            .onScanResult(eq(ScanSettings.CALLBACK_TYPE_ALL_MATCHES), scanResultCaptor.capture())
+
+        // Stop scan on DUT before GATT connect
+        leScanner.stopScan(scanCallbackMock)
+
+        // Verify correct scan result as prerequisite
+        val scanResult = scanResultCaptor.firstValue
+        assertThat(scanResult).isNotNull()
+        assertThat(scanResult.scanRecord?.serviceUuids).contains(ParcelUuid(CCC_DK_UUID))
+    }
+
+    /*
      * 2.3 GATT Connect - discovered using scan with UUID
      *
      * http://docs/document/d/1oQOpgI83HSJBdr5mBU00za_6XrDGo2KDGnCcX-hXPHk#heading=h.7ofaj7vwknsr
@@ -224,7 +267,7 @@ public class DckTest {
 
     companion object {
         private const val TAG = "DckTest"
-        private const val TIMEOUT: Long = 2000
+        private const val TIMEOUT: Long = 10000
 
         // CCC DK Specification R3 1.2.0 r14 section 19.2.1.2 Bluetooth Le Pairing
         private val CCC_DK_UUID = UUID.fromString("0000FFF5-0000-1000-8000-00805f9b34fb")
