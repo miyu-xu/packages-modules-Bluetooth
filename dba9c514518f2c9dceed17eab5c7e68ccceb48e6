@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "48e610ea_402f8015",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 17
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-15T01:28:08Z",
+      "side": 1,
+      "message": "Recently, Bluetooth team updates [flagging guideline](https://g3doc.corp.google.com/company/teams/android-bluetooth/process/contribution-guide.md?cl\u003dhead#creating-a-flag), would you like to follow that to create 2 CLs:\n1. creating a flag\n2. use the new flag with the actual change",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 4
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "bac5dc0c_5dbbb84d",
         "filename": "flags/hfp.aconfig",
         "patchSetId": 17
@@ -14,6 +37,30 @@
       "writtenOn": "2023-12-14T20:32:40Z",
       "side": 1,
       "message": "can we keep a smaller name -- \neg: fall_back_to_sco_if_esco_fails",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 67
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "097f8e7c_8c55bae4",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 17
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-15T01:28:08Z",
+      "side": 1,
+      "message": "as the change is to open esco again with `retransmission_effort \u003d 0` when `retransmission_effort !\u003d 0`, so maybe use\n\n```\nretry_esco_with_zero_retransmission_effort\n```",
+      "parentUuid": "bac5dc0c_5dbbb84d",
       "range": {
         "startLine": 39,
         "startChar": 11,
@@ -49,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bc963ff4_2a652368",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-15T01:28:08Z",
+      "side": 1,
+      "message": "Please keep `uint` type from Qualcom patch. It is a counter for how many retries made.\nMaybe variable name can change to `retransmission_effort_retries`\nFor the comment, maybe change to `retry ESCO with retransmission_effort, see Core spec`",
+      "parentUuid": "85ba3c01_6a383ea4",
+      "range": {
+        "startLine": 273,
+        "startChar": 2,
+        "endLine": 273,
+        "endChar": 37
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4ef2024c_e664e1af",
         "filename": "system/bta/ag/bta_ag_sco.cc",
         "patchSetId": 17
@@ -72,6 +143,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6ee6cdc2_dd693d89",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-15T01:28:08Z",
+      "side": 1,
+      "message": "Yes, Aritra\u0027s suggestion is same as Qualcom\u0027s patch",
+      "parentUuid": "4ef2024c_e664e1af",
+      "range": {
+        "startLine": 253,
+        "startChar": 6,
+        "endLine": 261,
+        "endChar": 78
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a47cbae7_9381e751",
         "filename": "system/bta/ag/bta_ag_sco.cc",
         "patchSetId": 17
@@ -83,6 +178,30 @@
       "writtenOn": "2023-12-14T20:32:40Z",
       "side": 1,
       "message": "adding this at the top of our if else block above (i.e. as the first case) would make more sense.",
+      "range": {
+        "startLine": 495,
+        "startChar": 2,
+        "endLine": 500,
+        "endChar": 3
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "348fb613_6c4dc79f",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-15T01:28:08Z",
+      "side": 1,
+      "message": "qualcomm original patch is to use same codec to open again with `retransmission_effort \u003d ESCO_RETRANSMISSION_OFF`, please keep the same logic\n\n```\n+  if (p_scb-\u003etry_zero_retransmission_effort \u003d\u003d 1) {\n+    LOG_WARN(\"retry esco with retransmission_effort  ESCO_RETRANSMISSION_OFF[0x0],\");\n+    p_scb-\u003etry_zero_retransmission_effort++;\n+    params.retransmission_effort \u003d ESCO_RETRANSMISSION_OFF;\n+  }\n```",
+      "parentUuid": "a47cbae7_9381e751",
       "range": {
         "startLine": 495,
         "startChar": 2,
