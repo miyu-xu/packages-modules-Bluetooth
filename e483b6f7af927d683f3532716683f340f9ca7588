@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5a2de723_ea2027d3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-15T10:26:43Z",
+      "side": 1,
+      "message": "I don\u0027t think those tests should be in BumbleBluetoothTests as you are not using/don\u0027t need a peer device.\n\nThis should go to the Bluetooth CTS test or the framework unit tests.",
+      "revId": "e483b6f7af927d683f3532716683f340f9ca7588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
