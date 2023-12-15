@@ -16,6 +16,24 @@
       "message": "Could we just set the logging function with `__android_log_set_logger` of liblog instead ?",
       "revId": "556367ff892066d0f6e2c4a81f2a5bf8e7615965",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c0efa07_59e8f7e5",
+        "filename": "system/logger/src/vlog_syslog.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T16:41:25Z",
+      "side": 1,
+      "message": "syslog is to be used by floss; I don\u0027t expect that they link liblog.",
+      "parentUuid": "75a1a2b7_a15ed95a",
+      "revId": "556367ff892066d0f6e2c4a81f2a5bf8e7615965",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
