@@ -118,6 +118,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9272da87_3529f176",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T00:22:00Z",
+      "side": 1,
+      "message": "This is based of https://cs.android.com/android/platform/superproject/main/+/main:system/libbase/include/android-base/logging.h\n\nThe severity is converted here:\nhttps://cs.android.com/android/platform/superproject/main/+/main:system/libbase/logging.cpp;l\u003d170\n\nI will keep this definition as more generic, but yeah I need to convert it in vlog_android.cc",
+      "parentUuid": "f3daf9f4_8893a6c4",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b4bcc86_eebf71cd",
         "filename": "system/logger/include/bluetooth/logger.h",
         "patchSetId": 5
@@ -129,6 +147,30 @@
       "writtenOn": "2023-12-14T10:20:26Z",
       "side": 1,
       "message": "```suggestion\ntemplate \u003cLevel level, typename... T\u003e\nstruct log {\n  log(fmt::format_string\u003cT...\u003e fmt, T\u0026\u0026... args,\n      char const* file_name \u003d __builtin_FILE(),\n      int line \u003d __builtin_LINE()) {\n    vlog(level, LOG_TAG, file_name, line, fmt.get(), fmt::make_format_args(args...));\n  }\n};\n\n#if (__cplusplus \u003e\u003d 202002L \u0026\u0026 defined(__GNUC__) \u0026\u0026 !defined(__clang__))\n\ntemplate \u003cint level, typename... T\u003e\nlog(fmt::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e log\u003clevel, T...\u003e;\n\ntemplate \u003ctypename... T\u003e using fatal \u003d log\u003ckFatal, T...\u003e;\ntemplate \u003ctypename... T\u003e using error \u003d log\u003ckError, T...\u003e;\ntemplate \u003ctypename... T\u003e using warning \u003d log\u003ckWarning, T...\u003e;\ntemplate \u003ctypename... T\u003e using info \u003d log\u003ckInfo, T...\u003e;\ntemplate \u003ctypename... T\u003e using debug \u003d log\u003ckDebug, T...\u003e;\ntemplate \u003ctypename... T\u003e using verbose \u003d log\u003ckVerbose, T...\u003e;\n\n#else\n\ntemplate \u003ctypename... T\u003e struct fatal : log\u003ckFatal, T...\u003e { using log\u003ckFatal, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct error : log\u003ckError, T...\u003e { using log\u003ckError, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct warn : log\u003ckWarn, T...\u003e { using log\u003ckWarn, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct info : log\u003ckInfo, T...\u003e { using log\u003ckInfo, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct debug : log\u003ckDebug, T...\u003e { using log\u003ckDebug, T...\u003e::log; };\ntemplate \u003ctypename... T\u003e struct verbose : log\u003ckVerbose, T...\u003e { using log\u003ckVerbose, T...\u003e::log; };\n\ntemplate \u003ctypename... T\u003e fatal(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e fatal\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e error(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e error\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e warn(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e warn\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e info(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e info\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e debug(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e debug\u003cT...\u003e;\ntemplate \u003ctypename... T\u003e verbose(std::format_string\u003cT...\u003e, T\u0026\u0026...) -\u003e verbose\u003cT...\u003e;\n\n#endif  // GCC / C++20\n```",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 22
+      },
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c043fda_30d88abe",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T00:22:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b4bcc86_eebf71cd",
       "range": {
         "startLine": 47,
         "startChar": 0,
@@ -162,6 +204,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "82de6a65_06b5de65",
+        "filename": "system/logger/src/truncating_buffer.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T00:22:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0c9a5296_c01ad827",
+      "range": {
+        "startLine": 33,
+        "startChar": 29,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "99237cb2_4764918c",
@@ -179,6 +245,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cd5e31b_598d9a7b",
+        "filename": "system/logger/src/vlog_stdout.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T00:22:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "99237cb2_4764918c",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1a3920a9_ad168da5",
@@ -192,6 +276,24 @@
       "writtenOn": "2023-12-14T10:20:26Z",
       "side": 1,
       "message": "```suggestion\n        \"{} {}:{} \",\n```",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b719b24b_f4cd87f2",
+        "filename": "system/logger/src/vlog_syslog.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T00:22:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a3920a9_ad168da5",
       "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
