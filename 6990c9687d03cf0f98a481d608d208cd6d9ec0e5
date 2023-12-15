@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2113c849_c685b622",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-15T10:50:36Z",
+      "side": 1,
+      "message": "You have some issues in your relation chain, please resolve them first.\nMake sure that all the CLs are in the following order (or anything you want but\nthey must be the same):\n\n\nFloss: Implement missing methods for Host profile\nFloss: Fork Floss D-Bus gatt_client from autotest_lib.\nFloss: Implements HID of floss bluetooth test server.\nFloss: Implements BluetoothQA D-Bus client.",
+      "revId": "6990c9687d03cf0f98a481d608d208cd6d9ec0e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
