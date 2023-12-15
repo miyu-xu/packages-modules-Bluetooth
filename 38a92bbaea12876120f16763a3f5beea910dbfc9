@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7041a033_af362e2e",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 19
+      },
+      "lineNbr": 496,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-15T07:29:36Z",
+      "side": 1,
+      "message": "nit: add an INFO log here about `retry with retransmission_effort: 0`, similar to qualcomm patch",
+      "range": {
+        "startLine": 496,
+        "startChar": 4,
+        "endLine": 496,
+        "endChar": 43
+      },
+      "revId": "38a92bbaea12876120f16763a3f5beea910dbfc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
