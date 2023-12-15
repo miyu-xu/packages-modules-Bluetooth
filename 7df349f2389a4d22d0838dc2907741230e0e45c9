@@ -228,6 +228,30 @@
       },
       "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f76bd72_7f2c0455",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:04:37Z",
+      "side": 1,
+      "message": "This is the removal CL in (2) above: aosp/1446136. This is reverted as aosp/2836301",
+      "parentUuid": "d9b1cd30_1d30e288",
+      "range": {
+        "startLine": 372,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 1
+      },
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
