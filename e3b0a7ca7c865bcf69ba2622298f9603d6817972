@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37905e9d_e3f6ffeb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2023-12-15T09:41:00Z",
+      "side": 1,
+      "message": "Adding flag for change in b/300916771",
+      "revId": "e3b0a7ca7c865bcf69ba2622298f9603d6817972",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
