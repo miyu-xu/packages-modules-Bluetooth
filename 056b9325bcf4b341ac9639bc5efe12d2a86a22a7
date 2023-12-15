@@ -16,6 +16,24 @@
       "message": "Did you upload this with `repo upload` and ensure that the upload hooks are run?",
       "revId": "056b9325bcf4b341ac9639bc5efe12d2a86a22a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "466e2088_e072298d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-15T20:21:44Z",
+      "side": 1,
+      "message": "checkstyle was failing for me. sorting imports with google-java-format hook caused the issue. Skipping import sort ensured the checkstyle succeeded. Uploaded with all hooks run now (using repo upload .).",
+      "parentUuid": "e023ceaf_662546cc",
+      "revId": "056b9325bcf4b341ac9639bc5efe12d2a86a22a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
