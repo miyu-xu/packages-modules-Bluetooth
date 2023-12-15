@@ -188,6 +188,30 @@
       },
       "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "282e979d_a31ef936",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 2025,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2023-12-15T10:10:28Z",
+      "side": 1,
+      "message": "Closing the thread as the implementation has been changed in patchet 2.",
+      "parentUuid": "01ad00f1_bf8ed677",
+      "range": {
+        "startLine": 2025,
+        "startChar": 0,
+        "endLine": 2025,
+        "endChar": 83
+      },
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
