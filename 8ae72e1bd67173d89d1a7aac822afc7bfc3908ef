@@ -211,6 +211,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "721c05f9_b83ca599",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2023-12-15T01:20:24Z",
+      "side": 1,
+      "message": "my bad... I must have been looking at something else when I made that comment.  Will fix",
+      "parentUuid": "a94dd522_90e127d4",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 40
+      },
+      "revId": "8ae72e1bd67173d89d1a7aac822afc7bfc3908ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9183b762_da1a8694",
         "filename": "framework/java/android/bluetooth/SocketMetrics.java",
         "patchSetId": 4
