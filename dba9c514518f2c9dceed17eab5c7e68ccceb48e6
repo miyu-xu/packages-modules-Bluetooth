@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bc2ed50a_2e25e633",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 17
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2023-12-15T08:01:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "48e610ea_402f8015",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 4
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bac5dc0c_5dbbb84d",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "as the change is to open esco again with `retransmission_effort \u003d 0` when `retransmission_effort !\u003d 0`, so maybe use\n\n```\nretry_esco_with_zero_retransmission_effort\n```",
       "parentUuid": "bac5dc0c_5dbbb84d",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 67
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf887c8f_c22dbb43",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 17
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2023-12-15T08:01:46Z",
+      "side": 1,
+      "message": "using flag name as retry_esco_with_zero_retransmission_effort",
+      "parentUuid": "097f8e7c_8c55bae4",
       "range": {
         "startLine": 39,
         "startChar": 11,
@@ -118,6 +166,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "66df1fd8_0a705282",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 17
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2023-12-15T08:01:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bc963ff4_2a652368",
+      "range": {
+        "startLine": 273,
+        "startChar": 2,
+        "endLine": 273,
+        "endChar": 37
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4ef2024c_e664e1af",
@@ -165,6 +237,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd207875_cac67051",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2023-12-15T08:01:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6ee6cdc2_dd693d89",
+      "range": {
+        "startLine": 253,
+        "startChar": 6,
+        "endLine": 261,
+        "endChar": 78
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a47cbae7_9381e751",
@@ -202,6 +298,30 @@
       "side": 1,
       "message": "qualcomm original patch is to use same codec to open again with `retransmission_effort \u003d ESCO_RETRANSMISSION_OFF`, please keep the same logic\n\n```\n+  if (p_scb-\u003etry_zero_retransmission_effort \u003d\u003d 1) {\n+    LOG_WARN(\"retry esco with retransmission_effort  ESCO_RETRANSMISSION_OFF[0x0],\");\n+    p_scb-\u003etry_zero_retransmission_effort++;\n+    params.retransmission_effort \u003d ESCO_RETRANSMISSION_OFF;\n+  }\n```",
       "parentUuid": "a47cbae7_9381e751",
+      "range": {
+        "startLine": 495,
+        "startChar": 2,
+        "endLine": 500,
+        "endChar": 3
+      },
+      "revId": "dba9c514518f2c9dceed17eab5c7e68ccceb48e6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb32856e_757c1046",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 17
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2023-12-15T08:01:46Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "348fb613_6c4dc79f",
       "range": {
         "startLine": 495,
         "startChar": 2,
