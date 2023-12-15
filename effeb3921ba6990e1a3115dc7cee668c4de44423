@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf59c827_2b513cbd",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T01:19:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23a93583_9b7e10e7",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "190c46fe_208d767d",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-12-14T10:20:26Z",
       "side": 1,
       "message": "```suggestion\n    local_include_dirs: [\n        \"include\",\n    ],\n```",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 6
+      },
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "822de517_06a52237",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T01:19:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "190c46fe_208d767d",
       "range": {
         "startLine": 8,
         "startChar": 0,
@@ -99,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56b43ea9_fc084854",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T01:19:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d10c600e_7bec5358",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 28,
+        "endChar": 10
+      },
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3daf9f4_8893a6c4",
@@ -130,6 +196,24 @@
       "side": 1,
       "message": "This is based of https://cs.android.com/android/platform/superproject/main/+/main:system/libbase/include/android-base/logging.h\n\nThe severity is converted here:\nhttps://cs.android.com/android/platform/superproject/main/+/main:system/libbase/logging.cpp;l\u003d170\n\nI will keep this definition as more generic, but yeah I need to convert it in vlog_android.cc",
       "parentUuid": "f3daf9f4_8893a6c4",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2ccfc4bf_09d3eaac",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-15T01:19:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9272da87_3529f176",
       "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
