@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "14a4c9ce_79055844",
+        "filename": "system/stack/a2dp/a2dp_ext.cc",
+        "patchSetId": 30
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-15T09:20:49Z",
+      "side": 1,
+      "message": "Is there something you can do to prevent this warning ?\n\nPlease use language idioms to initialize or assign\n\n(same in system/stack/include/a2dp_ext.h)",
+      "range": {
+        "startLine": 61,
+        "startChar": 2,
+        "endLine": 61,
+        "endChar": 9
+      },
+      "revId": "f82b192a55a50cd99650e374934a2b8a74c6d6ed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
