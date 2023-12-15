@@ -22,6 +22,30 @@
       },
       "revId": "b739599b5d8270be45dec30fea8d77e13587bc54",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba938172_6d2c93ae",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3020,
+      "author": {
+        "id": 1794306
+      },
+      "writtenOn": "2023-12-15T12:42:06Z",
+      "side": 1,
+      "message": "You\u0027re right. Currently, it calls `btm_send_hci_set_scan_params()` to set scan parameters, but it has a corresponding `SetScanParameters` in shim.\nCould you upload your CL to take over this one? And also aosp/2877536.",
+      "parentUuid": "4ff47a94_54d28e4c",
+      "range": {
+        "startLine": 3020,
+        "startChar": 47,
+        "endLine": 3020,
+        "endChar": 57
+      },
+      "revId": "b739599b5d8270be45dec30fea8d77e13587bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
