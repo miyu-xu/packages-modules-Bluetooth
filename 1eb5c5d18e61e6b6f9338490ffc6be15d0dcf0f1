@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6632e39_d3f3aa10",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-15T00:00:23Z",
+      "side": 1,
+      "message": "nit: In future can just do more simple:\n\nFlag: TEST_ONLY\n\nWill approve this for now since the automatic exemption or similar not in place atm.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 49
+      },
+      "revId": "1eb5c5d18e61e6b6f9338490ffc6be15d0dcf0f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
