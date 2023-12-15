@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64fd16f2_8a7eef89",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 1884410
+      },
+      "writtenOn": "2023-12-15T21:54:58Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "cd2aa548_385e5abe",
+      "revId": "a48d4270b6679e0704e3f43883b1b59a24bfefd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd99fc55_32a3beb4",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-15T19:24:49Z",
       "side": 1,
       "message": "Why 10 sec timeout?",
+      "revId": "a48d4270b6679e0704e3f43883b1b59a24bfefd9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad323254_f30db3b1",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 1884410
+      },
+      "writtenOn": "2023-12-15T21:54:58Z",
+      "side": 1,
+      "message": "I still saw the failure when running the existing discover test (testDiscoverDkGattService) even running on cloudtop.",
+      "parentUuid": "fd99fc55_32a3beb4",
       "revId": "a48d4270b6679e0704e3f43883b1b59a24bfefd9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
