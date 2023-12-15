@@ -154,6 +154,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d50667b6_07b69190",
+        "filename": "system/logger/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-15T22:48:02Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "2cd1cde0_8959a5b0",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d10c600e_7bec5358",

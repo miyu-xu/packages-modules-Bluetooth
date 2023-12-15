@@ -34,6 +34,24 @@
       "parentUuid": "75a1a2b7_a15ed95a",
       "revId": "556367ff892066d0f6e2c4a81f2a5bf8e7615965",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "25bcacce_d277b260",
+        "filename": "system/logger/src/vlog_syslog.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-15T22:48:02Z",
+      "side": 1,
+      "message": "Should we make them link liblog?",
+      "parentUuid": "2c0efa07_59e8f7e5",
+      "revId": "556367ff892066d0f6e2c4a81f2a5bf8e7615965",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
