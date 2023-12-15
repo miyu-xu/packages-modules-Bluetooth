@@ -238,6 +238,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee41befd_92b8837c",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-15T10:35:53Z",
+      "side": 1,
+      "message": "Why do we want this definition to match the one of libbase when we are using liblog as backend?",
+      "parentUuid": "2ccfc4bf_09d3eaac",
+      "revId": "effeb3921ba6990e1a3115dc7cee668c4de44423",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9b4bcc86_eebf71cd",
         "filename": "system/logger/include/bluetooth/logger.h",
         "patchSetId": 5
