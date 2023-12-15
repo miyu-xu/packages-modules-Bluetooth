@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd430ee9_2d5895cf",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 15
+      },
+      "lineNbr": 428,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-15T09:17:10Z",
+      "side": 1,
+      "message": "Why do you need to check this now ?",
+      "range": {
+        "startLine": 428,
+        "startChar": 9,
+        "endLine": 428,
+        "endChar": 30
+      },
+      "revId": "01f987d112dc88ed4626cdbac5bf2c553a8d7e98",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
