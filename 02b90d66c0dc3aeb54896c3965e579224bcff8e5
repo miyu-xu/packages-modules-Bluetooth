@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3256ad2a_74125c28",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 1245,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-15T14:35:34Z",
+      "side": 1,
+      "message": "nit: Not necessary because p_cbi is fully initialized now",
+      "range": {
+        "startLine": 1245,
+        "startChar": 0,
+        "endLine": 1245,
+        "endChar": 19
+      },
+      "revId": "02b90d66c0dc3aeb54896c3965e579224bcff8e5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
