@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "96bcfb2d_63a07192",
+        "filename": "flags/Android.bp",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:00:49Z",
+      "side": 1,
+      "message": "Sure",
+      "parentUuid": "29842e94_edcea49c",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 24
+      },
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "65ecd4bf_db594134",
         "filename": "flags/exported_include/android_bluetooth_flags.h",
         "patchSetId": 5
@@ -94,6 +118,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41d4eba9_2d77c237",
+        "filename": "flags/exported_include/android_bluetooth_flags.h",
+        "patchSetId": 5
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:00:49Z",
+      "side": 1,
+      "message": "OK, I\u0027m leaving this as is.",
+      "parentUuid": "fe9fadba_a723f6c4",
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a1633e2_a8cbac54",
@@ -119,6 +161,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4c097cdc_c61b4b62",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:00:49Z",
+      "side": 1,
+      "message": "Good suggestion, will apply.",
+      "parentUuid": "8a1633e2_a8cbac54",
+      "range": {
+        "startLine": 373,
+        "startChar": 3,
+        "endLine": 381,
+        "endChar": 5
+      },
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b14f27cc_cf3cc9a5",
         "filename": "system/stack/smp/smp_utils.cc",
         "patchSetId": 5
@@ -130,6 +196,30 @@
       "writtenOn": "2023-12-15T09:46:50Z",
       "side": 1,
       "message": "This is enabling the old behavior only if the flag is true.\nYou are doing a reverse flagging here.\nshould it be:\n\n\n```suggestion\n  if (IS_FLAG_ENABLED_TRUE_ON_FLOSS(l2cap_tx_complete_cb_info)) {\n  // Activate new code if the flag is true (aka new code on floss)\n    l2cap_ret \u003d L2CA_SendFixedChnlData(fixed_cid, rem_bda, p_toL2CAP);\n    if (l2cap_ret \u003d\u003d L2CAP_DW_FAILED) {\n      LOG_ERROR(\"SMP failed to pass msg to L2CAP\");\n      return false;\n    } else {\n      tSMP_CB* p_cb \u003d \u0026smp_cb;\n\n      if (p_cb-\u003ewait_for_authorization_complete) {\n        tSMP_INT_DATA smp_int_data;\n        smp_int_data.status \u003d SMP_SUCCESS;\n        if (fixed_cid \u003d\u003d L2CAP_SMP_CID) {\n          smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, \u0026smp_int_data);\n        } else {\n          smp_br_state_machine_event(p_cb, SMP_BR_AUTH_CMPL_EVT, \u0026smp_int_data);\n        }\n      }\n      return true;\n    }\n  }\n  \n  // when the flag is false, we still trigger the old code\n  \n  smp_cb.total_tx_unacked +\u003d 1;\n  l2cap_ret \u003d L2CA_SendFixedChnlData(fixed_cid, rem_bda, p_toL2CAP);\n  if (l2cap_ret \u003d\u003d L2CAP_DW_FAILED) {\n    LOG_ERROR(\"SMP failed to pass msg to L2CAP\");\n    smp_cb.total_tx_unacked -\u003d 1;\n    return false;\n  } else {\n    return true;\n  }\n}\n```\n\nAnd because you are returning in all the error case, please change the else to not be an else and remove an indentation level.\nIf I take my above suggestion, the code become:\n\n```\n  if (IS_FLAG_ENABLED_TRUE_ON_FLOSS(l2cap_tx_complete_cb_info)) {\n    l2cap_ret \u003d L2CA_SendFixedChnlData(fixed_cid, rem_bda, p_toL2CAP);\n    if (l2cap_ret \u003d\u003d L2CAP_DW_FAILED) {\n      LOG_ERROR(\"SMP failed to pass msg to L2CAP\");\n      return false;\n    }\n    tSMP_CB* p_cb \u003d \u0026smp_cb;\n\n    if (p_cb-\u003ewait_for_authorization_complete) {\n      tSMP_INT_DATA smp_int_data;\n      smp_int_data.status \u003d SMP_SUCCESS;\n      if (fixed_cid \u003d\u003d L2CAP_SMP_CID) {\n        smp_sm_event(p_cb, SMP_AUTH_CMPL_EVT, \u0026smp_int_data);\n      } else {\n        smp_br_state_machine_event(p_cb, SMP_BR_AUTH_CMPL_EVT, \u0026smp_int_data);\n      }\n    }\n    return true;\n  }\n\n  smp_cb.total_tx_unacked +\u003d 1;\n  l2cap_ret \u003d L2CA_SendFixedChnlData(fixed_cid, rem_bda, p_toL2CAP);\n  if (l2cap_ret \u003d\u003d L2CAP_DW_FAILED) {\n    LOG_ERROR(\"SMP failed to pass msg to L2CAP\");\n    smp_cb.total_tx_unacked -\u003d 1;\n    return false;\n  }\n  return true;\n}\n```",
+      "range": {
+        "startLine": 372,
+        "startChar": 0,
+        "endLine": 402,
+        "endChar": 1
+      },
+      "revId": "7df349f2389a4d22d0838dc2907741230e0e45c9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9b1cd30_1d30e288",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:00:49Z",
+      "side": 1,
+      "message": "What do you mean by \"old behavior\"? Confusion come because\n(1) `total_tx_unacked` is used for quite some time\n(2) It is removed, so `total_tx_unacked` is not used \u003c- current behavior\n(3) I revert it in the series, so `total_tx_unacked` is used again.\n\nBehavior in (1) is the same as (3), so `total_tx_unacked` must go inside the `IS_FLAG_ENABLED`, instead of the other way.\n\n---\n\nI will remove an indentation level.",
+      "parentUuid": "b14f27cc_cf3cc9a5",
       "range": {
         "startLine": 372,
         "startChar": 0,
