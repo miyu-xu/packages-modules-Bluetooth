@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "79f6d3b2_2947af5f",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 3220,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-15T09:25:38Z",
+      "side": 1,
+      "message": "ditto",
+      "range": {
+        "startLine": 3220,
+        "startChar": 16,
+        "endLine": 3220,
+        "endChar": 19
+      },
+      "revId": "83e8a5bba556bd8683181b67ee1f6f6991498699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ccc9d25c_5d7de740",
+        "filename": "system/bta/av/bta_av_aact.cc",
+        "patchSetId": 23
+      },
+      "lineNbr": 3255,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-15T09:25:38Z",
+      "side": 1,
+      "message": "Why a magic 255 ? Where is it defined and can we have a better definition of it ?\n\n(Is it because we are line 3255 ? 😂)",
+      "range": {
+        "startLine": 3255,
+        "startChar": 16,
+        "endLine": 3255,
+        "endChar": 19
+      },
+      "revId": "83e8a5bba556bd8683181b67ee1f6f6991498699",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
