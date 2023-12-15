@@ -1,0 +1,147 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5eaa65db_53fe9948",
+        "filename": "floss/pandora/floss/qa_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-15T10:44:41Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Open-source Licensing.",
+      "range": {
+        "startLine": 3,
+        "startChar": 3,
+        "endLine": 3,
+        "endChar": 61
+      },
+      "revId": "f897f976a110ae612ec8c1d314d4c9e70d6c2eeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8677172_f3588f2d",
+        "filename": "floss/pandora/floss/qa_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-15T10:44:41Z",
+      "side": 1,
+      "message": "Destructor.",
+      "revId": "f897f976a110ae612ec8c1d314d4c9e70d6c2eeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baba79ec_33196534",
+        "filename": "floss/pandora/floss/qa_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 400,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-15T10:44:41Z",
+      "side": 1,
+      "message": "Gets HID report on the remote device.",
+      "range": {
+        "startLine": 400,
+        "startChar": 11,
+        "endLine": 400,
+        "endChar": 26
+      },
+      "revId": "f897f976a110ae612ec8c1d314d4c9e70d6c2eeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80877c3f_d8082939",
+        "filename": "floss/pandora/floss/qa_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-15T10:44:41Z",
+      "side": 1,
+      "message": "The type of HID report.",
+      "range": {
+        "startLine": 404,
+        "startChar": 25,
+        "endLine": 404,
+        "endChar": 54
+      },
+      "revId": "f897f976a110ae612ec8c1d314d4c9e70d6c2eeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbdc01df_1691b2d4",
+        "filename": "floss/pandora/floss/qa_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-15T10:44:41Z",
+      "side": 1,
+      "message": "The id of HID report.",
+      "range": {
+        "startLine": 405,
+        "startChar": 23,
+        "endLine": 405,
+        "endChar": 50
+      },
+      "revId": "f897f976a110ae612ec8c1d314d4c9e70d6c2eeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd611993_8ac9f53d",
+        "filename": "floss/pandora/floss/qa_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 415,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-15T10:44:41Z",
+      "side": 1,
+      "message": "Sets HID report to the remote device.",
+      "revId": "f897f976a110ae612ec8c1d314d4c9e70d6c2eeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa8fde29_0e04a5b5",
+        "filename": "floss/pandora/floss/qa_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-15T10:44:41Z",
+      "side": 1,
+      "message": "Sends HID report data to the remote device.",
+      "revId": "f897f976a110ae612ec8c1d314d4c9e70d6c2eeb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
