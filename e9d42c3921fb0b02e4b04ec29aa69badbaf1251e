@@ -16,6 +16,63 @@
       "message": "isn\u0027t IS_FLAG_ENABLED returns always false for FLOSS anyway?\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/flags/exported_include/android_bluetooth_flags.h;l\u003d23?q\u003dIS_FLAG_ENABLED\u0026ss\u003dandroid%2Fplatform%2Fsuperproject%2Fmain",
       "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87b95f8f_1bf75ff7",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-15T15:11:41Z",
+      "side": 1,
+      "message": "can we have any logs showing different paths here?",
+      "range": {
+        "startLine": 228,
+        "startChar": 7,
+        "endLine": 228,
+        "endChar": 22
+      },
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc293567_78038463",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-15T15:11:41Z",
+      "side": 1,
+      "message": "maybe for FLOSS just do `return true;`",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad8623a2_0c59bac9",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-15T15:11:41Z",
+      "side": 1,
+      "message": "can we have any logs showing different paths here?",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
