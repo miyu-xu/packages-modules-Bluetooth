@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85c67619_7c3ece87",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T06:51:49Z",
+      "side": 1,
+      "message": "Prefer `None` because GetConnectionState doesn\u0027t return boolean.",
+      "range": {
+        "startLine": 833,
+        "startChar": 21,
+        "endLine": 833,
+        "endChar": 26
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de715f84_81e1b054",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T06:51:49Z",
+      "side": 1,
+      "message": "Please check whether the call failed.",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 24
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a1e1710_4b2293fa",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T06:51:49Z",
+      "side": 1,
+      "message": "nit: `if` to make it consistent with the below",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 12
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1685d5b0_a8242c70",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T06:51:49Z",
+      "side": 1,
+      "message": "redundant",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 13
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5b7f75b_5cc4e61f",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T06:51:49Z",
+      "side": 1,
+      "message": "redundant",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 17
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb44ca5b_d7731b88",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T06:51:49Z",
+      "side": 1,
+      "message": "Lv4 is already checked at line #72. How about `ValueError(\u0027invalid security level %r\u0027 % level)`",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 84
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "900f7c8e_7cb3b705",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T06:51:49Z",
+      "side": 1,
+      "message": "nit: `if` to make it consistent with the below",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 12
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fd63bd85_13b679de",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T06:51:49Z",
+      "side": 1,
+      "message": "redundant",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 13
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a00dd0e3_4f5298d2",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T06:51:49Z",
+      "side": 1,
+      "message": "redundant",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 17
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
