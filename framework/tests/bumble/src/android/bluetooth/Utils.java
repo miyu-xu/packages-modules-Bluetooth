@@ -20,6 +20,9 @@ import static com.google.common.io.BaseEncoding.base16;
 
 import com.google.protobuf.ByteString;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Locale;
 
 public final class Utils {
@@ -44,5 +47,51 @@ public final class Utils {
      */
     public static byte[] addressBytesFromString(String address) {
         return base16().upperCase().withSeparator(":", 2).decode(address.toUpperCase(Locale.US));
+    }
+
+    /**
+     * Creates list of parameters using all combinations of given input based on each input's
+     * variations.
+     *
+     * @param variationsPerParam list of inputs with variations its variations
+     * @return list of all combinations of input parameters
+     */
+    public static Collection<Object[]> createParams(List<Object[]> variationsPerParam) {
+        List<Object[]> params = new ArrayList<>();
+
+        createParams(0, variationsPerParam, params);
+
+        return params;
+    }
+
+    private static void createParams(
+            int startIndex, List<Object[]> variationsPerParam, List<Object[]> result) {
+        if (variationsPerParam.isEmpty() || startIndex > variationsPerParam.size() - 1) {
+            return;
+        }
+
+        Object[] currentParamVariations = variationsPerParam.get(startIndex);
+
+        for (Object param : currentParamVariations) {
+            Object[] currentParams;
+
+            if (result.isEmpty()) {
+                currentParams = new Object[variationsPerParam.size()];
+                result.add(currentParams);
+            } else {
+                currentParams = result.get(result.size() - 1);
+            }
+
+            if (currentParams[startIndex] == null) {
+                currentParams[startIndex] = param;
+            } else {
+                Object[] newParams = new Object[variationsPerParam.size()];
+                System.arraycopy(currentParams, 0, newParams, 0, startIndex + 1);
+                newParams[startIndex] = param;
+                result.add(newParams);
+            }
+
+            createParams(startIndex + 1, variationsPerParam, result);
+        }
     }
 }
