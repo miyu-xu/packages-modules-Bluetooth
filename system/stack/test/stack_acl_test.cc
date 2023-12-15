@@ -20,7 +20,6 @@
 
 #include "common/init_flags.h"
 #include "stack/acl/acl.h"
-#include "stack/btm/btm_int_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/acl_hci_link_interface.h"
@@ -28,8 +27,6 @@
 #include "test/common/mock_functions.h"
 #include "types/hci_role.h"
 #include "types/raw_address.h"
-
-tBTM_CB btm_cb;
 
 namespace {
 const char* test_flags[] = {

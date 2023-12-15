@@ -19,13 +19,11 @@
 #include "common/init_flags.h"
 #include "device/include/controller.h"
 #include "osi/include/allocator.h"
-#include "stack/btm/btm_int_types.h"
 #include "stack/include/l2cap_controller_interface.h"
 #include "stack/include/l2cap_hci_link_interface.h"
 #include "stack/include/l2cdefs.h"
 #include "stack/l2cap/l2c_int.h"
 
-tBTM_CB btm_cb;
 extern tL2C_CB l2cb;
 
 void l2c_link_send_to_lower_br_edr(tL2C_LCB* p_lcb, BT_HDR* p_buf);

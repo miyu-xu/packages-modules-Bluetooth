@@ -37,7 +37,7 @@
 
 using testing::StrEq;
 
-tBTM_CB btm_cb;
+extern tBTM_CB btm_cb;
 
 const std::string kSmpOptions("mock smp options");
 const std::string kBroadcastAudioConfigOptions(
