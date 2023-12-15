@@ -21,9 +21,12 @@
 
 #include <string>
 
+#include "stack/btm/btm_int_types.h"  // tBTM_CB
 #include "test/common/mock_functions.h"
 #include "types/ble_address_with_type.h"
 #include "types/raw_address.h"
+
+tBTM_CB btm_cb;
 
 void BTM_LogHistory(const std::string& /* tag */,
                     const RawAddress& /* bd_addr */,

@@ -30,10 +30,8 @@
 #include "hal/hci_hal.h"
 #include "hci/acl_manager.h"
 #include "hci/acl_manager/classic_acl_connection.h"
-#include "hci/acl_manager/connection_callbacks.h"
 #include "hci/acl_manager/connection_management_callbacks.h"
 #include "hci/acl_manager/le_acl_connection.h"
-#include "hci/acl_manager/le_connection_callbacks.h"
 #include "hci/acl_manager/le_connection_management_callbacks.h"
 #include "hci/acl_manager_mock.h"
 #include "hci/address.h"
@@ -85,7 +83,7 @@ const uint8_t kMaxLeAcceptlistSize = 16;
 const uint8_t kMaxAddressResolutionSize = kMaxLeAcceptlistSize;
 
 tL2C_CB l2cb;
-tBTM_CB btm_cb;
+extern tBTM_CB btm_cb;
 tBTM_SEC_CB btm_sec_cb;
 btif_hh_cb_t btif_hh_cb;
 
