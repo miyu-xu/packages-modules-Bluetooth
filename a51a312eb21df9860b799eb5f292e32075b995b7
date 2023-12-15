@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdc7dcf5_01f9f697",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T07:01:03Z",
+      "side": 1,
+      "message": "wrong format",
+      "range": {
+        "startLine": 1021,
+        "startChar": 0,
+        "endLine": 1022,
+        "endChar": 71
+      },
+      "revId": "a51a312eb21df9860b799eb5f292e32075b995b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c7cd0c7_7d077d07",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1031,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T07:01:03Z",
+      "side": 1,
+      "message": "wrong format",
+      "range": {
+        "startLine": 1030,
+        "startChar": 0,
+        "endLine": 1031,
+        "endChar": 71
+      },
+      "revId": "a51a312eb21df9860b799eb5f292e32075b995b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98df731d_a99f5405",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-15T07:01:03Z",
+      "side": 1,
+      "message": "You need a change similar to [this](https://crrev.com/c/4954415/4/client/cros/multimedia/bluetooth_facade.py) to run on M121 or later",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 28
+      },
+      "revId": "a51a312eb21df9860b799eb5f292e32075b995b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
