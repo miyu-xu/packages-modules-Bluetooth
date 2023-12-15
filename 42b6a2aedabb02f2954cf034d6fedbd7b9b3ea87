@@ -127,6 +127,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6f82bd1a_abf17656",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T09:39:41Z",
+      "side": 1,
+      "message": "in patchset 2 I use the currently available Sender\u003cMessage\u003e and Sender\u003cAPIMessage\u003e to coordinate. \nMaybe `main.rs` can just send `APIMessage::Shutdown` directly instead of `Message::InterfaceShutdown` for less overhead. \n\nShould I still use the oneshot channel?",
+      "parentUuid": "b2de4425_ee17c956",
+      "revId": "42b6a2aedabb02f2954cf034d6fedbd7b9b3ea87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43164e22_7ea16284",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_gatt.rs",
         "patchSetId": 1
