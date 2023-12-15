@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fde97051_ff0cd9b4",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 877,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:40:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "45936fef_1121fd82",
+      "range": {
+        "startLine": 877,
+        "startChar": 33,
+        "endLine": 877,
+        "endChar": 36
+      },
+      "revId": "db5d27c075e0e4b6dd8a9b76f98cbc2f460d9c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7e0ebf0f_57c6a47d",
@@ -61,6 +85,30 @@
       "writtenOn": "2023-12-15T10:18:57Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 936,
+        "startChar": 33,
+        "endLine": 936,
+        "endChar": 36
+      },
+      "revId": "db5d27c075e0e4b6dd8a9b76f98cbc2f460d9c82",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e6ace12_05461802",
+        "filename": "system/stack/l2cap/l2c_link.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T10:40:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7e0ebf0f_57c6a47d",
       "range": {
         "startLine": 936,
         "startChar": 33,
