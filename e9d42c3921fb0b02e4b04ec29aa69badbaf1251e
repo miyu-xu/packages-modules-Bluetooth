@@ -78,6 +78,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7e072425_3af4e78b",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-15T15:59:35Z",
+      "side": 1,
+      "message": "Sure. Please specify the format of the logs.",
+      "parentUuid": "87b95f8f_1bf75ff7",
+      "range": {
+        "startLine": 228,
+        "startChar": 7,
+        "endLine": 228,
+        "endChar": 22
+      },
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc293567_78038463",
         "filename": "system/stack/smp/smp_utils.cc",
         "patchSetId": 9
