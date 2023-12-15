@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ff47a94_54d28e4c",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 3020,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2023-12-15T02:13:01Z",
+      "side": 1,
+      "message": "Do we need to use scanning parameter setup in shim or just scan enable is enough?",
+      "range": {
+        "startLine": 3020,
+        "startChar": 47,
+        "endLine": 3020,
+        "endChar": 57
+      },
+      "revId": "b739599b5d8270be45dec30fea8d77e13587bc54",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
