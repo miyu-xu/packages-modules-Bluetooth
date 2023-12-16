@@ -25,12 +25,11 @@
 namespace bluetooth {
 
 class ModuleMainloop {
- public:
+ protected:
   ModuleMainloop() noexcept = default;
   virtual ~ModuleMainloop() = default;
   ModuleMainloop(const ModuleMainloop& mod) = delete;
 
- protected:
   // Threadsafe post onto mainloop a function with copyable arguments
   template <typename Functor, typename... Args>
   void PostFunctionOnMain(Functor&& functor, Args&&... args) const {
