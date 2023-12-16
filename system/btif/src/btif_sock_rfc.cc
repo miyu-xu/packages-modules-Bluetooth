@@ -26,12 +26,10 @@
 #include <cstdint>
 #include <mutex>
 
-#include "bt_target.h"  // Must be first to define build configuration
+*L2CAP functions from this file.*/
 #include "bta/include/bta_jv_api.h"
 #include "bta/include/bta_rfcomm_scn.h"
 #include "btif/include/btif_metrics_logging.h"
-/* The JV interface can have only one user, hence we need to call a few
- * L2CAP functions from this file. */
 #include "btif/include/btif_sock.h"
 #include "btif/include/btif_sock_l2cap.h"
 #include "btif/include/btif_sock_sdp.h"
@@ -39,298 +37,301 @@
 #include "btif/include/btif_sock_util.h"
 #include "btif/include/btif_uid.h"
 #include "include/hardware/bt_sock.h"
+#include "internal_include/bt_target.h"  // Must be first to define build configuration
 #include "osi/include/allocator.h"
-#include "osi/include/compat.h"
-#include "osi/include/list.h"
-#include "osi/include/log.h"
-#include "osi/include/osi.h"  // INVALID_FD
-#include "stack/include/bt_hdr.h"
-#include "stack/include/btm_api.h"
-#include "stack/include/btm_api_types.h"
-#include "stack/include/port_api.h"
-#include "types/bluetooth/uuid.h"
-#include "types/raw_address.h"
+    /* The JV interface can have only one user, hence we need to call a few
+    #include "osi/include/compat.h"
+    #include "osi/include/list.h"
+    #include "osi/include/log.h"
+    #include "osi/include/osi.h"  // INVALID_FD
+    #include "stack/include/bt_hdr.h"
+    #include "stack/include/btm_api.h"
+    #include "stack/include/btm_api_types.h"
+    #include "stack/include/port_api.h"
+    #include "types/bluetooth/uuid.h"
+    #include "types/raw_address.h"
 
-using bluetooth::Uuid;
+    using bluetooth::Uuid;
 
-// Maximum number of RFCOMM channels (1-30 inclusive).
-#define MAX_RFC_CHANNEL 30
+    // Maximum number of RFCOMM channels (1-30 inclusive).
+    #define MAX_RFC_CHANNEL 30
 
-// Maximum number of devices we can have an RFCOMM connection with.
-#define MAX_RFC_SESSION 7
+    // Maximum number of devices we can have an RFCOMM connection with.
+    #define MAX_RFC_SESSION 7
 
-typedef struct {
-  int outgoing_congest : 1;
-  int pending_sdp_request : 1;
-  int doing_sdp_request : 1;
-  int server : 1;
-  int connected : 1;
-  int closing : 1;
-} flags_t;
+    typedef struct {
+      int outgoing_congest : 1;
+      int pending_sdp_request : 1;
+      int doing_sdp_request : 1;
+      int server : 1;
+      int connected : 1;
+      int closing : 1;
+    } flags_t;
 
-typedef struct {
-  flags_t f;
-  uint32_t id;  // Non-zero indicates a valid (in-use) slot.
-  int security;
-  int scn;  // Server channel number
-  int scn_notified;
-  RawAddress addr;
-  int is_service_uuid_valid;
-  Uuid service_uuid;
-  char service_name[256];
-  int fd;
-  int app_fd;   // Temporary storage for the half of the socketpair that's sent
-                // back to upper layers.
-  int app_uid;  // UID of the app for which this socket was created.
-  int mtu;
-  uint8_t* packet;
-  int sdp_handle;
-  int rfc_handle;
-  int rfc_port_handle;
-  int role;
-  list_t* incoming_queue;
-  // Cumulative number of bytes transmitted on this socket
-  int64_t tx_bytes;
-  // Cumulative number of bytes received on this socket
-  int64_t rx_bytes;
-} rfc_slot_t;
+    typedef struct {
+      flags_t f;
+      uint32_t id;  // Non-zero indicates a valid (in-use) slot.
+      int security;
+      int scn;  // Server channel number
+      int scn_notified;
+      RawAddress addr;
+      int is_service_uuid_valid;
+      Uuid service_uuid;
+      char service_name[256];
+      int fd;
+      int app_fd;   // Temporary storage for the half of the socketpair that's
+    sent
+                    // back to upper layers.
+      int app_uid;  // UID of the app for which this socket was created.
+      int mtu;
+      uint8_t* packet;
+      int sdp_handle;
+      int rfc_handle;
+      int rfc_port_handle;
+      int role;
+      list_t* incoming_queue;
+      // Cumulative number of bytes transmitted on this socket
+      int64_t tx_bytes;
+      // Cumulative number of bytes received on this socket
+      int64_t rx_bytes;
+    } rfc_slot_t;
 
-static rfc_slot_t rfc_slots[MAX_RFC_CHANNEL];
-static uint32_t rfc_slot_id;
-static volatile int pth = -1;  // poll thread handle
-static std::recursive_mutex slot_lock;
-static uid_set_t* uid_set = NULL;
+    static rfc_slot_t rfc_slots[MAX_RFC_CHANNEL];
+    static uint32_t rfc_slot_id;
+    static volatile int pth = -1;  // poll thread handle
+    static std::recursive_mutex slot_lock;
+    static uid_set_t* uid_set = NULL;
 
-static rfc_slot_t* find_free_slot(void);
-static void cleanup_rfc_slot(rfc_slot_t* rs);
-static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id);
-static uint32_t rfcomm_cback(tBTA_JV_EVT event, tBTA_JV* p_data,
-                             uint32_t rfcomm_slot_id);
-static bool send_app_scn(rfc_slot_t* rs);
-static void handle_discovery_comp(tBTA_JV_STATUS status, int scn, uint32_t id);
+    static rfc_slot_t* find_free_slot(void);
+    static void cleanup_rfc_slot(rfc_slot_t* rs);
+    static void jv_dm_cback(tBTA_JV_EVT event, tBTA_JV* p_data, uint32_t id);
+    static uint32_t rfcomm_cback(tBTA_JV_EVT event, tBTA_JV* p_data,
+                                 uint32_t rfcomm_slot_id);
+    static bool send_app_scn(rfc_slot_t* rs);
+    static void handle_discovery_comp(tBTA_JV_STATUS status, int scn, uint32_t
+    id);
 
-static bool is_init_done(void) { return pth != -1; }
+    static bool is_init_done(void) { return pth != -1; }
 
-bt_status_t btsock_rfc_init(int poll_thread_handle, uid_set_t* set) {
-  pth = poll_thread_handle;
-  uid_set = set;
+    bt_status_t btsock_rfc_init(int poll_thread_handle, uid_set_t* set) {
+      pth = poll_thread_handle;
+      uid_set = set;
 
-  memset(rfc_slots, 0, sizeof(rfc_slots));
-  for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i) {
-    rfc_slots[i].scn = -1;
-    rfc_slots[i].sdp_handle = 0;
-    rfc_slots[i].fd = INVALID_FD;
-    rfc_slots[i].app_fd = INVALID_FD;
-    rfc_slots[i].incoming_queue = list_new(osi_free);
-    CHECK(rfc_slots[i].incoming_queue != NULL);
-  }
-
-  BTA_JvEnable(jv_dm_cback);
-
-  return BT_STATUS_SUCCESS;
-}
-
-void btsock_rfc_cleanup(void) {
-  pth = -1;
-
-  BTA_JvDisable();
-
-  std::unique_lock<std::recursive_mutex> lock(slot_lock);
-  for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i) {
-    if (rfc_slots[i].id) cleanup_rfc_slot(&rfc_slots[i]);
-    list_free(rfc_slots[i].incoming_queue);
-    rfc_slots[i].incoming_queue = NULL;
-  }
-
-  uid_set = NULL;
-}
-
-static rfc_slot_t* find_free_slot(void) {
-  for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i)
-    if (rfc_slots[i].fd == INVALID_FD) return &rfc_slots[i];
-  return NULL;
-}
-
-static rfc_slot_t* find_rfc_slot_by_id(uint32_t id) {
-  CHECK(id != 0);
-
-  for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i)
-    if (rfc_slots[i].id == id) return &rfc_slots[i];
-
-  return NULL;
-}
-
-static rfc_slot_t* find_rfc_slot_by_pending_sdp(void) {
-  uint32_t min_id = UINT32_MAX;
-  int slot = -1;
-  for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i)
-    if (rfc_slots[i].id && rfc_slots[i].f.pending_sdp_request &&
-        rfc_slots[i].id < min_id) {
-      min_id = rfc_slots[i].id;
-      slot = i;
-    }
-
-  return (slot == -1) ? NULL : &rfc_slots[slot];
-}
-
-static bool is_requesting_sdp(void) {
-  for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i)
-    if (rfc_slots[i].id && rfc_slots[i].f.doing_sdp_request) return true;
-  return false;
-}
-
-static rfc_slot_t* alloc_rfc_slot(const RawAddress* addr, const char* name,
-                                  const Uuid& uuid, int channel, int flags,
-                                  bool server) {
-  int security = 0;
-  if (flags & BTSOCK_FLAG_ENCRYPT)
-    security |= server ? BTM_SEC_IN_ENCRYPT : BTM_SEC_OUT_ENCRYPT;
-  if (flags & BTSOCK_FLAG_AUTH)
-    security |= server ? BTM_SEC_IN_AUTHENTICATE : BTM_SEC_OUT_AUTHENTICATE;
-  if (flags & BTSOCK_FLAG_AUTH_MITM)
-    security |= server ? BTM_SEC_IN_MITM : BTM_SEC_OUT_MITM;
-  if (flags & BTSOCK_FLAG_AUTH_16_DIGIT)
-    security |= BTM_SEC_IN_MIN_16_DIGIT_PIN;
-
-  rfc_slot_t* slot = find_free_slot();
-  if (!slot) {
-    LOG_ERROR("%s unable to find free RFCOMM slot.", __func__);
-    return NULL;
-  }
-
-  int fds[2] = {INVALID_FD, INVALID_FD};
-  if (socketpair(AF_LOCAL, SOCK_STREAM, 0, fds) == -1) {
-    LOG_ERROR("%s error creating socketpair: %s", __func__, strerror(errno));
-    return NULL;
-  }
-
-  // Increment slot id and make sure we don't use id=0.
-  if (++rfc_slot_id == 0) rfc_slot_id = 1;
-
-  slot->fd = fds[0];
-  slot->app_fd = fds[1];
-  slot->security = security;
-  slot->scn = channel;
-  slot->app_uid = -1;
-
-  slot->is_service_uuid_valid = !uuid.IsEmpty();
-  slot->service_uuid = uuid;
-
-  if (name && *name) {
-    strlcpy(slot->service_name, name, sizeof(slot->service_name));
-  } else {
-    memset(slot->service_name, 0, sizeof(slot->service_name));
-  }
-  if (addr) {
-    slot->addr = *addr;
-  } else {
-    slot->addr = RawAddress::kEmpty;
-  }
-  slot->id = rfc_slot_id;
-  slot->f.server = server;
-  slot->role = server;
-  slot->tx_bytes = 0;
-  slot->rx_bytes = 0;
-  return slot;
-}
-
-static rfc_slot_t* create_srv_accept_rfc_slot(rfc_slot_t* srv_rs,
-                                              const RawAddress* addr,
-                                              int open_handle,
-                                              int new_listen_handle) {
-  rfc_slot_t* accept_rs = alloc_rfc_slot(
-      addr, srv_rs->service_name, srv_rs->service_uuid, srv_rs->scn, 0, false);
-  if (!accept_rs) {
-    LOG_ERROR("%s unable to allocate RFCOMM slot.", __func__);
-    return NULL;
-  }
-
-  accept_rs->f.server = false;
-  accept_rs->f.connected = true;
-  accept_rs->security = srv_rs->security;
-  accept_rs->mtu = srv_rs->mtu;
-  accept_rs->role = srv_rs->role;
-  accept_rs->rfc_handle = open_handle;
-  accept_rs->rfc_port_handle = BTA_JvRfcommGetPortHdl(open_handle);
-  accept_rs->app_uid = srv_rs->app_uid;
-
-  srv_rs->rfc_handle = new_listen_handle;
-  srv_rs->rfc_port_handle = BTA_JvRfcommGetPortHdl(new_listen_handle);
-
-  CHECK(accept_rs->rfc_port_handle != srv_rs->rfc_port_handle);
-
-  // now swap the slot id
-  uint32_t new_listen_id = accept_rs->id;
-  accept_rs->id = srv_rs->id;
-  srv_rs->id = new_listen_id;
-
-  return accept_rs;
-}
-
-bt_status_t btsock_rfc_control_req(uint8_t dlci, const RawAddress& bd_addr,
-                                   uint8_t modem_signal, uint8_t break_signal,
-                                   uint8_t discard_buffers,
-                                   uint8_t break_signal_seq, bool fc) {
-  int status =
-      RFCOMM_ControlReqFromBTSOCK(dlci, bd_addr, modem_signal, break_signal,
-                                  discard_buffers, break_signal_seq, fc);
-  if (status != PORT_SUCCESS) {
-    LOG_WARN("failed to send control parameters, status=%d", status);
-    return BT_STATUS_FAIL;
-  }
-  return BT_STATUS_SUCCESS;
-}
-
-bt_status_t btsock_rfc_listen(const char* service_name,
-                              const Uuid* service_uuid, int channel,
-                              int* sock_fd, int flags, int app_uid) {
-  CHECK(sock_fd != NULL);
-  CHECK((service_uuid != NULL) ||
-        (channel >= 1 && channel <= MAX_RFC_CHANNEL) ||
-        ((flags & BTSOCK_FLAG_NO_SDP) != 0));
-
-  *sock_fd = INVALID_FD;
-
-  // TODO(sharvil): not sure that this check makes sense; seems like a logic
-  // error to call
-  // functions on RFCOMM sockets before initializing the module. Probably should
-  // be an assert.
-  if (!is_init_done()) return BT_STATUS_NOT_READY;
-
-  if ((flags & BTSOCK_FLAG_NO_SDP) == 0) {
-    if (!service_uuid || service_uuid->IsEmpty()) {
-      // Use serial port profile to listen to specified channel
-      service_uuid = &UUID_SPP;
-    } else {
-      // Check the service_uuid. overwrite the channel # if reserved
-      int reserved_channel = get_reserved_rfc_channel(*service_uuid);
-      if (reserved_channel > 0) {
-        channel = reserved_channel;
+      memset(rfc_slots, 0, sizeof(rfc_slots));
+      for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i) {
+        rfc_slots[i].scn = -1;
+        rfc_slots[i].sdp_handle = 0;
+        rfc_slots[i].fd = INVALID_FD;
+        rfc_slots[i].app_fd = INVALID_FD;
+        rfc_slots[i].incoming_queue = list_new(osi_free);
+        CHECK(rfc_slots[i].incoming_queue != NULL);
       }
+
+      BTA_JvEnable(jv_dm_cback);
+
+      return BT_STATUS_SUCCESS;
     }
-  }
 
-  std::unique_lock<std::recursive_mutex> lock(slot_lock);
+    void btsock_rfc_cleanup(void) {
+      pth = -1;
 
-  rfc_slot_t* slot =
-      alloc_rfc_slot(NULL, service_name, *service_uuid, channel, flags, true);
-  if (!slot) {
-    LOG_ERROR("unable to allocate RFCOMM slot");
-    return BT_STATUS_FAIL;
-  }
-  LOG_INFO("Adding listening socket service_name: %s - channel: %d",
-           service_name, channel);
-  BTA_JvGetChannelId(BTA_JV_CONN_TYPE_RFCOMM, slot->id, channel);
-  *sock_fd = slot->app_fd;  // Transfer ownership of fd to caller.
-  /*TODO:
-   * We are leaking one of the app_fd's - either the listen socket, or the
-   connection socket.
-   * WE need to close this in native, as the FD might belong to another process
-    - This is the server socket FD
-    - For accepted connections, we close the FD after passing it to JAVA.
-    - Try to simply remove the = -1 to free the FD at rs cleanup.*/
-  //        close(rs->app_fd);
-  slot->app_fd = INVALID_FD;  // Drop our reference to the fd.
+      BTA_JvDisable();
+
+      std::unique_lock<std::recursive_mutex> lock(slot_lock);
+      for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i) {
+        if (rfc_slots[i].id) cleanup_rfc_slot(&rfc_slots[i]);
+        list_free(rfc_slots[i].incoming_queue);
+        rfc_slots[i].incoming_queue = NULL;
+      }
+
+      uid_set = NULL;
+    }
+
+    static rfc_slot_t* find_free_slot(void) {
+      for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i)
+        if (rfc_slots[i].fd == INVALID_FD) return &rfc_slots[i];
+      return NULL;
+    }
+
+    static rfc_slot_t* find_rfc_slot_by_id(uint32_t id) {
+      CHECK(id != 0);
+
+      for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i)
+        if (rfc_slots[i].id == id) return &rfc_slots[i];
+
+      return NULL;
+    }
+
+    static rfc_slot_t* find_rfc_slot_by_pending_sdp(void) {
+      uint32_t min_id = UINT32_MAX;
+      int slot = -1;
+      for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i)
+        if (rfc_slots[i].id && rfc_slots[i].f.pending_sdp_request &&
+            rfc_slots[i].id < min_id) {
+          min_id = rfc_slots[i].id;
+          slot = i;
+        }
+
+      return (slot == -1) ? NULL : &rfc_slots[slot];
+    }
+
+    static bool is_requesting_sdp(void) {
+      for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i)
+        if (rfc_slots[i].id && rfc_slots[i].f.doing_sdp_request) return true;
+      return false;
+    }
+
+    static rfc_slot_t* alloc_rfc_slot(const RawAddress* addr, const char* name,
+                                      const Uuid& uuid, int channel, int flags,
+                                      bool server) {
+      int security = 0;
+      if (flags & BTSOCK_FLAG_ENCRYPT)
+        security |= server ? BTM_SEC_IN_ENCRYPT : BTM_SEC_OUT_ENCRYPT;
+      if (flags & BTSOCK_FLAG_AUTH)
+        security |= server ? BTM_SEC_IN_AUTHENTICATE : BTM_SEC_OUT_AUTHENTICATE;
+      if (flags & BTSOCK_FLAG_AUTH_MITM)
+        security |= server ? BTM_SEC_IN_MITM : BTM_SEC_OUT_MITM;
+      if (flags & BTSOCK_FLAG_AUTH_16_DIGIT)
+        security |= BTM_SEC_IN_MIN_16_DIGIT_PIN;
+
+      rfc_slot_t* slot = find_free_slot();
+      if (!slot) {
+        LOG_ERROR("%s unable to find free RFCOMM slot.", __func__);
+        return NULL;
+      }
+
+      int fds[2] = {INVALID_FD, INVALID_FD};
+      if (socketpair(AF_LOCAL, SOCK_STREAM, 0, fds) == -1) {
+        LOG_ERROR("%s error creating socketpair: %s", __func__,
+    strerror(errno)); return NULL;
+      }
+
+      // Increment slot id and make sure we don't use id=0.
+      if (++rfc_slot_id == 0) rfc_slot_id = 1;
+
+      slot->fd = fds[0];
+      slot->app_fd = fds[1];
+      slot->security = security;
+      slot->scn = channel;
+      slot->app_uid = -1;
+
+      slot->is_service_uuid_valid = !uuid.IsEmpty();
+      slot->service_uuid = uuid;
+
+      if (name && *name) {
+        strlcpy(slot->service_name, name, sizeof(slot->service_name));
+      } else {
+        memset(slot->service_name, 0, sizeof(slot->service_name));
+      }
+      if (addr) {
+        slot->addr = *addr;
+      } else {
+        slot->addr = RawAddress::kEmpty;
+      }
+      slot->id = rfc_slot_id;
+      slot->f.server = server;
+      slot->role = server;
+      slot->tx_bytes = 0;
+      slot->rx_bytes = 0;
+      return slot;
+    }
+
+    static rfc_slot_t* create_srv_accept_rfc_slot(rfc_slot_t* srv_rs,
+                                                  const RawAddress* addr,
+                                                  int open_handle,
+                                                  int new_listen_handle) {
+      rfc_slot_t* accept_rs = alloc_rfc_slot(
+          addr, srv_rs->service_name, srv_rs->service_uuid, srv_rs->scn, 0,
+    false); if (!accept_rs) { LOG_ERROR("%s unable to allocate RFCOMM slot.",
+    __func__); return NULL;
+      }
+
+      accept_rs->f.server = false;
+      accept_rs->f.connected = true;
+      accept_rs->security = srv_rs->security;
+      accept_rs->mtu = srv_rs->mtu;
+      accept_rs->role = srv_rs->role;
+      accept_rs->rfc_handle = open_handle;
+      accept_rs->rfc_port_handle = BTA_JvRfcommGetPortHdl(open_handle);
+      accept_rs->app_uid = srv_rs->app_uid;
+
+      srv_rs->rfc_handle = new_listen_handle;
+      srv_rs->rfc_port_handle = BTA_JvRfcommGetPortHdl(new_listen_handle);
+
+      CHECK(accept_rs->rfc_port_handle != srv_rs->rfc_port_handle);
+
+      // now swap the slot id
+      uint32_t new_listen_id = accept_rs->id;
+      accept_rs->id = srv_rs->id;
+      srv_rs->id = new_listen_id;
+
+      return accept_rs;
+    }
+
+    bt_status_t btsock_rfc_control_req(uint8_t dlci, const RawAddress& bd_addr,
+                                       uint8_t modem_signal, uint8_t
+    break_signal, uint8_t discard_buffers, uint8_t break_signal_seq, bool fc) {
+      int status =
+          RFCOMM_ControlReqFromBTSOCK(dlci, bd_addr, modem_signal, break_signal,
+                                      discard_buffers, break_signal_seq, fc);
+      if (status != PORT_SUCCESS) {
+        LOG_WARN("failed to send control parameters, status=%d", status);
+        return BT_STATUS_FAIL;
+      }
+      return BT_STATUS_SUCCESS;
+    }
+
+    bt_status_t btsock_rfc_listen(const char* service_name,
+                                  const Uuid* service_uuid, int channel,
+                                  int* sock_fd, int flags, int app_uid) {
+      CHECK(sock_fd != NULL);
+      CHECK((service_uuid != NULL) ||
+            (channel >= 1 && channel <= MAX_RFC_CHANNEL) ||
+            ((flags & BTSOCK_FLAG_NO_SDP) != 0));
+
+      *sock_fd = INVALID_FD;
+
+      // TODO(sharvil): not sure that this check makes sense; seems like a logic
+      // error to call
+      // functions on RFCOMM sockets before initializing the module. Probably
+    should
+      // be an assert.
+      if (!is_init_done()) return BT_STATUS_NOT_READY;
+
+      if ((flags & BTSOCK_FLAG_NO_SDP) == 0) {
+        if (!service_uuid || service_uuid->IsEmpty()) {
+          // Use serial port profile to listen to specified channel
+          service_uuid = &UUID_SPP;
+        } else {
+          // Check the service_uuid. overwrite the channel # if reserved
+          int reserved_channel = get_reserved_rfc_channel(*service_uuid);
+          if (reserved_channel > 0) {
+            channel = reserved_channel;
+          }
+        }
+      }
+
+      std::unique_lock<std::recursive_mutex> lock(slot_lock);
+
+      rfc_slot_t* slot =
+          alloc_rfc_slot(NULL, service_name, *service_uuid, channel, flags,
+    true); if (!slot) { LOG_ERROR("unable to allocate RFCOMM slot"); return
+    BT_STATUS_FAIL;
+      }
+      LOG_INFO("Adding listening socket service_name: %s - channel: %d",
+               service_name, channel);
+      BTA_JvGetChannelId(BTA_JV_CONN_TYPE_RFCOMM, slot->id, channel);
+      *sock_fd = slot->app_fd;  // Transfer ownership of fd to caller.
+      /*TODO:
+       * We are leaking one of the app_fd's - either the listen socket, or the
+       connection socket.
+       * WE need to close this in native, as the FD might belong to another
+    process
+        - This is the server socket FD
+        - For accepted connections, we close the FD after passing it to JAVA.
+        - Try to simply remove the = -1 to free the FD at rs cleanup.*/
+    //        close(rs->app_fd);
+    slot->app_fd = INVALID_FD;  // Drop our reference to the fd.
   slot->app_uid = app_uid;
   btsock_thread_add_fd(pth, slot->fd, BTSOCK_RFCOMM, SOCK_THREAD_FD_EXCEPTION,
                        slot->id);
