@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb2711e2_02f15191",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-16T00:32:29Z",
+      "side": 1,
+      "message": "As long as the risk is acknowledged and there is rollback plan if something major breaks, I guess I am ok with this. \n\nRe: not sure understand how other components could be affected by this CL, that\u0027s the problem with removing exported components that have long been in place. I did a quick cs/ on some of these and looks like we should be ok, so will resolve this under the assumption there is rollback plan in place. \n\nI\u0027d recommend in future might be good to consider looping in DRIs on changes like this as suggested in chat previously, so there is better understanding of blast radius on CLs like this ahead of submission.",
+      "parentUuid": "b5ec2185_f78930e4",
+      "revId": "0493a34dd04790143c6f9d27731f0d297f710d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f8de1e3_cdab0af3",
@@ -73,6 +91,30 @@
       "side": 1,
       "message": "The old javadoc doesn\u0027t apply, this class is unfortunately an unsupportedappusage, and this is here only to not break apps depending on this.\n\nIMO The best way to document this would be to annotate it as @UnsupportedAppUsage. However if I do that I want to remove it from `apex/hiddenapi/hiddenapi-unsupported.txt`, unfortunately this path is only owned by the compat-team.\n\nIdeally I would like to avoid making this CL more complicated by requiring a compat-team review. Do you mind if I do that in a follow-up?\n\nIs this a nitpick or do you want me to add some documentation in the meantime?",
       "parentUuid": "8f8de1e3_cdab0af3",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "0493a34dd04790143c6f9d27731f0d297f710d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "27a9879e_dcf0e6c1",
+        "filename": "framework/java/android/bluetooth/IBluetoothStateChangeCallback.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-16T00:32:29Z",
+      "side": 1,
+      "message": "It makes sense that the existing explanation is removed, but anything @hide should still be documented. \n\nIdeally this would be an explanation of why this is hidden, i.e. as recommended here: https://g3doc.corp.google.com/company/teams/android-api-council/guidelines/index.md?cl\u003dhead#annotations_2",
+      "parentUuid": "0310f3e6_0e4f4c61",
       "range": {
         "startLine": 19,
         "startChar": 0,
