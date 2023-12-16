@@ -34,6 +34,24 @@
       "parentUuid": "72e89a91_6adc64b4",
       "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "803b062c_0b6ecc0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-16T00:04:43Z",
+      "side": 1,
+      "message": "FWIW I agree with David\u0027s take on this patch and the next in this chain - inner class seems unnecessary and confusing.\n\nThe latter CL in this chain adds a lot of logic on top of the test logic, which could introduce bugs.",
+      "parentUuid": "be6873ab_4aeacf06",
+      "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
