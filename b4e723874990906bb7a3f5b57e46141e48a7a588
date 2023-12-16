@@ -52,6 +52,24 @@
       "parentUuid": "be6873ab_4aeacf06",
       "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2d5fca9d_bde39f52",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-16T00:57:07Z",
+      "side": 1,
+      "message": "What do you think is unnecessary and confusing? \n\nWhen testing a single class, isn\u0027t it standard practice to have one test class covering all the test cases for that class? Similarly, I want to keep all LE scan tests in LeScanningTest class without creating a new test class for each LE scan test case.\n\nTherefore, I am adding Parameterized LE scan tests to LeScanningTest and as a result have to separate the non parameterized and parameterized tests into separate inner classes, due to the nature of Parameterized tests config. Moreover, the non parameterized and parameterized tests share a lot of common logic, so this avoids code duplication.\n\nIf you still feel strongly about it, let me know and I can revert it to create a new class for parameterized test cases instead as I understand that each team may have their own preferences.\n\nWhen you said that the latter CL adds a lot of logic on top of test logic, what are you referring to? That CL is a WIP, so let me know and I can try to address now if something doesn\u0027t look right. Also, how does it matter if it is in this class or in a separate class  if bugs are introduced anyways?",
+      "parentUuid": "803b062c_0b6ecc0f",
+      "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
