@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7ad3891_f75787a3",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T16:27:27Z",
+      "side": 1,
+      "message": "Returns True and put self.register_clients_callback out side this function as they are independent. And simply call self.register_clients_callback after proxies ready.",
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4f704af_35fdd709",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T16:27:27Z",
+      "side": 1,
+      "message": "Wait for adapter start and all profile clients ready.",
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7cc11a1_a6946739",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T16:27:27Z",
+      "side": 1,
+      "message": "Where does the type |floss_enums.BthReportType| be added? Please make sure that all dependencies of the CL are correct.\n\n\nAlso, I don\u0027t think this line will work. Consider following code:\n\n\u003e\u003e\u003e class OwnAddressType(enum.IntEnum):\n...     DEFAULT \u003d -1\n...     PUBLIC \u003d 0\n...     RANDOM \u003d 1\n\n\n\u003e\u003e\u003e OwnAddressType(3) in OwnAddressType gives:\nTraceback (most recent call last):\n  File \"\u003cstdin\u003e\", line 1, in \u003cmodule\u003e\n  File \"/usr/lib/python3.11/enum.py\", line 712, in __call__\n    return cls.__new__(cls, value)\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.11/enum.py\", line 1128, in __new__\n    raise ve_exc\nValueError: 3 is not a valid OwnAddressType",
+      "range": {
+        "startLine": 67,
+        "startChar": 27,
+        "endLine": 67,
+        "endChar": 40
+      },
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ce015a2_f4819a16",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T16:27:27Z",
+      "side": 1,
+      "message": "No need to raise it here since it\u0027s not a server error nor critical unexpected behavoir. logging.error in on_set_hid_report_completed is enough IMO.",
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
