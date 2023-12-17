@@ -18,10 +18,12 @@ import logging
 
 from floss.pandora.server import bluetooth as bluetooth_module
 from floss.pandora.server import host
+from floss.pandora.server import l2cap
 from floss.pandora.server import security
 import grpc
 from pandora import host_grpc_aio
 from pandora import security_grpc_aio
+from pandora_experimental import l2cap_grpc_aio
 
 
 async def serve(port):
@@ -44,6 +46,9 @@ async def serve(port):
 
             security_storage_service = security.SecurityStorageService(server, bluetooth)
             security_grpc_aio.add_SecurityStorageServicer_to_server(security_storage_service, server)
+
+            l2cap_service = l2cap.L2CAPService(server, bluetooth)
+            l2cap_grpc_aio.add_L2CAPServicer_to_server(l2cap_service, server)
 
             server.add_insecure_port(f'[::]:{port}')
 
