@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "08fcd848_4a874804",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T18:20:52Z",
+      "side": 1,
+      "message": "Please resolve lint warning as well.",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f54e7b3e_fe5b61ee",
