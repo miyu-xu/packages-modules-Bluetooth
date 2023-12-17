@@ -15,8 +15,8 @@
 import re
 import sys
 
-from mmi2grpc._helpers import assert_description
-from mmi2grpc._proxy import ProfileProxy
+from _helpers import assert_description
+from _proxy import ProfileProxy
 
 from pandora.host_grpc import Host
 from pandora_experimental.pan_grpc import PAN

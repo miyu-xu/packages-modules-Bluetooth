@@ -1,7 +1,7 @@
 from threading import Thread
-from mmi2grpc._helpers import assert_description, match_description
-from mmi2grpc._rootcanal import Dongle
-from mmi2grpc._proxy import ProfileProxy
+from _helpers import assert_description, match_description
+from _rootcanal import Dongle
+from _proxy import ProfileProxy
 from time import sleep
 import sys
 
@@ -54,8 +54,7 @@ class GAPProxy(ProfileProxy):
     @match_description
     def TSC_MMI_iut_send_hci_connect_request(self, test: str, pts_addr: bytes, **kwargs):
         """
-        Please send an HCI connect request to establish a basic rate
-        connection( after the IUT discovers the Lower Tester over BR and LE)?.
+        Please
         """
 
         if test in [

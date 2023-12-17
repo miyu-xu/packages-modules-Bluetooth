@@ -17,9 +17,9 @@ import sys
 import time
 from threading import Thread
 
-from mmi2grpc._helpers import assert_description, match_description
-from mmi2grpc._proxy import ProfileProxy
-from mmi2grpc._rootcanal import Dongle
+from _helpers import assert_description, match_description
+from _proxy import ProfileProxy
+from _rootcanal import Dongle
 
 from pandora_experimental.gatt_grpc import GATT
 from pandora.host_grpc import Host

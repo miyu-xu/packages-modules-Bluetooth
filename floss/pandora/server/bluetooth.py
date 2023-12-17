@@ -22,6 +22,7 @@ from floss.pandora.floss import advertising_client
 from floss.pandora.floss import manager_client
 from floss.pandora.floss import qa_client
 from floss.pandora.floss import scanner_client
+from floss.pandora.floss import socket_manager
 from floss.pandora.floss import gatt_client
 from floss.pandora.floss import floss_enums
 from floss.pandora.floss import utils
@@ -65,6 +66,7 @@ class Bluetooth(object):
         self.scanner_client = scanner_client.FlossScannerClient(self.bus, self.DEFAULT_ADAPTER)
         self.qa_client = qa_client.FlossQAClient(self.bus, self.DEFAULT_ADAPTER)
         self.gatt_client = gatt_client.FlossGattClient(self.bus, self.DEFAULT_ADAPTER)
+        self.socket_manager = socket_manager.FlossSocketManagerClient(self.bus, self.DEFAULT_ADAPTER)
 
     def __del__(self):
         if not self.is_clean:
@@ -132,6 +134,9 @@ class Bluetooth(object):
         if not self.gatt_client.register_client(self.FAKE_GATT_APP_ID, False):
             logging.error('gatt_client: Failed to register callbacks')
             return False
+        if not self.socket_manager.register_callbacks():
+            logging.error('scanner_client: Failed to register callbacks')
+            return False
         return True
 
     def is_bluetoothd_proxy_valid(self):
@@ -144,6 +149,7 @@ class Bluetooth(object):
             self.scanner_client.has_proxy(),
             self.qa_client.has_proxy(),
             self.gatt_client.has_proxy(),
+            self.socket_manager.has_proxy()
         ])
 
         if not proxy_ready:
@@ -178,6 +184,7 @@ class Bluetooth(object):
             self.scanner_client = scanner_client.FlossScannerClient(self.bus, default_adapter)
             self.qa_client = qa_client.FlossQAClient(self.bus, default_adapter)
             self.gatt_client = gatt_client.FlossGattClient(self.bus, default_adapter)
+            self.socket_manager = socket_manager.FlossSocketManagerClient(self.bus, default_adapter)
 
             try:
                 utils.poll_for_condition(
@@ -310,3 +317,34 @@ class Bluetooth(object):
             logging.error('Failed to get connection state for address: %s', address)
             return False
         return connection_state > floss_enums.BtConnectionState.CONNECTED_ONLY
+
+    def listen_using_l2cap_channel(self):
+        return self.socket_manager.listen_using_l2cap_channel()
+
+    def listen_using_insecure_l2cap_channel(self):
+        return self.socket_manager.listen_using_insecure_l2cap_channel()
+
+    def create_l2cap_channel(self, address, psm):
+        name = "MOUSE_REF"
+        device = self.socket_manager.make_dbus_device(address, name)
+        return self.socket_manager.create_l2cap_channel(device, psm)
+
+    def create_insecure_l2cap_channel(self, address, psm):
+        name = "MOUSE_REF"
+        device = self.socket_manager.make_dbus_device(address, name)
+        return self.socket_manager.create_insecure_l2cap_channel(device, psm)
+
+    def accept(self, socket_id, timeout_ms=None):
+        return self.socket_manager.accept(socket_id, timeout_ms)
+
+    def create_insecure_rfcomm_socket_to_service_record(self, address, uuid):
+        name = "MOUSE_REF"
+        device = self.socket_manager.make_dbus_device(address, name)
+        return self.socket_manager.create_insecure_rfcomm_socket_to_service_record(device, uuid)
+
+    def listen_using_insecure_rfcomm_with_service_record(self, name, uuid):
+        return self.socket_manager.listen_using_insecure_rfcomm_with_service_record(name, uuid)
+
+    def close(self, socket_id):
+        return self.socket_manager.close(socket_id)
+

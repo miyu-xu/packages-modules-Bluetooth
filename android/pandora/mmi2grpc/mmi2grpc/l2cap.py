@@ -1,10 +1,10 @@
 import time
 import sys
 
-from mmi2grpc._helpers import assert_description
-from mmi2grpc._helpers import match_description
-from mmi2grpc._proxy import ProfileProxy
-from mmi2grpc._rootcanal import Dongle
+from _helpers import assert_description
+from _helpers import match_description
+from _proxy import ProfileProxy
+from _rootcanal import Dongle
 
 from pandora.host_grpc import Host
 from pandora.host_pb2 import PUBLIC, RANDOM, Connection
@@ -457,6 +457,19 @@ class L2CAPProxy(ProfileProxy):
                 return "OK"
             assert False, "The passkey does not match"
         assert False, "Unexpected pairing event"
+
+    # @assert_description
+    # def _mmi_2001(self, passkey: str, **kwargs):
+    #     """
+    #     Please verify the passKey is correct: 000000
+    #     """
+    #
+    #     for event in self.pairing_events:
+    #         assert event.numeric_comparison == int(passkey), (event, passkey)
+    #         self.pairing_events.send(PairingEventAnswer(event=event, confirm=True))
+    #         return "OK"
+    #
+    #     assert False, "did not receive expected pairing event"
 
     @assert_description
     def MMI_IUT_SEND_CONFIG_REQ(self, **kwargs):

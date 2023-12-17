@@ -13,8 +13,8 @@
 # limitations under the License.
 """SDP proxy module."""
 
-from mmi2grpc._helpers import assert_description, match_description
-from mmi2grpc._proxy import ProfileProxy
+from _helpers import assert_description, match_description
+from _proxy import ProfileProxy
 
 import sys
 import unittest

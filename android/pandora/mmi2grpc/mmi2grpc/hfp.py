@@ -13,8 +13,8 @@
 # limitations under the License.
 """HFP proxy module."""
 
-from mmi2grpc._helpers import assert_description, match_description
-from mmi2grpc._proxy import ProfileProxy
+from _helpers import assert_description, match_description
+from _proxy import ProfileProxy
 
 from pandora_experimental.hfp_grpc import HFP
 from pandora.host_grpc import Host

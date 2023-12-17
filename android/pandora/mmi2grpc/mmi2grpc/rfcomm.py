@@ -13,8 +13,8 @@
 # limitations under the License.
 """Rfcomm proxy module."""
 
-from mmi2grpc._helpers import assert_description
-from mmi2grpc._proxy import ProfileProxy
+from _helpers import assert_description
+from _proxy import ProfileProxy
 
 from pandora_experimental.rfcomm_grpc import RFCOMM
 from pandora.host_grpc import Host
@@ -64,8 +64,15 @@ class RFCOMMProxy(ProfileProxy):
         """
 
         self.server = self.rfcomm.StartServer(uuid=self.SPP_UUID, name=self.SERVICE_NAME).server
+        print("serverrr value")
+        print(self.server)
 
-        self.host.WaitConnection(address=pts_addr)
+        # ff= self.host.FactoryReset()
+
+        connection =self.host.WaitConnection(address=pts_addr).connection
+        print("connecttt")
+        print(connection)
+
 
         return "OK"
 
@@ -80,6 +87,8 @@ class RFCOMMProxy(ProfileProxy):
         """
 
         self.connection = self.rfcomm.AcceptConnection(server=self.server).connection
+        print("se;ffff")
+        print(self.connection)
         return "OK"
 
     @assert_description

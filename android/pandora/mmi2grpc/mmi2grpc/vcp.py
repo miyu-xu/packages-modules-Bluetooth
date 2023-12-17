@@ -14,9 +14,9 @@
 """VCP proxy module."""
 import threading
 
-from mmi2grpc._helpers import assert_description, match_description
-from mmi2grpc._proxy import ProfileProxy
-from mmi2grpc._rootcanal import Dongle
+from _helpers import assert_description, match_description
+from _proxy import ProfileProxy
+from _rootcanal import Dongle
 
 from pandora.security_grpc import Security
 from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer

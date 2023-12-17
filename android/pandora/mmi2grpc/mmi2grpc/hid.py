@@ -1,7 +1,7 @@
 from threading import Thread
 from time import sleep
-from mmi2grpc._helpers import assert_description, match_description
-from mmi2grpc._proxy import ProfileProxy
+from _helpers import assert_description, match_description
+from _proxy import ProfileProxy
 
 from pandora_experimental.hid_grpc import HID
 from pandora.host_grpc import Host

@@ -13,8 +13,8 @@
 # limitations under the License.
 """Profile proxy base module."""
 
-from mmi2grpc._helpers import format_function
-from mmi2grpc._helpers import assert_description
+from _helpers import format_function
+from _helpers import assert_description
 
 from pandora_experimental.os_grpc import Os
 
@@ -49,7 +49,8 @@ class ProfileProxy:
             assert False, f'Unhandled mmi {mmi_name}\n{code}'
 
     def log(self, text=""):
-        self.os.Log(text=text)
+        pass
+        # self.os.Log(text=text)
 
     def test_started(self, test: str, description: str, pts_addr: bytes):
         return "OK"
