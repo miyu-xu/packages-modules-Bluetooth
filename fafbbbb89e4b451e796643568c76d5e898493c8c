@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bc3804f_ab6df8fb",
+        "filename": "floss/pandora/floss/adapter_client.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 833,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T09:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "85c67619_7c3ece87",
+      "range": {
+        "startLine": 833,
+        "startChar": 21,
+        "endLine": 833,
+        "endChar": 26
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de715f84_81e1b054",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-15T06:51:49Z",
       "side": 1,
       "message": "Please check whether the call failed.",
+      "range": {
+        "startLine": 264,
+        "startChar": 8,
+        "endLine": 264,
+        "endChar": 24
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e16076_45d9c00e",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T09:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de715f84_81e1b054",
       "range": {
         "startLine": 264,
         "startChar": 8,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0dbc5d5_025b1c0d",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T09:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8a1e1710_4b2293fa",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 12
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1685d5b0_a8242c70",
@@ -83,6 +155,30 @@
       "writtenOn": "2023-12-15T06:51:49Z",
       "side": 1,
       "message": "redundant",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 13
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8693c5c1_4a785c56",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T09:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1685d5b0_a8242c70",
       "range": {
         "startLine": 74,
         "startChar": 8,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d015f7a9_7e12cc19",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T09:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b5b7f75b_5cc4e61f",
+      "range": {
+        "startLine": 92,
+        "startChar": 12,
+        "endLine": 92,
+        "endChar": 17
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb44ca5b_d7731b88",
@@ -129,6 +249,30 @@
       "writtenOn": "2023-12-15T06:51:49Z",
       "side": 1,
       "message": "Lv4 is already checked at line #72. How about `ValueError(\u0027invalid security level %r\u0027 % level)`",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 84
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8eb2d872_0a6c3596",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T09:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cb44ca5b_d7731b88",
       "range": {
         "startLine": 93,
         "startChar": 22,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "35d36e7d_b1823b47",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T09:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "900f7c8e_7cb3b705",
+      "range": {
+        "startLine": 120,
+        "startChar": 8,
+        "endLine": 120,
+        "endChar": 12
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fd63bd85_13b679de",
@@ -185,6 +353,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "52034475_e51ce502",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T09:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fd63bd85_13b679de",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 13
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a00dd0e3_4f5298d2",
@@ -198,6 +390,30 @@
       "writtenOn": "2023-12-15T06:51:49Z",
       "side": 1,
       "message": "redundant",
+      "range": {
+        "startLine": 140,
+        "startChar": 12,
+        "endLine": 140,
+        "endChar": 17
+      },
+      "revId": "fafbbbb89e4b451e796643568c76d5e898493c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be594249_c61bb433",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T09:11:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a00dd0e3_4f5298d2",
       "range": {
         "startLine": 140,
         "startChar": 12,
