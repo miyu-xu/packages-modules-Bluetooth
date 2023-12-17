@@ -60,6 +60,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "690b401a_12ab6950",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T16:41:38Z",
+      "side": 1,
+      "message": "raise ValueError(\u0027Invalid report type.\u0027)",
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2ce015a2_f4819a16",
         "filename": "floss/pandora/server/hid.py",
         "patchSetId": 4
