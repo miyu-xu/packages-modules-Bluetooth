@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f54e7b3e_fe5b61ee",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T18:19:56Z",
+      "side": 1,
+      "message": "def gatt_connect(self, address, is_direct, transport):\n    return self.gatt_client.connect_client(address, is_direct, transport)\n    \nAnd change the related host code.",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38aee4ab_f51875d8",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T18:19:56Z",
+      "side": 1,
+      "message": "We shall check the address match that is interested in and then check the task status after that. And log the error and set result if the request failed.",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 0
+      },
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b830a63e_cae4e67c",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T18:19:56Z",
+      "side": 1,
+      "message": "Please check address exists first and then check if the address type is supported. Or simply check if the type is supported.",
+      "range": {
+        "startLine": 263,
+        "startChar": 11,
+        "endLine": 263,
+        "endChar": 12
+      },
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "842c011f_cc4b9349",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T18:19:56Z",
+      "side": 1,
+      "message": "self.bluetooth.gatt_connect(...",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d69025c0_23c30a7e",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T18:19:56Z",
+      "side": 1,
+      "message": "Simply await here if we don\u0027t have a strong reason to assert the connection time. The test will handle timeout itself normally.",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5980c264_51975116",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T18:19:56Z",
+      "side": 1,
+      "message": "Add a set_connectable in bluetooth and then call self.bluetooth.set_connectable.",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
