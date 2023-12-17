@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "baef9245_d46b02a4",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 145,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T18:15:54Z",
+      "side": 1,
+      "message": "I saw this is directly forked from autotest. Then just use it and keep them the same although I prefer don\u0027t poll them all togather.",
+      "parentUuid": "f7ad3891_f75787a3",
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e4f704af_35fdd709",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-17T16:27:27Z",
       "side": 1,
       "message": "Wait for adapter start and all profile clients ready.",
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8c0565c_caa1265c",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T18:15:54Z",
+      "side": 1,
+      "message": "I saw this is directly forked from autotest. Then just use it and keep them the same although I prefer don\u0027t poll them all togather.",
+      "parentUuid": "e4f704af_35fdd709",
       "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
