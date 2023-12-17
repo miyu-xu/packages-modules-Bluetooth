@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "78abd5b0_1b3a1d5d",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1022,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T14:37:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bdc7dcf5_01f9f697",
+      "range": {
+        "startLine": 1021,
+        "startChar": 0,
+        "endLine": 1022,
+        "endChar": 71
+      },
+      "revId": "a51a312eb21df9860b799eb5f292e32075b995b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1c7cd0c7_7d077d07",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad3956ae_f3a9ee22",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1031,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T14:37:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c7cd0c7_7d077d07",
+      "range": {
+        "startLine": 1030,
+        "startChar": 0,
+        "endLine": 1031,
+        "endChar": 71
+      },
+      "revId": "a51a312eb21df9860b799eb5f292e32075b995b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98df731d_a99f5405",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-12-15T07:01:03Z",
       "side": 1,
       "message": "You need a change similar to [this](https://crrev.com/c/4954415/4/client/cros/multimedia/bluetooth_facade.py) to run on M121 or later",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 28
+      },
+      "revId": "a51a312eb21df9860b799eb5f292e32075b995b7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae7e0cb0_77e33402",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-17T14:37:40Z",
+      "side": 1,
+      "message": "To avoid code conflicts between profiles code and since this change is needed in most CLs, the change was done on HID CL and this CL was rebased on top of it.\nHID CL:\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2867494/4",
+      "parentUuid": "98df731d_a99f5405",
       "range": {
         "startLine": 154,
         "startChar": 0,
