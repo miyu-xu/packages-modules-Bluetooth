@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a4d4bcc_e23bed79",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T16:49:20Z",
+      "side": 1,
+      "message": "Wrong format.",
+      "revId": "cc64145bd7e5dc2c51832bfda36fc82330314116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8b362e5_09188aad",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T16:49:20Z",
+      "side": 1,
+      "message": "The quote symbol looks wrong.",
+      "revId": "cc64145bd7e5dc2c51832bfda36fc82330314116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2952a527_a3645077",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-17T16:49:20Z",
+      "side": 1,
+      "message": "Missing Returns section in docstring.",
+      "revId": "cc64145bd7e5dc2c51832bfda36fc82330314116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
