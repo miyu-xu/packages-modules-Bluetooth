@@ -819,7 +819,7 @@ public class VolumeControlService extends ProfileService {
         tempCallbackList.unregister(callback);
     }
 
-    void registerCallback(IBluetoothVolumeControlCallback callback) {
+    void updateNewRegistedCallback(IBluetoothVolumeControlCallback callback) {
         /* Here we keep all the user callbacks */
         mCallbacks.register(callback);
 
@@ -1752,7 +1752,35 @@ public class VolumeControlService extends ProfileService {
                 service.mHandler.post(
                         () -> {
                             try {
-                                service.registerCallback(callback);
+                                service.mCallbacks.register(callback);
+                                receiver.send(null);
+                            } catch (RuntimeException e) {
+                                receiver.propagateException(e);
+                            }
+                        });
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
+        public void updateNewRegistedCallback(IBluetoothVolumeControlCallback callback,
+                AttributionSource source, SynchronousResultReceiver receiver) {
+            try {
+                Objects.requireNonNull(callback, "callback cannot be null");
+                Objects.requireNonNull(source, "source cannot be null");
+                Objects.requireNonNull(receiver, "receiver cannot be null");
+
+                VolumeControlService service = getService(source);
+                if (service == null) {
+                    throw new IllegalStateException("Service is unavailable");
+                }
+
+                enforceBluetoothPrivilegedPermission(service);
+                service.mHandler.post(
+                        () -> {
+                            try {
+                                service.updateNewRegistedCallback(callback);
                                 receiver.send(null);
                             } catch (RuntimeException e) {
                                 receiver.propagateException(e);
