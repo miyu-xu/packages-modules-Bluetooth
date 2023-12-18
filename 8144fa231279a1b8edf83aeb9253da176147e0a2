@@ -1,0 +1,271 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42edcf22_ad1dab80",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "Please resolve the lint warning.",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77b664ff_7cf70f77",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "(True, None)",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e77a28d_752bff7b",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "(False, Reason)\n\nAnd check the state and reason below.\nis_bonded \u003d await wait_bond below will fail to de-tuple if the argument is not aligned.",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bae1ed75_e07f9063",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "wait_le_security_level",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94499baa_ba48bcd0",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "is_bonded, reason \u003d await wait_bond\n\nif reason:\nlogging.error(reason)",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07de04d5_95e9f64b",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "wait_le_security_level",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5886d8c_4d2b8515",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "(True, None)",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b58edbee_86b38eb0",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "(False, Reason)\n\nAnd check the state and reason below.\nis_bonded \u003d await wait_bond below will fail to de-tuple if the argument is not aligned.",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e76f0297_1a5c452c",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "wait_classic_security_level",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "beb1b633_0d53c2a6",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "is_bonded, reason \u003d await wait_bond\n\nif reason:\n    logging.error(reason)",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "162803a1_707bb810",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "Add a get_remote_property function in bluetooth and then call self.bluetooth.get_remote_property.\n\nhttps://source.corp.google.com/h/chromium/chromiumos/codesearch/+/main:src/third_party/autotest/files/client/cros/multimedia/bluetooth_facade.py;l\u003d5072?q\u003dbluetooth_facade.py",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24047b66_b4327c15",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "Low-energy security level 4 not supported.",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e37f84ff_21a3b459",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "Secure: Classic security level up to 3 not supported.",
+      "range": {
+        "startLine": 291,
+        "startChar": 36,
+        "endLine": 291,
+        "endChar": 79
+      },
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f6b92286_7e1a5d18",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "According to b/312653014 and the logs,\nGAP/BOND/BON/BV-01 test will call TSC_MMI_iut_start_bonding_procedure_bondable and then call Secure() and the test didn\u0027t pass. We need to see what cause the test failed first to verify this function.",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8c3fc1f_0052bc30",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:05:10Z",
+      "side": 1,
+      "message": "f\u0027Secure: Invalid bluetooth transport type {device_type}.\u0027",
+      "range": {
+        "startLine": 297,
+        "startChar": 32,
+        "endLine": 297,
+        "endChar": 72
+      },
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
