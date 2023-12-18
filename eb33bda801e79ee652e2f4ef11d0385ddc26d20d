@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01845e74_ca6da7eb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-18T06:16:56Z",
+      "side": 1,
+      "message": "Hi, this is a flag for aosp/2870654. Please review, thanks!",
+      "revId": "eb33bda801e79ee652e2f4ef11d0385ddc26d20d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
