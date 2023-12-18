@@ -1477,6 +1477,7 @@ class BluetoothManagerService {
         }
 
         TemporaryOffListener.initialize(
+                mContext,
                 mLooper,
                 mContentResolver,
                 mState,
