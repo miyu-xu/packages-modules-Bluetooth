@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1e558078_3e8dee2f",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-18T23:23:58Z",
+      "side": 1,
+      "message": "If this runs on Cuttlefish arm, this will break.  Could we get the device name from Host.proto?\n\n@licorne@google.com",
+      "range": {
+        "startLine": 341,
+        "startChar": 54,
+        "endLine": 341,
+        "endChar": 59
+      },
+      "revId": "c97b01d4d68a43ec4941d365e6e12876ea8d3370",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
