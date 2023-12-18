@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "576d3202_81d1d970",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 768,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-18T06:40:30Z",
+      "side": 1,
+      "message": "resolved",
+      "parentUuid": "79fbb081_d633a66c",
+      "range": {
+        "startLine": 763,
+        "startChar": 45,
+        "endLine": 768,
+        "endChar": 55
+      },
+      "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4069768b_ef6a3ac5",
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "per discussion in the other doc, let\u0027s move on to finish the logic for CRAS call(fake) to coexist with HID telephony calls.\n\nI can imagine this would be super complicate so please add as much comments into the details as possible.",
       "parentUuid": "0a7f2346_846cb27e",
+      "range": {
+        "startLine": 775,
+        "startChar": 28,
+        "endLine": 778,
+        "endChar": 29
+      },
+      "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed25625b_98cab571",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 778,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-18T06:40:30Z",
+      "side": 1,
+      "message": "go/floss-remove-cras-call",
+      "parentUuid": "10984a52_856f2ae5",
       "range": {
         "startLine": 775,
         "startChar": 28,
