@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87dc4e26_744483c6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-12-18T16:06:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b0d50578_8c9f239c",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 3
+      },
+      "revId": "e40154ea113f46ac0c8c2dd75bf0db79f4f98e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6ce882fb_44b3195c",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-18T15:39:04Z",
       "side": 1,
       "message": "Do you mean 316885813?",
+      "range": {
+        "startLine": 28,
+        "startChar": 10,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "e40154ea113f46ac0c8c2dd75bf0db79f4f98e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16d7fe4e_0bef07cd",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-12-18T16:06:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6ce882fb_44b3195c",
       "range": {
         "startLine": 28,
         "startChar": 10,
