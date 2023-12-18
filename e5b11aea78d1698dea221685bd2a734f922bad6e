@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5698fd70_4930127f",
+        "filename": "android/app/jni/com_android_bluetooth_btservice_AdapterService.cpp",
+        "patchSetId": 6
+      },
+      "lineNbr": 1469,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-12-18T20:21:55Z",
+      "side": 1,
+      "message": "IMHO the state machine should be moved to native, and there would be no sync issue at all.\nBut such big refactor, or adding some new flag, is not trivial.",
+      "parentUuid": "c9b51aa9_ff770c53",
+      "revId": "e5b11aea78d1698dea221685bd2a734f922bad6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b40a8737_8cfc8827",
         "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
         "patchSetId": 6
