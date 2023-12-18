@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "432d61e3_93ab1579",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-12-18T18:14:59Z",
+      "side": 1,
+      "message": "LGTM modulo missing docstrings",
+      "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e34aa09f_6ebeec37",
+        "filename": "system/gd/rust/linux/service/src/interface_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-12-18T18:14:59Z",
+      "side": 1,
+      "message": "Docstring for pub function. Specially important are docs for `conn` and `conn_join_handle` as they are below.",
+      "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cb69eca_e94e4063",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-12-18T18:14:59Z",
+      "side": 1,
+      "message": "Please docstring these two and explain the difference between them.",
+      "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2523027c_2d3aa52e",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2023-12-18T18:14:59Z",
+      "side": 1,
+      "message": "Anything pub should have a docstring. Please update this (and maybe a follow-on commit for all other instances of undocumented pub in this file).",
+      "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
