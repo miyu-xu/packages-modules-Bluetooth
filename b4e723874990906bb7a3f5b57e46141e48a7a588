@@ -70,6 +70,24 @@
       "parentUuid": "803b062c_0b6ecc0f",
       "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c555cdc_35eaac3d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-18T09:38:27Z",
+      "side": 1,
+      "message": "\u003e When testing a single class, isn\u0027t it standard practice to have one test class covering all the test cases for that class? Similarly, I want to keep all LE scan tests in LeScanningTest class without creating a new test class for each LE scan test case.\n\nYes, however we are already not in this case, there is no `LeScanning` class.\n\nWhen using Parameterized, I\u0027m expecting the parameters used to affect most of the behavior of the unit under test. Hence this problem doesn\u0027t manifest as all the tests are running with the parameters (And if some tests are not relevant for some parameters you skip them).\n\nBut here we are not in the case either. This make me say that the scope of this test class is not ideal and that it should be split differently.\n\n\u003e Moreover, the non parameterized and parameterized tests share a lot of common logic, so this avoids code duplication.\n\nWe can avoid duplication by other means than inheritance, using a common wrapper/util can achieve the same.\n\n\u003e I understand that each team may have their own preferences.\n\nUnfortunately, our team doesn\u0027t have a lot of junit Parameterized tests, so I don\u0027t think we have a preferences yet.\n\nAlso I must admit that I do not like a lot the fact that the runner that we use is in a `org.junit.experimental.runners` package",
+      "parentUuid": "2d5fca9d_bde39f52",
+      "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
