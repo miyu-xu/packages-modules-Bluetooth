@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b0d50578_8c9f239c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-18T15:42:09Z",
+      "side": 1,
+      "message": "Can you add:\n```\nBug: 315241296\n```\n\nThis allow flag creation to have an automatic DrNo",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 3
+      },
+      "revId": "e40154ea113f46ac0c8c2dd75bf0db79f4f98e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6ce882fb_44b3195c",
         "filename": "flags/gap.aconfig",
         "patchSetId": 1
