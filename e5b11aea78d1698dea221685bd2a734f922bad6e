@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c4f85c4_67e0cb74",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-12-18T20:20:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b40a8737_8cfc8827",
+      "revId": "e5b11aea78d1698dea221685bd2a734f922bad6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0926627e_c40e9b1f",
@@ -52,6 +70,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a3c47b6_40978a39",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-12-18T20:20:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0926627e_c40e9b1f",
+      "revId": "e5b11aea78d1698dea221685bd2a734f922bad6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "985ff6aa_48dc15ac",
@@ -65,6 +101,24 @@
       "writtenOn": "2023-12-11T17:22:29Z",
       "side": 1,
       "message": "nit\n```suggestion\n                            sendMessageDelayed(new_msg, BOND_RETRY_DELAY);\n```",
+      "revId": "e5b11aea78d1698dea221685bd2a734f922bad6e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a952d5b3_944c4333",
+        "filename": "android/app/src/com/android/bluetooth/btservice/BondStateMachine.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2023-12-18T20:20:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "985ff6aa_48dc15ac",
       "revId": "e5b11aea78d1698dea221685bd2a734f922bad6e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
