@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9aa225e_b82542ff",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-12-18T22:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0a4d4bcc_e23bed79",
+      "revId": "cc64145bd7e5dc2c51832bfda36fc82330314116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8b362e5_09188aad",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "978fe9be_8c6dd135",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-12-18T22:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8b362e5_09188aad",
+      "revId": "cc64145bd7e5dc2c51832bfda36fc82330314116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2952a527_a3645077",
@@ -48,6 +84,24 @@
       "writtenOn": "2023-12-17T16:49:20Z",
       "side": 1,
       "message": "Missing Returns section in docstring.",
+      "revId": "cc64145bd7e5dc2c51832bfda36fc82330314116",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be1dce14_717518e7",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-12-18T22:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2952a527_a3645077",
       "revId": "cc64145bd7e5dc2c51832bfda36fc82330314116",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
