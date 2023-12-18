@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba1e62d6_d55ff657",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-18T23:14:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1344a884_73769518",
+      "range": {
+        "startLine": 224,
+        "startChar": 47,
+        "endLine": 224,
+        "endChar": 60
+      },
+      "revId": "ddfb1e55bc539ef44c3842b257a1461ff477eb01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b8e7bce7_7c728d7c",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1ab19c4_23ae534d",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-18T23:14:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b8e7bce7_7c728d7c",
+      "range": {
+        "startLine": 304,
+        "startChar": 42,
+        "endLine": 304,
+        "endChar": 48
+      },
+      "revId": "ddfb1e55bc539ef44c3842b257a1461ff477eb01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "499e0432_9c157114",
@@ -60,6 +108,30 @@
       "writtenOn": "2023-12-18T23:10:25Z",
       "side": 1,
       "message": "test_no_data",
+      "range": {
+        "startLine": 312,
+        "startChar": 43,
+        "endLine": 312,
+        "endChar": 48
+      },
+      "revId": "ddfb1e55bc539ef44c3842b257a1461ff477eb01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7194b5d0_f9d944eb",
+        "filename": "system/stack/test/gatt/stack_gatt_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-18T23:14:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "499e0432_9c157114",
       "range": {
         "startLine": 312,
         "startChar": 43,
