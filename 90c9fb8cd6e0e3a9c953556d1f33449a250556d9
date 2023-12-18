@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7bdddc4a_986d455c",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-18T22:36:14Z",
+      "side": 1,
+      "message": "Did you mean 316498257 ?",
+      "range": {
+        "startLine": 42,
+        "startChar": 10,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "90c9fb8cd6e0e3a9c953556d1f33449a250556d9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
