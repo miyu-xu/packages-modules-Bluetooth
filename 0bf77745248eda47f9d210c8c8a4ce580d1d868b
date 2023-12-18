@@ -96,6 +96,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e4c10b30_6c793f9e",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-12-18T21:54:18Z",
+      "side": 1,
+      "message": "I included BthReportType in the qa_client CL because the methods descriptor in qa_client uses HID report type and BtDiscMode. By adding these types, anyone reading the description and referring to the floss_enum can easily understand the connection. As a result, I\u0027ve made this CL dependent on the \"qa_client\" class (Although I don\u0027t mind moving the BtReportTypes and BtDiscModes from qa_client CL to the current CL if you prefer?).\n\n\nRegarding the issue in this line, as the report type is represented as an integer value, I cannot directly verify its presence within BthReportType. To address this, I implemented a check to ensure that the report type falls within the acceptable values. The check is as follows:\nif request.report_type not in floss_enums.BthReportType.__members__.values():\nIs it okay with you, or you prefer to remove the check report type line?",
+      "parentUuid": "a7cc11a1_a6946739",
+      "range": {
+        "startLine": 67,
+        "startChar": 27,
+        "endLine": 67,
+        "endChar": 40
+      },
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "690b401a_12ab6950",
         "filename": "floss/pandora/server/hid.py",
         "patchSetId": 4
@@ -107,6 +131,24 @@
       "writtenOn": "2023-12-17T16:41:38Z",
       "side": 1,
       "message": "raise ValueError(\u0027Invalid report type.\u0027)",
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "099bc072_b559d569",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-12-18T21:54:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "690b401a_12ab6950",
       "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -124,6 +166,24 @@
       "writtenOn": "2023-12-17T16:27:27Z",
       "side": 1,
       "message": "No need to raise it here since it\u0027s not a server error nor critical unexpected behavoir. logging.error in on_set_hid_report_completed is enough IMO.",
+      "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f0a7e7cc_930033f6",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-12-18T21:54:18Z",
+      "side": 1,
+      "message": "I eliminated the \"raise runtime error\" statement. Given that the status variable of the on_set_hid_report callback is not utilized elsewhere, and we perform the status check within the callback itself, I replaced it with a None value in the following line:\nfuture.get_loop().call_soon_threadsafe(future.set_result, None)",
+      "parentUuid": "2ce015a2_f4819a16",
       "revId": "0bf77745248eda47f9d210c8c8a4ce580d1d868b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
