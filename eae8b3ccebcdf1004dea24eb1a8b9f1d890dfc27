@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "96952887_24b97d14",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-18T09:28:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "173b2b49_e4792297",
+      "revId": "eae8b3ccebcdf1004dea24eb1a8b9f1d890dfc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be02c943_0da70260",
@@ -31,6 +49,30 @@
       "writtenOn": "2023-12-18T07:25:49Z",
       "side": 1,
       "message": "address.\n\nI saw we also have this in host profile, they should be change to address simply.",
+      "range": {
+        "startLine": 236,
+        "startChar": 70,
+        "endLine": 236,
+        "endChar": 90
+      },
+      "revId": "eae8b3ccebcdf1004dea24eb1a8b9f1d890dfc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "481719e2_aa293141",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-18T09:28:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "be02c943_0da70260",
       "range": {
         "startLine": 236,
         "startChar": 70,
