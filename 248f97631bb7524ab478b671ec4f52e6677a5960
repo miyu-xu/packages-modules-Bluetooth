@@ -16,6 +16,24 @@
       "message": "is deleting `LogMetricsA2dpPlaybackEvent` an accident or intended?",
       "revId": "248f97631bb7524ab478b671ec4f52e6677a5960",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d55a4d71_bbdd64f4",
+        "filename": "system/gd/os/linux/metrics.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1543626
+      },
+      "writtenOn": "2023-12-18T22:32:09Z",
+      "side": 0,
+      "message": "Accident. Thanks for the catch.",
+      "parentUuid": "57c3c985_1ee3ca44",
+      "revId": "248f97631bb7524ab478b671ec4f52e6677a5960",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
