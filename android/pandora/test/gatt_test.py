@@ -19,7 +19,13 @@ import logging
 
 from avatar import BumblePandoraDevice, PandoraDevice, PandoraDevices
 from bumble import pandora as bumble_server
-from bumble.gatt import Characteristic, Service
+from bumble.device import Peer
+from bumble.gatt import (
+    Characteristic,
+    Service,
+    GATT_DEVICE_NAME_CHARACTERISTIC,
+    GATT_GENERIC_ACCESS_SERVICE,
+)
 from bumble.l2cap import L2CAP_Control_Frame
 from bumble.pairing import PairingConfig
 from bumble_experimental.gatt import GATTService
@@ -29,6 +35,8 @@ from mobly.asserts import assert_in  # type: ignore
 from mobly.asserts import assert_is_not_none  # type: ignore
 from mobly.asserts import assert_not_in  # type: ignore
 from mobly.asserts import assert_true  # type: ignore
+from mobly.asserts import assert_is_not_none
+from mobly.asserts import assert_greater
 from pandora.host_pb2 import RANDOM, Connection, DataTypes
 from pandora.security_pb2 import LE_LEVEL3, PairingEventAnswer, SecureResponse
 from pandora_experimental.gatt_grpc import GATT
@@ -287,6 +295,52 @@ class GattTest(base_test.BaseTestClass):  # type: ignore[misc]
         assert_equal(bytes(control_frame)[10], 0x05)  # All connections refused – insufficient authentication
         assert_true(await is_connected(self.ref, ref_dut), "Device is no longer connected")
 
+    @avatar.asynchronous
+    async def test_reading_dut_remote_device_name(self) -> None:
+        '''
+        This test verifies that ref can read the correct remote device
+        name of dut
+        '''
+        if not isinstance(self.ref, BumblePandoraDevice):
+            raise signals.TestSkip('this test requires Bumble as ref')
+
+        advertise = self.dut.aio.host.Advertise(
+            legacy=True,
+            connectable=True,
+            own_address_type=RANDOM,
+            data=DataTypes(manufacturer_specific_data=b'pause cafe'),
+        )
+
+        scan = self.ref.aio.host.Scan()
+        dut = await anext((x async for x in scan if b'pause cafe' in x.data.manufacturer_specific_data))
+        scan.cancel()
+
+        ref_dut = (await self.ref.aio.host.ConnectLE(own_address_type=RANDOM, **dut.address_asdict())).connection
+        assert_is_not_none(ref_dut)
+        advertise.cancel()
+
+        ref_acl_connection = self.ref.device.lookup_connection(int.from_bytes(ref_dut.cookie.value, 'big'))
+
+        assert(ref_acl_connection)
+
+        peer = Peer(ref_acl_connection)
+        services = await peer.discover_service(GATT_GENERIC_ACCESS_SERVICE)
+
+        assert_is_not_none(services)
+        assert_greater(len(services), 0)
+
+        values = await peer.read_characteristics_by_uuid(
+            GATT_DEVICE_NAME_CHARACTERISTIC, services[0]
+        )
+
+        assert_is_not_none(values)
+        assert_greater(len(values), 0)
+        device_name = values[0].decode('utf-8')
+
+        # full device name is "Cuttlefish x86 phone"
+        # but one byte was truncated
+        # here we only tests that the prefix is correct
+        assert_true(device_name.startswith("Cuttlefish"), "remote device name not correct")
 
 async def is_connected(device: PandoraDevice, connection: Connection) -> bool:
     try:
