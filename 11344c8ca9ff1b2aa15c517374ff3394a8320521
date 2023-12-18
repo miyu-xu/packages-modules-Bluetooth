@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c56e894_f723cf83",
+        "filename": "flags/system_service.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-18T20:40:40Z",
+      "side": 1,
+      "message": "FYI: I am creating a CL right now because this flag does not belong in this file and probably more into gap",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 53
+      },
+      "revId": "11344c8ca9ff1b2aa15c517374ff3394a8320521",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a0f91a9_1519b862",
+        "filename": "flags/system_service.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-18T20:40:40Z",
+      "side": 1,
+      "message": "This flag is not related to the system service (AKA it is not related to code under p/m/Bluetooth/service)\n\nCan you put it in a more appropriate file ? According to the bug, this is a leaudio related bug, would it make sense there ? or in btam_dm like the synchronous_bta_sec flag ? (Theses are suggestion only, as I am not sure)",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "11344c8ca9ff1b2aa15c517374ff3394a8320521",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
