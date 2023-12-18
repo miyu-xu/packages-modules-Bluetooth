@@ -22,6 +22,30 @@
       },
       "revId": "258d3d7a67a38176ee5fbf57d55a80233e22dd35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cf22eae_93468e70",
+        "filename": "system/gd/module_mainloop_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-18T20:26:43Z",
+      "side": 1,
+      "message": "I can try anonymous but this is intended to be an external function and I\u0027m not sure if that will work.  If so, then I think the problem is solved.\n\nThe problem is when multiple of these tests all advertise an arbitrary `external_function` are included in a single test binary and avoiding name collisions.\n\nI could uniquely identify `external_function_foo` and `external_function_bar` for each of the tests, as when they roll up into a target they will not collide.",
+      "parentUuid": "e8c5d827_4b2f1d79",
+      "range": {
+        "startLine": 44,
+        "startChar": 10,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "258d3d7a67a38176ee5fbf57d55a80233e22dd35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
