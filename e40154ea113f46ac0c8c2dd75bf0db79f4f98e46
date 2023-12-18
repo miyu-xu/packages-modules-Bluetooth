@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ce882fb_44b3195c",
+        "filename": "flags/gap.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-18T15:39:04Z",
+      "side": 1,
+      "message": "Do you mean 316885813?",
+      "range": {
+        "startLine": 28,
+        "startChar": 10,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "e40154ea113f46ac0c8c2dd75bf0db79f4f98e46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
