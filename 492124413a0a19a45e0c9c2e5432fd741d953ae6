@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "64ab9c4e_6bbb1d9a",
+        "filename": "system/stack/fuzzers/l2cap_fuzzer.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-18T20:28:15Z",
+      "side": 1,
+      "message": "ok I will layer this fix CL beneath this one.",
+      "parentUuid": "28621027_3a1801d3",
+      "range": {
+        "startLine": 154,
+        "startChar": 2,
+        "endLine": 154,
+        "endChar": 37
+      },
+      "revId": "492124413a0a19a45e0c9c2e5432fd741d953ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "05aedcb0_30880f76",
@@ -37,6 +61,24 @@
       "writtenOn": "2023-12-18T19:00:10Z",
       "side": 1,
       "message": "I feel like this has the potential to leak state between tests (it did before, too)\n\nIs there a next step that helps avoid that?",
+      "revId": "492124413a0a19a45e0c9c2e5432fd741d953ae6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3240b2a1_4a59bf60",
+        "filename": "system/test/mock/mock_stack_btm_main.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-18T20:28:15Z",
+      "side": 1,
+      "message": "No, so it\u0027s quite possible that this approach is infeasible as you suggest.",
+      "parentUuid": "05aedcb0_30880f76",
       "revId": "492124413a0a19a45e0c9c2e5432fd741d953ae6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
