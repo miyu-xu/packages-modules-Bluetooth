@@ -93,7 +93,14 @@ public class TemporaryOffListener private constructor() {
                 observer
             )
 
-            isScheduled = false
+            if (!isTemporaryOff(resolver)) {
+                isScheduled = false
+            } else {
+                // This case happen when the bluetooth was temporary off and there been a reboot.
+
+                // TODO: b/XXX - Define what to do if alarm expired while the phone was shutdown
+                setupTimer(resolver, handler, callback_on)
+            }
 
             Log.i(TAG, "Initialized successfully with state: $isScheduled")
         }

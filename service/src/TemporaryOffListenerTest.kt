@@ -104,6 +104,17 @@ class TemporaryOffListenerTest {
     }
 
     @Test
+    fun initialize_whenScheduled_isScheduled() {
+        setTemporaryOff(true)
+
+        initializeTemporaryOff()
+
+        assertThat(TemporaryOffListener.isScheduled).isTrue()
+        assertThat(mode).isEmpty()
+        assertThat(getTemporaryOff()).isTrue()
+    }
+
+    @Test
     fun enable_whenBtNotOn_isNotScheduled() {
         initializeTemporaryOff()
 
