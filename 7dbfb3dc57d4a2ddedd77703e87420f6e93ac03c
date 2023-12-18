@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "edf40f31_8c2b7278",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-18T12:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f31e0f26_e209d1e2",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f54e7b3e_fe5b61ee",
@@ -53,6 +71,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce101996_7b95b9e0",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-18T12:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f54e7b3e_fe5b61ee",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "38aee4ab_f51875d8",
@@ -66,6 +102,30 @@
       "writtenOn": "2023-12-17T18:19:56Z",
       "side": 1,
       "message": "We shall check the address match that is interested in and then check the task status after that. And log the error and set result if the request failed.",
+      "range": {
+        "startLine": 249,
+        "startChar": 0,
+        "endLine": 254,
+        "endChar": 0
+      },
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "04a4c340_d74c6a1c",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 254,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-18T12:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "38aee4ab_f51875d8",
       "range": {
         "startLine": 249,
         "startChar": 0,
@@ -99,6 +159,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb4db80e_6a346d87",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-18T12:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b830a63e_cae4e67c",
+      "range": {
+        "startLine": 263,
+        "startChar": 11,
+        "endLine": 263,
+        "endChar": 12
+      },
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "842c011f_cc4b9349",
@@ -112,6 +196,24 @@
       "writtenOn": "2023-12-17T18:19:56Z",
       "side": 1,
       "message": "self.bluetooth.gatt_connect(...",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6e8f2e6e_ea2d6a40",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-18T12:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "842c011f_cc4b9349",
       "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -133,6 +235,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8e61352_196b8b3f",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-18T12:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d69025c0_23c30a7e",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5980c264_51975116",
@@ -146,6 +266,24 @@
       "writtenOn": "2023-12-17T18:19:56Z",
       "side": 1,
       "message": "Add a set_connectable in bluetooth and then call self.bluetooth.set_connectable.",
+      "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0d7fa3d_f5138f37",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 604,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-18T12:43:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5980c264_51975116",
       "revId": "7dbfb3dc57d4a2ddedd77703e87420f6e93ac03c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
