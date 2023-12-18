@@ -70,6 +70,12 @@ public class TemporaryOffListener private constructor() {
                         val newMode = isTemporaryOff(resolver)
 
                         if (isScheduled == newMode) {
+                            if (newMode) {
+                                Log.d(TAG, "Reschedule alarm because trigger time has changed")
+                                setupTimer(resolver, handler, callback_on)
+                            } else {
+                                Log.d(TAG, "Ignore content change: Timer is already disabled")
+                            }
                             return
                         }
                         if (newMode && !state.oneOf(STATE_ON)) {
@@ -121,6 +127,18 @@ public class TemporaryOffListener private constructor() {
                 observer
             )
 
+            // Nice to have: Reschedule timer when time to wake is updated
+            resolver.registerContentObserver(
+                Settings.Global.getUriFor(SETTINGS_AUTO_ON_HOUR),
+                notifyForDescendants,
+                observer
+            )
+            resolver.registerContentObserver(
+                Settings.Global.getUriFor(SETTINGS_AUTO_ON_DAYS),
+                notifyForDescendants,
+                observer
+            )
+
             if (!isTemporaryOff(resolver)) {
                 isScheduled = false
             } else {
@@ -166,6 +184,25 @@ public class TemporaryOffListener private constructor() {
  */
 internal const val SETTINGS_TEMPORARY_OFF = "bluetooth_temporary_off"
 
+/**
+ * constant copied from {@link Settings.Global}
+ *
+ * value will be an int corresponding to the hour of the day to restart the bluetooth
+ *
+ * TODO: b/XXX - Migrate to official API in Android V.
+ */
+internal const val SETTINGS_AUTO_ON_HOUR = "bluetooth_auto_on_hour"
+
+// TODO: b/XXX - allow Bluetooth to stay off certain days of the week
+/**
+ * constant copied from {@link Settings.Global}
+ *
+ * value will be an string of comma separated value for days to restart the bluetooth
+ *
+ * TODO: b/XXX - Migrate to official API in Android V.
+ */
+internal const val SETTINGS_AUTO_ON_DAYS = "bluetooth_auto_on_days"
+
 private val msgToken = object {}
 
 private fun setupTimer(
@@ -174,9 +211,10 @@ private fun setupTimer(
     callback_on: () -> Unit
 ): Boolean {
     val now = LocalDateTime.now()
-    // Set wake-up time to be Tomorrow at 05:00.
-    // If being toggle between midnight and 05:00, the sleep time will be more than 24 hours
-    val then = LocalDateTime.of(now.toLocalDate(), LocalTime.of(5, 0)).plusDays(1)
+    // Set wake-up time to be Tomorrow at X.
+    // If being toggle between midnight and X, the sleep time will be more than 24 hours
+    val then =
+        LocalDateTime.of(now.toLocalDate(), LocalTime.of(getAutoOnHour(resolver), 0)).plusDays(1)
 
     // Using duration is overkill for the logic, but it give a better logging
     val timeToSleep = now.until(then, ChronoUnit.NANOS).toDuration(DurationUnit.NANOSECONDS)
@@ -200,6 +238,27 @@ private fun stopTimer(handler: Handler) {
     handler.removeCallbacksAndMessages(msgToken)
     TemporaryOffListener.isScheduled = false
     Log.i(TAG, "Timer to restart Bluetooth is now stopped")
+}
+
+/**
+ * *Do not use outside of this file to avoid async issues*
+ *
+ * @return The hour of the day to restart the bluetooth between 0 and 23, default is 5
+ */
+private fun getAutoOnHour(resolver: ContentResolver): Int {
+    return Settings.Global.getInt(resolver, SETTINGS_AUTO_ON_HOUR, 5).coerceIn(0, 23)
+}
+
+/**
+ * *Do not use outside of this file to avoid async issues*
+ *
+ * @return The days to re-enable the bluetooth
+ */
+private fun getAutoOnDays(resolver: ContentResolver): Set<Int> {
+    return (Settings.Global.getString(resolver, SETTINGS_AUTO_ON_DAYS) ?: "0,1,2,3,4,5,6")
+        .split(",")
+        .map { it.toInt().coerceIn(0, 6) }
+        .toSet()
 }
 
 /**
