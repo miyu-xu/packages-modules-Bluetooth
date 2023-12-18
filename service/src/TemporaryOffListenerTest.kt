@@ -178,4 +178,27 @@ class TemporaryOffListenerTest {
         assertThat(mode).containsExactly(CallbackMode.ON)
         assertThat(getTemporaryOff()).isFalse()
     }
+
+    @Test
+    fun userToggle_whenNotScheduled_doNothing() {
+        initializeTemporaryOff()
+
+        TemporaryOffListener.notifyUserToggledBluetooth(resolver)
+
+        assertThat(TemporaryOffListener.isScheduled).isFalse()
+        assertThat(mode).isEmpty()
+        assertThat(getTemporaryOff()).isFalse()
+    }
+
+    @Test
+    fun userToggle_whenScheduled_stopTimerAndUpdateSettings() {
+        setTemporaryOff(true)
+        initializeTemporaryOff()
+
+        TemporaryOffListener.notifyUserToggledBluetooth(resolver)
+
+        assertThat(TemporaryOffListener.isScheduled).isFalse()
+        assertThat(mode).isEmpty()
+        assertThat(getTemporaryOff()).isFalse()
+    }
 }

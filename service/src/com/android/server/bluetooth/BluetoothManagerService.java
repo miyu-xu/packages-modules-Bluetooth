@@ -1325,6 +1325,7 @@ class BluetoothManagerService {
 
             if (persist) {
                 persistBluetoothSetting(BLUETOOTH_OFF);
+                TemporaryOffListener.notifyUserToggledBluetooth(mContentResolver);
             }
             mEnableExternal = false;
             sendDisableMsg(
@@ -1871,6 +1872,7 @@ class BluetoothManagerService {
 
                     if (isBle == 0) {
                         persistBluetoothSetting(BLUETOOTH_ON_BLUETOOTH);
+                        TemporaryOffListener.notifyUserToggledBluetooth(mContentResolver);
                     }
 
                     // Use service interface to get the exact state
