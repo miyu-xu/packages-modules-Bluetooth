@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8c5d827_4b2f1d79",
+        "filename": "system/gd/module_mainloop_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-18T19:04:32Z",
+      "side": 1,
+      "message": "This is confusing to me to have this namespace be named the same as the module.\n\nIt feels like it could also have been namespace test, or an anonymous namespace.",
+      "range": {
+        "startLine": 44,
+        "startChar": 10,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "258d3d7a67a38176ee5fbf57d55a80233e22dd35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
