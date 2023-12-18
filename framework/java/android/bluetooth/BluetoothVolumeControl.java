@@ -361,29 +361,38 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         Objects.requireNonNull(callback, "callback cannot be null");
         if (DBG) log("registerCallback");
         synchronized (mCallbackExecutorMap) {
-            // If the callback map is empty, we register the service-to-app callback
-            if (mCallbackExecutorMap.isEmpty()) {
-                if (!mAdapter.isEnabled()) {
-                    /* If Bluetooth is off, just store callback and it will be registered
-                     * when Bluetooth is on
+            if (!mAdapter.isEnabled()) {
+                /* If Bluetooth is off, just store callback and it will be registered
+                 * when Bluetooth is on
+                 */
+                mCallbackExecutorMap.put(callback, executor);
+                return;
+            }
+
+            try {
+                final IBluetoothVolumeControl service = getService();
+                if (service != null) {
+                    final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+
+                    /* If the callback map is empty, we register the service-to-app callback.
+                     *  Otherwise, callback is registered in mCallbackExecutorMap and we just notify
+                     *  user over callback with current values.
                      */
-                    mCallbackExecutorMap.put(callback, executor);
-                    return;
-                }
-                try {
-                    final IBluetoothVolumeControl service = getService();
-                    if (service != null) {
-                        final SynchronousResultReceiver<Integer> recv =
-                                SynchronousResultReceiver.get();
+                    if (mCallbackExecutorMap.isEmpty()) {
                         service.registerCallback(mCallback, mAttributionSource, recv);
-                        recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+                    } else {
+                        service.notifyNewRegisteredCallback(
+                                (IBluetoothVolumeControlCallback) (callback),
+                                mAttributionSource,
+                                recv);
                     }
-                } catch (RemoteException e) {
-                    Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
-                    throw e.rethrowAsRuntimeException();
-                } catch (TimeoutException e) {
-                    Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+                    recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
                 }
+            } catch (RemoteException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+                throw e.rethrowAsRuntimeException();
+            } catch (TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
             }
 
             // Adds the passed in callback to our map of callbacks to executors
