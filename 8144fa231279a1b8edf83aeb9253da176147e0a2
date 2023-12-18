@@ -207,6 +207,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "889fccc3_3df96f15",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:06:32Z",
+      "side": 1,
+      "message": "Secure: Low-energy security level 4 not supported.",
+      "parentUuid": "24047b66_b4327c15",
+      "revId": "8144fa231279a1b8edf83aeb9253da176147e0a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e37f84ff_21a3b459",
         "filename": "floss/pandora/server/security.py",
         "patchSetId": 4
