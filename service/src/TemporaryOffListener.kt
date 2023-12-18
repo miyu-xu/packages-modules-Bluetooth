@@ -16,7 +16,11 @@
 package com.android.server.bluetooth
 
 import android.bluetooth.BluetoothAdapter.STATE_ON
+import android.content.BroadcastReceiver
 import android.content.ContentResolver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.database.ContentObserver
 import android.os.Handler
 import android.os.Looper
@@ -50,6 +54,7 @@ public class TemporaryOffListener private constructor() {
          */
         @JvmStatic
         public fun initialize(
+            context: Context,
             looper: Looper,
             resolver: ContentResolver,
             state: BluetoothAdapterState,
@@ -84,6 +89,29 @@ public class TemporaryOffListener private constructor() {
                         }
                     }
                 }
+
+            val receiver =
+                object : BroadcastReceiver() {
+                    override fun onReceive(ctx: Context, intent: Intent) {
+                        if (!isScheduled) {
+                            return
+                        }
+                        // TODO: b/XXX - Define what to do if the time change skipped the alarm
+                        Log.i(TAG, "Received ${intent.action} that trigger a new alarm scheduling")
+                        setupTimer(resolver, handler, callback_on)
+                    }
+                }
+
+            context.registerReceiver(
+                receiver,
+                IntentFilter().apply {
+                    addAction(Intent.ACTION_TIME_TICK)
+                    addAction(Intent.ACTION_TIMEZONE_CHANGED)
+                    addAction(Intent.ACTION_TIME_CHANGED)
+                },
+                null,
+                handler
+            )
 
             val notifyForDescendants = false
 

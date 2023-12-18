@@ -18,6 +18,7 @@ package com.android.server.bluetooth.test
 import android.bluetooth.BluetoothAdapter
 import android.content.ContentResolver
 import android.content.Context
+import android.content.Intent
 import android.os.Looper
 import android.provider.Settings
 import androidx.test.core.app.ApplicationProvider
@@ -59,6 +60,7 @@ class TemporaryOffListenerTest {
 
     private fun initializeTemporaryOff() {
         TemporaryOffListener.initialize(
+            mContext,
             looper,
             resolver,
             state,
@@ -196,6 +198,31 @@ class TemporaryOffListenerTest {
         initializeTemporaryOff()
 
         TemporaryOffListener.notifyUserToggledBluetooth(resolver)
+
+        assertThat(TemporaryOffListener.isScheduled).isFalse()
+        assertThat(mode).isEmpty()
+        assertThat(getTemporaryOff()).isFalse()
+    }
+
+    @Test
+    fun changeTime_whenScheduled_setupTimer() {
+        setTemporaryOff(true)
+        initializeTemporaryOff()
+
+        mContext.sendBroadcast(Intent(Intent.ACTION_TIME_CHANGED))
+        shadowOf(looper).idle()
+
+        assertThat(TemporaryOffListener.isScheduled).isTrue()
+        assertThat(mode).isEmpty()
+        assertThat(getTemporaryOff()).isTrue()
+    }
+
+    @Test
+    fun changeTime_whenNotScheduled_doNothing() {
+        initializeTemporaryOff()
+
+        mContext.sendBroadcast(Intent(Intent.ACTION_TIME_CHANGED))
+        shadowOf(looper).idle()
 
         assertThat(TemporaryOffListener.isScheduled).isFalse()
         assertThat(mode).isEmpty()
