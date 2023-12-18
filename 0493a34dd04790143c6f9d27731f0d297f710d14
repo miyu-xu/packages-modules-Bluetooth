@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "127d5a04_2bc0b2c4",
+        "filename": "android/app/AndroidManifest.xml",
+        "patchSetId": 25
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-18T09:08:30Z",
+      "side": 1,
+      "message": "\u003e I\u0027d recommend in future might be good to consider looping in DRIs on changes like this as suggested in chat previously, so there is better understanding of blast radius on CLs like this ahead of submission.\n\nI don\u0027t think Gerrit is the place to do this, I\u0027m planning to do a small announcement in our team chat after this is merged explaining the symptoms that might be observed if this CL breaks something.",
+      "parentUuid": "cb2711e2_02f15191",
+      "revId": "0493a34dd04790143c6f9d27731f0d297f710d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f8de1e3_cdab0af3",
@@ -115,6 +133,30 @@
       "side": 1,
       "message": "It makes sense that the existing explanation is removed, but anything @hide should still be documented. \n\nIdeally this would be an explanation of why this is hidden, i.e. as recommended here: https://g3doc.corp.google.com/company/teams/android-api-council/guidelines/index.md?cl\u003dhead#annotations_2",
       "parentUuid": "0310f3e6_0e4f4c61",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "0493a34dd04790143c6f9d27731f0d297f710d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "172e162d_d3c8d1fb",
+        "filename": "framework/java/android/bluetooth/IBluetoothStateChangeCallback.java",
+        "patchSetId": 25
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-18T09:08:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "27a9879e_dcf0e6c1",
       "range": {
         "startLine": 19,
         "startChar": 0,
