@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "173b2b49_e4792297",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:25:49Z",
+      "side": 1,
+      "message": "Please resolve lint warning.",
+      "revId": "eae8b3ccebcdf1004dea24eb1a8b9f1d890dfc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be02c943_0da70260",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-18T07:25:49Z",
+      "side": 1,
+      "message": "address.\n\nI saw we also have this in host profile, they should be change to address simply.",
+      "range": {
+        "startLine": 236,
+        "startChar": 70,
+        "endLine": 236,
+        "endChar": 90
+      },
+      "revId": "eae8b3ccebcdf1004dea24eb1a8b9f1d890dfc27",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
