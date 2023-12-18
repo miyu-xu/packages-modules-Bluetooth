@@ -213,6 +213,7 @@ public class BassClientServiceTest {
         doReturn(BluetoothDevice.BOND_BONDED).when(mAdapterService)
                 .getBondState(any(BluetoothDevice.class));
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
+        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
         doAnswer(invocation -> {
             Set<BluetoothDevice> keys = mStateMachines.keySet();
             return keys.toArray(new BluetoothDevice[keys.size()]);
@@ -790,6 +791,57 @@ public class BassClientServiceTest {
                     .filter(m -> m.what == BassClientStateMachine.UPDATE_BCAST_SOURCE)
                     .findFirst();
         assertThat(msg.isPresent()).isFalse();
+    }
+
+    /** Test switch source will be triggered if adding new source when sink has source */
+    @Test
+    public void testSwitchSourceAfterSourceAdded() {
+        prepareConnectedDeviceGroup();
+        BluetoothLeBroadcastMetadata meta = createBroadcastMetadata(TEST_BROADCAST_ID);
+        BluetoothLeBroadcastMetadata newMeta = createBroadcastMetadata(TEST_BROADCAST_ID + 1);
+        verifyAddSourceForGroup(meta);
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            injectRemoteSourceState(
+                    sm,
+                    meta,
+                    TEST_SOURCE_ID,
+                    BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE,
+                    meta.isEncrypted()
+                            ? BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_DECRYPTING
+                            : BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_NOT_ENCRYPTED,
+                    null);
+            injectRemoteSourceState(
+                    sm,
+                    meta,
+                    TEST_SOURCE_ID + 1,
+                    BluetoothLeBroadcastReceiveState.PA_SYNC_STATE_IDLE,
+                    meta.isEncrypted()
+                            ? BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_DECRYPTING
+                            : BluetoothLeBroadcastReceiveState.BIG_ENCRYPTION_STATE_NOT_ENCRYPTED,
+                    null);
+        }
+
+        // Add another new broadcast source
+        mBassClientService.addSource(mCurrentDevice, newMeta, true);
+
+        // Verify all group members getting SWITH_BCAST_SOURCE message and first source got selected
+        // to remove
+        assertThat(mStateMachines.size()).isEqualTo(2);
+        for (BassClientStateMachine sm : mStateMachines.values()) {
+            ArgumentCaptor<Message> messageCaptor = ArgumentCaptor.forClass(Message.class);
+            verify(sm, atLeast(1)).sendMessage(messageCaptor.capture());
+
+            Optional<Message> msg =
+                    messageCaptor.getAllValues().stream()
+                            .filter(
+                                    m ->
+                                            (m.what == BassClientStateMachine.SWITH_BCAST_SOURCE)
+                                                    && (m.obj == newMeta)
+                                                    && (m.arg1 == TEST_SOURCE_ID))
+                            .findFirst();
+            assertThat(msg.isPresent()).isTrue();
+            assertThat(msg.orElse(null)).isNotNull();
+        }
     }
 
     /**
