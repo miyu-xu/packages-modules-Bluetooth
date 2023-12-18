@@ -1493,7 +1493,10 @@ class BluetoothManagerService {
             return;
         }
         final boolean isSafeMode = mContext.getPackageManager().isSafeMode();
-        if (mEnableExternal && isBluetoothPersistedStateOnBluetooth() && !isSafeMode) {
+        if (mEnableExternal
+                && isBluetoothPersistedStateOnBluetooth()
+                && !isSafeMode
+                && !TemporaryOffListener.isScheduled()) {
             Log.i(TAG, "internalHandleOnBootPhase: Auto-enabling Bluetooth.");
             sendEnableMsg(
                     mQuietEnableExternal,
