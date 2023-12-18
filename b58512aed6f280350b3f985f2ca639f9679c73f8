@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b2e1625b_8184064a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 1418133
+      },
+      "writtenOn": "2023-12-18T01:31:09Z",
+      "side": 1,
+      "message": "nit: Could use ADDRESS_TYPE_* directly instead of bool.",
+      "range": {
+        "startLine": 548,
+        "startChar": 35,
+        "endLine": 548,
+        "endChar": 64
+      },
+      "revId": "b58512aed6f280350b3f985f2ca639f9679c73f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1fb934d9_2076207a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/Utils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1418133
+      },
+      "writtenOn": "2023-12-18T01:31:09Z",
+      "side": 1,
+      "message": "Consider using Sets.cartesianProduct().\n\nExample: http://google3/javatests/com/google/storage/megastore/spanner/BaseMegamoverToSpannerTransfererTest.java;l\u003d43;rcl\u003d467389813",
+      "revId": "b58512aed6f280350b3f985f2ca639f9679c73f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
