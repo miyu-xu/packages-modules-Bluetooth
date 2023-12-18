@@ -118,6 +118,30 @@
       },
       "revId": "258d3d7a67a38176ee5fbf57d55a80233e22dd35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c32104e_cde2cdab",
+        "filename": "system/gd/module_mainloop_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-18T21:15:46Z",
+      "side": 1,
+      "message": "oh, and anonymous namespace didn\u0027t work as this is not available to be exposed to the run loop",
+      "parentUuid": "a891ec3e_3fd41202",
+      "range": {
+        "startLine": 44,
+        "startChar": 10,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "258d3d7a67a38176ee5fbf57d55a80233e22dd35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
