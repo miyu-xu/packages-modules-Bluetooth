@@ -1247,6 +1247,24 @@ class BluetoothManagerService {
         return true;
     }
 
+    /** callback trigger by TemporaryOff feature to turn bluetooth back on */
+    private Unit temporaryOffTurnOn() {
+        if (isAirplaneModeOn()) {
+            Log.d(TAG, "temporaryOffTurnOn: not enabling - airplane mode is on.");
+            return Unit.INSTANCE;
+        }
+
+        enableNoAutoConnect("TemporaryOffListener");
+
+        return Unit.INSTANCE;
+    }
+
+    /** callback trigger by TemporaryOff feature to turn bluetooth off */
+    private Unit temporaryOffTurnOff() {
+        disable("TemporaryOffListener", false);
+        return Unit.INSTANCE;
+    }
+
     boolean enable(String packageName) {
         Log.d(
                 TAG,
@@ -1456,6 +1474,13 @@ class BluetoothManagerService {
             SatelliteModeListener.initialize(
                     mLooper, mContentResolver, this::onSatelliteModeChanged);
         }
+
+        TemporaryOffListener.initialize(
+                mLooper,
+                mContentResolver,
+                mState,
+                this::temporaryOffTurnOn,
+                this::temporaryOffTurnOff);
     }
 
     private void internalHandleOnBootPhase(UserHandle userHandle) {
