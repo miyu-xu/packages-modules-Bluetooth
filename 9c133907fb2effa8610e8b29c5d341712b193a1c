@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "006768e0_cdb316d1",
+        "filename": "system/logger/src/vlog_android.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-18T19:17:58Z",
+      "side": 1,
+      "message": "Can we make this part of the truncating buffer, instead?",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 35
+      },
+      "revId": "9c133907fb2effa8610e8b29c5d341712b193a1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
