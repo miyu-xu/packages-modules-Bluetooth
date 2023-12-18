@@ -74,6 +74,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ced41c29_dfa453d1",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-18T06:51:20Z",
+      "side": 1,
+      "message": "I don\u0027t think we try to workaround device cannot work properly with Bluetooth Telephony.\n\nIMO, We should directly ban the device to create HID device.",
+      "range": {
+        "startLine": 775,
+        "startChar": 27,
+        "endLine": 775,
+        "endChar": 68
+      },
+      "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "4069768b_ef6a3ac5",
         "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
         "patchSetId": 1
@@ -162,6 +185,29 @@
         "startChar": 28,
         "endLine": 778,
         "endChar": 29
+      },
+      "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21db9ac9_5a6e9e1f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth_media.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1123,
+      "author": {
+        "id": 2012120
+      },
+      "writtenOn": "2023-12-18T06:51:20Z",
+      "side": 1,
+      "message": "```suggestion\n        if !self.phone_ops_enabled {\n            info!(\"Bluetooth Telephony feature is disabled.\")\n            return;\n        }\n        if interop_insert_call_when_sco_start(addr) {\n            warn!(\"[{}]: Disable Bluetooth Telephony for interop_insert_call_when_sco_start\", DisplayAddress(\u0026addr))\n            return;\n        }\n```",
+      "range": {
+        "startLine": 1121,
+        "startChar": 8,
+        "endLine": 1123,
+        "endChar": 9
       },
       "revId": "9b6fab5852186af9f1f7cebc3770ac69adb54390",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
