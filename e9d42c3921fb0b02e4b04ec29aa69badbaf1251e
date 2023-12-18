@@ -102,6 +102,48 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2de1cbb7_4f058c50",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-18T11:58:27Z",
+      "side": 1,
+      "message": "so maybe ?\n\n#ifndef TARGET_FLOSS\nif (!IS_FLAG_ENABLED(l2cap_tx_complete_cb_info)) {\n  LOG_DEBUG(\"Exit since l2cap_tx_complete_cb_info is disabled\");\n  return\n}\n#endif",
+      "parentUuid": "4b0b78f7_1a56f68e",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31aca871_57153324",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-18T11:58:27Z",
+      "side": 1,
+      "message": "I suggest to use LOG_DEBUG() saying that flag is enabled",
+      "parentUuid": "7e072425_3af4e78b",
+      "range": {
+        "startLine": 228,
+        "startChar": 7,
+        "endLine": 228,
+        "endChar": 22
+      },
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "dc293567_78038463",
         "filename": "system/stack/smp/smp_utils.cc",
         "patchSetId": 9
@@ -155,6 +197,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2ce213d7_67264ee4",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-18T11:58:27Z",
+      "side": 1,
+      "message": "Ah I see, current code is a suggestion made by William.\nOk, let it be.\n\nplease just print somewhere using LOG_DEBUG if flag is enabled or not so it is easier to debug in the future.",
+      "parentUuid": "d7f6fc46_58ea8e7a",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ad8623a2_0c59bac9",
         "filename": "system/stack/smp/smp_utils.cc",
         "patchSetId": 9
@@ -184,6 +244,24 @@
       "side": 1,
       "message": "Sure, what should I write in the log?",
       "parentUuid": "ad8623a2_0c59bac9",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c1416e6_35353f4d",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-18T11:58:27Z",
+      "side": 1,
+      "message": "at least information that flag is enabled or not.",
+      "parentUuid": "d6b7310b_37a913c6",
       "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
