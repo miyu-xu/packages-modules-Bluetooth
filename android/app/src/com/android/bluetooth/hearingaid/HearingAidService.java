@@ -46,13 +46,11 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.AudioRoutingManager;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
+import com.android.bluetooth.btservice.ProfileService.IProfileServiceBinder;
 import com.android.bluetooth.btservice.ServiceFactory;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
-import com.android.bluetooth.flags.FeatureFlags;
-import com.android.bluetooth.flags.FeatureFlagsImpl;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
@@ -78,7 +76,6 @@ public class HearingAidService extends ProfileService {
     private static final int MAX_HEARING_AID_STATE_MACHINES = 10;
     private static HearingAidService sHearingAidService;
 
-    private FeatureFlags mFeatureFlags = new FeatureFlagsImpl();
     private AdapterService mAdapterService;
     private DatabaseManager mDatabaseManager;
     private HandlerThread mStateMachinesThread;
@@ -727,11 +724,6 @@ public class HearingAidService extends ProfileService {
         sendBroadcast(intent, BLUETOOTH_CONNECT);
     }
 
-    @VisibleForTesting
-    void setFeatureFlags(FeatureFlags featureFlags) {
-        mFeatureFlags = featureFlags;
-    }
-
     /* Notifications of audio device disconnection events. */
     private class AudioManagerOnAudioDevicesRemovedCallback extends AudioDeviceCallback {
         @Override
@@ -1067,23 +1059,15 @@ public class HearingAidService extends ProfileService {
                 SynchronousResultReceiver receiver) {
             try {
                 HearingAidService service = getService(source);
+                boolean result = false;
                 if (service != null) {
-                    if (service.mFeatureFlags.audioRoutingCentralization()) {
-                        ((AudioRoutingManager) service.mAdapterService.getActiveDeviceManager())
-                                .activateDeviceProfile(
-                                        device, BluetoothProfile.HEARING_AID, receiver);
+                    if (device == null) {
+                        result = service.removeActiveDevice(false);
                     } else {
-                        boolean result;
-                        if (device == null) {
-                            result = service.removeActiveDevice(false);
-                        } else {
-                            result = service.setActiveDevice(device);
-                        }
-                        receiver.send(result);
+                        result = service.setActiveDevice(device);
                     }
-                } else {
-                    receiver.send(false);
                 }
+                receiver.send(result);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }

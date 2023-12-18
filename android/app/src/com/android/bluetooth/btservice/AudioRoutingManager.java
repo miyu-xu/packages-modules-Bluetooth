@@ -19,7 +19,6 @@ package com.android.bluetooth.btservice;
 import static android.bluetooth.IBluetoothLeAudio.LE_AUDIO_GROUP_ID_INVALID;
 
 import android.annotation.NonNull;
-import android.annotation.Nullable;
 import android.annotation.RequiresPermission;
 import android.annotation.SuppressLint;
 import android.bluetooth.BluetoothAdapter;
@@ -47,7 +46,6 @@ import com.android.bluetooth.hearingaid.HearingAidService;
 import com.android.bluetooth.hfp.HeadsetService;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
-import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -97,19 +95,12 @@ public class AudioRoutingManager extends ActiveDeviceManager {
      *
      * @param device The device to be activated.
      * @param profile The profile to be activated
-     * @param receiver to post the results
      */
-    public void activateDeviceProfile(
-            BluetoothDevice device, int profile, @Nullable SynchronousResultReceiver receiver) {
+    public void activateDeviceProfile(BluetoothDevice device, int profile) {
         mHandler.post(
-                () -> {
-                    boolean result =
-                            mHandler.activateDeviceProfile(
-                                    mHandler.getAudioRoutingDevice(device), profile);
-                    if (receiver != null) {
-                        receiver.send(result);
-                    }
-                });
+                () ->
+                        mHandler.activateDeviceProfile(
+                                mHandler.getAudioRoutingDevice(device), profile));
     }
 
     /**

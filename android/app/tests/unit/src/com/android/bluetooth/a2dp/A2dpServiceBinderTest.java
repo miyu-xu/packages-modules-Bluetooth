@@ -18,9 +18,7 @@ package com.android.bluetooth.a2dp;
 
 import static android.bluetooth.BluetoothCodecConfig.SOURCE_CODEC_TYPE_INVALID;
 
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
 import android.bluetooth.BluetoothA2dp;
@@ -31,16 +29,10 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BufferConstraints;
 import android.content.AttributionSource;
-import android.content.Context;
 
 import androidx.test.InstrumentationRegistry;
 
 import com.android.bluetooth.TestUtils;
-import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.AudioRoutingManager;
-import com.android.bluetooth.btservice.storage.DatabaseManager;
-import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
-import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.x.com.android.modules.utils.SynchronousResultReceiver;
 
 import org.junit.After;
@@ -52,38 +44,24 @@ import org.mockito.MockitoAnnotations;
 import java.util.List;
 
 public class A2dpServiceBinderTest {
-    private A2dpService mA2dpService;
-    private FakeFeatureFlagsImpl mFakeFlagsImpl;
-    @Mock private AdapterService mAdapterService;
-    @Mock private A2dpNativeInterface mNativeInterface;
-    @Mock private DatabaseManager mDatabaseManager;
-    @Mock private AudioRoutingManager mAudioRoutingManager;
+    @Mock private A2dpService mService;
+
     private A2dpService.BluetoothA2dpBinder mBinder;
     private BluetoothAdapter mAdapter;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        TestUtils.setAdapterService(mAdapterService);
-        doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
-        doReturn(false).when(mAdapterService).isQuietModeEnabled();
-        doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
-        doReturn(mAudioRoutingManager).when(mAdapterService).getActiveDeviceManager();
-
-        Context context = InstrumentationRegistry.getTargetContext();
-        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
-        mA2dpService = spy(new A2dpService(context, mNativeInterface, mFakeFlagsImpl));
-        mA2dpService.doStart();
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
-        mBinder = new A2dpService.BluetoothA2dpBinder(mA2dpService);
+        mBinder = new A2dpService.BluetoothA2dpBinder(mService);
+        doReturn(InstrumentationRegistry.getTargetContext().getPackageManager())
+                .when(mService).getPackageManager();
     }
 
     @After
     public void cleaUp() {
         mBinder.cleanup();
-        mA2dpService.doStop();
-        TestUtils.clearAdapterService(mAdapterService);
     }
 
     @Test
@@ -93,7 +71,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
 
         mBinder.connect(device, source, recv);
-        verify(mA2dpService).connect(device);
+        verify(mService).connect(device);
     }
 
     @Test
@@ -103,7 +81,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
 
         mBinder.disconnect(device, source, recv);
-        verify(mA2dpService).disconnect(device);
+        verify(mService).disconnect(device);
     }
 
     @Test
@@ -113,7 +91,7 @@ public class A2dpServiceBinderTest {
                 SynchronousResultReceiver.get();
 
         mBinder.getConnectedDevices(source, recv);
-        verify(mA2dpService).getConnectedDevices();
+        verify(mService).getConnectedDevices();
     }
 
     @Test
@@ -124,7 +102,7 @@ public class A2dpServiceBinderTest {
                 SynchronousResultReceiver.get();
 
         mBinder.getDevicesMatchingConnectionStates(states, source, recv);
-        verify(mA2dpService).getDevicesMatchingConnectionStates(states);
+        verify(mService).getDevicesMatchingConnectionStates(states);
     }
 
     @Test
@@ -135,23 +113,17 @@ public class A2dpServiceBinderTest {
                 SynchronousResultReceiver.get();
 
         mBinder.getConnectionState(device, source, recv);
-        verify(mA2dpService).getConnectionState(device);
+        verify(mService).getConnectionState(device);
     }
 
     @Test
     public void setActiveDevice() {
         BluetoothDevice device = TestUtils.getTestDevice(mAdapter, 0);
         AttributionSource source = new AttributionSource.Builder(0).build();
+        final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
 
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUDIO_ROUTING_CENTRALIZATION, false);
-        SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
         mBinder.setActiveDevice(device, source, recv);
-        verify(mA2dpService).setActiveDevice(device);
-
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUDIO_ROUTING_CENTRALIZATION, true);
-        recv = SynchronousResultReceiver.get();
-        mBinder.setActiveDevice(device, source, recv);
-        verify(mAudioRoutingManager).activateDeviceProfile(device, BluetoothProfile.A2DP, recv);
+        verify(mService).setActiveDevice(device);
     }
 
     @Test
@@ -161,7 +133,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
 
         mBinder.setActiveDevice(device, source, recv);
-        verify(mA2dpService).removeActiveDevice(false);
+        verify(mService).removeActiveDevice(false);
     }
 
     @Test
@@ -170,7 +142,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<BluetoothDevice> recv = SynchronousResultReceiver.get();
 
         mBinder.getActiveDevice(source, recv);
-        verify(mA2dpService).getActiveDevice();
+        verify(mService).getActiveDevice();
     }
 
     @Test
@@ -181,7 +153,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
 
         mBinder.setConnectionPolicy(device, connectionPolicy, source, recv);
-        verify(mA2dpService).setConnectionPolicy(device, connectionPolicy);
+        verify(mService).setConnectionPolicy(device, connectionPolicy);
     }
 
     @Test
@@ -191,7 +163,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
 
         mBinder.getConnectionPolicy(device, source, recv);
-        verify(mA2dpService).getConnectionPolicy(device);
+        verify(mService).getConnectionPolicy(device);
     }
 
     @Test
@@ -200,7 +172,7 @@ public class A2dpServiceBinderTest {
         AttributionSource source = new AttributionSource.Builder(0).build();
 
         mBinder.setAvrcpAbsoluteVolume(volume, source);
-        verify(mA2dpService).setAvrcpAbsoluteVolume(volume);
+        verify(mService).setAvrcpAbsoluteVolume(volume);
     }
 
     @Test
@@ -210,7 +182,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
 
         mBinder.isA2dpPlaying(device, source, recv);
-        verify(mA2dpService).isA2dpPlaying(device);
+        verify(mService).isA2dpPlaying(device);
     }
 
     @Test
@@ -221,7 +193,7 @@ public class A2dpServiceBinderTest {
                 SynchronousResultReceiver.get();
 
         mBinder.getCodecStatus(device, source, recv);
-        verify(mA2dpService).getCodecStatus(device);
+        verify(mService).getCodecStatus(device);
     }
 
     @Test
@@ -231,7 +203,7 @@ public class A2dpServiceBinderTest {
         AttributionSource source = new AttributionSource.Builder(0).build();
 
         mBinder.setCodecConfigPreference(device, config, source);
-        verify(mA2dpService).setCodecConfigPreference(device, config);
+        verify(mService).setCodecConfigPreference(device, config);
     }
 
     @Test
@@ -240,7 +212,7 @@ public class A2dpServiceBinderTest {
         AttributionSource source = new AttributionSource.Builder(0).build();
 
         mBinder.enableOptionalCodecs(device, source);
-        verify(mA2dpService).enableOptionalCodecs(device);
+        verify(mService).enableOptionalCodecs(device);
     }
 
     @Test
@@ -249,7 +221,7 @@ public class A2dpServiceBinderTest {
         AttributionSource source = new AttributionSource.Builder(0).build();
 
         mBinder.disableOptionalCodecs(device, source);
-        verify(mA2dpService).disableOptionalCodecs(device);
+        verify(mService).disableOptionalCodecs(device);
     }
 
     @Test
@@ -259,7 +231,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
 
         mBinder.isOptionalCodecsSupported(device, source, recv);
-        verify(mA2dpService).getSupportsOptionalCodecs(device);
+        verify(mService).getSupportsOptionalCodecs(device);
     }
 
     @Test
@@ -269,7 +241,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
 
         mBinder.isOptionalCodecsEnabled(device, source, recv);
-        verify(mA2dpService).getOptionalCodecsEnabled(device);
+        verify(mService).getOptionalCodecsEnabled(device);
     }
 
     @Test
@@ -279,7 +251,7 @@ public class A2dpServiceBinderTest {
         AttributionSource source = new AttributionSource.Builder(0).build();
 
         mBinder.setOptionalCodecsEnabled(device, value, source);
-        verify(mA2dpService).setOptionalCodecsEnabled(device, value);
+        verify(mService).setOptionalCodecsEnabled(device, value);
     }
 
     @Test
@@ -288,7 +260,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
 
         mBinder.getDynamicBufferSupport(source, recv);
-        verify(mA2dpService).getDynamicBufferSupport();
+        verify(mService).getDynamicBufferSupport();
     }
 
     @Test
@@ -297,7 +269,7 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<BufferConstraints> recv = SynchronousResultReceiver.get();
 
         mBinder.getBufferConstraints(source, recv);
-        verify(mA2dpService).getBufferConstraints();
+        verify(mService).getBufferConstraints();
     }
 
     @Test
@@ -308,6 +280,6 @@ public class A2dpServiceBinderTest {
         final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
 
         mBinder.setBufferLengthMillis(codec, value, source, recv);
-        verify(mA2dpService).setBufferLengthMillis(codec, value);
+        verify(mService).setBufferLengthMillis(codec, value);
     }
 }

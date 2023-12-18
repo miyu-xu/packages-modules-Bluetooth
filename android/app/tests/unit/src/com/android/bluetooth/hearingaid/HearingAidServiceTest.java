@@ -18,7 +18,6 @@ package com.android.bluetooth.hearingaid;
 
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.anyString;
-import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.reset;
@@ -46,10 +45,7 @@ import androidx.test.runner.AndroidJUnit4;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.btservice.ActiveDeviceManager;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.AudioRoutingManager;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
-import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
-import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.x.com.android.modules.utils.SynchronousResultReceiver;
 
 import org.junit.After;
@@ -81,11 +77,9 @@ public class HearingAidServiceTest {
     private static final int TIMEOUT_MS = 1000;
 
     private HearingAidIntentReceiver mHearingAidIntentReceiver;
-    private FakeFeatureFlagsImpl mFakeFlagsImpl;
 
     @Mock private AdapterService mAdapterService;
     @Mock private ActiveDeviceManager mActiveDeviceManager;
-    @Mock private AudioRoutingManager mAudioRoutingManager;
     @Mock private DatabaseManager mDatabaseManager;
     @Mock private HearingAidNativeInterface mNativeInterface;
     @Mock private AudioManager mAudioManager;
@@ -99,20 +93,9 @@ public class HearingAidServiceTest {
         if (Looper.myLooper() == null) {
             Looper.prepare();
         }
-        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUDIO_ROUTING_CENTRALIZATION, false);
 
         TestUtils.setAdapterService(mAdapterService);
-        doAnswer(
-                        invocation -> {
-                            if (mFakeFlagsImpl.audioRoutingCentralization()) {
-                                return mAudioRoutingManager;
-                            } else {
-                                return mActiveDeviceManager;
-                            }
-                        })
-                .when(mAdapterService)
-                .getActiveDeviceManager();
+        doReturn(mActiveDeviceManager).when(mAdapterService).getActiveDeviceManager();
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(true, false).when(mAdapterService).isStartedProfile(anyString());
 
@@ -971,19 +954,12 @@ public class HearingAidServiceTest {
         Assert.assertFalse(mService.getActiveDevices().contains(mLeftDevice));
         Assert.assertTrue(mService.getActiveDevices().contains(mSingleDevice));
 
-        mService.setFeatureFlags(mFakeFlagsImpl);
-        SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
+        final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
         boolean defaultRecvValue = false;
         mServiceBinder.setActiveDevice(null, null, recv);
         Assert.assertTrue(recv.awaitResultNoInterrupt(Duration.ofMillis(TIMEOUT_MS))
                 .getValue(defaultRecvValue));
         Assert.assertFalse(mService.getActiveDevices().contains(mSingleDevice));
-
-        mFakeFlagsImpl.setFlag(Flags.FLAG_AUDIO_ROUTING_CENTRALIZATION, true);
-        recv = SynchronousResultReceiver.get();
-        mServiceBinder.setActiveDevice(null, null, recv);
-        verify(mAudioRoutingManager)
-                .activateDeviceProfile(null, BluetoothProfile.HEARING_AID, recv);
     }
 
     /**

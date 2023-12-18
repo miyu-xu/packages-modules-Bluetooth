@@ -60,7 +60,6 @@ import com.android.bluetooth.BluetoothMetricsProto;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
-import com.android.bluetooth.btservice.AudioRoutingManager;
 import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.ServiceFactory;
@@ -1480,22 +1479,15 @@ public class A2dpService extends ProfileService {
                 SynchronousResultReceiver receiver) {
             try {
                 A2dpService service = getService(source);
+                boolean result = false;
                 if (service != null) {
-                    if (service.mFeatureFlags.audioRoutingCentralization()) {
-                        ((AudioRoutingManager) service.mAdapterService.getActiveDeviceManager())
-                                .activateDeviceProfile(device, BluetoothProfile.A2DP, receiver);
+                    if (device == null) {
+                        result = service.removeActiveDevice(false);
                     } else {
-                        boolean result;
-                        if (device == null) {
-                            result = service.removeActiveDevice(false);
-                        } else {
-                            result = service.setActiveDevice(device);
-                        }
-                        receiver.send(result);
+                        result = service.setActiveDevice(device);
                     }
-                } else {
-                    receiver.send(false);
                 }
+                receiver.send(result);
             } catch (RuntimeException e) {
                 receiver.propagateException(e);
             }
