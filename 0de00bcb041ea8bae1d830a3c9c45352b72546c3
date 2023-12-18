@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c489f897_bf19b231",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 26
+      },
+      "lineNbr": 294,
+      "author": {
+        "id": 1096713
+      },
+      "writtenOn": "2023-12-18T14:42:11Z",
+      "side": 1,
+      "message": "We never reach this line, since the line before is also a `return` statement.  It seems like we should delete this line to avoid confusion.",
+      "revId": "0de00bcb041ea8bae1d830a3c9c45352b72546c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
