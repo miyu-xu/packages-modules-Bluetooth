@@ -22,6 +22,30 @@
       },
       "revId": "c97b01d4d68a43ec4941d365e6e12876ea8d3370",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "719b3b8d_d6742c22",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-18T23:32:07Z",
+      "side": 1,
+      "message": "For now, I think we should just check for \"Cuttlefish\"",
+      "parentUuid": "1e558078_3e8dee2f",
+      "range": {
+        "startLine": 341,
+        "startChar": 54,
+        "endLine": 341,
+        "endChar": 59
+      },
+      "revId": "c97b01d4d68a43ec4941d365e6e12876ea8d3370",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
