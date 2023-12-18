@@ -46,6 +46,30 @@
       },
       "revId": "258d3d7a67a38176ee5fbf57d55a80233e22dd35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6ca6815c_1d68e30d",
+        "filename": "system/gd/module_mainloop_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-18T20:50:27Z",
+      "side": 1,
+      "message": "If an anonymous namespace doesn\u0027t work, how about test_module_mainloop or module_mainloop_test as the namespace?",
+      "parentUuid": "5cf22eae_93468e70",
+      "range": {
+        "startLine": 44,
+        "startChar": 10,
+        "endLine": 44,
+        "endChar": 25
+      },
+      "revId": "258d3d7a67a38176ee5fbf57d55a80233e22dd35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
