@@ -105,6 +105,21 @@ public class TemporaryOffListener private constructor() {
             Log.i(TAG, "Initialized successfully with state: $isScheduled")
         }
 
+        @JvmStatic
+        public fun notifyUserToggledBluetooth(resolver: ContentResolver) {
+            if (!isScheduled) {
+                return
+            }
+
+            // This case happen when Bluetooth is manually toggled while the timer was active.
+            // This will override the state of the feature since:
+            //   * if Bluetooth is enable, the timer doesn't make sense anymore
+            //   * if Bluetooth is disable, the user decision will override the timer
+
+            stopTimer(mHandler!!)
+            disableTemporaryOff(resolver)
+        }
+
         private var mHandler: Handler? = null
     }
 }
