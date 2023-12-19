@@ -16,6 +16,23 @@
       "message": "add HAL owner to review",
       "revId": "23f273e3d49b3d1d8205f7e62ddf16118272de78",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3645b2e6_3f3ca792",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1956242
+      },
+      "writtenOn": "2023-12-19T21:09:09Z",
+      "side": 1,
+      "message": "Can I get a review for this CL? Thanks!",
+      "revId": "23f273e3d49b3d1d8205f7e62ddf16118272de78",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
