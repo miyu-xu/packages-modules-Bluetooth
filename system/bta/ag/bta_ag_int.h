@@ -24,6 +24,7 @@
 #ifndef BTA_AG_INT_H
 #define BTA_AG_INT_H
 
+#include <chrono>
 #include <cstdint>
 
 #include "bta/ag/bta_ag_at.h"
