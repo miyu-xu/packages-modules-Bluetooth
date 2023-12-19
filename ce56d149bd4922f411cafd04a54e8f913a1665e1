@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a64eb74_94ac0f39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-19T10:41:41Z",
+      "side": 1,
+      "message": "Done, thanks",
+      "parentUuid": "432d61e3_93ab1579",
+      "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e34aa09f_6ebeec37",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-18T18:14:59Z",
       "side": 1,
       "message": "Docstring for pub function. Specially important are docs for `conn` and `conn_join_handle` as they are below.",
+      "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "243ac429_5f2b2866",
+        "filename": "system/gd/rust/linux/service/src/interface_manager.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-19T10:41:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e34aa09f_6ebeec37",
       "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1da464e0_e64afaab",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-19T10:41:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5cb69eca_e94e4063",
+      "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2523027c_2d3aa52e",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-12-18T18:14:59Z",
       "side": 1,
       "message": "Anything pub should have a docstring. Please update this (and maybe a follow-on commit for all other instances of undocumented pub in this file).",
+      "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43d0d334_f5c6b232",
+        "filename": "system/gd/rust/linux/stack/src/lib.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-19T10:41:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2523027c_2d3aa52e",
       "revId": "ce56d149bd4922f411cafd04a54e8f913a1665e1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
