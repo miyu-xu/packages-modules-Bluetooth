@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "745a4024_46eb2df6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 15
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-19T05:18:45Z",
+      "side": 1,
+      "message": "AOSP needs multiple `Bug:` labels (actually this is the default Gerrit style)\n```\nBug: 309640882, Bug: 309682564\n```\nor\n```\nBug: 309640882\nBug: 309682564\n```",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 25
+      },
+      "revId": "3233cdf50a7b1d789dae81adef9615488a7dc49d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
