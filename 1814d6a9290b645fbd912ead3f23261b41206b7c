@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b67e55b_a496f0c4",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1563,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-12-19T18:03:32Z",
+      "side": 1,
+      "message": "Yeah, I came to this same realization while doing some testing. I have added a guard.",
+      "parentUuid": "0508e86f_4cb38c8f",
+      "range": {
+        "startLine": 1563,
+        "startChar": 11,
+        "endLine": 1563,
+        "endChar": 33
+      },
+      "revId": "1814d6a9290b645fbd912ead3f23261b41206b7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b7ce6b3_a27b8f88",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-19T02:27:42Z",
       "side": 1,
       "message": "nit: How about this (Probably need a clone in the condition)\n```suggestion\n        if self.active_pairing_address \u003d\u003d Some(addr) {\n            self.active_pairing_address \u003d None;\n        }\n```",
+      "range": {
+        "startLine": 1565,
+        "startChar": 0,
+        "endLine": 1574,
+        "endChar": 10
+      },
+      "revId": "1814d6a9290b645fbd912ead3f23261b41206b7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34084e9e_24194484",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1574,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2023-12-19T18:03:32Z",
+      "side": 1,
+      "message": "I\u0027ve stepped away from Rust too long, this is much better, thanks.",
+      "parentUuid": "0b7ce6b3_a27b8f88",
       "range": {
         "startLine": 1565,
         "startChar": 0,
