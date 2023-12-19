@@ -34,53 +34,29 @@ import android.bluetooth.le.ScanFilter;
 import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.ParcelUuid;
-import android.util.Log;
 
-import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
 import com.google.protobuf.ByteString;
 
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 import pandora.HostProto;
 import pandora.HostProto.AdvertiseRequest;
-import pandora.HostProto.AdvertiseResponse;
 import pandora.HostProto.OwnAddressType;
 
 @RunWith(AndroidJUnit4.class)
-public class LeScanningTest {
-    private static final String TAG = "LeScanningTest";
-    private static final int TIMEOUT_SCANNING_MS = 2000;
-    private static final String TEST_UUID_STRING = "00001805-0000-1000-8000-00805f9b34fb";
-    private static final String TEST_ADDRESS_RANDOM_STATIC = "F0:43:A8:23:10:11";
-    private static final String ACTION_DYNAMIC_RECEIVER_SCAN_RESULT =
-            "android.bluetooth.test.ACTION_DYNAMIC_RECEIVER_SCAN_RESULT";
-
-    @Rule public final AdoptShellPermissionsRule mPermissionRule = new AdoptShellPermissionsRule();
-
-    @Rule public final PandoraDevice mBumble = new PandoraDevice();
-
-    private final Context mContext = ApplicationProvider.getApplicationContext();
-    private final BluetoothManager mBluetoothManager =
-            mContext.getSystemService(BluetoothManager.class);
-    private final BluetoothAdapter mBluetoothAdapter = mBluetoothManager.getAdapter();
-    private final BluetoothLeScanner mLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
+public class LeScanningTest extends LeScanningTestBase {
 
     @Test
     public void startBleScan_withCallbackTypeAllMatches() {
@@ -333,82 +309,5 @@ public class LeScanningTest {
         assertThat(results.get(0).isConnectable()).isFalse();
         assertThat(results.get(0).getScanRecord().getManufacturerSpecificData(0x00E0))
                 .isEqualTo(payload);
-    }
-
-    private List<ScanResult> startScanning(ScanFilter scanFilter, int callbackType) {
-        CompletableFuture<List<ScanResult>> future = new CompletableFuture<>();
-        List<ScanResult> scanResults = new ArrayList<>();
-
-        ScanSettings scanSettings =
-                new ScanSettings.Builder()
-                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
-                        .setCallbackType(callbackType)
-                        .build();
-
-        ScanCallback scanCallback =
-                new ScanCallback() {
-                    @Override
-                    public void onScanResult(int callbackType, ScanResult result) {
-                        Log.i(
-                                TAG,
-                                "onScanResult "
-                                        + "address: "
-                                        + result.getDevice().getAddress()
-                                        + ", connectable: "
-                                        + result.isConnectable()
-                                        + ", callbackType: "
-                                        + callbackType
-                                        + ", service uuids: "
-                                        + result.getScanRecord().getServiceUuids());
-
-                        if (callbackType == ScanSettings.CALLBACK_TYPE_ALL_MATCHES) {
-                            if (scanResults.size() < 2) {
-                                scanResults.add(result);
-                            } else {
-                                future.complete(scanResults);
-                            }
-                        } else {
-                            scanResults.add(result);
-                            future.complete(scanResults);
-                        }
-                    }
-
-                    @Override
-                    public void onScanFailed(int errorCode) {
-                        Log.i(TAG, "onScanFailed " + "errorCode: " + errorCode);
-                        future.complete(null);
-                    }
-                };
-
-        mLeScanner.startScan(List.of(scanFilter), scanSettings, scanCallback);
-
-        List<ScanResult> result =
-                future.completeOnTimeout(null, TIMEOUT_SCANNING_MS, TimeUnit.MILLISECONDS).join();
-
-        mLeScanner.stopScan(scanCallback);
-
-        return result;
-    }
-
-    private void advertiseWithBumble(String serviceUuid, OwnAddressType addressType) {
-        AdvertiseRequest.Builder requestBuilder =
-                AdvertiseRequest.newBuilder().setOwnAddressType(addressType);
-
-        if (serviceUuid != null) {
-            HostProto.DataTypes.Builder dataTypeBuilder = HostProto.DataTypes.newBuilder();
-            dataTypeBuilder.addCompleteServiceClassUuids128(serviceUuid);
-            requestBuilder.setData(dataTypeBuilder.build());
-        }
-
-        advertiseWithBumble(requestBuilder);
-    }
-
-    private void advertiseWithBumble(AdvertiseRequest.Builder requestBuilder) {
-        // Bumble currently only supports legacy advertising.
-        requestBuilder.setLegacy(true);
-        // Collect and ignore responses.
-        StreamObserverSpliterator<AdvertiseResponse> responseObserver =
-                new StreamObserverSpliterator<>();
-        mBumble.host().advertise(requestBuilder.build(), responseObserver);
     }
 }
