@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "172b9a7a_32adf781",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-19T22:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b59389fe_ca2159de",
+      "range": {
+        "startLine": 27,
+        "startChar": 10,
+        "endLine": 27,
+        "endChar": 16
+      },
+      "revId": "139316461d2b45f7aac9cd545811fc5b3418bd6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0df6601d_61b614cf",
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "In file included from ../../../staging/bt/system/bta/ar/bta_ar.cc:28:\n../../../staging/bt/system/bta/sys/bta_sys.h:236:48: error: no member named \u0027chrono\u0027 in namespace \u0027std\u0027\nvoid bta_sys_sendmsg_delayed(void* p_msg, std::chrono::microseconds delay);",
       "parentUuid": "0df6601d_61b614cf",
+      "revId": "139316461d2b45f7aac9cd545811fc5b3418bd6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "71d9a2dd_18ac98a9",
+        "filename": "system/bta/sys/bta_sys.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-19T22:38:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d532db1c_e3dcaa28",
       "revId": "139316461d2b45f7aac9cd545811fc5b3418bd6f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
