@@ -94,6 +94,30 @@
       },
       "revId": "8e426f73e23e0ac1bac59b897b7211b485c4895a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f236f67d_a6fd3cf1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 7530,
+      "author": {
+        "id": 1903311
+      },
+      "writtenOn": "2023-12-19T18:44:14Z",
+      "side": 1,
+      "message": "Sure! I have put in the same topic and run the presubmit. Please help review the changes. Thanks!",
+      "parentUuid": "937e9ee4_d2068a4e",
+      "range": {
+        "startLine": 7530,
+        "startChar": 36,
+        "endLine": 7530,
+        "endChar": 68
+      },
+      "revId": "8e426f73e23e0ac1bac59b897b7211b485c4895a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
