@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e809c8cf_b9551b2d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1381,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-19T23:54:27Z",
+      "side": 1,
+      "message": "shouldn\u0027t we have fixed address value for the anonymous type?",
+      "revId": "06deb70ff7adad348549bf2fff2bb4d5a9426ff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
