@@ -18,11 +18,11 @@
 
 #include <base/command_line.h>
 #include <base/logging.h>
-#include <base/strings/string_piece.h>
 #include <base/strings/string_util.h>
 #include <gtest/gtest.h>
 
 #include <string>
+#include <string_view>
 
 int main(int argc, char** argv) {
   ::testing::InitGoogleTest(&argc, argv);
@@ -34,7 +34,7 @@ int main(int argc, char** argv) {
 
   const char* log_level_arg = nullptr;
   for (int i = 0; i < argc; ++i) {
-    if (base::StartsWith(base::StringPiece(argv[i]), base::StringPiece("--v="),
+    if (base::StartsWith(std::string_view(argv[i]), std::string_view("--v="),
                          base::CompareCase::INSENSITIVE_ASCII)) {
       log_level_arg = argv[i];
     }
