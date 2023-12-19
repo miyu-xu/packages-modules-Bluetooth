@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "857657a5_ac9cab98",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-19T21:53:06Z",
+      "side": 1,
+      "message": "Here\u0027s the other way to do it:\n\np+\u003d2; // Skip obsolete tot_scan_results_strg",
+      "range": {
+        "startLine": 700,
+        "startChar": 2,
+        "endLine": 700,
+        "endChar": 67
+      },
+      "revId": "34cf274049d4339fd79dbf41fd4b7c5d2f72fbc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
