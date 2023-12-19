@@ -21,6 +21,7 @@
 #include <base/location.h>
 #include <base/time/time.h>
 
+#include <chrono>
 #include <future>
 
 namespace bluetooth {
@@ -58,7 +59,8 @@ class RepeatingTimer final {
    */
   bool SchedulePeriodic(const base::WeakPtr<MessageLoopThread>& thread,
                         const base::Location& from_here,
-                        base::RepeatingClosure task, base::TimeDelta period);
+                        base::RepeatingClosure task,
+                        std::chrono::microseconds period);
 
   /**
    * Post an event which cancels the current task asynchronously
@@ -81,7 +83,7 @@ class RepeatingTimer final {
   base::WeakPtr<MessageLoopThread> message_loop_thread_;
   base::CancelableClosure task_wrapper_;
   base::RepeatingClosure task_;
-  base::TimeDelta period_;
+  std::chrono::microseconds period_;
   uint64_t expected_time_next_task_us_;  // Using clock boot time in time_util.h
   mutable std::recursive_mutex api_mutex_;
   void CancelHelper(std::promise<void> promise);

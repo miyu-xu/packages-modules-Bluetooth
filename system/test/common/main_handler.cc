@@ -46,7 +46,7 @@ bt_status_t do_in_main_thread(const base::Location& from_here,
 
 bt_status_t do_in_main_thread_delayed(const base::Location& from_here,
                                       base::OnceClosure task,
-                                      const base::TimeDelta& delay) {
+                                      std::chrono::microseconds delay) {
   ASSERT_LOG(!main_thread.DoInThreadDelayed(from_here, std::move(task), delay),
              "Unable to run on main thread delayed");
   return BT_STATUS_SUCCESS;
