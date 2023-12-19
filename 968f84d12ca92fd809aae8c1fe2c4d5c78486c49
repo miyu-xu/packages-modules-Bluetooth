@@ -16,6 +16,52 @@
       "message": "Friendly ping~ Please help to review the changes. Many Thanks.",
       "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9ad0825_9e911b0a",
+        "filename": "flags/sniff.aconfig",
+        "patchSetId": 27
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-19T16:49:06Z",
+      "side": 1,
+      "message": "`exist` ? not `exit` ?",
+      "range": {
+        "startLine": 4,
+        "startChar": 11,
+        "endLine": 4,
+        "endChar": 30
+      },
+      "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10b2378a_8dbe3acc",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-19T16:49:06Z",
+      "side": 1,
+      "message": "In order to conserve previous behaviour when the flag is not enable, I believe the code should be:\n\n```suggestion\n        if (osi_property_get_bool(\"bluetooth.rfcomm.sysproxy.rx.exit_sniff\",\n                                  false)) {\n          if (IS_FLAG_ENABLED(exist_sniff_when_rx)) {\n            bta_jv_reset_sniff_timer(p_pcb-\u003ep_pm_cb);\n          } else {\n            bta_jv_pm_conn_busy(p_pcb-\u003ep_pm_cb);\n          }\n        }\n```",
+      "range": {
+        "startLine": 1262,
+        "startChar": 8,
+        "endLine": 1266,
+        "endChar": 9
+      },
+      "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
