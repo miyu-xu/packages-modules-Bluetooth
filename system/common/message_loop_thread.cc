@@ -16,15 +16,18 @@
 
 #include "message_loop_thread.h"
 
+#include <base/location.h>
 #include <base/logging.h>
 #include <base/strings/stringprintf.h>
 #include <sys/syscall.h>
 #include <unistd.h>
 
+#include <future>
+#include <mutex>
+#include <string>
 #include <thread>
 
-#include "gd/common/init_flags.h"
-#include "osi/include/log.h"
+#include "base/functional/callback.h"
 
 namespace bluetooth {
 
