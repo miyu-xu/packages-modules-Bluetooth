@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7157f91_4c20dbe2",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-19T23:01:52Z",
+      "side": 0,
+      "message": "This is the one that could go back to Java.",
+      "range": {
+        "startLine": 480,
+        "startChar": 22,
+        "endLine": 480,
+        "endChar": 46
+      },
+      "revId": "ffcf6bbecb039e0aca0b39cbad8851d2192b7ab9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
