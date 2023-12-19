@@ -36,8 +36,15 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (ffef71 HFP: Add flag for Closing Rfcomm connection instead of reset)
+    name: "skip_upper_layer_cleanup"
+    namespace: "bluetooth"
+    description: "Closing Rfcomm connection instead of resetting the connection"
+    bug: "305054669"
+=======
     name: "retry_esco_with_zero_retransmission_effort"
     namespace: "bluetooth"
     description: "retry eSCO connection based on retransmission_effort"
     bug: "316498257"
+>>>>>>> BASE      (0211dc Merge "HFP: Add flag for Fall back to SCO connection if eSCO)
 }
