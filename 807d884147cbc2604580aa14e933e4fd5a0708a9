@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abf8c94f_1cb9049b",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-19T21:32:37Z",
+      "side": 1,
+      "message": "grrr...random formatting chages",
+      "revId": "807d884147cbc2604580aa14e933e4fd5a0708a9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
