@@ -20,3 +20,10 @@ flag {
     description: "Refactor scan manager as described in go/scan-manager-refactor"
     bug: "313335632"
 }
+
+flag {
+    name: "skip_unknown_robust_caching"
+    namespace: "bluetooth"
+    description: "skip initial DB lookup when robust caching support is UNKNOWN"
+    bug: "317128464"
+}
