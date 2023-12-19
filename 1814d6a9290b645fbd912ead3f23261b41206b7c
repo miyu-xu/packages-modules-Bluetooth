@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0508e86f_4cb38c8f",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1563,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-19T02:27:42Z",
+      "side": 1,
+      "message": "Do we want to clear the lock when bond_state is 1 (bonding)? I guess it makes more sense to release the lock only when bond_state is 0 or 2.",
+      "range": {
+        "startLine": 1563,
+        "startChar": 11,
+        "endLine": 1563,
+        "endChar": 33
+      },
+      "revId": "1814d6a9290b645fbd912ead3f23261b41206b7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b7ce6b3_a27b8f88",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1574,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-19T02:27:42Z",
+      "side": 1,
+      "message": "nit: How about this (Probably need a clone in the condition)\n```suggestion\n        if self.active_pairing_address \u003d\u003d Some(addr) {\n            self.active_pairing_address \u003d None;\n        }\n```",
+      "range": {
+        "startLine": 1565,
+        "startChar": 0,
+        "endLine": 1574,
+        "endChar": 10
+      },
+      "revId": "1814d6a9290b645fbd912ead3f23261b41206b7c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
