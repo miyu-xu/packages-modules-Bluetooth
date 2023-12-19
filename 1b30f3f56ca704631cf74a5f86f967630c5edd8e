@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "63730bcd_5aa58150",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1939360
+      },
+      "writtenOn": "2023-12-19T14:55:45Z",
+      "side": 1,
+      "message": "Hi Thomas, could you grant Dr No approval please ? ty!",
+      "revId": "1b30f3f56ca704631cf74a5f86f967630c5edd8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
