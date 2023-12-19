@@ -3391,6 +3391,10 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
     status = BT_STATUS_SUCCESS;
     state = BT_BOND_STATE_BONDED;
     tBLE_ADDR_TYPE addr_type;
+    if (bd_addr.IsEmpty()) {
+      LOG_WARN("invalid empty bd_addr, ignore the event");
+      return;
+    }
 
     if (btif_storage_get_remote_addr_type(&bd_addr, &addr_type) != BT_STATUS_SUCCESS) {
       btif_storage_set_remote_addr_type(&bd_addr, p_auth_cmpl->addr_type);
