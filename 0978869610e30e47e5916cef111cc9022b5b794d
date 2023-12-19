@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "acfc96a6_fc84dc5c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-19T02:03:17Z",
+      "side": 1,
+      "message": "Is this a critical issue? if not, can we just get this merged for now and handle it in a followup?",
+      "parentUuid": "70e31f00_2569c79a",
+      "range": {
+        "startLine": 259,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 52
+      },
+      "revId": "0978869610e30e47e5916cef111cc9022b5b794d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1c9c7c85_3e9cf49e",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 11
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-11T17:38:55Z",
       "side": 1,
       "message": "Can you create a bug for this task and update the TODO following go/todo-style",
+      "range": {
+        "startLine": 319,
+        "startChar": 11,
+        "endLine": 319,
+        "endChar": 15
+      },
+      "revId": "0978869610e30e47e5916cef111cc9022b5b794d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ff38d6fc_209cca87",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-19T02:03:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1c9c7c85_3e9cf49e",
       "range": {
         "startLine": 319,
         "startChar": 11,
