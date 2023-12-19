@@ -34,3 +34,10 @@ flag {
     description: "start and stop of the SCO is managed by Audio instead of Bluetooth"
     bug: "315234036"
 }
+
+flag {
+    name: "close_rfcomm_connection"
+    namespace: "bluetooth"
+    description: "Closing Rfcomm connection instead of resetting the connection"
+    bug: "305054669"
+}
