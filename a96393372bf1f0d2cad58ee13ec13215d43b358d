@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39a19dfe_42287f55",
+        "filename": "android/app/aidl/android/bluetooth/IBluetoothVolumeControl.aidl",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-12-19T08:48:28Z",
+      "side": 1,
+      "message": "typo",
+      "range": {
+        "startLine": 79,
+        "startChar": 18,
+        "endLine": 79,
+        "endChar": 26
+      },
+      "revId": "a96393372bf1f0d2cad58ee13ec13215d43b358d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4193f759_e0eac894",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 824,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-12-19T08:48:28Z",
+      "side": 1,
+      "message": "Do we actually need to store it in \u0027mCallbacks\u0027 if the framework callback is already there?\n\nIt seems to me that the new registered callback after the initial update call, it will be called two times in all the future callback calls (once from `mCallbacks` here, and 2nd time from the multiplexing `mCallback` in the framework).",
+      "range": {
+        "startLine": 823,
+        "startChar": 8,
+        "endLine": 824,
+        "endChar": 38
+      },
+      "revId": "a96393372bf1f0d2cad58ee13ec13215d43b358d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cbb71df_674a648f",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2023-12-19T08:48:28Z",
+      "side": 1,
+      "message": "Does this comment still apply if you moved the `if(mCallbackExecutorMap.isEmpty())` ? Lets maybe modify the comment or move it to where the commented line was moved.",
+      "range": {
+        "startLine": 364,
+        "startChar": 15,
+        "endLine": 364,
+        "endChar": 43
+      },
+      "revId": "a96393372bf1f0d2cad58ee13ec13215d43b358d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
