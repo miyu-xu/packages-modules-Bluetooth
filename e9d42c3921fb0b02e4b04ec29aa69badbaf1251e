@@ -142,6 +142,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "033c8c0e_80414d98",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-19T06:18:51Z",
+      "side": 1,
+      "message": "OK thanks, I used your suggestion.\n\nThis is more compact, but it makes this different than the other IS_FLAG_ENABLED syntax, so actually I\u0027m on the fence whether we should do it this way.",
+      "parentUuid": "2de1cbb7_4f058c50",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "682032ad_f99283e5",
+        "filename": "system/stack/smp/smp_l2c.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-19T06:18:51Z",
+      "side": 1,
+      "message": "I ended up with `LOG_VERBOSE` since that is the norm for the handlers which always get executed.",
+      "parentUuid": "31aca871_57153324",
+      "range": {
+        "startLine": 228,
+        "startChar": 7,
+        "endLine": 228,
+        "endChar": 22
+      },
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dc293567_78038463",
@@ -213,6 +255,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "338943f2_790dec46",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-19T06:18:51Z",
+      "side": 1,
+      "message": "Done but with LOG_VERBOSE",
+      "parentUuid": "2ce213d7_67264ee4",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad8623a2_0c59bac9",
@@ -262,6 +322,24 @@
       "side": 1,
       "message": "at least information that flag is enabled or not.",
       "parentUuid": "d6b7310b_37a913c6",
+      "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57206fee_6f300bea",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-19T06:18:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9c1416e6_35353f4d",
       "revId": "e9d42c3921fb0b02e4b04ec29aa69badbaf1251e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
