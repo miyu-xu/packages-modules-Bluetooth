@@ -10,6 +10,7 @@ aconfig_declarations {
         "a2dp.aconfig",
         "audio_routing.aconfig",
         "bta_dm.aconfig",
+        "content_profiles.aconfig",
         "framework.aconfig",
         "gap.aconfig",
         "hap.aconfig",
