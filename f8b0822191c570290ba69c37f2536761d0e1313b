@@ -22,6 +22,30 @@
       },
       "revId": "f8b0822191c570290ba69c37f2536761d0e1313b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18c075a1_de5fb15d",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-12-19T12:54:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0cc62c11_c4a2622f",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 72
+      },
+      "revId": "f8b0822191c570290ba69c37f2536761d0e1313b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
