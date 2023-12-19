@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b59389fe_ca2159de",
+        "filename": "system/bta/ag/bta_ag_int.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-19T22:12:42Z",
+      "side": 1,
+      "message": "It doesn\u0027t look like it\u0027s used in this file.",
+      "range": {
+        "startLine": 27,
+        "startChar": 10,
+        "endLine": 27,
+        "endChar": 16
+      },
+      "revId": "139316461d2b45f7aac9cd545811fc5b3418bd6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0df6601d_61b614cf",
+        "filename": "system/bta/sys/bta_sys.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-19T22:12:42Z",
+      "side": 1,
+      "message": "I expected it here.",
+      "revId": "139316461d2b45f7aac9cd545811fc5b3418bd6f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
