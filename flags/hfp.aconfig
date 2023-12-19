@@ -36,8 +36,8 @@ flag {
 }
 
 flag {
-    name: "retry_esco_with_zero_retransmission_effort"
+    name: "close_rfcomm_instead_of_reset"
     namespace: "bluetooth"
-    description: "retry eSCO connection based on retransmission_effort"
-    bug: "316498257"
+    description: "Closing Rfcomm Connection instead of reset"
+    bug: "316993992"
 }
