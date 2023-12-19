@@ -125,6 +125,7 @@ import com.android.bluetooth.btservice.storage.DatabaseManager;
 import com.android.bluetooth.btservice.storage.MetadataDatabase;
 import com.android.bluetooth.csip.CsipSetCoordinatorService;
 import com.android.bluetooth.flags.FeatureFlagsImpl;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.GattService;
 import com.android.bluetooth.gatt.ScanManager;
 import com.android.bluetooth.hap.HapClientService;
@@ -5837,6 +5838,11 @@ public class AdapterService extends Service {
         DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
         if (deviceProp != null && deviceProp.getIdentityAddress() != null) {
             return Utils.getBytesFromAddress(deviceProp.getIdentityAddress());
+        }
+
+        if (Flags.identityAddressNullIfUnknown()) {
+            // Return null if identity address unknown
+            return null;
         } else {
             return Utils.getByteAddress(device);
         }
