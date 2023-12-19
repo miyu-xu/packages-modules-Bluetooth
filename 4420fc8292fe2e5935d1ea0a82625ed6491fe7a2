@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d987b94_1eaf6b6d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-19T23:08:53Z",
+      "side": 1,
+      "message": "I think it\u0027s still used (although it shouldn\u0027t be)",
+      "revId": "4420fc8292fe2e5935d1ea0a82625ed6491fe7a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fad91573_96fb671d",
