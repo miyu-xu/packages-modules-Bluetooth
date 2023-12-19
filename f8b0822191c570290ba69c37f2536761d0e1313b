@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0cc62c11_c4a2622f",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-19T05:02:56Z",
+      "side": 1,
+      "message": "Do not split URLs across lines, see https://google.github.io/styleguide/pyguide.html#32-line-length",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 72
+      },
+      "revId": "f8b0822191c570290ba69c37f2536761d0e1313b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
