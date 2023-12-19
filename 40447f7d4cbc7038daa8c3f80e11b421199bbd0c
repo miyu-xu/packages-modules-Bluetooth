@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb5084f_9942998b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2023-12-19T05:21:36Z",
+      "side": 1,
+      "message": "```\nBug: 301037360, Bug: 301000141\n```\nor\n```\nBug: 301037360\nBug: 301000141\n```",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 25
+      },
+      "revId": "40447f7d4cbc7038daa8c3f80e11b421199bbd0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
