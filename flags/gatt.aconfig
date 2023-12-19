@@ -1,0 +1,8 @@
+package: "com.android.bluetooth.flags"
+
+flag {
+    name: "skip_unknown_robust_caching"
+    namespace: "bluetooth"
+    description: "skip initial DB lookup when robust caching support is UNKNOWN"
+    bug: "317128464"
+}
