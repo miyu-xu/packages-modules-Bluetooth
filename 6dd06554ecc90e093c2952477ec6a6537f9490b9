@@ -240,6 +240,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "42d9908a_1397cbb9",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2023-12-19T05:24:03Z",
+      "side": 1,
+      "message": "This is a function used a step of tests in and testBondLe_WithGattServiceDiscovery and testCancelBondLe_WithGattServiceDiscovery, the steps following this line is after the invocation of this method.",
+      "parentUuid": "5a6d8978_61b019db",
+      "range": {
+        "startLine": 324,
+        "startChar": 4,
+        "endLine": 324,
+        "endChar": 5
+      },
+      "revId": "6dd06554ecc90e093c2952477ec6a6537f9490b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "36391403_bffe9af5",
         "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
         "patchSetId": 7
