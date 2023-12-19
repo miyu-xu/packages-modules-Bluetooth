@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ce3a006_d2f444ee",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2023-12-19T14:52:50Z",
+      "side": 1,
+      "message": "You are adding a sysprop using aosp/2869079 but you are not using the sysprop in the code and instead you rely on the raw string.\n\nCan you make usage of the bluetoothProperties ?\ncf existing usage: https://cs.android.com/search?q\u003dbluetoothproperties%20f:cc\u0026sq\u003d\n\nnote that if this intend to target floss only, I don\u0027t understand why you are adding to system/libsysprop or system/sepolicy. Wouldn\u0027t it be simpler to use a Ifdef TARGET_FLOSS like is currently use on floss ?",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
