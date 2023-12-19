@@ -106,6 +106,24 @@
       "parentUuid": "9c555cdc_35eaac3d",
       "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9cfb8537_330c9fe5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-19T19:58:27Z",
+      "side": 1,
+      "message": "Looking at the naming of these test classes, I would have assumed that LeScanningTest should cover all test cases related to LE scanning. However, it seems your preference is to create new test class for additional or complex test cases. I just want to point out that this could lead to issues with finding test cases and potentially lead to test duplication in the long run since all tests related to a feature are distributed across multiple files.\n\nAnyways, I rest my case and I will move the Parameterized tests to a new class using inheritance to reduce code duplication as you\u0027ve suggested.",
+      "parentUuid": "faae353e_a25ea9ed",
+      "revId": "b4e723874990906bb7a3f5b57e46141e48a7a588",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
