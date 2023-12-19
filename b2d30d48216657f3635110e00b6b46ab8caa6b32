@@ -16,6 +16,24 @@
       "message": "This causes a shit in the stream decoding, you must leave this statement in.",
       "revId": "b2d30d48216657f3635110e00b6b46ab8caa6b32",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "285eb6d5_e671d4af",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 699,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-19T21:37:33Z",
+      "side": 0,
+      "message": "Thanks for catching! This seems obvious now that you pointed it out 😊\n\nAdded this back and verified test passes (glad it was there to catch this as that was only test I observed failing!), noted comment that it is unused in the definition - PLMK if any concerns with the latest patch.",
+      "parentUuid": "7cee140a_2e8c9444",
+      "revId": "b2d30d48216657f3635110e00b6b46ab8caa6b32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
