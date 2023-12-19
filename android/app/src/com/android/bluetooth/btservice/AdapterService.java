@@ -399,6 +399,8 @@ public class AdapterService extends Service {
 
     private volatile boolean mTestModeEnabled = false;
 
+    private FeatureFlagsImpl mFeatureFlags;
+
     private MetricsLogger mMetricsLogger;
 
     /**
@@ -683,9 +685,9 @@ public class AdapterService extends Service {
 
         mSdpManager = SdpManager.init(this);
 
-        FeatureFlagsImpl featureFlags = new FeatureFlagsImpl();
+        mFeatureFlags = new FeatureFlagsImpl();
 
-        mDatabaseManager = new DatabaseManager(this, featureFlags);
+        mDatabaseManager = new DatabaseManager(this, mFeatureFlags);
         mDatabaseManager.start(MetadataDatabase.createDatabase(this));
 
         boolean isAutomotiveDevice =
@@ -701,18 +703,18 @@ public class AdapterService extends Service {
          */
         if (!isAutomotiveDevice && getResources().getBoolean(R.bool.enable_phone_policy)) {
             Log.i(TAG, "Phone policy enabled");
-            mPhonePolicy = new PhonePolicy(this, new ServiceFactory(), featureFlags);
+            mPhonePolicy = new PhonePolicy(this, new ServiceFactory(), mFeatureFlags);
             mPhonePolicy.start();
         } else {
             Log.i(TAG, "Phone policy disabled");
         }
 
-        if (featureFlags.audioRoutingCentralization()) {
+        if (mFeatureFlags.audioRoutingCentralization()) {
             mActiveDeviceManager =
-                    new AudioRoutingManager(this, new ServiceFactory(), featureFlags);
+                    new AudioRoutingManager(this, new ServiceFactory(), mFeatureFlags);
         } else {
             mActiveDeviceManager =
-                    new ActiveDeviceManager(this, new ServiceFactory(), featureFlags);
+                    new ActiveDeviceManager(this, new ServiceFactory(), mFeatureFlags);
         }
         mActiveDeviceManager.start();
 
@@ -5837,6 +5839,11 @@ public class AdapterService extends Service {
         DeviceProperties deviceProp = mRemoteDevices.getDeviceProperties(device);
         if (deviceProp != null && deviceProp.getIdentityAddress() != null) {
             return Utils.getBytesFromAddress(deviceProp.getIdentityAddress());
+        }
+
+        if (mFeatureFlags.identityAddressNullIfUnknown()) {
+            // Return null if identity address unknown
+            return null;
         } else {
             return Utils.getByteAddress(device);
         }
