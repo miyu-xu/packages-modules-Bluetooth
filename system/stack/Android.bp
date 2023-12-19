@@ -413,6 +413,8 @@ cc_fuzz {
         "libbt-platform-protos-lite",
         "libbt_shim_bridge",
         "libbt_shim_ffi",
+        "libgmock",
+        "libgtest",
     ],
 }
 
@@ -468,6 +470,7 @@ cc_fuzz {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libgmock",
+        "libgtest",
     ],
 }
 
@@ -520,6 +523,7 @@ cc_fuzz {
         "libbt_shim_ffi",
         "libevent",
         "libgmock",
+        "libgtest",
     ],
 }
 
@@ -565,6 +569,7 @@ cc_fuzz {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libgmock",
+        "libgtest",
     ],
 }
 
@@ -614,6 +619,7 @@ cc_fuzz {
         "libbt_shim_ffi",
         "libcom.android.sysprop.bluetooth.wrapped",
         "libgmock",
+        "libgtest",
     ],
 }
 
@@ -658,6 +664,7 @@ cc_fuzz {
         "libbt_shim_bridge",
         "libbt_shim_ffi",
         "libgmock",
+        "libgtest",
     ],
     target: {
         android: {
