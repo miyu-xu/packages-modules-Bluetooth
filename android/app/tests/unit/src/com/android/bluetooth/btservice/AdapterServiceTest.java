@@ -59,6 +59,7 @@ import android.os.UserManager;
 import android.os.test.TestLooper;
 import android.permission.PermissionCheckerManager;
 import android.permission.PermissionManager;
+import android.platform.test.annotations.RequiresFlagsEnabled;
 import android.provider.Settings;
 import android.sysprop.BluetoothProperties;
 import android.test.mock.MockContentProvider;
@@ -72,6 +73,7 @@ import androidx.test.runner.AndroidJUnit4;
 import com.android.bluetooth.TestUtils;
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.bluetoothkeystore.BluetoothKeystoreNativeInterface;
+import com.android.bluetooth.flags.Flags;
 import com.android.bluetooth.gatt.AdvertiseManagerNativeInterface;
 import com.android.bluetooth.gatt.DistanceMeasurementNativeInterface;
 import com.android.bluetooth.gatt.GattNativeInterface;
@@ -869,6 +871,17 @@ public class AdapterServiceTest {
         // Verify we can get correct identity address
         identityAddress = mAdapterService.getIdentityAddress(TEST_BT_ADDR_1);
         assertThat(identityAddress).isEqualTo(TEST_BT_ADDR_2);
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.IDENTITY_ADDRESS_NULL_IF_UNKNOWN)
+    public void testIdentityAddressNullIfUnknown() {
+        BluetoothDevice device = TestUtils.getTestDevice(BluetoothAdapter.getDefaultAdapter(), 0);
+
+        if (Flags.identityAddressNullIfUnknown()) {
+            assertThat(mAdapterService.getByteIdentityAddress(device)).isNull();
+            assertThat(mAdapterService.getIdentityAddress(device.getAddress())).isNull();
+        }
     }
 
     public static byte[] getMetricsSalt(HashMap<String, HashMap<String, String>> adapterConfig) {
