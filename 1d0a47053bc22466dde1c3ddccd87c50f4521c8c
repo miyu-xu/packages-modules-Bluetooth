@@ -16,6 +16,24 @@
       "message": "Currently investigating Bumble BT test failure, am able to reproduce locally",
       "revId": "1d0a47053bc22466dde1c3ddccd87c50f4521c8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "00a8529c_32f80fa7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-19T21:48:33Z",
+      "side": 1,
+      "message": "Test failure resolved and passing locally now.",
+      "parentUuid": "cef94772_f4164f78",
+      "revId": "1d0a47053bc22466dde1c3ddccd87c50f4521c8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
