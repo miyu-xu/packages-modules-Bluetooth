@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c44c7c15_d3bf1f0e",
+        "filename": "system/bta/ag/bta_ag_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 578,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-19T19:25:30Z",
+      "side": 1,
+      "message": "after you update the flag\u0027s name, update it here",
+      "range": {
+        "startLine": 578,
+        "startChar": 27,
+        "endLine": 578,
+        "endChar": 51
+      },
+      "revId": "8759b2b3978621dddbb7197879ef54e86077e0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
