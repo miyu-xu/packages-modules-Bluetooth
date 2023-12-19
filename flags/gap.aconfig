@@ -29,6 +29,12 @@ flag {
 }
 
 flag {
+<<<<<<< PATCH SET (cecd5a GATT: add flag for premature GATT DB lookup)
+    name: "skip_unknown_robust_caching"
+    namespace: "bluetooth"
+    description: "skip initial DB lookup when robust caching support is UNKNOWN"
+    bug: "317128464"
+=======
     name: "le_scan_parameters_fix"
     namespace: "bluetooth"
     description: "Fix LE scan parameters downgrade during inquiry"
@@ -40,4 +46,5 @@ flag {
     namespace: "bluetooth"
     description: "Ensure scan timeout is reset if new scan started"
     bug: "316266556"
+>>>>>>> BASE      (86bbcb Refactor MapClientContentTest to be form factor agnostic)
 }
