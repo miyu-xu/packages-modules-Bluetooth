@@ -85,6 +85,24 @@
       "message": "Please add `Flag: EXEMPT \u003creason\u003e` as specified in go/bt-best-practices#flagging",
       "revId": "3379ab99de4b520cd8334271f56e0c3f21d6978f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f7ed54a_2b6d2ecd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-12-20T15:38:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "67d0469e_6627006b",
+      "revId": "3379ab99de4b520cd8334271f56e0c3f21d6978f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
