@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bd90737_3e34cd08",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-20T20:24:58Z",
+      "side": 1,
+      "message": "Nice...the obscurity from the previous naming...I would never have guessed.",
+      "revId": "91c8d55d77ac50a84631b4de023183d60a39d16c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
