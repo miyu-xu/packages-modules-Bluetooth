@@ -178,6 +178,21 @@ class OwnAddressType(enum.IntEnum):
     RANDOM = 1
 
 
+class BtConnectionState(enum.IntEnum):
+    NOT_CONNECTED = 0
+    CONNECTED_ONLY = 1
+    ENCRYPTED_BR_EDR = 3
+    ENCRYPTED_LE = 5
+    ENCRYPTED_BOTH = 7
+
+
+class BtDeviceType(enum.IntEnum):
+    UNKNOWN = 0
+    BR_EDR = 1
+    BLE = 2
+    DUAL = 3
+
+
 class CompanyIdentifiers(enum.IntEnum):
     """Bluetooth SIG Company ID values.
 
