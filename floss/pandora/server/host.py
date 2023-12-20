@@ -238,6 +238,7 @@ class HostService(host_grpc_aio.HostServicer):
 
     async def ConnectLE(self, request: host_pb2.ConnectLERequest,
                         context: grpc.ServicerContext) -> host_pb2.ConnectLEResponse:
+
         class ConnectionObserver(gatt_client.GattClientCallbacks):
             """Observer to observe the connection state."""
 
@@ -251,8 +252,8 @@ class HostService(host_grpc_aio.HostServicer):
 
                 future = self.task['connect_le_device']
                 if status != floss_enums.GattStatus.SUCCESS:
-                    future.get_loop().call_soon_threadsafe(
-                        future.set_result, (False, f'{address} failed to connect. Status: {status}.'))
+                    future.get_loop().call_soon_threadsafe(future.set_result,
+                                                           (False, f'{address} failed to connect. Status: {status}.'))
                     return
 
                 future.get_loop().call_soon_threadsafe(future.set_result, (connected, None))
@@ -268,10 +269,7 @@ class HostService(host_grpc_aio.HostServicer):
         self.initiated_le_connection.add(address)
         try:
             connect_le_device = asyncio.get_running_loop().create_future()
-            observer = ConnectionObserver({
-                'connect_le_device': connect_le_device,
-                'address': address
-            })
+            observer = ConnectionObserver({'connect_le_device': connect_le_device, 'address': address})
             name = utils.create_observer_name(observer)
             self.bluetooth.gatt_client.register_callback_observer(name, observer)
             self.bluetooth.gatt_connect(address, True, floss_enums.BtTransport.LE)
