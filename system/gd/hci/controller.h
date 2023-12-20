@@ -203,9 +203,25 @@ class Controller : public Module {
     uint8_t le_address_generation_offloading_support_;
     uint32_t a2dp_source_offload_capability_mask_;
     uint8_t bluetooth_quality_report_support_;
+    uint32_t dynamic_audio_buffer_support_;
   };
 
   virtual VendorCapabilities GetVendorCapabilities() const;
+
+  virtual bool GetControllerDabSbcSupported() const;
+  virtual bool GetControllerDabAacSupported() const;
+  virtual bool GetControllerDabAptxSupported() const;
+  virtual bool GetControllerDabAptxHdSupported() const;
+  virtual bool GetControllerDabLdacSupported() const;
+  virtual ControllerDabCodecCapability GetControllerDabSbcCapability() const;
+  virtual ControllerDabCodecCapability GetControllerDabAacCapability() const;
+  virtual ControllerDabCodecCapability GetControllerDabAptxCapability() const;
+  virtual ControllerDabCodecCapability GetControllerDabAptxHdCapability() const;
+  virtual ControllerDabCodecCapability GetControllerDabLdacCapability() const;
+  virtual const std::vector<ControllerDabCodecCapability>& GetControllerDabReservedCapabilities()
+      const;
+
+  virtual void SetControllerDabAudioBufferTime(uint16_t buffer_time_ms);
 
   virtual bool IsSupported(OpCode op_code) const;
 
