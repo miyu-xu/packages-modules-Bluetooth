@@ -42,8 +42,15 @@ abstract class LeScanningTestBase {
     @JvmField val mBluetoothAdapter = mBluetoothManager.adapter
     @JvmField val mLeScanner = mBluetoothAdapter.bluetoothLeScanner
 
-    fun advertiseWithBumble(serviceUuid: String?, addressType: OwnAddressType) {
-        val requestBuilder = AdvertiseRequest.newBuilder().setOwnAddressType(addressType)
+    fun advertiseWithBumble(
+        addressType: OwnAddressType,
+        serviceUuid: String? = null,
+        isConnectable: Boolean = false
+    ) {
+        val requestBuilder =
+            AdvertiseRequest.newBuilder()
+                .setOwnAddressType(addressType)
+                .setConnectable(isConnectable)
 
         if (serviceUuid != null) {
             val dataTypeBuilder = HostProto.DataTypes.newBuilder()
@@ -64,15 +71,9 @@ abstract class LeScanningTestBase {
         mBumble.host().advertise(requestBuilder.build(), responseObserver)
     }
 
-    fun startScanning(scanFilter: ScanFilter, callbackType: Int): List<ScanResult?>? {
+    fun scanWithCallback(scanFilter: ScanFilter, scanSettings: ScanSettings): List<ScanResult> {
         val future = CompletableFuture<List<ScanResult>>()
         val scanResults = mutableListOf<ScanResult>()
-
-        val scanSettings =
-            ScanSettings.Builder()
-                .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
-                .setCallbackType(callbackType)
-                .build()
 
         val scanCallback =
             object : ScanCallback() {
