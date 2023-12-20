@@ -21,6 +21,8 @@
 #include <android/binder_manager.h>
 #include <android_bluetooth_flags.h>
 
+#include <thread>
+
 namespace bluetooth {
 namespace audio {
 namespace aidl {
@@ -234,8 +236,7 @@ void BluetoothAudioClientInterface::FetchAudioProvider() {
 }
 
 BluetoothAudioSinkClientInterface::BluetoothAudioSinkClientInterface(
-    IBluetoothSinkTransportInstance* sink,
-    bluetooth::common::MessageLoopThread* message_loop)
+    IBluetoothSinkTransportInstance* sink)
     : BluetoothAudioClientInterface{sink}, sink_(sink) {
   FetchAudioProvider();
 }
@@ -248,8 +249,7 @@ BluetoothAudioSinkClientInterface::~BluetoothAudioSinkClientInterface() {
 }
 
 BluetoothAudioSourceClientInterface::BluetoothAudioSourceClientInterface(
-    IBluetoothSourceTransportInstance* source,
-    bluetooth::common::MessageLoopThread* message_loop)
+    IBluetoothSourceTransportInstance* source)
     : BluetoothAudioClientInterface{source}, source_(source) {
   FetchAudioProvider();
 }
