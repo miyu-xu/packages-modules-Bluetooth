@@ -39,8 +39,10 @@
 #include "bta/include/bta_api.h"
 #include "common/time_util.h"
 #include "device/include/controller.h"
+#include "hci/controller.h"
 #include "include/check.h"
 #include "main/shim/acl_api.h"
+#include "main/shim/entry.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"  // UNUSED_ATTR
 #include "osi/include/properties.h"
@@ -91,6 +93,8 @@ static void btm_ble_start_scan();
 static void btm_ble_stop_scan();
 static tBTM_STATUS btm_ble_stop_adv(void);
 static tBTM_STATUS btm_ble_start_adv(void);
+
+using bluetooth::shim::GetController;
 
 namespace {
 
@@ -185,7 +189,6 @@ bool ble_vnd_is_included() {
   return GET_SYSPROP(Ble, vnd_included, true);
 }
 
-static tBTM_BLE_CTRL_FEATURES_CBACK* p_ctrl_le_feature_rd_cmpl_cback = NULL;
 /**********PAST & PS *******************/
 using StartSyncCb = base::Callback<void(
     uint8_t /*status*/, uint16_t /*sync_handle*/, uint8_t /*advertising_sid*/,
@@ -615,164 +618,6 @@ tBTM_STATUS BTM_BleObserve(bool start, uint8_t duration,
   return status;
 }
 
-static void btm_get_dynamic_audio_buffer_vsc_cmpl_cback(
-    tBTM_VSC_CMPL* p_vsc_cmpl_params) {
-  LOG(INFO) << __func__;
-
-  if (p_vsc_cmpl_params->param_len < 1) {
-    LOG(ERROR) << __func__
-               << ": The length of returned parameters is less than 1";
-    return;
-  }
-  uint8_t* p_event_param_buf = p_vsc_cmpl_params->p_param_buf;
-  uint8_t status = 0xff;
-  uint8_t opcode = 0xff;
-  uint32_t codec_mask = 0xffffffff;
-
-  // [Return Parameter]         | [Size]   | [Purpose]
-  // Status                     | 1 octet  | Command complete status
-  // Dynamic_Audio_Buffer_opcode| 1 octet  | 0x01 - Get buffer time
-  // Audio_Codedc_Type_Supported| 4 octet  | Bit masks for selected codec types
-  // Audio_Codec_Buffer_Time    | 192 octet| Default/Max/Min buffer time
-  STREAM_TO_UINT8(status, p_event_param_buf);
-  if (status != HCI_SUCCESS) {
-    LOG(ERROR) << __func__
-               << ": Fail to configure DFTB. status: " << loghex(status);
-    return;
-  }
-
-  if (p_vsc_cmpl_params->param_len != 198) {
-    LOG(FATAL) << __func__
-               << ": The length of returned parameters is not equal to 198: "
-               << std::to_string(p_vsc_cmpl_params->param_len);
-    return;
-  }
-
-  STREAM_TO_UINT8(opcode, p_event_param_buf);
-  LOG(INFO) << __func__ << ": opcode = " << loghex(opcode);
-
-  if (opcode == 0x01) {
-    STREAM_TO_UINT32(codec_mask, p_event_param_buf);
-    LOG(INFO) << __func__ << ": codec_mask = " << loghex(codec_mask);
-
-    for (int i = 0; i < BTM_CODEC_TYPE_MAX_RECORDS; i++) {
-      STREAM_TO_UINT16(btm_cb.dynamic_audio_buffer_cb[i].default_buffer_time,
-                       p_event_param_buf);
-      STREAM_TO_UINT16(btm_cb.dynamic_audio_buffer_cb[i].maximum_buffer_time,
-                       p_event_param_buf);
-      STREAM_TO_UINT16(btm_cb.dynamic_audio_buffer_cb[i].minimum_buffer_time,
-                       p_event_param_buf);
-    }
-
-    LOG(INFO) << __func__ << ": Succeed to receive Media Tx Buffer.";
-  }
-}
-
-/*******************************************************************************
- *
- * Function         btm_vsc_brcm_features_complete
- *
- * Description      Command Complete callback for HCI_BLE_VENDOR_CAP
- *
- * Returns          void
- *
- ******************************************************************************/
-static void btm_ble_vendor_capability_vsc_cmpl_cback(
-    tBTM_VSC_CMPL* p_vcs_cplt_params) {
-  LOG_VERBOSE("%s", __func__);
-
-  /* Check status of command complete event */
-  CHECK(p_vcs_cplt_params->opcode == HCI_BLE_VENDOR_CAP);
-  CHECK(p_vcs_cplt_params->param_len > 0);
-
-  const uint8_t* p = p_vcs_cplt_params->p_param_buf;
-  uint8_t raw_status;
-  STREAM_TO_UINT8(raw_status, p);
-  tHCI_STATUS status = to_hci_status_code(raw_status);
-
-  if (status != HCI_SUCCESS) {
-    LOG_VERBOSE("%s: Status = 0x%02x (0 is success)", __func__, status);
-    return;
-  }
-  CHECK(p_vcs_cplt_params->param_len >= BTM_VSC_CHIP_CAPABILITY_RSP_LEN);
-  STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.adv_inst_max, p);
-  STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.rpa_offloading, p);
-  STREAM_TO_UINT16(btm_cb.cmn_ble_vsc_cb.tot_scan_results_strg, p);
-  STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.max_irk_list_sz, p);
-  STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.filter_support, p);
-  STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.max_filter, p);
-  STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.energy_support, p);
-
-  if (p_vcs_cplt_params->param_len >
-      BTM_VSC_CHIP_CAPABILITY_RSP_LEN_L_RELEASE) {
-    STREAM_TO_UINT16(btm_cb.cmn_ble_vsc_cb.version_supported, p);
-  } else {
-    btm_cb.cmn_ble_vsc_cb.version_supported = BTM_VSC_CHIP_CAPABILITY_L_VERSION;
-  }
-
-  if (btm_cb.cmn_ble_vsc_cb.version_supported >=
-      BTM_VSC_CHIP_CAPABILITY_M_VERSION) {
-    CHECK(p_vcs_cplt_params->param_len >=
-          BTM_VSC_CHIP_CAPABILITY_RSP_LEN_M_RELEASE);
-    STREAM_TO_UINT16(btm_cb.cmn_ble_vsc_cb.total_trackable_advertisers, p);
-    STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.extended_scan_support, p);
-    STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.debug_logging_supported, p);
-  }
-
-  if (btm_cb.cmn_ble_vsc_cb.version_supported >=
-      BTM_VSC_CHIP_CAPABILITY_S_VERSION) {
-    if (p_vcs_cplt_params->param_len >=
-        BTM_VSC_CHIP_CAPABILITY_RSP_LEN_S_RELEASE) {
-      STREAM_TO_UINT8(
-          btm_cb.cmn_ble_vsc_cb.le_address_generation_offloading_support, p);
-      STREAM_TO_UINT32(
-          btm_cb.cmn_ble_vsc_cb.a2dp_source_offload_capability_mask, p);
-      STREAM_TO_UINT8(btm_cb.cmn_ble_vsc_cb.quality_report_support, p);
-      STREAM_TO_UINT32(btm_cb.cmn_ble_vsc_cb.dynamic_audio_buffer_support, p);
-
-      if (btm_cb.cmn_ble_vsc_cb.dynamic_audio_buffer_support != 0) {
-        uint8_t param[3] = {0};
-        uint8_t* p_param = param;
-
-        UINT8_TO_STREAM(p_param, HCI_CONTROLLER_DAB_GET_BUFFER_TIME);
-        BTM_VendorSpecificCommand(HCI_CONTROLLER_DAB, p_param - param, param,
-                                  btm_get_dynamic_audio_buffer_vsc_cmpl_cback);
-      }
-    }
-  }
-
-  if (btm_cb.cmn_ble_vsc_cb.filter_support == 1 &&
-      controller_get_interface()->get_bt_version()->manufacturer ==
-          LMP_COMPID_QTI) {
-    // QTI controller, TDS data filter are supported by default. Check is added
-    // to keep backward compatibility.
-    btm_cb.cmn_ble_vsc_cb.adv_filter_extended_features_mask = 0x01;
-  } else {
-    btm_cb.cmn_ble_vsc_cb.adv_filter_extended_features_mask = 0x00;
-  }
-
-  btm_cb.cmn_ble_vsc_cb.values_read = true;
-
-  LOG_VERBOSE("%s: stat=%d, irk=%d, ADV ins:%d, rpa=%d, ener=%d, ext_scan=%d",
-              __func__, status, btm_cb.cmn_ble_vsc_cb.max_irk_list_sz,
-              btm_cb.cmn_ble_vsc_cb.adv_inst_max,
-              btm_cb.cmn_ble_vsc_cb.rpa_offloading,
-              btm_cb.cmn_ble_vsc_cb.energy_support,
-              btm_cb.cmn_ble_vsc_cb.extended_scan_support);
-
-  if (btm_cb.cmn_ble_vsc_cb.max_filter > 0) btm_ble_adv_filter_init();
-
-  /* VS capability included and non-4.2 device */
-  if (controller_get_interface()->SupportsBle() &&
-      controller_get_interface()->SupportsBlePrivacy() &&
-      btm_cb.cmn_ble_vsc_cb.max_irk_list_sz > 0 &&
-      controller_get_interface()->get_ble_resolving_list_max_size() == 0)
-    btm_ble_resolving_list_init(btm_cb.cmn_ble_vsc_cb.max_irk_list_sz);
-
-  if (p_ctrl_le_feature_rd_cmpl_cback != NULL)
-    p_ctrl_le_feature_rd_cmpl_cback(static_cast<tHCI_STATUS>(status));
-}
-
 /*******************************************************************************
  *
  * Function         BTM_BleGetVendorCapabilities
@@ -818,11 +663,85 @@ void BTM_BleReadControllerFeatures(tBTM_BLE_CTRL_FEATURES_CBACK* p_vsc_cback) {
 
   if (btm_cb.cmn_ble_vsc_cb.values_read) return;
 
+  btm_cb.cmn_ble_vsc_cb.values_read = true;
+
   LOG_VERBOSE("BTM_BleReadControllerFeatures");
 
-  p_ctrl_le_feature_rd_cmpl_cback = p_vsc_cback;
-  BTM_VendorSpecificCommand(HCI_BLE_VENDOR_CAP, 0, NULL,
-                            btm_ble_vendor_capability_vsc_cmpl_cback);
+  bluetooth::hci::Controller::VendorCapabilities vendor_capabilities =
+      GetController()->GetVendorCapabilities();
+
+  btm_cb.cmn_ble_vsc_cb.adv_inst_max = vendor_capabilities.max_advt_instances_;
+  btm_cb.cmn_ble_vsc_cb.rpa_offloading =
+      vendor_capabilities.offloaded_resolution_of_private_address_;
+  btm_cb.cmn_ble_vsc_cb.tot_scan_results_strg =
+      vendor_capabilities.total_scan_results_storage_;
+  btm_cb.cmn_ble_vsc_cb.max_irk_list_sz = vendor_capabilities.max_irk_list_sz_;
+  btm_cb.cmn_ble_vsc_cb.filter_support = vendor_capabilities.filtering_support_;
+  btm_cb.cmn_ble_vsc_cb.max_filter = vendor_capabilities.max_filter_;
+  btm_cb.cmn_ble_vsc_cb.energy_support =
+      vendor_capabilities.activity_energy_info_support_;
+
+  btm_cb.cmn_ble_vsc_cb.version_supported =
+      vendor_capabilities.version_supported_;
+  btm_cb.cmn_ble_vsc_cb.total_trackable_advertisers =
+      vendor_capabilities.total_num_of_advt_tracked_;
+  btm_cb.cmn_ble_vsc_cb.extended_scan_support =
+      vendor_capabilities.extended_scan_support_;
+  btm_cb.cmn_ble_vsc_cb.debug_logging_supported =
+      vendor_capabilities.debug_logging_supported_;
+
+  btm_cb.cmn_ble_vsc_cb.le_address_generation_offloading_support =
+      vendor_capabilities.le_address_generation_offloading_support_;
+  btm_cb.cmn_ble_vsc_cb.a2dp_source_offload_capability_mask =
+      vendor_capabilities.a2dp_source_offload_capability_mask_;
+  btm_cb.cmn_ble_vsc_cb.quality_report_support =
+      vendor_capabilities.bluetooth_quality_report_support_;
+  btm_cb.cmn_ble_vsc_cb.dynamic_audio_buffer_support =
+      vendor_capabilities.dynamic_audio_buffer_support_;
+
+  if (GetController()->GetVendorCapabilities().dynamic_audio_buffer_support_) {
+    std::array<bluetooth::hci::DynamicAudioBufferCodecCapability,
+               BTM_CODEC_TYPE_MAX_RECORDS>
+        capabilities = GetController()->GetDabCodecCapabilities();
+
+    for (size_t i = 0; i < capabilities.size(); i++) {
+      btm_cb.dynamic_audio_buffer_cb[i].default_buffer_time =
+          capabilities[i].default_time_ms_;
+      btm_cb.dynamic_audio_buffer_cb[i].maximum_buffer_time =
+          capabilities[i].maximum_time_ms_;
+      btm_cb.dynamic_audio_buffer_cb[i].minimum_buffer_time =
+          capabilities[i].minimum_time_ms_;
+    }
+  }
+
+  if (btm_cb.cmn_ble_vsc_cb.filter_support == 1 &&
+      GetController()->GetLocalVersionInformation().manufacturer_name_ ==
+          LMP_COMPID_QTI) {
+    // QTI controller, TDS data filter are supported by default.
+    btm_cb.cmn_ble_vsc_cb.adv_filter_extended_features_mask = 0x01;
+  } else {
+    btm_cb.cmn_ble_vsc_cb.adv_filter_extended_features_mask = 0x00;
+  }
+
+  LOG_VERBOSE("irk=%d, ADV ins:%d, rpa=%d, ener=%d, ext_scan=%d",
+              btm_cb.cmn_ble_vsc_cb.max_irk_list_sz,
+              btm_cb.cmn_ble_vsc_cb.adv_inst_max,
+              btm_cb.cmn_ble_vsc_cb.rpa_offloading,
+              btm_cb.cmn_ble_vsc_cb.energy_support,
+              btm_cb.cmn_ble_vsc_cb.extended_scan_support);
+
+  if (btm_cb.cmn_ble_vsc_cb.max_filter > 0) btm_ble_adv_filter_init();
+
+  /* VS capability included and non-4.2 device */
+  if (GetController()->SupportsBle() && GetController()->SupportsBlePrivacy() &&
+      btm_cb.cmn_ble_vsc_cb.max_irk_list_sz > 0 &&
+      GetController()->GetLeResolvingListSize() == 0) {
+    btm_ble_resolving_list_init(btm_cb.cmn_ble_vsc_cb.max_irk_list_sz);
+  }
+
+  if (p_vsc_cback != NULL) {
+    p_vsc_cback(tHCI_STATUS::HCI_SUCCESS);
+  }
 }
 
 /*******************************************************************************
