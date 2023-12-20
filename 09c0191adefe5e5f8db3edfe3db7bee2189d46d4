@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a1355d3_b2e7c596",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-20T20:27:34Z",
+      "side": 1,
+      "message": "Pinged offline to check if this is possible to use for the bug fix intended due to code location of fix CL.",
+      "revId": "09c0191adefe5e5f8db3edfe3db7bee2189d46d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
