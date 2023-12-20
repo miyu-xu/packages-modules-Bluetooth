@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0315dcd7_369e8cc2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-20T03:44:33Z",
+      "side": 1,
+      "message": "Extracting flatbuffer impl into a more general module informational dump using other impls (notif, descriptor and stream for now)",
+      "revId": "b7c99d87ece8dae3f48d6bd3103a74dc6e26149d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
