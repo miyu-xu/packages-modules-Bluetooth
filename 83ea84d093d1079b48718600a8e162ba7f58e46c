@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a611baa_f133141d",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-20T10:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ae826f8b_d0c773be",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c6bf61c7_dba47d28",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-20T00:55:54Z",
       "side": 1,
       "message": "nit: IMHO this name doesn\u0027t really represent what we\u0027re trying to do there. should we consider to change it to something like notifyNewRegisteredCallback and add some comment in the caller place this will trigger the volume callbacks on registration?",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "056c9e97_96107d64",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-20T10:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c6bf61c7_dba47d28",
       "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "87b8cfb7_c13c4029",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-20T10:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c4c4ae1e_fea0677b",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c173a9ea_775cfdff",
@@ -69,6 +123,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "41360f83_3d30ec54",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-20T10:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c173a9ea_775cfdff",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2167c615_426ce982",
@@ -82,6 +154,24 @@
       "writtenOn": "2023-12-20T00:55:54Z",
       "side": 1,
       "message": "```suggestion\n    private void notifyDevicesVolumeChanged(RemoteCallbackList\u003cIBluetoothVolumeControlCallback\u003e callbacks\n```\n\nAnd then inside this function, use callbacks to replace mCallbacks.",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "099e5e31_b6049762",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1255,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-20T10:06:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2167c615_426ce982",
       "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
