@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee6c5563_f97f443d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTestBase.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-20T23:48:04Z",
+      "side": 1,
+      "message": "GATT should not be maintained in a scanning test class. \n\nThis base class should ideally be more generic if intended to be used as it is currently declared.",
+      "range": {
+        "startLine": 240,
+        "startChar": 8,
+        "endLine": 240,
+        "endChar": 19
+      },
+      "revId": "584961261a2b5ed44b74066c2487134eadd16186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
