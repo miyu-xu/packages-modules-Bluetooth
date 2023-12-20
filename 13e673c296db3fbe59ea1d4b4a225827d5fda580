@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be3d89f7_e8001193",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2023-12-20T13:59:13Z",
+      "side": 1,
+      "message": "Chatted with CL owner: flag exemption approved since there is no logical changes and that the risk of regressions is low and mitigated by unit test coverage.",
+      "revId": "13e673c296db3fbe59ea1d4b4a225827d5fda580",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
