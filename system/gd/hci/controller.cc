@@ -26,6 +26,7 @@
 #include "hci/event_checkers.h"
 #include "hci/hci_layer.h"
 #include "hci_controller_generated.h"
+#include "os/log.h"
 #include "os/metrics.h"
 #include "os/system_properties.h"
 #include "sysprops/sysprops_module.h"
@@ -551,58 +552,141 @@ struct Controller::impl {
     vendor_capabilities_.a2dp_source_offload_capability_mask_ = 0x00;
     vendor_capabilities_.bluetooth_quality_report_support_ = 0x00;
 
-    if (complete_view.IsValid()) {
-      vendor_capabilities_.is_supported_ = 0x01;
-
-      // v0.55
-      BaseVendorCapabilities base_vendor_capabilities = complete_view.GetBaseVendorCapabilities();
-      vendor_capabilities_.max_advt_instances_ = base_vendor_capabilities.max_advt_instances_;
-      vendor_capabilities_.offloaded_resolution_of_private_address_ =
-          base_vendor_capabilities.offloaded_resolution_of_private_address_;
-      vendor_capabilities_.total_scan_results_storage_ = base_vendor_capabilities.total_scan_results_storage_;
-      vendor_capabilities_.max_irk_list_sz_ = base_vendor_capabilities.max_irk_list_sz_;
-      vendor_capabilities_.filtering_support_ = base_vendor_capabilities.filtering_support_;
-      vendor_capabilities_.max_filter_ = base_vendor_capabilities.max_filter_;
-      vendor_capabilities_.activity_energy_info_support_ = base_vendor_capabilities.activity_energy_info_support_;
-      if (complete_view.GetPayload().size() == 0) {
-        vendor_capabilities_.version_supported_ = 55;
-        return;
-      }
-
-      // v0.95
-      auto v95 = LeGetVendorCapabilitiesComplete095View::Create(complete_view);
-      if (!v95.IsValid()) {
-        LOG_ERROR("invalid data for hci requirements v0.95");
-        return;
-      }
-      vendor_capabilities_.version_supported_ = v95.GetVersionSupported();
-      vendor_capabilities_.total_num_of_advt_tracked_ = v95.GetTotalNumOfAdvtTracked();
-      vendor_capabilities_.extended_scan_support_ = v95.GetExtendedScanSupport();
-      vendor_capabilities_.debug_logging_supported_ = v95.GetDebugLoggingSupported();
-      if (vendor_capabilities_.version_supported_ <= 95 || complete_view.GetPayload().size() == 0) {
-        return;
-      }
-
-      // v0.96
-      auto v96 = LeGetVendorCapabilitiesComplete096View::Create(v95);
-      if (!v96.IsValid()) {
-        LOG_ERROR("invalid data for hci requirements v0.96");
-        return;
-      }
-      vendor_capabilities_.le_address_generation_offloading_support_ = v96.GetLeAddressGenerationOffloadingSupport();
-      if (vendor_capabilities_.version_supported_ <= 96 || complete_view.GetPayload().size() == 0) {
-        return;
-      }
-
-      // v0.98
-      auto v98 = LeGetVendorCapabilitiesComplete098View::Create(v96);
-      if (!v98.IsValid()) {
-        LOG_ERROR("invalid data for hci requirements v0.98");
-        return;
-      }
-      vendor_capabilities_.a2dp_source_offload_capability_mask_ = v98.GetA2dpSourceOffloadCapabilityMask();
-      vendor_capabilities_.bluetooth_quality_report_support_ = v98.GetBluetoothQualityReportSupport();
+    if (!complete_view.IsValid()) {
+      return;
     }
+    vendor_capabilities_.is_supported_ = 0x01;
+
+    // v0.55
+    BaseVendorCapabilities base_vendor_capabilities = complete_view.GetBaseVendorCapabilities();
+    vendor_capabilities_.max_advt_instances_ = base_vendor_capabilities.max_advt_instances_;
+    vendor_capabilities_.offloaded_resolution_of_private_address_ =
+        base_vendor_capabilities.offloaded_resolution_of_private_address_;
+    vendor_capabilities_.total_scan_results_storage_ =
+        base_vendor_capabilities.total_scan_results_storage_;
+    vendor_capabilities_.max_irk_list_sz_ = base_vendor_capabilities.max_irk_list_sz_;
+    vendor_capabilities_.filtering_support_ = base_vendor_capabilities.filtering_support_;
+    vendor_capabilities_.max_filter_ = base_vendor_capabilities.max_filter_;
+    vendor_capabilities_.activity_energy_info_support_ =
+        base_vendor_capabilities.activity_energy_info_support_;
+
+    if (complete_view.GetPayload().size() == 0) {
+      vendor_capabilities_.version_supported_ = 55;
+      return;
+    }
+
+    // v0.95
+    auto v95 = LeGetVendorCapabilitiesComplete095View::Create(complete_view);
+    if (!v95.IsValid()) {
+      LOG_INFO("invalid data for hci requirements v0.95");
+      return;
+    }
+    vendor_capabilities_.version_supported_ = v95.GetVersionSupported();
+    vendor_capabilities_.total_num_of_advt_tracked_ = v95.GetTotalNumOfAdvtTracked();
+    vendor_capabilities_.extended_scan_support_ = v95.GetExtendedScanSupport();
+    vendor_capabilities_.debug_logging_supported_ = v95.GetDebugLoggingSupported();
+    if (vendor_capabilities_.version_supported_ <= 95 || complete_view.GetPayload().size() == 0) {
+      return;
+    }
+
+    // v0.96
+    auto v96 = LeGetVendorCapabilitiesComplete096View::Create(v95);
+    if (!v96.IsValid()) {
+      LOG_INFO("invalid data for hci requirements v0.96");
+      return;
+    }
+    vendor_capabilities_.le_address_generation_offloading_support_ =
+        v96.GetLeAddressGenerationOffloadingSupport();
+    if (vendor_capabilities_.version_supported_ <= 96 || complete_view.GetPayload().size() == 0) {
+      return;
+    }
+
+    // v0.98
+    auto v98 = LeGetVendorCapabilitiesComplete098View::Create(v96);
+    if (!v98.IsValid()) {
+      LOG_INFO("invalid data for hci requirements v0.98");
+      return;
+    }
+    vendor_capabilities_.a2dp_source_offload_capability_mask_ =
+        v98.GetA2dpSourceOffloadCapabilityMask();
+    vendor_capabilities_.bluetooth_quality_report_support_ = v98.GetBluetoothQualityReportSupport();
+
+    // v1.03
+    auto v103 = LeGetVendorCapabilitiesComplete103View::Create(v98);
+    if (!v103.IsValid()) {
+      LOG_INFO("invalid data for hci requirements v1.03");
+      return;
+    }
+    vendor_capabilities_.dynamic_audio_buffer_support_ = v103.GetDynamicAudioBufferSupport();
+
+    if (vendor_capabilities_.dynamic_audio_buffer_support_ > 0) {
+      hci_->EnqueueCommand(
+          ControllerDabReadCapabilityBuilder::Create(),
+          module_.GetHandler()->BindOnceOn(
+              this, &Controller::impl::le_get_dynamic_audio_buffer_support_handler));
+    }
+  }
+
+  void le_get_dynamic_audio_buffer_support_handler(CommandCompleteView view) {
+    auto dab_complete_view = ControllerDabCompleteView::Create(view);
+    if (!dab_complete_view.IsValid()) {
+      LOG_WARN("Invalid ControllerDabComplete");
+      return;
+    }
+
+    if (dab_complete_view.GetStatus() != ErrorCode::SUCCESS) {
+      LOG_WARN("Unexpected error code %s", ErrorCodeText(dab_complete_view.GetStatus()).c_str());
+    }
+
+    auto complete_view = ControllerDabReadCapabilityCompleteView::Create(dab_complete_view);
+    if (!complete_view.IsValid()) {
+      LOG_WARN("Invalid ControllerDabReadCapabilityComplete");
+      return;
+    }
+    dab_sbc_supported_ = complete_view.GetSbcSupported();
+    dab_aac_supported_ = complete_view.GetAacSupported();
+    dab_aptx_supported_ = complete_view.GetAptxSupported();
+    dab_aptx_hd_supported_ = complete_view.GetAptxHdSupported();
+    dab_ldac_supported_ = complete_view.GetLdacSupported();
+    dab_sbc_ = complete_view.GetSbcCapabilities();
+    dab_aac_ = complete_view.GetAacCapabilities();
+    dab_aptx_ = complete_view.GetAptxCapabilities();
+    dab_aptx_hd_ = complete_view.GetAptxHdCapabilities();
+    dab_ldac_ = complete_view.GetLdacCapabilities();
+    auto reserved = complete_view.GetReservedCapabilities();
+    for (const auto cap : reserved) {
+      dab_reserved_.push_back(cap);
+    }
+  }
+
+  void set_controller_dab_audio_buffer_time_complete(CommandCompleteView complete) {
+    auto dab_complete = ControllerDabCompleteView::Create(complete);
+    if (!dab_complete.IsValid()) {
+      LOG_WARN("Invalid command complete");
+      return;
+    }
+
+    if (dab_complete.GetStatus() != ErrorCode::SUCCESS) {
+      LOG_WARN("Unexpected return code %s", ErrorCodeText(dab_complete.GetStatus()).c_str());
+      return;
+    }
+
+    auto dab_set_complete = ControllerDabSetAudioBufferTimeCompleteView::Create(dab_complete);
+
+    if (!dab_set_complete.IsValid()) {
+      LOG_WARN("Invalid DabSetComplete");
+      return;
+    }
+
+    uint16_t time_ms = dab_set_complete.GetCurrentBufferTimeMs();
+    LOG_INFO("Configured Media Tx Buffer, time returned = %d", time_ms);
+  }
+
+  void set_controller_dab_audio_buffer_time(uint16_t buffer_time_ms) {
+    hci_->EnqueueCommand(
+        ControllerDabSetAudioBufferTimeBuilder::Create(buffer_time_ms),
+        module_.GetHandler()->BindOnceOn(
+            this, &Controller::impl::set_controller_dab_audio_buffer_time_complete));
   }
 
   void set_event_mask(uint64_t event_mask) {
@@ -1033,6 +1117,8 @@ struct Controller::impl {
         return vendor_capabilities_.a2dp_source_offload_capability_mask_ != 0x00;
       case OpCode::CONTROLLER_BQR:
         return vendor_capabilities_.bluetooth_quality_report_support_ == 0x01;
+      case OpCode::CONTROLLER_DAB:
+        return vendor_capabilities_.dynamic_audio_buffer_support_ > 0x00;
       // Before MSFT extension is fully supported, return false for the following MSFT_OPCODE_XXXX for now.
       case OpCode::MSFT_OPCODE_INTEL:
         return false;
@@ -1095,6 +1181,17 @@ struct Controller::impl {
   uint8_t le_number_supported_advertising_sets_{};
   uint8_t le_periodic_advertiser_list_size_{};
   VendorCapabilities vendor_capabilities_{};
+  bool dab_sbc_supported_{};
+  bool dab_aac_supported_{};
+  bool dab_aptx_supported_{};
+  bool dab_aptx_hd_supported_{};
+  bool dab_ldac_supported_{};
+  ControllerDabCodecCapability dab_sbc_{};
+  ControllerDabCodecCapability dab_aac_{};
+  ControllerDabCodecCapability dab_aptx_{};
+  ControllerDabCodecCapability dab_aptx_hd_{};
+  ControllerDabCodecCapability dab_ldac_{};
+  std::vector<ControllerDabCodecCapability> dab_reserved_{};
 };  // namespace hci
 
 Controller::Controller() : impl_(std::make_unique<impl>(*this)) {}
@@ -1363,6 +1460,59 @@ uint8_t Controller::GetLeNumberOfSupportedAdverisingSets() const {
 
 Controller::VendorCapabilities Controller::GetVendorCapabilities() const {
   return impl_->vendor_capabilities_;
+}
+
+bool Controller::GetControllerDabSbcSupported() const {
+  return impl_->dab_sbc_supported_;
+}
+
+bool Controller::GetControllerDabAacSupported() const {
+  return impl_->dab_aac_supported_;
+}
+
+bool Controller::GetControllerDabAptxSupported() const {
+  return impl_->dab_aptx_supported_;
+}
+
+bool Controller::GetControllerDabAptxHdSupported() const {
+  return impl_->dab_aptx_hd_supported_;
+}
+
+bool Controller::GetControllerDabLdacSupported() const {
+  return impl_->dab_ldac_supported_;
+}
+
+ControllerDabCodecCapability Controller::GetControllerDabSbcCapability() const {
+  return impl_->dab_sbc_;
+}
+
+ControllerDabCodecCapability Controller::GetControllerDabAacCapability() const {
+  return impl_->dab_aac_;
+}
+
+ControllerDabCodecCapability Controller::GetControllerDabAptxCapability() const {
+  return impl_->dab_aptx_;
+}
+
+ControllerDabCodecCapability Controller::GetControllerDabAptxHdCapability() const {
+  return impl_->dab_aptx_hd_;
+}
+
+ControllerDabCodecCapability Controller::GetControllerDabLdacCapability() const {
+  return impl_->dab_ldac_;
+}
+
+const std::vector<ControllerDabCodecCapability>& Controller::GetControllerDabReservedCapabilities()
+    const {
+  return impl_->dab_reserved_;
+}
+
+void Controller::SetControllerDabAudioBufferTime(uint16_t buffer_time_ms) {
+  if (impl_->vendor_capabilities_.dynamic_audio_buffer_support_ == 0) {
+    LOG_WARN("Dynamic Audio Buffer not supported");
+    return;
+  }
+  impl_->set_controller_dab_audio_buffer_time(buffer_time_ms);
 }
 
 uint8_t Controller::GetLePeriodicAdvertiserListSize() const {
