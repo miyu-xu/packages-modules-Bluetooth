@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae826f8b_d0c773be",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 811,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-20T00:55:54Z",
+      "side": 1,
+      "message": "Thanks Lukasz, I think I got what you\u0027re trying to fix here, but this will lose the logic in notifyDevicesVolumeChanged to check the group volume first, mDeviceVolumeCache will only have valid value if we\u0027re setting individual values.\nI\u0027d suggest another approach, we keep using the function here and add callback as a handle. And then move this block after \nline 825 tempCallbackList.finishBroadcast();\n\n\n```suggestion\nif (mFeatureFlags.leaudioBroadcastVolumeControlForConnectedDevices()) {\n    notifyDevicesVolumeChanged(tempCallbackList, getDevices(), Optional.empty());\n}\n```",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6bf61c7_dba47d28",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 841,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-20T00:55:54Z",
+      "side": 1,
+      "message": "nit: IMHO this name doesn\u0027t really represent what we\u0027re trying to do there. should we consider to change it to something like notifyNewRegisteredCallback and add some comment in the caller place this will trigger the volume callbacks on registration?",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4c4ae1e_fea0677b",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 963,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-20T00:55:54Z",
+      "side": 1,
+      "message": "pass in mCallback here for those 2 places",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c173a9ea_775cfdff",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1252,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-20T00:55:54Z",
+      "side": 1,
+      "message": "```suggestion\n     * @param callbacks list of callbacks\n     * @param devices list of devices to notify volume changed\n```",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2167c615_426ce982",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 1255,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-20T00:55:54Z",
+      "side": 1,
+      "message": "```suggestion\n    private void notifyDevicesVolumeChanged(RemoteCallbackList\u003cIBluetoothVolumeControlCallback\u003e callbacks\n```\n\nAnd then inside this function, use callbacks to replace mCallbacks.",
+      "revId": "83ea84d093d1079b48718600a8e162ba7f58e46c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
