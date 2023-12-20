@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "218be024_826bee35",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-20T23:46:41Z",
+      "side": 1,
+      "message": "Ideally we won\u0027t restrict to low latency here or consider this separately from these tests.\n\nCan you explain more about what you\u0027re trying to achieve with this refactor? \n\nI\u0027d prefer DCK tests are maintained separately from general LE scan tests. The end goal is still not clear to me with this change.",
+      "range": {
+        "startLine": 70,
+        "startChar": 24,
+        "endLine": 70,
+        "endChar": 72
+      },
+      "revId": "2427d889349f4a8718c443a1211096b2c7ff7389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
