@@ -16,6 +16,24 @@
       "message": "shouldn\u0027t we have fixed address value for the anonymous type?",
       "revId": "06deb70ff7adad348549bf2fff2bb4d5a9426ff3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90e56a88_f453fd5d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1381,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-20T19:47:11Z",
+      "side": 1,
+      "message": "Spec advises for anonymous advertisement 0xFF address type means \"No address provided (anonymous advertisement)\".\n\nThus are you suggesting always setting mAddress to NULL_MAC_ADDRESS when input address is of ADDRESS_TYPE_ANONYMOUS, or asserting that input address is equal to NULL_MAC_ADDRESS in the aforementioned case?\n\nI\u0027m open to making that change but just hesitant to be too aggressive with the regression fix here as this val should only be passed internally and if the controller returns non-empty address that seems more a controller issue. But agree that is more technically correct, so willing to make the change if you feel strongly about it",
+      "parentUuid": "e809c8cf_b9551b2d",
+      "revId": "06deb70ff7adad348549bf2fff2bb4d5a9426ff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
