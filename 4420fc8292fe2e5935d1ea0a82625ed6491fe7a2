@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "38789c6a_c35d5d59",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 521,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-20T23:15:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fad91573_96fb671d",
+      "range": {
+        "startLine": 521,
+        "startChar": 11,
+        "endLine": 521,
+        "endChar": 15
+      },
+      "revId": "4420fc8292fe2e5935d1ea0a82625ed6491fe7a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0b49094d_ff79b0f9",
@@ -71,6 +95,30 @@
       "writtenOn": "2023-12-19T23:01:52Z",
       "side": 1,
       "message": "And sent somewhere else from here.",
+      "range": {
+        "startLine": 562,
+        "startChar": 36,
+        "endLine": 562,
+        "endChar": 64
+      },
+      "revId": "4420fc8292fe2e5935d1ea0a82625ed6491fe7a2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "210f33da_4e654ddf",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-20T23:15:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0b49094d_ff79b0f9",
       "range": {
         "startLine": 562,
         "startChar": 36,

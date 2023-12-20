@@ -22,6 +22,30 @@
       },
       "revId": "ffcf6bbecb039e0aca0b39cbad8851d2192b7ab9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de23f8ef_e0c05d36",
+        "filename": "system/btif/src/btif_core.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-20T23:15:37Z",
+      "side": 0,
+      "message": "Thanks Myles, turns out this one is piped all the way up to public API so can\u0027t feasibly be removed despite being unused elsewhere internally AFAICT: https://developer.android.com/reference/android/bluetooth/BluetoothAdapter#isOffloadedScanBatchingSupported()\n\nAdded back in for now.",
+      "parentUuid": "c7157f91_4c20dbe2",
+      "range": {
+        "startLine": 480,
+        "startChar": 22,
+        "endLine": 480,
+        "endChar": 46
+      },
+      "revId": "ffcf6bbecb039e0aca0b39cbad8851d2192b7ab9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
