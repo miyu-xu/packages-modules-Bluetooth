@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2ddfeeea_d82b8f99",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-20T22:47:13Z",
+      "side": 1,
+      "message": "one-line bug-fix for a regression?",
+      "range": {
+        "startLine": 19,
+        "startChar": 13,
+        "endLine": 19,
+        "endChar": 33
+      },
+      "revId": "84cbb6e6a1ed71d83c6f5cd31514ffcada2e301a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
