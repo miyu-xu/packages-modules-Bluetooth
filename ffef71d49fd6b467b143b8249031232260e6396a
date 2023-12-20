@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6c93c459_bff95b63",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2023-12-20T06:03:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "9d08a203_5ed3c477",
+      "range": {
+        "startLine": 39,
+        "startChar": 11,
+        "endLine": 39,
+        "endChar": 35
+      },
+      "revId": "ffef71d49fd6b467b143b8249031232260e6396a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a8397d37_3fa7c412",
         "filename": "flags/hfp.aconfig",
         "patchSetId": 6
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "36a2c149_e3092cfc",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2023-12-20T06:03:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "a8397d37_3fa7c412",
+      "range": {
+        "startLine": 41,
+        "startChar": 65,
+        "endLine": 41,
+        "endChar": 79
+      },
+      "revId": "ffef71d49fd6b467b143b8249031232260e6396a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "073e463f_abdab345",
         "filename": "flags/hfp.aconfig",
         "patchSetId": 6
@@ -60,6 +108,30 @@
       "writtenOn": "2023-12-19T19:18:46Z",
       "side": 1,
       "message": "change to flag value",
+      "range": {
+        "startLine": 42,
+        "startChar": 10,
+        "endLine": 42,
+        "endChar": 19
+      },
+      "revId": "ffef71d49fd6b467b143b8249031232260e6396a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff38741b_b0450b0e",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2023-12-20T06:03:34Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "073e463f_abdab345",
       "range": {
         "startLine": 42,
         "startChar": 10,
