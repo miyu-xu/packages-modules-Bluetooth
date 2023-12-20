@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed588276_5aed4c77",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-20T22:33:54Z",
+      "side": 1,
+      "message": "Copy the keys when re-pairing with a new IRK\n\nThe consolidation process replaces the keys, so when the address is the same, but the IRK is different, the keys are lost if not copied.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 23
+      },
+      "revId": "db7c10f97fdc4c483bcff8f077a31d2f63366106",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
