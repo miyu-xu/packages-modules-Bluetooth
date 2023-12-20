@@ -103,6 +103,30 @@
       },
       "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "23a14388_aba445f3",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2023-12-20T02:57:42Z",
+      "side": 1,
+      "message": "Ditto. Need to replace `bta_jv_pm_conn_busy` with `bta_jv_reset_sniff_timer`.",
+      "parentUuid": "10b2378a_8dbe3acc",
+      "range": {
+        "startLine": 1262,
+        "startChar": 8,
+        "endLine": 1266,
+        "endChar": 9
+      },
+      "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
