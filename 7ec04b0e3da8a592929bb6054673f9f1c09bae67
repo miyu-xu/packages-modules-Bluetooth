@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b3b6596_bebbf1bb",
+        "filename": "system/audio_hal_interface/aidl/a2dp_encoding_aidl.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-12-20T16:40:42Z",
+      "side": 1,
+      "message": "It seems like no one cares about the message_loop:\n```\nBluetoothAudioSinkClientInterface::BluetoothAudioSinkClientInterface(\n    IBluetoothSinkTransportInstance* sink,\n    bluetooth::common::MessageLoopThread* message_loop)\n    : BluetoothAudioClientInterface{sink}, sink_(sink) {\n  FetchAudioProvider();\n}\n```\nshould we then?",
+      "revId": "7ec04b0e3da8a592929bb6054673f9f1c09bae67",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
