@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c612085_fde758cd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-20T02:08:44Z",
+      "side": 1,
+      "message": "FYI if you also add ```Bug: 315241296``` to the flag CL you will get Dr. No automatically on this - see go/bt-best-practices#flagging",
+      "revId": "8918940de2b22a03250677bcb85266965951b51e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
