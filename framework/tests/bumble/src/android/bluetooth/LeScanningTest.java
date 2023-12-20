@@ -60,17 +60,20 @@ public class LeScanningTest extends LeScanningTestBase {
 
     @Test
     public void startBleScan_withCallbackTypeAllMatches() {
-        advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
-
+        advertiseWithBumble(OwnAddressType.PUBLIC, TEST_UUID_STRING);
         ScanFilter scanFilter =
                 new ScanFilter.Builder()
                         .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
                         .build();
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .build();
 
-        List<ScanResult> results =
-                startScanning(scanFilter, ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
+        List<ScanResult> results = scanWithCallback(scanFilter, scanSettings);
 
-        assertThat(results).isNotNull();
+        assertThat(results).isNotEmpty();
         assertThat(results.get(0).getScanRecord().getServiceUuids().get(0))
                 .isEqualTo(ParcelUuid.fromString(TEST_UUID_STRING));
         assertThat(results.get(1).getScanRecord().getServiceUuids().get(0))
@@ -79,8 +82,7 @@ public class LeScanningTest extends LeScanningTestBase {
 
     @Test
     public void scanForIrkIdentityAddress_withCallbackTypeAllMatches() {
-        advertiseWithBumble(null, OwnAddressType.RANDOM);
-
+        advertiseWithBumble(OwnAddressType.RANDOM);
         ScanFilter scanFilter =
                 new ScanFilter.Builder()
                         .setDeviceAddress(
@@ -88,9 +90,13 @@ public class LeScanningTest extends LeScanningTestBase {
                                 BluetoothDevice.ADDRESS_TYPE_RANDOM,
                                 Utils.BUMBLE_IRK)
                         .build();
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .build();
 
-        List<ScanResult> results =
-                startScanning(scanFilter, ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
+        List<ScanResult> results = scanWithCallback(scanFilter, scanSettings);
 
         assertThat(results).isNotEmpty();
         assertThat(results.get(0).getDevice().getAddress()).isEqualTo(TEST_ADDRESS_RANDOM_STATIC);
@@ -98,44 +104,40 @@ public class LeScanningTest extends LeScanningTestBase {
 
     @Test
     public void startBleScan_withCallbackTypeFirstMatchSilentlyFails() {
-        advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
-
+        advertiseWithBumble(OwnAddressType.PUBLIC, TEST_UUID_STRING);
         ScanSettings scanSettings =
                 new ScanSettings.Builder()
                         .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                         .setCallbackType(ScanSettings.CALLBACK_TYPE_FIRST_MATCH)
                         .build();
-
         ScanFilter scanFilter =
                 new ScanFilter.Builder()
                         .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
                         .build();
-
         ScanCallback mockScanCallback = mock(ScanCallback.class);
 
         mLeScanner.startScan(List.of(scanFilter), scanSettings, mockScanCallback);
+
         verify(mockScanCallback, after(TIMEOUT_SCANNING_MS).never()).onScanFailed(anyInt());
         mLeScanner.stopScan(mockScanCallback);
     }
 
     @Test
     public void startBleScan_withCallbackTypeMatchLostSilentlyFails() {
-        advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
-
+        advertiseWithBumble(OwnAddressType.PUBLIC, TEST_UUID_STRING);
         ScanSettings scanSettings =
                 new ScanSettings.Builder()
                         .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                         .setCallbackType(ScanSettings.CALLBACK_TYPE_MATCH_LOST)
                         .build();
-
         ScanFilter scanFilter =
                 new ScanFilter.Builder()
                         .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
                         .build();
-
         ScanCallback mockScanCallback = mock(ScanCallback.class);
 
         mLeScanner.startScan(List.of(scanFilter), scanSettings, mockScanCallback);
+
         verify(mockScanCallback, after(TIMEOUT_SCANNING_MS).never()).onScanFailed(anyInt());
         mLeScanner.stopScan(mockScanCallback);
     }
@@ -146,14 +148,13 @@ public class LeScanningTest extends LeScanningTestBase {
         IntentFilter intentFilter = new IntentFilter(ACTION_DYNAMIC_RECEIVER_SCAN_RESULT);
         mContext.registerReceiver(mockReceiver, intentFilter);
 
-        advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
+        advertiseWithBumble(OwnAddressType.PUBLIC, TEST_UUID_STRING);
 
         ScanSettings scanSettings =
                 new ScanSettings.Builder()
                         .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
                         .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
                         .build();
-
         ScanFilter scanFilter =
                 new ScanFilter.Builder()
                         .setServiceUuid(ParcelUuid.fromString(TEST_UUID_STRING))
@@ -191,7 +192,7 @@ public class LeScanningTest extends LeScanningTestBase {
 
     @Test
     public void startBleScan_withPendingIntentAndStaticReceiverAndCallbackTypeAllMatches() {
-        advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
+        advertiseWithBumble(OwnAddressType.PUBLIC, TEST_UUID_STRING);
 
         ScanSettings scanSettings =
                 new ScanSettings.Builder()
@@ -226,7 +227,7 @@ public class LeScanningTest extends LeScanningTestBase {
     @Test
     public void startBleScan_oneTooManyScansFails() {
         final int maxNumScans = 32;
-        advertiseWithBumble(TEST_UUID_STRING, OwnAddressType.PUBLIC);
+        advertiseWithBumble(OwnAddressType.PUBLIC, TEST_UUID_STRING);
 
         ScanSettings scanSettings =
                 new ScanSettings.Builder()
@@ -272,11 +273,15 @@ public class LeScanningTest extends LeScanningTestBase {
                 new ScanFilter.Builder()
                         .setDeviceAddress(mBumble.getRemoteDevice().getAddress())
                         .build();
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .build();
 
-        List<ScanResult> results =
-                startScanning(scanFilter, ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
+        List<ScanResult> results = scanWithCallback(scanFilter, scanSettings);
 
-        assertThat(results).isNotNull();
+        assertThat(results).isNotEmpty();
         assertThat(results.get(0).isConnectable()).isFalse();
         assertThat(results.get(1).isConnectable()).isFalse();
     }
@@ -301,11 +306,15 @@ public class LeScanningTest extends LeScanningTestBase {
                 new ScanFilter.Builder()
                         .setDeviceAddress(mBumble.getRemoteDevice().getAddress())
                         .build();
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .build();
 
-        List<ScanResult> results =
-                startScanning(scanFilter, ScanSettings.CALLBACK_TYPE_ALL_MATCHES);
+        List<ScanResult> results = scanWithCallback(scanFilter, scanSettings);
 
-        assertThat(results).isNotNull();
+        assertThat(results).isNotEmpty();
         assertThat(results.get(0).isConnectable()).isFalse();
         assertThat(results.get(0).getScanRecord().getManufacturerSpecificData(0x00E0))
                 .isEqualTo(payload);
