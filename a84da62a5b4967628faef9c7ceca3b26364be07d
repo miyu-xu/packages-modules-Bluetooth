@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8fb0066a_02caffab",
+        "filename": "system/audio_hal_interface/aidl/client_interface_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2023-12-20T18:11:47Z",
+      "side": 1,
+      "message": "is it necessary here?",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 17
+      },
+      "revId": "a84da62a5b4967628faef9c7ceca3b26364be07d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
