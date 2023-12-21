@@ -22,6 +22,30 @@
       },
       "revId": "d51feb5e2e3b12523d2d0b238a5b9221bf6de96a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14a2d36f_0693905f",
+        "filename": "system/stack/btm/sco_pkt_status.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2023-12-21T17:02:39Z",
+      "side": 1,
+      "message": "Yes..I was surprised this still worked (Was the fix from IWYU)\n\nI think it\u0027s b/c it\u0027s still legal *and* we no longer have an anonymous struct.\n`typedef` \u003ctype\u003e \u003cname\u003e\n\nwhere \u003ctype\u003e is `struct NAME { ... }`\n\nSo one could use NAME or \u003cname\u003e to address the structure definition, but they are the same in this case.\n\nDone",
+      "parentUuid": "ca76e0d2_c95a251e",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 22
+      },
+      "revId": "d51feb5e2e3b12523d2d0b238a5b9221bf6de96a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
