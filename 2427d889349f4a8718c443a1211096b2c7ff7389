@@ -22,6 +22,30 @@
       },
       "revId": "2427d889349f4a8718c443a1211096b2c7ff7389",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2bf1c5da_c875a104",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-21T00:02:02Z",
+      "side": 1,
+      "message": "This is not a new test nor did I add any new settings. This is a pure refactor of existing code to make the methods in Base class as configurable as possible. This test was already testing with LOW_LATENCY, rather the settings were being configured in startScanning method. I just moved the settings configuration here.",
+      "parentUuid": "218be024_826bee35",
+      "range": {
+        "startLine": 70,
+        "startChar": 24,
+        "endLine": 70,
+        "endChar": 72
+      },
+      "revId": "2427d889349f4a8718c443a1211096b2c7ff7389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
