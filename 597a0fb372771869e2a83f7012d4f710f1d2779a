@@ -74,6 +74,30 @@
       },
       "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "851b1446_8a6ad606",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1581,
+      "author": {
+        "id": 1997691
+      },
+      "writtenOn": "2023-12-21T05:36:22Z",
+      "side": 1,
+      "message": "These values are fine, because GetAdvertisingSetConnectedTo() don\u0027t access these.\nI want to minimize the impact of mutex.",
+      "parentUuid": "1bad5ce1_d6574079",
+      "range": {
+        "startLine": 1577,
+        "startChar": 2,
+        "endLine": 1581,
+        "endChar": 72
+      },
+      "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
