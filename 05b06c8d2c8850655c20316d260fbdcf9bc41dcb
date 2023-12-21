@@ -16,6 +16,29 @@
       "message": "Hi, gentle ping",
       "revId": "05b06c8d2c8850655c20316d260fbdcf9bc41dcb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "52c049d0_c64f33f0",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T17:09:28Z",
+      "side": 1,
+      "message": "Was there a race with the disconnection complete?\n\nDoes the disconnection complete never come?\n\nI feel like this is pretty complex, and there are no tests for it.  If it could be controller specific, should it be guarded by the controller manufacturer?",
+      "range": {
+        "startLine": 226,
+        "startChar": 7,
+        "endLine": 226,
+        "endChar": 15
+      },
+      "revId": "05b06c8d2c8850655c20316d260fbdcf9bc41dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
