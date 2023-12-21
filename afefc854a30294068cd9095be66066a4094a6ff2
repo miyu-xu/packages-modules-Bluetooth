@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "953c4727_83faf72d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-21T20:09:20Z",
+      "side": 1,
+      "message": "Reset my vote for now until we reach alignment on the discussion thread William started.",
+      "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ce3a006_d2f444ee",
@@ -38,6 +55,30 @@
       "side": 1,
       "message": "\u003e Wouldn\u0027t it be simpler to use a Ifdef TARGET_FLOSS like is currently use on floss ?\n\nMy thought is that sysprop brings more flexibility and is more maintainable than macros (Too many TARGET_FLOSSs actually smell like tech debt to me...), WDYT?\n\nThough I don\u0027t know whether there\u0027s such a use case but I won\u0027t say it\u0027s intended to Floss only; The prop shall work fine for Android as well.",
       "parentUuid": "5ce3a006_d2f444ee",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ba675f7_94590bb1",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-21T20:09:20Z",
+      "side": 1,
+      "message": "William has a good point here, if we add to sysprop we open this up to all vendors who build off of AOSP and have to support it. \n\nIIRC we might hardcode this for a reason, though I\u0027d have to dig into this a bit further",
+      "parentUuid": "efaaea2b_eed84710",
       "range": {
         "startLine": 62,
         "startChar": 0,
