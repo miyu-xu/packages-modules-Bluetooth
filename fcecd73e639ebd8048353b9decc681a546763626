@@ -48,6 +48,53 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4633a6a_1229f116",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T19:27:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ca7dc8ed_32dc384a",
+      "range": {
+        "startLine": 58,
+        "startChar": 25,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3f2c9b40_2e50228a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T19:27:39Z",
+      "side": 1,
+      "message": "I\u0027d prefer it to be consistent, either return early every time, or use else every time.\n\n```suggestion\n    if (!cs_trackers_[connection_handle].setup_complete) {\n      send_le_cs_read_remote_supported_capabilities(connection_handle);\n      send_le_cs_set_default_settings(connection_handle);\n      send_le_cs_security_enable(connection_handle);\n      return;\n    }\n    if (!cs_trackers_[connection_handle].config_set) {\n      send_le_cs_create_config(connection_handle);\n      return;\n    }\n    send_le_cs_procedure_enable(connection_handle, Enable::ENABLED);\n```\n\nOr\n\n```\n    if (!cs_trackers_[connection_handle].setup_complete) {\n      send_le_cs_read_remote_supported_capabilities(connection_handle);\n      send_le_cs_set_default_settings(connection_handle);\n      send_le_cs_security_enable(connection_handle);\n    } else {\n      if (!cs_trackers_[connection_handle].config_set) {\n        send_le_cs_create_config(connection_handle);\n      } else {\n        send_le_cs_procedure_enable(connection_handle, Enable::ENABLED);\n      }\n    }\n```",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 5
+      },
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40241512_97f4e6f2",
@@ -61,6 +108,29 @@
       "writtenOn": "2023-12-21T19:10:12Z",
       "side": 1,
       "message": "What\u0027s your testing strategy for this code?",
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31b88745_4f5c2530",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T19:27:39Z",
+      "side": 1,
+      "message": "Can we narrow the scope that the mutex is guarding?",
+      "range": {
+        "startLine": 504,
+        "startChar": 37,
+        "endLine": 504,
+        "endChar": 43
+      },
       "revId": "fcecd73e639ebd8048353b9decc681a546763626",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -107,6 +177,29 @@
         "startChar": 49,
         "endLine": 510,
         "endChar": 79
+      },
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa7ab02b_688faa45",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T19:27:39Z",
+      "side": 1,
+      "message": "Should this happen?  If it does, should it be a warning or debug log?",
+      "range": {
+        "startLine": 545,
+        "startChar": 0,
+        "endLine": 545,
+        "endChar": 37
       },
       "revId": "fcecd73e639ebd8048353b9decc681a546763626",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
