@@ -22,6 +22,30 @@
       },
       "revId": "584961261a2b5ed44b74066c2487134eadd16186",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "848b5790_1b974d20",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTestBase.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2023-12-21T00:00:39Z",
+      "side": 1,
+      "message": "\u003e GATT should not be maintained in a scanning test class.\nWe need to use GATT or bonding related APIs for setup, where do you suggest these should be maintained?\n\n\u003e This base class should ideally be more generic if intended to be used as it is currently declared.\nCan you elaborate a bit more?",
+      "parentUuid": "ee6c5563_f97f443d",
+      "range": {
+        "startLine": 240,
+        "startChar": 8,
+        "endLine": 240,
+        "endChar": 19
+      },
+      "revId": "584961261a2b5ed44b74066c2487134eadd16186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
