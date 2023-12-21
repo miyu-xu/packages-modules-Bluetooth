@@ -22,6 +22,30 @@
       },
       "revId": "3e1379399ff403333e695601956e3a01b26fa644",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47e5a500_2687c918",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 2045024
+      },
+      "writtenOn": "2023-12-21T10:19:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "1f9106a0_c81774a4",
+      "range": {
+        "startLine": 46,
+        "startChar": 11,
+        "endLine": 46,
+        "endChar": 48
+      },
+      "revId": "3e1379399ff403333e695601956e3a01b26fa644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
