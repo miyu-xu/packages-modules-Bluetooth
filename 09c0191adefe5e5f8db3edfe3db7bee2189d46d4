@@ -16,6 +16,24 @@
       "message": "Pinged offline to check if this is possible to use for the bug fix intended due to code location of fix CL.",
       "revId": "09c0191adefe5e5f8db3edfe3db7bee2189d46d4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "adea2ba3_845d6e91",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-21T18:04:49Z",
+      "side": 1,
+      "message": "D\u0027oh - this is in p/m/B so should be fine.",
+      "parentUuid": "6a1355d3_b2e7c596",
+      "revId": "09c0191adefe5e5f8db3edfe3db7bee2189d46d4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
