@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "15201945_2009f7ea",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T19:16:59Z",
+      "side": 1,
+      "message": "Is this used?",
+      "range": {
+        "startLine": 58,
+        "startChar": 25,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "40241512_97f4e6f2",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 4
@@ -31,6 +54,30 @@
       "writtenOn": "2023-12-21T19:10:12Z",
       "side": 1,
       "message": "Looks like you\u0027re missing the implementation for LE_CS_SUBEVENT_RESULT_CONTINUE, but this gets called for that event on line 247.",
+      "range": {
+        "startLine": 510,
+        "startChar": 49,
+        "endLine": 510,
+        "endChar": 79
+      },
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a826dc96_28397e7e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T19:16:59Z",
+      "side": 1,
+      "message": "I see it in the next CL.",
+      "parentUuid": "d1e882b9_45b8acec",
       "range": {
         "startLine": 510,
         "startChar": 49,
