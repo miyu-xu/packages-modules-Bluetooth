@@ -30,6 +30,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import android.bluetooth.le.BluetoothLeScanner;
+import android.bluetooth.le.ScanCallback;
+import android.bluetooth.le.ScanFilter;
+import android.bluetooth.le.ScanResult;
+import android.bluetooth.le.ScanSettings;
 import android.content.Context;
 
 import androidx.test.core.app.ApplicationProvider;
@@ -37,11 +41,15 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
+import com.google.common.collect.ImmutableList;
+
+import org.junit.After;
 import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.invocation.Invocation;
 
@@ -72,6 +80,7 @@ public class GattClientTest {
     private final BluetoothManager mManager = mContext.getSystemService(BluetoothManager.class);
     private final BluetoothAdapter mAdapter = mManager.getAdapter();
     private final BluetoothLeScanner mLeScanner = mAdapter.getBluetoothLeScanner();
+    private final ScanCallback mScanCallbackMock = mock(ScanCallback.class);
 
     @Test
     public void directConnectGattAfterClose() throws Exception {
@@ -103,6 +112,11 @@ public class GattClientTest {
             int numberOfCallsAfterSomeTimes = invocationsAfterSomeTimes.size();
             assertThat(numberOfCallsAfterSomeTimes).isEqualTo(numberOfCalls);
         }
+    }
+
+    @After
+    public void tearDown() {
+        mLeScanner.stopScan(mScanCallbackMock);
     }
 
     @Test
@@ -248,7 +262,7 @@ public class GattClientTest {
     public void multipleGattClients() throws Exception {
         advertiseWithBumble();
 
-        BluetoothDevice device =
+        BluetoothDevice deviceA =
                 mAdapter.getRemoteLeDevice(
                         Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
 
@@ -256,11 +270,13 @@ public class GattClientTest {
         BluetoothGattCallback gattCallbackB = mock(BluetoothGattCallback.class);
         InOrder inOrder = inOrder(gattCallbackA, gattCallbackB);
 
-        BluetoothGatt gattA = device.connectGatt(mContext, false, gattCallbackA);
+        BluetoothGatt gattA = deviceA.connectGatt(mContext, false, gattCallbackA);
         inOrder.verify(gattCallbackA, timeout(1000))
                 .onConnectionStateChange(eq(gattA), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
 
-        BluetoothGatt gattB = device.connectGatt(mContext, false, gattCallbackB);
+        BluetoothDevice deviceB = scanDeviceByIrk();
+
+        BluetoothGatt gattB = deviceB.connectGatt(mContext, false, gattCallbackB);
         inOrder.verify(gattCallbackB, timeout(1000))
                 .onConnectionStateChange(eq(gattB), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
 
@@ -306,6 +322,30 @@ public class GattClientTest {
                 new StreamObserverSpliterator<>();
 
         mBumble.host().advertise(request, responseObserver);
+    }
+
+    private BluetoothDevice scanDeviceByIrk() {
+        ScanSettings scanSettings =
+                new ScanSettings.Builder()
+                        .setScanMode(ScanSettings.SCAN_MODE_AMBIENT_DISCOVERY)
+                        .setCallbackType(ScanSettings.CALLBACK_TYPE_ALL_MATCHES)
+                        .build();
+        ScanFilter scanFilter =
+                new ScanFilter.Builder()
+                        .setDeviceAddress(
+                                "F0:43:A8:23:10:11",
+                                BluetoothDevice.ADDRESS_TYPE_RANDOM,
+                                Utils.BUMBLE_IRK)
+                        .build();
+        mLeScanner.startScan(ImmutableList.of(scanFilter), scanSettings, mScanCallbackMock);
+
+        // Await scan results
+        ArgumentCaptor<ScanResult> scanResultCaptor = ArgumentCaptor.forClass(ScanResult.class);
+        verify(mScanCallbackMock, timeout(2000).atLeastOnce())
+                .onScanResult(
+                        eq(ScanSettings.CALLBACK_TYPE_ALL_MATCHES), scanResultCaptor.capture());
+
+        return scanResultCaptor.getValue().getDevice();
     }
 
     private BluetoothGatt connectGattAndWaitConnection(BluetoothGattCallback callback) {
