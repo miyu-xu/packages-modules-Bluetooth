@@ -16,6 +16,24 @@
       "message": "Please add \"Flag: \u003cexemption reason\u003e\" for Dr. No approval.\n\nIMO this should be exempt since it is revert of merged CL, so I can give Dr. No on it with the expected tags as described in go/bt-ts-workflow.",
       "revId": "1839bfcd9144c73b28c582cc936201c78af9e4de",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca7e68a0_98842ef8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2023-12-21T04:40:21Z",
+      "side": 1,
+      "message": "Abandoned this CL.\nIt seems the root cause might be the use of prebuilt.",
+      "parentUuid": "fb9ed850_b79c260e",
+      "revId": "1839bfcd9144c73b28c582cc936201c78af9e4de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
