@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1f9106a0_c81774a4",
+        "filename": "flags/hfp.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-21T07:28:49Z",
+      "side": 1,
+      "message": "flag name should be lower case, and no `+` sign\n\nthe logical change part is to send signal during VOIP call\n\nso it would be better to have name `pretend_network_service_during_voip`",
+      "range": {
+        "startLine": 46,
+        "startChar": 11,
+        "endLine": 46,
+        "endChar": 48
+      },
+      "revId": "3e1379399ff403333e695601956e3a01b26fa644",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
