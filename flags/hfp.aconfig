@@ -43,8 +43,8 @@ flag {
 }
 
 flag {
-    name: "close_rfcomm_instead_of_reset"
+    name: "pretend_network_service_during_voip"
     namespace: "bluetooth"
-    description: "Closing Rfcomm Connection instead of reset"
-    bug: "316993992"
+    description: "Sending service availablity and signal strength in +CIND response"
+    bug: "317307596"
 }
