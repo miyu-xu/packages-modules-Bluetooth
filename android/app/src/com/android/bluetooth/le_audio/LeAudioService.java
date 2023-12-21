@@ -2538,10 +2538,10 @@ public class LeAudioService extends ProfileService {
             boolean success = stackEvent.valueBool1;
             if (success) {
                 Log.d(TAG, "Broadcast broadcastId: " + broadcastId + " created.");
-                notifyBroadcastStarted(broadcastId, BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
 
                 mBroadcastDescriptors.put(broadcastId, new LeAudioBroadcastDescriptor());
 
+                notifyBroadcastStarted(broadcastId, BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
                 // Start sending the actual stream
                 startBroadcast(broadcastId);
 
@@ -2560,15 +2560,6 @@ public class LeAudioService extends ProfileService {
 
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_DESTROYED) {
             Integer broadcastId = stackEvent.valueInt1;
-
-            // TODO: Improve reason reporting or extend the native stack event with reason code
-            notifyOnBroadcastStopped(broadcastId, BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
-
-            BassClientService bassClientService = getBassClientService();
-            if (bassClientService != null) {
-                bassClientService.stopReceiversSourceSynchronization(broadcastId);
-            }
-
             LeAudioBroadcastDescriptor descriptor = mBroadcastDescriptors.get(broadcastId);
             if (descriptor == null) {
                 Log.e(TAG, "EVENT_TYPE_BROADCAST_DESTROYED: No valid descriptor for broadcastId: "
@@ -2577,6 +2568,13 @@ public class LeAudioService extends ProfileService {
             }
             mBroadcastDescriptors.remove(broadcastId);
 
+            // TODO: Improve reason reporting or extend the native stack event with reason code
+            notifyOnBroadcastStopped(broadcastId, BluetoothStatusCodes.REASON_LOCAL_APP_REQUEST);
+
+            BassClientService bassClientService = getBassClientService();
+            if (bassClientService != null) {
+                bassClientService.stopReceiversSourceSynchronization(broadcastId);
+            }
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_STATE) {
             int broadcastId = stackEvent.valueInt1;
             int state = stackEvent.valueInt2;
