@@ -46,6 +46,30 @@
       },
       "revId": "2427d889349f4a8718c443a1211096b2c7ff7389",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7897dd0e_0593b346",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2023-12-21T00:25:51Z",
+      "side": 1,
+      "message": "Gotcha - apologies and thanks for noting that, there\u0027s been lots of changes going here lately. \n\nI can\u0027t remember context for why that is, a lot of how this is currently structured is working around deficiencies in root canal or bumble infra atm so we haven\u0027t clarified full path to get adequate coverage across API surface.",
+      "parentUuid": "2bf1c5da_c875a104",
+      "range": {
+        "startLine": 70,
+        "startChar": 24,
+        "endLine": 70,
+        "endChar": 72
+      },
+      "revId": "2427d889349f4a8718c443a1211096b2c7ff7389",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
