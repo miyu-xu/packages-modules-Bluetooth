@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ca76e0d2_c95a251e",
+        "filename": "system/stack/btm/sco_pkt_status.h",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T15:08:37Z",
+      "side": 1,
+      "message": "Remove?",
+      "range": {
+        "startLine": 116,
+        "startChar": 2,
+        "endLine": 116,
+        "endChar": 22
+      },
+      "revId": "d51feb5e2e3b12523d2d0b238a5b9221bf6de96a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
