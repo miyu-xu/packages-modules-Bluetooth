@@ -16,6 +16,7 @@ cc_library_static {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/types",
     ],
@@ -71,6 +72,7 @@ cc_library_static {
         "packages/modules/Bluetooth/system/device/include",
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/gd/hal",
+        "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/udrv/include",
     ],
     generated_headers: [
@@ -203,6 +205,7 @@ cc_library_static {
         "packages/modules/Bluetooth/system/bta/sys",
         "packages/modules/Bluetooth/system/btif/include",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/udrv/include",
     ],
     srcs: [
@@ -329,6 +332,7 @@ cc_defaults {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/stack/include",
         "packages/modules/Bluetooth/system/test/common",
         "packages/modules/Bluetooth/system/types",
@@ -656,6 +660,7 @@ cc_test {
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/internal_include",
     ],
     srcs: [
         "test/gatt/gatt_api_test.cc",
@@ -742,6 +747,7 @@ cc_test {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/gd/hal",
+        "packages/modules/Bluetooth/system/internal_include",
     ],
     srcs: [
         ":TestCommonMockFunctions",
@@ -826,6 +832,7 @@ cc_test {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
         "packages/modules/Bluetooth/system/include",
+        "packages/modules/Bluetooth/system/internal_include",
     ],
     srcs: [
         ":TestCommonMainHandler",
@@ -930,6 +937,7 @@ cc_test {
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/internal_include",
     ],
     srcs: [
         ":TestCommonMainHandler",
@@ -1389,6 +1397,7 @@ cc_test {
     include_dirs: [
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/internal_include",
     ],
     srcs: [
         ":TestCommonMainHandler",
@@ -2033,6 +2042,7 @@ cc_test {
         "packages/modules/Bluetooth/system",
         "packages/modules/Bluetooth/system/device/include/",
         "packages/modules/Bluetooth/system/gd",
+        "packages/modules/Bluetooth/system/internal_include",
         "packages/modules/Bluetooth/system/stack/btm",
     ],
     srcs: [

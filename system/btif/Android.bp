@@ -14,6 +14,7 @@ btifCommonIncludes = [
     "packages/modules/Bluetooth/system/btif/include",
     "packages/modules/Bluetooth/system/gd",
     "packages/modules/Bluetooth/system/include",
+    "packages/modules/Bluetooth/system/internal_include",
     "packages/modules/Bluetooth/system/stack/include",
 ]
 
