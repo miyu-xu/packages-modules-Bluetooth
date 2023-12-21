@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "78702eaf_ede45ce3",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T19:29:56Z",
+      "side": 1,
+      "message": "Is this used?",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 25
+      },
+      "revId": "8b0432a7c378ff355100a3c51fc5aea845f93457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "247c1ba4_dd1c05ad",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 506,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T19:29:56Z",
+      "side": 1,
+      "message": "same comment, only now the scope is a lot bigger.  The hope of using handlers is that you don\u0027t need a mutex, since everything happens in the same thread.",
+      "range": {
+        "startLine": 506,
+        "startChar": 32,
+        "endLine": 506,
+        "endChar": 36
+      },
+      "revId": "8b0432a7c378ff355100a3c51fc5aea845f93457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c618e037_b5a223b1",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2023-12-21T19:29:56Z",
+      "side": 1,
+      "message": "This looks like debug logging, remove or modify?",
+      "range": {
+        "startLine": 637,
+        "startChar": 0,
+        "endLine": 637,
+        "endChar": 97
+      },
+      "revId": "8b0432a7c378ff355100a3c51fc5aea845f93457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
