@@ -307,6 +307,14 @@ class BluetoothManagerService {
                     + mPackageName;
         }
 
+        public long getTimestamp() {
+            return mTimestamp;
+        }
+
+        public boolean getEnable() {
+            return mEnable;
+        }
+
         void dump(ProtoOutputStream proto) {
             proto.write(BluetoothManagerServiceDumpProto.ActiveLog.TIMESTAMP_MS, mTimestamp);
             proto.write(BluetoothManagerServiceDumpProto.ActiveLog.ENABLE, mEnable);
@@ -2504,6 +2512,7 @@ class BluetoothManagerService {
 
     private void addActiveLog(int reason, String packageName, boolean enable) {
         synchronized (mActiveLogs) {
+            ActiveLog lastActiveLog = mActiveLogs.peekLast();
             if (mActiveLogs.size() > ACTIVE_LOG_MAX_SIZE) {
                 mActiveLogs.remove();
             }
@@ -2514,13 +2523,29 @@ class BluetoothManagerService {
                             ? BluetoothStatsLog.BLUETOOTH_ENABLED_STATE_CHANGED__STATE__ENABLED
                             : BluetoothStatsLog.BLUETOOTH_ENABLED_STATE_CHANGED__STATE__DISABLED;
 
+            int lastState;
+            long timeSinceLastChanged;
+            if (lastActiveLog == null) {
+                lastState = BluetoothStatsLog.BLUETOOTH_ENABLED_STATE_CHANGED__STATE__UNKNOWN;
+                timeSinceLastChanged = 0;
+            } else {
+                lastState =
+                        lastActiveLog.getEnable()
+                                ? BluetoothStatsLog.BLUETOOTH_ENABLED_STATE_CHANGED__STATE__ENABLED
+                                : BluetoothStatsLog
+                                        .BLUETOOTH_ENABLED_STATE_CHANGED__STATE__DISABLED;
+                timeSinceLastChanged = System.currentTimeMillis() - lastActiveLog.getTimestamp();
+            }
+
             BluetoothStatsLog.write_non_chained(
                     BluetoothStatsLog.BLUETOOTH_ENABLED_STATE_CHANGED,
                     Binder.getCallingUid(),
                     null,
                     state,
                     reason,
-                    packageName);
+                    packageName,
+                    lastState,
+                    timeSinceLastChanged);
         }
     }
 
