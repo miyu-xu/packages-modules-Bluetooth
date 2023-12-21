@@ -36,6 +36,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "495814b2_f2f7ffd7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1997691
+      },
+      "writtenOn": "2023-12-21T05:31:48Z",
+      "side": 1,
+      "message": "These values are fine, because GetAdvertisingSetConnectedTo() don\u0027t access these.\nI want to minimize the impact of mutex.",
+      "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bad5ce1_d6574079",
