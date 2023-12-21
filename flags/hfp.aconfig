@@ -41,3 +41,10 @@ flag {
     description: "retry eSCO connection based on retransmission_effort"
     bug: "316498257"
 }
+
+flag {
+    name: "pretend_network_service_during_voip"
+    namespace: "bluetooth"
+    description: "Sending service availablity and signal strength in +CIND response"
+    bug: "317307596"
+}
