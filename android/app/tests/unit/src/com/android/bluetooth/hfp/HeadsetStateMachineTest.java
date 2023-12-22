@@ -58,7 +58,11 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.RemoteDevices;
 import com.android.bluetooth.btservice.SilenceDeviceManager;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+<<<<<<< PATCH SET (374f93 HFP: Sending service availability and signal strength in +CI)
+import com.android.bluetooth.flags.FakeFeatureFlagsImpl;
+=======
 import com.android.bluetooth.flags.Flags;
+>>>>>>> BASE      (c39cc1 Merge "AptXVoice: Add missing java flagging" into main)
 
 import org.hamcrest.core.IsInstanceOf;
 import org.junit.After;
@@ -91,6 +95,7 @@ public class HeadsetStateMachineTest {
     private HeadsetStateMachine mHeadsetStateMachine;
     private BluetoothDevice mTestDevice;
     private ArgumentCaptor<Intent> mIntentArgument = ArgumentCaptor.forClass(Intent.class);
+    private FakeFeatureFlagsImpl mFakeFlagsImpl;
 
     @Mock private AdapterService mAdapterService;
     @Mock private ActiveDeviceManager mActiveDeviceManager;
@@ -118,6 +123,7 @@ public class HeadsetStateMachineTest {
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         // Get a device for testing
         mTestDevice = mAdapter.getRemoteDevice("00:01:02:03:04:05");
+        mFakeFlagsImpl = new FakeFeatureFlagsImpl();
         // Get a database
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         doReturn(true).when(mDatabaseManager).setAudioPolicyMetadata(anyObject(), anyObject());
@@ -148,14 +154,22 @@ public class HeadsetStateMachineTest {
                 .thenReturn(true);
         when(mHeadsetService.isScoAcceptable(any(BluetoothDevice.class))).thenReturn(
                 BluetoothStatusCodes.SUCCESS);
+        when(mHeadsetService.getFeatureFlags()).thenReturn(mFakeFlagsImpl);
         // Setup thread and looper
         mHandlerThread = new HandlerThread("HeadsetStateMachineTestHandlerThread");
         mHandlerThread.start();
         // Modify CONNECT timeout to a smaller value for test only
         HeadsetStateMachine.sConnectTimeoutMs = CONNECT_TIMEOUT_TEST_MILLIS;
-        mHeadsetStateMachine = HeadsetObjectsFactory.getInstance()
-                .makeStateMachine(mTestDevice, mHandlerThread.getLooper(), mHeadsetService,
-                        mAdapterService, mNativeInterface, mSystemInterface);
+        mHeadsetStateMachine =
+                HeadsetObjectsFactory.getInstance()
+                        .makeStateMachine(
+                                mTestDevice,
+                                mHandlerThread.getLooper(),
+                                mHeadsetService,
+                                mAdapterService,
+                                mNativeInterface,
+                                mSystemInterface,
+                                mFakeFlagsImpl);
     }
 
     @After
@@ -1025,6 +1039,7 @@ public class HeadsetStateMachineTest {
                 new HeadsetStackEvent(HeadsetStackEvent.EVENT_TYPE_KEY_PRESSED, mTestDevice));
         verify(mNativeInterface, timeout(ASYNC_CALL_TIMEOUT_MILLIS)).disconnectAudio(mTestDevice);
     }
+
 
     /**
      * A test to verfiy that we correctly handles AT+BIND event with driver safety case from HF
