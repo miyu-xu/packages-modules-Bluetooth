@@ -21,6 +21,7 @@ import android.util.Log;
 
 import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.flags.FeatureFlags;
 
 /**
  * Factory class for object initialization to help with unit testing
@@ -70,11 +71,22 @@ public class HeadsetObjectsFactory {
      * @param systemInterface system interface
      * @return a state machine that is initialized and started, ready to go
      */
-    public HeadsetStateMachine makeStateMachine(BluetoothDevice device, Looper looper,
-            HeadsetService headsetService, AdapterService adapterService,
-            HeadsetNativeInterface nativeInterface, HeadsetSystemInterface systemInterface) {
-        return HeadsetStateMachine.make(device, looper, headsetService, adapterService,
-                nativeInterface, systemInterface);
+    public HeadsetStateMachine makeStateMachine(
+            BluetoothDevice device,
+            Looper looper,
+            HeadsetService headsetService,
+            AdapterService adapterService,
+            HeadsetNativeInterface nativeInterface,
+            HeadsetSystemInterface systemInterface,
+            FeatureFlags featureFlags) {
+        return HeadsetStateMachine.make(
+                device,
+                looper,
+                headsetService,
+                adapterService,
+                nativeInterface,
+                systemInterface,
+                featureFlags);
     }
 
     /**
