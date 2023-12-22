@@ -95,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f8fe2c0_dc957d92",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-12-22T08:41:38Z",
+      "side": 1,
+      "message": "Sounds good, thanks!",
+      "parentUuid": "3f2c9b40_2e50228a",
+      "range": {
+        "startLine": 167,
+        "startChar": 0,
+        "endLine": 177,
+        "endChar": 5
+      },
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "40241512_97f4e6f2",
@@ -114,6 +138,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "44bb2d47_8b03f08f",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-12-22T08:41:38Z",
+      "side": 1,
+      "message": "Create distance_measure_manager_test.cc.\nUse HciLayerFake and Mock Callback to check if corresponding command/callback trigger after event received.\nHow do you think?",
+      "parentUuid": "40241512_97f4e6f2",
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31b88745_4f5c2530",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 4
@@ -125,6 +167,30 @@
       "writtenOn": "2023-12-21T19:27:39Z",
       "side": 1,
       "message": "Can we narrow the scope that the mutex is guarding?",
+      "range": {
+        "startLine": 504,
+        "startChar": 37,
+        "endLine": 504,
+        "endChar": 43
+      },
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "260142af_4981dc58",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-12-22T08:41:38Z",
+      "side": 1,
+      "message": "Sure, we may handle cs_subevent from local and remote side at same time, all the operation that modify ProcedureData should be protect by the lock. For now, we can put it inside the init_cs_procedure_data first.\nThanks!",
+      "parentUuid": "31b88745_4f5c2530",
       "range": {
         "startLine": 504,
         "startChar": 37,
@@ -195,6 +261,30 @@
       "writtenOn": "2023-12-21T19:27:39Z",
       "side": 1,
       "message": "Should this happen?  If it does, should it be a warning or debug log?",
+      "range": {
+        "startLine": 545,
+        "startChar": 0,
+        "endLine": 545,
+        "endChar": 37
+      },
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "274b8700_eb5f18de",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 545,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-12-22T08:41:38Z",
+      "side": 1,
+      "message": "This is an intended behavior, we may receive more than one LE_CS_SUBEVENT_RESULT for a single CS procedure.",
+      "parentUuid": "fa7ab02b_688faa45",
       "range": {
         "startLine": 545,
         "startChar": 0,
