@@ -163,6 +163,7 @@ public class LeAudioService extends ProfileService {
     private boolean mAwaitingBroadcastCreateResponse = false;
     private final LinkedList<BluetoothLeBroadcastSettings> mCreateBroadcastQueue =
             new LinkedList<>();
+    private boolean mBroadcastSyncConfirmationRequested = false;
 
     @VisibleForTesting
     TbsService mTbsService;
@@ -1125,6 +1126,27 @@ public class LeAudioService extends ProfileService {
                 }
             }
         }
+        return true;
+    }
+
+    /**
+     * Set monitoring mode of Unicast Source if there is an active group.
+     *
+     * @return true if request request results in setting monitor mode and confirmation would happen
+     *     later, false if request can be confirmed now.
+     */
+    public boolean broadcastSyncConfirmationRequest() {
+        /* No active unicast group for streaming, don't start monitoring source status */
+        if (getActiveGroupId() == LE_AUDIO_GROUP_ID_INVALID) {
+            return false;
+        }
+
+        /* Confirmation will be called from EVENT_TYPE_SOURCE_MONITORING_STATUS context */
+        if (!mBroadcastSyncConfirmationRequested) {
+            mBroadcastSyncConfirmationRequested = true;
+            mLeAudioNativeInterface.setUnicastMonitorMode(LeAudioStackEvent.DIRECTION_SOURCE, true);
+        }
+
         return true;
     }
 
@@ -2097,7 +2119,7 @@ public class LeAudioService extends ProfileService {
         }
     }
 
-    private void handleUnicastStreamStatusChange(int status) {
+    private void handleSinkStreamStatusChange(int status) {
         if (DBG) {
             Log.d(TAG, "status: " + status);
         }
@@ -2119,7 +2141,51 @@ public class LeAudioService extends ProfileService {
             mBroadcastIdDeactivatedForUnicastTransition = Optional.of(broadcastId.get());
             pauseBroadcast(broadcastId.get());
         } else if (status == LeAudioStackEvent.STATUS_LOCAL_STREAM_SUSPENDED) {
-            removeActiveDevice(true);
+            if (!areAllGroupsInNotActiveState()) {
+                removeActiveDevice(true);
+            }
+        }
+    }
+
+    private void handleSourceStreamStatusChange(int status) {
+        BassClientService bassClientService = getBassClientService();
+        if (bassClientService == null) {
+            Log.e(TAG, "handleSourceStreamStatusChange: BASS Client service is not available");
+
+            mBroadcastSyncConfirmationRequested = false;
+            mLeAudioNativeInterface.setUnicastMonitorMode(
+                    LeAudioStackEvent.DIRECTION_SOURCE, false);
+        }
+
+        if (status == LeAudioStackEvent.STATUS_LOCAL_STREAM_REQUESTED) {
+            bassClientService.suspendAllReceiversSourceSynchronization();
+        } else if (status == LeAudioStackEvent.STATUS_LOCAL_STREAM_SUSPENDED) {
+            /* This should be obvious, since if no Source was synchornized, monitor mode shouldn't
+             * be enabled.
+             */
+            if (mBroadcastSyncConfirmationRequested) {
+                bassClientService.broadcastSyncConfirmation();
+                mBroadcastSyncConfirmationRequested = false;
+                mLeAudioNativeInterface.setUnicastMonitorMode(
+                        LeAudioStackEvent.DIRECTION_SOURCE, false);
+            }
+        } else if (status == LeAudioStackEvent.STATUS_LOCAL_STREAM_STREAMING) {
+            Log.d(
+                    TAG,
+                    "handleSourceStreamStatusChange: Unicast is streaming, can't confirm add "
+                            + "source request");
+        } else {
+            Log.e(TAG, "handleSourceMonitoringStatus: invalid status: " + status);
+        }
+    }
+
+    private void handleUnicastStreamStatusChange(int direction, int status) {
+        if (direction == LeAudioStackEvent.DIRECTION_SINK) {
+            handleSinkStreamStatusChange(status);
+        } else if (direction == LeAudioStackEvent.DIRECTION_SOURCE) {
+            handleSourceStreamStatusChange(status);
+        } else {
+            Log.e(TAG, "handleUnicastStreamStatusChange: invalid direction: " + direction);
         }
     }
 
@@ -2711,7 +2777,7 @@ public class LeAudioService extends ProfileService {
 
                     if (previousState == LeAudioStackEvent.BROADCAST_STATE_PAUSED) {
                         if (bassClientService != null) {
-                            bassClientService.resumeReceiversSourceSynchronization(broadcastId);
+                            bassClientService.resumeReceiversSourceSynchronization();
                         }
                     }
 
@@ -2756,11 +2822,7 @@ public class LeAudioService extends ProfileService {
                 mTmapStarted = registerTmap();
             }
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_UNICAST_MONITOR_MODE_STATUS) {
-            if (stackEvent.valueInt1 == LeAudioStackEvent.DIRECTION_SINK) {
-                handleUnicastStreamStatusChange(stackEvent.valueInt2);
-            } else {
-                Log.e(TAG, "Invalid direction: " + stackEvent.valueInt2);
-            }
+            handleUnicastStreamStatusChange(stackEvent.valueInt1, stackEvent.valueInt2);
         }
     }
 
@@ -3071,7 +3133,9 @@ public class LeAudioService extends ProfileService {
             mQueuedInCallValue = Optional.of(true);
 
             /* Request activation of unicast group */
-            handleUnicastStreamStatusChange(LeAudioStackEvent.STATUS_LOCAL_STREAM_REQUESTED);
+            handleUnicastStreamStatusChange(
+                    LeAudioStackEvent.DIRECTION_SINK,
+                    LeAudioStackEvent.STATUS_LOCAL_STREAM_REQUESTED);
             return;
         }
 
@@ -3080,7 +3144,9 @@ public class LeAudioService extends ProfileService {
         /* For clearing inCall mode */
         if (mFeatureFlags.leaudioBroadcastAudioHandoverPolicies() && !inCall
                 && mBroadcastIdDeactivatedForUnicastTransition.isPresent()) {
-            handleUnicastStreamStatusChange(LeAudioStackEvent.STATUS_LOCAL_STREAM_SUSPENDED);
+            handleUnicastStreamStatusChange(
+                    LeAudioStackEvent.DIRECTION_SINK,
+                    LeAudioStackEvent.STATUS_LOCAL_STREAM_SUSPENDED);
         }
     }
 
