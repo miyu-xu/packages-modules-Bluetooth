@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "da3043dc_c6235f63",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-12-22T09:06:32Z",
+      "side": 1,
+      "message": "I\u0027m just curious here - did you tried to just do ADD source without Removing it ? According to Spec (BASS 3.1.1.4 Add Source operation) It should be fine/enough. Do you see any another benefit from having two operations ? I\u0027m also wondering how vendors handles \"Only\" Add source operation...\n\nBesides of that this change looks valid and I understand a motivation to: clean (remove), add.",
+      "revId": "64e4bd9e4eca53eccabef7fc36a8c7621e1c757f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c62ee76d_c93d01ff",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientStateMachine.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1754,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-12-22T09:06:32Z",
+      "side": 1,
+      "message": "I think we should consider to do some split between synchronization of PA and BIS. Currently there are some weird assumptions in `onvertBroadcastMetadataToUpdateSourceByteArray` for setting those states. Currently by setting PA_SYNC_STATE_IDLE there is hidden mechanism that also sets BIS sync states to 0. From what I know there is possibility to not being synchronized to PA but only to BIS, so modifying ONLY PA is fine. Second thing is that this modify operation shows only that PA is modified at first look.\n\n3.1.1.7 Remove Source operation\n```\nThe server shall not accept a Remove Source operation for a Source_ID value that matches the\nSource_ID written by the client in the Remove Source operation if the server is synchronized to the PA\nand/or any BIS as defined by the values of the PA_Sync_State and BIS_Sync_State fields in the\nBroadcast Receive State characteristic containing that Source_ID value.\n```",
+      "revId": "64e4bd9e4eca53eccabef7fc36a8c7621e1c757f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
