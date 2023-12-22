@@ -154,6 +154,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0505a668_d0aa56bc",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-12-22T09:40:37Z",
+      "side": 1,
+      "message": "If it is fine for you, I will upload another patch for the test. Thanks!",
+      "parentUuid": "44bb2d47_8b03f08f",
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31b88745_4f5c2530",
@@ -191,6 +209,30 @@
       "side": 1,
       "message": "Sure, we may handle cs_subevent from local and remote side at same time, all the operation that modify ProcedureData should be protect by the lock. For now, we can put it inside the init_cs_procedure_data first.\nThanks!",
       "parentUuid": "31b88745_4f5c2530",
+      "range": {
+        "startLine": 504,
+        "startChar": 37,
+        "endLine": 504,
+        "endChar": 43
+      },
+      "revId": "fcecd73e639ebd8048353b9decc681a546763626",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "77a0d4ca_7cc2c2df",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-12-22T09:40:37Z",
+      "side": 1,
+      "message": "After further thought, you are right. If we do all the tasks in the same thread, it should be fine.",
+      "parentUuid": "260142af_4981dc58",
       "range": {
         "startLine": 504,
         "startChar": 37,
