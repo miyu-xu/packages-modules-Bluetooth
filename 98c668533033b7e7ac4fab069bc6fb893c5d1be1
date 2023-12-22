@@ -16,6 +16,24 @@
       "message": "My assumption is this sink_mode is under the handover flag?\nIf yes, could you add the flag tracking bug to your commit description?\nAnd same comment applies to other chained CLs here.",
       "revId": "98c668533033b7e7ac4fab069bc6fb893c5d1be1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c72b8996_04511f2b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 5529,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2023-12-22T15:00:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f65904d0_3cd5c97b",
+      "revId": "98c668533033b7e7ac4fab069bc6fb893c5d1be1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
