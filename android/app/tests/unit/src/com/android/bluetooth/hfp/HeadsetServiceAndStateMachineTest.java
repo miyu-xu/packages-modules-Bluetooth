@@ -55,6 +55,7 @@ import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.RemoteDevices;
 import com.android.bluetooth.btservice.SilenceDeviceManager;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.flags.FeatureFlags;
 
 import org.hamcrest.Matchers;
 import org.junit.After;
@@ -92,7 +93,6 @@ public class HeadsetServiceAndStateMachineTest {
     private static final String TEST_PHONE_NUMBER = "1234567890";
     private static final String TEST_CALLER_ID = "Test Name";
 
-
     private Context mTargetContext;
     private HeadsetService mHeadsetService;
     private BluetoothAdapter mAdapter;
@@ -103,6 +103,7 @@ public class HeadsetServiceAndStateMachineTest {
     private HeadsetIntentReceiver mHeadsetIntentReceiver;
     private int mOriginalVrTimeoutMs = 5000;
     private PowerManager.WakeLock mVoiceRecognitionWakeLock;
+    private FeatureFlags mFeatureFlags;
     boolean mIsAdapterServiceSet;
     boolean mIsHeadsetServiceStarted;
 
@@ -210,8 +211,9 @@ public class HeadsetServiceAndStateMachineTest {
         doReturn(true).when(mNativeInterface)
                 .atResponseCode(any(BluetoothDevice.class), anyInt(), anyInt());
         // Use real state machines here
-        doCallRealMethod().when(mObjectsFactory)
-                .makeStateMachine(any(), any(), any(), any(), any(), any());
+        doCallRealMethod()
+                .when(mObjectsFactory)
+                .makeStateMachine(any(), any(), any(), any(), any(), any(), any());
         // Mock methods in HeadsetObjectsFactory
         doReturn(mSystemInterface).when(mObjectsFactory).makeSystemInterface(any());
         doReturn(mNativeInterface).when(mObjectsFactory).getNativeInterface();
@@ -221,6 +223,7 @@ public class HeadsetServiceAndStateMachineTest {
         HeadsetService.sStartVrTimeoutMs = START_VR_TIMEOUT_MILLIS;
         mHeadsetService = new HeadsetService(mTargetContext);
         mHeadsetService.doStart();
+        mFeatureFlags = mHeadsetService.getFeatureFlags();
         mIsHeadsetServiceStarted = true;
         Assert.assertNotNull(mHeadsetService);
         verify(mObjectsFactory).makeSystemInterface(mHeadsetService);
@@ -289,9 +292,15 @@ public class HeadsetServiceAndStateMachineTest {
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
         mBondedDevices.add(device);
         Assert.assertTrue(mHeadsetService.connect(device));
-        verify(mObjectsFactory).makeStateMachine(device,
-                mHeadsetService.getStateMachinesThreadLooper(), mHeadsetService, mAdapterService,
-                mNativeInterface, mSystemInterface);
+        verify(mObjectsFactory)
+                .makeStateMachine(
+                        device,
+                        mHeadsetService.getStateMachinesThreadLooper(),
+                        mHeadsetService,
+                        mAdapterService,
+                        mNativeInterface,
+                        mSystemInterface,
+                        mFeatureFlags);
         // Wait ASYNC_CALL_TIMEOUT_MILLIS for state to settle, timing is also tested here and
         // 250ms for processing two messages should be way more than enough. Anything that breaks
         // this indicate some breakage in other part of Android OS
@@ -332,9 +341,15 @@ public class HeadsetServiceAndStateMachineTest {
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
         mBondedDevices.add(device);
         Assert.assertTrue(mHeadsetService.connect(device));
-        verify(mObjectsFactory).makeStateMachine(device,
-                mHeadsetService.getStateMachinesThreadLooper(), mHeadsetService, mAdapterService,
-                mNativeInterface, mSystemInterface);
+        verify(mObjectsFactory)
+                .makeStateMachine(
+                        device,
+                        mHeadsetService.getStateMachinesThreadLooper(),
+                        mHeadsetService,
+                        mAdapterService,
+                        mNativeInterface,
+                        mSystemInterface,
+                        mFeatureFlags);
         // Wait ASYNC_CALL_TIMEOUT_MILLIS for state to settle, timing is also tested here and
         // 250ms for processing two messages should be way more than enough. Anything that breaks
         // this indicate some breakage in other part of Android OS
@@ -376,9 +391,15 @@ public class HeadsetServiceAndStateMachineTest {
                 .thenReturn(BluetoothProfile.CONNECTION_POLICY_UNKNOWN);
         mBondedDevices.add(device);
         Assert.assertTrue(mHeadsetService.connect(device));
-        verify(mObjectsFactory).makeStateMachine(device,
-                mHeadsetService.getStateMachinesThreadLooper(), mHeadsetService, mAdapterService,
-                mNativeInterface, mSystemInterface);
+        verify(mObjectsFactory)
+                .makeStateMachine(
+                        device,
+                        mHeadsetService.getStateMachinesThreadLooper(),
+                        mHeadsetService,
+                        mAdapterService,
+                        mNativeInterface,
+                        mSystemInterface,
+                        mFeatureFlags);
         // Wait ASYNC_CALL_TIMEOUT_MILLIS for state to settle, timing is also tested here and
         // 250ms for processing two messages should be way more than enough. Anything that breaks
         // this indicate some breakage in other part of Android OS
@@ -1196,9 +1217,15 @@ public class HeadsetServiceAndStateMachineTest {
                 new HeadsetStackEvent(HeadsetStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED,
                         HeadsetHalConstants.CONNECTION_STATE_CONNECTED, device);
         mHeadsetService.messageFromNative(rfcommConnectedEvent);
-        verify(mObjectsFactory).makeStateMachine(device,
-                mHeadsetService.getStateMachinesThreadLooper(), mHeadsetService, mAdapterService,
-                mNativeInterface, mSystemInterface);
+        verify(mObjectsFactory)
+                .makeStateMachine(
+                        device,
+                        mHeadsetService.getStateMachinesThreadLooper(),
+                        mHeadsetService,
+                        mAdapterService,
+                        mNativeInterface,
+                        mSystemInterface,
+                        mFeatureFlags);
         verify(mActiveDeviceManager, timeout(STATE_CHANGE_TIMEOUT_MILLIS))
                 .profileConnectionStateChanged(
                         BluetoothProfile.HEADSET,

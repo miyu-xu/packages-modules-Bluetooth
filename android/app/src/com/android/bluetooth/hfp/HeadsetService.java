@@ -309,6 +309,11 @@ public class HeadsetService extends ProfileService {
         return mStateMachinesThread.getLooper();
     }
 
+    @VisibleForTesting
+    FeatureFlags getFeatureFlags() {
+        return mFeatureFlags;
+    }
+
     interface StateMachineTask {
         void execute(HeadsetStateMachine stateMachine);
     }
@@ -365,10 +370,16 @@ public class HeadsetService extends ProfileService {
                     case HeadsetHalConstants.CONNECTION_STATE_CONNECTING: {
                         // Create new state machine if none is found
                         if (stateMachine == null) {
-                            stateMachine = HeadsetObjectsFactory.getInstance()
-                                    .makeStateMachine(stackEvent.device,
-                                            mStateMachinesThread.getLooper(), this, mAdapterService,
-                                            mNativeInterface, mSystemInterface);
+                            stateMachine =
+                                HeadsetObjectsFactory.getInstance()
+                                    .makeStateMachine(
+                                        stackEvent.device,
+                                        mStateMachinesThread.getLooper(),
+                                        this,
+                                        mAdapterService,
+                                        mNativeInterface,
+                                        mSystemInterface,
+                                        mFeatureFlags);
                             mStateMachines.put(stackEvent.device, stateMachine);
                         }
                         break;
@@ -934,9 +945,16 @@ public class HeadsetService extends ProfileService {
             Log.i(TAG, "connect: device=" + device + ", " + Utils.getUidPidString());
             HeadsetStateMachine stateMachine = mStateMachines.get(device);
             if (stateMachine == null) {
-                stateMachine = HeadsetObjectsFactory.getInstance()
-                        .makeStateMachine(device, mStateMachinesThread.getLooper(), this,
-                                mAdapterService, mNativeInterface, mSystemInterface);
+                stateMachine =
+                        HeadsetObjectsFactory.getInstance()
+                                .makeStateMachine(
+                                        device,
+                                        mStateMachinesThread.getLooper(),
+                                        this,
+                                        mAdapterService,
+                                        mNativeInterface,
+                                        mSystemInterface,
+                                        mFeatureFlags);
                 mStateMachines.put(device, stateMachine);
             }
             int connectionState = stateMachine.getConnectionState();
