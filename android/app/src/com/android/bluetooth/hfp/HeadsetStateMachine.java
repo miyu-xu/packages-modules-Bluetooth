@@ -49,6 +49,7 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.btservice.storage.DatabaseManager;
+import com.android.bluetooth.flags.FeatureFlags;
 import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.State;
@@ -88,7 +89,7 @@ import java.util.Scanner;
 public class HeadsetStateMachine extends StateMachine {
     private static final String TAG = "HeadsetStateMachine";
     private static final boolean DBG = true;
-
+    private FeatureFlags mFeatureFlags;
     static final int CONNECT = 1;
     static final int DISCONNECT = 2;
     static final int CONNECT_AUDIO = 3;
@@ -203,10 +204,17 @@ public class HeadsetStateMachine extends StateMachine {
                 BluetoothAssignedNumbers.GOOGLE);
     }
 
-    private HeadsetStateMachine(BluetoothDevice device, Looper looper,
-            HeadsetService headsetService, AdapterService adapterService,
-            HeadsetNativeInterface nativeInterface, HeadsetSystemInterface systemInterface) {
+    private HeadsetStateMachine(
+            BluetoothDevice device,
+            Looper looper,
+            HeadsetService headsetService,
+            AdapterService adapterService,
+            HeadsetNativeInterface nativeInterface,
+            HeadsetSystemInterface systemInterface,
+            FeatureFlags featureFlags) {
         super(TAG, Objects.requireNonNull(looper, "looper cannot be null"));
+        // Initialize instance variables
+        mFeatureFlags = Objects.requireNonNull(featureFlags, "Feature Flags cannot be null");
         // Enable/Disable StateMachine debug logs
         setDbg(DBG);
         mDevice = Objects.requireNonNull(device, "device cannot be null");
@@ -245,12 +253,23 @@ public class HeadsetStateMachine extends StateMachine {
         setInitialState(mDisconnected);
     }
 
-    static HeadsetStateMachine make(BluetoothDevice device, Looper looper,
-            HeadsetService headsetService, AdapterService adapterService,
-            HeadsetNativeInterface nativeInterface, HeadsetSystemInterface systemInterface) {
+    static HeadsetStateMachine make(
+            BluetoothDevice device,
+            Looper looper,
+            HeadsetService headsetService,
+            AdapterService adapterService,
+            HeadsetNativeInterface nativeInterface,
+            HeadsetSystemInterface systemInterface,
+            FeatureFlags featureFlags) {
         HeadsetStateMachine stateMachine =
-                new HeadsetStateMachine(device, looper, headsetService, adapterService,
-                        nativeInterface, systemInterface);
+                new HeadsetStateMachine(
+                        device,
+                        looper,
+                        headsetService,
+                        adapterService,
+                        nativeInterface,
+                        systemInterface,
+                        featureFlags);
         stateMachine.start();
         Log.i(TAG, "Created state machine " + stateMachine + " for " + device);
         return stateMachine;
@@ -1921,8 +1940,10 @@ public class HeadsetStateMachine extends StateMachine {
     }
 
     private void processAtCind(BluetoothDevice device) {
-        int call, callSetup;
+        logi("processAtCind for device=" + device);
         final HeadsetPhoneState phoneState = mSystemInterface.getHeadsetPhoneState();
+        int call, callSetup;
+        int service = phoneState.getCindService(), signal = phoneState.getCindSignal();
 
         /* Handsfree carkits expect that +CIND is properly responded to
          Hence we ensure that a proper response is sent
@@ -1935,9 +1956,36 @@ public class HeadsetStateMachine extends StateMachine {
             call = phoneState.getNumActiveCall();
             callSetup = phoneState.getNumHeldCall();
         }
-
-        mNativeInterface.cindResponse(device, phoneState.getCindService(), call, callSetup,
-                phoneState.getCallState(), phoneState.getCindSignal(), phoneState.getCindRoam(),
+        if (mFeatureFlags.pretendNetworkService()) {
+            boolean isCallOngoing =
+                    (phoneState.getNumActiveCall() > 0)
+                            || (phoneState.getNumHeldCall() > 0)
+                            || phoneState.getCallState() == HeadsetHalConstants.CALL_STATE_ALERTING
+                            || phoneState.getCallState() == HeadsetHalConstants.CALL_STATE_DIALING
+                            || phoneState.getCallState() == HeadsetHalConstants.CALL_STATE_INCOMING;
+            if ((isCallOngoing
+                    && (!mHeadsetService.isVirtualCallStarted())
+                    && (phoneState.getCindService()
+                            == HeadsetHalConstants.NETWORK_STATE_NOT_AVAILABLE))) {
+                logi(
+                        "processAtCind: If regular call is in process/active/held while RD"
+                                + " connection during BT-ON, update service availability and signal"
+                                + " strength");
+                service = HeadsetHalConstants.NETWORK_STATE_AVAILABLE;
+                signal = 3;
+            } else {
+                service = phoneState.getCindService();
+                signal = phoneState.getCindSignal();
+            }
+        }
+        mNativeInterface.cindResponse(
+                device,
+                service,
+                call,
+                callSetup,
+                phoneState.getCallState(),
+                signal,
+                phoneState.getCindRoam(),
                 phoneState.getCindBatteryCharge());
     }
 
