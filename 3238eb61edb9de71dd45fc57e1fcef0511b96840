@@ -16,6 +16,24 @@
       "message": "Just want to clarify about the next, I think this addressed the multi clients issue, but the race condition might still exist in case of \"mCallbackExecutorMap.isEmpty()\". mCallbackExecutorMap could be updated after the service notify the volume info. In my local testing with this CL, I found the race condition might still be hit.\n\nIf this is not being planned, I feel some logic like my previous wip CL is still needed here?\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2858629/4/framework/java/android/bluetooth/BluetoothVolumeControl.java",
       "revId": "3238eb61edb9de71dd45fc57e1fcef0511b96840",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fbba443d_a63888e0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2023-12-22T10:59:48Z",
+      "side": 1,
+      "message": "Please check latest patchset.",
+      "parentUuid": "a0312f37_872ab0d0",
+      "revId": "3238eb61edb9de71dd45fc57e1fcef0511b96840",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
