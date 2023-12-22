@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "6408e912_96ddab12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-22T10:12:32Z",
+      "side": 1,
+      "message": "Not sure that it is the correct bug; it points to invisalign",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "45bd10fa_1b826b06",
@@ -14,6 +37,98 @@
       "writtenOn": "2023-12-22T00:22:53Z",
       "side": 1,
       "message": "I need to add some more test coverage for the new code in controller.cc",
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e24ea8b3_5f40040e",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-22T10:12:32Z",
+      "side": 1,
+      "message": "nit: DYNAMIC_AUDIO_BUFFER to match HCI requirements",
+      "range": {
+        "startLine": 459,
+        "startChar": 2,
+        "endLine": 459,
+        "endChar": 16
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d540b12d_4d59e653",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 5810,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-22T10:12:32Z",
+      "side": 1,
+      "message": "nit: DabGetAudioBufferTimeCapability",
+      "range": {
+        "startLine": 5810,
+        "startChar": 7,
+        "endLine": 5810,
+        "endChar": 34
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05e830a8_c3493788",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 5829,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-22T10:12:32Z",
+      "side": 1,
+      "message": "Would keep to `audio_codec_type_supported : 32`, the information probably does not need to be access at this part of the command handing.",
+      "range": {
+        "startLine": 5824,
+        "startChar": 0,
+        "endLine": 5829,
+        "endChar": 18
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d09cbf3f_17c072a3",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 5835,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2023-12-22T10:12:32Z",
+      "side": 1,
+      "message": "Would use `ControllerDabCodecCapability[32]`",
+      "range": {
+        "startLine": 5830,
+        "startChar": 2,
+        "endLine": 5835,
+        "endChar": 59
+      },
       "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
