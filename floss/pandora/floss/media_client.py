@@ -185,6 +185,7 @@ class FlossMediaClient(BluetoothMediaCallbacks):
 
         # We don't register callbacks by default.
         self.callbacks = None
+        self.devices = []
 
     def __del__(self):
         """Destructor"""
@@ -199,6 +200,10 @@ class FlossMediaClient(BluetoothMediaCallbacks):
         """
         logging.debug('on_bluetooth_audio_device_added: device: %s', device)
 
+        if device['address'] in self.devices:
+            logging.debug("Device already added")
+        self.devices.append(device['address'])
+
     @utils.glib_callback()
     def on_bluetooth_audio_device_removed(self, addr):
         """Handles Bluetooth audio device removed callback.
@@ -207,6 +212,8 @@ class FlossMediaClient(BluetoothMediaCallbacks):
             addr: Address of device to be removed.
         """
         logging.debug('on_bluetooth_audio_device_removed: address: %s', addr)
+        if addr in self.devices:
+            self.devices.remove(addr)
 
     @utils.glib_callback()
     def on_absolute_volume_supported_changed(self, supported):
