@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "18435d63_0dc20ffc",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-12-25T11:41:15Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6d3de949_357e505f",
+      "revId": "ae5fe28fe033d36eb749915823a0b1fd736427a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ec058c1_6016871f",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-25T07:28:11Z",
       "side": 1,
       "message": "if request.report_type not in iter(floss_enums.BtHidReportType):",
+      "revId": "ae5fe28fe033d36eb749915823a0b1fd736427a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e677febf_050b8d2a",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2023-12-25T11:41:15Z",
+      "side": 1,
+      "message": "I substituted BthReportType with BtHidReportType to align with the existing Rust code. If you prefer, I can modify the name as you want.\nthe rust code here https://source.chromium.org/chromiumos/chromiumos/codesearch/+/main:gen/arm64-generic/out/build/arm64-generic/tmp/portage/net-wireless/floss-0.0.2-r4573/work/floss-0.0.2/platform2/bt/system/gd/rust/topshim/src/profiles/hid_host.rs;l\u003d82?q\u003dBthhReportType",
+      "parentUuid": "1ec058c1_6016871f",
       "revId": "ae5fe28fe033d36eb749915823a0b1fd736427a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
