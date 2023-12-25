@@ -69,6 +69,24 @@
       "parentUuid": "1ec058c1_6016871f",
       "revId": "ae5fe28fe033d36eb749915823a0b1fd736427a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc046f03_fafc15f5",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-25T11:45:12Z",
+      "side": 1,
+      "message": "BthhReportType",
+      "parentUuid": "e677febf_050b8d2a",
+      "revId": "ae5fe28fe033d36eb749915823a0b1fd736427a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
