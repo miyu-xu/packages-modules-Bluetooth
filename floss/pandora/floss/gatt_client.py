@@ -511,8 +511,7 @@ class FlossGattClient(GattClientCallbacks):
             rx_phy: Receive physical type.
             status: floss_enums.GattStatus.
         """
-        logging.debug('on_phy_update: addr: %s, tx_phy: %s, rx_phy: %s, status: %s',
-                      addr, tx_phy, rx_phy, status)
+        logging.debug('on_phy_update: addr: %s, tx_phy: %s, rx_phy: %s, status: %s', addr, tx_phy, rx_phy, status)
 
     @utils.glib_callback()
     def on_phy_read(self, addr, tx_phy, rx_phy, status):
@@ -524,8 +523,7 @@ class FlossGattClient(GattClientCallbacks):
             rx_phy: Receive physical type.
             status: floss_enums.GattStatus.
         """
-        logging.debug('on_phy_read: addr: %s, tx_phy: %s, rx_phy: %s, status: %s',
-                      addr, tx_phy, rx_phy, status)
+        logging.debug('on_phy_read: addr: %s, tx_phy: %s, rx_phy: %s, status: %s', addr, tx_phy, rx_phy, status)
 
     @utils.glib_callback()
     def on_search_complete(self, addr, services, status):
@@ -586,8 +584,7 @@ class FlossGattClient(GattClientCallbacks):
             handle: Descriptor handle id.
             value: Descriptor value.
         """
-        logging.debug('on_descriptor_read: addr: %s, status: %s, handle: %s, value: %s',
-                      addr, status, handle, value)
+        logging.debug('on_descriptor_read: addr: %s, status: %s, handle: %s, value: %s', addr, status, handle, value)
 
     @utils.glib_callback()
     def on_descriptor_write(self, addr, status, handle):
