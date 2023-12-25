@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d3de949_357e505f",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-25T07:28:11Z",
+      "side": 1,
+      "message": "Please also log the status code here.",
+      "revId": "ae5fe28fe033d36eb749915823a0b1fd736427a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ec058c1_6016871f",
+        "filename": "floss/pandora/server/hid.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-25T07:28:11Z",
+      "side": 1,
+      "message": "if request.report_type not in iter(floss_enums.BtHidReportType):",
+      "revId": "ae5fe28fe033d36eb749915823a0b1fd736427a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
