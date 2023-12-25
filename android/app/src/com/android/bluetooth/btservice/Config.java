@@ -16,6 +16,8 @@
 
 package com.android.bluetooth.btservice;
 
+import static com.android.bluetooth.flags.Flags.leaudioBroadcastFeatureSupport;
+
 import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.os.SystemProperties;
@@ -88,7 +90,8 @@ public class Config {
         new ProfileConfig(AvrcpTargetService.isEnabled(), BluetoothProfile.AVRCP),
         new ProfileConfig(AvrcpControllerService.isEnabled(), BluetoothProfile.AVRCP_CONTROLLER),
         new ProfileConfig(
-                BassClientService.isEnabled(), BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT),
+                BassClientService.isEnabled() && leaudioBroadcastFeatureSupport(),
+                BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT),
         new ProfileConfig(BatteryService.isEnabled(), BluetoothProfile.BATTERY),
         new ProfileConfig(
                 CsipSetCoordinatorService.isEnabled(), BluetoothProfile.CSIP_SET_COORDINATOR),
@@ -100,7 +103,9 @@ public class Config {
         new ProfileConfig(HidHostService.isEnabled(), BluetoothProfile.HID_HOST),
         new ProfileConfig(GattService.isEnabled(), BluetoothProfile.GATT),
         new ProfileConfig(LeAudioService.isEnabled(), BluetoothProfile.LE_AUDIO),
-        new ProfileConfig(LeAudioService.isBroadcastEnabled(), BluetoothProfile.LE_AUDIO_BROADCAST),
+        new ProfileConfig(
+                LeAudioService.isBroadcastEnabled() && leaudioBroadcastFeatureSupport(),
+                BluetoothProfile.LE_AUDIO_BROADCAST),
         new ProfileConfig(TbsService.isEnabled(), BluetoothProfile.LE_CALL_CONTROL),
         new ProfileConfig(BluetoothMapService.isEnabled(), BluetoothProfile.MAP),
         new ProfileConfig(MapClientService.isEnabled(), BluetoothProfile.MAP_CLIENT),
