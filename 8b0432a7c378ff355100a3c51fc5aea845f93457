@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c41addab_9db58f95",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-12-25T09:58:51Z",
+      "side": 1,
+      "message": "A CS procedure may contains one or more CS subevent. So even local_status and remote_status are 0x0 (All results complete for the CS procedure), it may contains aborted subevent.",
+      "parentUuid": "3cc839b1_020ad3f6",
+      "range": {
+        "startLine": 86,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 25
+      },
+      "revId": "8b0432a7c378ff355100a3c51fc5aea845f93457",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "247c1ba4_dd1c05ad",
