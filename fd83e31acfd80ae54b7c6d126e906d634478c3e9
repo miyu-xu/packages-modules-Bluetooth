@@ -52,6 +52,24 @@
       "parentUuid": "d4f7509c_9cb95afa",
       "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00e956b5_50671ef5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2023-12-26T10:18:30Z",
+      "side": 1,
+      "message": "\u003e BassClientService#isEnabled is an API and have the CTS test on it\n\n`BassClientService#isEnabled` is not an API and is not exposed over Binder, it\u0027s only usage is Config.java.\n\nThe `BluetoothLeBroadcastAssistantTest ` CTS test uses [`isLeAudioBroadcastAssistantSupported`](https://cs.android.com/android/platform/superproject/main/+/main:cts/tests/tests/bluetooth/src/android/bluetooth/cts/BluetoothLeBroadcastAssistantTest.java;l\u003d179;drc\u003dc8c21dca6c98f12df34ced568b92e27c4d74303c) which is derived from the supported profiles declared in Config.java.\n\nAnother CTS test, `BluetoothConfigTest`, [check that the sysprop is enabled if `isLeAudioBroadcastSourceSupported` is true](https://cs.android.com/android/platform/superproject/main/+/main:cts/tests/tests/bluetooth/src/android/bluetooth/cts/BluetoothConfigTest.java;l\u003d195;drc\u003dc8c21dca6c98f12df34ced568b92e27c4d74303c).\n\nBTW now that you mention it are the CTS tests for `BluetoothLeBroadcastAssistantTest` passing with this change ? Those are currently not enabled on presubmit and postsubmit because Broadcast is not enabled on Cuttlefish.",
+      "parentUuid": "804ec8b5_bd90d5aa",
+      "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
