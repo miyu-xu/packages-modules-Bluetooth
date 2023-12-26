@@ -51,6 +51,24 @@
       "message": "I think it\u0027s good for differnet project to configure their own parameters, but it\u0027s better to use config file instead of sysproperty.",
       "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "14f916ff_0a6b5879",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1903311
+      },
+      "writtenOn": "2023-12-26T07:34:44Z",
+      "side": 1,
+      "message": "We have some constants already defined using sys properties like those in device.mk. If possible, we want to keep them together.",
+      "parentUuid": "1516c131_660daacd",
+      "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
