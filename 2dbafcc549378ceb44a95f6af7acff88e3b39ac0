@@ -43,6 +43,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8426068c_d7168c4a",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-26T04:41:04Z",
+      "side": 1,
+      "message": "At present, we are not able to know it. But in our use case (pts-bot), we only call WaitConnection after we trying to connect to BREDR. So this is simply guessing\nhere. We can improve this after floss are able to return the ACL connection transport to the upper level.",
+      "parentUuid": "97c14380_3def4d4d",
+      "range": {
+        "startLine": 232,
+        "startChar": 69,
+        "endLine": 232,
+        "endChar": 98
+      },
+      "revId": "2dbafcc549378ceb44a95f6af7acff88e3b39ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "82963670_981cf4ed",
         "filename": "floss/pandora/server/host.py",
         "patchSetId": 3
@@ -54,6 +78,30 @@
       "writtenOn": "2023-12-26T04:21:46Z",
       "side": 1,
       "message": "what\u0027s the value if the address is not connected.",
+      "range": {
+        "startLine": 241,
+        "startChar": 8,
+        "endLine": 241,
+        "endChar": 15
+      },
+      "revId": "2dbafcc549378ceb44a95f6af7acff88e3b39ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7260eb4c_292734c6",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-26T04:41:04Z",
+      "side": 1,
+      "message": "The connection class is throw by Advertise, or other functions listen for the connection state and only when they find the state is connected.",
+      "parentUuid": "82963670_981cf4ed",
       "range": {
         "startLine": 241,
         "startChar": 8,
