@@ -16,6 +16,24 @@
       "message": "Ideally, for consistency across Android, it would be preferable to not have those configurable (same for the native ones even if right now they are configurable but this was made for Floss and I would like to remove this for Android).\n\nIs there somewhere explaining why is this change needed? I quickly looked at the bug but there is a lot of information there.",
       "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cfdc3453_5112ac71",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2023-12-26T00:02:54Z",
+      "side": 1,
+      "message": "Hey David, it is designed to customize products\u0027 constants based on Ting-Yi\u0027s discussion with William.",
+      "parentUuid": "eb8822bc_b96e833b",
+      "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
