@@ -17,6 +17,7 @@ import asyncio
 import logging
 
 from floss.pandora.server import bluetooth as bluetooth_module
+from floss.pandora.server import gatt
 from floss.pandora.server import hfp
 from floss.pandora.server import hid
 from floss.pandora.server import host
@@ -24,6 +25,7 @@ from floss.pandora.server import security
 import grpc
 from pandora import host_grpc_aio
 from pandora import security_grpc_aio
+from pandora_experimental import gatt_grpc_aio
 from pandora_experimental import hfp_grpc_aio
 from pandora_experimental import hid_grpc_aio
 
@@ -48,6 +50,9 @@ async def serve(port):
 
             security_storage_service = security.SecurityStorageService(bluetooth)
             security_grpc_aio.add_SecurityStorageServicer_to_server(security_storage_service, server)
+
+            gatt_service = gatt.GATTService(bluetooth)
+            gatt_grpc_aio.add_GATTServicer_to_server(gatt_service, server)
 
             hfp_service = hfp.HFPService(bluetooth)
             hfp_grpc_aio.add_HFPServicer_to_server(hfp_service, server)

@@ -26,6 +26,7 @@ from floss.pandora.floss import qa_client
 from floss.pandora.floss import scanner_client
 from floss.pandora.floss import telephony_client
 from floss.pandora.floss import gatt_client
+from floss.pandora.floss import gatt_server
 from floss.pandora.floss import floss_enums
 from floss.pandora.floss import utils
 from gi.repository import GLib
@@ -68,6 +69,7 @@ class Bluetooth(object):
         self.scanner_client = scanner_client.FlossScannerClient(self.bus, self.DEFAULT_ADAPTER)
         self.qa_client = qa_client.FlossQAClient(self.bus, self.DEFAULT_ADAPTER)
         self.gatt_client = gatt_client.FlossGattClient(self.bus, self.DEFAULT_ADAPTER)
+        self.gatt_server = gatt_server.FlossGattServer(self.bus, self.DEFAULT_ADAPTER)
         self.telephony_client = telephony_client.FlossTelephonyClient(self.bus, self.DEFAULT_ADAPTER)
         self.media_client = media_client.FlossMediaClient(self.bus, self.DEFAULT_ADAPTER)
 
@@ -143,6 +145,9 @@ class Bluetooth(object):
         if not self.telephony_client.register_telephony_callback():
             logging.error('telephony_client: Failed to register callbacks')
             return False
+        if not self.gatt_server.register_server(self.FAKE_GATT_APP_ID, False):
+            logging.error('gatt_server: Failed to register callbacks')
+            return False
         return True
 
     def is_bluetoothd_proxy_valid(self):
@@ -155,6 +160,7 @@ class Bluetooth(object):
             self.scanner_client.has_proxy(),
             self.qa_client.has_proxy(),
             self.gatt_client.has_proxy(),
+            self.gatt_server.has_proxy(),
             self.media_client.has_proxy(),
             self.telephony_client.has_proxy()
         ])
@@ -191,6 +197,7 @@ class Bluetooth(object):
             self.scanner_client = scanner_client.FlossScannerClient(self.bus, default_adapter)
             self.qa_client = qa_client.FlossQAClient(self.bus, default_adapter)
             self.gatt_client = gatt_client.FlossGattClient(self.bus, default_adapter)
+            self.gatt_server = gatt_server.FlossGattServer(self.bus, default_adapter)
             self.media_client = media_client.FlossMediaClient(self.bus, default_adapter)
             self.telephony_client = telephony_client.FlossTelephonyClient(self.bus, default_adapter)
 
@@ -351,6 +358,49 @@ class Bluetooth(object):
 
     def set_battery_level(self, battery_level):
         return self.telephony_client.set_battery_level(battery_level)
+
+    def read_characteristic(self, address, handle, auth_re):
+        return self.gatt_client.read_characteristic(address, handle, auth_re)
+
+    def read_descriptor(self, address, handle, auth_req):
+        return self.gatt_client.read_descriptor(address, handle, auth_req)
+
+    def discover_services(self, address):
+        return self.gatt_client.discover_services(address)
+
+    def get_bond_state(self, address):
+        self.adapter_client.get_bond_state(address)
+
+    def fetch_remote(self, address):
+        return self.adapter_client.fetch_remote_uuids(address)
+
+    def get_remote_uuids(self, address):
+        return self.adapter_client.get_remote_property(address, 'Uuids')
+
+    def btif_gattc_discover_service_by_uuid(self, address, uuid):
+        return self.gatt_client.btif_gattc_discover_service_by_uuid(address, uuid)
+
+    def configure_mtu(self, address, mtu):
+        return self.gatt_client.configure_mtu(address, mtu)
+
+    def refresh_device(self, address):
+        return self.gatt_client.refresh_device(address)
+
+    def write_descriptor(self, address, handle, auth_req, value):
+        return self.gatt_client.write_descriptor(address, handle, auth_req, value)
+
+    def write_characteristic(self, address, handle, write_type, auth_req, value):
+        return self.gatt_client.write_characteristic(address, handle, write_type, auth_req, value)
+
+    def read_using_characteristic_uuid(self, address, uuid, start_handle, end_handle, auth_req):
+        return self.gatt_client.read_using_characteristic_uuid(address, uuid, start_handle, end_handle, auth_req)
+
+    def register_for_notification(self, address, handle, enable):
+        return self.gatt_client.register_for_notification(address, handle, enable)
+
+    def add_service(self, service):
+        service = self.gatt_server.make_dbus_service(service)
+        return self.gatt_server.add_service(service)
 
     def gatt_connect(self, address, is_direct, transport):
         return self.gatt_client.connect_client(address, is_direct, transport)
