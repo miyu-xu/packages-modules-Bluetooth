@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b663f3be_9e267ef0",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-26T08:29:04Z",
+      "side": 1,
+      "message": "I have a draft patch to fix the GAP/BON test issue will change the\nconnection usage: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2890991\n\n\n```     \n    async def Secure(self, request: security_pb2.SecureRequest,\n                     context: grpc.ServicerContext) -\u003e security_pb2.SecureResponse:\n        connection \u003d utils.connection_from(request.connection)\n        address \u003d connection.address\n        transport \u003d connection.transport\n\n        level \u003d request.WhichOneof(\u0027level\u0027)\n\n        if transport \u003d\u003d floss_enums.BtTransport.LE:\n            if request.le \u003d\u003d security_pb2.LE_LEVEL1:\n                security_level_reached \u003d True\n            elif request.le \u003d\u003d security_pb2.LE_LEVEL4:\n                raise RuntimeError(\u0027Secure: Low-energy security level 4 not supported\u0027)\n            else:\n                if not self.bluetooth.is_bonded(address):\n                    self.bluetooth.create_bond(address, transport)\n                security_level_reached \u003d await self.wait_le_security_level(request.le, address)\n        elif transport \u003d\u003d floss_enums.BtTransport.BREDR:\n            if request.classic \u003d\u003d security_pb2.LEVEL0:\n                security_level_reached \u003d True\n            elif request.classic \u003e\u003d security_pb2.LEVEL3:\n                raise RuntimeError(\u0027Secure: Classic security level up to 3 not supported\u0027)\n            else:\n                if not self.bluetooth.is_bonded(address):\n                    self.bluetooth.create_bond(address, transport)\n                security_level_reached \u003d await self.wait_classic_security_level(request.classic, address)\n        else:\n            raise RuntimeError(f\u0027Secure: Invalid bluetooth transport type {transport}\u0027)\n\n        secure_response \u003d security_pb2.SecureResponse()\n        if security_level_reached:\n            secure_response.success.CopyFrom(empty_pb2.Empty())\n        else:\n            secure_response.not_reached.CopyFrom(empty_pb2.Empty())\n        return secure_response\n\n    async def WaitSecurity(self, request: security_pb2.WaitSecurityRequest,\n                           context: grpc.ServicerContext) -\u003e security_pb2.WaitSecurityResponse:\n        address \u003d utils.connection_from(request.connection).address\n        transport \u003d floss_enums.BtTransport.BREDR if request.HasField(\u0027classic\u0027) else floss_enums.BtTransport.LE\n\n        if transport \u003d\u003d floss_enums.BtTransport.LE:\n            security_level_reached \u003d await self.wait_le_security_level(request.le, address)\n        elif transport \u003d\u003d floss_enums.BtTransport.BREDR:\n            security_level_reached \u003d await self.wait_classic_security_level(request.classic, address)\n        else:\n            raise RuntimeError(\u0027WaitSecurity: Invalid bluetooth transport type\u0027)\n\n        wait_security_response \u003d security_pb2.WaitSecurityResponse()\n        if security_level_reached:\n            wait_security_response.success.CopyFrom(empty_pb2.Empty())\n        else:\n            wait_security_response.pairing_failure.CopyFrom(empty_pb2.Empty())\n        return wait_security_response\n```",
+      "range": {
+        "startLine": 278,
+        "startChar": 0,
+        "endLine": 335,
+        "endChar": 0
+      },
+      "revId": "8e0d64f96527d25856e3ac3c12c6f0d64528d2df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
