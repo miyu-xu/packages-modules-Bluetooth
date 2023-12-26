@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb1cbc4c_6d354dd6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1283,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-26T18:24:29Z",
+      "side": 1,
+      "message": "This is a very good question. Yes, I\u0027ve tried with adding another source directly, but the remote won\u0027t honor this operation(at least with the headset we\u0027re testing with).\n\nMy understanding of this BASS part is that the spec grants the remote(server) rights to decide if it wants to switch the source or not, ideally this can be well handled from the sink side. Otherwise, the assistant can help to make a better choice through BASS operations.\n\nSo I think we can proceed with this approach to have more IOP compatible control from the assistant side. Then in the future if the sink vendors are mostly implementing smarter source control logics(or spec clarified a bit more), we can see if something can be simplified here.",
+      "parentUuid": "da3043dc_c6235f63",
+      "revId": "64e4bd9e4eca53eccabef7fc36a8c7621e1c757f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "c62ee76d_c93d01ff",
