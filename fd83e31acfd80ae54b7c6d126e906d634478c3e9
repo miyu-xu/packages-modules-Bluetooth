@@ -70,6 +70,24 @@
       "parentUuid": "804ec8b5_bd90d5aa",
       "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3748c9a1_e119e411",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-26T14:51:42Z",
+      "side": 1,
+      "message": "The failure test cases don\u0027t rely on API check only, but also check the cts/TestUtil.java return value. The failure root cause is from TestUtil.jave. Not sure if it\u0027s good to add the flag in CTS test case.",
+      "parentUuid": "00e956b5_50671ef5",
+      "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
