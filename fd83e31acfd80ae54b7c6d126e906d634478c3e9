@@ -88,6 +88,24 @@
       "parentUuid": "00e956b5_50671ef5",
       "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d22c378_14c06c45",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-26T23:23:10Z",
+      "side": 1,
+      "message": "hi Alice,\nMy preference is also moving this flag check to BassClient/LeAudio Service if possible, just like what you did in v2 patch.\nIf the CTS test failures with v2 is your only concern with that approach, I think that might be caused by your change in LeAudioService isEnabled() instead of isBroadcastEnabled() as David pointed out. \nBy making the change in isBroadcastEnabled(), the CTS tests should pass and we don\u0027t need any modification in TestUtil.",
+      "parentUuid": "3748c9a1_e119e411",
+      "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
