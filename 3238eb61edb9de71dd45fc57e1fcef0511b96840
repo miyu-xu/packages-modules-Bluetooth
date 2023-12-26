@@ -34,6 +34,24 @@
       "parentUuid": "a0312f37_872ab0d0",
       "revId": "3238eb61edb9de71dd45fc57e1fcef0511b96840",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d989b27_b4c8500d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-26T20:57:05Z",
+      "side": 1,
+      "message": "Thank you Lukasz, the new version lgtm.",
+      "parentUuid": "fbba443d_a63888e0",
+      "revId": "3238eb61edb9de71dd45fc57e1fcef0511b96840",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
