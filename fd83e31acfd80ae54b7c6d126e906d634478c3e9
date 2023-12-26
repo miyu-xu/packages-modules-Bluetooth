@@ -16,6 +16,24 @@
       "message": "Could we check the flag in `BassClientService#isEnabled` instead to keep consistency in Config.java ?",
       "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d4f7509c_9cb95afa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-26T02:15:19Z",
+      "side": 1,
+      "message": "Sure. Thanks for the recommandation.",
+      "parentUuid": "467142a8_ce813a4e",
+      "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
