@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6855b9c7_82708874",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-12-26T05:15:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "8426068c_d7168c4a",
+      "range": {
+        "startLine": 232,
+        "startChar": 69,
+        "endLine": 232,
+        "endChar": 98
+      },
+      "revId": "2dbafcc549378ceb44a95f6af7acff88e3b39ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "82963670_981cf4ed",
@@ -102,6 +126,30 @@
       "side": 1,
       "message": "The connection class is throw by Advertise, or other functions listen for the connection state and only when they find the state is connected.",
       "parentUuid": "82963670_981cf4ed",
+      "range": {
+        "startLine": 241,
+        "startChar": 8,
+        "endLine": 241,
+        "endChar": 15
+      },
+      "revId": "2dbafcc549378ceb44a95f6af7acff88e3b39ac0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e954be57_ffda0b7d",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2023-12-26T05:15:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7260eb4c_292734c6",
       "range": {
         "startLine": 241,
         "startChar": 8,
