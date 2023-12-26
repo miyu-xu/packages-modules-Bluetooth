@@ -34,6 +34,24 @@
       "parentUuid": "467142a8_ce813a4e",
       "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "804ec8b5_bd90d5aa",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-26T03:08:04Z",
+      "side": 1,
+      "message": "Rollback to the original version. BassClientService#isEnabled is an API and have the CTS test on it. I think it may not good place to guard this feature in the current stage. The CTS test, and api was released for a while. I don\u0027t prefer to change their behavior.",
+      "parentUuid": "d4f7509c_9cb95afa",
+      "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
