@@ -57,8 +57,6 @@ import java.util.Arrays;
 public class Config {
     private static final String TAG = "AdapterServiceConfig";
 
-    private static final String LE_AUDIO_DYNAMIC_SWITCH_PROPERTY =
-            "ro.bluetooth.leaudio_switcher.supported";
     private static final String LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_PROPERTY =
             "ro.bluetooth.leaudio_broadcast_switcher.supported";
     private static final String LE_AUDIO_SWITCHER_DISABLED_PROPERTY =
@@ -130,17 +128,12 @@ public class Config {
     }
 
     static void init(Context ctx) {
-        final boolean leAudioDynamicSwitchSupported =
-                SystemProperties.getBoolean(LE_AUDIO_DYNAMIC_SWITCH_PROPERTY, false);
-
-        if (leAudioDynamicSwitchSupported) {
-            final String leAudioSwitcherDisabled =
-                    SystemProperties.get(LE_AUDIO_SWITCHER_DISABLED_PROPERTY, "none");
-            if (leAudioSwitcherDisabled.equals("true")) {
-                setLeAudioProfileStatus(false);
-            } else if (leAudioSwitcherDisabled.equals("false")) {
-                setLeAudioProfileStatus(true);
-            }
+        final String leAudioSwitcherDisabled =
+                SystemProperties.get(LE_AUDIO_SWITCHER_DISABLED_PROPERTY, "none");
+        if (leAudioSwitcherDisabled.equals("true")) {
+            setLeAudioProfileStatus(false);
+        } else if (leAudioSwitcherDisabled.equals("false")) {
+            setLeAudioProfileStatus(true);
         }
 
         // Disable ASHA on Automotive, TV, and Watch devices if the system property is not set
