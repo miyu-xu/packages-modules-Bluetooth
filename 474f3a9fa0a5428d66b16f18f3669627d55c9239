@@ -22,6 +22,30 @@
       },
       "revId": "474f3a9fa0a5428d66b16f18f3669627d55c9239",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "538016da_ef178933",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2023-12-26T09:37:27Z",
+      "side": 1,
+      "message": "Done. Assumed that the change aosp/2890991 will be submitted first.",
+      "parentUuid": "770668cb_eef1ab19",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 0
+      },
+      "revId": "474f3a9fa0a5428d66b16f18f3669627d55c9239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
