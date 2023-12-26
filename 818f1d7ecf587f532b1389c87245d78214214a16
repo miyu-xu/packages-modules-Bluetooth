@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cf9d478e_102acc7e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-26T17:18:36Z",
+      "side": 1,
+      "message": "Same comment as the next CL, since sink mode is under the feature flag, could you add this to the commit message?\nBug: 308171251",
+      "revId": "818f1d7ecf587f532b1389c87245d78214214a16",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
