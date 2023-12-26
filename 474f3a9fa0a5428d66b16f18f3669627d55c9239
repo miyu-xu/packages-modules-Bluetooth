@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "770668cb_eef1ab19",
+        "filename": "floss/pandora/server/host.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2023-12-26T08:26:57Z",
+      "side": 1,
+      "message": "I have a drafted patch will change the connection usage aosp/2890991:\n\nreturn host_pb2.ConnectLEResponse(connection\u003dutils.connection_to(utils.Connection(address, floss_enums.BtTransport.LE)))",
+      "range": {
+        "startLine": 282,
+        "startChar": 0,
+        "endLine": 284,
+        "endChar": 0
+      },
+      "revId": "474f3a9fa0a5428d66b16f18f3669627d55c9239",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
