@@ -1,0 +1,208 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "155ace39_88864275",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "I\u0027m assuming you also tested with btclient?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adab5c09_828100ef",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "nit: can you move this block of code down below where you `impl BatteryManagerCallback`",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2edcc783_0d8bdac0",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "TODO?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e7e0466_25664498",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "As someone who didn\u0027t immediately know what these commands do, do you mind adding a little more description?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8cda5ab9_eedfac13",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "Since you\u0027re not reusing `battery_set` you can combine this and above like:\n`match self.lock_conext()....`\n\nSame applies below",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83654ccb_72341670",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "is `batteries` guaranteed to be non-empty?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af558741_8420a2ec",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "If you\u0027re getting the same battery info here, why do we also need the `status` command?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0793e24e_a9942997",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "why `to_lowercase`?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fc17ce0d_e18533f2",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "nit: can remove the else since you\u0027re returning early",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0f753e9_a2c261d2",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "What\u0027s this TODO for?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ab9a1e3_4af1076d",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "`_ \u003d\u003e return Err(CommandError::InvalidArgs),` to be consistent with the other commands",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4bef380_27c7ce08",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2023-12-27T20:56:19Z",
+      "side": 1,
+      "message": "I\u0027m a little confused what this is being used for since it looks like all we do with this set is add/insert addresses via track/untrack. Also, with that - why do we need track/untrack commands?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
