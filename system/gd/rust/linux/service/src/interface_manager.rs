@@ -250,6 +250,41 @@ impl InterfaceManager {
                 },
 
                 APIMessage::ShutDown => {
+                    // Just try to remove the paths, don't care about the result.
+                    let _: Option<()> = cr
+                        .lock()
+                        .unwrap()
+                        .remove(&Self::make_object_name(virt_index, "adapter").into());
+                    let _: Option<()> = cr
+                        .lock()
+                        .unwrap()
+                        .remove(&Self::make_object_name(virt_index, "admin").into());
+                    let _: Option<()> = cr
+                        .lock()
+                        .unwrap()
+                        .remove(&Self::make_object_name(virt_index, "logging").into());
+                    let _: Option<()> =
+                        cr.lock().unwrap().remove(&Self::make_object_name(virt_index, "qa").into());
+                    let _: Option<()> = cr
+                        .lock()
+                        .unwrap()
+                        .remove(&Self::make_object_name(virt_index, "gatt").into());
+                    let _: Option<()> = cr
+                        .lock()
+                        .unwrap()
+                        .remove(&Self::make_object_name(virt_index, "media").into());
+                    let _: Option<()> = cr
+                        .lock()
+                        .unwrap()
+                        .remove(&Self::make_object_name(virt_index, "telephony").into());
+                    let _: Option<()> = cr.lock().unwrap().remove(
+                        &Self::make_object_name(virt_index, "battery_provider_manager").into(),
+                    );
+                    let _: Option<()> = cr
+                        .lock()
+                        .unwrap()
+                        .remove(&Self::make_object_name(virt_index, "battery_manager").into());
+
                     // To shut down the connection, call _handle.abort() and drop the connection.
                     conn_join_handle.abort();
                     drop(conn);
