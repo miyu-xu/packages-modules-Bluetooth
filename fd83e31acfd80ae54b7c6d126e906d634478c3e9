@@ -124,6 +124,24 @@
       "parentUuid": "7d22c378_14c06c45",
       "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e86dcbc_f16fc061",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2023-12-27T06:47:26Z",
+      "side": 1,
+      "message": "After I switched to v2, and fixed the wrong part David pointed out. The cts was passed in the presubmit. However, I don\u0027t quite understand what\u0027s the different as all le audio properties is false in cuttlefish. \n\nI will follow up this to see if we need the additional patch for CTS.",
+      "parentUuid": "1dddd186_dac71157",
+      "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
