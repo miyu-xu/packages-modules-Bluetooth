@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "838e1d86_4081629b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-12-27T11:07:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "099681c5_c96d18c7",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "ab81c643e73bc07bfbdf768af31d5bd4ec79cb94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7c16b773_a54c9775",
@@ -37,6 +61,30 @@
       "writtenOn": "2023-12-13T23:17:45Z",
       "side": 1,
       "message": "Which test in this set covers this?",
+      "range": {
+        "startLine": 10,
+        "startChar": 12,
+        "endLine": 10,
+        "endChar": 41
+      },
+      "revId": "ab81c643e73bc07bfbdf768af31d5bd4ec79cb94",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c3ab34b_203ea8c4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-12-27T11:07:45Z",
+      "side": 1,
+      "message": "ScanManagerTest actually but run the whole test just for checking.",
+      "parentUuid": "7c16b773_a54c9775",
       "range": {
         "startLine": 10,
         "startChar": 12,
