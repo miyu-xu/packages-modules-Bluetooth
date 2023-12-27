@@ -246,6 +246,24 @@
       "parentUuid": "606997c6_eccde040",
       "revId": "275bfdeadff09a2983eddc05ec659cb7e767a691",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a394c29_553c3360",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-27T03:02:23Z",
+      "side": 1,
+      "message": "Move to btif_storage.h file.\nAnd gd storage also will access from the btif_storage,h\nDone",
+      "parentUuid": "df6d1bf9_f5d7ce24",
+      "revId": "275bfdeadff09a2983eddc05ec659cb7e767a691",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
