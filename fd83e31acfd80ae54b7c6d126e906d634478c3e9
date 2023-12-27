@@ -142,6 +142,24 @@
       "parentUuid": "1dddd186_dac71157",
       "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "49543f1c_17a5faa8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-27T17:17:58Z",
+      "side": 1,
+      "message": "Thank you Alice, yes, currently the le audio broadcast tests are disabled in cuttlefish so they\u0027re not actually running (we should plan to enable those for sure though).\nSo IMO this change should be good as it will only have some issue in one case that device broadcast properties are enabled and flag is disabled. This is currently not a valid case. The flag will be enabled when broadcast feature is released.\nI think we can discuss further how to improve the CTS part later. For now, we\u0027re good since the properties are by default disabled.",
+      "parentUuid": "4e86dcbc_f16fc061",
+      "revId": "fd83e31acfd80ae54b7c6d126e906d634478c3e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

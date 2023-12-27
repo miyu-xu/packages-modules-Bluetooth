@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c554d99e_b9d83a8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2023-12-27T17:17:58Z",
+      "side": 1,
+      "message": "Noticed the latest patch has addressed the only pending comment from David who is OOO.\nThis lgtm, +2 to unblock. If still any questions, let\u0027s use the follow up CL to address.",
+      "revId": "827637b3162c12fe5f0b8aa074c15d976477e441",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
