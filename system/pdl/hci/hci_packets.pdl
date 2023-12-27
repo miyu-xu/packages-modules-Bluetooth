@@ -429,20 +429,20 @@ enum OpCode : 16 {
   LE_SET_DATA_RELATED_ADDRESS_CHANGES = 0x207C,
   LE_SET_DEFAULT_SUBRATE = 0x207D,
   LE_SUBRATE_REQUEST = 0x207E,
-  LE_CS_WRITE_CACHED_REMOTE_SUPPORTED_CAPABILITIES = 0xFBE9,
-  LE_CS_SET_PROCEDURE_PARAMETERS = 0xFBEA,
-  LE_CS_TEST_END = 0xFBEB,
-  LE_CS_TEST = 0xFBEC,
-  LE_CS_PROCEDURE_ENABLE = 0xFBF1,
-  LE_CS_SET_CHANNEL_CLASSIFICATION = 0xFBF2,
-  LE_CS_REMOVE_CONFIG = 0xFBF3,
-  LE_CS_CREATE_CONFIG = 0xFBF4,
-  LE_CS_READ_REMOTE_FAE_TABLE = 0xFBF6,
-  LE_CS_WRITE_CACHED_REMOTE_FAE_TABLE = 0xFBF7,
-  LE_CS_SET_DEFAULT_SETTINGS = 0xFBF8,
-  LE_CS_SECURITY_ENABLE = 0xFBF9,
-  LE_CS_READ_REMOTE_SUPPORTED_CAPABILITIES = 0xFBFA,
-  LE_CS_READ_LOCAL_SUPPORTED_CAPABILITIES = 0xFBFB,
+  LE_CS_READ_LOCAL_SUPPORTED_CAPABILITIES = 0x2089,
+  LE_CS_READ_REMOTE_SUPPORTED_CAPABILITIES = 0x208A,
+  LE_CS_WRITE_CACHED_REMOTE_SUPPORTED_CAPABILITIES = 0x208B,
+  LE_CS_SECURITY_ENABLE = 0x208C,
+  LE_CS_SET_DEFAULT_SETTINGS = 0x208D,
+  LE_CS_READ_REMOTE_FAE_TABLE = 0x208E,
+  LE_CS_WRITE_CACHED_REMOTE_FAE_TABLE = 0x208F,
+  LE_CS_CREATE_CONFIG = 0x2090,
+  LE_CS_REMOVE_CONFIG = 0x0291,
+  LE_CS_SET_CHANNEL_CLASSIFICATION = 0x2092,
+  LE_CS_SET_PROCEDURE_PARAMETERS = 0x2093,
+  LE_CS_PROCEDURE_ENABLE = 0x2094,
+  LE_CS_TEST = 0x2095,
+  LE_CS_TEST_END = 0x2096,
 
   // VENDOR_SPECIFIC
   // MSFT_OPCODE_xxxx below is needed for the tests.
@@ -894,14 +894,14 @@ enum SubeventCode : 8 {
   TRANSMIT_POWER_REPORTING = 0x21,
   BIG_INFO_ADVERTISING_REPORT = 0x22,
   LE_SUBRATE_CHANGE = 0x23,
-  LE_CS_TEST_END_COMPLETE = 0xF5,
-  LE_CS_SUBEVENT_RESULT_CONTINUE = 0xF6,
-  LE_CS_SUBEVENT_RESULT = 0xF7,
-  LE_CS_PROCEDURE_ENABLE_COMPLETE = 0xF8,
-  LE_CS_CONFIG_COMPLETE = 0xF9,
-  LE_CS_SECURITY_ENABLE_COMPLETE = 0xFA,
-  LE_CS_READ_REMOTE_FAE_TABLE_COMPLETE = 0xFB,
-  LE_CS_READ_REMOTE_SUPPORTED_CAPABILITIES_COMPLETE = 0xFC,
+  LE_CS_READ_REMOTE_SUPPORTED_CAPABILITIES_COMPLETE = 0x2C,
+  LE_CS_READ_REMOTE_FAE_TABLE_COMPLETE = 0x2D,
+  LE_CS_SECURITY_ENABLE_COMPLETE = 0x2E,
+  LE_CS_CONFIG_COMPLETE = 0x2F,
+  LE_CS_PROCEDURE_ENABLE_COMPLETE = 0x30,
+  LE_CS_SUBEVENT_RESULT = 0x31,
+  LE_CS_SUBEVENT_RESULT_CONTINUE = 0x32,
+  LE_CS_TEST_END_COMPLETE = 0x33,
 }
 
 // Vendor specific events
@@ -5179,11 +5179,14 @@ packet LeCsSetChannelClassification : DistanceMeasurementCommand (op_code = LE_C
 }
 
 packet LeCsSetChannelClassificationComplete : CommandComplete (command_op_code = LE_CS_SET_CHANNEL_CLASSIFICATION) {
+  status : ErrorCode,
 }
 
 enum CsPhy : 8 {
   LE_1M_PHY = 0x01,
   LE_2M_PHY = 0x02,
+  LE_CODED_PHY_S8 = 0x03,
+  LE_CODED_PHY_S2 = 0x04,
 }
 
 struct CsPreferredPeerAntenna {
@@ -5231,17 +5234,12 @@ packet LeCsProcedureEnableStatus : CommandStatus (command_op_code = LE_CS_PROCED
 packet LeCsTest : DistanceMeasurementCommand (op_code = LE_CS_TEST) {
   main_mode_type : 8,
   sub_mode_type : 8,
-  main_mode_steps : 8,
   main_mode_repetition : 8,
   mode_0_steps : 8,
   role : 8,
   rtt_type : 8,
   cs_sync_phy : 8,
   cs_sync_antenna_selection : 8,
-  cs_sync_aa_initiator : 32,
-  cs_sync_aa_reflector : 32,
-  cs_sync_random : 8[16],
-  cs_sync_user_payload_pattern : 8,
   cs_subevent_length : 24,
   cs_subevent_interval : 16,
   transmit_power_level : 8,
@@ -5250,16 +5248,13 @@ packet LeCsTest : DistanceMeasurementCommand (op_code = LE_CS_TEST) {
   t_fcs_time : 8,
   t_pm_time : 8,
   t_sw_time : 8,
-  t_pm_tone_ext : 8,
-  ss_marker1_position: 8,
-  ss_marker2_position: 8,
-  ss_marker_value : 8,
-  companion_signal_enable : 8,
   tone_antenna_config : 8,
+  companion_signal_enable : 8,
   tone_antenna_permutation : 8,
-  channel_map_repetition: 8,
-  _size_(channel) : 8,
-  channel : 8[],
+  drbg_nonce : 16,
+  override_config : 8,
+  override_parameters_length : 8,
+  override_parameters_data : 8[],
 }
 
 packet LeCsTestComplete : CommandComplete (command_op_code = LE_CS_TEST) {
@@ -6829,6 +6824,10 @@ packet LeCsSubeventResultContinue : LeMetaEvent (subevent_code = LE_CS_SUBEVENT_
   num_antenna_paths : 8,
   _count_(result_data_structures) : 8,
   result_data_structures : LeCsResultDataStructure[],
+}
+
+packet LeCsTestEndComplete : LeMetaEvent (subevent_code = LE_CS_TEST_END_COMPLETE) {
+  status : ErrorCode,
 }
 
 // Vendor specific events
