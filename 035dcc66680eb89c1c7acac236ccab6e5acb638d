@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "116e4cb2_af66ac57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1960535
+      },
+      "writtenOn": "2023-12-27T11:48:16Z",
+      "side": 1,
+      "message": "Hi, PTAL, thanks!\n\nI don\u0027t think anyone subscribes to the InterfacesRemoved, but I guess it\u0027s always better to have them because we have the InterfacesAdded.",
+      "revId": "035dcc66680eb89c1c7acac236ccab6e5acb638d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
