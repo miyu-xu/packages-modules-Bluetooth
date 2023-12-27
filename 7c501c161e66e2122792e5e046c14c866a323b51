@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "5a9190b7_ca18bb2e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-27T03:08:50Z",
+      "side": 1,
+      "message": "Gatt client will store this key value characteristic and store it in btif_storage. Its similar to how we store the LE related keys info (like LE_KEY_PID, LE_KEY_PENC,..)",
+      "parentUuid": "2394a46b_4e9700bd",
+      "range": {
+        "startLine": 10,
+        "startChar": 33,
+        "endLine": 10,
+        "endChar": 65
+      },
+      "revId": "7c501c161e66e2122792e5e046c14c866a323b51",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "d86dcbfa_7f36b8f3",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4

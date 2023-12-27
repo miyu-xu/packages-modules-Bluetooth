@@ -238,6 +238,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d4738d2d_f49c1f5e",
+        "filename": "system/internal_include/stack_config.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1470362
+      },
+      "writtenOn": "2023-12-27T03:08:50Z",
+      "side": 1,
+      "message": "Should we need remove this API or not? and this bt_stack,conf functionality?",
+      "parentUuid": "f4b79c02_45c6def1",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 59
+      },
+      "revId": "0f7ede33f65359d7f0ffe87950b060a1b49e423c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b4f9053c_6ff80d0e",
         "filename": "system/stack/btm/btm_ble.cc",
         "patchSetId": 9
