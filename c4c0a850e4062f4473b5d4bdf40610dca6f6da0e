@@ -22,6 +22,30 @@
       },
       "revId": "c4c0a850e4062f4473b5d4bdf40610dca6f6da0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e509ae93_eb959056",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2023-12-28T01:54:56Z",
+      "side": 1,
+      "message": "The name of the variable won\u0027t mean anything, and also there will be used only once. Also there are some files which have 20+ variables.",
+      "parentUuid": "d68fa26f_2b87b7aa",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 64
+      },
+      "revId": "c4c0a850e4062f4473b5d4bdf40610dca6f6da0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
