@@ -34,6 +34,24 @@
       "parentUuid": "c65f55ea_e2645a5f",
       "revId": "17e7bb7eb8df3c3344ebc52f77f0792b120fc804",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "630ac374_d57714e8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2023-12-28T10:18:25Z",
+      "side": 1,
+      "message": "I none others UUID are/will be included then yes I agree this would be redundant",
+      "parentUuid": "db98ffd5_a5260b05",
+      "revId": "17e7bb7eb8df3c3344ebc52f77f0792b120fc804",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
