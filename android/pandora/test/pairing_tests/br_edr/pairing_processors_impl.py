@@ -15,7 +15,7 @@
 import asyncio
 import logging
 
-from mobly.asserts import assert_equal, fail
+from mobly.asserts import assert_equal, fail, assert_true
 from pairing_tests.interfaces import IPairingProcessor
 from pandora.security_pb2 import LEVEL2, PairingEventAnswer
 
@@ -68,6 +68,47 @@ class BREDRJustworksPairingProcessor(IPairingProcessor):
         init_ev_ans = PairingEventAnswer(event=init_ev, confirm=True)
         self._init_pairing_event_stream.send_nowait(init_ev_ans)
         responder_ev_ans = PairingEventAnswer(event=responder_ev, confirm=True)
+        self._resp_pairing_event_stream.send_nowait(responder_ev_ans)
+
+    async def accept_pairing(self):
+        await self.process_pairing(True)
+
+    async def reject_pairing(self):
+        await self.process_pairing(False)
+
+class BREDRNumericComparisonPairingProcessor(IPairingProcessor):
+
+    async def process_pairing(self, confirm):
+        expected_pairing_method = 'numeric_comparison'
+
+        # initiator receives numeric_comparison
+        init_pairing_fut = asyncio.create_task(anext(self._init_pairing_event_stream))
+        init_ev = await asyncio.wait_for(init_pairing_fut, timeout=10.0)
+        logging.debug(f'init_ev.method_variant():{init_ev.method_variant()}')
+        assert_equal(init_ev.method_variant(), expected_pairing_method)
+        logging.debug(f'init_ev.numeric_comparison:{init_ev.numeric_comparison}')
+
+        # responder receives numeric_comparison
+        responder_pairing_fut = asyncio.create_task(anext(self._resp_pairing_event_stream))
+        responder_ev = await asyncio.wait_for(responder_pairing_fut, timeout=10.0)
+        logging.debug(f'responder_ev.method_variant():{responder_ev.method_variant()}')
+        assert_equal(responder_ev.method_variant(), expected_pairing_method)
+        logging.debug(f'responder_ev.numeric_comparison:{responder_ev.numeric_comparison}')
+
+        _confirm = (responder_ev.numeric_comparison == init_ev.numeric_comparison)
+
+        assert_true(_confirm, "numeric value received on both devices are not the same")
+
+        logging.debug(f'confirm:{confirm}')
+
+        # FIXME: we do not need respond on both side
+        # TODO: remove one of them
+        init_ev_ans = PairingEventAnswer(event=init_ev, confirm=confirm)
+        # respond pairing based on numeric comparison on initiator
+        self._init_pairing_event_stream.send_nowait(init_ev_ans)
+
+        responder_ev_ans = PairingEventAnswer(event=responder_ev, confirm=confirm)
+        # respond pairing based on numeric comparison on responder
         self._resp_pairing_event_stream.send_nowait(responder_ev_ans)
 
     async def accept_pairing(self):
