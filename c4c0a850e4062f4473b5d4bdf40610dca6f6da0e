@@ -46,6 +46,30 @@
       },
       "revId": "c4c0a850e4062f4473b5d4bdf40610dca6f6da0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8811e64_2f839c56",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-12-28T05:39:30Z",
+      "side": 1,
+      "message": "Correct me if I\u0027m wrong.\n\nTags are used to differentiate where the error happened.\n\nWhen we want to investigate a specific error, we need to read through all the code to find the matching tag number.\n\nWhich could be improved if we define constants even when only once used.",
+      "parentUuid": "e509ae93_eb959056",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 64
+      },
+      "revId": "c4c0a850e4062f4473b5d4bdf40610dca6f6da0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
