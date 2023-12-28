@@ -16,6 +16,23 @@
       "message": "yuyangh@ may you help reivew and stamp the cl? It is only about metrics and only affects CrOS.\n\nSorry for the abrupt ask. Most of the reviewers are OOO.",
       "revId": "d6e6f796d13690b7f3a29be658328f0f99a49ec4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1c73319_b11ed275",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2023-12-28T19:03:51Z",
+      "side": 1,
+      "message": "invite A2DP\u0027s owner to take a look",
+      "revId": "d6e6f796d13690b7f3a29be658328f0f99a49ec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
