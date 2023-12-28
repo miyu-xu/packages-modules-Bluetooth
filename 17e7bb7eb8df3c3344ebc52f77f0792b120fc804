@@ -16,6 +16,24 @@
       "message": "Rename it to `withDckUuid` or `includeDckUuid` could make it clearer we\u0027re talking about the CCC_DK_UUID.",
       "revId": "17e7bb7eb8df3c3344ebc52f77f0792b120fc804",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db98ffd5_a5260b05",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTest.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1418133
+      },
+      "writtenOn": "2023-12-28T02:10:10Z",
+      "side": 1,
+      "message": "The scope of the method is very narrow (\u0027DckTest`). This seems unnecessarily redundant.",
+      "parentUuid": "c65f55ea_e2645a5f",
+      "revId": "17e7bb7eb8df3c3344ebc52f77f0792b120fc804",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
