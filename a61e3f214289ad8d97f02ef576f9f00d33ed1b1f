@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3d3b5b9_19249f6b",
+        "filename": "android/app/src/com/android/bluetooth/content_profiles/ContentProfileErrorReportUtils.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2023-12-28T00:57:58Z",
+      "side": 1,
+      "message": "Q) Shouldn\u0027t we count the number of errors even when it\u0027s too frequent?",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 31
+      },
+      "revId": "a61e3f214289ad8d97f02ef576f9f00d33ed1b1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
