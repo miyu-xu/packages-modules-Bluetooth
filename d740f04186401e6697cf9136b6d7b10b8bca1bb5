@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0ee69c71_8b721b8e",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-12-29T03:15:56Z",
+      "side": 1,
+      "message": "Sort the commands in ascending opcode order\n\nLE_CS_READ_LOCAL_SUPPORTED_CAPABILITIES \u003d 0x2089,\nLE_CS_READ_REMOTE_SUPPORTED_CAPABILITIES \u003d 0x208A,\nLE_CS_WRITE_CACHED_REMOTE_SUPPORTED_CAPABILITIES \u003d 0x208B,\nLE_CS_SECURITY_ENABLE \u003d 0x208C,\nLE_CS_SET_DEFAULT_SETTINGS \u003d 0x208D,\nLE_CS_READ_REMOTE_FAE_TABLE \u003d 0x208E,\nLE_CS_WRITE_CACHED_REMOTE_FAE_TABLE \u003d 0x208F,\nLE_CS_CREATE_CONFIG \u003d 0x2090,\nLE_CS_REMOVE_CONFIG \u003d 0x0291,\nLE_CS_SET_CHANNEL_CLASSIFICATION \u003d 0x2092,\nLE_CS_SET_PROCEDURE_PARAMETERS \u003d 0x2093,\nLE_CS_PROCEDURE_ENABLE \u003d 0x2094,\nLE_CS_TEST \u003d 0x2095,\nLE_CS_TEST_END \u003d 0x2096,",
+      "range": {
+        "startLine": 432,
+        "startChar": 2,
+        "endLine": 445,
+        "endChar": 51
+      },
+      "revId": "d740f04186401e6697cf9136b6d7b10b8bca1bb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60d44ece_b6de7a8d",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 1
+      },
+      "lineNbr": 904,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2023-12-29T03:15:56Z",
+      "side": 1,
+      "message": "LE_CS_READ_REMOTE_SUPPORTED_CAPABILITIES_COMPLETE \u003d 0x2C,\nLE_CS_READ_REMOTE_FAE_TABLE_COMPLETE \u003d 0x2D,\nLE_CS_SECURITY_ENABLE_COMPLETE \u003d 0x2E,\nLE_CS_CONFIG_COMPLETE \u003d 0x2F,\nLE_CS_PROCEDURE_ENABLE_COMPLETE \u003d 0x30,\nLE_CS_SUBEVENT_RESULT \u003d 0x31,\nLE_CS_SUBEVENT_RESULT_CONTINUE \u003d 0x32,\nLE_CS_TEST_END_COMPLETE \u003d 0x33,",
+      "range": {
+        "startLine": 897,
+        "startChar": 2,
+        "endLine": 904,
+        "endChar": 59
+      },
+      "revId": "d740f04186401e6697cf9136b6d7b10b8bca1bb5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
