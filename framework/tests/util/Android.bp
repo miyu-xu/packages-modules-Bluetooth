@@ -24,6 +24,7 @@ java_library {
         "androidx.test.ext.truth",
         "compatibility-device-util-axt",
         "junit",
+        "bluetooth_flags_java_lib",
     ],
     srcs: ["src/**/*.java"],
     sdk_version: "test_current",
