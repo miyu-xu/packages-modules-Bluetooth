@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a8eefb2_4fd5f3b0",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:30:34Z",
+      "side": 1,
+      "message": "Use nanos in this CL too",
+      "range": {
+        "startLine": 512,
+        "startChar": 30,
+        "endLine": 518,
+        "endChar": 45
+      },
+      "revId": "d281bec9227ec16f160f95a02acfabac9a987a0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
