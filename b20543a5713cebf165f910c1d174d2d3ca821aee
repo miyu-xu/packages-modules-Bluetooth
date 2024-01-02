@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7aeaebb4_1db5a5eb",
+        "filename": "system/bta/include/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-02T18:55:33Z",
+      "side": 1,
+      "message": "I thought we were preferring not to do per-file OWNERS\n\nI\u0027d rather just give everyone owners in BTA and encourage moving code to specific directories.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 8
+      },
+      "revId": "b20543a5713cebf165f910c1d174d2d3ca821aee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
