@@ -1,1 +1,5 @@
 per-file bta_hearing_aid_api.h=file:/OWNERS_hearingaid
+per-file bta_csis_api.h=file:/OWNERS_leaudio
+per-file bta_groups.h=file:/OWNERS_leaudio
+per-file bta_le_audio*.h=file:/OWNERS_leaudio
+per-file bta_vc_api.h=file:/OWNERS_leaudio
