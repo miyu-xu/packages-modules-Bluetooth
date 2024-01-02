@@ -22,6 +22,30 @@
       },
       "revId": "87b9a9da6080545d07cf9198ef3aeb41333c1f2c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91542bbf_74ecde8e",
+        "filename": "flags/gatt.aconfig",
+        "patchSetId": 5
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 1960897
+      },
+      "writtenOn": "2024-01-02T21:16:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b6a4399_aa947b40",
+      "range": {
+        "startLine": 4,
+        "startChar": 11,
+        "endLine": 4,
+        "endChar": 38
+      },
+      "revId": "87b9a9da6080545d07cf9198ef3aeb41333c1f2c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
