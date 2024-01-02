@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "74276361_c8e5fe68",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-02T04:38:19Z",
+      "side": 1,
+      "message": "How about just import UUID?\n```suggestion\nfrom uuid import UUID\n```",
+      "range": {
+        "startLine": 18,
+        "startChar": 7,
+        "endLine": 18,
+        "endChar": 11
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ce681e87_fade78cd",
         "filename": "floss/pandora/server/gatt.py",
         "patchSetId": 5
