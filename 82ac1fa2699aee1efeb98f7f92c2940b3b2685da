@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ce681e87_fade78cd",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-02T04:15:00Z",
+      "side": 1,
+      "message": "I guess we have to ignore the callback if addr is not the one from the request? Similar to all observers below.",
+      "range": {
+        "startLine": 57,
+        "startChar": 39,
+        "endLine": 57,
+        "endChar": 43
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1766516b_7c6393ae",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-02T04:15:00Z",
+      "side": 1,
+      "message": "The values are not used by the caller because we already did the check in this function. How about just set an empty tuple\n\n```suggestion\n                    future.get_loop().call_soon_threadsafe(future.set_result, ())\n```",
+      "range": {
+        "startLine": 226,
+        "startChar": 78,
+        "endLine": 226,
+        "endChar": 100
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9453c5a2_a64d3229",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-02T04:15:00Z",
+      "side": 1,
+      "message": "The future is only set when UUID changes. How about `device_uuids_changed`",
+      "range": {
+        "startLine": 238,
+        "startChar": 49,
+        "endLine": 238,
+        "endChar": 74
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c45af3bd_fc7287f5",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-02T04:15:00Z",
+      "side": 1,
+      "message": "Should we raise failure if status !\u003d success?",
+      "range": {
+        "startLine": 282,
+        "startChar": 46,
+        "endLine": 282,
+        "endChar": 52
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
