@@ -267,6 +267,22 @@ LinkLayerController::GenerateResolvablePrivateAddress(AddressWithType address,
 //  BR/EDR Commands
 // =============================================================================
 
+// HCI Set Event Filter command (Vol 4, Part E § 7.3.3).
+ErrorCode LinkLayerController::SetEventFilterClearAll(void) {
+  event_filter_.inquiry_result.clear();
+  event_filter_.connection_setup.clear();
+}
+
+ErrorCode LinkLayerController::SetEventFilter(
+    EventFilter::InquiryResult inquiry_result) {
+  event_filter_.inquiry_result.push_back(inquiry_result);
+}
+
+ErrorCode LinkLayerController::SetEventFilter(
+    EventFilter::ConnectionSetup connection_setup) {
+  event_filter_.connection_setup.push_back(connection_setup);
+}
+
 // HCI Read Rssi command (Vol 4, Part E § 7.5.4).
 ErrorCode LinkLayerController::ReadRssi(uint16_t connection_handle,
                                         int8_t* rssi) {
@@ -6023,6 +6039,7 @@ void LinkLayerController::Reset() {
   min_encryption_key_size_ = 16;
   event_mask_ = 0x00001fffffffffff;
   event_mask_page_2_ = 0x0;
+  event_filter_ = EventFilter();
   le_event_mask_ = 0x01f;
   le_suggested_max_tx_octets_ = 0x001b;
   le_suggested_max_tx_time_ = 0x0148;
