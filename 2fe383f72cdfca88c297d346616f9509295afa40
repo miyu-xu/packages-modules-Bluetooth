@@ -22,6 +22,30 @@
       },
       "revId": "2fe383f72cdfca88c297d346616f9509295afa40",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0bd8017b_854b1a30",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 2053529
+      },
+      "writtenOn": "2024-01-02T09:32:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0819c463_75d42771",
+      "range": {
+        "startLine": 238,
+        "startChar": 44,
+        "endLine": 238,
+        "endChar": 50
+      },
+      "revId": "2fe383f72cdfca88c297d346616f9509295afa40",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
