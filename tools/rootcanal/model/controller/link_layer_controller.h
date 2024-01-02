@@ -29,6 +29,7 @@
 #include <set>
 #include <unordered_map>
 #include <utility>
+#include <variant>
 #include <vector>
 
 #include "hci/address.h"
@@ -333,6 +334,34 @@ class LinkLayerController {
   void HandleIso(bluetooth::hci::IsoView iso);
 
   // BR/EDR Commands
+
+  struct EventFilter {
+    struct AllDevices {};
+    struct ClassOfDevice {
+      uint32_t class_of_device;
+      uint32_t class_of_device_mask;
+    };
+
+    struct InquiryResult {
+      std::variant<AllDevices, ClassOfDevice, Address> filter;
+    };
+
+    struct ConnectionSetup {
+      std::variant<AllDevices, ClassOfDevice, Address> filter;
+      bluetooth::hci::AutoAcceptFlag auto_accept_flag;
+    };
+
+    std::vector<InquiryResult> inquiry_result;
+    std::vector<ConnectionSetup> connection_setup;
+
+    EventFilter() : inquiry_result(), connection_setup() {}
+  };
+
+  // HCI Set Event Filter command (Vol 4, Part E § 7.3.3).
+  ErrorCode SetEventFilterClearAll(void);
+
+  ErrorCode SetEventFilter(EventFilter::InquiryResult inquiry_result);
+  ErrorCode SetEventFilter(EventFilter::ConnectionSetup connection_setup);
 
   // HCI Read Rssi command (Vol 4, Part E § 7.5.4).
   ErrorCode ReadRssi(uint16_t connection_handle, int8_t* rssi);
@@ -953,6 +982,9 @@ class LinkLayerController {
   uint64_t event_mask_{0x00001fffffffffff};
   uint64_t event_mask_page_2_{0x0};
   uint64_t le_event_mask_{0x01f};
+
+  // Event Filter (Vol 4, Part E § 7.3.3).
+  EventFilter event_filter_;
 
   // Suggested Default Data Length (Vol 4, Part E § 7.8.34).
   uint16_t le_suggested_max_tx_octets_{0x001b};
