@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6cb0e676_52b6a2d2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T17:43:59Z",
+      "side": 1,
+      "message": "You can add `Bug: 315241296` to have DrNo on this CL",
+      "revId": "112f46eb7adc78c7e34e1cbb3c53e08b10ca54c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
