@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dec7321_70d9379d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T22:13:58Z",
+      "side": 1,
+      "message": "I liked to see every different flags file being added, but I guess this create useless merge conflict.",
+      "revId": "0c78159abae946934bba2ae9054778ee1b01b985",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
