@@ -1280,7 +1280,7 @@ bool ControllerProperties::CheckSupportedCommands() const {
   // Connection Request, Extended Inquiry Result, Inquiry Result with RSSI, IO
   // Capability Request, or Synchronous Connection Complete events is supported,
   // otherwise excluded.
-  auto c148 = mandatory;
+  auto c148 = optional;
   // C151: Mandatory if Secure Connections (Controller) and Ping are supported,
   // otherwise excluded.
   auto c151 = mandatory_or_excluded(
