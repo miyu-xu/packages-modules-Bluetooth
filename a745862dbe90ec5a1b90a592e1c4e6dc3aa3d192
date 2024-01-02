@@ -402,6 +402,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e90baf79_6e6e6ed1",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T12:36:14Z",
+      "side": 1,
+      "message": "Here when the notification sent, it sets a future result to True. In the main flow, this result is awaited to determine whether the notification was successful or not, and then updating certain flags or states accordingly.\n\n```\nnotification_success \u003d await send_notification\nif notification_success:\n    self.characteristic_changed \u003d True\n    self.characteristic_state[characteristic_handle] \u003d True\nelse:\n    raise ValueError(\u0027The notification did not send.\u0027)\n```\nHowever, future.get_loop().call_soon_threadsafe(future.set_result, ()) sets the result of the future to an empty tuple (). This not align with the intended behavior, as setting the future result to an empty tuple (()) it won\u0027t convey a meaningful information about the success or status of the notification.",
+      "parentUuid": "3e79907c_290adbc9",
+      "range": {
+        "startLine": 588,
+        "startChar": 74,
+        "endLine": 588,
+        "endChar": 78
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25192e89_dee1c96c",
         "filename": "floss/pandora/server/gatt.py",
         "patchSetId": 6
