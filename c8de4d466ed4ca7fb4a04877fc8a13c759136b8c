@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a28f8bf0_dc503c30",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-02T12:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c47bf634_92390133",
+      "range": {
+        "startLine": 332,
+        "startChar": 35,
+        "endLine": 332,
+        "endChar": 37
+      },
+      "revId": "c8de4d466ed4ca7fb4a04877fc8a13c759136b8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1f71e8b_d977b3e7",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a1518a0_1ed8a995",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-02T12:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1f71e8b_d977b3e7",
+      "range": {
+        "startLine": 335,
+        "startChar": 37,
+        "endLine": 335,
+        "endChar": 39
+      },
+      "revId": "c8de4d466ed4ca7fb4a04877fc8a13c759136b8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "dfb8c4a5_bb3b779f",
@@ -77,6 +125,24 @@
       "writtenOn": "2024-01-02T06:27:34Z",
       "side": 1,
       "message": "The URL doesn\u0027t exist. Do you mean this one? https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/pandora/interfaces/pandora_experimental/hfp.proto",
+      "revId": "c8de4d466ed4ca7fb4a04877fc8a13c759136b8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a38471ef_a28be3fa",
+        "filename": "floss/pandora/server/hfp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-02T12:06:54Z",
+      "side": 1,
+      "message": "Thanks, good catch!\nDone",
+      "parentUuid": "dfb8c4a5_bb3b779f",
       "revId": "c8de4d466ed4ca7fb4a04877fc8a13c759136b8c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
