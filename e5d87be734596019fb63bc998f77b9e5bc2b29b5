@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb0d835b_0e99817e",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-02T17:45:08Z",
+      "side": 1,
+      "message": "nit: I\u0027d prefer to have the log message inside the if or an else.  Maybe follow the same pattern as below?\n\n```suggestion\n    if (!IS_FLAG_ENABLED(channel_sounding)) {\n      LOG_INFO(\"IS_FLAG_ENABLED channel_sounding: false\");\n      return;\n    }\n    distance_measurement_interface_ \u003d hci_layer_-\u003eGetDistanceMeasurementInterface(\n        handler_-\u003eBindOn(this, \u0026DistanceMeasurementManager::impl::handle_event));\n    distance_measurement_interface_-\u003eEnqueueCommand(\n        LeCsReadLocalSupportedCapabilitiesBuilder::Create(),\n        handler_-\u003eBindOnceOn(this, \u0026impl::on_cs_read_local_supported_capabilities));\n  }\n```",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 3
+      },
+      "revId": "e5d87be734596019fb63bc998f77b9e5bc2b29b5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
