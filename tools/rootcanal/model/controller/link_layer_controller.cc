@@ -305,6 +305,25 @@ ErrorCode LinkLayerController::InquiryCancel() {
   return ErrorCode::SUCCESS;
 }
 
+// HCI Set Event Filter command (Vol 4, Part E § 7.3.3).
+ErrorCode LinkLayerController::SetEventFilterClearAll(void) {
+  event_filter_.inquiry_result.clear();
+  event_filter_.connection_setup.clear();
+  return ErrorCode::SUCCESS;
+}
+
+ErrorCode LinkLayerController::SetEventFilter(
+    EventFilter::InquiryResult inquiry_result) {
+  event_filter_.inquiry_result.push_back(inquiry_result);
+  return ErrorCode::SUCCESS;
+}
+
+ErrorCode LinkLayerController::SetEventFilter(
+    EventFilter::ConnectionSetup connection_setup) {
+  event_filter_.connection_setup.push_back(connection_setup);
+  return ErrorCode::SUCCESS;
+}
+
 // HCI Read Rssi command (Vol 4, Part E § 7.5.4).
 ErrorCode LinkLayerController::ReadRssi(uint16_t connection_handle,
                                         int8_t* rssi) {
@@ -2786,14 +2805,60 @@ void LinkLayerController::IncomingInquiryPacket(
   // TODO: Send an Inquiry Response Notification Event 7.7.74
 }
 
+bool LinkLayerController::EventFilter::MatchInquiryResult(
+    uint32_t class_of_device, Address bd_addr) {
+  // Accept all inquiry results when the filter is empty.
+  if (inquiry_result.size() == 0) {
+    return true;
+  }
+
+  for (auto const& item : inquiry_result) {
+    auto const& filter = item.filter;
+    if (std::holds_alternative<AllDevices>(filter)) {
+      return true;
+    }
+    if (std::holds_alternative<ClassOfDevice>(filter) &&
+        (std::get<ClassOfDevice>(filter).class_of_device &
+         std::get<ClassOfDevice>(filter).class_of_device_mask) ==
+            (class_of_device &
+             std::get<ClassOfDevice>(filter).class_of_device_mask)) {
+      return true;
+    }
+    if (std::holds_alternative<Address>(filter) &&
+        std::get<Address>(filter) == bd_addr) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 void LinkLayerController::IncomingInquiryResponsePacket(
     model::packets::LinkLayerPacketView incoming) {
   auto basic_inquiry_response =
       model::packets::BasicInquiryResponseView::Create(incoming);
   ASSERT(basic_inquiry_response.IsValid());
+  auto inquiry_type = basic_inquiry_response.GetInquiryType();
+  auto class_of_device = basic_inquiry_response.GetClassOfDevice();
+  auto bd_addr = basic_inquiry_response.GetSourceAddress();
   std::vector<uint8_t> eir;
 
-  switch (basic_inquiry_response.GetInquiryType()) {
+  // Check if inquiry is currently enabled, and if
+  // the response type matches the inquiry mode.
+  if (!inquiry_.has_value() || inquiry_type != inquiry_mode_) {
+    return;
+  }
+
+  // Apply the inquiry result event filter if configured.
+  if (!event_filter_.MatchInquiryResult(class_of_device, bd_addr)) {
+    INFO(id_,
+         "inquiry result (class_of_device={:06x}, bd_addr={})"
+         "filtered out by event filter",
+         class_of_device, bd_addr);
+    return;
+  }
+
+  switch (inquiry_type) {
     case (model::packets::InquiryType::STANDARD): {
       // TODO: Support multiple inquiries in the same packet.
       auto inquiry_response =
@@ -2806,9 +2871,9 @@ void LinkLayerController::IncomingInquiryResponsePacket(
 
       std::vector<bluetooth::hci::InquiryResponse> responses;
       responses.emplace_back();
-      responses.back().bd_addr_ = inquiry_response.GetSourceAddress();
+      responses.back().bd_addr_ = bd_addr;
       responses.back().page_scan_repetition_mode_ = page_scan_repetition_mode;
-      responses.back().class_of_device_ = inquiry_response.GetClassOfDevice();
+      responses.back().class_of_device_ = class_of_device;
       responses.back().clock_offset_ = inquiry_response.GetClockOffset();
       if (IsEventUnmasked(EventCode::INQUIRY_RESULT)) {
         send_event_(bluetooth::hci::InquiryResultBuilder::Create(responses));
@@ -2827,9 +2892,9 @@ void LinkLayerController::IncomingInquiryResponsePacket(
 
       std::vector<bluetooth::hci::InquiryResponseWithRssi> responses;
       responses.emplace_back();
-      responses.back().address_ = inquiry_response.GetSourceAddress();
+      responses.back().address_ = bd_addr;
       responses.back().page_scan_repetition_mode_ = page_scan_repetition_mode;
-      responses.back().class_of_device_ = inquiry_response.GetClassOfDevice();
+      responses.back().class_of_device_ = class_of_device;
       responses.back().clock_offset_ = inquiry_response.GetClockOffset();
       responses.back().rssi_ = inquiry_response.GetRssi();
       if (IsEventUnmasked(EventCode::INQUIRY_RESULT_WITH_RSSI)) {
@@ -2845,11 +2910,11 @@ void LinkLayerController::IncomingInquiryResponsePacket(
       ASSERT(inquiry_response.IsValid());
 
       send_event_(bluetooth::hci::ExtendedInquiryResultBuilder::Create(
-          inquiry_response.GetSourceAddress(),
+          bd_addr,
           static_cast<bluetooth::hci::PageScanRepetitionMode>(
               inquiry_response.GetPageScanRepetitionMode()),
-          inquiry_response.GetClassOfDevice(),
-          inquiry_response.GetClockOffset(), inquiry_response.GetRssi(),
+          class_of_device, inquiry_response.GetClockOffset(),
+          inquiry_response.GetRssi(),
           inquiry_response.GetExtendedInquiryResponse()));
     } break;
 
@@ -6058,6 +6123,7 @@ void LinkLayerController::Reset() {
   min_encryption_key_size_ = 16;
   event_mask_ = 0x00001fffffffffff;
   event_mask_page_2_ = 0x0;
+  event_filter_ = EventFilter();
   le_event_mask_ = 0x01f;
   le_suggested_max_tx_octets_ = 0x001b;
   le_suggested_max_tx_time_ = 0x0148;
