@@ -81,6 +81,30 @@
       },
       "revId": "0c78159abae946934bba2ae9054778ee1b01b985",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fbcadf8_5f39cacc",
+        "filename": "flags/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T22:19:47Z",
+      "side": 1,
+      "message": "I think I am nitpicking. This is 0 impact so let\u0027s keep it like this",
+      "parentUuid": "e26f46c3_ba9ca67c",
+      "range": {
+        "startLine": 10,
+        "startChar": 9,
+        "endLine": 10,
+        "endChar": 13
+      },
+      "revId": "0c78159abae946934bba2ae9054778ee1b01b985",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
