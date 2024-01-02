@@ -22,6 +22,30 @@
       },
       "revId": "b20543a5713cebf165f910c1d174d2d3ca821aee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b55ee0e0_3149f552",
+        "filename": "system/bta/include/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-02T19:20:22Z",
+      "side": 1,
+      "message": "Discussed with William and Myles offline, resolved by updating system/OWNERS instead.",
+      "parentUuid": "7aeaebb4_1db5a5eb",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 8
+      },
+      "revId": "b20543a5713cebf165f910c1d174d2d3ca821aee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
