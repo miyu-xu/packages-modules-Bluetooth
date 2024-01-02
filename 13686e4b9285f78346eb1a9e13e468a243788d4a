@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "45ee0257_789cdf18",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 10
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-02T04:58:36Z",
+      "side": 1,
+      "message": "LGTM % a comment fix",
+      "revId": "13686e4b9285f78346eb1a9e13e468a243788d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af3473f6_14843d6c",
+        "filename": "floss/pandora/server/security.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-02T04:58:36Z",
+      "side": 1,
+      "message": "`, got bond state {state}, want {floss_enums.BondState.NOT_BONDED}`",
+      "range": {
+        "startLine": 237,
+        "startChar": 100,
+        "endLine": 237,
+        "endChar": 101
+      },
+      "revId": "13686e4b9285f78346eb1a9e13e468a243788d4a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
