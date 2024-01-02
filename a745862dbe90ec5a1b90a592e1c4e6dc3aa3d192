@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d72df8b_f923f51b",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 785,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ff04d687_c91bbf4f",
+      "range": {
+        "startLine": 785,
+        "startChar": 12,
+        "endLine": 785,
+        "endChar": 48
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "79372b0a_44b94411",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-02T04:52:52Z",
       "side": 1,
       "message": "This is redundant because we already filtered out the mismatched handles in this function.",
+      "range": {
+        "startLine": 318,
+        "startChar": 75,
+        "endLine": 318,
+        "endChar": 81
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f71f01b7_b9ada45a",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "79372b0a_44b94411",
       "range": {
         "startLine": 318,
         "startChar": 75,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0c6d5fb_db684d77",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 357,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ef3464d7_e8612945",
+      "range": {
+        "startLine": 357,
+        "startChar": 75,
+        "endLine": 357,
+        "endChar": 79
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f890721f_9162befc",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-01-02T04:52:52Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 445,
+        "startChar": 75,
+        "endLine": 445,
+        "endChar": 81
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "246e4841_22cbddc4",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f890721f_9162befc",
       "range": {
         "startLine": 445,
         "startChar": 75,
@@ -116,6 +212,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea0d3b0e_25156589",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4db37323_477a1d91",
+      "range": {
+        "startLine": 523,
+        "startChar": 22,
+        "endLine": 523,
+        "endChar": 27
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "168721af_4a7c27b1",
@@ -129,6 +249,30 @@
       "writtenOn": "2024-01-02T04:52:52Z",
       "side": 1,
       "message": "redundant",
+      "range": {
+        "startLine": 546,
+        "startChar": 75,
+        "endLine": 546,
+        "endChar": 79
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "34a4abed_ed417e37",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "168721af_4a7c27b1",
       "range": {
         "startLine": 546,
         "startChar": 75,
@@ -162,6 +306,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "446fb3a5_3492be4a",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1ec9b5b0_075160e4",
+      "range": {
+        "startLine": 563,
+        "startChar": 75,
+        "endLine": 563,
+        "endChar": 81
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f8ab97b3_0bf7a16b",
@@ -175,6 +343,30 @@
       "writtenOn": "2024-01-02T04:52:52Z",
       "side": 1,
       "message": "redundant",
+      "range": {
+        "startLine": 574,
+        "startChar": 75,
+        "endLine": 574,
+        "endChar": 81
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f6691b3_c7ea62cd",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 574,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f8ab97b3_0bf7a16b",
       "range": {
         "startLine": 574,
         "startChar": 75,
@@ -231,6 +423,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c09f8ac_7a4088c1",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 679,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "25192e89_dee1c96c",
+      "range": {
+        "startLine": 679,
+        "startChar": 75,
+        "endLine": 679,
+        "endChar": 79
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "10064fea_b181196f",
@@ -244,6 +460,30 @@
       "writtenOn": "2024-01-02T04:52:52Z",
       "side": 1,
       "message": "redundant",
+      "range": {
+        "startLine": 696,
+        "startChar": 75,
+        "endLine": 696,
+        "endChar": 81
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1c723d34_3ab05e40",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 696,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-02T10:57:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10064fea_b181196f",
       "range": {
         "startLine": 696,
         "startChar": 75,
