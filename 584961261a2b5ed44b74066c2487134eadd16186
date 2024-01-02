@@ -46,6 +46,30 @@
       },
       "revId": "584961261a2b5ed44b74066c2487134eadd16186",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7de9ed30_3b7873aa",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTestBase.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-02T18:45:04Z",
+      "side": 1,
+      "message": "Because GATT and bonding are unrelated to scanning in BT terms, I\u0027d suggest naming this something base class something more generic for clarity. \n\ne.g. depending on longer term usage intention of this base class, some options might be something like: \n\nLeTestBase -\u003e implies specific to LE tests\nBtCujTestBase -\u003e implies base for more general BT CUJ (Bluetooth Critical User Journey) tests\n\n(Also open to other ideas that fit the intended direction of usage of this base class)",
+      "parentUuid": "848b5790_1b974d20",
+      "range": {
+        "startLine": 240,
+        "startChar": 8,
+        "endLine": 240,
+        "endChar": 19
+      },
+      "revId": "584961261a2b5ed44b74066c2487134eadd16186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
