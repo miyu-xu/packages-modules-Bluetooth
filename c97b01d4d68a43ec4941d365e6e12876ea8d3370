@@ -70,6 +70,30 @@
       },
       "revId": "c97b01d4d68a43ec4941d365e6e12876ea8d3370",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3dc7b37_305de48a",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-02T10:57:21Z",
+      "side": 1,
+      "message": "Thanks Myles, this would have also broke just with internal targets as the device name on AOSP is `Cuttlefish x86_64 phone` and on internal it\u0027s `Cuttlefish GMS x86_64`.\n\nI think adding something in host.proto to read the local name seems reasonable 🤔\n\nI wonder if we should do it that way, or starting to have a configuration for such things.\n\ncc @uael@google.com",
+      "parentUuid": "762b97df_f5364c7e",
+      "range": {
+        "startLine": 341,
+        "startChar": 54,
+        "endLine": 341,
+        "endChar": 59
+      },
+      "revId": "c97b01d4d68a43ec4941d365e6e12876ea8d3370",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

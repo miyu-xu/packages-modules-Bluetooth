@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "818cf360_cfba772f",
+        "filename": "android/pandora/test/gatt_test.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-02T10:57:21Z",
+      "side": 1,
+      "message": "Is this the same scenario as `GAP/IDLE/NAMP/BV-01-C`?",
+      "revId": "0504a76bc870eb022dd31ec81927abc002426952",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
