@@ -16,6 +16,24 @@
       "message": "Move https://crrev.com/c/4954415 changes to a separated CL",
       "revId": "c79543d03cfa13e58f0edee7ca60741dd68d8d9a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c197c31_6f02ae41",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2052731
+      },
+      "writtenOn": "2024-01-02T10:57:46Z",
+      "side": 0,
+      "message": "I moved the change to this CL\nhttps://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2892403/1",
+      "parentUuid": "ddde0405_5e5c8028",
+      "revId": "c79543d03cfa13e58f0edee7ca60741dd68d8d9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
