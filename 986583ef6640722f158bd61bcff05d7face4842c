@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5b3deca_077ca344",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-02T18:12:05Z",
+      "side": 1,
+      "message": "this is being used now, but I still don\u0027t see where it\u0027s set to false.",
+      "range": {
+        "startLine": 518,
+        "startChar": 50,
+        "endLine": 518,
+        "endChar": 55
+      },
+      "revId": "986583ef6640722f158bd61bcff05d7face4842c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "152e84dd_a2314618",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-02T18:12:05Z",
+      "side": 1,
+      "message": "?  This doesn\u0027t look like parsing.",
+      "range": {
+        "startLine": 579,
+        "startChar": 7,
+        "endLine": 579,
+        "endChar": 12
+      },
+      "revId": "986583ef6640722f158bd61bcff05d7face4842c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b773248_6c79f363",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-02T18:12:05Z",
+      "side": 1,
+      "message": "Does some of this belong in check_cs_procedure_complete?",
+      "range": {
+        "startLine": 591,
+        "startChar": 4,
+        "endLine": 593,
+        "endChar": 0
+      },
+      "revId": "986583ef6640722f158bd61bcff05d7face4842c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "18a14c19_181c37e4",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-02T18:12:05Z",
+      "side": 1,
+      "message": "nit: This looks like debug logging, did you mean to remove the whole line? Otherwise, remove the ----.",
+      "range": {
+        "startLine": 652,
+        "startChar": 11,
+        "endLine": 652,
+        "endChar": 32
+      },
+      "revId": "986583ef6640722f158bd61bcff05d7face4842c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
