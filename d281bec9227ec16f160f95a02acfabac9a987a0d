@@ -22,6 +22,75 @@
       },
       "revId": "d281bec9227ec16f160f95a02acfabac9a987a0d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f47d4a72_6331a923",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:34:26Z",
+      "side": 1,
+      "message": "nanos",
+      "range": {
+        "startLine": 69,
+        "startChar": 28,
+        "endLine": 71,
+        "endChar": 46
+      },
+      "revId": "d281bec9227ec16f160f95a02acfabac9a987a0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8644f040_a8eed93a",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:34:26Z",
+      "side": 1,
+      "message": "nanos",
+      "range": {
+        "startLine": 87,
+        "startChar": 14,
+        "endLine": 89,
+        "endChar": 46
+      },
+      "revId": "d281bec9227ec16f160f95a02acfabac9a987a0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "128f546a_fc179b5f",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:34:26Z",
+      "side": 1,
+      "message": "nanos",
+      "range": {
+        "startLine": 105,
+        "startChar": 19,
+        "endLine": 107,
+        "endChar": 46
+      },
+      "revId": "d281bec9227ec16f160f95a02acfabac9a987a0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
