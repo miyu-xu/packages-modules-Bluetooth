@@ -521,6 +521,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ce94cd59_8b8db16a",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:35:13Z",
+      "side": 1,
+      "message": "I only found usage from `framework/java/android/bluetooth/BluetoothServerSocket.java`\n\nCan it be package private instead ?",
+      "parentUuid": "d9deb873_6cdb1c2f",
+      "range": {
+        "startLine": 100,
+        "startChar": 4,
+        "endLine": 100,
+        "endChar": 13
+      },
+      "revId": "8ae72e1bd67173d89d1a7aac822afc7bfc3908ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b271dbc9_2659ea18",
         "filename": "framework/java/android/bluetooth/SocketMetrics.java",
         "patchSetId": 4
