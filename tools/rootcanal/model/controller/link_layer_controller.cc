@@ -268,40 +268,22 @@ LinkLayerController::GenerateResolvablePrivateAddress(AddressWithType address,
 //  BR/EDR Commands
 // =============================================================================
 
-// HCI Inquiry command (Vol 4, Part E § 7.1.1).
-ErrorCode LinkLayerController::Inquiry(uint8_t lap, uint8_t inquiry_length,
-                                       uint8_t num_responses) {
-  if (inquiry_.has_value()) {
-    INFO(id_, "inquiry is already started");
-    return ErrorCode::COMMAND_DISALLOWED;
-  }
-
-  if (inquiry_length < 0x1 || inquiry_length > 0x30) {
-    INFO(id_, "invalid inquiry length ({})", inquiry_length);
-    return ErrorCode::INVALID_HCI_COMMAND_PARAMETERS;
-  }
-
-  // The Inquiry_Length parameter, added to Extended_Inquiry_Length
-  // (see Section 6.42), specifies the total duration of the Inquiry Mode and,
-  // when this time expires, Inquiry will be halted.
-  std::chrono::microseconds inquiry_timeout =
-      1280ms * inquiry_length +
-      std::chrono::duration_cast<milliseconds>(extended_inquiry_length_);
-
-  auto now = std::chrono::steady_clock::now();
-  inquiry_ = InquiryState{
-      .lap = lap,
-      .num_responses = num_responses,
-      .next_inquiry_event = now + kInquiryInterval,
-      .inquiry_timeout = now + inquiry_timeout,
-  };
-
+// HCI Set Event Filter command (Vol 4, Part E § 7.3.3).
+ErrorCode LinkLayerController::SetEventFilterClearAll(void) {
+  event_filter_.inquiry_result.clear();
+  event_filter_.connection_setup.clear();
   return ErrorCode::SUCCESS;
 }
 
-// HCI Inquiry Cancel command (Vol 4, Part E § 7.1.2).
-ErrorCode LinkLayerController::InquiryCancel() {
-  inquiry_ = {};
+ErrorCode LinkLayerController::SetEventFilter(
+    EventFilter::InquiryResult inquiry_result) {
+  event_filter_.inquiry_result.push_back(inquiry_result);
+  return ErrorCode::SUCCESS;
+}
+
+ErrorCode LinkLayerController::SetEventFilter(
+    EventFilter::ConnectionSetup connection_setup) {
+  event_filter_.connection_setup.push_back(connection_setup);
   return ErrorCode::SUCCESS;
 }
 
@@ -6058,6 +6040,7 @@ void LinkLayerController::Reset() {
   min_encryption_key_size_ = 16;
   event_mask_ = 0x00001fffffffffff;
   event_mask_page_2_ = 0x0;
+  event_filter_ = EventFilter();
   le_event_mask_ = 0x01f;
   le_suggested_max_tx_octets_ = 0x001b;
   le_suggested_max_tx_time_ = 0x0148;
