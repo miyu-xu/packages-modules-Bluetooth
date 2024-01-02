@@ -1,1 +1,5 @@
 per-file btif_hearing_aid.cc=file:/OWNERS_hearingaid
+per-file btif_csis_client.cc=file:/OWNERS_leaudio
+per-file btif_le_audio*.cc=file:/OWNERS_leaudio
+per-file btif_leaudio_hal_version_host.cc=file:/OWNERS_leaudio
+per-file btif_vc.cc=file:/OWNERS_leaudio
