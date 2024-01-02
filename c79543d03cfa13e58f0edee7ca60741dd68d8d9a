@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ddde0405_5e5c8028",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-02T03:19:51Z",
+      "side": 0,
+      "message": "Move https://crrev.com/c/4954415 changes to a separated CL",
+      "revId": "c79543d03cfa13e58f0edee7ca60741dd68d8d9a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
