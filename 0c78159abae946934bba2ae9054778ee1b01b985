@@ -16,6 +16,29 @@
       "message": "I liked to see every different flags file being added, but I guess this create useless merge conflict.",
       "revId": "0c78159abae946934bba2ae9054778ee1b01b985",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bdcd1aa8_386fe2b7",
+        "filename": "flags/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T22:14:42Z",
+      "side": 1,
+      "message": "Do you intend to add some subfolder ? \nshould we replace with a simple `*` instead ?\n\n```suggestion\n        \"*.aconfig\",\n```",
+      "range": {
+        "startLine": 10,
+        "startChar": 9,
+        "endLine": 10,
+        "endChar": 13
+      },
+      "revId": "0c78159abae946934bba2ae9054778ee1b01b985",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
