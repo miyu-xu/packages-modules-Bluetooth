@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "12c0cb99_f8540228",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-02T22:16:54Z",
+      "side": 1,
+      "message": "I\u0027ve rebased and fixed this thing over and over again, and figured it was an okay QoL change 😊\n\nBut I don\u0027t disagree. I guess now you can just look in the directory to see what exists. We shouldn\u0027t have flags files that _don\u0027t_ end up in the build, should we?",
+      "parentUuid": "8dec7321_70d9379d",
+      "revId": "0c78159abae946934bba2ae9054778ee1b01b985",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bdcd1aa8_386fe2b7",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-01-02T22:14:42Z",
       "side": 1,
       "message": "Do you intend to add some subfolder ? \nshould we replace with a simple `*` instead ?\n\n```suggestion\n        \"*.aconfig\",\n```",
+      "range": {
+        "startLine": 10,
+        "startChar": 9,
+        "endLine": 10,
+        "endChar": 13
+      },
+      "revId": "0c78159abae946934bba2ae9054778ee1b01b985",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e26f46c3_ba9ca67c",
+        "filename": "flags/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-02T22:16:54Z",
+      "side": 1,
+      "message": "Do we expect every file to go off root? If so, that\u0027ll work and I can update! If we want flexibility then the proposed solution seems to be the standard.",
+      "parentUuid": "bdcd1aa8_386fe2b7",
       "range": {
         "startLine": 10,
         "startChar": 9,
