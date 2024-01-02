@@ -16,6 +16,7 @@
 
 import asyncio
 import grpc
+import time
 
 from blueberry.facade.topshim import facade_pb2
 from blueberry.facade.topshim import facade_pb2_grpc
@@ -36,7 +37,13 @@ class AdapterClient(AsyncClosable):
     __adapter_event_stream = None
 
     def __init__(self, port=8999):
-        self.__channel = grpc.aio.insecure_channel("localhost:%d" % port)
+        self.port = port
+
+    async def init(self):
+        print("Init adapter client: create channel with port ", self.port)
+        self.__channel = grpc.aio.insecure_channel("localhost:%d" % self.port)
+        await self.__channel.channel_ready()
+        print("channel ready")
         self.__adapter_stub = facade_pb2_grpc.AdapterServiceStub(self.__channel)
         self.__adapter_event_stream = self.__adapter_stub.FetchEvents(facade_pb2.FetchEventsRequest())
 
@@ -52,14 +59,14 @@ class AdapterClient(AsyncClosable):
         """Get the future of next event from the stream"""
         while True:
             e = await self.__adapter_event_stream.read()
-
+            print("GetEvent: ", e)
             # Match event by some condition.
             if e.event_type == event:
+                print("SUCCESS")
                 future.set_result(e.params)
                 break
             else:
                 print("Got '%s'; expecting '%s'" % (e.event_type, event))
-                print(e)
 
     async def _listen_for_event(self, event):
         """Start fetching events"""
@@ -67,7 +74,8 @@ class AdapterClient(AsyncClosable):
         task = asyncio.get_running_loop().create_task(self.__get_next_event(event, future))
         self.__task_list.append(task)
         try:
-            await asyncio.wait_for(future, AdapterClient.DEFAULT_TIMEOUT)
+            print("Wait for event", event)
+            await asyncio.wait_for(future, 3 * AdapterClient.DEFAULT_TIMEOUT)
         except:
             task.cancel()
             print("Failed to get event", event)
@@ -75,7 +83,13 @@ class AdapterClient(AsyncClosable):
 
     async def _verify_adapter_started(self):
         future = await self._listen_for_event(facade_pb2.EventType.ADAPTER_STATE)
-        params = future.result()
+        print("Verify adapter")
+        try:
+            params = future.result()
+        except asyncio.exceptions.CancelledError as e:
+            print("CancelledError!")
+            return False
+        print(params["state"].data[0])
         return params["state"].data[0] == "ON"
 
     async def toggle_stack(self, is_start=True):
@@ -137,7 +151,11 @@ class AdapterClient(AsyncClosable):
         return await self._listen_for_event(facade_pb2.EventType.ADAPTER_PROPERTY)
 
     async def toggle_discovery(self, is_start):
-        await self.__adapter_stub.ToggleDiscovery(facade_pb2.ToggleDiscoveryRequest(is_start=is_start))
+        print("***** Toggle discovery through adapter stub")
+        out = self.__adapter_stub.ToggleDiscovery(facade_pb2.ToggleDiscoveryRequest(is_start=is_start))
+        print("Type: ", type(out))
+        await out
+        print("***** Listen for discovery state")
         future = await self._listen_for_event(facade_pb2.EventType.DISCOVERY_STATE)
         return future
 

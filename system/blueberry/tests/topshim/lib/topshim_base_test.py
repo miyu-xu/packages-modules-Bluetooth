@@ -163,24 +163,29 @@ class TopshimBaseTest(base_test.BaseTestClass):
     __dut = None
     __cert = None
 
-    async def __setup_adapter(self):
+    async def setup_adapter(self):
         dut_adapter = AdapterClient(port=self.dut_port)
         cert_adapter = AdapterClient(port=self.cert_port)
+        await dut_adapter.init()
+        await cert_adapter.init()
+        print("Verify adapter status")
         started = await dut_adapter._verify_adapter_started()
         assertThat(started).isTrue()
         started = started and await cert_adapter._verify_adapter_started()
         assertThat(started).isTrue()
-        self.__dut = TopshimDevice(dut_adapter, GattClient(port=self.dut_port),
-                                   SecurityClient(dut_adapter, port=self.dut_port),
-                                   HfpClient(port=self.dut_port),
-                                   HfClientClient(port=self.dut_port))
-        self.__cert = TopshimDevice(cert_adapter, GattClient(port=self.cert_port),
-                                    SecurityClient(cert_adapter, port=self.cert_port),
-                                    HfpClient(port=self.cert_port),
-                                    HfClientClient(port=self.cert_port))
+
+        print("Create topshim device")
+        dut_gatt = GattClient(port=self.dut_port)
+        cert_gatt = GattClient(port=self.cert_port)
+
+        self.__dut = TopshimDevice(dut_adapter, dut_gatt, SecurityClient(dut_adapter, port=self.dut_port),
+                                   HfpClient(port=self.dut_port), HfClientClient(port=self.dut_port))
+        self.__cert = TopshimDevice(cert_adapter, cert_gatt, SecurityClient(cert_adapter, port=self.cert_port),
+                                    HfpClient(port=self.cert_port), HfClientClient(port=self.cert_port))
         return started
 
     async def __teardown_adapter(self):
+        print("##### Teardown adapter")
         await asyncSafeClose(self.__dut)
         await asyncSafeClose(self.__cert)
 
@@ -227,12 +232,11 @@ class TopshimBaseTest(base_test.BaseTestClass):
         controllers = self.register_controller(importlib.import_module('blueberry.tests.topshim.lib.topshim_device'))
         self.cert_port = controllers[0].grpc_port
         self.dut_port = controllers[1].grpc_port
-        asyncio.set_event_loop(asyncio.new_event_loop())
-        asyncio.get_event_loop().run_until_complete(self.__setup_adapter())
+        self.loop = asyncio.new_event_loop()
 
     def teardown_class(self):
         _teardown_class_core(rootcanal_running=self.rootcanal_running,
                              rootcanal_process=self.rootcanal_process,
                              rootcanal_logger=self.rootcanal_logger,
                              subprocess_wait_timeout_seconds=1)
-        asyncio.get_event_loop().run_until_complete(self.__teardown_adapter())
+        asyncio.run(self.__teardown_adapter())

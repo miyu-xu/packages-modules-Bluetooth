@@ -19,9 +19,14 @@ from blueberry.tests.topshim.lib.topshim_base_test import TopshimBaseTest
 from blueberry.tests.topshim.lib.adapter_client import AdapterClient
 
 from mobly import test_runner
+import asyncio
 
 
 class AdapterTest(TopshimBaseTest):
+
+    async def helper(self, func):
+        await self.setup_adapter()
+        await func
 
     def test_verify_adapter_started(self):
         print("Adapter is verified when test starts")
@@ -47,15 +52,21 @@ class AdapterTest(TopshimBaseTest):
         assertThat(caps).isEqualTo("None_")
 
     def test_start_discovery(self):
-        state = self.dut().toggle_discovery(True)
-        assertThat(state).isEqualTo("Started")
-        # Reset device to not discovering.
-        self.dut().toggle_discovery(False)
+
+        async def start_discovery():
+            assertThat(await self.dut().toggle_discovery(True)).isEqualTo("Started")
+            # Reset device to not discovering.
+            await self.dut().toggle_discovery(False)
+
+        asyncio.run(self.helper(start_discovery()))
 
     def test_cancel_discovery(self):
-        self.dut().toggle_discovery(True)
-        state = self.dut().toggle_discovery(False)
-        assertThat(state).isEqualTo("Stopped")
+
+        async def cancel_discovery():
+            await self.dut().toggle_discovery(True)
+            assertThat(await self.dut().toggle_discovery(False)).isEqualTo("Stopped")
+
+        asyncio.run(self.helper(cancel_discovery()))
 
     def test_find_device_device_available(self):
         self.dut().enable_inquiry_scan()

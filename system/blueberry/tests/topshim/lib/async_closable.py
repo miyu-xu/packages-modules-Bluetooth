@@ -32,11 +32,13 @@ class AsyncClosable(ABC):
         return self
 
     def __exit__(self, type, value, traceback):
-        asyncio.run_until_complete(self.__async_exit(type, value, traceback))
+        # asyncio.get_running_loop().run_in_executor(None, self.__async_exit(type, value, traceback))
+        asyncio.run(self.__async_exit(type, value, traceback))
         return traceback is None
 
     def __del__(self):
-        asyncio.get_event_loop().run_until_complete(self.__async_exit())
+        # asyncio.get_running_loop().run_in_executor(None, self.__async_exit())
+        asyncio.run(self.__async_exit())
 
     @abstractmethod
     async def close(self):

@@ -86,7 +86,7 @@ class TopshimDevice(AsyncClosable):
         return result
 
     def __post(self, async_fn):
-        return asyncio.get_event_loop().run_until_complete(async_fn)
+        return asyncio.create_task(async_fn)
 
     def __init__(self, adapter, gatt, security, hfp, hf_client):
         self.__adapter = adapter
@@ -105,9 +105,10 @@ class TopshimDevice(AsyncClosable):
         await asyncSafeClose(self.__hfp)
         await asyncSafeClose(self.__hf_client)
 
-    def enable_inquiry_scan(self):
-        f = self.__post(self.__adapter.enable_inquiry_scan())
-        return self.__post(self.__discovery_mode_waiter(f))
+    async def enable_inquiry_scan(self):
+        f = await self.__post(self.__adapter.enable_inquiry_scan())
+        return (f.result()["status"].data[0], f.result()["AdapterScanMode"].data[0])
+        # return self.__post(self.__discovery_mode_waiter(f))
 
     def enable_page_scan(self):
         f = self.__post(self.__adapter.enable_page_scan())
@@ -129,29 +130,30 @@ class TopshimDevice(AsyncClosable):
         """
         self.__post(self.__gatt.advertising_enable())
 
-    def stop_advertising(self):
+    async def stop_advertising(self):
         """
         Stop BLE Advertiser.
         """
-        self.__post(self.__gatt.advertising_disable())
+        await asyncio.create_task(self.__gatt.advertising_disable())
 
     def start_scanning(self):
         pass
 
-    def stop_scanning(self):
+    async def stop_scanning(self):
         pass
 
-    def clear_event_mask(self):
-        self.__post(self.__adapter.clear_event_mask())
+    async def clear_event_mask(self):
+        """Test clear event mask running no error."""
+        await asyncio.create_task(self.__adapter.clear_event_mask())
 
-    def clear_event_filter(self):
-        self.__post(self.__adapter.clear_event_filter())
+    async def clear_event_filter(self):
+        await asyncio.create_task(self.__adapter.clear_event_filter())
 
-    def clear_filter_accept_list(self):
-        self.__post(self.__adapter.clear_filter_accept_list())
+    async def clear_filter_accept_list(self):
+        await asyncio.create_task(self.__adapter.clear_filter_accept_list())
 
-    def disconnect_all_acls(self):
-        self.__post(self.__adapter.disconnect_all_acls())
+    async def disconnect_all_acls(self):
+        await asyncio.create_task(self.__adapter.disconnect_all_acls())
 
     def allow_wake_by_hid(self):
         self.__post(self.__adapter.allow_wake_by_hid())
@@ -165,21 +167,22 @@ class TopshimDevice(AsyncClosable):
     def set_event_filter_connection_setup_all_devices(self):
         self.__post(self.__adapter.set_event_filter_connection_setup_all_devices())
 
-    def le_rand(self):
-        self.__post(self.__adapter.le_rand())
+    async def le_rand(self):
+        await asyncio.create_task(self.__adapter.le_rand())
 
-    def create_bond(self, address, transport=1):
+    async def create_bond(self, address, transport=1):
         """
         Create a bonding entry for a given address with a particular transport type.
         """
-        f = self.__post(self.__security.create_bond(address, transport))
-        return self.__post(self.__bond_change_waiter(f))
+        f = await self.__post(self.__security.create_bond(address, transport))
+        print(type(f), f)
+        return (f.result()["bond_state"].data[0], f.result()["address"].data[0])
 
-    def remove_bonded_device(self, address):
+    async def remove_bonded_device(self, address):
         """
         Removes a bonding entry for a given address.
         """
-        self.__post(self.__security.remove_bond(address))
+        await self.__post(self.__security.remove_bond(address))
 
     async def __bond_change_waiter(self, f):
         params = await f
@@ -213,33 +216,32 @@ class TopshimDevice(AsyncClosable):
 
         return self.__post(waiter(f))
 
-    def toggle_discovery(self, is_start):
-        f = self.__post(self.__adapter.toggle_discovery(is_start))
+    async def toggle_discovery(self, is_start) -> str:
+        """Return discovery state."""
+        f = await asyncio.create_task(self.__adapter.toggle_discovery(is_start))
+        return f.result()["discovery_state"].data[0]
 
-        async def waiter(f):
-            params = await f
-            return params["discovery_state"].data[0]
-
-        return self.__post(waiter(f))
-
-    def find_device(self):
+    async def find_device(self):
         """
         Attempts to find discoverable devices when discovery is toggled on.
 
         @return a list of properties of found device.
         """
-        f = self.__post(self.__adapter.find_device())
-
-        async def waiter(f):
-            try:
-                params = await f
-                return params["BdAddr"].data[0]
-            except:
-                # The future `f` has a timeout after 2s post which it is cancelled.
-                print("No device was found. Timed out.")
+        f = await self.__post(self.__adapter.find_device())
+        try:
+            return f.result()["BdAddr"].data[0]
+        except:
+            print("No device was found. Timed out.")
             return None
-
-        return self.__post(waiter(f))
+        # async def waiter(f):
+        #     try:
+        #         params = await f
+        #         return params["BdAddr"].data[0]
+        #     except:
+        #         # The future `f` has a timeout after 2s post which it is cancelled.
+        #         print("No device was found. Timed out.")
+        #     return None
+        # return self.__post(waiter(f))
 
     def start_slc(self, address):
         f = self.__post(self.__hfp.start_slc(address))

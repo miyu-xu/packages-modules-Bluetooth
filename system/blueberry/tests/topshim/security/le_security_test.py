@@ -20,15 +20,38 @@ from blueberry.tests.topshim.lib.topshim_base_test import TopshimBaseTest
 from blueberry.tests.topshim.lib.topshim_device import TRANSPORT_CLASSIC, TRANSPORT_LE
 
 from mobly import test_runner
+import asyncio
 
 
 class LeSecurityTest(TopshimBaseTest):
 
+    async def helper(self, func):
+        await self.setup_adapter()
+        await func
+
     DUMMY_ADDRESS = "01:02:03:04:05:06"
 
+    def test_create_le_bond(self):
+
+        async def f():
+            await self.dut().enable_inquiry_scan()
+            await self.cert().enable_inquiry_scan()
+            await self.dut().toggle_discovery(True)
+            address = await self.dut().find_device()
+            state, conn_addr = await self.dut().create_bond(address, TRANSPORT_LE)
+            print(state, conn_addr)
+            assertThat(state).isEqualTo("Bonded")
+            assertThat(conn_addr).isEqualTo(address)
+
+        asyncio.run(self.helper(f()))
+
     def test_remove_bond_with_no_bonded_devices(self):
-        self.dut().remove_bonded_device(self.DUMMY_ADDRESS)
-        self.dut().le_rand()
+
+        async def f():
+            await self.dut().remove_bonded_device(self.DUMMY_ADDRESS)
+            await self.dut().le_rand()
+
+        asyncio.run(self.helper(f()))
 
     def test_generate_local_oob_data(self):
         oob_data = self.dut().generate_local_oob_data(TRANSPORT_CLASSIC)

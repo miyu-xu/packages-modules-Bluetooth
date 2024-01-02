@@ -19,19 +19,35 @@ from blueberry.tests.topshim.lib.adapter_client import AdapterClient
 from blueberry.tests.topshim.lib.topshim_base_test import TopshimBaseTest
 from blueberry.tests.topshim.lib.topshim_device import TRANSPORT_CLASSIC
 
+from mobly import signals
 from mobly import test_runner
+import asyncio
 
 
 class ClassicSecurityTest(TopshimBaseTest):
 
+    async def helper(self, func):
+        try:
+            await self.setup_adapter()
+            await func
+        except asyncio.exceptions.CancelledError as e:
+            raise signals.TestFailure("Exception cancelled error!")
+
     def test_create_classic_bond(self):
-        self.dut().enable_inquiry_scan()
-        self.cert().enable_inquiry_scan()
-        self.dut().toggle_discovery(True)
-        address = self.dut().find_device()
-        state, conn_addr = self.dut().create_bond(address=address, transport=TRANSPORT_CLASSIC)
-        assertThat(state).isEqualTo("Bonded")
-        assertThat(conn_addr).isEqualTo(address)
+
+        async def f():
+            await self.dut().enable_inquiry_scan()
+            await self.cert().enable_inquiry_scan()
+            await self.dut().toggle_discovery(True)
+            print("====== Find device")
+            address = await self.dut().find_device()
+            print("====== Found: ", address)
+            state, conn_addr = await self.dut().create_bond(address=address, transport=TRANSPORT_CLASSIC)
+            print("====== Bond status: ", state, conn_addr)
+            assertThat(state).isEqualTo("Bonded")
+            assertThat(conn_addr).isEqualTo(address)
+
+        asyncio.run(self.helper(f()))
 
 
 if __name__ == "__main__":

@@ -19,19 +19,24 @@ from blueberry.tests.topshim.lib.topshim_base_test import TopshimBaseTest
 from blueberry.tests.topshim.lib.adapter_client import AdapterClient
 
 from mobly import test_runner
+import asyncio
 
 
 class SuspendTest(TopshimBaseTest):
 
-    def __verify_no_wake_suspend(self):
+    async def helper(self, func):
+        await self.setup_adapter()
+        await func
+
+    async def __verify_no_wake_suspend(self):
         # Start suspend work
-        self.dut().clear_event_mask()
-        self.dut().clear_event_filter()
-        self.dut().clear_filter_accept_list()
-        self.dut().stop_advertising()
-        self.dut().stop_scanning()
-        self.dut().disconnect_all_acls()
-        self.dut().le_rand()
+        await self.dut().clear_event_mask()
+        await self.dut().clear_event_filter()
+        await self.dut().clear_filter_accept_list()
+        await self.dut().stop_advertising()
+        await self.dut().stop_scanning()
+        await self.dut().disconnect_all_acls()
+        await self.dut().le_rand()
 
     def __verify_no_wake_resume(self):
         # Start resume work
@@ -68,7 +73,7 @@ class SuspendTest(TopshimBaseTest):
         self.dut().le_rand()
 
     def test_no_wake_suspend(self):
-        self.__verify_no_wake_suspend()
+        asyncio.run(self.helper(self.__verify_no_wake_suspend()))
 
     def test_no_wake_resume(self):
         self.__verify_no_wake_resume()
