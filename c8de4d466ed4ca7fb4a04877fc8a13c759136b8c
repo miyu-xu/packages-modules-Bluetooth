@@ -65,6 +65,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a173679_9bda1949",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-02T14:16:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c47bf634_92390133",
+      "range": {
+        "startLine": 332,
+        "startChar": 35,
+        "endLine": 332,
+        "endChar": 37
+      },
+      "revId": "c8de4d466ed4ca7fb4a04877fc8a13c759136b8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a1f71e8b_d977b3e7",
@@ -99,6 +123,30 @@
         "id": 1965643
       },
       "writtenOn": "2024-01-02T12:06:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a1f71e8b_d977b3e7",
+      "range": {
+        "startLine": 335,
+        "startChar": 37,
+        "endLine": 335,
+        "endChar": 39
+      },
+      "revId": "c8de4d466ed4ca7fb4a04877fc8a13c759136b8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e82f90c_3f227b4e",
+        "filename": "floss/pandora/server/bluetooth.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-02T14:16:08Z",
       "side": 1,
       "message": "Done",
       "parentUuid": "a1f71e8b_d977b3e7",
