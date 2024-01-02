@@ -1706,8 +1706,104 @@ void DualModeController::SetEventFilter(CommandView command) {
   DEBUG(id_, "   filter_type={}",
         bluetooth::hci::FilterTypeText(command_view.GetFilterType()));
 
-  if (command_view.GetFilterType() != bluetooth::hci::FilterType::CLEAR_ALL_FILTERS) {
-    FATAL("unsupported event filter type");
+  switch (command_view.GetFilterType()) {
+    case bluetooth::hci::FilterType::CLEAR_ALL_FILTERS:
+      link_layer_controller_.SetEventFilterClearAll();
+      break;
+
+    case bluetooth::hci::FilterType::INQUIRY_RESULT: {
+      auto filter_type_view =
+          bluetooth::hci::SetEventFilterInquiryResultView::Create(command_view);
+      ASSERT(filter_type_view.IsValid());
+      switch (filter_type_view.GetFilterConditionType()) {
+        case bluetooth::hci::FilterConditionType::ALL_DEVICES: {
+          auto filter_condition_view =
+              bluetooth::hci::SetEventFilterInquiryResultAllDevicesView::Create(
+                  filter_type_view);
+          ASSERT(filter_condition_view.IsValid());
+          link_layer_controller_.SetEventFilter(
+              LinkLayerController::EventFilter::InquiryResult{
+                  .filter = LinkLayerController::EventFilter::AllDevices()});
+          break;
+        }
+        case bluetooth::hci::FilterConditionType::CLASS_OF_DEVICE: {
+          auto filter_condition_view =
+              bluetooth::hci::SetEventFilterInquiryResultClassOfDeviceView::
+                  Create(filter_type_view);
+          ASSERT(filter_condition_view.IsValid());
+          link_layer_controller_.SetEventFilter(
+              LinkLayerController::EventFilter::InquiryResult{
+                  .filter = LinkLayerController::EventFilter::ClassOfDevice{
+                      .class_of_device =
+                          filter_condition_view.GetClassOfDevice(),
+                      .class_of_device_mask =
+                          filter_condition_view.GetClassOfDeviceMask()}});
+          break;
+        }
+        case bluetooth::hci::FilterConditionType::ADDRESS: {
+          auto filter_condition_view =
+              bluetooth::hci::SetEventFilterInquiryResultAddressView::Create(
+                  filter_type_view);
+          ASSERT(filter_condition_view.IsValid());
+          link_layer_controller_.SetEventFilter(
+              LinkLayerController::EventFilter::InquiryResult{
+                  .filter = filter_condition_view.GetAddress()});
+          break;
+        }
+      }
+      break;
+    }
+
+    case bluetooth::hci::FilterType::CONNECTION_SETUP: {
+      auto filter_type_view =
+          bluetooth::hci::SetEventFilterConnectionSetupView::Create(
+              command_view);
+      ASSERT(filter_type_view.IsValid());
+      switch (filter_type_view.GetFilterConditionType()) {
+        case bluetooth::hci::FilterConditionType::ALL_DEVICES: {
+          auto filter_condition_view =
+              bluetooth::hci::SetEventFilterConnectionSetupAllDevicesView::
+                  Create(filter_type_view);
+          ASSERT(filter_condition_view.IsValid());
+          link_layer_controller_.SetEventFilter(
+              LinkLayerController::EventFilter::ConnectionSetup{
+                  .filter = LinkLayerController::EventFilter::AllDevices(),
+                  .auto_accept_flag =
+                      filter_condition_view.GetAutoAcceptFlag()});
+          break;
+        }
+        case bluetooth::hci::FilterConditionType::CLASS_OF_DEVICE: {
+          auto filter_condition_view =
+              bluetooth::hci::SetEventFilterConnectionSetupClassOfDeviceView::
+                  Create(filter_type_view);
+          ASSERT(filter_condition_view.IsValid());
+          link_layer_controller_.SetEventFilter(
+              LinkLayerController::EventFilter::ConnectionSetup{
+                  .filter =
+                      LinkLayerController::EventFilter::ClassOfDevice{
+                          .class_of_device =
+                              filter_condition_view.GetClassOfDevice(),
+                          .class_of_device_mask =
+                              filter_condition_view.GetClassOfDeviceMask()},
+                  .auto_accept_flag =
+                      filter_condition_view.GetAutoAcceptFlag()});
+          break;
+        }
+        case bluetooth::hci::FilterConditionType::ADDRESS: {
+          auto filter_condition_view =
+              bluetooth::hci::SetEventFilterConnectionSetupAddressView::Create(
+                  filter_type_view);
+          ASSERT(filter_condition_view.IsValid());
+          link_layer_controller_.SetEventFilter(
+              LinkLayerController::EventFilter::ConnectionSetup{
+                  .filter = filter_condition_view.GetAddress(),
+                  .auto_accept_flag =
+                      filter_condition_view.GetAutoAcceptFlag()});
+          break;
+        }
+      }
+      break;
+    }
   }
 
   send_event_(bluetooth::hci::SetEventFilterCompleteBuilder::Create(

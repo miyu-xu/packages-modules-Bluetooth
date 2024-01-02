@@ -65,6 +65,7 @@ tests = [
     'LMP.LIH.BV_149_C',
     'LL.scan_collision',
     'LMP.page_collision',
+    'LMP.event_filter',
 ]
 
 
