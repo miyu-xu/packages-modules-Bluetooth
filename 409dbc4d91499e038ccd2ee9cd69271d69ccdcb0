@@ -16,6 +16,23 @@
       "message": "Adding @wescande here, \n\nhi William, could you help with the owner\u0027s review? thanks",
       "revId": "409dbc4d91499e038ccd2ee9cd69271d69ccdcb0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee7aa655_3bb377e2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-02T22:33:47Z",
+      "side": 1,
+      "message": "@rlukasz@google.com Just fyi, the change in VCS is under the API flag leaudio_broadcast_volume_control_for_connected_devices. \nSo does it make sense to add \u0027Bug: 307408418\u0027 to your commit message?",
+      "revId": "409dbc4d91499e038ccd2ee9cd69271d69ccdcb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
