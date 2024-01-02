@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9f93146_f728c0a4",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-02T10:43:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74276361_c8e5fe68",
+      "range": {
+        "startLine": 18,
+        "startChar": 7,
+        "endLine": 18,
+        "endChar": 11
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ce681e87_fade78cd",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-02T04:15:00Z",
       "side": 1,
       "message": "I guess we have to ignore the callback if addr is not the one from the request? Similar to all observers below.",
+      "range": {
+        "startLine": 57,
+        "startChar": 39,
+        "endLine": 57,
+        "endChar": 43
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1d35ee00_703b5214",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-02T10:43:55Z",
+      "side": 1,
+      "message": "I used the same methods used in Host:\n```\n if addr !\u003d self.task[\u0027address\u0027]:\n     return\n```\nIn failed case, this will cause the \u0027wait\u0027 to wait forever and will not pass it, so how about using this:\n```\nif addr !\u003d self.task[\u0027address\u0027]:\n    future.get_loop().call_soon_threadsafe(future.set_result, None)\n    return\n```\nwhat do you think?",
+      "parentUuid": "ce681e87_fade78cd",
       "range": {
         "startLine": 57,
         "startChar": 39,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d050211_2b9fb970",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-02T10:43:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1766516b_7c6393ae",
+      "range": {
+        "startLine": 226,
+        "startChar": 78,
+        "endLine": 226,
+        "endChar": 100
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9453c5a2_a64d3229",
@@ -93,6 +165,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a0c0cf1_a6ae4893",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-02T10:43:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9453c5a2_a64d3229",
+      "range": {
+        "startLine": 238,
+        "startChar": 49,
+        "endLine": 238,
+        "endChar": 74
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c45af3bd_fc7287f5",
@@ -106,6 +202,30 @@
       "writtenOn": "2024-01-02T04:15:00Z",
       "side": 1,
       "message": "Should we raise failure if status !\u003d success?",
+      "range": {
+        "startLine": 282,
+        "startChar": 46,
+        "endLine": 282,
+        "endChar": 52
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3984de89_b3d9f11c",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-02T10:43:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c45af3bd_fc7287f5",
       "range": {
         "startLine": 282,
         "startChar": 46,
