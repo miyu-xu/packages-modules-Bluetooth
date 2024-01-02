@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "39bd6385_036ed136",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-02T18:32:05Z",
+      "side": 1,
+      "message": "This looks odd. Is there a way to make it more obvious?  Should it be i \u003c num_antenna_paths + num_tone_extension or something like that?",
+      "range": {
+        "startLine": 68,
+        "startChar": 27,
+        "endLine": 68,
+        "endChar": 31
+      },
+      "revId": "18c7eb5b1db942fe6eae7db9392cf6f7034aff3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "320c8906_fa1292d4",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 6801,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-02T18:32:05Z",
+      "side": 1,
+      "message": "Same comment about having this be a struct.",
+      "range": {
+        "startLine": 6801,
+        "startChar": 0,
+        "endLine": 6801,
+        "endChar": 6
+      },
+      "revId": "18c7eb5b1db942fe6eae7db9392cf6f7034aff3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
