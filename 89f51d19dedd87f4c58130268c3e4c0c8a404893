@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a691fab_1a8f78f3",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 516,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:35:18Z",
+      "side": 1,
+      "message": "Move to previous CL",
+      "range": {
+        "startLine": 508,
+        "startChar": 11,
+        "endLine": 516,
+        "endChar": 45
+      },
+      "revId": "89f51d19dedd87f4c58130268c3e4c0c8a404893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23b855be_d67c1d39",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:35:18Z",
+      "side": 1,
+      "message": "Move to inside the TYPE_RFCOMM if",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 28
+      },
+      "revId": "89f51d19dedd87f4c58130268c3e4c0c8a404893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d4717b47_01cc5345",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:35:18Z",
+      "side": 1,
+      "message": "Move to previous CL",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 50
+      },
+      "revId": "89f51d19dedd87f4c58130268c3e4c0c8a404893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3780aab1_b5489b07",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:35:18Z",
+      "side": 1,
+      "message": "```suggestion\n                Log.w(TAG, \"logL2capcocClientConnection failed\", e);\n```",
+      "range": {
+        "startLine": 83,
+        "startChar": 15,
+        "endLine": 86,
+        "endChar": 67
+      },
+      "revId": "89f51d19dedd87f4c58130268c3e4c0c8a404893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ecc0ebb_befcd020",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:35:18Z",
+      "side": 1,
+      "message": "```suggestion\n                Log.w(TAG, \"logRfcommConnectionAttempt failed\", e);\n```",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 67
+      },
+      "revId": "89f51d19dedd87f4c58130268c3e4c0c8a404893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a22f174d_4e01ea5a",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:35:18Z",
+      "side": 1,
+      "message": "Nanos ?",
+      "range": {
+        "startLine": 135,
+        "startChar": 31,
+        "endLine": 137,
+        "endChar": 48
+      },
+      "revId": "89f51d19dedd87f4c58130268c3e4c0c8a404893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0165beea_4c3fd0b4",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 146,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:35:18Z",
+      "side": 1,
+      "message": "```suggestion\n            Log.w(TAG, \"logL2capcocServerConnection failed\", e);\n```",
+      "range": {
+        "startLine": 143,
+        "startChar": 11,
+        "endLine": 146,
+        "endChar": 63
+      },
+      "revId": "89f51d19dedd87f4c58130268c3e4c0c8a404893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62e2cc86_7e3c9309",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-02T23:35:18Z",
+      "side": 1,
+      "message": "Suggestion:\nSplit this method in 2 and remove the connType check:\n\n`getL2capLeConnectStatusCode`\n`getRfcommConnectStatusCode`",
+      "range": {
+        "startLine": 150,
+        "startChar": 5,
+        "endLine": 188,
+        "endChar": 5
+      },
+      "revId": "89f51d19dedd87f4c58130268c3e4c0c8a404893",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
