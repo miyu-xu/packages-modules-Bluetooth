@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab28ad79_fc6c93e8",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-03T09:38:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "53eab444_e4bba28c",
+      "revId": "437c0a4af22c88fd498cb6ba0c4e099a68679a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9441384a_ee4bd018",
@@ -41,6 +59,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fde04dc4_8521a38a",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-03T09:38:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9441384a_ee4bd018",
+      "range": {
+        "startLine": 92,
+        "startChar": 26,
+        "endLine": 92,
+        "endChar": 37
+      },
+      "revId": "437c0a4af22c88fd498cb6ba0c4e099a68679a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d005f71c_47207997",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-01-03T07:30:17Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 101,
+        "startChar": 27,
+        "endLine": 101,
+        "endChar": 37
+      },
+      "revId": "437c0a4af22c88fd498cb6ba0c4e099a68679a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9fc9e06_de4ebfc1",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-03T09:38:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d005f71c_47207997",
       "range": {
         "startLine": 101,
         "startChar": 27,
@@ -89,6 +155,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bef9fb76_0d67e846",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-03T09:38:39Z",
+      "side": 1,
+      "message": "I change it to RuntimeError for now",
+      "parentUuid": "695e0d22_1fed4d23",
+      "range": {
+        "startLine": 173,
+        "startChar": 26,
+        "endLine": 173,
+        "endChar": 36
+      },
+      "revId": "437c0a4af22c88fd498cb6ba0c4e099a68679a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "23eb4db5_ea3a7bd5",
         "filename": "floss/pandora/server/gatt.py",
         "patchSetId": 8
@@ -100,6 +190,30 @@
       "writtenOn": "2024-01-03T07:30:17Z",
       "side": 1,
       "message": "ditto",
+      "range": {
+        "startLine": 204,
+        "startChar": 27,
+        "endLine": 204,
+        "endChar": 37
+      },
+      "revId": "437c0a4af22c88fd498cb6ba0c4e099a68679a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ffd0d2ad_09519a95",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-03T09:38:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23eb4db5_ea3a7bd5",
       "range": {
         "startLine": 204,
         "startChar": 27,
