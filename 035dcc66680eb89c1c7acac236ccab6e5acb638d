@@ -16,6 +16,23 @@
       "message": "Hi, PTAL, thanks!\n\nI don\u0027t think anyone subscribes to the InterfacesRemoved, but I guess it\u0027s always better to have them because we have the InterfacesAdded.",
       "revId": "035dcc66680eb89c1c7acac236ccab6e5acb638d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "28c0f64a_b435c100",
+        "filename": "system/gd/rust/linux/service/src/interface_manager.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-01-03T18:03:32Z",
+      "side": 1,
+      "message": "This looks like a good place for a loop:\n\n```\nlet remove_paths \u003d [\"adapter\", \"admin\", \"logging\", \"qa\", \"gatt\", \"media\", \"telephony\", \"battery_provider_manager\", \"battery_manager\"];\n\nfor path in remove_paths {\n  let _ : Option\u003c()\u003e \u003d cr\n    .lock()\n    .unwrap()\n    .remove(\u0026Self::make_object_name(virt_index, path).into());\n}\n```\n\nBetter yet, keep a list of initialized object paths from the `IsReady` api above and re-use it in shutdown for removal.",
+      "revId": "035dcc66680eb89c1c7acac236ccab6e5acb638d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
