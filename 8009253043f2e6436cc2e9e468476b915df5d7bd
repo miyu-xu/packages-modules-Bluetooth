@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "624365c8_32386083",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-03T09:37:58Z",
+      "side": 1,
+      "message": "Yes, on_cs_subevent should only handle local event, remote data will have different format.",
+      "parentUuid": "9ab067cd_2c9c35ce",
+      "range": {
+        "startLine": 534,
+        "startChar": 87,
+        "endLine": 534,
+        "endChar": 92
+      },
+      "revId": "8009253043f2e6436cc2e9e468476b915df5d7bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "37356109_ce50b4c7",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea4b7caf_8895c0b5",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-03T09:37:58Z",
+      "side": 1,
+      "message": "Do in the following patch.",
+      "parentUuid": "37356109_ce50b4c7",
+      "range": {
+        "startLine": 535,
+        "startChar": 4,
+        "endLine": 535,
+        "endChar": 5
+      },
+      "revId": "8009253043f2e6436cc2e9e468476b915df5d7bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "de808140_5e98c828",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-01-02T17:56:55Z",
       "side": 1,
       "message": "Shouldn\u0027t there be a way to erase old ones that isn\u0027t a warning?  I would think that when a procedure is finished, we could erase it.",
+      "range": {
+        "startLine": 566,
+        "startChar": 16,
+        "endLine": 566,
+        "endChar": 21
+      },
+      "revId": "8009253043f2e6436cc2e9e468476b915df5d7bd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8c62b0ba_66843c6a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 566,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-03T09:37:58Z",
+      "side": 1,
+      "message": "Yes it will be done by check_cs_procedure_complete in the following patch.",
+      "parentUuid": "de808140_5e98c828",
       "range": {
         "startLine": 566,
         "startChar": 16,
