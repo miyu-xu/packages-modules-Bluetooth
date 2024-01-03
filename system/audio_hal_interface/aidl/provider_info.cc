@@ -224,7 +224,7 @@ std::optional<btav_a2dp_codec_index_t> ProviderInfo::SourceCodecIndex(
     CodecId const& codec_id) const {
   for (auto const& [index, codec] : assigned_codec_indexes) {
     if (codec->id == codec_id && index >= BTAV_A2DP_CODEC_INDEX_SOURCE_MIN &&
-        index < BTAV_A2DP_CODEC_INDEX_SOURCE_MAX) {
+        index < BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX) {
       return index;
     }
   }
@@ -238,7 +238,7 @@ std::optional<btav_a2dp_codec_index_t> ProviderInfo::SourceCodecIndex(
         codec->id.get<CodecId::vendor>().id == (int)vendor_id &&
         codec->id.get<CodecId::vendor>().codecId == codec_id &&
         index >= BTAV_A2DP_CODEC_INDEX_SOURCE_MIN &&
-        index < BTAV_A2DP_CODEC_INDEX_SOURCE_MAX) {
+        index < BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX) {
       return index;
     }
   }
@@ -266,7 +266,7 @@ std::optional<btav_a2dp_codec_index_t> ProviderInfo::SinkCodecIndex(
         codec->id.get<CodecId::vendor>().id == (int)vendor_id &&
         codec->id.get<CodecId::vendor>().codecId == codec_id &&
         index >= BTAV_A2DP_CODEC_INDEX_SINK_MIN &&
-        index < BTAV_A2DP_CODEC_INDEX_SINK_MAX) {
+        index < BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX) {
       return index;
     }
   }
