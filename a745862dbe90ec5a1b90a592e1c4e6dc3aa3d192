@@ -450,6 +450,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "008b0f6c_3c553ec3",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 588,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-01-03T13:25:22Z",
+      "side": 1,
+      "message": "Yes, that is right, else block will never run.\n\nBut what is the idea to replace the True value with empty tuple. Could you please clarify more?\n\nSince we need to make sure that the \u0027send_notification\u0027 to be set with specific value to update certain flags or states accordingly.",
+      "parentUuid": "c7d4ccd9_918998d5",
+      "range": {
+        "startLine": 588,
+        "startChar": 74,
+        "endLine": 588,
+        "endChar": 78
+      },
+      "revId": "a745862dbe90ec5a1b90a592e1c4e6dc3aa3d192",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "25192e89_dee1c96c",
         "filename": "floss/pandora/server/gatt.py",
         "patchSetId": 6
