@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f52d243_3638c443",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-03T20:58:19Z",
+      "side": 1,
+      "message": "It\u0027s related since I want to only use the GD controller to limit dependencies.",
+      "parentUuid": "6408e912_96ddab12",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "45bd10fa_1b826b06",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54ffd3d0_fdeb97e0",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 459,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-03T20:58:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e24ea8b3_5f40040e",
+      "range": {
+        "startLine": 459,
+        "startChar": 2,
+        "endLine": 459,
+        "endChar": 16
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d540b12d_4d59e653",
@@ -77,6 +125,30 @@
       "writtenOn": "2023-12-22T10:12:32Z",
       "side": 1,
       "message": "nit: DabGetAudioBufferTimeCapability",
+      "range": {
+        "startLine": 5810,
+        "startChar": 7,
+        "endLine": 5810,
+        "endChar": 34
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "280cb247_7c0a2612",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 5810,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-03T20:58:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d540b12d_4d59e653",
       "range": {
         "startLine": 5810,
         "startChar": 7,
@@ -110,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c6e1469_ab62d87a",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 5829,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-03T20:58:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "05e830a8_c3493788",
+      "range": {
+        "startLine": 5824,
+        "startChar": 0,
+        "endLine": 5829,
+        "endChar": 18
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d09cbf3f_17c072a3",
@@ -123,6 +219,30 @@
       "writtenOn": "2023-12-22T10:12:32Z",
       "side": 1,
       "message": "Would use `ControllerDabCodecCapability[32]`",
+      "range": {
+        "startLine": 5830,
+        "startChar": 2,
+        "endLine": 5835,
+        "endChar": 59
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94f736d2_31aca3d6",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 6
+      },
+      "lineNbr": 5835,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-03T20:58:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d09cbf3f_17c072a3",
       "range": {
         "startLine": 5830,
         "startChar": 2,
