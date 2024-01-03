@@ -46,6 +46,30 @@
       },
       "revId": "3efd65fc29c5a6b3c38322b7dc248f9d6323028c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1409bee8_37749675",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-03T23:35:34Z",
+      "side": 1,
+      "message": "Thanks for clarifying the details.",
+      "parentUuid": "97585f32_bc185190",
+      "range": {
+        "startLine": 342,
+        "startChar": 0,
+        "endLine": 344,
+        "endChar": 0
+      },
+      "revId": "3efd65fc29c5a6b3c38322b7dc248f9d6323028c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
