@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d63fdb2_1407f0a1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-03T08:04:48Z",
+      "side": 1,
+      "message": "It seems any CL needs a bug. I\u0027ll create a very simple bug and include the bug number.",
+      "revId": "1de14705be7f55757f28270dfcec7e90f42ee1f6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
