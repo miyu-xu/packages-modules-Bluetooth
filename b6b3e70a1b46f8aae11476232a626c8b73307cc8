@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42fb859a_13ded7a4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-03T15:14:09Z",
+      "side": 1,
+      "message": "`m framework-bluetooth`",
+      "revId": "b6b3e70a1b46f8aae11476232a626c8b73307cc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
