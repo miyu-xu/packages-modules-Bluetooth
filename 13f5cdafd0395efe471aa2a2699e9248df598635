@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "59090349_502c5b1e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e07d4a47_174412ab",
+      "revId": "13f5cdafd0395efe471aa2a2699e9248df598635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a34da30e_0c2624ec",
@@ -31,6 +49,30 @@
       "writtenOn": "2024-01-02T23:35:13Z",
       "side": 1,
       "message": "same as logSocketAccept, package private ?",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 13
+      },
+      "revId": "13f5cdafd0395efe471aa2a2699e9248df598635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a80cf88_1ea1bd06",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a34da30e_0c2624ec",
       "range": {
         "startLine": 44,
         "startChar": 4,
@@ -64,6 +106,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1065bcb7_baa8dc6d",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f395cac_487a4e45",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 49
+      },
+      "revId": "13f5cdafd0395efe471aa2a2699e9248df598635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0be1fc4a_7b9e5ba2",
@@ -77,6 +143,30 @@
       "writtenOn": "2024-01-02T23:35:13Z",
       "side": 1,
       "message": "Suggestion: `getL2capLeConnectStatusCode` and remove the BluetoothSocket.TYPE_L2CAP_LE check in it (and see comment in other CL)",
+      "range": {
+        "startLine": 68,
+        "startChar": 20,
+        "endLine": 68,
+        "endChar": 27
+      },
+      "revId": "13f5cdafd0395efe471aa2a2699e9248df598635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f99fb57_04d858ee",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0be1fc4a_7b9e5ba2",
       "range": {
         "startLine": 68,
         "startChar": 20,
@@ -110,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bc0e7a8_ec21a5f5",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b62ee602_1a471c43",
+      "range": {
+        "startLine": 75,
+        "startChar": 11,
+        "endLine": 76,
+        "endChar": 56
+      },
+      "revId": "13f5cdafd0395efe471aa2a2699e9248df598635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7dc24da5_b5fe01bd",
@@ -123,6 +237,30 @@
       "writtenOn": "2024-01-02T23:35:13Z",
       "side": 1,
       "message": "```suggestion\n            Log.w(TAG, \"logSocketAccept: bluetoothProxy is null\");\n```",
+      "range": {
+        "startLine": 95,
+        "startChar": 24,
+        "endLine": 95,
+        "endChar": 38
+      },
+      "revId": "13f5cdafd0395efe471aa2a2699e9248df598635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8062eb6d_f0a748b0",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7dc24da5_b5fe01bd",
       "range": {
         "startLine": 95,
         "startChar": 24,
@@ -156,6 +294,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "503859b2_4a4003c0",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:51:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18684e29_77ba6e22",
+      "range": {
+        "startLine": 112,
+        "startChar": 56,
+        "endLine": 114,
+        "endChar": 55
+      },
+      "revId": "13f5cdafd0395efe471aa2a2699e9248df598635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2621f14c_097e43b9",
@@ -169,6 +331,30 @@
       "writtenOn": "2024-01-02T23:35:13Z",
       "side": 1,
       "message": "Early return + no parenthesis on simple case value:\n\n```suggestion\n        if (connType !\u003d BluetoothSocket.TYPE_L2CAP_LE) {\n            return -1;\n        }\n        switch (socketExceptionCode) {\n            case SOCKET_NO_ERROR:\n                return RESULT_L2CAP_CONN_SUCCESS;\n            case BluetoothSocketException.NULL_DEVICE:\n                return RESULT_L2CAP_CONN_BLUETOOTH_NULL_BLUETOOTH_DEVICE;\n            case BluetoothSocketException.SOCKET_MANAGER_FAILURE:\n                return RESULT_L2CAP_CONN_BLUETOOTH_GET_SOCKET_MANAGER_FAILED;\n            case BluetoothSocketException.SOCKET_CLOSED:\n                return RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_CLOSED;\n            case BluetoothSocketException.SOCKET_CONNECTION_FAILURE:\n                return RESULT_L2CAP_CONN_BLUETOOTH_SOCKET_CONNECTION_FAILED;\n            case BluetoothSocketException.RPC_FAILURE:\n                return RESULT_L2CAP_CONN_BLUETOOTH_UNABLE_TO_SEND_RPC;\n            default:\n                return RESULT_L2CAP_CONN_UNKNOWN;\n        }\n```",
+      "range": {
+        "startLine": 119,
+        "startChar": 7,
+        "endLine": 138,
+        "endChar": 9
+      },
+      "revId": "13f5cdafd0395efe471aa2a2699e9248df598635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b5c2ac9_951eeb9f",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:51:53Z",
+      "side": 1,
+      "message": "Removed the check as per another suggestion, this comment is now obsolete",
+      "parentUuid": "2621f14c_097e43b9",
       "range": {
         "startLine": 119,
         "startChar": 7,
