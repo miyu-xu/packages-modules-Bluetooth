@@ -69,6 +69,24 @@
       "parentUuid": "1516c131_660daacd",
       "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d74ae0c_5d1924f5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-03T01:01:46Z",
+      "side": 1,
+      "message": "Zyan, can you please share more context on the need for customization here?\n\nIf we allow these to be customized by OEMs we will potentially have to debug issues due to the way they set these values. It would be great to understand the use case for adjusting these, as many of these come from BT spec recommendations IIRC. \n\nThus it would be great to better understand the use cases we are trying to support before allowing this.",
+      "parentUuid": "cfdc3453_5112ac71",
+      "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
