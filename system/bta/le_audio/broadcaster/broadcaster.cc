@@ -30,6 +30,7 @@
 #include "bta/le_audio/metrics_collector.h"
 #include "common/strings.h"
 #include "device/include/controller.h"
+#include "include/check.h"
 #include "internal_include/stack_config.h"
 #include "os/log.h"
 #include "osi/include/properties.h"
@@ -374,15 +375,15 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     LeAudioLtvMap public_ltv;
     std::vector<LeAudioLtvMap> subgroup_ltvs;
 
-    if (queued_broadcast_.IsQueuedBroadcast()) {
+    if (queued_create_broadcast_request_.IsQueuedBroadcast()) {
       LOG_ERROR("Not processed yet queued broadcast");
       return;
     }
 
-    if (!queued_broadcast_.CanCreateBroadcast()) {
-      queued_broadcast_.SetQueuedBroadcast(is_public, broadcast_name,
-                                           broadcast_code, public_metadata,
-                                           subgroup_quality, subgroup_metadata);
+    if (!queued_create_broadcast_request_.CanCreateBroadcast()) {
+      queued_create_broadcast_request_.SetQueuedBroadcast(
+          is_public, broadcast_name, broadcast_code, public_metadata,
+          subgroup_quality, subgroup_metadata);
       return;
     }
 
@@ -574,6 +575,16 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
   void StartAudioBroadcast(uint32_t broadcast_id) override {
     LOG_INFO("Starting broadcast_id=%d", broadcast_id);
 
+    if (queued_start_broadcast_request_.IsQueuedBroadcast()) {
+      LOG_ERROR("Not processed yet start broadcast request");
+      return;
+    }
+
+    if (!queued_start_broadcast_request_.CanStartBroadcast()) {
+      queued_start_broadcast_request_.SetQueuedBroadcast(broadcast_id);
+      return;
+    }
+
     if (IsAnyoneStreaming()) {
       LOG_ERROR("Stop the other broadcast first!");
       return;
@@ -746,13 +757,19 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
   void IsoTrafficEventCb(bool is_active) {
     if (is_active) {
-      queued_broadcast_.SetIsoTrafficFlag();
+      queued_create_broadcast_request_.SetIsoTrafficFlag();
+      queued_start_broadcast_request_.SetIsoTrafficFlag();
     } else {
-      queued_broadcast_.ResetIsoTrafficFlag();
+      queued_create_broadcast_request_.ResetIsoTrafficFlag();
+      queued_start_broadcast_request_.ResetIsoTrafficFlag();
 
-      if (!queued_broadcast_.IsQueuedBroadcast()) return;
+      if (queued_start_broadcast_request_.IsQueuedBroadcast()) {
+        queued_start_broadcast_request_.StartAudioBroadcast();
+      }
 
-      queued_broadcast_.CreateAudioBroadcast();
+      if (queued_create_broadcast_request_.IsQueuedBroadcast()) {
+        queued_create_broadcast_request_.CreateAudioBroadcast();
+      }
     }
   }
 
@@ -1104,7 +1121,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     std::vector<std::unique_ptr<le_audio::CodecInterface>> sw_enc_;
   } audio_receiver_;
 
-  static class QueuedBroadcast {
+  static class QueuedCreateBroadcastRequest {
    public:
     bool IsQueuedBroadcast() {
       LOG_INFO("");
@@ -1177,7 +1194,63 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
     bool is_iso_running_;
     bool is_queued_;
-  } queued_broadcast_;
+  } queued_create_broadcast_request_;
+
+  static class QueuedStartBroadcastRequest {
+   public:
+    bool IsQueuedBroadcast() {
+      LOG_INFO();
+
+      return is_queued_;
+    }
+
+    void SetQueuedBroadcast(uint32_t broadcast_id) {
+      LOG_INFO();
+
+      broadcast_id_ = broadcast_id;
+      is_queued_ = true;
+    }
+
+    void ClearQueuedBroadcast() {
+      LOG_INFO();
+
+      is_queued_ = false;
+    }
+
+    void StartAudioBroadcast() {
+      if (!instance || !CanStartBroadcast()) return;
+
+      LOG_INFO("Start queued broadcast");
+
+      is_queued_ = false;
+      instance->StartAudioBroadcast(broadcast_id_);
+    }
+
+    void SetIsoTrafficFlag() {
+      LOG_INFO();
+
+      is_iso_running_ = true;
+    }
+
+    void ResetIsoTrafficFlag() {
+      LOG_INFO();
+
+      is_iso_running_ = false;
+    }
+
+    bool CanStartBroadcast() {
+      LOG_INFO("%d", is_iso_running_ == false);
+
+      return is_iso_running_ == false;
+    }
+
+   private:
+    /* Queued broadcast data */
+    uint32_t broadcast_id_;
+
+    bool is_iso_running_;
+    bool is_queued_;
+  } queued_start_broadcast_request_;
 
   bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks_;
   std::map<uint32_t, std::unique_ptr<BroadcastStateMachine>> broadcasts_;
@@ -1197,8 +1270,10 @@ LeAudioBroadcasterImpl::LeAudioSourceCallbacksImpl
     LeAudioBroadcasterImpl::audio_receiver_;
 LeAudioBroadcasterImpl::BroadcastAdvertisingCallbacks
     LeAudioBroadcasterImpl::state_machine_adv_callbacks_;
-LeAudioBroadcasterImpl::QueuedBroadcast
-    LeAudioBroadcasterImpl::queued_broadcast_;
+LeAudioBroadcasterImpl::QueuedCreateBroadcastRequest
+    LeAudioBroadcasterImpl::queued_create_broadcast_request_;
+LeAudioBroadcasterImpl::QueuedStartBroadcastRequest
+    LeAudioBroadcasterImpl::queued_start_broadcast_request_;
 } /* namespace */
 
 void LeAudioBroadcaster::Initialize(
@@ -1211,7 +1286,7 @@ void LeAudioBroadcaster::Initialize(
     return;
   }
 
-  if (!controller_get_interface()->supports_ble_isochronous_broadcaster() &&
+  if (!controller_get_interface()->SupportsBleIsochronousBroadcaster() &&
       !osi_property_get_bool("persist.bluetooth.fake_iso_support", false)) {
     LOG_WARN("Isochronous Broadcast not supported by the controller!");
     return;
