@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "9b469e72_94a9de3e",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:54:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a8eefb2_4fd5f3b0",
+      "range": {
+        "startLine": 512,
+        "startChar": 30,
+        "endLine": 518,
+        "endChar": 45
+      },
+      "revId": "d281bec9227ec16f160f95a02acfabac9a987a0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f47d4a72_6331a923",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-02T23:34:26Z",
       "side": 1,
       "message": "nanos",
+      "range": {
+        "startLine": 69,
+        "startChar": 28,
+        "endLine": 71,
+        "endChar": 46
+      },
+      "revId": "d281bec9227ec16f160f95a02acfabac9a987a0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "57adf5a6_994de280",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:54:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f47d4a72_6331a923",
       "range": {
         "startLine": 69,
         "startChar": 28,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e568511_6fb4f6bc",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:54:52Z",
+      "side": 1,
+      "message": "Since this metric is logged as millis I\u0027m leaving this as is so I dont have to convert back to millis later",
+      "parentUuid": "8644f040_a8eed93a",
+      "range": {
+        "startLine": 87,
+        "startChar": 14,
+        "endLine": 89,
+        "endChar": 46
+      },
+      "revId": "d281bec9227ec16f160f95a02acfabac9a987a0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "128f546a_fc179b5f",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-01-02T23:34:26Z",
       "side": 1,
       "message": "nanos",
+      "range": {
+        "startLine": 105,
+        "startChar": 19,
+        "endLine": 107,
+        "endChar": 46
+      },
+      "revId": "d281bec9227ec16f160f95a02acfabac9a987a0d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c176a87_54ab147e",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-03T21:54:52Z",
+      "side": 1,
+      "message": "same here, leaving as millis",
+      "parentUuid": "128f546a_fc179b5f",
       "range": {
         "startLine": 105,
         "startChar": 19,
