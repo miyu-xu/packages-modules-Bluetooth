@@ -16,6 +16,24 @@
       "message": "You can add `Bug: 315241296` to have DrNo on this CL",
       "revId": "112f46eb7adc78c7e34e1cbb3c53e08b10ca54c5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f6c28c2_58969393",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-03T06:55:13Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "6cb0e676_52b6a2d2",
+      "revId": "112f46eb7adc78c7e34e1cbb3c53e08b10ca54c5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
