@@ -105,6 +105,24 @@
       "parentUuid": "9d74ae0c_5d1924f5",
       "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a843d689_a530f929",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1903311
+      },
+      "writtenOn": "2024-01-03T02:35:01Z",
+      "side": 1,
+      "message": "Hi Cristine,\n\nWe understand your concerns. We will change the parameters from another place (init.rc) so that we would not let OEM be able to customize these parameters. We\u0027ll abandon this change later after we success to modify init.rc.",
+      "parentUuid": "4ade3c8a_65e98542",
+      "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
