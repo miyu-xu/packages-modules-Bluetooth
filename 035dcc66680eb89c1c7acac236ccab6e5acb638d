@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b5a4c662_c2b0f1b6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-01-03T18:05:30Z",
+      "side": 1,
+      "message": "One note -- you may also want to add something like this in btmanagerd. I think Chrome browser WAS listening for object manager InterfaceRemoved on the manager interface and we couldn\u0027t figure out why it wasn\u0027t emitting sometimes.",
+      "parentUuid": "116e4cb2_af66ac57",
+      "revId": "035dcc66680eb89c1c7acac236ccab6e5acb638d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "28c0f64a_b435c100",
         "filename": "system/gd/rust/linux/service/src/interface_manager.rs",
         "patchSetId": 1
