@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "58256879_3b280da7",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 643,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-03T15:25:24Z",
+      "side": 1,
+      "message": "nit:  It looks like it could fit on one line now:\n\n```suggestion\n          \"Procedure complete counter:%d data size:%d, main_mode_type:%d, sub_mode_type:%d\",\n```",
+      "range": {
+        "startLine": 642,
+        "startChar": 10,
+        "endLine": 643,
+        "endChar": 29
+      },
+      "revId": "7a69987c23c45bb4877443401307b230f6f5644f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
