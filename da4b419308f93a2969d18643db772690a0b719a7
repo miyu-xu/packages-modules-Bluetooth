@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e67b1ed4_76fc166d",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-03T23:59:52Z",
+      "side": 1,
+      "message": "Seems like the original code had an error here :( \n\nThis should be SOCKET_CLOSED as well.",
+      "range": {
+        "startLine": 455,
+        "startChar": 53,
+        "endLine": 455,
+        "endChar": 78
+      },
+      "revId": "da4b419308f93a2969d18643db772690a0b719a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ae6f83dd_92b98218",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-03T23:59:52Z",
+      "side": 1,
+      "message": "Note: Adding this here so that we can make note of it but we should move away from using the generic SOCKET_CONNECTION_FAILURE and add a different error code here. For the metrics sake we should tie it back to the same RESULT_L2CAP_CONN_BLUETOOTH_NULL_FILE_DESCRIPTOR value of 1005  eventually.",
+      "range": {
+        "startLine": 458,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 0
+      },
+      "revId": "da4b419308f93a2969d18643db772690a0b719a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aad97cf8_61205831",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-03T23:59:52Z",
+      "side": 1,
+      "message": "the connection parameters don\u0027t seem to match the function implementation.",
+      "range": {
+        "startLine": 58,
+        "startChar": 22,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "da4b419308f93a2969d18643db772690a0b719a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4930be73_d375882a",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-03T23:59:52Z",
+      "side": 1,
+      "message": "Can we move this check to the top of the function (similar to logSocketAccept).",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 0
+      },
+      "revId": "da4b419308f93a2969d18643db772690a0b719a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
