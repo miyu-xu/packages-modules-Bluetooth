@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "53eab444_e4bba28c",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-03T07:33:04Z",
+      "side": 1,
+      "message": "remove this blank line",
+      "revId": "437c0a4af22c88fd498cb6ba0c4e099a68679a23",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "9441384a_ee4bd018",
         "filename": "floss/pandora/server/gatt.py",
         "patchSetId": 8
