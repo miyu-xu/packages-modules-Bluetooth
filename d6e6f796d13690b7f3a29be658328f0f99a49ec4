@@ -50,6 +50,24 @@
       "message": "Friendly reminder for review.",
       "revId": "d6e6f796d13690b7f3a29be658328f0f99a49ec4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be2c5871_938bd47f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-03T23:38:35Z",
+      "side": 1,
+      "message": "LGTM",
+      "parentUuid": "e1c73319_b11ed275",
+      "revId": "d6e6f796d13690b7f3a29be658328f0f99a49ec4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
