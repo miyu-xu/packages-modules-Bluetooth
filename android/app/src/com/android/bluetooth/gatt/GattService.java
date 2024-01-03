@@ -4533,7 +4533,9 @@ public class GattService extends ProfileService {
         deleteServices(serverIf);
 
         mServerMap.remove(serverIf);
-        mNativeInterface.gattServerUnregisterApp(serverIf);
+        if (mNativeInterface != null) {
+            mNativeInterface.gattServerUnregisterApp(serverIf);
+        }
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
