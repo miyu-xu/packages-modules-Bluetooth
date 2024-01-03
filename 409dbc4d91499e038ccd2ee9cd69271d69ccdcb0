@@ -82,6 +82,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3f5d010_49f19634",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-03T16:55:21Z",
+      "side": 1,
+      "message": "Mark this as resolved, to be done in another CL.",
+      "parentUuid": "d91f221a_648cdcc6",
+      "range": {
+        "startLine": 823,
+        "startChar": 12,
+        "endLine": 823,
+        "endChar": 15
+      },
+      "revId": "409dbc4d91499e038ccd2ee9cd69271d69ccdcb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a9243a6c_2cb371a9",
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "There is iteration over the devices and then for each device callbacks (another loop) are called.\n\nCould you elaborate the suggestion?\n\nAlso this could be handled in separate CL, is that OK?",
       "parentUuid": "a9243a6c_2cb371a9",
+      "range": {
+        "startLine": 1278,
+        "startChar": 12,
+        "endLine": 1292,
+        "endChar": 9
+      },
+      "revId": "409dbc4d91499e038ccd2ee9cd69271d69ccdcb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c70ead01_8fdde9b9",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1292,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-03T16:55:21Z",
+      "side": 1,
+      "message": "Mark this as resolved, to be done in another CL.",
+      "parentUuid": "48e9c4e2_283a400b",
       "range": {
         "startLine": 1278,
         "startChar": 12,
