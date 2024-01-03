@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ba7d2297_f43d5638",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-03T07:30:17Z",
+      "side": 1,
+      "message": "What do you mean \"wait forever in failed case\"? Why does a mismatched addr matter here?",
+      "parentUuid": "1d35ee00_703b5214",
+      "range": {
+        "startLine": 57,
+        "startChar": 39,
+        "endLine": 57,
+        "endChar": 43
+      },
+      "revId": "82ac1fa2699aee1efeb98f7f92c2940b3b2685da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1766516b_7c6393ae",
         "filename": "floss/pandora/server/gatt.py",
         "patchSetId": 5
