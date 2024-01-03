@@ -87,6 +87,24 @@
       "parentUuid": "cfdc3453_5112ac71",
       "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ade3c8a_65e98542",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1874964
+      },
+      "writtenOn": "2024-01-03T01:15:37Z",
+      "side": 1,
+      "message": "Hey Christine,\n\nThe need is because that Android U/S have different values for these settings and we have released products with android S and now we plan to upgrade them to Android U. We don\u0027t want these parameters to change after upgrade; which might cause unexpected behavioral changes and churn. \n\nThe same as on going projects using Android U. In the future, they are going to upgrade to newer versions of Android and we don\u0027t want Android\u0027s new version changes parameters of our released products.",
+      "parentUuid": "9d74ae0c_5d1924f5",
+      "revId": "3fd0da30ccd386b4428c3e4c74196bf6d8b320d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
