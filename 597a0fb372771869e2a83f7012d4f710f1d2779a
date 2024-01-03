@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "20451eb0_cb0e8936",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-03T02:20:33Z",
+      "side": 1,
+      "message": "Adding @cmanton@google.com since he is the main contributor on this file.\n\nIt looks like there is a threading issue that need to be fix",
+      "parentUuid": "71f2007a_cec24356",
+      "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "1bad5ce1_d6574079",
         "filename": "system/main/shim/acl.cc",
         "patchSetId": 3
@@ -90,6 +108,30 @@
       "side": 1,
       "message": "These values are fine, because GetAdvertisingSetConnectedTo() don\u0027t access these.\nI want to minimize the impact of mutex.",
       "parentUuid": "1bad5ce1_d6574079",
+      "range": {
+        "startLine": 1577,
+        "startChar": 2,
+        "endLine": 1581,
+        "endChar": 72
+      },
+      "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "da46af73_7dbbeaf8",
+        "filename": "system/main/shim/acl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1581,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-03T02:20:33Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "851b1446_8a6ad606",
       "range": {
         "startLine": 1577,
         "startChar": 2,
