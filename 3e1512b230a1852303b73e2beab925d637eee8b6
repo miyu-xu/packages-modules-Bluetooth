@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2954c82_f6ddffb1",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-03T19:46:45Z",
+      "side": 1,
+      "message": "If the flag is disabled, are we intended to check leAudioService.isEnabled() instead of LE_AUDIO_SWITCHER_DISABLED_PROPERTY here?\n\nAnd then in the case of \"!LeAudioService.isEnabled()\", do we need to set the le audio profiles to be false?\n\nsomething like:\n```suggestion\n        } else {\n            if (LeAudioService.isEnabled()) {\n                final String leAudioSwitcherMode \u003d\n                       \n SystemProperties.get(LE_AUDIO_DYNAMIC_SWITCHER_MODE_PROPERTY, \"none\");\n                if (leAudioSwitcherMode.equals(\"disabled\")) {\n                    setLeAudioProfileStatus(false);\n                } else if (!leAudioSwitcherMode.equals(\"none\")) {\n                    setLeAudioProfileStatus(true);\n                }\n            } else {\n                setLeAudioProfileStatus(false);\n            }\n        }\n```",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 9
+      },
+      "revId": "3e1512b230a1852303b73e2beab925d637eee8b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2eedb3d5_dd6f4e9b",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-03T19:46:45Z",
+      "side": 1,
+      "message": "afaik, the best practice is to add a new flag in a separate CL, and then use the flag in your code change. the benefit by doing this is you will also get auto dr.no for both CLs. Just sharing to make the process simpler.",
+      "revId": "3e1512b230a1852303b73e2beab925d637eee8b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
