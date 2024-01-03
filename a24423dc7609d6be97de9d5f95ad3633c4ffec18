@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3fcb3c98_d8da3e86",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-03T19:26:28Z",
+      "side": 1,
+      "message": "lgtm for the LEA broadcast part, adding the flags component owner William here for review.",
+      "revId": "a24423dc7609d6be97de9d5f95ad3633c4ffec18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
