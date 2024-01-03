@@ -75,7 +75,6 @@ class LeAudioDeviceGroup {
 
   /* Current audio stream configuration */
   struct stream_configuration stream_conf;
-  bool notify_streaming_when_cises_are_ready_;
 
   uint8_t audio_directions_;
   types::AudioLocations snk_audio_locations_;
@@ -91,7 +90,6 @@ class LeAudioDeviceGroup {
       : group_id_(group_id),
         cig(this),
         stream_conf({}),
-        notify_streaming_when_cises_are_ready_(false),
         audio_directions_(0),
         dsa_mode_(DsaMode::DISABLED),
         is_enabled_(true),
@@ -237,12 +235,6 @@ class LeAudioDeviceGroup {
   }
 
   inline types::AseState GetTargetState(void) const { return target_state_; }
-  inline void SetNotifyStreamingWhenCisesAreReadyFlag(bool value) {
-    notify_streaming_when_cises_are_ready_ = value;
-  }
-  inline bool GetNotifyStreamingWhenCisesAreReadyFlag(void) {
-    return notify_streaming_when_cises_are_ready_;
-  }
   void SetTargetState(types::AseState state) {
     LOG(INFO) << __func__ << " target state: " << target_state_
               << " new target state: " << state;
