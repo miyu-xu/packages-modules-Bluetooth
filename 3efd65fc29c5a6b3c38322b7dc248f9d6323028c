@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3311c0d1_2ae91f8a",
+        "filename": "system/device/src/esco_parameters.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-03T22:40:01Z",
+      "side": 1,
+      "message": "Is this logged correctly???",
+      "range": {
+        "startLine": 342,
+        "startChar": 0,
+        "endLine": 344,
+        "endChar": 0
+      },
+      "revId": "3efd65fc29c5a6b3c38322b7dc248f9d6323028c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
