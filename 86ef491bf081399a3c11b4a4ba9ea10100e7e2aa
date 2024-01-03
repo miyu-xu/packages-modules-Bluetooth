@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2c30d544_5fec05b4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTestBase.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-03T12:42:47Z",
+      "side": 1,
+      "message": "Instead of using inheritance here could we just make either utility functions or a companion object?\n\ngo/java-testing/test_class_inheritance",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 35
+      },
+      "revId": "86ef491bf081399a3c11b4a4ba9ea10100e7e2aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
