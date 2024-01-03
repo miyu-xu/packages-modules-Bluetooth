@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b82ca895_94958fb9",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-03T10:06:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d5b3deca_077ca344",
+      "range": {
+        "startLine": 518,
+        "startChar": 50,
+        "endLine": 518,
+        "endChar": 55
+      },
+      "revId": "986583ef6640722f158bd61bcff05d7face4842c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "152e84dd_a2314618",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-02T18:12:05Z",
       "side": 1,
       "message": "?  This doesn\u0027t look like parsing.",
+      "range": {
+        "startLine": 579,
+        "startChar": 7,
+        "endLine": 579,
+        "endChar": 12
+      },
+      "revId": "986583ef6640722f158bd61bcff05d7face4842c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7ee7651c_092613db",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-03T10:06:57Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "152e84dd_a2314618",
       "range": {
         "startLine": 579,
         "startChar": 7,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3872b6ac_d2e55ec6",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 593,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-03T10:06:57Z",
+      "side": 1,
+      "message": "I prefer to update procedure status in this function, check_cs_procedure_complete should not change the procedure status.",
+      "parentUuid": "7b773248_6c79f363",
+      "range": {
+        "startLine": 591,
+        "startChar": 4,
+        "endLine": 593,
+        "endChar": 0
+      },
+      "revId": "986583ef6640722f158bd61bcff05d7face4842c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "18a14c19_181c37e4",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-01-02T18:12:05Z",
       "side": 1,
       "message": "nit: This looks like debug logging, did you mean to remove the whole line? Otherwise, remove the ----.",
+      "range": {
+        "startLine": 652,
+        "startChar": 11,
+        "endLine": 652,
+        "endChar": 32
+      },
+      "revId": "986583ef6640722f158bd61bcff05d7face4842c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4143f530_e7c49724",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 652,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-03T10:06:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "18a14c19_181c37e4",
       "range": {
         "startLine": 652,
         "startChar": 11,
