@@ -212,7 +212,11 @@ void btif_enable_bluetooth_evt() {
   GetInterfaceToProfiles()->onBluetoothEnabled();
 
   /* load did configuration */
-  bte_load_did_conf(BTE_DID_CONF_FILE);
+  std::string did_conf_file = BTE_DID_CONF_FILE;
+  if (osi_property_get_bool("bluetooth.btif.override_did_config", false)) {
+    did_conf_file = "etc/bluetooth/bt_did_override.conf";
+  }
+  bte_load_did_conf(did_conf_file.c_str());
 
 #ifdef BTIF_DM_OOB_TEST
   btif_dm_load_local_oob();
