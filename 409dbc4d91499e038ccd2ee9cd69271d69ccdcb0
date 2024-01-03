@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d91f221a_648cdcc6",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 823,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-03T15:37:40Z",
+      "side": 1,
+      "message": "I can update the DBG definition in separate CL. Is that OK?",
+      "parentUuid": "faf50174_5eaf8db6",
+      "range": {
+        "startLine": 823,
+        "startChar": 12,
+        "endLine": 823,
+        "endChar": 15
+      },
+      "revId": "409dbc4d91499e038ccd2ee9cd69271d69ccdcb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a9243a6c_2cb371a9",
         "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
         "patchSetId": 9
@@ -71,6 +95,30 @@
       "writtenOn": "2024-01-02T23:53:00Z",
       "side": 1,
       "message": "Unrelated to this change but I think the code here looks a bit weird.\nThe volume logic could be handl once before the loop, and not during the iteration\n\n\n```suggestion\n            int broadcastVolume \u003d cachedVolume;\n            if (volume.isPresent()) {\n                broadcastVolume \u003d volume.get();\n                mDeviceVolumeCache.put(dev, broadcastVolume);\n            }\n            int n \u003d callbacks.beginBroadcast();\n            for (int i \u003d 0; i \u003c n; i++) {\n                try {\n                  callbacks.getBroadcastItem(i).onDeviceVolumeChanged(dev, broadcastVolume);\n                } catch (RemoteException e) {\n                    continue;\n                }\n            }\n            callbacks.finishBroadcast();\n        }\n```",
+      "range": {
+        "startLine": 1278,
+        "startChar": 12,
+        "endLine": 1292,
+        "endChar": 9
+      },
+      "revId": "409dbc4d91499e038ccd2ee9cd69271d69ccdcb0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "48e9c4e2_283a400b",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1292,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-03T15:37:40Z",
+      "side": 1,
+      "message": "There is iteration over the devices and then for each device callbacks (another loop) are called.\n\nCould you elaborate the suggestion?\n\nAlso this could be handled in separate CL, is that OK?",
+      "parentUuid": "a9243a6c_2cb371a9",
       "range": {
         "startLine": 1278,
         "startChar": 12,
