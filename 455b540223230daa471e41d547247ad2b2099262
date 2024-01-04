@@ -33,6 +33,23 @@
       "message": "David, could you give owner-review? Thanks!",
       "revId": "455b540223230daa471e41d547247ad2b2099262",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ee1d8249_0487818d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-04T10:44:04Z",
+      "side": 1,
+      "message": "I remember discussing with @girardier that metrics didn\u0027t needed flagging, but I don\u0027t seems to find it in go/bt-best-practices#flagging.\n\nLGTM, if you want you can reach out to @girardier if this flag is really needed.",
+      "revId": "455b540223230daa471e41d547247ad2b2099262",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
