@@ -50,6 +50,24 @@
       "message": "I remember discussing with @girardier that metrics didn\u0027t needed flagging, but I don\u0027t seems to find it in go/bt-best-practices#flagging.\n\nLGTM, if you want you can reach out to @girardier if this flag is really needed.",
       "revId": "455b540223230daa471e41d547247ad2b2099262",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf4570d1_a6e11215",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-04T21:52:48Z",
+      "side": 1,
+      "message": "It\u0027s my understanding all logical changes should be flagged, so I think this is the right thing here - we have run into performance issues/bugs due to metrics-related changes in the past.",
+      "parentUuid": "ee1d8249_0487818d",
+      "revId": "455b540223230daa471e41d547247ad2b2099262",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
