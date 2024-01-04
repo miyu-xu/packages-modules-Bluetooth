@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "26c37171_85db97e5",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 4537,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-04T20:56:21Z",
+      "side": 1,
+      "message": "There are a lot of other place where the nativeInterface is called but not checked for null.\n\nI would prefer to enforce the nativeInterface to never be null instead of adding just one check here.\n\nBy setting the native interface in the constructor and never setting it to null in the cleanup, we could have this behavior.",
+      "range": {
+        "startLine": 4537,
+        "startChar": 12,
+        "endLine": 4537,
+        "endChar": 28
+      },
+      "revId": "055fb2d43a1247e12dcf949e08d5de3b89959c53",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
