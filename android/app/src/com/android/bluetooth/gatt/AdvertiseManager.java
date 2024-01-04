@@ -185,7 +185,11 @@ public class AdvertiseManager {
         }
 
         IBinder gattBinder = mService.getBinder();
-        callback.onAdvertisingSetStarted(gattBinder, advertiserId, txPower, status);
+        if (!mService.isAvailable()) {
+            callback.onAdvertisingSetStopped(advertiserId);
+        } else {
+            callback.onAdvertisingSetStarted(gattBinder, advertiserId, txPower, status);
+        }
     }
 
     void onAdvertisingEnabled(int advertiserId, boolean enable, int status) throws Exception {
