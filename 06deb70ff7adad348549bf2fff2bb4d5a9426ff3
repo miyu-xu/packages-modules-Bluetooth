@@ -34,6 +34,24 @@
       "parentUuid": "e809c8cf_b9551b2d",
       "revId": "06deb70ff7adad348549bf2fff2bb4d5a9426ff3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7aab20c_5f11a60e",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1381,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-04T20:32:37Z",
+      "side": 1,
+      "message": "We could have following check that for ADDRESS_TYPE_ANONYMOUS the address shall be set to NULL_MAC_ADDRESS, if it is not like that, we could print WARN and I would suggest to force NULL_MAC_ADDRESS anyway.\n\nWhat do you think?",
+      "parentUuid": "90e56a88_f453fd5d",
+      "revId": "06deb70ff7adad348549bf2fff2bb4d5a9426ff3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
