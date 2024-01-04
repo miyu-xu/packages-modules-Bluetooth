@@ -16,6 +16,24 @@
       "message": "Please move after line 759",
       "revId": "12e2fc2b7de79d428e03789625739c9588381d1f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eca0f08_4dc1e73a",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-04T19:28:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "826203d3_97f9540c",
+      "revId": "12e2fc2b7de79d428e03789625739c9588381d1f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
