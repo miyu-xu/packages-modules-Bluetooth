@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f38e5f3_1c5d8260",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-04T09:46:45Z",
+      "side": 1,
+      "message": "num_tone_extension is a fixed number, so we can use num_antenna_paths + 1\nthanks!",
+      "parentUuid": "39bd6385_036ed136",
+      "range": {
+        "startLine": 68,
+        "startChar": 27,
+        "endLine": 68,
+        "endChar": 31
+      },
+      "revId": "18c7eb5b1db942fe6eae7db9392cf6f7034aff3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "320c8906_fa1292d4",
