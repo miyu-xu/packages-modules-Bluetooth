@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4ed08ee8_06e34588",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-01-04T16:48:09Z",
+      "side": 1,
+      "message": "Did you do any manual tests as well?",
+      "revId": "b126ec73ace5404621ebf8c218fe36b7624c010f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "310fd744_b66f6e20",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1566,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-01-04T16:48:09Z",
+      "side": 1,
+      "message": "nit: combine these ifs with \u0026\u0026",
+      "revId": "b126ec73ace5404621ebf8c218fe36b7624c010f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35246e17_3f5c67db",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2151,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-01-04T16:48:09Z",
+      "side": 1,
+      "message": "nit: might as well log the address of the pending bond too?",
+      "revId": "b126ec73ace5404621ebf8c218fe36b7624c010f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
