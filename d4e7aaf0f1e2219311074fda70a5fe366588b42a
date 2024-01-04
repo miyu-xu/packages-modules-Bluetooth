@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d76a8e96_040c76c5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-04T20:10:03Z",
+      "side": 1,
+      "message": "Referencing `Bug: 315241296` when adding a new flag will provide a DrNo vote",
+      "revId": "d4e7aaf0f1e2219311074fda70a5fe366588b42a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
