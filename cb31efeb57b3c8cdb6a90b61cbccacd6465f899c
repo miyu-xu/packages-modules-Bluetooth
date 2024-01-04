@@ -16,6 +16,24 @@
       "message": "I would prefer to set the did data using system property instead of changing the path to the config.\n\nI had https://r.android.com/2442199 to do this, but it was blocked by floss :/",
       "revId": "cb31efeb57b3c8cdb6a90b61cbccacd6465f899c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49d475bf_a1a5f51b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2035342
+      },
+      "writtenOn": "2024-01-04T15:54:00Z",
+      "side": 1,
+      "message": "System property works for us. \nTwo questions:\n1. How about the version in did.conf?\n2. Do you have the ETA of floss issue?\nThanks",
+      "parentUuid": "1259012c_fc2d4b78",
+      "revId": "cb31efeb57b3c8cdb6a90b61cbccacd6465f899c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
