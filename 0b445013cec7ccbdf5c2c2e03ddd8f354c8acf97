@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdff0f63_07504025",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-04T19:47:11Z",
+      "side": 1,
+      "message": "Is this a re-upload of aosp/2727499 ?",
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7c788b0a_fe0a2e4a",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-04T19:47:11Z",
+      "side": 1,
+      "message": "Should it use Trunk stable flag directly ?\n\nwithout flags there is no leaudio\nwith the first flag there is leAudio Unicast\nwith the second flag there is leAudio Unicast + Brodcast\n\n\nThis way you are directly setup to launch the experiment in gantry once the feature is ready.\nDuring the development you can still manually change the flag value on debug build.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 62
+      },
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "980745e5_4c75bd48",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-04T19:47:11Z",
+      "side": 1,
+      "message": "nit: I noticed that:\n\n```suggestion\n        for (int leAudioProfile: LE_AUDIO_UNICAST_PROFILES) {\n            setProfileEnabled(leAudioProfile, enable)\n        }\n        setProfileEnabled(BluetoothProfile.HAP_CLIENT, enable);\n```\n\nis it expected that HAP_CLIENT does not belong in LE_AUDIO_UNICAST_PROFILES ?",
+      "range": {
+        "startLine": 184,
+        "startChar": 8,
+        "endLine": 189,
+        "endChar": 67
+      },
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "866a64a2_edb533fe",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-04T19:47:11Z",
+      "side": 1,
+      "message": "what is LE_AUDIO_DYNAMIC_SWITCHER_MODE_PROPERTY has changed between the init and the call to this method. I recommend passing the value of `LE_AUDIO_BROADCAST_DYNAMIC_SWITCH_SUPPORTED_PROPERTY` as a parameter",
+      "range": {
+        "startLine": 197,
+        "startChar": 41,
+        "endLine": 197,
+        "endChar": 80
+      },
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cf9f1f99_40f5d0a2",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-04T19:47:11Z",
+      "side": 1,
+      "message": "If you leave the `leaudioDynamicSwitcherRefactorForBroadcast` if alone, it will be easier to understand the if condition.\n\nI agree that there is a duplicate in code for the setProfile but you can immediately see what is flagged from what is not. Also, with this method, getting the property is also flagged (even if this is a very low risk)\n\n```suggestion\n        if (broadcastDynamicSwitchSupported) {\n            if (leaudioDynamicSwitcherRefactorForBroadcast()) {\n                final String leAudioSwitcherMode \u003d\n                    SystemProperties.get(LE_AUDIO_DYNAMIC_SWITCHER_MODE_PROPERTY, \"none\");\n                if (!enable || leAudioSwitcherMode.equals(\"broadcast\") {\n                    setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, enable);\n                    setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST, enable);\n                }\n                return;\n            }\n            setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, enable);\n            setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST, enable);\n        }\n```",
+      "range": {
+        "startLine": 195,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 9
+      },
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
