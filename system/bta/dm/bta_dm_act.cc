@@ -1574,9 +1574,8 @@ void bta_dm_disconnect_all_acls(void) {
  * Parameters:      |cb| Callback to receive the random number.
  *
  ******************************************************************************/
-void bta_dm_le_rand(LeRandCallback cb) {
-  VLOG(1) << "bta_dm_le_rand in bta_dm_act";
-  bluetooth::shim::BTM_LeRand(std::move(cb));
+void bta_dm_le_rand(bluetooth::hci::LeRandCallback cb) {
+  bluetooth::shim::GetController()->LeRand(std::move(cb));
 }
 
 /*******************************************************************************
