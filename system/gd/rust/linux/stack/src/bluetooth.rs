@@ -521,6 +521,7 @@ pub struct Bluetooth {
     // Internal API members
     discoverable_timeout: Option<JoinHandle<()>>,
     cancelling_devices: HashSet<RawAddress>,
+    bonding_devices: HashSet<RawAddress>,
 
     /// Used to notify signal handler that we have turned off the stack.
     sig_notifier: Arc<SigData>,
@@ -577,6 +578,7 @@ impl Bluetooth {
             // Internal API members
             discoverable_timeout: None,
             cancelling_devices: HashSet::new(),
+            bonding_devices: HashSet::new(),
             sig_notifier,
             uhid_wakeup_source: UHid::new(),
         }
@@ -1490,6 +1492,16 @@ impl BtifBluetoothCallbacks for Bluetooth {
         variant: BtSspVariant,
         passkey: u32,
     ) {
+        // Accept the Just-Works pairing that we initiated, reject otherwise.
+        if variant == BtSspVariant::Consent {
+            let initiated_by_us = self.bonding_devices.contains(&remote_addr);
+            self.set_pairing_confirmation(
+                BluetoothDevice::new(remote_addr.to_string(), remote_name.clone()),
+                initiated_by_us,
+            );
+            return;
+        }
+
         // Currently this supports many agent because we accept many callbacks.
         // TODO(b/274706838): We need a way to select the default agent.
         self.callbacks.for_all_callbacks(|callback| {
@@ -1568,6 +1580,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
             if !self.get_wake_allowed_device_bonded() {
                 self.clear_uhid();
             }
+            self.bonding_devices.remove(&addr);
         }
         // We will only insert into the bonded list after bonding is complete
         else if &bond_state == &BtBondState::Bonded && !self.bonded_devices.contains_key(&address)
@@ -1597,6 +1610,7 @@ impl BtifBluetoothCallbacks for Bluetooth {
             if self.get_wake_allowed_device_bonded() {
                 self.create_uhid_for_suspend_wakesource();
             }
+            self.bonding_devices.remove(&addr);
         } else {
             // If we're bonding, we need to update the found devices list
             self.found_devices
@@ -2160,6 +2174,8 @@ impl IBluetooth for Bluetooth {
             );
             return false;
         }
+
+        self.bonding_devices.insert(address.clone());
 
         // Creating bond automatically create ACL connection as well, therefore also log metrics
         // ACL connection attempt here.
