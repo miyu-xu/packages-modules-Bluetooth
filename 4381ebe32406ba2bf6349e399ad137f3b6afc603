@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c0c129c_7bb77559",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-04T18:44:23Z",
+      "side": 1,
+      "message": "I don\u0027t see any flagging here, can you double check ?",
+      "revId": "4381ebe32406ba2bf6349e399ad137f3b6afc603",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
