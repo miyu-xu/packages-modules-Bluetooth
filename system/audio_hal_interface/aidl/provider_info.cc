@@ -210,8 +210,8 @@ ProviderInfo::ProviderInfo(std::vector<CodecInfo> source_codecs,
   }
 
   btav_a2dp_codec_index_t ext_sink_index = BTAV_A2DP_CODEC_INDEX_SINK_EXT_MIN;
-  for (size_t i = 0; i < this->source_codecs.size(); i++) {
-    auto& codec = this->source_codecs[i];
+  for (size_t i = 0; i < this->sink_codecs.size(); i++) {
+    auto& codec = this->sink_codecs[i];
     LOG(INFO) << "supports sink codec " << codec.name;
     auto index = assignSinkCodecIndex(codec, &ext_sink_index);
     if (index.has_value()) {
@@ -234,12 +234,29 @@ std::optional<btav_a2dp_codec_index_t> ProviderInfo::SourceCodecIndex(
 std::optional<btav_a2dp_codec_index_t> ProviderInfo::SourceCodecIndex(
     uint32_t vendor_id, uint16_t codec_id) const {
   for (auto const& [index, codec] : assigned_codec_indexes) {
-    if (codec->id.getTag() == CodecId::vendor &&
-        codec->id.get<CodecId::vendor>().id == (int)vendor_id &&
-        codec->id.get<CodecId::vendor>().codecId == codec_id &&
-        index >= BTAV_A2DP_CODEC_INDEX_SOURCE_MIN &&
-        index < BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX) {
-      return index;
+    switch (codec->id.getTag()) {
+      case CodecId::a2dp:
+        if (static_cast<uint16_t>(codec->id.get<CodecId::a2dp>()) == codec_id &&
+            index >= BTAV_A2DP_CODEC_INDEX_SOURCE_MIN &&
+            index < BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX) {
+          return index;
+        }
+        break;
+      case CodecId::core:
+        if (static_cast<uint16_t>(codec->id.get<CodecId::core>()) == codec_id &&
+            index >= BTAV_A2DP_CODEC_INDEX_SOURCE_MIN &&
+            index < BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX) {
+          return index;
+        }
+        break;
+      case CodecId::vendor:
+        if (codec->id.get<CodecId::vendor>().id == (int)vendor_id &&
+            codec->id.get<CodecId::vendor>().codecId == codec_id &&
+            index >= BTAV_A2DP_CODEC_INDEX_SOURCE_MIN &&
+            index < BTAV_A2DP_CODEC_INDEX_SOURCE_EXT_MAX) {
+          return index;
+        }
+        break;
     }
   }
   return std::nullopt;
@@ -248,26 +265,51 @@ std::optional<btav_a2dp_codec_index_t> ProviderInfo::SourceCodecIndex(
 std::optional<btav_a2dp_codec_index_t> ProviderInfo::SourceCodecIndex(
     uint8_t const* codec_info) const {
   LOG_ASSERT(codec_info != nullptr) << "codec_info is unexpectedly null";
-  if (A2DP_GetCodecType(codec_info) != A2DP_MEDIA_CT_NON_A2DP) {
-    // TODO(henrichataing): would be required if a vendor decided
-    // to implement a standard codec other than SBC, AAC.
-    return std::nullopt;
+  auto codec_type = A2DP_GetCodecType(codec_info);
+  switch (codec_type) {
+    case A2DP_MEDIA_CT_SBC: {
+      return SourceCodecIndex(CodecId::A2dp(CodecId::A2dp::SBC));
+    }
+    case A2DP_MEDIA_CT_AAC: {
+      return SourceCodecIndex(CodecId::A2dp(CodecId::A2dp::AAC));
+    }
+    case A2DP_MEDIA_CT_NON_A2DP: {
+      uint32_t vendor_id = A2DP_VendorCodecGetVendorId(codec_info);
+      uint16_t codec_id = A2DP_VendorCodecGetCodecId(codec_info);
+      return SourceCodecIndex(vendor_id, codec_id);
+    }
+    default: {
+      return std::nullopt;
+    }
   }
-
-  uint32_t vendor_id = A2DP_VendorCodecGetVendorId(codec_info);
-  uint16_t codec_id = A2DP_VendorCodecGetCodecId(codec_info);
-  return SourceCodecIndex(vendor_id, codec_id);
 }
 
 std::optional<btav_a2dp_codec_index_t> ProviderInfo::SinkCodecIndex(
     uint32_t vendor_id, uint16_t codec_id) const {
   for (auto const& [index, codec] : assigned_codec_indexes) {
-    if (codec->id.getTag() == CodecId::vendor &&
-        codec->id.get<CodecId::vendor>().id == (int)vendor_id &&
-        codec->id.get<CodecId::vendor>().codecId == codec_id &&
-        index >= BTAV_A2DP_CODEC_INDEX_SINK_MIN &&
-        index < BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX) {
-      return index;
+    switch (codec->id.getTag()) {
+      case CodecId::a2dp:
+        if (static_cast<uint16_t>(codec->id.get<CodecId::a2dp>()) == codec_id &&
+            index >= BTAV_A2DP_CODEC_INDEX_SINK_MIN &&
+            index < BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX) {
+          return index;
+        }
+        break;
+      case CodecId::core:
+        if (static_cast<uint16_t>(codec->id.get<CodecId::core>()) == codec_id &&
+            index >= BTAV_A2DP_CODEC_INDEX_SINK_MIN &&
+            index < BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX) {
+          return index;
+        }
+        break;
+      case CodecId::vendor:
+        if (codec->id.get<CodecId::vendor>().id == (int)vendor_id &&
+            codec->id.get<CodecId::vendor>().codecId == codec_id &&
+            index >= BTAV_A2DP_CODEC_INDEX_SINK_MIN &&
+            index < BTAV_A2DP_CODEC_INDEX_SINK_EXT_MAX) {
+          return index;
+        }
+        break;
     }
   }
   return std::nullopt;
