@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35bc9461_64a54cf7",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 677,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-04T01:17:39Z",
+      "side": 1,
+      "message": "```suggestion\n            await send_notification\n            self.characteristic_changed \u003d True\n            self.characteristic_state[characteristic_handle] \u003d True\n```",
+      "range": {
+        "startLine": 671,
+        "startChar": 0,
+        "endLine": 677,
+        "endChar": 66
+      },
+      "revId": "316fe89e97b8036001c4a2e8df4b87b1d4706c7a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
