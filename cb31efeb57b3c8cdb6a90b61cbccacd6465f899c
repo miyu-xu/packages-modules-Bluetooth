@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1259012c_fc2d4b78",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-04T10:47:57Z",
+      "side": 1,
+      "message": "I would prefer to set the did data using system property instead of changing the path to the config.\n\nI had https://r.android.com/2442199 to do this, but it was blocked by floss :/",
+      "revId": "cb31efeb57b3c8cdb6a90b61cbccacd6465f899c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
