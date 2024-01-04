@@ -45,6 +45,30 @@
       },
       "revId": "18c7eb5b1db942fe6eae7db9392cf6f7034aff3a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b11f98d8_1633b16f",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 2
+      },
+      "lineNbr": 6801,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-04T09:33:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "320c8906_fa1292d4",
+      "range": {
+        "startLine": 6801,
+        "startChar": 0,
+        "endLine": 6801,
+        "endChar": 6
+      },
+      "revId": "18c7eb5b1db942fe6eae7db9392cf6f7034aff3a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
