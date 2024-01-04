@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c987dfe3_70ffc018",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-04T08:50:08Z",
+      "side": 1,
+      "message": "Done, thanks!",
+      "parentUuid": "38333a89_0aaab85f",
+      "range": {
+        "startLine": 703,
+        "startChar": 0,
+        "endLine": 705,
+        "endChar": 0
+      },
+      "revId": "65bdacd0cdcd096b6cc893263d417df3de498f50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "95a16dac_b50883e8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-02T18:28:21Z",
       "side": 1,
       "message": "These don\u0027t look like they should be packets.  They are coming from inside structs, and there\u0027s a lot of casting that has to be done to make that work.",
+      "range": {
+        "startLine": 6781,
+        "startChar": 0,
+        "endLine": 6781,
+        "endChar": 6
+      },
+      "revId": "65bdacd0cdcd096b6cc893263d417df3de498f50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e59980d1_a3cdc415",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 3
+      },
+      "lineNbr": 6781,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-04T08:50:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "95a16dac_b50883e8",
       "range": {
         "startLine": 6781,
         "startChar": 0,
