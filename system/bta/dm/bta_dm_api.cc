@@ -30,6 +30,7 @@
 #include "bta/dm/bta_dm_disc.h"
 #include "bta/dm/bta_dm_int.h"
 #include "bta/dm/bta_dm_sec_int.h"
+#include "hci/le_rand_callback.h"
 #include "osi/include/compat.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/btm_api.h"
@@ -448,7 +449,7 @@ void BTA_DmClearFilterAcceptList(void) {
  * Returns          cb: callback to receive the resulting random number
  *
  ******************************************************************************/
-void BTA_DmLeRand(LeRandCallback cb) {
+void BTA_DmLeRand(bluetooth::hci::LeRandCallback cb) {
   LOG_VERBOSE("BTA_DmLeRand");
   do_in_main_thread(FROM_HERE, base::BindOnce(bta_dm_le_rand, std::move(cb)));
 }
