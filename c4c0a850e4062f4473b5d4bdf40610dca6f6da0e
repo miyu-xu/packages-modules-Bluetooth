@@ -94,6 +94,30 @@
       },
       "revId": "c4c0a850e4062f4473b5d4bdf40610dca6f6da0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00cabae1_1e2e334f",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-04T10:58:51Z",
+      "side": 1,
+      "message": "I thought we can search by text as all the tags should be defined in the same place.\nHowever, searching `13);` would work as well unless there so many `13);`.",
+      "parentUuid": "9cc2eeec_c362a57f",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 64
+      },
+      "revId": "c4c0a850e4062f4473b5d4bdf40610dca6f6da0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
