@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "a586b000_157eda24",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-04T08:06:22Z",
+      "side": 1,
+      "message": "Can you create a bug under this one that more specifically describes the change please ? Here you are adding support for v103 of the HCI requirements, that was missing before.",
+      "parentUuid": "2f52d243_3638c443",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 14
+      },
+      "revId": "db23cdcbb116ef09fdb3aa0821e20dca43e0a493",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "45bd10fa_1b826b06",
