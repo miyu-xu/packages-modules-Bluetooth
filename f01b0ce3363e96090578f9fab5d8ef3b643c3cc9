@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0fd41ba_e592b8ca",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-04T16:16:35Z",
+      "side": 1,
+      "message": "```suggestion\n      \u003coption name\u003d\"host-teardown-command\" value\u003d\"adb -s $SERIAL reverse --remove tcp:6999\" /\u003e\n```",
+      "range": {
+        "startLine": 33,
+        "startChar": 86,
+        "endLine": 33,
+        "endChar": 90
+      },
+      "revId": "f01b0ce3363e96090578f9fab5d8ef3b643c3cc9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
