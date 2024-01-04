@@ -22,6 +22,29 @@
       },
       "revId": "30a41a909b6c49e7dd8adec6019fcc5a1cdc7c29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80141ad7_d7a857f8",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-04T16:16:00Z",
+      "side": 1,
+      "message": "nit: It would be better to define the readible constast for the mode to improve the readability.",
+      "range": {
+        "startLine": 733,
+        "startChar": 13,
+        "endLine": 733,
+        "endChar": 14
+      },
+      "revId": "30a41a909b6c49e7dd8adec6019fcc5a1cdc7c29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
