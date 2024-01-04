@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5873bcb0_571e92b1",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-04T15:27:14Z",
+      "side": 1,
+      "message": "This shouldn\u0027t be necessary.",
+      "range": {
+        "startLine": 687,
+        "startChar": 32,
+        "endLine": 687,
+        "endChar": 49
+      },
+      "revId": "ef8eb63300aad9c1eb0192623a95e7d571437369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "92febc59_90cc1a64",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-04T15:27:14Z",
+      "side": 1,
+      "message": "Could this be result_data_structure.step_data_.cbegin() ?  Putting this in a packet to parse it back into a struct seems a bit odd.",
+      "range": {
+        "startLine": 693,
+        "startChar": 71,
+        "endLine": 693,
+        "endChar": 88
+      },
+      "revId": "ef8eb63300aad9c1eb0192623a95e7d571437369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
