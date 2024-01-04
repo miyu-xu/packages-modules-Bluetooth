@@ -34,6 +34,24 @@
       "parentUuid": "1259012c_fc2d4b78",
       "revId": "cb31efeb57b3c8cdb6a90b61cbccacd6465f899c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ad092be_db4faf03",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-04T16:05:36Z",
+      "side": 1,
+      "message": "\u003e How about the version in did.conf?\n\nIt was left out intentionally, I wanted to make a follow-up change that would use the apex version there.\n\n\u003e Do you have the ETA of floss issue?\n\nNo, but we could make it work without.",
+      "parentUuid": "49d475bf_a1a5f51b",
+      "revId": "cb31efeb57b3c8cdb6a90b61cbccacd6465f899c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
