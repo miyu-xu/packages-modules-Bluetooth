@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7ac7811_53a2cfe2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-05T15:52:38Z",
+      "side": 1,
+      "message": "Could we instead store `mService` in a local variable in `BluetoothA2dpBinder#getService` and add a comment on why ?",
+      "revId": "997d0ddb26c06e2b6def31a537b93e8f798f7c5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
