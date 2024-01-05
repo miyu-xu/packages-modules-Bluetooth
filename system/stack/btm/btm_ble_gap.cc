@@ -963,35 +963,6 @@ static void sync_queue_cleanup(remove_sync_node_t* p_param) {
   }
 }
 
-void btm_ble_start_sync_request(uint8_t sid, RawAddress addr, uint16_t skip,
-                                uint16_t timeout) {
-  tBLE_ADDR_TYPE address_type = BLE_ADDR_RANDOM;
-  tINQ_DB_ENT* p_i = btm_inq_db_find(addr);
-  if (p_i) {
-    address_type = p_i->inq_info.results.ble_addr_type;  // Random
-  }
-  btm_random_pseudo_to_identity_addr(&addr, &address_type);
-  address_type &= ~BLE_ADDR_TYPE_ID_BIT;
-  uint8_t options = 0;
-  uint8_t cte_type = 7;
-  int index = btm_ble_get_psync_index(sid, addr);
-
-  if (index == MAX_SYNC_TRANSACTION) {
-    LOG_ERROR("Failed to get sync transfer index");
-    return;
-  }
-
-  tBTM_BLE_PERIODIC_SYNC* p = &btm_ble_pa_sync_cb.p_sync[index];
-  p->sync_state = PERIODIC_SYNC_PENDING;
-
-  if (BleScanningManager::IsInitialized()) {
-    BleScanningManager::Get()->PeriodicScanStart(options, sid, address_type,
-                                                 addr, skip, timeout, cte_type);
-  }
-
-  alarm_set(sync_timeout_alarm, SYNC_TIMEOUT, btm_ble_start_sync_timeout, NULL);
-}
-
 static void btm_queue_sync_next() {
   if (!sync_queue || list_is_empty(sync_queue)) {
     LOG_DEBUG("sync_queue empty");
@@ -1044,34 +1015,6 @@ void btm_queue_start_sync_req(uint8_t sid, RawAddress address, uint16_t skip,
 static void btm_sync_queue_advance() {
   LOG_DEBUG("%s", "");
   btm_ble_sync_queue_handle(BTM_QUEUE_SYNC_ADVANCE_EVT, nullptr);
-}
-
-static void btm_ble_start_sync_timeout(void* data) {
-  LOG_DEBUG("%s", "");
-  sync_node_t* p_head = (sync_node_t*)list_front(sync_queue);
-  uint8_t adv_sid = p_head->sid;
-  RawAddress address = p_head->address;
-
-  int index = btm_ble_get_psync_index(adv_sid, address);
-
-  if (index == MAX_SYNC_TRANSACTION) {
-    LOG_ERROR("Failed to get sync transfer index");
-    return;
-  }
-
-  tBTM_BLE_PERIODIC_SYNC* p = &btm_ble_pa_sync_cb.p_sync[index];
-
-  if (BleScanningManager::IsInitialized()) {
-    BleScanningManager::Get()->PeriodicScanCancelStart();
-  }
-  p->sync_start_cb.Run(0x3C, 0, p->sid, 0, p->remote_bda, 0, 0);
-
-  p->sync_state = PERIODIC_SYNC_IDLE;
-  p->in_use = false;
-  p->remote_bda = RawAddress::kEmpty;
-  p->sid = 0;
-  p->sync_handle = 0;
-  p->in_use = false;
 }
 
 static int btm_ble_get_psync_index_from_handle(uint16_t handle) {
