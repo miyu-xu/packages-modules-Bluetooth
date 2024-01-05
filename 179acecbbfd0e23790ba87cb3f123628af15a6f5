@@ -39,6 +39,30 @@
       },
       "revId": "179acecbbfd0e23790ba87cb3f123628af15a6f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf7b6ee5_9494aa80",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1922,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-05T21:12:28Z",
+      "side": 1,
+      "message": "I just saw your note for follow-up.  This is similar.",
+      "parentUuid": "32385dd1_f2dbaf93",
+      "range": {
+        "startLine": 1922,
+        "startChar": 2,
+        "endLine": 1922,
+        "endChar": 8
+      },
+      "revId": "179acecbbfd0e23790ba87cb3f123628af15a6f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
