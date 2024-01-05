@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04a34b1f_b1de46fb",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-05T10:07:55Z",
+      "side": 1,
+      "message": "nit: Could you be more descriptive? \"clean code\" is a bit generic",
+      "range": {
+        "startLine": 7,
+        "startChar": 16,
+        "endLine": 7,
+        "endChar": 26
+      },
+      "revId": "01e2d1ace2bd1303a9b88c03b10455a1f394bfd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
