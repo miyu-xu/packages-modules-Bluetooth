@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5dfe4a3_9d5a303c",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 1
+      },
+      "lineNbr": 1495,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-01-05T08:58:35Z",
+      "side": 1,
+      "message": "nit: Accept the Just-Works pairing that we initiated, reject otherwise.",
+      "range": {
+        "startLine": 1495,
+        "startChar": 11,
+        "endLine": 1495,
+        "endChar": 111
+      },
+      "revId": "a0f2c1c1ebbe199caaa4550e7d00e96d296b8924",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
