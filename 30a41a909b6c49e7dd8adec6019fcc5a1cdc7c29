@@ -45,6 +45,30 @@
       },
       "revId": "30a41a909b6c49e7dd8adec6019fcc5a1cdc7c29",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9bb52eea_316f1e07",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 733,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-05T08:25:16Z",
+      "side": 1,
+      "message": "The meaning of \"mode\" aligns with what its value represents.\n0 means it is mode 0\n1 means it is mode 1 ...",
+      "parentUuid": "80141ad7_d7a857f8",
+      "range": {
+        "startLine": 733,
+        "startChar": 13,
+        "endLine": 733,
+        "endChar": 14
+      },
+      "revId": "30a41a909b6c49e7dd8adec6019fcc5a1cdc7c29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
