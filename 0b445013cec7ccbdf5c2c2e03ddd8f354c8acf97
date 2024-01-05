@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e5368a1a_14f73fd0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-05T03:32:07Z",
+      "side": 1,
+      "message": "The similar one. I would ask owner to abandon aosp/2727499.",
+      "parentUuid": "fdff0f63_07504025",
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7c788b0a_fe0a2e4a",
         "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
         "patchSetId": 2
@@ -43,6 +61,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bb2b240e_58274910",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-05T03:32:07Z",
+      "side": 1,
+      "message": "The properties is not for the unciast/brodcast overall feature landing. It\u0027s for the dynamic switcher inside the developer option to enable/disable unicast/broadcast. The developer option part we have been discussed with developer setting team via mail with Ray to land the toggle on it a long time ago.\n\nThere are some reasons that it\u0027s better to use the property instead of flag.\n1. It would be used by the devleoper, dogfooder, app developer, and the external headset vendor, and could be configured per project. \n2. It\u0027s not convernient for the dogfooder, and external user to set the flag by adb. \n3. The nextfood flag is ready-only.\n4. Unicast is a landing feature from U. It\u0027s not our goal to use feature flag to disable it.\n\nSo the are different purpose on flag, and properties\n1. Feature flag: follow the trunk stable process for the dynamic switcher for differnet le audio mode.\n2. Property with project build flag: control the project scope.",
+      "parentUuid": "7c788b0a_fe0a2e4a",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 62
+      },
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "980745e5_4c75bd48",
         "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
         "patchSetId": 2
@@ -54,6 +96,30 @@
       "writtenOn": "2024-01-04T19:47:11Z",
       "side": 1,
       "message": "nit: I noticed that:\n\n```suggestion\n        for (int leAudioProfile: LE_AUDIO_UNICAST_PROFILES) {\n            setProfileEnabled(leAudioProfile, enable)\n        }\n        setProfileEnabled(BluetoothProfile.HAP_CLIENT, enable);\n```\n\nis it expected that HAP_CLIENT does not belong in LE_AUDIO_UNICAST_PROFILES ?",
+      "range": {
+        "startLine": 184,
+        "startChar": 8,
+        "endLine": 189,
+        "endChar": 67
+      },
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18d0c0a6_5a09165e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-05T03:32:07Z",
+      "side": 1,
+      "message": "We didn\u0027t handle HAP profile enablement from a long time ago. Not sure if we should. I will follow up it and add this part in the other patch if needed.",
+      "parentUuid": "980745e5_4c75bd48",
       "range": {
         "startLine": 184,
         "startChar": 8,
