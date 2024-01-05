@@ -23,6 +23,7 @@
  *
  ******************************************************************************/
 
+#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 
 #include <cstdint>
@@ -78,6 +79,8 @@ static const char kPropertySniffAttempts[] =
     "bluetooth.core.classic.sniff_attempts";
 static const char kPropertySniffTimeouts[] =
     "bluetooth.core.classic.sniff_timeouts";
+static const char kPropertySniffOffloadEnabled[] =
+    "persist.bluetooth.sniff_offload.enabled";
 
 /*******************************************************************************
  *
@@ -524,6 +527,12 @@ static void bta_dm_pm_set_mode(const RawAddress& peer_addr,
   bool timer_started = false;
   uint8_t timer_idx, available_timer = BTA_DM_PM_MODE_TIMER_MAX;
   uint64_t remaining_ms = 0;
+
+  /* if sniff is offload, no need to handle it in the stack */
+  if (IS_FLAG_ENABLED(enable_sniff_offload) &&
+      osi_property_get_bool(kPropertySniffOffloadEnabled, false)) {
+    return;
+  }
 
   if (!bta_dm_cb.device_list.count) {
     LOG_INFO("Device list count is zero");

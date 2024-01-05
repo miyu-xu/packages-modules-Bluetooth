@@ -16,6 +16,8 @@
 
 #include <base/functional/bind.h>
 #include <base/location.h>
+#include <com_android_bluetooth_flags.h>
+#include <flag_macros.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
@@ -24,10 +26,12 @@
 #include "bta/dm/bta_dm_disc.h"
 #include "bta/dm/bta_dm_disc_int.h"
 #include "bta/dm/bta_dm_int.h"
+#include "bta/dm/bta_dm_pm.cc"
 #include "bta/dm/bta_dm_sec_int.h"
 #include "bta/hf_client/bta_hf_client_int.h"
 #include "bta/include/bta_api.h"
 #include "bta/test/bta_base_test.h"
+#include "os/system_properties.h"
 #include "osi/include/compat.h"
 #include "osi/include/osi.h"
 #include "stack/include/btm_status.h"
@@ -37,6 +41,8 @@
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_stack_acl.h"
 #include "test/mock/mock_stack_btm_interface.h"
+
+#define TEST_BT com::android::bluetooth::flags
 
 using namespace std::chrono_literals;
 
@@ -579,3 +585,35 @@ TEST_F(BtaDmTest, bta_dm_disc_start__true) { bta_dm_disc_start(true); }
 TEST_F(BtaDmTest, bta_dm_disc_start__false) { bta_dm_disc_start(false); }
 
 TEST_F(BtaDmTest, bta_dm_disc_stop) { bta_dm_disc_stop(); }
+
+TEST_F_WITH_FLAGS(BtaDmCustomAlarmTest, sniff_offload_feature__enable_flag,
+                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
+                                                      enable_sniff_offload))) {
+  // Expect not to trigger any function due to disabling the property
+  bluetooth::os::SetSystemProperty("persist.bluetooth.sniff_offload.enabled",
+                                   "false");
+  bta_dm_pm_set_mode(kRawAddress, BTA_DM_PM_NO_ACTION, BTA_DM_PM_RESTART);
+  ASSERT_EQ(0, get_func_call_count("bta_dm_find_peer_device"));
+
+  // Expect to trigger any function due to enabling the property
+  bluetooth::os::SetSystemProperty("persist.bluetooth.sniff_offload.enabled",
+                                   "true");
+  bta_dm_pm_set_mode(kRawAddress, BTA_DM_PM_NO_ACTION, BTA_DM_PM_RESTART);
+  ASSERT_EQ(1, get_func_call_count("bta_dm_find_peer_device"));
+}
+
+TEST_F_WITH_FLAGS(BtaDmCustomAlarmTest, sniff_offload_feature__disable_flag,
+                  REQUIRES_FLAGS_DISABLED(ACONFIG_FLAG(TEST_BT,
+                                                       enable_sniff_offload))) {
+  // Expect not to trigger any function due to disabling the flag
+  bluetooth::os::SetSystemProperty("persist.bluetooth.sniff_offload.enabled",
+                                   "false");
+  bta_dm_pm_set_mode(kRawAddress, BTA_DM_PM_NO_ACTION, BTA_DM_PM_RESTART);
+  ASSERT_EQ(0, get_func_call_count("bta_dm_find_peer_device"));
+
+  // Expect not to trigger any function due to disabling the flag
+  bluetooth::os::SetSystemProperty("persist.bluetooth.sniff_offload.enabled",
+                                   "true");
+  bta_dm_pm_set_mode(kRawAddress, BTA_DM_PM_NO_ACTION, BTA_DM_PM_RESTART);
+  ASSERT_EQ(0, get_func_call_count("bta_dm_find_peer_device"));
+}
