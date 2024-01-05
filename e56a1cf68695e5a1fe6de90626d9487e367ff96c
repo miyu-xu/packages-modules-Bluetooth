@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7cb61e62_fac0cd25",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-01-05T02:50:01Z",
+      "side": 1,
+      "message": "Since this is a boolean indicator, let\u0027s use a boolean variable.",
+      "range": {
+        "startLine": 411,
+        "startChar": 38,
+        "endLine": 411,
+        "endChar": 44
+      },
+      "revId": "e56a1cf68695e5a1fe6de90626d9487e367ff96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d1b36db_85ef9c5f",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-01-05T02:50:01Z",
+      "side": 1,
+      "message": "Please elaborate on this term, thanks!",
+      "range": {
+        "startLine": 412,
+        "startChar": 38,
+        "endLine": 412,
+        "endChar": 44
+      },
+      "revId": "e56a1cf68695e5a1fe6de90626d9487e367ff96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "825cb11f_edfd8f34",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-01-05T02:50:01Z",
+      "side": 1,
+      "message": "\"space\" could be slightly misleading in a way that it doesn\u0027t accentuate that it\u0027s the \"remaining space\", maybe we can find a better name for this?",
+      "range": {
+        "startLine": 523,
+        "startChar": 9,
+        "endLine": 523,
+        "endChar": 29
+      },
+      "revId": "e56a1cf68695e5a1fe6de90626d9487e367ff96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eea18c30_cf9998f9",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1957996
+      },
+      "writtenOn": "2024-01-05T02:50:01Z",
+      "side": 1,
+      "message": "This logic of checking the boundary and incrementing the pointer seems to have appeared multiple times, can we use a helper function to make them easier to read?",
+      "range": {
+        "startLine": 584,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 9
+      },
+      "revId": "e56a1cf68695e5a1fe6de90626d9487e367ff96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
