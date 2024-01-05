@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a72d82e0_6068049d",
+        "filename": "service/src/TemporaryOffListener.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-05T18:46:56Z",
+      "side": 1,
+      "message": "Can this be per-user instead of global?\n\nCars and tablets are multi-user devices. I\u0027m not sure we can/should assume that all users want the same global behavior, nor do we want the choice of one user to impact that of another.",
+      "range": {
+        "startLine": 91,
+        "startChar": 16,
+        "endLine": 91,
+        "endChar": 32
+      },
+      "revId": "94aaf3698e9eb919f0cd7637e12a902ff65015f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5749c5b_e1ced06c",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1478,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-05T18:46:56Z",
+      "side": 1,
+      "message": "Is there a way for other form factors to disable this behavior?\n\nEven better, can this be opt-in for a device, perhaps through a system property:\n```\nbluetooth.power.scheduled_adapter_on.enabled\u003dtrue\n```\n\nOr, better yet, a crafted system API? Don\u0027t use this, but I\u0027m just spitballing here:\n```\n/**\n * Disable the adapter and request that it be turned back on at a scheduled time.\n *\n * This time is specific to the user the stack currently belongs to.\n *\n * Other enable/disable calls may overwrite the pending timer:\n *  - BluetoothAdapter#enable() -\u003e Cancels the timer\n *  - BluetoothAdapter#disable() -\u003e Cancels the timer, same as persist\u003dtrue\n *  - BluetoothAdapter#disable(persist\u003dtrue) -\u003e cancels the timer\n *  - BluetoothAdapter#disable(persist\u003dfalse) -\u003e cancels the timer, allows\n *                                               BT to turn on next reboot\n *  - BluetoothAdapter#disable(persistUntilUsecs\u003dXXX) -\u003e Updates timer to XXX\n *\n * Bluetooth adapter state changed callbacks will have information in them\n * about the state of the next turn on in EXTRA_OFF_UNTIL (EXTRA_RESTART_TYPE?):\n *  - NEXT_ENABLE\n *  - NEXT_REBOOT\n *  - SCHEDULED_TIME (EXTRA_SCHEDULED_TIME will have the value)\n *\n * Calling a disable() variant while the adapter is already disabled can update\n * the status of the off until/shut down type value and a new callback will be\n * invoked.\n */\nint BluetoothAdapter#disable(/* some class representing a time */ long persistUntilUsecs);\n```\n\nSomething like the above API might let the time be configurable, with logic being controlled outside the stack by settings applications. It can also let other system applications adjust to the set restart type.\n\nCar\u0027s really want the `persist\u003dfalse` behavior in some way, but perhaps we could use that so other system apps (i.e. assistant, etc.) can have a way to make calls to turn off BT without needing to care about/risk impacting the current persisted state.\n\nI could also see a _new_ `disable(persist\u003dYYY)` API, where instead of a boolean type, we have an enum type, matching the enums in a broadcast/callback.\n```\nint BluetoothAdapter#disable(@AdapterRestartType int restartType, int restartHints);\n```",
+      "range": {
+        "startLine": 1478,
+        "startChar": 8,
+        "endLine": 1478,
+        "endChar": 40
+      },
+      "revId": "94aaf3698e9eb919f0cd7637e12a902ff65015f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
