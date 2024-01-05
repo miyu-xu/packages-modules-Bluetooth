@@ -151,6 +151,30 @@
       },
       "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "225b65bf_2c274172",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-05T05:08:47Z",
+      "side": 1,
+      "message": "`Afaik, the method bta_jv_pm_conn_busy still exist after this CL and should be call when the flag is off.`\n\nFirst, you\u0027re right. But `bta_jv_pm_conn_busy ` as for wear target is `a bug`. Details are in the description. So we need to remove `bta_jv_pm_conn_busy` at this point.",
+      "parentUuid": "dd1072fd_895c6cd0",
+      "range": {
+        "startLine": 1262,
+        "startChar": 8,
+        "endLine": 1266,
+        "endChar": 9
+      },
+      "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
