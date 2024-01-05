@@ -159,6 +159,30 @@
       },
       "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "018656cc_e45b91cc",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T00:28:43Z",
+      "side": 1,
+      "message": "@hallstrom@google.com, I don\u0027t understand what you are okay with, using the ifdef or using the sysprop ?\n\nMy 2 initial comments are still the same:\n* This CL is not using the sysprop library, but it is adding a sysprop `getLeExtendedScanFilterDuplicates`.\nI would like either to use it or not to add it.\n\nAnd\n* The config specific for floss is usually managed with a ifdef, why this one is a  sysprop ? Is there any reason to have a different config on floss than android ? which of `DISABLED / ENABLED / RESET_EACH_PERIOD` do you intend to use on floss and why not on android too ? Would the performance be improved on android if it was enabled ?\n\nFor the second part, I assume the people that actually know this part of the code should answer here (AKA not me as I do not know what consequence this modification has)",
+      "parentUuid": "8b1285d2_5779688a",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
