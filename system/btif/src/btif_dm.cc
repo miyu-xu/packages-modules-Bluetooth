@@ -2366,6 +2366,12 @@ void btif_dm_acl_evt(tBTA_DM_ACL_EVT event, tBTA_DM_ACL* p_data) {
               ? bt_conn_direction_t::BT_CONN_DIRECTION_OUTGOING
               : bt_conn_direction_t::BT_CONN_DIRECTION_INCOMING,
           p_data->link_up.acl_handle);
+
+      if (p_data->link_up.transport_link_type == BT_TRANSPORT_LE &&
+          pairing_cb.bd_addr == bd_addr &&
+          is_device_le_audio_capable(bd_addr)) {
+        L2CA_LockBleConnParamsForAudioSetup(bd_addr, true);
+      }
       break;
 
     case BTA_DM_LINK_UP_FAILED_EVT:
