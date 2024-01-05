@@ -16,6 +16,24 @@
       "message": "I don\u0027t see any flagging here, can you double check ?",
       "revId": "4381ebe32406ba2bf6349e399ad137f3b6afc603",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86b51334_3cb45709",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-01-05T10:33:13Z",
+      "side": 1,
+      "message": "GetProviderInfo will return nullptr if the aconfig flag is not set:\n```\n  if (!IS_FLAG_ENABLED(a2dp_offload_codec_extensibility)) {\n    LOG(INFO) \u003c\u003c \"a2dp offload codec extensibility is disabled;\"\n              \u003c\u003c \" not going to load the ProviderInfo\";\n    return nullptr;\n  }\n```\n\nor do you mean some other flag?",
+      "parentUuid": "6c0c129c_7bb77559",
+      "revId": "4381ebe32406ba2bf6349e399ad137f3b6afc603",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
