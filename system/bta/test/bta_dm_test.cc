@@ -16,11 +16,14 @@
 
 #include <base/functional/bind.h>
 #include <base/location.h>
+#include <com_android_bluetooth_flags.h>
+#include <flag_macros.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include <string>
 
+#include "bta/dm/bta_dm_act.cc"
 #include "bta/dm/bta_dm_disc.h"
 #include "bta/dm/bta_dm_disc_int.h"
 #include "bta/dm/bta_dm_int.h"
@@ -28,16 +31,21 @@
 #include "bta/dm/bta_dm_sec_int.h"
 #include "bta/hf_client/bta_hf_client_int.h"
 #include "bta/include/bta_api.h"
+#include "bta/sys/bta_sys_int.h"
 #include "bta/test/bta_base_test.h"
+#include "os/system_properties.h"
 #include "osi/include/compat.h"
 #include "osi/include/osi.h"
 #include "stack/include/btm_status.h"
 #include "test/common/main_handler.h"
 #include "test/common/mock_functions.h"
+#include "test/mock/mock_bta_dm_act.h"
 #include "test/mock/mock_osi_alarm.h"
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_stack_acl.h"
 #include "test/mock/mock_stack_btm_interface.h"
+
+#define TEST_BT com::android::bluetooth::flags
 
 using namespace std::chrono_literals;
 
@@ -212,6 +220,9 @@ tBT_TRANSPORT bta_dm_determine_discovery_transport(
 void btm_set_local_io_caps(uint8_t io_caps);
 
 tBTM_STATUS bta_dm_sp_cback(tBTM_SP_EVT event, tBTM_SP_EVT_DATA* p_data);
+
+void BTA_dm_on_hw_on();
+tBTA_DM_CONNECTED_SRVCS bta_get_bta_dm_conn_srvcs();
 
 }  // namespace testing
 }  // namespace legacy
@@ -599,4 +610,35 @@ TEST_F(BtaDmCustomAlarmTest, bta_dm_sniff_cback) {
   bta_dm_sniff_cback(BTA_ID_JV, 1, kRawAddress);
   ASSERT_EQ(1, get_func_call_count("alarm_cancel"));
   ASSERT_EQ(2, get_func_call_count("alarm_set_on_mloop"));
+}
+
+TEST_F_WITH_FLAGS(BtaDmCustomAlarmTest, sniff_offload_feature__enable_flag,
+                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
+                                                      enable_sniff_offload))) {
+  // Expect not to trigger bta_dm_init_pm due to both flag and prop are enabled
+  bluetooth::os::SetSystemProperty("bluetooth.sniff_offload.enabled", "true");
+  bluetooth::legacy::testing::BTA_dm_on_hw_on();
+  ASSERT_EQ('\0',
+            bluetooth::legacy::testing::bta_get_bta_dm_conn_srvcs().count);
+
+  // Expect to trigger bta_dm_init_pm due to props is disabled
+  bluetooth::os::SetSystemProperty("bluetooth.sniff_offload.enabled", "false");
+  bluetooth::legacy::testing::BTA_dm_on_hw_on();
+  ASSERT_EQ(0, bluetooth::legacy::testing::bta_get_bta_dm_conn_srvcs().count);
+}
+
+TEST_F_WITH_FLAGS(BtaDmCustomAlarmTest, sniff_offload_feature__disable_flag,
+                  REQUIRES_FLAGS_DISABLED(ACONFIG_FLAG(TEST_BT,
+                                                       enable_sniff_offload))) {
+  // Expect to trigger bta_dm_init_pm due to flag is disabled
+  bluetooth::os::SetSystemProperty("bluetooth.sniff_offload.enabled", "false");
+  bluetooth::legacy::testing::BTA_dm_on_hw_on();
+  ASSERT_EQ('\0',
+            bluetooth::legacy::testing::bta_get_bta_dm_conn_srvcs().count);
+
+  // Expect to trigger bta_dm_init_pm due to flag is disabled
+  bluetooth::os::SetSystemProperty("bluetooth.sniff_offload.enabled", "true");
+  bluetooth::legacy::testing::BTA_dm_on_hw_on();
+  ASSERT_EQ('\0',
+            bluetooth::legacy::testing::bta_get_bta_dm_conn_srvcs().count);
 }

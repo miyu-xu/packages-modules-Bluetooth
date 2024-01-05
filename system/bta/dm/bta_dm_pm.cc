@@ -1228,3 +1228,15 @@ tBTM_CONTRL_STATE bta_dm_pm_obtain_controller_state(void) {
   LOG_VERBOSE("bta_dm_pm_obtain_controller_state: %d", cur_state);
   return cur_state;
 }
+
+namespace bluetooth {
+namespace legacy {
+namespace testing {
+
+tBTA_DM_CONNECTED_SRVCS bta_get_bta_dm_conn_srvcs() {
+  return ::bta_dm_conn_srvcs;
+};
+
+}  // namespace testing
+}  // namespace legacy
+}  // namespace bluetooth
