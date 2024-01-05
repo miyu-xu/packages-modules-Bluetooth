@@ -231,6 +231,30 @@
       },
       "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9fee371_c5dc695c",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-05T12:04:54Z",
+      "side": 1,
+      "message": "\u003e which of `DISABLED / ENABLED / RESET_EACH_PERIOD` do you intend to use on floss and why not on android too ?\n\nWe observed an LE scan performance drop (~0.2 seconds) from BlueZ to Floss, and this is the reason - BlueZ enables FilterDuplicates while Android (Floss) disables. Android stuck on these settings a long time ago; Also this is quite hardware related so we can\u0027t tell whether it improves Android performance or not. Thus, I\u0027m keeping the Android configuration as is.\n\n\u003e yes I meant using the newly added method in the BluetoothProperties class, added by the cl in system/libsysprop.\n\ninseob@ (in https://r.android.com/2870114) also suggested abandoning the system/libsysprop CL, so, sure, I\u0027ll do that.\n\n\u003e I also wonder if the cl in system/sepolicy is usefull\n\nI can\u0027t tell - Probably inseob@\u0027s suggestion does the trick?\n```\nneverallow { domain -init } bluetooth_floss_prop:property_service set;\nneverallow { domain -init -dumpstate} bluetooth_floss_prop:file no_rw_file_perms;\ndontaudit domain bluetooth_floss_prop:\n```\n\nSo overall I guess there are no more objections on inseob@\u0027s idea. If so, then I\u0027ll do these:\n* Abandon system/libsysprop CL\n* Modify system/sepolicy CL - do not allow the prop on Android\n* No change to this CL",
+      "parentUuid": "d2f6934e_e49d9044",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
