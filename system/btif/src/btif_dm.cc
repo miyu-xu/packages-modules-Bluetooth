@@ -72,6 +72,7 @@
 #include "internal_include/bt_target.h"
 #include "internal_include/stack_config.h"
 #include "main/shim/le_advertising_manager.h"
+#include "main_thread.h"
 #include "os/log.h"
 #include "os/logging/log_adapter.h"
 #include "osi/include/allocator.h"
@@ -1893,6 +1894,19 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
             LOG_DEBUG("clearing pairing_cb");
             pairing_cb = {};
           }
+
+          if (IS_FLAG_ENABLED(le_audio_fast_bond_params) && lea_supported) {
+            /* LE Audio profile should relax parameters when it connects. If
+             * profile is not enabled, relax parameters after timeout. */
+            do_in_main_thread_delayed(FROM_HERE,
+                                      base::BindOnce(
+                                          [](RawAddress bd_addr) {
+                                            L2CA_LockBleConnParamsForAudioSetup(
+                                                bd_addr, false);
+                                          },
+                                          bd_addr),
+                                      std::chrono::seconds(15));
+          }
         }
       } else {
         LOG_DEBUG("New GATT over SDP UUIDs for %s:",
@@ -2385,6 +2399,13 @@ void btif_dm_acl_evt(tBTA_DM_ACL_EVT event, tBTA_DM_ACL* p_data) {
               ? bt_conn_direction_t::BT_CONN_DIRECTION_OUTGOING
               : bt_conn_direction_t::BT_CONN_DIRECTION_INCOMING,
           p_data->link_up.acl_handle);
+
+      if (IS_FLAG_ENABLED(le_audio_fast_bond_params) &&
+          p_data->link_up.transport_link_type == BT_TRANSPORT_LE &&
+          pairing_cb.bd_addr == bd_addr &&
+          is_device_le_audio_capable(bd_addr)) {
+        L2CA_LockBleConnParamsForAudioSetup(bd_addr, true);
+      }
       break;
 
     case BTA_DM_LINK_UP_FAILED_EVT:
