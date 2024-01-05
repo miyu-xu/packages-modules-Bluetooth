@@ -43,7 +43,6 @@
 #include "bta/sys/bta_sys.h"
 #include "btif/include/btif_dm.h"
 #include "btif/include/stack_manager_t.h"
-#include "device/include/controller.h"
 #include "hci/controller_interface.h"
 #include "include/bind_helpers.h"
 #include "include/check.h"
@@ -1448,8 +1447,9 @@ void bta_dm_ble_update_conn_params(const RawAddress& bd_addr, uint16_t min_int,
 
 /** This function set the maximum transmission packet size */
 void bta_dm_ble_set_data_length(const RawAddress& bd_addr) {
-  const controller_t* controller = controller_get_interface();
-  uint16_t max_len = controller->get_ble_maximum_tx_data_length();
+  uint16_t max_len = bluetooth::shim::GetController()
+                         ->GetLeMaximumDataLength()
+                         .supported_max_tx_octets_;
 
   if (BTM_SetBleDataLength(bd_addr, max_len) != BTM_SUCCESS) {
     LOG_INFO("Unable to set ble data length:%hu", max_len);
