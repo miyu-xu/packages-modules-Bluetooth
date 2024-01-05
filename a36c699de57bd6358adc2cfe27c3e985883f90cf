@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "55b36f3b_a3731f07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-05T20:25:25Z",
+      "side": 1,
+      "message": "Added this line in the commit message:\n\n```\nFlag: EXEMPT, submitting flag with the CL\n```",
+      "revId": "a36c699de57bd6358adc2cfe27c3e985883f90cf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
