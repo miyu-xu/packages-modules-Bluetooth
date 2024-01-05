@@ -51,6 +51,24 @@
       "parentUuid": "f6cc7dd8_bf3b697d",
       "revId": "a24423dc7609d6be97de9d5f95ad3633c4ffec18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcb5128d_864159e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-05T02:54:30Z",
+      "side": 1,
+      "message": "I\u0027m still not clear on it. What\u0027s combination would cause the failure.\n\nThe goal is to have the same flag value during the prebuild, and cts in nextfood.\nSo how to control the flag for the prebuild? Does it not follow the trunk stable process to enable the flag? or you just say there is a time gap between cts and prebuild for the flag enablement.",
+      "parentUuid": "f424641d_2d751f30",
+      "revId": "a24423dc7609d6be97de9d5f95ad3633c4ffec18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
