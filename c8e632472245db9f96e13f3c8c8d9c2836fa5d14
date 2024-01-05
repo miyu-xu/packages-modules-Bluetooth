@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66fe79a3_07ece9da",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T22:04:23Z",
+      "side": 1,
+      "message": "Should this be added to the TEST_MAPPING or is it not necessary since it is a native host supported test.\n@licorne@google.com, can you help ?",
+      "range": {
+        "startLine": 121,
+        "startChar": 11,
+        "endLine": 121,
+        "endChar": 49
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6a00c5eb_76f0802f",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T22:04:23Z",
+      "side": 1,
+      "message": "Remove commented line ?",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 170,
+        "endChar": 26
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6847ef17_7a607723",
+        "filename": "system/audio_hal_interface/aidl/provider_info_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T22:04:23Z",
+      "side": 1,
+      "message": "nit: 2024 🎉\n😄",
+      "range": {
+        "startLine": 2,
+        "startChar": 13,
+        "endLine": 2,
+        "endChar": 17
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cd6fd325_92176716",
+        "filename": "system/audio_hal_interface/aidl/provider_info_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T22:04:23Z",
+      "side": 1,
+      "message": "This can be remove... (the full test even ?)",
+      "range": {
+        "startLine": 235,
+        "startChar": 2,
+        "endLine": 236,
+        "endChar": 26
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03501ef2_6cb81e41",
+        "filename": "system/audio_hal_interface/aidl/provider_info_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T22:04:23Z",
+      "side": 1,
+      "message": "Should we assert that there is a value ? should the test be split for eacah codec ? TestGetCodecSbc TestGetCodecAac ...\n\nIt\u0027s a bit more verbose to write but it give instant visibility on what is failing with the error log and the test name, without the need to open the test file and find the line it is failing",
+      "range": {
+        "startLine": 274,
+        "startChar": 0,
+        "endLine": 274,
+        "endChar": 44
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1130b6a7_012d5c47",
+        "filename": "system/audio_hal_interface/aidl/provider_info_unittest.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 626,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T22:04:23Z",
+      "side": 1,
+      "message": "Should the test be split in individual test for each codec ?\n\nsame for TestBuildCodecCapabilities",
+      "range": {
+        "startLine": 626,
+        "startChar": 5,
+        "endLine": 626,
+        "endChar": 8
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
