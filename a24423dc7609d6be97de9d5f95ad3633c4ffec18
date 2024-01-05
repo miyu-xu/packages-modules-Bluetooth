@@ -33,6 +33,24 @@
       "message": "FYI: this will not work on next as there is a prebuilt for Bluetooth.",
       "revId": "a24423dc7609d6be97de9d5f95ad3633c4ffec18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f424641d_2d751f30",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T01:42:02Z",
+      "side": 1,
+      "message": "Let me expand more on this.\nWhen using a prebuilt, the value of the flag is computed when the prebuilt is build. Not when the system image is build.\n\nThe test will be build again the latest flag value, the phone / cloud device will have whatever the value of the prebuilt is.\n\nIf you are ok with that, then it is fine to merge the CL, but just a heads up that there will still be failure in the future",
+      "parentUuid": "f6cc7dd8_bf3b697d",
+      "revId": "a24423dc7609d6be97de9d5f95ad3633c4ffec18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
