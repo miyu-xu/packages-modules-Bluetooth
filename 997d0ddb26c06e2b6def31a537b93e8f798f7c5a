@@ -34,6 +34,24 @@
       "parentUuid": "e7ac7811_53a2cfe2",
       "revId": "997d0ddb26c06e2b6def31a537b93e8f798f7c5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8e5d80a_dec36a7a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T18:36:26Z",
+      "side": 1,
+      "message": "Or since the binder is never supposed to outlive is service, does it make sens to never reset the mService in all the binder, but rely on the isAvailable instead ?\n\nThis way, the \"context\" is always good for permission check",
+      "parentUuid": "7b3d1e48_4f277b67",
+      "revId": "997d0ddb26c06e2b6def31a537b93e8f798f7c5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
