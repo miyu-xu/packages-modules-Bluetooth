@@ -35,8 +35,6 @@ constexpr int kMaxSupportedCodecs = 8;  // MAX_LOCAL_SUPPORTED_CODECS_SIZE
 
 constexpr uint8_t kPhyLe1M = 0x01;
 
-constexpr int kHciDataPreambleSize = 4;  // #define HCI_DATA_PREAMBLE_SIZE 4
-
 // Module lifecycle functions
 static future_t* start_up(void);
 static future_t* shut_down(void);
@@ -117,14 +115,6 @@ static const uint8_t* get_ble_supported_states(void) {
 #define FORWARD_GETTER(type, legacy, gd) \
   static type legacy(void) { return gd; }
 
-FORWARD_GETTER(
-    uint16_t, get_iso_buffer_length,
-    GetController()->GetControllerIsoBufferSize().le_data_packet_length_)
-
-static uint16_t get_iso_packet_size(void) {
-  return get_iso_buffer_length() + kHciDataPreambleSize;
-}
-
 FORWARD_GETTER(uint16_t, get_le_suggested_default_data_length,
                GetController()->GetLeSuggestedDefaultDataLength())
 
@@ -146,13 +136,6 @@ FORWARD_GETTER(uint8_t, get_le_supported_advertising_sets,
                GetController()->GetLeNumberOfSupportedAdverisingSets())
 FORWARD_GETTER(uint8_t, get_le_periodic_advertiser_list_size,
                GetController()->GetLePeriodicAdvertiserListSize())
-FORWARD_GETTER(uint16_t, get_acl_buffers,
-               GetController()->GetNumAclPacketBuffers())
-FORWARD_GETTER(uint8_t, get_le_buffers,
-               GetController()->GetLeBufferSize().total_num_le_packets_)
-FORWARD_GETTER(
-    uint8_t, get_iso_buffers,
-    GetController()->GetControllerIsoBufferSize().total_num_le_packets_)
 FORWARD_GETTER(uint8_t, get_le_connect_list_size,
                GetController()->GetLeFilterAcceptListSize())
 
@@ -226,10 +209,6 @@ static const controller_t interface = {
 
     .get_ble_supported_states = get_ble_supported_states,
 
-    .get_iso_data_size = get_iso_buffer_length,
-
-    .get_iso_packet_size = get_iso_packet_size,
-
     .get_ble_default_data_packet_length = get_le_suggested_default_data_length,
     .get_ble_maximum_tx_data_length = get_le_maximum_tx_data_length,
     .get_ble_maximum_tx_time = get_le_maximum_tx_time,
@@ -239,10 +218,6 @@ static const controller_t interface = {
         get_le_supported_advertising_sets,
     .get_ble_periodic_advertiser_list_size =
         get_le_periodic_advertiser_list_size,
-
-    .get_acl_buffer_count_classic = get_acl_buffers,
-    .get_acl_buffer_count_ble = get_le_buffers,
-    .get_iso_buffer_count = get_iso_buffers,
 
     .get_ble_acceptlist_size = get_le_connect_list_size,
 
