@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c5bb25a9_43b70276",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 2157,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T22:53:31Z",
+      "side": 1,
+      "message": "Nit: Why using a full match  and not if let ?\n```suggestion\n        if let Some(active_address) \u003d self.active_pairing_address {\n            warn!(\n                \"Bonding requested for {} while already bonding {}, rejecting\",\n                DisplayAddress(\u0026address),\n                DisplayAddress(\u0026active_address)\n            );\n            return false;\n        }\n```",
+      "range": {
+        "startLine": 2147,
+        "startChar": 8,
+        "endLine": 2157,
+        "endChar": 9
+      },
+      "revId": "48925add14256c766a65c9bc5a6b60506152dc55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
