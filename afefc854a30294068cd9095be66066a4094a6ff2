@@ -255,6 +255,30 @@
       },
       "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "621d9bec_6295df45",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T22:16:49Z",
+      "side": 1,
+      "message": "Ack,\nThanks for the detail explanation.\n\nIt looks like this will never be configured outside of FLOSS vs Android, and that the config will be enabled for floss and disable for android, without other alternative.\nSo I think this is better to be done with a IF_DEF to avoid any ambiguity on who is using what.\nHaving a sysprop will let a doubt about what are the usage and in the future, any fix / rewrite will need to assume that the property can have all the value possible and keep the full behavior \"in case\"\n\nBut I will not be opposed to your change if you strongly think it should be a sysprop.\n\n----\n\n`do not allow the prop on Android`\nDoes that mean it is not possible to read it on android ? or just to write it ?\nCause with the current CL, the property is being accessed in android too, not only on floss",
+      "parentUuid": "a9fee371_c5dc695c",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
