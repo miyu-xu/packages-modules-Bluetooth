@@ -25,15 +25,12 @@
 #define LOG_TAG "bta_gattc_api"
 
 #include <base/functional/bind.h>
-#include <base/logging.h>
 
 #include <ios>
 #include <list>
 #include <vector>
 
 #include "bta/gatt/bta_gattc_int.h"
-#include "device/include/controller.h"
-#include "internal_include/bt_target.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
