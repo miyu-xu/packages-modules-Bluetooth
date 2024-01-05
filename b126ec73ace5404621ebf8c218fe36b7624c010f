@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4cfd943d_85a584b2",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1566,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-01-05T22:13:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "310fd744_b66f6e20",
+      "revId": "b126ec73ace5404621ebf8c218fe36b7624c010f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "35246e17_3f5c67db",
@@ -48,6 +66,24 @@
       "writtenOn": "2024-01-04T16:48:09Z",
       "side": 1,
       "message": "nit: might as well log the address of the pending bond too?",
+      "revId": "b126ec73ace5404621ebf8c218fe36b7624c010f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "20404bac_09800257",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 2151,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-01-05T22:13:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "35246e17_3f5c67db",
       "revId": "b126ec73ace5404621ebf8c218fe36b7624c010f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
