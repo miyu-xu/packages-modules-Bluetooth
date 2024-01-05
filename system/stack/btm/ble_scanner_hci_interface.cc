@@ -21,7 +21,6 @@
 #include <base/logging.h>
 
 #include "btm_api.h"
-#include "device/include/controller.h"
 #include "hci/controller_interface.h"
 #include "main/shim/entry.h"
 #include "stack/include/bt_types.h"
@@ -107,7 +106,7 @@ class BleScannerImplBase : public BleScannerHciInterface {
   void PeriodicAdvertiserListGetSize(
       BleScannerHciInterface::list_size_cb command_complete) override {
     command_complete.Run(
-        controller_get_interface()->get_ble_periodic_advertiser_list_size());
+        bluetooth::shim::GetController()->GetLePeriodicAdvertiserListSize());
   }
 
   void PeriodicAdvertiserListAddDevice(uint8_t adv_addr_type,
@@ -307,7 +306,7 @@ class BleScannerCompleteImpl : public BleScannerListImpl,
 void BleScannerHciInterface::Initialize() {
   LOG_ASSERT(instance == nullptr) << "Was already initialized.";
 
-  if ((controller_get_interface()->get_ble_periodic_advertiser_list_size()) &&
+  if ((bluetooth::shim::GetController()->GetLePeriodicAdvertiserListSize()) &&
       (bluetooth::shim::GetController()
            ->SupportsBlePeriodicAdvertisingSyncTransferSender())) {
     LOG(INFO) << "Advertiser list in controller can be used";
@@ -317,8 +316,8 @@ void BleScannerHciInterface::Initialize() {
                  ->SupportsBlePeriodicAdvertisingSyncTransferSender()) {
     LOG(INFO) << "Periodic Adv Sync Transfer Sender role is supported";
     instance = new BleScannerSyncTransferImpl();
-  } else if (controller_get_interface()
-                 ->get_ble_periodic_advertiser_list_size()) {
+  } else if (bluetooth::shim::GetController()
+                 ->GetLePeriodicAdvertiserListSize()) {
     LOG(INFO) << "Periodic Adv Sync Transfer Recipient role is supported";
     instance = new BleScannerListImpl();
   }
