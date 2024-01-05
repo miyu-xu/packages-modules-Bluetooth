@@ -207,6 +207,30 @@
       },
       "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2f6934e_e49d9044",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T01:22:29Z",
+      "side": 1,
+      "message": "Oh I see the confusion, yes I meant using the newly added method in the BluetoothProperties class, added by the cl in system/libsysprop.\n\n(\nI also wonder if the cl in system/sepolicy is usefull since there is already a generic rules to allow bluetooth to read its system properties ([here](https://cs.android.com/android/platform/superproject/main/+/main:system/sepolicy/private/property_contexts;l\u003d32;drc\u003dbabb7070a5a4b4cfa1a81dfbaa0c0e620825cfcb)) but I may be wrong on this.\n)",
+      "parentUuid": "ced43bf1_46787204",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
