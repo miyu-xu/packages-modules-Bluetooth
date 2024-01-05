@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31cc2b8e_e61182ae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T02:21:13Z",
+      "side": 1,
+      "message": "Note for follow-up: What do you think changing DEV_CLASS to be replaced by std::array ? this way it become possible to do:\n```\nbtm_sec_cb.connecting_dc \u003d dc;\n```\ninstead of the memcpy.\n\nThis way we make sure there is no further error and we also please the check content linter",
+      "revId": "179acecbbfd0e23790ba87cb3f123628af15a6f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
