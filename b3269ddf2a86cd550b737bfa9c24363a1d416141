@@ -16,6 +16,24 @@
       "message": "Just want to double confirm this before merging, I noticed the logic is reversed here. \nPrevious, we will notify if sink_monitor_notified_status_ \u003d\u003d 0.\nNow, notify if sink_monitor_notified_status_ !\u003d 0.\nIs this intended?",
       "revId": "b3269ddf2a86cd550b737bfa9c24363a1d416141",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb73807a_30e2114e",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4266,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-05T22:02:15Z",
+      "side": 1,
+      "message": "+2 here to unblock.\nIf this is intended change, please go ahead to merge this.\nI\u0027m assuming the answer is yes from the commit message.",
+      "parentUuid": "8aee632c_3181d78b",
+      "revId": "b3269ddf2a86cd550b737bfa9c24363a1d416141",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
