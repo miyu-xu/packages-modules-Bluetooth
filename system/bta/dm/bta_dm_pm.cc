@@ -418,6 +418,10 @@ static void bta_dm_pm_cback(tBTA_SYS_CONN_STATUS status, const tBTA_SYS_ID id,
   tBTA_DM_PEER_DEVICE* p_dev;
   tBTA_DM_PM_REQ pm_req = BTA_DM_PM_NEW_REQ;
 
+  LOG_ERROR("Power management callback status:%s[%hhu] id:%s[%hhu], app:%hhu",
+            bta_sys_conn_status_text(status).c_str(), status,
+            BtaIdSysText(id).c_str(), id, app_id);
+
   LOG_DEBUG("Power management callback status:%s[%hhu] id:%s[%hhu], app:%hhu",
             bta_sys_conn_status_text(status).c_str(), status,
             BtaIdSysText(id).c_str(), id, app_id);
