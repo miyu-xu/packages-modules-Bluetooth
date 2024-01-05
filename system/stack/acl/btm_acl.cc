@@ -31,7 +31,6 @@
  *
  *****************************************************************************/
 
-#include "main/shim/entry.h"
 #define LOG_TAG "btm_acl"
 
 #include <base/logging.h>
@@ -53,6 +52,8 @@
 #include "main/shim/acl_api.h"
 #include "main/shim/controller.h"
 #include "main/shim/dumpsys.h"
+#include "main/shim/entry.h"
+#include "main/shim/helpers.h"
 #include "os/log.h"
 #include "os/parameter_provider.h"
 #include "osi/include/allocator.h"
@@ -227,8 +228,8 @@ void hci_btm_set_link_supervision_timeout(tACL_CONN& link, uint16_t timeout) {
     return;
   }
 
-  if (!bluetooth::shim::
-          controller_is_write_link_supervision_timeout_supported()) {
+  if (!bluetooth::shim::GetController()->IsSupported(
+          bluetooth::hci::OpCode::WRITE_LINK_SUPERVISION_TIMEOUT)) {
     LOG_WARN(
         "UNSUPPORTED by controller write link supervision timeout:%.2fms "
         "bd_addr:%s",
@@ -1129,8 +1130,8 @@ tBTM_STATUS BTM_SetLinkSuperTout(const RawAddress& remote_bda,
 
   /* Only send if current role is Central; 2.0 spec requires this */
   if (p_acl->link_role == HCI_ROLE_CENTRAL) {
-    if (!bluetooth::shim::
-            controller_is_write_link_supervision_timeout_supported()) {
+    if (!bluetooth::shim::GetController()->IsSupported(
+            bluetooth::hci::OpCode::WRITE_LINK_SUPERVISION_TIMEOUT)) {
       LOG_WARN(
           "UNSUPPORTED by controller write link supervision timeout:%.2fms "
           "bd_addr:%s",
@@ -1545,7 +1546,8 @@ uint16_t BTM_GetMaxPacketSize(const RawAddress& addr) {
     pkt_types = p->pkt_types_mask;
   } else {
     /* Special case for when info for the local device is requested */
-    if (addr == *controller_get_interface()->get_address()) {
+    if (addr == bluetooth::ToRawAddress(
+                    bluetooth::shim::GetController()->GetMacAddress())) {
       pkt_types = btm_cb.acl_cb_.DefaultPacketTypes();
     }
   }
