@@ -175,6 +175,30 @@
       },
       "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8adad95b_e28c702b",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-05T08:19:21Z",
+      "side": 1,
+      "message": "Add more details.\n\n---\n\n`bta_jv_pm_conn_busy` because this will clear the sniff time on the device, the device would rely on remote device to get into sniff mode again. \\\nIf remote device takes longer time to enter sniff, or remote device forgets to enter sniff, this would make the device consume more power.\n\nSo we should change to use `bta_jv_reset_sniff_timer` to `**restart**` the sniff timer. This makes more sense to any device in fact.",
+      "parentUuid": "225b65bf_2c274172",
+      "range": {
+        "startLine": 1262,
+        "startChar": 8,
+        "endLine": 1266,
+        "endChar": 9
+      },
+      "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
