@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
+#include "shim/entry.h"
 #define LOG_TAG "bt_gd_shim"
-
-#include "main/shim/stack.h"
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -26,11 +25,11 @@
 
 #include "common/init_flags.h"
 #include "common/strings.h"
-#include "device/include/controller.h"
 #include "hal/hci_hal.h"
 #include "hci/acl_manager.h"
 #include "hci/acl_manager/acl_scheduler.h"
 #include "hci/controller.h"
+#include "hci/controller_interface.h"
 #include "hci/distance_measurement_manager.h"
 #include "hci/hci_layer.h"
 #include "hci/le_advertising_manager.h"
@@ -43,6 +42,7 @@
 #include "main/shim/hci_layer.h"
 #include "main/shim/le_advertising_manager.h"
 #include "main/shim/le_scanning_manager.h"
+#include "main/shim/stack.h"
 #include "metrics/counter_metrics.h"
 #include "os/log.h"
 #include "shim/dumpsys.h"
@@ -88,10 +88,9 @@ void Stack::StartEverything() {
   ASSERT(stack_manager_.GetInstance<storage::StorageModule>() != nullptr);
   ASSERT(stack_manager_.GetInstance<shim::Dumpsys>() != nullptr);
   if (stack_manager_.IsStarted<hci::Controller>()) {
-    acl_ = new legacy::Acl(
-        stack_handler_, legacy::GetAclInterface(),
-        controller_get_interface()->get_ble_acceptlist_size(),
-        controller_get_interface()->get_ble_resolving_list_max_size());
+    acl_ = new legacy::Acl(stack_handler_, legacy::GetAclInterface(),
+                           GetController()->GetLeFilterAcceptListSize(),
+                           GetController()->GetLeResolvingListSize());
   } else {
     LOG_ERROR("Unable to create shim ACL layer as Controller has not started");
   }
