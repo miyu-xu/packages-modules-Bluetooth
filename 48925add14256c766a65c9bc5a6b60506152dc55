@@ -22,6 +22,30 @@
       },
       "revId": "48925add14256c766a65c9bc5a6b60506152dc55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cbab6df9_a0e89551",
+        "filename": "system/gd/rust/linux/stack/src/bluetooth.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 2157,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-01-05T23:02:28Z",
+      "side": 1,
+      "message": "It\u0027s been a while and I forgot.",
+      "parentUuid": "c5bb25a9_43b70276",
+      "range": {
+        "startLine": 2147,
+        "startChar": 8,
+        "endLine": 2157,
+        "endChar": 9
+      },
+      "revId": "48925add14256c766a65c9bc5a6b60506152dc55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
