@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b92a6bb_e69840c2",
+        "filename": "flags/sniff.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T17:46:57Z",
+      "side": 1,
+      "message": "Flag is Ok !",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 0
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ee334776_45d3d07a",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T17:46:57Z",
+      "side": 1,
+      "message": "Does  the property need to be persist ?\n\ncf the [Documentation](https://source.android.com/docs/core/architecture/configuration/add-system-properties#caveats):\nUse persist only when you’re certain that the value must be persisted across reboots, and that using the system properties is your only option. (For details refer to the Preparation section.)\n\n\nI think this property will be device specific and set once at build time (in Bluetooth.prop for example)",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 12
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f941d749_6e630bc6",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T17:46:57Z",
+      "side": 1,
+      "message": "Should this be flag direclty to not initialize anything ?",
+      "range": {
+        "startLine": 95,
+        "startChar": 5,
+        "endLine": 95,
+        "endChar": 19
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a0ddd08_2ecd0aaf",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T17:46:57Z",
+      "side": 1,
+      "message": "Should we prevent any timer to be started ?",
+      "range": {
+        "startLine": 286,
+        "startChar": 12,
+        "endLine": 286,
+        "endChar": 33
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17c14af0_5408ed3d",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T17:46:57Z",
+      "side": 1,
+      "message": "Can sniff be offloaded on phone / car / tv ?\nIf it can on all, we can entirely get rid of the sysprop.\n\nIf there is an hardware limitation, is there a value being send back by the controller ? I am thinking something like a feature supported / vendor command that allow asking the controller directly instead of relying on an external sysprop (that may be out of sync)",
+      "range": {
+        "startLine": 531,
+        "startChar": 0,
+        "endLine": 531,
+        "endChar": 62
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "06d756eb_378c0289",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T17:46:57Z",
+      "side": 1,
+      "message": "There is something I do not understand.\n\nAbove code mention:\n```\nif (IS_FLAG_ENABLED(enable_sniff_offload) \u0026\u0026\n    osi_property_get_bool(kPropertySniffOffloadEnabled, false)) {\n  return;\n}\n```\n\nso:\n```\nif (flag \u0026\u0026 property) return\n```\n\nThis last assert is the only one that has both the property to true, and the flag to true. That mean it\u0027s the only one that trigger the return... and yet we assert that it has not returned.\n\nWhat am I missing ?",
+      "range": {
+        "startLine": 602,
+        "startChar": 12,
+        "endLine": 602,
+        "endChar": 13
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
