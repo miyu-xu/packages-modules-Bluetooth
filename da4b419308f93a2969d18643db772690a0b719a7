@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45b519ca_4d0a3343",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-05T01:20:52Z",
+      "side": 1,
+      "message": "Ack, done in aosp/2899127",
+      "parentUuid": "1ebac615_313ecc5e",
+      "range": {
+        "startLine": 455,
+        "startChar": 53,
+        "endLine": 455,
+        "endChar": 78
+      },
+      "revId": "da4b419308f93a2969d18643db772690a0b719a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ae6f83dd_92b98218",
@@ -71,6 +95,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb5b98b1_37c1ad01",
+        "filename": "framework/java/android/bluetooth/BluetoothSocket.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 460,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-05T01:20:52Z",
+      "side": 1,
+      "message": "I have this addressed in aosp/2899127, but it requires an api review and I don\u0027t know if this should be kept as a different set of CLs.  But, for the sake of clarity I\u0027m resolving this comment, as this can be further discussed in the other CL.",
+      "parentUuid": "ae6f83dd_92b98218",
+      "range": {
+        "startLine": 458,
+        "startChar": 0,
+        "endLine": 460,
+        "endChar": 0
+      },
+      "revId": "da4b419308f93a2969d18643db772690a0b719a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aad97cf8_61205831",
@@ -84,6 +132,30 @@
       "writtenOn": "2024-01-03T23:59:52Z",
       "side": 1,
       "message": "the connection parameters don\u0027t seem to match the function implementation.",
+      "range": {
+        "startLine": 58,
+        "startChar": 22,
+        "endLine": 58,
+        "endChar": 49
+      },
+      "revId": "da4b419308f93a2969d18643db772690a0b719a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad5844a5_75f9618e",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-05T01:20:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aad97cf8_61205831",
       "range": {
         "startLine": 58,
         "startChar": 22,
@@ -131,6 +203,30 @@
       "side": 1,
       "message": "There is no need to do that since the code change in follow-up CL to add the rfcomm.\n\nIt will become:\n```\nif (connType \u003d\u003d L2CAP) {\n  /* Do l2cap*/\nelse if (connType \u003d\u003d RFOMN) {\n  /* do rfcomm */\n}\n```",
       "parentUuid": "4930be73_d375882a",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 0
+      },
+      "revId": "da4b419308f93a2969d18643db772690a0b719a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cae7cca1_13929e1a",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-05T01:20:52Z",
+      "side": 1,
+      "message": "noted, although I already made the change so there\u0027s no need to change it back.",
+      "parentUuid": "7a93634c_526ef0f8",
       "range": {
         "startLine": 59,
         "startChar": 0,
