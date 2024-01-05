@@ -16,6 +16,24 @@
       "message": "Could we instead store `mService` in a local variable in `BluetoothA2dpBinder#getService` and add a comment on why ?",
       "revId": "997d0ddb26c06e2b6def31a537b93e8f798f7c5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b3d1e48_4f277b67",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T18:34:57Z",
+      "side": 1,
+      "message": "Don\u0027t you need to do that in all the service, not only on a2dp. And therefor, isn\u0027t it simpler to add  the check in the utils method ?",
+      "parentUuid": "e7ac7811_53a2cfe2",
+      "revId": "997d0ddb26c06e2b6def31a537b93e8f798f7c5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
