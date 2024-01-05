@@ -56,17 +56,6 @@ struct L2CA_UpdateBleConnParams {
   };
 };
 extern struct L2CA_UpdateBleConnParams L2CA_UpdateBleConnParams;
-// Name: L2CA_EnableUpdateBleConnParams
-// Params: const RawAddress& rem_bda, bool enable
-// Returns: bool
-struct L2CA_EnableUpdateBleConnParams {
-  std::function<bool(const RawAddress& rem_bda, bool enable)> body{
-      [](const RawAddress& /* rem_bda */, bool /* enable */) { return false; }};
-  bool operator()(const RawAddress& rem_bda, bool enable) {
-    return body(rem_bda, enable);
-  };
-};
-extern struct L2CA_EnableUpdateBleConnParams L2CA_EnableUpdateBleConnParams;
 // Name: L2CA_ConsolidateParams
 // Params: const RawAddress& identity, const RawAddress& rpa
 // Returns: bool
