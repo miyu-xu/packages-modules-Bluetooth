@@ -662,18 +662,6 @@ void Device::TrackChangedNotificationResponse(uint8_t label, bool interim,
     track_changed_ = Notification(false, 0);
   }
 
-  // Case for browsing not supported;
-  // PTS BV-04-C and BV-5-C assume browsing not supported
-  if (stack_config_get_interface()->get_pts_avrcp_test()) {
-    DEVICE_LOG(WARNING) << __func__ << ": pts test mode";
-    uint64_t uid = curr_song_id.empty() ? 0xffffffffffffffff : 0;
-    auto response =
-        RegisterNotificationResponseBuilder::MakeTrackChangedBuilder(interim,
-                                                                     uid);
-    send_message_cb_.Run(label, false, std::move(response));
-    return;
-  }
-
   // Anytime we use the now playing list, update our map so that its always
   // current
   now_playing_ids_.clear();

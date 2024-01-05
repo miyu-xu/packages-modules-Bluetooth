@@ -174,7 +174,6 @@ void invoke_switch_codec_cb(bool is_low_latency_buffer_size) {}
 void invoke_switch_buffer_size_cb(bool is_low_latency_buffer_size) {}
 
 const std::string kSmpOptions("mock smp options");
-bool get_pts_avrcp_test(void) { return false; }
 bool get_pts_secure_only_mode(void) { return false; }
 bool get_pts_conn_updates_disabled(void) { return false; }
 bool get_pts_crosskey_sdp_disable(void) { return false; }
@@ -190,7 +189,6 @@ bool get_pts_le_audio_disable_ases_before_stopping(void) { return false; }
 config_t* get_all(void) { return nullptr; }
 
 stack_config_t mock_stack_config{
-    .get_pts_avrcp_test = get_pts_avrcp_test,
     .get_pts_secure_only_mode = get_pts_secure_only_mode,
     .get_pts_conn_updates_disabled = get_pts_conn_updates_disabled,
     .get_pts_crosskey_sdp_disable = get_pts_crosskey_sdp_disable,

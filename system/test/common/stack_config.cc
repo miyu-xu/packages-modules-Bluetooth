@@ -25,7 +25,6 @@
 const std::string kSmpOptions("mock smp options");
 const std::string kBroadcastAudioConfigOptions(
     "mock broadcast audio config options");
-bool get_pts_avrcp_test(void) { return false; }
 bool get_pts_secure_only_mode(void) { return false; }
 bool get_pts_conn_updates_disabled(void) { return false; }
 bool get_pts_crosskey_sdp_disable(void) { return false; }
@@ -54,7 +53,6 @@ struct packet_fragmenter_t;
 const packet_fragmenter_t* packet_fragmenter_get_interface() { return nullptr; }
 
 stack_config_t mock_stack_config{
-    .get_pts_avrcp_test = get_pts_avrcp_test,
     .get_pts_secure_only_mode = get_pts_secure_only_mode,
     .get_pts_conn_updates_disabled = get_pts_conn_updates_disabled,
     .get_pts_crosskey_sdp_disable = get_pts_crosskey_sdp_disable,

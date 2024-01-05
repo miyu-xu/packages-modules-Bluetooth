@@ -27,7 +27,6 @@
 #include "osi/include/log.h"
 
 namespace {
-const char* PTS_AVRCP_TEST = "PTS_AvrcpTest";
 const char* PTS_SECURE_ONLY_MODE = "PTS_SecurePairOnly";
 const char* PTS_LE_CONN_UPDATED_DISABLED = "PTS_DisableConnUpdates";
 const char* PTS_DISABLE_SDP_LE_PAIR = "PTS_DisableSDPOnLEPair";
@@ -94,11 +93,6 @@ EXPORT_SYMBOL extern const module_t stack_config_module = {
     .dependencies = {NULL}};
 
 // Interface functions
-static bool get_pts_avrcp_test(void) {
-  return config_get_bool(*config, CONFIG_DEFAULT_SECTION, PTS_AVRCP_TEST,
-                         false);
-}
-
 static bool get_pts_secure_only_mode(void) {
   return config_get_bool(*config, CONFIG_DEFAULT_SECTION, PTS_SECURE_ONLY_MODE,
                          false);
@@ -206,7 +200,6 @@ static bool get_pts_le_audio_disable_ases_before_stopping(void) {
 static config_t* get_all(void) { return config.get(); }
 
 const stack_config_t interface = {
-    get_pts_avrcp_test,
     get_pts_secure_only_mode,
     get_pts_conn_updates_disabled,
     get_pts_crosskey_sdp_disable,
