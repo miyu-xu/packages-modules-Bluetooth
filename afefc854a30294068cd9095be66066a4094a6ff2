@@ -183,6 +183,30 @@
       },
       "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ced43bf1_46787204",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-05T01:04:26Z",
+      "side": 1,
+      "message": "To clarify my comment, I am okay with using a sysprop blocked for use on Android given the reasoning that it\u0027s more flexible, produces cleaner code, and can be limited to usage on certain platforms. I do think we should align a clear policy on this though, perhaps we should wait for Myles to chime in on the CL @chharry linked first?\n\n@wescande is the system property not used in line 220? Or is it just that you would prefer using the BluetoothProperties class? (If the latter, I agree is good feedback)\n\n[@chharry, plese respond to William\u0027s other Qs re:floss usage as well, thanks!]",
+      "parentUuid": "018656cc_e45b91cc",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
