@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e13683fa_0dc2d569",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 13
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T00:50:32Z",
+      "side": 1,
+      "message": "You can get ride of this temporary variable and directly call getXXXConnectStatusCode in the list of argument",
+      "range": {
+        "startLine": 62,
+        "startChar": 12,
+        "endLine": 62,
+        "endChar": 19
+      },
+      "revId": "32762f797844210ebaef96bf0d618331973bea34",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
