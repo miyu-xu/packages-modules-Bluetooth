@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e4ad1619_cf6903e9",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3106,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-05T18:13:30Z",
+      "side": 1,
+      "message": "I would prefer to remove this.  I feel like it\u0027s simpler to always send a scan request.  If we got another advertisement from the same device, it means that they didn\u0027t respond to the request.  That could also be seen as the timeout (advertising interval)",
+      "range": {
+        "startLine": 3101,
+        "startChar": 4,
+        "endLine": 3106,
+        "endChar": 3
+      },
+      "revId": "92ca0009778404afda7d63e0aa704f80bf2465fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
