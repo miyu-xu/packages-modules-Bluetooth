@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a053f33e_c09cb35a",
+        "filename": "system/audio_hal_interface/aidl/hfp_client_interface_aidl.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-01-05T03:58:07Z",
+      "side": 1,
+      "message": "Remove this unused function as well.",
+      "range": {
+        "startLine": 124,
+        "startChar": 5,
+        "endLine": 124,
+        "endChar": 28
+      },
+      "revId": "7d86731620117ca88beaef36fd6d2734a59d361a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
