@@ -291,17 +291,6 @@ struct L2CA_LeConnectionUpdate {
   };
 };
 extern struct L2CA_LeConnectionUpdate L2CA_LeConnectionUpdate;
-// Name: L2CA_EnableUpdateBleConnParams
-// Params: const RawAddress& rem_bda, bool enable
-// Returns: bool
-struct L2CA_EnableUpdateBleConnParams {
-  std::function<bool(const RawAddress& rem_bda, bool enable)> body{
-      [](const RawAddress& rem_bda, bool enable) { return false; }};
-  bool operator()(const RawAddress& rem_bda, bool enable) {
-    return body(rem_bda, enable);
-  };
-};
-extern struct L2CA_EnableUpdateBleConnParams L2CA_EnableUpdateBleConnParams;
 // Name: L2CA_GetRemoteCid
 // Params: uint16_t lcid, uint16_t* rcid
 // Returns: bool
