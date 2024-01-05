@@ -16,27 +16,35 @@
 
 #include <base/functional/bind.h>
 #include <base/location.h>
+#include <com_android_bluetooth_flags.h>
+#include <flag_macros.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
 #include <string>
 
+#include "bta/dm/bta_dm_act.cc"
 #include "bta/dm/bta_dm_disc.h"
 #include "bta/dm/bta_dm_disc_int.h"
 #include "bta/dm/bta_dm_int.h"
 #include "bta/dm/bta_dm_sec_int.h"
 #include "bta/hf_client/bta_hf_client_int.h"
 #include "bta/include/bta_api.h"
+#include "bta/sys/bta_sys_int.h"
 #include "bta/test/bta_base_test.h"
+#include "os/system_properties.h"
 #include "osi/include/compat.h"
 #include "osi/include/osi.h"
 #include "stack/include/btm_status.h"
 #include "test/common/main_handler.h"
 #include "test/common/mock_functions.h"
+#include "test/mock/mock_bta_dm_act.h"
 #include "test/mock/mock_osi_alarm.h"
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_stack_acl.h"
 #include "test/mock/mock_stack_btm_interface.h"
+
+#define TEST_BT com::android::bluetooth::flags
 
 using namespace std::chrono_literals;
 
@@ -579,3 +587,35 @@ TEST_F(BtaDmTest, bta_dm_disc_start__true) { bta_dm_disc_start(true); }
 TEST_F(BtaDmTest, bta_dm_disc_start__false) { bta_dm_disc_start(false); }
 
 TEST_F(BtaDmTest, bta_dm_disc_stop) { bta_dm_disc_stop(); }
+
+TEST_F_WITH_FLAGS(BtaDmCustomAlarmTest, sniff_offload_feature__enable_flag,
+                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
+                                                      enable_sniff_offload))) {
+  // Expect to trigger bta_dm_disable_pm due to both flag and prop are enabled
+  bluetooth::os::SetSystemProperty("bluetooth.sniff_offload.enabled", "true");
+  BTA_dm_on_hw_on();
+  ASSERT_EQ(nullptr, bta_sys_cb.ppm_cb);
+
+  // Expect to trigger bta_dm_init_pm due to props is disabled
+  bluetooth::os::SetSystemProperty("bluetooth.sniff_offload.enabled", "false");
+  BTA_dm_on_hw_on();
+  ASSERT_NE(nullptr, bta_sys_cb.ppm_cb);
+
+  bta_sys_cb.ppm_cb = nullptr;
+}
+
+TEST_F_WITH_FLAGS(BtaDmCustomAlarmTest, sniff_offload_feature__disable_flag,
+                  REQUIRES_FLAGS_DISABLED(ACONFIG_FLAG(TEST_BT,
+                                                       enable_sniff_offload))) {
+  // Expect to trigger bta_dm_init_pm due to flag is disabled
+  bluetooth::os::SetSystemProperty("bluetooth.sniff_offload.enabled", "false");
+  BTA_dm_on_hw_on();
+  ASSERT_NE(nullptr, bta_sys_cb.ppm_cb);
+
+  // Expect to trigger bta_dm_init_pm due to flag is disabled
+  bluetooth::os::SetSystemProperty("bluetooth.sniff_offload.enabled", "true");
+  BTA_dm_on_hw_on();
+  ASSERT_NE(nullptr, bta_sys_cb.ppm_cb);
+
+  bta_sys_cb.ppm_cb = nullptr;
+}
