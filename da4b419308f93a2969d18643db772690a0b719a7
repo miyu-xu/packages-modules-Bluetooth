@@ -91,6 +91,30 @@
       },
       "revId": "da4b419308f93a2969d18643db772690a0b719a7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a93634c_526ef0f8",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T00:42:28Z",
+      "side": 1,
+      "message": "There is no need to do that since the code change in follow-up CL to add the rfcomm.\n\nIt will become:\n```\nif (connType \u003d\u003d L2CAP) {\n  /* Do l2cap*/\nelse if (connType \u003d\u003d RFOMN) {\n  /* do rfcomm */\n}\n```",
+      "parentUuid": "4930be73_d375882a",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 0
+      },
+      "revId": "da4b419308f93a2969d18643db772690a0b719a7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
