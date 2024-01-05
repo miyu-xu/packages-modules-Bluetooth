@@ -1152,6 +1152,7 @@ void bta_ag_at_hfp_cback(tBTA_AG_SCB* p_scb, uint16_t cmd, uint8_t arg_type,
       /* if feature send OK, else don't call callback, send ERROR */
       if (p_scb->features & BTA_AG_FEAT_ECNR) {
         bta_ag_send_ok(p_scb);
+        p_scb->nrec_enabled = (val.num == 1);
       } else {
         event = BTA_AG_ENABLE_EVT;
         bta_ag_send_error(p_scb, BTA_AG_ERR_OP_NOT_SUPPORTED);
