@@ -44,6 +44,8 @@ struct BTA_dm_notify_remote_features_complete
     BTA_dm_notify_remote_features_complete;
 struct BTA_dm_on_hw_off BTA_dm_on_hw_off;
 struct BTA_dm_on_hw_on BTA_dm_on_hw_on;
+struct bta_dm_init_pm bta_dm_init_pm;
+struct bta_dm_disable_pm bta_dm_disable_pm;
 struct BTA_dm_report_role_change BTA_dm_report_role_change;
 struct bta_dm_acl_up bta_dm_acl_up;
 struct bta_dm_add_ble_device bta_dm_add_ble_device;
@@ -115,6 +117,8 @@ void BTA_dm_on_hw_on() {
   inc_func_call_count(__func__);
   test::mock::bta_dm_act::BTA_dm_on_hw_on();
 }
+void bta_dm_init_pm() { inc_func_call_count(__func__); }
+void bta_dm_disable_pm() { inc_func_call_count(__func__); }
 void BTA_dm_report_role_change(const RawAddress bd_addr, tHCI_ROLE new_role,
                                tHCI_STATUS hci_status) {
   inc_func_call_count(__func__);

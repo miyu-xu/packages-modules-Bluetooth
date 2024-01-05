@@ -120,6 +120,24 @@ struct BTA_dm_on_hw_on {
 };
 extern struct BTA_dm_on_hw_on BTA_dm_on_hw_on;
 
+// Name: bta_dm_init_pm
+// Params:
+// Return: void
+struct bta_dm_init_pm {
+  std::function<void()> body{[]() {}};
+  void operator()() { body(); };
+};
+extern struct bta_dm_init_pm bta_dm_init_pm;
+
+// Name: bta_dm_disable_pm
+// Params:
+// Return: void
+struct bta_dm_disable_pm {
+  std::function<void()> body{[]() {}};
+  void operator()() { body(); };
+};
+extern struct bta_dm_disable_pm bta_dm_disable_pm;
+
 // Name: BTA_dm_report_role_change
 // Params: const RawAddress bd_addr, tHCI_ROLE new_role, tHCI_STATUS hci_status
 // Return: void
