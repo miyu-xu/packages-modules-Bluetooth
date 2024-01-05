@@ -63,6 +63,30 @@
       },
       "revId": "179acecbbfd0e23790ba87cb3f123628af15a6f5",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2bb9953_e7505beb",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 1922,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-05T21:14:40Z",
+      "side": 1,
+      "message": "Yes, dev_class_copy or a std::array. Both. I didn\u0027t know dev_class_copy was a thing prior to your comment",
+      "parentUuid": "bf7b6ee5_9494aa80",
+      "range": {
+        "startLine": 1922,
+        "startChar": 2,
+        "endLine": 1922,
+        "endChar": 8
+      },
+      "revId": "179acecbbfd0e23790ba87cb3f123628af15a6f5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
