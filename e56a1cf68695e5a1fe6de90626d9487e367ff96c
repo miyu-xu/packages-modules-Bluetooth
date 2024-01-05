@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "99f91df9_1e7a0847",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-05T04:05:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7cb61e62_fac0cd25",
+      "range": {
+        "startLine": 411,
+        "startChar": 38,
+        "endLine": 411,
+        "endChar": 44
+      },
+      "revId": "e56a1cf68695e5a1fe6de90626d9487e367ff96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9d1b36db_85ef9c5f",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-05T02:50:01Z",
       "side": 1,
       "message": "Please elaborate on this term, thanks!",
+      "range": {
+        "startLine": 412,
+        "startChar": 38,
+        "endLine": 412,
+        "endChar": 44
+      },
+      "revId": "e56a1cf68695e5a1fe6de90626d9487e367ff96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b554c414_05e13782",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 412,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-05T04:05:18Z",
+      "side": 1,
+      "message": "Draw a fancy picture.",
+      "parentUuid": "9d1b36db_85ef9c5f",
       "range": {
         "startLine": 412,
         "startChar": 38,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "45691327_72caf0fb",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-05T04:05:18Z",
+      "side": 1,
+      "message": "Changed to decode_buf_avail_len.",
+      "parentUuid": "825cb11f_edfd8f34",
+      "range": {
+        "startLine": 523,
+        "startChar": 9,
+        "endLine": 523,
+        "endChar": 29
+      },
+      "revId": "e56a1cf68695e5a1fe6de90626d9487e367ff96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eea18c30_cf9998f9",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-01-05T02:50:01Z",
       "side": 1,
       "message": "This logic of checking the boundary and incrementing the pointer seems to have appeared multiple times, can we use a helper function to make them easier to read?",
+      "range": {
+        "startLine": 584,
+        "startChar": 0,
+        "endLine": 589,
+        "endChar": 9
+      },
+      "revId": "e56a1cf68695e5a1fe6de90626d9487e367ff96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dc207c5_db095c0b",
+        "filename": "system/stack/btm/btm_sco_hci.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 589,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-05T04:05:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eea18c30_cf9998f9",
       "range": {
         "startLine": 584,
         "startChar": 0,
