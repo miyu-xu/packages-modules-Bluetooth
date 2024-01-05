@@ -529,6 +529,9 @@ public final class Utils {
         if (isInstrumentationTestMode()) {
             return true;
         }
+        if (context == null) {
+            return false;
+        }
         // STOPSHIP(b/188391719): enable this security enforcement
         // attributionSource.enforceCallingUid();
         AttributionSource currentAttribution = new AttributionSource
