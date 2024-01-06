@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3bf7677_2b76be0e",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1239,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-06T00:19:24Z",
+      "side": 1,
+      "message": "Understood this followed the design doc flow. But from my local testing, noticed this might add few seconds delay for adding the source. This is a bit concerning to me. To compare with, without this change, the adding source will complete nearly immediately. \n\nDo you think any improvements we can make to avoid the delay?",
+      "revId": "ff46b11fa3d978437c343138e5a8eb391eec9010",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
