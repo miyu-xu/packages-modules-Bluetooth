@@ -17,12 +17,31 @@ java_aconfig_library {
     visibility: [
         "//cts/tests/tests/bluetooth:__subpackages__",
         "//packages/modules/Bluetooth/android/app",
+        "//packages/modules/Bluetooth/framework:__subpackages__",
         "//packages/modules/Bluetooth/service:__subpackages__",
     ],
     apex_available: [
         "com.android.btservices",
     ],
+    libs: ["fake_device_config"],
+    sdk_version: "core_platform",
     min_sdk_version: "Tiramisu",
+}
+
+java_defaults {
+    name: "bluetooth_framework_aconfig_libraries",
+    // Add java_aconfig_libraries to here to add them to the AAOS
+    srcs: [
+        ":bluetooth_flags_java_lib{.generated_srcjars}",
+    ],
+    libs: [
+        // Add aconfig-annotations-lib as a dependency for the optimization
+        "aconfig-annotations-lib",
+        "framework-configinfrastructure",
+    ],
+    defaults_visibility: [
+        "//packages/modules/Bluetooth/framework:__subpackages__",
+    ],
 }
 
 cc_aconfig_library {
