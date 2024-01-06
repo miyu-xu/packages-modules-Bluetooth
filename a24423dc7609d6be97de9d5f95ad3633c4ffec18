@@ -87,6 +87,24 @@
       "parentUuid": "fcb5128d_864159e3",
       "revId": "a24423dc7609d6be97de9d5f95ad3633c4ffec18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d45264f_34ad2395",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-06T11:24:32Z",
+      "side": 1,
+      "message": "I see. Thanks for the infomration. \n\nI think we should make sure the flag value be the same between prebuild and cts. Otherwise, it would cause the cts failure as broadcast feature enabled.",
+      "parentUuid": "3d05eb2a_36e30c3a",
+      "revId": "a24423dc7609d6be97de9d5f95ad3633c4ffec18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
