@@ -16,6 +16,24 @@
       "message": "Can you split this CL in 2, one for adding the flag and one for the API ?\n\nThis way, the flag change can benefit from b/315241296 to avoid the need for DrNo, and the API change will be tracked separately",
       "revId": "7b81baebdc9ff4c1c778a19e4cfa323ad8d3fe8e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7bc79b74_2e6cfed9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2024-01-06T02:37:26Z",
+      "side": 1,
+      "message": "Separate the flag part to another CL. Please take a look, thanks 😊",
+      "parentUuid": "892ab285_f68ee799",
+      "revId": "7b81baebdc9ff4c1c778a19e4cfa323ad8d3fe8e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
