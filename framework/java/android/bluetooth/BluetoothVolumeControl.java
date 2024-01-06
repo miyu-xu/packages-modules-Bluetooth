@@ -640,6 +640,68 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         }
     }
 
+    /**
+     * Mutes the remote device.
+     *
+     * @param device {@link BluetoothDevice} representing the remote device
+     * @hide
+     */
+    @FlaggedApi("com.android.bluetooth.flags.vcp_mute_unmute")
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public void mute(@NonNull BluetoothDevice device) {
+        if (DBG) log("mute(" + device + ")");
+        final IBluetoothVolumeControl service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+                service.mute(device, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Unmutes the remote device.
+     *
+     * @param device {@link BluetoothDevice} representing the remote device
+     * @hide
+     */
+    @FlaggedApi("com.android.bluetooth.flags.vcp_mute_unmute")
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public void unmute(@NonNull BluetoothDevice device) {
+        if (DBG) log("unmute(" + device + ")");
+        final IBluetoothVolumeControl service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+                service.unmute(device, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
     private boolean isEnabled() {
         return mAdapter.getState() == BluetoothAdapter.STATE_ON;
     }
