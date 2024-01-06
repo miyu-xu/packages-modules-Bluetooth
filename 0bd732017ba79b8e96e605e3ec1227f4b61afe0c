@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19e7d29a_e8d1eb7b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-06T02:35:52Z",
+      "side": 1,
+      "message": "FYI: By using a flag to protect this, you need to be aware that the flag is bluetooth only.\n\nAKA, it is not possible to reliably know from the settings if the flag is on or off because the flag is not accessible by the platform.\n\nThis may create some situation where the settings are present, but the flag is not.\n(up to the point the flag is released)\n\nIf settings will be push after 3-4 months (at **best**), then we may consider this to not be an issue, but that also mean the code will be unusable for 3-4 months, except by using a shell command to set the property when the flag is on.\n\nI am not saying that it should be unflagged, but should this be unflagged ? 😐\n\nOr should we use the `LE_AUDIO_DYNAMIC_SWITCHER_MODE_PROPERTY` as the flag. If it\u0027s unset, we  use the olde behavior, if it\u0027s set to something we can use new code.\nThat mean that the sysprop need handle the \"none\" as being the previous switch.\n\n\nI haven\u0027t think that threw, let me know if I am wrong somewhere.",
+      "range": {
+        "startLine": 136,
+        "startChar": 13,
+        "endLine": 136,
+        "endChar": 55
+      },
+      "revId": "0bd732017ba79b8e96e605e3ec1227f4b61afe0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
