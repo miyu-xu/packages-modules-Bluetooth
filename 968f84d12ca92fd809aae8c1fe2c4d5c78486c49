@@ -223,6 +223,30 @@
       },
       "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "523299e6_bbe11dfa",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-06T01:17:32Z",
+      "side": 1,
+      "message": "Resolving by removing the flag after asking if exemption was possible.\n\nRunning Pre-submit  and voting +2 + asking DrNo.\n\nSince I became uploader by removing the flag changes, up to you to re-became uploader or to +2 in order to merge this change",
+      "parentUuid": "d1fd0d54_2cb632b4",
+      "range": {
+        "startLine": 1262,
+        "startChar": 8,
+        "endLine": 1266,
+        "endChar": 9
+      },
+      "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
