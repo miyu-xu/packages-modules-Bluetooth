@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "705be7b6_b3f4398c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-06T00:55:04Z",
+      "side": 1,
+      "message": "Maybe we should create a new constructor for Iterator\u003ckLittleEndian\u003e that just takes a shared pointer to a vector.\n\nIt looks like if you don\u0027t want to use a packet view, you end up creating a std::forward_list of View with the shared pointer :(",
+      "parentUuid": "84134eba_50d291e4",
+      "range": {
+        "startLine": 687,
+        "startChar": 32,
+        "endLine": 687,
+        "endChar": 49
+      },
+      "revId": "ef8eb63300aad9c1eb0192623a95e7d571437369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "92febc59_90cc1a64",
         "filename": "system/gd/hci/distance_measurement_manager.cc",
         "patchSetId": 4
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "no viable conversion from \u0027const_iterator\u0027 (aka \u0027__wrap_iter\u003cconst unsigned char *\u003e\u0027) to \u0027Iterator\u003ckLittleEndian\u003e\u0027",
       "parentUuid": "92febc59_90cc1a64",
+      "range": {
+        "startLine": 693,
+        "startChar": 71,
+        "endLine": 693,
+        "endChar": 88
+      },
+      "revId": "ef8eb63300aad9c1eb0192623a95e7d571437369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a256d04_025f78fe",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 693,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-06T00:55:04Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bf3290d4_8b9c6eb6",
       "range": {
         "startLine": 693,
         "startChar": 71,
