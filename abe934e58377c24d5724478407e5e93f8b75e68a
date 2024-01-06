@@ -22,6 +22,23 @@
       },
       "revId": "abe934e58377c24d5724478407e5e93f8b75e68a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86e30030_bb7fcfa0",
+        "filename": "flags/socket_exception.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-06T00:57:08Z",
+      "side": 1,
+      "message": "The filename may be too narrow as `socket_exception` is unlikely to match anything else.\n\nUp to you to keep it or to change it to englobe a bit more context ? maybe only \"socket.aconfig\" ?\n\nBut it is nit pick",
+      "revId": "abe934e58377c24d5724478407e5e93f8b75e68a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
