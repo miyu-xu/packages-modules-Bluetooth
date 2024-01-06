@@ -69,6 +69,24 @@
       "parentUuid": "f424641d_2d751f30",
       "revId": "a24423dc7609d6be97de9d5f95ad3633c4ffec18",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d05eb2a_36e30c3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-06T02:41:51Z",
+      "side": 1,
+      "message": "cts are build from source and are using the last nextfood approved build.  \nBluetooth prebuilt may take more time as we need it to be build / tested / drop.\n\n\u003e So how to control the flag for the prebuild? \n\nYou do not control it directly, you need to ask @girardier@google.com by using the form at go/bt-flag-trunkfood when you want to move to trunkfood (and not nextfood, so it give time to build / test / and prepare the drop)\n\n\u003e Does it not follow the trunk stable process to enable the flag?\n\nPartially, but prebuilt are in the way. I recommend looking at go/bt-ts-workflow\n\n\nI still prefer to have flag failure on nextfood than on all presubmit and hence I am +2 this CL.",
+      "parentUuid": "fcb5128d_864159e3",
+      "revId": "a24423dc7609d6be97de9d5f95ad3633c4ffec18",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
