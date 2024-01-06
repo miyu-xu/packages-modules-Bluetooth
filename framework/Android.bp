@@ -22,7 +22,10 @@ filegroup {
 // `framework-bluetooth-pre-jarjar`
 java_defaults {
     name: "framework-bluetooth-defaults",
-    defaults: ["bluetooth-module-sdk-version-defaults"],
+    defaults: [
+        "bluetooth-module-sdk-version-defaults",
+        "bluetooth_framework_aconfig_lib",
+    ],
     static_libs: [
         "PlatformProperties",
         "modules-utils-expresslog",
@@ -85,6 +88,7 @@ java_sdk_library {
 
     permitted_packages: [
         "android.bluetooth",
+        "com.android.bluetooth.flags",
         // Created by jarjar rules.
         "com.android.bluetooth.x",
     ],
