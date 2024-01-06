@@ -199,6 +199,30 @@
       },
       "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d1fd0d54_2cb632b4",
+        "filename": "system/bta/jv/bta_jv_act.cc",
+        "patchSetId": 27
+      },
+      "lineNbr": 1266,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-06T00:11:22Z",
+      "side": 1,
+      "message": "\u003e But bta_jv_pm_conn_busy as for wear target is a bug\n\nI understand, and if there was no flag process I would be fine to not keep the previous path at all.\nBut since trunk stable, the code prior to the CL and the code with the flag disabled should be the same, so there is a clear toggle between with and without.\n\nIf you don\u0027t want to keep `bta_jv_pm_conn_busy` if the flag off path, then there is no point of having a flag for this CL and you should ask to be in the exemption.\nI honestly don\u0027t think it will be accepted, but you have 2 argument to ask for it:\n* the code has been \"recently\" added with aosp/2696815\n* it behind a sysprop check that is only on wear, AKA no pixel phone dogfood impact\n\nFYI the official exemption list as per go/bt-ts-workflow is:\n\n```\nStrict mechanical refactors (i.e. no changes to the behaviour of the code).\nTests, testing infrastructure.\nBuild infra and tools.\nStrict null checks with no flow changes.\nComments, Javadoc changes.\nCLs only modifying code which is already being a flag disabled in Trunkfood.\n```",
+      "parentUuid": "8adad95b_e28c702b",
+      "range": {
+        "startLine": 1262,
+        "startChar": 8,
+        "endLine": 1266,
+        "endChar": 9
+      },
+      "revId": "968f84d12ca92fd809aae8c1fe2c4d5c78486c49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
