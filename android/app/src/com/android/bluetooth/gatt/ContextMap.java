@@ -73,7 +73,7 @@ public class ContextMap<C, T> {
     /**
      * Application entry mapping UUIDs to appIDs and callbacks.
      */
-    class App {
+    public class App {
         /** The UUID of the application */
         public UUID uuid;
 
@@ -291,7 +291,7 @@ public class ContextMap<C, T> {
     /**
      * Remove the context for a given application ID.
      */
-    void remove(int id) {
+    public void remove(int id) {
         boolean find = false;
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
@@ -369,7 +369,7 @@ public class ContextMap<C, T> {
     /**
      * Get an application context by ID.
      */
-    App getById(int id) {
+    public App getById(int id) {
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
             while (i.hasNext()) {
@@ -673,7 +673,7 @@ public class ContextMap<C, T> {
     /**
      * Erases all application context entries.
      */
-    void clear() {
+    public void clear() {
         synchronized (mAppsLock) {
             Iterator<App> i = mApps.iterator();
             while (i.hasNext()) {

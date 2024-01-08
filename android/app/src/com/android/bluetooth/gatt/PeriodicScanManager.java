@@ -62,7 +62,7 @@ public class PeriodicScanManager {
         mNativeInterface.init(this);
     }
 
-    void cleanup() {
+    public void cleanup() {
         if (DBG) {
             Log.d(TAG, "cleanup()");
         }
