@@ -129,6 +129,17 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
 
     private static final int INTERVAL_UNAVAILABLE = 0xFFFFFFFF;
 
+    /* This is to much AVRCP implementation */
+    @VisibleForTesting
+    static final int INITIAL_SUPPORTED_OPCODES =
+            Request.SupportedOpcodes.PLAY
+                    | Request.SupportedOpcodes.STOP
+                    | Request.SupportedOpcodes.PAUSE
+                    | Request.SupportedOpcodes.FAST_REWIND
+                    | Request.SupportedOpcodes.FAST_FORWARD
+                    | Request.SupportedOpcodes.NEXT_TRACK
+                    | Request.SupportedOpcodes.PREVIOUS_TRACK;
+
     private final int mCcid;
     private Map<String, Map<UUID, Short>> mCccDescriptorValues = new HashMap<>();
     private long mFeatures;
@@ -1034,7 +1045,7 @@ public class MediaControlGattService implements MediaControlGattServiceInterface
         updateSeekingSpeedChar(1, notify);
         updatePlayingOrderSupportedChar(SupportedPlayingOrder.SINGLE_ONCE);
         updatePlayingOrderChar(PlayingOrder.SINGLE_ONCE, notify);
-        updateSupportedOpcodesChar(Request.SupportedOpcodes.NONE, notify);
+        updateSupportedOpcodesChar(INITIAL_SUPPORTED_OPCODES, notify);
     }
 
     private void setInitialCharacteristicValues() {
