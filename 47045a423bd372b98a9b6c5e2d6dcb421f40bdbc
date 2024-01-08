@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ec06432_aa457de7",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1957,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-08T22:29:04Z",
+      "side": 1,
+      "message": "Why is signal being set to 3 here.",
+      "range": {
+        "startLine": 1957,
+        "startChar": 0,
+        "endLine": 1957,
+        "endChar": 27
+      },
+      "revId": "47045a423bd372b98a9b6c5e2d6dcb421f40bdbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
