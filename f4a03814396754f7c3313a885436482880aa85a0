@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "af0f1ec6_a0cd777e",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-08T18:37:02Z",
+      "side": 1,
+      "message": "Nice CL! \n\nI think this one can be exempt from flagging requirement since no logical change, just moving/adding definitions; please add to this commit for Dr. No:\n\n\"Flag: EXEMPT \u003creason\u003e\"",
+      "revId": "f4a03814396754f7c3313a885436482880aa85a0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
