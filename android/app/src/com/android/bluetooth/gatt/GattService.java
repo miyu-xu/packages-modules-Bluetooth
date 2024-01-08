@@ -94,6 +94,7 @@ import com.android.bluetooth.btservice.MetricsLogger;
 import com.android.bluetooth.btservice.ProfileService;
 import com.android.bluetooth.flags.FeatureFlags;
 import com.android.bluetooth.flags.FeatureFlagsImpl;
+import com.android.bluetooth.le_scan.ScanManager;
 import com.android.bluetooth.util.NumberUtils;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
@@ -234,9 +235,9 @@ public class GattService extends ProfileService {
     /**
      * List of our registered scanners.
      */
-    class ScannerMap extends ContextMap<IScannerCallback, PendingIntentInfo> {}
+    public class ScannerMap extends ContextMap<IScannerCallback, PendingIntentInfo> {}
 
-    ScannerMap mScannerMap = new ScannerMap();
+    public ScannerMap mScannerMap = new ScannerMap();
 
     /**
      * List of our registered advertisers.
@@ -3019,7 +3020,7 @@ public class GattService extends ProfileService {
     }
 
     // callback from ScanManager for dispatch of errors apps.
-    void onScanManagerErrorCallback(int scannerId, int errorCode) throws RemoteException {
+    public void onScanManagerErrorCallback(int scannerId, int errorCode) throws RemoteException {
         ScannerMap.App app = mScannerMap.getById(scannerId);
         if (app == null || (app.callback == null && app.info == null)) {
             Log.e(TAG, "App or callback is null");
@@ -3150,7 +3151,7 @@ public class GattService extends ProfileService {
     }
 
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_SCAN)
-    void unregisterScanner(int scannerId, AttributionSource attributionSource) {
+    public void unregisterScanner(int scannerId, AttributionSource attributionSource) {
         if (!Utils.checkScanPermissionForDataDelivery(
                 this, attributionSource, "GattService unregisterScanner")) {
             return;
