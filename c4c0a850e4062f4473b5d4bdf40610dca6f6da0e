@@ -118,6 +118,30 @@
       },
       "revId": "c4c0a850e4062f4473b5d4bdf40610dca6f6da0e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15319bc2_4dd25c2e",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapActivity.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-08T04:32:48Z",
+      "side": 1,
+      "message": "Thanks for the review. Could you give +2 as DRI?",
+      "parentUuid": "00cabae1_1e2e334f",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 64
+      },
+      "revId": "c4c0a850e4062f4473b5d4bdf40610dca6f6da0e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
