@@ -22,6 +22,30 @@
       },
       "revId": "e334c856b658ce4a245268d933d86bebe8ea3519",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7ea2352c_e1f4701f",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "suggested by Hsin-chen in Gatt proposal comments \n\nWe have the FetchRemoteUuids method [0]. But note that Android has a check that it can\u0027t be called during bonding.[1]\n\n[0]:https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/system/gd/rust/linux/service/src/iface_bluetooth.rs;l\u003d670;drc\u003d10150b3fa714b79b01e9884215eae17432195d0c\n[1]:https://cs.android.com/android/platform/superproject/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/btservice/RemoteDevices.java;l\u003d1251;drc\u003d8321af27c81f39a7c368974048c9c0473c30d794",
+      "parentUuid": "726c6134_765ccfd1",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 0
+      },
+      "revId": "e334c856b658ce4a245268d933d86bebe8ea3519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

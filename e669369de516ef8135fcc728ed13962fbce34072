@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a16dc38e_2c840ebf",
+        "filename": "floss/pandora/floss/floss_enums.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a4dc9758_37705810",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16fb5909_8b928898",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-01-08T10:08:03Z",
       "side": 1,
       "message": "Unused variable. Will it be used in the future?",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c62bc619_973e0be3",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "which variable do you refer to ?\nfor this import, we are using it in the code",
+      "parentUuid": "16fb5909_8b928898",
       "revId": "e669369de516ef8135fcc728ed13962fbce34072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +100,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1d966e9_cadb591d",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0e655a08_fd991a55",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5d1c7dc9_dc42c7c3",
@@ -71,6 +131,24 @@
       "writtenOn": "2024-01-08T10:08:03Z",
       "side": 1,
       "message": "The status is come from floss_enums.GattStatus. It\u0027s better to change them\nto floss_enums.GattStatus. Please also change other thing like this as well.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88754ecb_4b6da6f7",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5d1c7dc9_dc42c7c3",
       "revId": "e669369de516ef8135fcc728ed13962fbce34072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -92,6 +170,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbff5a2f_6b14433d",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f4224bc1_73771730",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55ec283e_b6c9f703",
@@ -105,6 +201,24 @@
       "writtenOn": "2024-01-08T10:08:03Z",
       "side": 1,
       "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "66164630_3dc589e4",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55ec283e_b6c9f703",
       "revId": "e669369de516ef8135fcc728ed13962fbce34072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -126,6 +240,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "70d63663_e66feede",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbf48501_4c54b575",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6b1d4d5b_cff6b762",
@@ -143,6 +275,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57952b02_3c08e49e",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6b1d4d5b_cff6b762",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cc69df54_1955d5d5",
@@ -156,6 +306,24 @@
       "writtenOn": "2024-01-08T10:08:03Z",
       "side": 1,
       "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c69a39a_f55d42d3",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cc69df54_1955d5d5",
       "revId": "e669369de516ef8135fcc728ed13962fbce34072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -194,6 +362,42 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4fc6cd7f_e79855db",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fcd1c25e_43b79c92",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "636240a2_79b658eb",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fff6a3dd_f1116b69",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "aa6e593a_687596c7",
@@ -207,6 +411,24 @@
       "writtenOn": "2024-01-08T10:08:03Z",
       "side": 1,
       "message": "What is the point to use try... finally... here?",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9c21d7e3_9cd99e46",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "aa6e593a_687596c7",
       "revId": "e669369de516ef8135fcc728ed13962fbce34072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -228,6 +450,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6ae81417_9c667938",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "36b65796_5563e74c",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5df37907_c6790054",
@@ -241,6 +481,24 @@
       "writtenOn": "2024-01-08T10:08:03Z",
       "side": 1,
       "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0202b7fd_ef6734eb",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-08T12:54:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5df37907_c6790054",
       "revId": "e669369de516ef8135fcc728ed13962fbce34072",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
