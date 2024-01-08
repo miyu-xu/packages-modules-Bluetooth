@@ -1088,6 +1088,10 @@ public final class BluetoothAdapter {
         return sAdapter;
     }
 
+    static synchronized boolean isDeprecatedAdapterAlreadyCreated() {
+        return sAdapter != null;
+    }
+
     /** @hide */
     public static BluetoothAdapter createAdapter(AttributionSource attributionSource) {
         BluetoothServiceManager manager =
