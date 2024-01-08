@@ -16,6 +16,24 @@
       "message": "maybe use `Flags.X` instead of \"com.android.bluetooth.flags.vcp_mute_unmute\")\"\n\nbased on [doc](go/android-flags-howto-apis#new-apis-in-mainline-code), Bluetooth is `AOSP (and is automerging to git_main directly): use @FlaggedApi(Flags.FLAG_NAME) (declare an aconfig flag in AOSP)`\n\nmay need confirmation from flag expert @wescande@google.com",
       "revId": "100ba40e2696bcb681474a9e2c496dd91e63f5c1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "43eb97f9_be500cd9",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 649,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-08T19:26:06Z",
+      "side": 1,
+      "message": "Unfortunately, this does not work at the moment as it create a circular dependency.\n\nI have a CL (aosp/2898732) to try to enable this syntax but it is not ready yet.",
+      "parentUuid": "c6f7cfa4_a4e8d82e",
+      "revId": "100ba40e2696bcb681474a9e2c496dd91e63f5c1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
