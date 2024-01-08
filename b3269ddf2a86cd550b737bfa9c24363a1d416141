@@ -34,6 +34,24 @@
       "parentUuid": "8aee632c_3181d78b",
       "revId": "b3269ddf2a86cd550b737bfa9c24363a1d416141",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "85dc10b3_e2ee4a9a",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 4266,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-08T09:59:02Z",
+      "side": 1,
+      "message": "Yes, this was intended - to not duplicate the same notifications! Thank you for detailed check of this change!",
+      "parentUuid": "eb73807a_30e2114e",
+      "revId": "b3269ddf2a86cd550b737bfa9c24363a1d416141",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
