@@ -16,6 +16,24 @@
       "message": "Why this has been abandoned ?",
       "revId": "6a5a91def08b52ca6b5d9c6c1856ffe517330ce2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b73f9e99_e4df8922",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1939360
+      },
+      "writtenOn": "2024-01-08T13:41:20Z",
+      "side": 1,
+      "message": "I\u0027m confused. This was merged in main already: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2821650\n\nMaybe I double-created it with the cherry-pick too ? Or did I miss something else ?\n\nLet me try to rebase and see if the diff is null",
+      "parentUuid": "32c2a062_9a5fe8b4",
+      "revId": "6a5a91def08b52ca6b5d9c6c1856ffe517330ce2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
