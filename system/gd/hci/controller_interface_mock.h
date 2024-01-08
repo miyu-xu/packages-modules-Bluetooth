@@ -24,6 +24,8 @@
 #include "hci/hci_packets.h"
 #include "hci/le_rand_callback.h"
 
+using testing::Return;
+
 // Unit test interfaces
 namespace bluetooth {
 namespace hci {
@@ -166,6 +168,93 @@ class MockControllerInterface : public ControllerInterface {
       (),
       (const));
   MOCK_METHOD(void, SetDabAudioBufferTime, (uint16_t buffer_time_ms));
+
+  MockControllerInterface() {
+    ON_CALL(*this, GetLocalName).WillByDefault(Return("MockController"));
+    LocalVersionInformation version;
+    version.hci_version_ = HciVersion::V_5_0;
+    version.hci_revision_ = 0x1234;
+    version.lmp_version_ = LmpVersion::V_4_2;
+    version.manufacturer_name_ = 0xBAD;
+    version.lmp_subversion_ = 0x5678;
+    ON_CALL(*this, GetLocalVersionInformation).WillByDefault(Return(version));
+    ON_CALL(*this, SupportsSimplePairing).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsSecureConnections).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsSimultaneousLeBrEdr).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsInterlacedInquiryScan).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsRssiWithInquiryResults).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsExtendedInquiryResponse).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsRoleSwitch).WillByDefault(Return(true));
+    ON_CALL(*this, Supports3SlotPackets).WillByDefault(Return(true));
+    ON_CALL(*this, Supports5SlotPackets).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsClassic2mPhy).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsClassic3mPhy).WillByDefault(Return(true));
+    ON_CALL(*this, Supports3SlotEdrPackets).WillByDefault(Return(true));
+    ON_CALL(*this, Supports5SlotEdrPackets).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsSco).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsHv2Packets).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsHv3Packets).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsEv3Packets).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsEv4Packets).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsEv5Packets).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsEsco2mPhy).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsEsco3mPhy).WillByDefault(Return(true));
+    ON_CALL(*this, Supports3SlotEscoEdrPackets).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsHoldMode).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsSniffMode).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsParkMode).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsNonFlushablePb).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsSniffSubrating).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsEncryptionPause).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBle).WillByDefault(Return(true));
+
+    ON_CALL(*this, SupportsBleEncryption).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectionParametersRequest).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleExtendedReject).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePeripheralInitiatedFeaturesExchange).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePing).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleDataPacketLengthExtension).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePrivacy).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleExtendedScannerFilterPolicies).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBle2mPhy).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleStableModulationIndexTx).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleStableModulationIndexRx).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleCodedPhy).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleExtendedAdvertising).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePeriodicAdvertising).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectionParameterRequest).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleChannelSelectionAlgorithm2).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePowerClass1).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleMinimumUsedChannels).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectionCteRequest).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectionCteResponse).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectionlessCteTransmitter).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectionlessCteReceiver).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleAntennaSwitchingDuringCteTx).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleAntennaSwitchingDuringCteRx).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleReceivingConstantToneExtensions).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePeriodicAdvertisingSyncTransferSender).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePeriodicAdvertisingSyncTransferRecipient).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleSleepClockAccuracyUpdates).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleRemotePublicKeyValidation).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectedIsochronousStreamCentral).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectedIsochronousStreamPeripheral).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleIsochronousBroadcaster).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleSynchronizedReceiver).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePowerChannelHostSupport).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleIsochronousChannelsHostSupport).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePowerControlRequest).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePowerChangeIndication).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePathLossMonitoring).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBlePeriodicAdvertisingAdi).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectionSubrating).WillByDefault(Return(true));
+    ON_CALL(*this, SupportsBleConnectionSubratingHost).WillByDefault(Return(true));
+    ON_CALL(*this, GetAclPacketLength).WillByDefault(Return(1024));
+    ON_CALL(*this, GetNumAclPacketBuffers).WillByDefault(Return(45));
+    ON_CALL(*this, GetScoPacketLength).WillByDefault(Return(200));
+    ON_CALL(*this, GetNumScoPacketBuffers).WillByDefault(Return(20));
+    ON_CALL(*this, GetMacAddress).WillByDefault(Return(*Address::FromString("12:34:56:78:9a:bc")));
+  }
 };
 
 }  // namespace testing
