@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b7557c3_b49eeba4",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-08T06:57:53Z",
+      "side": 1,
+      "message": "Agree with you. Let me remove the prefix.",
+      "parentUuid": "ee334776_45d3d07a",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 12
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f941d749_6e630bc6",
@@ -60,6 +84,30 @@
       "writtenOn": "2024-01-05T17:46:57Z",
       "side": 1,
       "message": "Should this be flag direclty to not initialize anything ?",
+      "range": {
+        "startLine": 95,
+        "startChar": 5,
+        "endLine": 95,
+        "endChar": 19
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "26f38edb_6fcf6c97",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-08T06:57:53Z",
+      "side": 1,
+      "message": "I flag this in the function `BTA_dm_on_hw_on`. If offload, then bta_dm_disable_pm.",
+      "parentUuid": "f941d749_6e630bc6",
       "range": {
         "startLine": 95,
         "startChar": 5,
@@ -93,6 +141,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b013a1f1_fc368fa6",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-08T06:57:53Z",
+      "side": 1,
+      "message": "We don\u0027t need this because of not bta_dm_init_pm.",
+      "parentUuid": "8a0ddd08_2ecd0aaf",
+      "range": {
+        "startLine": 286,
+        "startChar": 12,
+        "endLine": 286,
+        "endChar": 33
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "17c14af0_5408ed3d",
@@ -116,6 +188,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7cbc3ce_c8933806",
+        "filename": "system/bta/dm/bta_dm_pm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-08T06:57:53Z",
+      "side": 1,
+      "message": "There\u0027s a hardware limitation. For me ,handled in stack or hal are ok. But based on the design and previous discussed with Jack, we preferred to handle the logic in the project hal. As for AOSP, it is also more clear to just not to do the sniff logic in the stack.",
+      "parentUuid": "17c14af0_5408ed3d",
+      "range": {
+        "startLine": 531,
+        "startChar": 0,
+        "endLine": 531,
+        "endChar": 62
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "06d756eb_378c0289",
@@ -129,6 +225,30 @@
       "writtenOn": "2024-01-05T17:46:57Z",
       "side": 1,
       "message": "There is something I do not understand.\n\nAbove code mention:\n```\nif (IS_FLAG_ENABLED(enable_sniff_offload) \u0026\u0026\n    osi_property_get_bool(kPropertySniffOffloadEnabled, false)) {\n  return;\n}\n```\n\nso:\n```\nif (flag \u0026\u0026 property) return\n```\n\nThis last assert is the only one that has both the property to true, and the flag to true. That mean it\u0027s the only one that trigger the return... and yet we assert that it has not returned.\n\nWhat am I missing ?",
+      "range": {
+        "startLine": 602,
+        "startChar": 12,
+        "endLine": 602,
+        "endChar": 13
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2f45c7a0_f64ec898",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-08T06:57:53Z",
+      "side": 1,
+      "message": "Nope. Seems like atest cache wrong result. I change to `atest net_test_bta:BtaDmCustomAlarmTest` and it failed....\n\nAlso I found that it always ignore the test `sniff_offload_feature__enable_flag`.",
+      "parentUuid": "06d756eb_378c0289",
       "range": {
         "startLine": 602,
         "startChar": 12,
