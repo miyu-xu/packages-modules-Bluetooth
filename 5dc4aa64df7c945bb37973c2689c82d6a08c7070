@@ -117,6 +117,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a89ddc1a_eb4976de",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-08T15:31:54Z",
+      "side": 1,
+      "message": "L2CA_RequestFastConnParam(l2ca_conn_param_user_t user, RawAddress\u0026 address);\nL2CA_RequestUpdateToStoredConnParam(l2ca_conn_param_user_t user, RawAddress\u0026 address);",
+      "parentUuid": "b8930575_11233c81",
+      "range": {
+        "startLine": 118,
+        "startChar": 5,
+        "endLine": 118,
+        "endChar": 46
+      },
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "eedee662_b9b09979",
         "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
         "patchSetId": 1
