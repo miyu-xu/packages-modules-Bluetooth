@@ -46,6 +46,30 @@
       },
       "revId": "e334c856b658ce4a245268d933d86bebe8ea3519",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d030b5f_d730d056",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:15:56Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7ea2352c_e1f4701f",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 252,
+        "endChar": 0
+      },
+      "revId": "e334c856b658ce4a245268d933d86bebe8ea3519",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
