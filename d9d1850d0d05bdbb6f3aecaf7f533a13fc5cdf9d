@@ -257,6 +257,30 @@
       },
       "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "95833d96_f9decee8",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-08T07:01:36Z",
+      "side": 1,
+      "message": "William, I keep getting this error. But I did trigger the original function. I could see the logs. It seems like the mock function didn\u0027t take affect. Do you know something I am missing?\n```\npackages/modules/Bluetooth/system/bta/test/bta_dm_test.cc:614: Failure\n    Expected equality of these values:\n      1\n      get_func_call_count(\"bta_dm_init_pm\")\n        Which is: 0\n```",
+      "parentUuid": "2f45c7a0_f64ec898",
+      "range": {
+        "startLine": 602,
+        "startChar": 12,
+        "endLine": 602,
+        "endChar": 13
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
