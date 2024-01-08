@@ -16,6 +16,24 @@
       "message": "I don\u0027t see these opcodes in a published core spec.  Do you have a link?",
       "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cad1e699_e6c5eeae",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2024-01-08T05:09:43Z",
+      "side": 1,
+      "message": "https://standardshub.qualcomm.com/SDOs_and_Industry_Fora/Bluetooth%20SIG/Standards/Specifications/Core_Specification/Core_Specification_Atlanta/Atlanta.SPEC.d1.0r03_CSS_d12_r03_ext.pdf",
+      "parentUuid": "ae47392f_183b07f5",
+      "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
