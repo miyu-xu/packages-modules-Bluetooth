@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e4f358c_078cac0f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-08T13:28:03Z",
+      "side": 1,
+      "message": "Should there be also added some cleanup of in_transition ?",
+      "revId": "cc80a7918ce62e0cd89256e17719a132757a1d76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
