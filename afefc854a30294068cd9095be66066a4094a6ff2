@@ -279,6 +279,30 @@
       },
       "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1a7a52c_9971e833",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-08T10:09:47Z",
+      "side": 1,
+      "message": "Okay that makes sense to me. I\u0027ve uploaded a new patch set. PTAL, thanks!",
+      "parentUuid": "621d9bec_6295df45",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 56
+      },
+      "revId": "afefc854a30294068cd9095be66066a4094a6ff2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
