@@ -22,8 +22,11 @@ import android.annotation.RequiresFeature;
 import android.annotation.RequiresNoPermission;
 import android.annotation.RequiresPermission;
 import android.annotation.SystemService;
+import android.app.compat.CompatChanges;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
+import android.compat.annotation.ChangeId;
+import android.compat.annotation.EnabledSince;
 import android.content.AttributionSource;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -61,6 +64,15 @@ public final class BluetoothManager {
     private final AttributionSource mAttributionSource;
     private final BluetoothAdapter mAdapter;
 
+    /**
+     * Starting from {@link android.os.Build.VERSION_CODES#VANILLA_ICE_CREAM}, getAdapter will throw
+     * an exception when used altogether with {@link BluetoothAdapter#getDefaultAdapter()} to
+     * improve stability.
+     */
+    @ChangeId
+    @EnabledSince(targetSdkVersion = android.os.Build.VERSION_CODES.VANILLA_ICE_CREAM)
+    private static final long PREVENT_DOUBLE_ADAPTER = 314861829L;
+
     /** @hide */
     public BluetoothManager(Context context) {
         mAttributionSource =
@@ -77,6 +89,21 @@ public final class BluetoothManager {
      */
     @RequiresNoPermission
     public BluetoothAdapter getAdapter() {
+        if (BluetoothAdapter.isDeprecatedAdapterAlreadyCreated()) {
+            String errorMsg =
+                    mAttributionSource.getPackageName()
+                            + ": Application is trying to use two incompatible BluetoothAdapter.\n"
+                            + "\t'BluetoothAdapter.getDefaultAdapter()' is deprecated and must not"
+                            + " be used at the same time as"
+                            + " 'getSystemService(BluetoothManager.class).getAdapter()'.\n"
+                            + "\tComplete the migration of the app entirely to the new"
+                            + " getSystemService method";
+            if (CompatChanges.isChangeEnabled(PREVENT_DOUBLE_ADAPTER)) {
+                // Throw an error instead of a log for any app that target android V+
+                throw new RuntimeException(errorMsg);
+            }
+            Log.e(TAG, "getAdapter: " + errorMsg);
+        }
         return mAdapter;
     }
 
