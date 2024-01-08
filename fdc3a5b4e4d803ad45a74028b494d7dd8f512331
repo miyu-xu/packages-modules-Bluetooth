@@ -1,0 +1,296 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "24ffc833_1b6f6c96",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 952,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "\u0027characteristics\u0027",
+      "range": {
+        "startLine": 952,
+        "startChar": 25,
+        "endLine": 952,
+        "endChar": 42
+      },
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0be7755e_cc97b54d",
+        "filename": "floss/pandora/floss/gatt_server.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 958,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "\u0027included_services\u0027",
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71f06c24_4f400ae7",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "```\nif addr !\u003d self.task[\u0027address\u0027] or handle !\u003d self.task[\u0027handle\u0027]:\n    return\n    \nif floss_enums.GattStatus(status) !\u003d floss_enums.GattStatus.SUCCESS:\n    logging.error(\u0027Failed to read characteristic from handle. Status: %s\u0027, status)\n```",
+      "range": {
+        "startLine": 328,
+        "startChar": 0,
+        "endLine": 334,
+        "endChar": 0
+      },
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0002ceb4_4e3c4b8c",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "Change to use floss_enums.GattStatus.SUCCESS and also change all other things like this as well.",
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9f7a9470_941b7d64",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "Please log status in all error messages.",
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea756718_e8d340f6",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "This should be on the top.",
+      "range": {
+        "startLine": 371,
+        "startChar": 0,
+        "endLine": 373,
+        "endChar": 0
+      },
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0087a82f_a013ec6c",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "This should be on the top.",
+      "range": {
+        "startLine": 386,
+        "startChar": 0,
+        "endLine": 388,
+        "endChar": 0
+      },
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cc54a86_644b5177",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "Add a blank line after this line.",
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ff89609_6250da4c",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 430,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "if not characteristics:",
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9252ba9_d5423118",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "dtto.",
+      "range": {
+        "startLine": 459,
+        "startChar": 0,
+        "endLine": 463,
+        "endChar": 0
+      },
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "150c1a58_b4d259ab",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 567,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "dtto.",
+      "range": {
+        "startLine": 563,
+        "startChar": 0,
+        "endLine": 567,
+        "endChar": 0
+      },
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f1a6f57c_f9bd2e32",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "dtto.",
+      "range": {
+        "startLine": 578,
+        "startChar": 0,
+        "endLine": 584,
+        "endChar": 0
+      },
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "477321b4_7f210302",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "dtto.",
+      "range": {
+        "startLine": 589,
+        "startChar": 0,
+        "endLine": 595,
+        "endChar": 0
+      },
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f13d687_11ebd3b1",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 756,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T13:59:56Z",
+      "side": 1,
+      "message": "This is a busy waiting loop. The test code should not use it.\n\nWe are able to handle the case:\n```\nSetCharacteristicNotificationFromHandle\n\nWaitCharacteristicNotification\n```\n\nbut we are not able to handel the case:\n```\nWaitCharacteristicNotification\n\nSetCharacteristicNotificationFromHandle\n```\n\nin this way. \n\nCan we change the self.characteristic_changed to a future\nand await on it? So we don\u0027t need a busy waiting loop.",
+      "range": {
+        "startLine": 751,
+        "startChar": 0,
+        "endLine": 756,
+        "endChar": 0
+      },
+      "revId": "fdc3a5b4e4d803ad45a74028b494d7dd8f512331",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
