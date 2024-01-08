@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "538b34a6_5660665f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1939360
+      },
+      "writtenOn": "2024-01-08T13:42:27Z",
+      "side": 1,
+      "message": "Yep, the `use_protobuf3` changes also need to be removed. This can be abandonned.",
+      "revId": "57b44b04b8da6d4acb7b0f55687fb9fc58cc4313",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
