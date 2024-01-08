@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fccbb29a_c7e0b785",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-08T13:28:25Z",
+      "side": 1,
+      "message": "This function is moved to new file so it will not build as it is now.\n\nI suggest to also create a new header file for new .cc file, which makes things easier.\n\nAlso I see there is some pattern on function naming. API functions starts with L2CA_ and uses camel case in following part. Static functions use small letter - it probably makes sense to keep it consistent.",
+      "revId": "19a3d43a0deab443a2624cc411aca4d44a6c8afb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
