@@ -22,6 +22,30 @@
       },
       "revId": "47045a423bd372b98a9b6c5e2d6dcb421f40bdbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3c65bc4a_25b04dea",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1957,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-08T23:11:17Z",
+      "side": 1,
+      "message": "It needs a non-zero value, in range 1-5, and qualcomm chose 3, which is fine",
+      "parentUuid": "7ec06432_aa457de7",
+      "range": {
+        "startLine": 1957,
+        "startChar": 0,
+        "endLine": 1957,
+        "endChar": 27
+      },
+      "revId": "47045a423bd372b98a9b6c5e2d6dcb421f40bdbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
