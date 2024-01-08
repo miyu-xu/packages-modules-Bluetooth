@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec5b039f_50fa5751",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3160,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-08T15:07:17Z",
+      "side": 1,
+      "message": "I think that both - lock and unlock should be done somewhere here in client.cc",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "544d1a0b_164e61c4",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2373,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-08T15:07:17Z",
+      "side": 1,
+      "message": "We need to have more sophisticated mechanism, because if LeAudio is disabled in Java layer and it will not be connected, we will stay locked connection parameter change.",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3fed766_35988f20",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-08T15:07:17Z",
+      "side": 1,
+      "message": "please consider `l2c_ble_conn_params.h`",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e65f1fd_95371d73",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-08T15:07:17Z",
+      "side": 1,
+      "message": "nit: false in both places.",
+      "range": {
+        "startLine": 178,
+        "startChar": 46,
+        "endLine": 178,
+        "endChar": 47
+      },
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "be71caee_bf34fb0e",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-08T15:07:17Z",
+      "side": 1,
+      "message": "if it become API function, we should move declaration to header and also change the function name to something like\n\n`L2CA_StartConnUpdate`",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b8930575_11233c81",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-08T15:07:17Z",
+      "side": 1,
+      "message": "When I look on how `L2CA_EnableUpdateBleConnParams` and how `l2cble_start_conn_update(p_lcb);` works please confirm my understanding\n\nThis function has following work to do\n\n1. Check if there is \"lock\" already set by service discovery - if so return.\n2. Check if there is \"lock\" set by audio profile - if so return.\n3. there was no LOCK and If `lock` is true then underlying function `l2cble_start_conn_update(p_lcb)` will start connection parameter request using parameters stored in \"p_lcb\". Is it anyhow important what parameters are there? Are we somehow confident what parameters are there or it does not matter?\n\n4. If  `lock` is false - then underlying `l2cble_start_conn_update(p_lcb)` will go back to default connection parameters .\n\nIs my understanding correct?  \n\nIf so I suggest the new API should look like this.\n\ntypedef enum {\nL2CA_CONN_PARAM_USER_STACK_SERV_DISCOVERY,\nL2CA_CONN_PARAM_USER_AUDIO_STACK,\n} l2ca_conn_param_user_t;\n\n\nL2CA_RequestToProceedConnParamUpdate(l2ca_conn_param_user_t user, RawAddress\u0026 address);\nL2CA_RequestDefaultConnParam(l2ca_conn_param_user_t user, RawAddress\u0026 address);",
+      "range": {
+        "startLine": 118,
+        "startChar": 5,
+        "endLine": 118,
+        "endChar": 46
+      },
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eedee662_b9b09979",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-08T15:07:17Z",
+      "side": 1,
+      "message": "L2CA_ indicates it is API function. Nowe when it is static we could change name to\n\n`l2cble_enable_update_ble_conn_params`",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
