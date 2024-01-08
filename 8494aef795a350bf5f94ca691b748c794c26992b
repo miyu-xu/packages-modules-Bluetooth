@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f6efafb_34f4ae62",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-08T07:32:32Z",
+      "side": 1,
+      "message": "Rebased on top of the CL that fixes failing test.",
+      "revId": "8494aef795a350bf5f94ca691b748c794c26992b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
