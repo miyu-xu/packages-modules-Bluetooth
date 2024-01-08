@@ -1,0 +1,248 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a4dc9758_37705810",
+        "filename": "floss/pandora/floss/floss_enums.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Remove this.",
+      "range": {
+        "startLine": 177,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 0
+      },
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16fb5909_8b928898",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Unused variable. Will it be used in the future?",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e655a08_fd991a55",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5d1c7dc9_dc42c7c3",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "The status is come from floss_enums.GattStatus. It\u0027s better to change them\nto floss_enums.GattStatus. Please also change other thing like this as well.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4224bc1_73771730",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55ec283e_b6c9f703",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf48501_4c54b575",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b1d4d5b_cff6b762",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "To be consistent with other observer class:\n```\nReadCharacteristicDescriptorFromHandleObserver\n```",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc69df54_1955d5d5",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fff6a3dd_f1116b69",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "To be consistent with other observer classes:\n```\nReadCharacteristicDescriptorFromHandleObserver\n```",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcd1c25e_43b79c92",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Suggest to add a new line here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa6e593a_687596c7",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "What is the point to use try... finally... here?",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "36b65796_5563e74c",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5df37907_c6790054",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-08T10:08:03Z",
+      "side": 1,
+      "message": "Please also log the status code here.",
+      "revId": "e669369de516ef8135fcc728ed13962fbce34072",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
