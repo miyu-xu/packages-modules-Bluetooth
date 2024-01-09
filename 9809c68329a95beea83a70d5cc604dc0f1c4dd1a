@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b502099e_695ddc92",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-09T18:40:48Z",
+      "side": 1,
+      "message": "Nice patch!",
+      "revId": "9809c68329a95beea83a70d5cc604dc0f1c4dd1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d106b83c_cda97fd2",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-09T18:40:48Z",
+      "side": 1,
+      "message": "Please fix this INFO reported by Open-source Licensing: FYI: Found in unchanged code: Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\n\nAnalyzer Description: Identifies changes requiring human review for potential licensing issues.\nOwner: opensource-licensing@google.com\n\nFYI: Found in unchanged code: Third-party license (BSD) disallowed in repository platform/packages/modules/Bluetooth:\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:...Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and or other materials provided with the distribution.\n\n\u003e\u003e Here and elsewhere in this CL, please address.",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 58
+      },
+      "revId": "9809c68329a95beea83a70d5cc604dc0f1c4dd1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
