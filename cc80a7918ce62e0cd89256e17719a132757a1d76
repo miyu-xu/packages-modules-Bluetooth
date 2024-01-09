@@ -81,6 +81,30 @@
       },
       "revId": "cc80a7918ce62e0cd89256e17719a132757a1d76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ba777cb8_2bfb9c8e",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-09T14:33:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d7b3095a_6f2b153c",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 114,
+        "endChar": 28
+      },
+      "revId": "cc80a7918ce62e0cd89256e17719a132757a1d76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
