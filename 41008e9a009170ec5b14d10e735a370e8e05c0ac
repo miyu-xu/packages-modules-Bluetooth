@@ -22,6 +22,30 @@
       },
       "revId": "41008e9a009170ec5b14d10e735a370e8e05c0ac",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df45ef10_e4f10a88",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-09T05:25:05Z",
+      "side": 1,
+      "message": "\u003e Is the \"sniff offload\" different from the \"low power manager\" ?\n\nI thought you know originally. Hmmm... I don\u0027t know the history of \"low power manager\". I could only confirm that `bta_dm_pm_set_mode` is for bt stack doing sniff mode.\n\nBut I traced the entire code in `bta_dm_pm.cc`. The functions are all doing power mode logic (Power mode contains Park / Active / Sniff). So it kinda make sense to flag on bta_dm_init_pm. wdyt about this? Should I move the logic back to bta_dm_pm_set_mode?\n\n\u003e And second question...\n\nSure. I\u0027ll also learn to make changes as simple as I could.",
+      "parentUuid": "ab1086a4_d1a28e00",
+      "range": {
+        "startLine": 294,
+        "startChar": 1,
+        "endLine": 303,
+        "endChar": 3
+      },
+      "revId": "41008e9a009170ec5b14d10e735a370e8e05c0ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
