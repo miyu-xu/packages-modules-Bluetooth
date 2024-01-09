@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecd00758_7cc5ddc7",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 697,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-09T21:33:19Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "7f154e24_efae8303",
+      "range": {
+        "startLine": 697,
+        "startChar": 0,
+        "endLine": 697,
+        "endChar": 33
+      },
+      "revId": "30a41a909b6c49e7dd8adec6019fcc5a1cdc7c29",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80141ad7_d7a857f8",
