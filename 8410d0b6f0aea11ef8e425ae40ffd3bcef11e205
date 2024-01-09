@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "05325584_b26b2a42",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-09T02:50:26Z",
+      "side": 1,
+      "message": "Is this possible to write a test that would have catch the failing behavior ?\n\nSince there is no test modification but this CL is fixing a bug, I expect the current test to not be complete and to not cover this.\nTherefore, they are not useful to test this change",
+      "range": {
+        "startLine": 20,
+        "startChar": 35,
+        "endLine": 20,
+        "endChar": 52
+      },
+      "revId": "8410d0b6f0aea11ef8e425ae40ffd3bcef11e205",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "46dd4a69_8f1b9b49",
