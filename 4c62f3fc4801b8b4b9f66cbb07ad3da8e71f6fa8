@@ -16,6 +16,24 @@
       "message": "upper case.",
       "revId": "4c62f3fc4801b8b4b9f66cbb07ad3da8e71f6fa8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d107030_b3048a6a",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1995410
+      },
+      "writtenOn": "2024-01-09T06:00:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "55706ea2_bcfce6f3",
+      "revId": "4c62f3fc4801b8b4b9f66cbb07ad3da8e71f6fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
