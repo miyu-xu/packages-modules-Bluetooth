@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f7b341c3_cd26d80a",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 687,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-09T21:32:32Z",
+      "side": 1,
+      "message": "Since there\u0027s not an obvious way to do this correctly, resolving.",
+      "parentUuid": "705be7b6_b3f4398c",
+      "range": {
+        "startLine": 687,
+        "startChar": 32,
+        "endLine": 687,
+        "endChar": 49
+      },
+      "revId": "ef8eb63300aad9c1eb0192623a95e7d571437369",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92febc59_90cc1a64",
