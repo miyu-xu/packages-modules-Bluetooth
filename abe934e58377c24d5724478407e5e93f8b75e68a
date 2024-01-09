@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "447d5a8f_50d04e48",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-09T17:48:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d3c7a8f_279defda",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 9,
+        "endChar": 17
+      },
+      "revId": "abe934e58377c24d5724478407e5e93f8b75e68a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "86e30030_bb7fcfa0",
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "sounds fair. `sockets.aconfig` is a fair enough name for this.",
       "parentUuid": "86e30030_bb7fcfa0",
+      "revId": "abe934e58377c24d5724478407e5e93f8b75e68a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa1e2d36_449c9a6c",
+        "filename": "flags/socket_exception.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-09T17:48:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "022a5236_04076264",
       "revId": "abe934e58377c24d5724478407e5e93f8b75e68a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
