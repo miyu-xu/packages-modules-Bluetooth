@@ -281,6 +281,30 @@
       },
       "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9367ceba_e152e8b0",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-09T01:03:36Z",
+      "side": 1,
+      "message": "#### About the test being ignored\n\nThis test is a `TEST_WITH_FLAGS` that rely on `REQUIRES_FLAGS_ENABLED([...]enable_sniff_offload)`.\nIn order for the test to run, it need the flag to be set to the required value.\n\nYou can manually set the flag on your device with the following command:\n```\n# For flags accessed from native:\nadb root \u0026\u0026 adb shell setprop persist.device_config.aconfig_flags.bluetooth.com.android.bluetooth.flags.enable_sniff_offload true\n# For flags accessed from Java:\nadb shell device_config put bluetooth com.android.bluetooth.flags.enable_sniff_offload true\n```\n\nI tested it and can confirm the enable test fail for the same reason as the disable test (as expected, see below):\n```\npackages/modules/Bluetooth/system/bta/test/bta_dm_test.cc:620: Failure \nExpected equality of these values:\n  1\n  get_func_call_count(\"bta_dm_disable_pm\")\n    Which is: 0\n```\n\n\n----\n\n#### About the test error:   \nWhen testing bta code, there should not be any mock on bta method. so the net_test_bta are not linked using TestMockBta. The mock being used in bta test are the rest of the stack in order for bta call to run.\nI tested this and I confirm the behavior, the real method is called in this test.",
+      "parentUuid": "95833d96_f9decee8",
+      "range": {
+        "startLine": 602,
+        "startChar": 12,
+        "endLine": 602,
+        "endChar": 13
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
