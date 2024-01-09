@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "02fd717b_aee02be3",
+        "filename": "system/test/common/hal_version_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-09T22:28:59Z",
+      "side": 1,
+      "message": "Naive question:\nIs this ifdef needed ? the test already mention `REQUIRES_FLAGS_ENABLED`",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 55
+      },
+      "revId": "520bf40f7500bb5135bd3f5679ce564f45958424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
