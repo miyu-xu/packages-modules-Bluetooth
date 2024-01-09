@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b868d978_263dcd14",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-09T12:34:04Z",
+      "side": 1,
+      "message": "Maybe we should track the player capabilities even when LE Audio is not in use, to ensure we always have correct values ?\n\nIs it possible we would not enable some additional opcodes once the player is properly registered ?",
+      "revId": "a1be3556207581ba7da251e27a2774efe98d7090",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
