@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8476f13c_2822845b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 1385,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-09T19:35:13Z",
+      "side": 1,
+      "message": "Should this throw an IllegalArgumentException, as well?  It seems like it will still fix the problem, and keep the check stricter.",
+      "range": {
+        "startLine": 1385,
+        "startChar": 0,
+        "endLine": 1385,
+        "endChar": 74
+      },
+      "revId": "d9697aa279a66ca5a33c53a9fd5aa15f0c28f642",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
