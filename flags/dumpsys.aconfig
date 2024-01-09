@@ -6,3 +6,10 @@ flag {
     description: "Use the passed in filedescriptor to write dumpsys output"
     Bug: 319277798
 }
+
+flag {
+    name: "dumpsys_le_audio_use_global_namespace"
+    namespace: "bluetooth"
+    description: "Use the global le_audio namespace rather than bluetooth::"
+    Bug: 319279029
+}
