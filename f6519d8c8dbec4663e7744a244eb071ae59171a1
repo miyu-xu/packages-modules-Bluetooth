@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "17dd4766_c22d6c07",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-09T08:25:18Z",
+      "side": 1,
+      "message": "This is good solution. But due to merge of https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2894936 this needs to be rebased and cover also \"broadcast\" start scenario.",
+      "revId": "f6519d8c8dbec4663e7744a244eb071ae59171a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
