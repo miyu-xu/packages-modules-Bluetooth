@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afcdfb72_19d2acc8",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-09T02:47:22Z",
+      "side": 1,
+      "message": "We should put this callback out side this function since there\u0027s no sense to\nreturn SetCharacteristicNotificationFromHandleResponse only when remote sending\nthe notification to us.",
+      "range": {
+        "startLine": 663,
+        "startChar": 0,
+        "endLine": 675,
+        "endChar": 0
+      },
+      "revId": "61059a4ba936a611b29838fd21580e93f8dd85ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
