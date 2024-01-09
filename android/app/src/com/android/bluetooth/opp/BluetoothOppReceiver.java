@@ -155,6 +155,8 @@ public class BluetoothOppReceiver extends BroadcastReceiver {
             }
 
         } else if (action.equals(Constants.ACTION_OPEN_OUTBOUND_TRANSFER)) {
+            // TODO: Remove this if statement branch when the flag
+            //       oppStartActivityDirectlyFromNotification is cleaned up.
             if (V) {
                 Log.v(TAG, "Received ACTION_OPEN_OUTBOUND_TRANSFER.");
             }
