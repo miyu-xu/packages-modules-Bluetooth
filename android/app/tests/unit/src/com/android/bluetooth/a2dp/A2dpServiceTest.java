@@ -66,8 +66,6 @@ import org.mockito.hamcrest.MockitoHamcrest;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 @MediumTest
 @RunWith(AndroidJUnit4.class)
@@ -116,7 +114,8 @@ public class A2dpServiceTest {
         mFakeFlagsImpl.setFlag(Flags.FLAG_AUDIO_ROUTING_CENTRALIZATION, false);
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mA2dpService = new A2dpService(mTargetContext, mMockNativeInterface, mFakeFlagsImpl);
-        mA2dpService.doStart();
+        mA2dpService.start();
+        mA2dpService.setAvailable(true);
 
         // Override the timeout value to speed up the test
         A2dpStateMachine.sConnectTimeoutMs = (int)TIMEOUT_MS.toMillis();
@@ -140,7 +139,7 @@ public class A2dpServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        mA2dpService.doStop();
+        mA2dpService.stop();
         mTargetContext.unregisterReceiver(mReceiver);
         TestUtils.clearAdapterService(mAdapterService);
     }
