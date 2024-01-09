@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d871e630_29fb5580",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1496,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-01-09T16:17:32Z",
+      "side": 1,
+      "message": "This is not necessarily an error - it could mean all batteries were removed for this device. I would just change the wording to imply it is potentially removed.",
+      "range": {
+        "startLine": 1496,
+        "startChar": 15,
+        "endLine": 1496,
+        "endChar": 40
+      },
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbe11b07_e677a729",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-01-09T16:17:32Z",
+      "side": 1,
+      "message": "```suggestion\n                status-all: Proposed battery status from all sources for a given device.\\n\n```",
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e496106a_6768314a",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-01-09T16:17:32Z",
+      "side": 1,
+      "message": "I don\u0027t think these are correct. A BatterySet is the result, including all of the linked batteries. We do not have a mechanism for fetching all of the potential BatterySet objects associated with a device at this time.",
+      "range": {
+        "startLine": 674,
+        "startChar": 12,
+        "endLine": 674,
+        "endChar": 20
+      },
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9ba808b3_0e3df4eb",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-01-09T16:17:32Z",
+      "side": 1,
+      "message": "I\u0027m not sure I would consider this an error since the user\u0027s desired outcome was achieved.",
+      "range": {
+        "startLine": 725,
+        "startChar": 27,
+        "endLine": 725,
+        "endChar": 30
+      },
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a1e51c_fb3f3775",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-01-09T16:17:32Z",
+      "side": 1,
+      "message": "Same as above.",
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
