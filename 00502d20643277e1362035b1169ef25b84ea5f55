@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "726b8339_be60b988",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "155ace39_88864275",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "adab5c09_828100ef",
@@ -31,6 +49,24 @@
       "writtenOn": "2023-12-27T20:56:19Z",
       "side": 1,
       "message": "nit: can you move this block of code down below where you `impl BatteryManagerCallback`",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd460914_63fbb076",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1440,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "adab5c09_828100ef",
       "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "aeb7a428_9559baaa",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 1497,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "2edcc783_0d8bdac0",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e7e0466_25664498",
@@ -65,6 +119,24 @@
       "writtenOn": "2023-12-27T20:56:19Z",
       "side": 1,
       "message": "As someone who didn\u0027t immediately know what these commands do, do you mind adding a little more description?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74785b8_f8e943d0",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e7e0466_25664498",
       "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "74f55218_9b52e215",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8cda5ab9_eedfac13",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "83654ccb_72341670",
@@ -99,6 +189,24 @@
       "writtenOn": "2023-12-27T20:56:19Z",
       "side": 1,
       "message": "is `batteries` guaranteed to be non-empty?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c8e16a4_266fa0a8",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 682,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "83654ccb_72341670",
       "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -120,6 +228,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1b1ffb3e_0ee0f350",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Battery status as displayed in the UI is the result of selecting one data source from, or aggregating, multiple data sources. The `status` command is intended to show the resulting battery status that should be displayed in the UI, while the `status-all` should show the data from all battery sources pre-selection/aggregation.",
+      "parentUuid": "af558741_8420a2ec",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0793e24e_a9942997",
@@ -133,6 +259,24 @@
       "writtenOn": "2023-12-27T20:56:19Z",
       "side": 1,
       "message": "why `to_lowercase`?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fd9bedf3_c028bf8b",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Some issues have previously arisen when an address is not normalized after user input (b/292282151), so this was just a way to ensure a non-normalized address doesn\u0027t cause issues down the road.",
+      "parentUuid": "0793e24e_a9942997",
       "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -154,6 +298,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a9fe9c8_046e37d5",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 727,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fc17ce0d_e18533f2",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b0f753e9_a2c261d2",
@@ -167,6 +329,24 @@
       "writtenOn": "2023-12-27T20:56:19Z",
       "side": 1,
       "message": "What\u0027s this TODO for?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0e75e67_902532ba",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 741,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "It was to add more description for each command in the form of a \"help\" or \"info\" section, but as per your previous commend adding more to the description of the command itself fixes this.",
+      "parentUuid": "b0f753e9_a2c261d2",
       "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -188,6 +368,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "00c942e2_a4957fda",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 744,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0ab9a1e3_4af1076d",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d4bef380_27c7ce08",
@@ -201,6 +399,24 @@
       "writtenOn": "2023-12-27T20:56:19Z",
       "side": 1,
       "message": "I\u0027m a little confused what this is being used for since it looks like all we do with this set is add/insert addresses via track/untrack. Also, with that - why do we need track/untrack commands?",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be94d37_35d42827",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-09T00:14:09Z",
+      "side": 1,
+      "message": "When btclient registers itself for updates from the BatteryService, we receive all battery updates for all connected devices. If, say, we only wanted to monitor the battery updates for a single device, this could result in excess information. The track/untrack commands allow us to filter for only the battery updates for addresses we are interested in, which are stored in this address filter.",
+      "parentUuid": "d4bef380_27c7ce08",
       "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
