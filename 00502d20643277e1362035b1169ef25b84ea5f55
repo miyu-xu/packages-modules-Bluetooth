@@ -283,6 +283,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1f3733f1_008a381d",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 701,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-01-09T16:05:49Z",
+      "side": 1,
+      "message": "Ok - it\u0027s not a big deal, but from the bug it seems like btclient prefers uppercase, so it would make more sense for this to be uppercase.",
+      "parentUuid": "fd9bedf3_c028bf8b",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fc17ce0d_e18533f2",
         "filename": "system/gd/rust/linux/client/src/command_handler.rs",
         "patchSetId": 2
@@ -417,6 +435,24 @@
       "side": 1,
       "message": "When btclient registers itself for updates from the BatteryService, we receive all battery updates for all connected devices. If, say, we only wanted to monitor the battery updates for a single device, this could result in excess information. The track/untrack commands allow us to filter for only the battery updates for addresses we are interested in, which are stored in this address filter.",
       "parentUuid": "d4bef380_27c7ce08",
+      "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1fe17b3_9507c4c4",
+        "filename": "system/gd/rust/linux/client/src/main.rs",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1936656
+      },
+      "writtenOn": "2024-01-09T16:05:49Z",
+      "side": 1,
+      "message": "Ah I missed the part earlier where you use it in `on_battery_info_updated`",
+      "parentUuid": "7be94d37_35d42827",
       "revId": "00502d20643277e1362035b1169ef25b84ea5f55",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
