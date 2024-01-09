@@ -52,6 +52,24 @@
       "parentUuid": "cad1e699_e6c5eeae",
       "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0bb98e6b_af473843",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2024-01-09T09:20:56Z",
+      "side": 1,
+      "message": "https://specworkspace.bluetooth.com/specifications/s1009/p1706/SpecificationDocuments/D1.0%20Specification/Atlanta.SPEC.d1.0r03_CSS_d12_r03_ext.pdf?slrid\u003d48f9ffa0-9dbe-70d9-9da4-00d63fd540d3",
+      "parentUuid": "64c9dca9_dc24311b",
+      "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
