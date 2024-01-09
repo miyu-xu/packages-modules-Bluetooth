@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "412e297f_70923d91",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-09T22:44:52Z",
+      "side": 1,
+      "message": "this is the same as 0, why using a char and not the 0 value ?\n\nAre all the test in all the case checking if this is 0 then ?",
+      "range": {
+        "startLine": 621,
+        "startChar": 12,
+        "endLine": 621,
+        "endChar": 16
+      },
+      "revId": "4876edd45a7558e9dc0d5375b2a4495ff2d3b0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
