@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d221292_d6edde62",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-09T09:31:49Z",
+      "side": 1,
+      "message": "What do you mean here ? \"player being not registered\" ?",
+      "range": {
+        "startLine": 11,
+        "startChar": 53,
+        "endLine": 12,
+        "endChar": 19
+      },
+      "revId": "0afca96b432878f67d0b152fbb2ce5f3e8234adb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9dec62bf_12a7715b",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-09T09:31:49Z",
+      "side": 1,
+      "message": "match",
+      "range": {
+        "startLine": 132,
+        "startChar": 18,
+        "endLine": 132,
+        "endChar": 22
+      },
+      "revId": "0afca96b432878f67d0b152fbb2ce5f3e8234adb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f566f7d5_448278e6",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-09T09:31:49Z",
+      "side": 1,
+      "message": "behavior ?",
+      "range": {
+        "startLine": 132,
+        "startChar": 29,
+        "endLine": 132,
+        "endChar": 43
+      },
+      "revId": "0afca96b432878f67d0b152fbb2ce5f3e8234adb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
