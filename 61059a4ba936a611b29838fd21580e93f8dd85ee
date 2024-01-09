@@ -22,6 +22,30 @@
       },
       "revId": "61059a4ba936a611b29838fd21580e93f8dd85ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f284c0a2_905739cc",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-09T13:51:24Z",
+      "side": 1,
+      "message": "I tried to put the \u0027on_notify\u0027 callback above the SetCharacteristicNotificationFromHandle method but it didn\u0027t called.\n\n\nif we put it in async method like the following:\n\n```\n    async def send_notification(self, address, characteristic_handle):\n        class SendCharacteristicNotificationObserver(gatt_client.GattClientCallbacks):\n            \"\"\"Observer to observe the send notification.\"\"\"\n            def __init__(self, task):\n                self.task \u003d task\n            \n            @utils.glib_callback()\n            def on_notify(self, addr, handle, value):\n                if addr !\u003d self.task[\u0027address\u0027] or handle !\u003d self.task[\u0027characteristic_handle\u0027]:\n                    return\n                future \u003d self.task[\u0027send_notification\u0027]\n                future.get_loop().call_soon_threadsafe(future.set_result, ())\n\n                future \u003d self.task[\u0027characteristic_changed\u0027]\n                future.get_loop().call_soon_threadsafe(future.set_result, ())\n\n        send_notification \u003d asyncio.get_running_loop().create_future()\n        observer \u003d SendCharacteristicNotificationObserver({\n            \u0027address\u0027: address,\n            \u0027send_notification\u0027: send_notification,\n            \u0027characteristic_handle\u0027: characteristic_handle,\n            \u0027characteristic_changed\u0027: self.characteristic_changed,\n        })\n        name \u003d utils.create_observer_name(observer)\n        self.bluetooth.gatt_client.register_callback_observer(name, observer)\n        await send_notification\n        self.characteristic_state[characteristic_handle] \u003d True\n```\nI still needed to execute it somewhere to give it the address and the characteristic handle for the assertion.\n\nCould you please help and clarify more?",
+      "parentUuid": "afcdfb72_19d2acc8",
+      "range": {
+        "startLine": 663,
+        "startChar": 0,
+        "endLine": 675,
+        "endChar": 0
+      },
+      "revId": "61059a4ba936a611b29838fd21580e93f8dd85ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
