@@ -757,6 +757,46 @@ public final class Utils {
         }
     }
 
+    public static boolean checkCallerDebuged(Context context, String tag, String method) {
+        String logTag = tag + "." + method + "()";
+        int callingUid = Binder.getCallingUid();
+        UserHandle callingUser = UserHandle.getUserHandleForUid(callingUid);
+
+        // Use the Bluetooth process identity when making call to get parent user
+        final long ident = Binder.clearCallingIdentity();
+        try {
+            UserManager um = context.getSystemService(UserManager.class);
+            UserHandle uh = um.getProfileParent(callingUser);
+            int parentUser = (uh != null) ? uh.getIdentifier() : USER_HANDLE_NULL.getIdentifier();
+
+            Log.d(TAG, "checkCallerDebuged: "
+                    + (" sForegroundUserId=" + sForegroundUserId)
+                    + (" callingUser.getIdentifier()=" + callingUser.getIdentifier())
+                    + (" parentUser=" + parentUser)
+                    + (" callingUid=" + callingUid)
+                    + (" uh=" + uh)
+                    + (" UserHandle.getAppId(sSystemUiUid)=" + UserHandle.getAppId(sSystemUiUid))
+                    + (" UserHandle.getAppId(Process.SYSTEM_UID)=" + UserHandle.getAppId(Process.SYSTEM_UID))
+                    + (" UserHandle.getAppId(callingUid)=" + UserHandle.getAppId(callingUid))
+                    );
+
+            // Always allow SystemUI/System access.
+            boolean res =  (sForegroundUserId == callingUser.getIdentifier())
+                    || (sForegroundUserId == parentUser)
+                    || (UserHandle.getAppId(sSystemUiUid) == UserHandle.getAppId(callingUid))
+                    || (UserHandle.getAppId(Process.SYSTEM_UID) == UserHandle.getAppId(callingUid));
+            if (!res) {
+                Log.w(TAG, logTag + " - Not allowed for non-active user and non-system and non-managed user");
+            }
+            return res;
+        } catch (Exception ex) {
+            Log.e(TAG, "checkCallerDebuged: Exception ex=" + ex);
+            return false;
+        } finally {
+            Binder.restoreCallingIdentity(ident);
+        }
+    }
+
     public static boolean checkCallerIsSystemOrActiveOrManagedUser(Context context, String tag) {
         if (isInstrumentationTestMode()) {
             return true;

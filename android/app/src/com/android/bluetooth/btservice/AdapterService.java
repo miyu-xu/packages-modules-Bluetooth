@@ -3447,7 +3447,7 @@ public class AdapterService extends Service {
                 BluetoothDevice device, AttributionSource attributionSource) {
             AdapterService service = getService();
             if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getRemoteUuids")
+                    || !Utils.checkCallerDebuged(service, TAG, "getRemoteUuids")
                     || !Utils.checkConnectPermissionForDataDelivery(
                             service, attributionSource, "AdapterService getRemoteUuids")) {
                 return new ArrayList<>();
