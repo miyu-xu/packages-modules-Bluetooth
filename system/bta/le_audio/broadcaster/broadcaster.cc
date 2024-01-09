@@ -1180,7 +1180,7 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
     std::vector<std::unique_ptr<le_audio::CodecInterface>> sw_enc_;
   } audio_receiver_;
 
-  static class QueuedCreateBroadcastRequest {
+  class QueuedCreateBroadcastRequest {
    public:
     bool IsQueuedBroadcast() {
       LOG_INFO();
@@ -1226,16 +1226,16 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
    private:
     /* Queued broadcast data */
-    bool is_queued_;
-    bool is_public_;
+    bool is_queued_ = false;
+    bool is_public_ = false;
     std::string broadcast_name_;
     std::optional<bluetooth::le_audio::BroadcastCode> broadcast_code_;
     std::vector<uint8_t> public_metadata_;
     std::vector<uint8_t> subgroup_quality_;
     std::vector<std::vector<uint8_t>> subgroup_metadata_;
-  } queued_create_broadcast_request_;
+  };
 
-  static class QueuedStartBroadcastRequest {
+  class QueuedStartBroadcastRequest {
    public:
     bool IsQueuedBroadcast() {
       LOG_INFO();
@@ -1269,13 +1269,15 @@ class LeAudioBroadcasterImpl : public LeAudioBroadcaster, public BigCallbacks {
 
    private:
     /* Queued broadcast data */
-    bool is_queued_;
+    bool is_queued_ = false;
     uint32_t broadcast_id_;
-  } queued_start_broadcast_request_;
+  };
 
   bluetooth::le_audio::LeAudioBroadcasterCallbacks* callbacks_;
   std::map<uint32_t, std::unique_ptr<BroadcastStateMachine>> broadcasts_;
   std::vector<std::unique_ptr<BroadcastStateMachine>> pending_broadcasts_;
+  QueuedCreateBroadcastRequest queued_create_broadcast_request_;
+  QueuedStartBroadcastRequest queued_start_broadcast_request_;
 
   /* Some BIG params are set globally */
   uint8_t current_phy_;
@@ -1294,10 +1296,6 @@ LeAudioBroadcasterImpl::LeAudioSourceCallbacksImpl
     LeAudioBroadcasterImpl::audio_receiver_;
 LeAudioBroadcasterImpl::BroadcastAdvertisingCallbacks
     LeAudioBroadcasterImpl::state_machine_adv_callbacks_;
-LeAudioBroadcasterImpl::QueuedCreateBroadcastRequest
-    LeAudioBroadcasterImpl::queued_create_broadcast_request_;
-LeAudioBroadcasterImpl::QueuedStartBroadcastRequest
-    LeAudioBroadcasterImpl::queued_start_broadcast_request_;
 } /* namespace */
 
 void LeAudioBroadcaster::Initialize(
