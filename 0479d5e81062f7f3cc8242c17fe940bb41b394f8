@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffaca162_7c4c620c",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1382,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-09T19:54:01Z",
+      "side": 1,
+      "message": "It\u0027s simpler for me to understand without the else.\n\n```suggestion\n        if (addressType !\u003d ADDRESS_TYPE_PUBLIC\n                \u0026\u0026 addressType !\u003d ADDRESS_TYPE_RANDOM\n                \u0026\u0026 addressType !\u003d ADDRESS_TYPE_ANONYMOUS) {\n            throw new IllegalArgumentException(addressType + \" is not a Bluetooth address type\");\n        }\n        \n        if (addressType \u003d\u003d ADDRESS_TYPE_ANONYMOUS \u0026\u0026 !NULL_MAC_ADDRESS.equals(address)) {\n            throw new IllegalArgumentException(\n                    \"Invalid address for anonymous address type: \" + getAnonymizedAddress());\n        }\n```",
+      "range": {
+        "startLine": 1375,
+        "startChar": 0,
+        "endLine": 1382,
+        "endChar": 9
+      },
+      "revId": "0479d5e81062f7f3cc8242c17fe940bb41b394f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
