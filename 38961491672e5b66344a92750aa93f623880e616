@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e724d74_58989fc3",
+        "filename": "framework/tests/bumble/AndroidTest.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-09T15:22:45Z",
+      "side": 1,
+      "message": "nit: I would prefer the config to have a more meaningful name like `bumble_config_le_only.json`, `bumble_configs/le_only.json` (and rename the old one to `bumble_configs/classic.json`) or something like that.",
+      "range": {
+        "startLine": 32,
+        "startChar": 183,
+        "endLine": 32,
+        "endChar": 197
+      },
+      "revId": "38961491672e5b66344a92750aa93f623880e616",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
