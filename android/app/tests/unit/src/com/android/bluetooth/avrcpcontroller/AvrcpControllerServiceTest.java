@@ -82,7 +82,7 @@ public class AvrcpControllerServiceTest {
         TestUtils.setAdapterService(mAdapterService);
         AvrcpControllerNativeInterface.setInstance(mNativeInterface);
         mService = new AvrcpControllerService(targetContext, mNativeInterface);
-        mService.doStart();
+        mService.start();
         // Try getting the Bluetooth adapter
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         assertThat(mAdapter).isNotNull();
@@ -95,7 +95,7 @@ public class AvrcpControllerServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        mService.doStop();
+        mService.stop();
         AvrcpControllerNativeInterface.setInstance(null);
         mService = AvrcpControllerService.getAvrcpControllerService();
         assertThat(mService).isNull();

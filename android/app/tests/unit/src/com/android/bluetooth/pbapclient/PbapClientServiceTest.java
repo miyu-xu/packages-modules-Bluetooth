@@ -79,7 +79,7 @@ public class PbapClientServiceTest {
         mIsAdapterServiceSet = true;
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         mService = new PbapClientService(mTargetContext);
-        mService.doStart();
+        mService.start();
         mIsPbapClientServiceStarted = true;
         // Try getting the Bluetooth adapter
         mAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -93,7 +93,7 @@ public class PbapClientServiceTest {
             return;
         }
         if (mIsPbapClientServiceStarted) {
-            mService.doStop();
+            mService.stop();
             mService = PbapClientService.getPbapClientService();
             Assert.assertNull(mService);
         }

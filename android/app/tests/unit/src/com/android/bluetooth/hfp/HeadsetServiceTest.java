@@ -159,7 +159,8 @@ public class HeadsetServiceTest {
         doReturn(mNativeInterface).when(mObjectsFactory).getNativeInterface();
         HeadsetNativeInterface.setInstance(mNativeInterface);
         mHeadsetService = new HeadsetService(mTargetContext);
-        mHeadsetService.doStart();
+        mHeadsetService.start();
+        mHeadsetService.setAvailable(true);
         verify(mObjectsFactory).makeSystemInterface(mHeadsetService);
         verify(mObjectsFactory).getNativeInterface();
         mHeadsetService.setForceScoAudio(true);
@@ -167,7 +168,7 @@ public class HeadsetServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        mHeadsetService.doStop();
+        mHeadsetService.stop();
         HeadsetNativeInterface.setInstance(null);
         mHeadsetService = HeadsetService.getHeadsetService();
         Assert.assertNull(mHeadsetService);

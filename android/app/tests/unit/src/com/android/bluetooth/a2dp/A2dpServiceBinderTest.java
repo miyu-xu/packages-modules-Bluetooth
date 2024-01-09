@@ -71,7 +71,7 @@ public class A2dpServiceBinderTest {
         Context context = InstrumentationRegistry.getTargetContext();
         mFakeFlagsImpl = new FakeFeatureFlagsImpl();
         mA2dpService = spy(new A2dpService(context, mNativeInterface, mFakeFlagsImpl));
-        mA2dpService.doStart();
+        mA2dpService.start();
 
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         mBinder = new A2dpService.BluetoothA2dpBinder(mA2dpService);
@@ -80,7 +80,7 @@ public class A2dpServiceBinderTest {
     @After
     public void cleaUp() {
         mBinder.cleanup();
-        mA2dpService.doStop();
+        mA2dpService.stop();
         TestUtils.clearAdapterService(mAdapterService);
     }
 

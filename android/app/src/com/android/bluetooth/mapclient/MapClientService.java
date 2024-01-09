@@ -320,7 +320,7 @@ public class MapClientService extends ProfileService {
     }
 
     @Override
-    protected synchronized void start() {
+    public synchronized void start() {
         Log.e(TAG, "start()");
 
         mAdapterService = AdapterService.getAdapterService();
@@ -339,7 +339,7 @@ public class MapClientService extends ProfileService {
     }
 
     @Override
-    protected synchronized void stop() {
+    public synchronized void stop() {
         if (DBG) {
             Log.d(TAG, "stop()");
         }
@@ -363,7 +363,7 @@ public class MapClientService extends ProfileService {
     }
 
     @Override
-    protected void cleanup() {
+    public void cleanup() {
         if (DBG) {
             Log.d(TAG, "in Cleanup");
         }

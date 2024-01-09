@@ -241,7 +241,8 @@ public class BassClientServiceTest {
                 .getBluetoothLeScannerWrapper(any());
 
         mBassClientService = new BassClientService(mTargetContext, new FeatureFlagsImpl());
-        mBassClientService.doStart();
+        mBassClientService.start();
+        mBassClientService.setAvailable(true);
 
         mBassClientService.mServiceFactory = mServiceFactory;
         doReturn(mCsipService).when(mServiceFactory).getCsipSetCoordinatorService();
@@ -269,7 +270,7 @@ public class BassClientServiceTest {
         }
         mBassClientService.unregisterCallback(mCallback);
 
-        mBassClientService.doStop();
+        mBassClientService.stop();
         mBassClientService = BassClientService.getBassClientService();
         assertThat(mBassClientService).isNull();
         mStateMachines.clear();

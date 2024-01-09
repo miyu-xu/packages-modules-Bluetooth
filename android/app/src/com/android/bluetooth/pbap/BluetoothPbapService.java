@@ -690,7 +690,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
     }
 
     @Override
-    protected void start() {
+    public void start() {
         if (VERBOSE) {
             Log.v(TAG, "start()");
         }
@@ -746,7 +746,7 @@ public class BluetoothPbapService extends ProfileService implements IObexConnect
     }
 
     @Override
-    protected void stop() {
+    public void stop() {
         if (VERBOSE) {
             Log.v(TAG, "stop()");
         }

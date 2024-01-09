@@ -74,7 +74,8 @@ public class BluetoothMapServiceTest {
         TestUtils.setAdapterService(mAdapterService);
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         mService = new BluetoothMapService(targetContext);
-        mService.doStart();
+        mService.start();
+        mService.setAvailable(true);
         // Try getting the Bluetooth adapter
         mAdapter = BluetoothAdapter.getDefaultAdapter();
         assertThat(mAdapter).isNotNull();
@@ -83,7 +84,7 @@ public class BluetoothMapServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        mService.doStop();
+        mService.stop();
         mService = BluetoothMapService.getBluetoothMapService();
         assertThat(mService).isNull();
         TestUtils.clearAdapterService(mAdapterService);

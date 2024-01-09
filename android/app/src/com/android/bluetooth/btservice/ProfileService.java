@@ -43,16 +43,13 @@ public abstract class ProfileService extends ContextWrapper {
             android.Manifest.permission.BLUETOOTH_PRIVILEGED;
 
     public interface IProfileServiceBinder extends IBinder {
-        /**
-         * Called in {@link #onDestroy()}
-         */
         void cleanup();
     }
 
     private final IProfileServiceBinder mBinder;
     private final String mName;
     private AdapterService mAdapterService;
-    private boolean mProfileStarted = false;
+    private boolean mAvailable = false;
     private volatile boolean mTestModeEnabled = false;
 
     public String getName() {
@@ -60,7 +57,11 @@ public abstract class ProfileService extends ContextWrapper {
     }
 
     public boolean isAvailable() {
-        return mProfileStarted;
+        return mAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        mAvailable = available;
     }
 
     protected boolean isTestModeEnabled() {
@@ -75,19 +76,19 @@ public abstract class ProfileService extends ContextWrapper {
     protected abstract IProfileServiceBinder initBinder();
 
     /**
-     * Called in {@link #onStartCommand(Intent, int, int)} when the service is started by intent
+     * Start service
      */
-    protected abstract void start();
+    public abstract void start();
 
     /**
-     * Called in {@link #onStartCommand(Intent, int, int)} when the service is stopped by intent
+     * Stop service
      */
-    protected abstract void stop();
+    public abstract void stop();
 
     /**
-     * Called in {@link #onDestroy()} when this object is completely discarded
+     * Called when this object is completely discarded
      */
-    protected void cleanup() {}
+    public void cleanup() {}
 
     /**
      * @param testModeEnabled if the profile should enter or exit a testing mode
@@ -106,7 +107,7 @@ public abstract class ProfileService extends ContextWrapper {
     }
 
     /** return the binder of the profile */
-    public IBinder getBinder() {
+    public IProfileServiceBinder getBinder() {
         return mBinder;
     }
 
@@ -194,51 +195,5 @@ public abstract class ProfileService extends ContextWrapper {
         sb.append("  ");
         sb.append(s);
         sb.append("\n");
-    }
-
-    /** start the profile and inform AdapterService */
-    @RequiresPermission(
-            anyOf = {
-                android.Manifest.permission.MANAGE_USERS,
-                android.Manifest.permission.INTERACT_ACROSS_USERS
-            })
-    @VisibleForTesting
-    public void doStart() {
-        Log.v(mName, "doStart");
-        mAdapterService = AdapterService.getAdapterService();
-        if (mAdapterService == null) {
-            Log.w(mName, "Could not add this profile because AdapterService is null.");
-            return;
-        }
-        mAdapterService.addProfile(this);
-
-        start();
-        mProfileStarted = true;
-
-        mAdapterService.onProfileServiceStateChanged(this, BluetoothAdapter.STATE_ON);
-    }
-
-    /** stop the profile and inform AdapterService */
-    @VisibleForTesting
-    public void doStop() {
-        Log.v(mName, "doStop");
-        if (mAdapterService == null) {
-            Log.w(mName, "Unexpectedly do Stop, don't stop.");
-            return;
-        }
-        if (!mProfileStarted) {
-            Log.w(mName, "doStop() called, but the profile is not running.");
-            return;
-        }
-        mProfileStarted = false;
-        if (mAdapterService != null) {
-            mAdapterService.onProfileServiceStateChanged(this, BluetoothAdapter.STATE_OFF);
-        }
-        stop();
-        if (mAdapterService != null) {
-            mAdapterService.removeProfile(this);
-        }
-        cleanup();
-        mBinder.cleanup();
     }
 }

@@ -72,7 +72,8 @@ public class PanServiceTest {
         doReturn(mDatabaseManager).when(mAdapterService).getDatabase();
         PanNativeInterface.setInstance(mNativeInterface);
         mService = new PanService(targetContext);
-        mService.doStart();
+        mService.start();
+        mService.setAvailable(true);
 
         // Try getting the Bluetooth adapter
         mAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -83,7 +84,8 @@ public class PanServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        mService.doStop();
+        mService.stop();
+        mService.cleanup();
         PanNativeInterface.setInstance(null);
         mService = PanService.getPanService();
         assertThat(mService).isNull();

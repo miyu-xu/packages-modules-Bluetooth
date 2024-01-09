@@ -1014,8 +1014,10 @@ public class AdapterService extends Service {
         mGattService = new GattService(this);
 
         mStartedProfiles.put(BluetoothProfile.GATT, mGattService);
-
-        ((ProfileService) mGattService).doStart();
+        addProfile(mGattService);
+        mGattService.start();
+        mGattService.setAvailable(true);
+        onProfileServiceStateChanged(mGattService, BluetoothAdapter.STATE_ON);
     }
 
     private void stopGattProfileService() {
@@ -1027,7 +1029,12 @@ public class AdapterService extends Service {
 
         mStartedProfiles.remove(BluetoothProfile.GATT);
         if (mGattService != null) {
-            ((ProfileService) mGattService).doStop();
+            mGattService.setAvailable(false);
+            onProfileServiceStateChanged(mGattService, BluetoothAdapter.STATE_OFF);
+            mGattService.stop();
+            removeProfile(mGattService);
+            mGattService.cleanup();
+            mGattService.getBinder().cleanup();
             mGattService = null;
         }
     }
@@ -1427,7 +1434,10 @@ public class AdapterService extends Service {
             if (!mStartedProfiles.containsKey(profileId)) {
                 ProfileService profileService = PROFILE_CONSTRUCTORS.get(profileId).apply(this);
                 mStartedProfiles.put(profileId, profileService);
-                profileService.doStart();
+                addProfile(profileService);
+                profileService.start();
+                profileService.setAvailable(true);
+                onProfileServiceStateChanged(profileService, BluetoothAdapter.STATE_ON);
             } else {
                 Log.e(
                         TAG,
@@ -1438,7 +1448,12 @@ public class AdapterService extends Service {
         } else if (state == BluetoothAdapter.STATE_OFF) {
             ProfileService profileService = mStartedProfiles.remove(profileId);
             if (profileService != null) {
-                profileService.doStop();
+                profileService.setAvailable(false);
+                onProfileServiceStateChanged(profileService, BluetoothAdapter.STATE_OFF);
+                profileService.stop();
+                removeProfile(profileService);
+                profileService.cleanup();
+                profileService.getBinder().cleanup();
             } else {
                 Log.e(
                         TAG,
