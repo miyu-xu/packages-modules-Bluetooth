@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cab46933_b7135e8c",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-09T21:46:45Z",
+      "side": 1,
+      "message": "The type of counter is uint16_t, the type of procedure_counter is uint8_t. Is it intended?",
+      "range": {
+        "startLine": 64,
+        "startChar": 10,
+        "endLine": 64,
+        "endChar": 17
+      },
+      "revId": "5649ae7ddd23345650e122753be654b6b013a016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5384d26f_3c0093e9",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 523,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-09T21:46:45Z",
+      "side": 1,
+      "message": "Why the type of num_antenna_paths is not consistent? in line#523, it\u0027s unit16_t, but it\u0027s uint8_t in line#540",
+      "range": {
+        "startLine": 523,
+        "startChar": 4,
+        "endLine": 523,
+        "endChar": 12
+      },
+      "revId": "5649ae7ddd23345650e122753be654b6b013a016",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
