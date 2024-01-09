@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55706ea2_bcfce6f3",
+        "filename": "floss/pandora/floss/gatt_client.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 884,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-09T02:29:17Z",
+      "side": 1,
+      "message": "upper case.",
+      "revId": "4c62f3fc4801b8b4b9f66cbb07ad3da8e71f6fa8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
