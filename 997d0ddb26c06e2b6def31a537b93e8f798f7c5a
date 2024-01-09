@@ -52,6 +52,24 @@
       "parentUuid": "7b3d1e48_4f277b67",
       "revId": "997d0ddb26c06e2b6def31a537b93e8f798f7c5a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67695b73_b3ba9a27",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-09T12:04:34Z",
+      "side": 1,
+      "message": "\u003e Don\u0027t you need to do that in all the service, not only on a2dp. And therefor, isn\u0027t it simpler to add the check in the utils method ?\n\nYup, checking in the utils method is quicker for sure, but I don\u0027t think it\u0027s really future proof as having something null due to a race condition is something very easily oversight and we might hit the same bug as soon as someone modify this condition due to new permission requirements. \n\n\u003e Or since the binder is never supposed to outlive is service, does it make sens to never reset the mService in all the binder, but rely on the isAvailable instead ?\n\nThe binder always outlive the service, as the binder will exist as long as an application holds a strong reference to it, and applications will only release the strong reference when the reference is garbage collected after then manager service notified of bluetooth turning off.\n\nI think relying on the isAvailable is a good idea here.\n\nI think in the future we should just tie the lifetime of the service and the binder to the one of the application, implying that to turn off BR/EDR and go to BLE_ON mode you need to stop the Bluetooth app and start it again (Which was already planned 😊)",
+      "parentUuid": "a8e5d80a_dec36a7a",
+      "revId": "997d0ddb26c06e2b6def31a537b93e8f798f7c5a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
