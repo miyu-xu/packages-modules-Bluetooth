@@ -76,6 +76,12 @@ public class Constants {
     /** the intent that can be sent by handover requesters to stop a BTOPP transfer */
     static final String ACTION_STOP_HANDOVER = "android.btopp.intent.action.STOP_HANDOVER_TRANSFER";
 
+    /**
+     * the intent extra to show the direction of a transfer. Value should be one of {@link
+     * BluetoothShare#DIRECTION_INBOUND} or {@link BluetoothShare#DIRECTION_OUTBOUND}
+     */
+    static final String EXTRA_DIRECTION = "android.btopp.intent.extra.DIRECTION";
+
     /** the intent extra to show all received files in the transfer history */
     static final String EXTRA_SHOW_ALL_FILES = "android.btopp.intent.extra.SHOW_ALL";
 

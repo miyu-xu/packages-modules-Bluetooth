@@ -93,7 +93,7 @@ public class BluetoothOppTransferHistory extends Activity
         mShowAllIncoming = getIntent().getBooleanExtra(Constants.EXTRA_SHOW_ALL_FILES, false);
 
         String direction;
-        int dir = getIntent().getIntExtra("direction", 0);
+        int dir = getIntent().getIntExtra(Constants.EXTRA_DIRECTION, 0);
         if (dir == BluetoothShare.DIRECTION_OUTBOUND) {
             setTitle(getText(R.string.outbound_history_title));
             direction = "(" + BluetoothShare.DIRECTION + " == " + BluetoothShare.DIRECTION_OUTBOUND

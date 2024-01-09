@@ -161,7 +161,7 @@ public class BluetoothOppReceiver extends BroadcastReceiver {
 
             Intent in = new Intent(context, BluetoothOppTransferHistory.class);
             in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            in.putExtra("direction", BluetoothShare.DIRECTION_OUTBOUND);
+            in.putExtra(Constants.EXTRA_DIRECTION, BluetoothShare.DIRECTION_OUTBOUND);
             context.startActivity(in);
         } else if (action.equals(Constants.ACTION_OPEN_INBOUND_TRANSFER)) {
             if (V) {
@@ -170,7 +170,7 @@ public class BluetoothOppReceiver extends BroadcastReceiver {
 
             Intent in = new Intent(context, BluetoothOppTransferHistory.class);
             in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            in.putExtra("direction", BluetoothShare.DIRECTION_INBOUND);
+            in.putExtra(Constants.EXTRA_DIRECTION, BluetoothShare.DIRECTION_INBOUND);
             context.startActivity(in);
         } else if (action.equals(Constants.ACTION_HIDE)) {
             if (V) {
