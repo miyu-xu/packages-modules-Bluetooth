@@ -34,6 +34,29 @@
       "parentUuid": "2e4f358c_078cac0f",
       "revId": "cc80a7918ce62e0cd89256e17719a132757a1d76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9fe3a08f_83b24dc1",
+        "filename": "system/bta/le_audio/device_groups.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-09T09:49:32Z",
+      "side": 1,
+      "message": "What if we would make the `target_state_` an `std::optional\u003c\u003e`, meaning that if it is NOT `std::nullopt`, the group is in transition?\n\nThe `SetState(new_state)`, could automatically set the `target_state` to `std::nullopt` if `new_state \u003d\u003d target_state_`. That would simplify and automate the otherwise manually synced transition and state variables.",
+      "range": {
+        "startLine": 112,
+        "startChar": 8,
+        "endLine": 114,
+        "endChar": 28
+      },
+      "revId": "cc80a7918ce62e0cd89256e17719a132757a1d76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
