@@ -305,6 +305,30 @@
       },
       "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d09d06c_a296f497",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 602,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-09T06:31:28Z",
+      "side": 1,
+      "message": "Got it. I finally found a way to test whether that function is invoked or not. It\u0027s a bit hard to do without mock.",
+      "parentUuid": "9367ceba_e152e8b0",
+      "range": {
+        "startLine": 602,
+        "startChar": 12,
+        "endLine": 602,
+        "endChar": 13
+      },
+      "revId": "d9d1850d0d05bdbb6f3aecaf7f533a13fc5cdf9d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
