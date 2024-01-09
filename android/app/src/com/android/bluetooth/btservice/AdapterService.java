@@ -2732,8 +2732,7 @@ public class AdapterService extends Service {
                 Binder.restoreCallingIdentity(token);
             }
             if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(
-                            service, TAG, "getProfileConnectionState")
+                    || !Utils.checkCallerDebuged(service, TAG, "getProfileConnectionState")
                     || (checkConnect && !Utils.checkConnectPermissionForDataDelivery(
                             service, source, "AdapterService getProfileConnectionState"))) {
                 return BluetoothProfile.STATE_DISCONNECTED;
@@ -3293,7 +3292,7 @@ public class AdapterService extends Service {
         private String getRemoteName(BluetoothDevice device, AttributionSource attributionSource) {
             AdapterService service = getService();
             if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getRemoteName")
+                    || !Utils.checkCallerDebuged(service, TAG, "getRemoteName")
                     || !Utils.checkConnectPermissionForDataDelivery(
                             service, attributionSource, "AdapterService getRemoteName")) {
                 return null;
@@ -3447,7 +3446,7 @@ public class AdapterService extends Service {
                 BluetoothDevice device, AttributionSource attributionSource) {
             AdapterService service = getService();
             if (service == null
-                    || !callerIsSystemOrActiveOrManagedUser(service, TAG, "getRemoteUuids")
+                    || !Utils.checkCallerDebuged(service, TAG, "getRemoteUuids")
                     || !Utils.checkConnectPermissionForDataDelivery(
                             service, attributionSource, "AdapterService getRemoteUuids")) {
                 return new ArrayList<>();
