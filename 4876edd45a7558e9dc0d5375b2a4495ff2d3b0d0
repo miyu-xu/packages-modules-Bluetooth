@@ -70,6 +70,30 @@
       },
       "revId": "4876edd45a7558e9dc0d5375b2a4495ff2d3b0d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ab8cfe99_abd2da0a",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-10T06:21:43Z",
+      "side": 1,
+      "message": "Done. I printed out everything while doing the unittest and made sure the logics are reasonable. \n\nI finally found that the `osi_property_get_bool` is always return false in the mock function and somehow in bta it uses that mocked function. So I overwrite that function in my test so as to do the a/b test.",
+      "parentUuid": "373e39c1_b9bf5e02",
+      "range": {
+        "startLine": 621,
+        "startChar": 12,
+        "endLine": 621,
+        "endChar": 16
+      },
+      "revId": "4876edd45a7558e9dc0d5375b2a4495ff2d3b0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
