@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d79c64e_f9092759",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1086,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-10T22:23:58Z",
+      "side": 1,
+      "message": "could you elaborate what does it mean?",
+      "range": {
+        "startLine": 1086,
+        "startChar": 16,
+        "endLine": 1086,
+        "endChar": 56
+      },
+      "revId": "01e5bbc8f4be29e5e5274ef05dea616a9fb4f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8a35f7cd_586b2c9b",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1088,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-10T22:23:58Z",
+      "side": 1,
+      "message": "Should it be `by LeAudioService` ? We are in native\n\nOh wait, is it mechanism which allows Java to decide weather stream can be resumed or not?\n\ncan you please provide offline a design doc? This looks like big change to unicast or I\u0027m missing something.\n\ndespite the above - we need unit test for each change - however before adding anything to this CL let\u0027s discuss design first.",
+      "range": {
+        "startLine": 1088,
+        "startChar": 15,
+        "endLine": 1088,
+        "endChar": 59
+      },
+      "revId": "01e5bbc8f4be29e5e5274ef05dea616a9fb4f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
