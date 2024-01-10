@@ -22,6 +22,30 @@
       },
       "revId": "86ef491bf081399a3c11b4a4ba9ea10100e7e2aa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "12e16611_0ce293e0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTestBase.kt",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-10T20:05:09Z",
+      "side": 1,
+      "message": "I\u0027ve refactored to use a TestRule instead Please see aosp/2904987",
+      "parentUuid": "2c30d544_5fec05b4",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 35
+      },
+      "revId": "86ef491bf081399a3c11b4a4ba9ea10100e7e2aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
