@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7aa2b9c_22968667",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3245,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-10T14:29:34Z",
+      "side": 0,
+      "message": "What makes this dead code?",
+      "revId": "4119541051691094a723994cb8863729e166e9aa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
