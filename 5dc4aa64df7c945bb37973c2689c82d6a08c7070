@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eeb4b675_38c86712",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3160,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-10T13:15:01Z",
+      "side": 1,
+      "message": "That was the hardest part of this patch, and I spend lots of time digging through native and Java code to try to make this nicer.\n\nFirst, I was hoping to make this change as generic patch to improve all LE devices connection, but there is no general event for \"all profiles connection finished\", and adding one is not trivial, as there is no generic event for profile finishing setup.\n\nWhen it comes to locking parameters, I must do it before service discovery, otherwise I would get a downgrade, then upgrade of parameters.",
+      "parentUuid": "ec5b039f_50fa5751",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "544d1a0b_164e61c4",
@@ -35,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "eae1c164_cf6ce003",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2373,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-10T13:15:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "544d1a0b_164e61c4",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3fed766_35988f20",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-01-08T15:07:17Z",
       "side": 1,
       "message": "please consider `l2c_ble_conn_params.h`",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f439a9d2_cc0c2a61",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-10T13:15:01Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f3fed766_35988f20",
       "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +129,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "10cc73bb_a9b4bda7",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-10T13:15:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8e65f1fd_95371d73",
+      "range": {
+        "startLine": 178,
+        "startChar": 46,
+        "endLine": 178,
+        "endChar": 47
+      },
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "be71caee_bf34fb0e",
@@ -88,6 +166,24 @@
       "writtenOn": "2024-01-08T15:07:17Z",
       "side": 1,
       "message": "if it become API function, we should move declaration to header and also change the function name to something like\n\n`L2CA_StartConnUpdate`",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1275279d_4fa8003d",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-10T13:15:01Z",
+      "side": 1,
+      "message": "It\u0027s not API for any other module, it\u0027s just internal in l2c.",
+      "parentUuid": "be71caee_bf34fb0e",
       "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -139,6 +235,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd9b3552_9dd0ec3c",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-10T13:15:01Z",
+      "side": 1,
+      "message": "We had offline discussion about this with explanation",
+      "parentUuid": "a89ddc1a_eb4976de",
+      "range": {
+        "startLine": 118,
+        "startChar": 5,
+        "endLine": 118,
+        "endChar": 46
+      },
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "eedee662_b9b09979",
@@ -152,6 +272,24 @@
       "writtenOn": "2024-01-08T15:07:17Z",
       "side": 1,
       "message": "L2CA_ indicates it is API function. Nowe when it is static we could change name to\n\n`l2cble_enable_update_ble_conn_params`",
+      "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0c352546_d5c77b1b",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-10T13:15:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "eedee662_b9b09979",
       "revId": "5dc4aa64df7c945bb37973c2689c82d6a08c7070",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
