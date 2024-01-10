@@ -415,10 +415,9 @@ void btm_read_local_name_complete(uint8_t* p, UNUSED_ATTR uint16_t evt_len) {
  *
  ******************************************************************************/
 tBTM_STATUS BTM_SetDeviceClass(DEV_CLASS dev_class) {
-  if (!memcmp(btm_cb.devcb.dev_class, dev_class, DEV_CLASS_LEN))
-    return (BTM_SUCCESS);
+  if (btm_cb.devcb.dev_class == dev_class) return (BTM_SUCCESS);
 
-  memcpy(btm_cb.devcb.dev_class, dev_class, DEV_CLASS_LEN);
+  btm_cb.devcb.dev_class = dev_class;
 
   if (!controller_get_interface()->get_is_ready()) return (BTM_DEV_RESET);
 
@@ -437,7 +436,7 @@ tBTM_STATUS BTM_SetDeviceClass(DEV_CLASS dev_class) {
  *
  ******************************************************************************/
 uint8_t* BTM_ReadDeviceClass(void) {
-  return ((uint8_t*)btm_cb.devcb.dev_class);
+  return ((uint8_t*)btm_cb.devcb.dev_class.data());
 }
 
 /*******************************************************************************

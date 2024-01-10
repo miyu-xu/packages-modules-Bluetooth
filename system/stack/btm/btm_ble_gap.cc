@@ -2185,7 +2185,7 @@ bool btm_ble_get_appearance_as_cod(std::vector<uint8_t> const& data,
       data, BTM_BLE_AD_TYPE_APPEARANCE, &len);
   if (p_uuid16 && len == 2) {
     btm_ble_appearance_to_cod((uint16_t)p_uuid16[0] | (p_uuid16[1] << 8),
-                              dev_class);
+                              dev_class.data());
     return true;
   }
 

@@ -60,7 +60,7 @@
 uint32_t devclass2uint(DEV_CLASS dev_class) {
   uint32_t cod = 0;
 
-  if (dev_class != NULL) {
+  if (dev_class != DEV_CLASS{0}) {
     /* if COD is 0, irrespective of the device type set it to Unclassified
      * device */
     cod = (dev_class[2]) | (dev_class[1] << 8) | (dev_class[0] << 16);
