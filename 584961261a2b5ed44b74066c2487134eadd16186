@@ -70,6 +70,30 @@
       },
       "revId": "584961261a2b5ed44b74066c2487134eadd16186",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d78d7811_60b510aa",
+        "filename": "framework/tests/bumble/src/android/bluetooth/LeScanningTestBase.kt",
+        "patchSetId": 7
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-10T20:04:45Z",
+      "side": 1,
+      "message": "I\u0027ve refactored to use a TestRule instead and implemented the same for DCK use cases rather than trying to define a generic TestRule. Please see aosp/2904987.",
+      "parentUuid": "7de9ed30_3b7873aa",
+      "range": {
+        "startLine": 240,
+        "startChar": 8,
+        "endLine": 240,
+        "endChar": 19
+      },
+      "revId": "584961261a2b5ed44b74066c2487134eadd16186",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
