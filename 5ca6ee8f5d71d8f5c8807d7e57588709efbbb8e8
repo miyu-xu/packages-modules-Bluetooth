@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e02b9d88_a066d177",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-10T10:06:23Z",
+      "side": 1,
+      "message": "AVRCP ICS are not up to date and so I don\u0027t have any confidence in PTS-bot to validate this, sorry 😞",
+      "revId": "5ca6ee8f5d71d8f5c8807d7e57588709efbbb8e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
