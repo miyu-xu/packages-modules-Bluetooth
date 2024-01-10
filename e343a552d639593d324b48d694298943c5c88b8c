@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ed28700d_e2dd19f9",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-10T21:16:05Z",
+      "side": 1,
+      "message": "do we have any unittest for `sink_monitor_mode` which could be extended ?",
+      "revId": "e343a552d639593d324b48d694298943c5c88b8c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
