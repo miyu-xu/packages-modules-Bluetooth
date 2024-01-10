@@ -46,6 +46,30 @@
       },
       "revId": "4876edd45a7558e9dc0d5375b2a4495ff2d3b0d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "373e39c1_b9bf5e02",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-10T02:54:45Z",
+      "side": 1,
+      "message": "Let me find another way to do the unit test. Hopefully we could merge it today~",
+      "parentUuid": "ca3b159a_8fee40ad",
+      "range": {
+        "startLine": 621,
+        "startChar": 12,
+        "endLine": 621,
+        "endChar": 16
+      },
+      "revId": "4876edd45a7558e9dc0d5375b2a4495ff2d3b0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
