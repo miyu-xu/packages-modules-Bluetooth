@@ -32,7 +32,11 @@ protobuf = "2.0"
 serde_json = "1.0"
 syslog = "6"
 tokio = { version = "1.0", features = ["fs", "macros", "rt-multi-thread", "sync"] }
+<<<<<<< PATCH SET (25eef6 Floss: Add log panics in btmanagerd)
+log-panics = "2.1.0"
+=======
 libc = "0.2"
+>>>>>>> BASE      (8c1fc1 Merge "Remove unused flag" into main)
 
 [build-dependencies]
 pkg-config = "0.3.19"
