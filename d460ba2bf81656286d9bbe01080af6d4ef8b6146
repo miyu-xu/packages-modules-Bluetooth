@@ -73,6 +73,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "5e0aa9b3_7851a007",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000701
+      },
+      "writtenOn": "2024-01-10T22:54:56Z",
+      "side": 1,
+      "message": "Ah. If this is just an API flag then that\u0027s fine. The thing that doesn\u0027t work yet is that the values get hard coded in the binary, and they can be out of sync between the platform and the module. There\u0027s another mode for aconfig that\u0027s coming to fix that.",
+      "parentUuid": "7a89a925_7df30482",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "904fd1b6_bce61207",
         "filename": "flags/Android.bp",
         "patchSetId": 3
@@ -137,6 +155,24 @@
       "side": 1,
       "message": "I do not understand why one and not the other.",
       "parentUuid": "b0f94a9e_5aaeb77f",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64486267_5d0d3723",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000701
+      },
+      "writtenOn": "2024-01-10T22:54:56Z",
+      "side": 1,
+      "message": "If you use `sdk_version: \"module_current\"` you shouldn\u0027t need `fake_device_config`.",
+      "parentUuid": "f35f323e_86d819af",
       "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
