@@ -70,6 +70,30 @@
       },
       "revId": "4f572bd6ad04e521346514cb83d3870170b78710",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47d301d6_c080bf78",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3246,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-10T00:21:57Z",
+      "side": 0,
+      "message": "I split it to keep the removal \"pure\"\n\nI suspect there are more of these out there...",
+      "parentUuid": "8372bd93_1e4d38e7",
+      "range": {
+        "startLine": 3241,
+        "startChar": 2,
+        "endLine": 3246,
+        "endChar": 3
+      },
+      "revId": "4f572bd6ad04e521346514cb83d3870170b78710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
