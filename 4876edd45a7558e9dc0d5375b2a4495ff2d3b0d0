@@ -22,6 +22,30 @@
       },
       "revId": "4876edd45a7558e9dc0d5375b2a4495ff2d3b0d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ca3b159a_8fee40ad",
+        "filename": "system/bta/test/bta_dm_test.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 621,
+      "author": {
+        "id": 1985260
+      },
+      "writtenOn": "2024-01-10T02:53:42Z",
+      "side": 1,
+      "message": "Yesterday I couldn\u0027t pass the unit test. Now I can pass with 0. What....\n\n```\n[Yesterday issue...]\nx86_64 net_test_bta\n-------------------\nnet_test_bta (1 Test)\n[1/1] BtaDmCustomAlarmTest#sniff_offload_feature__enable_flag: FAILED (3ms)\n\nSTACKTRACE:\n[0109/061603.328464:INFO:message_loop_thread.cc(188)] Run: message loop starting for thread bt_main_thread\npackages/modules/Bluetooth/system/bta/test/bta_dm_test.cc:621: Failure\nExpected: (0) !\u003d (bluetooth::legacy::testing::bta_get_bta_dm_conn_srvcs().count), actual: 0 vs \u0027\\0\u0027\n[0109/061603.330905:INFO:message_loop_thread.cc(209)] Run: message loop finished for thread bt_main_thread\n\n```",
+      "parentUuid": "412e297f_70923d91",
+      "range": {
+        "startLine": 621,
+        "startChar": 12,
+        "endLine": 621,
+        "endChar": 16
+      },
+      "revId": "4876edd45a7558e9dc0d5375b2a4495ff2d3b0d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
