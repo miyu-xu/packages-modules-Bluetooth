@@ -39,6 +39,30 @@
       },
       "revId": "9809c68329a95beea83a70d5cc604dc0f1c4dd1a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5156f328_a814b3c3",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-10T00:14:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d106b83c_cda97fd2",
+      "range": {
+        "startLine": 6,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 58
+      },
+      "revId": "9809c68329a95beea83a70d5cc604dc0f1c4dd1a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
