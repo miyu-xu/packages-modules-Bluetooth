@@ -121,6 +121,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "886063d5_67a05718",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-10T21:11:14Z",
+      "side": 1,
+      "message": "lets add here a method `bool isActive()` which will check the state.\nWe could also add a method `isInactive()` , `isGettingActive()`, `setActiveState(state)`.\n\nsetActiveState could print the transition state which would be nice to have for debugging.",
+      "parentUuid": "e4b55616_19881afb",
+      "range": {
+        "startLine": 192,
+        "startChar": 8,
+        "endLine": 192,
+        "endChar": 14
+      },
+      "revId": "a8787dbb9d4b9e4675aabb8d8107d5fed4aff561",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "314772ce_ccd46ca6",
         "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
         "patchSetId": 1

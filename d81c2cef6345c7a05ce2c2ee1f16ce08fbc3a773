@@ -16,6 +16,23 @@
       "message": "my original comment is resolved, lgtm, +1. I will let Grzegorz decide how to address Lukasz\u0027s pending comments.",
       "revId": "d81c2cef6345c7a05ce2c2ee1f16ce08fbc3a773",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8767c5d7_fc11b576",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1514,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-10T21:11:14Z",
+      "side": 1,
+      "message": "maybe this could go down into `else` statement in line 1524?\n\nDon\u0027t we need mGroupLock here?",
+      "revId": "d81c2cef6345c7a05ce2c2ee1f16ce08fbc3a773",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
