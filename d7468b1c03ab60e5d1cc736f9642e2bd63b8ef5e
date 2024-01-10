@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "40737e6c_dd78ba51",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-10T21:17:34Z",
+      "side": 1,
+      "message": "Thanks!",
+      "revId": "d7468b1c03ab60e5d1cc736f9642e2bd63b8ef5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ec03c7ef_2488fbd0",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-01-10T18:31:52Z",
       "side": 1,
       "message": "This was not a copy previously, but a pointer on initial value (that could be modified).\nThere is a bit of logical change now.\n\n----\n\nafter investigation, It looks like `BTM_SecAddDevice` take it as an argument but do not modify it so the end result will be the same.\nI recommand updating BTM_SecAddDevice to have a const DEV_CLASS to make it obvious",
+      "range": {
+        "startLine": 135,
+        "startChar": 21,
+        "endLine": 135,
+        "endChar": 33
+      },
+      "revId": "d7468b1c03ab60e5d1cc736f9642e2bd63b8ef5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c46ba791_928922ab",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-10T21:17:34Z",
+      "side": 1,
+      "message": "Good point.  Done.",
+      "parentUuid": "ec03c7ef_2488fbd0",
       "range": {
         "startLine": 135,
         "startChar": 21,
@@ -47,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "54112df9_f5c43587",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 3726,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-10T21:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7b809868_6e87dc51",
+      "range": {
+        "startLine": 3726,
+        "startChar": 39,
+        "endLine": 3726,
+        "endChar": 51
+      },
+      "revId": "d7468b1c03ab60e5d1cc736f9642e2bd63b8ef5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3eb8fb98_993dd13a",
@@ -60,6 +125,30 @@
       "writtenOn": "2024-01-10T18:31:52Z",
       "side": 1,
       "message": "const",
+      "range": {
+        "startLine": 60,
+        "startChar": 23,
+        "endLine": 60,
+        "endChar": 32
+      },
+      "revId": "d7468b1c03ab60e5d1cc736f9642e2bd63b8ef5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eab14213_69e98316",
+        "filename": "system/btif/src/btif_util.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-10T21:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3eb8fb98_993dd13a",
       "range": {
         "startLine": 60,
         "startChar": 23,
@@ -93,6 +182,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c818441c_866bf6b8",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2188,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-10T21:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "775ab4d9_5e1bcd21",
+      "range": {
+        "startLine": 2188,
+        "startChar": 0,
+        "endLine": 2188,
+        "endChar": 48
+      },
+      "revId": "d7468b1c03ab60e5d1cc736f9642e2bd63b8ef5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e60eb0a7_3eda6202",
@@ -116,6 +229,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f56620d4_2ef6a372",
+        "filename": "system/stack/btm/btm_devctl.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 439,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-10T21:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e60eb0a7_3eda6202",
+      "range": {
+        "startLine": 439,
+        "startChar": 11,
+        "endLine": 439,
+        "endChar": 18
+      },
+      "revId": "d7468b1c03ab60e5d1cc736f9642e2bd63b8ef5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "16ece4ab_f405b756",
@@ -129,6 +266,30 @@
       "writtenOn": "2024-01-10T18:31:52Z",
       "side": 1,
       "message": "Just notice that, why not using it instead of having {0} everywhere ?",
+      "range": {
+        "startLine": 25,
+        "startChar": 27,
+        "endLine": 25,
+        "endChar": 41
+      },
+      "revId": "d7468b1c03ab60e5d1cc736f9642e2bd63b8ef5e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b84b85d5_7a5e37d6",
+        "filename": "system/stack/include/bt_dev_class.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-10T21:17:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "16ece4ab_f405b756",
       "range": {
         "startLine": 25,
         "startChar": 27,
