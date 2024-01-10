@@ -1675,6 +1675,7 @@ public class VolumeControlService extends ProfileService {
 
                 VolumeControlService service = getService(source);
                 if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
                     service.mute(device);
                 }
                 receiver.send(null);
@@ -1710,6 +1711,7 @@ public class VolumeControlService extends ProfileService {
 
                 VolumeControlService service = getService(source);
                 if (service != null) {
+                    enforceBluetoothPrivilegedPermission(service);
                     service.unmute(device);
                 }
                 receiver.send(null);
