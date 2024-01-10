@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d507218_4bf7ca59",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-01-10T10:53:34Z",
+      "side": 1,
+      "message": "Hi Ying, I rebased the change due to merge conflict and found that we added a variable to track the pairing device recently so I reuse it to determine if it is an incoming or outgoing bond. PTAL, thanks!",
+      "revId": "2ab3c6786079500bf6769ac84c7ec21f520a3f9b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
