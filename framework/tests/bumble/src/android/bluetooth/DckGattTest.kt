@@ -45,8 +45,9 @@ import pandora.HostProto
 import pandora.HostProto.AdvertiseRequest
 import pandora.HostProto.OwnAddressType
 
+/** DCK GATT Tests */
 @RunWith(AndroidJUnit4::class)
-public class DckTest {
+public class DckGattTest {
 
     private val context: Context = ApplicationProvider.getApplicationContext()
     private val bluetoothManager = context.getSystemService(BluetoothManager::class.java)!!
