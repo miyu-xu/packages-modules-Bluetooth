@@ -46,6 +46,30 @@
       },
       "revId": "e2fe5fe9c686793354fe4a5da5d1a8900861e325",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "56e3e1ae_9693f54f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-10T18:16:52Z",
+      "side": 1,
+      "message": "Ok, I think this is still reasonable. \n\nHowever, since this is touching code common to Android and floss, we will likely need to flag this change. Would you mind adding a flag for this?",
+      "parentUuid": "31989eae_bb041eb0",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "e2fe5fe9c686793354fe4a5da5d1a8900861e325",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

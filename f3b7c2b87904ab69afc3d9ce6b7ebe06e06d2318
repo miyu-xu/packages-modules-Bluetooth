@@ -46,6 +46,30 @@
       },
       "revId": "f3b7c2b87904ab69afc3d9ce6b7ebe06e06d2318",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a98070e_d45e3796",
+        "filename": "system/gd/hci/le_address_manager.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-10T18:16:52Z",
+      "side": 0,
+      "message": "Makes sense, thanks for response!",
+      "parentUuid": "48cfee14_93e32a0e",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 101,
+        "endChar": 53
+      },
+      "revId": "f3b7c2b87904ab69afc3d9ce6b7ebe06e06d2318",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
