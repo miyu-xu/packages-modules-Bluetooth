@@ -37,6 +37,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "97b6999c_952cb1c2",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1000701
+      },
+      "writtenOn": "2024-01-10T18:12:58Z",
+      "side": 1,
+      "message": "I don\u0027t think you should need this.  Instead below, I think you want \n\n```\nsdk_version: \"module_current\",\n```\n\nwhich will match everything in packages/modules/Bluetooth/framework/Android.bp.\n\nThat said, using flags from inside modules isn\u0027t supported yet, for a bunch of other reasons.  I think doing this here will be okay as long as nothing gets released, but that\u0027s dangerous.  @opg for comment.",
+      "parentUuid": "c665948c_5d0d8a6d",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "904fd1b6_bce61207",
         "filename": "flags/Android.bp",
         "patchSetId": 3
