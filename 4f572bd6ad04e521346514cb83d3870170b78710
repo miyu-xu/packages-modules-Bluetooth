@@ -22,6 +22,30 @@
       },
       "revId": "4f572bd6ad04e521346514cb83d3870170b78710",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "edfbba38_aac56289",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3246,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-10T00:17:47Z",
+      "side": 0,
+      "message": "Oh the implementation of the `btm_ble_resume_bg_conn` is empty.\n\nI guess I got played by the CL being split in 3",
+      "parentUuid": "d9f17ffd_3df1a89c",
+      "range": {
+        "startLine": 3241,
+        "startChar": 2,
+        "endLine": 3246,
+        "endChar": 3
+      },
+      "revId": "4f572bd6ad04e521346514cb83d3870170b78710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
