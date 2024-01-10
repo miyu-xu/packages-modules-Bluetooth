@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1927c6f_fc92d845",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-01-10T23:00:37Z",
+      "side": 1,
+      "message": "Hi, This is to add a flag for aosp/2867315.",
+      "revId": "e701fe65550d1cc72f138fafe7c157010b0abab6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
