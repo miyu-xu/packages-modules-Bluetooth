@@ -80,9 +80,13 @@ class BluetoothOppNotification {
             WHERE_COMPLETED + " AND " + "(" + BluetoothShare.DIRECTION + " == "
                     + BluetoothShare.DIRECTION_INBOUND + ")";
 
-    static final String WHERE_CONFIRM_PENDING =
+    private static final String WHERE_CONFIRM_PENDING =
             BluetoothShare.USER_CONFIRMATION + " == '" + BluetoothShare.USER_CONFIRMATION_PENDING
                     + "'" + " AND " + VISIBLE;
+
+    private static final int PENDING_INTENT_REQUEST_CODE_OUTBOUND_TRANSFER = 0;
+
+    private static final int PENDING_INTENT_REQUEST_CODE_INBOUND_TRANSFER = 1;
 
     public NotificationManager mNotificationMgr;
 
@@ -436,7 +440,12 @@ class BluetoothOppNotification {
                 Intent in = new Intent(mContext, BluetoothOppTransferHistory.class);
                 in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 in.putExtra(Constants.EXTRA_DIRECTION, BluetoothShare.DIRECTION_OUTBOUND);
-                pi = PendingIntent.getActivity(mContext, 0, in, PendingIntent.FLAG_IMMUTABLE);
+                pi =
+                        PendingIntent.getActivity(
+                                mContext,
+                                PENDING_INTENT_REQUEST_CODE_OUTBOUND_TRANSFER,
+                                in,
+                                PendingIntent.FLAG_IMMUTABLE);
             } else {
                 Intent in =
                         new Intent(Constants.ACTION_OPEN_OUTBOUND_TRANSFER)
@@ -505,8 +514,25 @@ class BluetoothOppNotification {
         if (inboundNum > 0) {
             String caption = BluetoothOppUtility.formatResultText(inboundSuccNumber,
                     inboundFailNumber, mContext);
-            Intent contentIntent = new Intent(Constants.ACTION_OPEN_INBOUND_TRANSFER).setClassName(
-                    mContext, BluetoothOppReceiver.class.getName());
+
+            PendingIntent pi;
+            if (Flags.oppStartActivityDirectlyFromNotification()) {
+                Intent in = new Intent(mContext, BluetoothOppTransferHistory.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                in.putExtra(Constants.EXTRA_DIRECTION, BluetoothShare.DIRECTION_INBOUND);
+                pi =
+                        PendingIntent.getActivity(
+                                mContext,
+                                PENDING_INTENT_REQUEST_CODE_INBOUND_TRANSFER,
+                                in,
+                                PendingIntent.FLAG_IMMUTABLE);
+            } else {
+                Intent in =
+                    new Intent(Constants.ACTION_OPEN_INBOUND_TRANSFER)
+                        .setClassName(mContext, BluetoothOppReceiver.class.getName());
+                pi = PendingIntent.getBroadcast(mContext, 0, in, PendingIntent.FLAG_IMMUTABLE);
+            }
+
             Intent deleteIntent = new Intent(Constants.ACTION_COMPLETE_HIDE).setClassName(
                     mContext, BluetoothOppReceiver.class.getName());
             Notification inNoti =
@@ -521,9 +547,7 @@ class BluetoothOppNotification {
                                                     .system_notification_accent_color,
                                             mContext.getTheme()))
 
-                            .setContentIntent(
-                                    PendingIntent.getBroadcast(mContext, 0, contentIntent,
-                                        PendingIntent.FLAG_IMMUTABLE))
+                            .setContentIntent(pi)
                             .setDeleteIntent(
                                     PendingIntent.getBroadcast(mContext, 0, deleteIntent,
                                         PendingIntent.FLAG_IMMUTABLE))
