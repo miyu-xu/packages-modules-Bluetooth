@@ -401,7 +401,11 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
                 throw e.rethrowAsRuntimeException();
             } catch (TimeoutException e) {
+                mCallbackExecutorMap.remove(callback);
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            } catch (Exception e) {
+                mCallbackExecutorMap.remove(callback);
+                throw e;
             }
         }
     }
