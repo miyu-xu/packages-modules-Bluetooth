@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c04e2c5c_276ea8a1",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-10T12:54:12Z",
+      "side": 1,
+      "message": "I\u0027m not sure if we should be consistent, ignoring a double stop makes sense, while you can\u0027t really ignore a start.",
+      "parentUuid": "eb4d673f_bdebcece",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 67
+      },
+      "revId": "70575ab3ec0405c677d43788650423fc9f4aa9ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6e29f3ec_060ef262",
         "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-09T20:52:27Z",
       "side": 1,
       "message": "nit FYI this stop is not symetrical from the start, for example mUserChangeReceiver can be not unregister when mContactChangeObserver is null",
+      "range": {
+        "startLine": 760,
+        "startChar": 6,
+        "endLine": 772,
+        "endChar": 72
+      },
+      "revId": "70575ab3ec0405c677d43788650423fc9f4aa9ac",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79d992d5_514d98e3",
+        "filename": "android/app/src/com/android/bluetooth/pbap/BluetoothPbapService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-10T12:54:12Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "6e29f3ec_060ef262",
       "range": {
         "startLine": 760,
         "startChar": 6,
