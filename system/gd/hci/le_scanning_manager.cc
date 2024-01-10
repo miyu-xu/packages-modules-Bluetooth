@@ -500,6 +500,14 @@ struct LeScanningManager::impl : public LeAddressManagerCallback {
     phy_scan_parameters.le_scan_type_ = le_scan_type_;
     parameter_vector.push_back(phy_scan_parameters);
     uint8_t phys_in_use = 1;
+    if (controller_->SupportsBleCodedPhy()) {
+      phys_in_use = 5;
+      PhyScanParameters coded_phy_scan_parameters;
+      coded_phy_scan_parameters.le_scan_window_ = window_ms_;
+      coded_phy_scan_parameters.le_scan_interval_ = interval_ms_;
+      coded_phy_scan_parameters.le_scan_type_ = le_scan_type_;
+      parameter_vector.push_back(coded_phy_scan_parameters);
+    }
 
     // The Host shall not issue set scan parameter command when scanning is enabled
     stop_scan();
