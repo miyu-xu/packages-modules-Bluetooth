@@ -71,6 +71,7 @@
 #include "internal_include/stack_config.h"
 #include "main/shim/le_advertising_manager.h"
 #include "os/log.h"
+#include "os/logging/log_adapter.h"
 #include "osi/include/allocator.h"
 #include "osi/include/osi.h"
 #include "osi/include/properties.h"
@@ -1406,6 +1407,10 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
           BTIF_STORAGE_FILL_PROPERTY(&properties[2], BT_PROPERTY_CLASS_OF_DEVICE, sizeof(uint32_t), &cod);
           LOG_DEBUG("report new device to JNI");
           GetInterfaceToProfiles()->events->invoke_device_found_cb(3, properties);
+        } else {
+          LOG_INFO("Skipping RNR callback because cod is zero addr:%s name:%s",
+                   ADDRESS_TO_LOGGABLE_CSTR(bdaddr),
+                   PRIVATE_NAME(p_search_data->disc_res.bd_name));
         }
         /** @} */
       }
