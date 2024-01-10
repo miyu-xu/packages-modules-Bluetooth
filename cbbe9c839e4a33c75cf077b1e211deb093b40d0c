@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b7f8623a_90d34de6",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1622,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-10T22:13:44Z",
+      "side": 1,
+      "message": "do I understand correctly, that `removeSource(dev, sourceId)` requires that `dev` needs to be on `mPausedBroadcastSinks` ?",
+      "range": {
+        "startLine": 1622,
+        "startChar": 12,
+        "endLine": 1622,
+        "endChar": 24
+      },
+      "revId": "cbbe9c839e4a33c75cf077b1e211deb093b40d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
