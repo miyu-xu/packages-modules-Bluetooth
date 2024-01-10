@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e819604_9634bd40",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-10T21:02:00Z",
+      "side": 1,
+      "message": "Could you help to elaborate a bit more what issue you\u0027ve encounter and why we need the watchdog here? \nIf there is any issue with the controller, should we debug and resolve it from the controller side?\n\"for some reason broadcast start request\"\n\nWhat I\u0027m worried about is this CL might hide some issues which we need to debug.",
+      "revId": "7dca056bf98070e20c284bdc22dd3dd26ff14b1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
