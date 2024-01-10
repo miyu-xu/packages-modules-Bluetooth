@@ -748,6 +748,18 @@ bool is_device_le_audio_capable(const RawAddress bd_addr) {
     return false;
   }
 
+  /* First try reading device type from BTIF - it persists over multiple
+   * inquiry sessions */
+  int dev_type = 0;
+  if (IS_FLAG_ENABLED(le_audio_dev_type_detection_fix) &&
+      (btif_get_device_type(bd_addr, &dev_type) &&
+       (dev_type & BT_DEVICE_TYPE_BLE) == BT_DEVICE_TYPE_BLE)) {
+    /* LE Audio capable device is discoverable over both LE and Classic using
+     * same address. Prefer to use LE transport, as we don't know if it can do
+     * CTKD from Classic to LE */
+    return true;
+  }
+
   tBT_DEVICE_TYPE tmp_dev_type;
   tBLE_ADDR_TYPE addr_type = BLE_ADDR_PUBLIC;
   BTM_ReadDevInfo(bd_addr, &tmp_dev_type, &addr_type);
