@@ -55,6 +55,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "7a89a925_7df30482",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-10T22:44:05Z",
+      "side": 1,
+      "message": "FYI wifi usage of `core_platform` [here](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Wifi/flags/Android.bp;l\u003d45)\n\n\u003e I think doing this here will be okay as long as nothing gets released\n\nThe documentation go/android-flags-howto-apis#new-apis-in-mainline-code tell mainline to use the flag with a string, but this is not convenient at all.\nI am looking for a way (like wifi did) to use the Flag in the framework.\n\nI would be very interested to know what is dangerous since we are already releasing with flags cf go/bt-ts-workflow.\n24Q2 is containing our first released flags within the module (none in framework for now)",
+      "parentUuid": "97b6999c_952cb1c2",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "904fd1b6_bce61207",
         "filename": "flags/Android.bp",
         "patchSetId": 3
@@ -72,6 +90,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "946c958f_e1b095ff",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-10T22:44:05Z",
+      "side": 1,
+      "message": "I can do a filegroup maybe ?",
+      "parentUuid": "904fd1b6_bce61207",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b0f94a9e_5aaeb77f",
         "filename": "flags/Android.bp",
         "patchSetId": 3
@@ -83,6 +119,24 @@
       "writtenOn": "2024-01-10T10:02:20Z",
       "side": 1,
       "message": "Do we need `fake_device_config` then? I\u0027m missing something here",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f35f323e_86d819af",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-10T22:44:05Z",
+      "side": 1,
+      "message": "I do not understand why one and not the other.",
+      "parentUuid": "b0f94a9e_5aaeb77f",
       "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
