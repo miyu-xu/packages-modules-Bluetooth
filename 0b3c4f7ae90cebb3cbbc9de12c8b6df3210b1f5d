@@ -1,5 +1,29 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "172050f2_bd9d7f6c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-10T04:27:17Z",
+      "side": 1,
+      "message": "Although it doesn\u0027t seem to, this kind of changes could lead to flow change.\n\nFor example, what if there was a checking if the status is GATT_ERROR?\n\nIt is very hard to track all the scenarios that the returned status could be used so we need to use a flag or do some strict tests to ensure this does not lead to flow change.",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "0b3c4f7ae90cebb3cbbc9de12c8b6df3210b1f5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
