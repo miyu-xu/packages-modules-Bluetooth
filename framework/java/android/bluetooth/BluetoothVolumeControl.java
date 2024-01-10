@@ -38,6 +38,7 @@ import android.os.RemoteException;
 import android.util.CloseGuard;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
@@ -645,6 +646,130 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
             try {
                 final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
                 service.setDeviceVolume(device, volume, isGroupOperation, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Mutes the remote device.
+     *
+     * @param device {@link BluetoothDevice} representing the remote device
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_VCP_MUTE_UNMUTE)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public void mute(@NonNull BluetoothDevice device) {
+        if (DBG) log("mute(" + device + ")");
+        final IBluetoothVolumeControl service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+                service.mute(device, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Unmutes the remote device.
+     *
+     * @param device {@link BluetoothDevice} representing the remote device
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_VCP_MUTE_UNMUTE)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public void unmute(@NonNull BluetoothDevice device) {
+        if (DBG) log("unmute(" + device + ")");
+        final IBluetoothVolumeControl service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+                service.unmute(device, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Mutes the LE audio group.
+     *
+     * @param groupId the group identifier
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_VCP_MUTE_UNMUTE)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public void muteGroup(int groupId) {
+        if (DBG) log("muteGroup(" + groupId + ")");
+        final IBluetoothVolumeControl service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+                service.muteGroup(groupId, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Unmutes the LE audio group.
+     *
+     * @param groupId the group identifier
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_VCP_MUTE_UNMUTE)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public void unmuteGroup(int groupId) {
+        if (DBG) log("unmuteGroup(" + groupId + ")");
+        final IBluetoothVolumeControl service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+                service.unmuteGroup(groupId, mAttributionSource, recv);
                 recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
             } catch (RemoteException | TimeoutException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
