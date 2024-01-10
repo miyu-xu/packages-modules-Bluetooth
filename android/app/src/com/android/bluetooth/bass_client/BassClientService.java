@@ -1253,9 +1253,6 @@ public class BassClientService extends ProfileService {
             return;
         }
 
-        /* Store metadata for sink device */
-        mBroadcastMetadataMap.put(sink, sourceMetadata);
-
         byte[] code = sourceMetadata.getBroadcastCode();
         for (BluetoothDevice device : devices) {
             BassClientStateMachine stateMachine = getOrCreateStateMachine(device);
@@ -1297,6 +1294,10 @@ public class BassClientService extends ProfileService {
                         enqueueSourceGroupOp(
                                 device, BassClientStateMachine.ADD_BCAST_SOURCE, sourceMetadata);
                     }
+
+                    /* Store metadata for sink device */
+                    mBroadcastMetadataMap.put(device, sourceMetadata);
+
                     Message message =
                             stateMachine.obtainMessage(BassClientStateMachine.SWITH_BCAST_SOURCE);
                     message.obj = sourceMetadata;
@@ -1325,6 +1326,9 @@ public class BassClientService extends ProfileService {
                     continue;
                 }
             }
+
+            /* Store metadata for sink device */
+            mBroadcastMetadataMap.put(device, sourceMetadata);
 
             if (isGroupOp) {
                 enqueueSourceGroupOp(device, BassClientStateMachine.ADD_BCAST_SOURCE,
