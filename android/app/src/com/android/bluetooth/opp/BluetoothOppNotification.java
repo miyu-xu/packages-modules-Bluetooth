@@ -505,8 +505,22 @@ class BluetoothOppNotification {
         if (inboundNum > 0) {
             String caption = BluetoothOppUtility.formatResultText(inboundSuccNumber,
                     inboundFailNumber, mContext);
-            Intent contentIntent = new Intent(Constants.ACTION_OPEN_INBOUND_TRANSFER).setClassName(
-                    mContext, BluetoothOppReceiver.class.getName());
+
+            PendingIntent pi;
+            if (Flags.oppStartActivityDirectlyFromNotification()) {
+                Intent in = new Intent(mContext, BluetoothOppTransferHistory.class);
+                in.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                in.putExtra(Constants.EXTRA_DIRECTION, BluetoothShare.DIRECTION_INBOUND);
+                // Note: The requestCode here should be different from outbound transfer in order to
+                //       make the two pending intent different.
+                pi = PendingIntent.getActivity(mContext, 1, in, PendingIntent.FLAG_IMMUTABLE);
+            } else {
+                Intent in =
+                    new Intent(Constants.ACTION_OPEN_INBOUND_TRANSFER)
+                        .setClassName(mContext, BluetoothOppReceiver.class.getName());
+                pi = PendingIntent.getBroadcast(mContext, 0, in, PendingIntent.FLAG_IMMUTABLE);
+            }
+
             Intent deleteIntent = new Intent(Constants.ACTION_COMPLETE_HIDE).setClassName(
                     mContext, BluetoothOppReceiver.class.getName());
             Notification inNoti =
@@ -521,9 +535,7 @@ class BluetoothOppNotification {
                                                     .system_notification_accent_color,
                                             mContext.getTheme()))
 
-                            .setContentIntent(
-                                    PendingIntent.getBroadcast(mContext, 0, contentIntent,
-                                        PendingIntent.FLAG_IMMUTABLE))
+                            .setContentIntent(pi)
                             .setDeleteIntent(
                                     PendingIntent.getBroadcast(mContext, 0, deleteIntent,
                                         PendingIntent.FLAG_IMMUTABLE))

@@ -150,6 +150,8 @@ public class BluetoothOppReceiver extends BroadcastReceiver {
             in.putExtra(Constants.EXTRA_DIRECTION, BluetoothShare.DIRECTION_OUTBOUND);
             context.startActivity(in);
         } else if (action.equals(Constants.ACTION_OPEN_INBOUND_TRANSFER)) {
+            // TODO(b/319050411): Remove this if statement branch when the flag
+            //                    oppStartActivityDirectlyFromNotification is cleaned up.
             if (V) {
                 Log.v(TAG, "Received ACTION_OPEN_INBOUND_TRANSFER.");
             }
