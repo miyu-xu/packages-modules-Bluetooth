@@ -776,6 +776,7 @@ static bt_status_t connect_int(RawAddress* bd_addr, uint16_t uuid) {
   if (is_connected(bd_addr)) {
     LOG_WARN("%s: device %s is already connected", __func__,
              ADDRESS_TO_LOGGABLE_CSTR(*bd_addr));
+    btif_queue_advance();
     return BT_STATUS_DONE;
   }
   btif_hf_cb_t* hf_cb = nullptr;
@@ -797,6 +798,7 @@ static bt_status_t connect_int(RawAddress* bd_addr, uint16_t uuid) {
   if (hf_cb == nullptr) {
     LOG_WARN("%s: Cannot connect %s: maximum %d clients already connected",
              __func__, ADDRESS_TO_LOGGABLE_CSTR(*bd_addr), btif_max_hf_clients);
+    btif_queue_advance();
     return BT_STATUS_BUSY;
   }
   hf_cb->state = BTHF_CONNECTION_STATE_CONNECTING;
