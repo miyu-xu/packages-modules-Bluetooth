@@ -46,6 +46,30 @@
       },
       "revId": "4f572bd6ad04e521346514cb83d3870170b78710",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8372bd93_1e4d38e7",
+        "filename": "system/stack/btm/btm_ble_gap.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3246,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-10T00:21:02Z",
+      "side": 0,
+      "message": "Good question.\n\n```\nbool btm_ble_resume_bg_conn(void) {\n    LOG_DEBUG(\"Gd acl_manager handles sync of background connections\");\n    return true;\n}\n```\n\nThis doesn\u0027t really do much...I don\u0027t know how better to convey this as it\u0027s not obvious.",
+      "parentUuid": "d9f17ffd_3df1a89c",
+      "range": {
+        "startLine": 3241,
+        "startChar": 2,
+        "endLine": 3246,
+        "endChar": 3
+      },
+      "revId": "4f572bd6ad04e521346514cb83d3870170b78710",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
