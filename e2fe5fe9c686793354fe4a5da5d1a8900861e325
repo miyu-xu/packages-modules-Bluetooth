@@ -70,6 +70,30 @@
       },
       "revId": "e2fe5fe9c686793354fe4a5da5d1a8900861e325",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d8e8f76_e80ac3aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1966830
+      },
+      "writtenOn": "2024-01-10T23:02:07Z",
+      "side": 1,
+      "message": "Sure. I will start the flag for this change.",
+      "parentUuid": "56e3e1ae_9693f54f",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 14
+      },
+      "revId": "e2fe5fe9c686793354fe4a5da5d1a8900861e325",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
