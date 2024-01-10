@@ -63,6 +63,30 @@
       },
       "revId": "05b06c8d2c8850655c20316d260fbdcf9bc41dcb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15add7a5_cad94eda",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-10T13:36:41Z",
+      "side": 1,
+      "message": "Thanks for updating it.  I should have thought about the fact that the controller isn\u0027t available in the HCI layer.  The controller shim is going away soon, so that would break this.\n\nCan we go back to patchset #2 but add #ifdef TARGET_FLOSS ?  Sorry about that.",
+      "parentUuid": "314d5be9_7438cb0f",
+      "range": {
+        "startLine": 226,
+        "startChar": 7,
+        "endLine": 226,
+        "endChar": 15
+      },
+      "revId": "05b06c8d2c8850655c20316d260fbdcf9bc41dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
