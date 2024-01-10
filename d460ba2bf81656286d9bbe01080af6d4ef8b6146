@@ -16,6 +16,57 @@
       "message": "Hi @joeo@google.com,\nCan you tell me if this is something acceptable to do ?\nI followed what Nate did for Wifi.\nThanks ! 🙏",
       "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c665948c_5d0d8a6d",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-10T10:02:20Z",
+      "side": 1,
+      "message": "Is this using `fake_device_config` outside the framework as well?\n\nI might prefer to create a different `java_aconfig_library` just for the framework to be sure of that.",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "904fd1b6_bce61207",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-10T10:02:20Z",
+      "side": 1,
+      "message": "Could this be something else than a default so that we don\u0027t need to add the visibility inside `bluetooth_flags_java_lib` ?",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0f94a9e_5aaeb77f",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-10T10:02:20Z",
+      "side": 1,
+      "message": "Do we need `fake_device_config` then? I\u0027m missing something here",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
