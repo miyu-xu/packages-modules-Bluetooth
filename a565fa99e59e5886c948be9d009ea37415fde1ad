@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b337bb2e_cee3e9fd",
+        "filename": "system/stack/bnep/bnep_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-10T23:36:50Z",
+      "side": 1,
+      "message": "why not just cont RawAddress?",
+      "revId": "a565fa99e59e5886c948be9d009ea37415fde1ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
