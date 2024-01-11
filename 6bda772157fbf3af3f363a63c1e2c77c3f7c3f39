@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec36eca8_901e7ef5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-11T19:48:48Z",
+      "side": 1,
+      "message": "Can you please clarify how this change is related to this bug? \n\nI wonder if it might make more sense to file a cleanup bug for these kinds of changes. It\u0027s not clear to me how removing some duplicated code would significantly improve notification click response time.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "6bda772157fbf3af3f363a63c1e2c77c3f7c3f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
