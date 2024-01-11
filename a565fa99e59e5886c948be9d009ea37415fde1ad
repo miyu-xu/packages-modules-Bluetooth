@@ -52,6 +52,24 @@
       "parentUuid": "8252ae41_d7b78a76",
       "revId": "a565fa99e59e5886c948be9d009ea37415fde1ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4f983006_f373db88",
+        "filename": "system/stack/bnep/bnep_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-11T22:50:31Z",
+      "side": 1,
+      "message": "Actually I think using value is safer the data is passed crossed thread boundaries.",
+      "parentUuid": "a3a9f0c7_3226b08e",
+      "revId": "a565fa99e59e5886c948be9d009ea37415fde1ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
