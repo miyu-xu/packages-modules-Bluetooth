@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "78a6c08f_2506ff46",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-01-11T10:27:42Z",
+      "side": 1,
+      "message": "Approved, fix with full testing coverage.",
+      "revId": "2bc33e8a7810400efd0a6bbe7f08b8c6a1b43cd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
