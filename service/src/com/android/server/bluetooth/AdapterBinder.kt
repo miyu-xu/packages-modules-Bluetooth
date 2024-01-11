@@ -23,6 +23,7 @@ import android.os.IBinder
 import android.os.RemoteException
 import com.android.modules.utils.SynchronousResultReceiver
 import com.android.server.bluetooth.BluetoothManagerService.timeToLog
+import java.io.FileDescriptor
 import java.time.Duration
 import java.util.concurrent.TimeoutException
 
@@ -133,5 +134,12 @@ class AdapterBinder(rawBinder: IBinder) {
             }
             return false
         }
+    }
+
+    @Throws(RemoteException::class, TimeoutException::class)
+    fun dump(fd: FileDescriptor, args: Array<String>) {
+        val recv: SynchronousResultReceiver<Any> = SynchronousResultReceiver.get()
+        adapterBinder.dump(recv, fd, args)
+        recv.awaitResultNoInterrupt(SYNC_TIMEOUT).getValue(null)
     }
 }

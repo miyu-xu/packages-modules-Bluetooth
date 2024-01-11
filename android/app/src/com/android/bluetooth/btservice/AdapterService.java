@@ -4791,6 +4791,16 @@ public class AdapterService extends Service {
         }
 
         @Override
+        public void dump(SynchronousResultReceiver receiver, FileDescriptor fd, String[] args) {
+            try {
+                dump(fd, args);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
+        }
+
+        @Override
         public void dump(FileDescriptor fd, String[] args) {
             PrintWriter writer = new PrintWriter(new FileOutputStream(fd));
             AdapterService service = getService();

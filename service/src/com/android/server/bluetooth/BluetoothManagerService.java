@@ -2368,7 +2368,6 @@ class BluetoothManagerService {
             dumpProto(fd);
             return;
         }
-        String errorMsg = null;
 
         writer.println("Bluetooth Status");
         writer.println("  enabled: " + isEnabled());
@@ -2429,14 +2428,14 @@ class BluetoothManagerService {
             args[0] = "--print";
         }
 
+        String errorMsg = null;
         if (mAdapter == null) {
             errorMsg = "Bluetooth Service not connected";
         } else {
             try {
-                // TODO(b/239890880): system_server cannot make non-oneway call
-                mAdapter.getAdapterBinder().asBinder().dump(fd, args);
-            } catch (RemoteException re) {
-                errorMsg = "RemoteException while dumping Bluetooth Service";
+                mAdapter.dump(fd, args);
+            } catch (RemoteException | TimeoutException re) {
+                errorMsg = "RemoteException while dumping Bluetooth Service: " + re;
             }
         }
         if (errorMsg != null) {
