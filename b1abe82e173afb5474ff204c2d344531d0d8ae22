@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8442f46e_ade24fd4",
+        "filename": "system/audio_hal_interface/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-01-11T03:43:24Z",
+      "side": 1,
+      "message": "@yuyangh@google.com\nPer local testing, this addition is not needed. Can you check again if this is needed?",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "b1abe82e173afb5474ff204c2d344531d0d8ae22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
