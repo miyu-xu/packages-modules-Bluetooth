@@ -87,6 +87,30 @@
       },
       "revId": "05b06c8d2c8850655c20316d260fbdcf9bc41dcb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b8818fb_0a74e6c0",
+        "filename": "system/gd/hci/hci_layer.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-01-11T03:58:12Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15add7a5_cad94eda",
+      "range": {
+        "startLine": 226,
+        "startChar": 7,
+        "endLine": 226,
+        "endChar": 15
+      },
+      "revId": "05b06c8d2c8850655c20316d260fbdcf9bc41dcb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
