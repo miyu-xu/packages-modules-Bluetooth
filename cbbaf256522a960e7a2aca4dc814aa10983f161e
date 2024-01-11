@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fcdc0c52_992677a2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-11T04:08:04Z",
+      "side": 1,
+      "message": "Flag: EXEMPT, floss-only change",
+      "revId": "cbbaf256522a960e7a2aca4dc814aa10983f161e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
