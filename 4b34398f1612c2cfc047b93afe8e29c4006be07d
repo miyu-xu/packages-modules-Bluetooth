@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d14440d3_eeb11add",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-11T18:19:32Z",
+      "side": 1,
+      "message": "Do you need to update this one as well?",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 89
+      },
+      "revId": "4b34398f1612c2cfc047b93afe8e29c4006be07d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
