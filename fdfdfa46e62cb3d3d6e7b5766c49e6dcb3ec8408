@@ -34,6 +34,41 @@
       "parentUuid": "c140269e_9ed04740",
       "revId": "fdfdfa46e62cb3d3d6e7b5766c49e6dcb3ec8408",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "68db2a28_240527e4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 2002251
+      },
+      "writtenOn": "2024-01-11T01:43:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "46e2f77a_940ccc9a",
+      "revId": "fdfdfa46e62cb3d3d6e7b5766c49e6dcb3ec8408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d9ca9a3_bf81e30a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 2002251
+      },
+      "writtenOn": "2024-01-11T01:43:37Z",
+      "side": 1,
+      "message": "Currently, the scanning_phys in LE_Set_Scan_parameter is fixed to 1, which means that the scan only uses LE 1M Phy. If the controller supports Le coded phy, can the LE Coded Phy bit be set to 1?",
+      "revId": "fdfdfa46e62cb3d3d6e7b5766c49e6dcb3ec8408",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
