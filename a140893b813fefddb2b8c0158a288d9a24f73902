@@ -33,6 +33,24 @@
       "message": "I am not a fan of the file name as btif_dm doesn\u0027t really target an area. I see that there is bta_dm and same comment apply for this one.\n\nBut if you feel like this is what make the more sense, I am not opposed",
       "revId": "a140893b813fefddb2b8c0158a288d9a24f73902",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa9e15de_0265f09b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-11T23:11:40Z",
+      "side": 1,
+      "message": "I don\u0027t like it either. Since the bta_dm file existed, I thought that was the convention being followed. We can discuss this offline.",
+      "parentUuid": "1e1c4042_507707ac",
+      "revId": "a140893b813fefddb2b8c0158a288d9a24f73902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
