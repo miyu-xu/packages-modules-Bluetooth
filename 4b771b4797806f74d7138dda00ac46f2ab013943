@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62029c86_7a9c633d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-11T01:33:00Z",
+      "side": 1,
+      "message": "New api need to be flagged.\nSee go/android-flags-howto-apis#new-apis-in-mainline-code\n\nAlso for Bluetooth see go/bt-ts-workflow that explain how to add flag for bluetooth",
+      "range": {
+        "startLine": 812,
+        "startChar": 0,
+        "endLine": 812,
+        "endChar": 21
+      },
+      "revId": "4b771b4797806f74d7138dda00ac46f2ab013943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
