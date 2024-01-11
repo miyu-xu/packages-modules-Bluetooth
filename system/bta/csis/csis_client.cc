@@ -902,7 +902,10 @@ class CsisClientImpl : public CsisClient {
         auto g = FindCsisGroup(group_id_to_discover);
         LOG_DEBUG("Group size  %d  target size %d", g->GetDesiredSize(),
                   g->GetCurrentSize());
-        if (g->GetDesiredSize() > g->GetCurrentSize()) {
+
+        if (g->GetDesiredSize() >
+            g->GetCurrentSize() + GetNumOfKnownExpectedDevicesWaitingForBonding(
+                                      g->GetGroupId())) {
           CsisActiveDiscovery(g);
         }
       }
@@ -1302,6 +1305,14 @@ class CsisClientImpl : public CsisClient {
     }
 
     return std::move(devices);
+  }
+
+  int GetNumOfKnownExpectedDevicesWaitingForBonding(int group_id) {
+    return std::count_if(
+        devices_.begin(), devices_.end(), [group_id](const auto& device) {
+          return device->GetExpectedGroupIdMember() == group_id &&
+                 !device->GetCsisInstanceByGroupId(group_id);
+        });
   }
 
   void CacheAndAdvertiseExpectedMember(const RawAddress& address,
