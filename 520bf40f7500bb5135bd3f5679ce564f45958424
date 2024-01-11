@@ -70,6 +70,30 @@
       },
       "revId": "520bf40f7500bb5135bd3f5679ce564f45958424",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ea20f6e7_bcd07b35",
+        "filename": "system/test/common/hal_version_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1956242
+      },
+      "writtenOn": "2024-01-11T23:03:46Z",
+      "side": 1,
+      "message": "If you are referring to `BluetoothAudioHalVersion` methods then there is no method defined now (it\u0027s an enum without `audio_hal_version_class` flag):\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2855310/11/system/audio_hal_interface/hal_version_manager.h#120",
+      "parentUuid": "9c3670b4_6cd4670c",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 55
+      },
+      "revId": "520bf40f7500bb5135bd3f5679ce564f45958424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
