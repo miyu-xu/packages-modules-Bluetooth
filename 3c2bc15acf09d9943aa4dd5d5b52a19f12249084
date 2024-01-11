@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8cc11ec2_de8b07c7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-11T23:00:57Z",
+      "side": 1,
+      "message": "should `synchronous_bta_sec` be moved into security.aconfig ?",
+      "revId": "3c2bc15acf09d9943aa4dd5d5b52a19f12249084",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
