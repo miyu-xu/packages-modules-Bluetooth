@@ -22,6 +22,30 @@
       },
       "revId": "6bda772157fbf3af3f363a63c1e2c77c3f7c3f39",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "37fa3869_e0c8cdf5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-11T23:52:50Z",
+      "side": 1,
+      "message": "Right. It is a cleanup before doing the actual notification delay work,  but I\u0027d better to have another bug.\n\nFiled b/319729818 and edited the commit message.",
+      "parentUuid": "ec36eca8_901e7ef5",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 14
+      },
+      "revId": "6bda772157fbf3af3f363a63c1e2c77c3f7c3f39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
