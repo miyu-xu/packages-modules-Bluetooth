@@ -70,6 +70,24 @@
       "parentUuid": "64c9dca9_dc24311b",
       "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "033f3739_b76657ee",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1767925
+      },
+      "writtenOn": "2024-01-11T10:02:21Z",
+      "side": 1,
+      "message": "Can you please review fix with spec and help to merge?",
+      "parentUuid": "0bb98e6b_af473843",
+      "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
