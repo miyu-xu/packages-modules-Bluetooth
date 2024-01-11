@@ -1451,6 +1451,7 @@ void btu_hcif_proc_sp_req_evt(tBTM_SP_EVT event, const uint8_t* p) {
 
   /* All events start with bd_addr */
   STREAM_TO_BDADDR(bda, p);
+
   switch (event) {
     case BTM_SP_CFM_REQ_EVT:
     case BTM_SP_KEY_NOTIF_EVT:
@@ -1458,6 +1459,9 @@ void btu_hcif_proc_sp_req_evt(tBTM_SP_EVT event, const uint8_t* p) {
       break;
     case BTM_SP_KEY_REQ_EVT:
       // No value needed.
+      break;
+    default:
+      LOG_WARN("unexpected event:%s", sp_evt_to_text(event).c_str());
       break;
   }
   btm_proc_sp_req_evt(event, bda, value);
