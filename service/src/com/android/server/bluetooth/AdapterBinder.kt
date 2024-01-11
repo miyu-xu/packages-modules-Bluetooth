@@ -20,6 +20,7 @@ import android.bluetooth.IBluetooth
 import android.bluetooth.IBluetoothCallback
 import android.content.AttributionSource
 import android.os.IBinder
+import android.os.ParcelFileDescriptor
 import android.os.RemoteException
 import com.android.modules.utils.SynchronousResultReceiver
 import com.android.server.bluetooth.BluetoothManagerService.timeToLog
@@ -133,5 +134,12 @@ class AdapterBinder(rawBinder: IBinder) {
             }
             return false
         }
+    }
+
+    @Throws(RemoteException::class, TimeoutException::class)
+    fun dump(fd: ParcelFileDescriptor, args: Array<String>) {
+        val recv: SynchronousResultReceiver<Any> = SynchronousResultReceiver.get()
+        adapterBinder.dump(recv, fd, args)
+        recv.awaitResultNoInterrupt(SYNC_TIMEOUT).getValue(null)
     }
 }

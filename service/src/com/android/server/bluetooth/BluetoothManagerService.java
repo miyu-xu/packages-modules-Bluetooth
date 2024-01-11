@@ -59,6 +59,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.os.ParcelFileDescriptor;
 import android.os.PowerExemptionManager;
 import android.os.Process;
 import android.os.RemoteCallbackList;
@@ -85,6 +86,7 @@ import kotlin.time.TimeSource;
 
 import java.io.FileDescriptor;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.Duration;
 import java.time.Instant;
@@ -2368,7 +2370,6 @@ class BluetoothManagerService {
             dumpProto(fd);
             return;
         }
-        String errorMsg = null;
 
         writer.println("Bluetooth Status");
         writer.println("  enabled: " + isEnabled());
@@ -2429,14 +2430,15 @@ class BluetoothManagerService {
             args[0] = "--print";
         }
 
+        String errorMsg = null;
         if (mAdapter == null) {
             errorMsg = "Bluetooth Service not connected";
         } else {
             try {
-                // TODO(b/239890880): system_server cannot make non-oneway call
-                mAdapter.getAdapterBinder().asBinder().dump(fd, args);
-            } catch (RemoteException re) {
-                errorMsg = "RemoteException while dumping Bluetooth Service";
+                ParcelFileDescriptor pfd = ParcelFileDescriptor.dup(fd);
+                mAdapter.dump(pfd, args);
+            } catch (RemoteException | TimeoutException | IOException re) {
+                errorMsg = "Exception while dumping Bluetooth Service: " + re;
             }
         }
         if (errorMsg != null) {
