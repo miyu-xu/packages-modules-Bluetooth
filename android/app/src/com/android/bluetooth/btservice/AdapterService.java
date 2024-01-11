@@ -91,6 +91,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.os.ParcelFileDescriptor;
 import android.os.ParcelUuid;
 import android.os.Parcelable;
 import android.os.PowerManager;
@@ -4788,6 +4789,17 @@ public class AdapterService extends Service {
             enforceBluetoothPrivilegedPermission(service);
 
             service.stopBle();
+        }
+
+        @Override
+        public void dump(
+                SynchronousResultReceiver receiver, ParcelFileDescriptor pfd, String[] args) {
+            try {
+                dump(pfd.getFileDescriptor(), args);
+                receiver.send(null);
+            } catch (RuntimeException e) {
+                receiver.propagateException(e);
+            }
         }
 
         @Override

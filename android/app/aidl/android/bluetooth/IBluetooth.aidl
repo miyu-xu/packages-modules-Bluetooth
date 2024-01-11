@@ -311,4 +311,7 @@ interface IBluetooth
 
     @JavaPassthrough(annotation="@android.annotation.RequiresNoPermission")
     oneway void getProfile(int profile, in SynchronousResultReceiver receiver);
+
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.DUMP)")
+    oneway void dump(in SynchronousResultReceiver receiver, in ParcelFileDescriptor fd, in String[] args);
 }
