@@ -46,6 +46,30 @@
       },
       "revId": "520bf40f7500bb5135bd3f5679ce564f45958424",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9c3670b4_6cd4670c",
+        "filename": "system/test/common/hal_version_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-11T22:54:43Z",
+      "side": 1,
+      "message": "But the API provided are the same with or without the flag (or did I miss something ?)\nSo we can build both test every time, and rely on runtime check with REQUIRES_FLAGS_ENABLED to run only the necessary test.\n\nThe benefits of that is to have a clear indication that the test is here but skipped because of the flag. If we are not building the test we will not know the test is being ignored.",
+      "parentUuid": "beab9640_2f3cd7fe",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 55
+      },
+      "revId": "520bf40f7500bb5135bd3f5679ce564f45958424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
