@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7400bf8a_d6578451",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-11T22:57:50Z",
+      "side": 1,
+      "message": "You can directly add `Bug: 315241296` to provide DrNo for flag creation",
+      "revId": "a140893b813fefddb2b8c0158a288d9a24f73902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e1c4042_507707ac",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-11T22:57:50Z",
+      "side": 1,
+      "message": "I am not a fan of the file name as btif_dm doesn\u0027t really target an area. I see that there is bta_dm and same comment apply for this one.\n\nBut if you feel like this is what make the more sense, I am not opposed",
+      "revId": "a140893b813fefddb2b8c0158a288d9a24f73902",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
