@@ -22,6 +22,30 @@
       },
       "revId": "0b3c4f7ae90cebb3cbbc9de12c8b6df3210b1f5d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eddfff3_f731ad7a",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-01-11T15:16:20Z",
+      "side": 1,
+      "message": "Thanks for the comment Kyunglyul. The status code here is only checked if it\u0027s not equal to GATT_SUCCESS in [bta_gattc_cfg_mtu](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/gatt/bta_gattc_act.cc;l\u003d792;drc\u003d52ffe450a6f05a31a54d74fe68283037dc0b9980;bpv\u003d1;bpt\u003d1) and is not sent to apps, so I thought it would be no flow change. However, I can see that if there is code change to check the status with GATT_ERROR, I can see some flow changes. I\u0027ll look at this a bit more and add a flag if necessary",
+      "parentUuid": "172050f2_bd9d7f6c",
+      "range": {
+        "startLine": 15,
+        "startChar": 14,
+        "endLine": 15,
+        "endChar": 28
+      },
+      "revId": "0b3c4f7ae90cebb3cbbc9de12c8b6df3210b1f5d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
