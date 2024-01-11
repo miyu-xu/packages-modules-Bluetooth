@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e8a843be_dc2fc785",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1890836
+      },
+      "writtenOn": "2024-01-11T05:49:13Z",
+      "side": 1,
+      "message": "This CL updates the fuzzer code format to address this comment:\n[https://android-review.googlesource.com/c/platform/packages/modules/Bluetooth/+/2129059/comment/dfbceb62_fca2a83f/]",
+      "revId": "3ca956f001058fe1a735d32b74c2aac0b4dac0e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
