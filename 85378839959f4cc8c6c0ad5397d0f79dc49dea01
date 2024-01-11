@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "63bd41d0_298b2df7",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppNotification.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-11T15:27:10Z",
+      "side": 1,
+      "message": "If we use same number, the in/outbound notification will both open the same activity - which should be different. \n\nIt happens because their intents\u0027 actions/data/etc are same:\nhttps://stackoverflow.com/a/20205696",
+      "parentUuid": "59d18cc0_ca0ea540",
+      "range": {
+        "startLine": 526,
+        "startChar": 32,
+        "endLine": 526,
+        "endChar": 59
+      },
+      "revId": "85378839959f4cc8c6c0ad5397d0f79dc49dea01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9ab9d66_412e2e57",
