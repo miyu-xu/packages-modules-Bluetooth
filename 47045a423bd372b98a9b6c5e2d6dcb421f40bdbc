@@ -70,6 +70,30 @@
       },
       "revId": "47045a423bd372b98a9b6c5e2d6dcb421f40bdbc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90852950_d22ddb25",
+        "filename": "android/app/src/com/android/bluetooth/hfp/HeadsetStateMachine.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1957,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-11T23:34:06Z",
+      "side": 1,
+      "message": "this won\u0027t get reused. In normal case, the value is from telecom for signal strength. It is only used for some old carkit that were manufactured before wifi calling/VoLTE. \nThe documentation is in the log above.",
+      "parentUuid": "17009951_31370729",
+      "range": {
+        "startLine": 1957,
+        "startChar": 0,
+        "endLine": 1957,
+        "endChar": 27
+      },
+      "revId": "47045a423bd372b98a9b6c5e2d6dcb421f40bdbc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
