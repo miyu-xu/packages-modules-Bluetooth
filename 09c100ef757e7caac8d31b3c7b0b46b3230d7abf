@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "060c3e08_f9ea2f8d",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-11T21:03:58Z",
+      "side": 1,
+      "message": "I don\u0027t think this should be \"guarded by the flag tracking bug\"\n\nIf we turn off the flag, the tests are still changed.  I\u0027d rather have:\nFlag: EXEMPT, test infrastructure only",
+      "range": {
+        "startLine": 10,
+        "startChar": 5,
+        "endLine": 10,
+        "endChar": 14
+      },
+      "revId": "09c100ef757e7caac8d31b3c7b0b46b3230d7abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fb0997d9_1fa5ef5f",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-11T21:03:58Z",
+      "side": 1,
+      "message": "nit: Should we mock these, instead?  It seems odd",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 47
+      },
+      "revId": "09c100ef757e7caac8d31b3c7b0b46b3230d7abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ffc7067d_7e5fb52d",
+        "filename": "system/test/mock/mock_btif_hf.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-11T21:03:58Z",
+      "side": 1,
+      "message": "I\u0027m wondering if this should return a mocked interface, instead...",
+      "range": {
+        "startLine": 52,
+        "startChar": 20,
+        "endLine": 52,
+        "endChar": 27
+      },
+      "revId": "09c100ef757e7caac8d31b3c7b0b46b3230d7abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
