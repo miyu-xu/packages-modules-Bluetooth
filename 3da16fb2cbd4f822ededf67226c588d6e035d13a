@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2dfde568_24d51466",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1883,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-11T07:40:39Z",
+      "side": 1,
+      "message": "Still we have problem here that in case of LeAudio does connect but, during connection, this timeout might fire and break things. We could argue that this is 15 sec, so it is long enough - but  what happens if after connection, withing this 15 sec timeout, there is device disconnection (e.g. Connection timeout happens) and then quick reconnection? I guess this timeout will be still running and might impact future connection?\n\nI think we need alarm_t here attached to some connection control block.",
+      "range": {
+        "startLine": 1883,
+        "startChar": 12,
+        "endLine": 1883,
+        "endChar": 37
+      },
+      "revId": "3da16fb2cbd4f822ededf67226c588d6e035d13a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

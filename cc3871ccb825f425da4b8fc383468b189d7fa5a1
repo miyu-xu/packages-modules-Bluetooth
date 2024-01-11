@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a6d5ba1_902faeb2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1880,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-11T07:40:39Z",
+      "side": 1,
+      "message": "This is not really LeAudio thing, we should call it \n\n`keep_fast_connection_params_after_bond`\n\nThis can be used by anybody and not only LeAudio. E.g. it could be usefull for ASHA as well, for the connection time, or any other profile which requires some GATT operations for setup.",
+      "range": {
+        "startLine": 1880,
+        "startChar": 29,
+        "endLine": 1880,
+        "endChar": 54
+      },
+      "revId": "cc3871ccb825f425da4b8fc383468b189d7fa5a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ab9b4bf_65ab0e49",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1886,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-11T07:40:39Z",
+      "side": 1,
+      "message": "this name is too vague and it says about Audio which is misleading.\nI suggested other naming, but if you want to keep `Lock` in the name, please consider\n\n`L2CA_LockBleOnFastConnParams()`\n\notherwise in a year from now this name will create question like \"What parameters are locked?\"\n\nAlso as mentioned in other comment, it should be leaudio module who should do or extend this \"lock\". btif_dm.cc should just make sure that after bonding fast conn params are there for a while so any profile connecting just after bond could extend this \"lock\".",
+      "range": {
+        "startLine": 1886,
+        "startChar": 43,
+        "endLine": 1886,
+        "endChar": 79
+      },
+      "revId": "cc3871ccb825f425da4b8fc383468b189d7fa5a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6afeb887_05589b83",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2388,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-11T07:40:39Z",
+      "side": 1,
+      "message": "I believe we should keep audio out of this feature. Or we could have additional flag which enables this feature only for le_capable devices.",
+      "range": {
+        "startLine": 2388,
+        "startChar": 10,
+        "endLine": 2388,
+        "endChar": 46
+      },
+      "revId": "cc3871ccb825f425da4b8fc383468b189d7fa5a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
