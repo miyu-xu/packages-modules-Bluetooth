@@ -34,6 +34,24 @@
       "parentUuid": "b337bb2e_cee3e9fd",
       "revId": "a565fa99e59e5886c948be9d009ea37415fde1ad",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3a9f0c7_3226b08e",
+        "filename": "system/stack/bnep/bnep_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-11T22:18:00Z",
+      "side": 1,
+      "message": "const RawAddress\u0026 is the convention in the stack.",
+      "parentUuid": "8252ae41_d7b78a76",
+      "revId": "a565fa99e59e5886c948be9d009ea37415fde1ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
