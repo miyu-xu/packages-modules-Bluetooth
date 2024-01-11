@@ -181,7 +181,10 @@ class CsisClientImpl : public CsisClient {
       device = FindDeviceByAddress(address);
     }
 
-    if (!csis_group->IsDeviceInTheGroup(device)) csis_group->AddDevice(device);
+    if (!csis_group->IsDeviceInTheGroup(device)) {
+      csis_group->AddDevice(device);
+      csis_group->AddKnownDevice(address);
+    }
 
     return csis_group;
   }
@@ -790,6 +793,7 @@ class CsisClientImpl : public CsisClient {
       }
 
       csis_group->RemoveDevice(device->addr);
+      csis_group->RemoveKnownDevice(device->addr);
 
       if (csis_group->IsEmpty()) {
         RemoveCsisGroup(group_id);
@@ -902,7 +906,7 @@ class CsisClientImpl : public CsisClient {
         auto g = FindCsisGroup(group_id_to_discover);
         LOG_DEBUG("Group size  %d  target size %d", g->GetDesiredSize(),
                   g->GetCurrentSize());
-        if (g->GetDesiredSize() > g->GetCurrentSize()) {
+        if (g->GetDesiredSize() > g->GetKnownDeviceSize()) {
           CsisActiveDiscovery(g);
         }
       }
@@ -1365,6 +1369,7 @@ class CsisClientImpl : public CsisClient {
       LOG_DEBUG("Found set member %s",
                 ADDRESS_TO_LOGGABLE_CSTR(result->bd_addr));
 
+      csis_group->AddKnownDevice(result->bd_addr);
       CacheAndAdvertiseExpectedMember(result->bd_addr,
                                       csis_group->GetGroupId());
 
@@ -1507,6 +1512,7 @@ class CsisClientImpl : public CsisClient {
             break;
           }
 
+          group->AddKnownDevice(result->bd_addr);
           CacheAndAdvertiseExpectedMember(result->bd_addr, group->GetGroupId());
 
           break;
@@ -1637,6 +1643,7 @@ class CsisClientImpl : public CsisClient {
 
       csis_group = FindCsisGroup(group_id);
       csis_group->AddDevice(device);
+      csis_group->AddKnownDevice(device->addr);
       /* Let's update csis instance group id */
       csis_instance->SetGroupId(group_id);
     }

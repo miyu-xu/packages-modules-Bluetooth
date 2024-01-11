@@ -21,6 +21,7 @@
 
 #include <algorithm>
 #include <map>
+#include <unordered_set>
 #include <vector>
 
 #include "bta_csis_api.h"
@@ -31,6 +32,7 @@
 #include "common/strings.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "gap_api.h"
+#include "raw_address.h"
 
 // Uncomment to debug SIRK calculations
 // #define CSIS_DEBUG
@@ -353,13 +355,26 @@ class CsisGroup {
     devices_.push_back(std::move(csis_device));
   }
 
+  void AddKnownDevice(const RawAddress& addr) {
+    if (known_devices_.find(addr) != known_devices_.end()) {
+      known_devices_.insert(addr);
+    }
+  }
+
   void RemoveDevice(const RawAddress& bd_addr) {
     auto it = find_if(devices_.begin(), devices_.end(),
                       CsisDevice::MatchAddress(bd_addr));
     if (it != devices_.end()) devices_.erase(it);
   }
 
+  void RemoveKnownDevice(const RawAddress& bd_addr) {
+    if (known_devices_.find(bd_addr) != known_devices_.end()) {
+      known_devices_.erase(bd_addr);
+    }
+  }
+
   int GetCurrentSize(void) const { return devices_.size(); }
+  int GetKnownDeviceSize(void) const { return known_devices_.size(); }
   bluetooth::Uuid GetUuid() const { return uuid_; }
   void SetUuid(const bluetooth::Uuid& uuid) { uuid_ = uuid; }
   int GetGroupId(void) const { return group_id_; }
@@ -556,6 +571,7 @@ class CsisGroup {
   bluetooth::Uuid uuid_;
 
   std::vector<std::shared_ptr<CsisDevice>> devices_;
+  std::unordered_set<RawAddress> known_devices_;
   CsisDiscoveryState member_discovery_state_;
 
   CsisLockState lock_state_;
