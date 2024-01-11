@@ -71,6 +71,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d0e0087_6c8e38d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-11T20:14:38Z",
+      "side": 1,
+      "message": "The synchronization issue is due to main loop and the GD handler both accessing the same map structure.\nIdeally the map access would be serialized with one of the threads.\n\nAlso ideally a multithreaded test could be written to validate the race condition and the subsequent fix.\n\nRegardless, this should be flagged",
+      "revId": "597a0fb372771869e2a83f7012d4f710f1d2779a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1bad5ce1_d6574079",
