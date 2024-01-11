@@ -46,6 +46,30 @@
       },
       "revId": "61059a4ba936a611b29838fd21580e93f8dd85ee",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ebdd7ebb_c19253f4",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 675,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-11T03:10:47Z",
+      "side": 1,
+      "message": "Hi saba, you are able to do this by:\n1. Keep a map to store the remote char info\n```\nself.characteristic_changed_map \u003d {remote_address: {char: changed, ...}, ...}\n```\n\n2. Register an observer `SendCharacteristicNotificationObserver` when Pandora GATT service init, and store every information when we are observing an `on_notify` callback. If there\u0027s a char in the map, set the future, else put a char future\ninto the map.\n\n3. When client calling WaitCharacteristicNotification, check the map. If there\u0027s\nno char in the map, then create a future put into map and then await on it, else\nreturn the response.\n\nPicture of the GATT architecture:\n\nFloss\n```\n                         ---conn 1--- remote1 gatt server\nGATT client1 callback1   ---conn 2--- remote2 gatt server\n                         ---conn 3--- remote3 gatt server\n```\n\nAndroid\n```\n               GATT instance1 client1 callback1 -conn 1--- remote1 gatt server\nGATT Manager1  GATT instance2 client2 callback2 -conn 2--- remote2 gatt server\n               GATT instance3 client3 callback3 -conn 3--- remote3 gatt server\n```\n\nPlease look at GattInstance.kt / android framework  v.s. floss framework for reference. Thanks.",
+      "parentUuid": "f284c0a2_905739cc",
+      "range": {
+        "startLine": 663,
+        "startChar": 0,
+        "endLine": 675,
+        "endChar": 0
+      },
+      "revId": "61059a4ba936a611b29838fd21580e93f8dd85ee",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
