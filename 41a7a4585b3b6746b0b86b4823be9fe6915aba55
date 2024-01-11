@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fad95c3_82eb68a2",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppNotification.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 515,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-11T01:35:21Z",
+      "side": 1,
+      "message": "Would it make sense to define a constant for this given it needs to be different than for outbound transfer?",
+      "range": {
+        "startLine": 514,
+        "startChar": 16,
+        "endLine": 515,
+        "endChar": 63
+      },
+      "revId": "41a7a4585b3b6746b0b86b4823be9fe6915aba55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "04e02922_969529f4",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-11T01:35:21Z",
+      "side": 1,
+      "message": "Would it be cleaner to just check that flag is disabled here? \n\nI know this pattern was followed in a previous CL, but wonder if it would be easier for flag cleanup purposes if you just had to search for references to the flag itself to clean up - WDYT?",
+      "range": {
+        "startLine": 153,
+        "startChar": 12,
+        "endLine": 154,
+        "endChar": 89
+      },
+      "revId": "41a7a4585b3b6746b0b86b4823be9fe6915aba55",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
