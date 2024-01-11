@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b20484dc_133f443b",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-11T00:55:45Z",
+      "side": 1,
+      "message": "When the flag is removed, do we still want to check in BTM?\n\nI\u0027m wondering if we want it to be in the else, so this gets removed when we\u0027re done.",
+      "range": {
+        "startLine": 765,
+        "startChar": 2,
+        "endLine": 765,
+        "endChar": 17
+      },
+      "revId": "3e720edcddc0397abc9cec0f0a5131393f18be0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
