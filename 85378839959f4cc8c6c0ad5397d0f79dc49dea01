@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "31d05cb5_e274c846",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppNotification.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-11T19:53:54Z",
+      "side": 1,
+      "message": "Would it make sense to add a comment above the request code object definition to clarify this? i.e. similar to the one that was removed from earlier patch",
+      "parentUuid": "63bd41d0_298b2df7",
+      "range": {
+        "startLine": 526,
+        "startChar": 32,
+        "endLine": 526,
+        "endChar": 59
+      },
+      "revId": "85378839959f4cc8c6c0ad5397d0f79dc49dea01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9ab9d66_412e2e57",
         "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
         "patchSetId": 3
