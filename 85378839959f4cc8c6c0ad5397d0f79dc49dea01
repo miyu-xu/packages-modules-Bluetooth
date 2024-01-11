@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e9ef601_c726f6ef",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppNotification.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-11T05:02:03Z",
+      "side": 1,
+      "message": "As a result of above comment (https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2902096/comment/3fad95c3_82eb68a2/)",
+      "parentUuid": "f13bf5dd_800892c9",
+      "range": {
+        "startLine": 526,
+        "startChar": 32,
+        "endLine": 526,
+        "endChar": 59
+      },
+      "revId": "85378839959f4cc8c6c0ad5397d0f79dc49dea01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9ab9d66_412e2e57",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-11T04:04:59Z",
       "side": 1,
       "message": "I guess this check is not necessary as we shouldn\u0027t get here with the flag enabled.\nMaybe we could log a warning that unexpected behavior if the flag is enabled.",
+      "range": {
+        "startLine": 143,
+        "startChar": 23,
+        "endLine": 143,
+        "endChar": 63
+      },
+      "revId": "85378839959f4cc8c6c0ad5397d0f79dc49dea01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c74e649d_1d518690",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-11T05:02:03Z",
+      "side": 1,
+      "message": "As a result of above comment:\n\nhttps://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2902096/comment/04e02922_969529f4/",
+      "parentUuid": "e9ab9d66_412e2e57",
       "range": {
         "startLine": 143,
         "startChar": 23,
