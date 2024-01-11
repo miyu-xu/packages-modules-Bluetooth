@@ -16,6 +16,7 @@
 
 package android.bluetooth.le;
 
+import android.annotation.FlaggedApi;
 import android.annotation.IntDef;
 import android.annotation.NonNull;
 import android.annotation.SystemApi;
@@ -59,6 +60,15 @@ public final class DistanceMeasurementMethod implements Parcelable {
      * @hide
      */
     @SystemApi public static final int DISTANCE_MEASUREMENT_METHOD_RSSI = 1;
+
+    /**
+     * Use Channel Sounding to measure the distance.
+     *
+     * @hide
+     */
+    @FlaggedApi("com.android.bluetooth.flags.channel_sounding")
+    @SystemApi
+    public static final int DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING = 2;
 
     private DistanceMeasurementMethod(
             int id, boolean isAzimuthAngleSupported, boolean isAltitudeAngleSupported) {
@@ -194,6 +204,7 @@ public final class DistanceMeasurementMethod implements Parcelable {
             switch (id) {
                 case DISTANCE_MEASUREMENT_METHOD_AUTO:
                 case DISTANCE_MEASUREMENT_METHOD_RSSI:
+                case DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING:
                     mId = id;
                     break;
                 default:
