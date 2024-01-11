@@ -22,6 +22,29 @@
       },
       "revId": "4b34398f1612c2cfc047b93afe8e29c4006be07d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3005a299_c3ab1c8b",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementParams.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-11T19:14:42Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by AndroidLint: [SwitchIntDef] Unexpected constant; expected one of: `DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_AUTO`, `DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_RSSI`\n\n                    case DistanceMeasurementMethod.DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING:\n                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThis check warns if a `switch` statement does not explicitly include all the values declared by the typedef `@IntDef` declaration.\n\n\n---- Adding to the intdef as Alice mention in hers comment will fix this",
+      "range": {
+        "startLine": 268,
+        "startChar": 22,
+        "endLine": 268,
+        "endChar": 92
+      },
+      "revId": "4b34398f1612c2cfc047b93afe8e29c4006be07d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
