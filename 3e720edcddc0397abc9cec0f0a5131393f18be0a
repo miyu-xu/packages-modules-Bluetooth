@@ -22,6 +22,30 @@
       },
       "revId": "3e720edcddc0397abc9cec0f0a5131393f18be0a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "61d4cf42_c3aa18ab",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 765,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-11T08:32:20Z",
+      "side": 1,
+      "message": "I want to keep checking in BTM.\nI haven\u0027t fully tracked through BTM, but it might delay sending device info to upper layers, i.e. waiting for scan response. In such cases, it might have more recent info on device type.",
+      "parentUuid": "b20484dc_133f443b",
+      "range": {
+        "startLine": 765,
+        "startChar": 2,
+        "endLine": 765,
+        "endChar": 17
+      },
+      "revId": "3e720edcddc0397abc9cec0f0a5131393f18be0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
