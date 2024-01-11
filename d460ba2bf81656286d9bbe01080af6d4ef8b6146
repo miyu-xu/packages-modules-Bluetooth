@@ -91,6 +91,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "cf7cc06c_30fb5b0d",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-11T00:57:20Z",
+      "side": 1,
+      "message": "Bluetooth is using prebuilt anyway, meaning that we have an out of sync flag between platform and module by design.\nThe way we are working around this is that API flag can be check with a `isAtLeastV` from platform for flag that we know we are releasing for V (but this is dangerous as you pointed it out)\n\nI am aware of aconfig unbundled 😊\n\nFlag access from within framework worried me for another reason.\nWe previously needed the READ_DEVICE_CONFIG permission and caller may not have it. I haven\u0027t check if this was solved or still an issue for flags. (or we can use read only flag in our framework, idk yet)",
+      "parentUuid": "5e0aa9b3_7851a007",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "904fd1b6_bce61207",
         "filename": "flags/Android.bp",
         "patchSetId": 3
@@ -173,6 +191,24 @@
       "side": 1,
       "message": "If you use `sdk_version: \"module_current\"` you shouldn\u0027t need `fake_device_config`.",
       "parentUuid": "f35f323e_86d819af",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a2d35d39_4638b8ff",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-11T00:57:20Z",
+      "side": 1,
+      "message": "Without `fake_device_config` it doesn\u0027t build:\n```\nout/soong/.intermediates/packages/modules/Bluetooth/flags/bluetooth_flags_java_lib/android_common_apex33/javac/srcjars/com/android/bluetooth/flags/FeatureFlagsImpl.java:4: error: cannot find symbol\nimport android.provider.DeviceConfig;\n                       ^\n  symbol:   class DeviceConfig\n  location: package android.provider\n```\n\nshould I modify `bluetooth_flags_java_lib` above and replace `fake_device_config` with `framework-configinfrastructure` (it builds...)",
+      "parentUuid": "64486267_5d0d3723",
       "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
