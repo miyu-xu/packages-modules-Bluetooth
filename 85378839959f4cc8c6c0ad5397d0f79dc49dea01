@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "59d18cc0_ca0ea540",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppNotification.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-11T15:03:00Z",
+      "side": 1,
+      "message": "I missed \"Note\" part. What happens if we use the same number here?",
+      "parentUuid": "1e9ef601_c726f6ef",
+      "range": {
+        "startLine": 526,
+        "startChar": 32,
+        "endLine": 526,
+        "endChar": 59
+      },
+      "revId": "85378839959f4cc8c6c0ad5397d0f79dc49dea01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e9ab9d66_412e2e57",
         "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
         "patchSetId": 3
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "It is just for easier code removal in the future when the flag is cleaned up.",
       "parentUuid": "c74e649d_1d518690",
+      "range": {
+        "startLine": 143,
+        "startChar": 23,
+        "endLine": 143,
+        "endChar": 63
+      },
+      "revId": "85378839959f4cc8c6c0ad5397d0f79dc49dea01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b4c2d0fb_179f8db9",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-11T15:03:00Z",
+      "side": 1,
+      "message": "Ack. It makes sense.",
+      "parentUuid": "89a1f848_0e265a34",
       "range": {
         "startLine": 143,
         "startChar": 23,
