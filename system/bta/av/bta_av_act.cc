@@ -2456,6 +2456,16 @@ void bta_av_rc_closed(tBTA_AV_DATA* p_data) {
         log::info("rc_only closed bd_addr: {}", p_msg->peer_addr);
         p_lcb->conn_msk = 0;
         p_lcb->lidx = 0;
+      } else {
+        tBTA_AV_LCB *lcb = bta_av_find_lcb(p_msg->peer_addr, BTA_AV_LCB_FIND);
+        if (lcb && p_rcb->lidx == lcb->lidx) {
+          p_lcb = &p_cb->lcb[BTA_AV_NUM_LINKS];
+          rc_close.peer_addr = p_msg->peer_addr;
+          log::info("%s: a2dp not connect rc_only closed bd_addr: %s", __func__,
+                   ADDRESS_TO_LOGGABLE_CSTR(p_msg->peer_addr));
+          p_lcb->conn_msk = 0;
+          p_lcb->lidx = 0;
+        }
       }
       p_rcb->lidx = 0;
 

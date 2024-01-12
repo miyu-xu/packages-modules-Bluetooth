@@ -60,6 +60,8 @@
 using bluetooth::Uuid;
 using namespace bluetooth;
 
+extern bool btif_av_peer_is_connected_source(const RawAddress& peer_address);
+
 static const uint8_t sdp_base_uuid[] = {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00,
                                         0x80, 0x00, 0x00, 0x80, 0x5F, 0x9B, 0x34, 0xFB};
 
@@ -1549,6 +1551,13 @@ void sdpu_set_avrc_target_version(const tSDP_ATTRIBUTE* p_attr, const RawAddress
   // reply version same as its. Otherwise, reply default version.
   if (!osi_property_get_bool(AVRC_DYNAMIC_AVRCP_ENABLE_PROPERTY, true)) {
     log::info("Dynamic AVRCP version feature is not enabled, skipping this method");
+    return;
+  }
+
+  // if peer src CT is 1.3, we will update TG to 1.3 which will influence abs
+  // when peer src connected, don't update avrcp version
+  if (btif_av_peer_is_connected_source(*bdaddr)) {
+    log::info("src connected, not update avrc version");
     return;
   }
 

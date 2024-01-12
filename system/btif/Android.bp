@@ -279,6 +279,8 @@ cc_test {
         ":OsiCompatSources",
         ":TestCommonMockFunctions",
         ":TestFakeOsi",
+        ":TestMockBtcore",
+        ":TestMockBtif",
         "test/btif_dm_test.cc",
         "test/btif_storage_test.cc",
     ],

@@ -383,12 +383,16 @@ void AvrcpService::Init(MediaInterface* media_interface, VolumeInterface* volume
                                supported_features, sdp_record_handle, true, profile_version, 0);
     bta_sys_add_uuid(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
 
-    ct_sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
+    /* we add control record in abta_av_api_register when src sink coexist enable */
+    if (btif_av_src_sink_coexist_enabled() && !btif_av_is_sink_enabled()) {
+        ct_sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
 
-    avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL, "AV Remote Control", NULL,
-                               AVRCP_SUPF_TG_CT, ct_sdp_record_handle, false,
-                               avrcp_interface_.GetAvrcpControlVersion(), 0);
-    bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+        avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL, "AV Remote Control", NULL,
+                                   AVRCP_SUPF_TG_CT, ct_sdp_record_handle, false,
+                                   avrcp_interface_.GetAvrcpControlVersion(), 0);
+
+        bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
+    }
   }
 
   media_interface_ = new MediaInterfaceWrapper(media_interface);
