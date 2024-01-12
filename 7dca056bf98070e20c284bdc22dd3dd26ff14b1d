@@ -51,6 +51,24 @@
       "parentUuid": "2e819604_9634bd40",
       "revId": "7dca056bf98070e20c284bdc22dd3dd26ff14b1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "19b23148_90f60254",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-12T12:09:46Z",
+      "side": 1,
+      "message": "Actually this CL helps to recovery from some problems with starting broadcast.\n\nSome of problems from this would recover would be: https://android-review.git.corp.google.com/c/platform/packages/modules/Bluetooth/+/2894936 \n\nafter 3.5 seconds it\u0027ll just notify broadcast stopped.\n\nI agree we should fix root causes but it\u0027s also good to have a recovery mechanism for controller problems/lower layer related problems.\n\nWhat do you think ?",
+      "parentUuid": "ce6a80bb_4a945eaa",
+      "revId": "7dca056bf98070e20c284bdc22dd3dd26ff14b1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
