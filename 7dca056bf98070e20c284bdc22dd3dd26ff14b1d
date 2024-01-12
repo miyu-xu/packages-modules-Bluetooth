@@ -69,6 +69,24 @@
       "parentUuid": "ce6a80bb_4a945eaa",
       "revId": "7dca056bf98070e20c284bdc22dd3dd26ff14b1d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abab656e_16d197f0",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-12T17:35:59Z",
+      "side": 1,
+      "message": "Okay, got it. So this helped to close the loop and notify the state/error to java and all the way to app layer.\nThen could we add some log prints to indicate this(in another comment)?",
+      "parentUuid": "19b23148_90f60254",
+      "revId": "7dca056bf98070e20c284bdc22dd3dd26ff14b1d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
