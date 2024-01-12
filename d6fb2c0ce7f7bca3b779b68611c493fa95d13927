@@ -53,6 +53,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3352163c_9556a9b1",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1769,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-12T17:29:00Z",
+      "side": 1,
+      "message": "Sure, it\u0027s all your call if you think it\u0027s with low risk for unicast side and think this is a better way. \nNo strong preference from my side.",
+      "parentUuid": "c1c27955_daf59e0a",
+      "revId": "d6fb2c0ce7f7bca3b779b68611c493fa95d13927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0db53c28_90e6520c",
@@ -102,6 +120,24 @@
       "side": 1,
       "message": "Unfortunately this is the same as previous change - not strictly related to handover.",
       "parentUuid": "6cc9bdfe_821a2167",
+      "revId": "d6fb2c0ce7f7bca3b779b68611c493fa95d13927",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a840e8d_f1787cab",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 2550,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-12T17:29:00Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "d16cf6d2_61115611",
       "revId": "d6fb2c0ce7f7bca3b779b68611c493fa95d13927",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
