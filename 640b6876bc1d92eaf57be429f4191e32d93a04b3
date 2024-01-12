@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7a59cee_fc9cc7ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-12T23:38:26Z",
+      "side": 1,
+      "message": "[btif_queue_connect_next](https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_profile_queue.cc;l\u003d199?q\u003dbtif_queue_connect_next) will do `btif_queue_advance` when `connect` failed\n\nSo no need to do the change",
+      "revId": "640b6876bc1d92eaf57be429f4191e32d93a04b3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
