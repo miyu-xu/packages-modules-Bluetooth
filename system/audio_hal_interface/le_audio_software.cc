@@ -106,8 +106,6 @@ void LeAudioClientInterface::Sink::Cleanup() {
             static_cast<int>(HalVersionManager::GetHalTransport()),
             is_broadcaster_);
 
-  StopSession();
-
   /* Cleanup transport interface and instance according to type and role */
   if (HalVersionManager::GetHalTransport() ==
       BluetoothAudioHalTransport::HIDL) {
