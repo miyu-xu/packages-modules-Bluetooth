@@ -144,6 +144,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a76d1e58_0a0a358a",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppNotification.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 526,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-12T06:51:15Z",
+      "side": 1,
+      "message": "Instead of distinguishing the inbound/outbound via the extras, used different intent actions for them so that we don\u0027t need to care about the PendingIntent\u0027s request code.",
+      "parentUuid": "c0c36458_d261f749",
+      "range": {
+        "startLine": 526,
+        "startChar": 32,
+        "endLine": 526,
+        "endChar": 59
+      },
+      "revId": "85378839959f4cc8c6c0ad5397d0f79dc49dea01",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e9ab9d66_412e2e57",
