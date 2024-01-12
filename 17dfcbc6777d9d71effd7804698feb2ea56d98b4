@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4a2dff2e_a173f3ec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-12T18:45:54Z",
+      "side": 1,
+      "message": "Note: If this version is good, I would revert aosp/2895062",
+      "revId": "17dfcbc6777d9d71effd7804698feb2ea56d98b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
