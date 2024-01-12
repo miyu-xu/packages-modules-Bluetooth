@@ -16,6 +16,23 @@
       "message": "Hi, this is a flag for aosp/2870654. Please review, thanks!",
       "revId": "eb33bda801e79ee652e2f4ef11d0385ddc26d20d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a7cbd2b9_1740f493",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-01-12T16:29:52Z",
+      "side": 1,
+      "message": "Hi Archie, next time please provide your Flag tracking bug (as explained in go/bt-best-practices#creating-a-flag) as well when creating your flag. Thanks 😊",
+      "revId": "eb33bda801e79ee652e2f4ef11d0385ddc26d20d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
