@@ -1,0 +1,22 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1b41cc8_1c2fba63",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-01-12T03:57:10Z",
+      "side": 1,
+      "message": "Thanks for the clarification. I think the key takeaway for us is to devcoredump integration while handling HCI error event for MTK solutions.",
+      "tag": "mailMessageId\u003d\u003cCAAa9mD2\u003dSTnyUe2QJkatfG9inPWM1_Cm3CH2z32-LcSYp2g8mQ@mail.gmail.com\u003e",
+      "revId": "d5b505215247f42747e45402a7d9040600e98aba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
