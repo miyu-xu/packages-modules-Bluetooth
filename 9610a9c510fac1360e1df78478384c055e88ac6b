@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c094d0c3_4086d85b",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1729155
+      },
+      "writtenOn": "2024-01-12T01:08:00Z",
+      "side": 1,
+      "message": "This sentence is a little confusing. Do you mean suspend was aborted?",
+      "range": {
+        "startLine": 304,
+        "startChar": 41,
+        "endLine": 304,
+        "endChar": 80
+      },
+      "revId": "9610a9c510fac1360e1df78478384c055e88ac6b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
