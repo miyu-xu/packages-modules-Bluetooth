@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "83380b7b_bac294ac",
+        "filename": "system/bta/le_audio/client_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-12T13:43:31Z",
+      "side": 1,
+      "message": "Please fix this WARNING reported by Check Contents: Please use language idioms to initialize or assign\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease use language idioms to initialize or assign",
+      "range": {
+        "startLine": 359,
+        "startChar": 4,
+        "endLine": 359,
+        "endChar": 11
+      },
+      "revId": "5cf1a844ae9c3fe756598783eb4ea14f258bc86b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
