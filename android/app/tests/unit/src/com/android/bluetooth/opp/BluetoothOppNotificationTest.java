@@ -31,6 +31,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.MatrixCursor;
+import android.platform.test.annotations.RequiresFlagsDisabled;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.espresso.intent.Intents;
@@ -45,6 +46,7 @@ import androidx.test.uiautomator.Until;
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.R;
 import com.android.bluetooth.TestUtils;
+import com.android.bluetooth.flags.Flags;
 
 import org.junit.After;
 import org.junit.Before;
@@ -268,7 +270,12 @@ public class BluetoothOppNotificationTest {
 
     @Ignore("b/288660228")
     @Test
+    @RequiresFlagsDisabled(Flags.FLAG_OPP_START_ACTIVITY_DIRECTLY_FROM_NOTIFICATION)
     public void updateIncomingFileConfirmationNotification() throws InterruptedException {
+        if (Flags.oppStartActivityDirectlyFromNotification()) {
+            return;
+        }
+
         long timestamp = 10L;
         int dir = BluetoothShare.DIRECTION_INBOUND;
         int id = 0;
