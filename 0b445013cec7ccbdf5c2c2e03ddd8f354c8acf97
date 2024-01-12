@@ -125,6 +125,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "37297bec_ea7eb95b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-12T18:18:48Z",
+      "side": 1,
+      "message": "The toggle have been added one and half year ago. aosp/2104606. I don\u0027t plan to add the other toggle. It\u0027s too complex. The plan is to refactor the previous one.",
+      "parentUuid": "41bfda1f_121eb843",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 62
+      },
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "980745e5_4c75bd48",
@@ -195,6 +219,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c9ad8b53_d98aec1e",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-12T18:18:48Z",
+      "side": 1,
+      "message": "Great suggestion. Done.",
+      "parentUuid": "866a64a2_edb533fe",
+      "range": {
+        "startLine": 197,
+        "startChar": 41,
+        "endLine": 197,
+        "endChar": 80
+      },
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cf9f1f99_40f5d0a2",
@@ -208,6 +256,30 @@
       "writtenOn": "2024-01-04T19:47:11Z",
       "side": 1,
       "message": "If you leave the `leaudioDynamicSwitcherRefactorForBroadcast` if alone, it will be easier to understand the if condition.\n\nI agree that there is a duplicate in code for the setProfile but you can immediately see what is flagged from what is not. Also, with this method, getting the property is also flagged (even if this is a very low risk)\n\n```suggestion\n        if (broadcastDynamicSwitchSupported) {\n            if (leaudioDynamicSwitcherRefactorForBroadcast()) {\n                final String leAudioSwitcherMode \u003d\n                    SystemProperties.get(LE_AUDIO_DYNAMIC_SWITCHER_MODE_PROPERTY, \"none\");\n                if (!enable || leAudioSwitcherMode.equals(\"broadcast\") {\n                    setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, enable);\n                    setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST, enable);\n                }\n                return;\n            }\n            setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST_ASSISTANT, enable);\n            setProfileEnabled(BluetoothProfile.LE_AUDIO_BROADCAST, enable);\n        }\n```",
+      "range": {
+        "startLine": 195,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 9
+      },
+      "revId": "0b445013cec7ccbdf5c2c2e03ddd8f354c8acf97",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "47c91433_bfd6bf63",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-12T18:18:48Z",
+      "side": 1,
+      "message": "Rewrote this part to improve the readability. Thanks.",
+      "parentUuid": "cf9f1f99_40f5d0a2",
       "range": {
         "startLine": 195,
         "startChar": 8,

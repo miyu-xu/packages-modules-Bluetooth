@@ -22,6 +22,30 @@
       },
       "revId": "0bd732017ba79b8e96e605e3ec1227f4b61afe0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22962d81_778eb8bd",
+        "filename": "android/app/src/com/android/bluetooth/btservice/Config.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-01-12T18:18:48Z",
+      "side": 1,
+      "message": "Good suggestion. I offload discussed with the Rongxuan to clarify the concept, and decided to remove the additional flag. The new version is to guard this change by the broadcast overall feature flag which is included in LeAudioService.isBroadcastEnabled. Siwtch the different logic based on the different le audio mode enabled.",
+      "parentUuid": "19e7d29a_e8d1eb7b",
+      "range": {
+        "startLine": 136,
+        "startChar": 13,
+        "endLine": 136,
+        "endChar": 55
+      },
+      "revId": "0bd732017ba79b8e96e605e3ec1227f4b61afe0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
