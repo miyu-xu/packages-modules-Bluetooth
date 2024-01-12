@@ -94,6 +94,30 @@
       },
       "revId": "520bf40f7500bb5135bd3f5679ce564f45958424",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c44dd898_ea87b14d",
+        "filename": "system/test/common/hal_version_manager_test.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-12T00:43:45Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ea20f6e7_bcd07b35",
+      "range": {
+        "startLine": 150,
+        "startChar": 4,
+        "endLine": 150,
+        "endChar": 55
+      },
+      "revId": "520bf40f7500bb5135bd3f5679ce564f45958424",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
