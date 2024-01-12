@@ -172,8 +172,10 @@ void avct_bcb_open_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
       }
       /* if unbound acceptor and lcb allocated and bd_addr are the same for bcb
          and lcb */
-      else if ((p_ccb->p_bcb == NULL) && (p_ccb->cc.role == AVCT_ACP) && (p_ccb->p_lcb != NULL) &&
-               p_bcb->peer_addr == p_ccb->p_lcb->peer_addr) {
+      // after DUT connected avrcp control, maybe peer connect browsing channel.
+      else if ((btif_av_src_sink_coexist_enabled() || (p_ccb->cc.role == AVCT_ACP)) &&
+              (p_ccb->p_bcb == NULL) &&  (p_ccb->p_lcb != NULL) &&
+              p_bcb->peer_addr == p_ccb->p_lcb->peer_addr) {
         /* bind bcb to ccb and send connect ind event */
         bind = true;
         p_ccb_bind = p_ccb;
@@ -546,11 +548,9 @@ void avct_bcb_msg_ind(tAVCT_BCB* p_bcb, tAVCT_LCB_EVT* p_data) {
   bool bind = false;
   if (btif_av_src_sink_coexist_enabled()) {
     bind = avct_msg_ind_for_src_sink_coexist(p_lcb, p_data, label, cr_ipid);
-    osi_free_and_reset((void**)&p_data->p_buf);
     if (bind) {
       return;
     }
-  } else {
     /* lookup PID */
     p_ccb = avct_lcb_has_pid(p_lcb, pid);
     if (p_ccb) {

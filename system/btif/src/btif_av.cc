@@ -1877,6 +1877,10 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
           log::error("Source profile doesn't allow connection to peer:{}", peer_.PeerAddress());
           if (btif_av_src_sink_coexist_enabled()) {
             BTA_AvCloseRc((reinterpret_cast<tBTA_AV*>(p_data))->rc_open.rc_handle);
+            if (bluetooth::avrcp::AvrcpService::Get() != nullptr) {
+              log::info("%s, both disconnect new avrcp", __func__);
+              bluetooth::avrcp::AvrcpService::Get()->DisconnectDevice(peer_.PeerAddress());
+            }
           } else {
             btif_av_source_disconnect(peer_.PeerAddress());
           }
@@ -1887,6 +1891,10 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
           log::error("Sink profile doesn't allow connection to peer:{}", peer_.PeerAddress());
           if (btif_av_src_sink_coexist_enabled()) {
             BTA_AvCloseRc((reinterpret_cast<tBTA_AV*>(p_data))->rc_open.rc_handle);
+            if (bluetooth::avrcp::AvrcpService::Get() != nullptr) {
+              log::info("%s, both disconnect new avrcp", __func__);
+              bluetooth::avrcp::AvrcpService::Get()->DisconnectDevice(peer_.PeerAddress());
+            }
           } else {
             btif_av_sink_disconnect(peer_.PeerAddress());
           }
