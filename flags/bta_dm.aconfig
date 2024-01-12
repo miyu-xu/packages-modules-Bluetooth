@@ -6,3 +6,10 @@ flag {
     description: "Make BTA_DmXXX security APIs synchronous"
     bug: "311196228"
 }
+
+flag {
+    name: "bta_dm_disc_stuck_in_cancelling_fix"
+    namespace: "bluetooth"
+    description: "Fix being stuck in BTA_DM_SEARCH_CANCELLING"
+    bug: "319890673"
+}
