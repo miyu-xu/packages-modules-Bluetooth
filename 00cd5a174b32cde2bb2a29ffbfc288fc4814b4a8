@@ -16,6 +16,23 @@
       "message": "Crash happened in presubmit. Related to this CL and finding out why it happened.",
       "revId": "00cd5a174b32cde2bb2a29ffbfc288fc4814b4a8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62215e41_25df743f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-12T05:02:19Z",
+      "side": 1,
+      "message": "It turned out that notification builders does not work like other builder classes.\n\n`Notificaion.Builder` internally stores the `Notification` instance from the beginning, so even after `build()` is called, the returned notification is still editable by the `Builder`.\n\nThis CL should be abandoned. Sorry for the confusion.",
+      "revId": "00cd5a174b32cde2bb2a29ffbfc288fc4814b4a8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
