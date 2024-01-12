@@ -16,6 +16,24 @@
       "message": "I think this is also needed for the switching broadcast source case?\nLike add this to line 1297.\n\n```suggestion\n                    /* Store metadata for sink device */\n                    mBroadcastMetadataMap.put(device, sourceMetadata);\n                    Message message \u003d\n                            stateMachine.obtainMessage(BassClientStateMachine.SWITH_BCAST_SOURCE);\n```",
       "revId": "0d92bd80497dab4b522038b12297f1c63d5c6b49",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c0df172c_bf5e307c",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1327,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-12T13:26:29Z",
+      "side": 1,
+      "message": "Yes! Thank you for pointing this out.",
+      "parentUuid": "a96982a5_b38c37af",
+      "revId": "0d92bd80497dab4b522038b12297f1c63d5c6b49",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
