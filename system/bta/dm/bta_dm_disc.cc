@@ -1965,6 +1965,11 @@ static void bta_dm_gatt_disc_complete(uint16_t conn_id, tGATT_STATUS status) {
             bta_dm_clear_conn_id_on_client_close_is_enabled()) {
       bta_dm_search_cb.conn_id = GATT_INVALID_CONN_ID;
     }
+
+    LOG_INFO("Discovery complete for invalid conn ID. Will pick up next job");
+    bta_dm_search_set_state(BTA_DM_SEARCH_IDLE);
+    bta_dm_free_sdp_db();
+    bta_dm_execute_queued_request();
   }
 }
 
