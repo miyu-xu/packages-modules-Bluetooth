@@ -330,7 +330,7 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
   }
   transport_->UpdateAudioConfiguration(audio_config);
 
-  if (provider_ == nullptr) {
+  if (provider_ == nullptr || !session_started_) {
     LOG(INFO) << __func__
               << ": BluetoothAudioHal nullptr, update it as session started";
     return true;
