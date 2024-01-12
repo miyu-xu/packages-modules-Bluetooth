@@ -22,6 +22,30 @@
       },
       "revId": "5cf1a844ae9c3fe756598783eb4ea14f258bc86b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e679209_71db880d",
+        "filename": "system/bta/le_audio/client_parser.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-12T13:55:25Z",
+      "side": 1,
+      "message": "I thought we ignore it for the standard function \"memcpy\" :D",
+      "parentUuid": "83380b7b_bac294ac",
+      "range": {
+        "startLine": 359,
+        "startChar": 4,
+        "endLine": 359,
+        "endChar": 11
+      },
+      "revId": "5cf1a844ae9c3fe756598783eb4ea14f258bc86b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
