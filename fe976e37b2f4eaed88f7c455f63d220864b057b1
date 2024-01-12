@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7152ea07_2a3b395a",
+        "filename": "system/gd/rust/linux/stack/src/suspend.rs",
+        "patchSetId": 6
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-01-12T02:19:38Z",
+      "side": 1,
+      "message": "How about a brief comment to explain what does 1 stands for? recorded?",
+      "range": {
+        "startLine": 301,
+        "startChar": 12,
+        "endLine": 301,
+        "endChar": 25
+      },
+      "revId": "fe976e37b2f4eaed88f7c455f63d220864b057b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
