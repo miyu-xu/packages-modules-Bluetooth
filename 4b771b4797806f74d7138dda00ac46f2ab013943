@@ -46,6 +46,30 @@
       },
       "revId": "4b771b4797806f74d7138dda00ac46f2ab013943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c45ea3_c6fa77a7",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-12T19:47:56Z",
+      "side": 1,
+      "message": "\u003e How do I flag guard the usage of this field in Metadata.java?\n\u003e Do I even flag guard such usage in the bt service?\n\nIt\u0027s tricky since I am not sure if this is flaggable or not.\nWhat if your flag is released then rollback, does the room database handle rollback ? Thanks for asking this question by the way, as this can be a crash if we don\u0027t check the behavior\n\nAdding @girardier@google.com because we need to take that into consideration for both mainline and trunk stable\n\n\u003e Do I flag guard the METADATA_MAX_KEY in BluetoothDevice?\n\nNo, I don\u0027t think this should be flagged. Worse case the metadata will not be set / returned\n\n\u003e How does the client check if this API is available? etc.\n\nI assume you plan to release it for V. So far external client cannot check for Bluetooth flag therefor you will need to gate the change with a `isAtLeastV()`",
+      "parentUuid": "5f4c805c_3a1a14a5",
+      "range": {
+        "startLine": 812,
+        "startChar": 0,
+        "endLine": 812,
+        "endChar": 21
+      },
+      "revId": "4b771b4797806f74d7138dda00ac46f2ab013943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
