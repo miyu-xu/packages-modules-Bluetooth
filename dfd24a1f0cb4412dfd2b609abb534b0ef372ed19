@@ -22,6 +22,30 @@
       },
       "revId": "dfd24a1f0cb4412dfd2b609abb534b0ef372ed19",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8a3aec6_bc5a0cca",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-12T18:29:41Z",
+      "side": 1,
+      "message": "I stand corrected.",
+      "parentUuid": "e8e0708d_ecb0da8f",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 63
+      },
+      "revId": "dfd24a1f0cb4412dfd2b609abb534b0ef372ed19",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
