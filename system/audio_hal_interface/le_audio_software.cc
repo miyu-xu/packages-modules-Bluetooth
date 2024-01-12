@@ -797,7 +797,7 @@ LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
     return nullptr;
   }
 
-  Sink* sink = is_broadcasting_session_type ? broadcast_sink_ : unicast_sink_;
+  auto& sink = is_broadcasting_session_type ? broadcast_sink_ : unicast_sink_;
   if (sink == nullptr) {
     sink = new Sink(is_broadcasting_session_type);
   } else {
