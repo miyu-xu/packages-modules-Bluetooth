@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c533a7a2_c0d20786",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-12T17:19:59Z",
+      "side": 1,
+      "message": "The fact is that bond type of devices loaded from storage is UNKNOWN.\n\nThis is not causing any known issues from outside, but it caused a regression when I was working on another fix.\n\nIt is desired by us to have the bond type to be set as persistent for the devices loaded from storage.",
+      "parentUuid": "eb3885ee_baf60b37",
+      "revId": "3b272747f03fd96cd2f0699d77e0a00fe58feb59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae1e1f3a_bc20d055",
         "filename": "system/stack/btm/btm_dev.cc",
         "patchSetId": 1
@@ -31,6 +49,24 @@
       "writtenOn": "2024-01-12T11:33:17Z",
       "side": 1,
       "message": "When lack of this cause the problem? I did not find any information about it in the baganizer.\n\nI\u0027m asking, because I\u0027m wondering if we really need a flag here.",
+      "revId": "3b272747f03fd96cd2f0699d77e0a00fe58feb59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "05620f8a_ce5443b0",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-12T17:19:59Z",
+      "side": 1,
+      "message": "I thought about going without flagging.\n\nBut the team is enforcing flagging. This was also based on discussion with @mylesgw@google.com, because we are not sure of the unknown potential side effect.",
+      "parentUuid": "ae1e1f3a_bc20d055",
       "revId": "3b272747f03fd96cd2f0699d77e0a00fe58feb59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
