@@ -22,6 +22,30 @@
       },
       "revId": "52330bb5582b21b5cd86cc16fbfd6594b8c4190f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "03def08d_45daee2a",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementMethod.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1074459
+      },
+      "writtenOn": "2024-01-12T18:20:02Z",
+      "side": 1,
+      "message": "yeah, that is the requirement for flagging. Every new API bit needs to be flagged.",
+      "parentUuid": "3a2b8528_c47e439f",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 63
+      },
+      "revId": "52330bb5582b21b5cd86cc16fbfd6594b8c4190f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
