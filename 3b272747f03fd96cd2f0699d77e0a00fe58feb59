@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "eb3885ee_baf60b37",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-12T11:34:07Z",
+      "side": 1,
+      "message": "can we add here more context on the issue which is fixed with this patch?",
+      "revId": "3b272747f03fd96cd2f0699d77e0a00fe58feb59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae1e1f3a_bc20d055",
         "filename": "system/stack/btm/btm_dev.cc",
         "patchSetId": 1
