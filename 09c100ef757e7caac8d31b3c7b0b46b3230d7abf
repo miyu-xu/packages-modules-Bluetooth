@@ -47,6 +47,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3c774516_b1601ee9",
+        "filename": "system/bta/Android.bp",
+        "patchSetId": 4
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-12T00:01:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "fb0997d9_1fa5ef5f",
+      "range": {
+        "startLine": 271,
+        "startChar": 0,
+        "endLine": 273,
+        "endChar": 47
+      },
+      "revId": "09c100ef757e7caac8d31b3c7b0b46b3230d7abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ffc7067d_7e5fb52d",
@@ -60,6 +84,30 @@
       "writtenOn": "2024-01-11T21:03:58Z",
       "side": 1,
       "message": "I\u0027m wondering if this should return a mocked interface, instead...",
+      "range": {
+        "startLine": 52,
+        "startChar": 20,
+        "endLine": 52,
+        "endChar": 27
+      },
+      "revId": "09c100ef757e7caac8d31b3c7b0b46b3230d7abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "947f2c4c_d77c96b4",
+        "filename": "system/test/mock/mock_btif_hf.h",
+        "patchSetId": 4
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-12T00:01:49Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "ffc7067d_7e5fb52d",
       "range": {
         "startLine": 52,
         "startChar": 20,
