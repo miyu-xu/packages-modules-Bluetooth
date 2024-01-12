@@ -22,6 +22,30 @@
       },
       "revId": "b1abe82e173afb5474ff204c2d344531d0d8ae22",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e9e767c1_69e43fa3",
+        "filename": "system/audio_hal_interface/BUILD.gn",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-12T06:15:51Z",
+      "side": 1,
+      "message": "seems like removed/added does not impact floss build. and floss build does not have `hal_version_manager_host.cc`, so I guess it is not needed right now. \nSo I removed it.",
+      "parentUuid": "8442f46e_ade24fd4",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 30
+      },
+      "revId": "b1abe82e173afb5474ff204c2d344531d0d8ae22",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
