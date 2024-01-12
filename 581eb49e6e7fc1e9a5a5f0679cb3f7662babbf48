@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "37c652e9_0cd4f559",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-12T13:54:41Z",
+      "side": 1,
+      "message": "missing FLAG comment",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 3
+      },
+      "revId": "581eb49e6e7fc1e9a5a5f0679cb3f7662babbf48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e7d95dd6_272680eb",
         "filename": "system/bta/le_audio/client_parser.cc",
         "patchSetId": 4
