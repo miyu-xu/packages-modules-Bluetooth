@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "04af3c50_b1936f0e",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 1496,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-12T23:33:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d871e630_29fb5580",
+      "range": {
+        "startLine": 1496,
+        "startChar": 15,
+        "endLine": 1496,
+        "endChar": 40
+      },
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cbe11b07_e677a729",
@@ -41,6 +65,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "91951d2f_60667027",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-12T23:33:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbe11b07_e677a729",
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e496106a_6768314a",
@@ -54,6 +96,30 @@
       "writtenOn": "2024-01-09T16:17:32Z",
       "side": 1,
       "message": "I don\u0027t think these are correct. A BatterySet is the result, including all of the linked batteries. We do not have a mechanism for fetching all of the potential BatterySet objects associated with a device at this time.",
+      "range": {
+        "startLine": 674,
+        "startChar": 12,
+        "endLine": 674,
+        "endChar": 20
+      },
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f3263bc9_ae998270",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 674,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-12T23:33:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e496106a_6768314a",
       "range": {
         "startLine": 674,
         "startChar": 12,
@@ -87,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "055d9614_06d96903",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 725,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-12T23:33:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9ba808b3_0e3df4eb",
+      "range": {
+        "startLine": 725,
+        "startChar": 27,
+        "endLine": 725,
+        "endChar": 30
+      },
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "44a1e51c_fb3f3775",
@@ -100,6 +190,24 @@
       "writtenOn": "2024-01-09T16:17:32Z",
       "side": 1,
       "message": "Same as above.",
+      "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c7f62fc8_62afbc7f",
+        "filename": "system/gd/rust/linux/client/src/command_handler.rs",
+        "patchSetId": 3
+      },
+      "lineNbr": 739,
+      "author": {
+        "id": 1963520
+      },
+      "writtenOn": "2024-01-12T23:33:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "44a1e51c_fb3f3775",
       "revId": "d889697dc8ec7f74edadb32fc5bab9b86d4c4b46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
