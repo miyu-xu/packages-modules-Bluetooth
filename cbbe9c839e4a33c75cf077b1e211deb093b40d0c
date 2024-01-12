@@ -22,6 +22,30 @@
       },
       "revId": "cbbe9c839e4a33c75cf077b1e211deb093b40d0c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2fb775e_604f94d2",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1622,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-12T13:26:41Z",
+      "side": 1,
+      "message": "Not always, if receivers are just \"suspended\" (handover), then broadcast sinks needs to be cached on paused list. If receivers are stopped (not handover) then there is no need to cache them, just remove and forget all data.",
+      "parentUuid": "b7f8623a_90d34de6",
+      "range": {
+        "startLine": 1622,
+        "startChar": 12,
+        "endLine": 1622,
+        "endChar": 24
+      },
+      "revId": "cbbe9c839e4a33c75cf077b1e211deb093b40d0c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
