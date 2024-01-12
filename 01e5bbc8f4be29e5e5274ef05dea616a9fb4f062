@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2f61c0d_d9659def",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1086,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-12T13:26:53Z",
+      "side": 1,
+      "message": "As discussed offline this would be removed. Unicast device should expose if it\u0027s able to stream via available context types, so there will be no confirmation needed.",
+      "parentUuid": "3d79c64e_f9092759",
+      "range": {
+        "startLine": 1086,
+        "startChar": 16,
+        "endLine": 1086,
+        "endChar": 56
+      },
+      "revId": "01e5bbc8f4be29e5e5274ef05dea616a9fb4f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8a35f7cd_586b2c9b",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-10T22:23:58Z",
       "side": 1,
       "message": "Should it be `by LeAudioService` ? We are in native\n\nOh wait, is it mechanism which allows Java to decide weather stream can be resumed or not?\n\ncan you please provide offline a design doc? This looks like big change to unicast or I\u0027m missing something.\n\ndespite the above - we need unit test for each change - however before adding anything to this CL let\u0027s discuss design first.",
+      "range": {
+        "startLine": 1088,
+        "startChar": 15,
+        "endLine": 1088,
+        "endChar": 59
+      },
+      "revId": "01e5bbc8f4be29e5e5274ef05dea616a9fb4f062",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "59097d1e_9c6c5b89",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1088,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-12T13:26:53Z",
+      "side": 1,
+      "message": "As explained above.",
+      "parentUuid": "8a35f7cd_586b2c9b",
       "range": {
         "startLine": 1088,
         "startChar": 15,
