@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2563c10d_34230e32",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-12T23:50:53Z",
+      "side": 1,
+      "message": "This is not going to work out with a single async call, because you\u0027d have no clue how long the callee is writing into the FD.",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "eb2c90f16ecfe78a6af6e719ad225917b52891c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "533021b4_1aac5782",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 1
@@ -14,6 +37,24 @@
       "writtenOn": "2024-01-12T01:46:01Z",
       "side": 1,
       "message": "This does not build with the following build error:\n```\nout/soong/.intermediates/packages/modules/Bluetooth/framework/framework-bluetooth/android_common/javac/srcjars/android/bluetooth/IBluetooth.java:2143: error: cannot find symbol\n          _arg1 \u003d data.readRawFileDescriptor();\n                      ^\n  symbol:   method readRawFileDescriptor()\n  location: variable data of type Parcel\nout/soong/.intermediates/packages/modules/Bluetooth/framework/framework-bluetooth/android_common/javac/srcjars/android/bluetooth/IBluetooth.java:3717: error: cannot find symbol\n          _data.writeRawFileDescriptor(fd);\n               ^\n  symbol:   method writeRawFileDescriptor(FileDescriptor)\n  location: variable _data of type Parcel\n```\n\n@smoreland@google.com, can you help ?\nI tried to look a bit to ParcelFileDescriptor but they have only hidden api and I cannot create one when holding a FileDescriptor.\n\nI was looking at b/115607973 but this is a bit obscure to me",
+      "revId": "eb2c90f16ecfe78a6af6e719ad225917b52891c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eade0fb1_888cfcec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1120458
+      },
+      "writtenOn": "2024-01-12T23:50:53Z",
+      "side": 1,
+      "message": "You do want ParcelFileDescriptor. Switch to that, and let me know what is the other error you\u0027re having.",
+      "parentUuid": "533021b4_1aac5782",
       "revId": "eb2c90f16ecfe78a6af6e719ad225917b52891c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
