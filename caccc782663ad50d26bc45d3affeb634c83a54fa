@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d995aa69_70fa565b",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-13T18:17:06Z",
+      "side": 1,
+      "message": "I thought adding pointer addresses to logs was a security violation.\n\nMaybe check if nullptr or not ?",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f37d1b3_4499fa7d",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-13T18:17:06Z",
+      "side": 1,
+      "message": "Maybe promote this to LOG_DEBUG ?",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0b15bc3_fd6475dd",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-13T18:17:06Z",
+      "side": 1,
+      "message": "LOG_WARN(\"Failed to start Remote Name Request addr:%s\", ADDRESS_TO_LOGGABLE_CSTR(bd_addr)",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a8db0770_2becc780",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-13T18:17:06Z",
+      "side": 1,
+      "message": "LOG_WARN(\"Failed to start Remote Name Request addr:%s\", ADDRESS_TO_LOGGABLE_CSTR(p_data-\u003ekey_notif.bd_addr)",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "23a4d5bd_399b939d",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-13T18:17:06Z",
+      "side": 1,
+      "message": "LOG_DEBUG(\"ACL is not down. Schedule for  Dev Removal when ACL closes \n%s\", ADDRESS_TO_LOGGABLE_CSTR(remote_bd_addr));",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e209d637_e51e128e",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-13T18:17:06Z",
+      "side": 1,
+      "message": "LOG_ERROR(\"callback is not provided bd_addr:%s\", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76a1ff16_ab4a360e",
+        "filename": "system/stack/btm/btm_ble_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1602,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-13T18:17:06Z",
+      "side": 1,
+      "message": "This is super kludgey...not related to your CL but in general how things have devolved",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
