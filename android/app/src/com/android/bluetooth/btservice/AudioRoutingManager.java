@@ -31,6 +31,7 @@ import android.bluetooth.BluetoothSinkAudioPolicy;
 import android.media.AudioDeviceCallback;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
+import android.media.session.MediaSessionManager;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
@@ -67,6 +68,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
     private HandlerThread mHandlerThread = null;
     private AudioRoutingHandler mHandler = null;
     private final AudioManager mAudioManager;
+    private final MediaSessionManager mSessionManager;
     private final AudioManagerAudioDeviceCallback mAudioManagerAudioDeviceCallback;
 
     @Override
@@ -147,6 +149,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
         mDbManager = mAdapterService.getDatabase();
         mFactory = factory;
         mAudioManager = service.getSystemService(AudioManager.class);
+        mSessionManager = service.getSystemService(MediaSessionManager.class);
         mAudioManagerAudioDeviceCallback = new AudioManagerAudioDeviceCallback();
     }
 
@@ -197,47 +200,6 @@ public class AudioRoutingManager extends ActiveDeviceManager {
     List<BluetoothDevice> getActiveDevices(int profile) {
         List<BluetoothDevice> devices = mHandler.mActiveDevices.get(profile);
         return devices == null ? Collections.emptyList() : devices;
-    }
-
-    /**
-     * Checks whether it is Okay to activate HFP when the device is connected.
-     *
-     * @param device the remote device
-     * @return {@code true} if the device should be activated when connected.
-     */
-    private boolean shouldActivateWhenConnected(BluetoothDevice device) {
-        // Check CoD
-        BluetoothClass deviceClass = device.getBluetoothClass();
-        if (deviceClass != null
-                && deviceClass.getDeviceClass() == BluetoothClass.Device.WEARABLE_WRIST_WATCH) {
-            Log.i(TAG, "Do not set profile active for watch device when connected: " + device);
-            return false;
-        }
-        // Check the audio device policy
-        HeadsetService service = mFactory.getHeadsetService();
-        BluetoothSinkAudioPolicy audioPolicy = service.getHfpCallAudioPolicy(device);
-        if (audioPolicy != null
-                && audioPolicy.getActiveDevicePolicyAfterConnection()
-                        == BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED) {
-            Log.i(
-                    TAG,
-                    "The device's HFP call audio policy doesn't allow it to be activated when"
-                            + " connected: "
-                            + device);
-            return false;
-        }
-
-        // Check metadata
-        byte[] deviceType = mDbManager.getCustomMeta(device, BluetoothDevice.METADATA_DEVICE_TYPE);
-        if (deviceType == null) {
-            return true;
-        }
-        String deviceTypeStr = new String(deviceType);
-        if (deviceTypeStr.equals(BluetoothDevice.DEVICE_TYPE_WATCH)) {
-            Log.i(TAG, "Do not set profile active for watch device when connected: " + device);
-            return false;
-        }
-        return true;
     }
 
     /** Notifications of audio device connection and disconnection events. */
@@ -313,7 +275,7 @@ public class AudioRoutingManager extends ActiveDeviceManager {
                 return;
             }
             arDevice.connectedProfiles.add(profile);
-            if (!shouldActivateWhenConnected(device)) {
+            if (!shouldActivateWhenConnected(arDevice)) {
                 return;
             }
             if (!arDevice.canActivateNow(profile)) {
@@ -672,6 +634,74 @@ public class AudioRoutingManager extends ActiveDeviceManager {
                     }
             }
             return false;
+        }
+
+        /**
+         * Checks whether it is Okay to activate HFP when the device is connected.
+         *
+         * @param arDevice the connected device
+         * @return {@code true} if the device should be activated when connected.
+         */
+        private boolean shouldActivateWhenConnected(AudioRoutingDevice arDevice) {
+            BluetoothDevice device = arDevice.device;
+            // HFP only and A2DP only devices should not be automatically activated when connected.
+            if (arDevice.supportedProfiles.size() == 1) {
+                if (arDevice.supportedProfiles.contains(BluetoothProfile.HEADSET)) {
+                    Log.i(TAG, "Do not activate HFP only device when connected: " + device);
+                    return false;
+                } else if (arDevice.supportedProfiles.contains(BluetoothProfile.A2DP)) {
+                    Log.i(TAG, "Do not activate A2DP only device when connected: " + device);
+                    return false;
+                }
+            }
+            // If there is an active stream to a remote device, the audio should not be
+            // automatically activated when connected.
+            for (int p : arDevice.supportedProfiles) {
+                if (getActiveDevices(p).size() > 0) {
+                    BluetoothMethodProxy mp = BluetoothMethodProxy.getInstance();
+                    if (mp.mediaSessionManagerGetActiveSessions(mSessionManager).size() > 0
+                            || mAudioManager.getMode() == AudioManager.MODE_IN_CALL) {
+                        Log.i(
+                                TAG,
+                                "Do not activate the connected device when another device is in"
+                                        + " use: "
+                                        + device);
+                        return false;
+                    }
+                }
+            }
+            BluetoothClass deviceClass = device.getBluetoothClass();
+            if (deviceClass != null
+                    && deviceClass.getDeviceClass() == BluetoothClass.Device.WEARABLE_WRIST_WATCH) {
+                Log.i(TAG, "Do not set profile active for watch device when connected: " + device);
+                return false;
+            }
+            // Check the audio device policy
+            HeadsetService service = mFactory.getHeadsetService();
+            BluetoothSinkAudioPolicy audioPolicy = service.getHfpCallAudioPolicy(device);
+            if (audioPolicy != null
+                    && audioPolicy.getActiveDevicePolicyAfterConnection()
+                            == BluetoothSinkAudioPolicy.POLICY_NOT_ALLOWED) {
+                Log.i(
+                        TAG,
+                        "The device's HFP call audio policy doesn't allow it to be activated when"
+                                + " connected: "
+                                + device);
+                return false;
+            }
+
+            // Check metadata
+            byte[] deviceType =
+                    mDbManager.getCustomMeta(device, BluetoothDevice.METADATA_DEVICE_TYPE);
+            if (deviceType == null) {
+                return true;
+            }
+            String deviceTypeStr = new String(deviceType);
+            if (deviceTypeStr.equals(BluetoothDevice.DEVICE_TYPE_WATCH)) {
+                Log.i(TAG, "Do not set profile active for watch device when connected: " + device);
+                return false;
+            }
+            return true;
         }
 
         /**
