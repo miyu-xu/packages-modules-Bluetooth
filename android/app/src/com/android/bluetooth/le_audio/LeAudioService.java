@@ -148,7 +148,10 @@ public class LeAudioService extends ProfileService {
     AudioManager mAudioManager;
     LeAudioTmapGattServer mTmapGattServer;
     int mTmapRoleMask;
+
+    @VisibleForTesting
     int mUnicastGroupIdDeactivatedForBroadcastTransition = LE_AUDIO_GROUP_ID_INVALID;
+
     Optional<Integer> mBroadcastIdDeactivatedForUnicastTransition = Optional.empty();
     Optional<Boolean> mQueuedInCallValue = Optional.empty();
     boolean mTmapStarted = false;
@@ -1708,6 +1711,22 @@ public class LeAudioService extends ProfileService {
                             + hasFallbackDevice
                             + ", mExposedActiveDevice: "
                             + mExposedActiveDevice);
+        }
+
+        if (!getAllBroadcastMetadata().isEmpty()
+                && currentlyActiveGroupId == LE_AUDIO_GROUP_ID_INVALID
+                && mUnicastGroupIdDeactivatedForBroadcastTransition != LE_AUDIO_GROUP_ID_INVALID
+                && groupId != LE_AUDIO_GROUP_ID_INVALID) {
+            // If broadcast is ongoing and need to update unicast fallback active group
+            // we need to update the cached group id and skip changing the active device
+            Log.i(
+                    TAG,
+                    "Update unicast fallback active group from: "
+                            + mUnicastGroupIdDeactivatedForBroadcastTransition
+                            + " to : "
+                            + groupId);
+            mUnicastGroupIdDeactivatedForBroadcastTransition = groupId;
+            return;
         }
 
         LeAudioGroupDescriptor groupDescriptor = getGroupDescriptor(currentlyActiveGroupId);
