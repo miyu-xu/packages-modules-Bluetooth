@@ -43,6 +43,33 @@ class SecurityService(security_grpc_aio.SecurityServicer):
         self.bluetooth = bluetooth
         self.manually_confirm = False
         self.on_pairing_count = 0
+        observer = self.AnswerPairingObserver(asyncio.get_running_loop(), self, self.bluetooth.adapter_client)
+        name = utils.create_observer_name(observer)
+        self.bluetooth.adapter_client.register_callback_observer(name, observer)
+
+    class AnswerPairingObserver(adapter_client.BluetoothCallbacks):
+        """Observer to auto reply the pairing request."""
+
+        def __init__(self, loop: asyncio.AbstractEventLoop, security_service, client: adapter_client):
+            self.loop = loop
+            self.client = client
+            self.security_service = security_service
+
+        @utils.glib_callback()
+        def on_ssp_request(self, remote_device, class_of_device, variant, passkey):
+            logging.info(f'ssp request received: remote_device: {remote_device}, variant: {variant}')
+            address, name = remote_device
+            print(address, name, self.security_service.manually_confirm)
+
+            if (not self.security_service.manually_confirm and
+                 (variant == item.value for item in floss_enums.PairingVariant)):
+                self.client.set_pairing_confirmation(address, True, method_callback=self.on_set_pairing_confirmation)
+
+        @utils.glib_callback()
+        def on_set_pairing_confirmation(self, err, result):
+            if err or not result:
+                pairing_receiver = self.loop.create_future()
+                pairing_receiver.get_loop().call_soon_threadsafe(pairing_receiver.set_result, err)
 
     async def wait_le_security_level(self, level, address):
 
