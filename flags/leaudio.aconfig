@@ -90,3 +90,10 @@ flag {
     description: "Better LE Audio devices detection"
     bug: "319511584"
 }
+
+flag {
+    name: "le_audio_hal_client_robustness_fixes"
+    namespace: "bluetooth"
+    description: "Multiple small error fixes"
+    bug: "320275987"
+}

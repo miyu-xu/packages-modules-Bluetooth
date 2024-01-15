@@ -149,9 +149,11 @@ void SourceImpl::Release() {
   worker_thread_->ShutDown();
 
   if (halSinkInterface_) {
-    if (le_audio_sink_hal_state_ == HAL_STARTED) {
-      halSinkInterface_->StopSession();
-      le_audio_sink_hal_state_ = HAL_STOPPED;
+    if (IS_FLAG_ENABLED(le_audio_hal_client_robustness_fixes)) {
+      if (le_audio_sink_hal_state_ == HAL_STARTED) {
+        halSinkInterface_->StopSession();
+        le_audio_sink_hal_state_ = HAL_STOPPED;
+      }
     }
 
     halSinkInterface_->Cleanup();

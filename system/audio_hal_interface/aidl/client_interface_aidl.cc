@@ -331,7 +331,12 @@ bool BluetoothAudioClientInterface::UpdateAudioConfig(
   }
   transport_->UpdateAudioConfiguration(audio_config);
 
-  if (provider_ == nullptr || !session_started_) {
+  auto conditional_session_not_started_verification =
+      IS_FLAG_ENABLED(le_audio_hal_client_robustness_fixes)
+          ? (!session_started_)
+          : false;
+
+  if (provider_ == nullptr || conditional_session_not_started_verification) {
     LOG(INFO) << __func__
               << ": BluetoothAudioHal nullptr, update it as session started";
     return true;

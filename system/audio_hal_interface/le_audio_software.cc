@@ -19,6 +19,8 @@
 
 #include "le_audio_software.h"
 
+#include <android_bluetooth_flags.h>
+
 #include <unordered_map>
 #include <vector>
 
@@ -101,6 +103,10 @@ void LeAudioClientInterface::Sink::Cleanup() {
   LOG_INFO("HAL transport: 0x%02x, is broadcast: %d",
             static_cast<int>(HalVersionManager::GetHalTransport()),
             is_broadcaster_);
+
+  if (!IS_FLAG_ENABLED(le_audio_hal_client_robustness_fixes)) {
+    StopSession();
+  }
 
   /* Cleanup transport interface and instance according to type and role */
   if (HalVersionManager::GetHalTransport() ==
@@ -644,7 +650,13 @@ LeAudioClientInterface::Sink* LeAudioClientInterface::GetSink(
     return nullptr;
   }
 
-  auto& sink = is_broadcasting_session_type ? broadcast_sink_ : unicast_sink_;
+  Sink* sink_ptr_copy =
+      is_broadcasting_session_type ? broadcast_sink_ : unicast_sink_;
+  auto& sink =
+      IS_FLAG_ENABLED(le_audio_hal_client_robustness_fixes)
+          ? (is_broadcasting_session_type ? broadcast_sink_ : unicast_sink_)
+          : sink_ptr_copy;
+
   if (sink == nullptr) {
     sink = new Sink(is_broadcasting_session_type);
   } else {
