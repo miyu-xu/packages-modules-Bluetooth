@@ -20,6 +20,7 @@ import traceback
 from floss.pandora.floss import adapter_client
 from floss.pandora.floss import advertising_client
 from floss.pandora.floss import manager_client
+from floss.pandora.floss import media_client
 from floss.pandora.floss import qa_client
 from floss.pandora.floss import scanner_client
 from floss.pandora.floss import gatt_client
@@ -67,6 +68,7 @@ class Bluetooth(object):
         self.qa_client = qa_client.FlossQAClient(self.bus, self.DEFAULT_ADAPTER)
         self.gatt_client = gatt_client.FlossGattClient(self.bus, self.DEFAULT_ADAPTER)
         self.gatt_server = gatt_server.FlossGattServer(self.bus, self.DEFAULT_ADAPTER)
+        self.media_client = media_client.FlossMediaClient(self.bus, self.DEFAULT_ADAPTER)
 
     def __del__(self):
         if not self.is_clean:
@@ -137,6 +139,9 @@ class Bluetooth(object):
         if not self.gatt_server.register_server(self.FAKE_GATT_APP_ID, False):
             logging.error('gatt_server: Failed to register callbacks')
             return False
+        if not self.media_client.register_callback():
+            logging.error('media_client: Failed to register callbacks')
+            return False
         return True
 
     def is_bluetoothd_proxy_valid(self):
@@ -150,6 +155,7 @@ class Bluetooth(object):
             self.qa_client.has_proxy(),
             self.gatt_client.has_proxy(),
             self.gatt_server.has_proxy(),
+            self.media_client.has_proxy(),
         ])
 
         if not proxy_ready:
@@ -185,6 +191,7 @@ class Bluetooth(object):
             self.qa_client = qa_client.FlossQAClient(self.bus, default_adapter)
             self.gatt_client = gatt_client.FlossGattClient(self.bus, default_adapter)
             self.gatt_server = gatt_server.FlossGattServer(self.bus, default_adapter)
+            self.media_client = media_client.FlossMediaClient(self.bus, default_adapter)
 
             try:
                 utils.poll_for_condition(
@@ -337,6 +344,12 @@ class Bluetooth(object):
 
     def write_characteristic(self, address, handle, write_type, auth_req, value):
         return self.gatt_client.write_characteristic(address, handle, write_type, auth_req, value)
+
+    def get_connected_audio_devices(self):
+        return self.media_client.devices
+
+    def media_disconnect(self, address):
+        return self.media_client.disconnect(address)
 
     def gatt_connect(self, address, is_direct, transport):
         return self.gatt_client.connect_client(address, is_direct, transport)
