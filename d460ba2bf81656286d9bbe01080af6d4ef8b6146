@@ -109,6 +109,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "1c5d500b_b0f77d92",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1937565
+      },
+      "writtenOn": "2024-01-15T07:37:55Z",
+      "side": 1,
+      "message": "\u003eREAD_DEVICE_CONFIG\nThis should have been resolved in aosp/2862706.",
+      "parentUuid": "cf7cc06c_30fb5b0d",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "904fd1b6_bce61207",
         "filename": "flags/Android.bp",
         "patchSetId": 3
