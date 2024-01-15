@@ -14,6 +14,7 @@
 """Host grpc interface."""
 
 import asyncio
+import time
 import logging
 from typing import AsyncGenerator
 import uuid as uuid_module
@@ -204,17 +205,81 @@ class HostService(host_grpc_aio.HostServicer):
         class ConnectionObserver(adapter_client.BluetoothConnectionCallbacks):
             """Observer to observe the connection state."""
 
-            def __init__(self, task):
+            def __init__(self, client: adapter_client, task):
                 self.task = task
+                self.client = client
 
             @utils.glib_callback()
             def on_device_connected(self, remote_device):
+                print('waitConnection: on_device_connected')
                 address, _ = remote_device
                 if address != self.task['address']:
                     return
 
-                future = self.task['wait_connection']
-                future.get_loop().call_soon_threadsafe(future.set_result, address)
+                if self.client.is_bonded(address):
+                    future = self.task['wait_connection']
+                    future.get_loop().call_soon_threadsafe(future.set_result, (True, None))
+
+        class PairingObserver(adapter_client.BluetoothCallbacks):
+            """Observer to observe the bond state."""
+
+            def __init__(self, client: adapter_client, security: security_grpc_aio.SecurityServicer, task):
+                self.client = client
+                self.security = security
+                self.task = task
+
+            @utils.glib_callback()
+            def on_bond_state_changed(self, status, address, state):
+                print('on_bond_state_changed')
+                print(status, address, state, self.task)
+                if address != self.task['address']:
+                    return
+
+                if status != 0:
+                    future = self.task['wait_bond']
+                    future.get_loop().call_soon_threadsafe(
+                        future.set_result, (False, f'{address} failed to bond. Status: {status}, State: {state}'))
+                    return
+
+                if state == floss_enums.BondState.BONDED:
+                    if not self.client.is_connected(self.task['address']):
+                        logging.info('%s calling connect_all_enabled_profiles', address)
+                        if not self.client.connect_all_enabled_profiles(self.task['address']):
+                            future = self.task['wait_bond']
+                            future.get_loop().call_soon_threadsafe(
+                                future.set_result,
+                                (False, f'{self.task["address"]} failed on connect_all_enabled_profiles'))
+                    else:
+                        future = self.task['wait_bond']
+                        future.get_loop().call_soon_threadsafe(future.set_result, (True, None))
+
+            @utils.glib_callback()
+            def on_ssp_request(self, remote_device, class_of_device, variant, passkey):
+                print('on_ssp_request')
+                if self.security.manually_confirm:
+                    return
+
+                address, _ = remote_device
+                if address != self.task['address']:
+                    return
+
+                if variant in (floss_enums.PairingVariant.CONSENT, floss_enums.PairingVariant.PASSKEY_CONFIRMATION):
+                    self.client.set_pairing_confirmation(address,
+                                                         True,
+                                                         method_callback=self.on_set_pairing_confirmation)
+
+            @utils.glib_callback()
+            def on_set_pairing_confirmation(self, err, result):
+                print('on_set_pairing_confirmation')
+                if err or not result:
+                    future = self.task['wait_bond']
+                    future.get_loop().call_soon_threadsafe(
+                        future.set_result, (False, f'Pairing confirmation failed: err: {err}, result: {result}'))
+
+            @utils.glib_callback()
+            def on_sdp_search_complete(self, remote_device, searched_uuid, sdp_records):
+                print('on_sdp_search_complete')
+                print(remote_device, searched_uuid, sdp_records)
 
         if request.address is None:
             raise ValueError('Request address field must be set.')
@@ -222,12 +287,34 @@ class HostService(host_grpc_aio.HostServicer):
 
         if not self.bluetooth.is_connected(address) or address not in self.waited_connections:
             try:
-                wait_connection = asyncio.get_running_loop().create_future()
-                observer = ConnectionObserver({'wait_connection': wait_connection, 'address': address})
-                name = utils.create_observer_name(observer)
-                self.bluetooth.adapter_client.register_callback_observer(name, observer)
+                if self.bluetooth.is_bonded(address):
+                    wait_connection = asyncio.get_running_loop().create_future()
+                    observer = ConnectionObserver(self.bluetooth.adapter_client, {
+                        'connect_device': wait_connection,
+                        'address': address
+                    })
+                    name = utils.create_observer_name(observer)
+                    self.bluetooth.adapter_client.register_callback_observer(name, observer)
 
-                await wait_connection
+                    success, reason = await wait_connection
+                    if not success:
+                        print(reason)
+                else:
+                    wait_bond = asyncio.get_running_loop().create_future()
+                    observer = PairingObserver(
+                        self.bluetooth.adapter_client,
+                        self.security,
+                        {
+                            'wait_bond': wait_bond,
+                            'address': address
+                        }
+                    )
+                    name = utils.create_observer_name(observer)
+                    self.bluetooth.adapter_client.register_callback_observer(name, observer)
+
+                    success, reason = await wait_bond
+                    if not success:
+                        print(reason)
             finally:
                 self.bluetooth.adapter_client.unregister_callback_observer(name, observer)
             self.waited_connections.add(address)
