@@ -20,10 +20,12 @@ from floss.pandora.server import bluetooth as bluetooth_module
 from floss.pandora.server import hid
 from floss.pandora.server import host
 from floss.pandora.server import security
+from floss.pandora.server import a2dp
 import grpc
 from pandora import host_grpc_aio
 from pandora import security_grpc_aio
 from pandora_experimental import hid_grpc_aio
+from pandora import a2dp_grpc_aio
 
 
 async def serve(port):
@@ -49,6 +51,9 @@ async def serve(port):
 
             hid_service = hid.HIDService(bluetooth)
             hid_grpc_aio.add_HIDServicer_to_server(hid_service, server)
+
+            a2dp_service = a2dp.A2DPService(bluetooth, security_service)
+            a2dp_grpc_aio.add_A2DPServicer_to_server(a2dp_service, server)
 
             server.add_insecure_port(f'[::]:{port}')
 
