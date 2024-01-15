@@ -16,6 +16,24 @@
       "message": "can we add some log prints if this timeout happened? so that we can easily catch this and continue to check on the controller layer.",
       "revId": "6a68658d9b180fbbc9616756fccf8cfed6219531",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "95d6e69e_4b91477e",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 813,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-15T16:43:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e428ffba_5c336b70",
+      "revId": "6a68658d9b180fbbc9616756fccf8cfed6219531",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
