@@ -16,6 +16,23 @@
       "message": "me",
       "revId": "5c676d0d51a622535729003f83dea47aa48c5f09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "838d0e7f_82aef67d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-15T14:13:30Z",
+      "side": 1,
+      "message": "Patrick, could you please reuse cache for the Expected Group Member instead of creating new list?\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/csis/csis_client.cc;l\u003d1307?q\u003dcsis_client.cc\n\nSo basically before starting new discovery in Read Response, just make sure that  DesiredGroupSize \u003e CurrentSize + [num of expected devices]",
+      "revId": "5c676d0d51a622535729003f83dea47aa48c5f09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
