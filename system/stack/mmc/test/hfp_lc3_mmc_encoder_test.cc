@@ -17,7 +17,7 @@
 #include "mmc/codec_server/hfp_lc3_mmc_encoder.h"
 
 #include <gmock/gmock.h>
-#include <google/protobuf/text_format.h>
+#include <google/protobuf/message_lite.h>
 #include <gtest/gtest.h>
 
 #include <cerrno>
@@ -31,7 +31,6 @@
 
 namespace {
 
-using ::google::protobuf::TextFormat;
 using ::testing::Contains;
 using ::testing::Each;
 using ::testing::Ne;
@@ -83,8 +82,7 @@ class HfpLc3EncoderWithInitTest : public HfpLc3EncoderTest {
 
     HfpLc3EncoderTest::SetUp();
     mmc::ConfigParam lc3_encoder_config;
-    ASSERT_TRUE(
-        TextFormat::ParseFromString(kLc3EncoderConfig, &lc3_encoder_config));
+    ASSERT_TRUE(lc3_encoder_config->ParseFromString(kLc3EncoderConfig));
     ASSERT_EQ(encoder_->init(lc3_encoder_config), mmc::HFP_LC3_PCM_BYTES);
   }
   void TearDown() override {
@@ -99,8 +97,7 @@ class HfpLc3EncoderWithInitTest : public HfpLc3EncoderTest {
 
 TEST_F(HfpLc3EncoderTest, InitWrongCodec) {
   mmc::ConfigParam lc3_decoder_config;
-  ASSERT_TRUE(
-      TextFormat::ParseFromString(kLc3DecoderConfig, &lc3_decoder_config));
+  ASSERT_TRUE(lc3_decoder_config->ParseFromString(kLc3DecoderConfig));
 
   int ret = encoder_->init(lc3_decoder_config);
   EXPECT_EQ(ret, -EINVAL);
@@ -109,8 +106,7 @@ TEST_F(HfpLc3EncoderTest, InitWrongCodec) {
 
 TEST_F(HfpLc3EncoderTest, InitWrongConfig) {
   mmc::ConfigParam lc3_encoder_config;
-  ASSERT_TRUE(
-      TextFormat::ParseFromString(kLc3EncoderConfig, &lc3_encoder_config));
+  ASSERT_TRUE(lc3_encoder_config->ParseFromString(kLc3EncoderConfig));
 
   // lc3_setup_encoder failed due to wrong parameters (returned nullptr).
   test::mock::embdrv_lc3::lc3_setup_encoder.body =
@@ -125,8 +121,7 @@ TEST_F(HfpLc3EncoderTest, InitWrongConfig) {
 
 TEST_F(HfpLc3EncoderTest, InitSuccess) {
   mmc::ConfigParam lc3_encoder_config;
-  ASSERT_TRUE(
-      TextFormat::ParseFromString(kLc3EncoderConfig, &lc3_encoder_config));
+  ASSERT_TRUE(lc3_encoder_config->ParseFromString(kLc3EncoderConfig));
 
   // lc3_setup_encoder returns encoder instance pointer.
   struct lc3_encoder lc3_encoder;
