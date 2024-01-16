@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "05bfd2ce_bc4aba53",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-01-16T07:48:41Z",
+      "side": 1,
+      "message": "I followed the discussion in this thread: https://android-review.git.corp.google.com/c/platform/system/sepolicy/+/2870114/comment/d44f33ea_0bbbc916/ and it looks like we can add a sysprop if the property is not opened to the vendors so I created a CL for this purpose aosp/2909678 with William\u0027s suggestion but still encounter issues in building. I\u0027ll be very appreciated if you could take a look.",
+      "revId": "45794c254ec3b53a0a94ece3ddb50601f0cf75f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
