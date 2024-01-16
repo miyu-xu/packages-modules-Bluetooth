@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa04bd60_da0ebab0",
+        "filename": "system/audio_hal_interface/aidl/a2dp_encoding_aidl.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-16T18:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1f96d4d5_a58f6bf1",
+      "range": {
+        "startLine": 408,
+        "startChar": 11,
+        "endLine": 408,
+        "endChar": 18
+      },
+      "revId": "d4310a960d5319cd554e58214baf07e753ead8dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a9463ac_40a4b027",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "Ah right, I probably had something else in mind when writing the code",
       "parentUuid": "6a9463ac_40a4b027",
+      "range": {
+        "startLine": 936,
+        "startChar": 2,
+        "endLine": 941,
+        "endChar": 3
+      },
+      "revId": "d4310a960d5319cd554e58214baf07e753ead8dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1e35e2dd_70a73a29",
+        "filename": "system/audio_hal_interface/aidl/a2dp_encoding_aidl.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 941,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-16T18:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ced33af3_74c124f6",
       "range": {
         "startLine": 936,
         "startChar": 2,
