@@ -1,0 +1,50 @@
+// Copyright 2024 Google LLC
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     https://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+option java_outer_classname = "ModemProto";
+
+package pandora.modem;
+
+service Modem {
+  // Hangup all active calls
+  rpc Close(CloseRequest) returns (CloseResponse);
+
+  rpc Call(CallRequest) returns (CallResponse);
+
+  rpc AnswerOutgoingCall(AnswerOutgoingCallRequest) returns (AnswerOutgoingCallResponse);
+}
+
+// Request for the `Close` method
+message CloseRequest {}
+
+// Response for the `Close` method
+message CloseResponse {}
+
+// Request for the `Call` method
+message CallRequest {
+  int32 phone_number = 1;
+}
+
+// Response for the `Call` method
+message CallResponse {}
+
+// Request for the `AnswerOutgoingCal` method
+message AnswerOutgoingCallRequest {
+  int32 phone_number = 1;
+}
+
+// Response for the `AnswerOutgoingCal` method
+message AnswerOutgoingCallResponse {}
