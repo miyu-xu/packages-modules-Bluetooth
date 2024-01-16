@@ -40,15 +40,15 @@ from mmi2grpc.sm import SMProxy
 from mmi2grpc.vcp import VCPProxy
 from mmi2grpc._helpers import format_proxy
 from mmi2grpc._rootcanal import RootCanal
-from mmi2grpc._modem import Modem
 
 from pandora.host_grpc import Host
+from pandora_experimental.modem_grpc import Modem
 
 PANDORA_SERVER_PORT = 8999
 ROOTCANAL_CONTROL_PORT = 6212
-MODEM_SIMULATOR_PORT = 4242
 MAX_RETRIES = 10
 GRPC_SERVER_INIT_TIMEOUT = 10  # seconds
+MODEM_SERVER_PORT = 8900
 
 
 class IUT:
@@ -67,10 +67,12 @@ class IUT:
         """
         self.pandora_server_port = int(args[0]) if len(args) > 0 else PANDORA_SERVER_PORT
         self.rootcanal_control_port = int(args[1]) if len(args) > 1 else ROOTCANAL_CONTROL_PORT
-        self.modem_simulator_port = int(args[2]) if len(args) > 2 else MODEM_SIMULATOR_PORT
+        self.modem_server_port = int(args[2]) if len(args) > 2 else MODEM_SERVER_PORT
+        self.iut_phone_number = str(args[3]) if len(args) > 3 else ""
 
         self.test = test
         self.rootcanal = None
+
         self.modem = None
 
         # Profile proxies.
@@ -97,7 +99,7 @@ class IUT:
         self.rootcanal = RootCanal(port=self.rootcanal_control_port)
         self.rootcanal.move_in_range()
 
-        self.modem = Modem(port=self.modem_simulator_port)
+        self.modem = Modem(grpc.insecure_channel(f'localhost:{self.modem_server_port}'))
 
         # Note: we don't keep a single gRPC channel instance in the IUT class
         # because reset is allowed to close the gRPC server.
@@ -108,7 +110,7 @@ class IUT:
         self.rootcanal.close()
         self.rootcanal = None
 
-        self.modem.close()
+        self.modem.Close()
         self.modem = None
 
         self._a2dp = None
@@ -117,6 +119,7 @@ class IUT:
         self._gatt = None
         self._gap = None
         self._hfp = None
+
         self._l2cap = None
         self._hid = None
         self._hogp = None
@@ -221,6 +224,7 @@ class IUT:
                     grpc.insecure_channel(f"localhost:{self.pandora_server_port}"),
                     self.rootcanal,
                     self.modem,
+                    self.iut_phone_number,
                 )
             return self._hfp.interact(test, interaction, description, pts_address)
         # Handles HID MMIs.
