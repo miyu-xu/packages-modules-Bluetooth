@@ -22,6 +22,7 @@ from pandora.host_pb2 import DISCOVERABLE_GENERAL, CONNECTABLE
 from pandora.security_grpc import Security, SecurityStorage
 from pandora.security_pb2 import PairingEventAnswer
 from pandora_experimental.hfp_pb2 import AUDIO_PATH_HANDSFREE, AUDIO_PATH_SPEAKERS
+from pandora_experimental.modem_grpc import Modem
 
 import sys
 import threading
@@ -36,14 +37,14 @@ IXIT_SECOND_PHONE_NUMBER = 43
 
 class HFPProxy(ProfileProxy):
 
-    def __init__(self, test, channel, rootcanal, modem):
+    def __init__(self, test, channel, rootcanal):
         super().__init__(channel)
         self.hfp = HFP(channel)
         self.host = Host(channel)
         self.security = Security(channel)
         self.security_storage = SecurityStorage(channel)
         self.rootcanal = rootcanal
-        self.modem = modem
+        self.modem = Modem(channel)
         self.connection = None
 
         self._auto_confirm_requests()
@@ -184,7 +185,7 @@ class HFPProxy(ProfileProxy):
 
         def enable_call():
             time.sleep(2)
-            self.modem.call(IXIT_PHONE_NUMBER)
+            self.modem.Call(IXIT_PHONE_NUMBER)
 
         threading.Thread(target=enable_call).start()
 
@@ -292,7 +293,7 @@ class HFPProxy(ProfileProxy):
         (IUT).  When the call is active, click Ok.
         """
 
-        self.modem.call(IXIT_PHONE_NUMBER)
+        self.modem.Call(IXIT_PHONE_NUMBER)
         time.sleep(5)  # there's a delay before Android registers the call
         self.hfp.AnswerCall()
         time.sleep(2)
@@ -309,7 +310,7 @@ class HFPProxy(ProfileProxy):
 
         def enable_second_call():
             time.sleep(2)
-            self.modem.call(IXIT_SECOND_PHONE_NUMBER)
+            self.modem.Call(IXIT_SECOND_PHONE_NUMBER)
 
         threading.Thread(target=enable_second_call).start()
 
@@ -471,7 +472,7 @@ class HFPProxy(ProfileProxy):
         def answer_call():
             time.sleep(2)
             self.log("Answering")
-            self.modem.answer_outgoing_call(IXIT_PHONE_NUMBER)
+            self.modem.AnswerOutgoingCall(IXIT_PHONE_NUMBER)
 
         threading.Thread(target=answer_call).start()
 

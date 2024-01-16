@@ -52,6 +52,7 @@ class Server(context: Context) {
                 Rfcomm(context),
                 SecurityStorage(context),
                 Os(context),
+                Modem(context),
             ) +
                 mapOf(
                         BluetoothProfile.A2DP to ::A2dp,
