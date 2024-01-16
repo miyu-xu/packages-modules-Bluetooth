@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c275c115_0027b0b4",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-16T22:06:41Z",
+      "side": 1,
+      "message": "It\u0027s not really async...\nThe call is \"async\" but caller is then waiting with a future that can timeout (cf `AdapterBinder.kt` and the code of `SynchronousResultReceiver`)\n\nThis way we are preventing any threading issue from the app to impact the system server thread more than 3 secs.",
+      "parentUuid": "2563c10d_34230e32",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 36
+      },
+      "revId": "eb2c90f16ecfe78a6af6e719ad225917b52891c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "533021b4_1aac5782",
@@ -55,6 +79,24 @@
       "side": 1,
       "message": "You do want ParcelFileDescriptor. Switch to that, and let me know what is the other error you\u0027re having.",
       "parentUuid": "533021b4_1aac5782",
+      "revId": "eb2c90f16ecfe78a6af6e719ad225917b52891c2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "abf4cd88_5315a485",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-16T22:06:41Z",
+      "side": 1,
+      "message": "It took me a while to see the `dup` in the ParcelFileDescriptor documentation.\n\nI was simply missing this to move from a Fd to a pFd.\nThanks",
+      "parentUuid": "eade0fb1_888cfcec",
       "revId": "eb2c90f16ecfe78a6af6e719ad225917b52891c2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
