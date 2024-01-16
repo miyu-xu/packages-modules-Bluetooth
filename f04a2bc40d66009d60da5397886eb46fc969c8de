@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "446224ca_135008c0",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-01-16T18:00:27Z",
+      "side": 1,
+      "message": "I am not sure to understand this part. Does it mean when you are listening to music with your earbuds for example and then you are connected a speaker, the music stays in the earbuds ?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "f04a2bc40d66009d60da5397886eb46fc969c8de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0de195c2_d2298ca9",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 645,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-01-16T18:00:27Z",
+      "side": 1,
+      "message": "I think this is a bit confusing as variable name. We could use something more verbose such as `routedDevice` or `connectedDevice`, what do you think about it ?",
+      "range": {
+        "startLine": 645,
+        "startChar": 71,
+        "endLine": 645,
+        "endChar": 79
+      },
+      "revId": "f04a2bc40d66009d60da5397886eb46fc969c8de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f29d7990_41a07dca",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 648,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-01-16T18:00:27Z",
+      "side": 1,
+      "message": "nit: Avoid magic number",
+      "range": {
+        "startLine": 648,
+        "startChar": 53,
+        "endLine": 648,
+        "endChar": 54
+      },
+      "revId": "f04a2bc40d66009d60da5397886eb46fc969c8de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3af968ee_92dd5410",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AudioRoutingManager.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 660,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-01-16T18:00:27Z",
+      "side": 1,
+      "message": "nit:  use `isEmty()`",
+      "range": {
+        "startLine": 660,
+        "startChar": 15,
+        "endLine": 660,
+        "endChar": 53
+      },
+      "revId": "f04a2bc40d66009d60da5397886eb46fc969c8de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
