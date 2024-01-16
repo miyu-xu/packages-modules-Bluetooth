@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0763fb5d_3de7b016",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-16T10:24:41Z",
+      "side": 1,
+      "message": "Hi, please review this change for Floss HFP test.\n\nThe design idea are described in https://docs.google.com/document/d/1fOh3hQ_r8JBj6RTZ_6YgH7pap7MuT4W2Y-xLq66H7kw/edit?resourcekey\u003d0-AeapyKXdcKylw1D2YtGmBQ\u0026tab\u003dt.0#heading\u003dh.xgjl2srtytjt.",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
