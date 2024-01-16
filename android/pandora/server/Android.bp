@@ -59,6 +59,7 @@ android_test {
     name: "pts-bot",
     test_config: "configs/PtsBotTest.xml",
     data: [
+        ":ModemServer",
         ":PandoraServer",
         ":mmi2grpc",
         "configs/pts_bot_tests_config.json",
@@ -72,6 +73,7 @@ android_test {
     name: "pts-bot-mts",
     test_config: "configs/PtsBotTestMts.xml",
     data: [
+        ":ModemServer",
         ":PandoraServer",
         ":mmi2grpc",
         "configs/pts_bot_tests_config.json",

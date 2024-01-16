@@ -22,6 +22,7 @@ from pandora.host_pb2 import DISCOVERABLE_GENERAL, CONNECTABLE
 from pandora.security_grpc import Security, SecurityStorage
 from pandora.security_pb2 import PairingEventAnswer
 from pandora_experimental.hfp_pb2 import AUDIO_PATH_HANDSFREE, AUDIO_PATH_SPEAKERS
+from pandora_experimental.modem_grpc import Modem
 
 import sys
 import threading
@@ -30,13 +31,13 @@ import time
 # Standard time to wait before asking for waitConnection
 WAIT_DELAY_BEFORE_CONNECTION = 2
 
-IXIT_PHONE_NUMBER = 42
-IXIT_SECOND_PHONE_NUMBER = 43
+IXIT_PHONE_NUMBER = "42"
+IXIT_SECOND_PHONE_NUMBER = "43"
 
 
 class HFPProxy(ProfileProxy):
 
-    def __init__(self, test, channel, rootcanal, modem):
+    def __init__(self, test, channel, rootcanal, modem, iut_phone_number):
         super().__init__(channel)
         self.hfp = HFP(channel)
         self.host = Host(channel)
@@ -44,6 +45,7 @@ class HFPProxy(ProfileProxy):
         self.security_storage = SecurityStorage(channel)
         self.rootcanal = rootcanal
         self.modem = modem
+        self.iut_phone_number = iut_phone_number
         self.connection = None
 
         self._auto_confirm_requests()
@@ -184,7 +186,7 @@ class HFPProxy(ProfileProxy):
 
         def enable_call():
             time.sleep(2)
-            self.modem.call(IXIT_PHONE_NUMBER)
+            self.modem.Call(phone_number=IXIT_PHONE_NUMBER, remote_phone_number=self.iut_phone_number)
 
         threading.Thread(target=enable_call).start()
 
@@ -292,7 +294,7 @@ class HFPProxy(ProfileProxy):
         (IUT).  When the call is active, click Ok.
         """
 
-        self.modem.call(IXIT_PHONE_NUMBER)
+        self.modem.Call(phone_number=IXIT_PHONE_NUMBER, remote_phone_number=self.iut_phone_number)
         time.sleep(5)  # there's a delay before Android registers the call
         self.hfp.AnswerCall()
         time.sleep(2)
@@ -309,7 +311,7 @@ class HFPProxy(ProfileProxy):
 
         def enable_second_call():
             time.sleep(2)
-            self.modem.call(IXIT_SECOND_PHONE_NUMBER)
+            self.modem.Call(phone_number=IXIT_SECOND_PHONE_NUMBER, remote_phone_number=self.iut_phone_number)
 
         threading.Thread(target=enable_second_call).start()
 
@@ -444,7 +446,7 @@ class HFPProxy(ProfileProxy):
         the last dialed number.  Answer the incoming call when alerted.
         """
 
-        self.hfp.MakeCall(number=str(IXIT_PHONE_NUMBER))
+        self.hfp.MakeCall(number=IXIT_PHONE_NUMBER)
         self.log("Calling")
         time.sleep(2)
         self.hfp.DeclineCall()
@@ -471,7 +473,7 @@ class HFPProxy(ProfileProxy):
         def answer_call():
             time.sleep(2)
             self.log("Answering")
-            self.modem.answer_outgoing_call(IXIT_PHONE_NUMBER)
+            self.modem.AnswerCall(phone_number=IXIT_PHONE_NUMBER, remote_phone_number=self.iut_phone_number)
 
         threading.Thread(target=answer_call).start()
 
