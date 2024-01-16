@@ -1,0 +1,46 @@
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+
+java_library_static {
+    name: "ModemServerLib",
+
+    srcs: ["src/**/*.kt"],
+
+    sdk_version: "core_platform",
+
+    libs: [
+        "framework",
+    ],
+
+    static_libs: [
+        "PandoraServerLib",
+        "androidx.test.core",
+        "androidx.test.runner",
+        "grpc-java-netty-shaded-test",
+        "pandora_experimental-grpc-java",
+        "pandora_experimental-proto-java",
+    ],
+}
+
+android_test_helper_app {
+    name: "ModemServer",
+
+    static_libs: [
+        "ModemServerLib",
+    ],
+
+    dex_preopt: {
+        enabled: false,
+    },
+    optimize: {
+        enabled: false,
+    },
+
+    certificate: "platform",
+
+    test_suites: [
+        "general-tests",
+    ],
+    min_sdk_version: "Tiramisu",
+}
