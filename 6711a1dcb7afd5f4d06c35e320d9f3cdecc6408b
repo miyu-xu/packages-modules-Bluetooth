@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "210a1fce_d5f97180",
+        "filename": "system/gd/discovery/device/data_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-16T19:28:19Z",
+      "side": 1,
+      "message": "Will this be an infinite loop if there\u0027s garbage at the end of the array?",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b660ad8a_43ea4239",
+        "filename": "system/gd/discovery/device/data_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-16T19:28:19Z",
+      "side": 1,
+      "message": "Is this only used for \"contains\" operations?\n\nbool DataParser::Contains(const std::vector\u003chci::GapDataType\u003e\u0026 types) const ?",
+      "range": {
+        "startLine": 47,
+        "startChar": 42,
+        "endLine": 47,
+        "endChar": 54
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5860e8e2_8706b397",
+        "filename": "system/gd/discovery/device/data_parser.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-16T19:28:19Z",
+      "side": 1,
+      "message": "GetNumGapData?\n\nAt first I thought it was bytes.",
+      "range": {
+        "startLine": 33,
+        "startChar": 9,
+        "endLine": 33,
+        "endChar": 13
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b6f073b8_4188a3d8",
+        "filename": "system/gd/discovery/device/eir_test_data_packets.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-16T19:28:19Z",
+      "side": 1,
+      "message": "I\u0027m interested in the balance here between testing with data from Wireshark and testing using PDL builders.",
+      "range": {
+        "startLine": 23,
+        "startChar": 7,
+        "endLine": 23,
+        "endChar": 13
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
