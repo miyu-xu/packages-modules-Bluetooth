@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f7d5579_13529468",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckScanTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "cbf5555d_e7ca9641",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 13
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef3e8592_ee4a7a9c",
@@ -54,6 +78,24 @@
       "writtenOn": "2024-01-16T18:27:35Z",
       "side": 1,
       "message": "I think it should be the role of the caller to conflate this flow if needed, silently dropping scan results doesn\u0027t seems right.",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "918993f8_51c0078b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "Conflate allows the buffer to be always just 1 result so the user can expect that it always has the latest scan result. The alternative would be to keep a very large buffer or allow the user to specify the buffer, which aren\u0027t necessary for DCK test cases",
+      "parentUuid": "ef3e8592_ee4a7a9c",
       "revId": "800fca855b5601bbc7ea7df89096a127db720242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -75,6 +117,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6d836ee6_96773c07",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "shareIn converts the cold flow to a hot flow: https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/share-in.html\n\nAlso, this allows the user to have more control on when the action is cancelled as opposed to ending as soon as the collection ends (which is not what we want in most cases).",
+      "parentUuid": "fa867e9b_4b15d3fe",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a275318c_1deba961",
@@ -92,6 +152,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ba8d6d8_2ffaf743",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "We could if we were just sending the ScanResult list, but we need to convert it to LeScanResult, which contains not only the ScanResult, but also the callbackType. callbackType is crucial in determining whether the device is found or lost.",
+      "parentUuid": "a275318c_1deba961",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0e29a3c3_4780a2ff",
@@ -105,6 +183,24 @@
       "writtenOn": "2024-01-16T18:27:35Z",
       "side": 1,
       "message": "nit: `getBluetoothState` doesn\u0027t seems to be a great name for this as it\u0027s waiting for bluetooth state changes, what do you think of renaming this to `bluetoothStateChangeFlow`",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e3f66b61_be86b0d5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "Will change it to `getBluetoothStateFlow`",
+      "parentUuid": "0e29a3c3_4780a2ff",
       "revId": "800fca855b5601bbc7ea7df89096a127db720242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -155,6 +251,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6eef6d4_8772af3e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "BT toggle in my experience was taking some time and 3 secs for both turning off and back on is definitely not enough time.\n\nEven if we increase the timeout, the disable at the beginning can be skipped if BT is already disabled, so having a long timeout is unnecessary and may slow down tests.\n\nIf you\u0027re concerned about registering broadcast receiver twice for the BT state change, I am using the same flow by using a local val here so only one receiver is registered for the entire test.",
+      "parentUuid": "892f04cc_156a5aa4",
+      "range": {
+        "startLine": 281,
+        "startChar": 16,
+        "endLine": 281,
+        "endChar": 47
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4bdc2f00_26eb2258",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "Using withTimeout, you will have to catch the exception to handle it as desired, so I used withTimeoutOrull, which doesn\u0027t throw an exception and returns null on timeout.\n\nI used withTimeoutOrNull here specifically so that I can cleanup (cancel the scope so that BT state change broadcasts are unregistered) before doing any asserts that will end the test.",
+      "parentUuid": "86858f67_1afac766",
+      "range": {
+        "startLine": 281,
+        "startChar": 16,
+        "endLine": 281,
+        "endChar": 33
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f29587c_b284c11c",
@@ -168,6 +312,30 @@
       "writtenOn": "2024-01-16T18:27:35Z",
       "side": 1,
       "message": "```suggestion\n                    bluetoothState\n                        .filter { it \u003d\u003d BluetoothAdapter.STATE_OFF }\n                        .first()\n```",
+      "range": {
+        "startLine": 282,
+        "startChar": 18,
+        "endLine": 286,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5c893e76_1b5e7656",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "The suggested refactor doesn\u0027t give the same result. However, I simplified it a bit further, PTAL.",
+      "parentUuid": "7f29587c_b284c11c",
       "range": {
         "startLine": 282,
         "startChar": 18,
@@ -201,6 +369,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ed7c9dd7_564b285b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "We need to be able to cancel the scope regardless of a failure, hence the assert is at the end, after the cleanup.",
+      "parentUuid": "5f00365f_244e4eaf",
+      "range": {
+        "startLine": 290,
+        "startChar": 8,
+        "endLine": 290,
+        "endChar": 44
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "62f6bfac_bfc395ef",
@@ -214,6 +406,30 @@
       "writtenOn": "2024-01-16T18:27:35Z",
       "side": 1,
       "message": "```suggestion\n                    bluetoothState\n                        .filter { it \u003d\u003d BluetoothAdapter.STATE_ON }\n                        .first()\n```",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4e69538a_93ff85a5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "The suggested refactor doesn\u0027t give the same result. I simplified it a bit further though.",
+      "parentUuid": "62f6bfac_bfc395ef",
       "range": {
         "startLine": 295,
         "startChar": 0,
@@ -247,6 +463,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7669bad_8b7ea340",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "Given that toggled is a nullable, we need to check the state explicitly",
+      "parentUuid": "dc64dde9_519c711c",
+      "range": {
+        "startLine": 304,
+        "startChar": 8,
+        "endLine": 304,
+        "endChar": 30
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a6db73e9_6c3077db",
@@ -260,6 +500,30 @@
       "writtenOn": "2024-01-16T18:27:35Z",
       "side": 1,
       "message": "```suggestion\n        withTimeout(TIMEOUT_MS) {\n            connectGatt(bumbleDevice)\n                .filter { it.state \u003d\u003d BluetoothProfile.STATE_CONNECTED }\n                .first()\n        }\n```",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 62
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d058aa2_0eba8a99",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6db73e9_6c3077db",
       "range": {
         "startLine": 315,
         "startChar": 0,
@@ -287,6 +551,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "136b5abe_4105db66",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "34b57021_450390fd",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a5f9109b_63795132",
@@ -300,6 +582,24 @@
       "writtenOn": "2024-01-16T18:27:35Z",
       "side": 1,
       "message": "nit: Move the companion object at the beginning?",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86bd506a_258066c5",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-16T22:46:58Z",
+      "side": 1,
+      "message": "That\u0027s against the Koltin style guide: https://kotlinlang.org/docs/coding-conventions.html#class-layout. Does AOSP have a different style guide?",
+      "parentUuid": "a5f9109b_63795132",
       "revId": "800fca855b5601bbc7ea7df89096a127db720242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
