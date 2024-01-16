@@ -16,6 +16,24 @@
       "message": "Hi Vova, can you add a `Flag: EXEMPT \u003creason\u003e` stanza as documented in go/bt-best-practices#flagging? This is for our internal tracking of unflagged CLs. Thanks!",
       "revId": "1300db49cbd5610b2746d80aeae0b538b564bf17",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "29d08b37_cc69a607",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-16T22:00:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "91e232b2_16ef70ff",
+      "revId": "1300db49cbd5610b2746d80aeae0b538b564bf17",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
