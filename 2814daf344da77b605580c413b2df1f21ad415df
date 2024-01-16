@@ -16,6 +16,29 @@
       "message": "Hi, please review this change for Floss HFP test.\n\nThe design idea are described in https://docs.google.com/document/d/1fOh3hQ_r8JBj6RTZ_6YgH7pap7MuT4W2Y-xLq66H7kw/edit?resourcekey\u003d0-AeapyKXdcKylw1D2YtGmBQ\u0026tab\u003dt.0#heading\u003dh.xgjl2srtytjt.",
       "revId": "2814daf344da77b605580c413b2df1f21ad415df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "011bd492_f92b1da7",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-01-16T17:43:16Z",
+      "side": 1,
+      "message": "I\u0027m curious about the int32 here. I\u0027m unsure it is needed here but what if we\u0027ll need the country code ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 7
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
