@@ -97,6 +97,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "81749ded_b00ea038",
+        "filename": "system/gd/discovery/device/data_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-16T22:11:33Z",
+      "side": 1,
+      "message": "I was asking if it would be better not to copy the underlying data, if all we want is to return a boolean.",
+      "parentUuid": "0bb4e625_77550077",
+      "range": {
+        "startLine": 47,
+        "startChar": 42,
+        "endLine": 47,
+        "endChar": 54
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5860e8e2_8706b397",
         "filename": "system/gd/discovery/device/data_parser.h",
         "patchSetId": 3
@@ -179,6 +203,30 @@
       "side": 1,
       "message": "I could put constexpr size_t offset \u003d 18 but laid it out here for completeness.\n\nI looked into the PDL builder but didn\u0027t see an obvious ability to export this.\n\nI didn\u0027t use PDL builders as the current use case works with raw data; but I can see adding testcases using PDL builders also.",
       "parentUuid": "b6f073b8_4188a3d8",
+      "range": {
+        "startLine": 23,
+        "startChar": 7,
+        "endLine": 23,
+        "endChar": 13
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dc11dcb8_e8c78b9e",
+        "filename": "system/gd/discovery/device/eir_test_data_packets.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-16T22:11:33Z",
+      "side": 1,
+      "message": "Discussed in person.  At some point, PDL will make it to this code, as well.\n\nPDL doesn\u0027t handle the packet byte type (uint8_t event in this struct), but when you copy packets from Wireshark, the byte is there.",
+      "parentUuid": "bea5c658_d8cc525e",
       "range": {
         "startLine": 23,
         "startChar": 7,
