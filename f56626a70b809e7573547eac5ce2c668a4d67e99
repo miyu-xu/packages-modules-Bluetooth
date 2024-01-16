@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b96a99da_448f0c48",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2077,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-16T08:33:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4822528f_11ed941a",
+      "range": {
+        "startLine": 2071,
+        "startChar": 1,
+        "endLine": 2077,
+        "endChar": 33
+      },
+      "revId": "f56626a70b809e7573547eac5ce2c668a4d67e99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d1070695_46898405",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "Probably author intention is that QoS -\u003e QoS is invalid from server perspective. It\u0027s ok for client only.",
       "parentUuid": "d1070695_46898405",
+      "range": {
+        "startLine": 2242,
+        "startChar": 6,
+        "endLine": 2242,
+        "endChar": 59
+      },
+      "revId": "f56626a70b809e7573547eac5ce2c668a4d67e99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9e2866c_bf3e1fff",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2242,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-16T08:33:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "94d5ea14_22254fd1",
       "range": {
         "startLine": 2242,
         "startChar": 6,
