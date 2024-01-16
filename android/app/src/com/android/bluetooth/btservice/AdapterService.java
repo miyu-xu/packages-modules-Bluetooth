@@ -6026,6 +6026,10 @@ public class AdapterService extends Service {
     }
 
     int getConnectionState(BluetoothDevice device) {
+        if (featureFlags.apiGetConnectionStateUsingIdentityAddress()) {
+            return mNativeInterface.getConnectionState(
+                    getBytesFromAddress(device.getIdentityAddress()));
+        }
         return mNativeInterface.getConnectionState(getBytesFromAddress(device.getAddress()));
     }
 
