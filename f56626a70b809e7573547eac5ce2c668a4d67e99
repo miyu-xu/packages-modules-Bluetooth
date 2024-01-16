@@ -45,6 +45,30 @@
       },
       "revId": "f56626a70b809e7573547eac5ce2c668a4d67e99",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94d5ea14_22254fd1",
+        "filename": "system/bta/le_audio/state_machine.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2242,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-16T08:22:29Z",
+      "side": 1,
+      "message": "Probably author intention is that QoS -\u003e QoS is invalid from server perspective. It\u0027s ok for client only.",
+      "parentUuid": "d1070695_46898405",
+      "range": {
+        "startLine": 2242,
+        "startChar": 6,
+        "endLine": 2242,
+        "endChar": 59
+      },
+      "revId": "f56626a70b809e7573547eac5ce2c668a4d67e99",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
