@@ -56,6 +56,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f56dbf39_ac3f8c7c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-16T09:30:34Z",
+      "side": 1,
+      "message": "This one is already merged, but it is clarified in b/319531443",
+      "parentUuid": "b19fa6bc_21dcac8a",
+      "revId": "3b272747f03fd96cd2f0699d77e0a00fe58feb59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ae1e1f3a_bc20d055",
         "filename": "system/stack/btm/btm_dev.cc",
         "patchSetId": 1
@@ -103,6 +121,24 @@
       "side": 1,
       "message": "Based on your comment, type was not correctly set on loading keys which seems to be valid issue.\n\nLooking at the code and where this flag is checked, I think  the most crucial part is here:\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/btif/src/btif_dm.cc;l\u003d1173?q\u003dbtif_dm_auth_cmpl_evt\n\nand the only problem I can see is that increasing security might have a problem without this patch which is something which I guess will not be a teamfood usecase.\n\nIMHO flagging this is an overkill ...",
       "parentUuid": "05620f8a_ce5443b0",
+      "revId": "3b272747f03fd96cd2f0699d77e0a00fe58feb59",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b47ce098_13eae44b",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-16T09:30:34Z",
+      "side": 1,
+      "message": "I agree on that, but the team is enforcing flaging.",
+      "parentUuid": "b44e9368_509ae98b",
       "revId": "3b272747f03fd96cd2f0699d77e0a00fe58feb59",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
