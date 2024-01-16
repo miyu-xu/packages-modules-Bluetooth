@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "675e557c_e8924e68",
+        "filename": "system/audio_hal_interface/aidl/a2dp_encoding_aidl.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 458,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-16T22:47:56Z",
+      "side": 1,
+      "message": "Can you move isValid inside the new_hal_interface ?\nThis will simplify your code as you are always checking for isValid after constructing the interface",
+      "range": {
+        "startLine": 458,
+        "startChar": 35,
+        "endLine": 458,
+        "endChar": 42
+      },
+      "revId": "455400f7fd7a2abd642f4fb5f90ac4d12581167e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
