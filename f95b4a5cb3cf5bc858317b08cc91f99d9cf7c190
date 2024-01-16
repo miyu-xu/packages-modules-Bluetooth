@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c40402bf_fe1d7138",
+        "filename": "system/bta/av/bta_av_act.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2024-01-16T14:34:17Z",
+      "side": 1,
+      "message": "This return skips the msg_event control flow below. Please add a comment to explain if this return makes sense.",
+      "range": {
+        "startLine": 262,
+        "startChar": 6,
+        "endLine": 262,
+        "endChar": 12
+      },
+      "revId": "f95b4a5cb3cf5bc858317b08cc91f99d9cf7c190",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
