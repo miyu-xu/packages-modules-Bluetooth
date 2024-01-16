@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "917fe3ab_2b8e94a4",
+        "filename": "android/pandora/server/src/Modem.kt",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:48:04Z",
+      "side": 1,
+      "message": "Please fix this ERROR reported by Crash Detector: * JAVA_CRASH in `com.android.pandora`, [link to test invocation](http://ab/I87800010237133821) [(Silence Crash)](https://b.corp.google.com/issues/new?component\u003d184315\u0026title\u003dAdd%20crash%20cluster%20to%20ignorelist\u0026type\u003dPROCESS\u0026priority\u003dP0\u0026se...\n\nAnalyzer Description: Detect crashes introduced by the CL.\nOwner: android-realtime-stability-team@google.com\n\n* JAVA_CRASH in `com.android.pandora`, [link to test invocation](http://ab/I87800010237133821) [(Silence Crash)](https://b.corp.google.com/issues/new?component\u003d184315\u0026title\u003dAdd%20crash%20cluster%20to%20ignorelist\u0026type\u003dPROCESS\u0026priority\u003dP0\u0026severity\u003dS0\u0026assignee\u003dkevcheng@google.com\u0026format\u003dMARKDOWN\u0026description\u003dPlease%20add%20this%20crash%20to%20the%20ignorelist:%0A*%20crash%20cluster:%2017733922327212337401%0A*%20cluster%20version:%204%0A*%20process%20name:%20com.android.pandora%0A*%20change%20numbers:%202911122,2911123,2911124%0A*%20hostname:%20android)\n  * Trace [link to artifact](https://android-build.googleplex.com/builds/bug_tool?url\u003dhttps%3A%2F%2Fandroid-build.googleplex.com%2Fbuilds%2FI87800010237133821%2FP68094654%2Fstub%2Finv_9909966304145488477%2Flogcat_2644575223159092227.txt):\n\n```\nFATAL EXCEPTION: Instr: com.android.pandora.Main\nProcess: com.android.pandora, PID: 3987\nandroid.system.ErrnoException: socket failed: EACCES (Permission denied)\n\tat libcore.io.Linux.socket(Native Method)\n\tat libcore.io.ForwardingOs.socket(ForwardingOs.java:821)\n\tat libcore.io.BlockGuardOs.socket(BlockGuardOs.java:402)\n\tat libcore.io.ForwardingOs.socket(ForwardingOs.java:821)\n\tat android.system.Os.socket(Os.java:834)\n\tat com.android.pandora.Modem.\u003cinit\u003e(Modem.kt:49)\n\tat com.android.pandora.Server.\u003cinit\u003e(Server.kt:55)\n\tat com.android.pandora.Main.onStart(Main.kt:55)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2402)\n...\n```\n\nIt seems that we don\u0027t have the permission from the PandoraServer to connect to this vsock 🤔\n\nWe have the shell permission identity but I guess that we don\u0027t have it\u0027s unix permissions.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 0
+      },
+      "revId": "b16980f50f984e0e8ee71cfc6a782760ec389578",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
