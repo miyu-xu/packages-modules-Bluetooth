@@ -39,6 +39,30 @@
       },
       "revId": "2814daf344da77b605580c413b2df1f21ad415df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efd398bb_d86a675d",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:45:52Z",
+      "side": 1,
+      "message": "I think this should be a string it was a number just because of modem_simulator",
+      "parentUuid": "011bd492_f92b1da7",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 7
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
