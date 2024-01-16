@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b3cabc46_6c26359f",
+        "filename": "framework/java/android/bluetooth/SocketMetrics.java",
+        "patchSetId": 16
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-16T21:58:35Z",
+      "side": 1,
+      "message": "nit: Doesn\u0027t need to be a warning. \n\nDebug logs should be sufficient here.",
+      "range": {
+        "startLine": 101,
+        "startChar": 17,
+        "endLine": 101,
+        "endChar": 18
+      },
+      "revId": "6c41370aa8a17589276650f112fbaaeada88d6c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
