@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ef20282_711588f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-16T17:46:42Z",
+      "side": 1,
+      "message": "if DistanceMeasurement is a built by Bluetooth and send away, it is a bit weird that the Builder is a systemApi too.\nThis has been done previously and is not part of the CL, but I wonder what is the use case for other app to build a result",
+      "revId": "c54b1c01792e1e349804b7b79513e6393032b8e9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
