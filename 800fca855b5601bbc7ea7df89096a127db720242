@@ -102,6 +102,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b10adac6_3adfbe42",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T23:07:23Z",
+      "side": 1,
+      "message": "Or let the user call `conflate` after `scanWithCallback` ?\n\nWhat is the issue with having a very large buffer in tests? (I think it grows automatically)",
+      "parentUuid": "918993f8_51c0078b",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa867e9b_4b15d3fe",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
         "patchSetId": 4
@@ -137,6 +155,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "d9f66f32_ce08f2f0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T23:07:23Z",
+      "side": 1,
+      "message": "Yes, I understand that this creates a hot flow, my question is more why do you need a hot flow especially if the start of it is lazy.\n\nAlso is not creating a hot flow after conflating means that you have an infinite buffer?",
+      "parentUuid": "6d836ee6_96773c07",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a275318c_1deba961",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
         "patchSetId": 4
@@ -166,6 +202,24 @@
       "side": 1,
       "message": "We could if we were just sending the ScanResult list, but we need to convert it to LeScanResult, which contains not only the ScanResult, but also the callbackType. callbackType is crucial in determining whether the device is found or lost.",
       "parentUuid": "a275318c_1deba961",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6820ca06_3ad9a49e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T23:07:23Z",
+      "side": 1,
+      "message": "I see, I missed the callbackType, thanks for the explanation!",
+      "parentUuid": "3ba8d6d8_2ffaf743",
       "revId": "800fca855b5601bbc7ea7df89096a127db720242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -301,6 +355,54 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4246d831_fb24a678",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T23:07:23Z",
+      "side": 1,
+      "message": "My goal here was to not handle the exception and let it flow.\n\n`withTimeout` creates a scope and cancels it on timeout, so if you place the `withTimeout` on top of `getBluetoothState` and use its scope in it, it should do the proper thing.",
+      "parentUuid": "4bdc2f00_26eb2258",
+      "range": {
+        "startLine": 281,
+        "startChar": 16,
+        "endLine": 281,
+        "endChar": 33
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "61c00370_69a749ca",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T23:07:23Z",
+      "side": 1,
+      "message": "\u003e so having a long timeout is unnecessary and may slow down tests.\n\nI\u0027m fine with that, it would only slow down a failing test.\n\n\u003e If you\u0027re concerned about registering broadcast receiver twice for the BT state change, I am using the same flow by using a local val here so only one receiver is registered for the entire test.\n\nI\u0027m not concerned by that.",
+      "parentUuid": "f6eef6d4_8772af3e",
+      "range": {
+        "startLine": 281,
+        "startChar": 16,
+        "endLine": 281,
+        "endChar": 47
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "7f29587c_b284c11c",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
         "patchSetId": 4
@@ -336,6 +438,30 @@
       "side": 1,
       "message": "The suggested refactor doesn\u0027t give the same result. However, I simplified it a bit further, PTAL.",
       "parentUuid": "7f29587c_b284c11c",
+      "range": {
+        "startLine": 282,
+        "startChar": 18,
+        "endLine": 286,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "42f79059_a8b7076e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T23:07:23Z",
+      "side": 1,
+      "message": "Why does it doesn\u0027t give the same result ?\n\n```\nbluetoothStateFlow.map { it \u003d\u003d BluetoothAdapter.STATE_OFF }.first { it }\n```\n\nIs the same as\n\n```\nbluetoothStateFlow.first { it \u003d\u003d BluetoothAdapter.STATE_OFF }\n```\n\nWhich is the same as what I suggested\n\nTIL that there was a version of `first` with a predicate, thanks !",
+      "parentUuid": "5c893e76_1b5e7656",
       "range": {
         "startLine": 282,
         "startChar": 18,
@@ -600,6 +726,24 @@
       "side": 1,
       "message": "That\u0027s against the Koltin style guide: https://kotlinlang.org/docs/coding-conventions.html#class-layout. Does AOSP have a different style guide?",
       "parentUuid": "a5f9109b_63795132",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe85a7a9_5890baf2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T23:07:23Z",
+      "side": 1,
+      "message": "Ack, I didn\u0027t know, thanks for the link, AOSP is indeed following the kotlin conventions !",
+      "parentUuid": "86bd506a_258066c5",
       "revId": "800fca855b5601bbc7ea7df89096a127db720242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
