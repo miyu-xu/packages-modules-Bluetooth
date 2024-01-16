@@ -1,0 +1,307 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ae07dea4_f4bc51bd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "+1 in term of architecture, left some comments for the implementation",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cbf5555d_e7ca9641",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckScanTest.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "```suggestion\n            withTimeout(TIMEOUT_MS) {\n                dck.scanWithPendingIntent(scanFilter, scanSettings).first()\n            }\n```",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 85,
+        "endChar": 13
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ef3e8592_ee4a7a9c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "I think it should be the role of the caller to conflate this flow if needed, silently dropping scan results doesn\u0027t seems right.",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fa867e9b_4b15d3fe",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "I\u0027m not sure to understand what is the `shareIn` purpose here.\n\nAnd same for all the `shareIn` in this file.",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a275318c_1deba961",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "Would it make sense to send the complete result list in the channel here ? I don\u0027t know how much we want to test that we get specific results in one intent.\n\nThe flow of element can be easily reconstructed by the caller by using `flatMapConcat`",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e29a3c3_4780a2ff",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "nit: `getBluetoothState` doesn\u0027t seems to be a great name for this as it\u0027s waiting for bluetooth state changes, what do you think of renaming this to `bluetoothStateChangeFlow`",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86858f67_1afac766",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "Why is this a `withTimeoutOrNull` and not a `withTimeout` ?",
+      "range": {
+        "startLine": 281,
+        "startChar": 16,
+        "endLine": 281,
+        "endChar": 33
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "892f04cc_156a5aa4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "Should we put everything into this timeout and not the individual start and stop?",
+      "range": {
+        "startLine": 281,
+        "startChar": 16,
+        "endLine": 281,
+        "endChar": 47
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f29587c_b284c11c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "```suggestion\n                    bluetoothState\n                        .filter { it \u003d\u003d BluetoothAdapter.STATE_OFF }\n                        .first()\n```",
+      "range": {
+        "startLine": 282,
+        "startChar": 18,
+        "endLine": 286,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5f00365f_244e4eaf",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "Change this to an assert?",
+      "range": {
+        "startLine": 290,
+        "startChar": 8,
+        "endLine": 290,
+        "endChar": 44
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "62f6bfac_bfc395ef",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "```suggestion\n                    bluetoothState\n                        .filter { it \u003d\u003d BluetoothAdapter.STATE_ON }\n                        .first()\n```",
+      "range": {
+        "startLine": 295,
+        "startChar": 0,
+        "endLine": 299,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dc64dde9_519c711c",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "nit:\n```suggestion\n        check(toggled) { \"Bluetooth could not be toggled!\" }\n```",
+      "range": {
+        "startLine": 304,
+        "startChar": 8,
+        "endLine": 304,
+        "endChar": 30
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6db73e9_6c3077db",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "```suggestion\n        withTimeout(TIMEOUT_MS) {\n            connectGatt(bumbleDevice)\n                .filter { it.state \u003d\u003d BluetoothProfile.STATE_CONNECTED }\n                .first()\n        }\n```",
+      "range": {
+        "startLine": 315,
+        "startChar": 0,
+        "endLine": 322,
+        "endChar": 62
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "34b57021_450390fd",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "nit: Move the at the beginning, before `scanWithCallback` ?",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a5f9109b_63795132",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-16T18:27:35Z",
+      "side": 1,
+      "message": "nit: Move the companion object at the beginning?",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
