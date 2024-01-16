@@ -298,7 +298,6 @@ android_app {
         ],
         strict_updatability_linting: true,
         baseline_filename: "lint-baseline.xml",
-
     },
 
     optimize: {
@@ -335,6 +334,9 @@ java_library {
     ],
     min_sdk_version: "Tiramisu",
     sdk_version: "module_current",
+    lint: {
+        baseline_filename: "lint-baseline.xml",
+    },
 }
 
 platform_compat_config {
@@ -356,6 +358,9 @@ java_library {
     ],
     min_sdk_version: "Tiramisu",
     sdk_version: "module_current",
+    lint: {
+        baseline_filename: "lint-baseline.xml",
+    },
 }
 
 genrule {
