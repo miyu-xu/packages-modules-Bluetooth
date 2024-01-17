@@ -88,6 +88,24 @@
       "parentUuid": "68a17e95_416999c2",
       "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf260b52_c6cb6429",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T02:12:44Z",
+      "side": 1,
+      "message": "This is a nice catch, thank you very much.\n\nbut I guess we need to change yours a little\n\n```\nif (p_data-\u003ep_data !\u003d nullptr) {\n  p_cb-\u003estatus \u003d *p_data-\u003ep_data;\n} else {\n   p_cb-\u003estatus \u003d p_data-\u003estatus;\n}\n```\n\nIn addition to that, we need to zero all other stack allocated tSMP_INT_DATA instances.",
+      "parentUuid": "bf5acd75_364dd6ab",
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
