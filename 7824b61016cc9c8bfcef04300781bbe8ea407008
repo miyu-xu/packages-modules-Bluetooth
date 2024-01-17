@@ -106,6 +106,24 @@
       "parentUuid": "bf5acd75_364dd6ab",
       "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4e284449_e92ba146",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T02:36:20Z",
+      "side": 1,
+      "message": "Can you please also try local error metrics? to verify that you get the correct values?",
+      "parentUuid": "bf260b52_c6cb6429",
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
