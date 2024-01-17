@@ -16,6 +16,24 @@
       "message": "Please add bug mentioned in go/bt-best-practices#flagging for automatic dr. no",
       "revId": "f476710681f15fca6f329a24d27040e02cf12725",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d55f7fff_eda4f4ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-17T11:51:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d0adb5a3_b461c634",
+      "revId": "f476710681f15fca6f329a24d27040e02cf12725",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
