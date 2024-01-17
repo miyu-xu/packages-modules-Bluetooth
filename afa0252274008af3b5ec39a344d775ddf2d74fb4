@@ -33,6 +33,29 @@
       "message": "The test failure happened because I did not modify `BluetoothOppTransferHistoryTest` with flags after editing `BluetoothOppTransferHistory`. \n\nThis CL includes the test change, so the test won\u0027t fail regardless of the flags.",
       "revId": "afa0252274008af3b5ec39a344d775ddf2d74fb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aa725e75_c992d137",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-17T08:01:48Z",
+      "side": 1,
+      "message": "nit) How about using Assume.assumeFalse(Flags..)?\n\nIt will show the test as \"SKIPPED\" instead of \"PASSED\", which could help to know if the flag is turned on easily.",
+      "range": {
+        "startLine": 159,
+        "startChar": 8,
+        "endLine": 159,
+        "endChar": 63
+      },
+      "revId": "afa0252274008af3b5ec39a344d775ddf2d74fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
