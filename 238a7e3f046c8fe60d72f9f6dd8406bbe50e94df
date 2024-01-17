@@ -503,6 +503,24 @@
       "parentUuid": "533d4f34_563ceb04",
       "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "542df343_cf537917",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-17T21:43:36Z",
+      "side": 1,
+      "message": "If peripheral sens security request, and we have a key, we would try to encrypt the connection, we won\u0027t send pairing request.\nThis encryption attempt will fail by remote sending \"pin or key missing\".\n\nOn LE transport, we would send Pairing Request ONLY if we were not bonded at all.",
+      "parentUuid": "53aadaa2_24ae5c03",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
