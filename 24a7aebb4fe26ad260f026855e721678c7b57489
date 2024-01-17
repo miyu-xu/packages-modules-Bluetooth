@@ -94,6 +94,30 @@
       },
       "revId": "24a7aebb4fe26ad260f026855e721678c7b57489",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "21ea80d9_b91313df",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T23:53:32Z",
+      "side": 1,
+      "message": "the definition is changed to tHCI_Role",
+      "parentUuid": "08f6d987_fb0be7f9",
+      "range": {
+        "startLine": 999,
+        "startChar": 4,
+        "endLine": 999,
+        "endChar": 13
+      },
+      "revId": "24a7aebb4fe26ad260f026855e721678c7b57489",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
