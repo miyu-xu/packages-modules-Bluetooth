@@ -124,6 +124,24 @@
       "parentUuid": "bf260b52_c6cb6429",
       "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fe38552b_113d29de",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-01-17T03:16:40Z",
+      "side": 1,
+      "message": "Please check response one by one.\n1. I don\u0027t think it\u0027s necessary to check whether p_data-\u003ep_data is nullptr, because it should be handled in line 519~522.\n2.\"zero all other stack allocated tSMP_INT_DATA instances\" -\u003e I will do that, but need to double confirm with you do you mean to zero all tSMP_INT_DATA instances not only in https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/smp/smp_l2c.cc;l\u003d205-207?q\u003dsmp_data_received ?\n3. We verified the local error metrics are as expected.",
+      "parentUuid": "4e284449_e92ba146",
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
