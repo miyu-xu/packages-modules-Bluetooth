@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fca2105b_0059c5fe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-17T07:21:18Z",
+      "side": 1,
+      "message": "The original CL was reverted due to test failure b/320600377.\nThis CL is the same one as the original CL since only the parent CL caused the test failure, not this one.",
+      "revId": "90476c647b31495332f39c47bf25e165c76c9416",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
