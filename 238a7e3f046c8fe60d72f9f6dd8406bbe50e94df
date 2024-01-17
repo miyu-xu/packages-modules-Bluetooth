@@ -485,6 +485,24 @@
       "parentUuid": "2444b359_68511579",
       "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "53aadaa2_24ae5c03",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T19:32:14Z",
+      "side": 1,
+      "message": "\u003e As I understand the code, you will get here only by first removing the bond, or by doing CTKD on Classic using SMP.\n\nlets verify the behavior of the code first by test.\n\nI think if the peer (peripheral) sends a security request and asks the central to initial pairing, this may happen, but we need to confirm it.",
+      "parentUuid": "533d4f34_563ceb04",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
