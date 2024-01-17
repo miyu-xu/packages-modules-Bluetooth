@@ -741,6 +741,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3ac2cd12_6307a65f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-17T02:51:01Z",
+      "side": 1,
+      "message": "Oh right 🤦, sorry guys to have been so long to understand that it doesn\u0027t return the same value!\n\nThanks for explaining multiple time 😂\n\nRe-reading it all the explanations make sense. Sorry again.",
+      "parentUuid": "be4a0e8f_5ba5e83d",
+      "range": {
+        "startLine": 282,
+        "startChar": 18,
+        "endLine": 286,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5f00365f_244e4eaf",
