@@ -47,6 +47,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0315a284_d991b73b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T21:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "524b004f_aca9ef1e",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86470bcb_8f68a915",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T21:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "df3b9fb4_92774ef9",
+      "range": {
+        "startLine": 0,
+        "startChar": 0,
+        "endLine": 0,
+        "endChar": 0
+      },
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1557ff50_dceab2d1",
@@ -221,6 +269,42 @@
       "writtenOn": "2024-01-17T21:22:49Z",
       "side": 1,
       "message": "Nit: To make it clear that we are reading just the first octet from an array.\n```suggestion\n    p_cb-\u003estatus \u003d p_data-\u003ep_data[0];\n```",
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c36d50f2_3e8ecc25",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T21:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e0a6cd20_9e4b9490",
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "46145de7_13818812",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T21:47:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a6bb9bf8_d9db1606",
       "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
