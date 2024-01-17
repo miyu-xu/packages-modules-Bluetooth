@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5728bdc4_f061efd8",
+        "filename": "flags/security.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-17T21:51:42Z",
+      "side": 1,
+      "message": "I have edited the bug content as title was mismatching with the flag name.",
+      "range": {
+        "startLine": 15,
+        "startChar": 10,
+        "endLine": 15,
+        "endChar": 19
+      },
+      "revId": "a889bf5131424b7bcf250c32d80a4f37e96dfbf6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
