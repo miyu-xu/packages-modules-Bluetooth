@@ -384,26 +384,6 @@ struct tBTA_AV_SCB;
 union tBTA_AV_DATA;
 typedef void (*tBTA_AV_ACT)(tBTA_AV_SCB* p_cb, tBTA_AV_DATA* p_data);
 
-/* AV configuration structure */
-typedef struct {
-  uint32_t company_id;  /* AVRCP Company ID */
-  uint16_t avrc_ct_cat; /* AVRCP controller categories */
-  uint16_t avrc_tg_cat; /* AVRCP target categories */
-  uint16_t audio_mqs;      /* AVDTP audio channel max data queue size */
-  bool avrc_group;     /* true, to accept AVRC 1.3 group nevigation command */
-  uint8_t num_co_ids;  /* company id count in p_meta_co_ids */
-  uint8_t num_evt_ids; /* event id count in p_meta_evt_ids */
-  tBTA_AV_CODE
-      rc_pass_rsp; /* the default response code for pass through commands */
-  const uint32_t*
-      p_meta_co_ids; /* the metadata Get Capabilities response for company id */
-  const uint8_t* p_meta_evt_ids; /* the the metadata Get Capabilities response
-                                    for event id */
-  char avrc_controller_name[BTA_SERVICE_NAME_LEN]; /* Default AVRCP controller
-                                                      name */
-  char avrc_target_name[BTA_SERVICE_NAME_LEN]; /* Default AVRCP target name*/
-} tBTA_AV_CFG;
-
 /*****************************************************************************
  *  External Function Declarations
  ****************************************************************************/

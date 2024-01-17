@@ -29,6 +29,7 @@
 
 #include "bta/av/bta_av_int.h"
 #include "bta/include/bta_ar_api.h"
+#include "bta/include/bta_av_cfg.h"
 #include "bta/include/utl.h"
 #include "btif/avrcp/avrcp_service.h"
 #include "device/include/device_iot_config.h"
@@ -369,7 +370,7 @@ uint8_t bta_av_rc_create(tBTA_AV_CB* p_cb, uint8_t role, uint8_t shdl,
 
   ccb.ctrl_cback = base::Bind(bta_av_rc_ctrl_cback);
   ccb.msg_cback = base::Bind(bta_av_rc_msg_cback);
-  ccb.company_id = p_bta_av_cfg->company_id;
+  ccb.company_id = p_bta_av_cfg.getCompanyId();
   ccb.conn = role;
   /* note: BTA_AV_FEAT_RCTG = AVRC_CT_TARGET, BTA_AV_FEAT_RCCT = AVRC_CT_CONTROL
    */
@@ -426,7 +427,7 @@ static tBTA_AV_CODE bta_av_group_navi_supported(uint8_t len, uint8_t* p_data,
   uint16_t u16;
   uint32_t u32;
 
-  if (p_bta_av_cfg->avrc_group && len == BTA_GROUP_NAVI_MSG_OP_DATA_LEN) {
+  if (p_bta_av_cfg.isAvrcGroup() && len == BTA_GROUP_NAVI_MSG_OP_DATA_LEN) {
     BTA_AV_BE_STREAM_TO_CO_ID(u32, p_ptr);
     BE_STREAM_TO_UINT16(u16, p_ptr);
 
@@ -465,7 +466,7 @@ static tBTA_AV_CODE bta_av_op_supported(tBTA_AV_RC rc_id, bool is_inquiry) {
     } else {
       if (p_bta_av_rc_id[rc_id >> 4] & (1 << (rc_id & 0x0F))) {
         ret_code = AVRC_RSP_ACCEPT;
-      } else if ((p_bta_av_cfg->rc_pass_rsp == AVRC_RSP_INTERIM) &&
+      } else if ((p_bta_av_cfg.getRcPassRsp() == AVRC_RSP_INTERIM) &&
                  p_bta_av_rc_id_ac) {
         if (p_bta_av_rc_id_ac[rc_id >> 4] & (1 << (rc_id & 0x0F))) {
           ret_code = AVRC_RSP_INTERIM;
@@ -808,30 +809,21 @@ static tAVRC_STS bta_av_chk_notif_evt_id(tAVRC_MSG_VENDOR* p_vendor) {
   uint8_t* p = p_vendor->p_vendor_data + 2;
 
   BE_STREAM_TO_UINT16(u16, p);
+  LOG_INFO("Vendor data:%d u16:%d", *p, u16);
   /* double check the fixed length */
   if ((u16 != 5) || (p_vendor->vendor_len != 9)) {
+    LOG_ERROR("Error in bta_av_chk_notif_evt_id u16:%d vendor_len:%d", u16,
+              p_vendor->vendor_len);
     status = AVRC_STS_INTERNAL_ERR;
   } else {
-    if (btif_av_both_enable()) {
-      for (xx = 0; xx < bta_av_cfg.num_evt_ids; xx++) {
-        if (*p == bta_av_cfg.p_meta_evt_ids[xx]) {
-          return status;
-        }
-      }
-      for (xx = 0; xx < get_bta_avk_cfg()->num_evt_ids; xx++) {
-        if (*p == get_bta_avk_cfg()->p_meta_evt_ids[xx]) {
-          return status;
-        }
-      }
-      return AVRC_STS_BAD_PARAM;
-    }
+    LOG_INFO("No. of expected event ids %d", p_bta_av_cfg.getNumEvtIds());
     /* make sure the player_id is valid */
-    for (xx = 0; xx < p_bta_av_cfg->num_evt_ids; xx++) {
-      if (*p == p_bta_av_cfg->p_meta_evt_ids[xx]) {
+    for (xx = 0; xx < p_bta_av_cfg.getNumEvtIds(); xx++) {
+      if (*p == p_bta_av_cfg.getPMetaEvtIds()[xx]) {
         break;
       }
     }
-    if (xx == p_bta_av_cfg->num_evt_ids) {
+    if (xx == p_bta_av_cfg.getNumEvtIds()) {
       status = AVRC_STS_BAD_PARAM;
     }
   }
@@ -841,26 +833,29 @@ static tAVRC_STS bta_av_chk_notif_evt_id(tAVRC_MSG_VENDOR* p_vendor) {
 
 void bta_av_proc_rsp(tAVRC_RESPONSE* p_rc_rsp) {
   uint16_t rc_ver = 0x105;
-  const tBTA_AV_CFG* p_src_cfg = NULL;
+  tBTA_AV_CFG p_src_cfg;
   if (rc_ver != 0x103)
-    p_src_cfg = &bta_av_cfg;
+    p_src_cfg = BtaAvCfgFactory::createCustomConfig(true, false, rc_ver);
   else
-    p_src_cfg = &bta_av_cfg_compatibility;
-  p_rc_rsp->get_caps.count = p_src_cfg->num_evt_ids;
-  memcpy(p_rc_rsp->get_caps.param.event_id, p_src_cfg->p_meta_evt_ids,
-         p_src_cfg->num_evt_ids);
+    p_src_cfg = BtaAvCfgFactory::createCustomConfig(true, false, rc_ver);
+  p_rc_rsp->get_caps.count = p_src_cfg.getNumEvtIds();
+  memcpy(p_rc_rsp->get_caps.param.event_id, p_src_cfg.getPMetaEvtIds(),
+         p_src_cfg.getNumEvtIds());
   LOG_VERBOSE("%s: ver: 0x%x", __func__, rc_ver);
   /* if it's not 1.3, then there should be a absolute volume */
   if (rc_ver != 0x103) {
     uint8_t evt_cnt = p_rc_rsp->get_caps.count;
-    p_rc_rsp->get_caps.count += get_bta_avk_cfg()->num_evt_ids;
+    LOG_INFO("Event count %d %d", evt_cnt, p_rc_rsp->get_caps.count);
+    const tBTA_AV_CFG& btaAvCfg =
+        BtaAvCfgFactory::createCustomConfig(false, true, rc_ver);
+    p_rc_rsp->get_caps.count += btaAvCfg.getNumEvtIds();
     if (evt_cnt < AVRC_CAP_MAX_NUM_EVT_ID) {
       uint32_t i = 0;
-      for (i = 0; i < get_bta_avk_cfg()->num_evt_ids &&
-                  i + evt_cnt < AVRC_CAP_MAX_NUM_EVT_ID;
+      for (i = 0;
+           i < btaAvCfg.getNumEvtIds() && i + evt_cnt < AVRC_CAP_MAX_NUM_EVT_ID;
            i++) {
         p_rc_rsp->get_caps.param.event_id[evt_cnt + i] =
-            get_bta_avk_cfg()->p_meta_evt_ids[i];
+            btaAvCfg.getPMetaEvtIds()[i];
       }
     }
   }
@@ -919,6 +914,7 @@ tBTA_AV_EVT bta_av_proc_meta_cmd(tAVRC_RESPONSE* p_rc_rsp,
   } else {
     switch (pdu) {
       case AVRC_PDU_GET_CAPABILITIES:
+        LOG_INFO("AVRC_PDU_GET_CAPABILITIES case reached");
         /* process GetCapabilities command without reporting the event to app */
         evt = 0;
         if (p_vendor->vendor_len != 5) {
@@ -935,19 +931,20 @@ tBTA_AV_EVT bta_av_proc_meta_cmd(tAVRC_RESPONSE* p_rc_rsp,
           p_rc_rsp->get_caps.status = AVRC_STS_NO_ERROR;
           if (u8 == AVRC_CAP_COMPANY_ID) {
             *p_ctype = AVRC_RSP_IMPL_STBL;
-            p_rc_rsp->get_caps.count = p_bta_av_cfg->num_co_ids;
+            p_rc_rsp->get_caps.count = p_bta_av_cfg.getNumCoIds();
             memcpy(p_rc_rsp->get_caps.param.company_id,
-                   p_bta_av_cfg->p_meta_co_ids,
-                   (p_bta_av_cfg->num_co_ids << 2));
+                   p_bta_av_cfg.getPMetaCoIds(),
+                   (p_bta_av_cfg.getNumCoIds() << 2));
           } else if (u8 == AVRC_CAP_EVENTS_SUPPORTED) {
             *p_ctype = AVRC_RSP_IMPL_STBL;
             if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
+              LOG_INFO("AVRC_CAP_EVENTS_SUPPORTED called here");
               bta_av_proc_rsp(p_rc_rsp);
               break;
             }
-            p_rc_rsp->get_caps.count = p_bta_av_cfg->num_evt_ids;
+            p_rc_rsp->get_caps.count = p_bta_av_cfg.getNumEvtIds();
             memcpy(p_rc_rsp->get_caps.param.event_id,
-                   p_bta_av_cfg->p_meta_evt_ids, p_bta_av_cfg->num_evt_ids);
+                   p_bta_av_cfg.getPMetaEvtIds(), p_bta_av_cfg.getNumEvtIds());
           } else {
             LOG_VERBOSE("%s: Invalid capability ID: 0x%x", __func__, u8);
             /* reject - unknown capability ID */
@@ -1986,7 +1983,8 @@ tBTA_AV_FEAT bta_avk_check_peer_features(uint16_t service_uuid) {
     p_rec = get_legacy_stack_sdp_api()->db.SDP_FindServiceInDb(
         p_cb->p_disc_db, service_uuid, p_rec);
   }
-  LOG_VERBOSE("%s: peer_features:x%x", __func__, peer_features);
+  LOG_INFO("%s: peer_features:x%x service_uuid:x%x", __func__, peer_features,
+           service_uuid);
   return peer_features;
 }
 
@@ -2093,6 +2091,7 @@ uint16_t bta_avk_get_cover_art_psm() {
 }
 
 void bta_av_rc_disc_done_all(UNUSED_ATTR tBTA_AV_DATA* p_data) {
+  LOG_INFO("bta_av_rc_disc_done_all invoked");
   tBTA_AV_CB* p_cb = &bta_av_cb;
   tBTA_AV_SCB* p_scb = NULL;
   tBTA_AV_LCB* p_lcb;
@@ -2124,7 +2123,8 @@ void bta_av_rc_disc_done_all(UNUSED_ATTR tBTA_AV_DATA* p_data) {
       return;
     }
   }
-
+  LOG_INFO("a2dp handle: %d, sdp_a2dp_snk_handle: %d", p_cb->sdp_a2dp_handle,
+           p_cb->sdp_a2dp_snk_handle);
   LOG_VERBOSE("%s: rc_handle %d", __func__, rc_handle);
   if (p_cb->sdp_a2dp_snk_handle) {
     /* This is Sink + CT + TG(Abs Vol) */
@@ -2139,9 +2139,11 @@ void bta_av_rc_disc_done_all(UNUSED_ATTR tBTA_AV_DATA* p_data) {
     if (peer_tg_features & BTA_AV_FEAT_COVER_ARTWORK)
       cover_art_psm = bta_avk_get_cover_art_psm();
 
-    LOG_VERBOSE("%s: populating rem ctrl target bip psm 0x%x", __func__,
-                cover_art_psm);
-  } else if (p_cb->sdp_a2dp_handle) {
+    LOG_INFO("%s: populating rem ctrl target bip psm 0x%x", __func__,
+             cover_art_psm);
+  }
+  if (p_cb->sdp_a2dp_handle) {
+    LOG_INFO("Sdp A2dp handle called?");
     /* check peer version and whether support CT and TG role */
     peer_ct_features =
         bta_av_check_peer_features(UUID_SERVCLASS_AV_REMOTE_CONTROL);
@@ -2166,9 +2168,10 @@ void bta_av_rc_disc_done_all(UNUSED_ATTR tBTA_AV_DATA* p_data) {
       get_legacy_stack_sdp_api()->record.SDP_FindProfileVersionInRec(
           p_rec, UUID_SERVCLASS_AV_REMOTE_CONTROL, &peer_rc_version);
       if (peer_rc_version <= AVRC_REV_1_3) {
+        // TODO: Potential bug for A2DP Source?
         LOG_VERBOSE("%s: Using AVRCP 1.3 Capabilities with remote device",
                     __func__);
-        p_bta_av_cfg = &bta_av_cfg_compatibility;
+        //        p_bta_av_cfg = &bta_av_cfg_compatibility;
       }
     }
   }
@@ -2180,8 +2183,8 @@ void bta_av_rc_disc_done_all(UNUSED_ATTR tBTA_AV_DATA* p_data) {
   p_cb->rc_feature.rc_handle = rc_handle;
   if (p_scb) p_cb->rc_feature.peer_addr = p_scb->PeerAddress();
 
-  LOG_VERBOSE("peer_tg_features 0x%x, peer_ct_features 0x%x, features 0x%x",
-              peer_tg_features, peer_ct_features, p_cb->features);
+  LOG_INFO("peer_tg_features 0x%x, peer_ct_features 0x%x, features 0x%x",
+           peer_tg_features, peer_ct_features, p_cb->features);
 
   /* if we have no rc connection */
   if (rc_handle == BTA_AV_RC_HANDLE_NONE) {
@@ -2320,6 +2323,8 @@ void bta_av_rc_disc_done(UNUSED_ATTR tBTA_AV_DATA* p_data) {
   }
 
   LOG_VERBOSE("%s: rc_handle %d", __func__, rc_handle);
+  LOG_INFO("%s: sdp_a2dp_snk_handle: %d sdp_a2dp_handle: %d", __func__,
+           p_cb->sdp_a2dp_snk_handle, p_cb->sdp_a2dp_handle);
   if (p_cb->sdp_a2dp_snk_handle) {
     /* This is Sink + CT + TG(Abs Vol) */
     peer_features =
@@ -2362,7 +2367,8 @@ void bta_av_rc_disc_done(UNUSED_ATTR tBTA_AV_DATA* p_data) {
       if (peer_rc_version <= AVRC_REV_1_3) {
         LOG_VERBOSE("%s: Using AVRCP 1.3 Capabilities with remote device",
                     __func__);
-        p_bta_av_cfg = &bta_av_cfg_compatibility;
+        p_bta_av_cfg =
+            BtaAvCfgFactory::createCustomConfig(false, true, peer_rc_version);
       }
     }
   }

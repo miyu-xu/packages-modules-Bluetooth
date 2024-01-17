@@ -31,7 +31,7 @@
 
 // #include "bta/include/bta_av_api.h"
 // #include "btif/include/btif_common.h"
-
+enum class A2dpType { kSource, kSink, kUnknown };
 /**
  * When the local device is A2DP source, get the address of the active peer.
  */
@@ -55,7 +55,7 @@ bool btif_av_is_source_enabled(void);
 /**
  * Start streaming.
  */
-void btif_av_stream_start(void);
+void btif_av_stream_start(const A2dpType a2dpType);
 
 /**
  * Start streaming with latency setting.
@@ -82,30 +82,30 @@ void btif_av_stream_start_offload(void);
 /**
  * Check whether ready to start the A2DP stream.
  */
-bool btif_av_stream_ready(void);
+bool btif_av_stream_ready(const A2dpType a2dpType);
 
 /**
  * Check whether the A2DP stream is in started state and ready
  * for media start.
  */
-bool btif_av_stream_started_ready(void);
+bool btif_av_stream_started_ready(const A2dpType a2dpType);
 
 /**
  * Check whether there is a connected peer (either Source or Sink)
  */
-bool btif_av_is_connected(void);
+bool btif_av_is_connected(const A2dpType a2dpType);
 
 /**
  * Get the Stream Endpoint Type of the Active peer.
  *
  * @return the stream endpoint type: either AVDT_TSEP_SRC or AVDT_TSEP_SNK
  */
-uint8_t btif_av_get_peer_sep(void);
+uint8_t btif_av_get_peer_sep(const A2dpType a2dpType);
 
 /**
  * Clear the remote suspended flag for the active peer.
  */
-void btif_av_clear_remote_suspend_flag(void);
+void btif_av_clear_remote_suspend_flag(const A2dpType a2dpType);
 
 /**
  * Check whether the connected A2DP peer supports EDR.
@@ -116,7 +116,8 @@ void btif_av_clear_remote_suspend_flag(void);
  * @param peer_address the peer address
  * @return true if the remote peer is capable of EDR
  */
-bool btif_av_is_peer_edr(const RawAddress& peer_address);
+bool btif_av_is_peer_edr(const RawAddress& peer_address,
+                         const A2dpType a2dpType);
 
 /**
  * Check whether the connected A2DP peer supports 3 Mbps EDR.
@@ -127,7 +128,8 @@ bool btif_av_is_peer_edr(const RawAddress& peer_address);
  * @param peer_address the peer address
  * @return true if the remote peer is capable of EDR and supports 3 Mbps
  */
-bool btif_av_peer_supports_3mbps(const RawAddress& peer_address);
+bool btif_av_peer_supports_3mbps(const RawAddress& peer_address,
+                                 const A2dpType a2dpType);
 
 /**
  * Check whether the mandatory codec is more preferred for this peer.
@@ -135,7 +137,8 @@ bool btif_av_peer_supports_3mbps(const RawAddress& peer_address);
  * @param peer_address the target peer address
  * @return true if optional codecs are not preferred to be used
  */
-bool btif_av_peer_prefers_mandatory_codec(const RawAddress& peer_address);
+bool btif_av_peer_prefers_mandatory_codec(const RawAddress& peer_address,
+                                          const A2dpType a2dpType);
 
 /**
  * Report A2DP Source Codec State for a peer.
@@ -174,7 +177,8 @@ bt_status_t btif_av_sink_execute_service(bool enable);
  *
  * @param peer_address the disconnected peer address
  */
-void btif_av_acl_disconnected(const RawAddress& peer_address);
+void btif_av_acl_disconnected(const RawAddress& peer_address,
+                              const A2dpType a2dpType);
 
 /**
  * Dump debug-related information for the BTIF AV module.
@@ -190,13 +194,14 @@ void btif_debug_av_dump(int fd);
  * @param peer_address the address of the peer to report
  * @param delay the delay to set in units of 1/10ms
  */
-void btif_av_set_audio_delay(const RawAddress& peer_address, uint16_t delay);
+void btif_av_set_audio_delay(const RawAddress& peer_address, uint16_t delay,
+                             const A2dpType a2dpType);
 
 /**
  * Get the audio delay for the stream.
  *  @param  none
  */
-uint16_t btif_av_get_audio_delay(void);
+uint16_t btif_av_get_audio_delay(const A2dpType a2dpType);
 
 /**
  * Reset the audio delay and count of audio bytes sent to zero.
@@ -238,7 +243,8 @@ bool btif_av_is_peer_silenced(const RawAddress& peer_address);
  * @param address : checked device address
  *
  */
-bool btif_av_is_connected_addr(const RawAddress& peer_address);
+bool btif_av_is_connected_addr(const RawAddress& peer_address,
+                               const A2dpType a2dpType);
 
 /**
  * Set the dynamic audio buffer size
@@ -261,7 +267,8 @@ extern bool btif_av_is_source_enabled(void);
 extern bool btif_av_both_enable(void);
 extern bool btif_av_src_sink_coexist_enabled(void);
 extern bool btif_av_is_sink_enabled(void);
-extern bool btif_av_is_connected_addr(const RawAddress& peer_address);
+extern bool btif_av_is_connected_addr(const RawAddress& peer_address,
+                                      const A2dpType a2dpType);
 extern bool btif_av_peer_is_connected_sink(const RawAddress& peer_address);
 extern bool btif_av_peer_is_connected_source(const RawAddress& peer_address);
 extern bool btif_av_peer_is_sink(const RawAddress& peer_address);

@@ -173,8 +173,8 @@ uint16_t AVDT_CreateStream(uint8_t peer_id, uint8_t* p_handle,
       result = AVDT_NO_RESOURCES;
     } else {
       *p_handle = avdt_scb_to_hdl(p_scb);
-      LOG_DEBUG("Created stream endpoint peer_id=%d handle=%hhu", peer_id,
-                *p_handle);
+      LOG_INFO("Created stream endpoint peer_id=%d handle=%hhu", peer_id,
+               *p_handle);
     }
   }
   return static_cast<uint16_t>(result);

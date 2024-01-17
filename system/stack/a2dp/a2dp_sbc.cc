@@ -138,6 +138,7 @@ static tA2DP_STATUS A2DP_BuildInfoSbc(uint8_t media_type,
       (p_ie->max_bitpool < A2DP_SBC_IE_MIN_BITPOOL) ||
       (p_ie->max_bitpool > A2DP_SBC_IE_MAX_BITPOOL)) {
     /* if any unused bit is set */
+    LOG_ERROR("[samdaria] Invalid parameters for SBC Codec initialization");
     return A2DP_INVALID_PARAMS;
   }
 
@@ -151,8 +152,9 @@ static tA2DP_STATUS A2DP_BuildInfoSbc(uint8_t media_type,
   *p_result++ = p_ie->block_len | p_ie->num_subbands | p_ie->alloc_method;
 
   *p_result++ = p_ie->min_bitpool;
+  // Doesn't increase the pointer??
   *p_result = p_ie->max_bitpool;
-
+  LOG_INFO("[samdaria] Successful initialization");
   return A2DP_SUCCESS;
 }
 

@@ -218,7 +218,7 @@ uint16_t AVRC_AddRecord(uint16_t service_uuid, const char* p_service_name,
   uint8_t index = 0;
   uint16_t class_list[2];
 
-  LOG_VERBOSE(
+  LOG_INFO(
       "%s: Add AVRCP SDP record, uuid: %x, profile_version: 0x%x, "
       "supported_features: 0x%x, psm: 0x%x",
       __func__, service_uuid, profile_version, categories, cover_art_psm);

@@ -275,7 +275,7 @@ uint32_t SDP_CreateRecord(void) {
     p_db->record[p_db->num_records].record_handle = handle;
 
     p_db->num_records++;
-    LOG_VERBOSE("SDP_CreateRecord ok, num_records:%d", p_db->num_records);
+    LOG_INFO("SDP_CreateRecord ok, num_records:%d", p_db->num_records);
     /* Add the first attribute (the handle) automatically */
     UINT32_TO_BE_FIELD(buf, handle);
     SDP_AddAttribute(handle, ATTR_ID_SERVICE_RECORD_HDL, UINT_DESC_TYPE, 4,
