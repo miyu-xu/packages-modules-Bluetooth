@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90052eb8_17bcfff2",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1880,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-17T22:34:26Z",
+      "side": 1,
+      "message": "Right now, I\u0027m doing it just for LE Audio devices.\n\nThere is no generic \"all profiles connection finished\" event in the stack, so I can\u0027t make it generic for all profiles.",
+      "parentUuid": "0a6d5ba1_902faeb2",
+      "range": {
+        "startLine": 1880,
+        "startChar": 29,
+        "endLine": 1880,
+        "endChar": 54
+      },
+      "revId": "cc3871ccb825f425da4b8fc383468b189d7fa5a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5ab9b4bf_65ab0e49",
@@ -47,6 +71,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e758bc8c_133d69bf",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 1886,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-17T22:34:26Z",
+      "side": 1,
+      "message": "See my response above, it must be profile specific now",
+      "parentUuid": "5ab9b4bf_65ab0e49",
+      "range": {
+        "startLine": 1886,
+        "startChar": 43,
+        "endLine": 1886,
+        "endChar": 79
+      },
+      "revId": "cc3871ccb825f425da4b8fc383468b189d7fa5a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6afeb887_05589b83",
@@ -60,6 +108,30 @@
       "writtenOn": "2024-01-11T07:40:39Z",
       "side": 1,
       "message": "I believe we should keep audio out of this feature. Or we could have additional flag which enables this feature only for le_capable devices.",
+      "range": {
+        "startLine": 2388,
+        "startChar": 10,
+        "endLine": 2388,
+        "endChar": 46
+      },
+      "revId": "cc3871ccb825f425da4b8fc383468b189d7fa5a1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d0467f77_0bcb7ad1",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 2388,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-17T22:34:26Z",
+      "side": 1,
+      "message": "See my response above, it must be profile specific now",
+      "parentUuid": "6afeb887_05589b83",
       "range": {
         "startLine": 2388,
         "startChar": 10,

@@ -22,6 +22,30 @@
       },
       "revId": "3da16fb2cbd4f822ededf67226c588d6e035d13a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1d00653f_8af83fab",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 8
+      },
+      "lineNbr": 1883,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-17T22:34:26Z",
+      "side": 1,
+      "message": "LE Audio ends connection in under 6 seconds.\n\nIf you disconnect and do quick reconnection, call to L2CA_LockBleConnParamsForAudioSetup(*, false) is imdepotent, you can do it multiple times and not hurt the next connection.",
+      "parentUuid": "2dfde568_24d51466",
+      "range": {
+        "startLine": 1883,
+        "startChar": 12,
+        "endLine": 1883,
+        "endChar": 37
+      },
+      "revId": "3da16fb2cbd4f822ededf67226c588d6e035d13a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
