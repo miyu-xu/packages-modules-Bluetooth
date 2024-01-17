@@ -138,6 +138,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9bd629a6_c6c65dcb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1418133
+      },
+      "writtenOn": "2024-01-17T01:31:38Z",
+      "side": 1,
+      "message": "1. This is a specific-purpose test utility not a production software utility. De-duplication of code is of more value than versatility.\n2. The intended interface is a `SharedFlow` rather than a raw `Flow` and thus not intended for per-client configuration.\n3. I believe buffer is being conflated with replay cache, for which the later is what we\u0027d care about with a `SharedFlow`.",
+      "parentUuid": "b10adac6_3adfbe42",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa867e9b_4b15d3fe",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
         "patchSetId": 4
@@ -202,6 +220,24 @@
       "writtenOn": "2024-01-17T01:09:28Z",
       "side": 1,
       "message": "The reason for the hot flow is so that the user can have more control on when the scan is active or cancelled.\n\nBy definition, callbackFlow is a cold flow and will execute the action when collected and closes channel as soon as collection ends. This can be unintuitive to the user in the tests and can lead to bad tests. Converting to a shared flow and using a specific scope will allow the scan to continue until explicitly cancelled by cancelling the scope. This way, the user can start scan by collecting for specific result even with a terminal operator like first() and later if they need to test again in the same test for the scan result, they can use the same flow without starting a new scan, if desired.\n\nFor example, for a DCK test case scanning for absence of remote after having been found previously, first we advertise with bumble and scan for its presence (FIRST_MATCH). Then, we stop bumble advertising and look for absence (MATCH_LOST) in the same test without having to start two separate scans (in fact, two separate scans is not a valid DCK test case).\n\n\u003e Also is not creating a hot flow after conflating means that you have an infinite buffer?\n\nNo, conflate actually ensure that only the latest is provided to the collector and older emissions are dropped: https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/conflate.html. \n\nWithout conflate or shareIn operators, however, the callbackFlow essentially has indefinite buffer, but it will serve all emissions one by one and is not the desired outcome for DCK test cases, where we need to look at the latest results to verify the outcome.",
+      "parentUuid": "d9f66f32_ce08f2f0",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4ffc3e80_f75194c4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1418133
+      },
+      "writtenOn": "2024-01-17T01:31:38Z",
+      "side": 1,
+      "message": "- As used, this simply allows scanning to continue even when the client isn\u0027t collecting.\n- It only provides results to a client received while the client is collecting, with an optional replay cache for older results.\n- The default replay cache size is zero and the default buffer configuration is unbuffered.",
       "parentUuid": "d9f66f32_ce08f2f0",
       "revId": "800fca855b5601bbc7ea7df89096a127db720242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
@@ -569,6 +605,30 @@
       "writtenOn": "2024-01-17T01:09:28Z",
       "side": 1,
       "message": "bluetoothStateFlow.map { it \u003d\u003d BluetoothAdapter.STATE_OFF }.first { it }\n-\u003e Converts the BT state to a Boolean and returns the first Boolean that\u0027s true.\n\nbluetoothStateFlow.first { it \u003d\u003d BluetoothAdapter.STATE_OFF }\n-\u003e Emits the first BT state that matches the predicate\n\nSo, one\u0027s returning Boolean and the other returning BT state. Anyways, now that I have refactored to use withTimeout to let timeout exception be sent downstream, I don\u0027t need to use map. Updated accordingly.",
+      "parentUuid": "42f79059_a8b7076e",
+      "range": {
+        "startLine": 282,
+        "startChar": 18,
+        "endLine": 286,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44737de5_9e525682",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1418133
+      },
+      "writtenOn": "2024-01-17T01:31:38Z",
+      "side": 1,
+      "message": "`bluetoothStateFlow.map { it \u003d\u003d BluetoothAdapter.STATE_OFF }.first { it }` returns the first `true` or `false`.\n\n`bluetoothStateFlow.first { it \u003d\u003d BluetoothAdapter.STATE_OFF }` only returns the first value of `BluetoothAdapter.STATE_OFF`.\n\nIn the case of a failure (i.e. `STATE_TURNING_OFF` -\u003e `STATE_ON`), the first will return false, while the second will not return.",
       "parentUuid": "42f79059_a8b7076e",
       "range": {
         "startLine": 282,
