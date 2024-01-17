@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dd863abd_eb11144f",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1006,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-17T22:17:08Z",
+      "side": 1,
+      "message": "Maybe add `pairing_bda` (and possibly addr_type, transport, etc) for each of these logs so it\u0027s easier and faster to match it back to the individual who will be debugging this code when pairing fails in the future",
+      "revId": "dbdb2a296b873b159d676f6ce0a5fa658852b8b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "49ec6fe9_40ef7a84",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1011,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-17T22:17:08Z",
+      "side": 1,
+      "message": "I now see what role means here.  This could be a good clean up, and you could use the `hci_role_text` helper function.\n\n```\ntypedef enum : uint8_t {\n  HCI_ROLE_CENTRAL \u003d 0x00,\n  HCI_ROLE_PERIPHERAL \u003d 0x01,\n  HCI_ROLE_UNKNOWN \u003d 0xff,\n} tHCI_ROLE;\n```",
+      "revId": "dbdb2a296b873b159d676f6ce0a5fa658852b8b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bed45948_a331094c",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1028,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-17T22:17:08Z",
+      "side": 1,
+      "message": "Same; add more context (bd_addr, etc)",
+      "revId": "dbdb2a296b873b159d676f6ce0a5fa658852b8b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "487cbc6e_a9a62eac",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-17T22:17:08Z",
+      "side": 1,
+      "message": "Would prefer a *single* logging call per function; if state changes maybe cache it in `old_state` or something to aggregate a single log line with as much useful data packed in as possible.\n\nSame; add more context (bd_addr, etc)",
+      "revId": "dbdb2a296b873b159d676f6ce0a5fa658852b8b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
