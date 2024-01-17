@@ -22,6 +22,30 @@
       },
       "revId": "24a7aebb4fe26ad260f026855e721678c7b57489",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "684bfbe5_d2fac93d",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T21:18:39Z",
+      "side": 1,
+      "message": "It should never happen. If it happens, it should be an error, e.g., the code is under attack.",
+      "parentUuid": "c9de373d_327adfe1",
+      "range": {
+        "startLine": 999,
+        "startChar": 4,
+        "endLine": 999,
+        "endChar": 13
+      },
+      "revId": "24a7aebb4fe26ad260f026855e721678c7b57489",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
