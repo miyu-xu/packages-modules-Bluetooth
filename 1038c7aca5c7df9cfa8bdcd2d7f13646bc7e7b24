@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d5cb8cd_9b43e443",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-17T05:36:18Z",
+      "side": 1,
+      "message": "I think I\u0027d rather have two versions of this while loop, so that when we remove the flag, it\u0027s obvious what to remove.",
+      "range": {
+        "startLine": 337,
+        "startChar": 2,
+        "endLine": 337,
+        "endChar": 7
+      },
+      "revId": "1038c7aca5c7df9cfa8bdcd2d7f13646bc7e7b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "31906fd7_d4201815",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-17T05:36:18Z",
+      "side": 1,
+      "message": "I really have a hard time imagining a situation where this happens more than 3 or 4 times.  I\u0027m almost curious enough to make it an abort and see when we see it.",
+      "range": {
+        "startLine": 350,
+        "startChar": 18,
+        "endLine": 350,
+        "endChar": 49
+      },
+      "revId": "1038c7aca5c7df9cfa8bdcd2d7f13646bc7e7b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d8a365ef_cd9f2415",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-17T05:36:18Z",
+      "side": 1,
+      "message": "Does break really poll again?  I thought it exited the loop.  Did you mean continue?",
+      "range": {
+        "startLine": 362,
+        "startChar": 8,
+        "endLine": 362,
+        "endChar": 13
+      },
+      "revId": "1038c7aca5c7df9cfa8bdcd2d7f13646bc7e7b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
