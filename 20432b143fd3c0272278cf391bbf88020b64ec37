@@ -16,6 +16,29 @@
       "message": "Needs owner-review",
       "revId": "20432b143fd3c0272278cf391bbf88020b64ec37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "64413eb3_da356842",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapMetricsUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-17T07:52:06Z",
+      "side": 1,
+      "message": "Can\u0027t find usage of this. Will it be used later?",
+      "range": {
+        "startLine": 23,
+        "startChar": 13,
+        "endLine": 23,
+        "endChar": 37
+      },
+      "revId": "20432b143fd3c0272278cf391bbf88020b64ec37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
