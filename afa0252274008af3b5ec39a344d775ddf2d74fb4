@@ -16,6 +16,23 @@
       "message": "Reverted due to test failure b/320600377.\nUploading the CL with fixing the test.",
       "revId": "afa0252274008af3b5ec39a344d775ddf2d74fb4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f51ed9fe_88038581",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-17T07:49:00Z",
+      "side": 1,
+      "message": "The test failure happened because I did not modify `BluetoothOppTransferHistoryTest` with flags after editing `BluetoothOppTransferHistory`. \n\nThis CL includes the test change, so the test won\u0027t fail regardless of the flags.",
+      "revId": "afa0252274008af3b5ec39a344d775ddf2d74fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
