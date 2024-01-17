@@ -82,6 +82,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05ff7c62_55b2bea8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-17T18:53:50Z",
+      "side": 1,
+      "message": "If the trySend fails, it most likely is due to the channel being closed at the end of the test when the BT stack may have not completed unregistering the callback and sent a result. This exception can be ignored for the purposes of the test rather than failing the test unnecessarily.\n\nIf sending results fails due to some other reason, the test would fail regardless if the results can\u0027t be verified. However, I do not see a reason other the channel being closed at the end of the test. Let me know if you are concerned of a scenario that would warrant throwing the exception here.",
+      "parentUuid": "ad09bf57_fc1b3e72",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ef3e8592_ee4a7a9c",
@@ -207,6 +225,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0ea68911_a68a6de8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-17T18:53:50Z",
+      "side": 1,
+      "message": "I have clarified that the returned flow is a SharedFlow in the method docs so that there is no ambiguity.",
+      "parentUuid": "ee183eb7_cc95890d",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa867e9b_4b15d3fe",
@@ -292,6 +328,24 @@
       "side": 1,
       "message": "- As used, this simply allows scanning to continue even when the client isn\u0027t collecting.\n- It only provides results to a client received while the client is collecting, with an optional replay cache for older results.\n- The default replay cache size is zero and the default buffer configuration is unbuffered.",
       "parentUuid": "d9f66f32_ce08f2f0",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13c0989_1474631f",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-17T18:53:50Z",
+      "side": 1,
+      "message": "Marking as resolved.",
+      "parentUuid": "4ffc3e80_f75194c4",
       "revId": "800fca855b5601bbc7ea7df89096a127db720242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },

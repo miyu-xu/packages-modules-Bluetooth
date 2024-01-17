@@ -22,6 +22,30 @@
       },
       "revId": "8d26075bd077e4383581d41c6be659c67cc88294",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4038e709_8850a018",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-17T18:53:50Z",
+      "side": 1,
+      "message": "I specifically did not want to put a replay so that any verified scan results will not result in a false positive or false negative. The caller is always expected to use a timeout, so the test will fail with timeout, which I would say is the expected result if scan fails.\n\nThis is the example in my head:\n1. Start scan for absence (FIRST_MATCH | MATCH_LOST)\n2. Verify scan result with callback type FIRST_MATCH (this would remove the scan result from the Buffer)\n3. Stop Bumble advertisement\n4. Verify scan result with callback type MATCH_LOST\n\nIf a scan result with callback type MATCH_LOST is not returned, then the test should fail. I do not see the need to replay the already collected scan result. I understand that even if we did replay, the caller can simply filter out the unwanted callback type, but that doesn\u0027t really ensure that the scan is working as intended i.e., if the BT stack returns FIRST_MATCH even after remote advertisement has stopped, it is a bug.\n\nDo you have any specific example that would need a replay?",
+      "parentUuid": "36aef6dd_fbd8135f",
+      "range": {
+        "startLine": 118,
+        "startChar": 13,
+        "endLine": 118,
+        "endChar": 20
+      },
+      "revId": "8d26075bd077e4383581d41c6be659c67cc88294",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
