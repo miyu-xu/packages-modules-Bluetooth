@@ -431,6 +431,24 @@
       "parentUuid": "a6141d4c_9de23ac0",
       "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f8bb8b4f_2faf0bee",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-17T12:58:35Z",
+      "side": 1,
+      "message": "I updated commit message as recommended by Himanshu to say it\u0027s just LE transport change.\n\nHandling classic failure is tricky. Probably in btm_sec_auth_retry , or in btm_sec_execute_procedure we would have to distinguish between re-pairing, and key upgrade. Besides that, classic transport would get rid of the classic keys, so user have a way to re-pair later.\n\nOn LE transport, because of possible address colision, we can\u0027t make automatic decision to remove keys if encryption failed. This can\u0027t happen on Classic transport, as identity address can\u0027t collide",
+      "parentUuid": "84f6cd53_8d372ed9",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
