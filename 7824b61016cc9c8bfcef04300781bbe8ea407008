@@ -52,6 +52,24 @@
       "parentUuid": "6c29dc55_74196803",
       "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "68a17e95_416999c2",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T01:36:25Z",
+      "side": 1,
+      "message": "Can we clarify this a bit more? \n\nDo you mean that error sent from remote device",
+      "parentUuid": "a5a9caed_11a7505d",
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
