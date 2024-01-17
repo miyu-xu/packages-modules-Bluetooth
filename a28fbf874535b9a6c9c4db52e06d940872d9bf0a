@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcce95ba_75cb71e7",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-17T00:55:10Z",
+      "side": 1,
+      "message": "This include can probably go if there is no more streams logging ?",
+      "revId": "a28fbf874535b9a6c9c4db52e06d940872d9bf0a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
