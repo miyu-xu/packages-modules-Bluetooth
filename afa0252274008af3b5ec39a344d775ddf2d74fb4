@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5e9404eb_62dc2be3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-17T07:20:03Z",
+      "side": 1,
+      "message": "Reverted due to test failure b/320600377.\nUploading the CL with fixing the test.",
+      "revId": "afa0252274008af3b5ec39a344d775ddf2d74fb4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
