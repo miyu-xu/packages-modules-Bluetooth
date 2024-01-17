@@ -16,6 +16,98 @@
       "message": "Nit: *patch",
       "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1ab6cd4c_a5768b79",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T23:01:55Z",
+      "side": 1,
+      "message": "can we just guard this the whole body of this method like this: \n\nif (mFeatureFlags.keyMissingBroadcast()) {\n....\n} else {\n  Log.d(TAG, \"keyMissingBroadcast flag  not set - do nothing\");\n}",
+      "range": {
+        "startLine": 1256,
+        "startChar": 31,
+        "endLine": 1256,
+        "endChar": 50
+      },
+      "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e5caa3c5_f4850651",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T23:01:55Z",
+      "side": 1,
+      "message": "argument type --\u003e `const RawAddress`",
+      "range": {
+        "startLine": 122,
+        "startChar": 31,
+        "endLine": 122,
+        "endChar": 41
+      },
+      "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c4a6a454_dc486334",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T23:01:55Z",
+      "side": 1,
+      "message": "what is this for?",
+      "range": {
+        "startLine": 960,
+        "startChar": 7,
+        "endLine": 960,
+        "endChar": 21
+      },
+      "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecd9666a_cf9ae03e",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T23:01:55Z",
+      "side": 1,
+      "message": "can we change the type to `const RawAddress`?",
+      "range": {
+        "startLine": 598,
+        "startChar": 37,
+        "endLine": 598,
+        "endChar": 47
+      },
+      "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
