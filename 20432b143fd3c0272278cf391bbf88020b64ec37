@@ -39,6 +39,30 @@
       },
       "revId": "20432b143fd3c0272278cf391bbf88020b64ec37",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a23c4dab_8df339e6",
+        "filename": "android/app/src/com/android/bluetooth/map/BluetoothMapMetricsUtils.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-17T08:31:50Z",
+      "side": 1,
+      "message": "Oops, I forgot to remove this file. Removed. Thanks!",
+      "parentUuid": "64413eb3_da356842",
+      "range": {
+        "startLine": 23,
+        "startChar": 13,
+        "endLine": 23,
+        "endChar": 37
+      },
+      "revId": "20432b143fd3c0272278cf391bbf88020b64ec37",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
