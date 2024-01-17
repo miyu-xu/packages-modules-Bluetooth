@@ -118,6 +118,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e613edd_fef2fbb4",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-17T01:09:28Z",
+      "side": 1,
+      "message": "We\u0027d have to specify the buffer beforehand, it doesn\u0027t grow automatically. Without any buffer (conflate will set a buffer of 1), all results are dropped in a shared flow unless collected. And I don\u0027t see a DCK test case where we have to verify all scan results to specify a buffer larger than 1.\n\nIf we see a need to specify the buffer larger than 1, we can always accept a parameter to let the user specify the buffer, but defaulting to 1 is all we need for now.",
+      "parentUuid": "b10adac6_3adfbe42",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fa867e9b_4b15d3fe",
@@ -167,6 +185,24 @@
       "side": 1,
       "message": "Yes, I understand that this creates a hot flow, my question is more why do you need a hot flow especially if the start of it is lazy.\n\nAlso is not creating a hot flow after conflating means that you have an infinite buffer?",
       "parentUuid": "6d836ee6_96773c07",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "50225af9_b8c08c2a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-17T01:09:28Z",
+      "side": 1,
+      "message": "The reason for the hot flow is so that the user can have more control on when the scan is active or cancelled.\n\nBy definition, callbackFlow is a cold flow and will execute the action when collected and closes channel as soon as collection ends. This can be unintuitive to the user in the tests and can lead to bad tests. Converting to a shared flow and using a specific scope will allow the scan to continue until explicitly cancelled by cancelling the scope. This way, the user can start scan by collecting for specific result even with a terminal operator like first() and later if they need to test again in the same test for the scan result, they can use the same flow without starting a new scan, if desired.\n\nFor example, for a DCK test case scanning for absence of remote after having been found previously, first we advertise with bumble and scan for its presence (FIRST_MATCH). Then, we stop bumble advertising and look for absence (MATCH_LOST) in the same test without having to start two separate scans (in fact, two separate scans is not a valid DCK test case).\n\n\u003e Also is not creating a hot flow after conflating means that you have an infinite buffer?\n\nNo, conflate actually ensure that only the latest is provided to the collector and older emissions are dropped: https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/conflate.html. \n\nWithout conflate or shareIn operators, however, the callbackFlow essentially has indefinite buffer, but it will serve all emissions one by one and is not the desired outcome for DCK test cases, where we need to look at the latest results to verify the outcome.",
+      "parentUuid": "d9f66f32_ce08f2f0",
       "revId": "800fca855b5601bbc7ea7df89096a127db720242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -401,6 +437,54 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8edf9887_6d3579b3",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-17T01:09:28Z",
+      "side": 1,
+      "message": "Using the scope of withTimeout on top of getBluetoothState will result in it always timing out since the flow is executing in that same scope and never ends except when timed out.\n\nHowever, I do understand the intention, so I made changes per your recommendation using a separate scope for the callbackFlow.",
+      "parentUuid": "4246d831_fb24a678",
+      "range": {
+        "startLine": 281,
+        "startChar": 16,
+        "endLine": 281,
+        "endChar": 33
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "457208f2_d6d0da6a",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-17T01:09:28Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "61c00370_69a749ca",
+      "range": {
+        "startLine": 281,
+        "startChar": 16,
+        "endLine": 281,
+        "endChar": 47
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "7f29587c_b284c11c",
@@ -462,6 +546,30 @@
       "side": 1,
       "message": "Why does it doesn\u0027t give the same result ?\n\n```\nbluetoothStateFlow.map { it \u003d\u003d BluetoothAdapter.STATE_OFF }.first { it }\n```\n\nIs the same as\n\n```\nbluetoothStateFlow.first { it \u003d\u003d BluetoothAdapter.STATE_OFF }\n```\n\nWhich is the same as what I suggested\n\nTIL that there was a version of `first` with a predicate, thanks !",
       "parentUuid": "5c893e76_1b5e7656",
+      "range": {
+        "startLine": 282,
+        "startChar": 18,
+        "endLine": 286,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8874b78_22655594",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1869765
+      },
+      "writtenOn": "2024-01-17T01:09:28Z",
+      "side": 1,
+      "message": "bluetoothStateFlow.map { it \u003d\u003d BluetoothAdapter.STATE_OFF }.first { it }\n-\u003e Converts the BT state to a Boolean and returns the first Boolean that\u0027s true.\n\nbluetoothStateFlow.first { it \u003d\u003d BluetoothAdapter.STATE_OFF }\n-\u003e Emits the first BT state that matches the predicate\n\nSo, one\u0027s returning Boolean and the other returning BT state. Anyways, now that I have refactored to use withTimeout to let timeout exception be sent downstream, I don\u0027t need to use map. Updated accordingly.",
+      "parentUuid": "42f79059_a8b7076e",
       "range": {
         "startLine": 282,
         "startChar": 18,
