@@ -125,6 +125,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "68230487_2459de86",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-17T23:37:59Z",
+      "side": 1,
+      "message": "Thanks for the feedback.",
+      "parentUuid": "1c5d500b_b0f77d92",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "904fd1b6_bce61207",
@@ -174,6 +192,24 @@
       "side": 1,
       "message": "A `java_library` doesn\u0027t work?",
       "parentUuid": "946c958f_e1b095ff",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bd525c4b_76dd6ecc",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-17T23:37:59Z",
+      "side": 1,
+      "message": "I directly use the aconfig java library now.\nThis comment does not apply anymore",
+      "parentUuid": "6e36a97d_3dc6e022",
       "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -263,6 +299,24 @@
       "side": 1,
       "message": "I would prefer for this to use `framework-configinfrastructure` as it\u0027s the dependency used by the Bluetooth app and service.\n\nI guess that as long that `fake_device_config` has the same interface than `framework-configinfrastructure` it\u0027s fine, but if we can avoid `fake_device_config` I prefer it.",
       "parentUuid": "a2d35d39_4638b8ff",
+      "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d647eec1_6a5a7b9f",
+        "filename": "flags/Android.bp",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-17T23:37:59Z",
+      "side": 1,
+      "message": "I fully commit to `framework-configinfrastructure` and I remove the hack of the gensrcjar file",
+      "parentUuid": "d0fe9c7f_dcbc7882",
       "revId": "d460ba2bf81656286d9bbe01080af6d4ef8b6146",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
