@@ -70,6 +70,24 @@
       "parentUuid": "a5a9caed_11a7505d",
       "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bf5acd75_364dd6ab",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-01-17T02:05:10Z",
+      "side": 1,
+      "message": "Yes. The error sent from remote device is the actual pairing failure reason, but here p_data-\u003estatus is an uninitialized value.",
+      "parentUuid": "68a17e95_416999c2",
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
