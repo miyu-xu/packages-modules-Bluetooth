@@ -16,6 +16,24 @@
       "message": "Please add:\nFlag: EXEMPT, no logical change.  Done for compatibility with Floss.",
       "revId": "162fcabbbc11f7bad01440791090d64ffb1abe90",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "38847ceb_04af79a7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1608823
+      },
+      "writtenOn": "2024-01-17T03:07:31Z",
+      "side": 1,
+      "message": "Done. Thanks for review!",
+      "parentUuid": "23ca0aad_f51ce0d7",
+      "revId": "162fcabbbc11f7bad01440791090d64ffb1abe90",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
