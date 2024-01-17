@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0201666d_3fa5fe0b",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T00:33:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d995aa69_70fa565b",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f37d1b3_4499fa7d",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-01-13T18:17:06Z",
       "side": 1,
       "message": "Maybe promote this to LOG_DEBUG ?",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "30aba807_d115a7cc",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T00:33:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f37d1b3_4499fa7d",
       "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -52,6 +88,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "478bcc00_628b704e",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T00:33:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c0b15bc3_fd6475dd",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a8db0770_2becc780",
@@ -65,6 +119,24 @@
       "writtenOn": "2024-01-13T18:17:06Z",
       "side": 1,
       "message": "LOG_WARN(\"Failed to start Remote Name Request addr:%s\", ADDRESS_TO_LOGGABLE_CSTR(p_data-\u003ekey_notif.bd_addr)",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "727a1fba_3f14405c",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T00:33:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "a8db0770_2becc780",
       "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -86,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "034cd83a_2d40fd80",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T00:33:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "23a4d5bd_399b939d",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e209d637_e51e128e",
@@ -99,6 +189,24 @@
       "writtenOn": "2024-01-13T18:17:06Z",
       "side": 1,
       "message": "LOG_ERROR(\"callback is not provided bd_addr:%s\", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));",
+      "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dd81c529_32e80e23",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 908,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T00:33:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e209d637_e51e128e",
       "revId": "caccc782663ad50d26bc45d3affeb634c83a54fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
