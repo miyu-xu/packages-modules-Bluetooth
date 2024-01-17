@@ -521,6 +521,24 @@
       "parentUuid": "53aadaa2_24ae5c03",
       "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "feeb32cd_1e42f399",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T21:54:31Z",
+      "side": 1,
+      "message": "resolving this since this is under the flag",
+      "parentUuid": "542df343_cf537917",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
