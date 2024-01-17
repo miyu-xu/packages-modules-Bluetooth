@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55fab5b1_9a44d086",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-17T16:53:18Z",
+      "side": 1,
+      "message": "MMh, If we are using the modem correctly I guess that we should make those configurable",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 29
+      },
+      "revId": "5ce1a25371ec7ff2c402d55da5d467c2c2372fbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
