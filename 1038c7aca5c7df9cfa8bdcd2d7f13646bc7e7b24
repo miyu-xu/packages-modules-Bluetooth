@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f74f6f36_f77ae90e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-17T22:21:31Z",
+      "side": 1,
+      "message": "I have refactored some of the logic into a separate function. I hope that makes it easier to read.",
+      "parentUuid": "6d5cb8cd_9b43e443",
+      "range": {
+        "startLine": 337,
+        "startChar": 2,
+        "endLine": 337,
+        "endChar": 7
+      },
+      "revId": "1038c7aca5c7df9cfa8bdcd2d7f13646bc7e7b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "31906fd7_d4201815",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 10
@@ -49,6 +73,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "bfaf45bf_a7649187",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-17T22:21:31Z",
+      "side": 1,
+      "message": "IMO, abort should be used only when the Bluetooth is unusable. This failure does not affect other usages like audio, phone call, etc.",
+      "parentUuid": "31906fd7_d4201815",
+      "range": {
+        "startLine": 350,
+        "startChar": 18,
+        "endLine": 350,
+        "endChar": 49
+      },
+      "revId": "1038c7aca5c7df9cfa8bdcd2d7f13646bc7e7b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d8a365ef_cd9f2415",
         "filename": "system/btif/co/bta_hh_co.cc",
         "patchSetId": 10
@@ -60,6 +108,30 @@
       "writtenOn": "2024-01-17T05:36:18Z",
       "side": 1,
       "message": "Does break really poll again?  I thought it exited the loop.  Did you mean continue?",
+      "range": {
+        "startLine": 362,
+        "startChar": 8,
+        "endLine": 362,
+        "endChar": 13
+      },
+      "revId": "1038c7aca5c7df9cfa8bdcd2d7f13646bc7e7b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cc53e236_08aa83fc",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 362,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-17T22:21:31Z",
+      "side": 1,
+      "message": "You are right. It should have been a `continue`. I have fixed it now.",
+      "parentUuid": "d8a365ef_cd9f2415",
       "range": {
         "startLine": 362,
         "startChar": 8,
