@@ -848,6 +848,7 @@ void avdt_scb_init(void) {
  ******************************************************************************/
 AvdtpScb* avdt_scb_alloc(uint8_t peer_id,
                          const AvdtpStreamConfig& avdtp_stream_config) {
+  LOG_INFO("Peer id %d", peer_id);
   CHECK(peer_id < AVDT_NUM_LINKS);
 
   // Find available entry

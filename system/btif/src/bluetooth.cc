@@ -321,7 +321,8 @@ struct CoreInterfaceImpl : bluetooth::core::CoreInterface {
   }
 
   void onLinkDown(const RawAddress& bd_addr) override {
-    btif_av_acl_disconnected(bd_addr);
+    btif_av_acl_disconnected(bd_addr, A2dpType::kSink);
+    btif_av_acl_disconnected(bd_addr, A2dpType::kSource);
   }
 };
 

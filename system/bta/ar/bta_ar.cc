@@ -301,6 +301,7 @@ void bta_ar_reg_avrc_for_src_sink_coexist(
   if (!mask || !categories) return;
   if (service_uuid == UUID_SERVCLASS_AV_REM_CTRL_TARGET) {
     bta_ar_cb.tg_categories[mask - 1] = categories;
+    LOG_INFO("Target categories is invoked");
     categories = bta_ar_cb.tg_categories[0] | bta_ar_cb.tg_categories[1];
     if (bta_ar_cb.sdp_tg_handle == 0) {
       bta_ar_cb.tg_registered = mask;

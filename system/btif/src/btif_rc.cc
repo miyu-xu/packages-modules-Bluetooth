@@ -573,7 +573,7 @@ void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
       "%s: peer_tg_features: 0x%x, rc_features_processed=%d, connected=%d, "
       "peer_is_src:%d",
       __func__, p_dev->peer_tg_features, p_dev->rc_features_processed,
-      btif_av_is_connected_addr(p_dev->rc_addr),
+      btif_av_is_connected_addr(p_dev->rc_addr, A2dpType::kSink),
       btif_av_peer_is_source(p_dev->rc_addr));
 
   if ((p_dev->peer_tg_features & BTA_AV_FEAT_ADV_CTRL) &&
@@ -593,7 +593,7 @@ void handle_rc_ctrl_features_all(btif_rc_device_cb_t* p_dev) {
     p_dev->rc_features_processed = true;
   }
 
-  if (btif_av_is_connected_addr(p_dev->rc_addr)) {
+  if (btif_av_is_connected_addr(p_dev->rc_addr, A2dpType::kSink)) {
     if (btif_av_peer_is_source(p_dev->rc_addr)) {
       p_dev->rc_features = p_dev->peer_tg_features;
       if ((p_dev->peer_tg_features & BTA_AV_FEAT_METADATA) &&
@@ -975,7 +975,8 @@ void handle_rc_passthrough_cmd(tBTA_AV_REMOTE_CMD* p_remote_cmd) {
 
   /* If AVRC is open and peer sends PLAY but there is no AVDT, then we queue-up
    * this PLAY */
-  if ((p_remote_cmd->rc_id == AVRC_ID_PLAY) && (!btif_av_is_connected())) {
+  if ((p_remote_cmd->rc_id == AVRC_ID_PLAY) &&
+      (!btif_av_is_connected(A2dpType::kSink))) {
     if (p_remote_cmd->key_state == AVRC_STATE_PRESS) {
       LOG_WARN("%s: AVDT not open, queuing the PLAY command", __func__);
       p_dev->rc_pending_play = true;
@@ -991,7 +992,7 @@ void handle_rc_passthrough_cmd(tBTA_AV_REMOTE_CMD* p_remote_cmd) {
   }
 
   if ((p_remote_cmd->rc_id == AVRC_ID_STOP) &&
-      (!btif_av_stream_started_ready())) {
+      (!btif_av_stream_started_ready(A2dpType::kSink))) {
     LOG_WARN("%s: Stream suspended, ignore STOP cmd", __func__);
     return;
   }
@@ -1255,9 +1256,9 @@ void btif_rc_handler(tBTA_AV_EVT event, tBTA_AV* p_data) {
         LOG_ERROR("%s: RC Feature event for Invalid rc handle", __func__);
         break;
       }
-      LOG_VERBOSE("%s peer_ct_features:0x%x, peer_tg_features=0x%x", __func__,
-                  p_data->rc_feat.peer_ct_features,
-                  p_data->rc_feat.peer_tg_features);
+      LOG_INFO("%s peer_ct_features:0x%x, peer_tg_features=0x%x", __func__,
+               p_data->rc_feat.peer_ct_features,
+               p_data->rc_feat.peer_tg_features);
       if (btif_av_src_sink_coexist_enabled() &&
           (p_dev->peer_ct_features == p_data->rc_feat.peer_ct_features) &&
           (p_dev->peer_tg_features == p_data->rc_feat.peer_tg_features)) {
@@ -2166,7 +2167,7 @@ static bt_status_t register_notification_rsp(
       case BTRC_EVT_PLAY_STATUS_CHANGED:
         avrc_rsp.reg_notif.param.play_status = p_param->play_status;
         if (avrc_rsp.reg_notif.param.play_status == PLAY_STATUS_PLAYING)
-          btif_av_clear_remote_suspend_flag();
+          btif_av_clear_remote_suspend_flag(A2dpType::kSink);
         break;
       case BTRC_EVT_TRACK_CHANGE:
         memcpy(&(avrc_rsp.reg_notif.param.track), &(p_param->track),
@@ -4403,8 +4404,8 @@ static void handle_avk_rc_metamsg_rsp(tBTA_AV_META_MSG* pmeta_msg) {
   tAVRC_STS status;
   btif_rc_device_cb_t* p_dev = NULL;
 
-  LOG_VERBOSE("%s: opcode: %d rsp_code: %d  ", __func__,
-              pmeta_msg->p_msg->hdr.opcode, pmeta_msg->code);
+  LOG_INFO("%s: opcode: %d rsp_code: %d  ", __func__,
+           pmeta_msg->p_msg->hdr.opcode, pmeta_msg->code);
 
   p_dev = btif_rc_get_device_by_handle(pmeta_msg->rc_handle);
   status = AVRC_Ctrl_ParsResponse(pmeta_msg->p_msg, &avrc_response, scratch_buf,

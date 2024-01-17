@@ -108,6 +108,8 @@ void BTA_AvRegister(tBTA_AV_CHNL chnl, const char* p_service_name,
       (tBTA_AV_API_REG*)osi_malloc(sizeof(tBTA_AV_API_REG));
 
   p_buf->hdr.layer_specific = chnl;
+  LOG_INFO("%s: chnl %d service name=%s appid: %d", __func__, chnl,
+           p_service_name, app_id);
   p_buf->hdr.event = BTA_AV_API_REGISTER_EVT;
   if (p_service_name)
     strlcpy(p_buf->p_service_name, p_service_name, BTA_SERVICE_NAME_LEN);
@@ -482,7 +484,7 @@ void BTA_AvVendorCmd(uint8_t rc_handle, uint8_t label, tBTA_AV_CODE cmd_code,
   p_buf->msg.hdr.ctype = cmd_code;
   p_buf->msg.hdr.subunit_type = AVRC_SUB_PANEL;
   p_buf->msg.hdr.subunit_id = 0;
-  p_buf->msg.company_id = p_bta_av_cfg->company_id;
+  p_buf->msg.company_id = p_bta_av_cfg.getCompanyId();
   p_buf->label = label;
   p_buf->msg.vendor_len = len;
   if (p_data == NULL) {
@@ -520,7 +522,7 @@ void BTA_AvVendorRsp(uint8_t rc_handle, uint8_t label, tBTA_AV_CODE rsp_code,
   if (company_id)
     p_buf->msg.company_id = company_id;
   else
-    p_buf->msg.company_id = p_bta_av_cfg->company_id;
+    p_buf->msg.company_id = p_bta_av_cfg.getCompanyId();
   p_buf->label = label;
   p_buf->msg.vendor_len = len;
   if (p_data == NULL) {

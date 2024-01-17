@@ -776,7 +776,7 @@ void BtaAvCoPeer::Reset(tBTA_AV_HNDL bta_av_handle) {
 void BtaAvCo::Init(
     const std::vector<btav_a2dp_codec_config_t>& codec_priorities,
     std::vector<btav_a2dp_codec_info_t>* supported_codecs) {
-  LOG_VERBOSE("%s", __func__);
+  LOG_INFO("%s", __func__);
 
   std::lock_guard<std::recursive_mutex> lock(codec_lock_);
 
@@ -1032,7 +1032,8 @@ tA2DP_STATUS BtaAvCo::ProcessSourceGetConfig(
       return A2DP_FAIL;
     }
   } else {
-    if (btif_av_peer_prefers_mandatory_codec(p_peer->addr)) {
+    if (btif_av_peer_prefers_mandatory_codec(p_peer->addr,
+                                             A2dpType::kUnknown)) {
       // Apply user preferred codec directly before first codec selected.
       p_sink = FindPeerSink(p_peer, BTAV_A2DP_CODEC_INDEX_SOURCE_SBC);
       if (p_sink != nullptr) {
@@ -1463,7 +1464,7 @@ void BtaAvCo::ProcessAudioDelay(tBTA_AV_HNDL bta_av_handle,
   LOG_VERBOSE("%s: peer %s bta_av_handle: 0x%x delay:0x%x", __func__,
               ADDRESS_TO_LOGGABLE_CSTR(peer_address), bta_av_handle, delay);
 
-  btif_av_set_audio_delay(peer_address, delay);
+  btif_av_set_audio_delay(peer_address, delay, A2dpType::kSource);
 }
 
 void BtaAvCo::UpdateMtu(tBTA_AV_HNDL bta_av_handle,
@@ -1530,9 +1531,10 @@ void BtaAvCo::GetPeerEncoderParameters(
     if (p_peer->mtu < min_mtu) min_mtu = p_peer->mtu;
   }
   p_peer_params->peer_mtu = min_mtu;
-  p_peer_params->is_peer_edr = btif_av_is_peer_edr(peer_address);
+  p_peer_params->is_peer_edr =
+      btif_av_is_peer_edr(peer_address, A2dpType::kSource);
   p_peer_params->peer_supports_3mbps =
-      btif_av_peer_supports_3mbps(peer_address);
+      btif_av_peer_supports_3mbps(peer_address, A2dpType::kSource);
   LOG_VERBOSE(
       "%s: peer_address=%s peer_mtu=%d is_peer_edr=%s peer_supports_3mbps=%s",
       __func__, ADDRESS_TO_LOGGABLE_CSTR(peer_address), p_peer_params->peer_mtu,
