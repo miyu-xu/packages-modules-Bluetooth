@@ -191,6 +191,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ee183eb7_cc95890d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-17T01:44:29Z",
+      "side": 1,
+      "message": "\u003e This is a specific-purpose test utility not a production software utility. De-duplication of code is of more value than versatility.\n\nI understand that, my point is more about readability, Cold and Hot flows is a hard topic, I find code that \"hide\" which kind of flow it is behind a utility method more hard to read and like to push this information to the caller so that when you read the code it\u0027s clearer.\n\nBut at this point it\u0027s more a nitpick so you can ignore it 😊",
+      "parentUuid": "6f2ebb6b_f3c4b93e",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "fa867e9b_4b15d3fe",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
         "patchSetId": 4
