@@ -449,6 +449,24 @@
       "parentUuid": "84f6cd53_8d372ed9",
       "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2444b359_68511579",
+        "filename": "system/stack/btm/btm_sec.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 2632,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T17:22:18Z",
+      "side": 1,
+      "message": "@jpawlowski@google.com\ndo you think this case should also be handled?\n\n```\nvoid smp_send_pair_req(tSMP_CB* p_cb, tSMP_INT_DATA* p_data) {\n  tBTM_SEC_DEV_REC* p_dev_rec \u003d btm_find_dev(p_cb-\u003epairing_bda);\n  LOG_VERBOSE(\"addr:%s\", ADDRESS_TO_LOGGABLE_CSTR(p_cb-\u003epairing_bda));\n\n  /* erase all keys when central sends pairing req*/\n  ////// should we handle bond loss for this case? //////\n  if (p_dev_rec) btm_sec_clear_ble_keys(p_dev_rec);\n  /* do not manipulate the key, let app decide,\n     leave out to BTM to mandate key distribution for bonding case */\n  smp_send_cmd(SMP_OPCODE_PAIRING_REQ, p_cb);\n}\n```",
+      "parentUuid": "f8bb8b4f_2faf0bee",
+      "revId": "238a7e3f046c8fe60d72f9f6dd8406bbe50e94df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
