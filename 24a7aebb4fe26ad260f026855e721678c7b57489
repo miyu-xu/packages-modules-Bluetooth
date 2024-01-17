@@ -70,6 +70,30 @@
       },
       "revId": "24a7aebb4fe26ad260f026855e721678c7b57489",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "08f6d987_fb0be7f9",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 999,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T22:26:10Z",
+      "side": 1,
+      "message": "\u003e Is this the central/peripheral role ?\n\nYes, it is defined as integer now.",
+      "parentUuid": "c5960ff8_0d837394",
+      "range": {
+        "startLine": 999,
+        "startChar": 4,
+        "endLine": 999,
+        "endChar": 13
+      },
+      "revId": "24a7aebb4fe26ad260f026855e721678c7b57489",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
