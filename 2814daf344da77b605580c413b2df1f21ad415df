@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "26ee6ce7_84fd6ab5",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "a modem interface",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd50ae8c_f0703a2c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "so that each OS can have their own modem implementation.",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "0763fb5d_3de7b016",
@@ -14,6 +60,120 @@
       "writtenOn": "2024-01-16T10:24:41Z",
       "side": 1,
       "message": "Hi, please review this change for Floss HFP test.\n\nThe design idea are described in https://docs.google.com/document/d/1fOh3hQ_r8JBj6RTZ_6YgH7pap7MuT4W2Y-xLq66H7kw/edit?resourcekey\u003d0-AeapyKXdcKylw1D2YtGmBQ\u0026tab\u003dt.0#heading\u003dh.xgjl2srtytjt.",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bd224881_990fbecc",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "```suggestion\n  // Hang up all active calls.\n```",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 11
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c2dee2f_ac995b6d",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "```suggestion\n  // Make a phone call.\n  rpc Call(CallRequest) returns (CallResponse);\n```",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9de70abe_9dc742a2",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "Should it be \"AnswerIncomingCall\"? \n\nA --\u003e B: A calls B\n1. A makes a phone call to B.\n2. B answers an incoming call from A.\n3. Connection established.",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d92f8685_b7f27d16",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "```suggestion\n// Request for the `Close` method.\n```\n\nSame below.",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4af93be7_e01ce2a8",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "Should be string.",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 7
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15d39980_87295a63",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "```suggestion\n// Request for the `AnswerOutgoingCall` method.\n```",
       "revId": "2814daf344da77b605580c413b2df1f21ad415df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -85,6 +245,40 @@
         "endLine": 46,
         "endChar": 7
       },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "913ce7fb_7ae1fb2c",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "Should have a field about how to answer the call, e.g. Accept or Reject.",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9e818ec8_7348e30f",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-17T23:56:47Z",
+      "side": 1,
+      "message": "```suggestion\n// Response for the `AnswerOutgoingCall` method.\n```",
       "revId": "2814daf344da77b605580c413b2df1f21ad415df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
