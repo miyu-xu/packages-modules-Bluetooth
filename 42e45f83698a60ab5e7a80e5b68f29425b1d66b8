@@ -16,6 +16,23 @@
       "message": "Adding @hallstrom@google.com for API review",
       "revId": "42e45f83698a60ab5e7a80e5b68f29425b1d66b8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "eae2f303_6d263dfb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-17T01:08:34Z",
+      "side": 1,
+      "message": "FYI: For Dr. No you can tag the flag bug in the commit message and you should get it automatically.",
+      "revId": "42e45f83698a60ab5e7a80e5b68f29425b1d66b8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
