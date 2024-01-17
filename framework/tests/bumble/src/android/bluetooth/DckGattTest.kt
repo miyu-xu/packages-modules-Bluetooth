@@ -28,6 +28,8 @@ import com.google.common.collect.Sets
 import com.google.common.truth.Truth.assertThat
 import com.google.protobuf.Empty
 import io.grpc.Deadline
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 import java.util.UUID
 import java.util.concurrent.TimeUnit
 import org.junit.After
@@ -106,6 +108,10 @@ public class DckGattTest(private val connected: Boolean) {
     }
 
     /**
+     * 3.1 GATT Service Discovery
+     *
+     * http://docs/document/d/1oQOpgI83HSJBdr5mBU00za_6XrDGo2KDGnCcX-hXPHk#heading=h.ew9ccuvenhou
+     *
      * Tests the discovery of the Digital Car Key (DCK) GATT service via Bluetooth on an Android
      * device.
      *
@@ -196,7 +202,24 @@ public class DckGattTest(private val connected: Boolean) {
             .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS))
 
         // 7. Check if the required service (CCC_DK_UUID) is available on Bumble.
-        assertThat(bumbleGatt.getService(CCC_DK_UUID)).isNotNull()
+        val dkService = bumbleGatt.getService(CCC_DK_UUID)
+        assertThat(dkService).isNotNull()
+
+        val spsmCharacteristic = dkService.getCharacteristic(SPSM_UUID)
+        assertThat(spsmCharacteristic).isNotNull()
+
+        assertThat(bumbleGatt.readCharacteristic(spsmCharacteristic)).isTrue()
+        val valueCaptor = argumentCaptor<ByteArray>()
+        verify(gattCallback, timeout(TIMEOUT))
+            .onCharacteristicRead(
+                any(),
+                eq(spsmCharacteristic),
+                valueCaptor.capture(),
+                eq(BluetoothGatt.GATT_SUCCESS)
+            )
+        val value = ByteBuffer.wrap(valueCaptor.firstValue).order(ByteOrder.BIG_ENDIAN).getInt()
+        assertThat(value).isAtLeast(0x0080)
+        assertThat(value).isAtMost(0x00FF)
 
         // 8. Disconnect from the Bumble device and expect a successful disconnection callback.
         bumbleGatt.disconnect()
@@ -325,6 +348,8 @@ public class DckGattTest(private val connected: Boolean) {
 
         // CCC DK Specification R3 1.2.0 r14 section 19.2.1.2 Bluetooth Le Pairing
         private val CCC_DK_UUID = UUID.fromString("0000FFF5-0000-1000-8000-00805f9b34fb")
+        private val SPSM_UUID_STRING = "D3B5A130-9E23-4B3A-8BE4-6B1EE5F980A3"
+        private val SPSM_UUID = UUID.fromString(SPSM_UUID_STRING)
 
         @Parameters(name = "connected = {0}")
         @JvmStatic
