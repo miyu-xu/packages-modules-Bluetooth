@@ -67,6 +67,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ad09bf57_fc1b3e72",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-17T01:38:37Z",
+      "side": 1,
+      "message": "Use the result or call `trySendBlocking`\n\n\n```suggestion\n                            trySend(LeScanResult.Success(result, callbackType)).getOrThrow()\n```",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "ef3e8592_ee4a7a9c",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
         "patchSetId": 4
@@ -150,6 +167,24 @@
       "side": 1,
       "message": "1. This is a specific-purpose test utility not a production software utility. De-duplication of code is of more value than versatility.\n2. The intended interface is a `SharedFlow` rather than a raw `Flow` and thus not intended for per-client configuration.\n3. I believe buffer is being conflated with replay cache, for which the later is what we\u0027d care about with a `SharedFlow`.",
       "parentUuid": "b10adac6_3adfbe42",
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6f2ebb6b_f3c4b93e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-17T01:38:37Z",
+      "side": 1,
+      "message": "\u003e We\u0027d have to specify the buffer beforehand, it doesn\u0027t grow automatically.\n\nI checked the documentation it indeed doesn\u0027t grow automatically.\n\n\u003e Without any buffer (conflate will set a buffer of 1)\n\ncallbackFlow [default buffer size is the default buffer size of a channel](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/callback-flow.html) which is [64](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel/-factory/-b-u-f-f-e-r-e-d.html)\n\n\u003e all results are dropped in a shared flow unless collected.\n\nWith your code that\u0027s true, but it\u0027s due to the fact that the `trySend` result is ignored.\n\n\u003e but defaulting to 1 is all we need for now.\n\n`conflate` is not \"just\" a buffer of 1, it\u0027s a buffer of 1 with `onBufferOverflow \u003d DROP_OLDEST`. I would be fine with a buffer of 1.",
+      "parentUuid": "0e613edd_fef2fbb4",
       "revId": "800fca855b5601bbc7ea7df89096a127db720242",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
