@@ -142,6 +142,24 @@
       "parentUuid": "4e284449_e92ba146",
       "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a6bb9bf8_d9db1606",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-17T21:12:01Z",
+      "side": 1,
+      "message": "I think this change is correct. Thanks",
+      "parentUuid": "fe38552b_113d29de",
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
