@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d025fed_7b0424bf",
+        "filename": "system/btif/co/bta_av_co.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1460,
+      "author": {
+        "id": 1565064
+      },
+      "writtenOn": "2024-01-17T11:37:36Z",
+      "side": 1,
+      "message": "Is this the proper way to fix this race condition? And delete the line instead of commenting it.",
+      "revId": "2f1585af9c53adc297b440c3865f1499fe3d3635",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
