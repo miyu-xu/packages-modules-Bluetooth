@@ -16,6 +16,24 @@
       "message": "Hi, can you explain why this change is needed?",
       "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c29dc55_74196803",
+        "filename": "system/stack/smp/smp_act.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 524,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-01-17T01:24:01Z",
+      "side": 1,
+      "message": "The issue was found druing collecting metrics, it will cause an incorrect pairing failure reason.",
+      "parentUuid": "1557ff50_dceab2d1",
+      "revId": "7824b61016cc9c8bfcef04300781bbe8ea407008",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
