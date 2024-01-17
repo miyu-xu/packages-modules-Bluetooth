@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "17070f73_4343ff91",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1402,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-17T00:26:56Z",
+      "side": 1,
+      "message": "We could just set this to INFO.  As long as we don\u0027t store 0, that would have the same effect.\n\nI guess the question is \"What are we trying to debug with this?\"  Are we missing callbacks?",
+      "range": {
+        "startLine": 1402,
+        "startChar": 10,
+        "endLine": 1402,
+        "endChar": 19
+      },
+      "revId": "44ba9e702c65b3cbd4477b30454a082b9ece9868",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
