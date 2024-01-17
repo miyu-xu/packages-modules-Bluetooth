@@ -677,6 +677,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "293c244c_61b93208",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-17T01:42:15Z",
+      "side": 1,
+      "message": "\u003e bluetoothStateFlow.map { it \u003d\u003d BluetoothAdapter.STATE_OFF }.first { it } returns the first true or false.\n\nThat\u0027s not what I understand reading the documentation 🤔 \n\nThe argument seems to be a predicate, not a transform function\n\nhttps://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/first.html\n\n\u003e The terminal operator that returns the first element emitted by the flow matching the given predicate and then cancels flow\u0027s collection.",
+      "parentUuid": "44737de5_9e525682",
+      "range": {
+        "startLine": 282,
+        "startChar": 18,
+        "endLine": 286,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f00365f_244e4eaf",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
         "patchSetId": 4
