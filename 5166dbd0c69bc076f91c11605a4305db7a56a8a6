@@ -88,6 +88,24 @@
       "parentUuid": "0bb98e6b_af473843",
       "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7f6413ae_9c1b44ea",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-17T14:49:48Z",
+      "side": 1,
+      "message": "That link isn\u0027t reachable without a Bluetooth SIG login.  We don\u0027t commit changes to AOSP that reference the SPEC until the SPEC is published.  As soon as it\u0027s publicly available, I\u0027ll re-review.",
+      "parentUuid": "033f3739_b76657ee",
+      "revId": "5166dbd0c69bc076f91c11605a4305db7a56a8a6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
