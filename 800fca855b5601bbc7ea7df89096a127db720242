@@ -719,6 +719,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "be4a0e8f_5ba5e83d",
+        "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
+        "patchSetId": 4
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 1418133
+      },
+      "writtenOn": "2024-01-17T01:44:39Z",
+      "side": 1,
+      "message": "I mistakenly copied your example, not the accidental code:\n`bluetoothStateFlow.map { it \u003d\u003d BluetoothAdapter.STATE_OFF }.first()` rather than `bluetoothStateFlow.map { it \u003d\u003d BluetoothAdapter.STATE_OFF }.first { it }`.",
+      "parentUuid": "293c244c_61b93208",
+      "range": {
+        "startLine": 282,
+        "startChar": 18,
+        "endLine": 286,
+        "endChar": 32
+      },
+      "revId": "800fca855b5601bbc7ea7df89096a127db720242",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5f00365f_244e4eaf",
         "filename": "framework/tests/bumble/src/android/bluetooth/DckTestRule.kt",
         "patchSetId": 4
