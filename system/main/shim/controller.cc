@@ -255,6 +255,8 @@ FORWARD_GETTER(
     GetController()->GetControllerIsoBufferSize().total_num_le_packets_)
 FORWARD_GETTER(uint8_t, get_le_connect_list_size,
                GetController()->GetLeFilterAcceptListSize())
+FORWARD_GETTER(std::vector<uint8_t>, get_local_supported_br_edr_codec_ids,
+               GetController()->GetLocalSupportedBrEdrCodecIds())
 
 static void set_ble_resolving_list_max_size(int resolving_list_max_size) {
   LOG_DEBUG("UNSUPPORTED");
@@ -418,6 +420,7 @@ static const controller_t interface = {
     .get_ble_resolving_list_max_size = get_le_resolving_list_size,
     .set_ble_resolving_list_max_size = set_ble_resolving_list_max_size,
     .get_local_supported_codecs = get_local_supported_codecs,
+    .GetLocalSupportedBrEdrCodecIds = get_local_supported_br_edr_codec_ids,
     .get_le_all_initiating_phys = get_le_all_initiating_phys,
     .clear_event_filter = controller_clear_event_filter,
     .clear_event_mask = controller_clear_event_mask,

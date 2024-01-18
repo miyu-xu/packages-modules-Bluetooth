@@ -75,6 +75,7 @@ uint8_t ble_number_of_supported_advertising_sets{0};
 uint8_t ble_periodic_advertiser_list_size{0};
 uint8_t local_supported_codecs[MAX_LOCAL_SUPPORTED_CODECS_SIZE]{0};
 uint8_t number_of_local_supported_codecs{0};
+std::vector<uint8_t> local_supported_br_edr_codec_ids{};
 
 bool readable{false};
 bool ble_supported{false};
@@ -97,6 +98,10 @@ uint8_t* get_local_supported_codecs(uint8_t* number_of_codecs) {
     return local_supported_codecs;
   }
   return NULL;
+}
+
+std::vector<uint8_t> get_local_supported_br_edr_codec_ids(void) {
+  return local_supported_br_edr_codec_ids;
 }
 
 const uint8_t* get_ble_supported_states(void) { return ble_supported_states; }
@@ -462,6 +467,7 @@ const controller_t interface = {
     get_ble_resolving_list_max_size,
     set_ble_resolving_list_max_size,
     get_local_supported_codecs,
+    get_local_supported_br_edr_codec_ids,
     get_le_all_initiating_phys,
     clear_event_filter,
     clear_event_mask,
