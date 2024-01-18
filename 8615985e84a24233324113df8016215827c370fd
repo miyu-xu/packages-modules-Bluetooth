@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "64f5688b_13ac6995",
+        "filename": "system/main/shim/btm.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-18T13:33:21Z",
+      "side": 1,
+      "message": "It looks like most of this file could be removed.  Is that on your list?",
+      "range": {
+        "startLine": 427,
+        "startChar": 0,
+        "endLine": 427,
+        "endChar": 65
+      },
+      "revId": "8615985e84a24233324113df8016215827c370fd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
