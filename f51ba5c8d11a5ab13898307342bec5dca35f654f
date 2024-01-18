@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bbd221e3_9b969c2a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-18T11:30:04Z",
+      "side": 1,
+      "message": "Note:\nPresubmit failures are due to merge pending of the flag adding CL.",
+      "revId": "f51ba5c8d11a5ab13898307342bec5dca35f654f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

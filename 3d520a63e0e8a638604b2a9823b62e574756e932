@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "6a630dd9_a5d34f3b",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2049,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-18T11:30:04Z",
+      "side": 1,
+      "message": "Right. These lines are behind the flag and will be removed in future.",
+      "parentUuid": "70a39106_f7ef8ce6",
+      "range": {
+        "startLine": 2049,
+        "startChar": 0,
+        "endLine": 2049,
+        "endChar": 57
+      },
+      "revId": "3d520a63e0e8a638604b2a9823b62e574756e932",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0a99339b_2ab5830d",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-17T22:20:05Z",
       "side": 1,
       "message": "calling `stopScan(client.scannerId, getAttributionSource());` instead of  `mScanManager.stopScan(client.scannerId);` is adding  additional permission check and also additional metrics being recorded: with app.recordScanStop(scannerId);",
+      "range": {
+        "startLine": 2050,
+        "startChar": 0,
+        "endLine": 2050,
+        "endChar": 60
+      },
+      "revId": "3d520a63e0e8a638604b2a9823b62e574756e932",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c12839c9_5bc8a5d8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/GattService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 2050,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-01-18T11:30:04Z",
+      "side": 1,
+      "message": "Yes. That\u0027s exactly handleDeadScanClient is doing when the flag is enabled.\n\nThis code remains just for a potential regression.",
+      "parentUuid": "0a99339b_2ab5830d",
       "range": {
         "startLine": 2050,
         "startChar": 0,
