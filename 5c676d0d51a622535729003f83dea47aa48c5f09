@@ -33,6 +33,24 @@
       "message": "Patrick, could you please reuse cache for the Expected Group Member instead of creating new list?\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/csis/csis_client.cc;l\u003d1307?q\u003dcsis_client.cc\n\nSo basically before starting new discovery in Read Response, just make sure that  DesiredGroupSize \u003e CurrentSize + [num of expected devices]",
       "revId": "5c676d0d51a622535729003f83dea47aa48c5f09",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13513128_b4d9a1d5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-01-18T07:26:57Z",
+      "side": 1,
+      "message": "done",
+      "parentUuid": "838d0e7f_82aef67d",
+      "revId": "5c676d0d51a622535729003f83dea47aa48c5f09",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
