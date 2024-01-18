@@ -33,6 +33,24 @@
       "message": "I think this code is not needed now, when we agree that `monitor_mode` is not to control stream but monitor it.",
       "revId": "227d812cd1b869de4f51ae4b118bc4c735dcbcae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f9109a23_0ad03eb7",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-18T10:07:02Z",
+      "side": 1,
+      "message": "Yes - the confirmation part is removed, but this is a bit different thing. In PRD for broadcast assistant there were a request to not interrupt receiving broadcast with `SOUNDEFFECTS`. Since now there is no policy in AF to select e.g. phone speaker instead of LE Audio device, this is proposed solution, to just not start Unicast.",
+      "parentUuid": "edd04164_9a1233cb",
+      "revId": "227d812cd1b869de4f51ae4b118bc4c735dcbcae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
