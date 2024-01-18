@@ -16,6 +16,23 @@
       "message": "Hi, please take a look at this CL, thanks!",
       "revId": "68b0b3b18cdb385fa46679b5956828250a10c62e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bf1c6c10_3e8748e7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-18T17:24:30Z",
+      "side": 1,
+      "message": "This is a classic async race condition found in the stack where internal state is updated before it is actually complete.\n\nSuggest flag:\ndefer_device_discovery_state_change_until_rnr_complete (?)",
+      "revId": "68b0b3b18cdb385fa46679b5956828250a10c62e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
