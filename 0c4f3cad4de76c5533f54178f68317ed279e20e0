@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb791747_1826a354",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1901,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T09:08:24Z",
+      "side": 1,
+      "message": "please add log here.",
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5bc94244_9c410a81",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2407,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T09:08:24Z",
+      "side": 1,
+      "message": "as agreed offline, please change name.",
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b9ef7bce_670ebc66",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T09:08:24Z",
+      "side": 1,
+      "message": "as agreed please change name.",
+      "range": {
+        "startLine": 178,
+        "startChar": 29,
+        "endLine": 178,
+        "endChar": 43
+      },
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db997332_0c71209c",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T09:08:24Z",
+      "side": 1,
+      "message": "please add function description - especially explaining what LOCK means.",
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8f348202_010fe6ac",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T09:08:24Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
