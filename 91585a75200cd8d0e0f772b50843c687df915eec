@@ -22,6 +22,30 @@
       },
       "revId": "91585a75200cd8d0e0f772b50843c687df915eec",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3258236_7dfedbe3",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-01-18T10:18:16Z",
+      "side": 1,
+      "message": "yes because based on we add device here (https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/bta/csis/csis_client.cc;drc\u003d53f45684258de30fea6081772ccdc984c2bd640d;l\u003d1639) after sirk is verified and also set the group id for this csis instance in the device.\n\nGetExpectedGroupIdMember() will always be set if it is set member even if it is connected because we did not remove this value in the csis client lifetime so I add another condition as `!device-\u003eGetCsisInstanceByGroupId(group_id);` to make sure the sirk is not vefified.",
+      "parentUuid": "ad911e81_7841d8af",
+      "range": {
+        "startLine": 1318,
+        "startChar": 25,
+        "endLine": 1318,
+        "endChar": 49
+      },
+      "revId": "91585a75200cd8d0e0f772b50843c687df915eec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
