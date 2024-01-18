@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "f4b70452_73813ac4",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-18T08:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c3fac0fe_245df4ea",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 0
+      },
+      "revId": "5e58d36f16db823084d295920669f741262ee249",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8d7d7131_b5b8b58a",
@@ -61,6 +85,30 @@
       "side": 1,
       "message": "Can be reduced to:\n```\nif handle not in map:\n    create future, put it into the map\n\nawait on the future\n```",
       "parentUuid": "8d7d7131_b5b8b58a",
+      "range": {
+        "startLine": 747,
+        "startChar": 0,
+        "endLine": 751,
+        "endChar": 0
+      },
+      "revId": "5e58d36f16db823084d295920669f741262ee249",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b1ab4348_169cc54d",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 751,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-18T08:13:54Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f78f672_96f42a6f",
       "range": {
         "startLine": 747,
         "startChar": 0,
