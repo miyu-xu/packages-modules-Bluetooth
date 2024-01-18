@@ -60,6 +60,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ac6ff4dd_d33cf935",
+        "filename": "android/app/src/com/android/bluetooth/btservice/RemoteDevices.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 1256,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-18T03:33:26Z",
+      "side": 1,
+      "message": "Do you think we should also guard the code in native with the flag?",
+      "parentUuid": "1ab6cd4c_a5768b79",
+      "range": {
+        "startLine": 1256,
+        "startChar": 31,
+        "endLine": 1256,
+        "endChar": 50
+      },
+      "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e5caa3c5_f4850651",
         "filename": "system/bta/dm/bta_dm_sec.cc",
         "patchSetId": 9
