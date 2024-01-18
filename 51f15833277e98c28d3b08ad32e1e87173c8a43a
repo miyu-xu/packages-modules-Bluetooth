@@ -22,6 +22,30 @@
       },
       "revId": "51f15833277e98c28d3b08ad32e1e87173c8a43a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9d117dfd_9747a0ad",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 2992,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T01:42:58Z",
+      "side": 1,
+      "message": "should_send_directed_advertising_report should be false if the address is not an rpa, the result would be true with your proposed change",
+      "parentUuid": "ec9aa3e5_386c568c",
+      "range": {
+        "startLine": 2992,
+        "startChar": 12,
+        "endLine": 2992,
+        "endChar": 37
+      },
+      "revId": "51f15833277e98c28d3b08ad32e1e87173c8a43a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
