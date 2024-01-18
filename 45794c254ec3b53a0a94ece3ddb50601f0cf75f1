@@ -33,6 +33,24 @@
       "message": "Can you add a the flag stanza ? (go/bt-best-practices#flagging)",
       "revId": "45794c254ec3b53a0a94ece3ddb50601f0cf75f1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f00da4cb_477903c2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958375
+      },
+      "writtenOn": "2024-01-18T02:55:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0033e97d_ec14f588",
+      "revId": "45794c254ec3b53a0a94ece3ddb50601f0cf75f1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
