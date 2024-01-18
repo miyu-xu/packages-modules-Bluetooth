@@ -390,7 +390,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
                         service.registerCallback(mCallback, mAttributionSource, recv);
                     } else {
                         service.notifyNewRegisteredCallback(
-                                (IBluetoothVolumeControlCallback) (callback),
+                                (IBluetoothVolumeControlCallback) callback,
                                 mAttributionSource,
                                 recv);
                     }
@@ -490,7 +490,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      *
      * @param device {@link BluetoothDevice} representing the remote device
      * @return {@code true} if volume offset function is supported and available to use on the
-     *     remote device. When Bluetooth is off, the return value should always be {@code false}.
+     * remote device. When Bluetooth is off, the return value should always be {@code false}.
      * @hide
      */
     @SystemApi
@@ -555,7 +555,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         } else if (isEnabled()
                 && isValidDevice(device)
                 && (connectionPolicy == BluetoothProfile.CONNECTION_POLICY_FORBIDDEN
-                        || connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
+                || connectionPolicy == BluetoothProfile.CONNECTION_POLICY_ALLOWED)) {
             try {
                 final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
                 service.setConnectionPolicy(device, connectionPolicy, mAttributionSource, recv);
