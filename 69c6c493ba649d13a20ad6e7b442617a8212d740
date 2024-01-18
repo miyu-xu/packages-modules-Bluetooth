@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e2d10ea4_b1464832",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-18T11:04:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "6853909d_5b79e730",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 0
+      },
+      "revId": "69c6c493ba649d13a20ad6e7b442617a8212d740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "3e64cf99_17c56ef0",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-18T09:05:49Z",
       "side": 1,
       "message": "```\nif characteristic_handle not in self.characteristic_changed_map[address]:\n    logging.info(\u0027Create future and put it into the map.\u0027)\n    char_future \u003d asyncio.get_running_loop().create_future()\n    self.characteristic_changed_map[address][characteristic_handle] \u003d char_future\nelse:\n    char_future \u003d self.characteristic_changed_map[address][characteristic_handle]\n\nawait char_future\n```",
+      "range": {
+        "startLine": 749,
+        "startChar": 0,
+        "endLine": 754,
+        "endChar": 0
+      },
+      "revId": "69c6c493ba649d13a20ad6e7b442617a8212d740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d9ac604_38a04e0f",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 2049637
+      },
+      "writtenOn": "2024-01-18T11:04:33Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3e64cf99_17c56ef0",
       "range": {
         "startLine": 749,
         "startChar": 0,
