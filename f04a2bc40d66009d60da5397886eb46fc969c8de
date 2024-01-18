@@ -72,6 +72,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb805598_300c73f8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-01-18T23:21:22Z",
+      "side": 1,
+      "message": "go/bt-audio-routing-design",
+      "parentUuid": "19d93a84_aa2a8c50",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 24
+      },
+      "revId": "f04a2bc40d66009d60da5397886eb46fc969c8de",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0de195c2_d2298ca9",
