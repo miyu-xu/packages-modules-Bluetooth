@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "74e5fa35_ff8966d7",
+        "filename": "android/pandora/test/pairing/smp_test.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-18T22:26:26Z",
+      "side": 1,
+      "message": "Repo hooks forced these changes",
+      "revId": "afbdbd2af9a9c67028be5f8a185debb065426eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8dceb9ee_9f170306",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/PairingTest.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-18T22:26:26Z",
+      "side": 1,
+      "message": "Repo hooks forced these changes",
+      "revId": "afbdbd2af9a9c67028be5f8a185debb065426eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
