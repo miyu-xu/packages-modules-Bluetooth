@@ -390,7 +390,32 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
                         service.registerCallback(mCallback, mAttributionSource, recv);
                     } else {
                         service.notifyNewRegisteredCallback(
-                                (IBluetoothVolumeControlCallback) (callback),
+                                new IBluetoothVolumeControlCallback.Stub() {
+                                    @Override
+                                    public void onVolumeOffsetChanged(
+                                            BluetoothDevice device, int volumeOffset)
+                                            throws RemoteException {
+                                        Attributable.setAttributionSource(
+                                                device, mAttributionSource);
+                                        executor.execute(
+                                                () ->
+                                                        callback.onVolumeOffsetChanged(
+                                                                device, volumeOffset));
+                                    }
+
+                                    @FlaggedApi(Flags.FLAG_LEAUDIO_BROADCAST_VOLUME_CONTROL_FOR_CONNECTED_DEVICES)
+                                    @Override
+                                    public void onDeviceVolumeChanged(
+                                            BluetoothDevice device, int volume)
+                                            throws RemoteException {
+                                        Attributable.setAttributionSource(
+                                                device, mAttributionSource);
+                                        executor.execute(
+                                                () ->
+                                                        callback.onDeviceVolumeChanged(
+                                                                device, volume));
+                                    }
+                                },
                                 mAttributionSource,
                                 recv);
                     }
