@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4ce4227_39cf7c7b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T07:57:18Z",
+      "side": 1,
+      "message": "THanks, looks good. One minor comment",
+      "revId": "4d26eb4c4c94600e65870b6299c3bb34b0742e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e7f8cce0_a9008c51",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 903,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T07:57:18Z",
+      "side": 1,
+      "message": "Could you please with this patch fix this log and maybe also  enhance this to something like this?\n\n```\nauto dev_waiting_for_bonding_cnt \u003d GetNumOfKnownExpectedDevicesWaitingForBonding(\n                                      g-\u003eGetGroupId());\n\n LOG_DEBUG(\"Group size: %d  desired size: %d, waiting for bonding: %d, g-\u003eGetCurrentSize(),  g-\u003eGetDesiredSize(), dev_waiting_for_bonding_cnt)\"\n                                      \n```",
+      "range": {
+        "startLine": 903,
+        "startChar": 35,
+        "endLine": 903,
+        "endChar": 41
+      },
+      "revId": "4d26eb4c4c94600e65870b6299c3bb34b0742e92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
