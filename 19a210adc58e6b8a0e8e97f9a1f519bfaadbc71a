@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4e3bb4b_3813ba3f",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3521,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-18T14:36:41Z",
+      "side": 1,
+      "message": "There\u0027s no test coverage that I can see for this file.  What\u0027s the plan for test coverage or flagging (how are you planning on convincing Dr. No) ?",
+      "range": {
+        "startLine": 3520,
+        "startChar": 7,
+        "endLine": 3521,
+        "endChar": 38
+      },
+      "revId": "19a210adc58e6b8a0e8e97f9a1f519bfaadbc71a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b58187e_197ea0cc",
+        "filename": "system/btif/src/btif_rc.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 3625,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-18T14:36:41Z",
+      "side": 1,
+      "message": "Should we call rc_ctrl_procedure_complete here, too?\n\nIt seems like it is very similar to line 3492 (early return from a procedure)\n\nLine 3627 and the null checks would have to be moved up, as well.",
+      "revId": "19a210adc58e6b8a0e8e97f9a1f519bfaadbc71a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
