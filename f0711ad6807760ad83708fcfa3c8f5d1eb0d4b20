@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1118eb31_c1b39752",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T09:21:06Z",
+      "side": 1,
+      "message": "shouldn\u0027t we do `alarm_free()` here?",
+      "revId": "f0711ad6807760ad83708fcfa3c8f5d1eb0d4b20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cc09dc2_9ae42541",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T09:21:06Z",
+      "side": 1,
+      "message": "if controller did not respond, in what state is the controller?\n\nI think it is OK to ASSERT here, as it would be controller issue which needs to be fixed.\n\n\nWhat about other Broadcast controller operations? Why only start is covered in this patch?",
+      "revId": "f0711ad6807760ad83708fcfa3c8f5d1eb0d4b20",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
