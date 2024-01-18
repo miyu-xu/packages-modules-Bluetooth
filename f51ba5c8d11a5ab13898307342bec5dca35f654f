@@ -16,6 +16,23 @@
       "message": "Note:\nPresubmit failures are due to merge pending of the flag adding CL.",
       "revId": "f51ba5c8d11a5ab13898307342bec5dca35f654f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8a4ffe8_73d415ad",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-18T19:03:33Z",
+      "side": 1,
+      "message": "Can you add a test that enforce this scenario ?",
+      "revId": "f51ba5c8d11a5ab13898307342bec5dca35f654f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
