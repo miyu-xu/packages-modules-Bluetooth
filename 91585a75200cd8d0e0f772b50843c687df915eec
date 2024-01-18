@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5207aedd_98e2bbed",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1958755
+      },
+      "writtenOn": "2024-01-18T12:14:51Z",
+      "side": 1,
+      "message": "For the member device (not the first connencted device in the group):\n\nFOR active scan (low latency), currently active scan is only enabled when we have one member in the set connected and check if there are any other members that need to be discovered.\n\nFor passive opportunistic scan, I think it is always turning on during CSIS client lifetime. For example, after active scan is finished, we will turn on the passive scan. So if the bond fails for the set member, next time it is advertising again, we can still scan its adv packet if there is an ongoing scan.\n\nFeel free to correct me if I misunderstand anything, thanks.",
+      "parentUuid": "ea0ae743_6bde0ab7",
+      "revId": "91585a75200cd8d0e0f772b50843c687df915eec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad911e81_7841d8af",
