@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "6a19015c_e1886c8a",
+        "filename": "system/gd/discovery/device/data_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-18T13:54:36Z",
+      "side": 1,
+      "message": "I\u0027m more worried about the empty and one-byte cases, but you could be right that it\u0027s unjustified.\n```\nstatic Iterator\u003ckLittleEndian\u003e Parse(GapData* to_fill, Iterator\u003ckLittleEndian\u003e struct_begin_it ) {\n  auto to_bound \u003d struct_begin_it;\n  size_t end_index \u003d struct_begin_it.NumBytesRemaining();\n  if (end_index \u003c 2){ return struct_begin_it.Subrange(0,0);} \u003c---\n  {\n    if (to_bound.NumBytesRemaining() \u003c 2) {\n      return to_bound.Subrange(to_bound.NumBytesRemaining(),0);}  \u003c----\n    }\n```",
+      "parentUuid": "f20bf13a_2ba64ee2",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b660ad8a_43ea4239",
         "filename": "system/gd/discovery/device/data_parser.cc",
         "patchSetId": 3
@@ -157,6 +181,30 @@
       "side": 1,
       "message": "It just returns vector of uint8_t which represents the type.\n\nThe idea is to provide all the types of GapData within the data snippet.\n\nAre you suggesting an API where the client passes in a set of interesting types and it returns a boolean if one or more are available ?",
       "parentUuid": "81749ded_b00ea038",
+      "range": {
+        "startLine": 47,
+        "startChar": 42,
+        "endLine": 47,
+        "endChar": 54
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e1439c89_31dc21cb",
+        "filename": "system/gd/discovery/device/data_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-18T13:54:36Z",
+      "side": 1,
+      "message": "Yes.  If that\u0027s all the data is used for, it seems like it would be nicer not to copy the data.",
+      "parentUuid": "df593c10_0933e330",
       "range": {
         "startLine": 47,
         "startChar": 42,
