@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f20bf13a_2ba64ee2",
+        "filename": "system/gd/discovery/device/data_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-18T01:06:48Z",
+      "side": 1,
+      "message": "I wrote a test to parse random data and cannot get a failure of hanging.  I inspected the generating code in hci_packets.h and there is also a while() loop.\n\n```\nstatic Iterator\u003ckLittleEndian\u003e Parse(\n      GapData* to_fill, Iterator\u003ckLittleEndian\u003e struct_begin_it) {\n      ...\n      while (val_it.NumBytesRemaining() \u003e\u003d 1) {\n        uint8_t val_value;\n        uint8_t* val_ptr \u003d \u0026val_value;\n        auto extracted_value \u003d val_it.extract\u003cuint8_t\u003e();\n        *val_ptr \u003d static_cast\u003cuint8_t\u003e(extracted_value);\n        if (val_ptr !\u003d nullptr) {\n          data_ptr-\u003epush_back(val_value);\n        }\n      }\n```",
+      "parentUuid": "846e39eb_b29ad528",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b660ad8a_43ea4239",
         "filename": "system/gd/discovery/device/data_parser.cc",
         "patchSetId": 3
@@ -109,6 +133,30 @@
       "side": 1,
       "message": "I was asking if it would be better not to copy the underlying data, if all we want is to return a boolean.",
       "parentUuid": "0bb4e625_77550077",
+      "range": {
+        "startLine": 47,
+        "startChar": 42,
+        "endLine": 47,
+        "endChar": 54
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df593c10_0933e330",
+        "filename": "system/gd/discovery/device/data_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-18T01:06:48Z",
+      "side": 1,
+      "message": "It just returns vector of uint8_t which represents the type.\n\nThe idea is to provide all the types of GapData within the data snippet.\n\nAre you suggesting an API where the client passes in a set of interesting types and it returns a boolean if one or more are available ?",
+      "parentUuid": "81749ded_b00ea038",
       "range": {
         "startLine": 47,
         "startChar": 42,
