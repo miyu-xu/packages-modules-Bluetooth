@@ -309,7 +309,7 @@ static void bta_dm_search_cancel() {
      active */
   else if (!bta_dm_search_cb.name_discover_done) {
     get_btm_client_interface().peer.BTM_CancelRemoteDeviceName();
-    bta_dm_search_cmpl();
+    /* bta_dm_search_cmpl is called when receiving the remote name cancel evt */
   } else {
     bta_dm_inq_cmpl(0);
   }
