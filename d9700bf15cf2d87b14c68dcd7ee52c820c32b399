@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1ed67cd8_b01ce44f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-18T00:25:19Z",
+      "side": 1,
+      "message": "This requires flags in framework/ and for the sake of finishing the metrics that depend on this change in a timely manner I would like to revert now and worry about making this change later.",
+      "revId": "d9700bf15cf2d87b14c68dcd7ee52c820c32b399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
