@@ -16,6 +16,24 @@
       "message": "@yameidu@amazon.com \n\nI updated the change and the commit message a little can you please take a look?\n\nThanks!",
       "revId": "e59c67b87b93dbd67c7a5e6c1dc1339b9a29f1a4",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "48b9a6d1_e5ee1c81",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3211944
+      },
+      "writtenOn": "2024-01-18T01:16:23Z",
+      "side": 1,
+      "message": "Thanks for updating. Could you please help to explain why we need a flag to control the bugfix? And for the bugId,  I couldn\u0027t see the bug details, is it mandatory for each change?",
+      "parentUuid": "dd687d92_0eaa24d5",
+      "revId": "e59c67b87b93dbd67c7a5e6c1dc1339b9a29f1a4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
