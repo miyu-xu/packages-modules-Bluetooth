@@ -171,6 +171,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c974290_82be5024",
+        "filename": "system/bta/dm/bta_dm_sec.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T12:54:58Z",
+      "side": 1,
+      "message": "Added consts in aosp/2916708",
+      "parentUuid": "e5caa3c5_f4850651",
+      "range": {
+        "startLine": 122,
+        "startChar": 31,
+        "endLine": 122,
+        "endChar": 41
+      },
+      "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c4a6a454_dc486334",
@@ -231,6 +255,30 @@
       "writtenOn": "2024-01-17T23:01:55Z",
       "side": 1,
       "message": "can we change the type to `const RawAddress`?",
+      "range": {
+        "startLine": 598,
+        "startChar": 37,
+        "endLine": 598,
+        "endChar": 47
+      },
+      "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f35a83ad_248c10e1",
+        "filename": "system/include/hardware/bluetooth.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T12:54:58Z",
+      "side": 1,
+      "message": "Added consts in aosp/2916708, PTAL",
+      "parentUuid": "ecd9666a_cf9ae03e",
       "range": {
         "startLine": 598,
         "startChar": 37,
