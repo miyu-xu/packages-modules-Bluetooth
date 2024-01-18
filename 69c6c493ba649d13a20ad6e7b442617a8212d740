@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6853909d_5b79e730",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-18T09:05:49Z",
+      "side": 1,
+      "message": "on_notify is in DBUS thread and there\u0027s no event loop in that thread.\nYou\u0027ll need to pass the loop from the main thread to the DBUS thread\nto create the future.\n\n```\n    def __init__(self, bluetooth: bluetooth_module.Bluetooth):\n        self.bluetooth \u003d bluetooth\n        self.characteristic_changed_map \u003d {}\n\n        # Register the observer for characteristic notifications.\n        observer \u003d self.SendCharacteristicNotificationObserver(asyncio.get_running_loop(), self)\n        name \u003d utils.create_observer_name(observer)\n        self.bluetooth.gatt_client.register_callback_observer(name, observer)\n\n    class SendCharacteristicNotificationObserver(gatt_client.GattClientCallbacks):\n\n        def __init__(self, loop: asyncio.AbstractEventLoop, gatt_service):\n            self.loop \u003d loop\n            self.gatt_service \u003d gatt_service\n\n        @utils.glib_callback()\n        def on_notify(self, addr, handle, value):\n            logging.info(\u0027Characteristic Notification Received. addr: %s, handle: %s\u0027, addr, handle)\n            if addr not in self.gatt_service.characteristic_changed_map:\n                self.gatt_service.characteristic_changed_map[addr] \u003d {}\n            char_map \u003d self.gatt_service.characteristic_changed_map[addr]\n\n            if handle in char_map:\n                # Set the future to indicate that the characteristic has changed.\n                char_future \u003d char_map[handle]\n                char_future.get_loop().call_soon_threadsafe(char_future.set_result, True)\n            else:\n                # Create and set the future in the map.\n                char_future \u003d self.loop.create_future()\n                self.gatt_service.characteristic_changed_map[addr][handle] \u003d char_future\n                char_future.get_loop().call_soon_threadsafe(char_future.set_result, True)\n```",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 0
+      },
+      "revId": "69c6c493ba649d13a20ad6e7b442617a8212d740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3e64cf99_17c56ef0",
+        "filename": "floss/pandora/server/gatt.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 754,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-18T09:05:49Z",
+      "side": 1,
+      "message": "```\nif characteristic_handle not in self.characteristic_changed_map[address]:\n    logging.info(\u0027Create future and put it into the map.\u0027)\n    char_future \u003d asyncio.get_running_loop().create_future()\n    self.characteristic_changed_map[address][characteristic_handle] \u003d char_future\nelse:\n    char_future \u003d self.characteristic_changed_map[address][characteristic_handle]\n\nawait char_future\n```",
+      "range": {
+        "startLine": 749,
+        "startChar": 0,
+        "endLine": 754,
+        "endChar": 0
+      },
+      "revId": "69c6c493ba649d13a20ad6e7b442617a8212d740",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
