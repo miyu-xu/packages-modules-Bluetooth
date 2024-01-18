@@ -34,6 +34,24 @@
       "parentUuid": "1ed67cd8_b01ce44f",
       "revId": "d9700bf15cf2d87b14c68dcd7ee52c820c32b399",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "adafe299_a73f8307",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-18T22:26:53Z",
+      "side": 1,
+      "message": "The CLs that have the new exception code are failing presubmit due to a build error.  This was the error message in aosp/2848855\n```\ncannot find symbol\n            case (BluetoothSocketException.UNIX_FILE_SOCKET_CREATION_FAILURE):\n                                          ^\n  symbol:   variable UNIX_FILE_SOCKET_CREATION_FAILURE\n  location: class BluetoothSocketException\n```\nI assumed it had something to do with needing the new flag there (I could be mistaken?).  This error occurs in SocketMetrics, where we can\u0027t add the flag due to the circular dependency issue when trying to add flags to framework.  Since it\u0027s really hard to work around this issue, I thought it would be best to revert and continue using the generic error code for now.",
+      "parentUuid": "56d88400_23118f02",
+      "revId": "d9700bf15cf2d87b14c68dcd7ee52c820c32b399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
