@@ -88,12 +88,19 @@ inline std::string smp_evt_to_text(const tSMP_EVT evt) {
 typedef uint8_t tSMP_IO_CAP;
 
 /* OOB data present or not */
-enum { SMP_OOB_NONE, SMP_OOB_PRESENT, SMP_OOB_UNKNOWN };
-typedef uint8_t tSMP_OOB_FLAG;
+typedef enum : uint8_t {
+  SMP_OOB_NONE,
+  SMP_OOB_PRESENT,
+  SMP_OOB_UNKNOWN,
+} tSMP_OOB_FLAG;
 
 /* type of OOB data required from application */
-enum { SMP_OOB_INVALID_TYPE, SMP_OOB_PEER, SMP_OOB_LOCAL, SMP_OOB_BOTH };
-typedef uint8_t tSMP_OOB_DATA_TYPE;
+typedef enum : uint8_t {
+  SMP_OOB_INVALID_TYPE,
+  SMP_OOB_PEER,
+  SMP_OOB_LOCAL,
+  SMP_OOB_BOTH,
+} tSMP_OOB_DATA_TYPE;
 
 enum : uint8_t {
   SMP_AUTH_NO_BOND = 0x00,
