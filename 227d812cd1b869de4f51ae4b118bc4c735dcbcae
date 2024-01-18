@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8ce4729f_126cd202",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 9
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T09:36:19Z",
+      "side": 1,
+      "message": "can we add unit test please?",
+      "revId": "227d812cd1b869de4f51ae4b118bc4c735dcbcae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "edd04164_9a1233cb",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-18T09:36:19Z",
+      "side": 1,
+      "message": "I think this code is not needed now, when we agree that `monitor_mode` is not to control stream but monitor it.",
+      "revId": "227d812cd1b869de4f51ae4b118bc4c735dcbcae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
