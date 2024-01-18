@@ -70,6 +70,30 @@
       },
       "revId": "92ca0009778404afda7d63e0aa704f80bf2465fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad02714c_71dda20e",
+        "filename": "tools/rootcanal/model/controller/link_layer_controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 3106,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-18T00:07:42Z",
+      "side": 1,
+      "message": "Unfortunately, I don\u0027t have a better solution.",
+      "parentUuid": "9fa06162_378668de",
+      "range": {
+        "startLine": 3101,
+        "startChar": 4,
+        "endLine": 3106,
+        "endChar": 3
+      },
+      "revId": "92ca0009778404afda7d63e0aa704f80bf2465fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
