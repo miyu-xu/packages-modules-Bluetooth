@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "5eac2c8a_4d968fa7",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 9
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T10:09:53Z",
+      "side": 1,
+      "message": "It\u0027s clarified in first line - \"for LE transport\"",
+      "parentUuid": "8bd6373a_8db27391",
+      "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "1ab6cd4c_a5768b79",
