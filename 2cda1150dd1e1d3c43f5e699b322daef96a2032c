@@ -158,6 +158,270 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3056f066_32b53927",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "Please provide unit tests for this file in `le_scanning_decrypter_test.cc` (see `le_scanning_reassembler_test.cc` for reference).",
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "38ea585d_0ca140aa",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "It should not be necessary to include so many headers, please trim the list down to the minimum.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 35
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd37703_275abe46",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "Initialize to true here.",
+      "range": {
+        "startLine": 54,
+        "startChar": 2,
+        "endLine": 54,
+        "endChar": 37
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b49e8855_ce802874",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "Please provide an early return when it has been determined that the advertising data does not contain encrypted data (`!*has_encrypted_data`)",
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d04f9689_593b8855",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "Using the flag in this file is unnecessary as all invocations of the decrypter will have already been flagged.",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 54
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "85dc886d_9ce939d8",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "Remove this statement, otherwise an advertising data containing two Encrypted AD types, one not decrypted followed by one decrypted will return success.",
+      "range": {
+        "startLine": 149,
+        "startChar": 8,
+        "endLine": 149,
+        "endChar": 37
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6d88ac56_d7fa1cab",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "It would be more appropriate to pass the encrypted data by pointer, length to avoid unnecessarily cloning encrypted data for the purpose of calling this function.",
+      "range": {
+        "startLine": 199,
+        "startChar": 4,
+        "endLine": 199,
+        "endChar": 41
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6fea2575_7f9469f5",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "Remove unused variable",
+      "range": {
+        "startLine": 203,
+        "startChar": 2,
+        "endLine": 203,
+        "endChar": 38
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "51eb39b6_cf684b51",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "Applies to all logs in this function:\nshould be removed, or flagged by a #define at the beginning of the file",
+      "range": {
+        "startLine": 229,
+        "startChar": 4,
+        "endLine": 240,
+        "endChar": 5
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0e0bae62_b869d266",
+        "filename": "system/gd/hci/le_scanning_decrypter.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "Remove unused statement;",
+      "range": {
+        "startLine": 261,
+        "startChar": 3,
+        "endLine": 261,
+        "endChar": 74
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "aeb3f9d3_3e3b1ea3",
+        "filename": "system/gd/hci/le_scanning_decrypter.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "This function is only used to check the presence of Encrypted AD type in the advertising data; there is no need to construct a map of all the advertising data any more.\n\nI would suggest changing the name and implementation according to its use:\n```\n/// Returns true if the advertising data contains the Encrypted AD type,\n/// false otherwise.\nbool ContainsEncryptedData(std::vector\u003cuint8_t\u003e const\u0026 advertising_data);\n```",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 84
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e18291a9_d473ed7f",
+        "filename": "system/gd/hci/le_scanning_decrypter.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T17:09:27Z",
+      "side": 1,
+      "message": "This function can be static.",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 61
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b44ff394_a15e7c9e",
         "filename": "system/gd/hci/le_scanning_manager.cc",
         "patchSetId": 16
