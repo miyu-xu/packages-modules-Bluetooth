@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d5d5cbe0_6d6183bb",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T00:21:18Z",
+      "side": 1,
+      "message": "Should be kept as is, this function is intended to match vendor codecs only.",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 14
+      },
+      "revId": "7be224c16c357b1c23b538c015e6c0fa79338cba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a9260634_21f47848",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T00:21:18Z",
+      "side": 1,
+      "message": "Same here",
+      "range": {
+        "startLine": 290,
+        "startChar": 0,
+        "endLine": 312,
+        "endChar": 14
+      },
+      "revId": "7be224c16c357b1c23b538c015e6c0fa79338cba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "77fb4107_332415e6",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T00:21:18Z",
+      "side": 1,
+      "message": "You need to apply the same changes as you did in \n`std::optional\u003cbtav_a2dp_codec_index_t\u003e ProviderInfo::SourceCodecIndex(\n    uint8_t const* codec_info) const`",
+      "range": {
+        "startLine": 321,
+        "startChar": 2,
+        "endLine": 325,
+        "endChar": 3
+      },
+      "revId": "7be224c16c357b1c23b538c015e6c0fa79338cba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
