@@ -769,6 +769,52 @@ tBTM_STATUS BTM_CancelRemoteDeviceName(void) {
 
 /*******************************************************************************
  *
+ * Function         BTM_SecAddRmtNameNotifyCallback
+ *
+ * Description      Any profile can register to be notified when name of the
+ *                  remote device is resolved.
+ *
+ * Returns          true if registered OK, else false
+ *
+ ******************************************************************************/
+bool BTM_SecAddRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback) {
+  int i;
+
+  for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
+    if (btm_cb.p_rmt_name_callback[i] == NULL) {
+      btm_cb.p_rmt_name_callback[i] = p_callback;
+      return (true);
+    }
+  }
+
+  return (false);
+}
+
+/*******************************************************************************
+ *
+ * Function         BTM_SecDeleteRmtNameNotifyCallback
+ *
+ * Description      Any profile can deregister notification when a new Link Key
+ *                  is generated per connection.
+ *
+ * Returns          true if OK, else false
+ *
+ ******************************************************************************/
+bool BTM_SecDeleteRmtNameNotifyCallback(tBTM_RMT_NAME_CALLBACK* p_callback) {
+  int i;
+
+  for (i = 0; i < BTM_SEC_MAX_RMT_NAME_CALLBACKS; i++) {
+    if (btm_cb.p_rmt_name_callback[i] == p_callback) {
+      btm_cb.p_rmt_name_callback[i] = NULL;
+      return (true);
+    }
+  }
+
+  return (false);
+}
+
+/*******************************************************************************
+ *
  * Function         BTM_InqDbRead
  *
  * Description      This function looks through the inquiry database for a match
