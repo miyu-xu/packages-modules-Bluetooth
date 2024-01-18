@@ -16,6 +16,24 @@
       "message": "Please add to gap.aconfig instead.",
       "revId": "ae910157898487f878b4489637f1cfb33688ffe2",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39554d76_e4a6d581",
+        "filename": "flags/gatt.aconfig",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-01-18T02:02:52Z",
+      "side": 1,
+      "message": "Done!",
+      "parentUuid": "fc831b39_0bdae6b3",
+      "revId": "ae910157898487f878b4489637f1cfb33688ffe2",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
