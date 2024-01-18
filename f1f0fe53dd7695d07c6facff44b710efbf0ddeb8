@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6480c543_65b57c38",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1885151
+      },
+      "writtenOn": "2024-01-18T17:37:33Z",
+      "side": 1,
+      "message": "LGTM on HA side, please @yuyangh@google.com and @aritrasen@google.com let us know if it is ok for you",
+      "revId": "f1f0fe53dd7695d07c6facff44b710efbf0ddeb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
