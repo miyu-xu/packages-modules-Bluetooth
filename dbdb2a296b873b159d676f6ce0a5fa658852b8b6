@@ -139,6 +139,24 @@
       "parentUuid": "487cbc6e_a9a62eac",
       "revId": "dbdb2a296b873b159d676f6ce0a5fa658852b8b6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e7793fa0_d2f251d8",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 1049,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-18T18:01:42Z",
+      "side": 1,
+      "message": "`This function is recursive,` doh",
+      "parentUuid": "9ced90bd_d21298dd",
+      "revId": "dbdb2a296b873b159d676f6ce0a5fa658852b8b6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
