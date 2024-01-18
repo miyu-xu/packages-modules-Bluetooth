@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "85be5897_eec9342c",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 1901,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T12:22:19Z",
+      "side": 1,
+      "message": "There is always log printed from L2CA_LockBleConnParamsForAudioSetup, IMHO it\u0027s sufficient.",
+      "parentUuid": "cb791747_1826a354",
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "5bc94244_9c410a81",
         "filename": "system/btif/src/btif_dm.cc",
         "patchSetId": 11
@@ -31,6 +49,24 @@
       "writtenOn": "2024-01-18T09:08:24Z",
       "side": 1,
       "message": "as agreed offline, please change name.",
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d42cd834_13a7800e",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 2407,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T12:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5bc94244_9c410a81",
       "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -58,6 +94,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "dbfb6968_34868b0d",
+        "filename": "system/stack/l2cap/l2c_ble.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T12:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b9ef7bce_670ebc66",
+      "range": {
+        "startLine": 178,
+        "startChar": 29,
+        "endLine": 178,
+        "endChar": 43
+      },
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db997332_0c71209c",
@@ -75,6 +135,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "50cf21c5_1e206f4f",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T12:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db997332_0c71209c",
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8f348202_010fe6ac",
@@ -88,6 +166,24 @@
       "writtenOn": "2024-01-18T09:08:24Z",
       "side": 1,
       "message": "ditto",
+      "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f09f8b3_836a03d4",
+        "filename": "system/stack/l2cap/l2c_ble_conn_params.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T12:22:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8f348202_010fe6ac",
       "revId": "0c4f3cad4de76c5533f54178f68317ed279e20e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
