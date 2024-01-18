@@ -1,0 +1,475 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2b79e0fa_9d94801e",
+        "filename": "system/btif/include/btif_storage.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Please move this define to btif_storage.cc;\nall other keys are defined there and I would prefer keeping it homogeneous.\nIf",
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d2b0a26d_fc3433be",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Debug log to be removed",
+      "range": {
+        "startLine": 343,
+        "startChar": 6,
+        "endLine": 343,
+        "endChar": 78
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de0780c1_d1089efe",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "```\nauto env_key_material \u003d \n  storage_module_-\u003eGetBin(pseudo_address.ToString().c_str(), Enc_Key_Material)\n      .value_or(std::vector\u003cuint8_t\u003e{})\n```",
+      "range": {
+        "startLine": 344,
+        "startChar": 6,
+        "endLine": 347,
+        "endChar": 84
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5cbc3406_168ddbd0",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Debug log to be removed.",
+      "range": {
+        "startLine": 348,
+        "startChar": 6,
+        "endLine": 350,
+        "endChar": 85
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6814f747_5d3889a1",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "This code block is already fully flagged, you may remove the check here.\nPlease log more information here, e.g.\n```\n\"Failed to decrypt Encrypted AD type in advertising event from %s\"\n\"Encryption Key Material: %s\"\n```",
+      "range": {
+        "startLine": 363,
+        "startChar": 10,
+        "endLine": 365,
+        "endChar": 11
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "94ca0178_8403b63f",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 373,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Please remove this debug log.",
+      "range": {
+        "startLine": 368,
+        "startChar": 10,
+        "endLine": 373,
+        "endChar": 11
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "86af071d_f82a7fec",
+        "filename": "system/gd/hci/le_periodic_sync_manager.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 596,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "These never get initialized",
+      "range": {
+        "startLine": 595,
+        "startChar": 2,
+        "endLine": 596,
+        "endChar": 43
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b44ff394_a15e7c9e",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 477,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "```\nauto env_key_material \u003d \n  storage_module_-\u003eGetBin(pseudo_address.ToString().c_str(), Enc_Key_Material)\n      .value_or(std::vector\u003cuint8_t\u003e{})\n```",
+      "range": {
+        "startLine": 472,
+        "startChar": 0,
+        "endLine": 477,
+        "endChar": 7
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1a9e4ff7_d33a71f4",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 484,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Remove debug log",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 484,
+        "endChar": 7
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1113ba9f_eabd9bcf",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 500,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Flag check not necessary.\nThe encryption key material should be logged here; it is not useful when the decryption succeeds",
+      "range": {
+        "startLine": 498,
+        "startChar": 0,
+        "endLine": 500,
+        "endChar": 11
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f952f224_ee9e43ee",
+        "filename": "system/gd/hci/le_scanning_manager.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 508,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Please remove debug log",
+      "range": {
+        "startLine": 503,
+        "startChar": 0,
+        "endLine": 508,
+        "endChar": 11
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "10cea35f_efae21bf",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "nit: `address`",
+      "range": {
+        "startLine": 44,
+        "startChar": 20,
+        "endLine": 44,
+        "endChar": 37
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9eac24a4_5f7df71d",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Unused declaration",
+      "range": {
+        "startLine": 47,
+        "startChar": 2,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "72f9d24c_d21074f4",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Please remove debug log",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 30
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dedb7239_5f7d5bb0",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Please remove debug log",
+      "range": {
+        "startLine": 58,
+        "startChar": 3,
+        "endLine": 58,
+        "endChar": 32
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "97c71b8a_9c7f0aff",
+        "filename": "system/gd/hci/le_scanning_reassembler.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Please remove debug log.",
+      "range": {
+        "startLine": 82,
+        "startChar": 2,
+        "endLine": 83,
+        "endChar": 41
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "944532f3_1901ef04",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Unused include",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 14
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1de77c66_771f0851",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Declaration not used in the scanning reassembler, should be removed",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 31
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "60199385_f4f35ef7",
+        "filename": "system/gd/hci/le_scanning_reassembler.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Note: the change here for reassembling periodic advertising events should be ideally in a separate CL, with additional unit tests in le_scanning_reassembler_test.cc",
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec842e85_6bda5120",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "This is from the legacy code, this header should not be included here in GD",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 51
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1eb21610_95c027bb",
+        "filename": "system/gd/storage/storage_module.h",
+        "patchSetId": 16
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 1884477
+      },
+      "writtenOn": "2024-01-18T03:07:06Z",
+      "side": 1,
+      "message": "Unnecessary friend class declaration",
+      "range": {
+        "startLine": 134,
+        "startChar": 14,
+        "endLine": 134,
+        "endChar": 35
+      },
+      "revId": "2cda1150dd1e1d3c43f5e699b322daef96a2032c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
