@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ea0ae743_6bde0ab7",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T11:44:38Z",
+      "side": 1,
+      "message": "NIT: should we restart the scan if bonding fails ?",
+      "revId": "91585a75200cd8d0e0f772b50843c687df915eec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ad911e81_7841d8af",
