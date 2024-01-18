@@ -194,6 +194,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "efc08b12_3addc1cc",
+        "filename": "system/gd/rust/topshim/src/btif.rs",
+        "patchSetId": 9
+      },
+      "lineNbr": 960,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T10:11:14Z",
+      "side": 1,
+      "message": "List of callbacks not implemented in rust.\nSince we don\u0027t have a need for it in topshim, I added it here.",
+      "parentUuid": "c4a6a454_dc486334",
+      "range": {
+        "startLine": 960,
+        "startChar": 7,
+        "endLine": 960,
+        "endChar": 21
+      },
+      "revId": "289d9ed83da93cdf9d41578f31ff3237c21b69fb",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "ecd9666a_cf9ae03e",
