@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad911e81_7841d8af",
+        "filename": "system/bta/csis/csis_client.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 1318,
+      "author": {
+        "id": 1087037
+      },
+      "writtenOn": "2024-01-18T10:08:11Z",
+      "side": 1,
+      "message": "Just to make sure equation in line 912 is correct:\n\ng-\u003eGetCurrentSize() would include existing set members, but \n\ndevice-\u003eGetExpectedGroupIdMember() would not be set for existing group members ?\n\nI\u0027m trying to make sure we don\u0027t count existing set members twice.",
+      "range": {
+        "startLine": 1318,
+        "startChar": 25,
+        "endLine": 1318,
+        "endChar": 49
+      },
+      "revId": "91585a75200cd8d0e0f772b50843c687df915eec",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
