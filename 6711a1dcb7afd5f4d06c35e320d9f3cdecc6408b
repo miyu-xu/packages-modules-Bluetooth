@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "ed727825_a9d95234",
+        "filename": "system/gd/discovery/device/data_parser.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-18T20:17:40Z",
+      "side": 1,
+      "message": "i have empty..i\u0027ll add 1 and 2 byte test cases",
+      "parentUuid": "6a19015c_e1886c8a",
+      "range": {
+        "startLine": 32,
+        "startChar": 9,
+        "endLine": 32,
+        "endChar": 34
+      },
+      "revId": "6711a1dcb7afd5f4d06c35e320d9f3cdecc6408b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b660ad8a_43ea4239",
         "filename": "system/gd/discovery/device/data_parser.cc",
         "patchSetId": 3
