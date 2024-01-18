@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8dae2e8e_b9d6981c",
+        "filename": "system/stack/smp/smp_main.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-18T18:17:46Z",
+      "side": 1,
+      "message": "nit: This include is out of place.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 1
+      },
+      "revId": "9d0da7d6e10199ccc110ce5d0cdb1f0f4c36ff32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
