@@ -81,6 +81,7 @@ typedef enum GattStatus : uint8_t {
   GATT_DUP_REG = 0x90,      /* 0x90 */
   GATT_ALREADY_OPEN = 0x91, /* 0x91 */
   GATT_CANCEL = 0x92,       /* 0x92 */
+  GATT_CONNECTION_TIMEOUT = 0x93,
   /* = 0xE0 ~ 0xFC reserved for future use */
 
   /* Client Characteristic Configuration Descriptor Improperly Configured */
@@ -132,6 +133,7 @@ inline std::string gatt_status_text(const tGATT_STATUS& status) {
     CASE_RETURN_TEXT(GATT_DUP_REG);
     CASE_RETURN_TEXT(GATT_ALREADY_OPEN);
     CASE_RETURN_TEXT(GATT_CANCEL);
+    CASE_RETURN_TEXT(GATT_CONNECTION_TIMEOUT);
     CASE_RETURN_TEXT(GATT_CCC_CFG_ERR);
     CASE_RETURN_TEXT(GATT_PRC_IN_PROGRESS);
     CASE_RETURN_TEXT(GATT_OUT_OF_RANGE);

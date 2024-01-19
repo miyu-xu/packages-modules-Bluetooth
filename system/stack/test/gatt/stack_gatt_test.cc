@@ -206,6 +206,7 @@ TEST_F(StackGattTest, gatt_status_text) {
       std::make_pair(GATT_DUP_REG, "GATT_DUP_REG"),
       std::make_pair(GATT_ALREADY_OPEN, "GATT_ALREADY_OPEN"),
       std::make_pair(GATT_CANCEL, "GATT_CANCEL"),
+      std::make_pair(GATT_CONNECTION_TIMEOUT, "GATT_CONNECTION_TIMEOUT"),
       std::make_pair(GATT_CCC_CFG_ERR, "GATT_CCC_CFG_ERR"),
       std::make_pair(GATT_PRC_IN_PROGRESS, "GATT_PRC_IN_PROGRESS"),
       std::make_pair(GATT_OUT_OF_RANGE, "GATT_OUT_OF_RANGE"),
