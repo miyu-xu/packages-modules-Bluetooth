@@ -1554,8 +1554,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      * Returns the address type of this BluetoothDevice.
      *
      * @return Bluetooth address type
-     * @hide
      */
+    @FlaggedApi("com.android.bluetooth.flags.get_address_type_api")
     public int getAddressType() {
         if (DBG) Log.d(TAG, "mAddressType: " + mAddressType);
         return mAddressType;
