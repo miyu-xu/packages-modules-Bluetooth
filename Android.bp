@@ -23,8 +23,9 @@ license {
     license_kinds: [
         "SPDX-license-identifier-Apache-2.0",
         "SPDX-license-identifier-BSD",
+
         "SPDX-license-identifier-MIT",
-        "legacy_unencumbered",
+        "legacy_unencumbered"
     ],
     license_text: [
         "NOTICE",
