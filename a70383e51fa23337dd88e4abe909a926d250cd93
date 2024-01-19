@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d56b7dcd_3ad783f2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-19T22:45:28Z",
+      "side": 1,
+      "message": "See aosp/2920577.",
+      "parentUuid": "5f01fd94_d9794ea5",
+      "revId": "a70383e51fa23337dd88e4abe909a926d250cd93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c9975d34_d959c048",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-01-19T22:36:14Z",
       "side": 1,
       "message": "nit: Add `@AddressType`",
+      "revId": "a70383e51fa23337dd88e4abe909a926d250cd93",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4e6e8c6_70419384",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1559,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-19T22:45:28Z",
+      "side": 1,
+      "message": "Good catch - done.",
+      "parentUuid": "c9975d34_d959c048",
       "revId": "a70383e51fa23337dd88e4abe909a926d250cd93",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
