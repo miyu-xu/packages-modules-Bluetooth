@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "41833f96_05fef357",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-19T04:17:14Z",
+      "side": 1,
+      "message": "Can you fix thi warning ? for all API (and in all the topic) ?\nThe support for flag has now be added  (cf aosp/2898732 and then aosp/2919305)\n\n[FlaggedApi] @FlaggedApi should specify an actual flag constant; raw strings are discouraged (and more importantly, **not enforced**)\n\n        @FlaggedApi(\"com.android.bluetooth.flags.channel_sounding\")\n                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+      "range": {
+        "startLine": 187,
+        "startChar": 17,
+        "endLine": 187,
+        "endChar": 63
+      },
+      "revId": "dba7ccce6781338436d8250895c8ca5ddc00b25a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
