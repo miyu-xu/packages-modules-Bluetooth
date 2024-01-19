@@ -117,6 +117,8 @@ struct codec_manager_impl {
   }
   void start(
       const std::vector<btle_audio_codec_config_t>& offloading_preference) {
+    dual_bidirection_swb_supported_ = osi_property_get_bool(
+        "bluetooth.leaudio.dual_bidirection_swb.supported", false);
     le_audio::AudioSetConfigurationProvider::Initialize(GetCodecLocation());
     UpdateOffloadCapability(offloading_preference);
   }
@@ -131,8 +133,16 @@ struct codec_manager_impl {
   }
   CodecLocation GetCodecLocation(void) const { return codec_location_; }
 
-  bool IsOffloadDualBiDirSwbSupported(void) const {
-    return offload_dual_bidirection_swb_supported_;
+  bool IsDualBiDirSwbSupported(void) const {
+    if (GetCodecLocation() == CodecLocation::ADSP) {
+      // Whether dual bidirection swb is supported by property and for offload
+      return offload_dual_bidirection_swb_supported_;
+    } else if (GetCodecLocation() == CodecLocation::HOST) {
+      // Whether dual bidirection swb is supported for software
+      return dual_bidirection_swb_supported_;
+    }
+
+    return false;
   }
 
   std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
@@ -190,6 +200,12 @@ struct codec_manager_impl {
     return context_type_offload_config_map_.count(ctx_type)
                ? &context_type_offload_config_map_[ctx_type]
                : nullptr;
+  }
+
+  bool CheckCodecConfigIsBiDirSwb(
+      const ::le_audio::set_configurations::AudioSetConfiguration& config) {
+    return AudioSetConfigurationProvider::Get()->CheckConfigurationIsBiDirSwb(
+        config);
   }
 
   void UpdateSupportedBroadcastConfig(
@@ -700,7 +716,8 @@ struct codec_manager_impl {
                                            adsp_capabilities)) {
           LOG(INFO) << "Offload supported conf, context type: " << (int)ctx_type
                     << ", settings -> " << software_audio_set_conf->name;
-          if (AudioSetConfigurationProvider::Get()
+          if (dual_bidirection_swb_supported_ &&
+              AudioSetConfigurationProvider::Get()
                   ->CheckConfigurationIsDualBiDirSwb(
                       *software_audio_set_conf)) {
             offload_dual_bidirection_swb_supported_ = true;
@@ -717,6 +734,7 @@ struct codec_manager_impl {
   CodecLocation codec_location_ = CodecLocation::HOST;
   bool offload_enable_ = false;
   bool offload_dual_bidirection_swb_supported_ = false;
+  bool dual_bidirection_swb_supported_ = false;
   types::BidirectionalPair<offloader_stream_maps_t> offloader_stream_maps;
   std::vector<le_audio::broadcast_offload_config> supported_broadcast_config;
   std::unordered_map<types::LeAudioContextType, AudioSetConfigurations>
@@ -770,12 +788,12 @@ types::CodecLocation CodecManager::GetCodecLocation(void) const {
   return pimpl_->codec_manager_impl_->GetCodecLocation();
 }
 
-bool CodecManager::IsOffloadDualBiDirSwbSupported(void) const {
+bool CodecManager::IsDualBiDirSwbSupported(void) const {
   if (!pimpl_->IsRunning()) {
     return false;
   }
 
-  return pimpl_->codec_manager_impl_->IsOffloadDualBiDirSwbSupported();
+  return pimpl_->codec_manager_impl_->IsDualBiDirSwbSupported();
 }
 
 std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
@@ -814,6 +832,15 @@ const AudioSetConfigurations* CodecManager::GetOffloadCodecConfig(
   }
 
   return nullptr;
+}
+
+bool CodecManager::CheckCodecConfigIsBiDirSwb(
+    const ::le_audio::set_configurations::AudioSetConfiguration& config) const {
+  if (pimpl_->IsRunning()) {
+    return pimpl_->codec_manager_impl_->CheckCodecConfigIsBiDirSwb(config);
+  }
+
+  return false;
 }
 
 broadcaster::BroadcastConfiguration CodecManager::GetBroadcastConfig(
