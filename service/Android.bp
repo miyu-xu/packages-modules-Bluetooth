@@ -68,6 +68,7 @@ java_defaults {
     ],
 
     libs: [
+        "bluetooth_flags_java_lib",
         "framework-annotations-lib",
         "framework-bluetooth-pre-jarjar",
         "framework-configinfrastructure",
@@ -81,7 +82,6 @@ java_defaults {
         "bluetooth-manager-service-proto-java-gen",
         "bluetooth-nano-protos",
         "bluetooth-proto-enums-java-gen",
-        "bluetooth_flags_java_lib",
         "modules-utils-shell-command-handler",
     ],
 
