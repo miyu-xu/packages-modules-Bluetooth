@@ -46,6 +46,30 @@
       },
       "revId": "708fa61871046c9e57ec53e0ab65d6d79f314e50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b129c89a_1752ebcf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-19T19:15:46Z",
+      "side": 1,
+      "message": "Thanks a lot, I will reland this CL after making sure the test is passing 🙏",
+      "parentUuid": "e75299f2_f8aadc23",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 103
+      },
+      "revId": "708fa61871046c9e57ec53e0ab65d6d79f314e50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
