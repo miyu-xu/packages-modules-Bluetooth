@@ -1649,7 +1649,6 @@ static void btif_dm_search_devices_evt(tBTA_DM_SEARCH_EVT event,
       }
     } break;
     case BTA_DM_GATT_OVER_LE_RES_EVT:
-    case BTA_DM_DID_RES_EVT:
     case BTA_DM_GATT_OVER_SDP_RES_EVT:
     default:
       LOG_WARN("Unhandled event:%s", bta_dm_search_evt_text(event).c_str());
@@ -2032,29 +2031,6 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
           BT_STATUS_SUCCESS, bd_addr, num_properties, prop);
     } break;
 
-    case BTA_DM_DID_RES_EVT: {
-      bt_property_t prop_did;
-      RawAddress& bd_addr = p_data->did_res.bd_addr;
-      bt_vendor_product_info_t vp_info;
-
-      vp_info.vendor_id_src = p_data->did_res.vendor_id_src;
-      vp_info.vendor_id = p_data->did_res.vendor_id;
-      vp_info.product_id = p_data->did_res.product_id;
-      vp_info.version = p_data->did_res.version;
-
-      prop_did.type = BT_PROPERTY_VENDOR_PRODUCT_INFO;
-      prop_did.val = &vp_info;
-      prop_did.len = sizeof(vp_info);
-
-      bt_status_t ret =
-          btif_storage_set_remote_device_property(&bd_addr, &prop_did);
-      ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed", ret);
-
-      /* Send the event to the BTIF */
-      GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
-          BT_STATUS_SUCCESS, bd_addr, 1, &prop_did);
-    } break;
-
     case BTA_DM_NAME_READ_EVT: {
       LOG_INFO("Skipping name read event - called on bad callback.");
     } break;
@@ -2063,6 +2039,30 @@ static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
       ASSERTC(0, "unhandled search services event", event);
     } break;
   }
+}
+
+void btif_on_did_received(RawAddress bd_addr, uint8_t vendor_id_src,
+                          uint16_t vendor_id, uint16_t product_id,
+                          uint16_t version) {
+  bt_property_t prop_did;
+  bt_vendor_product_info_t vp_info;
+
+  vp_info.vendor_id_src = vendor_id_src;
+  vp_info.vendor_id = vendor_id;
+  vp_info.product_id = product_id;
+  vp_info.version = version;
+
+  prop_did.type = BT_PROPERTY_VENDOR_PRODUCT_INFO;
+  prop_did.val = &vp_info;
+  prop_did.len = sizeof(vp_info);
+
+  bt_status_t ret =
+      btif_storage_set_remote_device_property(&bd_addr, &prop_did);
+  ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed", ret);
+
+  /* Send the event to the BTIF */
+  GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
+      BT_STATUS_SUCCESS, bd_addr, 1, &prop_did);
 }
 
 static void btif_dm_update_allowlisted_media_players() {
@@ -3070,7 +3070,8 @@ void btif_dm_get_remote_services(RawAddress remote_addr, const int transport) {
       base::StringPrintf("transport:%s", bt_transport_text(transport).c_str()));
 
   BTA_DmDiscover(remote_addr,
-                 service_discovery_callbacks{btif_dm_search_services_evt},
+                 service_discovery_callbacks{btif_dm_search_services_evt,
+                                             btif_on_did_received},
                  transport);
 }
 
