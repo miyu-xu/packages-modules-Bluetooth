@@ -16,6 +16,23 @@
       "message": "Looks good. Please just add unit test",
       "revId": "51cefb5614f05561c37a8943fb38fdd0f7caa704",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7b23af68_db99e571",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-19T17:45:00Z",
+      "side": 1,
+      "message": "lgtm, SetUnicastMonitorMode is behind the handover policy flag if I understand this correctly, could you add the bug id to commit message?",
+      "revId": "51cefb5614f05561c37a8943fb38fdd0f7caa704",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
