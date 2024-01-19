@@ -79,6 +79,7 @@ cc_binary {
         "libbluetooth_core_rs",
         "libbluetooth_crypto_toolbox",
         "libbluetooth_gd",
+        "libbluetooth_logger",
         "libbluetooth_rust_interop",
         "libbt-audio-hal-interface",
         "libbt-bta",
