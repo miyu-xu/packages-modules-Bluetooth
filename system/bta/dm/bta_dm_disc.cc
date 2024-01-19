@@ -332,7 +332,7 @@ static void bta_dm_discover(tBTA_DM_MSG* p_data) {
 
   bta_dm_gattc_register();
 
-  bta_dm_search_cb.p_search_cback = p_data->discover.p_cback;
+  bta_dm_search_cb.p_service_search_cback = p_data->discover.cback;
   bta_dm_search_cb.services_to_search = bta_dm_search_cb.services;
   bta_dm_search_cb.service_index = 0;
   bta_dm_search_cb.services_found = 0;
@@ -444,7 +444,8 @@ static void bta_dm_inq_cmpl(uint8_t num) {
   LOG_VERBOSE("bta_dm_inq_cmpl");
 
   data.inq_cmpl.num_resps = num;
-  bta_dm_search_cb.p_search_cback(BTA_DM_INQ_CMPL_EVT, &data);
+  bta_dm_search_cb.p_service_search_cback.p_search_cback(BTA_DM_INQ_CMPL_EVT,
+                                                         &data);
 
   bta_dm_search_cb.p_btm_inq_info =
       get_btm_client_interface().db.BTM_InqDbFirst();
@@ -480,7 +481,7 @@ static void bta_dm_remote_name_cmpl(const tBTA_DM_MSG* p_data) {
   }
 
   // Callback with this property
-  if (bta_dm_search_cb.p_search_cback != nullptr) {
+  if (bta_dm_search_cb.p_service_search_cback.p_search_cback != nullptr) {
     tBTA_DM_SEARCH search_data = {
         .disc_res =  // tBTA_DM_DISC_RES
         {
@@ -498,7 +499,8 @@ static void bta_dm_remote_name_cmpl(const tBTA_DM_MSG* p_data) {
     if (remote_name_msg.hci_status == HCI_SUCCESS) {
       bd_name_copy(search_data.disc_res.bd_name, remote_name_msg.bd_name);
     }
-    bta_dm_search_cb.p_search_cback(BTA_DM_NAME_READ_EVT, &search_data);
+    bta_dm_search_cb.p_service_search_cback.p_search_cback(BTA_DM_NAME_READ_EVT,
+                                                           &search_data);
   } else {
     LOG_WARN("Received remote name complete without callback");
   }
@@ -657,8 +659,8 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
                   BD_NAME_LEN + 1);
 
           result.disc_ble_res.services = &gatt_uuids;
-          bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_SDP_RES_EVT,
-                                          &result);
+          bta_dm_search_cb.p_service_search_cback.p_search_cback(
+              BTA_DM_GATT_OVER_SDP_RES_EVT, &result);
         }
       } else {
         /* SDP_DB_FULL means some records with the
@@ -725,7 +727,8 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
       result.did_res.vendor_id = di_record.rec.vendor;
       result.did_res.product_id = di_record.rec.product;
       result.did_res.version = di_record.rec.version;
-      bta_dm_search_cb.p_search_cback(BTA_DM_DID_RES_EVT, &result);
+      bta_dm_search_cb.p_service_search_cback.p_search_cback(BTA_DM_DID_RES_EVT,
+                                                             &result);
     }
 #endif
 
@@ -837,7 +840,8 @@ static void bta_dm_read_dis_cmpl(const RawAddress& addr,
     result.did_res.vendor_id = p_dis_value->pnp_id.vendor_id;
     result.did_res.product_id = p_dis_value->pnp_id.product_id;
     result.did_res.version = p_dis_value->pnp_id.product_version;
-    bta_dm_search_cb.p_search_cback(BTA_DM_DID_RES_EVT, &result);
+    bta_dm_search_cb.p_service_search_cback.p_search_cback(BTA_DM_DID_RES_EVT,
+                                                           &result);
   }
 
   bta_dm_execute_queued_request();
@@ -905,10 +909,12 @@ static void bta_dm_search_cmpl() {
   // send all result back to app
   if (send_gatt_results) {
     LOG_INFO("Sending GATT results to upper layer");
-    bta_dm_search_cb.p_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT, &result);
+    bta_dm_search_cb.p_service_search_cback.p_search_cback(
+        BTA_DM_GATT_OVER_LE_RES_EVT, &result);
   }
 
-  bta_dm_search_cb.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
+  bta_dm_search_cb.p_service_search_cback.p_search_cback(BTA_DM_DISC_CMPL_EVT,
+                                                         nullptr);
   bta_dm_search_cb.gatt_disc_active = false;
 
 #if TARGET_FLOSS
@@ -944,8 +950,8 @@ static void bta_dm_disc_result(tBTA_DM_MSG* p_data) {
   if (!is_gatt_over_ble && (bta_dm_search_cb.services &
                             ((BTA_ALL_SERVICE_MASK | BTA_USER_SERVICE_MASK) &
                              ~BTA_BLE_SERVICE_MASK)))
-    bta_dm_search_cb.p_search_cback(BTA_DM_DISC_RES_EVT,
-                                    &p_data->disc_result.result);
+    bta_dm_search_cb.p_service_search_cback.p_search_cback(
+        BTA_DM_DISC_RES_EVT, &p_data->disc_result.result);
 
   get_gatt_interface().BTA_GATTC_CancelOpen(0, bta_dm_search_cb.peer_bdaddr,
                                             true);
@@ -972,9 +978,9 @@ static void bta_dm_search_result(tBTA_DM_MSG* p_data) {
   if ((!bta_dm_search_cb.services) ||
       ((bta_dm_search_cb.services) &&
        (p_data->disc_result.result.disc_res.services))) {
-    if (bta_dm_search_cb.p_search_cback) {
-      bta_dm_search_cb.p_search_cback(BTA_DM_DISC_RES_EVT,
-                                      &p_data->disc_result.result);
+    if (bta_dm_search_cb.p_service_search_cback.p_search_cback) {
+      bta_dm_search_cb.p_service_search_cback.p_search_cback(
+          BTA_DM_DISC_RES_EVT, &p_data->disc_result.result);
     } else {
       LOG_WARN("Received search result without valid callback");
     }
@@ -1126,8 +1132,9 @@ static void bta_dm_search_clear_queue() {
  *
  ******************************************************************************/
 static void bta_dm_search_cancel_notify() {
-  if (bta_dm_search_cb.p_search_cback) {
-    bta_dm_search_cb.p_search_cback(BTA_DM_SEARCH_CANCEL_CMPL_EVT, NULL);
+  if (bta_dm_search_cb.p_service_search_cback.p_search_cback) {
+    bta_dm_search_cb.p_service_search_cback.p_search_cback(
+        BTA_DM_SEARCH_CANCEL_CMPL_EVT, NULL);
   }
   switch (bta_dm_search_get_state()) {
     case BTA_DM_SEARCH_ACTIVE:
@@ -1510,8 +1517,9 @@ static void bta_dm_inq_results_cb(tBTM_INQ_RESULTS* p_inq, const uint8_t* p_eir,
     result.inq_res.remt_name_not_required = false;
   }
 
-  if (bta_dm_search_cb.p_search_cback)
-    bta_dm_search_cb.p_search_cback(BTA_DM_INQ_RES_EVT, &result);
+  if (bta_dm_search_cb.p_service_search_cback.p_search_cback)
+    bta_dm_search_cb.p_service_search_cback.p_search_cback(BTA_DM_INQ_RES_EVT,
+                                                           &result);
 
   if (p_inq_info) {
     /* application indicates if it knows the remote name, inside the callback
@@ -2434,7 +2442,7 @@ void bta_dm_disc_stop_device_discovery() {
   bta_sys_sendmsg(p_msg);
 }
 
-void bta_dm_disc_start_service_discovery(tBTA_DM_SEARCH_CBACK* p_cback,
+void bta_dm_disc_start_service_discovery(service_discovery_callbacks cback,
                                          const RawAddress& bd_addr,
                                          tBT_TRANSPORT transport) {
   tBTA_DM_API_DISCOVER* p_msg =
@@ -2443,7 +2451,7 @@ void bta_dm_disc_start_service_discovery(tBTA_DM_SEARCH_CBACK* p_cback,
   p_msg->hdr.event = BTA_DM_API_DISCOVER_EVT;
   p_msg->bd_addr = bd_addr;
   p_msg->transport = transport;
-  p_msg->p_cback = p_cback;
+  p_msg->cback = cback;
 
   bta_sys_sendmsg(p_msg);
 }
