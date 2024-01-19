@@ -22,6 +22,30 @@
       },
       "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7a010008_1f8680dc",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-19T19:43:52Z",
+      "side": 1,
+      "message": "`get_local_supported_codecs` is using legacy controller, and `GetLocalSupportedBrEdrCodecIds` is using GD controller. \nlet @mylesgw@google.com to decide whether we want to keep it.",
+      "parentUuid": "f98518c8_3bc31e66",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 42
+      },
+      "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
