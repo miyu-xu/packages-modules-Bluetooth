@@ -51,6 +51,24 @@
       "parentUuid": "edd04164_9a1233cb",
       "revId": "227d812cd1b869de4f51ae4b118bc4c735dcbcae",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0b51a50f_d945fb07",
+        "filename": "system/bta/le_audio/client.cc",
+        "patchSetId": 9
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-19T14:07:33Z",
+      "side": 1,
+      "message": "After offline discussion, this should be handled by exposing available context types by server side.",
+      "parentUuid": "f9109a23_0ad03eb7",
+      "revId": "227d812cd1b869de4f51ae4b118bc4c735dcbcae",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
