@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6e9a639_df6c2c89",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-01-19T10:46:03Z",
+      "side": 1,
+      "message": "Hey Christine, I haven\u0027t added flag related flow yet since aosp/2912151 isn\u0027t merged yet, but I\u0027ve come up with a full fix for connection timeout and wanted to share it first. New status code GATT_CONNECTION_TIMEOUT is added and returned to the developer instead of 133, and within the native callback structure I also fixed the disconnection reason from unknown(255) -\u003e GATT_CONN_TIMEOUT.",
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
