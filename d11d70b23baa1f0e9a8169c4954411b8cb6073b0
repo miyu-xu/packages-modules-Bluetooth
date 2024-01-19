@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cb3d3f52_4fed27ce",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-19T01:30:11Z",
+      "side": 1,
+      "message": "Should it be clear to client what NADM prefix stands for? (here and elsewhere in this file)",
+      "range": {
+        "startLine": 60,
+        "startChar": 28,
+        "endLine": 60,
+        "endChar": 33
+      },
+      "revId": "d11d70b23baa1f0e9a8169c4954411b8cb6073b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
