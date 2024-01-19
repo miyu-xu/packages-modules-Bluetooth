@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f373995a_0b190120",
+        "filename": "framework/java/android/bluetooth/le/ChannelSoundingParams.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-19T00:24:09Z",
+      "side": 1,
+      "message": "Should this be ```line``` instead of ```light```. or is it correct as is?\n\nSame Q for line 81",
+      "range": {
+        "startLine": 74,
+        "startChar": 27,
+        "endLine": 74,
+        "endChar": 32
+      },
+      "revId": "0ed06903fc9fb3ab523ad3b9980402580823e281",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
