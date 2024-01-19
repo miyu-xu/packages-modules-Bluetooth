@@ -70,6 +70,24 @@
       "parentUuid": "adafe299_a73f8307",
       "revId": "d9700bf15cf2d87b14c68dcd7ee52c820c32b399",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "973870fa_180a51b1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-19T17:32:23Z",
+      "side": 1,
+      "message": "@poahlo@google.com have you tried rebasing the failing patch?",
+      "parentUuid": "5b286f97_16102c18",
+      "revId": "d9700bf15cf2d87b14c68dcd7ee52c820c32b399",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
