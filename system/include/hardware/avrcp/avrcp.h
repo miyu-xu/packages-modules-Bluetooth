@@ -16,11 +16,12 @@
 
 #pragma once
 
+#include <base/functional/callback_forward.h>
+#include <bluetooth/logger.h>
+
 #include <set>
 #include <string>
 #include <vector>
-
-#include <base/functional/callback_forward.h>
 
 #include "avrcp_common.h"
 #include "raw_address.h"
@@ -219,3 +220,9 @@ class ServiceInterface {
 
 }  // namespace avrcp
 }  // namespace bluetooth
+
+namespace fmt {
+template <>
+struct formatter<bluetooth::avrcp::PlayState>
+    : enum_formatter<bluetooth::avrcp::PlayState> {};
+}  // namespace fmt
