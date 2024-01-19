@@ -243,20 +243,20 @@ TEST_F(BtaDiscTest, bta_dm_disc_stop_device_discovery) {
 
 TEST_F(BtaDiscTest, bta_dm_disc_start_service_discovery__BT_TRANSPORT_AUTO) {
   bta_dm_disc_start_service_discovery(
-      {[](tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* p_data) {}}, kRawAddress,
-      BT_TRANSPORT_AUTO);
+      {[](tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* p_data) {}, nullptr},
+      kRawAddress, BT_TRANSPORT_AUTO);
 }
 
 TEST_F(BtaDiscTest, bta_dm_disc_start_service_discovery__BT_TRANSPORT_BR_EDR) {
   bta_dm_disc_start_service_discovery(
-      {[](tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* p_data) {}}, kRawAddress,
-      BT_TRANSPORT_BR_EDR);
+      {[](tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* p_data) {}, nullptr},
+      kRawAddress, BT_TRANSPORT_BR_EDR);
 }
 
 TEST_F(BtaDiscTest, bta_dm_disc_start_service_discovery__BT_TRANSPORT_LE) {
   bta_dm_disc_start_service_discovery(
-      {[](tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* p_data) {}}, kRawAddress,
-      BT_TRANSPORT_LE);
+      {[](tBTA_DM_SEARCH_EVT event, tBTA_DM_SEARCH* p_data) {}, nullptr},
+      kRawAddress, BT_TRANSPORT_LE);
 }
 
 TEST_F(BtaDiscTest, bta_dm_disc_stop_service_discovery__BT_TRANSPORT_AUTO) {
