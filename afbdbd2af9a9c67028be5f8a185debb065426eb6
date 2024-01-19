@@ -26,6 +26,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "7d6434eb_8e34ca1a",
+        "filename": "android/pandora/test/pairing/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-19T17:09:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da250c34_bd02f59c",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 14
+      },
+      "revId": "afbdbd2af9a9c67028be5f8a185debb065426eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "74e5fa35_ff8966d7",
         "filename": "android/pandora/test/pairing/smp_test.py",
         "patchSetId": 1
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-19T03:32:59Z",
       "side": 1,
       "message": "Please keep only the DRI as part of the OWNER file.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 14
+      },
+      "revId": "afbdbd2af9a9c67028be5f8a185debb065426eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0579e13e_aa1df3d2",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-19T17:09:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "69f1858a_c773e1fb",
       "range": {
         "startLine": 3,
         "startChar": 0,
