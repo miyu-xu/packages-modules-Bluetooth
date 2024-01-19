@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "da250c34_bd02f59c",
+        "filename": "android/pandora/test/pairing/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-01-19T03:32:59Z",
+      "side": 1,
+      "message": "Please keep only the DRI as part of the OWNER file.",
+      "range": {
+        "startLine": 2,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 14
+      },
+      "revId": "afbdbd2af9a9c67028be5f8a185debb065426eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "74e5fa35_ff8966d7",
@@ -14,6 +37,29 @@
       "writtenOn": "2024-01-18T22:26:26Z",
       "side": 1,
       "message": "Repo hooks forced these changes",
+      "revId": "afbdbd2af9a9c67028be5f8a185debb065426eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69f1858a_c773e1fb",
+        "filename": "framework/tests/bumble/src/android/bluetooth/pairing/OWNERS",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-01-19T03:32:59Z",
+      "side": 1,
+      "message": "Please keep only the DRI as part of the OWNER file.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 3,
+        "endChar": 14
+      },
       "revId": "afbdbd2af9a9c67028be5f8a185debb065426eb6",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
