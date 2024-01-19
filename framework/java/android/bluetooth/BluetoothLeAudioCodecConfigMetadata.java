@@ -29,12 +29,19 @@ import static android.bluetooth.BluetoothLeAudioCodecConfig.SAMPLE_RATE_8000;
 import static android.bluetooth.BluetoothLeAudioCodecConfig.SAMPLE_RATE_NONE;
 import static android.bluetooth.BluetoothLeAudioCodecConfig.SampleRate;
 
+import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
 import android.annotation.Nullable;
 import android.annotation.SystemApi;
+import android.bluetooth.BluetoothLeAudioCodecConfig.FrameDuration;
+import android.bluetooth.BluetoothLeAudioCodecConfig.SampleRate;
 import android.bluetooth.BluetoothUtils.TypeValueEntry;
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import com.android.bluetooth.flags.FeatureFlags;
+import com.android.bluetooth.flags.FeatureFlagsImpl;
+import com.android.bluetooth.flags.Flags;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -61,6 +68,8 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
     private final int mOctetsPerFrame;
     private final byte[] mRawMetadata;
 
+    private final FeatureFlags mFeatureFlags = new FeatureFlagsImpl();
+
     /** Audio codec sampling frequency from metadata. */
     private static final int CONFIG_SAMPLING_FREQUENCY_UNKNOWN = 0;
 
@@ -70,6 +79,27 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
     private static final int CONFIG_SAMPLING_FREQUENCY_32000 = 0x06;
     private static final int CONFIG_SAMPLING_FREQUENCY_44100 = 0x07;
     private static final int CONFIG_SAMPLING_FREQUENCY_48000 = 0x08;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_SAMPLING_FREQUENCIES)
+    private static final int CONFIG_SAMPLING_FREQUENCY_11025 = 0x09;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_SAMPLING_FREQUENCIES)
+    private static final int CONFIG_SAMPLING_FREQUENCY_22050 = 0x0a;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_SAMPLING_FREQUENCIES)
+    private static final int CONFIG_SAMPLING_FREQUENCY_88200 = 0x0b;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_SAMPLING_FREQUENCIES)
+    private static final int CONFIG_SAMPLING_FREQUENCY_96000 = 0x0c;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_SAMPLING_FREQUENCIES)
+    private static final int CONFIG_SAMPLING_FREQUENCY_176400 = 0x0d;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_SAMPLING_FREQUENCIES)
+    private static final int CONFIG_SAMPLING_FREQUENCY_192000 = 0x0e;
+
+    @FlaggedApi(Flags.FLAG_LEAUDIO_ADD_SAMPLING_FREQUENCIES)
+    private static final int CONFIG_SAMPLING_FREQUENCY_384000 = 0x0f;
 
     /** Audio codec config frame duration from metadata. */
     private static final int CONFIG_FRAME_DURATION_UNKNOWN = -1;
@@ -316,6 +346,8 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
         private int mOctetsPerFrame = 0;
         private byte[] mRawMetadata = null;
 
+        private final FeatureFlags mFeatureFlags = new FeatureFlagsImpl();
+
         /**
          * Create an empty builder.
          *
@@ -375,7 +407,20 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
                     && sampleRate != SAMPLE_RATE_32000
                     && sampleRate != SAMPLE_RATE_44100
                     && sampleRate != SAMPLE_RATE_48000) {
-                throw new IllegalArgumentException("Invalid sample rate " + sampleRate);
+
+                if (mFeatureFlags.leaudioAddSamplingFrequencies()) {
+                    if (sampleRate != BluetoothLeAudioCodecConfig.SAMPLE_RATE_11025
+                            && sampleRate != BluetoothLeAudioCodecConfig.SAMPLE_RATE_22050
+                            && sampleRate != BluetoothLeAudioCodecConfig.SAMPLE_RATE_88200
+                            && sampleRate != BluetoothLeAudioCodecConfig.SAMPLE_RATE_96000
+                            && sampleRate != BluetoothLeAudioCodecConfig.SAMPLE_RATE_176400
+                            && sampleRate != BluetoothLeAudioCodecConfig.SAMPLE_RATE_192000
+                            && sampleRate != BluetoothLeAudioCodecConfig.SAMPLE_RATE_384000) {
+                        throw new IllegalArgumentException("Invalid sample rate " + sampleRate);
+                    }
+                } else {
+                    throw new IllegalArgumentException("Invalid sample rate " + sampleRate);
+                }
             }
             mSampleRate = sampleRate;
             return this;
@@ -490,6 +535,8 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
     }
 
     private static int convertToSampleRateBitset(int samplingFrequencyValue) {
+        FeatureFlags featureFlags = new FeatureFlagsImpl();
+
         switch (samplingFrequencyValue) {
             case CONFIG_SAMPLING_FREQUENCY_8000:
                 return SAMPLE_RATE_8000;
@@ -504,11 +551,31 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
             case CONFIG_SAMPLING_FREQUENCY_48000:
                 return SAMPLE_RATE_48000;
             default:
+                if (featureFlags.leaudioAddSamplingFrequencies()) {
+                    switch (samplingFrequencyValue) {
+                        case CONFIG_SAMPLING_FREQUENCY_11025:
+                            return BluetoothLeAudioCodecConfig.SAMPLE_RATE_11025;
+                        case CONFIG_SAMPLING_FREQUENCY_22050:
+                            return BluetoothLeAudioCodecConfig.SAMPLE_RATE_22050;
+                        case CONFIG_SAMPLING_FREQUENCY_88200:
+                            return BluetoothLeAudioCodecConfig.SAMPLE_RATE_88200;
+                        case CONFIG_SAMPLING_FREQUENCY_96000:
+                            return BluetoothLeAudioCodecConfig.SAMPLE_RATE_96000;
+                        case CONFIG_SAMPLING_FREQUENCY_176400:
+                            return BluetoothLeAudioCodecConfig.SAMPLE_RATE_176400;
+                        case CONFIG_SAMPLING_FREQUENCY_192000:
+                            return BluetoothLeAudioCodecConfig.SAMPLE_RATE_192000;
+                        case CONFIG_SAMPLING_FREQUENCY_384000:
+                            return BluetoothLeAudioCodecConfig.SAMPLE_RATE_384000;
+                    }
+                }
                 return SAMPLE_RATE_NONE;
         }
     }
 
     private static int convertToSamplingFrequencyValue(int sampleRateBitSet) {
+        FeatureFlags featureFlags = new FeatureFlagsImpl();
+
         switch (sampleRateBitSet) {
             case SAMPLE_RATE_8000:
                 return CONFIG_SAMPLING_FREQUENCY_8000;
@@ -523,6 +590,24 @@ public final class BluetoothLeAudioCodecConfigMetadata implements Parcelable {
             case SAMPLE_RATE_48000:
                 return CONFIG_SAMPLING_FREQUENCY_48000;
             default:
+                if (featureFlags.leaudioAddSamplingFrequencies()) {
+                    switch (sampleRateBitSet) {
+                        case BluetoothLeAudioCodecConfig.SAMPLE_RATE_11025:
+                            return CONFIG_SAMPLING_FREQUENCY_11025;
+                        case BluetoothLeAudioCodecConfig.SAMPLE_RATE_22050:
+                            return CONFIG_SAMPLING_FREQUENCY_22050;
+                        case BluetoothLeAudioCodecConfig.SAMPLE_RATE_88200:
+                            return CONFIG_SAMPLING_FREQUENCY_88200;
+                        case BluetoothLeAudioCodecConfig.SAMPLE_RATE_96000:
+                            return CONFIG_SAMPLING_FREQUENCY_96000;
+                        case BluetoothLeAudioCodecConfig.SAMPLE_RATE_176400:
+                            return CONFIG_SAMPLING_FREQUENCY_176400;
+                        case BluetoothLeAudioCodecConfig.SAMPLE_RATE_192000:
+                            return CONFIG_SAMPLING_FREQUENCY_192000;
+                        case BluetoothLeAudioCodecConfig.SAMPLE_RATE_384000:
+                            return CONFIG_SAMPLING_FREQUENCY_384000;
+                    }
+                }
                 return CONFIG_SAMPLING_FREQUENCY_UNKNOWN;
         }
     }
