@@ -82,15 +82,18 @@ BluetoothAudioCtrlAck HfpTransport::StartRequest() {
 
   /* Post start SCO event and wait for sco to open */
   hfp_pending_cmd_ = HFP_CTRL_CMD_START;
+  // as ConnectAudio only queues the command into main thread, keep PENDING
+  // status
   auto status =
       bluetooth::headset::GetInterface()->ConnectAudio(&cb->peer_addr, 0);
-  hfp_pending_cmd_ = HFP_CTRL_CMD_NONE;
   LOG(INFO) << __func__ << ": ConnectAudio status = " << status << " - "
             << bt_status_text(status).c_str();
   auto ctrl_ack = status_to_ack_map.find(status);
-  if (ctrl_ack == status_to_ack_map.end())
+  if (status == BT_STATUS_NOT_READY || status == BT_STATUS_FAIL ||
+      ctrl_ack == status_to_ack_map.end()) {
     return BluetoothAudioCtrlAck::FAILURE;
-  return ctrl_ack->second;
+  }
+  return BluetoothAudioCtrlAck::PENDING;
 }
 
 void HfpTransport::StopRequest() {
