@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b07c79ff_ba0453af",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-01-19T09:56:09Z",
+      "side": 1,
+      "message": "So are all of these functions intended to match only vendor codecs?\n```\nstd::optional\u003cbtav_a2dp_codec_index_t\u003e ProviderInfo::SourceCodecIndex(CodecId const\u0026 codec_id);\nstd::optional\u003cbtav_a2dp_codec_index_t\u003e ProviderInfo::SourceCodecIndex(uint32_t vendor_id, uint16_t codec_id);\nstd::optional\u003cbtav_a2dp_codec_index_t\u003e ProviderInfo::SourceCodecIndex(uint8_t const* codec_info);\n```\nIn my opinion if they have the same name they should behave the same. Please just clarify which of the two ways they should behave - all codecs or just vendor. In any other case they should be renamed.",
+      "parentUuid": "d5d5cbe0_6d6183bb",
+      "range": {
+        "startLine": 237,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 14
+      },
+      "revId": "7be224c16c357b1c23b538c015e6c0fa79338cba",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "a9260634_21f47848",
         "filename": "system/audio_hal_interface/aidl/provider_info.cc",
         "patchSetId": 3
