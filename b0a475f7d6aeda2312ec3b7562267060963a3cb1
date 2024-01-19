@@ -1,6 +1,52 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "99457c66_99973187",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-19T18:24:19Z",
+      "side": 1,
+      "message": "If this is returned to developer, shouldn\u0027t there be a Java layer/API change associated with this?",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 50
+      },
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "43ae956e_7e0f83cf",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-19T18:24:19Z",
+      "side": 1,
+      "message": "Please add a test for this.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "e6e9a639_df6c2c89",
@@ -14,6 +60,47 @@
       "writtenOn": "2024-01-19T10:46:03Z",
       "side": 1,
       "message": "Hey Christine, I haven\u0027t added flag related flow yet since aosp/2912151 isn\u0027t merged yet, but I\u0027ve come up with a full fix for connection timeout and wanted to share it first. New status code GATT_CONNECTION_TIMEOUT is added and returned to the developer instead of 133, and within the native callback structure I also fixed the disconnection reason from unknown(255) -\u003e GATT_CONN_TIMEOUT.",
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e35e1630_af4740da",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-19T18:24:19Z",
+      "side": 1,
+      "message": "Hey Kihong, thanks for the patch. \n\nYou should be able to apply this patch on top of the flag CL and still include the flag usage here prior to merging the other (just need to make sure the flag patch is merged separately first for the automatic dr no).",
+      "parentUuid": "e6e9a639_df6c2c89",
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c7501370_73eea5c4",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-19T18:24:19Z",
+      "side": 1,
+      "message": "Can you explain the change here a bit more?\n\nGATT disconnect reason defined here: https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/include/gatt_api.h;l\u003d268?q\u003dhci_err_connection_tout%20gatt\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain\n\n0x08 maps to the HCI status code returned in events from the controller: https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/include/hci_error_code.h;drc\u003d55d5fd8850e60ad5818b3d6c1e60de450bb5d52e;l\u003d38\n\nI\u0027m wondering if it makes sense to deduplicate this from that event and define a separate event in tGATT_DISCONN_REASON for this scenario. WDYT?",
+      "range": {
+        "startLine": 466,
+        "startChar": 55,
+        "endLine": 466,
+        "endChar": 59
+      },
       "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
