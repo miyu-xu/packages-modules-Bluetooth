@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df214bf7_6442b8e5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-19T17:46:15Z",
+      "side": 1,
+      "message": "This requires aosp/2898732, right?  That CL was reverted last night :(",
+      "revId": "6150a239fbb3cde3ba2d32a4094f53cd730bf202",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
