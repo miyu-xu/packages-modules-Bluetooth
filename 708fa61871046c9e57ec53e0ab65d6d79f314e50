@@ -22,6 +22,30 @@
       },
       "revId": "708fa61871046c9e57ec53e0ab65d6d79f314e50",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e75299f2_f8aadc23",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1859275
+      },
+      "writtenOn": "2024-01-19T07:35:16Z",
+      "side": 1,
+      "message": "Updated with bug number and failing test case",
+      "parentUuid": "1183e19f_ab21b969",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 103
+      },
+      "revId": "708fa61871046c9e57ec53e0ab65d6d79f314e50",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
