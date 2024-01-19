@@ -46,6 +46,30 @@
       },
       "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e86c13af_245e4269",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-19T20:00:19Z",
+      "side": 1,
+      "message": "Thanks for flagging this.  I have a series of CLs getting rid of the legacy controller, so if we can use that instead, it would be nicer. CL #2894931",
+      "parentUuid": "7a010008_1f8680dc",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 42
+      },
+      "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
