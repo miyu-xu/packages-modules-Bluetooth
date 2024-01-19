@@ -73,11 +73,18 @@ public final class BluetoothLeAudioCodecConfig implements Parcelable {
             value = {
                 SAMPLE_RATE_NONE,
                 SAMPLE_RATE_8000,
+                SAMPLE_RATE_11025,
                 SAMPLE_RATE_16000,
+                SAMPLE_RATE_22050,
                 SAMPLE_RATE_24000,
                 SAMPLE_RATE_32000,
                 SAMPLE_RATE_44100,
-                SAMPLE_RATE_48000
+                SAMPLE_RATE_48000,
+                SAMPLE_RATE_88200,
+                SAMPLE_RATE_96000,
+                SAMPLE_RATE_176400,
+                SAMPLE_RATE_192000,
+                SAMPLE_RATE_384000
             })
     @Retention(RetentionPolicy.SOURCE)
     public @interface SampleRate {}
@@ -85,15 +92,21 @@ public final class BluetoothLeAudioCodecConfig implements Parcelable {
     /**
      * Codec sample rate 0 Hz. Default value used for codec sample rate. Values are the bit mask as
      * defined in the Bluetooth Assigned Numbers, Generic Audio, Supported_Sampling_Frequencies
-     * table Note: We use only part of it.
+     * table.
      */
     public static final int SAMPLE_RATE_NONE = 0;
 
     /** Codec sample rate 8000 Hz. */
     public static final int SAMPLE_RATE_8000 = 0x01 << 0;
 
+    /** Codec sample rate 11025 Hz. */
+    public static final int SAMPLE_RATE_11025 = 0x01 << 1;
+
     /** Codec sample rate 16000 Hz. */
     public static final int SAMPLE_RATE_16000 = 0x01 << 2;
+
+    /** Codec sample rate 22050 Hz. */
+    public static final int SAMPLE_RATE_22050 = 0x01 << 3;
 
     /** Codec sample rate 24000 Hz. */
     public static final int SAMPLE_RATE_24000 = 0x01 << 4;
@@ -106,6 +119,21 @@ public final class BluetoothLeAudioCodecConfig implements Parcelable {
 
     /** Codec sample rate 48000 Hz. */
     public static final int SAMPLE_RATE_48000 = 0x01 << 7;
+
+    /** Codec sample rate 88200 Hz. */
+    public static final int SAMPLE_RATE_88200 = 0x01 << 8;
+
+    /** Codec sample rate 96000 Hz. */
+    public static final int SAMPLE_RATE_96000 = 0x01 << 9;
+
+    /** Codec sample rate 176400 Hz. */
+    public static final int SAMPLE_RATE_176400 = 0x01 << 10;
+
+    /** Codec sample rate 192000 Hz. */
+    public static final int SAMPLE_RATE_192000 = 0x01 << 11;
+
+    /** Codec sample rate 384000 Hz. */
+    public static final int SAMPLE_RATE_384000 = 0x01 << 12;
 
     /** @hide */
     @IntDef(
