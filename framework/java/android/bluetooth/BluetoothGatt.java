@@ -128,6 +128,9 @@ public final class BluetoothGatt implements BluetoothProfile {
     /** A remote device connection is congested. */
     public static final int GATT_CONNECTION_CONGESTED = 0x8f;
 
+    /** GATT connection timed out after 30 seconds */
+    public static final int GATT_CONNECTION_TIMEOUT = 0x93;
+
     /** A GATT operation failed, errors other than the above */
     public static final int GATT_FAILURE = 0x101;
 
