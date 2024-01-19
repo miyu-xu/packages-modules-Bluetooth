@@ -22,6 +22,30 @@
       },
       "revId": "d11d70b23baa1f0e9a8169c4954411b8cb6073b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6b953f33_71c22065",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1987836
+      },
+      "writtenOn": "2024-01-19T18:07:58Z",
+      "side": 1,
+      "message": "NADM stands for Normalized Attack Detection Metric. The reported distance (via different CS modes) can come with the assertion of attack level for upper level application.",
+      "parentUuid": "cb3d3f52_4fed27ce",
+      "range": {
+        "startLine": 60,
+        "startChar": 28,
+        "endLine": 60,
+        "endChar": 33
+      },
+      "revId": "d11d70b23baa1f0e9a8169c4954411b8cb6073b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
