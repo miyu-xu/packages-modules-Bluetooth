@@ -20,9 +20,10 @@
 #define LOG_TAG "bt_btif_a2dp_source"
 #define ATRACE_TAG ATRACE_TAG_AUDIO
 
-#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 #include <base/run_loop.h>
+
+#include "android_bluetooth_flags.h"
 #ifdef __ANDROID__
 #include <cutils/trace.h>
 #endif

@@ -15,12 +15,12 @@
  */
 #include "hci/distance_measurement_manager.h"
 
-#include <android_bluetooth_flags.h>
 #include <math.h>
 
 #include <complex>
 #include <unordered_map>
 
+#include "android_bluetooth_flags.h"
 #include "common/strings.h"
 #include "hci/acl_manager.h"
 #include "hci/distance_measurement_interface.h"

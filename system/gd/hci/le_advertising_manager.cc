@@ -15,12 +15,11 @@
  */
 #include "hci/le_advertising_manager.h"
 
-#include <android_bluetooth_flags.h>
-
 #include <iterator>
 #include <memory>
 #include <mutex>
 
+#include "android_bluetooth_flags.h"
 #include "common/init_flags.h"
 #include "common/strings.h"
 #include "hardware/ble_advertiser.h"

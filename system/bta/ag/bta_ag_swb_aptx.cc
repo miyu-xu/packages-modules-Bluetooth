@@ -16,11 +16,11 @@
 
 #include "bta_ag_swb_aptx.h"
 
-#include <android_bluetooth_flags.h>
 #include <android_bluetooth_sysprop.h>
 #include <string.h>
 #include <unistd.h>
 
+#include "android_bluetooth_flags.h"
 #include "bta/ag/bta_ag_int.h"
 #include "common/strings.h"
 #include "stack/include/btm_api_types.h"

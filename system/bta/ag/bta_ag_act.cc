@@ -22,12 +22,12 @@
  *
  ******************************************************************************/
 
-#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 
 #include <cstdint>
 #include <cstring>
 
+#include "android_bluetooth_flags.h"
 #include "bta/ag/bta_ag_int.h"
 #include "bta/include/bta_dm_api.h"
 #include "bta/include/bta_hfp_api.h"
