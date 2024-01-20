@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <base/strings/string_number_conversions.h>
 #include <lc3.h>
@@ -24,6 +23,7 @@
 #include <mutex>
 #include <optional>
 
+#include "android_bluetooth_flags.h"
 #include "audio_hal_client/audio_hal_client.h"
 #include "audio_hal_interface/le_audio_software.h"
 #include "bta/csis/csis_types.h"

@@ -25,7 +25,6 @@
 
 #define LOG_TAG "bt_bta_dm"
 
-#include <android_bluetooth_flags.h>
 #include <android_bluetooth_sysprop.h>
 #include <base/location.h>
 #include <base/logging.h>
@@ -33,6 +32,7 @@
 #include <cstdint>
 #include <vector>
 
+#include "android_bluetooth_flags.h"
 #include "bta/dm/bta_dm_disc.h"
 #include "bta/dm/bta_dm_gatt_client.h"
 #include "bta/dm/bta_dm_int.h"

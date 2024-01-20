@@ -19,11 +19,11 @@
 #include "client_interface_aidl.h"
 
 #include <android/binder_manager.h>
-#include <android_bluetooth_flags.h>
 
 #include <thread>
 #include <vector>
 
+#include "android_bluetooth_flags.h"
 #include "include/check.h"
 
 namespace bluetooth {

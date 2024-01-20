@@ -18,9 +18,9 @@
  *
  ******************************************************************************/
 
-#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 
+#include "android_bluetooth_flags.h"
 #include "audio_hal_client.h"
 #include "audio_hal_interface/le_audio_software.h"
 #include "audio_source_hal_asrc.h"

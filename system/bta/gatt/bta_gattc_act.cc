@@ -25,11 +25,11 @@
 
 #define LOG_TAG "bt_bta_gattc"
 
-#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <base/logging.h>
 #include <base/strings/stringprintf.h>
 
+#include "android_bluetooth_flags.h"
 #include "bta/gatt/bta_gattc_int.h"
 #include "bta/include/bta_api.h"
 #include "btif/include/btif_debug_conn.h"

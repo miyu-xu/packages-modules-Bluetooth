@@ -18,12 +18,12 @@
 
 #define LOG_TAG "bta_ag_cmd"
 
-#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 
 #include <cstdint>
 #include <cstring>
 
+#include "android_bluetooth_flags.h"
 #include "bta/ag/bta_ag_at.h"
 #include "bta/ag/bta_ag_int.h"
 #include "bta/include/bta_ag_api.h"

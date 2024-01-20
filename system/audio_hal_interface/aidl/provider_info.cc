@@ -19,7 +19,6 @@
 #include "provider_info.h"
 
 #include <android/binder_manager.h>
-#include <android_bluetooth_flags.h>
 
 #include <optional>
 #include <vector>
@@ -31,6 +30,7 @@
 #include "a2dp_vendor_aptx_hd_constants.h"
 #include "a2dp_vendor_ldac_constants.h"
 #include "a2dp_vendor_opus_constants.h"
+#include "android_bluetooth_flags.h"
 #include "client_interface_aidl.h"
 #include "osi/include/log.h"
 

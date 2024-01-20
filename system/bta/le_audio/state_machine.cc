@@ -17,11 +17,11 @@
 
 #include "state_machine.h"
 
-#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <base/functional/callback.h>
 #include <base/strings/string_number_conversions.h>
 
+#include "android_bluetooth_flags.h"
 #include "bta_gatt_queue.h"
 #include "btm_iso_api.h"
 #include "client_parser.h"

@@ -27,7 +27,6 @@
 
 #define LOG_TAG "bt_btif_hf"
 
-#include <android_bluetooth_flags.h>
 #include <android_bluetooth_sysprop.h>
 #include <base/functional/callback.h>
 #include <base/logging.h>
@@ -36,6 +35,7 @@
 #include <cstdint>
 #include <string>
 
+#include "android_bluetooth_flags.h"
 #include "bta/include/bta_ag_api.h"
 #include "bta/include/utl.h"
 #include "bta_ag_swb_aptx.h"

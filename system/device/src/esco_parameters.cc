@@ -18,8 +18,7 @@
 
 #include "device/include/esco_parameters.h"
 
-#include <android_bluetooth_flags.h>
-
+#include "android_bluetooth_flags.h"
 #include "base/logging.h"
 #include "check.h"
 #include "hci/controller.h"
