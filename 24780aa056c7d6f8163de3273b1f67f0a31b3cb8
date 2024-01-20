@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0d3dba89_d634f542",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-20T01:37:03Z",
+      "side": 1,
+      "message": "I prefer aosp/2919318 instead as this what match our current usage of the library",
+      "revId": "24780aa056c7d6f8163de3273b1f67f0a31b3cb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
