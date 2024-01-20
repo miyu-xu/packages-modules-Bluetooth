@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "060bd38a_539f2fba",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 11
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-20T00:40:37Z",
+      "side": 1,
+      "message": "Can this be more obvious that it\u0027s the old behavior (returning 1 instead of 0) ?",
+      "range": {
+        "startLine": 323,
+        "startChar": 17,
+        "endLine": 323,
+        "endChar": 34
+      },
+      "revId": "42dceeccde38c567ae757df3c54261b84447a96c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

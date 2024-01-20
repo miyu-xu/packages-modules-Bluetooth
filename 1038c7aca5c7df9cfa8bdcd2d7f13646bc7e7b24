@@ -48,6 +48,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "05de6cd0_9319c8d8",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 337,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-20T00:40:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "f74f6f36_f77ae90e",
+      "range": {
+        "startLine": 337,
+        "startChar": 2,
+        "endLine": 337,
+        "endChar": 7
+      },
+      "revId": "1038c7aca5c7df9cfa8bdcd2d7f13646bc7e7b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "31906fd7_d4201815",
@@ -85,6 +109,30 @@
       "side": 1,
       "message": "IMO, abort should be used only when the Bluetooth is unusable. This failure does not affect other usages like audio, phone call, etc.",
       "parentUuid": "31906fd7_d4201815",
+      "range": {
+        "startLine": 350,
+        "startChar": 18,
+        "endLine": 350,
+        "endChar": 49
+      },
+      "revId": "1038c7aca5c7df9cfa8bdcd2d7f13646bc7e7b24",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "93173cb8_af67c43e",
+        "filename": "system/btif/co/bta_hh_co.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-20T00:40:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "bfaf45bf_a7649187",
       "range": {
         "startLine": 350,
         "startChar": 18,
