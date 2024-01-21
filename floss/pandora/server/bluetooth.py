@@ -22,6 +22,7 @@ from floss.pandora.floss import advertising_client
 from floss.pandora.floss import manager_client
 from floss.pandora.floss import qa_client
 from floss.pandora.floss import scanner_client
+from floss.pandora.floss import socket_manager
 from floss.pandora.floss import gatt_client
 from floss.pandora.floss import gatt_server
 from floss.pandora.floss import floss_enums
@@ -67,6 +68,7 @@ class Bluetooth(object):
         self.qa_client = qa_client.FlossQAClient(self.bus, self.DEFAULT_ADAPTER)
         self.gatt_client = gatt_client.FlossGattClient(self.bus, self.DEFAULT_ADAPTER)
         self.gatt_server = gatt_server.FlossGattServer(self.bus, self.DEFAULT_ADAPTER)
+        self.socket_manager = socket_manager.FlossSocketManagerClient(self.bus, self.DEFAULT_ADAPTER)
 
     def __del__(self):
         if not self.is_clean:
@@ -136,6 +138,8 @@ class Bluetooth(object):
             return False
         if not self.gatt_server.register_server(self.FAKE_GATT_APP_ID, False):
             logging.error('gatt_server: Failed to register callbacks')
+        if not self.socket_manager.register_callbacks():
+            logging.error('socket_manager: Failed to register callbacks')
             return False
         return True
 
@@ -150,6 +154,7 @@ class Bluetooth(object):
             self.qa_client.has_proxy(),
             self.gatt_client.has_proxy(),
             self.gatt_server.has_proxy(),
+            self.socket_manager.has_proxy()
         ])
 
         if not proxy_ready:
@@ -185,6 +190,7 @@ class Bluetooth(object):
             self.qa_client = qa_client.FlossQAClient(self.bus, default_adapter)
             self.gatt_client = gatt_client.FlossGattClient(self.bus, default_adapter)
             self.gatt_server = gatt_server.FlossGattServer(self.bus, default_adapter)
+            self.socket_manager = socket_manager.FlossSocketManagerClient(self.bus, default_adapter)
 
             try:
                 utils.poll_for_condition(
@@ -360,3 +366,17 @@ class Bluetooth(object):
             logging.error('Failed to get connection state for address: %s', address)
             return False
         return connection_state > floss_enums.BtConnectionState.CONNECTED_ONLY
+
+    def create_insecure_rfcomm_socket_to_service_record(self, address, uuid):
+        name = "Test device"
+        device = self.socket_manager.make_dbus_device(address, name)
+        return self.socket_manager.create_insecure_rfcomm_socket_to_service_record(device, uuid)
+
+    def listen_using_insecure_rfcomm_with_service_record(self, name, uuid):
+        return self.socket_manager.listen_using_insecure_rfcomm_with_service_record(name, uuid)
+
+    def accept(self, socket_id, timeout_ms=None):
+        return self.socket_manager.accept(socket_id, timeout_ms)
+
+    def close(self, socket_id):
+        return self.socket_manager.close(socket_id)
