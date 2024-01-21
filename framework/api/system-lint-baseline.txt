@@ -43,3 +43,22 @@ BroadcastBehavior: android.bluetooth.BluetoothDevice#ACTION_SWITCH_BUFFER_SIZE:
     Field 'ACTION_SWITCH_BUFFER_SIZE' is missing @BroadcastBehavior
 BroadcastBehavior: android.bluetooth.BluetoothDevice#ACTION_UUID:
     Field 'ACTION_UUID' is missing @BroadcastBehavior
+
+
+MissingNullability: android.bluetooth.BluetoothGattCallback#onSubrateChange(android.bluetooth.BluetoothGatt, int, int, int, int, int) parameter #0:
+    Missing nullability on parameter `gatt` in method `onSubrateChange`
+
+
+UnflaggedApi: android.bluetooth.BluetoothGatt#SUBRATE_REQUEST_MODE_BALANCED:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothGatt.SUBRATE_REQUEST_MODE_BALANCED
+UnflaggedApi: android.bluetooth.BluetoothGatt#SUBRATE_REQUEST_MODE_HIGH:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothGatt.SUBRATE_REQUEST_MODE_HIGH
+UnflaggedApi: android.bluetooth.BluetoothGatt#SUBRATE_REQUEST_MODE_LOW_POWER:
+    New API must be flagged with @FlaggedApi: field android.bluetooth.BluetoothGatt.SUBRATE_REQUEST_MODE_LOW_POWER
+UnflaggedApi: android.bluetooth.BluetoothGatt#bleSubrateRequest(int, int, int, int, int):
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothGatt.bleSubrateRequest(int,int,int,int,int)
+UnflaggedApi: android.bluetooth.BluetoothGatt#requestSubrateMode(int):
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothGatt.requestSubrateMode(int)
+UnflaggedApi: android.bluetooth.BluetoothGattCallback#onSubrateChange(android.bluetooth.BluetoothGatt, int, int, int, int, int):
+    New API must be flagged with @FlaggedApi: method android.bluetooth.BluetoothGattCallback.onSubrateChange(android.bluetooth.BluetoothGatt,int,int,int,int,int)
+UnflaggedApi: android.bluetooth.BluetoothHapClient#PRESET_INDEX_UNAVAILABLE:
