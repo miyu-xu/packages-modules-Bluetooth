@@ -16,6 +16,29 @@
       "message": "In settings, we have one place to control all LEA profile connection policies and BASS is being set there.\nI don\u0027t feel it\u0027s necessary to add it here, added more details in the task comment.",
       "revId": "98e119bded0042329410d3d3b53f784200b41412",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "55f5c6e1_bcfb44fd",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3139,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-22T19:33:18Z",
+      "side": 1,
+      "message": "@rongxuan@google.com : Shouldn\u0027t this be called after checking for `isBroadcastEnabled()` ?",
+      "range": {
+        "startLine": 3139,
+        "startChar": 46,
+        "endLine": 3139,
+        "endChar": 66
+      },
+      "revId": "98e119bded0042329410d3d3b53f784200b41412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
