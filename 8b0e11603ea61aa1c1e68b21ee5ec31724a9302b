@@ -22,6 +22,30 @@
       },
       "revId": "8b0e11603ea61aa1c1e68b21ee5ec31724a9302b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de343eac_90d8eeff",
+        "filename": "framework/java/android/bluetooth/BluetoothAdapter.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 1725,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-22T22:50:30Z",
+      "side": 0,
+      "message": "Yes, mManagerService is built as final in the constructor and is set by a requireNonNull.\n\nChecking for nullity is a un-necessary step",
+      "parentUuid": "62b2f0c9_3bc9d8b9",
+      "range": {
+        "startLine": 1725,
+        "startChar": 23,
+        "endLine": 1725,
+        "endChar": 50
+      },
+      "revId": "8b0e11603ea61aa1c1e68b21ee5ec31724a9302b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
