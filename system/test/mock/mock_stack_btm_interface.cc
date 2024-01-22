@@ -114,17 +114,22 @@ struct btm_client_interface_t default_btm_client_interface = {
     .security = {
         .BTM_Sec_Init = []() {},
         .BTM_Sec_Free = []() {},
-        .BTM_SecAddDevice = BTM_SecAddDevice,
-        .BTM_SecAddRmtNameNotifyCallback =
-            [](tBTM_RMT_NAME_CALLBACK* /* p_callback */) -> bool {
-          return false;
-        },
-        .BTM_SecDeleteDevice = BTM_SecDeleteDevice,
+
         .BTM_SecRegister = [](const tBTM_APPL_INFO* /* p_cb_info */) -> bool {
           return false;
         },
-        .BTM_SecReadDevName = [](const RawAddress& /* bd_addr */)
-            -> const char* { return nullptr; },
+
+        .BTM_SecAddDevice = BTM_SecAddDevice,
+        .BTM_SecAddBleDevice = [](const RawAddress& /* bd_addr */,
+                                  tBT_DEVICE_TYPE /* dev_type */,
+                                  tBLE_ADDR_TYPE /* addr_type */) {},
+
+        .BTM_SecDeleteDevice = BTM_SecDeleteDevice,
+
+        .BTM_SecAddBleKey = [](const RawAddress& /* bd_addr */,
+                               tBTM_LE_KEY_VALUE* /* p_le_key */,
+                               tBTM_LE_KEY_TYPE /* key_type */) {},
+
         .BTM_SecBond = [](const RawAddress& /* bd_addr */,
                           tBLE_ADDR_TYPE /* addr_type */,
                           tBT_TRANSPORT /* transport */,
@@ -133,12 +138,7 @@ struct btm_client_interface_t default_btm_client_interface = {
         },
         .BTM_SecBondCancel = [](const RawAddress& /* bd_addr */)
             -> tBTM_STATUS { return BTM_SUCCESS; },
-        .BTM_SecAddBleKey = [](const RawAddress& /* bd_addr */,
-                               tBTM_LE_KEY_VALUE* /* p_le_key */,
-                               tBTM_LE_KEY_TYPE /* key_type */) {},
-        .BTM_SecAddBleDevice = [](const RawAddress& /* bd_addr */,
-                                  tBT_DEVICE_TYPE /* dev_type */,
-                                  tBLE_ADDR_TYPE /* addr_type */) {},
+
         .BTM_SecClearSecurityFlags = BTM_SecClearSecurityFlags,
         .BTM_SecClrService = [](uint8_t /* service_id */) -> uint8_t {
           return 0;
@@ -155,10 +155,7 @@ struct btm_client_interface_t default_btm_client_interface = {
         .BTM_SecConfirmReqReply = [](tBTM_STATUS /* res */,
                                      tBT_TRANSPORT /* transport */,
                                      const RawAddress /* bd_addr */) {},
-        .BTM_SecDeleteRmtNameNotifyCallback =
-            [](tBTM_RMT_NAME_CALLBACK* /* p_callback */) -> bool {
-          return false;
-        },
+
         .BTM_SetEncryption =
             [](const RawAddress& /* bd_addr */, tBT_TRANSPORT /* transport */,
                tBTM_SEC_CALLBACK* /* p_callback */, void* /* p_ref_data */,
@@ -178,6 +175,18 @@ struct btm_client_interface_t default_btm_client_interface = {
         .BTM_BleSirkConfirmDeviceReply = [](const RawAddress& /* bd_addr */,
                                             uint8_t /* res */) {},
         .BTM_GetSecurityMode = []() -> uint8_t { return 0; },
+
+        .BTM_SecReadDevName = [](const RawAddress& /* bd_addr */)
+            -> const char* { return nullptr; },
+
+        .BTM_SecAddRmtNameNotifyCallback =
+            [](tBTM_RMT_NAME_CALLBACK* /* p_callback */) -> bool {
+          return false;
+        },
+        .BTM_SecDeleteRmtNameNotifyCallback =
+            [](tBTM_RMT_NAME_CALLBACK* /* p_callback */) -> bool {
+          return false;
+        },
     },
     .ble = {
         .BTM_BleGetEnergyInfo =
