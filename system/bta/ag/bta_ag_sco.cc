@@ -261,8 +261,12 @@ static void bta_ag_sco_disc_cback(uint16_t sco_idx) {
         bta_ag_cb.sco.p_curr_scb->retransmission_effort_retries++;
         bta_ag_cb.sco.p_curr_scb->state = BTA_AG_SCO_CODEC_ST;
         LOG_WARN("eSCO/SCO failed to open, retry with retransmission_effort");
-      } else
+      } else {
         LOG_ERROR("eSCO/SCO failed to open, no more fall back");
+        if (IS_FLAG_ENABLED(is_sco_managed_by_audio)) {
+          hfp_offload_interface->CancelStreamingRequest();
+        }
+      }
     }
 
     bta_ag_cb.sco.p_curr_scb->inuse_codec = BTM_SCO_CODEC_NONE;
@@ -1450,6 +1454,10 @@ void bta_ag_sco_conn_open(tBTA_AG_SCB* p_scb,
   p_scb->codec_lc3_settings = BTA_AG_SCO_LC3_SETTINGS_T2;
   /* reset to SWB Q0 settings as the preferred */
   p_scb->codec_aptx_settings = BTA_AG_SCO_APTX_SWB_SETTINGS_Q0;
+
+  if (IS_FLAG_ENABLED(is_sco_managed_by_audio)) {
+    hfp_offload_interface->ConfirmStreamingRequest();
+  }
 }
 
 /*******************************************************************************
