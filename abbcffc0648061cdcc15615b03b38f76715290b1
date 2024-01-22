@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac319df6_f50d549c",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2064,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-22T19:40:43Z",
+      "side": 1,
+      "message": "I\u0027m wondering if it wouldn\u0027t be more appropriate to have such function in LeAudioService. What do you think ? Or something like https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/src/com/android/bluetooth/le_audio/LeAudioService.java;drc\u003ddd40a4e5c194ad0dacf7ea4438df2c7f710065f7;l\u003d1058 but without broadcast_id",
+      "revId": "abbcffc0648061cdcc15615b03b38f76715290b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
