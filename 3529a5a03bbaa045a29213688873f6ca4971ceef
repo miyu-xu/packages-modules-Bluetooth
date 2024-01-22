@@ -94,6 +94,29 @@
       },
       "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b01b55ff_76a14480",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1599263
+      },
+      "writtenOn": "2024-01-22T07:11:01Z",
+      "side": 1,
+      "message": "While modern CPUs often handle unaligned access well, this arrangement improves potential performance by avoiding it altogether.\n\n```\nstruct mgmt_rp_get_codec_capabilities {\n  uint16_t hci_dev;\n  uint8_t transparent_wbs_supported;\n  uint8_t hci_data_path_id;\n  uint32_t wbs_pkt_len;\n} __attribute__((packed));\n```",
+      "range": {
+        "startLine": 85,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 27
+      },
+      "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
