@@ -47,6 +47,8 @@ static SecurityClientInterface security = {
     .BTM_SecDeleteDevice = BTM_SecDeleteDevice,
     .BTM_SecAddBleKey = BTM_SecAddBleKey,
 
+    .BTM_BleLoadLocalKeys = BTM_BleLoadLocalKeys,
+
     .BTM_SecBond = BTM_SecBond,
     .BTM_SecBondCancel = BTM_SecBondCancel,
     .BTM_SecClearSecurityFlags = BTM_SecClearSecurityFlags,
@@ -55,6 +57,8 @@ static SecurityClientInterface security = {
     .BTM_RemoteOobDataReply = BTM_RemoteOobDataReply,
     .BTM_PINCodeReply = BTM_PINCodeReply,
     .BTM_SecConfirmReqReply = BTM_SecConfirmReqReply,
+    .BTM_BlePasskeyReply = BTM_BlePasskeyReply,
+
     .BTM_SetEncryption = BTM_SetEncryption,
     .BTM_IsEncrypted = BTM_IsEncrypted,
     .BTM_SecIsSecurityPending = BTM_SecIsSecurityPending,

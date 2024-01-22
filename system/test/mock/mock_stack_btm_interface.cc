@@ -129,6 +129,8 @@ struct btm_client_interface_t default_btm_client_interface = {
         .BTM_SecAddBleKey = [](const RawAddress& /* bd_addr */,
                                tBTM_LE_KEY_VALUE* /* p_le_key */,
                                tBTM_LE_KEY_TYPE /* key_type */) {},
+        .BTM_BleLoadLocalKeys = [](uint8_t /* key_type */,
+                                   tBTM_BLE_LOCAL_KEYS* /* p_key */) {},
 
         .BTM_SecBond = [](const RawAddress& /* bd_addr */,
                           tBLE_ADDR_TYPE /* addr_type */,
@@ -155,6 +157,8 @@ struct btm_client_interface_t default_btm_client_interface = {
         .BTM_SecConfirmReqReply = [](tBTM_STATUS /* res */,
                                      tBT_TRANSPORT /* transport */,
                                      const RawAddress /* bd_addr */) {},
+        .BTM_BlePasskeyReply = [](const RawAddress& /* bd_addr */,
+                                  uint8_t /* res */, uint32_t /* passkey */) {},
 
         .BTM_SetEncryption =
             [](const RawAddress& /* bd_addr */, tBT_TRANSPORT /* transport */,
@@ -202,10 +206,7 @@ struct btm_client_interface_t default_btm_client_interface = {
         .BTM_SetBleDataLength = [](const RawAddress& /* bd_addr */,
                                    uint16_t /* tx_pdu_length */)
             -> tBTM_STATUS { return BTM_SUCCESS; },
-        .BTM_BleLoadLocalKeys = [](uint8_t /* key_type */,
-                                   tBTM_BLE_LOCAL_KEYS* /* p_key */) {},
-        .BTM_BlePasskeyReply = [](const RawAddress& /* bd_addr */,
-                                  uint8_t /* res */, uint32_t /* passkey */) {},
+
         .BTM_BleReadControllerFeatures =
             [](tBTM_BLE_CTRL_FEATURES_CBACK* /* p_vsc_cback */) {},
         .BTM_BleSetConnScanParams = [](uint32_t /* scan_interval */,
