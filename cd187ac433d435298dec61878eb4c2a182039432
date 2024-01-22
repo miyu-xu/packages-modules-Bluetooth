@@ -16,6 +16,29 @@
       "message": "Adding android-api-council+reviews@ since I am only API counselor for Bluetooth package, and need help with review of change I authored - thanks!",
       "revId": "cd187ac433d435298dec61878eb4c2a182039432",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db8eb455_5694563f",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1559,
+      "author": {
+        "id": 1014545
+      },
+      "writtenOn": "2024-01-22T23:46:37Z",
+      "side": 1,
+      "message": "Add docs for possible return values and the forward/backward compatibility behavior of ADDRESS_TYPE_UNKNOWN",
+      "range": {
+        "startLine": 1559,
+        "startChar": 12,
+        "endLine": 1559,
+        "endChar": 23
+      },
+      "revId": "cd187ac433d435298dec61878eb4c2a182039432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
