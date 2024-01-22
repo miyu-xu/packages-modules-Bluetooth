@@ -70,6 +70,30 @@
       },
       "revId": "dba7ccce6781338436d8250895c8ca5ddc00b25a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fe4b854a_b0637a7b",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-22T23:44:43Z",
+      "side": 1,
+      "message": "Thanks, as all the patches got all Submit Requirements, I would like to submit them first. Many thanks!",
+      "parentUuid": "4d7c4951_85e7e15e",
+      "range": {
+        "startLine": 187,
+        "startChar": 17,
+        "endLine": 187,
+        "endChar": 63
+      },
+      "revId": "dba7ccce6781338436d8250895c8ca5ddc00b25a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
