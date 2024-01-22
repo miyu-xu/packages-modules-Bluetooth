@@ -46,6 +46,30 @@
       },
       "revId": "dba7ccce6781338436d8250895c8ca5ddc00b25a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4d7c4951_85e7e15e",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-22T19:41:28Z",
+      "side": 1,
+      "message": "Cl has reland.\nFeel free to merge this and update later or update this CL. As you prefer.",
+      "parentUuid": "8c4ef764_f07a1d2b",
+      "range": {
+        "startLine": 187,
+        "startChar": 17,
+        "endLine": 187,
+        "endChar": 63
+      },
+      "revId": "dba7ccce6781338436d8250895c8ca5ddc00b25a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
