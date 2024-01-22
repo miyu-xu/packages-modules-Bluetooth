@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d7962c1_18f917eb",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-22T22:51:57Z",
+      "side": 1,
+      "message": "do you need to define a LOG_TAG here?",
+      "revId": "97337c621388486d3c3d053d8392f66ff1236a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "2bdfc43c_f4d33999",
         "filename": "system/gd/hci/controller.cc",
         "patchSetId": 13
@@ -32,6 +49,29 @@
       "side": 1,
       "message": "Good question.  I chose INFO since we keep parsing until we run out of data, so unless the chip supports the latest version, there will be one of these logs.",
       "parentUuid": "2bdfc43c_f4d33999",
+      "revId": "97337c621388486d3c3d053d8392f66ff1236a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c17019c9_6869dacd",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 13
+      },
+      "lineNbr": 5326,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-22T22:51:57Z",
+      "side": 1,
+      "message": "Just a question: \n\nis this supposed to be put here?",
+      "range": {
+        "startLine": 5324,
+        "startChar": 0,
+        "endLine": 5326,
+        "endChar": 1
+      },
       "revId": "97337c621388486d3c3d053d8392f66ff1236a13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
