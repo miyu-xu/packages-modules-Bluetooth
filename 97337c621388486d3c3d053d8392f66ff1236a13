@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bdfc43c_f4d33999",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-22T19:27:12Z",
+      "side": 1,
+      "message": "Should these INFO or WARN ?",
+      "revId": "97337c621388486d3c3d053d8392f66ff1236a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
