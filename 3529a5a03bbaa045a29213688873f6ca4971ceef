@@ -70,6 +70,30 @@
       },
       "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3b929853_6c9b35e8",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-22T02:55:32Z",
+      "side": 1,
+      "message": "Hi @mylesgw@google.com, thanks for the info and I\u0027ll wait for your refactor chain.\n\nHi @yuyangh@google.com, just a heads-up: Floss needs the codec capabilities so after this CL I\u0027ll send another one that caches the \"7.4.10 Read Local Supported Codec Capabilities command\" info in GD Controller. Since you\u0027re the author of `GetLocalSupportedBrEdrCodecIds` please let me know if this conflicts with any your plan, thank!",
+      "parentUuid": "e86c13af_245e4269",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 42
+      },
+      "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
