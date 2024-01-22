@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "f4f23b43_ff6b84fd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-01-22T10:21:25Z",
+      "side": 1,
+      "message": "Added the code in BluetoothGatt.java. Will ask some questions offline about how to return this to the developer and finalize the API change.",
+      "parentUuid": "99457c66_99973187",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 50
+      },
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43ae956e_7e0f83cf",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-19T18:24:19Z",
       "side": 1,
       "message": "Please add a test for this.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1c64eeb6_c8ca2d0b",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-01-22T10:21:25Z",
+      "side": 1,
+      "message": "Got it. Will add a test for this",
+      "parentUuid": "43ae956e_7e0f83cf",
       "range": {
         "startLine": 15,
         "startChar": 0,
@@ -82,6 +130,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "36b61baa_7b5a70f6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-01-22T10:21:25Z",
+      "side": 1,
+      "message": "Got it. The flag CL is merged now so I think there will be no problem soon :)",
+      "parentUuid": "e35e1630_af4740da",
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c7501370_73eea5c4",
@@ -95,6 +161,30 @@
       "writtenOn": "2024-01-19T18:24:19Z",
       "side": 1,
       "message": "Can you explain the change here a bit more?\n\nGATT disconnect reason defined here: https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/include/gatt_api.h;l\u003d268?q\u003dhci_err_connection_tout%20gatt\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain\n\n0x08 maps to the HCI status code returned in events from the controller: https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/include/hci_error_code.h;drc\u003d55d5fd8850e60ad5818b3d6c1e60de450bb5d52e;l\u003d38\n\nI\u0027m wondering if it makes sense to deduplicate this from that event and define a separate event in tGATT_DISCONN_REASON for this scenario. WDYT?",
+      "range": {
+        "startLine": 466,
+        "startChar": 55,
+        "endLine": 466,
+        "endChar": 59
+      },
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "89a43576_4586c307",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-01-22T10:21:25Z",
+      "side": 1,
+      "message": "So when connection timeout happens after 30s, [on_create_connection_timeout](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/hci/acl_manager/le_impl.h;l\u003d1112?q\u003dle_impl.h\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22) in le_impl.h is actually called with the HCI status code for connection timeout and gets carried over to callbacks until [acl_ble_connection_fail](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/acl/ble_acl.cc;l\u003d130?q\u003dacl_ble_connection_fail\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22).\n\nHowever from this point, [on_connection_timed_out](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/gatt/gatt_main.cc;l\u003d465;drc\u003ddb09c842a8d0e91c6a47bb09ace901eca2dd6ef9) in gatt_api.h is called and assigns the GATT disconnection reason as 0xff or 255 (unknown), when the original reason was actually the HCI status code 0x08. That\u0027s why I thought it would make sense to change this to 0x08, but please let me know if I should just define a separate event!",
+      "parentUuid": "c7501370_73eea5c4",
       "range": {
         "startLine": 466,
         "startChar": 55,
