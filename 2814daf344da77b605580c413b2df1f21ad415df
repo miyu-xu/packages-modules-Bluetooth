@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "56f141be_c4090a52",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26ee6ce7_84fd6ab5",
+      "range": {
+        "startLine": 7,
+        "startChar": 14,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "bd50ae8c_f0703a2c",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-17T23:56:47Z",
       "side": 1,
       "message": "so that each OS can have their own modem implementation.",
+      "range": {
+        "startLine": 9,
+        "startChar": 30,
+        "endLine": 10,
+        "endChar": 19
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "188eb426_d7c9f375",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd50ae8c_f0703a2c",
       "range": {
         "startLine": 9,
         "startChar": 30,
@@ -87,6 +135,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98235702_e31699d1",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd224881_990fbecc",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 11
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8c2dee2f_ac995b6d",
@@ -100,6 +172,24 @@
       "writtenOn": "2024-01-17T23:56:47Z",
       "side": 1,
       "message": "```suggestion\n  // Make a phone call.\n  rpc Call(CallRequest) returns (CallResponse);\n```",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1c81988_1864eb8d",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "8c2dee2f_ac995b6d",
       "revId": "2814daf344da77b605580c413b2df1f21ad415df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -121,6 +211,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c2ac4f23_fea01f67",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9de70abe_9dc742a2",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d92f8685_b7f27d16",
@@ -134,6 +242,24 @@
       "writtenOn": "2024-01-17T23:56:47Z",
       "side": 1,
       "message": "```suggestion\n// Request for the `Close` method.\n```\n\nSame below.",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aea9f80e_cae0d7e1",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d92f8685_b7f27d16",
       "revId": "2814daf344da77b605580c413b2df1f21ad415df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -161,6 +287,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d362d0aa_7856bc43",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4af93be7_e01ce2a8",
+      "range": {
+        "startLine": 38,
+        "startChar": 2,
+        "endLine": 38,
+        "endChar": 7
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "15d39980_87295a63",
@@ -174,6 +324,24 @@
       "writtenOn": "2024-01-17T23:56:47Z",
       "side": 1,
       "message": "```suggestion\n// Request for the `AnswerOutgoingCall` method.\n```",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e18267ab_e1796ecf",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "15d39980_87295a63",
       "revId": "2814daf344da77b605580c413b2df1f21ad415df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -266,6 +434,48 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c4a1d5ed_2b825f93",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "10c75aff_c66b3d19",
+      "range": {
+        "startLine": 46,
+        "startChar": 2,
+        "endLine": 46,
+        "endChar": 7
+      },
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c122112a_af7790f6",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "913ce7fb_7ae1fb2c",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9e818ec8_7348e30f",
@@ -279,6 +489,24 @@
       "writtenOn": "2024-01-17T23:56:47Z",
       "side": 1,
       "message": "```suggestion\n// Response for the `AnswerOutgoingCall` method.\n```",
+      "revId": "2814daf344da77b605580c413b2df1f21ad415df",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56053d6c_70084be6",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-22T16:09:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9e818ec8_7348e30f",
       "revId": "2814daf344da77b605580c413b2df1f21ad415df",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
