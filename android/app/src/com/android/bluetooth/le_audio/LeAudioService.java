@@ -3135,6 +3135,11 @@ public class LeAudioService extends ProfileService {
         if (mCsipSetCoordinatorService != null) {
             mCsipSetCoordinatorService.setConnectionPolicy(device, connectionPolicy);
         }
+
+        BassClientService bassClientService = getBassClientService();
+        if (bassClientService != null) {
+            bassClientService.setConnectionPolicy(device, connectionPolicy);
+        }
     }
 
     /**
