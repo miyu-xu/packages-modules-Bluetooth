@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "600b3492_f5d2ec15",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-22T22:59:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "de47e245_3d2fd92b",
+      "revId": "97337c621388486d3c3d053d8392f66ff1236a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "2bdfc43c_f4d33999",
@@ -108,6 +126,30 @@
       "side": 1,
       "message": "Putting a test packet in PDL (copied from Wireshark) makes sure that the packet can be parsed and constructed with the builders that we have.",
       "parentUuid": "c17019c9_6869dacd",
+      "range": {
+        "startLine": 5324,
+        "startChar": 0,
+        "endLine": 5326,
+        "endChar": 1
+      },
+      "revId": "97337c621388486d3c3d053d8392f66ff1236a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4701fcdb_d63cebaa",
+        "filename": "system/pdl/hci/hci_packets.pdl",
+        "patchSetId": 13
+      },
+      "lineNbr": 5326,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-22T22:59:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "49741e42_10378e06",
       "range": {
         "startLine": 5324,
         "startChar": 0,
