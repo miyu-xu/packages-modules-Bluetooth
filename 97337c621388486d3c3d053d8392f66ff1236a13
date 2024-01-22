@@ -16,6 +16,24 @@
       "message": "Should these INFO or WARN ?",
       "revId": "97337c621388486d3c3d053d8392f66ff1236a13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "384fd515_be877a99",
+        "filename": "system/gd/hci/controller.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 591,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-22T22:03:20Z",
+      "side": 1,
+      "message": "Good question.  I chose INFO since we keep parsing until we run out of data, so unless the chip supports the latest version, there will be one of these logs.",
+      "parentUuid": "2bdfc43c_f4d33999",
+      "revId": "97337c621388486d3c3d053d8392f66ff1236a13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
