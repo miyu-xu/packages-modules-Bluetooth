@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "500accb1_258aa109",
+        "filename": "system/audio_hal_interface/aidl/provider_info_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-01-22T12:12:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "78423c7d_0cdb5842",
+      "range": {
+        "startLine": 108,
+        "startChar": 16,
+        "endLine": 108,
+        "endChar": 44
+      },
+      "revId": "030cabeeb2cecd13df6785906f7222e166949c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "04e1eb99_141022d8",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-18T00:41:37Z",
       "side": 1,
       "message": "Test name unclear;\ndo you mean to test the case where the HAL does not implement getProviderInfo ?",
+      "range": {
+        "startLine": 250,
+        "startChar": 36,
+        "endLine": 250,
+        "endChar": 69
+      },
+      "revId": "030cabeeb2cecd13df6785906f7222e166949c11",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ba36a451_0008f7cb",
+        "filename": "system/audio_hal_interface/aidl/provider_info_unittest.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-01-22T12:12:34Z",
+      "side": 1,
+      "message": "Test aims to check if GetProviderInfo will return nullptr if both of the HAL provider infos are empty. Changed naming, thank you ;)",
+      "parentUuid": "04e1eb99_141022d8",
       "range": {
         "startLine": 250,
         "startChar": 36,
