@@ -22,6 +22,30 @@
       },
       "revId": "dba7ccce6781338436d8250895c8ca5ddc00b25a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c4ef764_f07a1d2b",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementManager.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-22T06:33:25Z",
+      "side": 1,
+      "message": "aosp/2898732 was reverted, could we update this other patch later?",
+      "parentUuid": "41833f96_05fef357",
+      "range": {
+        "startLine": 187,
+        "startChar": 17,
+        "endLine": 187,
+        "endChar": 63
+      },
+      "revId": "dba7ccce6781338436d8250895c8ca5ddc00b25a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
