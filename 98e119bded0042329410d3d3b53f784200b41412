@@ -39,6 +39,30 @@
       },
       "revId": "98e119bded0042329410d3d3b53f784200b41412",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e993eacb_79c2451d",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3139,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-22T21:26:31Z",
+      "side": 1,
+      "message": "agreed with William here, if we do need to add this part of logic, we should check the broadcast feature.\nbut I don\u0027t feel this change necessary as I explained in the task.",
+      "parentUuid": "55f5c6e1_bcfb44fd",
+      "range": {
+        "startLine": 3139,
+        "startChar": 46,
+        "endLine": 3139,
+        "endChar": 66
+      },
+      "revId": "98e119bded0042329410d3d3b53f784200b41412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
