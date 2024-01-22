@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c54889db_969181c8",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-22T22:49:49Z",
+      "side": 1,
+      "message": "Please add flag bug to commit as well for automatic dr no. Thanks!",
+      "revId": "52f23fc6cf2b0c3d16f8c5b2fbb0d2399acefaed",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
