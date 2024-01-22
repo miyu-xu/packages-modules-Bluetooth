@@ -112,6 +112,8 @@ typedef struct {
                            tBTM_LE_KEY_VALUE* p_le_key,
                            tBTM_LE_KEY_TYPE key_type);
 
+  void (*BTM_BleLoadLocalKeys)(uint8_t key_type, tBTM_BLE_LOCAL_KEYS* p_key);
+
   tBTM_STATUS (*BTM_SecBond)(const RawAddress& bd_addr,
                              tBLE_ADDR_TYPE addr_type, tBT_TRANSPORT transport,
                              tBT_DEVICE_TYPE device_type);
@@ -127,6 +129,9 @@ typedef struct {
                            uint8_t pin_len, uint8_t* p_pin);
   void (*BTM_SecConfirmReqReply)(tBTM_STATUS res, tBT_TRANSPORT transport,
                                  const RawAddress bd_addr);
+  void (*BTM_BlePasskeyReply)(const RawAddress& bd_addr, uint8_t res,
+                              uint32_t passkey);
+
   tBTM_STATUS (*BTM_SetEncryption)(const RawAddress& bd_addr,
                                    tBT_TRANSPORT transport,
                                    tBTM_SEC_CALLBACK* p_callback,
