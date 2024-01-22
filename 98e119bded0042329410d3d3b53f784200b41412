@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d11bce7c_edfec659",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-22T17:52:17Z",
+      "side": 1,
+      "message": "In settings, we have one place to control all LEA profile connection policies and BASS is being set there.\nI don\u0027t feel it\u0027s necessary to add it here, added more details in the task comment.",
+      "revId": "98e119bded0042329410d3d3b53f784200b41412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
