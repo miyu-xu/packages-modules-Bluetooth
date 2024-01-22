@@ -46,6 +46,30 @@
       },
       "revId": "d11d70b23baa1f0e9a8169c4954411b8cb6073b0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6b67f0fe_d3013694",
+        "filename": "framework/java/android/bluetooth/le/DistanceMeasurementResult.java",
+        "patchSetId": 8
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-22T06:46:19Z",
+      "side": 1,
+      "message": "Thanks! Li-Xuan.\nAdded comment for @IntDef of Nadm",
+      "parentUuid": "6b953f33_71c22065",
+      "range": {
+        "startLine": 60,
+        "startChar": 28,
+        "endLine": 60,
+        "endChar": 33
+      },
+      "revId": "d11d70b23baa1f0e9a8169c4954411b8cb6073b0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
