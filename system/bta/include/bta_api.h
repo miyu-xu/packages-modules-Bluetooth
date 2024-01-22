@@ -212,14 +212,11 @@ typedef void(tBTA_DM_ACL_CBACK)(tBTA_DM_ACL_EVT event, tBTA_DM_ACL* p_data);
 
 /* Search callback events */
 typedef enum : uint8_t {
-  BTA_DM_INQ_RES_EVT = 0,  /* Inquiry result for a peer device. */
-  BTA_DM_INQ_CMPL_EVT = 1, /* Inquiry complete. */
-  BTA_DM_DISC_RES_EVT = 2, /* Service Discovery result for a peer device. */
-  BTA_DM_GATT_OVER_LE_RES_EVT =
-      3,                    /* GATT services over LE transport discovered */
+  BTA_DM_INQ_RES_EVT = 0,   /* Inquiry result for a peer device. */
+  BTA_DM_INQ_CMPL_EVT = 1,  /* Inquiry complete. */
+  BTA_DM_DISC_RES_EVT = 2,  /* Service Discovery result for a peer device. */
   BTA_DM_DISC_CMPL_EVT = 4, /* Discovery complete. */
   BTA_DM_SEARCH_CANCEL_CMPL_EVT = 5, /* Search cancelled */
-  BTA_DM_GATT_OVER_SDP_RES_EVT = 6,  /* GATT services over SDP discovered */
   BTA_DM_NAME_READ_EVT = 7,          /* Name read complete. */
 } tBTA_DM_SEARCH_EVT;
 
@@ -228,10 +225,8 @@ inline std::string bta_dm_search_evt_text(const tBTA_DM_SEARCH_EVT& event) {
     CASE_RETURN_TEXT(BTA_DM_INQ_RES_EVT);
     CASE_RETURN_TEXT(BTA_DM_INQ_CMPL_EVT);
     CASE_RETURN_TEXT(BTA_DM_DISC_RES_EVT);
-    CASE_RETURN_TEXT(BTA_DM_GATT_OVER_LE_RES_EVT);
     CASE_RETURN_TEXT(BTA_DM_DISC_CMPL_EVT);
     CASE_RETURN_TEXT(BTA_DM_SEARCH_CANCEL_CMPL_EVT);
-    CASE_RETURN_TEXT(BTA_DM_GATT_OVER_SDP_RES_EVT);
     CASE_RETURN_TEXT(BTA_DM_NAME_READ_EVT);
     default:
       return base::StringPrintf("UNKNOWN[%hhu]", event);
@@ -283,21 +278,11 @@ typedef struct {
   tHCI_STATUS hci_status;
 } tBTA_DM_DISC_RES;
 
-/* Structure associated with tBTA_DM_DISC_BLE_RES */
-typedef struct {
-  RawAddress bd_addr; /* BD address peer device. */
-  BD_NAME bd_name;  /* Name of peer device. */
-  std::vector<bluetooth::Uuid>*
-      services; /* GATT based Services UUID found on peer device. */
-} tBTA_DM_DISC_BLE_RES;
-
 /* Union of all search callback structures */
 typedef union {
   tBTA_DM_INQ_RES inq_res;   /* Inquiry result for a peer device. */
   tBTA_DM_INQ_CMPL inq_cmpl; /* Inquiry complete. */
   tBTA_DM_DISC_RES disc_res; /* Discovery result for a peer device. */
-  tBTA_DM_DISC_BLE_RES
-      disc_ble_res; /* discovery result for GATT based service */
 } tBTA_DM_SEARCH;
 
 /* Search callback */
@@ -307,11 +292,15 @@ typedef void(tBTA_DM_SEARCH_CBACK)(tBTA_DM_SEARCH_EVT event,
 typedef void(tBTA_DM_DID_RES_CBACK)(RawAddress bd_addr, uint8_t vendor_id_src,
                                     uint16_t vendor_id, uint16_t product_id,
                                     uint16_t version);
+typedef void(tBTA_DM_GATT_DISC_CBACK)(RawAddress bd_addr, BD_NAME bd_name,
+                                      std::vector<bluetooth::Uuid>& services,
+                                      bool transport_le);
 
 struct service_discovery_callbacks {
   /* legacy callback I'll tear apart and get rid of */
   tBTA_DM_SEARCH_CBACK* p_search_cback;
   tBTA_DM_DID_RES_CBACK* on_did_received;
+  tBTA_DM_GATT_DISC_CBACK* on_gatt_service_discovery_results;
 };                                
 
 /* Execute call back */

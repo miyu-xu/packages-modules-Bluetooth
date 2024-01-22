@@ -649,16 +649,13 @@ static void bta_dm_sdp_result(tBTA_DM_MSG* p_data) {
 
         if (!gatt_uuids.empty()) {
           LOG_INFO("GATT services discovered using SDP");
-
           // send all result back to app
-          tBTA_DM_SEARCH result;
-          result.disc_ble_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-          strlcpy((char*)result.disc_ble_res.bd_name, bta_dm_get_remname(),
-                  BD_NAME_LEN + 1);
+          BD_NAME bd_name;
+          strlcpy((char*)bd_name, bta_dm_get_remname(), BD_NAME_LEN + 1);
 
-          result.disc_ble_res.services = &gatt_uuids;
-          bta_dm_search_cb.p_service_search_cback.p_search_cback(BTA_DM_GATT_OVER_SDP_RES_EVT,
-                                          &result);
+          bta_dm_search_cb.p_service_search_cback
+              .on_gatt_service_discovery_results(bta_dm_search_cb.peer_bdaddr,
+                                                 bd_name, gatt_uuids, false);
         }
       } else {
         /* SDP_DB_FULL means some records with the
@@ -850,12 +847,7 @@ static void bta_dm_search_cmpl() {
 
   uint16_t conn_id = bta_dm_search_cb.conn_id;
 
-  tBTA_DM_SEARCH result;
   std::vector<Uuid> gatt_services;
-  result.disc_ble_res.services = &gatt_services;
-  result.disc_ble_res.bd_addr = bta_dm_search_cb.peer_bdaddr;
-  strlcpy((char*)result.disc_ble_res.bd_name, bta_dm_get_remname(),
-          BD_NAME_LEN + 1);
 
   bool send_gatt_results =
       bluetooth::common::init_flags::
@@ -897,7 +889,10 @@ static void bta_dm_search_cmpl() {
   // send all result back to app
   if (send_gatt_results) {
     LOG_INFO("Sending GATT results to upper layer");
-    bta_dm_search_cb.p_service_search_cback.p_search_cback(BTA_DM_GATT_OVER_LE_RES_EVT, &result);
+    BD_NAME bd_name;
+    strlcpy((char*)bd_name, bta_dm_get_remname(), BD_NAME_LEN + 1);
+    bta_dm_search_cb.p_service_search_cback.on_gatt_service_discovery_results(
+        bta_dm_search_cb.peer_bdaddr, bd_name, gatt_services, true);
   }
 
   bta_dm_search_cb.p_service_search_cback.p_search_cback(BTA_DM_DISC_CMPL_EVT, nullptr);
