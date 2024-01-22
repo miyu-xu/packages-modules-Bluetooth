@@ -1675,201 +1675,162 @@ static bool btif_should_ignore_uuid(const Uuid& uuid) {
   return uuid.IsEmpty() || uuid.IsBase();
 }
 
-/*******************************************************************************
- *
- * Function         btif_dm_search_services_evt
- *
- * Description      Executes search services event in btif context
- *
- * Returns          void
- *
- ******************************************************************************/
-static void btif_dm_search_services_evt(tBTA_DM_SEARCH_EVT event,
-                                        tBTA_DM_SEARCH* p_data) {
-  switch (event) {
-    case BTA_DM_DISC_RES_EVT: {
-      bt_property_t prop;
-      uint32_t i = 0;
-      std::vector<uint8_t> property_value;
-      std::set<Uuid> uuids;
-      bool a2dp_sink_capable = false;
+void btif_on_service_discovery_results(
+    RawAddress bd_addr, BD_NAME bd_name, tBTA_SERVICE_MASK services,
+    tBT_DEVICE_TYPE device_type, size_t num_uuids, bluetooth::Uuid* p_uuid_list,
+    tBTA_STATUS result, tHCI_STATUS hci_status) {
+  bt_property_t prop;
+  uint32_t i = 0;
+  std::vector<uint8_t> property_value;
+  std::set<Uuid> uuids;
+  bool a2dp_sink_capable = false;
 
-      RawAddress& bd_addr = p_data->disc_res.bd_addr;
+  LOG_VERBOSE("result=0x%x, services 0x%x", result, services);
+  if (result != BTA_SUCCESS && pairing_cb.state == BT_BOND_STATE_BONDED &&
+      pairing_cb.sdp_attempts < BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING) {
+    if (pairing_cb.sdp_attempts) {
+      LOG_WARN("SDP failed after bonding re-attempting for %s",
+               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+      pairing_cb.sdp_attempts++;
+      btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_AUTO);
+    } else {
+      LOG_WARN("SDP triggered by someone failed when bonding");
+    }
+    return;
+  }
 
-      LOG_VERBOSE("result=0x%x, services 0x%x", p_data->disc_res.result,
-                  p_data->disc_res.services);
-      if (p_data->disc_res.result != BTA_SUCCESS &&
-          pairing_cb.state == BT_BOND_STATE_BONDED &&
-          pairing_cb.sdp_attempts < BTIF_DM_MAX_SDP_ATTEMPTS_AFTER_PAIRING) {
-        if (pairing_cb.sdp_attempts) {
-          LOG_WARN("SDP failed after bonding re-attempting for %s",
-                   ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-          pairing_cb.sdp_attempts++;
-          btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_AUTO);
-        } else {
-          LOG_WARN("SDP triggered by someone failed when bonding");
-        }
-        return;
+  if ((bd_addr == pairing_cb.bd_addr || bd_addr == pairing_cb.static_bdaddr)) {
+    LOG_INFO("SDP finished for %s:", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    pairing_cb.sdp_over_classic =
+        btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED;
+  }
+
+  prop.type = BT_PROPERTY_UUIDS;
+  prop.len = 0;
+  if ((result == BTA_SUCCESS) && (num_uuids > 0)) {
+    LOG_INFO("New UUIDs for %s:", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    for (i = 0; i < num_uuids; i++) {
+      auto uuid = p_uuid_list + i;
+      if (btif_should_ignore_uuid(*uuid)) {
+        continue;
       }
+      LOG_INFO("index:%d uuid:%s", i, uuid->ToString().c_str());
+      uuids.insert(*uuid);
+    }
 
-      if ((bd_addr == pairing_cb.bd_addr ||
-           bd_addr == pairing_cb.static_bdaddr)) {
-        LOG_INFO("SDP finished for %s:", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-        pairing_cb.sdp_over_classic =
-            btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED;
+    Uuid existing_uuids[BT_MAX_NUM_UUIDS] = {};
+    btif_get_existing_uuids(&bd_addr, existing_uuids);
+
+    for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
+      Uuid uuid = existing_uuids[i];
+      if (btif_should_ignore_uuid(uuid)) {
+        continue;
       }
+      if (btif_is_interesting_le_service(uuid)) {
+        LOG_INFO("interesting le service %s insert", uuid.ToString().c_str());
+        uuids.insert(uuid);
+      }
+    }
+    for (auto& uuid : uuids) {
+      auto uuid_128bit = uuid.To128BitBE();
+      property_value.insert(property_value.end(), uuid_128bit.begin(),
+                            uuid_128bit.end());
+      if (uuid == UUID_A2DP_SINK) {
+        a2dp_sink_capable = true;
+      }
+    }
+    prop.val = (void*)property_value.data();
+    prop.len = Uuid::kNumBytes128 * uuids.size();
+  }
 
-      prop.type = BT_PROPERTY_UUIDS;
-      prop.len = 0;
-      if ((p_data->disc_res.result == BTA_SUCCESS) &&
-          (p_data->disc_res.num_uuids > 0)) {
-        LOG_INFO("New UUIDs for %s:", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-        for (i = 0; i < p_data->disc_res.num_uuids; i++) {
-          auto uuid = p_data->disc_res.p_uuid_list + i;
-          if (btif_should_ignore_uuid(*uuid)) {
-            continue;
-          }
-          LOG_INFO("index:%d uuid:%s", i, uuid->ToString().c_str());
-          uuids.insert(*uuid);
-        }
+  bool skip_reporting_wait_for_le = false;
+  /* If we are doing service discovery for device that just bonded, that is
+   * capable of a2dp, and both sides can do LE Audio, and it haven't
+   * finished GATT over LE yet, then wait for LE service discovery to finish
+   * before before passing services to upper layers. */
+  if (a2dp_sink_capable &&
+      pairing_cb.gatt_over_le !=
+          btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED &&
+      is_le_audio_capable_during_service_discovery(bd_addr)) {
+    skip_reporting_wait_for_le = true;
+  }
 
-        Uuid existing_uuids[BT_MAX_NUM_UUIDS] = {};
-        btif_get_existing_uuids(&bd_addr, existing_uuids);
+  /* onUuidChanged requires getBondedDevices to be populated.
+  ** bond_state_changed needs to be sent prior to remote_device_property
+  */
+  size_t num_eir_uuids = 0U;
+  Uuid uuid = {};
+  if (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts &&
+      (bd_addr == pairing_cb.bd_addr || bd_addr == pairing_cb.static_bdaddr)) {
+    LOG_INFO("SDP search done for %s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    pairing_cb.sdp_attempts = 0;
 
-        for (int i = 0; i < BT_MAX_NUM_UUIDS; i++) {
-          Uuid uuid = existing_uuids[i];
-          if (btif_should_ignore_uuid(uuid)) {
-            continue;
-          }
-          if (btif_is_interesting_le_service(uuid)) {
-            LOG_INFO("interesting le service %s insert",
-                     uuid.ToString().c_str());
-            uuids.insert(uuid);
-          }
-        }
-        for (auto& uuid : uuids) {
-          auto uuid_128bit = uuid.To128BitBE();
+    // Send UUIDs discovered through EIR to Java to unblock pairing intent
+    // when SDP failed
+    if (result != BTA_SUCCESS) {
+      auto uuids_iter = eir_uuids_cache.find(bd_addr);
+      if (uuids_iter != eir_uuids_cache.end()) {
+        num_eir_uuids = uuids_iter->second.size();
+        LOG_INFO("SDP failed, send %zu EIR UUIDs to unblock bonding %s",
+                 num_eir_uuids, ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+        for (auto eir_uuid : uuids_iter->second) {
+          auto uuid_128bit = eir_uuid.To128BitBE();
           property_value.insert(property_value.end(), uuid_128bit.begin(),
                                 uuid_128bit.end());
-          if (uuid == UUID_A2DP_SINK) {
-            a2dp_sink_capable = true;
-          }
         }
+        eir_uuids_cache.erase(uuids_iter);
+      }
+      if (num_eir_uuids > 0) {
         prop.val = (void*)property_value.data();
-        prop.len = Uuid::kNumBytes128 * uuids.size();
+        prop.len = num_eir_uuids * Uuid::kNumBytes128;
+      } else {
+        LOG_WARN("SDP failed and we have no EIR UUIDs to report either");
+        prop.val = &uuid;
+        prop.len = Uuid::kNumBytes128;
       }
+    }
 
-      bool skip_reporting_wait_for_le = false;
-      /* If we are doing service discovery for device that just bonded, that is
-       * capable of a2dp, and both sides can do LE Audio, and it haven't
-       * finished GATT over LE yet, then wait for LE service discovery to finish
-       * before before passing services to upper layers. */
-      if (a2dp_sink_capable &&
-          pairing_cb.gatt_over_le !=
-              btif_dm_pairing_cb_t::ServiceDiscoveryState::FINISHED &&
-          is_le_audio_capable_during_service_discovery(bd_addr)) {
-        skip_reporting_wait_for_le = true;
-      }
+    if (!skip_reporting_wait_for_le) {
+      // Both SDP and bonding are done, clear pairing control block in case
+      // it is not already cleared
+      pairing_cb = {};
+      LOG_DEBUG("clearing btif pairing_cb");
+    }
+  }
 
-      /* onUuidChanged requires getBondedDevices to be populated.
-      ** bond_state_changed needs to be sent prior to remote_device_property
-      */
-      size_t num_eir_uuids = 0U;
-      Uuid uuid = {};
-      if (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts &&
-          (p_data->disc_res.bd_addr == pairing_cb.bd_addr ||
-           p_data->disc_res.bd_addr == pairing_cb.static_bdaddr)) {
-        LOG_INFO("SDP search done for %s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-        pairing_cb.sdp_attempts = 0;
+  const tBTA_STATUS bta_status = result;
+  BTM_LogHistory(kBtmLogTagSdp, bd_addr, "Discovered services",
+                 base::StringPrintf("bta_status:%s sdp_uuids:%zu eir_uuids:%zu",
+                                    bta_status_text(bta_status).c_str(),
+                                    num_uuids, num_eir_uuids));
 
-        // Send UUIDs discovered through EIR to Java to unblock pairing intent
-        // when SDP failed
-        if (p_data->disc_res.result != BTA_SUCCESS) {
-          auto uuids_iter = eir_uuids_cache.find(bd_addr);
-          if (uuids_iter != eir_uuids_cache.end()) {
-            num_eir_uuids = uuids_iter->second.size();
-            LOG_INFO("SDP failed, send %zu EIR UUIDs to unblock bonding %s",
-                     num_eir_uuids, ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-            for (auto eir_uuid : uuids_iter->second) {
-              auto uuid_128bit = eir_uuid.To128BitBE();
-              property_value.insert(property_value.end(), uuid_128bit.begin(),
-                                    uuid_128bit.end());
-            }
-            eir_uuids_cache.erase(uuids_iter);
-          }
-          if (num_eir_uuids > 0) {
-            prop.val = (void*)property_value.data();
-            prop.len = num_eir_uuids * Uuid::kNumBytes128;
-          } else {
-            LOG_WARN("SDP failed and we have no EIR UUIDs to report either");
-            prop.val = &uuid;
-            prop.len = Uuid::kNumBytes128;
-          }
-        }
+  if (num_uuids != 0 || num_eir_uuids != 0) {
+    /* Also write this to the NVRAM */
+    const bt_status_t ret =
+        btif_storage_set_remote_device_property(&bd_addr, &prop);
+    ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed", ret);
 
-        if (!skip_reporting_wait_for_le) {
-          // Both SDP and bonding are done, clear pairing control block in case
-          // it is not already cleared
-          pairing_cb = {};
-          LOG_DEBUG("clearing btif pairing_cb");
-        }
-      }
+    if (skip_reporting_wait_for_le) {
+      LOG_INFO(
+          "Bonding LE Audio sink - must wait for le services discovery "
+          "to pass all services to java %s",
+          ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+      /* For LE Audio capable devices, we care more about passing GATT LE
+       * services than about just finishing pairing. Service discovery
+       * should be scheduled when LE pairing finishes, by call to
+       * btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_LE) */
+      return;
+    }
 
-      const tBTA_STATUS bta_status = p_data->disc_res.result;
-      BTM_LogHistory(
-          kBtmLogTagSdp, bd_addr, "Discovered services",
-          base::StringPrintf("bta_status:%s sdp_uuids:%zu eir_uuids:%zu",
-                             bta_status_text(bta_status).c_str(),
-                             p_data->disc_res.num_uuids, num_eir_uuids));
-
-      if (p_data->disc_res.num_uuids != 0 || num_eir_uuids != 0) {
-        /* Also write this to the NVRAM */
-        const bt_status_t ret =
-            btif_storage_set_remote_device_property(&bd_addr, &prop);
-        ASSERTC(ret == BT_STATUS_SUCCESS, "storing remote services failed",
-                ret);
-
-        if (skip_reporting_wait_for_le) {
-          LOG_INFO(
-              "Bonding LE Audio sink - must wait for le services discovery "
-              "to pass all services to java %s",
-              ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
-          /* For LE Audio capable devices, we care more about passing GATT LE
-           * services than about just finishing pairing. Service discovery
-           * should be scheduled when LE pairing finishes, by call to
-           * btif_dm_get_remote_services(bd_addr, BT_TRANSPORT_LE) */
-          return;
-        }
-
-        /* Send the event to the BTIF */
-        GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
-            BT_STATUS_SUCCESS, bd_addr, 1, &prop);
-      }
-    } break;
-
-    case BTA_DM_DISC_CMPL_EVT:
-      /* fixme */
-      break;
-
-    case BTA_DM_SEARCH_CANCEL_CMPL_EVT:
-      /* no-op */
-      break;
-
-    case BTA_DM_NAME_READ_EVT: {
-      LOG_INFO("Skipping name read event - called on bad callback.");
-    } break;
-
-    default: {
-      ASSERTC(0, "unhandled search services event", event);
-    } break;
+    /* Send the event to the BTIF */
+    GetInterfaceToProfiles()->events->invoke_remote_device_properties_cb(
+        BT_STATUS_SUCCESS, bd_addr, 1, &prop);
   }
 }
 
 void btif_on_gatt_service_discovery_results(
     RawAddress bd_addr, BD_NAME bd_name, std::vector<bluetooth::Uuid>& services,
     bool transport_le) {
-  // case BTA_DM_GATT_OVER_SDP_RES_EVT:
-  // case BTA_DM_GATT_OVER_LE_RES_EVT: {
   int num_properties = 0;
   bt_property_t prop[2];
   std::vector<uint8_t> property_value;
@@ -3066,11 +3027,12 @@ void btif_dm_get_remote_services(RawAddress remote_addr, const int transport) {
       kBtmLogTag, remote_addr, "Service discovery",
       base::StringPrintf("transport:%s", bt_transport_text(transport).c_str()));
 
-  BTA_DmDiscover(remote_addr,
-                 service_discovery_callbacks{
-                     btif_dm_search_services_evt, btif_on_did_received,
-                     btif_on_gatt_service_discovery_results},
-                 transport);
+  BTA_DmDiscover(
+      remote_addr,
+      service_discovery_callbacks{btif_on_did_received,
+                                  btif_on_gatt_service_discovery_results,
+                                  btif_on_service_discovery_results},
+      transport);
 }
 
 void btif_dm_enable_service(tBTA_SERVICE_ID service_id, bool enable) {

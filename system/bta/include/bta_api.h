@@ -295,13 +295,17 @@ typedef void(tBTA_DM_DID_RES_CBACK)(RawAddress bd_addr, uint8_t vendor_id_src,
 typedef void(tBTA_DM_GATT_DISC_CBACK)(RawAddress bd_addr, BD_NAME bd_name,
                                       std::vector<bluetooth::Uuid>& services,
                                       bool transport_le);
+typedef void(tBTA_DM_DISC_CBACK)(RawAddress bd_addr, BD_NAME bd_name,
+                                 tBTA_SERVICE_MASK services,
+                                 tBT_DEVICE_TYPE device_type, size_t num_uuids,
+                                 bluetooth::Uuid* p_uuid_list,
+                                 tBTA_STATUS result, tHCI_STATUS hci_status);
 
 struct service_discovery_callbacks {
-  /* legacy callback I'll tear apart and get rid of */
-  tBTA_DM_SEARCH_CBACK* p_search_cback;
   tBTA_DM_DID_RES_CBACK* on_did_received;
   tBTA_DM_GATT_DISC_CBACK* on_gatt_service_discovery_results;
-};                                
+  tBTA_DM_DISC_CBACK* on_service_discovery_results;
+};
 
 /* Execute call back */
 typedef void(tBTA_DM_EXEC_CBACK)(void* p_param);
