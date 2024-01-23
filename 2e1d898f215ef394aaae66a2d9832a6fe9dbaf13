@@ -39,6 +39,30 @@
       },
       "revId": "2e1d898f215ef394aaae66a2d9832a6fe9dbaf13",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "897457c2_eafad574",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-23T01:01:54Z",
+      "side": 1,
+      "message": "Changing to LOG_XXX APIs, instead of stream logging API",
+      "parentUuid": "5c8ba624_6ba0e5c4",
+      "range": {
+        "startLine": 345,
+        "startChar": 40,
+        "endLine": 345,
+        "endChar": 44
+      },
+      "revId": "2e1d898f215ef394aaae66a2d9832a6fe9dbaf13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
