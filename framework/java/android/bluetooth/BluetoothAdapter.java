@@ -1448,6 +1448,13 @@ public final class BluetoothAdapter {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(BLUETOOTH_CONNECT)
     public boolean enableBLE() {
+        if (Flags.systemServerMessenger()) {
+            var data = new SystemServiceMessage.Enable();
+            data.attributionSource = mAttributionSource;
+            data.bleToken = mToken;
+
+            return mSystemServiceMessenger.send(data).value;
+        }
         if (!isBleScanAlwaysAvailable()) {
             return false;
         }
@@ -1681,6 +1688,12 @@ public final class BluetoothAdapter {
                 Log.d(TAG, "enable(): BT already enabled!");
             }
             return true;
+        }
+        if (Flags.systemServerMessenger()) {
+            var data = new SystemServiceMessage.Enable();
+            data.attributionSource = mAttributionSource;
+
+            return mSystemServiceMessenger.send(data).value;
         }
         try {
             return mManagerService.enable(mAttributionSource);
@@ -3933,6 +3946,13 @@ public final class BluetoothAdapter {
                 Log.d(TAG, "enableNoAutoConnect(): BT already enabled!");
             }
             return true;
+        }
+        if (Flags.systemServerMessenger()) {
+            var data = new SystemServiceMessage.Enable();
+            data.attributionSource = mAttributionSource;
+            data.isQuiet = true;
+
+            return mSystemServiceMessenger.send(data).value;
         }
         try {
             return mManagerService.enableNoAutoConnect(mAttributionSource);
