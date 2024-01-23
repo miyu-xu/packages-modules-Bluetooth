@@ -1451,6 +1451,14 @@ public final class BluetoothAdapter {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean enableBLE() {
+        if (Flags.systemServerMessenger()) {
+            var data = new BluetoothServiceMessages.Enable();
+            data.attributionSource = mAttributionSource;
+            data.bleToken = mToken;
+
+            return mMessenger.sendToService(data, BluetoothServiceMessages.Enable.Reply.class)
+                    .value;
+        }
         if (!isBleScanAlwaysAvailable()) {
             return false;
         }
@@ -1644,6 +1652,13 @@ public final class BluetoothAdapter {
                 Log.d(TAG, "enable(): BT already enabled!");
             }
             return true;
+        }
+        if (Flags.systemServerMessenger()) {
+            var data = new BluetoothServiceMessages.Enable();
+            data.attributionSource = mAttributionSource;
+
+            return mMessenger.sendToService(data, BluetoothServiceMessages.Enable.Reply.class)
+                    .value;
         }
         try {
             return mManagerService.enable(mAttributionSource);
@@ -3985,6 +4000,14 @@ public final class BluetoothAdapter {
                 Log.d(TAG, "enableNoAutoConnect(): BT already enabled!");
             }
             return true;
+        }
+        if (Flags.systemServerMessenger()) {
+            var data = new BluetoothServiceMessages.Enable();
+            data.attributionSource = mAttributionSource;
+            data.isQuiet = true;
+
+            return mMessenger.sendToService(data, BluetoothServiceMessages.Enable.Reply.class)
+                    .value;
         }
         try {
             return mManagerService.enableNoAutoConnect(mAttributionSource);
