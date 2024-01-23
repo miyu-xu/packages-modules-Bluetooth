@@ -70,6 +70,30 @@
       },
       "revId": "84affb716ef74f62d42a3745f51c57be44f8be3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f6c4b699_9c9cd0b2",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1645,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-23T19:18:42Z",
+      "side": 1,
+      "message": "LOG_INFO will do the same.",
+      "parentUuid": "f375bdaf_7b75ce83",
+      "range": {
+        "startLine": 1645,
+        "startChar": 0,
+        "endLine": 1645,
+        "endChar": 42
+      },
+      "revId": "84affb716ef74f62d42a3745f51c57be44f8be3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
