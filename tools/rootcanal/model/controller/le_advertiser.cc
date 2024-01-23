@@ -1148,6 +1148,18 @@ ErrorCode LinkLayerController::LeSetExtendedAdvertisingEnable(
         }
         break;
     }
+
+    // If an IRK is available in the Link Layer Resolving List for the peer
+    // device, then the target’s device address (TargetA field) shall
+    // use a resolvable private address. If an IRK is not available in the
+    // Link Layer Resolving List or the IRK is set to zero for the peer device,
+    // then the target’s device address (TargetA field) shall use the Identity
+    // Address when entering the Advertising State and using connectable
+    // directed events.
+    advertiser.target_address =
+        le_resolving_list_enabled_ ?
+          GenerateResolvablePrivateAddress(peer_address, IrkSelection::Peer)
+              .value_or(peer_address) : peer_address;
   }
 
   for (auto& set : sets) {
