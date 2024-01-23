@@ -304,6 +304,14 @@ static bool is_bonding_or_sdp() {
          (pairing_cb.state == BT_BOND_STATE_BONDED && pairing_cb.sdp_attempts);
 }
 
+static bool is_bonding_or_sdp_or_gatt() {
+  return pairing_cb.state == BT_BOND_STATE_BONDING ||
+         (pairing_cb.state == BT_BOND_STATE_BONDED &&
+          (pairing_cb.sdp_attempts ||
+           pairing_cb.gatt_over_le ==
+               btif_dm_pairing_cb_t::ServiceDiscoveryState::SCHEDULED));
+}
+
 void btif_dm_init(uid_set_t* set) { uid_set = set; }
 
 void btif_dm_cleanup(void) {
@@ -615,11 +623,7 @@ static void bond_state_changed(bt_status_t status, const RawAddress& bd_addr,
     return;
   }
 
-  if (state == BT_BOND_STATE_BONDING ||
-      (state == BT_BOND_STATE_BONDED &&
-       (pairing_cb.sdp_attempts > 0 ||
-        pairing_cb.gatt_over_le ==
-            btif_dm_pairing_cb_t::ServiceDiscoveryState::SCHEDULED))) {
+  if (is_bonding_or_sdp_or_gatt()) {
     // Save state for the device is bonding or SDP or GATT over LE discovery
     pairing_cb.state = state;
     pairing_cb.bd_addr = bd_addr;
@@ -3585,7 +3589,11 @@ static void btif_dm_ble_auth_cmpl_evt(tBTA_DM_AUTH_CMPL* p_auth_cmpl) {
         break;
 
       case BTA_DM_AUTH_SMP_CONN_TOUT: {
-        if (!p_auth_cmpl->is_ctkd && btm_sec_is_a_bonded_dev(bd_addr)) {
+        bool is_bonding = is_bonding_or_sdp_or_gatt() &&
+                          (bd_addr == pairing_cb.bd_addr ||
+                           bd_addr == pairing_cb.static_bdaddr);
+
+        if (!is_bonding) {
           LOG_WARN(
               "Bonded device addr=%s, timed out - will not remove the keys",
               ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
