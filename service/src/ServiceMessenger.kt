@@ -59,6 +59,27 @@ internal class ServiceMessenger(
                 managerService.unregisterAdapter_sync(obj.binder)
                 SystemServiceMessage.UnregisterAdapter.Reply()
             }
+            is SystemServiceMessage.Enable -> {
+                val source = obj.attributionSource
+                val isQuiet = obj.isQuiet
+                val bleToken = obj.bleToken
+
+                val foregroundRequired = isQuiet == false || bleToken == null
+                SystemServiceMessage.Enable.Reply().apply {
+                    value =
+                        try {
+                            checker.enableAllowed(sendingUid, source, foregroundRequired)
+                            if (bleToken != null) {
+                                managerService.enableBle_sync(source.getPackageName(), bleToken)
+                            } else {
+                                managerService.enable_sync(source.getPackageName(), isQuiet)
+                            }
+                        } catch (e: PermissionChecker.BluetoothPermissionException) {
+                            Log.e(TAG, "${obj}: FAILED", e)
+                            false
+                        }
+                }
+            }
             else -> throw IllegalArgumentException("Invalid command: [${obj}] from ${sendingUid}")
         }
     }
