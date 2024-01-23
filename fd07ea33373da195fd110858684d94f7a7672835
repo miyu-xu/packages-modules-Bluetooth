@@ -16,6 +16,24 @@
       "message": "as I learnt from Grzegorz, the comments from @rlukasz@google.com have been resolved in the newer version as Lukasz agreed offline. \nthe change lgtm, +2 to unblock.",
       "revId": "fd07ea33373da195fd110858684d94f7a7672835",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15f963a1_3c01aa4e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-23T18:32:15Z",
+      "side": 1,
+      "message": "Actually Lukasz already +1 this earlier, Patchset 11.",
+      "parentUuid": "c66b722d_5a7402fb",
+      "revId": "fd07ea33373da195fd110858684d94f7a7672835",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
