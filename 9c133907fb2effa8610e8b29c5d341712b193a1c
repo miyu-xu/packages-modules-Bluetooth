@@ -22,6 +22,30 @@
       },
       "revId": "9c133907fb2effa8610e8b29c5d341712b193a1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3d7a1c59_8b80d77c",
+        "filename": "system/logger/src/vlog_android.cc",
+        "patchSetId": 12
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-23T22:56:51Z",
+      "side": 1,
+      "message": "I thinks this has been done in order to not write the 0 continuously. But maybe this can be solved by having a getter on the truncating_buffer, that will set the \u0027\\0\u0027 + return the buffer, and set the buffer.buffer as private ?",
+      "parentUuid": "006768e0_cdb316d1",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 39,
+        "endChar": 35
+      },
+      "revId": "9c133907fb2effa8610e8b29c5d341712b193a1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3cb4fd24_425adf68",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-23T22:56:51Z",
+      "side": 1,
+      "message": "Is this else happening in our build system ? Or can we remove it entirely ?",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 5
+      },
+      "revId": "123a8fedfdc06a32f1186f3e229fece046d7c41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c907758f_16b7bc99",
+        "filename": "system/logger/src/vlog_android.cc",
+        "patchSetId": 14
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-23T22:56:51Z",
+      "side": 1,
+      "message": "result unused, remove ?",
+      "range": {
+        "startLine": 38,
+        "startChar": 7,
+        "endLine": 38,
+        "endChar": 13
+      },
+      "revId": "123a8fedfdc06a32f1186f3e229fece046d7c41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
