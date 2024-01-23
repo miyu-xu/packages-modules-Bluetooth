@@ -16,6 +16,23 @@
       "message": "LGTM on HA side, please @yuyangh@google.com and @aritrasen@google.com let us know if it is ok for you",
       "revId": "f1f0fe53dd7695d07c6facff44b710efbf0ddeb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bef8e6e0_6e99e986",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-01-23T00:08:11Z",
+      "side": 1,
+      "message": "PTAL",
+      "revId": "f1f0fe53dd7695d07c6facff44b710efbf0ddeb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
