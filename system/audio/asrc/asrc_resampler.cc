@@ -23,7 +23,7 @@
 #include <utility>
 
 #include "asrc_tables.h"
-#include "hal/nocp_iso_clocker.h"
+#include "hal/link_clocker.h"
 
 namespace bluetooth::audio::asrc {
 
@@ -238,10 +238,10 @@ class SourceAudioHalAsrc::ClockRecovery : ::bluetooth::hal::NocpIsoHandler {
             .link = {{.state = LinkState::RESET}, {.state = LinkState::RESET}},
             .active_link_id = -1},
         reference_timing_{0, 0, 0} {
-    ::bluetooth::hal::NocpIsoClocker::Register(this);
+    ::bluetooth::hal::LinkClocker::Register(this);
   }
 
-  ~ClockRecovery() override { ::bluetooth::hal::NocpIsoClocker::Unregister(); }
+  ~ClockRecovery() override { ::bluetooth::hal::LinkClocker::Unregister(); }
 
   __attribute__((no_sanitize("integer"))) uint32_t Convert(
       uint32_t stream_time) {
