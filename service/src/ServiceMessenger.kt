@@ -16,6 +16,7 @@
 package com.android.server.bluetooth
 
 import android.bluetooth.IBluetoothManagerCallback
+import android.content.AttributionSource
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -64,6 +65,20 @@ private fun handleMessage(bms: BluetoothManagerService, what: Int, data: Bundle)
             bms.unregisterAdapter_sync(callback)
             Bundle.EMPTY
         }
+        BluetoothServiceMessages.ENABLE -> {
+            val source = msg.data.getParcelable("source", AttributionSource::class.java)!!
+            val enable =
+                if (!enableAllowed(source)) {
+                    false
+                } else {
+                    bms.enable_sync(source.getPackageName())
+                }
+            Bundle().apply { putBoolean("enable", enable) }
+        }
         else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
     }
+}
+
+private fun enableAllowed(_source: AttributionSource): Boolean {
+    return true
 }
