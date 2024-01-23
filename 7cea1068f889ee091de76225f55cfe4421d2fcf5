@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88bc9edf_f1720a57",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-23T19:09:35Z",
+      "side": 1,
+      "message": "This is a renaming change and adding an invariant parameter for later usage",
+      "revId": "7cea1068f889ee091de76225f55cfe4421d2fcf5",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
