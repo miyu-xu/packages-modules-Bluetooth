@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d140b42c_eb195117",
+        "filename": "service/Android.bp",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1787007
+      },
+      "writtenOn": "2024-01-23T21:20:51Z",
+      "side": 1,
+      "message": "Maybe you can just remove this? If it\u0027s in the BCP you should also get it here?\n\nAlthough maybe the build system is not smart to understand that in which case this would be needed...",
+      "revId": "1775022620780173399b7a3ea22c4eb83f9a5eb6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
