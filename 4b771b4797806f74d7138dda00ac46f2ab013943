@@ -70,6 +70,30 @@
       },
       "revId": "4b771b4797806f74d7138dda00ac46f2ab013943",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d861c5e7_9d0bbb7d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 812,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-01-23T01:20:13Z",
+      "side": 1,
+      "message": "As per our discussion with @wescande, we probably don\u0027t want a flag here.",
+      "parentUuid": "d9c45ea3_c6fa77a7",
+      "range": {
+        "startLine": 812,
+        "startChar": 0,
+        "endLine": 812,
+        "endChar": 21
+      },
+      "revId": "4b771b4797806f74d7138dda00ac46f2ab013943",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
