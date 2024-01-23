@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c66b722d_5a7402fb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-23T17:54:16Z",
+      "side": 1,
+      "message": "as I learnt from Grzegorz, the comments from @rlukasz@google.com have been resolved in the newer version as Lukasz agreed offline. \nthe change lgtm, +2 to unblock.",
+      "revId": "fd07ea33373da195fd110858684d94f7a7672835",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
