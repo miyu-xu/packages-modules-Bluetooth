@@ -16,6 +16,24 @@
       "message": "Looks like regression after \n\nea36f95602 Remove dependency on BT broadcasts inside the Bluetooth stack for Volume control connection changes.",
       "revId": "8af9af994b198165b775743ce4ddce525997f8da",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b964802d_40446798",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-23T00:41:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a66b422_a3a32b0c",
+      "revId": "8af9af994b198165b775743ce4ddce525997f8da",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
