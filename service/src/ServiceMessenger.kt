@@ -16,6 +16,7 @@
 package com.android.server.bluetooth
 
 import android.bluetooth.IBluetoothManagerCallback
+import android.content.AttributionSource
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -51,19 +52,31 @@ internal class ServiceMessenger(
 private fun handleMessage(bms: BluetoothManagerService, what: Int, data: Bundle): Bundle {
     return when (what) {
         BluetoothServiceMessages.REGISTER_ADAPTER -> {
-            val callback =
-                IBluetoothManagerCallback.Stub.asInterface(data.getBinder("callback")!!)
+            val callback = IBluetoothManagerCallback.Stub.asInterface(data.getBinder("callback")!!)
 
             val adapterBinder = bms.registerAdapter_sync(callback)
             Bundle().apply { putBinder("service", adapterBinder?.asBinder()) }
         }
         BluetoothServiceMessages.UNREGISTER_ADAPTER -> {
-            val callback =
-                IBluetoothManagerCallback.Stub.asInterface(data.getBinder("callback")!!)
+            val callback = IBluetoothManagerCallback.Stub.asInterface(data.getBinder("callback")!!)
 
             bms.unregisterAdapter_sync(callback)
             Bundle.EMPTY
         }
+        BluetoothServiceMessages.ENABLE -> {
+            val source = data.getParcelable("source", AttributionSource::class.java)!!
+            val enable =
+                if (!enableAllowed(source)) {
+                    false
+                } else {
+                    bms.enable_sync(source.getPackageName())
+                }
+            Bundle().apply { putBoolean("enable", enable) }
+        }
         else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
     }
+}
+
+private fun enableAllowed(@Suppress("UNUSED_PARAMETER") _source: AttributionSource): Boolean {
+    return true
 }
