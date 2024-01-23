@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b5970f96_3c4de5f2",
+        "filename": "system/include/hardware/avrcp/avrcp_logging_helper.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-23T23:07:44Z",
+      "side": 1,
+      "message": "Why is this needed ?",
+      "range": {
+        "startLine": 290,
+        "startChar": 1,
+        "endLine": 320,
+        "endChar": 78
+      },
+      "revId": "27e2850f1a63152a3fc82f0660d4ba51fd31035f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "29a9f722_7e85bea7",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-23T23:07:44Z",
+      "side": 1,
+      "message": "Can this be done with a specific formatter ?",
+      "range": {
+        "startLine": 130,
+        "startChar": 15,
+        "endLine": 130,
+        "endChar": 46
+      },
+      "revId": "27e2850f1a63152a3fc82f0660d4ba51fd31035f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20a491e7_033865c6",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-23T23:07:44Z",
+      "side": 1,
+      "message": "I believe the looger will already print the function, can we remove it ?",
+      "range": {
+        "startLine": 143,
+        "startChar": 49,
+        "endLine": 143,
+        "endChar": 68
+      },
+      "revId": "27e2850f1a63152a3fc82f0660d4ba51fd31035f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "66197411_e3a13bf3",
+        "filename": "system/profile/avrcp/connection_handler.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-23T23:07:44Z",
+      "side": 1,
+      "message": "can loghex be replaced by a formatter ?",
+      "range": {
+        "startLine": 385,
+        "startChar": 44,
+        "endLine": 385,
+        "endChar": 50
+      },
+      "revId": "27e2850f1a63152a3fc82f0660d4ba51fd31035f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
