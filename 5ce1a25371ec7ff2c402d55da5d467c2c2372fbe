@@ -22,6 +22,30 @@
       },
       "revId": "5ce1a25371ec7ff2c402d55da5d467c2c2372fbe",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "573b9a56_b209b650",
+        "filename": "android/pandora/mmi2grpc/mmi2grpc/hfp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-01-23T05:59:49Z",
+      "side": 1,
+      "message": "I added parameters `phone_number` and `remote_phone_number` in the modem.proto\nso we can pass it as needed.\n\n```\nModem           ---\u003e DUT\nphone_number         remote_phone_number\n```\n\nIXIT_PHONE_NUMBER is for Modem and is defined in https://cs.android.com/android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/pandora/server/configs/pts_bot_tests_config.json;l\u003d2190?q\u003dpts_bot_tests_config. \n\nMaybe we can have a way to configure it dynamically for physical test in the future?",
+      "parentUuid": "55fab5b1_9a44d086",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 29
+      },
+      "revId": "5ce1a25371ec7ff2c402d55da5d467c2c2372fbe",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
