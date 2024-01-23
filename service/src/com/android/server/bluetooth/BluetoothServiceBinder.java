@@ -129,6 +129,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public boolean enable(@NonNull AttributionSource source) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in enable");
 
         final String errorMsg =
@@ -150,6 +153,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public boolean enableNoAutoConnect(AttributionSource source) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in enableNoAutoConnect");
 
         final String errorMsg =
@@ -276,6 +282,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @RequiresPermission(BLUETOOTH_CONNECT)
     public boolean enableBle(AttributionSource source, IBinder token) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in enableBle");
         requireNonNull(token, "IBinder cannot be null in enableBle");
 
