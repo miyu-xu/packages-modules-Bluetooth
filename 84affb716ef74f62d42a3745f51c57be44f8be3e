@@ -46,6 +46,30 @@
       },
       "revId": "84affb716ef74f62d42a3745f51c57be44f8be3e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f375bdaf_7b75ce83",
+        "filename": "system/stack/smp/smp_utils.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1645,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-23T16:43:05Z",
+      "side": 1,
+      "message": "I\u0027m wondering if it was put in to reduce the verbosity when we\u0027re running the fuzzer.",
+      "parentUuid": "d22513cf_0088ba30",
+      "range": {
+        "startLine": 1645,
+        "startChar": 0,
+        "endLine": 1645,
+        "endChar": 42
+      },
+      "revId": "84affb716ef74f62d42a3745f51c57be44f8be3e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
