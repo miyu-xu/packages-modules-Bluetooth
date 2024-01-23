@@ -1603,6 +1603,16 @@ public final class BluetoothAdapter {
             }
             return true;
         }
+        if (Flags.systemServerMessenger()) {
+            Bundle data = new Bundle();
+            data.putParcelable("source", mAttributionSource);
+
+            return mMessenger
+                    .sendToService(BluetoothServiceMessages.ENABLE, data)
+                    .thenApply(b -> b.getBoolean("enable"))
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+        }
         try {
             return mManagerService.enable(mAttributionSource);
         } catch (RemoteException e) {

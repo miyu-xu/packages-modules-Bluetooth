@@ -21,4 +21,5 @@ package com.android.server.bluetooth;
 enum BluetoothServiceMessages {
     REGISTER_ADAPTER = 1,
     UNREGISTER_ADAPTER = 2,
+    ENABLE = 3,
 }
