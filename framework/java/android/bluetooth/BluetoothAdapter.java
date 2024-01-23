@@ -71,9 +71,11 @@ import android.sysprop.BluetoothProperties;
 import android.util.Log;
 import android.util.Pair;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.internal.annotations.GuardedBy;
 import com.android.modules.expresslog.Counter;
 import com.android.modules.utils.SynchronousResultReceiver;
+import com.android.server.bluetooth.BluetoothServiceMessages;
 
 import java.io.IOException;
 import java.lang.annotation.Retention;
@@ -93,6 +95,7 @@ import java.util.WeakHashMap;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.function.BiFunction;
@@ -4434,6 +4437,28 @@ public final class BluetoothAdapter {
         final boolean wantRegistered = !sProxyServiceStateCallbacks.isEmpty();
 
         if (isRegistered != wantRegistered) {
+            if (Flags.systemServerMessenger()) {
+                Bundle data = new Bundle();
+                data.putBinder("callback", sManagerCallback.asBinder());
+
+                if (wantRegistered) {
+                    sService =
+                            mMessenger
+                                    .sendToService(BluetoothServiceMessages.REGISTER_ADAPTER, data)
+                                    .thenApply(b -> b.getBinder("service"))
+                                    .thenApply(IBluetooth.Stub::asInterface)
+                                    .orTimeout(1, TimeUnit.SECONDS)
+                                    .join();
+                } else {
+                    mMessenger
+                            .sendToService(BluetoothServiceMessages.UNREGISTER_ADAPTER, data)
+                            .orTimeout(1, TimeUnit.SECONDS)
+                            .join();
+                    sService = null;
+                }
+                sServiceRegistered = wantRegistered;
+                return;
+            }
             if (wantRegistered) {
                 try {
                     sService = mManagerService.registerAdapter(sManagerCallback);
