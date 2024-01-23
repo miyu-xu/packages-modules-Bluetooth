@@ -16,6 +16,23 @@
       "message": "Needs owner-review",
       "revId": "14291e82cff8810d3e86627ba220ae7294f25c31",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc224891_1b259acb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-23T01:15:06Z",
+      "side": 1,
+      "message": "In future it would be great if you could split formatting change into separate CL, for 2 reasons:\n1) Smaller logical change for reviewers to review. \n2) In case logical change needs to be reverted for any reason, then at least can keep the formatting improvement. \n\n(Marking no action required, just noting for future changes).",
+      "revId": "14291e82cff8810d3e86627ba220ae7294f25c31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
