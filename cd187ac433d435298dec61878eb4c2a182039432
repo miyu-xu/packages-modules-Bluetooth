@@ -20,6 +20,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "734dbe29_6279c95d",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-23T22:34:22Z",
+      "side": 1,
+      "message": "Can you update to `Flags.FLAG_GET_ADDRESS_TYPE_API` ?",
+      "range": {
+        "startLine": 1558,
+        "startChar": 17,
+        "endLine": 1558,
+        "endChar": 65
+      },
+      "revId": "cd187ac433d435298dec61878eb4c2a182039432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db8eb455_5694563f",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 3
