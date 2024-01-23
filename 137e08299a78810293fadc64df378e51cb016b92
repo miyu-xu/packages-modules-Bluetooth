@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "617ed58b_e9575dea",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-23T15:29:32Z",
+      "side": 1,
+      "message": "Make sense to do it static!",
+      "parentUuid": "d597da85_e7e30c68",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 33
+      },
+      "revId": "137e08299a78810293fadc64df378e51cb016b92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "cb31c0f8_25c43df0",
@@ -64,6 +88,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8443f9d7_23b533f9",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1812,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-23T15:29:32Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cb31c0f8_25c43df0",
+      "range": {
+        "startLine": 1812,
+        "startChar": 0,
+        "endLine": 1812,
+        "endChar": 93
+      },
+      "revId": "137e08299a78810293fadc64df378e51cb016b92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "4fc046b4_7994e6a9",
@@ -77,6 +125,24 @@
       "writtenOn": "2024-01-19T18:00:21Z",
       "side": 1,
       "message": "is this case still need to cover here? STATUS_LOCAL_STREAM_STREAMING",
+      "revId": "137e08299a78810293fadc64df378e51cb016b92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5de851b1_2b286bd0",
+        "filename": "android/app/src/com/android/bluetooth/bass_client/BassClientService.java",
+        "patchSetId": 12
+      },
+      "lineNbr": 1820,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-23T15:29:32Z",
+      "side": 1,
+      "message": "For source there is no need at this moment to do any action for STREAMING state. Mostly it means that BASS can\u0027t do anything, it needs to wait for suspend or request to make an action.",
+      "parentUuid": "4fc046b4_7994e6a9",
       "revId": "137e08299a78810293fadc64df378e51cb016b92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
