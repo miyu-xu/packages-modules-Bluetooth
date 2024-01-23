@@ -268,7 +268,9 @@ bool SourceImpl::OnSuspendReq() {
   std::lock_guard<std::mutex> guard(audioSourceCallbacksMutex_);
   if (CodecManager::GetInstance()->GetCodecLocation() ==
       types::CodecLocation::HOST) {
-    StopAudioTicks();
+    worker_thread_->DoInThread(
+        FROM_HERE,
+        base::BindOnce(&SourceImpl::StopAudioTicks, base::Unretained(this)));
   }
 
   if (audioSourceCallbacks_ == nullptr) {
@@ -366,7 +368,9 @@ void SourceImpl::Stop() {
 
   if (CodecManager::GetInstance()->GetCodecLocation() ==
       types::CodecLocation::HOST) {
-    StopAudioTicks();
+    worker_thread_->DoInThread(
+        FROM_HERE,
+        base::BindOnce(&SourceImpl::StopAudioTicks, base::Unretained(this)));
   }
 
   std::lock_guard<std::mutex> guard(audioSourceCallbacksMutex_);
@@ -386,7 +390,9 @@ void SourceImpl::ConfirmStreamingRequest() {
       types::CodecLocation::HOST)
     return;
 
-  StartAudioTicks();
+  worker_thread_->DoInThread(
+      FROM_HERE,
+      base::BindOnce(&SourceImpl::StartAudioTicks, base::Unretained(this)));
 }
 
 void SourceImpl::SuspendedForReconfiguration() {
