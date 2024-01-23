@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "69260dc7_007394b8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-23T02:11:56Z",
+      "side": 1,
+      "message": "aritrasen@ do I also tag the wear bug to this CL?",
+      "revId": "1915b813a11813e465eedcbaa341e7ee1e3f1a42",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
