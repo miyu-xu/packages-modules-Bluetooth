@@ -20,8 +20,8 @@
 #include <iostream>
 
 namespace bluetooth::hal {
-void NocpIsoClocker::Register(NocpIsoHandler*) {}
-void NocpIsoClocker::Unregister() {}
+void NocpClocker::Register(NocpIsoHandler*) {}
+void NocpClocker::Unregister() {}
 }  // namespace bluetooth::hal
 
 namespace bluetooth::audio::asrc {
