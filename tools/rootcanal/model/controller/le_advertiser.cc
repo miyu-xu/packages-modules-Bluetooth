@@ -47,8 +47,10 @@ slots operator"" _slots(unsigned long long count) { return slots(count); }
 // =============================================================================
 
 // Vol 6, Part B § 4.4.2.4.3 High duty cycle connectable directed advertising.
+// NB: The interval is specified to be 3.75ms, but it does not make sense to
+// use this value with the timer tick at 5ms.
 const chrono::duration adv_direct_ind_high_timeout = 1280ms;
-const chrono::duration adv_direct_ind_high_interval = 3750us;
+const chrono::duration adv_direct_ind_high_interval = 10ms /*3750us*/;
 
 // Vol 6, Part B § 2.3.4.9 Host Advertising Data.
 const uint16_t max_legacy_advertising_pdu_size = 31;
@@ -1148,6 +1150,19 @@ ErrorCode LinkLayerController::LeSetExtendedAdvertisingEnable(
         }
         break;
     }
+
+    // If an IRK is available in the Link Layer Resolving List for the peer
+    // device, then the target’s device address (TargetA field) shall
+    // use a resolvable private address. If an IRK is not available in the
+    // Link Layer Resolving List or the IRK is set to zero for the peer device,
+    // then the target’s device address (TargetA field) shall use the Identity
+    // Address when entering the Advertising State and using connectable
+    // directed events.
+    advertiser.target_address =
+        le_resolving_list_enabled_
+            ? GenerateResolvablePrivateAddress(peer_address, IrkSelection::Peer)
+                  .value_or(peer_address)
+            : peer_address;
   }
 
   for (auto& set : sets) {
@@ -1661,7 +1676,8 @@ void LinkLayerController::LeAdvertising() {
   // Generate Link Layer Advertising events when advertising is enabled
   // and a full interval has passed since the last event.
   if (legacy_advertiser_.IsEnabled() && now >= legacy_advertiser_.next_event) {
-    legacy_advertiser_.next_event += legacy_advertiser_.advertising_interval;
+    legacy_advertiser_.next_event =
+        now + legacy_advertiser_.advertising_interval;
     model::packets::LegacyAdvertisingType type;
     bool attach_advertising_data = true;
     switch (legacy_advertiser_.advertising_type) {
