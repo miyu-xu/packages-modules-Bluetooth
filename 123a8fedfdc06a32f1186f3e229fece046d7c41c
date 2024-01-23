@@ -3,6 +3,29 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3562cabf_fbc4707e",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-23T22:59:15Z",
+      "side": 1,
+      "message": "This mean that everytime we use the logger we will have something long like:\n`logger::error`, I really like the java one `Log.e` that is simple and concise.\n\nWhat do you think if we do\n`log::e` instead of `logger::error` ? what about `l::e` ? 🤓",
+      "range": {
+        "startLine": 27,
+        "startChar": 10,
+        "endLine": 27,
+        "endChar": 16
+      },
+      "revId": "123a8fedfdc06a32f1186f3e229fece046d7c41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3cb4fd24_425adf68",
         "filename": "system/logger/include/bluetooth/logger.h",
         "patchSetId": 14
