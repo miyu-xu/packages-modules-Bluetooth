@@ -93,4 +93,8 @@ class SystemServiceMessenger {
     SystemServiceMessage.UnregisterAdapter.Reply send(SystemServiceMessage.UnregisterAdapter data) {
         return send(data, SystemServiceMessage.UnregisterAdapter.Reply.class);
     }
+
+    SystemServiceMessage.Enable.Reply send(SystemServiceMessage.Enable data) {
+        return send(data, SystemServiceMessage.Enable.Reply.class);
+    }
 }
