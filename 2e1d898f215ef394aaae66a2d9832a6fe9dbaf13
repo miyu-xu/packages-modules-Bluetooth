@@ -35,6 +35,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55378a2d_17696e4d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-23T01:04:32Z",
+      "side": 1,
+      "message": "Yes, that patch actually did not compile. 😭",
+      "parentUuid": "cffd0d25_84806ba2",
+      "revId": "2e1d898f215ef394aaae66a2d9832a6fe9dbaf13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5c8ba624_6ba0e5c4",
