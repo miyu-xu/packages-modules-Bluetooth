@@ -41,6 +41,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "393987a3_7cd1f1fc",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1558,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-23T23:49:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "734dbe29_6279c95d",
+      "range": {
+        "startLine": 1558,
+        "startChar": 17,
+        "endLine": 1558,
+        "endChar": 65
+      },
+      "revId": "cd187ac433d435298dec61878eb4c2a182039432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "db8eb455_5694563f",
@@ -54,6 +78,30 @@
       "writtenOn": "2024-01-22T23:46:37Z",
       "side": 1,
       "message": "Add docs for possible return values and the forward/backward compatibility behavior of ADDRESS_TYPE_UNKNOWN",
+      "range": {
+        "startLine": 1559,
+        "startChar": 12,
+        "endLine": 1559,
+        "endChar": 23
+      },
+      "revId": "cd187ac433d435298dec61878eb4c2a182039432",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d688e070_247ac804",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 1559,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-23T23:49:05Z",
+      "side": 1,
+      "message": "Done - also made ADDRESS_TYPE_ANONYMOUS part of API (private -\u003e public), previously was private but in order to document makes more sense to allow it to be public, despite the fact 3P clients shouldn\u0027t be using it to construct devices they should be able to see address type for ScanResults returned. \n\nRe: forward/backward compatibility behavior of ADDRESS_TYPE_UNKNOWN, we don\u0027t have strong guarantee of this so left out of documentation (any changes across SDK versions were not intended). Currently BluetoothDevice object cannot be constructed with ADDRESS_TYPE_UNKNOWN, but that is not strictly guaranteed as part of API to my understanding.",
+      "parentUuid": "db8eb455_5694563f",
       "range": {
         "startLine": 1559,
         "startChar": 12,
