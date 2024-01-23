@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a7d90dda_326eed39",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-23T08:46:17Z",
+      "side": 1,
+      "message": "Found a small nit. Otherwise, LGTM.",
+      "revId": "8cd445d29a2e858617a196048982d884c0365d4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "019b9b4f_9f35b186",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-23T08:46:17Z",
+      "side": 1,
+      "message": "```suggestion\n  // Hangs up all active calls.\n```",
+      "range": {
+        "startLine": 22,
+        "startChar": 5,
+        "endLine": 22,
+        "endChar": 9
+      },
+      "revId": "8cd445d29a2e858617a196048982d884c0365d4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6c0d1f9b_5bcb3238",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-23T08:46:17Z",
+      "side": 1,
+      "message": "```suggestion\n  // Makes a phone call.\n```",
+      "revId": "8cd445d29a2e858617a196048982d884c0365d4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "afb1471b_fda5c264",
+        "filename": "pandora/interfaces/pandora_experimental/modem.proto",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1993150
+      },
+      "writtenOn": "2024-01-23T08:46:17Z",
+      "side": 1,
+      "message": "```suggestion\n  // Answers a phone call.\n```",
+      "revId": "8cd445d29a2e858617a196048982d884c0365d4d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
