@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "812e09a8_b0be7f73",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-01-23T12:05:18Z",
+      "side": 1,
+      "message": "Additional context for this CL:\n\nAs part of go/scan-manager-refactor, the idea is to divide and conquer to as small, flag-not-needed CLs as much as possible. A new `ScanManageService` ProfileService will be introduced under `le_scan`. All scan related functions will be moved under `le_scan` and this CL starts with only 1 thing; move `ScanManager` from package `gatt` to `le_scan`. A few package private classes and functions were made public to the package change (I believe, after the refactor is complete, these can be made package private again).\n\n@hallstrom@google.com @wescande@google.com Please take a look and let me know what you think",
+      "revId": "fce847c3787a577c6724568fac24c5f35d63c3ad",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
