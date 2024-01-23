@@ -1222,32 +1222,57 @@ class BluetoothManagerService {
                         + (" isBinding=" + isBinding())
                         + (" mState=" + mState));
 
-        if (isSatelliteModeOn()) {
-            Log.d(TAG, "enable: not enabling - satellite mode is on.");
-            return false;
-        }
-
         synchronized (mReceiver) {
-            mQuietEnableExternal = false;
-            mEnableExternal = true;
-            if (!mUseNewAirplaneMode) {
-                mBluetoothAirplaneModeListener.notifyUserToggledBluetooth(true);
-            } else {
-                // TODO(b/288450479): Remove clearCallingIdentity when threading is fixed
-                final long callingIdentity = Binder.clearCallingIdentity();
-                try {
-                    AirplaneModeListener.notifyUserToggledBluetooth(
-                            mContentResolver, mCurrentUserContext, true);
-                } finally {
-                    Binder.restoreCallingIdentity(callingIdentity);
-                }
+            if (!canEnable()) {
+                return false;
             }
+
             sendEnableMsg(
                     false,
                     BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST,
                     packageName);
         }
         return true;
+    }
+
+    boolean enable_sync(String packageName) {
+        Log.i(
+                TAG,
+                ("enable_sync(" + packageName + "):")
+                        + (" mAdapter=" + mAdapter)
+                        + (" isBinding=" + isBinding())
+                        + (" mState=" + mState));
+
+        if (!canEnable()) {
+            return false;
+        }
+
+        addActiveLog(
+                BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName, true);
+        mLastEnabledTime = SystemClock.elapsedRealtime();
+        handleEnableMessage(0, 0);
+    }
+
+    private boolean canEnable() {
+        if (isSatelliteModeOn()) {
+            Log.d(TAG, "enable: not enabling - satellite mode is on.");
+            return false;
+        }
+
+        mQuietEnableExternal = false;
+        mEnableExternal = true;
+        if (!mUseNewAirplaneMode) {
+            mBluetoothAirplaneModeListener.notifyUserToggledBluetooth(true);
+        } else {
+            // TODO(b/288450479): Remove clearCallingIdentity when threading is fixed
+            final long callingIdentity = Binder.clearCallingIdentity();
+            try {
+                AirplaneModeListener.notifyUserToggledBluetooth(
+                        mContentResolver, mCurrentUserContext, true);
+            } finally {
+                Binder.restoreCallingIdentity(callingIdentity);
+            }
+        }
     }
 
     boolean disable(String packageName, boolean persist) {
