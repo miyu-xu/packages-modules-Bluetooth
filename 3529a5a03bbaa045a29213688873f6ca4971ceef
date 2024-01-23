@@ -98,6 +98,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "9ad3739b_61215d65",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-23T01:10:06Z",
+      "side": 1,
+      "message": "Hi @chharry@google.com, as `Local Supported Codec Capabilities` won\u0027t change, caching won\u0027t impact my need :)",
+      "parentUuid": "3b929853_6c9b35e8",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 42
+      },
+      "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "b01b55ff_76a14480",
         "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
         "patchSetId": 1
