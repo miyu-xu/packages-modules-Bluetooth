@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e643b73e_59f54bbc",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-23T17:31:10Z",
+      "side": 1,
+      "message": "As you know, I\u0027m not a fan of friends :) \n\nWhat does the factory pattern buy us here?  It doesn\u0027t have any state.\n\nCould Build just be a static method in the class?",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
