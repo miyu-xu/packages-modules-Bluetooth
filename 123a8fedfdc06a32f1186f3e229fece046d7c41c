@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3cd60f00_25c586cd",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-23T23:11:11Z",
+      "side": 1,
+      "message": "If we just leave out the namespace, error(), warn(), etc seems pretty nice.",
+      "parentUuid": "3562cabf_fbc4707e",
+      "range": {
+        "startLine": 27,
+        "startChar": 10,
+        "endLine": 27,
+        "endChar": 16
+      },
+      "revId": "123a8fedfdc06a32f1186f3e229fece046d7c41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "3cb4fd24_425adf68",
         "filename": "system/logger/include/bluetooth/logger.h",
         "patchSetId": 14
