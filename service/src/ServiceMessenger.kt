@@ -15,6 +15,7 @@
  */
 package com.android.server.bluetooth
 
+import android.bluetooth.IBluetoothManagerCallback
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -53,7 +54,18 @@ internal class ServiceMessenger(
         data: Bundle
     ): Bundle {
         return when (what) {
-            BluetoothServiceMessages.EMPTY -> {
+            BluetoothServiceMessages.REGISTER_ADAPTER -> {
+                val callback =
+                    IBluetoothManagerCallback.Stub.asInterface(data.getBinder("callback")!!)
+
+                val adapterBinder = managerService.registerAdapter_sync(callback)
+                Bundle().apply { putBinder("service", adapterBinder?.asBinder()) }
+            }
+            BluetoothServiceMessages.UNREGISTER_ADAPTER -> {
+                val callback =
+                    IBluetoothManagerCallback.Stub.asInterface(data.getBinder("callback")!!)
+
+                managerService.unregisterAdapter_sync(callback)
                 Bundle.EMPTY
             }
             else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")

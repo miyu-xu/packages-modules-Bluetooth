@@ -19,5 +19,6 @@ package com.android.server.bluetooth;
 @JavaDerive(toString=true)
 @Backing(type="int")
 enum BluetoothServiceMessages {
-    EMPTY = 0, // Placeholder removed in immediate follow-up to allow build
+    REGISTER_ADAPTER = 1,
+    UNREGISTER_ADAPTER = 2,
 }
