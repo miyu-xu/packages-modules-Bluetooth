@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5c8ba624_6ba0e5c4",
+        "filename": "system/stack/btm/btm_ble_addr.cc",
+        "patchSetId": 13
+      },
+      "lineNbr": 345,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-23T00:57:59Z",
+      "side": 1,
+      "message": "This doesn\u0027t seem to make a difference.",
+      "range": {
+        "startLine": 345,
+        "startChar": 40,
+        "endLine": 345,
+        "endChar": 44
+      },
+      "revId": "2e1d898f215ef394aaae66a2d9832a6fe9dbaf13",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
