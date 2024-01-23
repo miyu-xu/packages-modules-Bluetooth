@@ -236,7 +236,6 @@ android_app {
     jni_uses_platform_apis: true,
     libs: [
         "app-compat-annotations",
-        "bluetooth_flags_java_lib",
         "error_prone_annotations",
         "framework-annotations-lib",
         "framework-bluetooth-pre-jarjar",
