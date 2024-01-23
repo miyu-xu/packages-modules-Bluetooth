@@ -1142,8 +1142,12 @@ bt_status_t BtifAvSource::Init(
 
   callbacks_ = callbacks;
   if (a2dp_offload_enabled_) {
+    tBTM_BLE_VSC_CB vsc_cb;
+    BTM_BleGetVendorCapabilities(&vsc_cb);
+    bool supports_a2dp_hw_offload_v2 = vsc_cb.version_supported >= 0x0103;
     bluetooth::audio::a2dp::update_codec_offloading_capabilities(
-        offloading_preference);
+        offloading_preference,
+        supports_a2dp_hw_offload_v2);
   }
   bta_av_co_init(codec_priorities, supported_codecs);
 
