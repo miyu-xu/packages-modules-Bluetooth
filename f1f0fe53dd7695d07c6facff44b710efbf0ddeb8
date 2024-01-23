@@ -68,6 +68,24 @@
       "message": "working on test failures.",
       "revId": "f1f0fe53dd7695d07c6facff44b710efbf0ddeb8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "40fc9287_09692d00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1018371
+      },
+      "writtenOn": "2024-01-23T04:27:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d641cb50_5d8c4bce",
+      "revId": "f1f0fe53dd7695d07c6facff44b710efbf0ddeb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
