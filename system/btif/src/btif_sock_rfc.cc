@@ -291,7 +291,10 @@ bt_status_t btsock_rfc_listen(const char* service_name,
   // error to call
   // functions on RFCOMM sockets before initializing the module. Probably
   // should be an assert.
-  if (!is_init_done()) return BT_STATUS_NOT_READY;
+  if (!is_init_done()) {
+    LOG_ERROR("%s BT not ready", __func__);
+    return BT_STATUS_NOT_READY;
+  }
 
   if ((flags & BTSOCK_FLAG_NO_SDP) == 0) {
     if (!service_uuid || service_uuid->IsEmpty()) {
@@ -346,7 +349,10 @@ bt_status_t btsock_rfc_connect(const RawAddress* bd_addr,
   // error to call
   // functions on RFCOMM sockets before initializing the module. Probably should
   // be an assert.
-  if (!is_init_done()) return BT_STATUS_NOT_READY;
+  if (!is_init_done()) {
+    LOG_ERROR("%s BT not ready", __func__);
+    return BT_STATUS_NOT_READY;
+  }
 
   std::unique_lock<std::recursive_mutex> lock(slot_lock);
 
@@ -1034,7 +1040,10 @@ int bta_co_rfc_data_outgoing(uint32_t id, uint8_t* buf, uint16_t size) {
 
 bt_status_t btsock_rfc_disconnect(const RawAddress* bd_addr) {
   CHECK(bd_addr != NULL);
-  if (!is_init_done()) return BT_STATUS_NOT_READY;
+  if (!is_init_done()) {
+    LOG_ERROR("%s BT not ready", __func__);
+    return BT_STATUS_NOT_READY;
+  }
 
   std::unique_lock<std::recursive_mutex> lock(slot_lock);
   for (size_t i = 0; i < ARRAY_SIZE(rfc_slots); ++i) {
