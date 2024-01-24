@@ -143,6 +143,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f77449f_431d8d32",
+        "filename": "system/logger/include/bluetooth/logger.h",
+        "patchSetId": 14
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-24T06:20:16Z",
+      "side": 1,
+      "message": "Oh, that\u0027s sad 😞.\nAck",
+      "parentUuid": "c3549a5b_df0d5375",
+      "range": {
+        "startLine": 75,
+        "startChar": 1,
+        "endLine": 75,
+        "endChar": 5
+      },
+      "revId": "123a8fedfdc06a32f1186f3e229fece046d7c41c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c907758f_16b7bc99",
