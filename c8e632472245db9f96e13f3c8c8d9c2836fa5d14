@@ -26,6 +26,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c18b99dd_7e56dafa",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-24T19:23:45Z",
+      "side": 1,
+      "message": "@rotkiewicz@google.com,\n\nThe test is host supported so it will be run automatically in the host test, but if you want this test to be run at pre-submit of device you must add it to the  TEST_MAPPING.\n\nYou need to add it first in post-submit in order to check the flakiness and meet with the SLO, and once it has soak enough in post-submit, you will be able to promote it to pre-submit",
+      "parentUuid": "66fe79a3_07ece9da",
+      "range": {
+        "startLine": 121,
+        "startChar": 11,
+        "endLine": 121,
+        "endChar": 49
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a00c5eb_76f0802f",
         "filename": "system/audio_hal_interface/Android.bp",
         "patchSetId": 2
