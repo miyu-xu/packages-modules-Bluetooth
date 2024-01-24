@@ -19,6 +19,7 @@ package com.android.bluetooth.gatt;
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
+import com.android.bluetooth.le_scan.PeriodicScanManager;
 import com.android.internal.annotations.GuardedBy;
 import com.android.internal.annotations.VisibleForTesting;
 
@@ -39,7 +40,7 @@ public class PeriodicScanNativeInterface {
 
     private PeriodicScanNativeInterface() {}
 
-    static PeriodicScanNativeInterface getInstance() {
+    public static PeriodicScanNativeInterface getInstance() {
         synchronized (INSTANCE_LOCK) {
             if (sInstance == null) {
                 sInstance = new PeriodicScanNativeInterface();
@@ -56,32 +57,32 @@ public class PeriodicScanNativeInterface {
         }
     }
 
-    void init(PeriodicScanManager manager) {
+    public void init(PeriodicScanManager manager) {
         mManager = manager;
         initializeNative();
     }
 
-    void cleanup() {
+    public void cleanup() {
         cleanupNative();
     }
 
-    void startSync(int sid, String address, int skip, int timeout, int regId) {
+    public void startSync(int sid, String address, int skip, int timeout, int regId) {
         startSyncNative(sid, address, skip, timeout, regId);
     }
 
-    void stopSync(int syncHandle) {
+    public void stopSync(int syncHandle) {
         stopSyncNative(syncHandle);
     }
 
-    void cancelSync(int sid, String address) {
+    public void cancelSync(int sid, String address) {
         cancelSyncNative(sid, address);
     }
 
-    void syncTransfer(BluetoothDevice bda, int serviceData, int syncHandle) {
+    public void syncTransfer(BluetoothDevice bda, int serviceData, int syncHandle) {
         syncTransferNative(PA_SOURCE_REMOTE, bda.getAddress(), serviceData, syncHandle);
     }
 
-    void transferSetInfo(BluetoothDevice bda, int serviceData, int advHandle) {
+    public void transferSetInfo(BluetoothDevice bda, int serviceData, int advHandle) {
         transferSetInfoNative(PA_SOURCE_LOCAL, bda.getAddress(), serviceData, advHandle);
     }
 
