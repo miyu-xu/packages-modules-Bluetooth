@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aa60fb1_e387f626",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanNativeInterface.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-24T22:03:04Z",
+      "side": 1,
+      "message": "It would probably be best to move the PeriodicScanNativeInterface to le_scan package in this CL too in order to avoid this warning the AndroidLint warning here.",
+      "range": {
+        "startLine": 60,
+        "startChar": 22,
+        "endLine": 60,
+        "endChar": 51
+      },
+      "revId": "2c2bbadabe006eb226a913be68e16e95520f49dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
