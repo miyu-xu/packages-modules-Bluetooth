@@ -717,13 +717,30 @@ class MceStateMachine extends StateMachine {
 
                 case MSG_GET_MESSAGE_LISTING:
                     // Get latest 50 Unread messages in the last week
-                    MessagesFilter filter = new MessagesFilter();
-                    filter.setMessageType(MapUtils.fetchMessageType());
                     Calendar calendar = Calendar.getInstance();
                     calendar.add(Calendar.DATE, -7);
-                    filter.setPeriod(calendar.getTime(), null);
-                    mMasClient.makeRequest(new RequestGetMessagesListing(
-                            (String) message.obj, 0, filter, 0, 50, 0));
+                    byte messageType;
+                    if (Utils.isPtsTestMode()) {
+                        messageType =
+                                (byte)
+                                        SystemProperties.getInt(
+                                                FETCH_MESSAGE_TYPE,
+                                                MessagesFilter.MESSAGE_TYPE_ALL);
+                    } else {
+                        messageType = MessagesFilter.MESSAGE_TYPE_ALL;
+                    }
+
+                    mMasClient.makeRequest(
+                            new RequestGetMessagesListing(
+                                    (String) message.obj,
+                                    0,
+                                    new MessagesFilter.Builder()
+                                            .setPeriod(calendar.getTime(), null)
+                                            .setMessageType(messageType)
+                                            .build(),
+                                    0,
+                                    50,
+                                    0));
                     break;
 
                 case MSG_SET_MESSAGE_STATUS:
