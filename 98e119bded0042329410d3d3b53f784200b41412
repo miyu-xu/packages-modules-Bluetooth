@@ -18,6 +18,23 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "217fedd1_d5f8943e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-01-24T09:22:33Z",
+      "side": 1,
+      "message": "Similar change in settings:\n\nFrom 54c2f4dd4b60ca90099db9b5cf11d8c52362a2f6 Mon Sep 17 00:00:00 2001\nFrom: Rongxuan Liu \u003crongxuan@google.com\u003e\nDate: Wed, 15 Nov 2023 20:44:32 +0000\nSubject: [PATCH] Control broadcast assistant profile connection with le toggle\n\nTest: make RunSettingsRoboTests ROBOTEST_FILTER\u003dBluetoothDetailsProfilesControllerTest\nTest: manual test with le toggle and check bass profile is\nenabled/disabled\nBug: 300227308\n\nChange-Id: If61b1edadb24b53661bb74173c243826f31956ae",
+      "revId": "98e119bded0042329410d3d3b53f784200b41412",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55f5c6e1_bcfb44fd",
