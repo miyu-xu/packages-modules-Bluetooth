@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "13ddc7f5_3b380c54",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-24T19:33:03Z",
+      "side": 1,
+      "message": "Thanks Himanshu, \njust fyi, if the code is already protected by the flag, you can consider to add the flag bug id to the commit message.",
+      "revId": "50a79b45a13552737f2b237602c555b43655de91",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
