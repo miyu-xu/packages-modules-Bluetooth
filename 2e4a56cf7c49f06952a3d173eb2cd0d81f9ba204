@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "93c6f506_7fb787b1",
+        "filename": "system/gd/hal/link_clocker.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-24T19:31:56Z",
+      "side": 1,
+      "message": "can you follow the todo style ?",
+      "range": {
+        "startLine": 121,
+        "startChar": 4,
+        "endLine": 121,
+        "endChar": 12
+      },
+      "revId": "2e4a56cf7c49f06952a3d173eb2cd0d81f9ba204",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
