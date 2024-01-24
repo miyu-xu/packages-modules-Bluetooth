@@ -39,6 +39,7 @@ import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.le_scan.PeriodicScanManager;
 
 import org.junit.After;
 import org.junit.Before;
