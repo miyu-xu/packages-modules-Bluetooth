@@ -59,14 +59,13 @@ static base::Callback<void(const base::Location&, BT_HDR*)> send_data_upwards;
 static const packet_fragmenter_t* packet_fragmenter;
 
 namespace {
-bool is_valid_event_code(bluetooth::hci::EventCode event_code) {
+bool register_event_code(bluetooth::hci::EventCode event_code) {
   switch (event_code) {
     case bluetooth::hci::EventCode::INQUIRY_COMPLETE:
     case bluetooth::hci::EventCode::INQUIRY_RESULT:
     case bluetooth::hci::EventCode::ENCRYPTION_CHANGE:
     case bluetooth::hci::EventCode::CHANGE_CONNECTION_LINK_KEY_COMPLETE:
     case bluetooth::hci::EventCode::CENTRAL_LINK_KEY_COMPLETE:
-    case bluetooth::hci::EventCode::HARDWARE_ERROR:
     case bluetooth::hci::EventCode::RETURN_LINK_KEYS:
     case bluetooth::hci::EventCode::PIN_CODE_REQUEST:
     case bluetooth::hci::EventCode::LINK_KEY_REQUEST:
@@ -90,9 +89,10 @@ bool is_valid_event_code(bluetooth::hci::EventCode event_code) {
     case bluetooth::hci::EventCode::KEYPRESS_NOTIFICATION:
     case bluetooth::hci::EventCode::NUMBER_OF_COMPLETED_DATA_BLOCKS:
       return true;
-    case bluetooth::hci::EventCode::VENDOR_SPECIFIC:
+    // Not handled, so don't register for it
     case bluetooth::hci::EventCode::AUTHENTICATED_PAYLOAD_TIMEOUT_EXPIRED:
-      return false;
+    // Registered in VendorSpecificEventManager
+    case bluetooth::hci::EventCode::VENDOR_SPECIFIC:
     // Registered in Controller
     case bluetooth::hci::EventCode::NUMBER_OF_COMPLETED_PACKETS:
     // Registered in AclConnectionEvents
@@ -120,6 +120,7 @@ bool is_valid_event_code(bluetooth::hci::EventCode event_code) {
     case bluetooth::hci::EventCode::PAGE_SCAN_REPETITION_MODE_CHANGE:
     case bluetooth::hci::EventCode::REMOTE_HOST_SUPPORTED_FEATURES_NOTIFICATION:
     case bluetooth::hci::EventCode::LE_META_EVENT:
+    case bluetooth::hci::EventCode::HARDWARE_ERROR:
       return false;
   }
   return false;
@@ -479,7 +480,7 @@ void bluetooth::shim::hci_on_reset_complete() {
 
   for (uint16_t event_code_raw = 0; event_code_raw < 0x100; event_code_raw++) {
     auto event_code = static_cast<bluetooth::hci::EventCode>(event_code_raw);
-    if (!is_valid_event_code(event_code)) {
+    if (!register_event_code(event_code)) {
       continue;
     }
     cpp::register_event(event_code);
