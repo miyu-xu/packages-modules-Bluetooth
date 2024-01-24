@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.bluetooth.gatt;
+package com.android.bluetooth.le_scan;
 
 import static com.google.common.truth.Truth.assertThat;
 
@@ -39,6 +39,7 @@ import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 
 import com.android.bluetooth.btservice.AdapterService;
+import com.android.bluetooth.gatt.PeriodicScanNativeInterface;
 
 import org.junit.After;
 import org.junit.Before;
