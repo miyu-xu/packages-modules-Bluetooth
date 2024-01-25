@@ -24,12 +24,14 @@
 
 #define LOG_TAG "bt_bta_av"
 
+#include <android_bluetooth_flags.h>
 #include <base/logging.h>
 
 #include <cstdint>
 
 #include "bta/av/bta_av_int.h"
 #include "bta/include/bta_ar_api.h"
+#include "bta/include/bta_av_cfg.h"
 #include "bta/include/bta_av_co.h"
 #include "bta/include/utl.h"
 #include "bta/sys/bta_sys.h"
@@ -476,34 +478,32 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
   reg_data.app_id = p_data->api_reg.app_id;
   reg_data.chnl = (tBTA_AV_CHNL)p_data->hdr.layer_specific;
 
-  char avrcp_version[PROPERTY_VALUE_MAX] = {0};
-  osi_property_get(AVRCP_VERSION_PROPERTY, avrcp_version,
-                   AVRCP_DEFAULT_VERSION);
-  LOG_INFO("%s: AVRCP version used for sdp: \"%s\"", __func__, avrcp_version);
-
+  uint16_t profile_version = AVRC_GetProfileVersion();
   uint16_t profile_initialized = p_data->api_reg.service_uuid;
-  if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK) {
-    p_bta_av_cfg = get_bta_avk_cfg();
-  } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) {
-    p_bta_av_cfg = &bta_av_cfg;
+  bool is_source_enabled = profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE ||
+                           btif_av_src_sink_coexist_enabled();
+  bool is_sink_enabled = profile_initialized == UUID_SERVCLASS_AUDIO_SINK ||
+                         btif_av_src_sink_coexist_enabled();
+  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+    p_bta_av_cfg = BtaAvCfgFactory::createCustomConfig(
+        is_source_enabled, is_sink_enabled, profile_version);
+  } else {
+    if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK) {
+      p_bta_av_cfg = get_bta_avk_cfg();
+    } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) {
+      p_bta_av_cfg = bta_av_cfg;
 
-    if (!strncmp(AVRCP_1_3_STRING, avrcp_version, sizeof(AVRCP_1_3_STRING))) {
-      LOG_INFO("%s: AVRCP 1.3 capabilites used", __func__);
-      p_bta_av_cfg = &bta_av_cfg_compatibility;
+      if (profile_version == AVRC_REV_1_3) {
+        LOG_INFO("%s: AVRCP 1.3 capabilites used", __func__);
+        p_bta_av_cfg = bta_av_cfg_compatibility;
+      }
     }
   }
 
   LOG_VERBOSE("%s: profile: 0x%x", __func__, profile_initialized);
-  if (p_bta_av_cfg == NULL) {
-    LOG_ERROR("%s: AV configuration is null!", __func__);
-    return;
-  }
 
   do {
-    p_scb = nullptr;
-    if (btif_av_src_sink_coexist_enabled()) {
-      p_scb = bta_av_find_scb(reg_data.chnl, reg_data.app_id);
-    }
+    p_scb = bta_av_find_scb(reg_data.chnl, reg_data.app_id);
     if (p_scb == nullptr) {
       p_scb = bta_av_alloc_scb(reg_data.chnl);
     }
@@ -547,30 +547,16 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
         } else {
           LOG_VERBOSE("%s: newavrcp is not enabled. Create SDP record",
                       __func__);
-
-          uint16_t profile_version = AVRC_REV_1_0;
-          if (!strncmp(AVRCP_1_6_STRING, avrcp_version,
-                      sizeof(AVRCP_1_6_STRING))) {
-            profile_version = AVRC_REV_1_6;
-          } else if (!strncmp(AVRCP_1_5_STRING, avrcp_version,
-                              sizeof(AVRCP_1_5_STRING))) {
-            profile_version = AVRC_REV_1_5;
-          } else if (!strncmp(AVRCP_1_3_STRING, avrcp_version,
-                              sizeof(AVRCP_1_3_STRING))) {
-            profile_version = AVRC_REV_1_3;
-          } else {
-            profile_version = AVRC_REV_1_4;
-          }
           if (btif_av_src_sink_coexist_enabled()) {
             bta_ar_reg_avrc_for_src_sink_coexist(
                 UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target",
-                NULL, p_bta_av_cfg->avrc_tg_cat,
+                NULL, p_bta_av_cfg.getAvrcpTargetCategories(),
                 static_cast<tBTA_SYS_ID>(BTA_ID_AV + local_role),
                 (bta_av_cb.features & BTA_AV_FEAT_BROWSE), profile_version);
           } else {
             bta_ar_reg_avrc(
                 UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target",
-                NULL, p_bta_av_cfg->avrc_tg_cat,
+                NULL, p_bta_av_cfg.getAvrcpTargetCategories(),
                 (bta_av_cb.features & BTA_AV_FEAT_BROWSE), profile_version);
           }
         }
@@ -711,26 +697,31 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
          * We create 1.4 for SINK since we support browsing.
          */
         if (btif_av_src_sink_coexist_enabled()) {
-          if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) {
-            bta_ar_reg_avrc_for_src_sink_coexist(
-                UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
-                p_bta_av_cfg->avrc_ct_cat, BTA_ID_AV,
-                (bta_av_cb.features & BTA_AV_FEAT_BROWSE), AVRC_REV_1_5);
-          } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK)
-            bta_ar_reg_avrc_for_src_sink_coexist(
-                UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
-                p_bta_av_cfg->avrc_ct_cat, BTA_ID_AVK,
-                (bta_av_cb.features & BTA_AV_FEAT_BROWSE), AVRC_REV_1_5);
+          // Avrcp service also create controller records resulting in duplicate
+          // control records.
+          if (!is_new_avrcp_enabled() ||
+              !IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+            if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE) {
+              bta_ar_reg_avrc_for_src_sink_coexist(
+                  UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
+                  p_bta_av_cfg.getAvrcpControllerCategories(), BTA_ID_AV,
+                  (bta_av_cb.features & BTA_AV_FEAT_BROWSE), AVRC_REV_1_5);
+            } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK)
+              bta_ar_reg_avrc_for_src_sink_coexist(
+                  UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
+                  p_bta_av_cfg.getAvrcpControllerCategories(), BTA_ID_AVK,
+                  (bta_av_cb.features & BTA_AV_FEAT_BROWSE), AVRC_REV_1_5);
+          }
         } else {
           if (profile_initialized == UUID_SERVCLASS_AUDIO_SOURCE &&
               !is_new_avrcp_enabled()) {
             bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
-                            p_bta_av_cfg->avrc_ct_cat,
+                            p_bta_av_cfg.getAvrcpControllerCategories(),
                             (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
                             AVRC_REV_1_3);
           } else if (profile_initialized == UUID_SERVCLASS_AUDIO_SINK)
             bta_ar_reg_avrc(UUID_SERVCLASS_AV_REMOTE_CONTROL, NULL, NULL,
-                            p_bta_av_cfg->avrc_ct_cat,
+                            p_bta_av_cfg.getAvrcpControllerCategories(),
                             (bta_av_cb.features & BTA_AV_FEAT_BROWSE),
                             AVRC_REV_1_6);
         }
@@ -749,12 +740,13 @@ static void bta_av_api_register(tBTA_AV_DATA* p_data) {
     /* there are too much check depend on it's only source */
     if ((profile_initialized == UUID_SERVCLASS_AUDIO_SINK) &&
         (bta_av_cb.reg_role & (1 << AVDT_TSEP_SRC))) {
-      p_bta_av_cfg = &bta_av_cfg;
+      if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+        p_bta_av_cfg = bta_av_cfg;
 
-      if (!strncmp(AVRCP_1_3_STRING, avrcp_version,
-                   sizeof(AVRCP_1_3_STRING))) {  // ver if need
-        LOG_VERBOSE("%s: AVRCP 1.3 capabilites used", __func__);
-        p_bta_av_cfg = &bta_av_cfg_compatibility;
+        if (profile_version == AVRC_REV_1_3) {  // ver if need
+          LOG_VERBOSE("%s: AVRCP 1.3 capabilites used", __func__);
+          p_bta_av_cfg = bta_av_cfg_compatibility;
+        }
       }
     }
   }
@@ -1189,7 +1181,7 @@ void bta_av_dup_audio_buf(tBTA_AV_SCB* p_scb, BT_HDR* p_buf) {
     memcpy(p_new, p_buf, copy_size);
     list_append(p_scbi->a2dp_list, p_new);
 
-    if (list_length(p_scbi->a2dp_list) > p_bta_av_cfg->audio_mqs) {
+    if (list_length(p_scbi->a2dp_list) > p_bta_av_cfg.getAudioMqs()) {
       // Drop the oldest packet
       bta_av_co_audio_drop(p_scbi->hndl, p_scbi->PeerAddress());
       BT_HDR* p_buf_drop = static_cast<BT_HDR*>(list_front(p_scbi->a2dp_list));
