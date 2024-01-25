@@ -549,7 +549,8 @@ public final class BluetoothDevice implements Parcelable, Attributable {
                 METADATA_FAST_PAIR_CUSTOMIZED_FIELDS,
                 METADATA_LE_AUDIO,
                 METADATA_GMCS_CCCD,
-                METADATA_GTBS_CCCD
+                METADATA_GTBS_CCCD,
+                METADATA_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION,
             })
     @Retention(RetentionPolicy.SOURCE)
     public @interface MetadataKey {}
@@ -795,7 +796,17 @@ public final class BluetoothDevice implements Parcelable, Attributable {
      */
     public static final int METADATA_GTBS_CCCD = 28;
 
-    private static final int METADATA_MAX_KEY = METADATA_GTBS_CCCD;
+    /**
+     * Whether the device should remain as inactive audio device upon connection. Data type should
+     * be {@link String} as {@link Byte} array.
+     *
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_METADATA_API_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION)
+    @SystemApi
+    public static final int METADATA_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION = 29;
+
+    private static final int METADATA_MAX_KEY = METADATA_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION;
 
     /**
      * Device type which is used in METADATA_DEVICE_TYPE Indicates this Bluetooth device is a

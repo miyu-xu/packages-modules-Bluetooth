@@ -245,6 +245,7 @@ package android.bluetooth {
     field public static final int METADATA_DEVICE_TYPE = 17; // 0x11
     field public static final int METADATA_ENHANCED_SETTINGS_UI_URI = 16; // 0x10
     field public static final int METADATA_HARDWARE_VERSION = 3; // 0x3
+    field @FlaggedApi("com.android.bluetooth.flags.metadata_api_inactive_audio_device_upon_connection") public static final int METADATA_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION = 29; // 0x1d
     field public static final int METADATA_IS_UNTETHERED_HEADSET = 6; // 0x6
     field public static final int METADATA_LE_AUDIO = 26; // 0x1a
     field public static final int METADATA_MAIN_BATTERY = 18; // 0x12
@@ -1240,6 +1241,7 @@ package android.bluetooth.le {
     method public void writeToParcel(android.os.Parcel, int);
     field @NonNull public static final android.os.Parcelable.Creator<android.bluetooth.le.DistanceMeasurementMethod> CREATOR;
     field public static final int DISTANCE_MEASUREMENT_METHOD_AUTO = 0; // 0x0
+    field @FlaggedApi("com.android.bluetooth.flags.channel_sounding") public static final int DISTANCE_MEASUREMENT_METHOD_CHANNEL_SOUNDING = 2; // 0x2
     field public static final int DISTANCE_MEASUREMENT_METHOD_RSSI = 1; // 0x1
   }
 

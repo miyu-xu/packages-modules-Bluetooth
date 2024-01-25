@@ -349,6 +349,9 @@ public class Metadata {
             case BluetoothDevice.METADATA_GTBS_CCCD:
                 publicMetadata.gtbs_cccd = value;
                 break;
+            case BluetoothDevice.METADATA_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION:
+                publicMetadata.inactive_audio_device_upon_connection = value;
+                break;
         }
     }
 
@@ -445,6 +448,9 @@ public class Metadata {
                 break;
             case BluetoothDevice.METADATA_GTBS_CCCD:
                 value = publicMetadata.gtbs_cccd;
+                break;
+            case BluetoothDevice.METADATA_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION:
+                value = publicMetadata.inactive_audio_device_upon_connection;
                 break;
         }
         return value;
