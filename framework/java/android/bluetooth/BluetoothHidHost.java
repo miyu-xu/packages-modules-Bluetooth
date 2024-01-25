@@ -19,12 +19,14 @@ package android.bluetooth;
 import static android.bluetooth.BluetoothUtils.getSyncTimeout;
 
 import android.Manifest;
+import android.annotation.FlaggedApi;
 import android.annotation.NonNull;
 import android.annotation.RequiresPermission;
 import android.annotation.SdkConstant;
 import android.annotation.SdkConstant.SdkConstantType;
 import android.annotation.SuppressLint;
 import android.annotation.SystemApi;
+import android.bluetooth.BluetoothDevice.Transport;
 import android.bluetooth.annotations.RequiresBluetoothConnectPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothAdminPermission;
 import android.bluetooth.annotations.RequiresLegacyBluetoothPermission;
@@ -64,12 +66,16 @@ public final class BluetoothHidHost implements BluetoothProfile {
      * <ul>
      *   <li>{@link #EXTRA_STATE} - The current state of the profile.
      *   <li>{@link #EXTRA_PREVIOUS_STATE}- The previous state of the profile.
+     *   <li>{@link BluetoothDevice#EXTRA_TRANSPORT} - Transport of the connection.
      *   <li>{@link BluetoothDevice#EXTRA_DEVICE} - The remote device.
      * </ul>
      *
      * <p>{@link #EXTRA_STATE} or {@link #EXTRA_PREVIOUS_STATE} can be any of {@link
      * #STATE_DISCONNECTED}, {@link #STATE_CONNECTING}, {@link #STATE_CONNECTED}, {@link
      * #STATE_DISCONNECTING}.
+     *
+     * <p>{@link BluetoothDevice#EXTRA_TRANSPORT} can be any of {@link
+     * BluetoothDevice#TRANSPORT_BREDR}, {@link BluetoothDevice#TRANSPORT_LE}.
      */
     @SuppressLint("ActionValue")
     @RequiresLegacyBluetoothPermission
@@ -465,6 +471,58 @@ public final class BluetoothHidHost implements BluetoothProfile {
     }
 
     /**
+     * Set preferred transport for the device
+     *
+     * <p>The device should already be paired, services must have been discovered. This API is
+     * effective only if both the HID and HOGP are supported on the remote device. Transport can be
+     * any of the {@link BluetoothDevice#TRANSPORT_AUTO} - Default, lets the native stack decide
+     * {@link BluetoothDevice#TRANSPORT_BREDR} - HID {@link BluetoothDevice#TRANSPORT_LE} - HOGP
+     *
+     * @param device Paired bluetooth device
+     * @param transport is the preferred transport to set for this device
+     * @return true if preferred transport is set, false on error
+     * @hide
+     */
+    @FlaggedApi("com.android.bluetooth.flags.allow_switching_hid_and_hogp")
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public boolean setPreferredTransport(
+            @NonNull BluetoothDevice device, @Transport int transport) {
+        if (DBG) log("setPreferredTransport(" + device + ", " + transport + ")");
+        if (device == null) {
+            throw new IllegalArgumentException("device must not be null");
+        }
+
+        final IBluetoothHidHost service = getService();
+        final boolean defaultValue = false;
+
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (!isEnabled()) {
+            Log.w(TAG, "Not ready");
+        } else if (!isValidDevice(device)) {
+            Log.w(TAG, "Invalid device");
+        } else if (device.getBondState() != BluetoothDevice.BOND_BONDED) {
+            Log.w(TAG, "Not bonded");
+        } else {
+            try {
+                final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
+                service.setPreferredTransport(device, transport, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return defaultValue;
+    }
+
+    /**
      * Get the priority of the profile.
      *
      * <p>The priority can be any of: {@link #PRIORITY_OFF}, {@link #PRIORITY_ON}, {@link
@@ -516,6 +574,51 @@ public final class BluetoothHidHost implements BluetoothProfile {
             try {
                 final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
                 service.getConnectionPolicy(device, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Get the preferred transport for the device.
+     *
+     * <p>Transport can be any of the {@link BluetoothDevice#TRANSPORT_AUTO} - Default, lets the
+     * native stack decide {@link BluetoothDevice#TRANSPORT_BREDR} - HID {@link
+     * BluetoothDevice#TRANSPORT_LE} - HOGP
+     *
+     * @param device Bluetooth device
+     * @return preferred transport for the device
+     * @hide
+     */
+    @FlaggedApi("com.android.bluetooth.flags.allow_switching_hid_and_hogp")
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public @ConnectionPolicy int getPreferredTransport(@NonNull BluetoothDevice device) {
+        if (VDBG) log("getPreferredTransport(" + device + ")");
+        if (device == null) {
+            throw new IllegalArgumentException("device must not be null");
+        }
+        final IBluetoothHidHost service = getService();
+        final int defaultValue = BluetoothDevice.TRANSPORT_AUTO;
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (!isEnabled()) {
+            Log.w(TAG, "Not ready");
+        } else if (!isValidDevice(device)) {
+            Log.w(TAG, "Invalid device");
+        } else {
+            try {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                service.getPreferredTransport(device, mAttributionSource, recv);
                 return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
             } catch (RemoteException | TimeoutException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
