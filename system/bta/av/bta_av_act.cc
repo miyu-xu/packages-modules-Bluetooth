@@ -25,10 +25,13 @@
 
 #define LOG_TAG "bt_bta_av"
 
+#include <android_bluetooth_flags.h>
+
 #include <cstdint>
 
 #include "bta/av/bta_av_int.h"
 #include "bta/include/bta_ar_api.h"
+#include "bta/include/bta_av_cfg.h"
 #include "bta/include/utl.h"
 #include "btif/avrcp/avrcp_service.h"
 #include "device/include/device_iot_config.h"
@@ -369,7 +372,7 @@ uint8_t bta_av_rc_create(tBTA_AV_CB* p_cb, uint8_t role, uint8_t shdl,
 
   ccb.ctrl_cback = base::Bind(bta_av_rc_ctrl_cback);
   ccb.msg_cback = base::Bind(bta_av_rc_msg_cback);
-  ccb.company_id = p_bta_av_cfg->company_id;
+  ccb.company_id = p_bta_av_cfg.getCompanyId();
   ccb.conn = role;
   /* note: BTA_AV_FEAT_RCTG = AVRC_CT_TARGET, BTA_AV_FEAT_RCCT = AVRC_CT_CONTROL
    */
@@ -426,7 +429,7 @@ static tBTA_AV_CODE bta_av_group_navi_supported(uint8_t len, uint8_t* p_data,
   uint16_t u16;
   uint32_t u32;
 
-  if (p_bta_av_cfg->avrc_group && len == BTA_GROUP_NAVI_MSG_OP_DATA_LEN) {
+  if (p_bta_av_cfg.isAvrcGroup() && len == BTA_GROUP_NAVI_MSG_OP_DATA_LEN) {
     BTA_AV_BE_STREAM_TO_CO_ID(u32, p_ptr);
     BE_STREAM_TO_UINT16(u16, p_ptr);
 
@@ -465,7 +468,7 @@ static tBTA_AV_CODE bta_av_op_supported(tBTA_AV_RC rc_id, bool is_inquiry) {
     } else {
       if (p_bta_av_rc_id[rc_id >> 4] & (1 << (rc_id & 0x0F))) {
         ret_code = AVRC_RSP_ACCEPT;
-      } else if ((p_bta_av_cfg->rc_pass_rsp == AVRC_RSP_INTERIM) &&
+      } else if ((p_bta_av_cfg.getRcPassRsp() == AVRC_RSP_INTERIM) &&
                  p_bta_av_rc_id_ac) {
         if (p_bta_av_rc_id_ac[rc_id >> 4] & (1 << (rc_id & 0x0F))) {
           ret_code = AVRC_RSP_INTERIM;
@@ -812,26 +815,35 @@ static tAVRC_STS bta_av_chk_notif_evt_id(tAVRC_MSG_VENDOR* p_vendor) {
   if ((u16 != 5) || (p_vendor->vendor_len != 9)) {
     status = AVRC_STS_INTERNAL_ERR;
   } else {
-    if (btif_av_both_enable()) {
-      for (xx = 0; xx < bta_av_cfg.num_evt_ids; xx++) {
-        if (*p == bta_av_cfg.p_meta_evt_ids[xx]) {
-          return status;
+    if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+      // p_bta_av_cfg contains the events for source & sink profiles,
+      for (xx = 0; xx < p_bta_av_cfg.getNumEvtIds(); xx++) {
+        if (*p == p_bta_av_cfg.getPMetaEvtIds()[xx]) {
+          break;
         }
       }
-      for (xx = 0; xx < get_bta_avk_cfg()->num_evt_ids; xx++) {
-        if (*p == get_bta_avk_cfg()->p_meta_evt_ids[xx]) {
-          return status;
+    } else {
+      if (btif_av_both_enable()) {
+        for (xx = 0; xx < bta_av_cfg.getNumEvtIds(); xx++) {
+          if (*p == bta_av_cfg.getPMetaEvtIds()[xx]) {
+            return status;
+          }
+        }
+        for (xx = 0; xx < get_bta_avk_cfg().getNumEvtIds(); xx++) {
+          if (*p == get_bta_avk_cfg().getPMetaEvtIds()[xx]) {
+            return status;
+          }
+        }
+        return AVRC_STS_BAD_PARAM;
+      }
+      /* make sure the player_id is valid */
+      for (xx = 0; xx < p_bta_av_cfg.getNumEvtIds(); xx++) {
+        if (*p == p_bta_av_cfg.getPMetaEvtIds()[xx]) {
+          break;
         }
       }
-      return AVRC_STS_BAD_PARAM;
     }
-    /* make sure the player_id is valid */
-    for (xx = 0; xx < p_bta_av_cfg->num_evt_ids; xx++) {
-      if (*p == p_bta_av_cfg->p_meta_evt_ids[xx]) {
-        break;
-      }
-    }
-    if (xx == p_bta_av_cfg->num_evt_ids) {
+    if (xx == p_bta_av_cfg.getNumEvtIds()) {
       status = AVRC_STS_BAD_PARAM;
     }
   }
@@ -841,26 +853,35 @@ static tAVRC_STS bta_av_chk_notif_evt_id(tAVRC_MSG_VENDOR* p_vendor) {
 
 void bta_av_proc_rsp(tAVRC_RESPONSE* p_rc_rsp) {
   uint16_t rc_ver = 0x105;
-  const tBTA_AV_CFG* p_src_cfg = NULL;
-  if (rc_ver != 0x103)
-    p_src_cfg = &bta_av_cfg;
-  else
-    p_src_cfg = &bta_av_cfg_compatibility;
-  p_rc_rsp->get_caps.count = p_src_cfg->num_evt_ids;
-  memcpy(p_rc_rsp->get_caps.param.event_id, p_src_cfg->p_meta_evt_ids,
-         p_src_cfg->num_evt_ids);
+  BtaAvConfig p_src_cfg;
+  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+    p_src_cfg = BtaAvCfgFactory::createCustomConfig(true, false, rc_ver);
+  } else {
+    if (rc_ver != 0x103)
+      p_src_cfg = bta_av_cfg;
+    else
+      // rc_ver is hardcoded to 0x105. This is dead code.
+      p_src_cfg = bta_av_cfg_compatibility;
+  }
+  p_rc_rsp->get_caps.count = p_src_cfg.getNumEvtIds();
+  memcpy(p_rc_rsp->get_caps.param.event_id, p_src_cfg.getPMetaEvtIds(),
+         p_src_cfg.getNumEvtIds());
   LOG_VERBOSE("%s: ver: 0x%x", __func__, rc_ver);
   /* if it's not 1.3, then there should be a absolute volume */
   if (rc_ver != 0x103) {
     uint8_t evt_cnt = p_rc_rsp->get_caps.count;
-    p_rc_rsp->get_caps.count += get_bta_avk_cfg()->num_evt_ids;
+    const BtaAvConfig& bta_avk_config =
+        IS_FLAG_ENABLED(a2dp_concurrent_source_sink)
+            ? BtaAvCfgFactory::createCustomConfig(false, true, rc_ver)
+            : get_bta_avk_cfg();
+    p_rc_rsp->get_caps.count += bta_avk_config.getNumEvtIds();
     if (evt_cnt < AVRC_CAP_MAX_NUM_EVT_ID) {
       uint32_t i = 0;
-      for (i = 0; i < get_bta_avk_cfg()->num_evt_ids &&
+      for (i = 0; i < bta_avk_config.getNumEvtIds() &&
                   i + evt_cnt < AVRC_CAP_MAX_NUM_EVT_ID;
            i++) {
         p_rc_rsp->get_caps.param.event_id[evt_cnt + i] =
-            get_bta_avk_cfg()->p_meta_evt_ids[i];
+            bta_avk_config.getPMetaEvtIds()[i];
       }
     }
   }
@@ -935,19 +956,19 @@ tBTA_AV_EVT bta_av_proc_meta_cmd(tAVRC_RESPONSE* p_rc_rsp,
           p_rc_rsp->get_caps.status = AVRC_STS_NO_ERROR;
           if (u8 == AVRC_CAP_COMPANY_ID) {
             *p_ctype = AVRC_RSP_IMPL_STBL;
-            p_rc_rsp->get_caps.count = p_bta_av_cfg->num_co_ids;
+            p_rc_rsp->get_caps.count = p_bta_av_cfg.getNumCoIds();
             memcpy(p_rc_rsp->get_caps.param.company_id,
-                   p_bta_av_cfg->p_meta_co_ids,
-                   (p_bta_av_cfg->num_co_ids << 2));
+                   p_bta_av_cfg.getPMetaCoIds(),
+                   (p_bta_av_cfg.getNumCoIds() << 2));
           } else if (u8 == AVRC_CAP_EVENTS_SUPPORTED) {
             *p_ctype = AVRC_RSP_IMPL_STBL;
             if (btif_av_src_sink_coexist_enabled() && btif_av_both_enable()) {
               bta_av_proc_rsp(p_rc_rsp);
               break;
             }
-            p_rc_rsp->get_caps.count = p_bta_av_cfg->num_evt_ids;
+            p_rc_rsp->get_caps.count = p_bta_av_cfg.getNumEvtIds();
             memcpy(p_rc_rsp->get_caps.param.event_id,
-                   p_bta_av_cfg->p_meta_evt_ids, p_bta_av_cfg->num_evt_ids);
+                   p_bta_av_cfg.getPMetaEvtIds(), p_bta_av_cfg.getNumEvtIds());
           } else {
             LOG_VERBOSE("%s: Invalid capability ID: 0x%x", __func__, u8);
             /* reject - unknown capability ID */
@@ -2168,7 +2189,10 @@ void bta_av_rc_disc_done_all(UNUSED_ATTR tBTA_AV_DATA* p_data) {
       if (peer_rc_version <= AVRC_REV_1_3) {
         LOG_VERBOSE("%s: Using AVRCP 1.3 Capabilities with remote device",
                     __func__);
-        p_bta_av_cfg = &bta_av_cfg_compatibility;
+        // The AV config should be updated only if the V1.3 device is active?
+        if (!IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+          p_bta_av_cfg = bta_av_cfg_compatibility;
+        }
       }
     }
   }
@@ -2362,7 +2386,7 @@ void bta_av_rc_disc_done(UNUSED_ATTR tBTA_AV_DATA* p_data) {
       if (peer_rc_version <= AVRC_REV_1_3) {
         LOG_VERBOSE("%s: Using AVRCP 1.3 Capabilities with remote device",
                     __func__);
-        p_bta_av_cfg = &bta_av_cfg_compatibility;
+        p_bta_av_cfg = bta_av_cfg_compatibility;
       }
     }
   }
