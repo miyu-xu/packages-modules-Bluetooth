@@ -18,6 +18,7 @@
 
 #include "connection_handler.h"
 
+#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <bluetooth/log.h>
 
@@ -409,6 +410,11 @@ void ConnectionHandler::AcceptorControlCb(uint8_t handle, uint8_t event,
       // Open for the next incoming connection. The handle will not be the same
       // as this one which will be closed when the device is disconnected.
       AvrcpConnect(false, RawAddress::kAny);
+
+      if (IS_FLAG_ENABLED(avrcp_connect_a2dp_delayed)) {
+        // Check peer audio role: src or sink and connect A2DP after 3 seconds
+        SdpLookupAudioRole(handle);
+      }
     } break;
 
     case AVRC_CLOSE_IND_EVT: {
@@ -652,6 +658,56 @@ void ConnectionHandler::RegisterVolChanged(const RawAddress& bdaddr) {
       break;
     }
   }
+}
+
+bool ConnectionHandler::SdpLookupAudioRole(uint16_t handle) {
+  if (device_map_.find(handle) == device_map_.end()) {
+    log::warn("No device found for handle: {}", loghex(handle));
+    return false;
+  }
+  auto device = device_map_[handle];
+
+  log::info(
+      "Performing SDP for AUDIO_SOURCE on connected device: address={}, "
+      "handle={}",
+      ADDRESS_TO_LOGGABLE_STR(device->GetAddress()), handle);
+
+  return device->find_source_service(base::Bind(
+      &ConnectionHandler::SdpLookupAudioRoleCb, weak_ptr_factory_.GetWeakPtr(),
+      UUID_SERVCLASS_AUDIO_SOURCE, handle));
+}
+
+void ConnectionHandler::SdpLookupAudioRoleCb(uint16_t service_uuid,
+                                             uint16_t handle, bool found,
+                                             tA2DP_Service* p_service,
+                                             const RawAddress& peer_address) {
+  if (device_map_.find(handle) == device_map_.end()) {
+    log::warn("No device found for handle: {}", loghex(handle));
+    return;
+  }
+  auto device = device_map_[handle];
+
+  log::debug("SDP callback for address={}, handle={} service={} {}",
+             ADDRESS_TO_LOGGABLE_STR(device->GetAddress()), handle,
+             service_uuid == UUID_SERVCLASS_AUDIO_SOURCE ? "AUDIO_SOURCE"
+                                                         : "AUDIO_SINK",
+             found ? "found" : "not found");
+
+  if (service_uuid == UUID_SERVCLASS_AUDIO_SOURCE) {
+    device->a2dp_source_supported_ = found;
+
+    log::info(
+        "Performing SDP for AUDIO_SINK on connected device: address={}, "
+        "handle={}",
+        ADDRESS_TO_LOGGABLE_STR(device->GetAddress()), handle);
+    device->find_sink_service(base::Bind(
+        &ConnectionHandler::SdpLookupAudioRoleCb,
+        weak_ptr_factory_.GetWeakPtr(), UUID_SERVCLASS_AUDIO_SINK, handle));
+    return;
+  }
+
+  device->a2dp_sink_supported_ = found;
+  device->connect_a2dp_delayed(handle);
 }
 
 }  // namespace avrcp

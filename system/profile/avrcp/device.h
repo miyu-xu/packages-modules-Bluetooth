@@ -327,6 +327,23 @@ class Device {
     active_labels_.erase(label);
     send_message_cb_.Run(label, browse, std::move(message));
   }
+
+  // A2DP interface implementation
+  void connect_a2dp_delayed(uint8_t handle) const {
+    a2dp_interface_->connect_delayed(handle, address_, a2dp_sink_supported_,
+                                     a2dp_source_supported_);
+  }
+
+  bool find_source_service(tA2DP_FIND_CBACK p_cback) const {
+    return a2dp_interface_->find_audio_source_service(address_, p_cback) ==
+           A2DP_SUCCESS;
+  }
+
+  bool find_sink_service(tA2DP_FIND_CBACK p_cback) const {
+    return a2dp_interface_->find_audio_sink_service(address_, p_cback) ==
+           A2DP_SUCCESS;
+  }
+
   base::WeakPtrFactory<Device> weak_ptr_factory_;
 
   // TODO (apanicke): Initialize all the variables in the constructor.
@@ -377,6 +394,10 @@ class Device {
   std::set<uint8_t> active_labels_;
 
   int8_t volume_ = -1;
+
+  // A2DP sink and source roles support
+  bool a2dp_sink_supported_ = false;
+  bool a2dp_source_supported_ = false;
 };
 
 }  // namespace avrcp
