@@ -27,6 +27,7 @@
 #include <string>
 
 #include "hci/class_of_device.h"
+#include "stack/include/acl_api_types.h"
 #include "stack/include/acl_client_callbacks.h"
 #include "stack/include/bt_hdr.h"
 #include "test/common/mock_functions.h"
@@ -518,7 +519,7 @@ void btm_acl_update_conn_addr(uint16_t handle, const RawAddress& address) {
   inc_func_call_count(__func__);
   test::mock::stack_acl::btm_acl_update_conn_addr(handle, address);
 }
-void btm_acl_update_inquiry_status(uint8_t status) {
+void btm_acl_update_inquiry_status(tBTM_INQUIRY_STATE status) {
   inc_func_call_count(__func__);
   test::mock::stack_acl::btm_acl_update_inquiry_status(status);
 }

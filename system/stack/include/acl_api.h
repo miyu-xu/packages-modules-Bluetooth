@@ -20,6 +20,7 @@
 #include "device/include/controller.h"
 #include "stack/acl/acl.h"
 #include "stack/btm/security_device_record.h"
+#include "stack/include/acl_api_types.h"
 #include "stack/include/btm_api_types.h"
 #include "stack/include/btm_status.h"
 #include "stack/include/hci_error_code.h"
@@ -313,7 +314,7 @@ bool btm_is_acl_locally_initiated(void);
 tBTM_STATUS btm_remove_acl(const RawAddress& bd_addr, tBT_TRANSPORT transport);
 
 void btm_acl_device_down(void);
-void btm_acl_update_inquiry_status(uint8_t status);
+void btm_acl_update_inquiry_status(tBTM_INQUIRY_STATE status);
 
 void ACL_RegisterClient(struct acl_client_callback_s* callbacks);
 void ACL_UnregisterClient(struct acl_client_callback_s* callbacks);
