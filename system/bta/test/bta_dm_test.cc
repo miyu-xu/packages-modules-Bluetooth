@@ -31,11 +31,14 @@
 #include "bta/hf_client/bta_hf_client_int.h"
 #include "bta/include/bta_api.h"
 #include "bta/test/bta_base_test.h"
+#include "hci/controller_interface_mock.h"
+#include "hci/le_rand_callback.h"
 #include "osi/include/compat.h"
 #include "osi/include/osi.h"
 #include "stack/include/btm_status.h"
 #include "test/common/main_handler.h"
 #include "test/common/mock_functions.h"
+#include "test/mock/mock_main_shim_entry.h"
 #include "test/mock/mock_osi_alarm.h"
 #include "test/mock/mock_osi_allocator.h"
 #include "test/mock/mock_osi_properties.h"
@@ -81,6 +84,10 @@ class BtaDmTest : public BtaBaseTest {
  protected:
   void SetUp() override {
     BtaBaseTest::SetUp();
+    ON_CALL(controller_, LeRand)
+        .WillByDefault(
+            [](bluetooth::hci::LeRandCallback cb) { cb.Invoke(0x1234); });
+    bluetooth::hci::testing::mock_controller_ = &controller_;
     main_thread_start_up();
     post_on_bt_main([]() { LOG_INFO("Main thread started up"); });
 
@@ -99,7 +106,9 @@ class BtaDmTest : public BtaBaseTest {
     post_on_bt_main([]() { LOG_INFO("Main thread shutting down"); });
     main_thread_shut_down();
     BtaBaseTest::TearDown();
+    bluetooth::hci::testing::mock_controller_ = nullptr;
   }
+  bluetooth::hci::testing::MockControllerInterface controller_;
 };
 
 class BtaDmCustomAlarmTest : public BtaDmTest {
