@@ -45,6 +45,30 @@
       },
       "revId": "75d23a1f467a1ba341728b137f64fb0cf2712a35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e1c0df5f_8d1f0208",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1904823
+      },
+      "writtenOn": "2024-01-25T23:55:49Z",
+      "side": 1,
+      "message": "Long running tests are probably better handled in postsubmit (and not presubmit).",
+      "parentUuid": "ac0283f3_4fcb3647",
+      "range": {
+        "startLine": 234,
+        "startChar": 37,
+        "endLine": 234,
+        "endChar": 42
+      },
+      "revId": "75d23a1f467a1ba341728b137f64fb0cf2712a35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
