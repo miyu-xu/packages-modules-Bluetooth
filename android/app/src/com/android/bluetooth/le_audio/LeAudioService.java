@@ -89,12 +89,14 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -652,6 +654,7 @@ public class LeAudioService extends ProfileService {
                         + " : no state machine");
                 return false;
             }
+
             sm.sendMessage(LeAudioStateMachine.DISCONNECT);
         }
 
@@ -1127,6 +1130,27 @@ public class LeAudioService extends ProfileService {
 
             mIsSourceStreamMonitorModeEnabled = false;
         }
+    }
+
+    /**
+     * Get all not stopped broadcast IDs
+     */
+    public Set<Integer> getAllNotStoppedBroadcastIds() {
+        Set<Integer> broadcastIds = new HashSet<>();
+
+        if (mBroadcastDescriptors == null) {
+            Log.e(TAG, "getAllNotStoppedBroadcastIds: Invalid Broadcast Descriptors");
+            return broadcastIds;
+        }
+
+        for (Map.Entry<Integer, LeAudioBroadcastDescriptor> entry :
+                mBroadcastDescriptors.entrySet()) {
+            if (!entry.getValue().mState.equals(LeAudioStackEvent.BROADCAST_STATE_STOPPED)) {
+                broadcastIds.add(entry.getKey());
+            }
+        }
+
+        return broadcastIds;
     }
 
     private boolean areBroadcastsAllStopped() {
@@ -2669,6 +2693,12 @@ public class LeAudioService extends ProfileService {
                                             d.mState.equals(
                                                     LeAudioStackEvent.BROADCAST_STATE_STREAMING))) {
                         updateBroadcastActiveDevice(null, mActiveAudioOutDevice);
+                    }
+
+                    // Notify broadcast assistant
+                    if (bassClientService != null) {
+                        bassClientService.notifyBroadcastStateChanged(descriptor.mState,
+                                broadcastId);
                     }
 
                     /* Restore the Unicast stream from before the Broadcast was started. */

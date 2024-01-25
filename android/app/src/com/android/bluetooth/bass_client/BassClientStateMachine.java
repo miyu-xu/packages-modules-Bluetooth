@@ -1315,6 +1315,12 @@ public class BassClientStateMachine extends StateMachine {
                         connectGatt(true);
                     }
                 }
+
+                if (mFeatureFlags.leaudioBroadcastAudioHandoverPolicies()) {
+                    if (mLastConnectionState == BluetoothProfile.STATE_DISCONNECTING) {
+                        mService.handleIntendedDeviceDisconnection(mDevice);
+                    }
+                }
             }
         }
 

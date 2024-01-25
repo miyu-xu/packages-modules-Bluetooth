@@ -763,7 +763,8 @@ public class BassClientStateMachineTest {
             value[BassConstants.BCAST_RCVR_STATE_SRC_ADDR_START_IDX + i] = 0x00;
         }
         when(mBassClientService.getPeriodicAdvertisementResult(any(), anyInt())).thenReturn(null);
-        when(mBassClientService.isLocalBroadcast(any())).thenReturn(true);
+        when(mBassClientService.isLocalBroadcast(any(BluetoothLeBroadcastMetadata.class)))
+                .thenReturn(true);
         when(characteristic.getValue()).thenReturn(value);
         mBassClientStateMachine.mPendingSourceToSwitch = mBassClientStateMachine.mPendingMetadata;
 
@@ -1179,7 +1180,8 @@ public class BassClientStateMachineTest {
 
         BluetoothLeBroadcastMetadata metadata = createBroadcastMetadata();
         // verify local broadcast doesn't require active synced source
-        when(mBassClientService.isLocalBroadcast(any())).thenReturn(true);
+        when(mBassClientService.isLocalBroadcast(any(BluetoothLeBroadcastMetadata.class)))
+                .thenReturn(true);
         mBassClientStateMachine.sendMessage(ADD_BCAST_SOURCE, metadata);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
@@ -1666,7 +1668,8 @@ public class BassClientStateMachineTest {
 
         BluetoothLeBroadcastMetadata metadata = createBroadcastMetadata();
         // verify local broadcast doesn't require active synced source
-        when(mBassClientService.isLocalBroadcast(any())).thenReturn(true);
+        when(mBassClientService.isLocalBroadcast(any(BluetoothLeBroadcastMetadata.class)))
+                .thenReturn(true);
         mBassClientStateMachine.sendMessage(ADD_BCAST_SOURCE, metadata);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
@@ -1700,7 +1703,8 @@ public class BassClientStateMachineTest {
 
         BluetoothLeBroadcastMetadata metadata = createBroadcastMetadata();
         // verify local broadcast doesn't require active synced source
-        when(mBassClientService.isLocalBroadcast(any())).thenReturn(true);
+        when(mBassClientService.isLocalBroadcast(any(BluetoothLeBroadcastMetadata.class)))
+                .thenReturn(true);
         mBassClientStateMachine.sendMessage(ADD_BCAST_SOURCE, metadata);
         TestUtils.waitForLooperToFinishScheduledTask(mHandlerThread.getLooper());
 
@@ -1778,7 +1782,8 @@ public class BassClientStateMachineTest {
         when(mBassClientService.getCallbacks()).thenReturn(callbacks);
 
         BluetoothLeBroadcastMetadata metadata = createBroadcastMetadata();
-        when(mBassClientService.isLocalBroadcast(any())).thenReturn(false);
+        when(mBassClientService.isLocalBroadcast(any(BluetoothLeBroadcastMetadata.class)))
+                .thenReturn(false);
         when(mBassClientService.getActiveSyncedSources(any())).thenReturn(null);
         when(mBassClientService.getCachedBroadcast(anyInt())).thenReturn(null);
         mBassClientStateMachine.sendMessage(ADD_BCAST_SOURCE, metadata);
