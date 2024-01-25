@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "321af3dc_daa9d592",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 10
+      },
+      "lineNbr": 1681,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-01-25T19:54:22Z",
+      "side": 1,
+      "message": "change argument type to `const RawAddress`",
+      "range": {
+        "startLine": 1681,
+        "startChar": 56,
+        "endLine": 1681,
+        "endChar": 75
+      },
+      "revId": "1b514106b0bcd9b40ceff6b84b76ce1424937144",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
