@@ -30,6 +30,7 @@
 #include "btif_common.h"
 #include "device.h"
 #include "include/check.h"
+#include "stack/include/a2dp_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/main_thread.h"
@@ -55,6 +56,41 @@ class A2dpInterfaceImpl : public A2dpInterface {
   bool is_peer_in_silence_mode(const RawAddress& peer_address) override {
     return btif_av_is_peer_silenced(peer_address);
   }
+
+  void connect_delayed(uint8_t handle, const RawAddress& peer_address,
+                       bool peer_sink_supported, bool peer_source_supported) {
+    btif_av_connect_delayed(handle, peer_address, peer_sink_supported,
+                            peer_source_supported);
+  }
+
+  uint16_t find_audio_source_service(const RawAddress& peer_address,
+                                     tA2DP_FIND_CBACK p_cback) override {
+    tA2DP_SDP_DB_PARAMS db_params;
+    uint16_t attr_list[] = {ATTR_ID_SERVICE_CLASS_ID_LIST,
+                            ATTR_ID_BT_PROFILE_DESC_LIST,
+                            ATTR_ID_SUPPORTED_FEATURES};
+
+    db_params.db_len = BT_DEFAULT_BUFFER_SIZE;
+    db_params.num_attr = sizeof(attr_list) / sizeof(attr_list[0]);
+    db_params.p_attrs = attr_list;
+    return A2DP_FindService(UUID_SERVCLASS_AUDIO_SOURCE, peer_address,
+                            &db_params, p_cback);
+  }
+
+  uint16_t find_audio_sink_service(const RawAddress& peer_address,
+                                   tA2DP_FIND_CBACK p_cback) override {
+    tA2DP_SDP_DB_PARAMS db_params;
+    uint16_t attr_list[] = {ATTR_ID_SERVICE_CLASS_ID_LIST,
+                            ATTR_ID_BT_PROFILE_DESC_LIST,
+                            ATTR_ID_SUPPORTED_FEATURES};
+
+    db_params.db_len = BT_DEFAULT_BUFFER_SIZE;
+    db_params.num_attr = sizeof(attr_list) / sizeof(attr_list[0]);
+    db_params.p_attrs = attr_list;
+    return A2DP_FindService(UUID_SERVCLASS_AUDIO_SINK, peer_address, &db_params,
+                            p_cback);
+  }
+
 } a2dp_interface_;
 
 class AvrcpInterfaceImpl : public AvrcpInterface {
