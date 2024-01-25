@@ -28,6 +28,7 @@
 #include <string>
 
 #include "bta/include/bta_av_api.h"
+#include "bta/include/bta_av_cfg.h"
 #include "bta/include/bta_sec_api.h"
 #include "bta/sys/bta_sys.h"
 #include "include/hardware/bt_av.h"
@@ -710,10 +711,10 @@ class tBT_A2DP_OFFLOAD {
 extern tBTA_AV_CB bta_av_cb;
 
 /* config struct */
-extern const tBTA_AV_CFG* p_bta_av_cfg;
-const tBTA_AV_CFG* get_bta_avk_cfg();
-extern const tBTA_AV_CFG bta_av_cfg;
-extern const tBTA_AV_CFG bta_av_cfg_compatibility;
+extern BtaAvConfig p_bta_av_cfg;
+const BtaAvConfig get_bta_avk_cfg();
+extern const BtaAvConfig bta_av_cfg;
+extern const BtaAvConfig bta_av_cfg_compatibility;
 
 /* rc id config struct */
 extern uint16_t* p_bta_av_rc_id;
