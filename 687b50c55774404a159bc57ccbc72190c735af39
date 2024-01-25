@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2c6fe1e2_22a8ae3a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-25T02:07:21Z",
+      "side": 1,
+      "message": "Patch set 4 was trial to remove the automated DrNo, since the patch set 1 has the wrong bug number which gives auto DrNo to this CL.",
+      "revId": "687b50c55774404a159bc57ccbc72190c735af39",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
