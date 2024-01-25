@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "54f43503_c72e92ac",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-01-25T09:04:44Z",
+      "side": 1,
+      "message": "ok, I was only wondering if presubmit could be modified such that it will temporarily enable required aconfig flag, only for the test purpose? If not it might not make sense to put it into presubmit until the flag is removed and the code adopted on its own. What do you think ?",
+      "parentUuid": "c18b99dd_7e56dafa",
+      "range": {
+        "startLine": 121,
+        "startChar": 11,
+        "endLine": 121,
+        "endChar": 49
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a00c5eb_76f0802f",
         "filename": "system/audio_hal_interface/Android.bp",
         "patchSetId": 2
