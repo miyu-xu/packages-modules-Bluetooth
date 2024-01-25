@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ad643c90_74dcafba",
+        "filename": "system/gd/rust/linux/client/src/callbacks.rs",
+        "patchSetId": 5
+      },
+      "lineNbr": 1509,
+      "author": {
+        "id": 1936647
+      },
+      "writtenOn": "2024-01-25T18:42:28Z",
+      "side": 1,
+      "message": "Same as below, all of the batteries are part of the set, print all of them.",
+      "range": {
+        "startLine": 1504,
+        "startChar": 12,
+        "endLine": 1509,
+        "endChar": 14
+      },
+      "revId": "b3c73c29b9040d40debf0983edebe6f9b39cbc32",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
