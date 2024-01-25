@@ -238,8 +238,6 @@ struct btm_client_interface_t default_btm_client_interface = {
         },
     .local =
         {
-            .BTM_ReadLocalDeviceNameFromController =
-                BTM_ReadLocalDeviceNameFromController,
             .BTM_SetLocalDeviceName = BTM_SetLocalDeviceName,
             .BTM_SetDeviceClass = BTM_SetDeviceClass,
             .BTM_IsDeviceUp = BTM_IsDeviceUp,

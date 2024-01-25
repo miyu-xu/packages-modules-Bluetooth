@@ -1024,10 +1024,6 @@ static void btu_hcif_hdl_command_complete(uint16_t opcode, uint8_t* p,
       btm_delete_stored_link_key_complete(p, evt_len);
       break;
 
-    case HCI_READ_LOCAL_NAME:
-      btm_read_local_name_complete(p, evt_len);
-      break;
-
     case HCI_GET_LINK_QUALITY:
       btm_read_link_quality_complete(p, evt_len);
       break;
