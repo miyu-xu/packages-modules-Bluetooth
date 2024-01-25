@@ -59,12 +59,13 @@ import com.android.bluetooth.flags.FeatureFlagsImpl;
 import com.android.bluetooth.le_audio.LeAudioService;
 import com.android.internal.annotations.VisibleForTesting;
 
-import java.util.ArrayList;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -1835,6 +1836,36 @@ public class BassClientService extends ProfileService {
         } else if (status == STATUS_LOCAL_STREAM_STREAMING) {
             Log.d(TAG, "Ignore STREAMING source status");
         }
+    }
+
+    /** Return list of devices receiving local broadcast */
+    public HashSet<BluetoothDevice> getDevicesReceivingLocalBroadcast() {
+        HashSet<BluetoothDevice> devices = new HashSet<>();
+
+        if (!isAnyReceiverReceivingBroadcast()) {
+            Log.d(TAG, "BluetoothLeBroadcastReceiveState: No receiver receives broadast");
+            return devices;
+        }
+
+        LeAudioService leAudioService = mServiceFactory.getLeAudioService();
+        if (leAudioService == null) {
+            Log.d(TAG, "BluetoothLeBroadcastReceiveState: No available LeAudioService");
+            return devices;
+        }
+
+        for (BluetoothLeBroadcastMetadata metadata : leAudioService.getAllBroadcastMetadata()) {
+            Integer localBroadcastId = metadata.getBroadcastId();
+
+            for (BluetoothDevice device : getConnectedDevices()) {
+                for (BluetoothLeBroadcastReceiveState receiveState : getAllSources(device)) {
+                    if (localBroadcastId == receiveState.getBroadcastId()) {
+                        devices.add(device);
+                    }
+                }
+            }
+        }
+
+        return devices;
     }
 
     /**
