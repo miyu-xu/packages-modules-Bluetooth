@@ -1015,6 +1015,74 @@ public class DatabaseManager {
     }
 
     /**
+     * Set the device property setting whether this device should remain as inactive audio device
+     * upon connection for this device. See {@link
+     * BluetoothDevice#setInactiveAudioDeviceUponConnection(inactive)} for more details.
+     *
+     * @param device is the remote device for which we are setting the inactive audio device
+     *     property
+     * @param inactive represents whether to set device as inactive audio device upon connection
+     * @return whether the property were set properly
+     */
+    public int setInactiveAudioDeviceUponConnection(BluetoothDevice device, boolean inactive) {
+        synchronized (mMetadataCache) {
+            if (device == null) {
+                Log.e(TAG, "device is null");
+                throw new IllegalArgumentException(
+                        "setInactiveAudioDeviceUponConnection: device is null");
+            }
+
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.e(TAG, "device is not bonded");
+                return BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED;
+            }
+
+            Metadata metadata = mMetadataCache.get(address);
+            Log.i(
+                    TAG,
+                    "Updating inactive_audio_device_upon_connection setting for "
+                            + "device "
+                            + device
+                            + " to: "
+                            + inactive);
+            metadata.inactive_audio_device_upon_connection = inactive;
+
+            updateDatabase(metadata);
+        }
+        return BluetoothStatusCodes.SUCCESS;
+    }
+
+    /**
+     * Returns whether this device should remain as inactive audio device upon connection. See
+     * {@link BluetoothDevice#isInactiveAudioDeviceUponConnection()} for more details.
+     *
+     * @param device is the device for which we want to get the property setting
+     * @return true if device is set to be inactive audio device upon connection, false otherwise
+     */
+    public boolean isInactiveAudioDeviceUponConnection(BluetoothDevice device) {
+        synchronized (mMetadataCache) {
+            if (device == null) {
+                Log.e(TAG, "device is null");
+                throw new IllegalArgumentException(
+                        "isInactiveAudioDeviceUponConnection: device is null");
+            }
+
+            String address = device.getAddress();
+
+            if (!mMetadataCache.containsKey(address)) {
+                Log.e(TAG, "device is not bonded");
+                return false;
+            }
+
+            Metadata metadata = mMetadataCache.get(address);
+
+            return metadata.inactive_audio_device_upon_connection;
+        }
+    }
+
+    /**
      * Get the {@link Looper} for the handler thread. This is used in testing and helper
      * objects
      *
