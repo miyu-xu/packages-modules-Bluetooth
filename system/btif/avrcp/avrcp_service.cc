@@ -16,10 +16,12 @@
 
 #include "avrcp_service.h"
 
+#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <base/logging.h>
 #include <base/task/cancelable_task_tracker.h>
 #include <base/threading/thread.h>
+#include <bta_av_cfg.h>
 
 #include <mutex>
 #include <sstream>
@@ -378,21 +380,29 @@ void AvrcpService::Init(MediaInterface* media_interface,
 
   profile_version = avrcp_interface_.GetAvrcpVersion();
 
-  uint16_t supported_features = GetSupportedFeatures(profile_version);
+  const BtaAvConfig& bta_av_cfg = BtaAvCfgFactory::createCustomConfig(
+      btif_av_is_source_enabled(), btif_av_is_sink_enabled(), profile_version);
+  uint16_t target_supported_features =
+      IS_FLAG_ENABLED(a2dp_concurrent_source_sink)
+          ? bta_av_cfg.getAvrcpControllerCategories()
+          : GetSupportedFeatures(profile_version);
   sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
 
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET,
-                             "AV Remote Control Target", NULL,
-                             supported_features, sdp_record_handle, true,
-                             profile_version, 0);
+  avrcp_interface_.AddRecord(
+      UUID_SERVCLASS_AV_REM_CTRL_TARGET, "AV Remote Control Target", NULL,
+      target_supported_features, sdp_record_handle, true, profile_version, 0);
   bta_sys_add_uuid(UUID_SERVCLASS_AV_REM_CTRL_TARGET);
 
   ct_sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
 
-  avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REMOTE_CONTROL,
-                             "AV Remote Control", NULL, AVRCP_SUPF_TG_CT,
-                             ct_sdp_record_handle, false,
-                             avrcp_interface_.GetAvrcpControlVersion(), 0);
+  uint16_t controller_supported_features =
+      IS_FLAG_ENABLED(a2dp_concurrent_source_sink)
+          ? bta_av_cfg.getAvrcpTargetCategories()
+          : AVRCP_SUPF_TG_CT;
+  avrcp_interface_.AddRecord(
+      UUID_SERVCLASS_AV_REMOTE_CONTROL, "AV Remote Control", NULL,
+      controller_supported_features, ct_sdp_record_handle, false,
+      avrcp_interface_.GetAvrcpControlVersion(), 0);
   bta_sys_add_uuid(UUID_SERVCLASS_AV_REMOTE_CONTROL);
 
   media_interface_ = new MediaInterfaceWrapper(media_interface);
@@ -459,8 +469,15 @@ void AvrcpService::RegisterBipServer(int psm) {
   LOG(INFO) << "AVRCP Target Service has registered a BIP OBEX server, psm="
             << psm;
   avrcp_interface_.RemoveRecord(sdp_record_handle);
-  uint16_t supported_features
-      = GetSupportedFeatures(profile_version) | AVRC_SUPF_TG_PLAYER_COVER_ART;
+  uint16_t supported_features = AVRC_SUPF_TG_PLAYER_COVER_ART;
+  if (IS_FLAG_ENABLED(a2dp_concurrent_source_sink)) {
+    supported_features |= BtaAvCfgFactory::createCustomConfig(
+                              btif_av_is_source_enabled(),
+                              btif_av_is_sink_enabled(), profile_version)
+                              .getAvrcpTargetCategories();
+  } else {
+    supported_features |= GetSupportedFeatures(profile_version);
+  }
   sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
   avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET,
                              "AV Remote Control Target", NULL,
@@ -471,7 +488,13 @@ void AvrcpService::RegisterBipServer(int psm) {
 void AvrcpService::UnregisterBipServer() {
   LOG(INFO) << "AVRCP Target Service has unregistered a BIP OBEX server";
   avrcp_interface_.RemoveRecord(sdp_record_handle);
-  uint16_t supported_features = GetSupportedFeatures(profile_version);
+  uint16_t supported_features =
+      IS_FLAG_ENABLED(a2dp_concurrent_source_sink)
+          ? BtaAvCfgFactory::createCustomConfig(btif_av_is_source_enabled(),
+                                                btif_av_is_sink_enabled(),
+                                                profile_version)
+                .getAvrcpTargetCategories()
+          : GetSupportedFeatures(profile_version);
   sdp_record_handle = get_legacy_stack_sdp_api()->handle.SDP_CreateRecord();
   avrcp_interface_.AddRecord(UUID_SERVCLASS_AV_REM_CTRL_TARGET,
                              "AV Remote Control Target", NULL,
