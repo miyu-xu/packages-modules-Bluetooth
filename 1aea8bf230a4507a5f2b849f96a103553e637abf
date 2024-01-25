@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9cf4ae10_6b6197c1",
+        "filename": "system/gd/hci/remote_name_request_test.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-25T01:31:58Z",
+      "side": 1,
+      "message": "nit: this one looks out of place.  I\u0027m assuming flag_macros.h is in our stack.",
+      "range": {
+        "startLine": 20,
+        "startChar": 10,
+        "endLine": 20,
+        "endChar": 21
+      },
+      "revId": "1aea8bf230a4507a5f2b849f96a103553e637abf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
