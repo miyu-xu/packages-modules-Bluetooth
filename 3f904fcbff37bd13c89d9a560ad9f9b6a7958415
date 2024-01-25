@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9987e79_81f974ab",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-01-25T15:23:52Z",
+      "side": 1,
+      "message": "In hindsight, this should have been moved along side `ScanManager` in aosp/2900028. I\u0027ve undone the now unneeded package public visibility as well where possible.",
+      "revId": "3f904fcbff37bd13c89d9a560ad9f9b6a7958415",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
