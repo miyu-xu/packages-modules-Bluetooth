@@ -352,6 +352,9 @@ public class Metadata {
             case BluetoothDevice.METADATA_EXCLUSIVE_MANAGER:
                 publicMetadata.exclusive_manager = value;
                 break;
+            case BluetoothDevice.METADATA_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION:
+                publicMetadata.inactive_audio_device_upon_connection = value;
+                break;
         }
     }
 
@@ -451,6 +454,9 @@ public class Metadata {
                 break;
             case BluetoothDevice.METADATA_EXCLUSIVE_MANAGER:
                 value = publicMetadata.exclusive_manager;
+                break;
+            case BluetoothDevice.METADATA_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION:
+                value = publicMetadata.inactive_audio_device_upon_connection;
                 break;
         }
         return value;
