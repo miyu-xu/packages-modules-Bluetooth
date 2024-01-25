@@ -23,6 +23,8 @@
  *
  ******************************************************************************/
 
+#include "bta/include/bta_av_cfg.h"
+
 #include <cstdint>
 
 #include "bta/include/bta_av_api.h"
@@ -41,28 +43,16 @@ const uint32_t bta_av_meta_caps_co_ids[] = {AVRC_CO_METADATA, AVRC_CO_BROADCOM};
 
 /* AVRCP supported categories */
 #define BTA_AV_RC_SUPF_CT (AVRC_SUPF_CT_CAT2)
-#define BTA_AVK_RC_SUPF_CT                   \
-  (AVRC_SUPF_CT_CAT1 | AVRC_SUPF_CT_BROWSE | \
-   AVRC_SUPF_CT_COVER_ART_GET_IMAGE_PROP | AVRC_SUPF_CT_COVER_ART_GET_IMAGE)
 #define BTA_AVK_RC_SUPF_CT_V15 (AVRC_SUPF_CT_CAT1 | AVRC_SUPF_CT_BROWSE)
 
 #define BTA_AVK_RC_SUPF_TG (AVRC_SUPF_TG_CAT2)
-
-/* AVRCP Controller and Targer default name */
-#ifndef BTA_AV_RC_CT_NAME
-#define BTA_AV_RC_CT_NAME "AVRC Controller"
-#endif
-
-#ifndef BTA_AV_RC_TG_NAME
-#define BTA_AV_RC_TG_NAME "AVRC Target"
-#endif
 
 /* Added to modify
  *	1. flush timeout
  *	2. Remove Group navigation support in SupportedFeatures
  *	3. GetCapabilities supported event_ids list
  *	4. GetCapabilities supported event_ids count
-*/
+ */
 
 /* Note: Android doesnt support AVRC_SUPF_TG_GROUP_NAVI  */
 /* Note: if AVRC_SUPF_TG_GROUP_NAVI is set, bta_av_cfg.avrc_group should be true
@@ -73,10 +63,6 @@ const uint32_t bta_av_meta_caps_co_ids[] = {AVRC_CO_METADATA, AVRC_CO_BROADCOM};
    AVRC_SUPF_TG_BROWSE) /* TODO: | AVRC_SUPF_TG_APP_SETTINGS) */
 #endif
 
-/*
- * If the number of event IDs is changed in this array, BTA_AV_NUM_RC_EVT_IDS
- * also needs to be changed.
- */
 const uint8_t bta_av_meta_caps_evt_ids[] = {
     AVRC_EVT_PLAY_STATUS_CHANGE, AVRC_EVT_TRACK_CHANGE,
     AVRC_EVT_PLAY_POS_CHANGED,   AVRC_EVT_AVAL_PLAYERS_CHANGE,
@@ -92,11 +78,24 @@ const uint8_t bta_av_meta_caps_evt_ids[] = {
   (sizeof(bta_av_meta_caps_evt_ids) / sizeof(bta_av_meta_caps_evt_ids[0]))
 #endif /* BTA_AV_NUM_RC_EVT_IDS */
 
+const uint8_t bta_av_source_sink_meta_caps_evt_ids[] = {
+    AVRC_EVT_PLAY_STATUS_CHANGE, AVRC_EVT_TRACK_CHANGE,
+    AVRC_EVT_PLAY_POS_CHANGED,   AVRC_EVT_AVAL_PLAYERS_CHANGE,
+    AVRC_EVT_ADDR_PLAYER_CHANGE, AVRC_EVT_UIDS_CHANGE,
+    AVRC_EVT_NOW_PLAYING_CHANGE, AVRC_EVT_VOLUME_CHANGE};
+
+#ifndef BTA_AV_SOURCE_SINK_NUM_RC_EVT_IDS
+#define BTA_AV_SOURCE_SINK_NUM_RC_EVT_IDS         \
+  (sizeof(bta_av_source_sink_meta_caps_evt_ids) / \
+   sizeof(bta_av_source_sink_meta_caps_evt_ids[0]))
+#endif /* BTA_AV_SOURCE_SINK_NUM_RC_EVT_IDS */
+
+const uint8_t bta_avk_meta_caps_evt_ids[] = {
+    AVRC_EVT_VOLUME_CHANGE,
+};
+
 const uint8_t* get_bta_avk_meta_caps_evt_ids() {
   if (avrcp_absolute_volume_is_enabled()) {
-    static const uint8_t bta_avk_meta_caps_evt_ids[] = {
-        AVRC_EVT_VOLUME_CHANGE,
-    };
     return bta_avk_meta_caps_evt_ids;
   } else {
     return {};
@@ -105,9 +104,15 @@ const uint8_t* get_bta_avk_meta_caps_evt_ids() {
 
 // These are the only events used with AVRCP1.3
 const uint8_t bta_av_meta_caps_evt_ids_avrcp13[] = {
-    AVRC_EVT_PLAY_STATUS_CHANGE, AVRC_EVT_TRACK_CHANGE,
+    AVRC_EVT_PLAY_STATUS_CHANGE,
+    AVRC_EVT_TRACK_CHANGE,
     AVRC_EVT_PLAY_POS_CHANGED,
 };
+
+// These are the only events used with AVRCP1.3
+const uint8_t bta_av_avk_meta_caps_evt_ids_avrcp13[] = {
+    AVRC_EVT_PLAY_STATUS_CHANGE, AVRC_EVT_TRACK_CHANGE,
+    AVRC_EVT_PLAY_POS_CHANGED, AVRC_EVT_VOLUME_CHANGE};
 
 #ifndef BTA_AV_NUM_RC_EVT_IDS_AVRCP13
 #define BTA_AV_NUM_RC_EVT_IDS_AVRCP13         \
@@ -115,8 +120,14 @@ const uint8_t bta_av_meta_caps_evt_ids_avrcp13[] = {
    sizeof(bta_av_meta_caps_evt_ids_avrcp13[0]))
 #endif /* BTA_AV_NUM_RC_EVT_IDS_AVRCP13 */
 
+#ifndef BTA_AV_AVK_NUM_RC_EVT_IDS_AVRCP13
+#define BTA_AV_AVK_NUM_RC_EVT_IDS_AVRCP13         \
+  (sizeof(bta_av_avk_meta_caps_evt_ids_avrcp13) / \
+   sizeof(bta_av_avk_meta_caps_evt_ids_avrcp13[0]))
+#endif /* BTA_AV_AVK_NUM_RC_EVT_IDS_AVRCP13 */
+
 /* This configuration to be used when we are Src + TG + CT( only for abs vol) */
-extern const tBTA_AV_CFG bta_av_cfg = {
+extern const BtaAvConfig bta_av_cfg = {
     AVRC_CO_METADATA, /* AVRCP Company ID */
 
     BTA_AV_RC_SUPF_CT, /* AVRCP controller categories */
@@ -131,15 +142,13 @@ extern const tBTA_AV_CFG bta_av_cfg = {
                                  for company id */
     bta_av_meta_caps_evt_ids, /* the the metadata Get Capabilities
                                  response for event id */
-    BTA_AV_RC_CT_NAME,        /* Default AVRCP controller name */
-    BTA_AV_RC_TG_NAME         /* Default AVRCP target name */
 };
 
 /* This configuration to be used when we are Sink + CT + TG( only for abs vol)
  */
 
-const tBTA_AV_CFG* get_bta_avk_cfg() {
-  static const tBTA_AV_CFG bta_avk_cfg = {
+const BtaAvConfig get_bta_avk_cfg() {
+  static const BtaAvConfig bta_avk_cfg = {
       AVRC_CO_METADATA,       /* AVRCP Company ID */
       BTA_AVK_RC_SUPF_CT_V15, /* AVRCP controller categories */
       BTA_AVK_RC_SUPF_TG,     /* AVRCP target categories */
@@ -155,14 +164,12 @@ const tBTA_AV_CFG* get_bta_avk_cfg() {
                                           for company id */
       get_bta_avk_meta_caps_evt_ids(), /* the metadata Get Capabilities response
                                           for event id */
-      {0},                             /* Default AVRCP controller name */
-      {0},                             /* Default AVRCP target name */
   };
-  return &bta_avk_cfg;
+  return bta_avk_cfg;
 }
 
 /* This configuration to be used when we are using AVRCP1.3 */
-extern const tBTA_AV_CFG bta_av_cfg_compatibility = {
+extern const BtaAvConfig bta_av_cfg_compatibility = {
     AVRC_CO_METADATA, /* AVRCP Company ID */
 
     BTA_AV_RC_SUPF_CT, /* AVRCP controller categories */
@@ -178,11 +185,9 @@ extern const tBTA_AV_CFG bta_av_cfg_compatibility = {
     bta_av_meta_caps_evt_ids_avrcp13, /* the the metadata Get Capabilities
                                          response for event id, compatible
                                          with AVRCP1.3 */
-    BTA_AV_RC_CT_NAME,                /* Default AVRCP controller name */
-    BTA_AV_RC_TG_NAME                 /* Default AVRCP target name */
 };
 
-const tBTA_AV_CFG* p_bta_av_cfg = NULL;
+BtaAvConfig p_bta_av_cfg;
 
 const uint16_t bta_av_rc_id[] = {
     0x0000, /* bit mask: 0=SELECT, 1=UP, 2=DOWN, 3=LEFT,
@@ -215,7 +220,7 @@ const uint16_t bta_av_rc_id[] = {
 #else       /* BTA_AV_RC_PASS_RSP_CODE != AVRC_RSP_INTERIM */
     0x1b7E, /* PLAY | STOP | PAUSE | FF | RW | VOL_UP | VOL_DOWN | MUTE | FW |
                BACK */
-#endif /* BTA_AV_RC_PASS_RSP_CODE */
+#endif      /* BTA_AV_RC_PASS_RSP_CODE */
 
     0x0000, /* bit mask: 0=ANGLE, 1=SUBPICT */
 
@@ -271,3 +276,71 @@ uint16_t* p_bta_av_rc_id_ac = NULL;
 #endif
 
 uint16_t* p_bta_av_rc_id = (uint16_t*)bta_av_rc_id;
+
+bool BtaAvConfig::operator==(const BtaAvConfig& other) const {
+  return (
+      company_id == other.company_id && avrc_ct_cat == other.avrc_ct_cat &&
+      avrc_tg_cat == other.avrc_tg_cat && audio_mqs == other.audio_mqs &&
+      avrc_group == other.avrc_group && num_co_ids == other.num_co_ids &&
+      num_evt_ids == other.num_evt_ids && rc_pass_rsp == other.rc_pass_rsp &&
+      std::equal(p_meta_co_ids, p_meta_co_ids + num_co_ids, other.p_meta_co_ids,
+                 other.p_meta_co_ids + other.num_co_ids) &&
+      std::equal(p_meta_evt_ids, p_meta_evt_ids + num_evt_ids,
+                 other.p_meta_evt_ids,
+                 other.p_meta_evt_ids + other.num_evt_ids));
+}
+
+const BtaAvConfig BtaAvCfgFactory::createCustomConfig(
+    const bool source_enabled, const bool sink_enabled,
+    const uint16_t profile_version, const bool is_avrcp_volume_enabled) {
+  uint16_t avrc_ct_cat = 0;
+  uint16_t avrc_tg_cat = 0;
+  uint8_t events_size = 0;
+  const uint8_t* events;
+  if (source_enabled) {
+    if (sink_enabled && is_avrcp_volume_enabled) {
+      events = bta_av_avk_meta_caps_evt_ids_avrcp13;
+      events_size = BTA_AV_AVK_NUM_RC_EVT_IDS_AVRCP13;
+      if (profile_version != AVRC_REV_1_3) {
+        events = bta_av_source_sink_meta_caps_evt_ids;
+        events_size = BTA_AV_SOURCE_SINK_NUM_RC_EVT_IDS;
+      }
+    } else {
+      events = bta_av_meta_caps_evt_ids_avrcp13;
+      events_size = BTA_AV_NUM_RC_EVT_IDS_AVRCP13;
+      if (profile_version != AVRC_REV_1_3) {
+        events = bta_av_meta_caps_evt_ids;
+        events_size = BTA_AV_NUM_RC_EVT_IDS;
+      }
+    }
+  } else {
+    if (sink_enabled && is_avrcp_volume_enabled) {
+      events = bta_avk_meta_caps_evt_ids;
+      events_size = 1;
+    }
+  }
+  if (source_enabled) {
+    avrc_ct_cat |= BTA_AV_RC_SUPF_CT;
+    avrc_tg_cat |= AVRC_SUPF_TG_CAT1;
+    if (profile_version != AVRC_REV_1_3) {
+      avrc_tg_cat |= BTA_AV_RC_SUPF_TG;
+    }
+  }
+  if (sink_enabled) {
+    avrc_ct_cat |= BTA_AVK_RC_SUPF_CT_V15;
+    avrc_tg_cat |= BTA_AVK_RC_SUPF_TG;
+  }
+  return BtaAvConfig::Builder()
+      .setCompanyId(AVRC_CO_METADATA)
+      .setAvrcCtCat(avrc_ct_cat)
+      .setAvrcTgCat(avrc_tg_cat)
+      .setAudioMqs(6)
+      .setAvrcGroup(false)
+      .setNumCoIds(sizeof(bta_av_meta_caps_co_ids) /
+                   sizeof(bta_av_meta_caps_co_ids[0]))
+      .setNumEvtIds(events_size)
+      .setRcPassRsp(BTA_AV_RC_PASS_RSP_CODE)
+      .setMetaCoIds(bta_av_meta_caps_co_ids)
+      .setMetaEvtIds(events)
+      .build();
+}
