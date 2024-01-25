@@ -21,8 +21,10 @@
 
 #include "bta/dm/bta_dm_disc_int.h"
 #include "bta/test/bta_base_test.h"
+#include "hci/controller_interface_mock.h"
 #include "osi/include/allocator.h"
 #include "test/common/main_handler.h"
+#include "test/mock/mock_main_shim_entry.h"
 #include "test/mock/mock_stack_btm_interface.h"
 #include "test/mock/mock_stack_gatt_api.h"
 
@@ -50,6 +52,10 @@ class BtaSdpTest : public BtaBaseTest {
  protected:
   void SetUp() override {
     BtaBaseTest::SetUp();
+    ON_CALL(controller_, LeRand)
+        .WillByDefault(
+            [](bluetooth::hci::LeRandCallback cb) { cb.Invoke(0x1234); });
+    bluetooth::hci::testing::mock_controller_ = &controller_;
     test::mock::stack_gatt_api::GATT_Register.body =
         [](const bluetooth::Uuid& p_app_uuid128, const std::string name,
            tGATT_CBACK* p_cb_info, bool eatt_support) { return 5; };
@@ -61,8 +67,6 @@ class BtaSdpTest : public BtaBaseTest {
       osi_free(p_buf);
       return BTM_SUCCESS;
     };
-    mock_btm_client_interface.local.BTM_ReadLocalDeviceNameFromController =
-        [](tBTM_CMPL_CB* cb) -> tBTM_STATUS { return BTM_CMD_STARTED; };
     mock_btm_client_interface.security.BTM_SecRegister =
         [](const tBTM_APPL_INFO* p_cb_info) -> bool { return true; };
 
@@ -80,7 +84,9 @@ class BtaSdpTest : public BtaBaseTest {
 
     test::mock::stack_gatt_api::GATT_Register = {};
     BtaBaseTest::TearDown();
+    bluetooth::hci::testing::mock_controller_ = nullptr;
   }
+  bluetooth::hci::testing::MockControllerInterface controller_;
 };
 
 class BtaSdpRegisteredTest : public BtaSdpTest {
