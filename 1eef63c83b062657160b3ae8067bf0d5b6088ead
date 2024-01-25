@@ -16,6 +16,24 @@
       "message": "So does this mean we violate the ODR principle ?\n\n(What if this switch and the following table get out of sync )\n\n```\nconstexpr EventCode AclConnectionEvents[] \u003d {\n    EventCode::CONNECTION_PACKET_TYPE_CHANGED,\n    EventCode::ROLE_CHANGE,\n    EventCode::CONNECTION_COMPLETE,\n    EventCode::AUTHENTICATION_COMPLETE,\n    EventCode::READ_CLOCK_OFFSET_COMPLETE,\n    EventCode::MODE_CHANGE,\n    EventCode::SNIFF_SUBRATING,\n    EventCode::QOS_SETUP_COMPLETE,\n    EventCode::FLOW_SPECIFICATION_COMPLETE,\n    EventCode::FLUSH_OCCURRED,\n    EventCode::READ_REMOTE_SUPPORTED_FEATURES_COMPLETE,\n    EventCode::READ_REMOTE_EXTENDED_FEATURES_COMPLETE,\n    EventCode::LINK_SUPERVISION_TIMEOUT_CHANGED,\n};\n```",
       "revId": "1eef63c83b062657160b3ae8067bf0d5b6088ead",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "995b4469_36ff61c5",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-25T00:59:33Z",
+      "side": 1,
+      "message": "Good point.  I\u0027ll take them out.  There shouldn\u0027t be a need to list the events that aren\u0027t handled here.",
+      "parentUuid": "3dd6fd01_5ff4192b",
+      "revId": "1eef63c83b062657160b3ae8067bf0d5b6088ead",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
