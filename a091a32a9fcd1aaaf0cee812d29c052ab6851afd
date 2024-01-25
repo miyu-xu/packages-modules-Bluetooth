@@ -16,6 +16,29 @@
       "message": "Needs owner-review",
       "revId": "a091a32a9fcd1aaaf0cee812d29c052ab6851afd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d3bee21_b5a9fd06",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-25T01:37:05Z",
+      "side": 1,
+      "message": "nit: would be better to do:\n\n```\nelse if (action.equals(Constants.ACTION_INCOMING_FILE_CONFIRM \u0026\u0026 !Flags.oppStartActivityDirectlyFromNotification()) {\n```\n\nFor clarity. \n\nMarking no action required but might be cleaner to do this way.",
+      "range": {
+        "startLine": 86,
+        "startChar": 10,
+        "endLine": 87,
+        "endChar": 68
+      },
+      "revId": "a091a32a9fcd1aaaf0cee812d29c052ab6851afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
