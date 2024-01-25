@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2ab5e9f_21859909",
+        "filename": "service/src/ServiceMessenger.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-25T00:14:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "223505ce_405542d5",
+      "range": {
+        "startLine": 53,
+        "startChar": 56,
+        "endLine": 53,
+        "endChar": 69
+      },
+      "revId": "b4228014e4cc0cbfdcd157dc16dff3d4d51b4ec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "13de8c13_b77c891e",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-23T02:28:26Z",
       "side": 1,
       "message": "```suggestion\n            val enable \u003d if (!enableAllowed(source)) {\n                false\n            }  else {\n                bms.enable_sync(source.getPackageName()))\n            }\n            Bundle().apply { putBoolean(\"enable\", enable) }\n```",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 13
+      },
+      "revId": "b4228014e4cc0cbfdcd157dc16dff3d4d51b4ec8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8a0a3f7_1e141976",
+        "filename": "service/src/ServiceMessenger.kt",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-25T00:14:29Z",
+      "side": 1,
+      "message": "Done - see aosp/2923616",
+      "parentUuid": "13de8c13_b77c891e",
       "range": {
         "startLine": 70,
         "startChar": 0,
