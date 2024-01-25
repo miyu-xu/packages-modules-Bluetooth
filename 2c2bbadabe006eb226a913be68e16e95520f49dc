@@ -22,6 +22,30 @@
       },
       "revId": "2c2bbadabe006eb226a913be68e16e95520f49dc",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "18dee1c9_a216ffa8",
+        "filename": "android/app/src/com/android/bluetooth/gatt/PeriodicScanNativeInterface.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-01-25T01:15:23Z",
+      "side": 1,
+      "message": "Good point. Done. Thank you.",
+      "parentUuid": "9aa60fb1_e387f626",
+      "range": {
+        "startLine": 60,
+        "startChar": 22,
+        "endLine": 60,
+        "endChar": 51
+      },
+      "revId": "2c2bbadabe006eb226a913be68e16e95520f49dc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
