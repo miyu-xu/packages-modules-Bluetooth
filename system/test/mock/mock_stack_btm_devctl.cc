@@ -57,11 +57,6 @@ tBTM_STATUS BTM_ReadLocalDeviceName(const char** /* p_name */) {
   inc_func_call_count(__func__);
   return BTM_SUCCESS;
 }
-tBTM_STATUS BTM_ReadLocalDeviceNameFromController(
-    tBTM_CMPL_CB* /* p_rln_cmpl_cback */) {
-  inc_func_call_count(__func__);
-  return BTM_SUCCESS;
-}
 tBTM_STATUS BTM_SetDeviceClass(DEV_CLASS /* dev_class */) {
   inc_func_call_count(__func__);
   return BTM_SUCCESS;
@@ -93,6 +88,3 @@ void btm_delete_stored_link_key_complete(uint8_t* /* p */,
 }
 void btm_dev_free() { inc_func_call_count(__func__); }
 void btm_dev_init() { inc_func_call_count(__func__); }
-void btm_read_local_name_complete(uint8_t* /* p */, uint16_t /* evt_len */) {
-  inc_func_call_count(__func__);
-}
