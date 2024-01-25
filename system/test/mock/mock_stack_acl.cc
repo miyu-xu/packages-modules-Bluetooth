@@ -27,6 +27,7 @@
 #include <string>
 
 #include "hci/class_of_device.h"
+#include "stack/include/acl_api_types.h"
 #include "stack/include/acl_client_callbacks.h"
 #include "stack/include/bt_hdr.h"
 #include "test/common/mock_functions.h"
