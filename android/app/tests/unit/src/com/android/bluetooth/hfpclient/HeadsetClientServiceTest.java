@@ -114,7 +114,7 @@ public class HeadsetClientServiceTest {
         mService.sendBroadcast(intent);
 
         // Expect send BIEV to state machine
-        verify(mStateMachine, timeout(STANDARD_WAIT_MILLIS).times(1))
+        verify(mStateMachine, timeout(STANDARD_WAIT_MILLIS))
                 .sendMessage(
                     eq(HeadsetClientStateMachine.SEND_BIEV),
                     eq(2),
