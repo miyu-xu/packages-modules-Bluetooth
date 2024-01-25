@@ -414,6 +414,7 @@ void ConnectionHandler::AcceptorControlCb(uint8_t handle, uint8_t event,
       // Open for the next incoming connection. The handle will not be the same
       // as this one which will be closed when the device is disconnected.
       AvrcpConnect(false, RawAddress::kAny);
+      newDevice->ConnectAvWithLatency(handle, *peer_addr);
     } break;
 
     case AVRC_CLOSE_IND_EVT: {

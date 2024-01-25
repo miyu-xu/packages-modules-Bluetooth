@@ -135,6 +135,12 @@ class BtifAvEvent {
 };
 
 class BtifAvPeer;
+
+typedef struct {
+  bool check_rc;
+  BtifAvPeer* peer;
+} btif_av_open_timer_data_t;
+
 static bt_status_t sink_set_active_device(const RawAddress& peer_address);
 
 static void btif_av_sink_delete_active_peer(void);
@@ -768,6 +774,8 @@ class BtifAvSink {
  *****************************************************************************/
 static BtifAvSource btif_av_source;
 static BtifAvSink btif_av_sink;
+
+static btif_av_open_timer_data_t av_open_timer_data{.peer = nullptr};
 
 /* Helper macro to avoid code duplication in the state machine handlers */
 #define CHECK_RC_EVENT(e, d)       \
@@ -1803,26 +1811,32 @@ bool BtifAvStateMachine::StateIdle::ProcessEvent(uint32_t event, void* p_data) {
             __PRETTY_FUNCTION__, ADDRESS_TO_LOGGABLE_CSTR(peer_.PeerAddress()));
         break;
       }
+
+      av_open_timer_data.peer = &peer_;
+      av_open_timer_data.check_rc = true;
+
       /* if peer is source, then start timer for sink connect to src */
       if (btif_av_src_sink_coexist_enabled()) {
         if (peer_.IsSource()) {
           alarm_set_on_mloop(
               peer_.AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
-              btif_av_sink_initiate_av_open_timer_timeout, &peer_);
+              btif_av_sink_initiate_av_open_timer_timeout, &av_open_timer_data);
         } else {
-          alarm_set_on_mloop(
-              peer_.AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
-              btif_av_source_initiate_av_open_timer_timeout, &peer_);
+          alarm_set_on_mloop(peer_.AvOpenOnRcTimer(),
+                             BtifAvPeer::kTimeoutAvOpenOnRcMs,
+                             btif_av_source_initiate_av_open_timer_timeout,
+                             &av_open_timer_data);
         }
       } else {
         if (btif_av_source.Enabled()) {
-          alarm_set_on_mloop(
-              peer_.AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
-              btif_av_source_initiate_av_open_timer_timeout, &peer_);
+          alarm_set_on_mloop(peer_.AvOpenOnRcTimer(),
+                             BtifAvPeer::kTimeoutAvOpenOnRcMs,
+                             btif_av_source_initiate_av_open_timer_timeout,
+                             &av_open_timer_data);
         } else if (btif_av_sink.Enabled()) {
           alarm_set_on_mloop(
               peer_.AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
-              btif_av_sink_initiate_av_open_timer_timeout, &peer_);
+              btif_av_sink_initiate_av_open_timer_timeout, &av_open_timer_data);
         }
       }
       if (event == BTA_AV_RC_OPEN_EVT) {
@@ -2857,13 +2871,14 @@ bool BtifAvStateMachine::StateClosing::ProcessEvent(uint32_t event,
  * interoperate with headsets that do establish AV after AVRCP connection.
  */
 static void btif_av_source_initiate_av_open_timer_timeout(void* data) {
-  BtifAvPeer* peer = (BtifAvPeer*)data;
+  btif_av_open_timer_data_t* timer_data = (btif_av_open_timer_data_t*)data;
+  BtifAvPeer* peer = timer_data->peer;
 
   LOG_VERBOSE("%s: Peer %s", __func__,
               ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
 
   // Check if AVRCP is connected to the peer
-  if (!btif_rc_is_connected_peer(peer->PeerAddress())) {
+  if (timer_data->check_rc && !btif_rc_is_connected_peer(peer->PeerAddress())) {
     LOG_ERROR("%s: AVRCP peer %s is not connected", __func__,
               ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
     return;
@@ -2877,6 +2892,8 @@ static void btif_av_source_initiate_av_open_timer_timeout(void* data) {
     btif_av_source_dispatch_sm_event(peer->PeerAddress(),
                                      BTIF_AV_CONNECT_REQ_EVT);
   }
+  timer_data->check_rc = false;
+  timer_data->peer = nullptr;
 }
 
 /**
@@ -2884,13 +2901,14 @@ static void btif_av_source_initiate_av_open_timer_timeout(void* data) {
  * establishes AVRCP connection without AV connection.
  */
 static void btif_av_sink_initiate_av_open_timer_timeout(void* data) {
-  BtifAvPeer* peer = (BtifAvPeer*)data;
+  btif_av_open_timer_data_t* timer_data = (btif_av_open_timer_data_t*)data;
+  BtifAvPeer* peer = timer_data->peer;
 
   LOG_VERBOSE("%s: Peer %s", __func__,
               ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
 
   // Check if AVRCP is connected to the peer
-  if (!btif_rc_is_connected_peer(peer->PeerAddress())) {
+  if (timer_data->check_rc && !btif_rc_is_connected_peer(peer->PeerAddress())) {
     LOG_ERROR("%s: AVRCP peer %s is not connected", __func__,
               ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
     return;
@@ -2904,6 +2922,8 @@ static void btif_av_sink_initiate_av_open_timer_timeout(void* data) {
     btif_av_sink_dispatch_sm_event(peer->PeerAddress(),
                                    BTIF_AV_CONNECT_REQ_EVT);
   }
+  timer_data->check_rc = false;
+  timer_data->peer = nullptr;
 }
 
 /**
@@ -4337,4 +4357,87 @@ bool btif_av_peer_is_source(const RawAddress& peer_address) {
   }
 
   return true;
+}
+
+void btif_av_connect_av_with_latency(uint8_t handle,
+                                     const RawAddress& peer_addr) {
+  // IOP_FIX: Jabra 620 only does AVRCP Open without AV Open whenever it
+  // connects. So as per the AV WP, an AVRCP connection cannot exist
+  // without an AV connection. Therefore, we initiate an AV connection
+  // if an RC_OPEN_EVT is received when we are in AV_CLOSED state.
+  // We initiate the AV connection after a small 3s timeout to avoid any
+  // collisions from the headsets, as some headsets initiate the AVRCP
+  // connection first and then immediately initiate the AV connection
+  //
+  // TODO: We may need to do this only on an AVRCP Play. FixMe
+  BtifAvPeer* peer = btif_av_find_peer(peer_addr);
+  if (peer == nullptr) {
+    LOG_ERROR("Could not create nor find peer %s.",
+              ADDRESS_TO_LOGGABLE_CSTR(peer_addr));
+    return;
+  }
+  bool can_connect = true;
+  // Check whether connection is allowed
+  if (peer->IsSink()) {
+    can_connect = btif_av_source.AllowedToConnect(peer->PeerAddress());
+    if (!can_connect) {
+      if (btif_av_src_sink_coexist_enabled())
+        BTA_AvCloseRc(handle);
+      else
+        src_disconnect_sink(peer->PeerAddress());
+    }
+  } else if (peer->IsSource()) {
+    can_connect = btif_av_sink.AllowedToConnect(peer->PeerAddress());
+    if (!can_connect) {
+      if (btif_av_src_sink_coexist_enabled())
+        BTA_AvCloseRc(handle);
+      else
+        sink_disconnect_src(peer->PeerAddress());
+    }
+  }
+  if (!can_connect) {
+    LOG_ERROR(
+        "Cannot connect to peer %s: too many connected "
+        "peers",
+        ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
+    return;
+  }
+
+  av_open_timer_data.peer = peer;
+  av_open_timer_data.check_rc = false;
+
+  /* if peer is source, then start timer for sink connect to src */
+  if (btif_av_src_sink_coexist_enabled()) {
+    if (peer->IsSource()) {
+      LOG_VERBOSE(
+          "btif_av_src_sink_coexist_enabled, set timer for sink connect to "
+          "peer src: %s",
+          ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
+      alarm_set_on_mloop(
+          peer->AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
+          btif_av_sink_initiate_av_open_timer_timeout, &av_open_timer_data);
+    } else {
+      LOG_VERBOSE(
+          "btif_av_src_sink_coexist_enabled, set timer for src connect to "
+          "peer sink: %s",
+          ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
+      alarm_set_on_mloop(
+          peer->AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
+          btif_av_source_initiate_av_open_timer_timeout, &av_open_timer_data);
+    }
+  } else {
+    if (btif_av_source.Enabled()) {
+      LOG_VERBOSE("set timer for src connect to peer sink: %s",
+                  ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
+      alarm_set_on_mloop(
+          peer->AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
+          btif_av_source_initiate_av_open_timer_timeout, &av_open_timer_data);
+    } else if (btif_av_sink.Enabled()) {
+      LOG_VERBOSE("set timer for sink connect to peer src: %s",
+                  ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
+      alarm_set_on_mloop(
+          peer->AvOpenOnRcTimer(), BtifAvPeer::kTimeoutAvOpenOnRcMs,
+          btif_av_sink_initiate_av_open_timer_timeout, &av_open_timer_data);
+    }
+  }
 }

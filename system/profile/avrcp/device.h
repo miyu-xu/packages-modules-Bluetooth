@@ -105,6 +105,12 @@ class Device {
   bool IsInSilenceMode() const;
 
   /**
+   * Connect AV with latency.
+   */
+  void ConnectAvWithLatency(uint8_t handle,
+                            const RawAddress& peer_address) const;
+
+  /**
    * Returns true if the current device is active.
    */
   bool IsActive() const;

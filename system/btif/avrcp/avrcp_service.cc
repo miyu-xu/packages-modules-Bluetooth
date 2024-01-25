@@ -54,6 +54,11 @@ class A2dpInterfaceImpl : public A2dpInterface {
   bool is_peer_in_silence_mode(const RawAddress& peer_address) override {
     return btif_av_is_peer_silenced(peer_address);
   }
+
+  void connect_av_with_latency(uint8_t handle, const RawAddress& peer_address) {
+    btif_av_connect_av_with_latency(handle, peer_address);
+  }
+
 } a2dp_interface_;
 
 class AvrcpInterfaceImpl : public AvrcpInterface {
