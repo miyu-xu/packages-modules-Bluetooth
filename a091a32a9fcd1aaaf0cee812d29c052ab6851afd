@@ -39,6 +39,30 @@
       },
       "revId": "a091a32a9fcd1aaaf0cee812d29c052ab6851afd",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b8b03e11_ef962419",
+        "filename": "android/app/src/com/android/bluetooth/opp/BluetoothOppReceiver.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1112679
+      },
+      "writtenOn": "2024-01-25T01:40:56Z",
+      "side": 1,
+      "message": "Thanks for the tip. I\u0027ll upload the fix for these changes in the next CL.",
+      "parentUuid": "3d3bee21_b5a9fd06",
+      "range": {
+        "startLine": 86,
+        "startChar": 10,
+        "endLine": 87,
+        "endChar": 68
+      },
+      "revId": "a091a32a9fcd1aaaf0cee812d29c052ab6851afd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
