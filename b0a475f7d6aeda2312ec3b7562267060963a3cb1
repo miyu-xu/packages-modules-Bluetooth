@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "8d409494_86c1f924",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-25T22:09:14Z",
+      "side": 1,
+      "message": "Looks good! Will need to run again after flagging the API change.",
+      "parentUuid": "f7cf6ffa_3395ea1d",
+      "range": {
+        "startLine": 9,
+        "startChar": 8,
+        "endLine": 9,
+        "endChar": 50
+      },
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "43ae956e_7e0f83cf",
         "filename": "/COMMIT_MSG",
         "patchSetId": 1
@@ -133,6 +157,30 @@
       "side": 1,
       "message": "Added Bumble BT test for the connection timeout case.",
       "parentUuid": "1c64eeb6_c8ca2d0b",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 30
+      },
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8e44b86b_c73cadd6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-25T22:09:14Z",
+      "side": 1,
+      "message": "Thanks! Resolving.",
+      "parentUuid": "92ce78de_13d97ea9",
       "range": {
         "startLine": 15,
         "startChar": 0,
@@ -233,6 +281,30 @@
       "side": 1,
       "message": "So when connection timeout happens after 30s, [on_create_connection_timeout](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/gd/hci/acl_manager/le_impl.h;l\u003d1112?q\u003dle_impl.h\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22) in le_impl.h is actually called with the HCI status code for connection timeout and gets carried over to callbacks until [acl_ble_connection_fail](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/acl/ble_acl.cc;l\u003d130?q\u003dacl_ble_connection_fail\u0026sq\u003drepo:%22googleplex-android%2Fplatform%2Fsuperproject%2Fmain%22%20branch:%22main%22).\n\nHowever from this point, [on_connection_timed_out](https://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/system/stack/gatt/gatt_main.cc;l\u003d465;drc\u003ddb09c842a8d0e91c6a47bb09ace901eca2dd6ef9) in gatt_api.h is called and assigns the GATT disconnection reason as 0xff or 255 (unknown), when the original reason was actually the HCI status code 0x08. That\u0027s why I thought it would make sense to change this to 0x08, but please let me know if I should just define a separate event!",
       "parentUuid": "c7501370_73eea5c4",
+      "range": {
+        "startLine": 466,
+        "startChar": 55,
+        "endLine": 466,
+        "endChar": 59
+      },
+      "revId": "b0a475f7d6aeda2312ec3b7562267060963a3cb1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5d32c404_f011c71f",
+        "filename": "system/stack/gatt/gatt_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-25T22:09:14Z",
+      "side": 1,
+      "message": "Thinking about this a bit more this is probably okay, resolving.",
+      "parentUuid": "89a43576_4586c307",
       "range": {
         "startLine": 466,
         "startChar": 55,
