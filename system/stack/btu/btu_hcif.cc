@@ -330,31 +330,11 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
 
       uint8_t ble_evt_len = hci_evt_len - 1;
       switch (ble_sub_code) {
-        case HCI_BLE_ADV_PKT_RPT_EVT: /* result of inquiry */
-          btm_ble_process_adv_pkt(ble_evt_len, p);
-          break;
-        case HCI_BLE_LL_CONN_PARAM_UPD_EVT:
-          btu_ble_ll_conn_param_upd_evt(p, ble_evt_len);
-          break;
         case HCI_BLE_READ_REMOTE_FEAT_CMPL_EVT:
           btm_ble_read_remote_features_complete(p, ble_evt_len);
           break;
         case HCI_BLE_LTK_REQ_EVT: /* received only at peripheral device */
           btu_ble_proc_ltk_req(p, ble_evt_len);
-          break;
-        case HCI_BLE_RC_PARAM_REQ_EVT:
-          btu_ble_rc_param_req_evt(p, ble_evt_len);
-          break;
-        case HCI_BLE_DATA_LENGTH_CHANGE_EVT:
-          btu_ble_data_length_change_evt(p, hci_evt_len);
-          break;
-
-        case HCI_BLE_PHY_UPDATE_COMPLETE_EVT:
-          btm_ble_process_phy_update_pkt(ble_evt_len, p);
-          break;
-
-        case HCI_LE_EXTENDED_ADVERTISING_REPORT_EVT:
-          btm_ble_process_ext_adv_pkt(hci_evt_len, p);
           break;
 
         case HCI_BLE_REQ_PEER_SCA_CPL_EVT:
@@ -371,18 +351,6 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
                                                     ble_evt_len);
           break;
 
-        case HCI_LE_PERIODIC_ADV_SYNC_TRANSFERE_RECEIVED_EVT:
-          btm_ble_periodic_adv_sync_tx_rcvd(p, hci_evt_len);
-          break;
-
-        case HCI_LE_BIGINFO_ADVERTISING_REPORT_EVT:
-          btm_ble_biginfo_adv_report_rcvd(p, hci_evt_len);
-          break;
-
-          // Events are now captured by gd/hci/le_acl_connection_interface.h
-        case HCI_BLE_CONN_COMPLETE_EVT:  // SubeventCode::CONNECTION_COMPLETE
-        case HCI_BLE_ENHANCED_CONN_COMPLETE_EVT:  // SubeventCode::ENHANCED_CONNECTION_COMPLETE
-        case HCI_LE_SUBRATE_CHANGE_EVT:  // SubeventCode::LE_SUBRATE_CHANGE
         default:
           LOG_ERROR(
               "Unexpectedly received LE sub_event_code:0x%02x that should not "
