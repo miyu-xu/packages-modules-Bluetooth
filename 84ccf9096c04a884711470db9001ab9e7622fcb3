@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d9c2df39_8ee20e32",
+        "filename": "service/src/com/android/server/bluetooth/BluetoothManagerService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1389,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-25T00:18:53Z",
+      "side": 1,
+      "message": "```suggestion\n            broadcastToAdapters(\"sendBluetoothOnCallback\", IBluetoothManagerCallback::onBluetoothOn);\n```",
+      "revId": "84ccf9096c04a884711470db9001ab9e7622fcb3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
