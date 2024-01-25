@@ -34,6 +34,24 @@
       "parentUuid": "3dd6fd01_5ff4192b",
       "revId": "1eef63c83b062657160b3ae8067bf0d5b6088ead",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "634ee2a8_55c933b1",
+        "filename": "system/main/shim/hci_layer.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-25T01:11:27Z",
+      "side": 1,
+      "message": "Originally, I thought I wanted the switch statement to be complete, but I think it\u0027s better to have it shrink to nothing as we move event parsing.",
+      "parentUuid": "995b4469_36ff61c5",
+      "revId": "1eef63c83b062657160b3ae8067bf0d5b6088ead",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
