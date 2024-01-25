@@ -46,6 +46,30 @@
       },
       "revId": "9fa95d833f5e6818406b3887c9935b353d27a26d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15a45970_6a309775",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-25T01:23:30Z",
+      "side": 1,
+      "message": "If your logs appear, the next step might be wondering if btsock_rfc_init wasn\u0027t called, or if btsock_rfc_cleanup was called too early.  Depending on what your hunch is, it might be worth putting in some logs in those cases.",
+      "parentUuid": "cdeee36f_e357c9f2",
+      "range": {
+        "startLine": 130,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 11
+      },
+      "revId": "9fa95d833f5e6818406b3887c9935b353d27a26d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
