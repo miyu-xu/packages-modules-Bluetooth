@@ -46,8 +46,6 @@ class BtaCustUuid : public BtaBaseTest {
       osi_free(p_buf);
       return BTM_SUCCESS;
     };
-    mock_btm_client_interface.local.BTM_ReadLocalDeviceNameFromController =
-        [](tBTM_CMPL_CB* cb) -> tBTM_STATUS { return BTM_CMD_STARTED; };
     mock_btm_client_interface.security.BTM_SecRegister =
         [](const tBTM_APPL_INFO* p_cb_info) -> bool { return true; };
   }
