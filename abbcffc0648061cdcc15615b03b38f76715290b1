@@ -34,6 +34,24 @@
       "parentUuid": "ac319df6_f50d549c",
       "revId": "abbcffc0648061cdcc15615b03b38f76715290b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "852d0f88_8f6415ea",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2064,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-25T16:16:37Z",
+      "side": 1,
+      "message": "Not sure if I\u0027m synced with your idea ;) I was rather thinking about checking if there is any LeAudioBroadcastDescriptor that is in BROADCAST_STATE_STREAMING.",
+      "parentUuid": "e4c36ae5_efe06830",
+      "revId": "abbcffc0648061cdcc15615b03b38f76715290b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
