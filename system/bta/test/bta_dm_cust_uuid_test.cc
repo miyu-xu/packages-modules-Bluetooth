@@ -20,9 +20,11 @@
 
 #include "bta/dm/bta_dm_int.h"
 #include "bta/test/bta_base_test.h"
+#include "hci/controller_interface_mock.h"
 #include "osi/include/allocator.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/btm_status.h"
+#include "test/mock/mock_main_shim_entry.h"
 #include "test/mock/mock_stack_btm_interface.h"
 #include "types/bluetooth/uuid.h"
 
@@ -32,6 +34,10 @@ class BtaCustUuid : public BtaBaseTest {
  protected:
   void SetUp() override {
     BtaBaseTest::SetUp();
+    ON_CALL(controller_, LeRand)
+        .WillByDefault(
+            [](bluetooth::hci::LeRandCallback cb) { cb.Invoke(0x1234); });
+    bluetooth::hci::testing::mock_controller_ = &controller_;
     bta_dm_cb = {};
     mock_btm_client_interface.eir.BTM_WriteEIR =
         [](BT_HDR* p_buf) -> tBTM_STATUS {
@@ -46,12 +52,14 @@ class BtaCustUuid : public BtaBaseTest {
       osi_free(p_buf);
       return BTM_SUCCESS;
     };
-    mock_btm_client_interface.local.BTM_ReadLocalDeviceNameFromController =
-        [](tBTM_CMPL_CB* cb) -> tBTM_STATUS { return BTM_CMD_STARTED; };
     mock_btm_client_interface.security.BTM_SecRegister =
         [](const tBTM_APPL_INFO* p_cb_info) -> bool { return true; };
   }
-  void TearDown() override { BtaBaseTest::TearDown(); }
+  void TearDown() override {
+    BtaBaseTest::TearDown();
+    bluetooth::hci::testing::mock_controller_ = nullptr;
+  }
+  bluetooth::hci::testing::MockControllerInterface controller_;
 };
 
 namespace {
