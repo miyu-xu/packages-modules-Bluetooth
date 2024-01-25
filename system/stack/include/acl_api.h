@@ -20,6 +20,7 @@
 #include "device/include/controller.h"
 #include "stack/acl/acl.h"
 #include "stack/btm/security_device_record.h"
+#include "stack/include/acl_api_types.h"
 #include "stack/include/btm_api_types.h"
 #include "stack/include/btm_status.h"
 #include "stack/include/hci_error_code.h"

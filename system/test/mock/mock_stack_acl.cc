@@ -27,6 +27,7 @@
 #include <string>
 
 #include "hci/class_of_device.h"
+#include "stack/include/acl_api_types.h"
 #include "stack/include/acl_client_callbacks.h"
 #include "stack/include/bt_hdr.h"
 #include "test/common/mock_functions.h"
@@ -517,6 +518,13 @@ void btm_acl_update_conn_addr(uint16_t handle, const RawAddress& address) {
   inc_func_call_count(__func__);
   test::mock::stack_acl::btm_acl_update_conn_addr(handle, address);
 }
+<<<<<<< PATCH SET (8f0eb0 Enum-ify stack::include::acl_api_types::tBTM_INQUIRY_STATE)
+void btm_acl_update_inquiry_status(tBTM_INQUIRY_STATE status) {
+  inc_func_call_count(__func__);
+  test::mock::stack_acl::btm_acl_update_inquiry_status(status);
+}
+=======
+>>>>>>> BASE      (dda172 Remove StartInquiry from legacy HCI)
 void btm_ble_refresh_local_resolvable_private_addr(
     const RawAddress& pseudo_addr, const RawAddress& local_rpa) {
   inc_func_call_count(__func__);
