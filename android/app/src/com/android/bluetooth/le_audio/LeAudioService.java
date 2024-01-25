@@ -89,12 +89,14 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -652,6 +654,7 @@ public class LeAudioService extends ProfileService {
                         + " : no state machine");
                 return false;
             }
+
             sm.sendMessage(LeAudioStateMachine.DISCONNECT);
         }
 
@@ -1155,6 +1158,24 @@ public class LeAudioService extends ProfileService {
         return Optional.empty();
     }
 
+    private HashSet<Integer> getAllNotStoppedBroadcastIds() {
+        HashSet<Integer> broadcastIds = new HashSet<>();
+
+        if (mBroadcastDescriptors == null) {
+            Log.e(TAG, "getAllNotStoppedBroadcastIds: Invalid Broadcast Descriptors");
+            return broadcastIds;
+        }
+
+        for (Map.Entry<Integer, LeAudioBroadcastDescriptor> entry :
+                mBroadcastDescriptors.entrySet()) {
+            if (!entry.getValue().mState.equals(LeAudioStackEvent.BROADCAST_STATE_STOPPED)) {
+                broadcastIds.add(entry.getKey());
+            }
+        }
+
+        return broadcastIds;
+    }
+
     private boolean areAllGroupsInNotActiveState() {
         synchronized (mGroupLock) {
             for (Map.Entry<Integer, LeAudioGroupDescriptor> entry : mGroupDescriptors.entrySet()) {
@@ -1362,6 +1383,33 @@ public class LeAudioService extends ProfileService {
                         | Intent.FLAG_RECEIVER_INCLUDE_BACKGROUND);
         Utils.sendBroadcast(
                 this, intent, BLUETOOTH_CONNECT, Utils.getTempAllowlistBroadcastOptions());
+    }
+
+    /**
+     * Stop broadcast if there are no potential receivers. This is called by LeAudioStateMachine.
+     */
+    void handleIntendedDeviceDisconnection(BluetoothDevice device) {
+        if (areBroadcastsAllStopped()) {
+            return;
+        }
+
+        BassClientService bassClientService = getBassClientService();
+
+        if (bassClientService == null) {
+            Log.w(TAG, "handleIntendedDeviceDisconnection: can't get BassClientService");
+            return;
+        }
+
+        Set<BluetoothDevice> devices = bassClientService.getDevicesReceivingLocalBroadcast();
+
+        // Check if no more devices receiving local broadcast
+        if (devices.size() == 0 || (devices.size() == 1 && devices.contains(device))) {
+            for (Integer broadcastId : getAllNotStoppedBroadcastIds()) {
+                Log.d(TAG, "handleIntendedDeviceDisconnection: stopping broadcast with ID: "
+                        + broadcastId);
+                stopBroadcast(broadcastId);
+            }
+        }
     }
 
     void sentActiveDeviceChangeIntent(BluetoothDevice device) {

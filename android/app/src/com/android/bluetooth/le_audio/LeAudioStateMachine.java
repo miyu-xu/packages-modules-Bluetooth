@@ -148,6 +148,12 @@ final class LeAudioStateMachine extends StateMachine {
             removeDeferredMessages(DISCONNECT);
 
             if (mLastConnectionState != -1) {
+                if (mFeatureFlags.leaudioBroadcastAudioHandoverPolicies()) {
+                    if (mLastConnectionState == BluetoothProfile.STATE_DISCONNECTING) {
+                        mService.handleIntendedDeviceDisconnection(mDevice);
+                    }
+                }
+
                 // Don't broadcast during startup
                 broadcastConnectionState(BluetoothProfile.STATE_DISCONNECTED,
                         mLastConnectionState);
