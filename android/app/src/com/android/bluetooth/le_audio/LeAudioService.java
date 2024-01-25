@@ -652,6 +652,7 @@ public class LeAudioService extends ProfileService {
                         + " : no state machine");
                 return false;
             }
+
             sm.sendMessage(LeAudioStateMachine.DISCONNECT);
         }
 
@@ -2733,6 +2734,14 @@ public class LeAudioService extends ProfileService {
                 default:
                     Log.e(TAG, "Invalid state of broadcast: " + descriptor.mState);
                     break;
+            }
+
+            // Notify broadcast assistant
+            if (mFeatureFlags.leaudioBroadcastAudioHandoverPolicies()) {
+                if (bassClientService != null) {
+                    bassClientService.notifyBroadcastStateChanged(descriptor.mState,
+                            broadcastId);
+                }
             }
         } else if (stackEvent.type == LeAudioStackEvent.EVENT_TYPE_BROADCAST_METADATA_CHANGED) {
             int broadcastId = stackEvent.valueInt1;

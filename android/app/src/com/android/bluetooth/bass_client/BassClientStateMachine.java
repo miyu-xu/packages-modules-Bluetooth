@@ -1686,6 +1686,7 @@ public class BassClientStateMachine extends StateMachine {
                     log("Disconnecting from " + mDevice);
                     mAllowReconnect = false;
                     if (mBluetoothGatt != null) {
+                        mService.handleIntendedDeviceDisconnection(mDevice);
                         mBluetoothGatt.disconnect();
                         mBluetoothGatt.close();
                         mBluetoothGatt = null;
