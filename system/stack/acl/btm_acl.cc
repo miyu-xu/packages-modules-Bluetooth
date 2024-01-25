@@ -527,6 +527,14 @@ void btm_acl_device_down(void) {
   BTM_db_reset();
 }
 
+<<<<<<< PATCH SET (8f0eb0 Enum-ify stack::include::acl_api_types::tBTM_INQUIRY_STATE)
+void btm_acl_update_inquiry_status(tBTM_INQUIRY_STATE status) {
+  btm_cb.is_inquiry = (status == BTM_INQUIRY_STARTED);
+  BTIF_dm_report_inquiry_status_change(status);
+}
+
+=======
+>>>>>>> BASE      (dda172 Remove StartInquiry from legacy HCI)
 tBTM_STATUS BTM_GetRole(const RawAddress& remote_bd_addr, tHCI_ROLE* p_role) {
   if (p_role == nullptr) {
     return BTM_ILLEGAL_VALUE;
