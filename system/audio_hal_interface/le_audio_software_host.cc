@@ -71,7 +71,38 @@ bool LeAudioClientInterface::ReleaseSource(
   return false;
 }
 
-void LeAudioClientInterface::SetAllowedDsaModes(DsaModes dsa_modes) { return; }
+void LeAudioClientInterface::SetAllowedDsaModes(DsaModes dsa_modes) {
+    if (HalVersionManager::GetHalTransport() ==
+      BluetoothAudioHalTransport::AIDL) {
+    std::vector<LatencyMode> latency_modes;
+    for (auto dsa_mode : dsa_modes) {
+      switch (dsa_mode) {
+        case DsaMode::DISABLED:
+          latency_modes.push_back(LatencyMode::FREE);
+          break;
+        case DsaMode::ACL:
+          latency_modes.push_back(LatencyMode::LOW_LATENCY);
+          break;
+        case DsaMode::ISO_SW:
+          latency_modes.push_back(LatencyMode::DYNAMIC_SPATIAL_AUDIO_SOFTWARE);
+          break;
+        case DsaMode::ISO_HW:
+          latency_modes.push_back(LatencyMode::DYNAMIC_SPATIAL_AUDIO_HARDWARE);
+          break;
+        default:
+          LOG(WARNING) << "Unsupported latency mode ignored: " << (int)dsa_mode;
+          break;
+      }
+    }
+    if (aidl::le_audio::LeAudioSinkTransport::interface_unicast_ &&
+        aidl::le_audio::LeAudioSinkTransport::instance_unicast_) {
+      aidl::le_audio::LeAudioSinkTransport::interface_unicast_->SetAllowedLatencyModes(
+          latency_modes);
+    } else {
+      LOG(WARNING) << "LeAudioSinkTransport::interface_unicast_ is null";
+    }
+  }
+}
 
 }  // namespace le_audio
 }  // namespace audio
