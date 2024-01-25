@@ -108,6 +108,11 @@ bool Device::IsInSilenceMode() const {
   return a2dp_interface_->is_peer_in_silence_mode(address_);
 }
 
+void Device::ConnectWithLatency(uint8_t handle,
+                                const RawAddress& peer_address) const {
+  a2dp_interface_->connect_with_latency(handle, peer_address);
+}
+
 void Device::VendorPacketHandler(uint8_t label,
                                  std::shared_ptr<VendorPacket> pkt) {
   CHECK(media_interface_);

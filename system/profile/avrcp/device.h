@@ -105,6 +105,11 @@ class Device {
   bool IsInSilenceMode() const;
 
   /**
+   * Connect A2DP with latency.
+   */
+  void ConnectWithLatency(uint8_t handle, const RawAddress& peer_address) const;
+
+  /**
    * Returns true if the current device is active.
    */
   bool IsActive() const;
