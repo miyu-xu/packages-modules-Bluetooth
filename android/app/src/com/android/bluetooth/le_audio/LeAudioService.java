@@ -89,6 +89,7 @@ import com.android.internal.annotations.VisibleForTesting;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -652,6 +653,10 @@ public class LeAudioService extends ProfileService {
                         + " : no state machine");
                 return false;
             }
+
+            // Consider stopping broadcast if no more broadcast receivers
+            handleIntendedDeviceDisconnection(sm.getDevice());
+
             sm.sendMessage(LeAudioStateMachine.DISCONNECT);
         }
 
@@ -1153,6 +1158,24 @@ public class LeAudioService extends ProfileService {
         }
 
         return Optional.empty();
+    }
+
+    private HashSet<Integer> getAllNotStoppedBroadcastIds() {
+        HashSet<Integer> broadcastIds = new HashSet<>();
+
+        if (mBroadcastDescriptors == null) {
+            Log.e(TAG, "getAllNotStoppedBroadcastIds: Invalid Broadcast Descriptors");
+            return broadcastIds;
+        }
+
+        for (Map.Entry<Integer, LeAudioBroadcastDescriptor> entry :
+                mBroadcastDescriptors.entrySet()) {
+            if (!entry.getValue().mState.equals(LeAudioStackEvent.BROADCAST_STATE_STOPPED)) {
+                broadcastIds.add(entry.getKey());
+            }
+        }
+
+        return broadcastIds;
     }
 
     private boolean areAllGroupsInNotActiveState() {
@@ -1956,6 +1979,11 @@ public class LeAudioService extends ProfileService {
 
             LeAudioStateMachine sm = deviceDescriptor.mStateMachine;
             if (sm != null) {
+                // Consider stopping broadcast if no more broadcast receivers
+                if (isIntendedDisconnection(sm)) {
+                    handleIntendedDeviceDisconnection(sm.getDevice());
+                }
+
                 LeAudioStackEvent stackEvent =
                         new LeAudioStackEvent(
                                 LeAudioStackEvent.EVENT_TYPE_CONNECTION_STATE_CHANGED);
@@ -2143,6 +2171,47 @@ public class LeAudioService extends ProfileService {
             handleSourceStreamStatusChange(status);
         } else {
             Log.e(TAG, "handleUnicastStreamStatusChange: invalid direction: " + direction);
+        }
+    }
+
+    private boolean isIntendedDisconnection(LeAudioStateMachine sm) {
+        if (sm == null) {
+            Log.e(TAG, "Can't check if it's intended disconnection due to no state machine");
+            return false;
+        }
+
+        // Intended disconnection should begin with DISCONNECTING state
+        if (sm.getConnectionState() == BluetoothProfile.STATE_CONNECTING
+                || sm.getConnectionState() == BluetoothProfile.STATE_CONNECTED) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void handleIntendedDeviceDisconnection(BluetoothDevice device) {
+        if (areBroadcastsAllStopped()) {
+            return;
+        }
+
+        BassClientService bassClientService = getBassClientService();
+
+        if (bassClientService == null) {
+            Log.w(TAG, "handleIntendedDeviceDisconnection: can't get BassClientService");
+            return;
+        }
+
+        HashSet<BluetoothDevice> devices = bassClientService.getDevicesReceivingLocalBroadcast();
+
+        // Check if no more devices receiving local broadcast
+        if (devices.size() == 0 || (devices.size() == 1 && devices.contains(device))) {
+            for (Integer broadcastId : getAllNotStoppedBroadcastIds()) {
+                Log.d(
+                        TAG,
+                        "handleIntendedDeviceDisconnection: stopping broadcast with ID: "
+                                + broadcastId);
+                stopBroadcast(broadcastId);
+            }
         }
     }
 
@@ -2380,8 +2449,13 @@ public class LeAudioService extends ProfileService {
                     int groupId = deviceDescriptor.mGroupId;
                     LeAudioGroupDescriptor descriptor = mGroupDescriptors.get(groupId);
                     switch (stackEvent.valueInt1) {
-                        case LeAudioStackEvent.CONNECTION_STATE_DISCONNECTING:
                         case LeAudioStackEvent.CONNECTION_STATE_DISCONNECTED:
+                            // Consider stopping broadcast if no more broadcast receivers
+                            if (isIntendedDisconnection(sm)) {
+                                handleIntendedDeviceDisconnection(sm.getDevice());
+                            }
+                            // fall through
+                        case LeAudioStackEvent.CONNECTION_STATE_DISCONNECTING:
                             deviceDescriptor.mAclConnected = false;
                             startAudioServersBackgroundScan(/* retry = */ false);
 
