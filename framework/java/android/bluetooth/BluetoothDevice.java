@@ -3667,6 +3667,105 @@ public final class BluetoothDevice implements Parcelable, Attributable {
         return defaultValue;
     }
 
+    /** @hide */
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef(
+            value = {
+                BluetoothStatusCodes.SUCCESS,
+                BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED,
+                BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ALLOWED,
+                BluetoothStatusCodes.ERROR_MISSING_BLUETOOTH_CONNECT_PERMISSION,
+                BluetoothStatusCodes.ERROR_DEVICE_NOT_BONDED
+            })
+    public @interface SetInactiveAudioDeviceUponConnectionReturnValues {}
+
+    /**
+     * Set the device property setting whether this {@link BluetoothDevice} should remain as
+     * inactive audio device upon connection.
+     *
+     * <p>This API allows application to set device to be the inactive audio device upon connection,
+     * Only bonded devices's property setting will be persisted across Bluetooth restart. Setting
+     * will be removed when the device's bond state is moved to {@link #BOND_NONE}.
+     *
+     * @param inactive true if property is set and device should be inactive, false to clear the
+     *     property to be not set.
+     * @return whether the property were set properly
+     * @throws IllegalArgumentException if this BluetoothDevice object has an invalid address
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_METADATA_API_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    @SetInactiveAudioDeviceUponConnectionReturnValues
+    public int setInactiveAudioDeviceUponConnection(boolean inactive) {
+        if (DBG) log("setInactiveAudioDeviceUponConnection(" + inactive + ")");
+        if (!BluetoothAdapter.checkBluetoothAddress(getAddress())) {
+            throw new IllegalArgumentException("device cannot have an invalid address");
+        }
+
+        final IBluetooth service = getService();
+        final int defaultValue = BluetoothStatusCodes.ERROR_BLUETOOTH_NOT_ENABLED;
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "Bluetooth is not enabled. Cannot set inactive audio device property.");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else {
+            try {
+                final SynchronousResultReceiver<Integer> recv = SynchronousResultReceiver.get();
+                service.setInactiveAudioDeviceUponConnection(
+                        this, inactive, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
+            } catch (TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            } catch (RemoteException e) {
+                Log.e(TAG, "", e);
+                throw e.rethrowFromSystemServer();
+            }
+        }
+        return defaultValue;
+    }
+
+    /**
+     * Returns whether this {@link BluetoothDevice} should remain as inactive audio device upon
+     * connection
+     *
+     * @return true if device is set to be inactive audio device upon connection, false otherwise
+     * @hide
+     */
+    @FlaggedApi(Flags.FLAG_METADATA_API_INACTIVE_AUDIO_DEVICE_UPON_CONNECTION)
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public boolean isInactiveAudioDeviceUponConnection() {
+        if (DBG) log("isInactiveAudioDeviceUponConnection");
+        final IBluetooth service = getService();
+        final boolean defaultValue = false;
+        if (service == null || !isBluetoothEnabled()) {
+            Log.e(TAG, "Bluetooth is not enabled. Cannot get inactive audio device property.");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else {
+            try {
+                final SynchronousResultReceiver<Boolean> recv = SynchronousResultReceiver.get();
+                service.isInactiveAudioDeviceUponConnection(this, mAttributionSource, recv);
+                return recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
+            } catch (TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            } catch (RemoteException e) {
+                Log.e(TAG, "", e);
+                throw e.rethrowFromSystemServer();
+            }
+        }
+        return defaultValue;
+    }
+
     private static void log(String msg) {
         Log.d(TAG, msg);
     }

@@ -198,10 +198,12 @@ package android.bluetooth {
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean isConnected();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean isEncrypted();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean isInSilenceMode();
+    method @FlaggedApi("com.android.bluetooth.flags.metadata_api_inactive_audio_device_upon_connection") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean isInactiveAudioDeviceUponConnection();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int isRequestAudioPolicyAsSinkSupported();
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_PRIVILEGED) public void prepareToEnterProcess(@NonNull android.content.AttributionSource);
     method @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT) public boolean removeBond();
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int requestAudioPolicyAsSink(@NonNull android.bluetooth.BluetoothSinkAudioPolicy);
+    method @FlaggedApi("com.android.bluetooth.flags.metadata_api_inactive_audio_device_upon_connection") @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public int setInactiveAudioDeviceUponConnection(boolean);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setLowLatencyAudioAllowed(boolean);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setMessageAccessPermission(int);
     method @RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT, android.Manifest.permission.BLUETOOTH_PRIVILEGED}) public boolean setMetadata(int, @NonNull byte[]);
