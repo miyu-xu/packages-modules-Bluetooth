@@ -409,6 +409,9 @@ void ConnectionHandler::AcceptorControlCb(uint8_t handle, uint8_t event,
       // Open for the next incoming connection. The handle will not be the same
       // as this one which will be closed when the device is disconnected.
       AvrcpConnect(false, RawAddress::kAny);
+
+      // Check peer audio role: src or sink and connect A2DP after 3 seconds
+      SdpLookupAudioRole(UUID_SERVCLASS_AUDIO_SOURCE, handle);
     } break;
 
     case AVRC_CLOSE_IND_EVT: {
@@ -651,6 +654,67 @@ void ConnectionHandler::RegisterVolChanged(const RawAddress& bdaddr) {
       }
       break;
     }
+  }
+}
+
+bool ConnectionHandler::SdpLookupAudioRole(uint16_t service_uuid,
+                                           uint16_t handle) {
+  tA2DP_SDP_DB_PARAMS db_params;
+  uint16_t attr_list[] = {ATTR_ID_SERVICE_CLASS_ID_LIST,
+                          ATTR_ID_BT_PROFILE_DESC_LIST,
+                          ATTR_ID_SUPPORTED_FEATURES};
+
+  db_params.db_len = BT_DEFAULT_BUFFER_SIZE;
+  db_params.num_attr = sizeof(attr_list) / sizeof(attr_list[0]);
+  db_params.p_attrs = attr_list;
+
+  if (device_map_.find(handle) == device_map_.end()) {
+    log::warn("No device found for handle: {}", loghex(handle));
+    return false;
+  }
+  auto device = device_map_[handle];
+
+  log::info("Performing SDP for {} on connected device: address={}, handle={}",
+            service_uuid == UUID_SERVCLASS_AUDIO_SOURCE ? "AUDIO_SOURCE"
+                                                        : "AUDIO_SINK",
+            ADDRESS_TO_LOGGABLE_STR(device->GetAddress()), handle);
+
+  return device->find_a2dp_service(
+      service_uuid, device->GetAddress(), &db_params,
+      base::Bind(&ConnectionHandler::SdpLookupAudioRoleCb,
+                 weak_ptr_factory_.GetWeakPtr(), service_uuid, handle));
+}
+
+void ConnectionHandler::SdpLookupAudioRoleCb(uint16_t service_uuid,
+                                             uint16_t handle, bool found,
+                                             tA2DP_Service* p_service,
+                                             const RawAddress& peer_address) {
+  if (device_map_.find(handle) == device_map_.end()) {
+    log::warn("No device found for handle: {}", loghex(handle));
+    return;
+  }
+  auto device = device_map_[handle];
+
+  log::debug("SDP callback for address={}, handle={} service={} {}",
+             ADDRESS_TO_LOGGABLE_STR(device->GetAddress()), handle,
+             service_uuid == UUID_SERVCLASS_AUDIO_SOURCE ? "AUDIO_SOURCE"
+                                                         : "AUDIO_SINK",
+             found ? "found" : "not found");
+
+  if (!found) {
+    // if AUDIO_SOURCE role not found, try looking for AUDIO_SINK
+    if (service_uuid == UUID_SERVCLASS_AUDIO_SOURCE) {
+      SdpLookupAudioRole(UUID_SERVCLASS_AUDIO_SINK, handle);
+    }
+    return;
+  }
+
+  if (service_uuid == UUID_SERVCLASS_AUDIO_SOURCE) {
+    device->a2dp_source_supported_ = found;
+    SdpLookupAudioRole(UUID_SERVCLASS_AUDIO_SINK, handle);
+  } else if (service_uuid == UUID_SERVCLASS_AUDIO_SINK) {
+    device->a2dp_sink_supported_ = found;
+    device->connect_a2dp_delayed(handle, peer_address);
   }
 }
 

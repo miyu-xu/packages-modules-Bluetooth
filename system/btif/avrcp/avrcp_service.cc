@@ -29,6 +29,7 @@
 #include "btif_common.h"
 #include "device.h"
 #include "include/check.h"
+#include "stack/include/a2dp_api.h"
 #include "stack/include/bt_hdr.h"
 #include "stack/include/bt_uuid16.h"
 #include "stack/include/main_thread.h"
@@ -54,6 +55,19 @@ class A2dpInterfaceImpl : public A2dpInterface {
   bool is_peer_in_silence_mode(const RawAddress& peer_address) override {
     return btif_av_is_peer_silenced(peer_address);
   }
+
+  void connect_delayed(uint8_t handle, const RawAddress& peer_address,
+                       bool peer_sink_supported, bool peer_source_supported) {
+    btif_av_connect_delayed(handle, peer_address, peer_sink_supported,
+                            peer_source_supported);
+  }
+
+  uint16_t find_service(uint16_t service_uuid, const RawAddress& peer_address,
+                        tA2DP_SDP_DB_PARAMS* p_db,
+                        tA2DP_FIND_CBACK p_cback) override {
+    return A2DP_FindService(service_uuid, peer_address, p_db, p_cback);
+  }
+
 } a2dp_interface_;
 
 class AvrcpInterfaceImpl : public AvrcpInterface {

@@ -34,6 +34,7 @@
 #include <vector>
 
 #include "audio_hal_interface/a2dp_encoding.h"
+#include "btif/avrcp/avrcp_service.h"
 #include "btif/include/btif_a2dp.h"
 #include "btif/include/btif_a2dp_control.h"
 #include "btif/include/btif_a2dp_sink.h"
@@ -2864,7 +2865,8 @@ static void btif_av_source_initiate_av_open_timer_timeout(void* data) {
               ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
 
   // Check if AVRCP is connected to the peer
-  if (!btif_rc_is_connected_peer(peer->PeerAddress())) {
+  if (!is_new_avrcp_enabled() &&
+      !btif_rc_is_connected_peer(peer->PeerAddress())) {
     LOG_ERROR("%s: AVRCP peer %s is not connected", __func__,
               ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
     return;
@@ -2891,7 +2893,8 @@ static void btif_av_sink_initiate_av_open_timer_timeout(void* data) {
               ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
 
   // Check if AVRCP is connected to the peer
-  if (!btif_rc_is_connected_peer(peer->PeerAddress())) {
+  if (!is_new_avrcp_enabled() &&
+      !btif_rc_is_connected_peer(peer->PeerAddress())) {
     LOG_ERROR("%s: AVRCP peer %s is not connected", __func__,
               ADDRESS_TO_LOGGABLE_CSTR(peer->PeerAddress()));
     return;
@@ -4338,4 +4341,19 @@ bool btif_av_peer_is_source(const RawAddress& peer_address) {
   }
 
   return true;
+}
+
+void btif_av_connect_delayed(uint8_t handle, const RawAddress& peer_address,
+                             bool peer_sink_supported,
+                             bool peer_source_supported) {
+  LOG_DEBUG(
+      "Peer %s : handle: %u, peer sink support: %d, peer source support: %d",
+      ADDRESS_TO_LOGGABLE_CSTR(peer_address), handle, peer_sink_supported,
+      peer_source_supported);
+
+  if (peer_sink_supported && btif_av_source.Enabled()) {
+    btif_av_source_dispatch_sm_event(peer_address, BTIF_AV_AVRCP_OPEN_EVT);
+  } else if (peer_source_supported && btif_av_sink.Enabled()) {
+    btif_av_sink_dispatch_sm_event(peer_address, BTIF_AV_AVRCP_OPEN_EVT);
+  }
 }
