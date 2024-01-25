@@ -3,6 +3,57 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "98cb5d55_5bfa9644",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-25T23:20:13Z",
+      "side": 1,
+      "message": "remove or change to class",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "761158cb_8c9ac7a8",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-25T23:20:13Z",
+      "side": 1,
+      "message": "should be class",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eba711de_a1326e4d",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-25T23:20:13Z",
+      "side": 1,
+      "message": "class BtPropertySimple\u003cRawAddress\u003e : BtProperty {\n\n  BtPropertySimple\u003cRawAddress\u003e(T val): type_(PROP_BD_ADDR_TYPE), val_(val) {}",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "e643b73e_59f54bbc",
         "filename": "system/gd/discovery/device/bt_property.h",
         "patchSetId": 6
@@ -14,6 +65,40 @@
       "writtenOn": "2024-01-23T17:31:10Z",
       "side": 1,
       "message": "As you know, I\u0027m not a fan of friends :) \n\nWhat does the factory pattern buy us here?  It doesn\u0027t have any state.\n\nCould Build just be a static method in the class?",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d14e56ac_ec3fdfd9",
+        "filename": "system/gd/discovery/device/bt_property_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-25T23:20:13Z",
+      "side": 1,
+      "message": "BtPropertyFactory::Build\u003cRawAddress\u003e(BT_PROPERTY_BDADDR, kRawAddress)\n\nmake_shared\u003cBtPropertySimple\u003cRawAddress\u003e\u003e(BT_PROPERTY_BDADDR, kRawAddress)\n\nmake_shared\u003cBtPropertySimple\u003cRawAddressWithType\u003e\u003e(BT_PROPERTY_BDADDR, kRawAddress)\n\nclass BtProperty_RawAddress(RawAddress addr) : type_(BT_PROPERTY_BDADDR), (addr_(addr) {}\n\nmake_shared\u003cBtProperty_RawAddress\u003e(kRawAddress)\n\nmake_shared\u003cBtPropertySimple\u003cRawAddress\u003e\u003e(kRawAddress)",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d7645e44_db16dc53",
+        "filename": "system/gd/discovery/device/bt_property_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-25T23:20:13Z",
+      "side": 1,
+      "message": "BtPropertyVector\u003cRawAddress\u003e::Factory(type, kAdapterBondedDevices, kNumBondedDevices);",
       "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
