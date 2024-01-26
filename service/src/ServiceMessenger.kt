@@ -26,6 +26,7 @@ private const val TAG = "ServiceMessenger"
 
 internal class ServiceMessenger(
     private val managerService: BluetoothManagerService,
+    private val checker: PermissionChecker,
     looper: Looper
 ) : Handler(looper) {
     val messenger = Messenger(this)
