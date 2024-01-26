@@ -22,6 +22,30 @@
       },
       "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22dc9ecd_001cfd18",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hearingaid/HearingAidServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-26T18:45:41Z",
+      "side": 1,
+      "message": "Can you spy a ContextWrapper?",
+      "parentUuid": "e719e641_66f6941c",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 94
+      },
+      "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
