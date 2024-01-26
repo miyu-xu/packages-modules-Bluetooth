@@ -70,6 +70,30 @@
       },
       "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ec049fdf_14d53af0",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hearingaid/HearingAidServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-26T20:49:15Z",
+      "side": 1,
+      "message": "Testing with these patches locally, plus the follow seems to work:\n1. Adding a mock mMockContext\n2. removing mTargetContext\n3. Replacing usages of mTargetContext -\u003e mMockContext\n4. Mocking AudioManager as such in `setUp()`:\n\n```\nTestUtils.mockGetSystemService(\n    mMockContext,\n    Context.AUDIO_SERVICE,\n    AudioManager.class,\n    mAudioManager);\n```\n\nI think you have options.",
+      "parentUuid": "3eaaabb5_3499362f",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 94
+      },
+      "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
