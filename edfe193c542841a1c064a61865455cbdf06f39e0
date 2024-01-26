@@ -46,6 +46,30 @@
       },
       "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3eaaabb5_3499362f",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hearingaid/HearingAidServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-26T20:35:26Z",
+      "side": 1,
+      "message": "Seems like you can?\nhttps://source.corp.google.com/h/googleplex-android/platform/superproject/main/+/main:packages/modules/Bluetooth/android/app/tests/unit/src/com/android/bluetooth/sap/SapServerTest.java;l\u003d94?q\u003dgetSystemService%5C(\u0026ss\u003dh%2Fgoogleplex-android%2Fplatform%2Fsuperproject%2Fmain%2F%2B%2Frefs%2Fheads%2Fmain:packages%2Fmodules%2FBluetooth%2Fandroid%2Fapp%2Ftests%2Funit%2F\n\nAs well, mocking a Context for this class shouldn\u0027t be too bad, should it? I might be missing something, but I only see the one getSystemService() call for AudioManager.",
+      "parentUuid": "e719e641_66f6941c",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 94
+      },
+      "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
