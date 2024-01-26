@@ -16,6 +16,24 @@
       "message": "Remove the `MS` prefix if you transform that to a Duration",
       "revId": "8c89e23ea15abffc22be3856eb08cbbdcd7436f8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fa64820b_cc619dec",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hearingaid/HearingAidServiceTest.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-26T22:15:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c264737f_f178b011",
+      "revId": "8c89e23ea15abffc22be3856eb08cbbdcd7436f8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
