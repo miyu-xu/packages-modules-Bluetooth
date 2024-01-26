@@ -22,6 +22,70 @@
       },
       "revId": "6e629c8530a5ba197905a28d1f1084acd020d59b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8e27ee15_bc143ef0",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-01-26T17:22:38Z",
+      "side": 1,
+      "message": "@henrichataing@google.com",
+      "parentUuid": "df77132a_b9119bf0",
+      "range": {
+        "startLine": 46,
+        "startChar": 66,
+        "endLine": 46,
+        "endChar": 73
+      },
+      "revId": "6e629c8530a5ba197905a28d1f1084acd020d59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "15bf751f_7e32e7bb",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-01-26T17:22:38Z",
+      "side": 1,
+      "message": "nit: I would prefer to switch the parameter order. We would select a session type, and next having codec infos relative to this type.",
+      "revId": "6e629c8530a5ba197905a28d1f1084acd020d59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "de6378a8_6cf38ad4",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-01-26T17:22:38Z",
+      "side": 1,
+      "message": "nit: I guess codecInfo overloag the `\u003d\u003d` operator. Will be more readable with if / else if, using the full ID (`codecInfo.id \u003d\u003d CodecId::Core::CVSD`).",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 21
+      },
+      "revId": "6e629c8530a5ba197905a28d1f1084acd020d59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
