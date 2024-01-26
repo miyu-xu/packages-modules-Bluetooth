@@ -260,9 +260,39 @@ static void btm_esco_conn_rsp(uint16_t sco_inx, uint8_t hci_status,
                                                           : SCO_ST_UNUSED;
     }
     if (!btm_cb.sco_cb.esco_supported) {
-      btsnd_hcic_reject_conn(bda, hci_status);
+      bluetooth::shim::GetHciLayer()->EnqueueCommand(
+          bluetooth::hci::RejectConnectionRequestBuilder::Create(
+              bluetooth::ToGdAddress(bda),
+              static_cast<bluetooth::hci::RejectConnectionReason>(hci_status)),
+          get_main_thread()->BindOnce(
+              [](bluetooth::hci::CommandStatusView event) {
+                ASSERT(event.IsValid());
+                auto status_view =
+                    bluetooth::hci::RejectConnectionRequestStatusView::Create(
+                        event);
+                auto status = status_view.GetStatus();
+                if (status != bluetooth::hci::ErrorCode::SUCCESS) {
+                  LOG_INFO("RejectConnection returned status: %s",
+                           bluetooth::hci::ErrorCodeText(status).c_str());
+                }
+              }));
     } else {
-      btsnd_hcic_reject_esco_conn(bda, hci_status);
+      bluetooth::shim::GetHciLayer()->EnqueueCommand(
+          bluetooth::hci::RejectSynchronousConnectionBuilder::Create(
+              bluetooth::ToGdAddress(bda),
+              static_cast<bluetooth::hci::RejectConnectionReason>(hci_status)),
+          get_main_thread()->BindOnce([](bluetooth::hci::CommandStatusView
+                                             event) {
+            ASSERT(event.IsValid());
+            auto status_view =
+                bluetooth::hci::RejectSynchronousConnectionStatusView::Create(
+                    event);
+            auto status = status_view.GetStatus();
+            if (status != bluetooth::hci::ErrorCode::SUCCESS) {
+              LOG_INFO("RejectSynchronousConnection returned status: %s",
+                       bluetooth::hci::ErrorCodeText(status).c_str());
+            }
+          }));
     }
   } else {
     /* Connection is being accepted */
@@ -526,9 +556,7 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
         bluetooth::hci::AddScoConnectionBuilder::Create(
             acl_handle, BTM_ESCO_2_SCO(p_setup->packet_types)),
         get_main_thread()->BindOnce(
-            [](bluetooth::hci::CommandStatusView event) {
-              auto status_view =
-                  bluetooth::hci::CommandStatusView::Create(event);
+            [](bluetooth::hci::CommandStatusView status_view) {
               ASSERT(status_view.IsValid());
               auto status = status_view.GetStatus();
               if (status != bluetooth::hci::ErrorCode::SUCCESS) {
