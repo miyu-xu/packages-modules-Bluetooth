@@ -40,7 +40,7 @@ public class ScanNativeInterface {
      *
      * @return default instance
      */
-    public static ScanNativeInterface getInstance() {
+    static ScanNativeInterface getInstance() {
         synchronized (INSTANCE_LOCK) {
             if (sInterface == null) {
                 sInterface = new ScanNativeInterface();

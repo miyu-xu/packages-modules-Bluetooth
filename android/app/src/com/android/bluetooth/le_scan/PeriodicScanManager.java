@@ -55,7 +55,7 @@ public class PeriodicScanManager {
     private static final int PA_SOURCE_REMOTE = 2;
 
     /** Constructor of {@link PeriodicScanManager}. */
-    public PeriodicScanManager(AdapterService adapterService) {
+    PeriodicScanManager(AdapterService adapterService) {
         if (DBG) {
             Log.d(TAG, "periodic scan manager created");
         }
@@ -64,7 +64,7 @@ public class PeriodicScanManager {
         mNativeInterface.init(this);
     }
 
-    public void cleanup() {
+    void cleanup() {
         if (DBG) {
             Log.d(TAG, "cleanup()");
         }
