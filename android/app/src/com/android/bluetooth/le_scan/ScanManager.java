@@ -47,7 +47,6 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
 import com.android.bluetooth.flags.FeatureFlags;
-import com.android.bluetooth.gatt.AppScanStats;
 import com.android.bluetooth.gatt.FilterParams;
 import com.android.bluetooth.gatt.GattObjectsFactory;
 import com.android.bluetooth.gatt.GattService;
@@ -253,7 +252,7 @@ public class ScanManager {
                 uuid.getMostSignificantBits());
     }
 
-    public void unregisterScanner(int scannerId) {
+    void unregisterScanner(int scannerId) {
         mScanNative.unregisterScanner(scannerId);
     }
 
