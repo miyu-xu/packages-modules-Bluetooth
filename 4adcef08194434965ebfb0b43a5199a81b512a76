@@ -16,6 +16,24 @@
       "message": "// Report the status started here because inq_complete will report status complete",
       "revId": "4adcef08194434965ebfb0b43a5199a81b512a76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "50157b09_64e88f09",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-26T05:54:28Z",
+      "side": 1,
+      "message": "I was just trying to keep the same behavior of reporting status started and then cancelling in this case.  I think it could/should be cleaned up later.  In this case, we never get to send the Inquiry command. (we return early)",
+      "parentUuid": "e3180dc3_ca24c7f9",
+      "revId": "4adcef08194434965ebfb0b43a5199a81b512a76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
