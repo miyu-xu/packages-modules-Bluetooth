@@ -34,6 +34,24 @@
       "parentUuid": "e3180dc3_ca24c7f9",
       "revId": "4adcef08194434965ebfb0b43a5199a81b512a76",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b3164976_b7b24014",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-26T18:25:52Z",
+      "side": 1,
+      "message": "Agreed.  I just added an expanded comment, as it\u0027s not clear to the reader (outside of us) that a STARTED/CANCELED sequence is done in rapid succession in this case.",
+      "parentUuid": "50157b09_64e88f09",
+      "revId": "4adcef08194434965ebfb0b43a5199a81b512a76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
