@@ -1,6 +1,13 @@
 package: "com.android.bluetooth.flags"
 
 flag {
+    name: "io_cap_wait_for_remote_extended_features"
+    namespace: "bluetooth"
+    description: "Wait for Remote Extended Features before replying to IO Capabilities Request"
+    bug: "322481518"
+}
+
+flag {
     name: "correct_bond_type_of_loaded_devices"
     namespace: "bluetooth"
     description: "Mark the bond type of loaded device as persistent"
