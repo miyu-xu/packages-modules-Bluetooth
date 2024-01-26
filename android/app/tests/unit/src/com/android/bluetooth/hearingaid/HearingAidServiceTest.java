@@ -24,9 +24,10 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.reset;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.timeout;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 import android.bluetooth.BluetoothAdapter;
@@ -34,10 +35,8 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothHearingAid;
 import android.bluetooth.BluetoothProfile;
 import android.bluetooth.BluetoothUuid;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.media.BluetoothProfileConnectionInfo;
 import android.os.Looper;
@@ -98,16 +97,15 @@ public class HearingAidServiceTest {
     @Mock private DatabaseManager mDatabaseManager;
     @Mock private HearingAidNativeInterface mNativeInterface;
     @Mock private AudioManager mAudioManager;
-    @Mock private BroadcastReceiver mReceiver;
 
     private InOrder mInOrder = null;
 
     @Before
     public void setUp() throws Exception {
-        mTargetContext = InstrumentationRegistry.getTargetContext();
+        mTargetContext = spy(InstrumentationRegistry.getTargetContext());
         // Set up mocks and test assets
         MockitoAnnotations.initMocks(this);
-        mInOrder = inOrder(mReceiver);
+        mInOrder = inOrder(mTargetContext);
 
         if (Looper.myLooper() == null) {
             Looper.prepare();
@@ -143,19 +141,12 @@ public class HearingAidServiceTest {
         doReturn(new ParcelUuid[] {BluetoothUuid.HEARING_AID})
                 .when(mAdapterService)
                 .getRemoteUuids(any(BluetoothDevice.class));
-
-        // Set up the Connection State Changed receiver
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED);
-        mTargetContext.registerReceiver(mReceiver, filter);
     }
 
     @After
     public void tearDown() throws Exception {
         stopService();
         HearingAidNativeInterface.setInstance(null);
-        mTargetContext.unregisterReceiver(mReceiver);
         TestUtils.clearAdapterService(mAdapterService);
         reset(mAudioManager);
     }
@@ -173,8 +164,8 @@ public class HearingAidServiceTest {
 
     @SafeVarargs
     private void verifyIntentReceived(Matcher<Intent>... matchers) {
-        mInOrder.verify(mReceiver, timeout(TIMEOUT_MS.toMillis() * 2))
-                .onReceive(any(Context.class), MockitoHamcrest.argThat(AllOf.allOf(matchers)));
+        mInOrder.verify(mTargetContext, timeout(TIMEOUT_MS.toMillis() * 2))
+                .sendBroadcast(MockitoHamcrest.argThat(AllOf.allOf(matchers)), any(), any());
     }
 
     private void verifyConnectionStateIntent(BluetoothDevice device, int newState, int prevState) {
@@ -1300,7 +1291,12 @@ public class HearingAidServiceTest {
         stackEvent.valueInt1 = newConnectionState;
         mService.messageFromNative(stackEvent);
         // Verify the connection state broadcast
-        verifyNoMoreInteractions(mReceiver);
+        mInOrder.verify(mTargetContext, times(0))
+                .sendBroadcast(
+                        MockitoHamcrest.argThat(
+                                hasAction(BluetoothHearingAid.ACTION_CONNECTION_STATE_CHANGED)),
+                        any(),
+                        any());
     }
 
     /**
