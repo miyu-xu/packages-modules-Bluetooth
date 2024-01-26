@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dba9b57a_a00f9ac9",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-26T18:23:06Z",
+      "side": 1,
+      "message": "AIUI @FlaggedApi is only intended to be used on the API declaration: https://g3doc.corp.google.com/company/teams/android-core-experiments/trunk-stable/api-flags.md?cl\u003dhead#implementation\n\nI think you would rather check that the flag is enabled before triggering the callback that calls into the new API, eg:\n\n```\nif (Flags.leAudioBroadcastVolumeControlForConnectedDevices()) {\n  // call new API\n}\n```\n\nThen you can tag this bug with the Flag tracking bug and Dr. No will be automatically given (i.e. no exemption needed): go/bt-best-practices#flagging",
+      "range": {
+        "startLine": 406,
+        "startChar": 36,
+        "endLine": 406,
+        "endChar": 47
+      },
+      "revId": "a17190d484598c628388e82c527bcf99cea0b099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
