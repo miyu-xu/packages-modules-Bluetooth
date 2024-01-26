@@ -158,6 +158,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "d175cbfd_4f3ecdfe",
+        "filename": "system/gd/discovery/device/bt_property_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-26T19:37:36Z",
+      "side": 1,
+      "message": "Ack",
+      "parentUuid": "20c27867_d6605c48",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d7645e44_db16dc53",
