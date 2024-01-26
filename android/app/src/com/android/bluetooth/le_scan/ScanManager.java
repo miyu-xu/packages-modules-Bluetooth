@@ -47,7 +47,6 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
 import com.android.bluetooth.flags.FeatureFlags;
-import com.android.bluetooth.gatt.AppScanStats;
 import com.android.bluetooth.gatt.FilterParams;
 import com.android.bluetooth.gatt.GattObjectsFactory;
 import com.android.bluetooth.gatt.GattService;
@@ -168,11 +167,11 @@ public class ScanManager {
     }
 
     public ScanManager(
-            GattService service,
-            AdapterService adapterService,
-            BluetoothAdapterProxy bluetoothAdapterProxy,
-            Looper looper,
-            FeatureFlags featureFlags) {
+        GattService service,
+        AdapterService adapterService,
+        BluetoothAdapterProxy bluetoothAdapterProxy,
+        Looper looper,
+        FeatureFlags featureFlags) {
         mRegularScanClients =
                 Collections.newSetFromMap(new ConcurrentHashMap<ScanClient, Boolean>());
         mBatchClients = Collections.newSetFromMap(new ConcurrentHashMap<ScanClient, Boolean>());
@@ -213,7 +212,7 @@ public class ScanManager {
         mService.registerReceiver(mLocationReceiver, locationIntentFilter);
     }
 
-    public void cleanup() {
+    void cleanup() {
         mRegularScanClients.clear();
         mBatchClients.clear();
         mSuspendedScanClients.clear();
@@ -253,7 +252,7 @@ public class ScanManager {
                 uuid.getMostSignificantBits());
     }
 
-    public void unregisterScanner(int scannerId) {
+    void unregisterScanner(int scannerId) {
         mScanNative.unregisterScanner(scannerId);
     }
 
@@ -300,7 +299,7 @@ public class ScanManager {
         sendMessage(MSG_START_BLE_SCAN, client);
     }
 
-    public void stopScan(int scannerId) {
+    void stopScan(int scannerId) {
         ScanClient client = mScanNative.getBatchScanClient(scannerId);
         if (client == null) {
             client = mScanNative.getRegularScanClient(scannerId);
@@ -339,7 +338,7 @@ public class ScanManager {
         return mBluetoothAdapterProxy.isOffloadedScanFilteringSupported();
     }
 
-    public boolean isAutoBatchScanClientEnabled(ScanClient client) {
+    boolean isAutoBatchScanClientEnabled(ScanClient client) {
         return mScanNative.isAutoBatchScanClientEnabled(client);
     }
 
