@@ -34,6 +34,24 @@
       "parentUuid": "a9902de7_2a677fab",
       "revId": "4fc75b4a483c264549a36e4dff818b4198a95259",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e009dea_6558c50d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-26T01:33:47Z",
+      "side": 1,
+      "message": "Hi, just want to clarify a bit here. Per the current plan with UI team, this is only planned for audio sharing use cases(LEA broadcast) at the very beginning, so the usage is limited.\n\nBut yes, in the future, we might consider to expand the usage to other profiles, like classic audio as needed.\n\nFor anyone who\u0027re interested to know more, here is the doc: go/bluetooth-api-controlling-active-device-in-v-release",
+      "parentUuid": "71db4872_bf82b300",
+      "revId": "4fc75b4a483c264549a36e4dff818b4198a95259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
