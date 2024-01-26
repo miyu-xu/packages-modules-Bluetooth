@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "051aed49_ac57e9d9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-01-26T09:54:34Z",
+      "side": 1,
+      "message": "This CL also fixes encapsulation modifications done in previous CLs (aosp/2900028, aosp/2926395, aosp/2928050) while also exposing new functions for `GattService` to access.",
+      "revId": "3065ad136f024a4059e36ba2ab4d28f3eef0be57",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
