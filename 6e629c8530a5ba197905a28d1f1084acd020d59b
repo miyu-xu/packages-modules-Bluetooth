@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "df77132a_b9119bf0",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-01-26T17:06:32Z",
+      "side": 1,
+      "message": "The `nullptr` looks confusing to me. If it\u0027s standard to call it with `nullptr`, I would suggest to set this parameter to optional, or remove other implementation that conflicts.",
+      "range": {
+        "startLine": 46,
+        "startChar": 66,
+        "endLine": 46,
+        "endChar": 73
+      },
+      "revId": "6e629c8530a5ba197905a28d1f1084acd020d59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
