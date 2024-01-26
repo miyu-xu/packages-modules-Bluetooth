@@ -30,8 +30,6 @@ bool btm_is_sco_active(uint16_t handle);
 void btm_sco_chk_pend_unpark(tHCI_STATUS hci_status, uint16_t hci_handle);
 void btm_sco_conn_req(const RawAddress& bda, const DEV_CLASS& dev_class,
                       uint8_t link_type);
-void btm_sco_connected(const RawAddress& bda, uint16_t hci_handle,
-                       tBTM_ESCO_DATA* p_esco_data);
 void btm_sco_connection_failed(tHCI_STATUS hci_status, const RawAddress& bda,
                                uint16_t hci_handle,
                                tBTM_ESCO_DATA* p_esco_data);

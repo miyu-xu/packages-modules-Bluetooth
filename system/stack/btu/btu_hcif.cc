@@ -86,7 +86,6 @@ static void btu_hcif_command_status_evt(uint8_t status, BT_HDR* command,
 static void btu_hcif_mode_change_evt(uint8_t* p);
 static void btu_hcif_link_key_notification_evt(const uint8_t* p);
 static void btu_hcif_read_clock_off_comp_evt(uint8_t* p);
-static void btu_hcif_esco_connection_comp_evt(const uint8_t* p);
 static void btu_hcif_esco_connection_chg_evt(uint8_t* p);
 
 /* Parsing functions for btm functions */
@@ -270,9 +269,6 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
       break;
     case HCI_READ_CLOCK_OFF_COMP_EVT:
       btu_hcif_read_clock_off_comp_evt(p);
-      break;
-    case HCI_ESCO_CONNECTION_COMP_EVT:
-      btu_hcif_esco_connection_comp_evt(p);
       break;
     case HCI_ESCO_CONNECTION_CHANGED_EVT:
       btu_hcif_esco_connection_chg_evt(p);
@@ -910,48 +906,6 @@ static void btu_hcif_read_rmt_ext_features_comp_evt(uint8_t* p,
   else {
     STREAM_TO_UINT16(handle, p_cur);
     btm_read_remote_ext_features_failed(status, handle);
-  }
-}
-
-/*******************************************************************************
- *
- * Function         btu_hcif_esco_connection_comp_evt
- *
- * Description      Process event HCI_ESCO_CONNECTION_COMP_EVT
- *
- * Returns          void
- *
- ******************************************************************************/
-static void btu_hcif_esco_connection_comp_evt(const uint8_t* p) {
-  tBTM_ESCO_DATA data;
-  uint16_t handle;
-  RawAddress bda;
-  uint8_t status;
-
-  STREAM_TO_UINT8(status, p);
-  STREAM_TO_UINT16(handle, p);
-  STREAM_TO_BDADDR(bda, p);
-
-  STREAM_TO_UINT8(data.link_type, p);
-  STREAM_SKIP_UINT8(p);   // tx_interval
-  STREAM_SKIP_UINT8(p);   // retrans_window
-  STREAM_SKIP_UINT16(p);  // rx_pkt_len
-  STREAM_SKIP_UINT16(p);  // tx_pkt_len
-  STREAM_SKIP_UINT8(p);   // air_mode
-
-  handle = HCID_GET_HANDLE(handle);
-  ASSERT_LOG(
-      handle <= HCI_HANDLE_MAX,
-      "Received eSCO connection complete event with invalid handle: 0x%X "
-      "that should be <= 0x%X",
-      handle, HCI_HANDLE_MAX);
-
-  data.bd_addr = bda;
-  if (status == HCI_SUCCESS) {
-    btm_sco_connected(bda, handle, &data);
-  } else {
-    btm_sco_connection_failed(static_cast<tHCI_STATUS>(status), bda, handle,
-                              &data);
   }
 }
 
