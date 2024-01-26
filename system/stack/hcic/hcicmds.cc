@@ -493,22 +493,6 @@ static void btsnd_hcic_disconnect(uint16_t handle, uint8_t reason) {
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-void btsnd_hcic_add_SCO_conn(uint16_t handle, uint16_t packet_types) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_ADD_SCO_CONN;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_ADD_SCO_CONNECTION);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_ADD_SCO_CONN);
-
-  UINT16_TO_STREAM(pp, handle);
-  UINT16_TO_STREAM(pp, packet_types);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_create_conn_cancel(const RawAddress& dest) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);

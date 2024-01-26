@@ -36,7 +36,6 @@ namespace stack_hcic_hcicmds {
 // Function state capture and return values, if needed
 struct btsnd_hcic_accept_conn btsnd_hcic_accept_conn;
 struct btsnd_hcic_accept_esco_conn btsnd_hcic_accept_esco_conn;
-struct btsnd_hcic_add_SCO_conn btsnd_hcic_add_SCO_conn;
 struct btsnd_hcic_auth_request btsnd_hcic_auth_request;
 struct btsnd_hcic_change_name btsnd_hcic_change_name;
 struct btsnd_hcic_create_conn_cancel btsnd_hcic_create_conn_cancel;
@@ -120,10 +119,6 @@ void btsnd_hcic_accept_esco_conn(const RawAddress& bd_addr,
   test::mock::stack_hcic_hcicmds::btsnd_hcic_accept_esco_conn(
       bd_addr, transmit_bandwidth, receive_bandwidth, max_latency, content_fmt,
       retrans_effort, packet_types);
-}
-void btsnd_hcic_add_SCO_conn(uint16_t handle, uint16_t packet_types) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_add_SCO_conn(handle, packet_types);
 }
 void btsnd_hcic_auth_request(uint16_t handle) {
   inc_func_call_count(__func__);

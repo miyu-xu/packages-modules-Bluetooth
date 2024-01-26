@@ -72,18 +72,6 @@ struct btsnd_hcic_accept_esco_conn {
 };
 extern struct btsnd_hcic_accept_esco_conn btsnd_hcic_accept_esco_conn;
 
-// Name: btsnd_hcic_add_SCO_conn
-// Params: uint16_t handle, uint16_t packet_types
-// Return: void
-struct btsnd_hcic_add_SCO_conn {
-  std::function<void(uint16_t handle, uint16_t packet_types)> body{
-      [](uint16_t handle, uint16_t packet_types) {}};
-  void operator()(uint16_t handle, uint16_t packet_types) {
-    body(handle, packet_types);
-  };
-};
-extern struct btsnd_hcic_add_SCO_conn btsnd_hcic_add_SCO_conn;
-
 // Name: btsnd_hcic_auth_request
 // Params: uint16_t handle
 // Return: void
