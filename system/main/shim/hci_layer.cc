@@ -63,7 +63,6 @@ namespace {
 bool register_event_code(bluetooth::hci::EventCode event_code) {
   switch (event_code) {
     // SCO
-    case bluetooth::hci::EventCode::SYNCHRONOUS_CONNECTION_COMPLETE:
     case bluetooth::hci::EventCode::SYNCHRONOUS_CONNECTION_CHANGED:
 
     // SecurityEvents
