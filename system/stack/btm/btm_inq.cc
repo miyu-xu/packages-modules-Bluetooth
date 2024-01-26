@@ -1733,36 +1733,6 @@ static void btm_process_inq_results_extended(bluetooth::hci::EventView event) {
 
 /*******************************************************************************
  *
- * Function         btm_process_inq_results
- *
- * Description      This function is called when inquiry results are received
- *                  from the device. It updates the inquiry database. If the
- *                  inquiry database is full, the oldest entry is discarded.
- *
- * Parameters       inq_res_mode - BTM_INQ_RESULT_STANDARD
- *                                 BTM_INQ_RESULT_WITH_RSSI
- *                                 BTM_INQ_RESULT_EXTENDED
- *
- * Returns          void
- *
- ******************************************************************************/
-void btm_process_inq_results(const uint8_t* p, uint8_t hci_evt_len,
-                             uint8_t inq_res_mode) {
-  switch (inq_res_mode) {
-    case BTM_INQ_RESULT_STANDARD:
-      LOG_ALWAYS_FATAL("Please use PDL for STANDARD results");
-      break;
-    case BTM_INQ_RESULT_WITH_RSSI:
-      LOG_ALWAYS_FATAL("Please use PDL for RSSI results");
-      break;
-    case BTM_INQ_RESULT_EXTENDED:
-      LOG_ALWAYS_FATAL("Please use PDL for EXTENDED results");
-      break;
-  }
-}
-
-/*******************************************************************************
- *
  * Function         btm_sort_inq_result
  *
  * Description      This function is called when inquiry complete is received
@@ -2511,6 +2481,9 @@ static void on_incoming_hci_event(bluetooth::hci::EventView event) {
       break;
     case bluetooth::hci::EventCode::INQUIRY_RESULT_WITH_RSSI:
       btm_process_inq_results_rssi(event);
+      break;
+    case bluetooth::hci::EventCode::EXTENDED_INQUIRY_RESULT:
+      btm_process_inq_results_extended(event);
       break;
     default:
       LOG_WARN("Dropping unhandled event: %s",
