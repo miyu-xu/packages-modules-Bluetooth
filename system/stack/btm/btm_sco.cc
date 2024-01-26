@@ -155,6 +155,11 @@ static void register_for_sco() {
       get_main_thread()->Bind([](bluetooth::hci::EventView event) {
         on_incoming_hci_event(event);
       }));
+  bluetooth::shim::GetHciLayer()->RegisterEventHandler(
+      bluetooth::hci::EventCode::SYNCHRONOUS_CONNECTION_CHANGED,
+      get_main_thread()->Bind([](bluetooth::hci::EventView event) {
+        on_incoming_hci_event(event);
+      }));
 }
 
 static void shut_down_sco() {
@@ -1831,7 +1836,14 @@ static void handle_connection_complete(bluetooth::hci::EventView event) {
   }
 }
 
-static void handle_connection_changed(bluetooth::hci::EventView event) {}
+static void handle_connection_changed(bluetooth::hci::EventView event) {
+  auto changed =
+      bluetooth::hci::SynchronousConnectionChangedView::Create(event);
+  ASSERT(changed.IsValid());
+  auto status = changed.GetStatus();
+  auto handle = changed.GetConnectionHandle();
+  LOG_DEBUG("status: %s handle: 0x%02x", ErrorCodeText(status).c_str(), handle);
+}
 
 static void on_incoming_hci_event(bluetooth::hci::EventView event) {
   ASSERT(event.IsValid());
