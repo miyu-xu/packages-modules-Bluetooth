@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e3180dc3_ca24c7f9",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 681,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-26T01:55:23Z",
+      "side": 1,
+      "message": "// Report the status started here because inq_complete will report status complete",
+      "revId": "4adcef08194434965ebfb0b43a5199a81b512a76",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
