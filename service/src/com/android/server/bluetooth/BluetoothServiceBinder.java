@@ -38,11 +38,13 @@ import android.bluetooth.IBluetoothManager;
 import android.bluetooth.IBluetoothManagerCallback;
 import android.content.AttributionSource;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Messenger;
 import android.os.ParcelFileDescriptor;
+import android.os.UserHandle;
 import android.os.UserManager;
 import android.permission.PermissionManager;
 
@@ -58,20 +60,22 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     private final Context mContext;
     private final UserManager mUserManager;
     private final AppOpsManager mAppOpsManager;
+    private final PackageManager mPackageManager;
     private final PermissionManager mPermissionManager;
     private final BtPermissionUtils mPermissionUtils;
-    private final Looper unusedmLooper;
+    private final Looper mLooper;
 
     BluetoothServiceBinder(
             BluetoothManagerService bms, Looper looper, Context ctx, UserManager userManager) {
         mBluetoothManagerService = bms;
-        unusedmLooper = looper;
+        mLooper = looper;
         mContext = ctx;
         mUserManager = userManager;
         mAppOpsManager =
                 requireNonNull(
                         ctx.getSystemService(AppOpsManager.class),
                         "AppOpsManager system service cannot be null");
+        mPackageManager = ctx.createContextAsUser(UserHandle.SYSTEM, 0).getPackageManager();
         mPermissionManager =
                 requireNonNull(
                         ctx.getSystemService(PermissionManager.class),
@@ -82,7 +86,17 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
     @Override
     @NonNull
     public Messenger getServiceMessenger() {
-        return new ServiceMessenger(mBluetoothManagerService, mLooper).getMessenger();
+        return new ServiceMessenger(
+                        mBluetoothManagerService,
+                        new PermissionChecker(
+                                mContext,
+                                mUserManager,
+                                mPackageManager,
+                                mPermissionManager,
+                                mAppOpsManager,
+                                mContext.getAttributionSource()),
+                        mLooper)
+                .getMessenger();
     }
 
     @Override
