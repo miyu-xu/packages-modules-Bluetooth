@@ -86,6 +86,7 @@ java_library {
         "src/BleScanSettingListener.kt",
         "src/BluetoothService.kt",
         "src/Log.kt",
+        "src/PermissionChecker.kt",
         "src/RadioModeListener.kt",
         "src/ServiceMessenger.kt",
         "src/airplane/ModeListener.kt",
