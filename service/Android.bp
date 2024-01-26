@@ -24,6 +24,7 @@ filegroup {
         "src/AdapterState.kt",
         "src/AutoOnFeature.kt",
         "src/Log.kt",
+        "src/PermissionChecker.kt",
         "src/RadioModeListener.kt",
         "src/ServiceMessenger.kt",
         "src/airplane/ModeListener.kt",
