@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "40a92497_f84ea09d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-26T18:53:59Z",
+      "side": 1,
+      "message": "Please also check presubmit build failures.",
+      "revId": "61b53a9110663dcae116fb84ed1debed3374cefc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "979ac9b7_062f2c79",
+        "filename": "framework/java/android/bluetooth/BluetoothGatt.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-26T18:53:59Z",
+      "side": 1,
+      "message": "A couple thoughts on docs:\n\n1) Might be best not to specify the time interval here in case we change it or make it configurable in future. \n2) I would suggest adding some clarification that it is likely the remote device is out of range or not advertising as connectable, or similar. \n\nWDYT?",
+      "range": {
+        "startLine": 133,
+        "startChar": 40,
+        "endLine": 133,
+        "endChar": 42
+      },
+      "revId": "61b53a9110663dcae116fb84ed1debed3374cefc",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
