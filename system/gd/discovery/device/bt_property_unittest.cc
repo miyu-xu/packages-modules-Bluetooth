@@ -16,12 +16,15 @@
 
 #include "discovery/device/bt_property.h"
 
+#include <future>
+
 #include "gtest/gtest.h"
 #include "hardware/bluetooth.h"
-#include "os/log.h"
 #include "stack/include/bt_name.h"
 
-using namespace bluetooth;
+using bluetooth::property::BtProperty;
+
+using namespace bluetooth::property;
 
 namespace {
 
@@ -32,10 +35,12 @@ constexpr BD_NAME kBdName{'k', 'B', 'd', 'N', 'a', 'm', 'e', '\0'};
 const RawAddress kRawAddress{{0x11, 0x22, 0x33, 0x44, 0x55, 0x66}};
 
 // BT_PROPERTY_UUIDS
-constexpr char uuid0[]{"00000001-1001-1000-8000-00805f9b34fb"};
-constexpr char uuid1[]{"00000001-1002-1000-8000-00805f9b34fb"};
-constexpr char uuid2[]{"00000001-1003-1000-8000-00805f9b34fb"};
-constexpr int kNumUuids{3};
+const bluetooth::Uuid uuids[] = {
+    {bluetooth::Uuid::FromString("00000001-1001-1000-8000-00805f9b34fb")},
+    {bluetooth::Uuid::FromString("00000001-1002-1000-8000-00805f9b34fb")},
+    {bluetooth::Uuid::FromString("00000001-1003-1000-8000-00805f9b34fb")},
+};
+const std::vector<bluetooth::Uuid> kUuids(uuids, uuids + sizeof(uuids) / sizeof(uuids[0]));
 
 // BT_PROPERTY_CLASS_OF_DEVICE
 constexpr uint32_t kClassOfDevice{0x99663300};
@@ -45,7 +50,7 @@ constexpr bt_device_type_t kTypeOfDevice{BT_DEVICE_DEVTYPE_BREDR};
 
 // BT_PROPERTY_SERVICE_RECORD
 const bt_service_record_t kServiceRecord{
-    .uuid = bluetooth::Uuid::FromString(uuid0),
+    .uuid = uuids[0],
     .channel = 0x1234,
     .name = {'k', 'S', 'e', 'r', 'v', 'i', 'c', 'e', 'R', 'e',
              'c', 'o', 'r', 'd', '.', 'n', 'a', 'm', 'e', '\0'},
@@ -147,88 +152,80 @@ constexpr uint8_t kRemoteAddrType{0x55};
 // BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP
 constexpr int kRemoteDeviceTimestamp{0x12345678};
 
+constexpr size_t kNumberTestedProperties = 22;
+
 // Fill the given property type with the well known property data set
 void fill_property(
     const bt_property_type_t& type, std::vector<std::shared_ptr<BtProperty>>& properties) {
   switch (type) {
     case BT_PROPERTY_BDNAME: {
-      BD_NAME bd_name;
-      bd_name_copy(bd_name, kBdName);
-      properties.push_back(BtPropertyFactory::Build(type, bd_name));
+      properties.push_back(BdName::Create(kBdName));
       ASSERT_EQ(kBdNameLength, properties.back()->Size());
     } break;
 
     case BT_PROPERTY_BDADDR:
-      properties.push_back(BtPropertyFactory::Build<BtPropertyBdAddr, RawAddress>(kRawAddress));
+      properties.push_back(BdAddr::Create(kRawAddress));
       ASSERT_EQ(sizeof(RawAddress), properties.back()->Size());
       break;
 
     case BT_PROPERTY_UUIDS: {
-      std::vector<bluetooth::Uuid> uuids;
-      uuids.push_back(bluetooth::Uuid::FromString(uuid0));
-      uuids.push_back(bluetooth::Uuid::FromString(uuid1));
-      uuids.push_back(bluetooth::Uuid::FromString(uuid2));
-      properties.push_back(BtPropertyFactory::Build<bluetooth::Uuid>(type, uuids));
-      ASSERT_EQ(sizeof(bluetooth::Uuid) * uuids.size(), properties.back()->Size());
+      properties.push_back(Uuids::Create(kUuids));
+      ASSERT_EQ(sizeof(bluetooth::Uuid) * kUuids.size(), properties.back()->Size());
     } break;
 
     case BT_PROPERTY_CLASS_OF_DEVICE:
-      properties.push_back(BtPropertyFactory::Build<uint32_t>(type, kClassOfDevice));
+      properties.push_back(ClassOfDevice::Create(kClassOfDevice));
       ASSERT_EQ(sizeof(uint32_t), properties.back()->Size());
       break;
 
     case BT_PROPERTY_TYPE_OF_DEVICE:
-      properties.push_back(BtPropertyFactory::Build<bt_device_type_t>(type, kTypeOfDevice));
+      properties.push_back(TypeOfDevice::Create(kTypeOfDevice));
       ASSERT_EQ(sizeof(bt_device_type_t), properties.back()->Size());
       break;
 
     case BT_PROPERTY_SERVICE_RECORD:
-      properties.push_back(BtPropertyFactory::Build<bt_service_record_t>(type, kServiceRecord));
+      properties.push_back(ServiceRecord::Create(kServiceRecord));
       ASSERT_EQ(sizeof(bt_service_record_t), properties.back()->Size());
       break;
 
     case BT_PROPERTY_ADAPTER_SCAN_MODE:
-      properties.push_back(BtPropertyFactory::Build<bt_scan_mode_t>(type, kAdapterScanMode));
+      properties.push_back(AdapterScanMode::Create(kAdapterScanMode));
       ASSERT_EQ(sizeof(bt_scan_mode_t), properties.back()->Size());
       break;
 
     case BT_PROPERTY_ADAPTER_BONDED_DEVICES: {
-      properties.push_back(
-          BtPropertyFactory::Build<RawAddress>(type, kAdapterBondedDevices, kNumBondedDevices));
+      properties.push_back(AdapterBondedDevices::Create(kAdapterBondedDevices, kNumBondedDevices));
       ASSERT_EQ(sizeof(RawAddress) * kNumBondedDevices, properties.back()->Size());
     } break;
 
     case BT_PROPERTY_ADAPTER_DISCOVERABLE_TIMEOUT:
-      properties.push_back(BtPropertyFactory::Build<uint32_t>(type, kAdapterDiscoverableTimeout));
+      properties.push_back(AdapterDiscoverableTimeout::Create(kAdapterDiscoverableTimeout));
       ASSERT_EQ(sizeof(uint32_t), properties.back()->Size());
       break;
 
     case BT_PROPERTY_REMOTE_FRIENDLY_NAME: {
-      bt_bdname_t name;
-      bd_name_copy(name.name, kRemoteFriendlyName);
       properties.push_back(
-          BtPropertyFactory::Build<uint8_t>(type, name.name, sizeof(kRemoteFriendlyName)));
+          RemoteFriendlyName::Create(kRemoteFriendlyName, sizeof(kRemoteFriendlyName)));
       ASSERT_EQ(sizeof(kRemoteFriendlyName), properties.back()->Size());
     } break;
 
     case BT_PROPERTY_REMOTE_RSSI:
-      properties.push_back(BtPropertyFactory::Build<int8_t>(type, kRemoteRssi));
+      properties.push_back(RemoteRSSI::Create(kRemoteRssi));
       ASSERT_EQ(sizeof(int8_t), properties.back()->Size());
       break;
 
     case BT_PROPERTY_REMOTE_VERSION_INFO:
-      properties.push_back(BtPropertyFactory::Build<bt_remote_version_t>(type, kRemoteVersionInfo));
+      properties.push_back(RemoteVersionInfo::Create(kRemoteVersionInfo));
       ASSERT_EQ(sizeof(bt_remote_version_t), properties.back()->Size());
       break;
 
     case BT_PROPERTY_LOCAL_LE_FEATURES:
-      properties.push_back(
-          BtPropertyFactory::Build<bt_local_le_features_t>(type, kLocalLeFeatures));
+      properties.push_back(LocalLeFeatures::Create(kLocalLeFeatures));
       ASSERT_EQ(sizeof(kLocalLeFeatures), properties.back()->Size());
       break;
 
     case BT_PROPERTY_LOCAL_IO_CAPS:
-      properties.push_back(BtPropertyFactory::Build<bt_io_cap_t>(type, kLocalIoCaps));
+      properties.push_back(LocalIOCaps::Create(kLocalIoCaps));
       ASSERT_EQ(sizeof(kLocalIoCaps), properties.back()->Size());
       break;
 
@@ -237,18 +234,17 @@ void fill_property(
       break;
 
     case BT_PROPERTY_REMOTE_IS_COORDINATED_SET_MEMBER:
-      properties.push_back(BtPropertyFactory::Build<bool>(type, kRemoteIsCoordinatedSetMember));
+      properties.push_back(RemoteIsCoordinatedSetMember::Create(kRemoteIsCoordinatedSetMember));
       ASSERT_EQ(sizeof(kRemoteIsCoordinatedSetMember), properties.back()->Size());
       break;
 
     case BT_PROPERTY_APPEARANCE:
-      properties.push_back(BtPropertyFactory::Build<uint16_t>(type, kAppearance));
+      properties.push_back(Appearance::Create(kAppearance));
       ASSERT_EQ(sizeof(kAppearance), properties.back()->Size());
       break;
 
     case BT_PROPERTY_VENDOR_PRODUCT_INFO:
-      properties.push_back(
-          BtPropertyFactory::Build<bt_vendor_product_info_t>(type, kVendorProductInfo));
+      properties.push_back(VendorProductInfo::Create(kVendorProductInfo));
       ASSERT_EQ(sizeof(kVendorProductInfo), properties.back()->Size());
       break;
 
@@ -256,30 +252,27 @@ void fill_property(
       break;
 
     case BT_PROPERTY_REMOTE_ASHA_CAPABILITY:
-      properties.push_back(BtPropertyFactory::Build<int16_t>(type, kRemoteAshaCapability));
+      properties.push_back(RemoteASHACapability::Create(kRemoteAshaCapability));
       ASSERT_EQ(sizeof(kRemoteAshaCapability), properties.back()->Size());
       break;
 
     case BT_PROPERTY_REMOTE_ASHA_TRUNCATED_HISYNCID:
-      properties.push_back(BtPropertyFactory::Build<uint32_t>(type, kRemoteAshaTruncatedHisyncId));
+      properties.push_back(RemoteASHATruncatedHiSyncId::Create(kRemoteAshaTruncatedHisyncId));
       ASSERT_EQ(sizeof(kRemoteAshaTruncatedHisyncId), properties.back()->Size());
       break;
 
     case BT_PROPERTY_REMOTE_MODEL_NUM: {
-      bt_bdname_t name;
-      bd_name_copy(name.name, kRemoteModelNum.name);
-      properties.push_back(
-          BtPropertyFactory::Build<uint8_t>(type, name.name, sizeof(kRemoteModelNum)));
+      properties.push_back(RemoteModelNum::Create(kRemoteModelNum.name, sizeof(kRemoteModelNum)));
       ASSERT_EQ(sizeof(kRemoteModelNum), properties.back()->Size());
     } break;
 
     case BT_PROPERTY_REMOTE_ADDR_TYPE:
-      properties.push_back(BtPropertyFactory::Build<uint8_t>(type, kRemoteAddrType));
+      properties.push_back(RemoteAddrType::Create(kRemoteAddrType));
       ASSERT_EQ(sizeof(kRemoteAddrType), properties.back()->Size());
       break;
 
     case BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP:
-      properties.push_back(BtPropertyFactory::Build<int>(type, kRemoteDeviceTimestamp));
+      properties.push_back(RemoteDeviceTimestamp::Create(kRemoteDeviceTimestamp));
       ASSERT_EQ(sizeof(kRemoteDeviceTimestamp), properties.back()->Size());
       break;
 
@@ -304,11 +297,11 @@ void verify_property(const bt_property_type_t& type, const bt_property_t& proper
       break;
 
     case BT_PROPERTY_UUIDS: {
-      ASSERT_EQ((int)sizeof(bluetooth::Uuid) * kNumUuids, property.len);
+      ASSERT_EQ((int)(sizeof(bluetooth::Uuid) * kUuids.size()), property.len);
       const bluetooth::Uuid* uuid = (const bluetooth::Uuid*)property.val;
-      ASSERT_EQ(bluetooth::Uuid::FromString(uuid0), *uuid++);
-      ASSERT_EQ(bluetooth::Uuid::FromString(uuid1), *uuid++);
-      ASSERT_EQ(bluetooth::Uuid::FromString(uuid2), *uuid++);
+      ASSERT_EQ(uuids[0], *uuid++);
+      ASSERT_EQ(uuids[1], *uuid++);
+      ASSERT_EQ(uuids[2], *uuid++);
     } break;
 
     case BT_PROPERTY_CLASS_OF_DEVICE:
@@ -534,8 +527,14 @@ void fill_properties(std::vector<std::shared_ptr<BtProperty>>& properties) {
 }
 
 }  // namespace
+   //
+class BtPropertyTest : public testing::Test {
+ protected:
+  void SetUp() override {}
+  void TearDown() override {}
+};
 
-TEST(BtPropertyTest, bt_property_text_test) {
+TEST_F(BtPropertyTest, bt_property_text_test) {
   {
     bt_property_t prop = {
         .type = BT_PROPERTY_BDNAME,
@@ -555,15 +554,10 @@ TEST(BtPropertyTest, bt_property_text_test) {
   }
 
   {
-    std::vector<bluetooth::Uuid> uuids;
-    uuids.push_back(bluetooth::Uuid::FromString(uuid0));
-    uuids.push_back(bluetooth::Uuid::FromString(uuid1));
-    uuids.push_back(bluetooth::Uuid::FromString(uuid2));
-
     bt_property_t prop = {
         .type = BT_PROPERTY_UUIDS,
-        .len = (int)(sizeof(bluetooth::Uuid) * uuids.size()),
-        .val = (void*)&uuids[0],
+        .len = (int)(sizeof(bluetooth::Uuid) * kUuids.size()),
+        .val = (void*)&kUuids[0],
     };
     ASSERT_STREQ(
         "type:BT_PROPERTY_UUIDS uuids:00000001-1001-1000-8000-00805f9b34fb "
@@ -784,23 +778,21 @@ TEST(BtPropertyTest, bt_property_text_test) {
   }
 }
 
-TEST(BtPropertyTest, verify_property_sizes) {
+TEST_F(BtPropertyTest, verify_property_sizes) {
   std::vector<std::shared_ptr<BtProperty>> properties;
   fill_properties(properties);
 }
 
-TEST(BtPropertyTest, serialize_and_print) {
+TEST_F(BtPropertyTest, fill_and_serialize) {
   std::vector<std::shared_ptr<BtProperty>> properties;
   fill_properties(properties);
 
   std::vector<bt_property_t> props;
   BtProperty::Serialize(properties, props);
-  for (const auto& p : props) {
-    LOG_DEBUG("type:%d len:%d ptr:%p", p.type, p.len, p.val);
-  }
+  ASSERT_EQ(kNumberTestedProperties, props.size());
 }
 
-TEST(BtPropertyTest, serialize_and_verify) {
+TEST_F(BtPropertyTest, serialize_and_verify) {
   std::vector<std::shared_ptr<BtProperty>> properties;
   fill_properties(properties);
 
@@ -831,5 +823,63 @@ TEST_F(BtPropertyDynamicAllocationTest, serialize_and_verify) {
   const bt_property_t* p = props;
   for (size_t i = 0; i < properties.size(); i++, p++) {
     verify_property(p->type, *p);
+  }
+}
+
+TEST_F(BtPropertyDynamicAllocationTest, async_data) {
+  auto future = std::async(std::launch::async, []() {
+    std::vector<std::shared_ptr<BtProperty>> properties;
+    fill_properties(properties);
+    return properties;
+  });
+
+  auto properties = future.get();
+
+  BtProperty::Serialize(properties, props, properties.size());
+
+  const bt_property_t* p = props;
+  for (size_t i = 0; i < properties.size(); i++, p++) {
+    verify_property(p->type, *p);
+  }
+}
+
+class BtPropertyDynamicMultiAllocationTest : public testing::Test {
+ protected:
+  static constexpr size_t kNumProperties = 1;
+  static constexpr size_t kNumThreads = 20;
+
+  void SetUp() override {
+    for (size_t i = 0; i < kNumThreads; i++) {
+      bt_properties[i] = (bt_property_t*)malloc(sizeof(bt_property_t) * kNumProperties);
+    }
+  }
+  void TearDown() override {
+    for (size_t i = 0; i < kNumThreads; i++) {
+      free(bt_properties[i]);
+    }
+  }
+  std::vector<std::future<std::vector<std::shared_ptr<BtProperty>>>> future_vector;
+  bt_property_t* bt_properties[kNumThreads] = {};
+
+  std::vector<std::shared_ptr<BtProperty>> properties;
+};
+
+TEST_F(BtPropertyDynamicMultiAllocationTest, async_data_multi) {
+  for (size_t i = 0; i < kNumThreads; i++) {
+    future_vector.push_back(std::async(std::launch::async, [i]() {
+      std::vector<std::shared_ptr<BtProperty>> properties;
+      properties.push_back(RemoteDeviceTimestamp::Create((uint32_t)i));
+      return properties;
+    }));
+  }
+
+  for (size_t i = 0; i < kNumThreads; i++) {
+    // This is the backing store for the properties values
+    std::vector<std::shared_ptr<BtProperty>> props = future_vector[i].get();
+    BtProperty::Serialize(props, bt_properties[i], 1);
+
+    ASSERT_EQ(BT_PROPERTY_REMOTE_DEVICE_TIMESTAMP, (int)bt_properties[i]->type);
+    ASSERT_EQ((int)sizeof(uint32_t), bt_properties[i]->len);
+    ASSERT_EQ((int)i, *(int*)bt_properties[i]->val);
   }
 }
