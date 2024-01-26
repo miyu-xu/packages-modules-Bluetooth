@@ -105,6 +105,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e912d4f0_a9d29e4d",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-26T19:26:09Z",
+      "side": 1,
+      "message": "I\u0027ll get over it.",
+      "parentUuid": "e643b73e_59f54bbc",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "d14e56ac_ec3fdfd9",
@@ -118,6 +136,24 @@
       "writtenOn": "2024-01-25T23:20:13Z",
       "side": 1,
       "message": "BtPropertyFactory::Build\u003cRawAddress\u003e(BT_PROPERTY_BDADDR, kRawAddress)\n\nmake_shared\u003cBtPropertySimple\u003cRawAddress\u003e\u003e(BT_PROPERTY_BDADDR, kRawAddress)\n\nmake_shared\u003cBtPropertySimple\u003cRawAddressWithType\u003e\u003e(BT_PROPERTY_BDADDR, kRawAddress)\n\nclass BtProperty_RawAddress(RawAddress addr) : type_(BT_PROPERTY_BDADDR), (addr_(addr) {}\n\nmake_shared\u003cBtProperty_RawAddress\u003e(kRawAddress)\n\nmake_shared\u003cBtPropertySimple\u003cRawAddress\u003e\u003e(kRawAddress)",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "20c27867_d6605c48",
+        "filename": "system/gd/discovery/device/bt_property_unittest.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-26T19:26:09Z",
+      "side": 1,
+      "message": "I agree that I liked it better before.  I\u0027m not sure why I have a mental block on the factory thing, but I don\u0027t want to stand in the way of (flagged) progress :)",
+      "parentUuid": "d14e56ac_ec3fdfd9",
       "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
