@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "8374c4ba_f6d844b7",
+        "filename": "system/btif/test/btif_dm_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-26T19:04:15Z",
+      "side": 1,
+      "message": "This is my first one; I suspect every single test using flags will need the same define space, so my thinking is this namespace would be extracted into some common area TBD.\n\nThen yes, I think nested macros would go away... ;P",
+      "parentUuid": "c9428ad1_935a5080",
+      "range": {
+        "startLine": 138,
+        "startChar": 0,
+        "endLine": 144,
+        "endChar": 75
+      },
+      "revId": "2805ae36ab33540694612920b7df5986a8c3c5ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0d9fbc8f_08a36a23",
@@ -37,6 +61,24 @@
       "writtenOn": "2024-01-26T16:41:21Z",
       "side": 1,
       "message": "Can we add the ASSERTs in the lambda and avoid saving the data?",
+      "revId": "2805ae36ab33540694612920b7df5986a8c3c5ef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0076f6dd_3e5fa76f",
+        "filename": "system/btif/test/btif_dm_test.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-26T19:04:15Z",
+      "side": 1,
+      "message": "we could...I have a much more generalized sequence; one in which I had set to add various data input and validate output, primarily for the error cases, but also for properties.\n\nThis is a very simple test, so the ASSERT mechanism ensures it remains simple.  But I\u0027m not sure how much testing to continue to put at this level.",
+      "parentUuid": "0d9fbc8f_08a36a23",
       "revId": "2805ae36ab33540694612920b7df5986a8c3c5ef",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
