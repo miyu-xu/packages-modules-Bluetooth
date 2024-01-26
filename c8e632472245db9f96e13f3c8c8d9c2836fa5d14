@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a8fd5ba4_d95352c6",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1974186
+      },
+      "writtenOn": "2024-01-26T15:36:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9f0b9bf5_871cbe0b",
+      "range": {
+        "startLine": 121,
+        "startChar": 11,
+        "endLine": 121,
+        "endChar": 49
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6a00c5eb_76f0802f",
