@@ -94,6 +94,7 @@ void btm_sco_conn_req(const RawAddress& bda, const DEV_CLASS& dev_class,
                       uint8_t link_type);
 void btm_sco_on_disconnected(uint16_t hci_handle, tHCI_REASON reason);
 bool btm_sco_removed(uint16_t hci_handle, tHCI_REASON reason);
+static void on_incoming_hci_event(bluetooth::hci::EventView event);
 
 namespace cpp {
 bluetooth::common::BidiQueueEnd<bluetooth::hci::ScoBuilder,
@@ -149,6 +150,11 @@ static void register_for_sco() {
             btm_sco_on_disconnected(handle, reason);
             btm_sco_removed(handle, reason);
           }));
+  bluetooth::shim::GetHciLayer()->RegisterEventHandler(
+      bluetooth::hci::EventCode::SYNCHRONOUS_CONNECTION_COMPLETE,
+      get_main_thread()->Bind([](bluetooth::hci::EventView event) {
+        on_incoming_hci_event(event);
+      }));
 }
 
 static void shut_down_sco() {
@@ -1800,4 +1806,45 @@ bool btm_peer_supports_esco_ev3(RawAddress remote_bda) {
     return false;
   }
   return HCI_ESCO_EV3_SUPPORTED(features);
+}
+
+static void handle_connection_complete(bluetooth::hci::EventView event) {
+  auto complete =
+      bluetooth::hci::SynchronousConnectionCompleteView::Create(event);
+  ASSERT(complete.IsValid());
+  auto status = complete.GetStatus();
+
+  tBTM_ESCO_DATA data{};
+  auto handle = complete.GetConnectionHandle();
+  ASSERT_LOG(
+      handle <= HCI_HANDLE_MAX,
+      "Received eSCO connection complete event with invalid handle: 0x%X "
+      "that should be <= 0x%X",
+      handle, HCI_HANDLE_MAX);
+  data.link_type = static_cast<uint8_t>(complete.GetLinkType());
+  auto bda = bluetooth::ToRawAddress(complete.GetBdAddr());
+  if (status == bluetooth::hci::ErrorCode::SUCCESS) {
+    btm_sco_connected(bda, handle, &data);
+  } else {
+    btm_sco_connection_failed(static_cast<tHCI_STATUS>(status), bda, handle,
+                              &data);
+  }
+}
+
+static void handle_connection_changed(bluetooth::hci::EventView event) {}
+
+static void on_incoming_hci_event(bluetooth::hci::EventView event) {
+  ASSERT(event.IsValid());
+  auto event_code = event.GetEventCode();
+  switch (event_code) {
+    case bluetooth::hci::EventCode::SYNCHRONOUS_CONNECTION_COMPLETE:
+      handle_connection_complete(event);
+      break;
+    case bluetooth::hci::EventCode::SYNCHRONOUS_CONNECTION_CHANGED:
+      handle_connection_changed(event);
+      break;
+    default:
+      LOG_WARN("Dropping unhandled event: %s",
+               bluetooth::hci::EventCodeText(event_code).c_str());
+  }
 }
