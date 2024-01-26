@@ -74,6 +74,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "a71e9267_7565edb0",
+        "filename": "system/audio_hal_interface/Android.bp",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-26T01:06:26Z",
+      "side": 1,
+      "message": "You can put a target flag preparer as per go/featureflagtargetpreparer but I am unsure how to do it as the xml is auto-generated.\n\nYou can still merge this without forcing the flag to true, and then when moving the flag to the next gantry gate, the test will start running on staging devices",
+      "parentUuid": "54f43503_c72e92ac",
+      "range": {
+        "startLine": 121,
+        "startChar": 11,
+        "endLine": 121,
+        "endChar": 49
+      },
+      "revId": "c8e632472245db9f96e13f3c8c8d9c2836fa5d14",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6a00c5eb_76f0802f",
         "filename": "system/audio_hal_interface/Android.bp",
         "patchSetId": 2
