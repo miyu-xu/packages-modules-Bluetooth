@@ -16,6 +16,24 @@
       "message": "I believe this feature will go beyond LeAudio and will impact a2dp / hearing aid and hfp devices.\n\nAdding other DRI for vis:\n@aritrasen@google.com\n@yuyanghuang@google.com\n@licorne@google.com",
       "revId": "4fc75b4a483c264549a36e4dff818b4198a95259",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71db4872_bf82b300",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-26T01:01:52Z",
+      "side": 1,
+      "message": "Is there a design doc for this @rongxuan@google.com?",
+      "parentUuid": "a9902de7_2a677fab",
+      "revId": "4fc75b4a483c264549a36e4dff818b4198a95259",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
