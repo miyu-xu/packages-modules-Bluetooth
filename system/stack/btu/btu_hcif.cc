@@ -86,7 +86,6 @@ static void btu_hcif_command_status_evt(uint8_t status, BT_HDR* command,
 static void btu_hcif_mode_change_evt(uint8_t* p);
 static void btu_hcif_link_key_notification_evt(const uint8_t* p);
 static void btu_hcif_read_clock_off_comp_evt(uint8_t* p);
-static void btu_hcif_esco_connection_chg_evt(uint8_t* p);
 
 /* Parsing functions for btm functions */
 
@@ -269,9 +268,6 @@ void btu_hcif_process_event(UNUSED_ATTR uint8_t controller_id,
       break;
     case HCI_READ_CLOCK_OFF_COMP_EVT:
       btu_hcif_read_clock_off_comp_evt(p);
-      break;
-    case HCI_ESCO_CONNECTION_CHANGED_EVT:
-      btu_hcif_esco_connection_chg_evt(p);
       break;
     case HCI_SNIFF_SUB_RATE_EVT:
       btm_pm_proc_ssr_evt(p, hci_evt_len);
@@ -907,34 +903,6 @@ static void btu_hcif_read_rmt_ext_features_comp_evt(uint8_t* p,
     STREAM_TO_UINT16(handle, p_cur);
     btm_read_remote_ext_features_failed(status, handle);
   }
-}
-
-/*******************************************************************************
- *
- * Function         btu_hcif_esco_connection_chg_evt
- *
- * Description      Process event HCI_ESCO_CONNECTION_CHANGED_EVT
- *
- * Returns          void
- *
- ******************************************************************************/
-static void btu_hcif_esco_connection_chg_evt(uint8_t* p) {
-  uint16_t handle;
-  uint16_t tx_pkt_len;
-  uint16_t rx_pkt_len;
-  uint8_t status;
-  uint8_t tx_interval;
-  uint8_t retrans_window;
-
-  STREAM_TO_UINT8(status, p);
-  STREAM_TO_UINT16(handle, p);
-
-  STREAM_TO_UINT8(tx_interval, p);
-  STREAM_TO_UINT8(retrans_window, p);
-  STREAM_TO_UINT16(rx_pkt_len, p);
-  STREAM_TO_UINT16(tx_pkt_len, p);
-
-  handle = HCID_GET_HANDLE(handle);
 }
 
 /*******************************************************************************
