@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2f2c3167_ccd5c930",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-26T19:09:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "98cb5d55_5bfa9644",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "761158cb_8c9ac7a8",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-01-25T23:20:13Z",
       "side": 1,
       "message": "should be class",
+      "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2b6ef1ab_0b78960e",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 6
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-26T19:09:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "761158cb_8c9ac7a8",
       "revId": "0b79ff6f367243cc9b148b43df2312c2944319d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
