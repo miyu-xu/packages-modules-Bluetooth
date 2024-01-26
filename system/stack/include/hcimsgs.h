@@ -131,7 +131,6 @@ void btsnd_hcic_accept_esco_conn(const RawAddress& bd_addr,
                                  uint16_t max_latency, uint16_t content_fmt,
                                  uint8_t retrans_effort, uint16_t packet_types);
 
-void btsnd_hcic_reject_esco_conn(const RawAddress& bd_addr, uint8_t reason);
 /* Hold Mode */
 void btsnd_hcic_hold_mode(uint16_t handle, uint16_t max_hold_period,
                           uint16_t min_hold_period);
