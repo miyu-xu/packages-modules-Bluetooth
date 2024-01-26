@@ -522,7 +522,20 @@ static tBTM_STATUS btm_send_connect_request(uint16_t acl_handle,
   if (!btm_cb.sco_cb.esco_supported) {
     LOG(INFO) << __func__ << ": sending non-eSCO request for handle="
               << unsigned(acl_handle);
-    btsnd_hcic_add_SCO_conn(acl_handle, BTM_ESCO_2_SCO(p_setup->packet_types));
+    bluetooth::shim::GetHciLayer()->EnqueueCommand(
+        bluetooth::hci::AddScoConnectionBuilder::Create(
+            acl_handle, BTM_ESCO_2_SCO(p_setup->packet_types)),
+        get_main_thread()->BindOnce(
+            [](bluetooth::hci::CommandStatusView event) {
+              auto status_view =
+                  bluetooth::hci::CommandStatusView::Create(event);
+              ASSERT(status_view.IsValid());
+              auto status = status_view.GetStatus();
+              if (status != bluetooth::hci::ErrorCode::SUCCESS) {
+                LOG_WARN("AddScoConnection returned status: %s",
+                         bluetooth::hci::ErrorCodeText(status).c_str());
+              }
+            }));
   } else {
     /* Save the previous values in case command fails */
     uint16_t saved_packet_types = p_setup->packet_types;
