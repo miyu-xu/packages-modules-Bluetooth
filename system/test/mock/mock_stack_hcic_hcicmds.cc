@@ -65,7 +65,6 @@ struct btsnd_hcic_read_rmt_clk_offset btsnd_hcic_read_rmt_clk_offset;
 struct btsnd_hcic_read_rssi btsnd_hcic_read_rssi;
 struct btsnd_hcic_read_tx_power btsnd_hcic_read_tx_power;
 struct btsnd_hcic_reject_conn btsnd_hcic_reject_conn;
-struct btsnd_hcic_reject_esco_conn btsnd_hcic_reject_esco_conn;
 struct btsnd_hcic_rem_oob_neg_reply btsnd_hcic_rem_oob_neg_reply;
 struct btsnd_hcic_rem_oob_reply btsnd_hcic_rem_oob_reply;
 struct btsnd_hcic_rmt_ext_features btsnd_hcic_rmt_ext_features;
@@ -244,10 +243,6 @@ void btsnd_hcic_read_tx_power(uint16_t handle, uint8_t type) {
 void btsnd_hcic_reject_conn(const RawAddress& dest, uint8_t reason) {
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_reject_conn(dest, reason);
-}
-void btsnd_hcic_reject_esco_conn(const RawAddress& bd_addr, uint8_t reason) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_reject_esco_conn(bd_addr, reason);
 }
 void btsnd_hcic_rem_oob_neg_reply(const RawAddress& bd_addr) {
   inc_func_call_count(__func__);
