@@ -51,7 +51,7 @@ public class PeriodicScanNativeInterface {
 
     /** Set singleton instance. */
     @VisibleForTesting
-    public static void setInstance(PeriodicScanNativeInterface instance) {
+    static void setInstance(PeriodicScanNativeInterface instance) {
         synchronized (INSTANCE_LOCK) {
             sInstance = instance;
         }
