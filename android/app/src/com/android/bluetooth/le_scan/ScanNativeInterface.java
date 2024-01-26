@@ -40,7 +40,7 @@ public class ScanNativeInterface {
      *
      * @return default instance
      */
-    public static ScanNativeInterface getInstance() {
+    static ScanNativeInterface getInstance() {
         synchronized (INSTANCE_LOCK) {
             if (sInterface == null) {
                 sInterface = new ScanNativeInterface();
@@ -77,35 +77,35 @@ public class ScanNativeInterface {
     /**
      * Register BLE scanner
      */
-    public void registerScanner(long appUuidLsb, long appUuidMsb) {
+    void registerScanner(long appUuidLsb, long appUuidMsb) {
         registerScannerNative(appUuidLsb, appUuidMsb);
     }
 
     /**
      * Unregister BLE scanner
      */
-    public void unregisterScanner(int scannerId) {
+    void unregisterScanner(int scannerId) {
         unregisterScannerNative(scannerId);
     }
 
     /**
      * Enable/disable BLE scan
      */
-    public void gattClientScan(boolean start) {
+    void gattClientScan(boolean start) {
         gattClientScanNative(start);
     }
 
     /**
      * Configure BLE scan parameters
      */
-    public void gattSetScanParameters(int clientIf, int scanInterval, int scanWindow) {
+    void gattSetScanParameters(int clientIf, int scanInterval, int scanWindow) {
         gattSetScanParametersNative(clientIf, scanInterval, scanWindow);
     }
 
     /**
      * Add BLE scan filter
      */
-    public void gattClientScanFilterAdd(int clientId, ScanFilterQueue.Entry[] entries,
+    void gattClientScanFilterAdd(int clientId, ScanFilterQueue.Entry[] entries,
             int filterIndex) {
         gattClientScanFilterAddNative(clientId, entries, filterIndex);
     }
@@ -113,7 +113,7 @@ public class ScanNativeInterface {
     /**
      * Add BLE scan filter parameters
      */
-    public void gattClientScanFilterParamAdd(FilterParams filtValue) {
+    void gattClientScanFilterParamAdd(FilterParams filtValue) {
         gattClientScanFilterParamAddNative(filtValue);
     }
 
@@ -121,35 +121,35 @@ public class ScanNativeInterface {
      * Clear all BLE scan filter parameters
      */
     // Note this effectively remove scan filters for ALL clients.
-    public void gattClientScanFilterParamClearAll(int clientIf) {
+    void gattClientScanFilterParamClearAll(int clientIf) {
         gattClientScanFilterParamClearAllNative(clientIf);
     }
 
     /**
      * Delete BLE scan filter parameters
      */
-    public void gattClientScanFilterParamDelete(int clientIf, int filtIndex) {
+    void gattClientScanFilterParamDelete(int clientIf, int filtIndex) {
         gattClientScanFilterParamDeleteNative(clientIf, filtIndex);
     }
 
     /**
      * Clear BLE scan filter
      */
-    public void gattClientScanFilterClear(int clientIf, int filterIndex) {
+    void gattClientScanFilterClear(int clientIf, int filterIndex) {
         gattClientScanFilterClearNative(clientIf, filterIndex);
     }
 
     /**
      * Enable/disable BLE scan filter
      */
-    public void gattClientScanFilterEnable(int clientIf, boolean enable) {
+    void gattClientScanFilterEnable(int clientIf, boolean enable) {
         gattClientScanFilterEnableNative(clientIf, enable);
     }
 
     /**
      * Configure BLE batch scan storage
      */
-    public void gattClientConfigBatchScanStorage(int clientIf,
+    void gattClientConfigBatchScanStorage(int clientIf,
             int maxFullReportsPercent, int maxTruncatedReportsPercent,
             int notifyThresholdPercent) {
         gattClientConfigBatchScanStorageNative(clientIf, maxFullReportsPercent,
@@ -159,7 +159,7 @@ public class ScanNativeInterface {
     /**
      * Enable BLE batch scan with the parameters
      */
-    public void gattClientStartBatchScan(int clientIf, int scanMode,
+    void gattClientStartBatchScan(int clientIf, int scanMode,
             int scanIntervalUnit, int scanWindowUnit, int addressType, int discardRule) {
         gattClientStartBatchScanNative(clientIf, scanMode, scanIntervalUnit, scanWindowUnit,
                 addressType, discardRule);
@@ -168,14 +168,14 @@ public class ScanNativeInterface {
     /**
      * Disable BLE batch scan
      */
-    public void gattClientStopBatchScan(int clientIf) {
+    void gattClientStopBatchScan(int clientIf) {
         gattClientStopBatchScanNative(clientIf);
     }
 
     /**
      * Read BLE batch scan reports
      */
-    public void gattClientReadScanReports(int clientIf, int scanType) {
+    void gattClientReadScanReports(int clientIf, int scanType) {
         gattClientReadScanReportsNative(clientIf, scanType);
     }
 

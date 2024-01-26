@@ -47,7 +47,6 @@ import com.android.bluetooth.Utils;
 import com.android.bluetooth.btservice.AdapterService;
 import com.android.bluetooth.btservice.BluetoothAdapterProxy;
 import com.android.bluetooth.flags.FeatureFlags;
-import com.android.bluetooth.gatt.AppScanStats;
 import com.android.bluetooth.gatt.FilterParams;
 import com.android.bluetooth.gatt.GattObjectsFactory;
 import com.android.bluetooth.gatt.GattService;
@@ -86,10 +85,10 @@ public class ScanManager {
     private static final int SCAN_MODE_BALANCED_INTERVAL_MS = 730;
     private static final int SCAN_MODE_LOW_LATENCY_WINDOW_MS = 100;
     private static final int SCAN_MODE_LOW_LATENCY_INTERVAL_MS = 100;
-    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS = 512;
-    public static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS = 10240;
-    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS = 183;
-    public static final int SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS = 730;
+    static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_WINDOW_MS = 512;
+    static final int SCAN_MODE_SCREEN_OFF_LOW_POWER_INTERVAL_MS = 10240;
+    static final int SCAN_MODE_SCREEN_OFF_BALANCED_WINDOW_MS = 183;
+    static final int SCAN_MODE_SCREEN_OFF_BALANCED_INTERVAL_MS = 730;
 
     // Result type defined in bt stack. Need to be accessed by GattService.
     public static final int SCAN_RESULT_TYPE_TRUNCATED = 1;
@@ -167,7 +166,7 @@ public class ScanManager {
         }
     }
 
-    public ScanManager(
+    ScanManager(
             GattService service,
             AdapterService adapterService,
             BluetoothAdapterProxy bluetoothAdapterProxy,
@@ -213,7 +212,7 @@ public class ScanManager {
         mService.registerReceiver(mLocationReceiver, locationIntentFilter);
     }
 
-    public void cleanup() {
+    void cleanup() {
         mRegularScanClients.clear();
         mBatchClients.clear();
         mSuspendedScanClients.clear();
@@ -253,7 +252,7 @@ public class ScanManager {
                 uuid.getMostSignificantBits());
     }
 
-    public void unregisterScanner(int scannerId) {
+    void unregisterScanner(int scannerId) {
         mScanNative.unregisterScanner(scannerId);
     }
 
@@ -300,7 +299,7 @@ public class ScanManager {
         sendMessage(MSG_START_BLE_SCAN, client);
     }
 
-    public void stopScan(int scannerId) {
+    void stopScan(int scannerId) {
         ScanClient client = mScanNative.getBatchScanClient(scannerId);
         if (client == null) {
             client = mScanNative.getRegularScanClient(scannerId);
@@ -339,7 +338,7 @@ public class ScanManager {
         return mBluetoothAdapterProxy.isOffloadedScanFilteringSupported();
     }
 
-    public boolean isAutoBatchScanClientEnabled(ScanClient client) {
+    boolean isAutoBatchScanClientEnabled(ScanClient client) {
         return mScanNative.isAutoBatchScanClientEnabled(client);
     }
 
@@ -2058,7 +2057,7 @@ public class ScanManager {
      * LE Audio).
      */
     public void handleBluetoothProfileConnectionStateChanged(
-            int profile, int fromState, int toState) {
+        int profile, int fromState, int toState) {
         if (mHandler == null) {
             Log.d(TAG, "handleBluetoothProfileConnectionStateChanged: mHandler is null.");
             return;

@@ -55,7 +55,7 @@ public class PeriodicScanManager {
     private static final int PA_SOURCE_REMOTE = 2;
 
     /** Constructor of {@link PeriodicScanManager}. */
-    public PeriodicScanManager(AdapterService adapterService) {
+    PeriodicScanManager(AdapterService adapterService) {
         if (DBG) {
             Log.d(TAG, "periodic scan manager created");
         }
@@ -64,7 +64,7 @@ public class PeriodicScanManager {
         mNativeInterface.init(this);
     }
 
-    public void cleanup() {
+    void cleanup() {
         if (DBG) {
             Log.d(TAG, "cleanup()");
         }
@@ -266,7 +266,7 @@ public class PeriodicScanManager {
     }
 
     public void startSync(ScanResult scanResult, int skip, int timeout,
-            IPeriodicAdvertisingCallback callback) {
+        IPeriodicAdvertisingCallback callback) {
         SyncDeathRecipient deathRecipient = new SyncDeathRecipient(callback);
         IBinder binder = toBinder(callback);
         try {
@@ -388,7 +388,7 @@ public class PeriodicScanManager {
     }
 
     public void transferSetInfo(BluetoothDevice bda, int serviceData,
-                  int advHandle, IPeriodicAdvertisingCallback callback) {
+        int advHandle, IPeriodicAdvertisingCallback callback) {
         SyncDeathRecipient deathRecipient = new SyncDeathRecipient(callback);
         IBinder binder = toBinder(callback);
         if (DBG) {
