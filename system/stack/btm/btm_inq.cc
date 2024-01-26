@@ -1569,7 +1569,6 @@ static void btm_process_inq_results_rssi(const uint8_t* p,
  ******************************************************************************/
 static void btm_process_inq_results_extended(const uint8_t* p,
                                              uint8_t hci_evt_len) {
-  uint8_t inq_res_mode = BTM_INQ_RESULT_EXTENDED;
   uint8_t num_resp, xx;
   RawAddress bda;
   tINQ_DB_ENT* p_i;
@@ -1597,7 +1596,7 @@ static void btm_process_inq_results_extended(const uint8_t* p,
 
   STREAM_TO_UINT8(num_resp, p);
 
-  if (inq_res_mode == BTM_INQ_RESULT_EXTENDED) {
+  {
     if (num_resp > 1) {
       LOG_ERROR("extended results (%d) > 1", num_resp);
       return;
@@ -1605,13 +1604,6 @@ static void btm_process_inq_results_extended(const uint8_t* p,
 
     constexpr uint16_t extended_inquiry_result_size = 254;
     if (hci_evt_len - 1 != extended_inquiry_result_size) {
-      LOG_ERROR("can't fit %d results in %d bytes", num_resp, hci_evt_len);
-      return;
-    }
-  } else if (inq_res_mode == BTM_INQ_RESULT_STANDARD ||
-             inq_res_mode == BTM_INQ_RESULT_WITH_RSSI) {
-    constexpr uint16_t inquiry_result_size = 14;
-    if (hci_evt_len < num_resp * inquiry_result_size) {
       LOG_ERROR("can't fit %d results in %d bytes", num_resp, hci_evt_len);
       return;
     }
@@ -1625,15 +1617,9 @@ static void btm_process_inq_results_extended(const uint8_t* p,
     STREAM_TO_UINT8(page_scan_rep_mode, p);
     STREAM_TO_UINT8(page_scan_per_mode, p);
 
-    if (inq_res_mode == BTM_INQ_RESULT_STANDARD) {
-      STREAM_TO_UINT8(page_scan_mode, p);
-    }
-
     STREAM_TO_DEVCLASS(dc, p);
     STREAM_TO_UINT16(clock_offset, p);
-    if (inq_res_mode != BTM_INQ_RESULT_STANDARD) {
-      STREAM_TO_UINT8(rssi, p);
-    }
+    STREAM_TO_UINT8(rssi, p);
 
     p_i = btm_inq_db_find(bda);
 
@@ -1660,7 +1646,7 @@ static void btm_process_inq_results_extended(const uint8_t* p,
       /* If we received a second Extended Inq Event for an already */
       /* discovered device, this is because for the first one EIR was not
          received */
-      else if ((inq_res_mode == BTM_INQ_RESULT_EXTENDED) && (p_i)) {
+      else if (p_i) {
         p_cur = &p_i->inq_info.results;
         update = true;
       }
@@ -1687,7 +1673,7 @@ static void btm_process_inq_results_extended(const uint8_t* p,
       is_new = false;
 
     /* keep updating RSSI to have latest value */
-    if (inq_res_mode != BTM_INQ_RESULT_STANDARD)
+    if (BTM_INQ_RESULT_EXTENDED != BTM_INQ_RESULT_STANDARD)
       p_i->inq_info.results.rssi = (int8_t)rssi;
     else
       p_i->inq_info.results.rssi = BTM_INQ_RES_IGNORE_RSSI;
@@ -1708,17 +1694,7 @@ static void btm_process_inq_results_extended(const uint8_t* p,
       if (p_i->inq_count != btm_cb.btm_inq_vars.inq_counter) {
         /* A new response was found */
         btm_cb.btm_inq_vars.inq_cmpl_info.num_resp++;
-        switch (static_cast<tBTM_INQ_RESULT>(inq_res_mode)) {
-          case BTM_INQ_RESULT_STANDARD:
-          case BTM_INQ_RESULT_WITH_RSSI:
-          case BTM_INQ_RESULT_EXTENDED:
-            btm_cb.btm_inq_vars.inq_cmpl_info.resp_type[inq_res_mode]++;
-            break;
-          case BTM_INQ_RES_IGNORE_RSSI:
-            btm_cb.btm_inq_vars.inq_cmpl_info
-                .resp_type[BTM_INQ_RESULT_STANDARD]++;
-            break;
-        }
+        btm_cb.btm_inq_vars.inq_cmpl_info.resp_type[BTM_INQ_RESULT_EXTENDED]++;
       }
 
       p_cur->inq_result_type |= BT_DEVICE_TYPE_BREDR;
@@ -1735,14 +1711,13 @@ static void btm_process_inq_results_extended(const uint8_t* p,
     }
 
     if (is_new || update) {
-      if (inq_res_mode == BTM_INQ_RESULT_EXTENDED) {
+      {
         memset(p_cur->eir_uuid, 0,
                BTM_EIR_SERVICE_ARRAY_SIZE * (BTM_EIR_ARRAY_BITS / 8));
         /* set bit map of UUID list from received EIR */
         btm_set_eir_uuid(p, p_cur);
         p_eir_data = p;
-      } else
-        p_eir_data = NULL;
+      }
 
       /* If a callback is registered, call it with the results */
       if (p_inq_results_cb) {
