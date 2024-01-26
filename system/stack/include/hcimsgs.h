@@ -57,11 +57,6 @@ class Interface {
 const Interface& GetInterface();
 }  // namespace bluetooth::legacy::hci
 
-/* Add SCO Connection */
-void btsnd_hcic_add_SCO_conn(uint16_t handle, uint16_t packet_types);
-
-/* Add SCO Connection */
-
 /* Create Connection Cancel */
 void btsnd_hcic_create_conn_cancel(const RawAddress& dest);
 
