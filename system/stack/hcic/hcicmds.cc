@@ -194,11 +194,6 @@
 #define HCI_ACCEPT_ESCO_RETRAN_EFF_OFF 18
 #define HCI_ACCEPT_ESCO_PKT_TYPES_OFF 19
 
-#define HCIC_PARAM_SIZE_REJECT_ESCO 7
-
-#define HCI_REJECT_ESCO_BDADDR_OFF 0
-#define HCI_REJECT_ESCO_REASON_OFF 6
-
 /* Hold Mode */
 #define HCIC_PARAM_SIZE_HOLD_MODE 6
 
@@ -758,22 +753,6 @@ void btsnd_hcic_accept_esco_conn(const RawAddress& bd_addr,
   UINT16_TO_STREAM(pp, content_fmt);
   UINT8_TO_STREAM(pp, retrans_effort);
   UINT16_TO_STREAM(pp, packet_types);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
-void btsnd_hcic_reject_esco_conn(const RawAddress& bd_addr, uint8_t reason) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_REJECT_ESCO;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_REJECT_ESCO_CONNECTION);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_REJECT_ESCO);
-
-  BDADDR_TO_STREAM(pp, bd_addr);
-  UINT8_TO_STREAM(pp, reason);
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
