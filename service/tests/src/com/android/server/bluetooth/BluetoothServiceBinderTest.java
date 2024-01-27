@@ -210,6 +210,7 @@ public class BluetoothServiceBinderTest {
     @Test
     @DisableCompatChanges({ChangeIds.RESTRICT_ENABLE_DISABLE})
     public void disableNoRestrictEnable() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SYSTEM_SERVER_MESSENGER);
         assertThrows(NullPointerException.class, () -> mBinder.disable(null, true));
 
         assertThrows(SecurityException.class, () -> mBinder.disable(mSource, false));
@@ -226,6 +227,7 @@ public class BluetoothServiceBinderTest {
     @Test
     @EnableCompatChanges({ChangeIds.RESTRICT_ENABLE_DISABLE})
     public void disableWithRestrictEnable() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SYSTEM_SERVER_MESSENGER);
         assertThrows(NullPointerException.class, () -> mBinder.disable(null, true));
 
         assertThrows(SecurityException.class, () -> mBinder.disable(mSource, false));
@@ -340,6 +342,7 @@ public class BluetoothServiceBinderTest {
 
     @Test
     public void disableBle() {
+        mSetFlagsRule.disableFlags(Flags.FLAG_SYSTEM_SERVER_MESSENGER);
         IBinder token = mock(IBinder.class);
         assertThrows(NullPointerException.class, () -> mBinder.disableBle(null, token));
         assertThrows(NullPointerException.class, () -> mBinder.disableBle(mSource, null));
