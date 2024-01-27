@@ -1266,6 +1266,18 @@ class BluetoothManagerService {
                         + (" mState=" + mState));
 
         synchronized (mReceiver) {
+            disableStep(persist);
+            sendDisableMsg(
+                    BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName);
+        }
+        return true;
+    }
+
+    private void disableStep(boolean persist) {
+        if (Flags.systemServerMessenger()) {
+            AirplaneModeListener.notifyUserToggledBluetooth(
+                    mContentResolver, mCurrentUserContext, false);
+        } else {
             // TODO(b/288450479): Remove clearCallingIdentity when threading is fixed
             final long callingIdentity = Binder.clearCallingIdentity();
             try {
@@ -1274,14 +1286,26 @@ class BluetoothManagerService {
             } finally {
                 Binder.restoreCallingIdentity(callingIdentity);
             }
-
-            if (persist) {
-                setBluetoothPersistedState(BLUETOOTH_OFF);
-            }
-            mEnableExternal = false;
-            sendDisableMsg(
-                    BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName);
         }
+
+        if (persist) {
+            setBluetoothPersistedState(BLUETOOTH_OFF);
+        }
+        mEnableExternal = false;
+    }
+
+    boolean disable_sync(String packageName, boolean persist) {
+        Log.d(
+                TAG,
+                ("disable_sync(" + packageName + ", " + persist + "):")
+                        + (" mAdapter=" + mAdapter)
+                        + (" isBinding=" + isBinding())
+                        + (" mState=" + mState));
+
+        disableStep(persist);
+        addActiveLog(
+                BluetoothProtoEnums.ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName, false);
+        handleDisableMessage();
         return true;
     }
 
