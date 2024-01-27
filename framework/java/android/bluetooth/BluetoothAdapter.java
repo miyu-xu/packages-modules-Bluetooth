@@ -1407,6 +1407,14 @@ public final class BluetoothAdapter {
     @RequiresBluetoothConnectPermission
     @RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)
     public boolean disableBLE() {
+        if (Flags.systemServerMessenger()) {
+            var data = new BluetoothServiceMessages.Disable();
+            data.attributionSource = mAttributionSource;
+            data.bleToken = mToken;
+
+            return mMessenger.sendToService(data, BluetoothServiceMessages.Disable.Reply.class)
+                    .value;
+        }
         if (!isBleScanAlwaysAvailable()) {
             return false;
         }
@@ -1721,6 +1729,14 @@ public final class BluetoothAdapter {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
             })
     public boolean disable(boolean persist) {
+        if (Flags.systemServerMessenger()) {
+            var data = new BluetoothServiceMessages.Disable();
+            data.attributionSource = mAttributionSource;
+            data.persist = persist;
+
+            return mMessenger.sendToService(data, BluetoothServiceMessages.Disable.Reply.class)
+                    .value;
+        }
         try {
             return mManagerService.disable(mAttributionSource, persist);
         } catch (RemoteException e) {

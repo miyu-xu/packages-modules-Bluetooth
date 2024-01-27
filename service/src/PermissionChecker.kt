@@ -54,6 +54,9 @@ internal class PermissionChecker(
     fun enableAllowed(uid: Int, source: AttributionSource, foregroundRequired: Boolean) =
         userCanToggle(uid, source, "enable", foregroundRequired)
 
+    fun disableAllowed(uid: Int, source: AttributionSource, foregroundRequired: Boolean) =
+        userCanToggle(uid, source, "disable", foregroundRequired)
+
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////// PRIVATE METHODS ///////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +65,7 @@ internal class PermissionChecker(
         uid: Int,
         source: AttributionSource,
         apiName: String,
-        foregroundRequired: Boolean = true
+        foregroundRequired: Boolean,
     ) {
 
         enforceBluetoothRestriction()
