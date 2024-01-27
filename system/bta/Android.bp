@@ -251,6 +251,7 @@ cc_test {
         "test/bta_ag_sco_test.cc",
         "test/bta_ag_test.cc",
         "test/bta_api_test.cc",
+        "test/bta_av_cfg_test.cc",
         "test/bta_av_test.cc",
         "test/bta_dip_test.cc",
         "test/bta_disc_test.cc",
