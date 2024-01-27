@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "88c13139_6190f678",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1799191
+      },
+      "writtenOn": "2024-01-27T13:19:20Z",
+      "side": 1,
+      "message": "This CL also fixes encapsulation modifications done in previous CLs (aosp/2900028, aosp/2926395, aosp/2928050, aosp/2929890, aosp/2929734) while also exposing new functions for GattService to access.\n\nOnce `GattService` contains no longer any scan code, hopefully all the public-visible-made classes and functions will be set back to package-private.",
+      "revId": "0291da22abc6edf6ce75c5686fd05134d21830e8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
