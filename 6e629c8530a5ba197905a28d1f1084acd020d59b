@@ -50,6 +50,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "b9260e5b_3a1784f5",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-27T00:04:50Z",
+      "side": 1,
+      "message": "unused `getProviderInfo` will be removed, and the new constructor will have a default parameter value",
+      "parentUuid": "8e27ee15_bc143ef0",
+      "range": {
+        "startLine": 46,
+        "startChar": 66,
+        "endLine": 46,
+        "endChar": 73
+      },
+      "revId": "6e629c8530a5ba197905a28d1f1084acd020d59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "15bf751f_7e32e7bb",
         "filename": "system/audio_hal_interface/aidl/provider_info.cc",
         "patchSetId": 2
@@ -61,6 +85,24 @@
       "writtenOn": "2024-01-26T17:22:38Z",
       "side": 1,
       "message": "nit: I would prefer to switch the parameter order. We would select a session type, and next having codec infos relative to this type.",
+      "revId": "6e629c8530a5ba197905a28d1f1084acd020d59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d31b3fd6_e91e08c2",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-27T00:04:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "15bf751f_7e32e7bb",
       "revId": "6e629c8530a5ba197905a28d1f1084acd020d59b",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -78,6 +120,30 @@
       "writtenOn": "2024-01-26T17:22:38Z",
       "side": 1,
       "message": "nit: I guess codecInfo overloag the `\u003d\u003d` operator. Will be more readable with if / else if, using the full ID (`codecInfo.id \u003d\u003d CodecId::Core::CVSD`).",
+      "range": {
+        "startLine": 60,
+        "startChar": 12,
+        "endLine": 60,
+        "endChar": 21
+      },
+      "revId": "6e629c8530a5ba197905a28d1f1084acd020d59b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d560ed9_ca4fad45",
+        "filename": "system/audio_hal_interface/aidl/provider_info.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-27T00:04:50Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "de6378a8_6cf38ad4",
       "range": {
         "startLine": 60,
         "startChar": 12,
