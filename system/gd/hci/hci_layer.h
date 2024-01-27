@@ -32,6 +32,7 @@
 #include "hci/acl_connection_interface.h"
 #include "hci/distance_measurement_interface.h"
 #include "hci/hci_packets.h"
+#include "hci/inquiry_interface.h"
 #include "hci/le_acl_connection_interface.h"
 #include "hci/le_advertising_interface.h"
 #include "hci/le_iso_interface.h"
@@ -113,6 +114,9 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
   virtual DistanceMeasurementInterface* GetDistanceMeasurementInterface(
       common::ContextualCallback<void(LeMetaEventView)> event_handler);
 
+  virtual std::unique_ptr<InquiryInterface> GetInquiryInterface(
+      common::ContextualCallback<void(EventView)> event_handler);
+
   std::string ToString() const override {
     return "Hci Layer";
   }
@@ -153,8 +157,14 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
   template <typename T>
   class CommandInterfaceImpl : public CommandInterface<T> {
    public:
-    explicit CommandInterfaceImpl(HciLayer& hci) : hci_(hci) {}
-    ~CommandInterfaceImpl() = default;
+    explicit CommandInterfaceImpl(HciLayer& hci, common::OnceCallback<void()> cleanup)
+        : hci_(hci), cleanup_(std::move(cleanup)) {}
+    explicit CommandInterfaceImpl(HciLayer& hci) : hci_(hci) {
+      cleanup_ = common::BindOnce([]() {});
+    }
+    ~CommandInterfaceImpl() {
+      std::move(cleanup_).Run();
+    }
 
     void EnqueueCommand(std::unique_ptr<T> command,
                         common::ContextualOnceCallback<void(CommandCompleteView)> on_complete) override {
@@ -166,6 +176,7 @@ class HciLayer : public Module, public CommandInterface<CommandBuilder> {
       hci_.EnqueueCommand(std::move(command), std::move(on_status));
     }
     HciLayer& hci_;
+    common::OnceCallback<void()> cleanup_;
   };
 
   std::mutex callback_handlers_guard_;
