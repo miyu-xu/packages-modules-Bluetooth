@@ -52,6 +52,24 @@
       "parentUuid": "e4c36ae5_efe06830",
       "revId": "abbcffc0648061cdcc15615b03b38f76715290b1",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b65db37_3f4b0b07",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 2064,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-27T02:35:05Z",
+      "side": 1,
+      "message": "As we discussed offline, BROADCAST_STATE_STREAMING might not be good enough considering if broadcast is paused or other transition state, we\u0027d like also to block this active device operation.\nI\u0027ve created one function in LeAudioSerivce to improve this. Could you check if the newer version makes sense to you?",
+      "parentUuid": "852d0f88_8f6415ea",
+      "revId": "abbcffc0648061cdcc15615b03b38f76715290b1",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
