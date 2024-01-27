@@ -18,6 +18,7 @@
 
 #include <cstdint>
 
+#include "hci/inquiry_interface.h"
 #include "internal_include/bt_target.h"
 #include "macros.h"
 #include "osi/include/alarm.h"
@@ -264,7 +265,7 @@ struct tBTM_INQUIRY_VAR_ST {
   uint8_t inq_active; /* Bit Mask indicating type of inquiry is active */
   bool no_inc_ssp;    /* true, to stop inquiry on incoming SSP */
 
-  bool registered_for_hci_events;
+  bluetooth::hci::InquiryInterface* hci_;
 
   void Init() {
     p_remname_cmpl_cb = nullptr;
@@ -299,7 +300,7 @@ struct tBTM_INQUIRY_VAR_ST {
     state = BTM_INQ_INACTIVE_STATE;
     inq_active = 0;
     no_inc_ssp = BTM_NO_SSP_ON_INQUIRY;
-    registered_for_hci_events = false;
+    hci_ = nullptr;
   }
   void Free() {
     alarm_free(remote_name_timer);
