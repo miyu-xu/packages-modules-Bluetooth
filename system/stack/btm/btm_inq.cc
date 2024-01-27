@@ -47,6 +47,7 @@
 #include "device/include/controller.h"
 #include "hci/controller_interface.h"
 #include "hci/hci_layer.h"
+#include "hci/inquiry_interface.h"
 #include "include/check.h"
 #include "internal_include/bt_target.h"
 #include "main/shim/entry.h"
@@ -256,6 +257,13 @@ void SendRemoteNameRequest(const RawAddress& raw_address) {
 }
 static void btm_process_cancel_complete(tHCI_STATUS status, uint8_t mode);
 static void on_incoming_hci_event(bluetooth::hci::EventView event);
+
+/******************************************************************************/
+/*            L O C A L    F U N C T I O N S                                  */
+/******************************************************************************/
+static inline bluetooth::hci::InquiryInterface* get_hci() {
+  return (bluetooth::hci::InquiryInterface*)btm_cb.btm_inq_vars.hci_;
+}
 /*******************************************************************************
  *
  * Function         BTM_SetDiscoverability
@@ -559,7 +567,7 @@ void BTM_CancelInquiry(void) {
     btm_cb.btm_inq_vars.p_inq_cmpl_cb = NULL; /* Do not notify caller anymore */
 
     if ((btm_cb.btm_inq_vars.inqparms.mode & BTM_BR_INQUIRY_MASK) != 0) {
-      bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      get_hci()->EnqueueCommand(
           bluetooth::hci::InquiryCancelBuilder::Create(),
           get_main_thread()->BindOnce(
               [](bluetooth::hci::CommandCompleteView complete_view) {
@@ -646,31 +654,6 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
     return BTM_BUSY;
   }
 
-  if (btm_cb.btm_inq_vars.registered_for_hci_events == false) {
-    bluetooth::shim::GetHciLayer()->RegisterEventHandler(
-        bluetooth::hci::EventCode::INQUIRY_COMPLETE,
-        get_main_thread()->Bind([](bluetooth::hci::EventView event) {
-          on_incoming_hci_event(event);
-        }));
-    bluetooth::shim::GetHciLayer()->RegisterEventHandler(
-        bluetooth::hci::EventCode::INQUIRY_RESULT,
-        get_main_thread()->Bind([](bluetooth::hci::EventView event) {
-          on_incoming_hci_event(event);
-        }));
-    bluetooth::shim::GetHciLayer()->RegisterEventHandler(
-        bluetooth::hci::EventCode::INQUIRY_RESULT_WITH_RSSI,
-        get_main_thread()->Bind([](bluetooth::hci::EventView event) {
-          on_incoming_hci_event(event);
-        }));
-    bluetooth::shim::GetHciLayer()->RegisterEventHandler(
-        bluetooth::hci::EventCode::EXTENDED_INQUIRY_RESULT,
-        get_main_thread()->Bind([](bluetooth::hci::EventView event) {
-          on_incoming_hci_event(event);
-        }));
-
-    btm_cb.btm_inq_vars.registered_for_hci_events = true;
-  }
-
   /*** Make sure the device is ready ***/
   if (!BTM_IsDeviceUp()) {
     LOG_ERROR("adapter is not up");
@@ -711,6 +694,14 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
   LOG_DEBUG("Starting device discovery inq_active:0x%02x",
             btm_cb.btm_inq_vars.inq_active);
 
+  if (btm_cb.btm_inq_vars.hci_ == nullptr) {
+    btm_cb.btm_inq_vars.hci_ =
+        bluetooth::shim::GetHciLayer()->GetInquiryInterface(
+            get_main_thread()->Bind([](bluetooth::hci::EventView event) {
+              on_incoming_hci_event(event);
+            }));
+  }
+
   // Also do BLE scanning here if we aren't limiting discovery to classic only.
   // This path does not play nicely with GD BLE scanning and may cause issues
   // with other scanners.
@@ -741,8 +732,7 @@ tBTM_STATUS BTM_StartInquiry(tBTM_INQ_RESULTS_CB* p_results_cb,
   bluetooth::hci::Lap lap;
   lap.lap_ = general_inq_lap[2];
 
-  // TODO: Register for the inquiry interface and use that
-  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+  get_hci()->EnqueueCommand(
       bluetooth::hci::InquiryBuilder::Create(
           lap, btm_cb.btm_inq_vars.inqparms.duration, 0),
       get_main_thread()->BindOnce(
@@ -1085,7 +1075,7 @@ void btm_inq_stop_on_ssp(void) {
       if (btm_cb.btm_inq_vars.inq_active & normal_active) {
         /* can not call BTM_CancelInquiry() here. We need to report inquiry
          * complete evt */
-        bluetooth::shim::GetHciLayer()->EnqueueCommand(
+        get_hci()->EnqueueCommand(
             bluetooth::hci::InquiryCancelBuilder::Create(),
             get_main_thread()->BindOnce(
                 [](bluetooth::hci::CommandCompleteView complete_view) {
