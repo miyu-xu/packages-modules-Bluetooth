@@ -482,7 +482,7 @@ void BTA_AvVendorCmd(uint8_t rc_handle, uint8_t label, tBTA_AV_CODE cmd_code,
   p_buf->msg.hdr.ctype = cmd_code;
   p_buf->msg.hdr.subunit_type = AVRC_SUB_PANEL;
   p_buf->msg.hdr.subunit_id = 0;
-  p_buf->msg.company_id = p_bta_av_cfg->company_id;
+  p_buf->msg.company_id = p_bta_av_cfg.getCompanyId();
   p_buf->label = label;
   p_buf->msg.vendor_len = len;
   if (p_data == NULL) {
@@ -520,7 +520,7 @@ void BTA_AvVendorRsp(uint8_t rc_handle, uint8_t label, tBTA_AV_CODE rsp_code,
   if (company_id)
     p_buf->msg.company_id = company_id;
   else
-    p_buf->msg.company_id = p_bta_av_cfg->company_id;
+    p_buf->msg.company_id = p_bta_av_cfg.getCompanyId();
   p_buf->label = label;
   p_buf->msg.vendor_len = len;
   if (p_data == NULL) {
