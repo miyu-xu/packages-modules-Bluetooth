@@ -1214,15 +1214,70 @@ class BluetoothManagerService {
                         + (" mState=" + mState));
 
         synchronized (mReceiver) {
-            AirplaneModeListener.notifyUserToggledBluetooth(
-                    mContentResolver, mCurrentUserContext, false);
-
-            if (persist) {
-                setBluetoothPersistedState(BLUETOOTH_OFF);
-            }
-            mEnableExternal = false;
+            disableStep(persist);
             sendDisableMsg(ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName);
         }
+        return true;
+    }
+
+    private void disableStep(boolean persist) {
+        AirplaneModeListener.notifyUserToggledBluetooth(
+                mContentResolver, mCurrentUserContext, false);
+
+        if (persist) {
+            setBluetoothPersistedState(BLUETOOTH_OFF);
+        }
+        mEnableExternal = false;
+    }
+
+    boolean disableBle_sync(String packageName, IBinder token) {
+        Log.i(
+                TAG,
+                ("disableBle_sync(" + packageName + ", " + token + "):")
+                        + (" mAdapter=" + mAdapter)
+                        + (" isBinding=" + isBinding())
+                        + (" mState=" + mState));
+
+        if (!isBleScanAvailable()) {
+            Log.d(TAG, "disableBle_sync: not disabling - Ble scan is not available");
+            return false;
+        }
+
+        if (isSatelliteModeOn()) {
+            Log.d(TAG, "disableBle_sync: not disabling - satellite mode is on.");
+            return false;
+        }
+
+        if (mState.oneOf(STATE_OFF)) {
+            Log.i(TAG, "disableBle_sync: Already disabled");
+            return false;
+        }
+
+        updateBleAppCount(token, false, packageName);
+
+        if (mState.oneOf(STATE_BLE_ON) && !isBleAppPresent()) {
+            if (mEnable) {
+                disableBleScanMode();
+            }
+            if (!mEnableExternal) {
+                addActiveLog(ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName, false, true);
+                sendBrEdrDownCallback();
+            }
+        }
+        return true;
+    }
+
+    boolean disable_sync(String packageName, boolean persist) {
+        Log.d(
+                TAG,
+                ("disable_sync(" + packageName + ", " + persist + "):")
+                        + (" mAdapter=" + mAdapter)
+                        + (" isBinding=" + isBinding())
+                        + (" mState=" + mState));
+
+        disableStep(persist);
+        addActiveLog(ENABLE_DISABLE_REASON_APPLICATION_REQUEST, packageName, false, false);
+        handleDisableMessage();
         return true;
     }
 

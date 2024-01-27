@@ -97,4 +97,8 @@ class SystemServiceMessenger {
     SystemServiceMessage.Enable.Reply send(SystemServiceMessage.Enable data) {
         return send(data, SystemServiceMessage.Enable.Reply.class);
     }
+
+    SystemServiceMessage.Disable.Reply send(SystemServiceMessage.Disable data) {
+        return send(data, SystemServiceMessage.Disable.Reply.class);
+    }
 }
