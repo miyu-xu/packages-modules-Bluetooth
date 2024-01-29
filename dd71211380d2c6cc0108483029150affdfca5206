@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ecdb550d_db5e869a",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-29T09:35:26Z",
+      "side": 1,
+      "message": "In general, this seems weird to me - why there is introduced another active device policy inside MediaControl. Why PLAY MCP command simply doesn\u0027t transfer this message to Audio Application/Player.",
+      "revId": "dd71211380d2c6cc0108483029150affdfca5206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
