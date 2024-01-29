@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "46b7ef63_037faf35",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-29T19:50:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9b0a9ac0_e21913fc",
+      "range": {
+        "startLine": 265,
+        "startChar": 0,
+        "endLine": 267,
+        "endChar": 54
+      },
+      "revId": "d03d0eb9d38bdefb8bded76ffb124ed67dbf9c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "92b75d44_9866b7ea",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-16T19:07:17Z",
       "side": 1,
       "message": "nit: Either name this `response` or rename the `request` above.",
+      "range": {
+        "startLine": 279,
+        "startChar": 26,
+        "endLine": 279,
+        "endChar": 33
+      },
+      "revId": "d03d0eb9d38bdefb8bded76ffb124ed67dbf9c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "dca9e96e_71332cc8",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 279,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-29T19:50:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "92b75d44_9866b7ea",
       "range": {
         "startLine": 279,
         "startChar": 26,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c324dcc1_2fd9c35e",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-29T19:50:05Z",
+      "side": 1,
+      "message": "Pairing is not supposed to be complete at this point.",
+      "parentUuid": "765206a1_dec776be",
+      "range": {
+        "startLine": 291,
+        "startChar": 50,
+        "endLine": 291,
+        "endChar": 66
+      },
+      "revId": "d03d0eb9d38bdefb8bded76ffb124ed67dbf9c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6c4a637d_01a81abd",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-01-16T19:07:17Z",
       "side": 1,
       "message": "Is this not true already with the dck service?",
+      "range": {
+        "startLine": 319,
+        "startChar": 0,
+        "endLine": 320,
+        "endChar": 48
+      },
+      "revId": "d03d0eb9d38bdefb8bded76ffb124ed67dbf9c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "58a384d9_81901475",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 320,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-29T19:50:05Z",
+      "side": 1,
+      "message": "DCK service replaced with Battery service. The problem was stack filtered out all GATT services other than the ones it is interested in.",
+      "parentUuid": "6c4a637d_01a81abd",
       "range": {
         "startLine": 319,
         "startChar": 0,
@@ -110,6 +206,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b36dd03f_214675a0",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-29T19:50:05Z",
+      "side": 1,
+      "message": "Removed",
+      "parentUuid": "100ce1f5_239f1b3f",
+      "revId": "d03d0eb9d38bdefb8bded76ffb124ed67dbf9c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "6db85d9c_661627f3",
@@ -123,6 +237,24 @@
       "writtenOn": "2024-01-16T19:07:17Z",
       "side": 1,
       "message": "nit: It seems that this is called once per test, could we instead call `registerReceiver` directly in the test instead of implementing a dynamic way to change the intent filter?",
+      "revId": "d03d0eb9d38bdefb8bded76ffb124ed67dbf9c1c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "07026704_1d02fc88",
+        "filename": "framework/tests/bumble/src/android/bluetooth/PairingTest.java",
+        "patchSetId": 14
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-29T19:50:05Z",
+      "side": 1,
+      "message": "As the number tests grow, the number of intents also grows. This would then require all the previous test cases to then check for those new intents. This would mean that every test case is testing the complete state of the system instead of just the specific scenario it was meant to test. This would make the test suite very difficult to maintain.",
+      "parentUuid": "6db85d9c_661627f3",
       "revId": "d03d0eb9d38bdefb8bded76ffb124ed67dbf9c1c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
