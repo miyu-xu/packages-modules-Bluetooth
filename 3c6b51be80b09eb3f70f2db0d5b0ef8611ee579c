@@ -22,6 +22,30 @@
       },
       "revId": "3c6b51be80b09eb3f70f2db0d5b0ef8611ee579c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7d2966d6_00ee82e0",
+        "filename": "android/app/tests/unit/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-29T19:58:52Z",
+      "side": 1,
+      "message": "Thanks for catching - removed.",
+      "parentUuid": "efcf4f1f_6542e996",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "3c6b51be80b09eb3f70f2db0d5b0ef8611ee579c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
