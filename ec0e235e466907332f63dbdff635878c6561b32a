@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "7348fb74_3b89db47",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-29T17:09:26Z",
+      "side": 1,
+      "message": "` I would like our library names to be meaningful.` ...good luck !\n\n;P\n\nI\u0027ll keep this info private for my own needs.",
+      "parentUuid": "819cabb3_f77bbb1b",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 59
+      },
+      "revId": "ec0e235e466907332f63dbdff635878c6561b32a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fdf931c4_5938c7a3",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-29T17:06:32Z",
       "side": 1,
       "message": "remove?",
+      "range": {
+        "startLine": 115,
+        "startChar": 18,
+        "endLine": 115,
+        "endChar": 25
+      },
+      "revId": "ec0e235e466907332f63dbdff635878c6561b32a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a056b827_b1890056",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 14
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-29T17:09:26Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fdf931c4_5938c7a3",
       "range": {
         "startLine": 115,
         "startChar": 18,
