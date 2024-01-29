@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5281e3ea_c54b1bf9",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-29T21:40:23Z",
+      "side": 1,
+      "message": "Why is a filegroup use here? Do you plan to use the sources elsewhere?",
+      "revId": "82a9729afb37e7276553f569fd20336daad5d84c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
