@@ -51,7 +51,9 @@ internal class PermissionChecker(
     class BluetoothPermissionException(message: String? = null, cause: Throwable? = null) :
         Exception(message, cause)
 
-    fun enableAllowed(uid: Int, source: AttributionSource) = userCanToggle(uid, source, "enable")
+    fun enableAllowed(uid: Int, source: AttributionSource, foregroundRequired: Boolean) =
+        userCanToggle(uid, source, "enable", foregroundRequired)
+
     fun disableAllowed(uid: Int, source: AttributionSource) = userCanToggle(uid, source, "disable")
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
