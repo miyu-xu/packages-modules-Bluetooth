@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "819cabb3_f77bbb1b",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 14
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-29T17:06:32Z",
+      "side": 1,
+      "message": "These two comments 😊\n\nI prefer not to have comments for everything.  I would like our library names to be meaningful.",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 59
+      },
+      "revId": "ec0e235e466907332f63dbdff635878c6561b32a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fdf931c4_5938c7a3",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 14
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-29T17:06:32Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 115,
+        "startChar": 18,
+        "endLine": 115,
+        "endChar": 25
+      },
+      "revId": "ec0e235e466907332f63dbdff635878c6561b32a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
