@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c180998c_eba31545",
+        "filename": "system/gd/hci/distance_measurement_manager.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 1322510
+      },
+      "writtenOn": "2024-01-29T08:04:38Z",
+      "side": 0,
+      "message": "send_le_cs_read_remote_supported_capabilities and send_le_cs_security_enable are both asynchronous operation. More send_le_cs_set_default_settings and send_le_cs_security_enable to on_cs_read_remote_supported_capabilities_complete.\nIn this way we can make sure the sequence of these commands. Otherwise, LE_CS_SECURITY_ENABLE will fail.\n```\nhci_layer.cc:164 - on_command_status: Received UNEXPECTED command status:INSUFFICIENT_SECURITY opcode:0x208c (LE_CS_SECURITY_ENABLE) \n```",
+      "range": {
+        "startLine": 196,
+        "startChar": 6,
+        "endLine": 198,
+        "endChar": 52
+      },
+      "revId": "7302c97d943aab9c6b1e709a624737ec5a2f89d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
