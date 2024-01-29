@@ -70,6 +70,24 @@
       "parentUuid": "b558045c_1f1dc6ad",
       "revId": "e182004e501e4fbc64763949d95d34eb4cf06b08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ce4cfa47_11671d63",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1882530
+      },
+      "writtenOn": "2024-01-29T21:38:15Z",
+      "side": 1,
+      "message": "That didn\u0027t work. I will prepare another CL.",
+      "parentUuid": "518965a0_21370d2d",
+      "revId": "e182004e501e4fbc64763949d95d34eb4cf06b08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
