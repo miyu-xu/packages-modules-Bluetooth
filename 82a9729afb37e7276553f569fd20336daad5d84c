@@ -18,6 +18,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1de59ea5_960d35f9",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-29T22:00:16Z",
+      "side": 1,
+      "message": "No, but I tend to use filegroup to contain the sources such that the build file is more obvious especially when the source file list gets very long.\n\nI was unaware that filegroups should only be used when there are multiple build targets.",
+      "parentUuid": "5281e3ea_c54b1bf9",
+      "revId": "82a9729afb37e7276553f569fd20336daad5d84c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "80e1387f_2010119f",
@@ -31,6 +49,24 @@
       "writtenOn": "2024-01-29T21:41:35Z",
       "side": 1,
       "message": "I\u0027m surprised to see that many dependencies, when I took a shot at making bt_headless host supported I had fewer dependencies https://r.android.com/2737133",
+      "revId": "82a9729afb37e7276553f569fd20336daad5d84c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7de3f2e6_de7dabaa",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-29T22:00:16Z",
+      "side": 1,
+      "message": "ok thanks ! we should use that one then",
+      "parentUuid": "80e1387f_2010119f",
       "revId": "82a9729afb37e7276553f569fd20336daad5d84c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
