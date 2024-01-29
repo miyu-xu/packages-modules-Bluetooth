@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efcf4f1f_6542e996",
+        "filename": "android/app/tests/unit/Android.bp",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-29T18:58:57Z",
+      "side": 1,
+      "message": "I don\u0027t understand why this line is needed.\n\nThe flags should already be linked to the test app since the app is a instrumentation of Bluetooth.\n\nCan you try to remove it ?\n\nFYI: There is already some flags being accessed in the test like in `ActiveDeviceManagerTest.java`,",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 35
+      },
+      "revId": "3c6b51be80b09eb3f70f2db0d5b0ef8611ee579c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
