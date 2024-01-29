@@ -16,6 +16,24 @@
       "message": "Thanks Jakub for improving this part.\nI did some local quick testing with this CL. I found it will bring this use case,\n1. start local broadcasting\n2. incoming call, audio switch to unicast\n3. stop call, audio is routed to speaker. Without this CL, audio is routed to the unicast device.\n\nI didn\u0027t get a chance to look into further, but guess some \u0027start/resume\u0027 broadcast logic is broken due to this. Could you double check this to avoid regression? Grezgorz might be also able to help to test some cases.",
       "revId": "f0df80b6d30290657a01c9bda0a547d70f85dee0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eb253f81_85900b70",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-29T23:06:02Z",
+      "side": 1,
+      "message": "*I found it will break this use case,",
+      "parentUuid": "ebf40717_4aaa7bd9",
+      "revId": "f0df80b6d30290657a01c9bda0a547d70f85dee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
