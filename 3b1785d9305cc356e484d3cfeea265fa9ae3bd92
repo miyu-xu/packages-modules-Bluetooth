@@ -22,6 +22,30 @@
       },
       "revId": "3b1785d9305cc356e484d3cfeea265fa9ae3bd92",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "662e07b2_7637242e",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-01-29T17:05:40Z",
+      "side": 1,
+      "message": "I will add a test to validate this aspect",
+      "parentUuid": "6601635b_de30f1dd",
+      "range": {
+        "startLine": 124,
+        "startChar": 63,
+        "endLine": 124,
+        "endChar": 76
+      },
+      "revId": "3b1785d9305cc356e484d3cfeea265fa9ae3bd92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
