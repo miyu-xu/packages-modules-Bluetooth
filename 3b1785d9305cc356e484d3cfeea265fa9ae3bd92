@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6601635b_de30f1dd",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-29T17:02:22Z",
+      "side": 1,
+      "message": "This removes the final 0 from the original array, right?  Do we put it back when we pull it back out?",
+      "range": {
+        "startLine": 124,
+        "startChar": 63,
+        "endLine": 124,
+        "endChar": 76
+      },
+      "revId": "3b1785d9305cc356e484d3cfeea265fa9ae3bd92",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
