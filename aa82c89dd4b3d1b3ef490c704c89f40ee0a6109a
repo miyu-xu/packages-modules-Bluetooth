@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "342ede05_39b6c2fa",
+        "filename": "system/stack/btm/neighbor_inquiry.h",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-29T21:15:02Z",
+      "side": 1,
+      "message": "This is a void* because if I include hci_packets.h in this file, it gets included in a lot of files.  It triggers errors because there isn\u0027t always a LOG_TAG specified.\n```suggestion\n  // This is a void* because if I include hci_packets.h in this file, it gets\n  // included in a lot of files.  It triggers errors because there isn\u0027t always\n  // a LOG_TAG specified.\n  void* hci_;\n```",
+      "range": {
+        "startLine": 267,
+        "startChar": 2,
+        "endLine": 267,
+        "endChar": 7
+      },
+      "revId": "aa82c89dd4b3d1b3ef490c704c89f40ee0a6109a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
