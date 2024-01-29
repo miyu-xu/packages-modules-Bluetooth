@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb303f5_ce751f98",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-29T15:20:16Z",
+      "side": 1,
+      "message": "LGTM.\nCould you pleas add Bug: ?",
+      "revId": "e964172b4b3fc24add4de1743de3c9e806157686",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
