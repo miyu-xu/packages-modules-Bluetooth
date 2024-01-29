@@ -16,6 +16,24 @@
       "message": "Can we map the `status_to_ack_map` for `BT_STATUS_SUCCESS` and `BT_STATUS_DONE` case to become `BluetoothAudioCtrlAck::PENDING` instead of these case check?",
       "revId": "9a1d8ddddb23668ec289455d75573454a4213e2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f65375d2_e45fd5f8",
+        "filename": "system/audio_hal_interface/aidl/hfp_client_interface_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-29T21:58:22Z",
+      "side": 1,
+      "message": "done, return mapping for non SUCCESS_FINISHED case",
+      "parentUuid": "87f823e0_e15e6364",
+      "revId": "9a1d8ddddb23668ec289455d75573454a4213e2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
