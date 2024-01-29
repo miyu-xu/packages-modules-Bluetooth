@@ -18,6 +18,7 @@
 
 #include <vector>
 
+#include "broadcaster/broadcaster_types.h"
 #include "hardware/bt_le_audio.h"
 #include "le_audio_types.h"
 
@@ -78,8 +79,11 @@ class CodecManager {
           update_receiver);
   virtual const ::le_audio::set_configurations::AudioSetConfigurations*
   GetOffloadCodecConfig(::le_audio::types::LeAudioContextType ctx_type);
-  virtual const ::le_audio::broadcast_offload_config*
-  GetBroadcastOffloadConfig();
+  virtual broadcaster::BroadcastConfiguration GetBroadcastConfig(
+      const std::vector<std::pair<types::LeAudioContextType, uint8_t>>&
+          subgroup_quality,
+      std::optional<const types::PublishedAudioCapabilities*> pacs) const;
+
   virtual void UpdateBroadcastConnHandle(
       const std::vector<uint16_t>& conn_handle,
       std::function<void(const ::le_audio::broadcast_offload_config& config)>

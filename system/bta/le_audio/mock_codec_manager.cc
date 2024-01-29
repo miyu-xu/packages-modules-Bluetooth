@@ -16,6 +16,8 @@
 
 #include "mock_codec_manager.h"
 
+#include "broadcaster/broadcast_configuration_provider.h"
+
 MockCodecManager* mock_codec_manager_pimpl_;
 MockCodecManager* MockCodecManager::GetInstance() {
   le_audio::CodecManager::GetInstance();
@@ -62,10 +64,15 @@ CodecManager::GetOffloadCodecConfig(types::LeAudioContextType ctx_type) {
   return pimpl_->GetOffloadCodecConfig(ctx_type);
 }
 
-const ::le_audio::broadcast_offload_config*
-CodecManager::GetBroadcastOffloadConfig() {
-  if (!pimpl_) return nullptr;
-  return pimpl_->GetBroadcastOffloadConfig();
+::le_audio::broadcaster::BroadcastConfiguration
+CodecManager::GetBroadcastConfig(
+    const std::vector<std::pair<::le_audio::types::LeAudioContextType,
+                                uint8_t>>& subgroup_quality,
+    std::optional<const le_audio::types::PublishedAudioCapabilities*> pacs)
+    const {
+  if (!pimpl_)
+    return ::le_audio::broadcaster::GetBroadcastConfig(subgroup_quality);
+  return pimpl_->GetBroadcastConfig(subgroup_quality, pacs);
 }
 
 std::vector<bluetooth::le_audio::btle_audio_codec_config_t>
