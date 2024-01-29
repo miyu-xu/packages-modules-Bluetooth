@@ -70,6 +70,30 @@
       },
       "revId": "9fa95d833f5e6818406b3887c9935b353d27a26d",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "552a22bc_676b669d",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-29T22:57:04Z",
+      "side": 1,
+      "message": "Thanks for explaining.  I added a log here, and since there\u0027s an info log in btif_enable_bluetooth_evt() I don\u0027t think it\u0027s necessary to add another log in btsock_rfc_init()",
+      "parentUuid": "15a45970_6a309775",
+      "range": {
+        "startLine": 130,
+        "startChar": 2,
+        "endLine": 130,
+        "endChar": 11
+      },
+      "revId": "9fa95d833f5e6818406b3887c9935b353d27a26d",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
