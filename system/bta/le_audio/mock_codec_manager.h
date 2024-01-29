@@ -18,6 +18,8 @@
 
 #include <gmock/gmock.h>
 
+#include <vector>
+
 #include "codec_manager.h"
 
 class MockCodecManager {
@@ -42,8 +44,13 @@ class MockCodecManager {
   MOCK_METHOD((le_audio::set_configurations::AudioSetConfigurations*),
               GetOffloadCodecConfig,
               (le_audio::types::LeAudioContextType ctx_type), (const));
-  MOCK_METHOD((le_audio::broadcast_offload_config*), GetBroadcastOffloadConfig,
-              (), (const));
+  MOCK_METHOD(
+      (le_audio::broadcaster::BroadcastConfiguration), GetBroadcastConfig,
+      ((const std::vector<std::pair<le_audio::types::LeAudioContextType,
+                                    uint8_t>>& quality_groups),
+       (const std::optional<const le_audio::types::PublishedAudioCapabilities*>
+            pacs)),
+      (const));
   MOCK_METHOD((std::vector<bluetooth::le_audio::btle_audio_codec_config_t>),
               GetLocalAudioOutputCodecCapa, ());
   MOCK_METHOD((std::vector<bluetooth::le_audio::btle_audio_codec_config_t>),
