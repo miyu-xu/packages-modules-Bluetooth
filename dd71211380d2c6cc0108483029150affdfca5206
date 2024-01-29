@@ -16,6 +16,24 @@
       "message": "In general, this seems weird to me - why there is introduced another active device policy inside MediaControl. Why PLAY MCP command simply doesn\u0027t transfer this message to Audio Application/Player.",
       "revId": "dd71211380d2c6cc0108483029150affdfca5206",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6eb9fd4e_ac9b61bb",
+        "filename": "android/app/src/com/android/bluetooth/mcp/MediaControlGattService.java",
+        "patchSetId": 6
+      },
+      "lineNbr": 1225,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-29T17:52:44Z",
+      "side": 1,
+      "message": ":p I agreed with you that we should have better approach to handle this. But since this has been introduced there to resolve the unicast issue for some time already. \n\nI think we can fix this for broadcast first, and then revisit this part of logic. I will share some audio routing feature plan separately offline.\n\nSince this logic improvement is beyond the scope of this change, I\u0027m marking this as resolved, please feel free to reopen if there is any concerns.",
+      "parentUuid": "ecdb550d_db5e869a",
+      "revId": "dd71211380d2c6cc0108483029150affdfca5206",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
