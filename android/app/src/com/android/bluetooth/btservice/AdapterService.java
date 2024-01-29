@@ -7377,8 +7377,9 @@ public class AdapterService extends Service {
             long idleTime,
             long energyUsed,
             UidTraffic[] data) {
-        if (ctrlState >= BluetoothActivityEnergyInfo.BT_STACK_STATE_INVALID
-                && ctrlState <= BluetoothActivityEnergyInfo.BT_STACK_STATE_STATE_IDLE) {
+        if (Flags.btSystemContextReport()
+                || (ctrlState >= BluetoothActivityEnergyInfo.BT_STACK_STATE_INVALID
+                        && ctrlState <= BluetoothActivityEnergyInfo.BT_STACK_STATE_STATE_IDLE)) {
             // Energy is product of mA, V and ms. If the chipset doesn't
             // report it, we have to compute it from time
             if (energyUsed == 0) {
@@ -7442,7 +7443,7 @@ public class AdapterService extends Service {
                         + (" rxTime = " + rxTime)
                         + (" idleTime = " + idleTime)
                         + (" energyUsed = " + energyUsed)
-                        + (" ctrlState = " + ctrlState)
+                        + (" ctrlState = " + String.format("0x%08x", ctrlState))
                         + (" traffic = " + Arrays.toString(data)));
     }
 
