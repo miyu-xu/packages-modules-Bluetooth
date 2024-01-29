@@ -16,6 +16,23 @@
       "message": "Why is a filegroup use here? Do you plan to use the sources elsewhere?",
       "revId": "82a9729afb37e7276553f569fd20336daad5d84c",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "80e1387f_2010119f",
+        "filename": "system/test/headless/Android.bp",
+        "patchSetId": 16
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-29T21:41:35Z",
+      "side": 1,
+      "message": "I\u0027m surprised to see that many dependencies, when I took a shot at making bt_headless host supported I had fewer dependencies https://r.android.com/2737133",
+      "revId": "82a9729afb37e7276553f569fd20336daad5d84c",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
