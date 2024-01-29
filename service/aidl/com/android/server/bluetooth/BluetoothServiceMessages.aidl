@@ -22,4 +22,5 @@ enum BluetoothServiceMessages {
     REGISTER_ADAPTER = 1,
     UNREGISTER_ADAPTER = 2,
     ENABLE = 3,
+    DISABLE = 4,
 }
