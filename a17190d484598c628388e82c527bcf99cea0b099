@@ -22,6 +22,30 @@
       },
       "revId": "a17190d484598c628388e82c527bcf99cea0b099",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "16fd9267_d508e214",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 1947747
+      },
+      "writtenOn": "2024-01-29T09:03:28Z",
+      "side": 1,
+      "message": "As in our offline discussion, remove the @FlaggedApi annotation because the interface definition is already flagged!",
+      "parentUuid": "dba9b57a_a00f9ac9",
+      "range": {
+        "startLine": 406,
+        "startChar": 36,
+        "endLine": 406,
+        "endChar": 47
+      },
+      "revId": "a17190d484598c628388e82c527bcf99cea0b099",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
