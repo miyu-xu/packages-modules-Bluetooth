@@ -52,6 +52,24 @@
       "parentUuid": "9001d918_a5f41e02",
       "revId": "e182004e501e4fbc64763949d95d34eb4cf06b08",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "518965a0_21370d2d",
+        "filename": "system/audio_hal_interface/le_audio_software.cc",
+        "patchSetId": 5
+      },
+      "lineNbr": 895,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-29T21:36:49Z",
+      "side": 1,
+      "message": "hi, Himanshu,\nWondering what\u0027s plan for this CL aosp/2925830? I can\u0027t find it. But I think we still need it for this?",
+      "parentUuid": "b558045c_1f1dc6ad",
+      "revId": "e182004e501e4fbc64763949d95d34eb4cf06b08",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
