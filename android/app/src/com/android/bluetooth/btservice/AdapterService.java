@@ -7277,62 +7277,60 @@ public class AdapterService extends Service {
             long idleTime,
             long energyUsed,
             UidTraffic[] data) {
-        if (ctrlState >= BluetoothActivityEnergyInfo.BT_STACK_STATE_INVALID
-                && ctrlState <= BluetoothActivityEnergyInfo.BT_STACK_STATE_STATE_IDLE) {
-            // Energy is product of mA, V and ms. If the chipset doesn't
-            // report it, we have to compute it from time
-            if (energyUsed == 0) {
-                try {
-                    final long txMah = Math.multiplyExact(txTime, getTxCurrentMa());
-                    final long rxMah = Math.multiplyExact(rxTime, getRxCurrentMa());
-                    final long idleMah = Math.multiplyExact(idleTime, getIdleCurrentMa());
-                    energyUsed =
-                            (long)
-                                    (Math.addExact(Math.addExact(txMah, rxMah), idleMah)
-                                            * getOperatingVolt());
-                } catch (ArithmeticException e) {
-                    Log.wtf(TAG, "overflow in bluetooth energy callback", e);
-                    // Energy is already 0 if the exception was thrown.
-                }
+
+        // Energy is product of mA, V and ms. If the chipset doesn't
+        // report it, we have to compute it from time
+        if (energyUsed == 0) {
+            try {
+                final long txMah = Math.multiplyExact(txTime, getTxCurrentMa());
+                final long rxMah = Math.multiplyExact(rxTime, getRxCurrentMa());
+                final long idleMah = Math.multiplyExact(idleTime, getIdleCurrentMa());
+                energyUsed =
+                        (long)
+                                (Math.addExact(Math.addExact(txMah, rxMah), idleMah)
+                                        * getOperatingVolt());
+            } catch (ArithmeticException e) {
+                Log.wtf(TAG, "overflow in bluetooth energy callback", e);
+                // Energy is already 0 if the exception was thrown.
+            }
+        }
+
+        synchronized (mEnergyInfoLock) {
+            mStackReportedState = ctrlState;
+            long totalTxTimeMs;
+            long totalRxTimeMs;
+            long totalIdleTimeMs;
+            long totalEnergy;
+            try {
+                totalTxTimeMs = Math.addExact(mTxTimeTotalMs, txTime);
+                totalRxTimeMs = Math.addExact(mRxTimeTotalMs, rxTime);
+                totalIdleTimeMs = Math.addExact(mIdleTimeTotalMs, idleTime);
+                totalEnergy = Math.addExact(mEnergyUsedTotalVoltAmpSecMicro, energyUsed);
+            } catch (ArithmeticException e) {
+                // This could be because we accumulated a lot of time, or we got a very strange
+                // value from the controller (more likely). Discard this data.
+                Log.wtf(TAG, "overflow in bluetooth energy callback", e);
+                totalTxTimeMs = mTxTimeTotalMs;
+                totalRxTimeMs = mRxTimeTotalMs;
+                totalIdleTimeMs = mIdleTimeTotalMs;
+                totalEnergy = mEnergyUsedTotalVoltAmpSecMicro;
             }
 
-            synchronized (mEnergyInfoLock) {
-                mStackReportedState = ctrlState;
-                long totalTxTimeMs;
-                long totalRxTimeMs;
-                long totalIdleTimeMs;
-                long totalEnergy;
-                try {
-                    totalTxTimeMs = Math.addExact(mTxTimeTotalMs, txTime);
-                    totalRxTimeMs = Math.addExact(mRxTimeTotalMs, rxTime);
-                    totalIdleTimeMs = Math.addExact(mIdleTimeTotalMs, idleTime);
-                    totalEnergy = Math.addExact(mEnergyUsedTotalVoltAmpSecMicro, energyUsed);
-                } catch (ArithmeticException e) {
-                    // This could be because we accumulated a lot of time, or we got a very strange
-                    // value from the controller (more likely). Discard this data.
-                    Log.wtf(TAG, "overflow in bluetooth energy callback", e);
-                    totalTxTimeMs = mTxTimeTotalMs;
-                    totalRxTimeMs = mRxTimeTotalMs;
-                    totalIdleTimeMs = mIdleTimeTotalMs;
-                    totalEnergy = mEnergyUsedTotalVoltAmpSecMicro;
-                }
+            mTxTimeTotalMs = totalTxTimeMs;
+            mRxTimeTotalMs = totalRxTimeMs;
+            mIdleTimeTotalMs = totalIdleTimeMs;
+            mEnergyUsedTotalVoltAmpSecMicro = totalEnergy;
 
-                mTxTimeTotalMs = totalTxTimeMs;
-                mRxTimeTotalMs = totalRxTimeMs;
-                mIdleTimeTotalMs = totalIdleTimeMs;
-                mEnergyUsedTotalVoltAmpSecMicro = totalEnergy;
-
-                for (UidTraffic traffic : data) {
-                    UidTraffic existingTraffic = mUidTraffic.get(traffic.getUid());
-                    if (existingTraffic == null) {
-                        mUidTraffic.put(traffic.getUid(), traffic);
-                    } else {
-                        existingTraffic.addRxBytes(traffic.getRxBytes());
-                        existingTraffic.addTxBytes(traffic.getTxBytes());
-                    }
+            for (UidTraffic traffic : data) {
+                UidTraffic existingTraffic = mUidTraffic.get(traffic.getUid());
+                if (existingTraffic == null) {
+                    mUidTraffic.put(traffic.getUid(), traffic);
+                } else {
+                    existingTraffic.addRxBytes(traffic.getRxBytes());
+                    existingTraffic.addTxBytes(traffic.getTxBytes());
                 }
-                mEnergyInfoLock.notifyAll();
             }
+            mEnergyInfoLock.notifyAll();
         }
 
         verboseLog(
@@ -7342,7 +7340,7 @@ public class AdapterService extends Service {
                         + (" rxTime = " + rxTime)
                         + (" idleTime = " + idleTime)
                         + (" energyUsed = " + energyUsed)
-                        + (" ctrlState = " + ctrlState)
+                        + (" ctrlState = " + String.format("0x%08x", ctrlState))
                         + (" traffic = " + Arrays.toString(data)));
     }
 
