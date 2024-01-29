@@ -4001,6 +4001,17 @@ public final class BluetoothAdapter {
             }
             return true;
         }
+        if (Flags.systemServerMessenger()) {
+            Bundle data = new Bundle();
+            data.putParcelable("source", mAttributionSource);
+            data.putBoolean("quiet", true);
+
+            return mMessenger
+                    .sendToService(BluetoothServiceMessages.ENABLE, data)
+                    .thenApply(b -> b.getBoolean("enable"))
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+        }
         try {
             return mManagerService.enableNoAutoConnect(mAttributionSource);
         } catch (RemoteException e) {
