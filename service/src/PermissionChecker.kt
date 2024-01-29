@@ -52,6 +52,7 @@ internal class PermissionChecker(
         Exception(message, cause)
 
     fun enableAllowed(uid: Int, source: AttributionSource) = userCanToggle(uid, source, "enable")
+    fun disableAllowed(uid: Int, source: AttributionSource) = userCanToggle(uid, source, "disable")
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////// PRIVATE METHODS ///////////////////////////////////////
