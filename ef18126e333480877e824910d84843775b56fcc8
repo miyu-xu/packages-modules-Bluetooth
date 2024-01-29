@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "35feb825_81316f8c",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-01-29T22:39:30Z",
+      "side": 1,
+      "message": "Why not doing this in the code path of `BTA_AG_SCO_CLOSE_EVT`?",
+      "revId": "ef18126e333480877e824910d84843775b56fcc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "efc72a02_b8aed667",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1459,
+      "author": {
+        "id": 1899057
+      },
+      "writtenOn": "2024-01-29T22:39:30Z",
+      "side": 1,
+      "message": "Is this wanted to confirm stream request in `bta_ag_sco_conn_open()`, and not cancelling it `bta_ag_sco_conn_close()`. I don\u0027t know how this work, it\u0027s just about uniformity.",
+      "revId": "ef18126e333480877e824910d84843775b56fcc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
