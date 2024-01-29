@@ -77,6 +77,19 @@ internal class ServiceMessenger(
                     }
                 Bundle().apply { putBoolean("enable", enable) }
             }
+            BluetoothServiceMessages.DISABLE -> {
+                val source = data.getParcelable("source", AttributionSource::class.java)!!
+                val persist = data.getBoolean("persist")
+                val disable =
+                    try {
+                        checker.disableAllowed(sendingUid, source)
+                        managerService.disable_sync(source.getPackageName(), persist)
+                    } catch (e: PermissionChecker.BluetoothPermissionException) {
+                        Log.e(TAG, "disable(): FAILED", e)
+                        false
+                    }
+                Bundle().apply { putBoolean("disable", disable) }
+            }
             else -> throw IllegalArgumentException("command not implemented: ${what} - ${data}")
         }
     }

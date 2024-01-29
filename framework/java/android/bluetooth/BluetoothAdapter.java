@@ -1674,6 +1674,17 @@ public final class BluetoothAdapter {
                 android.Manifest.permission.BLUETOOTH_PRIVILEGED,
             })
     public boolean disable(boolean persist) {
+        if (Flags.systemServerMessenger()) {
+            Bundle data = new Bundle();
+            data.putParcelable("source", mAttributionSource);
+            data.putBoolean("persist", persist);
+
+            return mMessenger
+                    .sendToService(BluetoothServiceMessages.DISABLE, data)
+                    .thenApply(b -> b.getBoolean("disable"))
+                    .orTimeout(1, TimeUnit.SECONDS)
+                    .join();
+        }
         try {
             return mManagerService.disable(mAttributionSource, persist);
         } catch (RemoteException e) {

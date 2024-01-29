@@ -168,6 +168,9 @@ class BluetoothServiceBinder extends IBluetoothManager.Stub {
 
     @Override
     public boolean disable(AttributionSource source, boolean persist) {
+        if (Flags.systemServerMessenger()) {
+            throw new IllegalStateException("Binder call unavailable when using messenger");
+        }
         requireNonNull(source, "AttributionSource cannot be null in disable");
 
         if (!persist) {
