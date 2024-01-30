@@ -165,6 +165,30 @@
       },
       "revId": "75d23a1f467a1ba341728b137f64fb0cf2712a35",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4599353a_fece8e05",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-01-30T05:38:12Z",
+      "side": 1,
+      "message": "Chatted with licorne@,agreed on putting the test in presubmit for now, and look at putting the test in postsubmit or sharding when we break the SLO.",
+      "parentUuid": "8df2fe4d_5330411a",
+      "range": {
+        "startLine": 234,
+        "startChar": 37,
+        "endLine": 234,
+        "endChar": 42
+      },
+      "revId": "75d23a1f467a1ba341728b137f64fb0cf2712a35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
