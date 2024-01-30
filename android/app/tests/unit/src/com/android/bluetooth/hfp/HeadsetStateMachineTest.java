@@ -112,7 +112,7 @@ public class HeadsetStateMachineTest {
         MockitoAnnotations.initMocks(this);
         TestUtils.setAdapterService(mAdapterService);
         // Stub system interface
-        when(mSystemInterface.getHeadsetPhoneState()).thenReturn(mPhoneState);
+        doReturn(mPhoneState).when(mSystemInterface).getHeadsetPhoneState();
         when(mSystemInterface.getAudioManager()).thenReturn(mAudioManager);
         // This line must be called to make sure relevant objects are initialized properly
         mAdapter = BluetoothAdapter.getDefaultAdapter();
