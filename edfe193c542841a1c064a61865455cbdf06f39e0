@@ -118,6 +118,30 @@
       },
       "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e0dc4bc8_42c315e4",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hearingaid/HearingAidServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-30T01:57:45Z",
+      "side": 1,
+      "message": "Done, that was sooo easy ah ah ah ah\n\nThank you Sal ! 🙏",
+      "parentUuid": "e633b8c5_6d0af264",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 94
+      },
+      "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
