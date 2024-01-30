@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e1921a7e_affd7f9d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-30T05:52:28Z",
+      "side": 1,
+      "message": "Unresolving so it will be seen.",
+      "parentUuid": "49d024d9_395aabe1",
+      "revId": "f22b5ec8848a5488b4fa98995b103383e428e786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "55870017_58feceb3",
         "filename": "system/bta/dm/bta_dm_act.cc",
         "patchSetId": 2
