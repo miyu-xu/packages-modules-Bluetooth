@@ -124,24 +124,6 @@ public class VolumeControlService extends ProfileService {
             return true;
         }
 
-        int getFirstOffsetValue() {
-            if (size() == 0) {
-                return 0;
-            }
-            Descriptor[] descriptors = mVolumeOffsets.values().toArray(new Descriptor[size()]);
-
-            if (DBG) {
-                Log.d(
-                        TAG,
-                        "Number of offsets: "
-                                + size()
-                                + ", first offset value: "
-                                + descriptors[0].mValue);
-            }
-
-            return descriptors[0].mValue;
-        }
-
         int getValue(int id) {
             Descriptor d = mVolumeOffsets.get(id);
             if (d == null) {
@@ -576,21 +558,20 @@ public class VolumeControlService extends ProfileService {
         return true;
     }
 
-    void setVolumeOffset(BluetoothDevice device, int volumeOffset) {
+    void setVolumeOffset(BluetoothDevice device, int id, int volumeOffset) {
         VolumeControlOffsetDescriptor offsets = mAudioOffsets.get(device);
         if (offsets == null) {
             Log.e(TAG, " There is no offset service for device: " + device);
             return;
         }
 
-        /* Use first offset always */
-        int value = offsets.getValue(1);
+        int value = offsets.getValue(id);
         if (value == volumeOffset) {
             /* Nothing to do - offset already applied */
             return;
         }
 
-        mVolumeControlNativeInterface.setExtAudioOutVolumeOffset(device, 1, volumeOffset);
+        mVolumeControlNativeInterface.setExtAudioOutVolumeOffset(device, id, volumeOffset);
     }
 
     void setDeviceVolume(BluetoothDevice device, int volume, boolean isGroupOp) {
@@ -775,23 +756,41 @@ public class VolumeControlService extends ProfileService {
             for (Map.Entry<BluetoothDevice, VolumeControlOffsetDescriptor> entry :
                     mAudioOffsets.entrySet()) {
                 VolumeControlOffsetDescriptor descriptor = entry.getValue();
-                if (descriptor.size() == 0) {
-                    continue;
-                }
 
-                BluetoothDevice device = entry.getKey();
-                int offset = descriptor.getFirstOffsetValue();
+                for (int id = 1; id <= descriptor.size(); id++) {
+                    BluetoothDevice device = entry.getKey();
+                    int offset = descriptor.getValue(id);
+                    int location = descriptor.getLocation(id);
+                    String description = descriptor.getDescription(id);
 
-                if (DBG) {
-                    Log.d(
-                            TAG,
-                            "notifyNewCallbackOfKnownVolumeInfo offset: " + device + ", " + offset);
-                }
+                    if (DBG) {
+                        Log.d(
+                                TAG,
+                                "notifyNewCallbackOfKnownVolumeInfo, device: "
+                                        + device
+                                        + ", id: "
+                                        + id
+                                        + ", offset: "
+                                        + offset
+                                        + ", location: "
+                                        + location
+                                        + ", description: "
+                                        + description);
+                    }
 
-                try {
-                    tempCallbackList.getBroadcastItem(i).onVolumeOffsetChanged(device, offset);
-                } catch (RemoteException e) {
-                    continue;
+                    try {
+                        tempCallbackList
+                                .getBroadcastItem(i)
+                                .onVolumeOffsetChanged(device, id, offset);
+                        tempCallbackList
+                                .getBroadcastItem(i)
+                                .onAudioLocationChanged(device, id, location);
+                        tempCallbackList
+                                .getBroadcastItem(i)
+                                .onAudioDescriptionChanged(device, id, description);
+                    } catch (RemoteException e) {
+                        continue;
+                    }
                 }
             }
         }
@@ -1063,6 +1062,7 @@ public class VolumeControlService extends ProfileService {
         for (int i = 1; i <= numberOfExternalOutputs; i++) {
             offsets.add(i);
             mVolumeControlNativeInterface.getExtAudioOutVolumeOffset(device, i);
+            mVolumeControlNativeInterface.getExtAudioOutLocation(device, i);
             mVolumeControlNativeInterface.getExtAudioOutDescription(device, i);
         }
     }
@@ -1085,7 +1085,7 @@ public class VolumeControlService extends ProfileService {
         int n = mCallbacks.beginBroadcast();
         for (int i = 0; i < n; i++) {
             try {
-                mCallbacks.getBroadcastItem(i).onVolumeOffsetChanged(device, value);
+                mCallbacks.getBroadcastItem(i).onVolumeOffsetChanged(device, id, value);
             } catch (RemoteException e) {
                 continue;
             }
@@ -1105,6 +1105,20 @@ public class VolumeControlService extends ProfileService {
             return;
         }
         offsets.setLocation(id, location);
+
+        if (mCallbacks == null) {
+            return;
+        }
+
+        int n = mCallbacks.beginBroadcast();
+        for (int i = 0; i < n; i++) {
+            try {
+                mCallbacks.getBroadcastItem(i).onAudioLocationChanged(device, id, location);
+            } catch (RemoteException e) {
+                continue;
+            }
+        }
+        mCallbacks.finishBroadcast();
     }
 
     void handleDeviceExtAudioDescriptionChanged(BluetoothDevice device, int id,
@@ -1120,6 +1134,20 @@ public class VolumeControlService extends ProfileService {
             return;
         }
         offsets.setDescription(id, description);
+
+        if (mCallbacks == null) {
+            return;
+        }
+
+        int n = mCallbacks.beginBroadcast();
+        for (int i = 0; i < n; i++) {
+            try {
+                mCallbacks.getBroadcastItem(i).onAudioDescriptionChanged(device, id, description);
+            } catch (RemoteException e) {
+                continue;
+            }
+        }
+        mCallbacks.finishBroadcast();
     }
 
     void messageFromNative(VolumeControlStackEvent stackEvent) {
@@ -1576,8 +1604,12 @@ public class VolumeControlService extends ProfileService {
         }
 
         @Override
-        public void setVolumeOffset(BluetoothDevice device, int volumeOffset,
-                AttributionSource source, SynchronousResultReceiver receiver) {
+        public void setVolumeOffset(
+                BluetoothDevice device,
+                int id,
+                int volumeOffset,
+                AttributionSource source,
+                SynchronousResultReceiver receiver) {
             try {
                 Objects.requireNonNull(device, "device cannot be null");
                 Objects.requireNonNull(source, "source cannot be null");
@@ -1586,7 +1618,7 @@ public class VolumeControlService extends ProfileService {
                 VolumeControlService service = getService(source);
                 if (service != null) {
                     enforceBluetoothPrivilegedPermission(service);
-                    service.setVolumeOffset(device, volumeOffset);
+                    service.setVolumeOffset(device, id, volumeOffset);
                 }
                 receiver.send(null);
             } catch (RuntimeException e) {
