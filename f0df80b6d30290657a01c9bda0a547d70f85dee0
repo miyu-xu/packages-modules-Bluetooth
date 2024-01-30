@@ -34,6 +34,24 @@
       "parentUuid": "ebf40717_4aaa7bd9",
       "revId": "f0df80b6d30290657a01c9bda0a547d70f85dee0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4d0522df_de65b22b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T12:33:13Z",
+      "side": 1,
+      "message": "Indeed `queued_start_broadcast_request_` should have been cleared before calling the `StartAudioBroadcast()` since it is checked there. Fixed it. Thanks for checking.",
+      "parentUuid": "eb253f81_85900b70",
+      "revId": "f0df80b6d30290657a01c9bda0a547d70f85dee0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
