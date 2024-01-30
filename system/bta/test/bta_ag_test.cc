@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
+#include <android_bluetooth_flags.h>
 #include <base/functional/bind.h>
 #include <base/location.h>
 #include <com_android_bluetooth_flags.h>
 #include <flag_macros.h>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
+#include <hfp.sysprop.h>
 
 #include <chrono>
 #include <iostream>
@@ -62,13 +64,7 @@ const std::string kBtCodecAptxVoiceEnabled =
     "bluetooth.hfp.codec_aptx_voice.enabled";
 
 static bool enable_aptx_voice_property(bool enable) {
-  const std::string value = enable ? "true" : "false";
-  bool result =
-      bluetooth::os::SetSystemProperty(kBtCodecAptxVoiceEnabled, value);
-  auto codec_aptx_voice_enabled =
-      bluetooth::os::GetSystemProperty(kBtCodecAptxVoiceEnabled);
-  return result && codec_aptx_voice_enabled &&
-         (codec_aptx_voice_enabled.value() == value);
+  return android::sysprop::bluetooth::Hfp::codec_aptx_voice(enable);
 }
 
 class BtaAgTest : public testing::Test {
@@ -203,6 +199,28 @@ class BtaAgCmdTest : public BtaAgTest {
   void SetUp() override { BtaAgTest::SetUp(); }
   void TearDown() override { BtaAgTest::TearDown(); }
 };
+
+TEST_F_WITH_FLAGS(BtaAgCmdTest, check_flag_disabling_guarding_with_prop,
+                  REQUIRES_FLAGS_DISABLED(ACONFIG_FLAG(TEST_BT,
+                                                       hfp_codec_aptx_voice))) {
+  ASSERT_FALSE(IS_FLAG_ENABLED(hfp_codec_aptx_voice));
+  ASSERT_TRUE(enable_aptx_voice_property(false));
+  ASSERT_FALSE(is_hfp_aptx_voice_enabled());
+
+  ASSERT_TRUE(enable_aptx_voice_property(true));
+  ASSERT_FALSE(is_hfp_aptx_voice_enabled());
+}
+
+TEST_F_WITH_FLAGS(BtaAgCmdTest, check_flag_guarding_with_prop,
+                  REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
+                                                      hfp_codec_aptx_voice))) {
+  ASSERT_TRUE(IS_FLAG_ENABLED(hfp_codec_aptx_voice));
+  ASSERT_TRUE(enable_aptx_voice_property(false));
+  ASSERT_FALSE(is_hfp_aptx_voice_enabled());
+
+  ASSERT_TRUE(enable_aptx_voice_property(true));
+  ASSERT_TRUE(is_hfp_aptx_voice_enabled());
+}
 
 TEST_F_WITH_FLAGS(BtaAgCmdTest, at_hfp_cback__qac_ev_codec_disabled,
                   REQUIRES_FLAGS_ENABLED(ACONFIG_FLAG(TEST_BT,
