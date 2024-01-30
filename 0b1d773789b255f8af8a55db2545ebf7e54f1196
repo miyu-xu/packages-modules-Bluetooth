@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "720fbfc3_20d8597a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-30T18:24:55Z",
+      "side": 1,
+      "message": "For reference, I\u0027ve encountered bug reports that, due to the lack of logs, caused me to wonder if we were going down this code path.  I\u0027m trying to add these logs in hopes to make it quicker to verify whether or not we encountered this error.",
+      "revId": "0b1d773789b255f8af8a55db2545ebf7e54f1196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "67257074_02e89d80",
@@ -14,6 +31,30 @@
       "writtenOn": "2024-01-30T09:56:40Z",
       "side": 1,
       "message": "nit: This log doesn\u0027t add much value since it only suggests cleanup of all rfc sockets has finished. Adding a log seperately in `cleanup_rfc_slot` might make more sense.",
+      "range": {
+        "startLine": 143,
+        "startChar": 13,
+        "endLine": 143,
+        "endChar": 20
+      },
+      "revId": "0b1d773789b255f8af8a55db2545ebf7e54f1196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "76a8961e_b41ebd86",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-01-30T18:24:55Z",
+      "side": 1,
+      "message": "To make sure this CL only addresses BT_STATUS_NOT_READY, I\u0027d prefer to keep possible changes to cleanup_rfc_slot separate (since cleanup_rfc_slot wouldn\u0027t trigger the error).  I\u0027ve made a note in the RFCOMM logging notes doc to take a look, and for now I\u0027m going to resolve this comment.",
+      "parentUuid": "67257074_02e89d80",
       "range": {
         "startLine": 143,
         "startChar": 13,
