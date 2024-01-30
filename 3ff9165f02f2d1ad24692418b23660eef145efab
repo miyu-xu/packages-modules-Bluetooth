@@ -16,6 +16,24 @@
       "message": "If the controller codec is enabled, the input/output would be PCM to me (and the bandwidth set accordingly). the code below looks to be for non-controller codec (the controller receive compressed data).",
       "revId": "3ff9165f02f2d1ad24692418b23660eef145efab",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd03c0e_470b4ed9",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 562,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-30T21:40:04Z",
+      "side": 1,
+      "message": "thanks for the comment! It is actually DSP codec, updated the logic ：）",
+      "parentUuid": "0f0a572d_0b01757e",
+      "revId": "3ff9165f02f2d1ad24692418b23660eef145efab",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
