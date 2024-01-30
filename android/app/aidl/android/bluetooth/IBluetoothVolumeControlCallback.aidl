@@ -26,6 +26,8 @@ import java.util.List;
  * @hide
  */
 oneway interface IBluetoothVolumeControlCallback {
-    void onVolumeOffsetChanged(in BluetoothDevice device, in int volumeOffset);
+    void onVolumeOffsetChanged(in BluetoothDevice device, in int instatnceId, in int volumeOffset);
+    void onAudioLocationChanged(in BluetoothDevice device, in int instatnceId, in int audioLocation);
+    void onAudioDescriptionChanged(in BluetoothDevice device, in int instatnceId, in String audioDescription);
     void onDeviceVolumeChanged(in BluetoothDevice device, in int volume);
 }
