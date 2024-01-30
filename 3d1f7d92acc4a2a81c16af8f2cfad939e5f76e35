@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "00c3c4bf_a6480d29",
+        "filename": "flags/gatt.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-01-30T20:00:54Z",
+      "side": 1,
+      "message": "Can you please move to gap.aconfig?",
+      "revId": "3d1f7d92acc4a2a81c16af8f2cfad939e5f76e35",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
