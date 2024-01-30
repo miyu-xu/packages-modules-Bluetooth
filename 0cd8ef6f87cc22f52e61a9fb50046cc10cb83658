@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a4d02a84_b96db156",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2024-01-30T06:02:31Z",
+      "side": 1,
+      "message": "Thomas, can you do drno+1 here, please?",
+      "revId": "0cd8ef6f87cc22f52e61a9fb50046cc10cb83658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
