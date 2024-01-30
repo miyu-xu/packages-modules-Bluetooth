@@ -16,6 +16,46 @@
       "message": "Hi reviewers, please take a look, thanks!",
       "revId": "022f1c8870912aed9f253282ccd5f962dce1c587",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "de3580dd_309d77df",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-30T16:11:54Z",
+      "side": 1,
+      "message": "Thanks for using the new Controller!",
+      "revId": "022f1c8870912aed9f253282ccd5f962dce1c587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6360228a_4e68aa21",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-30T16:11:54Z",
+      "side": 1,
+      "message": "I\u0027m surprised that we\u0027re using packed structs here, but modifying the definitions. \n I\u0027m assuming the driver side is also being modified somewhere, to match?\n \n I\u0027d prefer to use PDL to specify the format and parse it like any other packet.",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 26
+      },
+      "revId": "022f1c8870912aed9f253282ccd5f962dce1c587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
