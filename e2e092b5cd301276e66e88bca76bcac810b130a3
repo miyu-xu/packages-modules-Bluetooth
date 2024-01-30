@@ -16,6 +16,24 @@
       "message": "Could we use https://cs.android.com/android/platform/superproject/main/+/main:system/libbase/include/android-base/properties.h;l\u003d56;drc\u003d1a34bb67c4f3ba0a1ea6f4f20ac9fe117ba4fe64 instead and not set the sysprop ReadWrite?",
       "revId": "e2e092b5cd301276e66e88bca76bcac810b130a3",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "35acffea_83c6b25d",
+        "filename": "system/bta/test/bta_ag_test.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-30T23:06:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "b937b40e_66683789",
+      "revId": "e2e092b5cd301276e66e88bca76bcac810b130a3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
