@@ -58,6 +58,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af21fbb2_96a7b42f",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:22:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3d3573cd_574c98a4",
+      "range": {
+        "startLine": 228,
+        "startChar": 52,
+        "endLine": 228,
+        "endChar": 53
+      },
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "33909be2_2acf2d50",
@@ -75,6 +99,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3e3b65a7_e8da3d2d",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 511,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:22:02Z",
+      "side": 1,
+      "message": "This final part is not that bad, but the code above indeed has some potential for improvements, but let\u0027s leave it for future patches.",
+      "parentUuid": "33909be2_2acf2d50",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "9cf3e72d_2fb43115",
@@ -88,6 +130,24 @@
       "writtenOn": "2023-11-30T15:56:31Z",
       "side": 1,
       "message": "Is it important to have this broadcast_config_ cleared ?",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9303a40b_82020096",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1045,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:22:02Z",
+      "side": 1,
+      "message": "It is important to have this NOT cleared, therefor we return here if broadcast config is not set (means no active broadcast).\n\nWe need it to know the number of bytes per sample (as received from the audio framework) to find the right audio channel data, and the number of BISes to encode the appropriate number of channels.",
+      "parentUuid": "9cf3e72d_2fb43115",
       "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -115,6 +175,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90de2df9_17bfc050",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1046,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:22:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4233bc81_0a34e22a",
+      "range": {
+        "startLine": 1046,
+        "startChar": 19,
+        "endLine": 1046,
+        "endChar": 24
+      },
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "09128bf9_055d8a96",
@@ -128,6 +212,24 @@
       "writtenOn": "2023-11-30T15:56:31Z",
       "side": 1,
       "message": "is it possible to have subgroups \u003d\u003d null ?",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6908400b_dab0d0e2",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 1054,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:22:02Z",
+      "side": 1,
+      "message": "That would be an invalid broadcast configuration. Let me add a check for that as well. Thanks for catching this.",
+      "parentUuid": "09128bf9_055d8a96",
       "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -151,6 +253,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "4584622c_9a39c702",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 901,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:22:02Z",
+      "side": 1,
+      "message": "Just a non-standard number in \u0027some\u0027 vendor codec. There is no unit test yet verifying that. AFAIK We don\u0027t support it at every layer yet, but future tests may reuse this static variable and verify that.",
+      "parentUuid": "b9a3b22a_e3faeafd",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "838e5a39_dee8611e",
         "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
         "patchSetId": 16
@@ -162,6 +282,24 @@
       "writtenOn": "2023-11-30T15:56:31Z",
       "side": 1,
       "message": "phy 0x01 isn\u0027t 1M ?",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62ca3e42_8a1e9701",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:22:02Z",
+      "side": 1,
+      "message": "It is 😄 Copy-paste error. Thanks.",
+      "parentUuid": "838e5a39_dee8611e",
       "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -179,6 +317,24 @@
       "writtenOn": "2023-11-30T15:56:31Z",
       "side": 1,
       "message": "packing and framing seems to be also not matching comments",
+      "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0a8d3303_d0f12ebf",
+        "filename": "system/bta/le_audio/broadcaster/broadcaster_test.cc",
+        "patchSetId": 16
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:22:02Z",
+      "side": 1,
+      "message": "Indeed, fixing.",
+      "parentUuid": "7bc76184_4e0ed425",
       "revId": "487b5b668df119ab524c1ba56d3c5f715a0788c7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
