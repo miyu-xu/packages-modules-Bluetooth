@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9222572f_1c9afc5c",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 1944471
+      },
+      "writtenOn": "2024-01-30T12:54:49Z",
+      "side": 1,
+      "message": "Thanks rongxuan, based on our offline discussion, could we use \"bluetooth_le_broadcast_fallback_active_group_id\" and cache group id instead?",
+      "range": {
+        "startLine": 135,
+        "startChar": 13,
+        "endLine": 135,
+        "endChar": 66
+      },
+      "revId": "4c07569519f65d6d84398682be02bc2460e86496",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
