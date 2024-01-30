@@ -34,6 +34,24 @@
       "parentUuid": "87f823e0_e15e6364",
       "revId": "9a1d8ddddb23668ec289455d75573454a4213e2a",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d9e9cce_c9aa8905",
+        "filename": "system/audio_hal_interface/aidl/hfp_client_interface_aidl.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 2021142
+      },
+      "writtenOn": "2024-01-30T01:48:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f65375d2_e45fd5f8",
+      "revId": "9a1d8ddddb23668ec289455d75573454a4213e2a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
