@@ -87,6 +87,24 @@
       "parentUuid": "efc72a02_b8aed667",
       "revId": "ef18126e333480877e824910d84843775b56fcc8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "624dd55e_0f75c7a3",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1459,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-30T21:42:26Z",
+      "side": 1,
+      "message": "discussed offline, resolve this comment",
+      "parentUuid": "3486689a_f3788e9c",
+      "revId": "ef18126e333480877e824910d84843775b56fcc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
