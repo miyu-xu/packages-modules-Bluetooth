@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ac5e1e83_0ef62aca",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-30T12:36:08Z",
+      "side": 0,
+      "message": "shouldn\u0027t we call this callback anyway?",
+      "range": {
+        "startLine": 792,
+        "startChar": 57,
+        "endLine": 792,
+        "endChar": 78
+      },
+      "revId": "7302c97d943aab9c6b1e709a624737ec5a2f89d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
