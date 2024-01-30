@@ -16,6 +16,23 @@
       "message": "Thomas, can you do drno+1 here, please?",
       "revId": "0cd8ef6f87cc22f52e61a9fb50046cc10cb83658",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8038a66c_4058b290",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1135107
+      },
+      "writtenOn": "2024-01-30T18:39:30Z",
+      "side": 1,
+      "message": "Bypassing presubmit:\n- PS1 has already passed it once and there were no code changes in PS2\n- All TH failures are unrelated to C++ build\n- Change is trivial",
+      "revId": "0cd8ef6f87cc22f52e61a9fb50046cc10cb83658",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
