@@ -16,6 +16,24 @@
       "message": "Please check automerger conflict.",
       "revId": "8601892c931a983eacecc318c701f91c17ce3c46",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "53d3cae3_0d3854ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-30T21:40:38Z",
+      "side": 1,
+      "message": "Thanks",
+      "parentUuid": "187b280d_62819eae",
+      "revId": "8601892c931a983eacecc318c701f91c17ce3c46",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
