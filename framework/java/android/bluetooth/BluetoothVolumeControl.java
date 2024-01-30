@@ -85,11 +85,64 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
          *
          * @param device remote device whose volume offset changed
          * @param volumeOffset latest volume offset for this device
+         * @deprecated Use {@link #onVolumeOffsetChanged(BluetoothDevice, int, int)} which allows
+         *     for choosing an audio output id
+         * @hide
+         */
+        @Deprecated
+        @SystemApi
+        void onVolumeOffsetChanged(
+                @NonNull BluetoothDevice device, @IntRange(from = -255, to = 255) int volumeOffset);
+
+        /**
+         * Callback invoked when callback is registered and when volume offset changes on the remote
+         * device. Change can be triggered autonomously by the remote device or after volume offset
+         * change on the user request done by calling {@link #setVolumeOffset(device, id,
+         * volumeOffset)}
+         *
+         * @param device remote device whose volume offset changed
+         * @param audioOutputId identifier of the audio output which can be controlled with the
+         *     offset on the remote device
+         * @param volumeOffset latest volume offset for this audio output id
          * @hide
          */
         @SystemApi
         void onVolumeOffsetChanged(
-                @NonNull BluetoothDevice device, @IntRange(from = -255, to = 255) int volumeOffset);
+                @NonNull BluetoothDevice device,
+                @IntRange(from = 1, to = 255) int audioOutputId,
+                @IntRange(from = -255, to = 255) int volumeOffset);
+
+        /**
+         * Callback invoked when callback is registered and when audio location changes on the
+         * remote device. Change can be triggered autonomously by the remote device.
+         *
+         * @param device remote device whose audio location changed
+         * @param audioOutputId identifier of the audio output which can be controlled with the
+         *     offset on the remote device
+         * @param audioLocation latest audio location for this audio output id
+         * @hide
+         */
+        @SystemApi
+        void onAudioLocationChanged(
+                @NonNull BluetoothDevice device,
+                @IntRange(from = 1, to = 255) int audioOutputId,
+                @IntRange(from = -255, to = 255) int audioLocation);
+
+        /**
+         * Callback invoked when callback is registered and when audio description changes on the
+         * remote device. Change can be triggered autonomously by the remote device.
+         *
+         * @param device remote device whose audio description changed
+         * @param audioOutputId identifier of the audio output which can be controlled with the
+         *     offset on the remote device
+         * @param audioDescription latest audio description for this audio output id
+         * @hide
+         */
+        @SystemApi
+        void onAudioDescriptionChanged(
+                @NonNull BluetoothDevice device,
+                @IntRange(from = 1, to = 255) int audioOutputId,
+                @NonNull String audioDescription);
 
         /**
          * Callback for le audio connected device volume level change
@@ -112,14 +165,56 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
             new IBluetoothVolumeControlCallback.Stub() {
                 @Override
                 public void onVolumeOffsetChanged(
-                        @NonNull BluetoothDevice device, int volumeOffset) {
+                        @NonNull BluetoothDevice device, int audioOutputId, int volumeOffset) {
+                    Attributable.setAttributionSource(device, mAttributionSource);
+                    for (Map.Entry<BluetoothVolumeControl.Callback, Executor>
+                            callbackExecutorEntry : mCallbackExecutorMap.entrySet()) {
+                        BluetoothVolumeControl.Callback callback = callbackExecutorEntry.getKey();
+                        Executor executor = callbackExecutorEntry.getValue();
+                        if (audioOutputId == 1) {
+                            try {
+                                executor.execute(
+                                        () -> callback.onVolumeOffsetChanged(device, volumeOffset));
+                            } finally {
+                                // do nothing
+                            }
+                        }
+                        executor.execute(
+                                () ->
+                                        callback.onVolumeOffsetChanged(
+                                                device, audioOutputId, volumeOffset));
+                    }
+                }
+
+                @Override
+                public void onAudioLocationChanged(
+                        @NonNull BluetoothDevice device, int audioOutputId, int audioLocation) {
                     Attributable.setAttributionSource(device, mAttributionSource);
                     for (Map.Entry<BluetoothVolumeControl.Callback, Executor>
                             callbackExecutorEntry : mCallbackExecutorMap.entrySet()) {
                         BluetoothVolumeControl.Callback callback = callbackExecutorEntry.getKey();
                         Executor executor = callbackExecutorEntry.getValue();
                         executor.execute(
-                                () -> callback.onVolumeOffsetChanged(device, volumeOffset));
+                                () ->
+                                        callback.onAudioLocationChanged(
+                                                device, audioOutputId, audioLocation));
+                    }
+                }
+
+                @Override
+                public void onAudioDescriptionChanged(
+                        @NonNull BluetoothDevice device,
+                        int audioOutputId,
+                        String audioDescription) {
+                    Attributable.setAttributionSource(device, mAttributionSource);
+                    for (Map.Entry<BluetoothVolumeControl.Callback, Executor>
+                            callbackExecutorEntry : mCallbackExecutorMap.entrySet()) {
+                        BluetoothVolumeControl.Callback callback = callbackExecutorEntry.getKey();
+                        Executor executor = callbackExecutorEntry.getValue();
+                        executor.execute(
+                                () ->
+                                        callback.onAudioDescriptionChanged(
+                                                device, audioOutputId, audioDescription));
                     }
                 }
 
@@ -393,14 +488,56 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
                                 new IBluetoothVolumeControlCallback.Stub() {
                                     @Override
                                     public void onVolumeOffsetChanged(
-                                            BluetoothDevice device, int volumeOffset)
+                                            BluetoothDevice device,
+                                            int audioOutputId,
+                                            int volumeOffset)
+                                            throws RemoteException {
+                                        Attributable.setAttributionSource(
+                                                device, mAttributionSource);
+                                        if (audioOutputId == 1) {
+                                            try {
+                                                executor.execute(
+                                                        () ->
+                                                                callback.onVolumeOffsetChanged(
+                                                                        device, volumeOffset));
+                                            } finally {
+                                                // do nothing
+                                            }
+                                        }
+                                        executor.execute(
+                                                () ->
+                                                        callback.onVolumeOffsetChanged(
+                                                                device,
+                                                                audioOutputId,
+                                                                volumeOffset));
+                                    }
+
+                                    @Override
+                                    public void onAudioLocationChanged(
+                                            BluetoothDevice device, int audioOutputId, int location)
                                             throws RemoteException {
                                         Attributable.setAttributionSource(
                                                 device, mAttributionSource);
                                         executor.execute(
                                                 () ->
-                                                        callback.onVolumeOffsetChanged(
-                                                                device, volumeOffset));
+                                                        callback.onAudioLocationChanged(
+                                                                device, audioOutputId, location));
+                                    }
+
+                                    @Override
+                                    public void onAudioDescriptionChanged(
+                                            BluetoothDevice device,
+                                            int audioOutputId,
+                                            String audioDescription)
+                                            throws RemoteException {
+                                        Attributable.setAttributionSource(
+                                                device, mAttributionSource);
+                                        executor.execute(
+                                                () ->
+                                                        callback.onAudioDescriptionChanged(
+                                                                device,
+                                                                audioOutputId,
+                                                                audioDescription));
                                     }
 
                                     @Override
@@ -481,8 +618,11 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      *
      * @param device {@link BluetoothDevice} representing the remote device
      * @param volumeOffset volume offset to be set on the remote device
+     * @deprecated Use {@link #setVolumeOffset(BluetoothDevice, int, int)} which allows for choosing
+     *     an audio output id. This method will always use first audio output id.
      * @hide
      */
+    @Deprecated
     @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(
@@ -500,7 +640,59 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         } else if (isEnabled()) {
             try {
                 final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
-                service.setVolumeOffset(device, volumeOffset, mAttributionSource, recv);
+                final int defaultAudioOutputId = 1;
+                service.setVolumeOffset(
+                        device, defaultAudioOutputId, volumeOffset, mAttributionSource, recv);
+                recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
+            } catch (RemoteException | TimeoutException e) {
+                Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+            }
+        }
+    }
+
+    /**
+     * Tells the remote device to set a volume offset to the absolute volume. One device might have
+     * multiple audio outputs which could be controlled with the volume offset. This outputs could
+     * be i.e. different speakers or sound types as media/voice/notification.
+     *
+     * @param device {@link BluetoothDevice} representing the remote device
+     * @param audioOutputId identifier of the audio output which can be controlled with the offset
+     *     on the remote device. Identifiers are numereted from 1. Number of them was notified by
+     *     callbacks and it can be read using {@link #getNumberOfAudioOutputIds(BluetoothDevice)}.
+     *     Providing non existing audio output ID will be ignored
+     * @param volumeOffset volume offset to be set on this output id
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public void setVolumeOffset(
+            @NonNull BluetoothDevice device,
+            @IntRange(from = 1, to = 255) int audioOutputId,
+            @IntRange(from = -255, to = 255) int volumeOffset) {
+        if (DBG) {
+            log(
+                    "setVolumeOffset("
+                            + device
+                            + "/"
+                            + audioOutputId
+                            + " volumeOffset: "
+                            + volumeOffset
+                            + ")");
+        }
+        final IBluetoothVolumeControl service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+        } else if (isEnabled()) {
+            try {
+                final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+                service.setVolumeOffset(
+                        device, audioOutputId, volumeOffset, mAttributionSource, recv);
                 recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(null);
             } catch (RemoteException | TimeoutException e) {
                 Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
@@ -541,6 +733,45 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
         try {
             final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
             service.isVolumeOffsetAvailable(device, mAttributionSource, recv);
+            recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
+        } catch (RemoteException | TimeoutException e) {
+            Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
+        }
+
+        return defaultValue;
+    }
+
+    /**
+     * Provides information about the number of audio output IDs.
+     *
+     * @param device {@link BluetoothDevice} representing the remote device
+     * @return number of audio output IDs. When Bluetooth is off, the return value is 0.
+     * @hide
+     */
+    @SystemApi
+    @RequiresBluetoothConnectPermission
+    @RequiresPermission(
+            allOf = {
+                android.Manifest.permission.BLUETOOTH_CONNECT,
+                android.Manifest.permission.BLUETOOTH_PRIVILEGED,
+            })
+    public int getNumberOfAudioOutputIds(@NonNull BluetoothDevice device) {
+        if (DBG) log("getNumberOfAudioOutputIds(" + device + ")");
+        final IBluetoothVolumeControl service = getService();
+        if (service == null) {
+            Log.w(TAG, "Proxy not attached to service");
+            if (DBG) log(Log.getStackTraceString(new Throwable()));
+            return 0;
+        }
+
+        if (!isEnabled()) {
+            return 0;
+        }
+
+        final int defaultValue = 0;
+        try {
+            final SynchronousResultReceiver recv = SynchronousResultReceiver.get();
+            service.getNumberOfAudioOutputIds(device, mAttributionSource, recv);
             recv.awaitResultNoInterrupt(getSyncTimeout()).getValue(defaultValue);
         } catch (RemoteException | TimeoutException e) {
             Log.e(TAG, e.toString() + "\n" + Log.getStackTraceString(new Throwable()));
