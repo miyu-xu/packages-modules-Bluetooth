@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "49d024d9_395aabe1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-30T05:51:56Z",
+      "side": 1,
+      "message": "This is enough to get past the first error, but after that it gets trickier.\n\ndiff --git a/system/bta/test/bta_ag_sco_test.cc b/system/bta/test/bta_ag_sco_test.cc\nindex 2ef8abb828..2e39f49da1 100644\n--- a/system/bta/test/bta_ag_sco_test.cc\n+++ b/system/bta/test/bta_ag_sco_test.cc\n@@ -26,7 +26,6 @@\n \n bool btm_peer_supports_esco_ev3(const RawAddress\u0026 remote_bda) { return true; }\n tBTM_CB btm_cb;\n-LeAudioClient* LeAudioClient::Get() { return nullptr; }\n \n const RawAddress kRawAddress({0x11, 0x22, 0x33, 0x44, 0x55, 0x66});",
+      "revId": "f22b5ec8848a5488b4fa98995b103383e428e786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55870017_58feceb3",
