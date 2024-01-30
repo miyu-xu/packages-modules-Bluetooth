@@ -36,6 +36,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "1981cae3_0a96fab5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-01-30T21:31:08Z",
+      "side": 1,
+      "message": "I just added this static function\u0027s implementation like LeAudioClient::Get() in bta_ag_sco_test.cc. Done.",
+      "parentUuid": "e1921a7e_affd7f9d",
+      "revId": "f22b5ec8848a5488b4fa98995b103383e428e786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "55870017_58feceb3",
@@ -49,6 +67,30 @@
       "writtenOn": "2024-01-30T05:51:01Z",
       "side": 1,
       "message": "You\u0027re pulling le_audio code into bta_dm, so the tests that have this code now need some LeAudio code as well.",
+      "range": {
+        "startLine": 1492,
+        "startChar": 0,
+        "endLine": 1492,
+        "endChar": 72
+      },
+      "revId": "f22b5ec8848a5488b4fa98995b103383e428e786",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f1c2f19d_c68a2950",
+        "filename": "system/bta/dm/bta_dm_act.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 1492,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-01-30T21:31:08Z",
+      "side": 1,
+      "message": "Thanks for the comments. I just added this static function\u0027s implementation like LeAudioClient::Get() in bta_ag_sco_test.cc. Done.",
+      "parentUuid": "55870017_58feceb3",
       "range": {
         "startLine": 1492,
         "startChar": 0,
