@@ -142,6 +142,30 @@
       },
       "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd9fa0c2_9bd89d2d",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/hearingaid/HearingAidServiceTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-30T16:18:25Z",
+      "side": 1,
+      "message": "😊",
+      "parentUuid": "e0dc4bc8_42c315e4",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 94
+      },
+      "revId": "edfe193c542841a1c064a61865455cbdf06f39e0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
