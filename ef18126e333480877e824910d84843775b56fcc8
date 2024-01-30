@@ -38,6 +38,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "e35b5f4a_9ff21d9d",
+        "filename": "system/bta/ag/bta_ag_sco.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 1963028
+      },
+      "writtenOn": "2024-01-30T00:31:17Z",
+      "side": 1,
+      "message": "I took another look, and think here is a proper place for `CancelStreamingRequest`. \n\n`CancelStreamingRequest` is to pass `streamStarted(failed)`to Audio HAL to let it to `CancelStreamingRequest`. The only case for this to happen on SCO (in my mind right now) is all codec failed to open, then we tell Audio HAL to cancel streaming.   \n\nIf we put  `CancelStreamingRequest ` into `bta_ag_sco_conn_close `, it may be triggered by normal SCO close event, which do not match with Audio HAL\u0027s `startStream` request.",
+      "parentUuid": "ec00722e_75348207",
+      "revId": "ef18126e333480877e824910d84843775b56fcc8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "efc72a02_b8aed667",
         "filename": "system/bta/ag/bta_ag_sco.cc",
         "patchSetId": 2
