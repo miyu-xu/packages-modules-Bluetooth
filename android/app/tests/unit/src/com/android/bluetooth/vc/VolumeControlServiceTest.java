@@ -1017,11 +1017,12 @@ public class VolumeControlServiceTest {
         Assert.assertTrue(boolRecv.awaitResultNoInterrupt(Duration.ofMillis(TIMEOUT_MS))
                 .getValue(defaultRecvValue));
 
+        int id = 1;
         int volumeOffset = 100;
         final SynchronousResultReceiver<Void> voidRecv = SynchronousResultReceiver.get();
-        mServiceBinder.setVolumeOffset(mDevice, volumeOffset, mAttributionSource, voidRecv);
+        mServiceBinder.setVolumeOffset(mDevice, id, volumeOffset, mAttributionSource, voidRecv);
         voidRecv.awaitResultNoInterrupt(Duration.ofMillis(TIMEOUT_MS));
-        verify(mNativeInterface).setExtAudioOutVolumeOffset(mDevice, 1, volumeOffset);
+        verify(mNativeInterface).setExtAudioOutVolumeOffset(mDevice, id, volumeOffset);
     }
 
     @Test
@@ -1146,12 +1147,12 @@ public class VolumeControlServiceTest {
         recv.awaitResultNoInterrupt(Duration.ofMillis(TIMEOUT_MS)).getValue(null);
         Assert.assertEquals(size + 1, mService.mCallbacks.getRegisteredCallbackCount());
 
-        verify(callback).onVolumeOffsetChanged(eq(mDeviceTwo), eq(200));
-        verify(callback).onVolumeOffsetChanged(eq(mDevice), eq(100));
+        verify(callback).onVolumeOffsetChanged(eq(mDeviceTwo), eq(1), eq(200));
+        verify(callback).onVolumeOffsetChanged(eq(mDevice), eq(1), eq(100));
 
         generateDeviceOffsetChangedMessageFromNative(mDevice, 1, 50);
 
-        verify(callback).onVolumeOffsetChanged(eq(mDevice), eq(50));
+        verify(callback).onVolumeOffsetChanged(eq(mDevice), eq(1), eq(50));
     }
 
     @Test
