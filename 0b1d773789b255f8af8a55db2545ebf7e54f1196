@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67257074_02e89d80",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-01-30T09:56:40Z",
+      "side": 1,
+      "message": "nit: This log doesn\u0027t add much value since it only suggests cleanup of all rfc sockets has finished. Adding a log seperately in `cleanup_rfc_slot` might make more sense.",
+      "range": {
+        "startLine": 143,
+        "startChar": 13,
+        "endLine": 143,
+        "endChar": 20
+      },
+      "revId": "0b1d773789b255f8af8a55db2545ebf7e54f1196",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
