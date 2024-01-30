@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "26800504_2eb815da",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:17:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "37c652e9_0cd4f559",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 3
+      },
+      "revId": "581eb49e6e7fc1e9a5a5f0679cb3f7662babbf48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e7d95dd6_272680eb",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-01-12T13:42:20Z",
       "side": 1,
       "message": "Please fix this WARNING reported by Check Contents: Please use language idioms to initialize or assign\n\nAnalyzer Description: Validates that changes do not have prohibited expressions in them.\nOwner: ayeaye-team@google.com\n\nPlease use language idioms to initialize or assign",
+      "range": {
+        "startLine": 598,
+        "startChar": 2,
+        "endLine": 598,
+        "endChar": 9
+      },
+      "revId": "581eb49e6e7fc1e9a5a5f0679cb3f7662babbf48",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5f4ef327_e7e47617",
+        "filename": "system/bta/le_audio/client_parser.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 598,
+      "author": {
+        "id": 1928988
+      },
+      "writtenOn": "2024-01-30T18:17:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e7d95dd6_272680eb",
       "range": {
         "startLine": 598,
         "startChar": 2,
