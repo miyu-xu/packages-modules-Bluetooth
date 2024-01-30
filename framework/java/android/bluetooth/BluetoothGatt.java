@@ -35,6 +35,7 @@ import android.os.ParcelUuid;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.modules.utils.SynchronousResultReceiver;
 
 import java.lang.annotation.Retention;
@@ -43,6 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
+
 
 /**
  * Public API for the Bluetooth GATT Profile.
@@ -1677,6 +1679,13 @@ public final class BluetoothGatt implements BluetoothProfile {
             }
             throw e.rethrowAsRuntimeException();
         }
+        if (Flags.gattFixDeviceBusy()) {
+            if (requestStatus != BluetoothStatusCodes.SUCCESS) {
+                synchronized (mDeviceBusyLock) {
+                    mDeviceBusy = false;
+                }
+            }
+        }
 
         return requestStatus;
     }
@@ -1827,6 +1836,11 @@ public final class BluetoothGatt implements BluetoothProfile {
                 mDeviceBusy = false;
             }
             throw e.rethrowAsRuntimeException();
+        }
+        if (Flags.gattFixDeviceBusy()) {
+            synchronized (mDeviceBusyLock) {
+                mDeviceBusy = false;
+            }
         }
         return BluetoothStatusCodes.ERROR_UNKNOWN;
     }

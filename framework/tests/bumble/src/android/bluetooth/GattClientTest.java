@@ -25,18 +25,22 @@ import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockingDetails;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import android.bluetooth.le.BluetoothLeScanner;
 import android.content.Context;
+import android.platform.test.annotations.RequiresFlagsEnabled;
 
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.android.bluetooth.flags.Flags;
 import com.android.compatibility.common.util.AdoptShellPermissionsRule;
 
+import org.junit.Assume;
 import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -45,15 +49,15 @@ import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.invocation.Invocation;
 
+import java.util.Collection;
+import java.util.UUID;
+
 import pandora.GattProto.GattCharacteristicParams;
 import pandora.GattProto.GattServiceParams;
 import pandora.GattProto.RegisterServiceRequest;
 import pandora.HostProto.AdvertiseRequest;
 import pandora.HostProto.AdvertiseResponse;
 import pandora.HostProto.OwnAddressType;
-
-import java.util.Collection;
-import java.util.UUID;
 
 @RunWith(AndroidJUnit4.class)
 public class GattClientTest {
@@ -218,6 +222,82 @@ public class GattClientTest {
 
         } finally {
             disconnectAndWaitDisconnection(gatt, gattCallback);
+        }
+    }
+
+    @RequiresFlagsEnabled(Flags.FLAG_GATT_FIX_DEVICE_BUSY)
+    @Test
+    public void simultaneousWriteCharacteristicFails_thenSuccess() throws Exception {
+        Assume.assumeTrue(Flags.gattFixDeviceBusy());
+
+        registerWritableGattService();
+
+        BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
+        BluetoothGattCallback gattCallback2 = mock(BluetoothGattCallback.class);
+
+        BluetoothGatt gatt = connectGattAndWaitConnection(gattCallback);
+        BluetoothGatt gatt2 = connectGattAndWaitConnection(gattCallback2);
+
+        try {
+            gatt.discoverServices();
+            gatt2.discoverServices();
+            verify(gattCallback, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+            verify(gattCallback2, timeout(10000))
+                    .onServicesDiscovered(any(), eq(BluetoothGatt.GATT_SUCCESS));
+
+            BluetoothGattCharacteristic characteristic = null;
+
+            outer:
+            for (BluetoothGattService candidateService : gatt.getServices()) {
+                for (BluetoothGattCharacteristic candidateCharacteristic :
+                        candidateService.getCharacteristics()) {
+                    if ((candidateCharacteristic.getProperties()
+                                    & BluetoothGattCharacteristic.PROPERTY_WRITE)
+                            != 0) {
+                        characteristic = candidateCharacteristic;
+                        break outer;
+                    }
+                }
+            }
+
+            // Should have the same characteristic
+            BluetoothGattCharacteristic characteristic2 =
+                    gatt2.getService(characteristic.getService().getUuid())
+                            .getCharacteristic(characteristic.getUuid());
+
+            byte[] newValue = new byte[] {13};
+
+            gatt.writeCharacteristic(
+                    characteristic, newValue, BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT);
+
+            // Skip the test if the second write succeeded.
+            Assume.assumeFalse(
+                    gatt2.writeCharacteristic(
+                                    characteristic2,
+                                    newValue,
+                                    BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT)
+                            == BluetoothStatusCodes.SUCCESS);
+
+            verify(gattCallback, timeout(5000))
+                    .onCharacteristicWrite(
+                            any(), eq(characteristic), eq(BluetoothGatt.GATT_SUCCESS));
+            verify(gattCallback2, never())
+                    .onCharacteristicWrite(
+                            any(), eq(characteristic), eq(BluetoothGatt.GATT_SUCCESS));
+
+            assertThat(
+                            gatt2.writeCharacteristic(
+                                    characteristic2,
+                                    newValue,
+                                    BluetoothGattCharacteristic.WRITE_TYPE_DEFAULT))
+                    .isEqualTo(BluetoothStatusCodes.SUCCESS);
+            verify(gattCallback2, timeout(5000))
+                    .onCharacteristicWrite(
+                            any(), eq(characteristic2), eq(BluetoothGatt.GATT_SUCCESS));
+        } finally {
+            disconnectAndWaitDisconnection(gatt, gattCallback);
+            disconnectAndWaitDisconnection(gatt2, gattCallback2);
         }
     }
 
