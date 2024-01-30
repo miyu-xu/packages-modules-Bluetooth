@@ -120,6 +120,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "151822b3_a5cd6914",
+        "filename": "system/main/shim/controller.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-30T04:39:04Z",
+      "side": 1,
+      "message": "Rebased and use the new controller_interface.",
+      "parentUuid": "9ad3739b_61215d65",
+      "range": {
+        "startLine": 103,
+        "startChar": 16,
+        "endLine": 103,
+        "endChar": 42
+      },
+      "revId": "3529a5a03bbaa045a29213688873f6ca4971ceef",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b01b55ff_76a14480",
