@@ -3,6 +3,46 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "376b2126_e0bd1542",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-01-30T20:26:22Z",
+      "side": 1,
+      "message": "Try to understand this better, for LEA, we have\n\n- CSIP Group 1\n - Device 1-1\n   - Audio Output ID 1-1-1 (or just 1 if only locally unique within a device)\n   - Audio Output ID 1-1-2 (or just 2 if only locally unique within a device)\n - Device 1-2\n   - Audio Output ID 1-2-1 (or just 1 if only locally unique within a device)\n   - Audio Output ID 1-2-2 (or just 2 if only locally unique within a device)\n- CSIP Group 2\n - Device 2-1\n   - Audio Output ID 2-1-1 (or just 1 if only locally unique within a device)\n   - Audio Output ID 2-1-2 (or just 2 if only locally unique within a device)\n - Device 2-2\n   - Audio Output ID 2-2-1 (or just 1 if only locally unique within a device)\n   - Audio Output ID 2-2-2 (or just 2 if only locally unique within a device)\n   \nIs this the new topology we want to expose? \n\nWhat is the use case for this?\n\nIn reality, how many LE audio peripherals will really have multiple audio output IDs?",
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b234100_383ddd16",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-01-30T20:26:22Z",
+      "side": 1,
+      "message": "The old API still has to work. What is the default audio output ID if none is included in the callback?",
+      "range": {
+        "startLine": 95,
+        "startChar": 16,
+        "endLine": 95,
+        "endChar": 100
+      },
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "513c8738_61e718fb",
         "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
         "patchSetId": 2
@@ -19,6 +59,76 @@
         "startChar": 13,
         "endLine": 124,
         "endChar": 35
+      },
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "87caf828_bfc58dd3",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-01-30T20:26:22Z",
+      "side": 1,
+      "message": "Yes, it always need to be flag guarded",
+      "parentUuid": "513c8738_61e718fb",
+      "range": {
+        "startLine": 124,
+        "startChar": 13,
+        "endLine": 124,
+        "endChar": 35
+      },
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f342646f_f3ac7a7d",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-01-30T20:26:22Z",
+      "side": 1,
+      "message": "audioOutputId",
+      "range": {
+        "startLine": 126,
+        "startChar": 50,
+        "endLine": 126,
+        "endChar": 52
+      },
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0dca2719_dcc00718",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-01-30T20:26:22Z",
+      "side": 1,
+      "message": "audioOutputId?",
+      "range": {
+        "startLine": 141,
+        "startChar": 50,
+        "endLine": 141,
+        "endChar": 52
       },
       "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
