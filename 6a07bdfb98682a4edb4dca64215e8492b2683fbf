@@ -114,6 +114,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "c1078198_b150153b",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5460,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-31T19:01:36Z",
+      "side": 1,
+      "message": "nit:\n\n```suggestion\n                        \"Caller is not the system or part of the active/managed user\");\n```",
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db0eacb0_918552b5",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
         "patchSetId": 4
