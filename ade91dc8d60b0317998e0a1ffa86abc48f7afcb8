@@ -1,5 +1,23 @@
 {
-  "comments": [],
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "309f0c83_b391bb64",
+        "filename": "android/app/src/com/android/bluetooth/le_audio/LeAudioService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 3695,
+      "author": {
+        "id": 1927775
+      },
+      "writtenOn": "2024-01-31T07:57:00Z",
+      "side": 1,
+      "message": "Is this persistent ? Do we have to care about on stop() of this service ?",
+      "revId": "ade91dc8d60b0317998e0a1ffa86abc48f7afcb8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ],
   "submitRequirementResults": [
     {
       "submitRequirement": {
