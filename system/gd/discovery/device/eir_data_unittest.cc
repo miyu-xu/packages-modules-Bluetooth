@@ -84,7 +84,21 @@ TEST(EirDataTest, test_data_packets__complete_name) {
       LOG_INFO("Name pkt:");
       for (const auto& v : names) {
         std::string name(v.begin(), v.end());
-        LOG_INFO("  Name:%s", name.c_str());
+        LOG_INFO("  Complete name:%s", name.c_str());
+      }
+    }
+  }
+}
+
+TEST(EirDataTest, test_data_packets__shortened_name) {
+  for (const auto& pkt : data_packets) {
+    const EirData eir_data(std::vector<uint8_t>(&pkt[kEirOffset], &pkt[kEirOffset] + kEirSize));
+    std::vector<std::array<uint8_t, kEirSize>> names;
+    if (eir_data.GetShortenedNames(names)) {
+      LOG_INFO("Name pkt:");
+      for (const auto& v : names) {
+        std::string name(v.begin(), v.end());
+        LOG_INFO("  Shortened name:%s", name.c_str());
       }
     }
   }
