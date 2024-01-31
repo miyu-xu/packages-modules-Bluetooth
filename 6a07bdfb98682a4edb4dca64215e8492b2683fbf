@@ -179,6 +179,40 @@
       },
       "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d6d63623_8f93dc5b",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3726,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-31T18:57:01Z",
+      "side": 1,
+      "message": "This exception doesn\u0027t come from the system server, so we should rethrow it as runtime exception.\n\n```suggestion\n                throw e.rethrowAsRuntimeException();\n```",
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "869ed9bc_e4d248a6",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3763,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-31T18:57:01Z",
+      "side": 1,
+      "message": "ditto",
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
