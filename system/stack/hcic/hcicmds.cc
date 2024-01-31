@@ -962,21 +962,6 @@ void btsnd_hcic_set_event_filter(uint8_t filt_type, uint8_t filt_cond_type,
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-void btsnd_hcic_write_pin_type(uint8_t type) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_WRITE_PARAM1;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_WRITE_PIN_TYPE);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_WRITE_PARAM1);
-
-  UINT8_TO_STREAM(pp, type);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_delete_stored_key(const RawAddress& bd_addr,
                                   bool delete_all_flag) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
