@@ -80,6 +80,10 @@ static constexpr char kPropertyCtkdDisableCsrkDistribution[] =
 static void send_ble_set_data_length(uint16_t hci_handle,
                                      uint16_t tx_pdu_length, uint16_t tx_time);
 
+static void send_ble_start_enc(uint16_t hci_handle,
+                               uint8_t rand[HCIC_BLE_RAND_DI_SIZE],
+                               uint16_t ediv, const Octet16& ltk);
+
 /******************************************************************************/
 /* External Function to be called by other modules                            */
 /******************************************************************************/
@@ -1243,11 +1247,11 @@ tBTM_STATUS btm_ble_start_encrypt(const RawAddress& bda, bool use_stk,
   p_cb->enc_handle = p_rec->ble_hci_handle;
 
   if (use_stk) {
-    btsnd_hcic_ble_start_enc(p_rec->ble_hci_handle, dummy_rand, 0, *p_stk);
+    send_ble_start_enc(p_rec->ble_hci_handle, dummy_rand, 0, *p_stk);
   } else if (p_rec->sec_rec.ble_keys.key_type & BTM_LE_KEY_PENC) {
-    btsnd_hcic_ble_start_enc(
-        p_rec->ble_hci_handle, p_rec->sec_rec.ble_keys.rand,
-        p_rec->sec_rec.ble_keys.ediv, p_rec->sec_rec.ble_keys.pltk);
+    send_ble_start_enc(p_rec->ble_hci_handle, p_rec->sec_rec.ble_keys.rand,
+                       p_rec->sec_rec.ble_keys.ediv,
+                       p_rec->sec_rec.ble_keys.pltk);
   } else {
     LOG_ERROR("No key available to encrypt the link");
     return BTM_ERR_KEY_MISSING;
@@ -2032,4 +2036,18 @@ static void send_ble_set_data_length(uint16_t hci_handle,
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::LeSetDataLengthCompleteView>));
+}
+
+static void send_ble_start_enc(uint16_t hci_handle,
+                               uint8_t rand[HCIC_BLE_RAND_DI_SIZE],
+                               uint16_t ediv, const Octet16& ltk) {
+  std::array<uint8_t, HCIC_BLE_RAND_DI_SIZE> r;
+  std::copy(rand, rand + HCIC_BLE_RAND_DI_SIZE, r.begin());
+  // TODO: Clarify ownership of this command
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::LeStartEncryptionBuilder::Create(hci_handle, r, ediv,
+                                                       ltk),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_status<
+              bluetooth::hci::LeStartEncryptionStatusView>));
 }
