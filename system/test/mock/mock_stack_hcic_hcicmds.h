@@ -568,15 +568,6 @@ struct btsnd_hcic_vendor_spec_cmd {
 };
 extern struct btsnd_hcic_vendor_spec_cmd btsnd_hcic_vendor_spec_cmd;
 
-// Name: btsnd_hcic_write_auth_enable
-// Params: uint8_t flag
-// Return: void
-struct btsnd_hcic_write_auth_enable {
-  std::function<void(uint8_t flag)> body{[](uint8_t flag) {}};
-  void operator()(uint8_t flag) { body(flag); };
-};
-extern struct btsnd_hcic_write_auth_enable btsnd_hcic_write_auth_enable;
-
 // Name: btsnd_hcic_write_auto_flush_tout
 // Params: uint16_t handle, uint16_t tout
 // Return: void
