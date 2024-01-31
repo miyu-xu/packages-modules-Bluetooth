@@ -651,7 +651,7 @@ static bt_status_t btif_gattc_read_phy(
 static int btif_gattc_get_device_type(const RawAddress& bd_addr) {
   int device_type = 0;
 
-  if (btif_config_get_int(bd_addr.ToString().c_str(), "DevType", &device_type))
+  if (btif_config_get_int(bd_addr.ToString().c_str(), BTIF_STORAGE_KEY_DEV_TYPE, &device_type))
     return device_type;
   return 0;
 }

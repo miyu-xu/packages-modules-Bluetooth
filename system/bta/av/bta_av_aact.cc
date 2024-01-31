@@ -544,7 +544,7 @@ static void bta_av_a2dp_sdp_cback(bool found, tA2DP_Service* p_service,
 
     if (p_service->avdt_version != 0) {
       if (btif_config_set_bin(p_scb->PeerAddress().ToString(),
-                              AVDTP_VERSION_CONFIG_KEY,
+                              BTIF_STORAGE_KEY_AVDTP_VERSION,
                               (const uint8_t*)&p_service->avdt_version,
                               sizeof(p_service->avdt_version))) {
       } else {
