@@ -181,6 +181,8 @@ static void send_link_key_neg_reply(const RawAddress& bd_addr);
 
 static void send_link_key_req_reply(const RawAddress& bd_addr, Octet16 key);
 
+static void send_set_conn_encrypt(uint16_t handle, bool encrypt);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -4538,7 +4540,7 @@ tBTM_STATUS btm_sec_execute_procedure(tBTM_SEC_DEV_REC* p_dev_rec) {
       (p_dev_rec->hci_handle != HCI_INVALID_HANDLE)) {
     LOG_VERBOSE("Security Manager: Start encryption");
 
-    btsnd_hcic_set_conn_encrypt(p_dev_rec->hci_handle, true);
+    send_set_conn_encrypt(p_dev_rec->hci_handle, true);
     p_dev_rec->sec_rec.sec_state = BTM_SEC_STATE_ENCRYPTING;
     return (BTM_CMD_STARTED);
   } else {
@@ -5343,4 +5345,15 @@ static void send_link_key_req_reply(const RawAddress& bd_addr, Octet16 key) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::LinkKeyRequestReplyCompleteView>));
+}
+
+static void send_set_conn_encrypt(uint16_t handle, bool encrypt) {
+  // TODO: Clarify whether this should belong to ACL or Security
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::SetConnectionEncryptionBuilder::Create(
+          handle, encrypt ? bluetooth::hci::Enable::ENABLED
+                          : bluetooth::hci::Enable::DISABLED),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_status<
+              bluetooth::hci::SetConnectionEncryptionStatusView>));
 }
