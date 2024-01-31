@@ -533,21 +533,6 @@ void btsnd_hcic_change_conn_type(uint16_t handle, uint16_t packet_types) {
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-void btsnd_hcic_auth_request(uint16_t handle) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_CMD_HANDLE;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_AUTHENTICATION_REQUESTED);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_CMD_HANDLE);
-
-  UINT16_TO_STREAM(pp, handle);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_set_conn_encrypt(uint16_t handle, bool enable) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
