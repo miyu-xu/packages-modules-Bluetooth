@@ -194,18 +194,6 @@ struct btsnd_hcic_hold_mode {
 };
 extern struct btsnd_hcic_hold_mode btsnd_hcic_hold_mode;
 
-// Name: btsnd_hcic_link_key_req_reply
-// Params: const RawAddress& bd_addr, const LinkKey& link_key
-// Return: void
-struct btsnd_hcic_link_key_req_reply {
-  std::function<void(const RawAddress& bd_addr, const LinkKey& link_key)> body{
-      [](const RawAddress& bd_addr, const LinkKey& link_key) {}};
-  void operator()(const RawAddress& bd_addr, const LinkKey& link_key) {
-    body(bd_addr, link_key);
-  };
-};
-extern struct btsnd_hcic_link_key_req_reply btsnd_hcic_link_key_req_reply;
-
 // Name: btsnd_hcic_park_mode
 // Params: uint16_t handle, uint16_t beacon_max_interval, uint16_t
 // beacon_min_interval Return: void
