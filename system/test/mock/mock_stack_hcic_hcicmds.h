@@ -102,16 +102,6 @@ struct btsnd_hcic_change_name {
 };
 extern struct btsnd_hcic_change_name btsnd_hcic_change_name;
 
-// Name: btsnd_hcic_create_conn_cancel
-// Params: const RawAddress& dest
-// Return: void
-struct btsnd_hcic_create_conn_cancel {
-  std::function<void(const RawAddress& dest)> body{
-      [](const RawAddress& dest) {}};
-  void operator()(const RawAddress& dest) { body(dest); };
-};
-extern struct btsnd_hcic_create_conn_cancel btsnd_hcic_create_conn_cancel;
-
 // Name: btsnd_hcic_delete_stored_key
 // Params: const RawAddress& bd_addr, bool delete_all_flag
 // Return: void
