@@ -49,7 +49,6 @@ struct btsnd_hcic_enhanced_set_up_synchronous_connection
 struct btsnd_hcic_exit_park_mode btsnd_hcic_exit_park_mode;
 struct btsnd_hcic_exit_sniff_mode btsnd_hcic_exit_sniff_mode;
 struct btsnd_hcic_hold_mode btsnd_hcic_hold_mode;
-struct btsnd_hcic_link_key_req_reply btsnd_hcic_link_key_req_reply;
 struct btsnd_hcic_park_mode btsnd_hcic_park_mode;
 struct btsnd_hcic_read_failed_contact_counter
     btsnd_hcic_read_failed_contact_counter;
@@ -158,12 +157,6 @@ void btsnd_hcic_hold_mode(uint16_t handle, uint16_t max_hold_period,
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_hold_mode(handle, max_hold_period,
                                                        min_hold_period);
-}
-void btsnd_hcic_link_key_req_reply(const RawAddress& bd_addr,
-                                   const LinkKey& link_key) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_link_key_req_reply(bd_addr,
-                                                                link_key);
 }
 void btsnd_hcic_park_mode(uint16_t handle, uint16_t beacon_max_interval,
                           uint16_t beacon_min_interval) {
