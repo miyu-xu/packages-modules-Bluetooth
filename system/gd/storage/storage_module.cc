@@ -23,6 +23,7 @@
 #include <utility>
 
 #include "common/bind.h"
+#include "gd/storage/config_keys.h"
 #include "metrics/counter_metrics.h"
 #include "os/alarm.h"
 #include "os/files.h"
@@ -58,7 +59,7 @@ const std::string StorageModule::kFileSourceProperty = "FileSource";
 const std::string StorageModule::kTimeCreatedProperty = "TimeCreated";
 const std::string StorageModule::kTimeCreatedFormat = "%Y-%m-%d %H:%M:%S";
 
-const std::string StorageModule::kAdapterSection = "Adapter";
+const std::string StorageModule::kAdapterSection = BTIF_STORAGE_SECTION_ADAPTER;
 
 StorageModule::StorageModule(
     std::string config_file_path,
