@@ -90,6 +90,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "88849e4f_ae1c0229",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5422,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-31T18:45:00Z",
+      "side": 1,
+      "message": "\u003e I don\u0027t event know if binder support null values for parcelable or if it\u0027s up to the parcelable responsability.\n\nhttps://cs.android.com/android/platform/superproject/main/+/main:frameworks/base/core/java/android/os/Parcel.java;l\u003d2668;drc\u003d6f14f615c8f18a4467f0ae0539de58bddc9cc682\n\nSo it\u0027s supported by Binder, so technically this case is possible if some calls our binder directly, but is not possible by using our framework.\n\nIMO we should remove this null check and just let Java do the null check, and looking around in AdapterService (like in createBond) we don\u0027t check if the BluetoothDevice is null from our Binder calls.",
+      "parentUuid": "fc00fcc7_eb74d147",
+      "range": {
+        "startLine": 5420,
+        "startChar": 9,
+        "endLine": 5422,
+        "endChar": 13
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db0eacb0_918552b5",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
         "patchSetId": 4
