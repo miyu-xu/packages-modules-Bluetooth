@@ -30,6 +30,10 @@
 #include "device/include/controller.h"
 #include "device/include/interop.h"
 #include "device/include/interop_config.h"
+#include "hci/event_checkers.h"
+#include "hci/hci_layer.h"
+#include "main/shim/entry.h"
+#include "main_thread.h"
 #include "os/log.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
@@ -69,6 +73,12 @@ constexpr char kBtmLogTag[] = "SEC";
 
 static constexpr char kPropertyCtkdDisableCsrkDistribution[] =
     "bluetooth.core.smp.le.ctkd.quirk_disable_csrk_distribution";
+
+/******************************************************************************/
+/* Static functions for internal use                                          */
+/******************************************************************************/
+static void send_ble_set_data_length(uint16_t hci_handle,
+                                     uint16_t tx_pdu_length, uint16_t tx_time);
 
 /******************************************************************************/
 /* External Function to be called by other modules                            */
@@ -622,7 +632,7 @@ tBTM_STATUS BTM_SetBleDataLength(const RawAddress& bd_addr,
   tx_time = std::min<uint16_t>(
       tx_time, controller_get_interface()->get_ble_maximum_tx_time());
 
-  btsnd_hcic_ble_set_data_length(hci_handle, tx_pdu_length, tx_time);
+  send_ble_set_data_length(hci_handle, tx_pdu_length, tx_time);
   p_dev_rec->set_suggested_tx_octect(tx_pdu_length);
 
   return BTM_SUCCESS;
@@ -2011,4 +2021,15 @@ std::optional<tBLE_BD_ADDR> BTM_BleGetIdentityAddress(
   }
 
   return p_dev_rec->ble.identity_address_with_type;
+}
+
+static void send_ble_set_data_length(uint16_t hci_handle,
+                                     uint16_t tx_pdu_length, uint16_t tx_time) {
+  // TODO: Clarify ownership of this command
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::LeSetDataLengthBuilder::Create(hci_handle, tx_pdu_length,
+                                                     tx_time),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::LeSetDataLengthCompleteView>));
 }
