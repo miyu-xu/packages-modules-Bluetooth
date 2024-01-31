@@ -1268,23 +1268,6 @@ void btsnd_hcic_enhanced_accept_synchronous_connection(
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-void btsnd_hcic_io_cap_req_neg_reply(const RawAddress& bd_addr,
-                                     uint8_t err_code) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_IO_CAP_NEG_REPLY;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_IO_CAP_REQ_NEG_REPLY);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_IO_CAP_NEG_REPLY);
-
-  BDADDR_TO_STREAM(pp, bd_addr);
-  UINT8_TO_STREAM(pp, err_code);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 /**** end of Simple Pairing Commands ****/
 
 void btsnd_hcic_enhanced_flush(uint16_t handle, uint8_t packet_type) {
