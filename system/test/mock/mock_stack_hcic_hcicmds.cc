@@ -95,7 +95,6 @@ struct btsnd_hcic_write_link_super_tout btsnd_hcic_write_link_super_tout;
 struct btsnd_hcic_write_page_tout btsnd_hcic_write_page_tout;
 struct btsnd_hcic_write_pagescan_cfg btsnd_hcic_write_pagescan_cfg;
 struct btsnd_hcic_write_pagescan_type btsnd_hcic_write_pagescan_type;
-struct btsnd_hcic_write_pin_type btsnd_hcic_write_pin_type;
 struct btsnd_hcic_write_policy_set btsnd_hcic_write_policy_set;
 struct btsnd_hcic_write_scan_enable btsnd_hcic_write_scan_enable;
 struct btsnd_hcic_write_voice_settings btsnd_hcic_write_voice_settings;
@@ -385,10 +384,6 @@ void btsnd_hcic_write_pagescan_cfg(uint16_t interval, uint16_t window) {
 void btsnd_hcic_write_pagescan_type(uint8_t type) {
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_write_pagescan_type(type);
-}
-void btsnd_hcic_write_pin_type(uint8_t type) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_write_pin_type(type);
 }
 void btsnd_hcic_write_policy_set(uint16_t handle, uint16_t settings) {
   inc_func_call_count(__func__);

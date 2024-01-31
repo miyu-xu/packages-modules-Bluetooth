@@ -1934,7 +1934,7 @@ enum PinType : 8 {
   FIXED = 1,
 }
 
-packet ReadPinType : Command (op_code = READ_PIN_TYPE) {
+packet ReadPinType : SecurityCommand (op_code = READ_PIN_TYPE) {
 }
 
 packet ReadPinTypeComplete : CommandComplete (command_op_code = READ_PIN_TYPE) {
@@ -1942,7 +1942,7 @@ packet ReadPinTypeComplete : CommandComplete (command_op_code = READ_PIN_TYPE) {
   pin_type : PinType,
 }
 
-packet WritePinType : Command (op_code = WRITE_PIN_TYPE) {
+packet WritePinType : SecurityCommand (op_code = WRITE_PIN_TYPE) {
   pin_type : PinType,
 }
 
