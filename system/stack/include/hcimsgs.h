@@ -170,8 +170,6 @@ void btsnd_hcic_io_cap_req_neg_reply(const RawAddress& bd_addr,
 /* Read Local OOB Data */
 void btsnd_hcic_read_local_oob_data(void);
 
-void btsnd_hcic_user_conf_reply(const RawAddress& bd_addr, bool is_yes);
-
 void btsnd_hcic_user_passkey_reply(const RawAddress& bd_addr, uint32_t value);
 
 void btsnd_hcic_user_passkey_neg_reply(const RawAddress& bd_addr);
