@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b4e56e0d_96bf7327",
+        "filename": "system/bta/av/bta_av_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 1,
+      "message": "nit: It\u0027s not really a \"custom\" config as much as it is _the_ config. Eventually this will be the only way to configure our SDP record, so the custom feels off 😊",
+      "range": {
+        "startLine": 293,
+        "startChar": 35,
+        "endLine": 293,
+        "endChar": 53
+      },
+      "revId": "97b6de4e2f90081df183a48ae6ed76c08f98b757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bcb6c330_b3c2a257",
+        "filename": "system/bta/av/bta_av_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 1,
+      "message": "We can have different versions for controller/target, so perhaps we want a `controller_version` and `target_version`.",
+      "range": {
+        "startLine": 295,
+        "startChar": 19,
+        "endLine": 295,
+        "endChar": 34
+      },
+      "revId": "97b6de4e2f90081df183a48ae6ed76c08f98b757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc7738ca_c94cc79e",
+        "filename": "system/bta/av/bta_av_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 1,
+      "message": "For some of these configs like company IDs, events, etc. that have a size or number of items configs, can we just infer from the input so we never get it wrong?",
+      "range": {
+        "startLine": 336,
+        "startChar": 7,
+        "endLine": 336,
+        "endChar": 19
+      },
+      "revId": "97b6de4e2f90081df183a48ae6ed76c08f98b757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "525b4157_97220ae9",
+        "filename": "system/bta/av/bta_av_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 1,
+      "message": "nit: `setMaxAudioQueueSize()` so I don\u0027t need to look up what it means!\n\nAs well, I know the old code did it, but prefer no magic numbers so things are more readable.",
+      "range": {
+        "startLine": 339,
+        "startChar": 7,
+        "endLine": 339,
+        "endChar": 18
+      },
+      "revId": "97b6de4e2f90081df183a48ae6ed76c08f98b757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "12e7fe9c_5281410e",
+        "filename": "system/bta/av/bta_av_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 1,
+      "message": "nit: setAvrcpGroupNavigationCommandsSupported()",
+      "range": {
+        "startLine": 340,
+        "startChar": 7,
+        "endLine": 340,
+        "endChar": 19
+      },
+      "revId": "97b6de4e2f90081df183a48ae6ed76c08f98b757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0b340b05_c79c1380",
+        "filename": "system/bta/av/bta_av_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 1,
+      "message": "nit: Can we infer this",
+      "range": {
+        "startLine": 341,
+        "startChar": 7,
+        "endLine": 341,
+        "endChar": 18
+      },
+      "revId": "97b6de4e2f90081df183a48ae6ed76c08f98b757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "33df52d6_afc5c5bb",
+        "filename": "system/bta/av/bta_av_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 1,
+      "message": "I wonder why this is even a config if its not actually configurable and the value itself is really sensible (i.e. \"not implemented\" by default if a pass-through id isn\u0027t supported).",
+      "range": {
+        "startLine": 344,
+        "startChar": 6,
+        "endLine": 344,
+        "endChar": 44
+      },
+      "revId": "97b6de4e2f90081df183a48ae6ed76c08f98b757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1b2bd052_fba4a2d5",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 486,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 1,
+      "message": "As I understand it (might have it wrong!), this `bta_av_api_register` is called through `BTA_AvRegister` once for Source and once for Sink.\n\nThe Source side, as configured on most phones, ends up skipping chunks of this function because avrcp_service is a thing.\n\nThe Sink side executes this function to the end.\n\nWith that understanding, how does this make a true source and sink configuration and thus true merged SDP record? Is it relying on `btif_av_src_sink_coexist_enabled()`? If so, we want to do away with this sysprop.\n\nI would instead use the profile supported sysprops, or change the pattern such that each profile subjects it\u0027s desired set of features, etc. on the config, and thus SDP record, when they start.",
+      "range": {
+        "startLine": 483,
+        "startChar": 1,
+        "endLine": 486,
+        "endChar": 60
+      },
+      "revId": "97b6de4e2f90081df183a48ae6ed76c08f98b757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c6f1a136_2a0de1a0",
+        "filename": "system/bta/av/bta_av_main.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 1,
+      "message": "Probably not for this change, but I find it odd we\u0027re overwriting the CoD when there\u0027s a function (btif_dm_get_local_class_of_device) that fetches the CoD from a system property + other logic, which is ultimately used to write the CoD to the HW.\n\nWe might want to validate this logic and see if we really need it, or if this is the place to be auto-magical with the CoD",
+      "range": {
+        "startLine": 571,
+        "startChar": 6,
+        "endLine": 571,
+        "endChar": 64
+      },
+      "revId": "97b6de4e2f90081df183a48ae6ed76c08f98b757",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

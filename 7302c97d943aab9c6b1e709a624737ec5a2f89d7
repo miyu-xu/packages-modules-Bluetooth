@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "949b572f_ffe017a4",
+        "filename": "system/bta/av/bta_av_cfg.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1427525
+      },
+      "writtenOn": "2024-01-31T17:45:29Z",
+      "side": 0,
+      "message": "The mediatek patch broke this (just checked in recent snoop logs). We really want our Controller implementation to support cover art.\n\nDon\u0027t use the 1.5 features.",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 44,
+        "endChar": 26
+      },
+      "revId": "7302c97d943aab9c6b1e709a624737ec5a2f89d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
