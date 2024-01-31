@@ -53,8 +53,6 @@ using bluetooth::groups::DeviceGroups;
 /*******************************************************************************
  *  Constants & Macros
  ******************************************************************************/
-#define BTIF_STORAGE_PATH_REMOTE_DEVCLASS "DevClass"
-
 #define BTIF_STORAGE_CSIS_AUTOCONNECT "CsisAutoconnect"
 #define BTIF_STORAGE_CSIS_SET_INFO_BIN "CsisSetInfoBin"
 #define BTIF_STORAGE_LEAUDIO_AUTOCONNECT "LeAudioAutoconnect"
@@ -297,8 +295,7 @@ std::vector<RawAddress> btif_storage_get_wake_capable_classic_hid_devices(
       constexpr int kHidMask = COD_HID_MAJOR;
       constexpr int kKeyboardMouseMask = COD_HID_COMBO & ~COD_HID_MAJOR;
       int cod_value;
-      if (!btif_config_get_int(name, BTIF_STORAGE_PATH_REMOTE_DEVCLASS,
-                               &cod_value) ||
+      if (!btif_config_get_int(name, BTIF_STORAGE_KEY_DEV_CLASS, &cod_value) ||
           (cod_value & kHidMask) != kHidMask ||
           (cod_value & kKeyboardMouseMask) == 0) {
         continue;

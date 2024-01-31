@@ -4169,7 +4169,7 @@ bool btif_get_address_type(const RawAddress& bda, tBLE_ADDR_TYPE* p_addr_type) {
   const char* bd_addr_str = addrstr.c_str();
 
   int val = 0;
-  if (!btif_config_get_int(bd_addr_str, "AddrType", &val)) return false;
+  if (!btif_config_get_int(bd_addr_str, BTIF_STORAGE_KEY_ADDR_TYPE, &val)) return false;
   *p_addr_type = static_cast<tBLE_ADDR_TYPE>(val);
   LOG_DEBUG("bd_addr:%s[%s]", ADDRESS_TO_LOGGABLE_CSTR(bda),
             AddressTypeText(*p_addr_type).c_str());

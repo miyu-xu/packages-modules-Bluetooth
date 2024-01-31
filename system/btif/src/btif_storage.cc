@@ -145,7 +145,7 @@ static bool prop2cfg(const RawAddress* remote_bd_addr, bt_property_t* prop) {
     case BT_PROPERTY_REMOTE_FRIENDLY_NAME:
       strncpy(value, (char*)prop->val, prop->len);
       value[prop->len] = '\0';
-      btif_config_set_str(bdstr, BTIF_STORAGE_KEY_ALIASE, value);
+      btif_config_set_str(bdstr, BTIF_STORAGE_KEY_ALIAS, value);
       break;
     case BT_PROPERTY_ADAPTER_SCAN_MODE:
       btif_config_set_int(BTIF_STORAGE_SECTION_ADAPTER,
@@ -248,7 +248,7 @@ static bool cfg2prop(const RawAddress* remote_bd_addr, bt_property_t* prop) {
     }
     case BT_PROPERTY_REMOTE_FRIENDLY_NAME: {
       int len = prop->len;
-      ret = btif_config_get_str(bdstr, BTIF_STORAGE_KEY_ALIASE,
+      ret = btif_config_get_str(bdstr, BTIF_STORAGE_KEY_ALIAS,
                                 (char*)prop->val, &len);
       if (ret && len && len <= prop->len)
         prop->len = len - 1;
@@ -1585,4 +1585,31 @@ void btif_debug_linkkey_type_dump(int fd) {
 
     dprintf(fd, "\n");
   }
+}
+
+void btif_storage_set_encr_data_cccd(const RawAddress& bd_addr, uint8_t cccd) {
+  do_in_jni_thread(FROM_HERE, base::BindOnce( [](const RawAddress& bd_addr, uint8_t cccd) { btif_config_set_int( bd_addr.ToString(), BTIF_STORAGE_KEY_ENCR_DATA_CCCD, cccd); }, bd_addr, cccd));
+}
+
+bt_status_t btif_storage_get_encr_data_cccd(const RawAddress& bda, int *cccd) {
+  return btif_config_get_int(bda.ToString(), BTIF_STORAGE_KEY_ENCR_DATA_CCCD, cccd) ? BT_STATUS_SUCCESS : BT_STATUS_SUCCESS;
+}
+
+void btif_storage_set_enc_key_material(const RawAddress& remote_bd_addr, uint8_t* value, size_t key_length) {
+  do_in_jni_thread(FROM_HERE, base::BindOnce( [](const RawAddress& remote_bd_addr, uint8_t* value, uint8_t key_length ) { btif_config_set_bin( remote_bd_addr.ToString(), BTIF_STORAGE_KEY_ENCR_DATA, value, key_length); }, remote_bd_addr, value, key_length));
+}
+
+bt_status_t btif_storage_get_enc_key_material(const RawAddress* remote_bd_addr, uint8_t* key_value, size_t* key_length) {
+  std::string key = (remote_bd_addr == NULL) ? BTIF_STORAGE_SECTION_ADAPTER  : remote_bd_addr->ToString();
+  return btif_config_get_bin(key, BTIF_STORAGE_KEY_ENCR_DATA, key_value, key_length) ? BT_STATUS_SUCCESS : BT_STATUS_FAIL;
+}
+
+size_t btif_storage_get_enc_key_material_length(const RawAddress* remote_bd_addr) {
+  std::string key = (remote_bd_addr == NULL) ? BTIF_STORAGE_SECTION_ADAPTER  : remote_bd_addr->ToString();
+  return btif_config_get_bin_length(key, BTIF_STORAGE_KEY_ENCR_DATA);
+}
+
+void btif_storage_remove_enc_key_material(const RawAddress* remote_bd_addr) {
+  std::string key = (remote_bd_addr == NULL) ? BTIF_STORAGE_SECTION_ADAPTER  : remote_bd_addr->ToString();
+  do_in_jni_thread(FROM_HERE, base::BindOnce( [](const std::string key) { btif_config_remove(key, BTIF_STORAGE_KEY_ENCR_DATA); }, std::move(key)));
 }
