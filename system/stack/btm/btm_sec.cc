@@ -162,6 +162,8 @@ static void send_rem_oob_neg_reply(const RawAddress& bd_addr);
 static void send_user_passkey_reply(const RawAddress& bd_addr,
                                     uint32_t passkey);
 
+static void send_read_local_oob_data();
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -1279,7 +1281,7 @@ void BTM_PasskeyReqReply(tBTM_STATUS res, const RawAddress& bd_addr,
  *                  LM
  *
  ******************************************************************************/
-void BTM_ReadLocalOobData(void) { btsnd_hcic_read_local_oob_data(); }
+void BTM_ReadLocalOobData(void) { send_read_local_oob_data(); }
 
 /*******************************************************************************
  *
@@ -5216,4 +5218,21 @@ static void send_user_passkey_reply(const RawAddress& bd_addr,
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::UserPasskeyRequestReplyCompleteView>));
+}
+
+static void send_read_local_oob_data() {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::ReadLocalOobDataBuilder::Create(),
+      get_main_thread()->BindOnce(
+          [](bluetooth::hci::CommandCompleteView complete) {
+            auto event =
+                bluetooth::hci::ReadLocalOobDataCompleteView::Create(complete);
+            ASSERT(event.IsValid());
+            tBTM_SP_LOC_OOB evt_data;
+            auto status = event.GetStatus();
+            evt_data.status = static_cast<tHCI_STATUS>(status);
+            evt_data.c = event.GetC();
+            evt_data.r = event.GetR();
+            btm_read_local_oob_complete(evt_data);
+          }));
 }

@@ -1285,19 +1285,6 @@ void btsnd_hcic_io_cap_req_neg_reply(const RawAddress& bd_addr,
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-void btsnd_hcic_read_local_oob_data(void) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_R_LOCAL_OOB;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_READ_LOCAL_OOB_DATA);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_R_LOCAL_OOB);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_rem_oob_reply(const RawAddress& bd_addr, const Octet16& c,
                               const Octet16& r) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);

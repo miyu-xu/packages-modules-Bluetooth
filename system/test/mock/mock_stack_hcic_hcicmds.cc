@@ -57,7 +57,6 @@ struct btsnd_hcic_park_mode btsnd_hcic_park_mode;
 struct btsnd_hcic_read_encryption_key_size btsnd_hcic_read_encryption_key_size;
 struct btsnd_hcic_read_failed_contact_counter
     btsnd_hcic_read_failed_contact_counter;
-struct btsnd_hcic_read_local_oob_data btsnd_hcic_read_local_oob_data;
 struct btsnd_hcic_read_name btsnd_hcic_read_name;
 struct btsnd_hcic_read_rmt_clk_offset btsnd_hcic_read_rmt_clk_offset;
 struct btsnd_hcic_read_rssi btsnd_hcic_read_rssi;
@@ -202,10 +201,6 @@ void btsnd_hcic_read_failed_contact_counter(uint16_t handle) {
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_read_failed_contact_counter(
       handle);
-}
-void btsnd_hcic_read_local_oob_data(void) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_read_local_oob_data();
 }
 void btsnd_hcic_read_name(void) {
   inc_func_call_count(__func__);
