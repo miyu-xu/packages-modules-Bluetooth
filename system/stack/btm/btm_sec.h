@@ -457,10 +457,12 @@ void btm_create_conn_cancel_complete(uint8_t status, const RawAddress bd_addr,
  *
  * Description      This function should be called after device reset
  *
+ * Parameters:      local_io_caps - IO Caps for this device
+ *
  * Returns          void
  *
  ******************************************************************************/
-void btm_sec_dev_reset(void);
+void btm_sec_dev_reset(tBTM_IO_CAP local_io_caps);
 
 /*******************************************************************************
  *

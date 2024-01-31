@@ -28,6 +28,7 @@
 
 // Original included files, if any
 #include "bt_dev_class.h"
+#include "btm_sec_api_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/bt_device_type.h"
 #include "stack/include/btm_status.h"
@@ -622,8 +623,8 @@ extern struct btm_sec_dev_rec_cback_event btm_sec_dev_rec_cback_event;
 // Params: void
 // Return: void
 struct btm_sec_dev_reset {
-  std::function<void(void)> body{[](void) {}};
-  void operator()(void) { body(); };
+  std::function<void(tBTM_IO_CAP)> body{[](tBTM_IO_CAP) {}};
+  void operator()(tBTM_IO_CAP local_io_caps) { body(local_io_caps); };
 };
 extern struct btm_sec_dev_reset btm_sec_dev_reset;
 
