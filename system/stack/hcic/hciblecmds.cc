@@ -69,7 +69,6 @@
 
 #define HCIC_BLE_RAND_DI_SIZE 8
 #define HCIC_BLE_ENCRYPT_KEY_SIZE 16
-#define HCIC_PARAM_SIZE_LTK_REQ_REPLY (2 + HCIC_BLE_ENCRYPT_KEY_SIZE)
 #define HCIC_PARAM_SIZE_LTK_REQ_NEG_REPLY 2
 #define HCIC_BLE_CHNL_MAP_SIZE 5
 #define HCIC_PARAM_SIZE_BLE_WRITE_ADV_DATA 31
@@ -274,22 +273,6 @@ void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {
                                   cb.Run(param + 1 /* skip status */);
                                 },
                                 std::move(cb)));
-}
-
-void btsnd_hcic_ble_ltk_req_reply(uint16_t handle, const Octet16& ltk) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_LTK_REQ_REPLY;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_BLE_LTK_REQ_REPLY);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_LTK_REQ_REPLY);
-
-  UINT16_TO_STREAM(pp, handle);
-  ARRAY_TO_STREAM(pp, ltk.data(), HCIC_BLE_ENCRYPT_KEY_SIZE);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
 void btsnd_hcic_ble_ltk_req_neg_reply(uint16_t handle) {

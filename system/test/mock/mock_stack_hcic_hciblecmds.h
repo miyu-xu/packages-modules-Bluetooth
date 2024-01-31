@@ -159,16 +159,6 @@ struct btsnd_hcic_ble_ltk_req_neg_reply {
 };
 extern struct btsnd_hcic_ble_ltk_req_neg_reply btsnd_hcic_ble_ltk_req_neg_reply;
 
-// Name: btsnd_hcic_ble_ltk_req_reply
-// Params: uint16_t handle, const Octet16& ltk
-// Return: void
-struct btsnd_hcic_ble_ltk_req_reply {
-  std::function<void(uint16_t handle, const Octet16& ltk)> body{
-      [](uint16_t handle, const Octet16& ltk) {}};
-  void operator()(uint16_t handle, const Octet16& ltk) { body(handle, ltk); };
-};
-extern struct btsnd_hcic_ble_ltk_req_reply btsnd_hcic_ble_ltk_req_reply;
-
 // Name: btsnd_hcic_ble_periodic_advertising_create_sync
 // Params: uint8_t options, uint8_t adv_sid, uint8_t adv_addr_type, const
 // RawAddress& adv_addr, uint16_t skip_num, uint16_t sync_timeout, uint8_t
