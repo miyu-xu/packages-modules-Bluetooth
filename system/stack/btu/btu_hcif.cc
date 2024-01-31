@@ -429,7 +429,7 @@ static void btu_hcif_log_command_metrics(uint16_t opcode, const uint8_t* p_cmd,
 
   switch (opcode) {
     case HCI_CREATE_CONNECTION:
-    case HCI_CREATE_CONNECTION_CANCEL:
+      // case HCI_CREATE_CONNECTION_CANCEL:
       STREAM_TO_BDADDR(bd_addr, p_cmd);
       log_link_layer_connection_event(
           &bd_addr, bluetooth::common::kUnknownConnectionHandle,
@@ -1043,10 +1043,6 @@ static void btu_hcif_hdl_command_complete(uint16_t opcode, uint8_t* p,
 
     case HCI_READ_TRANSMIT_POWER_LEVEL:
       btm_read_tx_power_complete(p, evt_len, false);
-      break;
-
-    case HCI_CREATE_CONNECTION_CANCEL:
-      btu_hcif_create_conn_cancel_complete(p, evt_len);
       break;
 
     case HCI_READ_LOCAL_OOB_DATA:

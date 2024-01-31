@@ -39,7 +39,6 @@ struct btsnd_hcic_accept_esco_conn btsnd_hcic_accept_esco_conn;
 struct btsnd_hcic_add_SCO_conn btsnd_hcic_add_SCO_conn;
 struct btsnd_hcic_auth_request btsnd_hcic_auth_request;
 struct btsnd_hcic_change_name btsnd_hcic_change_name;
-struct btsnd_hcic_create_conn_cancel btsnd_hcic_create_conn_cancel;
 struct btsnd_hcic_delete_stored_key btsnd_hcic_delete_stored_key;
 struct btsnd_hcic_enable_test_mode btsnd_hcic_enable_test_mode;
 struct btsnd_hcic_enhanced_accept_synchronous_connection
@@ -130,10 +129,6 @@ void btsnd_hcic_auth_request(uint16_t handle) {
 void btsnd_hcic_change_name(BD_NAME name) {
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_change_name(name);
-}
-void btsnd_hcic_create_conn_cancel(const RawAddress& dest) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_create_conn_cancel(dest);
 }
 void btsnd_hcic_delete_stored_key(const RawAddress& bd_addr,
                                   bool delete_all_flag) {
