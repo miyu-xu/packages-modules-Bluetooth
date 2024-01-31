@@ -16,6 +16,24 @@
       "message": "+2 is needed one more time.",
       "revId": "04f2040e86a3cb58ad08e386d9e7a831c442a48f",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "91c861b2_4c7ac256",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-31T18:12:55Z",
+      "side": 1,
+      "message": "Done and submitted",
+      "parentUuid": "4e7af71b_30f75fdd",
+      "revId": "04f2040e86a3cb58ad08e386d9e7a831c442a48f",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ],
   "submitRequirementResults": [
