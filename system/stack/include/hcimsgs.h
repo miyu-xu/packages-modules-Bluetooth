@@ -226,8 +226,6 @@ void btsnd_hcic_write_pagescan_cfg(
 void btsnd_hcic_write_inqscan_cfg(uint16_t interval, uint16_t window);
 /* Write Inquiry Scan Activity */
 
-void btsnd_hcic_write_auth_enable(
-    uint8_t flag); /* Write Authentication Enable */
 void btsnd_hcic_write_dev_class(DEV_CLASS dev); /* Write Class of Device */
 void btsnd_hcic_write_voice_settings(uint16_t flags); /* Write Voice Settings */
 

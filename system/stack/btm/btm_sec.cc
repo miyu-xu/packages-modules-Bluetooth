@@ -22,6 +22,7 @@
  *
  ******************************************************************************/
 
+#include <type_traits>
 #define LOG_TAG "bt_btm_sec"
 
 #include "stack/btm/btm_sec.h"
@@ -145,6 +146,8 @@ static void send_pin_code_neg_reply(const RawAddress& bd_addr);
 static void send_write_pin_type(uint8_t pin_type);
 
 static void send_create_conn_cancel_hack(const RawAddress& bd_addr);
+
+static void send_write_auth_enable(bool enable);
 
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
@@ -555,7 +558,7 @@ void BTM_PINCodeReply(const RawAddress& bd_addr, tBTM_STATUS res,
     memcpy(btm_sec_cb.pin_code, p_pin, pin_len);
 
     btm_sec_cb.security_mode_changed = true;
-    btsnd_hcic_write_auth_enable(true);
+    send_write_auth_enable(true);
 
     acl_set_disconnect_reason(HCI_ERR_UNDEFINED);
 
@@ -4673,7 +4676,7 @@ static void btm_send_link_key_notif(tBTM_SEC_DEV_REC* p_dev_rec) {
 static void btm_restore_mode(void) {
   if (btm_sec_cb.security_mode_changed) {
     btm_sec_cb.security_mode_changed = false;
-    btsnd_hcic_write_auth_enable(false);
+    send_write_auth_enable(false);
   }
 
   if (btm_sec_cb.pin_type_changed) {
@@ -4852,7 +4855,7 @@ static bool btm_sec_check_prefetch_pin(tBTM_SEC_DEV_REC* p_dev_rec) {
 
     if (!btm_sec_cb.security_mode_changed) {
       btm_sec_cb.security_mode_changed = true;
-      btsnd_hcic_write_auth_enable(true);
+      send_write_auth_enable(true);
     }
   } else {
     btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_WAIT_LOCAL_PIN);
@@ -5132,4 +5135,15 @@ static void send_create_conn_cancel_hack(const RawAddress& bd_addr) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::CreateConnectionCancelCompleteView>));
+}
+
+static void send_write_auth_enable(bool enable) {
+  auto enable_value =
+      (enable ? bluetooth::hci::AuthenticationEnable::REQUIRED
+              : bluetooth::hci::AuthenticationEnable::NOT_REQUIRED);
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::WriteAuthenticationEnableBuilder::Create(enable_value),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::WriteAuthenticationEnableCompleteView>));
 }
