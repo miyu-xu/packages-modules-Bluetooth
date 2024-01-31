@@ -168,6 +168,9 @@ static void send_rem_oob_reply(const RawAddress& bd_addr, Octet16 c, Octet16 r);
 
 static void send_reject_conn_hack(const RawAddress& bd_addr, uint8_t reason);
 
+static void send_io_cap_req_neg_reply(const RawAddress& bd_addr,
+                                      uint8_t reason);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -2557,7 +2560,7 @@ void btm_io_capabilities_req(RawAddress p) {
   }
 
   if (err_code != 0) {
-    btsnd_hcic_io_cap_req_neg_reply(evt_data.bd_addr, err_code);
+    send_io_cap_req_neg_reply(evt_data.bd_addr, err_code);
     return;
   }
 
@@ -5260,4 +5263,15 @@ static void send_reject_conn_hack(const RawAddress& bd_addr, uint8_t reason) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_status<
               bluetooth::hci::RejectConnectionRequestStatusView>));
+}
+
+static void send_io_cap_req_neg_reply(const RawAddress& bd_addr,
+                                      uint8_t reason) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::IoCapabilityRequestNegativeReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr),
+          static_cast<bluetooth::hci::ErrorCode>(reason)),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::IoCapabilityRequestNegativeReplyCompleteView>));
 }
