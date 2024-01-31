@@ -49,7 +49,6 @@ struct btsnd_hcic_enhanced_set_up_synchronous_connection
 struct btsnd_hcic_exit_park_mode btsnd_hcic_exit_park_mode;
 struct btsnd_hcic_exit_sniff_mode btsnd_hcic_exit_sniff_mode;
 struct btsnd_hcic_hold_mode btsnd_hcic_hold_mode;
-struct btsnd_hcic_io_cap_req_reply btsnd_hcic_io_cap_req_reply;
 struct btsnd_hcic_link_key_neg_reply btsnd_hcic_link_key_neg_reply;
 struct btsnd_hcic_link_key_req_reply btsnd_hcic_link_key_req_reply;
 struct btsnd_hcic_park_mode btsnd_hcic_park_mode;
@@ -161,12 +160,6 @@ void btsnd_hcic_hold_mode(uint16_t handle, uint16_t max_hold_period,
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_hold_mode(handle, max_hold_period,
                                                        min_hold_period);
-}
-void btsnd_hcic_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
-                                 uint8_t oob_present, uint8_t auth_req) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_io_cap_req_reply(
-      bd_addr, capability, oob_present, auth_req);
 }
 void btsnd_hcic_link_key_neg_reply(const RawAddress& bd_addr) {
   inc_func_call_count(__func__);
