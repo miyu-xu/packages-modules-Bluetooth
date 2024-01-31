@@ -358,9 +358,9 @@ void btm_sec_dev_rec_cback_event(tBTM_SEC_DEV_REC* p_dev_rec,
   test::mock::stack_btm_sec::btm_sec_dev_rec_cback_event(p_dev_rec, btm_status,
                                                          is_le_transport);
 }
-void btm_sec_dev_reset(void) {
+void btm_sec_dev_reset(tBTM_IO_CAP local_io_caps) {
   inc_func_call_count(__func__);
-  test::mock::stack_btm_sec::btm_sec_dev_reset();
+  test::mock::stack_btm_sec::btm_sec_dev_reset(local_io_caps);
 }
 tBTM_STATUS btm_sec_disconnect(uint16_t handle, tHCI_STATUS reason,
                                std::string comment) {
