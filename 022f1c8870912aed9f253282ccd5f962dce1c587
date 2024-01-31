@@ -56,6 +56,30 @@
       },
       "revId": "022f1c8870912aed9f253282ccd5f962dce1c587",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc82588b_f188888f",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1962300
+      },
+      "writtenOn": "2024-01-31T03:33:33Z",
+      "side": 1,
+      "message": "The kernel side change is https://crrev.com/c/5215291. I\u0027ve updated this to the commit message.\n\nFor the idea of using PDL, it\u0027s definitely good to have a refactor. But since we\u0027ll eventually deprecate/upstream these Floss-only MGMT commands I think the priority is low.",
+      "parentUuid": "6360228a_4e68aa21",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 26
+      },
+      "revId": "022f1c8870912aed9f253282ccd5f962dce1c587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
