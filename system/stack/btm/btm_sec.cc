@@ -177,6 +177,8 @@ static void send_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
 static void send_read_encryption_key_size(uint16_t handle,
                                           bool after_encryption_change);
 
+static void send_link_key_neg_reply(const RawAddress& bd_addr);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -4120,7 +4122,7 @@ void btm_sec_link_key_request(const RawAddress bda) {
         "btm_sec_link_key_request() rejecting link key req "
         "State: %d START_TIMEOUT : %" PRIu64,
         btm_sec_cb.pairing_state, btm_sec_cb.collision_start_time);
-    btsnd_hcic_link_key_neg_reply(bda);
+    send_link_key_neg_reply(bda);
     return;
   }
   if (p_dev_rec->sec_rec.sec_flags & BTM_SEC_LINK_KEY_KNOWN) {
@@ -4132,7 +4134,7 @@ void btm_sec_link_key_request(const RawAddress bda) {
   l2c_pin_code_request(bda);
 
   /* The link key is not in the database and it is not known to the manager */
-  btsnd_hcic_link_key_neg_reply(bda);
+  send_link_key_neg_reply(bda);
 }
 
 /*******************************************************************************
@@ -5321,4 +5323,13 @@ static void send_read_encryption_key_size(uint16_t handle,
                   status, handle, event.GetKeySize());
             }));
   }
+}
+
+static void send_link_key_neg_reply(const RawAddress& bd_addr) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::LinkKeyRequestNegativeReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr)),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::LinkKeyRequestNegativeReplyCompleteView>));
 }

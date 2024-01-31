@@ -194,16 +194,6 @@ struct btsnd_hcic_hold_mode {
 };
 extern struct btsnd_hcic_hold_mode btsnd_hcic_hold_mode;
 
-// Name: btsnd_hcic_link_key_neg_reply
-// Params: const RawAddress& bd_addr
-// Return: void
-struct btsnd_hcic_link_key_neg_reply {
-  std::function<void(const RawAddress& bd_addr)> body{
-      [](const RawAddress& bd_addr) {}};
-  void operator()(const RawAddress& bd_addr) { body(bd_addr); };
-};
-extern struct btsnd_hcic_link_key_neg_reply btsnd_hcic_link_key_neg_reply;
-
 // Name: btsnd_hcic_link_key_req_reply
 // Params: const RawAddress& bd_addr, const LinkKey& link_key
 // Return: void
