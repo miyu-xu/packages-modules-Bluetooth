@@ -155,6 +155,8 @@ static void send_pin_code_req_reply(const RawAddress& bd_addr,
 
 static void send_user_conf_reply(const RawAddress& bd_addr, bool confirm);
 
+static void send_user_passkey_neg_reply(const RawAddress& bd_addr);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -1257,7 +1259,7 @@ void BTM_PasskeyReqReply(tBTM_STATUS res, const RawAddress& bd_addr,
     /* use BTM_PAIR_STATE_WAIT_AUTH_COMPLETE to report authentication failed
      * event */
     acl_set_disconnect_reason(HCI_ERR_HOST_REJECT_SECURITY);
-    btsnd_hcic_user_passkey_neg_reply(bd_addr);
+    send_user_passkey_neg_reply(bd_addr);
   } else {
     acl_set_disconnect_reason(HCI_SUCCESS);
     btsnd_hcic_user_passkey_reply(bd_addr, passkey);
@@ -2814,7 +2816,7 @@ void btm_proc_sp_req_evt(tBTM_SP_EVT event, const RawAddress bda,
           "stack::btm::btm_sec::btm_proc_sp_req_evt Security failure");
     }
   } else if (btm_sec_cb.devcb.loc_io_caps != BTM_IO_CAP_NONE) {
-    btsnd_hcic_user_passkey_neg_reply(p_bda);
+    send_user_passkey_neg_reply(p_bda);
   }
 }
 
@@ -4168,7 +4170,7 @@ static void btm_sec_pairing_timeout(void* /* data */) {
 
     case BTM_PAIR_STATE_KEY_ENTRY:
       if (btm_sec_cb.devcb.loc_io_caps != BTM_IO_CAP_NONE) {
-        btsnd_hcic_user_passkey_neg_reply(p_cb->pairing_bda);
+        send_user_passkey_neg_reply(p_cb->pairing_bda);
       } else {
         btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
       }
@@ -5181,4 +5183,13 @@ static void send_user_conf_reply(const RawAddress& bd_addr, bool confirm) {
                 bluetooth::hci::
                     UserConfirmationRequestNegativeReplyCompleteView>));
   }
+}
+
+static void send_user_passkey_neg_reply(const RawAddress& bd_addr) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::UserPasskeyRequestNegativeReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr)),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::UserPasskeyRequestNegativeReplyCompleteView>));
 }
