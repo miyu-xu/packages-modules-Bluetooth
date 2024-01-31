@@ -258,21 +258,6 @@ struct btsnd_hcic_park_mode {
 };
 extern struct btsnd_hcic_park_mode btsnd_hcic_park_mode;
 
-// Name: btsnd_hcic_pin_code_req_reply
-// Params: const RawAddress& bd_addr, uint8_t pin_code_len, PIN_CODE pin_code
-// Return: void
-struct btsnd_hcic_pin_code_req_reply {
-  std::function<void(const RawAddress& bd_addr, uint8_t pin_code_len,
-                     PIN_CODE pin_code)>
-      body{[](const RawAddress& bd_addr, uint8_t pin_code_len,
-              PIN_CODE pin_code) {}};
-  void operator()(const RawAddress& bd_addr, uint8_t pin_code_len,
-                  PIN_CODE pin_code) {
-    body(bd_addr, pin_code_len, pin_code);
-  };
-};
-extern struct btsnd_hcic_pin_code_req_reply btsnd_hcic_pin_code_req_reply;
-
 // Name: btsnd_hcic_read_encryption_key_size
 // Params: uint16_t handle, ReadEncKeySizeCb cb
 // Return: void

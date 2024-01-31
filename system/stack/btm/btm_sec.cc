@@ -22,7 +22,6 @@
  *
  ******************************************************************************/
 
-#include <type_traits>
 #define LOG_TAG "bt_btm_sec"
 
 #include "stack/btm/btm_sec.h"
@@ -32,6 +31,7 @@
 
 #include <cstdint>
 #include <string>
+#include <type_traits>
 
 #include "bt_dev_class.h"
 #include "btif/include/btif_storage.h"
@@ -58,6 +58,7 @@
 #include "stack/btm/btm_sec_int_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/acl_api.h"
+#include "stack/include/bt_octets.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/bt_types.h"
 #include "stack/include/btm_api.h"
@@ -148,6 +149,9 @@ static void send_write_pin_type(uint8_t pin_type);
 static void send_create_conn_cancel_hack(const RawAddress& bd_addr);
 
 static void send_write_auth_enable(bool enable);
+
+static void send_pin_code_req_reply(const RawAddress& bd_addr,
+                                    uint8_t pin_code_len, PIN_CODE pin_code);
 
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
@@ -592,7 +596,7 @@ void BTM_PINCodeReply(const RawAddress& bd_addr, tBTM_STATUS res,
   btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_WAIT_AUTH_COMPLETE);
   acl_set_disconnect_reason(HCI_SUCCESS);
 
-  btsnd_hcic_pin_code_req_reply(bd_addr, pin_len, p_pin);
+  send_pin_code_req_reply(bd_addr, pin_len, p_pin);
 }
 
 /*******************************************************************************
@@ -4274,8 +4278,7 @@ void btm_sec_pin_code_request(const RawAddress p_bda) {
   if (!p_cb->pairing_disabled && (p_cb->cfg.pin_type == HCI_PIN_TYPE_FIXED)) {
     LOG_VERBOSE("btm_sec_pin_code_request fixed pin replying");
     btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_WAIT_AUTH_COMPLETE);
-    btsnd_hcic_pin_code_req_reply(p_bda, p_cb->cfg.pin_code_len,
-                                  p_cb->cfg.pin_code);
+    send_pin_code_req_reply(p_bda, p_cb->cfg.pin_code_len, p_cb->cfg.pin_code);
     return;
   }
 
@@ -4288,8 +4291,7 @@ void btm_sec_pin_code_request(const RawAddress p_bda) {
   /* We could have started connection after asking user for the PIN code */
   if (btm_sec_cb.pin_code_len != 0) {
     LOG_VERBOSE("btm_sec_pin_code_request bonding sending reply");
-    btsnd_hcic_pin_code_req_reply(p_bda, btm_sec_cb.pin_code_len,
-                                  p_cb->pin_code);
+    send_pin_code_req_reply(p_bda, btm_sec_cb.pin_code_len, p_cb->pin_code);
 
     /* Mark that we forwarded received from the user PIN code */
     btm_sec_cb.pin_code_len = 0;
@@ -5146,4 +5148,16 @@ static void send_write_auth_enable(bool enable) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::WriteAuthenticationEnableCompleteView>));
+}
+
+static void send_pin_code_req_reply(const RawAddress& bd_addr,
+                                    uint8_t pin_code_len, PIN_CODE pin_code) {
+  std::array<uint8_t, PIN_CODE_LEN> pin_code_array;
+  std::copy(pin_code, pin_code + PIN_CODE_LEN, pin_code_array.begin());
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::PinCodeRequestReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr), pin_code_len, pin_code_array),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::PinCodeRequestReplyCompleteView>));
 }
