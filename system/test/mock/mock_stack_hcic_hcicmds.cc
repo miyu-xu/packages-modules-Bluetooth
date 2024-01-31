@@ -75,7 +75,6 @@ struct btsnd_hcic_set_event_filter btsnd_hcic_set_event_filter;
 struct btsnd_hcic_setup_esco_conn btsnd_hcic_setup_esco_conn;
 struct btsnd_hcic_sniff_mode btsnd_hcic_sniff_mode;
 struct btsnd_hcic_sniff_sub_rate btsnd_hcic_sniff_sub_rate;
-struct btsnd_hcic_user_conf_reply btsnd_hcic_user_conf_reply;
 struct btsnd_hcic_user_passkey_neg_reply btsnd_hcic_user_passkey_neg_reply;
 struct btsnd_hcic_user_passkey_reply btsnd_hcic_user_passkey_reply;
 struct btsnd_hcic_vendor_spec_cmd btsnd_hcic_vendor_spec_cmd;
@@ -295,10 +294,6 @@ void btsnd_hcic_sniff_sub_rate(uint16_t handle, uint16_t max_lat,
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_sniff_sub_rate(
       handle, max_lat, min_remote_lat, min_local_lat);
-}
-void btsnd_hcic_user_conf_reply(const RawAddress& bd_addr, bool is_yes) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_user_conf_reply(bd_addr, is_yes);
 }
 void btsnd_hcic_user_passkey_neg_reply(const RawAddress& bd_addr) {
   inc_func_call_count(__func__);
