@@ -91,12 +91,6 @@
 #define HCI_ADD_SCO_PACKET_TYPES_OFF 2
 /* Add SCO Connection */
 
-/* Create Connection Cancel */
-#define HCIC_PARAM_SIZE_CREATE_CONN_CANCEL 6
-
-#define HCIC_CR_CONN_CANCEL_BD_ADDR_OFF 0
-/* Create Connection Cancel */
-
 /* Accept Connection Request */
 #define HCIC_PARAM_SIZE_ACCEPT_CONN 7
 
@@ -434,7 +428,6 @@
 #define HCIC_PARAM_SIZE_BLE_WRITE_SCAN_PARAM 7
 #define HCIC_PARAM_SIZE_BLE_WRITE_SCAN_ENABLE 2
 #define HCIC_PARAM_SIZE_BLE_CREATE_LL_CONN 25
-#define HCIC_PARAM_SIZE_BLE_CREATE_CONN_CANCEL 0
 #define HCIC_PARAM_SIZE_CLEAR_ACCEPTLIST 0
 #define HCIC_PARAM_SIZE_ADD_ACCEPTLIST 7
 #define HCIC_PARAM_SIZE_REMOVE_ACCEPTLIST 7
@@ -515,21 +508,6 @@ void btsnd_hcic_add_SCO_conn(uint16_t handle, uint16_t packet_types) {
 
   UINT16_TO_STREAM(pp, handle);
   UINT16_TO_STREAM(pp, packet_types);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
-void btsnd_hcic_create_conn_cancel(const RawAddress& dest) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_CREATE_CONN_CANCEL;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_CREATE_CONNECTION_CANCEL);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_CREATE_CONN_CANCEL);
-
-  BDADDR_TO_STREAM(pp, dest);
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }

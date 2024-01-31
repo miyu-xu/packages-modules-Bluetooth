@@ -63,11 +63,6 @@ void btsnd_hcic_add_SCO_conn(uint16_t handle, uint16_t packet_types);
 
 /* Add SCO Connection */
 
-/* Create Connection Cancel */
-void btsnd_hcic_create_conn_cancel(const RawAddress& dest);
-
-/* Create Connection Cancel */
-
 /* Accept Connection Request */
 void btsnd_hcic_accept_conn(const RawAddress& bd_addr, uint8_t role);
 
