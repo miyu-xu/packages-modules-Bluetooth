@@ -351,16 +351,6 @@ struct btsnd_hcic_reject_esco_conn {
 };
 extern struct btsnd_hcic_reject_esco_conn btsnd_hcic_reject_esco_conn;
 
-// Name: btsnd_hcic_rem_oob_neg_reply
-// Params: const RawAddress& bd_addr
-// Return: void
-struct btsnd_hcic_rem_oob_neg_reply {
-  std::function<void(const RawAddress& bd_addr)> body{
-      [](const RawAddress& bd_addr) {}};
-  void operator()(const RawAddress& bd_addr) { body(bd_addr); };
-};
-extern struct btsnd_hcic_rem_oob_neg_reply btsnd_hcic_rem_oob_neg_reply;
-
 // Name: btsnd_hcic_rem_oob_reply
 // Params: const RawAddress& bd_addr, const Octet16& c, const Octet16& r
 // Return: void
