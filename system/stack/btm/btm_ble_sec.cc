@@ -84,6 +84,8 @@ static void send_ble_start_enc(uint16_t hci_handle,
                                uint8_t rand[HCIC_BLE_RAND_DI_SIZE],
                                uint16_t ediv, const Octet16& ltk);
 
+static void send_ble_ltk_req_reply(uint16_t handle, const Octet16& ltk);
+
 /******************************************************************************/
 /* External Function to be called by other modules                            */
 /******************************************************************************/
@@ -1386,13 +1388,12 @@ void btm_ble_ltk_request_reply(const RawAddress& bda, bool use_stk,
 
   LOG_ERROR("key size=%d", p_rec->sec_rec.ble_keys.key_size);
   if (use_stk) {
-    btsnd_hcic_ble_ltk_req_reply(btm_sec_cb.enc_handle, stk);
+    send_ble_ltk_req_reply(btm_sec_cb.enc_handle, stk);
     return;
   }
   /* calculate LTK using peer device  */
   if (p_rec->sec_rec.ble_keys.key_type & BTM_LE_KEY_LENC) {
-    btsnd_hcic_ble_ltk_req_reply(btm_sec_cb.enc_handle,
-                                 p_rec->sec_rec.ble_keys.lltk);
+    send_ble_ltk_req_reply(btm_sec_cb.enc_handle, p_rec->sec_rec.ble_keys.lltk);
     return;
   }
 
@@ -1412,8 +1413,7 @@ void btm_ble_ltk_request_reply(const RawAddress& bda, bool use_stk,
   ASSERT_LOG(p_rec->sec_rec.ble_keys.key_type & BTM_LE_KEY_LENC,
              "local enccryption key not present");
   p_cb->key_size = p_rec->sec_rec.ble_keys.key_size;
-  btsnd_hcic_ble_ltk_req_reply(btm_sec_cb.enc_handle,
-                               p_rec->sec_rec.ble_keys.lltk);
+  send_ble_ltk_req_reply(btm_sec_cb.enc_handle, p_rec->sec_rec.ble_keys.lltk);
 }
 
 /*******************************************************************************
@@ -2050,4 +2050,13 @@ static void send_ble_start_enc(uint16_t hci_handle,
       get_main_thread()->BindOnce(
           bluetooth::hci::check_status<
               bluetooth::hci::LeStartEncryptionStatusView>));
+}
+
+static void send_ble_ltk_req_reply(uint16_t handle, const Octet16& ltk) {
+  // TODO: Add an interface for LE security commands in btm sec
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::LeLongTermKeyRequestReplyBuilder::Create(handle, ltk),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::LeLongTermKeyRequestReplyCompleteView>));
 }
