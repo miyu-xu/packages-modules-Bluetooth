@@ -167,8 +167,6 @@ void btsnd_hcic_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
 /* IO Capabilities Req Neg Reply */
 void btsnd_hcic_io_cap_req_neg_reply(const RawAddress& bd_addr,
                                      uint8_t err_code);
-/* Read Local OOB Data */
-void btsnd_hcic_read_local_oob_data(void);
 
 /* Remote OOB Data Request Reply */
 void btsnd_hcic_rem_oob_reply(const RawAddress& bd_addr, const Octet16& c,
