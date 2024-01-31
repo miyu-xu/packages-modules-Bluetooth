@@ -269,6 +269,11 @@ tBTM_SEC_DEV_REC* btm_sec_alloc_dev(const RawAddress& bd_addr) {
   tBTM_INQ_INFO* p_inq_info;
 
   tBTM_SEC_DEV_REC* p_dev_rec = btm_sec_allocate_dev_rec();
+  if (p_dev_rec == nullptr) {
+    LOG_ERROR("Unable to create device record bd_addr:%s",
+              ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
+    return nullptr;
+  }
 
   LOG_DEBUG("Allocated device record bd_addr:%s", ADDRESS_TO_LOGGABLE_CSTR(bd_addr));
 
