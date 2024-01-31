@@ -169,6 +169,8 @@ static void send_read_local_oob_data();
 
 static void send_rem_oob_reply(const RawAddress& bd_addr, Octet16 c, Octet16 r);
 
+static void send_reject_conn_hack(const RawAddress& bd_addr, uint8_t reason);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -1959,7 +1961,7 @@ void btm_sec_conn_req(const RawAddress& bda, const DEV_CLASS dc) {
 
     /* incoming connection from bonding device is rejected */
     btm_sec_cb.pairing_flags |= BTM_PAIR_FLAGS_REJECTED_CONNECT;
-    btsnd_hcic_reject_conn(bda, HCI_ERR_HOST_REJECT_DEVICE);
+    send_reject_conn_hack(bda, HCI_ERR_HOST_REJECT_DEVICE);
     return;
   }
 
@@ -5280,4 +5282,15 @@ static void send_rem_oob_reply(const RawAddress& bd_addr, Octet16 c,
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::RemoteOobDataRequestReplyCompleteView>));
+}
+
+static void send_reject_conn_hack(const RawAddress& bd_addr, uint8_t reason) {
+  // TODO: This command shouldn't be sent from here
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::RejectConnectionRequestBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr),
+          static_cast<bluetooth::hci::RejectConnectionReason>(reason)),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_status<
+              bluetooth::hci::RejectConnectionRequestStatusView>));
 }
