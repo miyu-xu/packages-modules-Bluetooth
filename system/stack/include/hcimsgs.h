@@ -176,9 +176,6 @@ void btsnd_hcic_user_passkey_reply(const RawAddress& bd_addr, uint32_t value);
 void btsnd_hcic_rem_oob_reply(const RawAddress& bd_addr, const Octet16& c,
                               const Octet16& r);
 
-/* Remote OOB Data Request Negative Reply */
-void btsnd_hcic_rem_oob_neg_reply(const RawAddress& bd_addr);
-
 /* Read Default Erroneous Data Reporting */
 void btsnd_hcic_read_default_erroneous_data_rpt(void);
 

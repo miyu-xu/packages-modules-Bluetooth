@@ -290,11 +290,6 @@
 #define HCI_REM_OOB_DATA_C_OFF 6
 #define HCI_REM_OOB_DATA_R_OFF 22
 
-/* Remote OOB Data Request Negative Reply */
-#define HCIC_PARAM_SIZE_REM_OOB_NEG_REPLY 6
-
-#define HCI_REM_OOB_DATA_NEG_BD_ADDR_OFF 0
-
 /* Read Tx Power Level */
 #define HCIC_PARAM_SIZE_R_TX_POWER 0
 
@@ -1333,21 +1328,6 @@ void btsnd_hcic_rem_oob_reply(const RawAddress& bd_addr, const Octet16& c,
   BDADDR_TO_STREAM(pp, bd_addr);
   ARRAY16_TO_STREAM(pp, c.data());
   ARRAY16_TO_STREAM(pp, r.data());
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
-void btsnd_hcic_rem_oob_neg_reply(const RawAddress& bd_addr) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_REM_OOB_NEG_REPLY;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_REM_OOB_DATA_REQ_NEG_REPLY);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_REM_OOB_NEG_REPLY);
-
-  BDADDR_TO_STREAM(pp, bd_addr);
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
