@@ -2409,9 +2409,11 @@ bool l2cu_set_acl_priority(const RawAddress& bd_addr, tL2CAP_PRIORITY priority,
         l2cu_set_acl_priority_unisoc(p_lcb, priority);
         break;
 
+#ifndef TARGET_FLOSS
       case LMP_COMPID_MEDIATEK:
         l2cu_set_acl_priority_latency_mtk(p_lcb, priority);
         break;
+#endif
 
       default:
         /* Not supported/required for other vendors */
