@@ -141,6 +141,8 @@ static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC* p_dev_rec);
 
 static void send_pin_code_neg_reply(const RawAddress& bd_addr);
 
+static void send_write_pin_type(uint8_t pin_type);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -396,7 +398,7 @@ void BTM_SetPinType(uint8_t pin_type, PIN_CODE pin_code, uint8_t pin_code_len) {
   /* If device is not up security mode will be set as a part of startup */
   if ((btm_sec_cb.cfg.pin_type != pin_type) &&
       controller_get_interface()->get_is_ready()) {
-    btsnd_hcic_write_pin_type(pin_type);
+    send_write_pin_type(pin_type);
   }
 
   btm_sec_cb.cfg.pin_type = pin_type;
@@ -683,7 +685,7 @@ tBTM_STATUS btm_sec_bond_by_transport(const RawAddress& bd_addr,
         (p_dev_rec->dev_class[2] & BTM_COD_MINOR_KEYBOARD) &&
         (btm_sec_cb.cfg.pin_type != HCI_PIN_TYPE_FIXED)) {
       btm_sec_cb.pin_type_changed = true;
-      btsnd_hcic_write_pin_type(HCI_PIN_TYPE_FIXED);
+      send_write_pin_type(HCI_PIN_TYPE_FIXED);
     }
   }
 
@@ -4673,7 +4675,7 @@ static void btm_restore_mode(void) {
 
   if (btm_sec_cb.pin_type_changed) {
     btm_sec_cb.pin_type_changed = false;
-    btsnd_hcic_write_pin_type(btm_sec_cb.cfg.pin_type);
+    send_write_pin_type(btm_sec_cb.cfg.pin_type);
   }
 }
 
@@ -5101,4 +5103,12 @@ static void send_pin_code_neg_reply(const RawAddress& bd_addr) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::PinCodeRequestNegativeReplyCompleteView>));
+}
+
+static void send_write_pin_type(uint8_t pin_type) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::WritePinTypeBuilder::Create(
+          static_cast<bluetooth::hci::PinType>(pin_type)),
+      get_main_thread()->BindOnce(bluetooth::hci::check_complete<
+                                  bluetooth::hci::WritePinTypeCompleteView>));
 }

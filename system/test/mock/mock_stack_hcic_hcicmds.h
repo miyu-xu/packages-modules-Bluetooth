@@ -708,15 +708,6 @@ struct btsnd_hcic_write_pagescan_type {
 };
 extern struct btsnd_hcic_write_pagescan_type btsnd_hcic_write_pagescan_type;
 
-// Name: btsnd_hcic_write_pin_type
-// Params: uint8_t type
-// Return: void
-struct btsnd_hcic_write_pin_type {
-  std::function<void(uint8_t type)> body{[](uint8_t type) {}};
-  void operator()(uint8_t type) { body(type); };
-};
-extern struct btsnd_hcic_write_pin_type btsnd_hcic_write_pin_type;
-
 // Name: btsnd_hcic_write_policy_set
 // Params: uint16_t handle, uint16_t settings
 // Return: void
