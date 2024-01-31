@@ -62,3 +62,10 @@ flag {
     description: "Enumerate GATT error situations"
     bug: "320574336"
 }
+
+flag {
+    name: "gatt_cleanup_restricted_handles"
+    namespace: "bluetooth"
+    description: "Cleans up restricted handles when disconnected"
+    bug: "323110155"
+}
