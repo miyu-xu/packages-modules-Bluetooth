@@ -1052,21 +1052,6 @@ void btsnd_hcic_write_inqscan_cfg(uint16_t interval, uint16_t window) {
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-void btsnd_hcic_write_auth_enable(uint8_t flag) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_WRITE_PARAM1;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_WRITE_AUTHENTICATION_ENABLE);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_WRITE_PARAM1);
-
-  UINT8_TO_STREAM(pp, flag);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_write_dev_class(DEV_CLASS dev_class) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
