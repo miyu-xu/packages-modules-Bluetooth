@@ -42,6 +42,7 @@
 #include "device/include/interop.h"
 #include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
+#include "hci/hci_layer.h"
 #include "internal_include/bt_target.h"
 #include "l2c_api.h"
 #include "main/shim/entry.h"
@@ -142,6 +143,8 @@ static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC* p_dev_rec);
 static void send_pin_code_neg_reply(const RawAddress& bd_addr);
 
 static void send_write_pin_type(uint8_t pin_type);
+
+static void send_create_conn_cancel_hack(const RawAddress& bd_addr);
 
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
@@ -847,7 +850,7 @@ tBTM_STATUS BTM_SecBondCancel(const RawAddress& bd_addr) {
     {
       /* If the HCI link creation was started by Bonding process */
       if (btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_DISC_WHEN_DONE) {
-        btsnd_hcic_create_conn_cancel(bd_addr);
+        send_create_conn_cancel_hack(bd_addr);
         return BTM_CMD_STARTED;
       }
       if (btm_sec_cb.pairing_state == BTM_PAIR_STATE_GET_REM_NAME) {
@@ -5111,4 +5114,22 @@ static void send_write_pin_type(uint8_t pin_type) {
           static_cast<bluetooth::hci::PinType>(pin_type)),
       get_main_thread()->BindOnce(bluetooth::hci::check_complete<
                                   bluetooth::hci::WritePinTypeCompleteView>));
+}
+
+static void send_create_conn_cancel_hack(const RawAddress& bd_addr) {
+  // TODO: This command shouldn't be sent from here
+  log_link_layer_connection_event(
+      &bd_addr, bluetooth::common::kUnknownConnectionHandle,
+      android::bluetooth::DIRECTION_OUTGOING, android::bluetooth::LINK_TYPE_ACL,
+      static_cast<uint16_t>(bluetooth::hci::OpCode::CREATE_CONNECTION_CANCEL),
+      android::bluetooth::hci::EVT_UNKNOWN,
+      android::bluetooth::hci::BLE_EVT_UNKNOWN,
+      android::bluetooth::hci::STATUS_UNKNOWN,
+      android::bluetooth::hci::STATUS_UNKNOWN);
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::CreateConnectionCancelBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr)),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::CreateConnectionCancelCompleteView>));
 }
