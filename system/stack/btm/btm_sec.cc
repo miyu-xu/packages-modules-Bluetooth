@@ -183,6 +183,8 @@ static void send_link_key_req_reply(const RawAddress& bd_addr, Octet16 key);
 
 static void send_set_conn_encrypt(uint16_t handle, bool encrypt);
 
+static void send_auth_request(uint16_t handle);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -4646,7 +4648,7 @@ static void btm_sec_auth_timer_timeout(void* data) {
   } else {
     LOG_INFO("starting authentication");
     p_dev_rec->sec_rec.sec_state = BTM_SEC_STATE_AUTHENTICATING;
-    btsnd_hcic_auth_request(p_dev_rec->hci_handle);
+    send_auth_request(p_dev_rec->hci_handle);
   }
 }
 
@@ -5356,4 +5358,13 @@ static void send_set_conn_encrypt(uint16_t handle, bool encrypt) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_status<
               bluetooth::hci::SetConnectionEncryptionStatusView>));
+}
+
+static void send_auth_request(uint16_t handle) {
+  // TODO: Clarify whether this should belong to ACL or Security
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::AuthenticationRequestedBuilder::Create(handle),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_status<
+              bluetooth::hci::AuthenticationRequestedStatusView>));
 }
