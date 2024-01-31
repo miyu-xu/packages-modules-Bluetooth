@@ -92,7 +92,6 @@
 #define HCIC_PARAM_SIZE_BLE_ENH_RX_TEST 3
 #define HCIC_PARAM_SIZE_BLE_ENH_TX_TEST 4
 
-#define HCIC_PARAM_SIZE_BLE_SET_DATA_LENGTH 6
 #define HCIC_PARAM_SIZE_BLE_WRITE_EXTENDED_SCAN_PARAM 11
 
 #define HCIC_PARAM_SIZE_BLE_RC_PARAM_REQ_REPLY 14
@@ -444,24 +443,6 @@ void btsnd_hcic_ble_set_rand_priv_addr_timeout(uint16_t rpa_timout) {
   UINT16_TO_STREAM(pp, HCI_BLE_SET_RAND_PRIV_ADDR_TIMOUT);
   UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_BLE_SET_RAND_PRIV_ADDR_TIMOUT);
   UINT16_TO_STREAM(pp, rpa_timout);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
-void btsnd_hcic_ble_set_data_length(uint16_t conn_handle, uint16_t tx_octets,
-                                    uint16_t tx_time) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_BLE_SET_DATA_LENGTH;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_BLE_SET_DATA_LENGTH);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_BLE_SET_DATA_LENGTH);
-
-  UINT16_TO_STREAM(pp, conn_handle);
-  UINT16_TO_STREAM(pp, tx_octets);
-  UINT16_TO_STREAM(pp, tx_time);
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
