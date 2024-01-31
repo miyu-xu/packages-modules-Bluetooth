@@ -93,13 +93,6 @@ void btsnd_hcic_link_key_neg_reply(const RawAddress& bd_addr);
 void btsnd_hcic_pin_code_req_reply(const RawAddress& bd_addr,
                                    uint8_t pin_code_len, PIN_CODE pin_code);
 
-/* PIN Code Request Reply  */
-
-/* Link Key Request Neg Reply */
-void btsnd_hcic_pin_code_neg_reply(const RawAddress& bd_addr);
-
-/* Link Key Request Neg Reply  */
-
 /* Change Connection Type */
 void btsnd_hcic_change_conn_type(uint16_t handle, uint16_t packet_types);
 
