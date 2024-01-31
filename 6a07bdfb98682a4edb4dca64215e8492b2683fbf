@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "e8fdb96c_ad2b6019",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T22:25:01Z",
+      "side": 1,
+      "message": "I\u0027d prefer to keep this CL to focus on the API and databaseManager part, the use of this API to keep device inactive will come in another separate CL.\nWith this said, BluetoothDeviceTest is the CTS covering the API and DatabaseManagerTest is covering the datamanager migration.\nPlease let me know if this makes sense or you\u0027d like to suggest some test cases for API.",
+      "parentUuid": "eccd2dd0_4b0fca93",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 51
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "aca6ceb7_d69ff446",
@@ -112,6 +136,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "af78e2cb_91ef8176",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5422,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T22:25:01Z",
+      "side": 1,
+      "message": "Looked into this further, agreed with David, we might not need this check here. Removed this check in AdapterService.",
+      "parentUuid": "88849e4f_ae1c0229",
+      "range": {
+        "startLine": 5420,
+        "startChar": 9,
+        "endLine": 5422,
+        "endChar": 13
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1078198_b150153b",
@@ -125,6 +173,24 @@
       "writtenOn": "2024-01-31T19:01:36Z",
       "side": 1,
       "message": "nit:\n\n```suggestion\n                        \"Caller is not the system or part of the active/managed user\");\n```",
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "52a9d5bf_6035b2f0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5460,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T22:25:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c1078198_b150153b",
       "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -152,6 +218,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "964c22bd_304c49a0",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T22:25:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "db0eacb0_918552b5",
+      "range": {
+        "startLine": 1029,
+        "startChar": 6,
+        "endLine": 1033,
+        "endChar": 13
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "98944c51_24e89213",
@@ -165,6 +255,30 @@
       "writtenOn": "2024-01-31T18:04:50Z",
       "side": 1,
       "message": "There is no such requirement for the database migration since there is no rollback being handled.",
+      "range": {
+        "startLine": 1458,
+        "startChar": 0,
+        "endLine": 1458,
+        "endChar": 87
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb7b1949_e1d8afa5",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T22:25:01Z",
+      "side": 1,
+      "message": "thanks, makes sense, will remove this.",
+      "parentUuid": "98944c51_24e89213",
       "range": {
         "startLine": 1458,
         "startChar": 0,
@@ -200,6 +314,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "41057738_c94ea458",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3684,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T22:25:01Z",
+      "side": 1,
+      "message": "To clarify a bit here, this API usage would be expanded to other profiles even we\u0027re going to start using it for broadcast(audio sharing) first, more details can be referred to the discussions in the design doc. \nThis is the main reason why we\u0027d keep it here in BluetoothDevice.",
+      "parentUuid": "bb174220_a58fb458",
+      "range": {
+        "startLine": 3683,
+        "startChar": 0,
+        "endLine": 3684,
+        "endChar": 45
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "d6d63623_8f93dc5b",
         "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
         "patchSetId": 4
@@ -211,6 +349,24 @@
       "writtenOn": "2024-01-31T18:57:01Z",
       "side": 1,
       "message": "This exception doesn\u0027t come from the system server, so we should rethrow it as runtime exception.\n\n```suggestion\n                throw e.rethrowAsRuntimeException();\n```",
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "86a5fb7b_a4697f86",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3726,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T22:25:01Z",
+      "side": 1,
+      "message": "good point, thank you, updated",
+      "parentUuid": "d6d63623_8f93dc5b",
       "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
@@ -228,6 +384,24 @@
       "writtenOn": "2024-01-31T18:57:01Z",
       "side": 1,
       "message": "ditto",
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aef0daec_8ddec9d2",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3763,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T22:25:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "869ed9bc_e4d248a6",
       "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
