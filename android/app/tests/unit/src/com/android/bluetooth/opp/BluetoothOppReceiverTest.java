@@ -43,6 +43,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.platform.test.annotations.RequiresFlagsDisabled;
+import android.platform.test.annotations.RequiresFlagsEnabled;
 
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.espresso.intent.Intents;
@@ -215,13 +216,58 @@ public class BluetoothOppReceiverTest {
     }
 
     @Test
-    public void onReceive_withActionCompleteHide_contentUpdate() {
+    @RequiresFlagsDisabled(Flags.FLAG_OPP_FIX_MULTIPLE_NOTIFICATIONS_ISSUES)
+    public void onReceive_withActionCompleteHide_makeAllVisibilityHidden() {
+        Assume.assumeFalse(Flags.oppFixMultipleNotificationsIssues());
+
         Intent intent = new Intent();
         intent.setAction(Constants.ACTION_COMPLETE_HIDE);
         mReceiver.onReceive(mContext, intent);
         verify(mBluetoothMethodProxy).contentResolverUpdate(any(), eq(BluetoothShare.CONTENT_URI),
                 argThat(arg -> Objects.equal(BluetoothShare.VISIBILITY_HIDDEN,
                         arg.get(BluetoothShare.VISIBILITY))), any(), any());
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_OPP_FIX_MULTIPLE_NOTIFICATIONS_ISSUES)
+    public void onReceive_withActionHideCompletedInboundTransfer_makesInboundVisibilityHidden() {
+        Assume.assumeTrue(Flags.oppFixMultipleNotificationsIssues());
+
+        Intent intent = new Intent();
+        intent.setAction(Constants.ACTION_HIDE_COMPLETED_INBOUND_TRANSFER);
+        mReceiver.onReceive(mContext, intent);
+        verify(mBluetoothMethodProxy)
+                .contentResolverUpdate(
+                        any(),
+                        eq(BluetoothShare.CONTENT_URI),
+                        argThat(
+                                arg ->
+                                        Objects.equal(
+                                                BluetoothShare.VISIBILITY_HIDDEN,
+                                                arg.get(BluetoothShare.VISIBILITY))),
+                        eq(BluetoothOppNotification.WHERE_COMPLETED_INBOUND),
+                        any());
+    }
+
+    @Test
+    @RequiresFlagsEnabled(Flags.FLAG_OPP_FIX_MULTIPLE_NOTIFICATIONS_ISSUES)
+    public void onReceive_withActionHideCompletedOutboundTransfer_makesOutboundVisibilityHidden() {
+        Assume.assumeTrue(Flags.oppFixMultipleNotificationsIssues());
+
+        Intent intent = new Intent();
+        intent.setAction(Constants.ACTION_HIDE_COMPLETED_OUTBOUND_TRANSFER);
+        mReceiver.onReceive(mContext, intent);
+        verify(mBluetoothMethodProxy)
+                .contentResolverUpdate(
+                        any(),
+                        eq(BluetoothShare.CONTENT_URI),
+                        argThat(
+                                arg ->
+                                        Objects.equal(
+                                                BluetoothShare.VISIBILITY_HIDDEN,
+                                                arg.get(BluetoothShare.VISIBILITY))),
+                        eq(BluetoothOppNotification.WHERE_COMPLETED_OUTBOUND),
+                        any());
     }
 
     @Test

@@ -27,6 +27,7 @@ import android.util.Log;
 import com.android.bluetooth.BluetoothMethodProxy;
 import com.android.bluetooth.BluetoothStatsLog;
 import com.android.bluetooth.content_profiles.ContentProfileErrorReportUtils;
+import com.android.bluetooth.flags.Flags;
 import com.android.obex.HeaderSet;
 
 import java.io.IOException;
@@ -142,10 +143,24 @@ public class Constants {
     static final String ACTION_DECLINE = "android.btopp.intent.action.DECLINE";
 
     /**
-     * the intent that gets sent when deleting the notifications of outbound and
-     * inbound completed transfer
+     * the intent that gets sent when deleting the notifications of outbound and inbound completed
+     * transfer. Only used when {@link Flags#oppFixMultipleNotificationsIssues()} is false.
      */
     static final String ACTION_COMPLETE_HIDE = "android.btopp.intent.action.HIDE_COMPLETE";
+
+    /**
+     * The intent that gets sent when deleting the notifications of completed inbound transfer. Only
+     * used when {@link Flags#oppFixMultipleNotificationsIssues()} is true.
+     */
+    static final String ACTION_HIDE_COMPLETED_INBOUND_TRANSFER =
+            "android.btopp.intent.action.HIDE_COMPLETED_INBOUND_TRANSFER";
+
+    /**
+     * The intent that gets sent when deleting the notifications of completed outbound transfer.
+     * Only used when {@link Flags#oppFixMultipleNotificationsIssues()} is true.
+     */
+    static final String ACTION_HIDE_COMPLETED_OUTBOUND_TRANSFER =
+            "android.btopp.intent.action.HIDE_COMPLETED_OUTBOUND_TRANSFER";
 
     /** the intent that gets sent when clicking a incoming file confirm notification */
     static final String ACTION_INCOMING_FILE_CONFIRM = "android.btopp.intent.action.CONFIRM";
