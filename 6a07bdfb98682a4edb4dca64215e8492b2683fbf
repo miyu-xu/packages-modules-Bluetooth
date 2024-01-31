@@ -66,6 +66,30 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "fc00fcc7_eb74d147",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5422,
+      "author": {
+        "id": 1881539
+      },
+      "writtenOn": "2024-01-31T18:40:50Z",
+      "side": 1,
+      "message": "Isn\u0027t this for the framework?\n\nAnd also the device being null should not be possible with our framework (As this is given as argument) + I don\u0027t event know if binder support null values for parcelable or if it\u0027s up to the parcelable responsability.",
+      "parentUuid": "5ff8fdfb_3a20bc37",
+      "range": {
+        "startLine": 5420,
+        "startChar": 9,
+        "endLine": 5422,
+        "endChar": 13
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "db0eacb0_918552b5",
         "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
         "patchSetId": 4
