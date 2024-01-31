@@ -285,8 +285,6 @@ void btsnd_hcic_ble_read_remote_feat(uint16_t handle);
 
 void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb);
 
-void btsnd_hcic_ble_ltk_req_reply(uint16_t handle, const Octet16& ltk);
-
 void btsnd_hcic_ble_ltk_req_neg_reply(uint16_t handle);
 
 void btsnd_hcic_ble_read_supported_states(void);
