@@ -386,6 +386,40 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "3b7349af_f88686a5",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-01-31T14:10:54Z",
+      "side": 1,
+      "message": "logging.error(\u0027Exception during writing to sendDataPacket output stream: %s\u0027, e) you didn\u0027t print the error",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8b6ca3be_221c2a47",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 2056461
+      },
+      "writtenOn": "2024-01-31T14:10:54Z",
+      "side": 1,
+      "message": "logging.error(\u0027Exception during reading from input stream: %s\u0027, e) you didn\u0027t print the error",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "09be7084_6f8483b9",
         "filename": "floss/pandora/server/l2cap.py",
         "patchSetId": 1
