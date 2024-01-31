@@ -52,7 +52,6 @@ struct btsnd_hcic_hold_mode btsnd_hcic_hold_mode;
 struct btsnd_hcic_link_key_neg_reply btsnd_hcic_link_key_neg_reply;
 struct btsnd_hcic_link_key_req_reply btsnd_hcic_link_key_req_reply;
 struct btsnd_hcic_park_mode btsnd_hcic_park_mode;
-struct btsnd_hcic_read_encryption_key_size btsnd_hcic_read_encryption_key_size;
 struct btsnd_hcic_read_failed_contact_counter
     btsnd_hcic_read_failed_contact_counter;
 struct btsnd_hcic_read_name btsnd_hcic_read_name;
@@ -176,11 +175,6 @@ void btsnd_hcic_park_mode(uint16_t handle, uint16_t beacon_max_interval,
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_park_mode(
       handle, beacon_max_interval, beacon_min_interval);
-}
-void btsnd_hcic_read_encryption_key_size(uint16_t handle, ReadEncKeySizeCb cb) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_read_encryption_key_size(
-      handle, std::move(cb));
 }
 void btsnd_hcic_read_failed_contact_counter(uint16_t handle) {
   inc_func_call_count(__func__);
