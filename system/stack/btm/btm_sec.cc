@@ -179,6 +179,8 @@ static void send_read_encryption_key_size(uint16_t handle,
 
 static void send_link_key_neg_reply(const RawAddress& bd_addr);
 
+static void send_link_key_req_reply(const RawAddress& bd_addr, Octet16 key);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -4126,7 +4128,7 @@ void btm_sec_link_key_request(const RawAddress bda) {
     return;
   }
   if (p_dev_rec->sec_rec.sec_flags & BTM_SEC_LINK_KEY_KNOWN) {
-    btsnd_hcic_link_key_req_reply(bda, p_dev_rec->sec_rec.link_key);
+    send_link_key_req_reply(bda, p_dev_rec->sec_rec.link_key);
     return;
   }
 
@@ -5332,4 +5334,13 @@ static void send_link_key_neg_reply(const RawAddress& bd_addr) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::LinkKeyRequestNegativeReplyCompleteView>));
+}
+
+static void send_link_key_req_reply(const RawAddress& bd_addr, Octet16 key) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::LinkKeyRequestReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr), key),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::LinkKeyRequestReplyCompleteView>));
 }
