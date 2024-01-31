@@ -509,21 +509,6 @@ struct btsnd_hcic_ble_set_scan_params {
 };
 extern struct btsnd_hcic_ble_set_scan_params btsnd_hcic_ble_set_scan_params;
 
-// Name: btsnd_hcic_ble_start_enc
-// Params: uint16_t handle, uint8_t rand[HCIC_BLE_RAND_DI_SIZE], uint16_t ediv,
-// const Octet16& ltk Return: void
-struct btsnd_hcic_ble_start_enc {
-  std::function<void(uint16_t handle, uint8_t rand[HCIC_BLE_RAND_DI_SIZE],
-                     uint16_t ediv, const Octet16& ltk)>
-      body{[](uint16_t handle, uint8_t rand[HCIC_BLE_RAND_DI_SIZE],
-              uint16_t ediv, const Octet16& ltk) {}};
-  void operator()(uint16_t handle, uint8_t rand[HCIC_BLE_RAND_DI_SIZE],
-                  uint16_t ediv, const Octet16& ltk) {
-    body(handle, rand, ediv, ltk);
-  };
-};
-extern struct btsnd_hcic_ble_start_enc btsnd_hcic_ble_start_enc;
-
 // Name: btsnd_hcic_ble_test_end
 // Params: void
 // Return: void
