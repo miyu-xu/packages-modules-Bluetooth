@@ -84,15 +84,6 @@ struct btsnd_hcic_add_SCO_conn {
 };
 extern struct btsnd_hcic_add_SCO_conn btsnd_hcic_add_SCO_conn;
 
-// Name: btsnd_hcic_auth_request
-// Params: uint16_t handle
-// Return: void
-struct btsnd_hcic_auth_request {
-  std::function<void(uint16_t handle)> body{[](uint16_t handle) {}};
-  void operator()(uint16_t handle) { body(handle); };
-};
-extern struct btsnd_hcic_auth_request btsnd_hcic_auth_request;
-
 // Name: btsnd_hcic_change_name
 // Params: BD_NAME name
 // Return: void
