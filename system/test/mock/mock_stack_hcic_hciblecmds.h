@@ -370,19 +370,6 @@ struct btsnd_hcic_ble_set_adv_enable {
 };
 extern struct btsnd_hcic_ble_set_adv_enable btsnd_hcic_ble_set_adv_enable;
 
-// Name: btsnd_hcic_ble_set_data_length
-// Params: uint16_t conn_handle, uint16_t tx_octets, uint16_t tx_time
-// Return: void
-struct btsnd_hcic_ble_set_data_length {
-  std::function<void(uint16_t conn_handle, uint16_t tx_octets,
-                     uint16_t tx_time)>
-      body{[](uint16_t conn_handle, uint16_t tx_octets, uint16_t tx_time) {}};
-  void operator()(uint16_t conn_handle, uint16_t tx_octets, uint16_t tx_time) {
-    body(conn_handle, tx_octets, tx_time);
-  };
-};
-extern struct btsnd_hcic_ble_set_data_length btsnd_hcic_ble_set_data_length;
-
 // Name: btsnd_hcic_ble_set_default_periodic_advertising_sync_transfer_params
 // Params: uint16_t conn_handle, uint8_t mode, uint16_t skip, uint16_t
 // sync_timeout, uint8_t cte_type, base::OnceCallback<void(uint8_t*, uint16_t
