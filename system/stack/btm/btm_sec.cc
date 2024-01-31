@@ -153,6 +153,8 @@ static void send_write_auth_enable(bool enable);
 static void send_pin_code_req_reply(const RawAddress& bd_addr,
                                     uint8_t pin_code_len, PIN_CODE pin_code);
 
+static void send_user_conf_reply(const RawAddress& bd_addr, bool confirm);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -1191,12 +1193,12 @@ void BTM_ConfirmReqReply(tBTM_STATUS res, const RawAddress& bd_addr) {
   if ((res == BTM_SUCCESS) || (res == BTM_SUCCESS_NO_SECURITY)) {
     acl_set_disconnect_reason(HCI_SUCCESS);
 
-    btsnd_hcic_user_conf_reply(bd_addr, true);
+    send_user_conf_reply(bd_addr, true);
   } else {
     /* Report authentication failed event from state
      * BTM_PAIR_STATE_WAIT_AUTH_COMPLETE */
     acl_set_disconnect_reason(HCI_ERR_HOST_REJECT_SECURITY);
-    btsnd_hcic_user_conf_reply(bd_addr, false);
+    send_user_conf_reply(bd_addr, false);
   }
 }
 
@@ -2796,7 +2798,7 @@ void btm_proc_sp_req_evt(tBTM_SP_EVT event, const RawAddress bda,
   acl_set_disconnect_reason(HCI_ERR_HOST_REJECT_SECURITY);
 
   if (BTM_SP_CFM_REQ_EVT == event) {
-    btsnd_hcic_user_conf_reply(p_bda, false);
+    send_user_conf_reply(p_bda, false);
   } else if (BTM_SP_KEY_NOTIF_EVT == event) {
     /* do nothing -> it very unlikely to happen.
     This event is most likely to be received by a HID host when it first
@@ -4160,7 +4162,7 @@ static void btm_sec_pairing_timeout(void* /* data */) {
       break;
 
     case BTM_PAIR_STATE_WAIT_NUMERIC_CONFIRM:
-      btsnd_hcic_user_conf_reply(p_cb->pairing_bda, false);
+      send_user_conf_reply(p_cb->pairing_bda, false);
       /* btm_sec_cb.change_pairing_state (BTM_PAIR_STATE_IDLE); */
       break;
 
@@ -5160,4 +5162,23 @@ static void send_pin_code_req_reply(const RawAddress& bd_addr,
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::PinCodeRequestReplyCompleteView>));
+}
+
+static void send_user_conf_reply(const RawAddress& bd_addr, bool confirm) {
+  if (confirm) {
+    btm_sec_cb.hci_->EnqueueCommand(
+        bluetooth::hci::UserConfirmationRequestReplyBuilder::Create(
+            bluetooth::ToGdAddress(bd_addr)),
+        get_main_thread()->BindOnce(
+            bluetooth::hci::check_complete<
+                bluetooth::hci::UserConfirmationRequestReplyCompleteView>));
+  } else {
+    btm_sec_cb.hci_->EnqueueCommand(
+        bluetooth::hci::UserConfirmationRequestNegativeReplyBuilder::Create(
+            bluetooth::ToGdAddress(bd_addr)),
+        get_main_thread()->BindOnce(
+            bluetooth::hci::check_complete<
+                bluetooth::hci::
+                    UserConfirmationRequestNegativeReplyCompleteView>));
+  }
 }
