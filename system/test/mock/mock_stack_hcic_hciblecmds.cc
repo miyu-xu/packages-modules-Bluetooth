@@ -81,7 +81,6 @@ struct btsnd_hcic_ble_set_rand_priv_addr_timeout
     btsnd_hcic_ble_set_rand_priv_addr_timeout;
 struct btsnd_hcic_ble_set_scan_enable btsnd_hcic_ble_set_scan_enable;
 struct btsnd_hcic_ble_set_scan_params btsnd_hcic_ble_set_scan_params;
-struct btsnd_hcic_ble_start_enc btsnd_hcic_ble_start_enc;
 struct btsnd_hcic_ble_test_end btsnd_hcic_ble_test_end;
 struct btsnd_hcic_ble_transmitter_test btsnd_hcic_ble_transmitter_test;
 struct btsnd_hcic_ble_upd_ll_conn_params btsnd_hcic_ble_upd_ll_conn_params;
@@ -304,13 +303,6 @@ void btsnd_hcic_ble_set_scan_params(uint8_t scan_type, uint16_t scan_int,
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_set_scan_params(
       scan_type, scan_int, scan_win, addr_type_own, scan_filter_policy);
-}
-void btsnd_hcic_ble_start_enc(uint16_t handle,
-                              uint8_t rand[HCIC_BLE_RAND_DI_SIZE],
-                              uint16_t ediv, const Octet16& ltk) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_start_enc(handle, rand,
-                                                              ediv, ltk);
 }
 void btsnd_hcic_ble_test_end(void) {
   inc_func_call_count(__func__);
