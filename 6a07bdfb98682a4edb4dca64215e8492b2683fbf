@@ -1,6 +1,29 @@
 {
   "comments": [
     {
+      "unresolved": true,
+      "key": {
+        "uuid": "eccd2dd0_4b0fca93",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-31T18:04:50Z",
+      "side": 1,
+      "message": "Theses test are not checking that the feature is performing as expected.\nThe only test is about the databaseMigration, which is a copy past of the existing db tests.\n\nNo test are checking that calling the API is indeed preventing the device to be active.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 51
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": false,
       "key": {
         "uuid": "aca6ceb7_d69ff446",
@@ -14,6 +37,98 @@
       "writtenOn": "2024-01-31T17:48:08Z",
       "side": 1,
       "message": "Updated the APIs to address the review feedbacks. Newer version is introducing 2 APIs setter/getter instead of using metadata API which is the agreed approach by reviewers in the design doc.",
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5ff8fdfb_3a20bc37",
+        "filename": "android/app/src/com/android/bluetooth/btservice/AdapterService.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 5422,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-31T18:04:50Z",
+      "side": 1,
+      "message": "As per guidelines we should return a NullPointerException by using requireNonNull\n\ngo/android-api-guidelines#nullability:\n\n```\nNullability enforcement\nIn Java, methods are recommended to perform input validation for @NonNull\nparameters via Objects.requireNonNull() and throw a NullPointerException when the\nparameters are null. This is automatically performed in Kotlin.\n```",
+      "range": {
+        "startLine": 5420,
+        "startChar": 9,
+        "endLine": 5422,
+        "endChar": 13
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "db0eacb0_918552b5",
+        "filename": "android/app/src/com/android/bluetooth/btservice/storage/DatabaseManager.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1033,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-31T18:04:50Z",
+      "side": 1,
+      "message": "Nullability has already been checked for",
+      "range": {
+        "startLine": 1029,
+        "startChar": 6,
+        "endLine": 1033,
+        "endChar": 13
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "98944c51_24e89213",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/btservice/storage/DatabaseManagerTest.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 1458,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-31T18:04:50Z",
+      "side": 1,
+      "message": "There is no such requirement for the database migration since there is no rollback being handled.",
+      "range": {
+        "startLine": 1458,
+        "startChar": 0,
+        "endLine": 1458,
+        "endChar": 87
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bb174220_a58fb458",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3684,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-01-31T18:04:50Z",
+      "side": 1,
+      "message": "Shouldn\u0027t it specify this is a Broadcast option only ? and therefore moved to `BluetoothLeBroadcast.java`",
+      "range": {
+        "startLine": 3683,
+        "startChar": 0,
+        "endLine": 3684,
+        "endChar": 45
+      },
       "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
