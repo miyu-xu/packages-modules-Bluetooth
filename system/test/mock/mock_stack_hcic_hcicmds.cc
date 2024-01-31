@@ -80,7 +80,6 @@ struct btsnd_hcic_user_conf_reply btsnd_hcic_user_conf_reply;
 struct btsnd_hcic_user_passkey_neg_reply btsnd_hcic_user_passkey_neg_reply;
 struct btsnd_hcic_user_passkey_reply btsnd_hcic_user_passkey_reply;
 struct btsnd_hcic_vendor_spec_cmd btsnd_hcic_vendor_spec_cmd;
-struct btsnd_hcic_write_auth_enable btsnd_hcic_write_auth_enable;
 struct btsnd_hcic_write_auto_flush_tout btsnd_hcic_write_auto_flush_tout;
 struct btsnd_hcic_write_cur_iac_lap btsnd_hcic_write_cur_iac_lap;
 struct btsnd_hcic_write_def_policy_set btsnd_hcic_write_def_policy_set;
@@ -321,10 +320,6 @@ void btsnd_hcic_vendor_spec_cmd(uint16_t opcode, uint8_t len, uint8_t* p_data,
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_vendor_spec_cmd(
       opcode, len, p_data, p_cmd_cplt_cback);
-}
-void btsnd_hcic_write_auth_enable(uint8_t flag) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_write_auth_enable(flag);
 }
 void btsnd_hcic_write_auto_flush_tout(uint16_t handle, uint16_t tout) {
   inc_func_call_count(__func__);
