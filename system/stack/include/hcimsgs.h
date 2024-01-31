@@ -78,8 +78,6 @@ void btsnd_hcic_change_conn_type(uint16_t handle, uint16_t packet_types);
 
 /* Change Connection Type */
 
-void btsnd_hcic_auth_request(uint16_t handle); /* Authentication Request */
-
 /* Set Connection Encryption */
 void btsnd_hcic_set_conn_encrypt(uint16_t handle, bool enable);
 /* Set Connection Encryption */
