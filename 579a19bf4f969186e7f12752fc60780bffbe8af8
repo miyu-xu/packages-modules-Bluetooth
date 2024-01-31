@@ -16,6 +16,23 @@
       "message": "We can either revert aosp/2890862 or fix forward with this CL",
       "revId": "579a19bf4f969186e7f12752fc60780bffbe8af8",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4b71ed8c_6e1377dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T18:50:57Z",
+      "side": 1,
+      "message": "This forward fix is fine to me since anyways broadcast will be enabled for v and  later releases.\n@aliceypkuo@google.com any thoughts?",
+      "revId": "579a19bf4f969186e7f12752fc60780bffbe8af8",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
