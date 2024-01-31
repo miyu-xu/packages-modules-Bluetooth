@@ -231,19 +231,6 @@ struct btsnd_hcic_park_mode {
 };
 extern struct btsnd_hcic_park_mode btsnd_hcic_park_mode;
 
-// Name: btsnd_hcic_read_encryption_key_size
-// Params: uint16_t handle, ReadEncKeySizeCb cb
-// Return: void
-struct btsnd_hcic_read_encryption_key_size {
-  std::function<void(uint16_t handle, ReadEncKeySizeCb cb)> body{
-      [](uint16_t handle, ReadEncKeySizeCb cb) {}};
-  void operator()(uint16_t handle, ReadEncKeySizeCb cb) {
-    body(handle, std::move(cb));
-  };
-};
-extern struct btsnd_hcic_read_encryption_key_size
-    btsnd_hcic_read_encryption_key_size;
-
 // Name: btsnd_hcic_read_failed_contact_counter
 // Params: uint16_t handle
 // Return: void
