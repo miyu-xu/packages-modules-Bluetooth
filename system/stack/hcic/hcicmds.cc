@@ -1303,28 +1303,6 @@ void btsnd_hcic_read_local_oob_data(void) {
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-void btsnd_hcic_user_conf_reply(const RawAddress& bd_addr, bool is_yes) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_UCONF_REPLY;
-  p->offset = 0;
-
-  if (!is_yes) {
-    /* Negative reply */
-    UINT16_TO_STREAM(pp, HCI_USER_CONF_VALUE_NEG_REPLY);
-  } else {
-    /* Confirmation */
-    UINT16_TO_STREAM(pp, HCI_USER_CONF_REQUEST_REPLY);
-  }
-
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_UCONF_REPLY);
-
-  BDADDR_TO_STREAM(pp, bd_addr);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_user_passkey_reply(const RawAddress& bd_addr, uint32_t value) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
   uint8_t* pp = (uint8_t*)(p + 1);
