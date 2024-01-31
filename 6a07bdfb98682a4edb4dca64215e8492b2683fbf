@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aca6ceb7_d69ff446",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-01-31T17:48:08Z",
+      "side": 1,
+      "message": "Updated the APIs to address the review feedbacks. Newer version is introducing 2 APIs setter/getter instead of using metadata API which is the agreed approach by reviewers in the design doc.",
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
