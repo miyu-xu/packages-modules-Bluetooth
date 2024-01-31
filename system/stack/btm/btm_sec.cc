@@ -41,9 +41,11 @@
 #include "device/include/device_iot_config.h"
 #include "device/include/interop.h"
 #include "hci/controller_interface.h"
+#include "hci/event_checkers.h"
 #include "internal_include/bt_target.h"
 #include "l2c_api.h"
 #include "main/shim/entry.h"
+#include "main/shim/helpers.h"
 #include "osi/include/allocator.h"
 #include "osi/include/properties.h"
 #include "stack/btm/btm_ble_int.h"
@@ -136,6 +138,8 @@ static void btm_sec_check_pending_enc_req(tBTM_SEC_DEV_REC* p_dev_rec,
                                           uint8_t encr_enable);
 
 static bool btm_sec_use_smp_br_chnl(tBTM_SEC_DEV_REC* p_dev_rec);
+
+static void send_pin_code_neg_reply(const RawAddress& bd_addr);
 
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
@@ -525,7 +529,7 @@ void BTM_PINCodeReply(const RawAddress& bd_addr, tBTM_STATUS res,
       btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_WAIT_AUTH_COMPLETE);
       acl_set_disconnect_reason(HCI_ERR_HOST_REJECT_SECURITY);
 
-      btsnd_hcic_pin_code_neg_reply(bd_addr);
+      send_pin_code_neg_reply(bd_addr);
     } else {
       p_dev_rec->sec_rec.security_required = BTM_SEC_NONE;
       btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
@@ -4130,7 +4134,7 @@ static void btm_sec_pairing_timeout(void* /* data */) {
 
     case BTM_PAIR_STATE_WAIT_LOCAL_PIN:
       if ((btm_sec_cb.pairing_flags & BTM_PAIR_FLAGS_PRE_FETCH_PIN) == 0)
-        btsnd_hcic_pin_code_neg_reply(p_cb->pairing_bda);
+        send_pin_code_neg_reply(p_cb->pairing_bda);
       btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
       /* We need to notify the UI that no longer need the PIN */
       if (btm_sec_cb.api.p_auth_complete_callback) {
@@ -4231,20 +4235,20 @@ void btm_sec_pin_code_request(const RawAddress p_bda) {
 
   RawAddress local_bd_addr = *controller_get_interface()->get_address();
   if (p_bda == local_bd_addr) {
-    btsnd_hcic_pin_code_neg_reply(p_bda);
+    send_pin_code_neg_reply(p_bda);
     return;
   }
 
   if (btm_sec_cb.pairing_state != BTM_PAIR_STATE_IDLE) {
     if ((p_bda == btm_sec_cb.pairing_bda) &&
         (btm_sec_cb.pairing_state == BTM_PAIR_STATE_WAIT_AUTH_COMPLETE)) {
-      btsnd_hcic_pin_code_neg_reply(p_bda);
+      send_pin_code_neg_reply(p_bda);
       return;
     } else if ((btm_sec_cb.pairing_state != BTM_PAIR_STATE_WAIT_PIN_REQ) ||
                p_bda != btm_sec_cb.pairing_bda) {
       LOG_WARN("btm_sec_pin_code_request() rejected - state: %s",
                tBTM_SEC_CB::btm_pair_state_descr(btm_sec_cb.pairing_state));
-      btsnd_hcic_pin_code_neg_reply(p_bda);
+      send_pin_code_neg_reply(p_bda);
       return;
     }
   }
@@ -4310,7 +4314,7 @@ void btm_sec_pin_code_request(const RawAddress p_bda) {
         "Rec:%p!",
         p_cb->pairing_disabled, p_cb->api.p_pin_callback, p_dev_rec);
 
-    btsnd_hcic_pin_code_neg_reply(p_bda);
+    send_pin_code_neg_reply(p_bda);
   }
   /* Notify upper layer of PIN request and start expiration timer */
   else {
@@ -5088,4 +5092,13 @@ void BTM_update_version_info(const RawAddress& bd_addr,
   if (p_dev_rec == NULL) return;
 
   p_dev_rec->remote_version_info = remote_version_info;
+}
+
+static void send_pin_code_neg_reply(const RawAddress& bd_addr) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::PinCodeRequestNegativeReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr)),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::PinCodeRequestNegativeReplyCompleteView>));
 }
