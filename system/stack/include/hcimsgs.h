@@ -310,9 +310,6 @@ void btsnd_hcic_ble_rc_param_req_reply(uint16_t handle, uint16_t conn_int_min,
 
 void btsnd_hcic_ble_rc_param_req_neg_reply(uint16_t handle, uint8_t reason);
 
-void btsnd_hcic_ble_set_data_length(uint16_t conn_handle, uint16_t tx_octets,
-                                    uint16_t tx_time);
-
 struct scanning_phy_cfg {
   uint8_t scan_type;
   uint16_t scan_int;
