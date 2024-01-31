@@ -219,7 +219,6 @@ void btsnd_hcic_change_name(BD_NAME name);
 
 #define HCIC_PARAM_SIZE_WRITE_PARAM3 3
 
-void btsnd_hcic_write_pin_type(uint8_t type);      /* Write PIN Type */
 void btsnd_hcic_write_auto_accept(uint8_t flag);   /* Write Auto Accept */
 void btsnd_hcic_read_name(void);                   /* Read Local Name */
 void btsnd_hcic_write_page_tout(uint16_t timeout); /* Write Page Timout */
