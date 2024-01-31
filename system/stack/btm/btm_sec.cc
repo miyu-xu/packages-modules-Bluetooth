@@ -164,6 +164,8 @@ static void send_user_passkey_reply(const RawAddress& bd_addr,
 
 static void send_read_local_oob_data();
 
+static void send_rem_oob_reply(const RawAddress& bd_addr, Octet16 c, Octet16 r);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -1312,7 +1314,7 @@ void BTM_RemoteOobDataReply(tBTM_STATUS res, const RawAddress& bd_addr,
     send_rem_oob_neg_reply(bd_addr);
   } else {
     acl_set_disconnect_reason(HCI_SUCCESS);
-    btsnd_hcic_rem_oob_reply(bd_addr, c, r);
+    send_rem_oob_reply(bd_addr, c, r);
   }
 }
 
@@ -5235,4 +5237,14 @@ static void send_read_local_oob_data() {
             evt_data.r = event.GetR();
             btm_read_local_oob_complete(evt_data);
           }));
+}
+
+static void send_rem_oob_reply(const RawAddress& bd_addr, Octet16 c,
+                               Octet16 r) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::RemoteOobDataRequestReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr), c, r),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::RemoteOobDataRequestReplyCompleteView>));
 }
