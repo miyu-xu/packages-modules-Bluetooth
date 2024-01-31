@@ -1151,25 +1151,6 @@ void btsnd_hcic_write_ext_inquiry_response(void* buffer, uint8_t fec_req) {
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-void btsnd_hcic_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
-                                 uint8_t oob_present, uint8_t auth_req) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_IO_CAP_RESP;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_IO_CAPABILITY_REQUEST_REPLY);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_IO_CAP_RESP);
-
-  BDADDR_TO_STREAM(pp, bd_addr);
-  UINT8_TO_STREAM(pp, capability);
-  UINT8_TO_STREAM(pp, oob_present);
-  UINT8_TO_STREAM(pp, auth_req);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
 void btsnd_hcic_enhanced_set_up_synchronous_connection(
     uint16_t conn_handle, enh_esco_params_t* p_params) {
   BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
