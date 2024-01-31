@@ -73,12 +73,6 @@ void btsnd_hcic_reject_conn(const RawAddress& bd_addr, uint8_t reason);
 
 /* Reject Connection Request */
 
-/* Link Key Request Reply */
-void btsnd_hcic_link_key_req_reply(const RawAddress& bd_addr,
-                                   const LinkKey& link_key);
-
-/* Link Key Request Reply  */
-
 /* Change Connection Type */
 void btsnd_hcic_change_conn_type(uint16_t handle, uint16_t packet_types);
 
