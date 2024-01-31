@@ -112,12 +112,6 @@
 #define HCI_LINK_KEY_REPLY_LINK_KEY_OFF 6
 /* Link Key Request Reply  */
 
-/* Link Key Request Neg Reply */
-#define HCIC_PARAM_SIZE_LINK_KEY_NEG_REPLY 6
-
-#define HCI_LINK_KEY_NEG_REP_BD_ADR_OFF 0
-/* Link Key Request Neg Reply  */
-
 /* Change Connection Type */
 #define HCIC_PARAM_SIZE_CHANGE_CONN_TYPE 4
 
@@ -543,21 +537,6 @@ void btsnd_hcic_link_key_req_reply(const RawAddress& bd_addr,
 
   BDADDR_TO_STREAM(pp, bd_addr);
   ARRAY16_TO_STREAM(pp, link_key.data());
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
-void btsnd_hcic_link_key_neg_reply(const RawAddress& bd_addr) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_LINK_KEY_NEG_REPLY;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_LINK_KEY_REQUEST_NEG_REPLY);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_LINK_KEY_NEG_REPLY);
-
-  BDADDR_TO_STREAM(pp, bd_addr);
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
