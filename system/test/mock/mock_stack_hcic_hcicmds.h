@@ -194,21 +194,6 @@ struct btsnd_hcic_hold_mode {
 };
 extern struct btsnd_hcic_hold_mode btsnd_hcic_hold_mode;
 
-// Name: btsnd_hcic_io_cap_req_reply
-// Params: const RawAddress& bd_addr, uint8_t capability, uint8_t oob_present,
-// uint8_t auth_req Return: void
-struct btsnd_hcic_io_cap_req_reply {
-  std::function<void(const RawAddress& bd_addr, uint8_t capability,
-                     uint8_t oob_present, uint8_t auth_req)>
-      body{[](const RawAddress& bd_addr, uint8_t capability,
-              uint8_t oob_present, uint8_t auth_req) {}};
-  void operator()(const RawAddress& bd_addr, uint8_t capability,
-                  uint8_t oob_present, uint8_t auth_req) {
-    body(bd_addr, capability, oob_present, auth_req);
-  };
-};
-extern struct btsnd_hcic_io_cap_req_reply btsnd_hcic_io_cap_req_reply;
-
 // Name: btsnd_hcic_link_key_neg_reply
 // Params: const RawAddress& bd_addr
 // Return: void
