@@ -205,13 +205,17 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
         final boolean isBypassLeAudioAllowlist =
                 SystemProperties.getBoolean(BYPASS_LE_AUDIO_ALLOWLIST_PROPERTY, false);
 
+        final boolean deviceType = device.getType();
+
         boolean isLeAudioProfileAllowed =
                 (leAudioService != null)
                         && Utils.arrayContains(uuids, BluetoothUuid.LE_AUDIO)
                         && (leAudioService.getConnectionPolicy(device)
                                 != BluetoothProfile.CONNECTION_POLICY_FORBIDDEN)
-                        && (mLeAudioEnabledByDefault || isDualModeAudioEnabled())
-                        && (isBypassLeAudioAllowlist || mAdapterService.isLeAudioAllowed(device));
+                        && (deviceType == DEVICE_TYPE_LE
+                                || ((mLeAudioEnabledByDefault || isDualModeAudioEnabled())
+                                        && (isBypassLeAudioAllowlist
+                                                || mAdapterService.isLeAudioAllowed(device))));
 
         debugLog(
                 "mLeAudioEnabledByDefault: "
@@ -219,7 +223,9 @@ public class PhonePolicy implements AdapterService.BluetoothStateCallback {
                         + ", isBypassLeAudioAllowlist: "
                         + isBypassLeAudioAllowlist
                         + ", isLeAudioAllowDevice: "
-                        + mAdapterService.isLeAudioAllowed(device));
+                        + mAdapterService.isLeAudioAllowed(device)
+                        + ", deviceType: "
+                        + deviceType);
 
         // Set profile priorities only for the profiles discovered on the remote device.
         // This avoids needless auto-connect attempts to profiles non-existent on the remote device
