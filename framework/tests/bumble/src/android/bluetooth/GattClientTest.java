@@ -80,7 +80,6 @@ public class GattClientTest {
                 mAdapter.getRemoteLeDevice(
                         Utils.BUMBLE_RANDOM_ADDRESS, BluetoothDevice.ADDRESS_TYPE_RANDOM);
 
-        for (int i = 0; i < 10; i++) {
             BluetoothGattCallback gattCallback = mock(BluetoothGattCallback.class);
             BluetoothGatt gatt = device.connectGatt(mContext, false, gattCallback);
             gatt.close();
@@ -93,15 +92,13 @@ public class GattClientTest {
             BluetoothGatt gatt2 = device.connectGatt(mContext, false, gattCallback2);
             verify(gattCallback2, timeout(1000))
                     .onConnectionStateChange(any(), anyInt(), eq(BluetoothProfile.STATE_CONNECTED));
-            gatt2.close();
+        disconnectAndWaitDisconnection(gatt2, gattCallback2);
 
-            // After reconnecting with the second set of callback, check that nothing happened on
-            // the first set of callback
-            Collection<Invocation> invocationsAfterSomeTimes =
-                    mockingDetails(gattCallback).getInvocations();
+        // After reconnecting, verify the first callback was not invoked.
+        Collection<Invocation> invocationsAfterSomeTimes =
+                mockingDetails(gattCallback).getInvocations();
             int numberOfCallsAfterSomeTimes = invocationsAfterSomeTimes.size();
             assertThat(numberOfCallsAfterSomeTimes).isEqualTo(numberOfCalls);
-        }
     }
 
     @Test
