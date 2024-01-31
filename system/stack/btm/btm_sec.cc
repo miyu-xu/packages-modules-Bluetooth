@@ -171,6 +171,9 @@ static void send_reject_conn_hack(const RawAddress& bd_addr, uint8_t reason);
 static void send_io_cap_req_neg_reply(const RawAddress& bd_addr,
                                       uint8_t reason);
 
+static void send_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
+                                  uint8_t oob_present, uint8_t auth_req);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -2631,8 +2634,8 @@ void btm_io_capabilities_req(RawAddress p) {
               tBTM_SEC_CB::btm_pair_state_descr(btm_sec_cb.pairing_state),
               evt_data.io_cap, evt_data.oob_data, evt_data.auth_req);
 
-  btsnd_hcic_io_cap_req_reply(evt_data.bd_addr, evt_data.io_cap,
-                              evt_data.oob_data, evt_data.auth_req);
+  send_io_cap_req_reply(evt_data.bd_addr, evt_data.io_cap, evt_data.oob_data,
+                        evt_data.auth_req);
 }
 
 /*******************************************************************************
@@ -4192,9 +4195,8 @@ static void btm_sec_pairing_timeout(void* /* data */) {
 
     case BTM_PAIR_STATE_WAIT_LOCAL_IOCAPS:
       // TODO(optedoblivion): Inject OOB_DATA_PRESENT Flag
-      btsnd_hcic_io_cap_req_reply(p_cb->pairing_bda,
-                                  btm_sec_cb.devcb.loc_io_caps, BTM_OOB_NONE,
-                                  auth_req);
+      send_io_cap_req_reply(p_cb->pairing_bda, btm_sec_cb.devcb.loc_io_caps,
+                            BTM_OOB_NONE, auth_req);
       btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
       break;
 
@@ -5274,4 +5276,17 @@ static void send_io_cap_req_neg_reply(const RawAddress& bd_addr,
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::IoCapabilityRequestNegativeReplyCompleteView>));
+}
+
+static void send_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
+                                  uint8_t oob_present, uint8_t auth_req) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::IoCapabilityRequestReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr),
+          static_cast<bluetooth::hci::IoCapability>(capability),
+          static_cast<bluetooth::hci::OobDataPresent>(oob_present),
+          static_cast<bluetooth::hci::AuthenticationRequirements>(auth_req)),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::IoCapabilityRequestReplyCompleteView>));
 }
