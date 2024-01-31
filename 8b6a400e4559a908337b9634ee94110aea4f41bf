@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7647512b_6ae55d21",
+        "filename": "floss/pandora/floss/socket_manager.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 325,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "Returns",
+      "range": {
+        "startLine": 325,
+        "startChar": 8,
+        "endLine": 325,
+        "endChar": 15
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7d4af806_a3cd9d3f",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "Observer to observe listen to the L2CAP channel.",
+      "range": {
+        "startLine": 49,
+        "startChar": 16,
+        "endLine": 49,
+        "endChar": 60
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7b98e01b_2aeedd08",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "Failed to listen on the L2CAP channel\nor \nFailed listening to the L2CAP channel",
+      "range": {
+        "startLine": 60,
+        "startChar": 35,
+        "endLine": 60,
+        "endChar": 65
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "acaf8e2f_51fe4674",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "creates",
+      "range": {
+        "startLine": 91,
+        "startChar": 35,
+        "endLine": 91,
+        "endChar": 41
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "67ba422c_f81dc065",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "if the result is None, do we have connection_id?\nand if yes, what us the value",
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c28d63a6_368e3a7f",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "if the previous question answer (it will return None), then we need to check if it is not None here",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 48
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f7ce5630_afe69bb6",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "why print it if it is None ?",
+      "range": {
+        "startLine": 125,
+        "startChar": 46,
+        "endLine": 125,
+        "endChar": 55
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6562115a_f5ab40c1",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "same as before",
+      "range": {
+        "startLine": 174,
+        "startChar": 48,
+        "endLine": 174,
+        "endChar": 59
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "7634ed8f_9f1f59f4",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "what is this ?",
+      "range": {
+        "startLine": 195,
+        "startChar": 59,
+        "endLine": 195,
+        "endChar": 73
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "09be7084_6f8483b9",
+        "filename": "floss/pandora/server/l2cap.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 1965643
+      },
+      "writtenOn": "2024-01-31T07:43:25Z",
+      "side": 1,
+      "message": "maybe better to log what is the connection you mentioned here ?",
+      "range": {
+        "startLine": 213,
+        "startChar": 25,
+        "endLine": 213,
+        "endChar": 70
+      },
+      "revId": "8b6a400e4559a908337b9634ee94110aea4f41bf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
