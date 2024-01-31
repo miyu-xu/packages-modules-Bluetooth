@@ -106,6 +106,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
          * @param volumeOffset latest volume offset for this audio output id
          * @hide
          */
+        @FlaggedApi(Flags.FLAG_LE_AUDIO_MULTIPLE_VOCS_INSTANCES_API)
         @SystemApi
         void onVolumeOffsetChanged(
                 @NonNull BluetoothDevice device,
@@ -122,6 +123,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
          * @param audioLocation latest audio location for this audio output id
          * @hide
          */
+        @FlaggedApi(Flags.FLAG_LE_AUDIO_MULTIPLE_VOCS_INSTANCES_API)
         @SystemApi
         void onAudioLocationChanged(
                 @NonNull BluetoothDevice device,
@@ -138,6 +140,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
          * @param audioDescription latest audio description for this audio output id
          * @hide
          */
+        @FlaggedApi(Flags.FLAG_LE_AUDIO_MULTIPLE_VOCS_INSTANCES_API)
         @SystemApi
         void onAudioDescriptionChanged(
                 @NonNull BluetoothDevice device,
@@ -663,6 +666,7 @@ public final class BluetoothVolumeControl implements BluetoothProfile, AutoClose
      * @param volumeOffset volume offset to be set on this output id
      * @hide
      */
+    @FlaggedApi(Flags.FLAG_LE_AUDIO_MULTIPLE_VOCS_INSTANCES_API)
     @SystemApi
     @RequiresBluetoothConnectPermission
     @RequiresPermission(

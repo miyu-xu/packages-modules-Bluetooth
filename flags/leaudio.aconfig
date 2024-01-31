@@ -90,3 +90,10 @@ flag {
     description: "Better LE Audio devices detection"
     bug: "319511584"
 }
+
+flag {
+    name: "le_audio_multiple_vocs_instances_api"
+    namespace: "bluetooth"
+    description: "Support multiple audio outputs for volume offset"
+    bug: "323156655"
+}
