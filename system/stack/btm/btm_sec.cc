@@ -174,6 +174,9 @@ static void send_io_cap_req_neg_reply(const RawAddress& bd_addr,
 static void send_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
                                   uint8_t oob_present, uint8_t auth_req);
 
+static void send_read_encryption_key_size(uint16_t handle,
+                                          bool after_encryption_change);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -3452,9 +3455,7 @@ void btm_sec_encryption_change_evt(uint16_t handle, tHCI_STATUS status,
     btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status),
                            encr_enable);
   } else {
-    btsnd_hcic_read_encryption_key_size(
-        handle,
-        base::Bind(&read_encryption_key_size_complete_after_encryption_change));
+    send_read_encryption_key_size(handle, true /* after_encryption_change */);
   }
 }
 /*******************************************************************************
@@ -3980,9 +3981,7 @@ void btm_sec_encryption_key_refresh_complete(uint16_t handle,
     btm_sec_encrypt_change(handle, static_cast<tHCI_STATUS>(status),
                            (status == HCI_SUCCESS) ? 1 : 0);
   } else {
-    btsnd_hcic_read_encryption_key_size(
-        handle,
-        base::Bind(&read_encryption_key_size_complete_after_key_refresh));
+    send_read_encryption_key_size(handle, false /* after_encryption_change */);
   }
 }
 
@@ -5289,4 +5288,37 @@ static void send_io_cap_req_reply(const RawAddress& bd_addr, uint8_t capability,
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::IoCapabilityRequestReplyCompleteView>));
+}
+
+static void send_read_encryption_key_size(uint16_t handle,
+                                          bool after_encryption_change) {
+  if (after_encryption_change) {
+    btm_sec_cb.hci_->EnqueueCommand(
+        bluetooth::hci::ReadEncryptionKeySizeBuilder::Create(handle),
+        get_main_thread()->BindOnce(
+            [](bluetooth::hci::CommandCompleteView complete) {
+              auto event =
+                  bluetooth::hci::ReadEncryptionKeySizeCompleteView::Create(
+                      complete);
+              ASSERT(event.IsValid());
+              auto status = static_cast<tHCI_STATUS>(event.GetStatus());
+              auto handle = event.GetConnectionHandle();
+              read_encryption_key_size_complete_after_encryption_change(
+                  status, handle, event.GetKeySize());
+            }));
+  } else {
+    btm_sec_cb.hci_->EnqueueCommand(
+        bluetooth::hci::ReadEncryptionKeySizeBuilder::Create(handle),
+        get_main_thread()->BindOnce(
+            [](bluetooth::hci::CommandCompleteView complete) {
+              auto event =
+                  bluetooth::hci::ReadEncryptionKeySizeCompleteView::Create(
+                      complete);
+              ASSERT(event.IsValid());
+              auto status = static_cast<tHCI_STATUS>(event.GetStatus());
+              auto handle = event.GetConnectionHandle();
+              read_encryption_key_size_complete_after_key_refresh(
+                  status, handle, event.GetKeySize());
+            }));
+  }
 }
