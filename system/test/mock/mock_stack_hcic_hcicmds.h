@@ -281,15 +281,6 @@ struct btsnd_hcic_read_failed_contact_counter {
 extern struct btsnd_hcic_read_failed_contact_counter
     btsnd_hcic_read_failed_contact_counter;
 
-// Name: btsnd_hcic_read_local_oob_data
-// Params: void
-// Return: void
-struct btsnd_hcic_read_local_oob_data {
-  std::function<void(void)> body{[](void) {}};
-  void operator()(void) { body(); };
-};
-extern struct btsnd_hcic_read_local_oob_data btsnd_hcic_read_local_oob_data;
-
 // Name: btsnd_hcic_read_name
 // Params: void
 // Return: void
