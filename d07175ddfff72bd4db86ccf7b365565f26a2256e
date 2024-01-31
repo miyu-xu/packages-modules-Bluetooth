@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "6db41f53_9072e107",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-01-31T17:24:16Z",
+      "side": 1,
+      "message": "I think we need to look not on a single device but on the group.\nYou can imagine a group of 2 earbuds when one is dual mode device and second is le only.\n\nWith this patch, second device would be allowed to use LeAudio automatically?",
+      "revId": "d07175ddfff72bd4db86ccf7b365565f26a2256e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
