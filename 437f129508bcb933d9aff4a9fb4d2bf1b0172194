@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0a39663b_3da38e42",
+        "filename": "system/btif/src/btif_dm.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2161,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-01-31T23:18:44Z",
+      "side": 1,
+      "message": "nit: Maybe remove the else.  Something about this code looks strange.",
+      "range": {
+        "startLine": 2161,
+        "startChar": 3,
+        "endLine": 2161,
+        "endChar": 8
+      },
+      "revId": "437f129508bcb933d9aff4a9fb4d2bf1b0172194",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
