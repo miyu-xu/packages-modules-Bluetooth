@@ -31,6 +31,7 @@
 
 #include "acl_api_types.h"
 #include "btif/include/btif_bqr.h"
+#include "btif/include/btif_storage.h"
 #include "btm_sec_cb.h"
 #include "btm_sec_int_types.h"
 #include "device/include/controller.h"
@@ -294,7 +295,7 @@ static void decode_controller_support() {
               btm_cb.btm_sco_pkt_types_supported);
 
   BTM_acl_after_controller_started(controller_get_interface());
-  btm_sec_dev_reset();
+  btm_sec_dev_reset(btif_storage_get_local_io_caps());
 
   if (bluetooth::shim::GetController()->SupportsRssiWithInquiryResults()) {
     if (bluetooth::shim::GetController()->SupportsExtendedInquiryResponse())

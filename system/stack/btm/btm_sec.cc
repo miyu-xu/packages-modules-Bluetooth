@@ -33,8 +33,6 @@
 #include <string>
 #include <type_traits>
 
-#include "bt_dev_class.h"
-#include "btif/include/btif_storage.h"
 #include "common/init_flags.h"
 #include "common/metrics.h"
 #include "common/time_util.h"
@@ -45,7 +43,6 @@
 #include "hci/event_checkers.h"
 #include "hci/hci_layer.h"
 #include "internal_include/bt_target.h"
-#include "l2c_api.h"
 #include "main/shim/entry.h"
 #include "main/shim/helpers.h"
 #include "osi/include/allocator.h"
@@ -58,6 +55,7 @@
 #include "stack/btm/btm_sec_int_types.h"
 #include "stack/btm/security_device_record.h"
 #include "stack/include/acl_api.h"
+#include "stack/include/bt_dev_class.h"
 #include "stack/include/bt_octets.h"
 #include "stack/include/bt_psm_types.h"
 #include "stack/include/bt_types.h"
@@ -67,8 +65,10 @@
 #include "stack/include/btm_ble_privacy.h"
 #include "stack/include/btm_log_history.h"
 #include "stack/include/btm_sec_api.h"
+#include "stack/include/btm_sec_api_types.h"
 #include "stack/include/btm_status.h"
 #include "stack/include/hci_error_code.h"
+#include "stack/include/l2c_api.h"
 #include "stack/include/l2cap_security_interface.h"
 #include "stack/include/main_thread.h"
 #include "stack/include/smp_api.h"
@@ -2103,12 +2103,12 @@ void btm_sec_check_pending_reqs(void) {
  * Returns          void
  *
  ******************************************************************************/
-void btm_sec_dev_reset(void) {
+void btm_sec_dev_reset(tBTM_IO_CAP local_io_caps) {
   ASSERT_LOG(bluetooth::shim::GetController()->SupportsSimplePairing(),
              "only controllers with SSP is supported");
 
   /* set the default IO capabilities */
-  btm_sec_cb.devcb.loc_io_caps = btif_storage_get_local_io_caps();
+  btm_sec_cb.devcb.loc_io_caps = local_io_caps;
   /* add mx service to use no security */
   BTM_SetSecurityLevel(false, "RFC_MUX", BTM_SEC_SERVICE_RFC_MUX,
                        BTM_SEC_NONE, BT_PSM_RFCOMM, BTM_SEC_PROTO_RFCOMM, 0);
