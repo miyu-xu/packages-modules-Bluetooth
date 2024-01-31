@@ -22,6 +22,30 @@
       },
       "revId": "7302c97d943aab9c6b1e709a624737ec5a2f89d7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "784f6e20_fb01e080",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 792,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-01-31T13:06:46Z",
+      "side": 0,
+      "message": "Not exactly but you have right that backward compatibility have to be maintained. Call of old callback have to be added in BluetoothVolumeControl. Fixed.",
+      "parentUuid": "ac5e1e83_0ef62aca",
+      "range": {
+        "startLine": 792,
+        "startChar": 57,
+        "endLine": 792,
+        "endChar": 78
+      },
+      "revId": "7302c97d943aab9c6b1e709a624737ec5a2f89d7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }

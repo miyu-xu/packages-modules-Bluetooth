@@ -20,6 +20,24 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "2d9c88b3_ddebf10a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-01-31T13:06:46Z",
+      "side": 1,
+      "message": "As I understand, yes, this is correct topology.\n\nMajor use case is for audio balancing in devices with few speakers, i.e. headphones (not buds) or some other audio devices with even more speakers. Second use case which I heard is to balancing sound types i.e. music/voice/notifications.",
+      "parentUuid": "376b2126_e0bd1542",
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "8b234100_383ddd16",
         "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
         "patchSetId": 2
@@ -31,6 +49,30 @@
       "writtenOn": "2024-01-30T20:26:22Z",
       "side": 1,
       "message": "The old API still has to work. What is the default audio output ID if none is included in the callback?",
+      "range": {
+        "startLine": 95,
+        "startChar": 16,
+        "endLine": 95,
+        "endChar": 100
+      },
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "038fffc9_f10b1b43",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-01-31T13:06:46Z",
+      "side": 1,
+      "message": "In old API only first offset was used. Offsets are numerated from 1.",
+      "parentUuid": "8b234100_383ddd16",
       "range": {
         "startLine": 95,
         "startChar": 16,
@@ -111,6 +153,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "e273b863_4f20f2b7",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-01-31T13:06:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f342646f_f3ac7a7d",
+      "range": {
+        "startLine": 126,
+        "startChar": 50,
+        "endLine": 126,
+        "endChar": 52
+      },
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "0dca2719_dcc00718",
@@ -134,6 +200,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "97a3e44f_0b9e59be",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-01-31T13:06:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0dca2719_dcc00718",
+      "range": {
+        "startLine": 141,
+        "startChar": 50,
+        "endLine": 141,
+        "endChar": 52
+      },
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "226c39bd_2ee07618",
@@ -147,6 +237,24 @@
       "writtenOn": "2024-01-30T12:36:08Z",
       "side": 1,
       "message": "please add a note describing that remote device might have number of audio outputs which could be controlled with the offset e.g. two speakers.\n Also add a not that  ID is the one which is previously notified with ta callback and if provided ID does not exist, call will be ignored or maybe exception should be throw.\n\n```\n@param id identifier of the audio output device which can be controller with the offset on the remote device. \n```",
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a3c50d7a_29e1ea4d",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 2
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-01-31T13:06:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "226c39bd_2ee07618",
       "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
