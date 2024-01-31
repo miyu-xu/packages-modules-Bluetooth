@@ -74,7 +74,6 @@ struct btsnd_hcic_set_event_filter btsnd_hcic_set_event_filter;
 struct btsnd_hcic_setup_esco_conn btsnd_hcic_setup_esco_conn;
 struct btsnd_hcic_sniff_mode btsnd_hcic_sniff_mode;
 struct btsnd_hcic_sniff_sub_rate btsnd_hcic_sniff_sub_rate;
-struct btsnd_hcic_user_passkey_reply btsnd_hcic_user_passkey_reply;
 struct btsnd_hcic_vendor_spec_cmd btsnd_hcic_vendor_spec_cmd;
 struct btsnd_hcic_write_auto_flush_tout btsnd_hcic_write_auto_flush_tout;
 struct btsnd_hcic_write_cur_iac_lap btsnd_hcic_write_cur_iac_lap;
@@ -288,10 +287,6 @@ void btsnd_hcic_sniff_sub_rate(uint16_t handle, uint16_t max_lat,
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hcicmds::btsnd_hcic_sniff_sub_rate(
       handle, max_lat, min_remote_lat, min_local_lat);
-}
-void btsnd_hcic_user_passkey_reply(const RawAddress& bd_addr, uint32_t value) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hcicmds::btsnd_hcic_user_passkey_reply(bd_addr, value);
 }
 void btsnd_hcic_vendor_spec_cmd(uint16_t opcode, uint8_t len, uint8_t* p_data,
                                 tBTM_VSC_CMPL_CB* p_cmd_cplt_cback) {
