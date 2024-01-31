@@ -159,6 +159,9 @@ static void send_user_passkey_neg_reply(const RawAddress& bd_addr);
 
 static void send_rem_oob_neg_reply(const RawAddress& bd_addr);
 
+static void send_user_passkey_reply(const RawAddress& bd_addr,
+                                    uint32_t passkey);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -1264,7 +1267,7 @@ void BTM_PasskeyReqReply(tBTM_STATUS res, const RawAddress& bd_addr,
     send_user_passkey_neg_reply(bd_addr);
   } else {
     acl_set_disconnect_reason(HCI_SUCCESS);
-    btsnd_hcic_user_passkey_reply(bd_addr, passkey);
+    send_user_passkey_reply(bd_addr, passkey);
   }
 }
 
@@ -5203,4 +5206,14 @@ static void send_rem_oob_neg_reply(const RawAddress& bd_addr) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::RemoteOobDataRequestNegativeReplyCompleteView>));
+}
+
+static void send_user_passkey_reply(const RawAddress& bd_addr,
+                                    uint32_t passkey) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::UserPasskeyRequestReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr), passkey),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::UserPasskeyRequestReplyCompleteView>));
 }
