@@ -157,6 +157,8 @@ static void send_user_conf_reply(const RawAddress& bd_addr, bool confirm);
 
 static void send_user_passkey_neg_reply(const RawAddress& bd_addr);
 
+static void send_rem_oob_neg_reply(const RawAddress& bd_addr);
+
 /* true - authenticated link key is possible */
 static const bool btm_sec_io_map[BTM_IO_CAP_MAX][BTM_IO_CAP_MAX] = {
     /*   OUT,    IO,     IN,     NONE */
@@ -1302,7 +1304,7 @@ void BTM_RemoteOobDataReply(tBTM_STATUS res, const RawAddress& bd_addr,
     /* use BTM_PAIR_STATE_WAIT_AUTH_COMPLETE to report authentication failed
      * event */
     acl_set_disconnect_reason(HCI_ERR_HOST_REJECT_SECURITY);
-    btsnd_hcic_rem_oob_neg_reply(bd_addr);
+    send_rem_oob_neg_reply(bd_addr);
   } else {
     acl_set_disconnect_reason(HCI_SUCCESS);
     btsnd_hcic_rem_oob_reply(bd_addr, c, r);
@@ -2917,7 +2919,7 @@ void btm_rem_oob_req(const RawAddress bd_addr) {
 
   /* something bad. we can only fail this connection */
   acl_set_disconnect_reason(HCI_ERR_HOST_REJECT_SECURITY);
-  btsnd_hcic_rem_oob_neg_reply(p_bda);
+  send_rem_oob_neg_reply(p_bda);
 }
 
 /*******************************************************************************
@@ -4185,7 +4187,7 @@ static void btm_sec_pairing_timeout(void* /* data */) {
       break;
 
     case BTM_PAIR_STATE_WAIT_LOCAL_OOB_RSP:
-      btsnd_hcic_rem_oob_neg_reply(p_cb->pairing_bda);
+      send_rem_oob_neg_reply(p_cb->pairing_bda);
       btm_sec_cb.change_pairing_state(BTM_PAIR_STATE_IDLE);
       break;
 
@@ -5192,4 +5194,13 @@ static void send_user_passkey_neg_reply(const RawAddress& bd_addr) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::UserPasskeyRequestNegativeReplyCompleteView>));
+}
+
+static void send_rem_oob_neg_reply(const RawAddress& bd_addr) {
+  btm_sec_cb.hci_->EnqueueCommand(
+      bluetooth::hci::RemoteOobDataRequestNegativeReplyBuilder::Create(
+          bluetooth::ToGdAddress(bd_addr)),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::RemoteOobDataRequestNegativeReplyCompleteView>));
 }
