@@ -118,14 +118,6 @@
 #define HCI_LINK_KEY_NEG_REP_BD_ADR_OFF 0
 /* Link Key Request Neg Reply  */
 
-/* PIN Code Request Reply */
-#define HCIC_PARAM_SIZE_PIN_CODE_REQ_REPLY 23
-
-#define HCI_PIN_CODE_REPLY_BD_ADDR_OFF 0
-#define HCI_PIN_CODE_REPLY_PIN_LEN_OFF 6
-#define HCI_PIN_CODE_REPLY_PIN_CODE_OFF 7
-/* PIN Code Request Reply  */
-
 /* Change Connection Type */
 #define HCIC_PARAM_SIZE_CHANGE_CONN_TYPE 4
 
@@ -571,28 +563,6 @@ void btsnd_hcic_link_key_neg_reply(const RawAddress& bd_addr) {
   UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_LINK_KEY_NEG_REPLY);
 
   BDADDR_TO_STREAM(pp, bd_addr);
-
-  btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
-}
-
-void btsnd_hcic_pin_code_req_reply(const RawAddress& bd_addr,
-                                   uint8_t pin_code_len, PIN_CODE pin_code) {
-  BT_HDR* p = (BT_HDR*)osi_malloc(HCI_CMD_BUF_SIZE);
-  uint8_t* pp = (uint8_t*)(p + 1);
-  int i;
-
-  p->len = HCIC_PREAMBLE_SIZE + HCIC_PARAM_SIZE_PIN_CODE_REQ_REPLY;
-  p->offset = 0;
-
-  UINT16_TO_STREAM(pp, HCI_PIN_CODE_REQUEST_REPLY);
-  UINT8_TO_STREAM(pp, HCIC_PARAM_SIZE_PIN_CODE_REQ_REPLY);
-
-  BDADDR_TO_STREAM(pp, bd_addr);
-  UINT8_TO_STREAM(pp, pin_code_len);
-
-  for (i = 0; i < pin_code_len; i++) *pp++ = *pin_code++;
-
-  for (; i < PIN_CODE_LEN; i++) *pp++ = 0;
 
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
