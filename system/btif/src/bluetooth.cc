@@ -826,7 +826,8 @@ static int get_remote_pbap_pce_version(const RawAddress* bd_addr) {
   // Read and restore the PCE version from local storage
   uint16_t pce_version = 0;
   size_t version_value_size = sizeof(pce_version);
-  if (!btif_config_get_bin(bd_addr->ToString(), BT_CONFIG_KEY_PBAP_PCE_VERSION,
+  if (!btif_config_get_bin(bd_addr->ToString(),
+                           BTIF_STORAGE_KEY_PBAP_PCE_VERSION,
                            (uint8_t*)&pce_version, &version_value_size)) {
     LOG_WARN("Failed to read cached peer PCE version for %s",
              ADDRESS_TO_LOGGABLE_CSTR(*bd_addr));
