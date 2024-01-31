@@ -39,6 +39,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
+import android.media.BluetoothProfileConnectionInfo;
 import android.net.Uri;
 import android.os.BatteryManager;
 import android.os.Handler;
@@ -1449,6 +1450,15 @@ public class HeadsetService extends ProfileService {
                     }
                     return false;
                 }
+                if (Flags.isScoManagedByAudio()) {
+                    // tell Audio Framework that active device changed
+                    mSystemInterface
+                            .getAudioManager()
+                            .handleBluetoothActiveDeviceChanged(
+                                    mActiveDevice,
+                                    previousActiveDevice,
+                                    BluetoothProfileConnectionInfo.createHfpInfo());
+                }
                 broadcastActiveDevice(mActiveDevice);
             } else if (shouldPersistAudio()) {
                 /* If HFP is getting active for a phonecall and there is LeAudio device active,
@@ -1460,7 +1470,15 @@ public class HeadsetService extends ProfileService {
                     Log.i(TAG, "Make sure there is no le audio device active.");
                     leAudioService.setInactiveForHfpHandover(mActiveDevice);
                 }
-
+                if (Flags.isScoManagedByAudio()) {
+                    // tell Audio Framework that active device changed
+                    mSystemInterface
+                            .getAudioManager()
+                            .handleBluetoothActiveDeviceChanged(
+                                    mActiveDevice,
+                                    previousActiveDevice,
+                                    BluetoothProfileConnectionInfo.createHfpInfo());
+                }
                 broadcastActiveDevice(mActiveDevice);
                 int connectStatus = connectAudio(mActiveDevice);
                 if (connectStatus != BluetoothStatusCodes.SUCCESS) {
@@ -1475,6 +1493,15 @@ public class HeadsetService extends ProfileService {
                     return false;
                 }
             } else {
+                if (Flags.isScoManagedByAudio()) {
+                    // tell Audio Framework that active device changed
+                    mSystemInterface
+                            .getAudioManager()
+                            .handleBluetoothActiveDeviceChanged(
+                                    mActiveDevice,
+                                    previousActiveDevice,
+                                    BluetoothProfileConnectionInfo.createHfpInfo());
+                }
                 broadcastActiveDevice(mActiveDevice);
             }
         }
