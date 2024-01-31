@@ -503,17 +503,6 @@ struct btsnd_hcic_sniff_sub_rate {
 };
 extern struct btsnd_hcic_sniff_sub_rate btsnd_hcic_sniff_sub_rate;
 
-// Name: btsnd_hcic_user_passkey_neg_reply
-// Params: const RawAddress& bd_addr
-// Return: void
-struct btsnd_hcic_user_passkey_neg_reply {
-  std::function<void(const RawAddress& bd_addr)> body{
-      [](const RawAddress& bd_addr) {}};
-  void operator()(const RawAddress& bd_addr) { body(bd_addr); };
-};
-extern struct btsnd_hcic_user_passkey_neg_reply
-    btsnd_hcic_user_passkey_neg_reply;
-
 // Name: btsnd_hcic_user_passkey_reply
 // Params: const RawAddress& bd_addr, uint32_t value
 // Return: void
