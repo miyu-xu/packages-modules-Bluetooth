@@ -66,7 +66,6 @@ struct btsnd_hcic_ble_read_resolvable_addr_peer
 struct btsnd_hcic_ble_receiver_test btsnd_hcic_ble_receiver_test;
 struct btsnd_hcic_ble_set_adv_data btsnd_hcic_ble_set_adv_data;
 struct btsnd_hcic_ble_set_adv_enable btsnd_hcic_ble_set_adv_enable;
-struct btsnd_hcic_ble_set_data_length btsnd_hcic_ble_set_data_length;
 struct btsnd_hcic_ble_set_default_periodic_advertising_sync_transfer_params
     btsnd_hcic_ble_set_default_periodic_advertising_sync_transfer_params;
 struct btsnd_hcic_ble_set_extended_scan_enable
@@ -241,12 +240,6 @@ void btsnd_hcic_ble_set_adv_data(uint8_t data_len, uint8_t* p_data) {
 void btsnd_hcic_ble_set_adv_enable(uint8_t adv_enable) {
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_set_adv_enable(adv_enable);
-}
-void btsnd_hcic_ble_set_data_length(uint16_t conn_handle, uint16_t tx_octets,
-                                    uint16_t tx_time) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_set_data_length(
-      conn_handle, tx_octets, tx_time);
 }
 void btsnd_hcic_ble_set_default_periodic_advertising_sync_transfer_params(
     uint16_t conn_handle, uint8_t mode, uint16_t skip, uint16_t sync_timeout,
