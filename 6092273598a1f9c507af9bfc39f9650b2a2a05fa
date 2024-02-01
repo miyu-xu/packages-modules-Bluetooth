@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ff6ffde7_8a43f68d",
+        "filename": "system/stack/smp/smp_keys.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-01T21:22:49Z",
+      "side": 1,
+      "message": "should we convert `\u0026rand` to `uint8_t *` first?\n\n```suggestion\n  std::copy(reinterpret_cast\u003cuint8_t*\u003e(\u0026rand),\n            reinterpret_cast\u003cuint8_t*\u003e(\u0026rand) + BT_OCTET8_LEN, rand16.data());\n```\n\nSame for other places",
+      "range": {
+        "startLine": 502,
+        "startChar": 20,
+        "endLine": 502,
+        "endChar": 24
+      },
+      "revId": "6092273598a1f9c507af9bfc39f9650b2a2a05fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
