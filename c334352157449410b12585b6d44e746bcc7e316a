@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b0578f7a_67cacf3f",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 670,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-01T23:07:29Z",
+      "side": 1,
+      "message": "See https://r.android.com/2935431\n\nWe know that Volume Offset Control Service could have multiple server side instances and hence each API should include a volumeOffsetControlPointId\n\nCould Volume Control Service also have multiple control points on the server side? \n\nIf so, new APIs should include volumeControlPointId as an argument",
+      "range": {
+        "startLine": 670,
+        "startChar": 16,
+        "endLine": 670,
+        "endChar": 20
+      },
+      "revId": "c334352157449410b12585b6d44e746bcc7e316a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
