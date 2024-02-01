@@ -50,8 +50,7 @@ struct btsnd_hcic_ble_periodic_advertising_set_info_transfer
 struct btsnd_hcic_ble_periodic_advertising_sync_transfer
     btsnd_hcic_ble_periodic_advertising_sync_transfer;
 struct btsnd_hcic_ble_periodic_advertising_terminate_sync
-    btsnd_hcic_ble_periodic_advertising_terminate_sync;
-struct btsnd_hcic_ble_rand btsnd_hcic_ble_rand;
+        btsnd_hcic_ble_periodic_advertising_terminate_sync;
 struct btsnd_hcic_ble_read_adv_chnl_tx_power
     btsnd_hcic_ble_read_adv_chnl_tx_power;
 struct btsnd_hcic_ble_read_remote_feat btsnd_hcic_ble_read_remote_feat;
@@ -170,10 +169,6 @@ void btsnd_hcic_ble_periodic_advertising_terminate_sync(
   test::mock::stack_hcic_hciblecmds::
       btsnd_hcic_ble_periodic_advertising_terminate_sync(sync_handle,
                                                          std::move(cb));
-}
-void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_rand(std::move(cb));
 }
 void btsnd_hcic_ble_read_adv_chnl_tx_power(void) {
   inc_func_call_count(__func__);

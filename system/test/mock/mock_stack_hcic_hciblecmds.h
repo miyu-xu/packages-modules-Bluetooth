@@ -220,16 +220,6 @@ struct btsnd_hcic_ble_periodic_advertising_terminate_sync {
 extern struct btsnd_hcic_ble_periodic_advertising_terminate_sync
     btsnd_hcic_ble_periodic_advertising_terminate_sync;
 
-// Name: btsnd_hcic_ble_rand
-// Params: base::Callback<void(BT_OCTET8
-// Return: void
-struct btsnd_hcic_ble_rand {
-  std::function<void(base::Callback<void(BT_OCTET8)>)> body{
-      [](base::Callback<void(BT_OCTET8)> /* cb */) {}};
-  void operator()(base::Callback<void(BT_OCTET8)> cb) { body(std::move(cb)); };
-};
-extern struct btsnd_hcic_ble_rand btsnd_hcic_ble_rand;
-
 // Name: btsnd_hcic_ble_read_adv_chnl_tx_power
 // Params: void
 // Return: void
