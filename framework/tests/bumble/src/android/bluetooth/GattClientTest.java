@@ -65,6 +65,10 @@ public class GattClientTest {
 
     @ClassRule public static final AdoptShellPermissionsRule PERM = new AdoptShellPermissionsRule();
 
+    @Rule
+    public final RestartBluetoothTestRule mRestartBluetoothTestRule =
+            new RestartBluetoothTestRule();
+
     @Rule public final PandoraDevice mBumble = new PandoraDevice();
 
     private final Context mContext = ApplicationProvider.getApplicationContext();
