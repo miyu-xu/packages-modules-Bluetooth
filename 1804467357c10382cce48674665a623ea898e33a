@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "565f86ae_4f211a0a",
+        "filename": "android/app/tests/unit/src/com/android/bluetooth/opp/BluetoothOppReceiverTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 1379942
+      },
+      "writtenOn": "2024-02-01T20:54:25Z",
+      "side": 1,
+      "message": "nit)\nAdding this is required for RequiresFlagsDisabled and RequiresFlagsEnabled.\n\nAnd we can omit assumeTrue and assumeFalse.\n\n```\n@Rule\npublic final CheckFlagsRule mCheckFlagsRule \u003d\n    DeviceFlagsValueProvider.createCheckFlagsRule();\n```",
+      "revId": "1804467357c10382cce48674665a623ea898e33a",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
