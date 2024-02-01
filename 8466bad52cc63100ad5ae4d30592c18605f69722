@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "387a78d5_823082e9",
+        "filename": "system/gd/discovery/device/bt_property.h",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-01T23:32:35Z",
+      "side": 1,
+      "message": "Should we change the name, then?",
+      "range": {
+        "startLine": 70,
+        "startChar": 6,
+        "endLine": 70,
+        "endChar": 9
+      },
+      "revId": "8466bad52cc63100ad5ae4d30592c18605f69722",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
