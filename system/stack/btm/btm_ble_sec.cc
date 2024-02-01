@@ -26,10 +26,12 @@
 #include <optional>
 
 #include "btif/include/btif_storage.h"
+#include "common/callback.h"
 #include "crypto_toolbox/crypto_toolbox.h"
 #include "device/include/controller.h"
 #include "device/include/interop.h"
 #include "device/include/interop_config.h"
+#include "hci/controller_interface.h"
 #include "hci/event_checkers.h"
 #include "hci/hci_layer.h"
 #include "main/shim/entry.h"
@@ -74,6 +76,9 @@ constexpr char kBtmLogTag[] = "SEC";
 static constexpr char kPropertyCtkdDisableCsrkDistribution[] =
     "bluetooth.core.smp.le.ctkd.quirk_disable_csrk_distribution";
 
+using bluetooth::common::BindOnce;
+using bluetooth::common::OnceCallback;
+
 /******************************************************************************/
 /* Static functions for internal use                                          */
 /******************************************************************************/
@@ -87,6 +92,8 @@ static void send_ble_start_enc(uint16_t hci_handle,
 static void send_ble_ltk_req_reply(uint16_t handle, const Octet16& ltk);
 
 static void send_ble_ltk_req_neg_reply(uint16_t handle);
+
+static void send_ble_rand(OnceCallback<void(uint64_t)> callback);
 
 /******************************************************************************/
 /* External Function to be called by other modules                            */
@@ -1926,18 +1933,20 @@ void btm_ble_reset_id(void) {
   /* In order to reset identity, we need four random numbers. Make four nested
    * calls to generate them first, then proceed to perform the actual reset in
    * btm_ble_reset_id_impl. */
-  btsnd_hcic_ble_rand(base::Bind([](BT_OCTET8 rand) {
+  send_ble_rand(BindOnce([](uint64_t rand) {
     reset_id_data tmp;
-    memcpy(tmp.rand1.data(), rand, BT_OCTET8_LEN);
-    btsnd_hcic_ble_rand(base::Bind(
-        [](reset_id_data tmp, BT_OCTET8 rand) {
-          memcpy(tmp.rand1.data() + 8, rand, BT_OCTET8_LEN);
-          btsnd_hcic_ble_rand(base::Bind(
-              [](reset_id_data tmp, BT_OCTET8 rand) {
-                memcpy(tmp.rand2.data(), rand, BT_OCTET8_LEN);
-                btsnd_hcic_ble_rand(base::Bind(
-                    [](reset_id_data tmp, BT_OCTET8 rand) {
-                      memcpy(tmp.rand2.data() + 8, rand, BT_OCTET8_LEN);
+    std::copy(&rand, &rand + sizeof(rand), tmp.rand1.data());
+    send_ble_rand(BindOnce(
+        [](reset_id_data tmp, uint64_t rand) {
+          std::copy(&rand, &rand + sizeof(rand),
+                    tmp.rand1.data() + sizeof(rand));
+          send_ble_rand(BindOnce(
+              [](reset_id_data tmp, uint64_t rand) {
+                std::copy(&rand, &rand + sizeof(rand), tmp.rand2.data());
+                send_ble_rand(BindOnce(
+                    [](reset_id_data tmp, uint64_t rand) {
+                      std::copy(&rand, &rand + sizeof(rand),
+                                tmp.rand2.data() + sizeof(rand));
                       // when all random numbers are ready, do the actual reset.
                       btm_ble_reset_id_impl(tmp.rand1, tmp.rand2);
                     },
@@ -2070,4 +2079,8 @@ static void send_ble_ltk_req_neg_reply(uint16_t handle) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::LeLongTermKeyRequestNegativeReplyCompleteView>));
+}
+
+static void send_ble_rand(OnceCallback<void(uint64_t)> callback) {
+  bluetooth::shim::GetController()->LeRand(std::move(callback));
 }
