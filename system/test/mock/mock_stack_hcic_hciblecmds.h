@@ -150,15 +150,6 @@ struct btsnd_hcic_ble_enh_tx_test {
 };
 extern struct btsnd_hcic_ble_enh_tx_test btsnd_hcic_ble_enh_tx_test;
 
-// Name: btsnd_hcic_ble_ltk_req_neg_reply
-// Params: uint16_t handle
-// Return: void
-struct btsnd_hcic_ble_ltk_req_neg_reply {
-  std::function<void(uint16_t handle)> body{[](uint16_t handle) {}};
-  void operator()(uint16_t handle) { body(handle); };
-};
-extern struct btsnd_hcic_ble_ltk_req_neg_reply btsnd_hcic_ble_ltk_req_neg_reply;
-
 // Name: btsnd_hcic_ble_periodic_advertising_create_sync
 // Params: uint8_t options, uint8_t adv_sid, uint8_t adv_addr_type, const
 // RawAddress& adv_addr, uint16_t skip_num, uint16_t sync_timeout, uint8_t
