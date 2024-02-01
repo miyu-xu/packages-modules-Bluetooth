@@ -240,19 +240,6 @@ void btsnd_hcic_ble_read_remote_feat(uint16_t handle) {
   btu_hcif_send_cmd(LOCAL_BR_EDR_CONTROLLER_ID, p);
 }
 
-void btsnd_hcic_ble_rand(base::Callback<void(BT_OCTET8)> cb) {
-  btu_hcif_send_cmd_with_cb(FROM_HERE, HCI_BLE_RAND, nullptr, 0,
-                            base::Bind(
-                                [](base::Callback<void(BT_OCTET8)> cb,
-                                   uint8_t* param, uint16_t /* param_len */) {
-                                  bluetooth::log::assert_that(
-                                      param[0] == 0,
-                                      "LE Rand return status must be zero");
-                                  cb.Run(param + 1 /* skip status */);
-                                },
-                                std::move(cb)));
-}
-
 void btsnd_hcic_ble_start_enc(uint16_t handle,
                               uint8_t rand[HCIC_BLE_RAND_DI_SIZE],
                               uint16_t ediv, const Octet16& ltk) {
