@@ -16,6 +16,24 @@
       "message": "Also add:\nBug: 315241296\n\nThis will give you dr.no review for your patch.",
       "revId": "df12bd8721ec8de2c0aeedd1f16f9ac132b7c9d0",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6c377706_c4d17e08",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 3256421
+      },
+      "writtenOn": "2024-02-01T13:41:07Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0d8f7e04_6afac570",
+      "revId": "df12bd8721ec8de2c0aeedd1f16f9ac132b7c9d0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
