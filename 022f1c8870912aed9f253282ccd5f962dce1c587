@@ -80,6 +80,30 @@
       },
       "revId": "022f1c8870912aed9f253282ccd5f962dce1c587",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f5477f26_3d8d8f5d",
+        "filename": "system/stack/btm/btm_sco_hfp_hal_linux.cc",
+        "patchSetId": 3
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-01T01:04:37Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "cc82588b_f188888f",
+      "range": {
+        "startLine": 89,
+        "startChar": 2,
+        "endLine": 89,
+        "endChar": 26
+      },
+      "revId": "022f1c8870912aed9f253282ccd5f962dce1c587",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
