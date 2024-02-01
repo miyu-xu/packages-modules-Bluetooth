@@ -453,6 +453,26 @@ TEST_F(LeScanningManagerTest, scan_filter_add_ad_type_not_supported_test) {
   le_scanning_manager->ScanFilterAdd(0x01, filters);
 }
 
+TEST_F(LeScanningManagerExtendedTest, is_nonstandard_phy_supported_test) {
+  int scan_phy = 2;
+
+  start_le_scanning_manager();
+  // le_scanning_manager->SetScanParameters(1, LeScanType::ACTIVE, 0x0004, 4800, scan_phy);
+  le_scanning_manager->Scan(true);
+  ASSERT_EQ(OpCode::LE_SET_EXTENDED_SCAN_PARAMETERS, test_hci_layer_->GetCommand().GetOpCode());
+
+  auto payload = test_hci_layer_->GetCommand().GetPayload();
+  size_t payloadSize = payload.size();
+
+  ASSERT_EQ(payload[2], scan_phy);
+
+  // auto view =
+  // LeSetExtendedScanParametersView::Create(LeScanningCommandView::Create(CommandView::Create(test_hci_layer_->GetCommand().GetPayload())));
+
+  // ASSERT_TRUE(view.IsValid());
+  // ASSERT_EQ(view.GetScanningPhys(), scan_phy);
+}
+
 TEST_F(LeScanningManagerAndroidHciTest, startup_teardown) {}
 
 TEST_F(LeScanningManagerAndroidHciTest, start_scan_test) {
