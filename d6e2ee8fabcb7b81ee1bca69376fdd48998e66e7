@@ -16,6 +16,46 @@
       "message": "Adding @aritrasen@google.com for API shadow review.",
       "revId": "d6e2ee8fabcb7b81ee1bca69376fdd48998e66e7",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4fb9ced_328082fd",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3705,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-01T22:39:44Z",
+      "side": 1,
+      "message": "I think we should use an int for this one so that we can\n1) More clearly understand the intent of this API\n2) Differentiate between system default and App selected policy. \n\nSomething like\n\npublic int setActiveAudioDevicePolicy(int active_audio_device_policy)\n\nfor policy we could have something like\n\n* ACTIVE_AUDIO_DEVICE_POLICY_DEFAULT \u003d 0\n* ACTIVE_AUDIO_DEVICE_POLICY_ALL_PROFILES_ACTIVE_UPON_CONNECTION \u003d 1\n* ACTIVE_AUDIO_DEVICE_POLICY_ALL_PROFILES_INACTIVE_UPON_CONNECTION \u003d 2",
+      "range": {
+        "startLine": 3705,
+        "startChar": 60,
+        "endLine": 3705,
+        "endChar": 68
+      },
+      "revId": "d6e2ee8fabcb7b81ee1bca69376fdd48998e66e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2e51c006_a9da52dc",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 5
+      },
+      "lineNbr": 3747,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-01T22:39:44Z",
+      "side": 1,
+      "message": "Per above comment, we can change this to \n\nint getActiveAudioDevicePolicy()",
+      "revId": "d6e2ee8fabcb7b81ee1bca69376fdd48998e66e7",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
