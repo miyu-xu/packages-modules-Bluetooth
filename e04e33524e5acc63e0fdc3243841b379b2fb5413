@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bacb7799_3de0ac6b",
+        "filename": "framework/tests/bumble/src/android/bluetooth/GattClientTest.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 1127992
+      },
+      "writtenOn": "2024-02-01T19:34:40Z",
+      "side": 1,
+      "message": "Would it make sense to parameterize the declaration of characteristicUuidString and serviceUuidString in #registerWritableGattService and then retrieve it directly here instead of iterating thru discovered services and characteristics in a loop?\n\nIt seems that approach might be simpler, WDYT?",
+      "range": {
+        "startLine": 252,
+        "startChar": 12,
+        "endLine": 267,
+        "endChar": 73
+      },
+      "revId": "e04e33524e5acc63e0fdc3243841b379b2fb5413",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
