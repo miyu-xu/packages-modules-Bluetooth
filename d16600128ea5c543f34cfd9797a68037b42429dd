@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c6ebbc3_546e3b5b",
+        "filename": "system/stack/btu/btu_hcif.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-01T21:18:49Z",
+      "side": 1,
+      "message": "Can you add this here too ?\n\n```\n// Ignore these events\ncase HCI_INQUIRY_COMP_EVT:\n  break;\n```\n\nI\u0027m not sure if these metrics are being used even.\n\nI\u0027m trying to clean up the logging error \n```\n          \"Unexpectedly received event_code:0x%02x that should not be \"\n          \"handled here\",\n```\nb/c it\u0027s irritating.\n\nThe simple way would be to remove the log; but I want to know exactly what/when/where we are logging metrics first.",
+      "revId": "d16600128ea5c543f34cfd9797a68037b42429dd",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
