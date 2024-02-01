@@ -17,6 +17,7 @@
 #include "discovery/device/eir_data.h"
 
 #include "discovery/device/eir_test_data_packets.h"
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
 #include "hci/hci_packets.h"
 #include "os/log.h"
@@ -29,6 +30,8 @@ constexpr uint8_t kPartialUuid16Data[] = {
     0x2, static_cast<uint8_t>(hci::GapDataType::COMPLETE_LIST_16_BIT_UUIDS), 0x34};
 constexpr uint8_t kOneUuid16Data[] = {
     0x3, static_cast<uint8_t>(hci::GapDataType::COMPLETE_LIST_16_BIT_UUIDS), 0x34, 0x12};
+constexpr char kChromeBoxForMeetings[] = "Chromebox for Meetings";
+
 }  // namespace
 
 namespace debug {
@@ -133,7 +136,7 @@ TEST(EirDataTest, test_data_packets__uuids16_incomplete) {
 TEST(EirDataTest, test_data_packets__device_id) {
   for (const auto& pkt : data_packets) {
     const EirData eir_data(std::vector<uint8_t>(&pkt[kEirOffset], &pkt[kEirOffset] + kEirSize));
-    std::vector<uint8_t> device_ids;
+    std::vector<std::vector<uint8_t>> device_ids;
     if (eir_data.GetDeviceId(device_ids)) {
       LOG_INFO("  device_id count:%llu", (unsigned long long)device_ids.size());
     }
@@ -160,13 +163,25 @@ TEST(EirDataTest, test_data_packets__security_manager_oob_flags) {
   }
 }
 
+TEST(EirDataTest, test_data_packets__service_uuids16) {
+  for (const auto& pkt : data_packets) {
+    const EirData eir_data(std::vector<uint8_t>(&pkt[kEirOffset], &pkt[kEirOffset] + kEirSize));
+    std::vector<bluetooth::discovery::device::service_uuid16_t> service_uuids;
+    if (eir_data.GetServiceUuuids16(service_uuids)) {
+      for (const auto& service_uuid : service_uuids) {
+        LOG_INFO("  service uuid:0x%0x data_len:%zu", service_uuid.uuid, service_uuid.data.size());
+      }
+    }
+  }
+}
+
 TEST(EirDataTest, test_data_packets__service_uuids32) {
   for (const auto& pkt : data_packets) {
     const EirData eir_data(std::vector<uint8_t>(&pkt[kEirOffset], &pkt[kEirOffset] + kEirSize));
-    std::vector<uint32_t> uuids;
-    if (eir_data.GetServiceUuuids32(uuids)) {
-      for (const auto& uuid : uuids) {
-        LOG_INFO("  service uuid:%u", uuid);
+    std::vector<bluetooth::discovery::device::service_uuid32_t> service_uuids;
+    if (eir_data.GetServiceUuuids32(service_uuids)) {
+      for (const auto& service_uuid : service_uuids) {
+        LOG_INFO("  service uuid:0x%0x data_len:%zu", service_uuid.uuid, service_uuid.data.size());
       }
     }
   }
@@ -182,6 +197,40 @@ TEST(EirDataTest, test_data_packets__tx_power_level) {
       }
     }
   }
+}
+
+TEST(EirDataTest, test_select_packets__pktAsha) {
+  ASSERT_EQ(1U, selected_packets.count("pktAsha"));
+  const auto& pkt = selected_packets["pktAsha"];
+  const EirData eir_data(std::vector<uint8_t>(&pkt[kEirOffset], &pkt[kEirOffset] + kEirSize));
+
+  std::vector<std::array<uint8_t, kEirSize>> names;
+  ASSERT_TRUE(eir_data.GetCompleteNames(names));
+  std::string name(names[0].begin(), names[0].end());
+  ASSERT_STREQ(kChromeBoxForMeetings, name.c_str());
+
+  std::vector<int8_t> tx_power_level;
+  ASSERT_TRUE(eir_data.GetTxPowerLevel(tx_power_level));
+  ASSERT_EQ(10, tx_power_level[0]);
+
+  const std::vector<uint8_t> v1 =
+      std::vector<uint8_t>({0x01, 0x00, 0xe0, 0x00, 0x05, 0xc4, 0x6c, 0x00});
+  std::vector<std::vector<uint8_t>> device_ids;
+  ASSERT_TRUE(eir_data.GetDeviceId(device_ids));
+  ASSERT_EQ(v1.size(), device_ids[0].size());
+  ASSERT_THAT(v1, testing::ContainerEq(device_ids[0]));
+
+  const std::vector<uint16_t> v2 =
+      std::vector<uint16_t>({0x1800, 0x1801, 0x180a, 0x110e, 0x110c, 0x111f, 0x110a});
+  std::vector<uint16_t> uuids16;
+  ASSERT_TRUE(eir_data.GetUuids16(uuids16));
+  ASSERT_EQ(v2.size(), uuids16.size());
+  ASSERT_THAT(v2, testing::ContainerEq(uuids16));
+
+  std::vector<discovery::device::service_uuid16_t> service_uuids16;
+  ASSERT_TRUE(eir_data.GetServiceUuuids16(service_uuids16));
+  ASSERT_EQ(1U, service_uuids16.size());
+  ASSERT_EQ(0xfdf0, service_uuids16[0].uuid);
 }
 
 TEST(EirDataTest, test_select_packets__pkt34639) {
