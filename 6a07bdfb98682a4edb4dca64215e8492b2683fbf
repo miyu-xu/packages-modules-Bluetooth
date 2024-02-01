@@ -50,6 +50,30 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "b3b0bd5a_f5fc552f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-01T22:04:48Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "e8fdb96c_ad2b6019",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 51
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "aca6ceb7_d69ff446",
         "filename": "/PATCHSET_LEVEL",
         "patchSetId": 4
@@ -326,6 +350,30 @@
       "side": 1,
       "message": "To clarify a bit here, this API usage would be expanded to other profiles even we\u0027re going to start using it for broadcast(audio sharing) first, more details can be referred to the discussions in the design doc. \nThis is the main reason why we\u0027d keep it here in BluetoothDevice.",
       "parentUuid": "bb174220_a58fb458",
+      "range": {
+        "startLine": 3683,
+        "startChar": 0,
+        "endLine": 3684,
+        "endChar": 45
+      },
+      "revId": "6a07bdfb98682a4edb4dca64215e8492b2683fbf",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a5ea24b9_1e4d1a01",
+        "filename": "framework/java/android/bluetooth/BluetoothDevice.java",
+        "patchSetId": 4
+      },
+      "lineNbr": 3684,
+      "author": {
+        "id": 1881060
+      },
+      "writtenOn": "2024-02-01T22:04:48Z",
+      "side": 1,
+      "message": "Ack.\n\nI think either the documentation should be updated to reflect that this is targeting only leBroadcast or the API directly applied to all profiles.\nBut in the end the api-reviewer should know better",
+      "parentUuid": "41057738_c94ea458",
       "range": {
         "startLine": 3683,
         "startChar": 0,
