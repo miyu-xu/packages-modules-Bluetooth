@@ -3036,6 +3036,13 @@ void btm_sec_auth_complete(uint16_t handle, tHCI_STATUS status) {
 
   btm_sec_cb.collision_start_time = 0;
 
+  if (p_dev_rec && btm_cb.p_collided_dev_rec &&
+      p_dev_rec->bd_addr == btm_cb.p_collided_dev_rec->bd_addr) {
+    btm_cb.p_collided_dev_rec = NULL;
+    if (alarm_is_scheduled(btm_cb.sec_collision_timer))
+      alarm_cancel(btm_cb.sec_collision_timer);
+  }
+
   btm_restore_mode();
 
   /* Check if connection was made just to do bonding.  If we authenticate
@@ -3783,6 +3790,14 @@ void btm_sec_disconnected(uint16_t handle, tHCI_REASON reason,
   /* clear unused flags */
   p_dev_rec->sm4 &= BTM_SM4_TRUE;
 
+  if (btm_cb.p_collided_dev_rec &&
+      p_dev_rec->bd_addr == btm_cb.p_collided_dev_rec->bd_addr) {
+    LOG_DEBUG("cleanup auth collision info after disconnected");
+    btm_cb.collision_start_time = 0;
+    btm_cb.p_collided_dev_rec = NULL;
+    if (alarm_is_scheduled(btm_cb.sec_collision_timer))
+      alarm_cancel(btm_cb.sec_collision_timer);
+  }
   /* If we are in the process of bonding we need to tell client that auth failed
    */
   const uint8_t old_pairing_flags = btm_sec_cb.pairing_flags;
