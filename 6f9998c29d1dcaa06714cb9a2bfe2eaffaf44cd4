@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fddc7a9e_2e33fd13",
+        "filename": "flags/leaudio.aconfig",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-01T10:00:02Z",
+      "side": 1,
+      "message": "nit: when looking at the top of the file, we use to use `leaudio` prefix and not `le_audio` - lets stick to that",
+      "range": {
+        "startLine": 102,
+        "startChar": 11,
+        "endLine": 102,
+        "endChar": 47
+      },
+      "revId": "6f9998c29d1dcaa06714cb9a2bfe2eaffaf44cd4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
