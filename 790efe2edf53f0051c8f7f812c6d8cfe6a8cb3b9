@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "176b8f68_f28e0a07",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-01T23:03:34Z",
+      "side": 1,
+      "message": "see comment below, I suggest this is changed to\n\nvolumeControlPointId\n\nor \n\nvolumeOffsetControlPointId\n\nto avoid ambiguity.",
+      "range": {
+        "startLine": 117,
+        "startChar": 50,
+        "endLine": 117,
+        "endChar": 63
+      },
+      "revId": "790efe2edf53f0051c8f7f812c6d8cfe6a8cb3b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "613f032a_76d81d2c",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-01T23:03:34Z",
+      "side": 1,
+      "message": "Do both VCS also have multiple instances? If so, is Number of VCS instances \u003d\u003d Number of VOCS instances?",
+      "range": {
+        "startLine": 776,
+        "startChar": 15,
+        "endLine": 776,
+        "endChar": 40
+      },
+      "revId": "790efe2edf53f0051c8f7f812c6d8cfe6a8cb3b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "90162a1b_af3e7897",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 11
+      },
+      "lineNbr": 776,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-01T23:03:34Z",
+      "side": 1,
+      "message": "I think we should stick closer to the spec names. Hence this one should be\n\nint getNumberOfVolumeControlPoints() # if both VCS and VOCS has the same number of control points\n\nor \n\nint getNumberOfVolumeOffsetControlPoints() # if VCS and VOCS has different number of control points",
+      "range": {
+        "startLine": 776,
+        "startChar": 15,
+        "endLine": 776,
+        "endChar": 40
+      },
+      "revId": "790efe2edf53f0051c8f7f812c6d8cfe6a8cb3b9",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}

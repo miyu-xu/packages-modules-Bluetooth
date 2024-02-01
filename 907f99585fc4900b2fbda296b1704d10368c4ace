@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "0cd477c1_98c79d12",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1121403
+      },
+      "writtenOn": "2024-02-01T23:03:34Z",
+      "side": 1,
+      "message": "Got it. Thanks for the explanation.",
+      "parentUuid": "b92ef154_2fcd0d44",
+      "revId": "907f99585fc4900b2fbda296b1704d10368c4ace",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "8b234100_383ddd16",
