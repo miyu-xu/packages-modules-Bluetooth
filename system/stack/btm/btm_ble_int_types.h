@@ -84,6 +84,7 @@ typedef struct {
   uint16_t scan_window;
   uint16_t scan_interval;
   uint8_t scan_type;             /* current scan type: active or passive */
+  uint8_t scan_phy;
 
   tBTM_BLE_AFP afp; /* advertising filter policy */
   tBTM_BLE_SFP sfp; /* scanning filter policy */
