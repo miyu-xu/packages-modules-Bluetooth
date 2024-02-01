@@ -870,7 +870,8 @@ bool LeAudioClientInterface::ReleaseSource(
 void LeAudioClientInterface::SetAllowedDsaModes(DsaModes dsa_modes) {
   if (HalVersionManager::GetHalTransport() ==
       BluetoothAudioHalTransport::AIDL) {
-    if (aidl::le_audio::LeAudioSourceTransport::interface == nullptr) {
+    if (aidl::le_audio::LeAudioSinkTransport::interface_unicast_ == nullptr ||
+        aidl::le_audio::LeAudioSinkTransport::instance_unicast_ == nullptr) {
       LOG(WARNING) << __func__ << ": LeAudioSourceTransport::interface is null";
     }
 
@@ -894,8 +895,8 @@ void LeAudioClientInterface::SetAllowedDsaModes(DsaModes dsa_modes) {
           break;
       }
     }
-    aidl::le_audio::LeAudioSourceTransport::interface->SetAllowedLatencyModes(
-        latency_modes);
+    aidl::le_audio::LeAudioSinkTransport::interface_unicast_
+        ->SetAllowedLatencyModes(latency_modes);
   }
 }
 
