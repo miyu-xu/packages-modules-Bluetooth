@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f4f1f9a6_36a302b5",
+        "filename": "system/bta/jv/bta_jv_api.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-01T16:35:34Z",
+      "side": 1,
+      "message": "move it to the beginning of the func if desired",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 18
+      },
+      "revId": "6734833c12192d540d094d1c893b33a961c058b4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
