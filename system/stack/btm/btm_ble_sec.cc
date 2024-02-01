@@ -23,9 +23,12 @@
 #include <base/strings/stringprintf.h>
 #include <bluetooth/log.h>
 
+#include <algorithm>
 #include <cstddef>
 #include <cstdint>
+#include <memory>
 #include <optional>
+#include <vector>
 
 #include "btif/include/btif_storage.h"
 #include "crypto_toolbox/crypto_toolbox.h"
@@ -57,6 +60,7 @@
 #include "stack/include/btm_status.h"
 #include "stack/include/gatt_api.h"
 #include "stack/include/l2cap_security_interface.h"
+#include "stack/include/main_thread.h"
 #include "stack/include/smp_api.h"
 #include "stack/include/smp_api_types.h"
 #include "types/raw_address.h"
@@ -74,6 +78,10 @@ constexpr char kBtmLogTag[] = "SEC";
 
 static constexpr char kPropertyCtkdDisableCsrkDistribution[] =
     "bluetooth.core.smp.le.ctkd.quirk_disable_csrk_distribution";
+
+using bluetooth::common::BindOnce;
+using bluetooth::common::OnceCallback;
+using bluetooth::shim::GetController;
 
 /******************************************************************************/
 /* External Function to be called by other modules                            */
@@ -1892,39 +1900,39 @@ static void btm_ble_reset_id_impl(const Octet16& rand1, const Octet16& rand2) {
   }
 }
 
-struct reset_id_data {
-  Octet16 rand1;
-  Octet16 rand2;
-};
-
 /** This function is called to reset LE device identity. */
 void btm_ble_reset_id(void) {
   log::verbose("btm_ble_reset_id");
 
-  /* In order to reset identity, we need four random numbers. Make four nested
-   * calls to generate them first, then proceed to perform the actual reset in
+  /* In order to reset identity, we need four 64-bit random numbers. Make four
+   * calls to generate them, then proceed to perform the actual reset in
    * btm_ble_reset_id_impl. */
-  btsnd_hcic_ble_rand(base::Bind([](BT_OCTET8 rand) {
-    reset_id_data tmp;
-    memcpy(tmp.rand1.data(), rand, BT_OCTET8_LEN);
-    btsnd_hcic_ble_rand(base::Bind(
-        [](reset_id_data tmp, BT_OCTET8 rand) {
-          memcpy(tmp.rand1.data() + 8, rand, BT_OCTET8_LEN);
-          btsnd_hcic_ble_rand(base::Bind(
-              [](reset_id_data tmp, BT_OCTET8 rand) {
-                memcpy(tmp.rand2.data(), rand, BT_OCTET8_LEN);
-                btsnd_hcic_ble_rand(base::Bind(
-                    [](reset_id_data tmp, BT_OCTET8 rand) {
-                      memcpy(tmp.rand2.data() + 8, rand, BT_OCTET8_LEN);
-                      // when all random numbers are ready, do the actual reset.
-                      btm_ble_reset_id_impl(tmp.rand1, tmp.rand2);
-                    },
-                    tmp));
-              },
-              tmp));
-        },
-        tmp));
-  }));
+  auto random_values = std::make_shared<std::vector<uint64_t>>();
+  GetController()->LeRand(
+          get_main()->BindOnce([](std::shared_ptr<std::vector<uint64_t>> random_values,
+                                  uint64_t r) { random_values->push_back(r); },
+                               random_values));
+  GetController()->LeRand(
+          get_main()->BindOnce([](std::shared_ptr<std::vector<uint64_t>> random_values,
+                                  uint64_t r) { random_values->push_back(r); },
+                               random_values));
+  GetController()->LeRand(
+          get_main()->BindOnce([](std::shared_ptr<std::vector<uint64_t>> random_values,
+                                  uint64_t r) { random_values->push_back(r); },
+                               random_values));
+  GetController()->LeRand(get_main()->BindOnce(
+          [](std::shared_ptr<std::vector<uint64_t>> random_values, uint64_t r) {
+            Octet16 rand1;
+            Octet16 rand2;
+            random_values->push_back(r);
+
+            std::copy(random_values->data(), random_values->data() + sizeof(Octet16), rand1.data());
+            std::copy(random_values->data() + sizeof(Octet16),
+                      random_values->data() + 2 * sizeof(Octet16), rand2.data());
+            // when all random numbers are ready, do the actual reset.
+            btm_ble_reset_id_impl(rand1, rand2);
+          },
+          random_values));
 }
 
 /*******************************************************************************
