@@ -33,7 +33,6 @@
 #include "include/check.h"
 #include "main/shim/shim.h"
 #include "os/log.h"
-#include "osi/include/osi.h"
 #include "stack/include/acl_api.h"
 #include "stack/include/btm_client_interface.h"
 #include "stack/include/main_thread.h"
@@ -431,15 +430,15 @@ cleanup:;
   promise.set_value();
 }
 
-static void event_signal_stack_up(UNUSED_ATTR void* context) {
-  // Notify BTIF connect queue that we've brought up the stack. It's
-  // now time to dispatch all the pending profile connect requests.
+static void event_signal_stack_up(void* /* context */) {
+  // Notify BTIF connect queue that we've brought up the stack.
+  // It's now time to dispatch all the pending profile connect requests.
   btif_queue_connect_next();
   GetInterfaceToProfiles()->events->invoke_adapter_state_changed_cb(
       BT_STATE_ON);
 }
 
-static void event_signal_stack_down(UNUSED_ATTR void* context) {
+static void event_signal_stack_down(void* /* context */) {
   GetInterfaceToProfiles()->events->invoke_adapter_state_changed_cb(
       BT_STATE_OFF);
   future_ready(stack_manager_get_hack_future(), FUTURE_SUCCESS);
