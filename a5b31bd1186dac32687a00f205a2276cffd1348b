@@ -54,6 +54,24 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "57a02fdb_80c193c2",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1959861
+      },
+      "writtenOn": "2024-02-01T18:50:29Z",
+      "side": 1,
+      "message": "Added flagging in AdapterService.java and bta_dm_act.cc",
+      "parentUuid": "cac49643_cc35d1a1",
+      "revId": "a5b31bd1186dac32687a00f205a2276cffd1348b",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "a4d047ce_907c1c4a",
