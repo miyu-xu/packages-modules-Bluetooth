@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a06193fc_5d8ee515",
+        "filename": "floss/pandora/server/rfcomm.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 1968385
+      },
+      "writtenOn": "2024-02-01T03:03:48Z",
+      "side": 1,
+      "message": "```\n// Changed in python version 3.11: Raises TimeoutError instead of asyncio.TimeoutError.\nexcept asyncio.TimeoutError as e:\n    logging.error(\"AcceptConnection: asyncio.TimeoutError %s\", e)\n    return rfcomm_pb2.AcceptConnectionResponse(connection\u003drfcomm_pb2.RfcommConnection(id\u003dNone))\n```",
+      "range": {
+        "startLine": 253,
+        "startChar": 0,
+        "endLine": 259,
+        "endChar": 0
+      },
+      "revId": "a1571b8e6b4f9f50e1e437dde7bfd4961dd2ae31",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
