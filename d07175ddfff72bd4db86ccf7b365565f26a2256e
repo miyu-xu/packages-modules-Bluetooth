@@ -3,6 +3,23 @@
     {
       "unresolved": true,
       "key": {
+        "uuid": "45eacd4e_a16fb75f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-02-01T09:01:55Z",
+      "side": 1,
+      "message": "Please add feature flag about this.",
+      "revId": "d07175ddfff72bd4db86ccf7b365565f26a2256e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
         "uuid": "6db41f53_9072e107",
         "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
         "patchSetId": 1
@@ -50,6 +67,29 @@
       "side": 1,
       "message": "If group size is 2 and we have  1 bonded device then I guess we cannot make a decision right?",
       "parentUuid": "761c28ac_fb47bd56",
+      "revId": "d07175ddfff72bd4db86ccf7b365565f26a2256e",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c2f4c0a0_0f549142",
+        "filename": "android/app/src/com/android/bluetooth/btservice/PhonePolicy.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 1730162
+      },
+      "writtenOn": "2024-02-01T09:01:55Z",
+      "side": 1,
+      "message": "If you only check the LE device type, you\u0027ll make all ASHA/HAP device to use LE audio connection by default. We only plan for LE audio only device. \n\nIf the device support A2DP/HFP/ASHA, we should check the allowlist.",
+      "range": {
+        "startLine": 215,
+        "startChar": 28,
+        "endLine": 215,
+        "endChar": 56
+      },
       "revId": "d07175ddfff72bd4db86ccf7b365565f26a2256e",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
