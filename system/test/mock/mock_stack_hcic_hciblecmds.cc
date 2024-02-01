@@ -42,7 +42,6 @@ struct btsnd_hci_ble_remove_device_from_periodic_advertiser_list
 struct btsnd_hcic_accept_cis_req btsnd_hcic_accept_cis_req;
 struct btsnd_hcic_ble_enh_rx_test btsnd_hcic_ble_enh_rx_test;
 struct btsnd_hcic_ble_enh_tx_test btsnd_hcic_ble_enh_tx_test;
-struct btsnd_hcic_ble_ltk_req_neg_reply btsnd_hcic_ble_ltk_req_neg_reply;
 struct btsnd_hcic_ble_periodic_advertising_create_sync
     btsnd_hcic_ble_periodic_advertising_create_sync;
 struct btsnd_hcic_ble_periodic_advertising_create_sync_cancel
@@ -144,10 +143,6 @@ void btsnd_hcic_ble_enh_tx_test(uint8_t tx_chan, uint8_t data_len,
   inc_func_call_count(__func__);
   test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_enh_tx_test(
       tx_chan, data_len, payload, phy);
-}
-void btsnd_hcic_ble_ltk_req_neg_reply(uint16_t handle) {
-  inc_func_call_count(__func__);
-  test::mock::stack_hcic_hciblecmds::btsnd_hcic_ble_ltk_req_neg_reply(handle);
 }
 void btsnd_hcic_ble_periodic_advertising_create_sync(
     uint8_t options, uint8_t adv_sid, uint8_t adv_addr_type,
