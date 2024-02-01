@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d1231db4_59d558dc",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1948078
+      },
+      "writtenOn": "2024-02-01T01:40:59Z",
+      "side": 1,
+      "message": "Hi may I request code review/owner review again for this CL? I uploaded a new patch set to fix the presubmit build errors and the previous votes got removed :(",
+      "revId": "3615d8fa040d90d4aeda1a01f32e123e9723a515",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
