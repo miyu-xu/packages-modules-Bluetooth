@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3a47830a_bb66ac58",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1041767
+      },
+      "writtenOn": "2024-02-01T21:39:43Z",
+      "side": 1,
+      "message": "Reading this it\u0027s unclear what the intent of this function is\n`is_valid_event_code()`\n\nAs the event codes are all valid; they are all simply enumerated types generated from PDL.\n\nSo then the question is valid for what ?",
+      "revId": "611b2cc3b0308d06d1c6d7a070ade6b366eaae87",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
