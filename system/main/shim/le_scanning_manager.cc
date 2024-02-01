@@ -340,7 +340,8 @@ void BleScannerInterfaceImpl::OnMsftAdvMonitorEnable(
 /** Sets the LE scan interval and window in units of N*0.625 msec */
 void BleScannerInterfaceImpl::SetScanParameters(int scanner_id,
                                                 int scan_interval,
-                                                int scan_window, Callback cb) {
+                                                int scan_window, int scan_phy,
+                                                Callback cb) {
   LOG(INFO) << __func__ << " in shim layer";
   tBTM_BLE_INQ_CB* p_cb = &btm_cb.ble_ctr_cb.inq_var;
   if (BTM_BLE_ISVALID_PARAM(scan_interval, BTM_BLE_SCAN_INT_MIN,
@@ -350,6 +351,7 @@ void BleScannerInterfaceImpl::SetScanParameters(int scanner_id,
     p_cb->scan_type = BTM_BLE_SCAN_MODE_ACTI;
     p_cb->scan_interval = scan_interval;
     p_cb->scan_window = scan_window;
+    p_cb->scan_phy = scan_phy;
   }
 
   // use active scan

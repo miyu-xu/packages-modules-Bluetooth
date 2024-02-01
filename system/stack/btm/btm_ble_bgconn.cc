@@ -77,6 +77,8 @@ void btm_update_scanner_filter_policy(tBTM_BLE_SFP scan_policy) {
   uint32_t scan_window =
       !p_inq->scan_window ? BTM_BLE_GAP_DISC_SCAN_WIN : p_inq->scan_window;
 
+  uint8_t scan_phy = !p_inq->scan_phy ? 1 : p_inq->scan_phy;
+
   LOG_VERBOSE("%s", __func__);
 
   p_inq->sfp = scan_policy;
@@ -86,7 +88,7 @@ void btm_update_scanner_filter_policy(tBTM_BLE_SFP scan_policy) {
 
   btm_send_hci_set_scan_params(
       p_inq->scan_type, (uint16_t)scan_interval, (uint16_t)scan_window,
-      btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, scan_policy);
+      scan_phy, btm_cb.ble_ctr_cb.addr_mgnt_cb.own_addr_type, scan_policy);
 }
 
 /*******************************************************************************

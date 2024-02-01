@@ -1548,10 +1548,10 @@ void set_scan_params_cmpl_cb(int client_if, uint8_t status) {
 
 static void gattSetScanParametersNative(JNIEnv* /* env */, jobject /* object */,
                                         jint client_if, jint scan_interval_unit,
-                                        jint scan_window_unit) {
+                                        jint scan_window_unit, jint scan_phy) {
   if (!sGattIf) return;
   sGattIf->scanner->SetScanParameters(
-      client_if, scan_interval_unit, scan_window_unit,
+      client_if, scan_interval_unit, scan_window_unit, scan_phy,
       base::Bind(&set_scan_params_cmpl_cb, client_if));
 }
 

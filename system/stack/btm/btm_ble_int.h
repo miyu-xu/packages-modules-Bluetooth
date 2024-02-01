@@ -39,7 +39,7 @@ void btm_ble_process_periodic_adv_sync_est_evt(uint8_t len, const uint8_t* p);
 void btm_ble_process_periodic_adv_pkt(uint8_t len, const uint8_t* p);
 void btm_ble_process_periodic_adv_sync_lost_evt(uint8_t len, uint8_t* p);
 void btm_send_hci_set_scan_params(uint8_t scan_type, uint16_t scan_int,
-                                  uint16_t scan_win,
+                                  uint16_t scan_win, uint8_t scan_phy,
                                   tBLE_ADDR_TYPE addr_type_own,
                                   uint8_t scan_filter_policy);
 
