@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "364a1121_14a7d4b5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 18
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-01T22:26:50Z",
+      "side": 1,
+      "message": "Verified this series builds locally and in docker container. Pushed up a new docker container with the change so that presubmits will also pass.\n\nPlease re-run Presubmit to get latest Floss container results.",
+      "revId": "a20fc5668edb5e2fb5f3181f2d9e5252f560bcc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9f742303_9ebc65a5",
+        "filename": "system/log/src/vlog_syslog.cc",
+        "patchSetId": 18
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 1836438
+      },
+      "writtenOn": "2024-02-01T22:26:50Z",
+      "side": 1,
+      "message": "1k seems to be the minimum buffer size for syslog. ChromeOS uses rsyslogd (which defaults to 8k): https://www.rsyslog.com/doc/configuration/global/index.html\n\nI don\u0027t think we\u0027d expect 8k messages in Bluetooth but a truncation indicator (maybe ಠ_ಠ) would be useful to see if we need to increase this buffer size in the future.",
+      "revId": "a20fc5668edb5e2fb5f3181f2d9e5252f560bcc4",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
