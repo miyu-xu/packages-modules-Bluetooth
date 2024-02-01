@@ -22,6 +22,30 @@
       },
       "revId": "6092273598a1f9c507af9bfc39f9650b2a2a05fa",
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5a6356bc_22d925d9",
+        "filename": "system/stack/smp/smp_keys.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-01T23:03:44Z",
+      "side": 1,
+      "message": "Definitely.  Thanks!",
+      "parentUuid": "ff6ffde7_8a43f68d",
+      "range": {
+        "startLine": 502,
+        "startChar": 20,
+        "endLine": 502,
+        "endChar": 24
+      },
+      "revId": "6092273598a1f9c507af9bfc39f9650b2a2a05fa",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     }
   ]
 }
