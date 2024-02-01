@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07e68f5d_19767346",
+        "filename": "system/stack/btm/btm_inq.cc",
+        "patchSetId": 4
+      },
+      "lineNbr": 563,
+      "author": {
+        "id": 1964701
+      },
+      "writtenOn": "2024-02-01T17:30:59Z",
+      "side": 1,
+      "message": "Should we use some more friendly ways than ASSERT? This will abort the process.\n\nUnder the threat model defined by ASA, the controller can be assumed to be under control of an attacker",
+      "range": {
+        "startLine": 563,
+        "startChar": 16,
+        "endLine": 563,
+        "endChar": 22
+      },
+      "revId": "f13bc0faaeebd337b87c6c5acf91917f75d77c45",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
