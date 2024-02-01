@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1fa581a6_d38c1c4f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1981586
+      },
+      "writtenOn": "2024-02-01T01:48:57Z",
+      "side": 1,
+      "message": "all broadcaster functions are used only for lea broadcast which is behind the feature flag. I think it makes sense to use the feature flag here. could you add this to the commit message?\nBug: 316005152",
+      "revId": "daee741282213423c8d688bfcd5808baf4cfa182",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
