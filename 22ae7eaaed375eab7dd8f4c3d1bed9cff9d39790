@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "0c30d1b5_a2832daf",
+        "filename": "android/app/src/com/android/bluetooth/vc/VolumeControlService.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 814,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-01T11:37:36Z",
+      "side": 1,
+      "message": "Please add flag here",
+      "revId": "22ae7eaaed375eab7dd8f4c3d1bed9cff9d39790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "606d627c_e763a8f1",
+        "filename": "framework/java/android/bluetooth/BluetoothVolumeControl.java",
+        "patchSetId": 7
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 1929540
+      },
+      "writtenOn": "2024-02-01T11:37:36Z",
+      "side": 1,
+      "message": "add a commment here, why",
+      "range": {
+        "startLine": 181,
+        "startChar": 28,
+        "endLine": 181,
+        "endChar": 41
+      },
+      "revId": "22ae7eaaed375eab7dd8f4c3d1bed9cff9d39790",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
