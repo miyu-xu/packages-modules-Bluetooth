@@ -86,6 +86,8 @@ static void send_ble_start_enc(uint16_t hci_handle,
 
 static void send_ble_ltk_req_reply(uint16_t handle, const Octet16& ltk);
 
+static void send_ble_ltk_req_neg_reply(uint16_t handle);
+
 /******************************************************************************/
 /* External Function to be called by other modules                            */
 /******************************************************************************/
@@ -1399,7 +1401,7 @@ void btm_ble_ltk_request_reply(const RawAddress& bda, bool use_stk,
 
   p_rec = btm_find_dev_with_lenc(bda);
   if (!p_rec) {
-    btsnd_hcic_ble_ltk_req_neg_reply(btm_sec_cb.enc_handle);
+    send_ble_ltk_req_neg_reply(btm_sec_cb.enc_handle);
     return;
   }
 
@@ -2059,4 +2061,13 @@ static void send_ble_ltk_req_reply(uint16_t handle, const Octet16& ltk) {
       get_main_thread()->BindOnce(
           bluetooth::hci::check_complete<
               bluetooth::hci::LeLongTermKeyRequestReplyCompleteView>));
+}
+
+static void send_ble_ltk_req_neg_reply(uint16_t handle) {
+  // TODO: Add an interface for LE security commands in btm sec
+  bluetooth::shim::GetHciLayer()->EnqueueCommand(
+      bluetooth::hci::LeLongTermKeyRequestNegativeReplyBuilder::Create(handle),
+      get_main_thread()->BindOnce(
+          bluetooth::hci::check_complete<
+              bluetooth::hci::LeLongTermKeyRequestNegativeReplyCompleteView>));
 }
