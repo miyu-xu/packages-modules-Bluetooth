@@ -24,6 +24,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7a8be0c_a896182c",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-02-01T23:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "71a98b44_7f788232",
+      "range": {
+        "startLine": 367,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 49
+      },
+      "revId": "0cb907afcd42000d80d315c651c0baddfb0e0cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "74658999_3bd1e0c5",
@@ -37,6 +61,30 @@
       "writtenOn": "2024-02-01T16:33:41Z",
       "side": 1,
       "message": "log scn, address and slot id here.",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 376,
+        "endChar": 65
+      },
+      "revId": "0cb907afcd42000d80d315c651c0baddfb0e0cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "09f2e214_6a4ba1dc",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-02-01T23:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "74658999_3bd1e0c5",
       "range": {
         "startLine": 376,
         "startChar": 0,
@@ -70,6 +118,30 @@
       "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "98836f34_8f7983ca",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-02-01T23:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ceb77388_e38e032f",
+      "range": {
+        "startLine": 387,
+        "startChar": 0,
+        "endLine": 387,
+        "endChar": 66
+      },
+      "revId": "0cb907afcd42000d80d315c651c0baddfb0e0cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "5603fded_6b3add82",
@@ -83,6 +155,30 @@
       "writtenOn": "2024-02-01T16:33:41Z",
       "side": 1,
       "message": "add log for bt_addr as well (from slot-\u003eaddr)",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 478,
+        "endChar": 49
+      },
+      "revId": "0cb907afcd42000d80d315c651c0baddfb0e0cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3b548cb7_a10ea812",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1969299
+      },
+      "writtenOn": "2024-02-01T23:32:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5603fded_6b3add82",
       "range": {
         "startLine": 478,
         "startChar": 0,
