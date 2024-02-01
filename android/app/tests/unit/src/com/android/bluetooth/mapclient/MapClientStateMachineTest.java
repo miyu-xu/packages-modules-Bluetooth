@@ -247,6 +247,8 @@ public class MapClientStateMachineTest {
         filter.addAction(ACTION_MESSAGE_SENT);
         mSentDeliveryReceiver = new SentDeliveryReceiver();
         mTargetContext.registerReceiver(mSentDeliveryReceiver, filter, Context.RECEIVER_EXPORTED);
+
+        mSetFlagsRule.enableFlags(Flags.FLAG_USE_ENTIRE_MESSAGE_HANDLE);
     }
 
     @After
