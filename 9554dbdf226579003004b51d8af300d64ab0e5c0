@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "868033a5_e7ae112f",
+        "filename": "system/stack/l2cap/l2c_utils.cc",
+        "patchSetId": 1
+      },
+      "lineNbr": 2412,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-01T00:53:58Z",
+      "side": 1,
+      "message": "This feels odd to me.  I expected the whole switch statement to be #ifndef FLOSS, or just the call to l2cu_set_acl_priority_latency_mtk.  Maybe even in that function instead of here.",
+      "range": {
+        "startLine": 2412,
+        "startChar": 8,
+        "endLine": 2412,
+        "endChar": 20
+      },
+      "revId": "9554dbdf226579003004b51d8af300d64ab0e5c0",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
