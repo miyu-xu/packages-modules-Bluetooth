@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "81cbcb7f_0837302d",
+        "filename": "system/stack/btm/btm_dev.cc",
+        "patchSetId": 6
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 1076123
+      },
+      "writtenOn": "2024-02-01T17:25:52Z",
+      "side": 1,
+      "message": "The only way this can return null is if we hit this path:\n\n  if (btm_sec_cb.sec_dev_rec \u003d\u003d nullptr) {\n    LOG_WARN(\n        \"Unable to allocate device record with destructed device record list\");\n    return nullptr;\n  }\n  \nI feel like that should be made into an ASSERT instead.  If we can\u0027t allocate a device record, things have gone terribly wrong.",
+      "range": {
+        "startLine": 269,
+        "startChar": 32,
+        "endLine": 269,
+        "endChar": 56
+      },
+      "revId": "02aaf2988a01ed951d13787f012a03654ebda3c3",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
