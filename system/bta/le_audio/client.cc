@@ -5465,6 +5465,15 @@ class LeAudioClientImpl : public LeAudioClient {
 
         take_stream_time();
 
+        if (group->asymmetric_phy_for_unidirectional_cis_supported) {
+          if (group->GetSduInterval(le_audio::types::kLeAudioDirectionSource) ==
+              0) {
+            SetAsymmetricBlePhy(group, true);
+          } else {
+            SetAsymmetricBlePhy(group, false);
+          }
+        }
+
         le_audio::MetricsCollector::Get()->OnStreamStarted(
             active_group_id_, configuration_context_type_);
 
@@ -5768,6 +5777,20 @@ class LeAudioClientImpl : public LeAudioClient {
     configuration_context_type_ = LeAudioContextType::UNINITIALIZED;
 
     le_audio::MetricsCollector::Get()->OnStreamEnded(active_group_id_);
+  }
+
+  void SetAsymmetricBlePhy(LeAudioDeviceGroup* group, bool asymmetric) {
+    LeAudioDevice* leAudioDevice = group->GetFirstActiveDevice();
+    if (leAudioDevice == nullptr) {
+      LOG_ERROR(" Shouldn't be called without an active device.");
+      return;
+    }
+
+    for (auto tmpDevice = leAudioDevice; tmpDevice != nullptr;
+         tmpDevice = group->GetNextActiveDevice(tmpDevice)) {
+      BTM_BleSetPhy(tmpDevice->address_, PHY_LE_2M,
+                    asymmetric ? PHY_LE_1M : PHY_LE_2M, 0);
+    }
   }
 };
 
