@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71a98b44_7f788232",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-01T16:33:41Z",
+      "side": 1,
+      "message": "Log the bd_addr here as well.",
+      "range": {
+        "startLine": 367,
+        "startChar": 0,
+        "endLine": 367,
+        "endChar": 49
+      },
+      "revId": "0cb907afcd42000d80d315c651c0baddfb0e0cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "74658999_3bd1e0c5",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 376,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-01T16:33:41Z",
+      "side": 1,
+      "message": "log scn, address and slot id here.",
+      "range": {
+        "startLine": 376,
+        "startChar": 0,
+        "endLine": 376,
+        "endChar": 65
+      },
+      "revId": "0cb907afcd42000d80d315c651c0baddfb0e0cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "ceb77388_e38e032f",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 387,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-01T16:33:41Z",
+      "side": 1,
+      "message": "LOG bt_addr, slot id as well.",
+      "range": {
+        "startLine": 387,
+        "startChar": 0,
+        "endLine": 387,
+        "endChar": 66
+      },
+      "revId": "0cb907afcd42000d80d315c651c0baddfb0e0cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5603fded_6b3add82",
+        "filename": "system/btif/src/btif_sock_rfc.cc",
+        "patchSetId": 2
+      },
+      "lineNbr": 478,
+      "author": {
+        "id": 1961270
+      },
+      "writtenOn": "2024-02-01T16:33:41Z",
+      "side": 1,
+      "message": "add log for bt_addr as well (from slot-\u003eaddr)",
+      "range": {
+        "startLine": 478,
+        "startChar": 0,
+        "endLine": 478,
+        "endChar": 49
+      },
+      "revId": "0cb907afcd42000d80d315c651c0baddfb0e0cd6",
+      "serverId": "85c56323-6fa9-3386-8a01-6480fb634889"
+    }
+  ]
+}
