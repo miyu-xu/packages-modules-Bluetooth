@@ -1686,6 +1686,10 @@ public class HeadsetStateMachine extends StateMachine {
     }
 
     private void setAudioParameters() {
+        if (Flags.isScoManagedByAudio()) {
+            Log.i(TAG, "isScoManagedByAudio enabled, do not setAudioParameters");
+            return;
+        }
         AudioManager am = mSystemInterface.getAudioManager();
         Log.i(
                 TAG,
